@@ -99,6 +99,18 @@ def run_signal_copy_pygame_gui(extra_args: list[str]) -> int:
 	return subprocess.run(cmd, cwd=ROOT).returncode
 
 
+def run_signal_copy_opengl_gui(extra_args: list[str]) -> int:
+	entry = ROOT / "gui_signal_copy_opengl_3d.py"
+	if not entry.exists():
+		print(f"Missing OpenGL GUI script: {entry}")
+		return 2
+
+	forward_args = extra_args[1:] if extra_args and extra_args[0] == "--" else extra_args
+	cmd = [sys.executable, str(entry), *forward_args]
+	print("Launching distance signal-copy OpenGL GUI...")
+	return subprocess.run(cmd, cwd=ROOT).returncode
+
+
 def build_parser() -> argparse.ArgumentParser:
 	parser = argparse.ArgumentParser(
 		description="TPCN project launcher (VHDL simulation + baseline engine)."
@@ -153,6 +165,15 @@ def build_parser() -> argparse.ArgumentParser:
 		help="Optional arguments forwarded to gui_signal_copy_pygame.py",
 	)
 
+	gui_copy_gl_parser = subparsers.add_parser(
+		"guicopy3d", help="Run OpenGL 3D visualization of neurons and recurrent links"
+	)
+	gui_copy_gl_parser.add_argument(
+		"args",
+		nargs=argparse.REMAINDER,
+		help="Optional arguments forwarded to gui_signal_copy_opengl_3d.py",
+	)
+
 	return parser
 
 
@@ -178,6 +199,9 @@ def main() -> int:
 
 	if args.command == "guicopy":
 		return run_signal_copy_pygame_gui(extra_args=args.args)
+
+	if args.command == "guicopy3d":
+		return run_signal_copy_opengl_gui(extra_args=args.args)
 
 	parser.print_help()
 	return 2
