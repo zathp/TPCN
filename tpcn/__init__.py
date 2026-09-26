@@ -13,6 +13,18 @@ from .event_runtime import (
     PropagationDelay,
     QueueCapacityError,
 )
+from .canonical_neuron import TPCNNeuron
+from .topology import BoundedTopology, Edge, TopologyCapacityError, TopologyError
+from .predictive_coding import (
+    LocalPredictor,
+    Observation,
+    PREDICTION_EVENT,
+    PREDICTION_ERROR_EVENT,
+    Prediction,
+    PredictionCapacityError,
+    PredictionError,
+    PredictionResolution,
+)
 
 __all__ = [
     "SignalCopyConfig",
@@ -29,4 +41,17 @@ __all__ = [
     "LocalTimestamp",
     "PropagationDelay",
     "QueueCapacityError",
+    "TPCNNeuron",
+    "BoundedTopology",
+    "Edge",
+    "TopologyCapacityError",
+    "TopologyError",
+    "LocalPredictor",
+    "Observation",
+    "PREDICTION_EVENT",
+    "PREDICTION_ERROR_EVENT",
+    "Prediction",
+    "PredictionCapacityError",
+    "PredictionError",
+    "PredictionResolution",
 ]

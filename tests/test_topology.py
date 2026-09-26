@@ -1,0 +1,127 @@
+from pathlib import Path
+
+import pytest
+
+from tpcn.event_runtime import Event, EventQueue, EventType, QueueCapacityError
+from tpcn.topology import BoundedTopology, TopologyCapacityError, TopologyError
+
+
+def make_topology() -> BoundedTopology:
+    return BoundedTopology(("a", "b", "c", "d"), fan_in_limit=1, fan_out_limit=2, edge_capacity=3)
+
+
+def test_fan_in_and_fan_out_are_rejected_at_connection_time() -> None:
+    topology = make_topology()
+    topology.connect("a", "b", 1.0)
+    with pytest.raises(TopologyCapacityError):
+        topology.connect("c", "b", 1.0)
+    topology.connect("a", "c", 2.0)
+    with pytest.raises(TopologyCapacityError):
+        topology.connect("a", "d", 3.0)
+
+
+def test_invalid_nodes_edges_and_delays_are_rejected() -> None:
+    topology = make_topology()
+    with pytest.raises(TopologyError):
+        topology.connect("missing", "b", 1.0)
+    with pytest.raises(TopologyError):
+        topology.connect("a", "missing", 1.0)
+    with pytest.raises(ValueError):
+        topology.connect("a", "b", 0.0)
+    topology.connect("a", "b", 1.0)
+    with pytest.raises(TopologyError):
+        topology.connect("a", "b", 2.0)
+
+
+def test_route_preserves_edge_delay_and_uses_luna_one_queue() -> None:
+    topology = make_topology()
+    topology.connect("a", "b", 1.25)
+    queue = EventQueue(capacity=4)
+    emitted = Event(3.0, "a", "ignored", EventType.SIGNAL, {"value": 7})
+    queued = topology.route(emitted, queue)
+
+    assert queued[0].destination == "b"
+    assert queued[0].timestamp == pytest.approx(4.25)
+    with pytest.raises(IndexError):
+        queue.pop_ready(4.24)
+    assert queue.pop_ready(4.25).payload == {"value": 7}
+
+
+def test_successful_route_admits_complete_fan_out() -> None:
+    topology = BoundedTopology.from_edges(
+        ("a", "b", "c"), (("a", "b", 1.0), ("a", "c", 2.0)), fan_in_limit=2, fan_out_limit=2
+    )
+    queue = EventQueue(capacity=2)
+
+    queued = topology.route(Event(0.0, "a", "ignored", EventType.SIGNAL, None), queue)
+
+    assert [event.destination for event in queued] == ["b", "c"]
+    assert len(queue) == 2
+
+
+def test_rejected_fan_out_is_atomic_and_retryable_without_duplicates() -> None:
+    topology = BoundedTopology.from_edges(
+        ("a", "b", "c"), (("a", "b", 1.0), ("a", "c", 2.0)), fan_in_limit=2, fan_out_limit=2
+    )
+    queue = EventQueue(capacity=2)
+    existing = Event(0.0, "existing", "b", EventType.SIGNAL, None)
+    queue.push(existing)
+    event = Event(0.0, "a", "ignored", EventType.SIGNAL, None)
+
+    with pytest.raises(QueueCapacityError):
+        topology.route(event, queue)
+    with pytest.raises(QueueCapacityError):
+        topology.route(event, queue)
+
+    assert len(queue) == 1
+    assert queue.peek() is not None
+    assert queue.peek().destination == "b"
+
+    retry_queue = EventQueue(capacity=2)
+    queued = topology.route(event, retry_queue)
+    assert [item.destination for item in queued] == ["b", "c"]
+
+
+def test_seeded_construction_is_deterministic_and_finite() -> None:
+    kwargs = dict(edge_count=4, fan_in_limit=2, fan_out_limit=2, seed=17, propagation_delay=0.5)
+    first = BoundedTopology.seeded(("n3", "n1", "n2", "n0"), **kwargs)
+    second = BoundedTopology.seeded(("n3", "n1", "n2", "n0"), **kwargs)
+
+    assert first.edges == second.edges
+    assert len(first) == 4
+    assert len(first.nodes) == 4
+
+
+def test_route_is_compatible_with_serial_and_batched_queue_processing() -> None:
+    topology = BoundedTopology.from_edges(
+        ("a", "b", "c"), (("a", "b", 1.0), ("a", "c", 2.0)), fan_in_limit=2, fan_out_limit=2
+    )
+
+    def run(batch: bool) -> list[tuple[str, float]]:
+        queue = EventQueue(capacity=8)
+        topology.route(Event(0.0, "a", "ignored", EventType.SIGNAL, None), queue)
+        result = []
+        while queue:
+            ready = queue.pop_ready_batch(queue.peek().timestamp) if batch else [queue.pop_ready(queue.peek().timestamp)]
+            result.extend((event.destination, event.timestamp) for event in ready)
+        return result
+
+    assert run(False) == run(True)
+
+
+def test_routing_respects_finite_pending_queue_capacity() -> None:
+    topology = BoundedTopology.from_edges(
+        ("a", "b", "c"), (("a", "b", 1.0), ("a", "c", 2.0)), fan_in_limit=2, fan_out_limit=2
+    )
+    queue = EventQueue(capacity=1)
+
+    with pytest.raises(QueueCapacityError):
+        topology.route(Event(0.0, "a", "ignored", EventType.SIGNAL, None), queue)
+    assert len(queue) == 0
+
+
+def test_topology_has_no_spatial_reservoir_dependency() -> None:
+    source = Path(__file__).parents[1] / "tpcn" / "topology.py"
+    text = source.read_text(encoding="utf-8")
+    assert "signal_copy_distance" not in text
+    assert "spatial" not in text.lower()
