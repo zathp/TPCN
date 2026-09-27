@@ -12,6 +12,7 @@ import math
 from typing import Iterable, Literal
 
 from .cpu_visualization import ReplaySequence, ReplaySequenceError
+from .temporal_analysis import analyze_replay
 
 
 ViewerMode = Literal["overview", "activity", "structural", "neighborhood", "utility"]
@@ -276,10 +277,13 @@ class VisualizationScene:
     def summary(self) -> dict[str, object]:
         metrics = self.metrics or {}
         active = sum(item.active for item in self.snapshot.neurons)
+        analysis = analyze_replay(self.replay)
         return {"snapshot": self.snapshot_index, "epoch": self.snapshot.epoch, "nodes_active": active,
                 "node_count": len(self.snapshot.neurons), "connections": len(self.snapshot.connections),
                 "added": len(self.diff.added_edges), "removed": len(self.diff.removed_edges),
-                "never_active": sum(1 for item in self.snapshot.neurons if not item.active), "metrics": metrics}
+            "never_active": sum(1 for item in self.snapshot.neurons if not item.active), "metrics": metrics,
+            "analysis_classification": analysis["classification"],
+            "edge_use_evidence": analysis["edge_summary"]["edge_use_evidence"]}
 
 
 __all__ = ["CameraState", "EdgeView", "NodeView", "SnapshotDiff", "ViewerFilters", "VisualizationScene"]

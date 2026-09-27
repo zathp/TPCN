@@ -122,6 +122,7 @@ class ExperimentMetrics:
     rejected_mutations: int = 0
     topology_edges: tuple[tuple[str, str, float], ...] = ()
     mutation_history: tuple[tuple[str, str, str, str], ...] = ()
+    mutation_rejection_reasons: tuple[tuple[str, int], ...] = ()
 
 
 @dataclass(frozen=True, slots=True)
@@ -143,6 +144,51 @@ class TrainingResult:
 
 
 TrainingObserver = Callable[[int, tuple[TPCNNeuron, ...], ExperimentMetrics], None]
+
+
+class _ComputationalNetwork:
+    """Persistent neurons and bounded causal routing for one experiment."""
+
+    def __init__(self, nodes: tuple[str, ...], topology: BoundedTopology, queue_capacity: int) -> None:
+        self.neurons = tuple(TPCNNeuron(node, input_gain=0.5) for node in nodes)
+        self._by_id = {neuron.neuron_id: neuron for neuron in self.neurons}
+        self.topology = topology
+        self.queue_capacity = queue_capacity
+
+    def set_topology(self, topology: BoundedTopology) -> None:
+        self.topology = topology
+
+    def reset_character(self) -> None:
+        for neuron in self.neurons:
+            neuron.reset()
+
+    def process(self, source: str, timestamp: float, payload: float, *, max_events: int) -> tuple[tuple[tuple[object, ...], ...], tuple[float, ...]]:
+        queue: EventQueue[Event] = EventQueue(capacity=self.queue_capacity)
+        initial = queue.push(Event(timestamp, source, source, "signal", payload))
+        depths = {initial.sequence: 0}
+        paths = {initial.sequence: (source,)}
+        trace: list[tuple[object, ...]] = []
+        activations: list[float] = []
+        processed = 0
+        while queue:
+            if processed >= max_events:
+                break
+            pending = queue.peek()
+            assert pending is not None
+            event = queue.pop_ready(pending.timestamp)
+            depth = depths.pop(event.sequence)
+            path = paths.pop(event.sequence)
+            neuron = self._by_id[event.destination]
+            activation = neuron.receive_event(event)
+            trace.append((event.timestamp, event.source, event.destination, event.event_type, event.payload))
+            activations.append(activation)
+            if depth < len(self.neurons) and neuron.neuron_id not in path[1:]:
+                emitted = Event(event.timestamp, neuron.neuron_id, neuron.neuron_id, event.event_type, activation)
+                for routed in self.topology.route(emitted, queue):
+                    depths[routed.sequence] = depth + 1
+                    paths[routed.sequence] = path + (routed.destination,)
+            processed += 1
+        return tuple(trace), tuple(activations)
 
 
 def make_synthetic_workload(*, examples_per_class: int = 2, seed: int = 0,
@@ -203,6 +249,8 @@ class _ExampleRun:
     latency: float
     utility: float
     neuron: TPCNNeuron
+    routed_events: int
+    propagated_activity: float
 
 
 class ExperimentRunner:
@@ -221,6 +269,9 @@ class ExperimentRunner:
         self._topology: BoundedTopology | None = None
         self._plasticity: StructuralPlasticityController | None = None
         self._mutation_history: list[tuple[str, str, str, str]] = []
+        self._mutation_rejection_reasons: dict[str, int] = {}
+        self._last_mutation_rejection_reasons: dict[str, int] = {}
+        self._network: _ComputationalNetwork | None = None
 
     @property
     def history(self) -> tuple[ExperimentMetrics, ...]:
@@ -264,7 +315,10 @@ class ExperimentRunner:
             self._topology, candidate_capacity=self.config.candidate_capacity,
             max_growth_per_adaptation=self.config.max_growth_per_epoch,
             minimum_edge_count=0, local_neighbors=neighbors)
+        self._network = _ComputationalNetwork(nodes, self._topology, self.config.max_points * 8)
         self._mutation_history = []
+        self._mutation_rejection_reasons = {}
+        self._last_mutation_rejection_reasons = {}
 
     def _topology_metrics(self, mutations: tuple[tuple[str, str, str, str], ...]) -> dict[str, object]:
         topology = self._topology
@@ -283,11 +337,13 @@ class ExperimentRunner:
             "accepted_additions": sum(item[0] == "grown" for item in mutations),
             "pruned_connections": sum(item[0] == "pruned" for item in mutations),
             "rejected_mutations": sum(item[0] not in ("grown", "pruned") for item in mutations),
+            "mutation_rejection_reasons": tuple(sorted(self._last_mutation_rejection_reasons.items())),
         }
 
     def _adapt_topology(self, runs: list[_ExampleRun], epoch: int) -> tuple[tuple[str, str, str, str], ...]:
         if not self.config.structural_plasticity or self._plasticity is None or len(runs) < 2:
             return ()
+        self._last_mutation_rejection_reasons = {}
         mutations: list[tuple[str, str, str, str]] = []
         nodes = self._topology.nodes
         for index, run in enumerate(runs):
@@ -297,6 +353,10 @@ class ExperimentRunner:
                                          1.0, f"epoch-{epoch}-neuron-{index}")
             result = self._plasticity.grow(evidence)
             mutations.append((result.status, source, destination, "local_activity_prediction_error"))
+            if result.status not in ("grown", "pruned"):
+                reason = result.reason or ("duplicate" if result.status == "duplicate" else result.status)
+                self._mutation_rejection_reasons[reason] = self._mutation_rejection_reasons.get(reason, 0) + 1
+                self._last_mutation_rejection_reasons[reason] = self._last_mutation_rejection_reasons.get(reason, 0) + 1
             if result.status == "grown":
                 break
         if epoch % 2 == 1 and self._topology is not None and len(self._topology) > 1:
@@ -306,6 +366,8 @@ class ExperimentRunner:
                 assert result.edge is not None
                 mutations.append((result.status, result.edge.source, result.edge.destination, "local_activity_retention"))
         self._topology = self._plasticity.topology
+        assert self._network is not None
+        self._network.set_topology(self._topology)
         self._mutation_history.extend(mutations)
         del self._mutation_history[:-self.config.mutation_history_limit]
         return tuple(mutations)
@@ -319,37 +381,37 @@ class ExperimentRunner:
 
     def _run_example(self, example: SyntheticExample, index: int, *, update: bool) -> _ExampleRun:
         config = self.config
+        assert self._network is not None
+        self._network.reset_character()
         classifier = StreamingCharacterClassifier(max_activity_events=config.max_points)
-        neuron = TPCNNeuron(f"neuron-{index}", input_gain=0.5)
+        neuron = self._network.neurons[index]
         meter = LocalEnergyModel(f"meter-{index}", max_counter=config.max_points * 8)
         utility = RewardAdjustedUtility(energy_weight=config.energy_weight)
         ledger = EligibilityLedger(f"ledger-{index}", max_traces=config.prediction_capacity, decay_time_constant=4.0)
         predictor = LocalPredictor(f"predictor-{index}", max_outstanding=1, error_destination="errors")
-        queue: EventQueue[Event] = EventQueue(capacity=config.max_points * 8)
         classifier.ingest_event(Event(0.0, example.example_id, "readout", START_CHARACTER, CharacterBoundary(index)))
         trace: list[tuple[object, ...]] = []
         feature = 0.0
         prediction_loss = 0.0
         for point_index, point in enumerate(example.points):
             timestamp = point.timestamp if point.timestamp is not None else float(point_index)
-            event = Event(timestamp, example.example_id, neuron.neuron_id, "signal", point.x + point.y)
-            delivered = queue.pop_ready(queue.push(event).timestamp)
-            activation = neuron.receive_event(delivered)
-            meter.observe_event(delivered, cost=abs(activation))
-            feature += activation
-            trace.append((delivered.timestamp, delivered.source, delivered.event_type, delivered.payload))
+            routed_trace, activations = self._network.process(
+                neuron.neuron_id, timestamp, point.x + point.y, max_events=config.max_points * 8)
+            activation = activations[-1]
+            for routed_index, item in enumerate(routed_trace):
+                meter.observe_event(Event(item[0], item[1], item[2], item[3], item[4]), cost=abs(activations[routed_index]))
+            feature += sum(activations)
+            trace.extend(routed_trace)
             if point_index:
                 resolution = predictor.process_observation(
-                    Event(timestamp, example.example_id, "predictor", "observation", Observation("next", activation)), queue)
+                    Event(timestamp, example.example_id, "predictor", "observation", Observation("next", activation)),
+                    EventQueue(capacity=config.max_points * 8))
                 if resolution.error is not None:
                     prediction_loss += abs(resolution.error.error)
-                    error_event = queue.pop_ready(timestamp)
-                    ledger.apply_signal(Event(error_event.timestamp, error_event.source, ledger.ledger_id,
-                                              "prediction_error", error_event.payload))
             prediction = predictor.create_prediction("next", activation, timestamp=timestamp, expires_at=timestamp + 2.0)
             ledger.record_activity(Event(timestamp, neuron.neuron_id, ledger.ledger_id, "eligibility_activity",
                                          EligibilityActivity(f"{example.example_id}:{point_index}", abs(activation), prediction.prediction_id)))
-            classifier.ingest_event(Event(timestamp, neuron.neuron_id, "readout", ACTIVITY_EVENT, activation))
+            classifier.ingest_event(Event(timestamp, neuron.neuron_id, "readout", ACTIVITY_EVENT, sum(activations)))
         result = classifier.ingest_event(Event(float(len(example.points)), example.example_id, "readout",
                                                END_CHARACTER, CharacterBoundary(index)))
         assert result is not None
@@ -371,11 +433,12 @@ class ExperimentRunner:
             self._prototypes[example.label] = (old_value + feature / len(example.points), old_count + 1)
             self._updates += 1
         retained = 1 if config.activation_mode == "event_only" or utility.evaluate(meter.energy, reward).retain else 0
+        routed_events = len(trace)
         return _ExampleRun(prediction, feature / len(example.points), confidence, prediction_loss,
-                           meter.energy, len(example.points), len(example.points), retained, tuple(trace), reward,
+                   meter.energy, routed_events, routed_events, retained, tuple(trace), reward,
                            message.timestamp - float(len(example.points)) if attribution.status == "matched" else 0.0,
                            utility.evaluate(meter.energy, reward).utility,
-                           neuron)
+                   neuron, routed_events - len(example.points), feature / len(example.points))
 
     def _execute(self, workload: tuple[SyntheticExample, ...], epoch: int, *, update: bool) -> EvaluationResult:
         runs = [self._run_example(example, index, update=update) for index, example in enumerate(workload)]

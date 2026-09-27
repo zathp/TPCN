@@ -1,15 +1,15 @@
-# Luna-13 Dispatch Handoff
+# Luna-13 GPU Visualization Handoff
 
 ```yaml
 tpcn_handoff:
   agent: Luna-13 GPU-Compatible Visualization Path
   task_id: visualization-gpu-luna-13
   component: GPU adapter for the Luna-12 visualization format
-  status: partial
+  status: complete
   authorization: Luna-0 explicitly authorized after Luna-12 PASSED
   contract_version: "1.0"
   branch: main
-  base_revision: 884887ec25d74edfef48ca67ee0653d6fed679d0
+  base_revision: 0f0e75df6e69bd924f0be4692425613da9dda596
   result_revision: uncommitted
   architecture_invariants_touched: [A01, A03, A04, A07, A08, A15]
   preserves:
@@ -19,8 +19,7 @@ tpcn_handoff:
   architecture_change: false
   proposal: null
   files_changed:
-    - tpcn/signal_copy_distance/gpu_visualization.py
-    - tpcn/signal_copy_distance/__init__.py
+    - tpcn/gpu_visualization.py
     - tests/test_gpu_visualization.py
     - workflow/docs/luna/VISUALIZATION_CONTRACT.md
     - workflow/handoffs/visualization-gpu-Luna-13.md
@@ -34,9 +33,10 @@ tpcn_handoff:
     - actual CUDA parity execution: unavailable in this environment
   assumptions:
     - Luna-12 passed and Luna-0 authorized Luna-13 before implementation.
-    - The signal-copy model's recurrent structural mask is its observable bounded topology.
+    - The test-owned bounded graph is the only fixture topology; no production model topology is implied.
   unresolved:
     - Actual CUDA parity remains unrun until a CUDA-enabled PyTorch environment is available.
+    - Full suite has one unrelated failure in the user-owned temporal analysis test.
   recommended_next_agent: [Luna-0 after Luna-13 gate evidence]
 ```
 
@@ -48,37 +48,39 @@ gate passed. Implementation remains outside this Luna-0 review.
 ## Outcome and design
 
 `TorchSnapshotExporter` is a downstream adapter for canonical TPCV-1. It
-samples at a positive epoch interval, detaches the selected hidden-state row
-and structural mask, copies those tensors to host, and calls the Luna-12
-record/export path. There is no device-side schema, callback into the model,
-persistent execution state, queue interaction, or synchronization dependency
-for computation.
+samples caller-supplied state, activation, identifiers, bounded directed
+connections, and optional processed-event counts at a positive epoch interval,
+detaches and copies tensor values to host, and calls the Luna-12 record/export
+path. There is no device-side schema, callback into the model, persistent
+execution state, queue interaction, or synchronization dependency for
+computation. The test-owned fixture is a three-node `BoundedTopology` graph;
+it is not a production TPCN implementation or requirement.
 
 The correctness-first implementation uses a synchronous host transfer rather
 than double buffering or compact device records. Capture cost is one transfer
-and serialization per selected snapshot. Missing signal-copy observables
-default to `0` processed events and `1.0` propagation delay and are not claimed
-as native GPU semantics. Labels, rewards, queues, gradients, and optimizer
-state are unsupported.
+and serialization per selected snapshot. Processed-event counts default to
+`0` only when the caller omits them; connection delays are supplied explicitly.
+Labels, rewards, queues, gradients, and optimizer state are unsupported.
 
 ## Architecture evidence
 
 - A01/A03: capture records existing timestamp/epoch and does not create or
-  route events.
+  route events; host transfer occurs only at the requested capture boundary.
 - A04/A08: structural edges and bounded canonical record limits are reused;
   malformed or oversized exports are rejected by Luna-12.
 - A07: no labels, rewards, or hidden global state are captured implicitly.
-- A15: the PyTorch adapter is device-neutral and consumes CPU TPCV-1 records.
+- A15: the PyTorch adapter is device-neutral and consumes CPU TPCV-1 records;
+  no canonical computational module imports it.
 
 ## Validation record
 
 | Command or procedure | Revision / environment | Observed result |
 |---|---|---|
-| Baseline | `884887ec25d74edfef48ca67ee0653d6fed679d0`, Windows PowerShell, Python 3.10.8, existing dirty worktree preserved | recorded |
+| Baseline | `0f0e75df6e69bd924f0be4692425613da9dda596`, Windows PowerShell, existing dirty worktree preserved | recorded |
 | `python -c "import torch; print(torch.__version__); print(torch.cuda.is_available())"` | same environment | `torch 1.12.1+cpu`; CUDA unavailable |
 | `python -m pytest -q tests/test_gpu_visualization.py` | same environment | 3 passed, 1 skipped |
 | CUDA parity test | CUDA runtime/device | not run; unavailable |
-| `python -m pytest -q` | current worktree | 126 passed, 1 skipped |
+| `python -m pytest -q` | current worktree | 147 passed, 1 skipped, 1 unrelated failure in `tests/test_temporal_analysis.py` |
 | `python -m compileall -q tpcn tests` | current worktree | passed |
 | `git diff --check` | current worktree | passed |
 | workspace diagnostics for touched files | current editor environment | no errors in adapter/test; unrelated existing `pytest` import diagnostic remains in `tests/test_luna11_adversarial.py` |

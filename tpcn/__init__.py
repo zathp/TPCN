@@ -85,6 +85,7 @@ from .fpga_visualization import (
 )
 from .cpu_visualization import CPUTrainingCapture, ReplaySequence, ReplaySequenceError, run_cpu_training
 from .viewer_3d import CameraState, EdgeView, NodeView, SnapshotDiff, ViewerFilters, VisualizationScene
+from .temporal_analysis import analyze_replay, compare_replays, summarize_analysis
 
 __all__ = [
     "Event",
@@ -169,4 +170,7 @@ __all__ = [
     "SnapshotDiff",
     "ViewerFilters",
     "VisualizationScene",
+    "analyze_replay",
+    "compare_replays",
+    "summarize_analysis",
 ]

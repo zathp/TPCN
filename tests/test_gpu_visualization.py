@@ -1,15 +1,30 @@
 import pytest
 import torch
 
-from tpcn.signal_copy_distance.gpu_visualization import TorchSnapshotExporter
-from tpcn.signal_copy_distance.model import DistanceSignalCopyNet
-from tpcn.signal_copy_distance.space import make_contiguous_layout
-from tpcn.visualization import ReferenceVisualizer, parse_snapshot
+from tpcn.gpu_visualization import TorchSnapshotExporter
+from tpcn.topology import BoundedTopology
+from tpcn.visualization import ConnectionRecord, ReferenceVisualizer, parse_snapshot
 
 
-def _model(device: torch.device) -> DistanceSignalCopyNet:
-    layout = make_contiguous_layout(n_neurons=3, input_width=1, output_width=1, virtual_distance=1, local_radius=1)
-    return DistanceSignalCopyNet.from_layout(1, 0.5, layout, device=device)
+class _BoundedTorchFixture(torch.nn.Module):
+    """Small test-owned tensor workload with only TPCV-1 observables."""
+
+    def __init__(self, device: torch.device) -> None:
+        super().__init__()
+        self.topology = BoundedTopology.from_edges(
+            ("n-0", "n-1", "n-2"),
+            (("n-0", "n-1", 1.0), ("n-1", "n-2", 1.0)),
+            fan_in_limit=1,
+            fan_out_limit=1,
+        )
+        self.register_buffer("weights", torch.tensor((0.2, -0.3, 0.4), device=device))
+
+    def step(self, hidden: torch.Tensor, input_value: torch.Tensor) -> torch.Tensor:
+        return torch.tanh(hidden + input_value.reshape(1, 1) * self.weights)
+
+
+def _model(device: torch.device) -> _BoundedTorchFixture:
+    return _BoundedTorchFixture(device)
 
 
 def _run(device: torch.device, capture: bool) -> tuple[torch.Tensor, bytes | None]:
@@ -17,9 +32,17 @@ def _run(device: torch.device, capture: bool) -> tuple[torch.Tensor, bytes | Non
     model = _model(device)
     hidden = torch.tensor([[0.25, -0.5, 0.75]], device=device)
     with torch.no_grad():
-        result, _ = model.step(torch.tensor([[0.4]], device=device), hidden)
+        result = model.step(hidden, torch.tensor([[0.4]], device=device))
     record = TorchSnapshotExporter(enabled=capture).capture(
-        model, result, timestamp=2.0, epoch=4, processed_events=(3, 4, 5)
+        result,
+        result,
+        neuron_ids=model.topology.nodes,
+        connections=(
+            *(ConnectionRecord(edge.source, edge.destination, edge.propagation_delay) for edge in model.topology.edges),
+        ),
+        timestamp=2.0,
+        epoch=4,
+        processed_events=(3, 4, 5),
     )
     return result, record
 
@@ -54,10 +77,13 @@ def test_cuda_records_have_cpu_semantics() -> None:
 def test_capture_on_and_off_do_not_change_gpu_workload() -> None:
     without_capture, no_record = _run(torch.device("cpu"), False)
     with_capture, record = _run(torch.device("cpu"), True)
+    repeated_result, repeated_record = _run(torch.device("cpu"), True)
 
     assert no_record is None
     assert record is not None
+    assert repeated_record == record
     torch.testing.assert_close(with_capture, without_capture)
+    torch.testing.assert_close(repeated_result, with_capture)
 
 
 def test_periodic_capture_is_optional_and_ordered() -> None:
@@ -65,7 +91,7 @@ def test_periodic_capture_is_optional_and_ordered() -> None:
     hidden = torch.ones(1, 3)
     exporter = TorchSnapshotExporter(interval=2)
 
-    assert exporter.capture(model, hidden, timestamp=0.0, epoch=1) is None
-    second = exporter.capture(model, hidden, timestamp=2.0, epoch=2)
+    assert exporter.capture(hidden, hidden, neuron_ids=model.topology.nodes, timestamp=0.0, epoch=1) is None
+    second = exporter.capture(hidden, hidden, neuron_ids=model.topology.nodes, timestamp=2.0, epoch=2)
     assert second is not None
     assert parse_snapshot(second).epoch == 2

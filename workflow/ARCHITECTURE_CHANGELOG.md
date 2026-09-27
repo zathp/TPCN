@@ -57,3 +57,20 @@ and CPU replay integrations.
 	and authorization boundaries are unchanged. Luna-15/Luna-16/Luna-17 remain
 	separately gated and unauthorized by this entry.
 
+## Luna-12D/12E workflow authorization - 2026-09-27
+
+Added two separate follow-up milestones after Luna-12C without changing the
+canonical architecture contract or requiring an ACP.
+
+- Luna-12D, Temporal Interpretability and Network-Dynamics Analysis, is
+	authorized to analyze existing replay artifacts and permitted deterministic
+	synthetic runs. It measures topology/activity dynamics and investigates
+	plateau rejection reasons without repairing topology/computation coupling.
+- Luna-12E, Computational Topology Integration and Causal Learning
+	Verification, is blocked until Luna-12D completes and Luna-0 reviews its
+	evidence. It owns future integration of persistent topology into the actual
+	event-routing path and controlled causal verification.
+- Luna-13 and Luna-14 remain independent siblings and do not depend on 12D or
+	12E. Real-dataset benchmarking, hardware acceptance, and Luna-15/16/17 are
+	not authorized by this entry.
+

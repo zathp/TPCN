@@ -459,7 +459,6 @@ Never allow structural growth to create effectively unlimited connectivity.
 # 14. Luna-11 — Verification Agent
 
 Luna-11 does not design new architecture.
-
 It attempts to break implementations.
 
 Required tests include:
@@ -627,6 +626,100 @@ TPCV-1 currently lacks canonical 3D coordinates, event-by-event propagation timi
 **Expected handoff:** A replay-first 3D viewer, deterministic layout and playback evidence, neuron inspection and filtering, synchronized metric presentation, focused headless/viewer tests, artifact fixtures/digests, unsupported-field documentation, and an explicit non-interference result.
 
 **Completion gate:** Existing replay artifacts load; stable neurons and edges render; topology changes are distinguishable; deterministic playback/navigation, inspection, filters, and metrics work; repeated replay produces the same layout/view state; focused and relevant regression tests pass; and visualization has no effect on recorded computation.
+
+## Luna-12D - Temporal Interpretability and Network-Dynamics Analysis
+
+**Authorization:** Authorized by Luna-0 for analysis of existing TPCV-1/replay
+artifacts and permitted deterministic synthetic runs. This remains authorized
+even if Luna-12C has an unavailable interactive graphics check. It does not
+authorize real-dataset benchmarking, hardware acceptance, or Luna-15/16/17.
+
+**Purpose:** Measure and interpret the current system without repairing the
+known separation between persistent topology mutation and the computational
+path used by `_run_example()`.
+
+**Dependency shape:**
+
+```text
+Luna-12 -> Luna-12A -> Luna-12B -> Luna-12C -> Luna-12D
+                                |
+                                v
+                              Luna-12E
+
+Luna-12 -> Luna-13  GPU-compatible visualization
+Luna-12 -> Luna-14  ModelSim/FPGA visualization
+```
+
+Luna-13 and Luna-14 remain independent siblings and do not depend on 12D or
+12E. Luna-12D may consume 12C-compatible replay artifacts, but all analysis
+remains downstream-only.
+
+**Scope:** Produce human-readable summaries and machine-readable metrics for
+active/inactive neurons; persistent, exercised, added, removed, and rejected
+edges; edge lifetimes; additions/removals per epoch; rejection reasons; graph
+stabilization; fan-in/out saturation; active-edge utilization; topology-change
+and activity concentration; and correlation with accuracy, prediction loss,
+reward, and utility. Distinguish edge existence from computational exercise
+where evidence exists, and never infer causation from correlation.
+
+Explicitly investigate the connection plateau using precise causes such as
+duplicate edge, source fan-out full, destination fan-in full, global edge
+capacity, nonlocal candidate, candidate capacity, pruning/growth interaction,
+or no valid candidate remaining. Classify observed states as stable/active,
+stable/inactive, structurally changing/behaviorally flat, improving,
+degrading, or high-churn/low-functional change.
+
+**Non-goals:** Do not integrate topology into event routing, alter TPCV-1,
+change neuron/classifier/training behavior, claim causality, select a real
+dataset, accept hardware behavior, or authorize 13/14/15/16/17 work.
+
+**Expected handoff:** Reproducible summaries, machine-readable metrics,
+plateau/rejection evidence, correlation-limited interpretation, focused tests,
+and a recommendation for Luna-0 review before 12E dispatch.
+
+**Completion gate:** Requested topology/activity categories are represented or
+explicitly unavailable; existing versus exercised edges are distinguished;
+rejection reasons are precise; plateau behavior is explained from recorded
+evidence; summaries and metrics reproduce; and analysis has no return path.
+
+## Luna-12E - Computational Topology Integration and Causal Learning Verification
+
+**Authorization:** Blocked until Luna-12D completes and Luna-0 reviews its
+evidence. Creating this entry does not authorize implementation, real-dataset
+benchmarking, hardware acceptance, or Luna-15/16/17.
+
+**Purpose:** Make persistent bounded topology the actual event-routing network
+used by the experiment path, then verify that structural changes can causally
+alter network behavior.
+
+**Dependency shape:**
+
+```text
+Luna-12C -> Luna-12D -> Luna-12E
+```
+
+**Scope:** Use the same bounded topology for structural plasticity and
+computation. Verify event propagation through actual edges; removal of a
+reachable edge changing downstream activity; addition of a reachable edge
+changing downstream activity when relevant; prediction/error behavior derived
+from propagated activity; and functional metrics responding to topology under
+a workload that exercises the changed path. Use controlled reachable-edge
+interventions and matched controls.
+
+**Non-goals:** Do not weaken A01-A15, introduce a global neural clock, create a
+second topology model, bypass finite routing, use unrestricted global learning,
+select a real dataset, or claim hardware acceptance. Do not dispatch before
+the 12D evidence review.
+
+**Expected handoff:** Integrated routing evidence, reachable-edge intervention
+results, prediction/error and classification metrics, boundedness and
+determinism results, and an explicit Luna-0 readiness decision.
+
+**Completion gate:** Structural plasticity and event computation share one
+validated bounded topology; add/remove interventions produce causal routing
+effects; prediction/error and functional metrics derive from propagated
+activity; matched controls rule out observational confounds; and applicable
+core/non-interference checks pass.
 
 ## Luna-13 — GPU-Compatible Visualization Path
 
@@ -958,14 +1051,24 @@ Neuron              Topology
              Luna-12 (passed)
              Contract + CPU exporter
                │
-              ┌──┼──┬──┐
-              ▼  ▼  ▼  ▼
-             12A 12B 13 14
-             CPU persistent GPU ModelSim/
-             train topology     FPGA
-               │
-               └────┬─────────┘
-                  ▼
+              ┌─┼──────────────┐
+              ▼ ▼              ▼
+            12A 13             14
+             │  GPU            ModelSim/
+             ▼  visualization  FPGA
+            12B
+             │
+             ▼
+            12C
+             │
+             ▼
+            12D
+             │
+             ▼
+            12E
+             │
+             └───────┬─────────┘
+                     ▼
                 Post-observability
                 hardware track
                 Luna-15 / Luna-16 / Luna-17

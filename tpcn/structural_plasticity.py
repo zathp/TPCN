@@ -41,6 +41,7 @@ class MutationResult:
 
     status: str
     edge: Edge | None = None
+    reason: str | None = None
 
 
 @dataclass(frozen=True, slots=True)
@@ -110,14 +111,14 @@ class StructuralPlasticityController:
         """Record one bounded proposal after checking its local provenance."""
         self._validate_evidence(evidence)
         if not self._is_local(evidence):
-            return MutationResult("rejected")
+            return MutationResult("rejected", reason="nonlocal")
         key = (evidence.source, evidence.destination)
         if key in self._candidates:
             return MutationResult("duplicate")
         if key in {(edge.source, edge.destination) for edge in self.topology.edges}:
             return MutationResult("duplicate", self.topology.edge(*key))
         if len(self._candidates) >= self.candidate_capacity:
-            return MutationResult("full_capacity")
+            return MutationResult("full_capacity", reason="candidate_capacity")
         self._candidates[key] = evidence
         return MutationResult("accepted")
 
@@ -143,7 +144,7 @@ class StructuralPlasticityController:
     def adapt(self, candidates: Iterable[CandidateEvidence]) -> MutationResult:
         """Select and grow at most one locally evidenced connection."""
         selected = self.select(candidates)
-        return MutationResult("rejected") if selected is None else self.grow(selected)
+        return MutationResult("rejected", reason="no_valid_candidate") if selected is None else self.grow(selected)
 
     def adapt_many(
         self,
@@ -269,9 +270,19 @@ class StructuralPlasticityController:
                 routing_capacity=self.topology.routing_capacity,
             )
         except TopologyCapacityError:
-            return MutationResult("full_capacity")
+            if len(self.topology) + len(evidence) > self.topology.edge_capacity:
+                reason = "edge_capacity"
+            elif any(sum(edge.destination == item.destination for edge in self.topology.edges) >= self.topology.fan_in_limit
+                     for item in evidence):
+                reason = "fan_in_full"
+            elif any(sum(edge.source == item.source for edge in self.topology.edges) >= self.topology.fan_out_limit
+                     for item in evidence):
+                reason = "fan_out_full"
+            else:
+                reason = "capacity"
+            return MutationResult("full_capacity", reason=reason)
         except TopologyError:
-            return MutationResult("rejected")
+            return MutationResult("rejected", reason="invalid_candidate")
         self.topology = replacement
         return MutationResult("grown", replacement.edge(evidence[0].source, evidence[0].destination))
 

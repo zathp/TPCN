@@ -73,20 +73,21 @@ without storing or consuming a snapshot.
 ## Later targets
 
 - CPU visualization and offline replay use this version-1 parser.
-- Luna-13 uses `tpcn.signal_copy_distance.TorchSnapshotExporter` to produce
-  the same logical records. It captures a detached hidden-state vector and
-  recurrent structural mask only at the requested epoch interval, then uses a
-  synchronous device-to-host transfer and the canonical CPU exporter. This is
-  deliberately a correctness-first path; double buffering and device-side
-  compact records are deferred until measurement justifies them.
+- Luna-13 uses `tpcn.gpu_visualization.TorchSnapshotExporter` to produce the
+  same logical records. It pulls caller-supplied detached state and activation
+  tensors plus bounded directed connections only at the requested epoch
+  interval, then uses a synchronous device-to-host transfer and the canonical
+  CPU exporter. This is deliberately a correctness-first path; double
+  buffering and device-side compact records are deferred until measurement
+  justifies them.
 - GPU capture is optional and downstream-only. The transfer may synchronize the
   requested tensors, but it is not on the model computation path and does not
   change event ordering, propagation, rewards, topology updates, timestamps,
   bounded queues, or deterministic workload results.
-- The signal-copy model has no native processed-event counter or per-edge
-  delay. The adapter therefore defaults those observable fields to `0` and
-  `1.0` respectively unless supplied by the caller; labels, rewards, queues,
-  gradients, and optimizer state remain unsupported.
+- The adapter does not invent model semantics. Processed-event counts are
+  zero when the caller does not provide them, and edge delays must be supplied
+  as canonical connection records. Labels, rewards, queues, gradients, and
+  optimizer state remain unsupported.
 - Supported capture frequency is every positive integer epoch interval; a
   disabled exporter performs no tensor transfer. Expected overhead is one
   host copy and canonical serialization per captured snapshot, dependent on

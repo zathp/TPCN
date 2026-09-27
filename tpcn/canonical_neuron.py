@@ -69,6 +69,17 @@ class TPCNNeuron:
         self.state = max(-self.state_limit, min(self.state_limit, state))
         self.activation = self._bounded_activation(self.state)
 
+    def reset(self) -> None:
+        """Reset character-local state while retaining this neuron's identity."""
+        self.clock = LocalClock()
+        self.state = 0.0
+        self.activation = 0.0
+        self.prediction_state = 0.0
+        self.prediction_error = 0.0
+        self.eligibility_state = 0.0
+        self.energy_state = 0.0
+        self.processed_events = 0
+
     def advance_state(self, dt: float) -> None:
         """Advance this neuron's local state by elapsed local time."""
         elapsed = _nonnegative_real(dt, "dt")
