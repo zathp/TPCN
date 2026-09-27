@@ -41,7 +41,7 @@ tpcn_handoff:
     - "A signed PredictionError is a local causal learning signal; this does not define a global loss or utility objective."
     - "Trace identity is local and may be associated with one Luna-3 prediction_id."
   unresolved:
-    - "Reward units remain abstract declared values; Luna-5 now provides the typed RewardMessage-to-RewardSignal adapter and preserves causal timestamps through Event."
+    - "Reward units remain abstract declared values; Luna-5 now provides the typed RewardMessage-to-RewardSignal adapter, preserves causal timestamps through Event, and supplies stable message identity."
     - "Luna-0 must retain ownership of the final reward-versus-energy utility formula, coefficients, and retention/suppression policy; Luna-8 does not choose them."
   recommended_next_agent:
     - "Luna-5: define the compatible local resource/usefulness adapter and reward signal contract."
@@ -70,8 +70,12 @@ deliver the typed payload through the existing event runtime.
 
 The Luna-5/Luna-8 boundary is now integrated: callers convert a
 `RewardMessage` with `to_reward_signal()`, wrap it in an addressed `Event` at
-the message timestamp, and deliver it to this ledger. The ledger retains
-ownership of local matching, decay, expiry, and credit attribution.
+the message timestamp, and deliver it to this ledger. `RewardSignal.message_id`
+is retained in a bounded identity set. A repeated identity returns a
+`duplicate` attribution without advancing local time, decaying traces, or
+changing credit. Distinct identities with equal reward values are applied
+independently. The ledger retains ownership of local matching, decay, expiry,
+credit attribution, and duplicate retention.
 
 ## Architecture evidence
 
@@ -127,8 +131,10 @@ lexicographic tie selection if a signal identifies multiple local traces.
 This is a compatible reference choice, not a permanent architecture mandate.
 
 The reward units remain abstract proxy values and the final reward-versus-energy
-utility policy remains outside this ledger. No cross-component interface issue
-remains for the Luna-5/Luna-6/Luna-8 gate. The complete first integration
+utility policy remains outside this ledger. Duplicate identity retention is
+finite and rejects new identities at capacity rather than evicting old ones.
+No cross-component interface issue remains for the Luna-5/Luna-6/Luna-8 gate.
+The complete first integration
 milestone remains incomplete until Luna-7 and the real streaming benchmark.
 
 ## Reproduction and rollback

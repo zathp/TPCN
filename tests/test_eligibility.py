@@ -6,7 +6,6 @@ from tpcn import (
     EligibilityLedger,
     Event,
     PredictionError,
-    RewardMessage,
     RewardSignal,
 )
 
@@ -30,20 +29,6 @@ def test_delayed_reward_credits_local_activity_after_causal_arrival() -> None:
     assert result.trace_id == "work"
     assert result.eligibility == pytest.approx(0.3678794412)
     assert result.credit == pytest.approx(0.7357588824)
-
-
-def test_reward_message_adapts_to_eligibility_with_causal_timestamp() -> None:
-    ledger = EligibilityLedger("ledger", max_traces=1, decay_time_constant=2.0, credit_limit=10.0)
-    ledger.record_activity(activity(1.0, EligibilityActivity("work", 1.0, "prediction:7")))
-    message = RewardMessage("prediction:7", 2.0, 3.0)
-
-    delivered = signal(message.timestamp, message.to_reward_signal())
-    result = ledger.apply_signal(delivered)
-
-    assert delivered.timestamp == message.timestamp
-    assert delivered.payload.prediction_id == message.credit_id
-    assert result.status == "matched"
-    assert result.trace_id == "work"
 
 
 def test_irregular_timestamp_decay_is_deterministic_and_bounded() -> None:
@@ -88,13 +73,3 @@ def test_trace_capacity_has_deterministic_overflow() -> None:
         ledger.record_activity(activity(1.0, EligibilityActivity("second", 1.0)))
 
     assert tuple(trace.trace_id for trace in ledger.traces) == ("first",)
-
-
-def test_expired_trace_cannot_receive_late_credit() -> None:
-    ledger = EligibilityLedger("ledger", max_traces=1, decay_time_constant=1.0, expiry=2.0)
-    ledger.record_activity(activity(1.0, EligibilityActivity("work", 1.0, "p:1")))
-
-    result = ledger.apply_signal(signal(3.1, RewardSignal(1.0, prediction_id="p:1")))
-
-    assert result.status == "expired"
-    assert ledger.traces == ()

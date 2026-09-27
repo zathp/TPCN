@@ -62,6 +62,16 @@ The public API is `ACTIVITY_EVENT`, `ingest_event`, `ingest_activity`, `evidence
 and `reset`. Final results preserve source, sequence, timestamps, character
 index, and activity count. No label parameter or label-derived state exists.
 
+### Temporal acceptance semantics
+
+Rejected input is observationally atomic with respect to classifier temporal
+state: protocol-invalid or out-of-order events cannot advance the committed
+timestamp or character-local state. A later valid event behaves as though the
+rejected event was never submitted. Every accepted transition that advances
+causal time commits its timestamp once, including direct
+`finalize_character()` calls. That timestamp is used by subsequent ordering
+checks, while one accepted `END_CHARACTER` still emits exactly one result.
+
 ## Architecture evidence
 
 - **A01-A03:** processing is event-driven, timestamps must be nondecreasing,

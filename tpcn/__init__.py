@@ -25,14 +25,6 @@ from .predictive_coding import (
     PredictionError,
     PredictionResolution,
 )
-from .energy_utility import (
-    EnergySnapshot,
-    LocalEnergyModel,
-    RewardAdjustedUtility,
-    RewardMessage,
-    UsefulnessObservation,
-    UtilityDecision,
-)
 from .stroke_dataset import (
     CausalNormalizer,
     CharacterBoundary,
@@ -55,14 +47,6 @@ from .eligibility import (
     EligibilityTrace,
     REWARD_EVENT,
     RewardSignal,
-)
-from .streaming_classifier import (
-    ACTIVITY_EVENT,
-    CLASS_LABELS,
-    ClassEvidence,
-    ClassificationResult,
-    END_STROKE,
-    StreamingCharacterClassifier,
 )
 
 __all__ = [
@@ -93,12 +77,6 @@ __all__ = [
     "PredictionCapacityError",
     "PredictionError",
     "PredictionResolution",
-    "EnergySnapshot",
-    "LocalEnergyModel",
-    "RewardAdjustedUtility",
-    "RewardMessage",
-    "UsefulnessObservation",
-    "UtilityDecision",
     "CausalNormalizer",
     "CharacterBoundary",
     "DatasetMetadata",
@@ -118,10 +96,4 @@ __all__ = [
     "EligibilityTrace",
     "REWARD_EVENT",
     "RewardSignal",
-    "CLASS_LABELS",
-    "ACTIVITY_EVENT",
-    "ClassEvidence",
-    "ClassificationResult",
-    "END_STROKE",
-    "StreamingCharacterClassifier",
 ]

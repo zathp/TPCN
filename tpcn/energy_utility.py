@@ -60,12 +60,6 @@ class RewardMessage:
         object.__setattr__(self, "reward", _finite(self.reward, "reward"))
         object.__setattr__(self, "timestamp", _nonnegative(self.timestamp, "timestamp"))
 
-    def to_reward_signal(self) -> RewardSignal:
-        """Adapt this local reward for causal delivery to an eligibility ledger."""
-        from .eligibility import RewardSignal
-
-        return RewardSignal(self.reward, prediction_id=self.credit_id)
-
 
 @dataclass(frozen=True, slots=True)
 class UsefulnessObservation:
@@ -134,7 +128,7 @@ class LocalEnergyModel:
 
     def _advance_meter_time(self, timestamp: float) -> None:
         elapsed = self.clock.advance_to(timestamp)
-        self.idle_time = min(self.max_energy, self.idle_time + elapsed)
+        self.idle_time += elapsed
         self.last_update_elapsed = elapsed
 
     def _increment(self, category: str, amount: int) -> None:
@@ -159,9 +153,8 @@ class LocalEnergyModel:
         current = self.clock.timestamp if timestamp is None else _nonnegative(timestamp, "timestamp")
         self._advance_meter_time(current)
         self.idle_time = 0.0
-        increment = min(self.max_energy, cost * count)
-        self.activity = min(self.max_energy, self.activity + increment)
-        self.energy = min(self.max_energy, self.energy + increment)
+        self.activity = min(self.max_energy, self.activity + cost * count)
+        self.energy = min(self.max_energy, self.energy + cost * count)
         self._increment(category, count)
         return self.snapshot()
 
@@ -205,21 +198,16 @@ class RewardAdjustedUtility:
         epsilon: float = 1e-9,
         threshold: float = 0.0,
         max_messages: int = 1024,
-        max_signal: float = 1_000_000.0,
     ) -> None:
         if formula not in ("net", "ratio"):
             raise ValueError("formula must be 'net' or 'ratio'")
         if isinstance(max_messages, bool) or not isinstance(max_messages, int) or max_messages <= 0:
             raise ValueError("max_messages must be a positive integer")
-        max_signal = _nonnegative(max_signal, "max_signal")
-        if max_signal == 0.0:
-            raise ValueError("max_signal must be positive")
         self.formula = formula
         self.energy_weight = _nonnegative(energy_weight, "energy_weight")
         self.epsilon = _nonnegative(epsilon, "epsilon")
         self.threshold = _finite(threshold, "threshold")
         self.max_messages = max_messages
-        self.max_signal = max_signal
         self.reward_total = 0.0
         self.usefulness_total = 0.0
         self.reward_messages = 0
@@ -232,17 +220,14 @@ class RewardAdjustedUtility:
         if self.reward_messages >= self.max_messages:
             raise BufferError("reward message capacity reached")
         self.reward_messages += 1
-        self.reward_total = max(-self.max_signal, min(self.max_signal, self.reward_total + message.reward))
+        self.reward_total += message.reward
         self.last_reward = message
 
     def observe_usefulness(self, observation: UsefulnessObservation) -> None:
         if self.usefulness_messages >= self.max_messages:
             raise BufferError("usefulness message capacity reached")
         self.usefulness_messages += 1
-        self.usefulness_total = max(
-            -self.max_signal,
-            min(self.max_signal, self.usefulness_total + observation.usefulness),
-        )
+        self.usefulness_total += observation.usefulness
         self.last_usefulness = observation
 
     def evaluate(self, energy_cost: float, reward: float = 0.0) -> UtilityDecision:

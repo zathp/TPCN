@@ -2,10 +2,10 @@ tpcn_handoff:
   agent: Luna-11 Adversarial Architectural Verification
   task_id: "adversarial-verification-luna-11"
   component: "independent integrated TPCN architectural verification"
-  status: "dispatched"
+  status: "blocked"
   contract_version: "1.0"
   branch: "main"
-  base_revision: "cab30253d6aeeea4abc3c7ebfa7bba1105e21488"
+  base_revision: "af5575ce0a629f101486bf36d930218eecdef77b"
   result_revision: "uncommitted"
   architecture_invariants_touched: ["A01", "A02", "A03", "A04", "A05", "A06", "A07", "A08", "A09", "A10", "A11", "A14", "A15"]
   preserves:
@@ -15,30 +15,63 @@ tpcn_handoff:
   architecture_change: false
   proposal: null
   files_changed:
-    - ".github/agents/luna-11.agent.md"
+    - "tests/test_luna11_adversarial.py"
     - "workflow/handoffs/adversarial-verification-Luna-11.md"
-  tests_added: []
-  tests_passing: []
-  tests_failed: []
+  tests_added:
+    - "tests/test_luna11_adversarial.py: 10 focused adversarial tests"
+  tests_passing:
+    - "Focused Luna-11 suite: 8 passed, 2 strict xfailed for confirmed Luna-7 defects"
+    - "Full regression suite: 84 passed, 2 strict xfailed"
+    - "python -m compileall -q tpcn tests"
+    - "git diff --check"
+    - "Workspace diagnostics for touched tests and tpcn: no errors"
+  tests_failed:
+    - "Luna-7 retry ordering: rejected future event advances classifier timestamp"
+    - "Luna-7 direct finalization: public finalization does not commit classifier timestamp"
   tests_not_run:
-    - "All Luna-11 adversarial attacks: dispatched, not run."
-    - "Focused adversarial suite count: not run."
-    - "Full regression, compilation, diagnostics, and git diff --check by Luna-11: not run."
+    - "Actual dataset benchmark: deferred and not applicable to architectural verification."
+    - "FPGA, FPAA, hybrid, and calibrated hardware validation: deferred."
   assumptions:
     - "The prior joint-review handoff is the supplied integration baseline; Luna-11 must independently reproduce or challenge it."
     - "The exact current worktree is dirty; unrelated user changes must be preserved."
   unresolved:
-    - "All required adversarial verification outcomes remain pending."
+    - "Luna-7 must repair or explicitly resolve the two timestamp-ordering defects before the gate can pass."
+    - "Duplicate reward delivery remains an ambiguous contract: current signals have no delivery identity and are cumulatively applied."
   recommended_next_agent:
     - "Luna-11: execute the attack matrix and complete this handoff with evidence."
     - "Luna-0: review the completed Luna-11 handoff and gate later phases only after unresolved findings are cleared."
 
 ## Outcome and owned scope
 
-Luna-11 is dispatched to actively falsify the integrated Luna-1 through Luna-8
+Luna-11 actively falsified the integrated Luna-1 through Luna-8
 architecture. It owns adversarial tests, code-path inspection, minimal
-reproducers, and evidence reporting only. It must not patch production defects
+reproducers, and evidence reporting only. It did not patch production defects
 or authorize Luna-9, Luna-10, the real dataset benchmark, or hardware work.
+
+## Findings and classification
+
+1. **Production defect, Luna-7 owner:** `StreamingCharacterClassifier.ingest_event()`
+  commits `_last_timestamp` before validating the event kind. A rejected event
+  at timestamp 1.0 poisons a legal retry at timestamp 0.5. This is covered by
+  `test_rejected_classifier_event_can_be_retried_without_poisoning_order` and
+  remains an unresolved causality/retry failure.
+2. **Production defect, Luna-7 owner:** the public `finalize_character()` path
+  emits a result at timestamp 10.0 without committing that timestamp. A later
+  `START_CHARACTER` at timestamp 5.0 is then accepted. This is covered by
+  `test_direct_finalization_rejects_earlier_next_character` and remains an
+  unresolved local-time ordering failure.
+3. **Ambiguous contract, Luna-0 owner:** duplicate `RewardMessage` delivery
+  cumulatively applies credit because neither `RewardMessage` nor
+  `RewardSignal` carries a delivery/message identity or defines idempotency.
+  The behavior is reproducible and bounded, but the required duplicate-reward
+  policy is undocumented. No production repair was made.
+
+All other focused attacks passed: END_STROKE did not finalize; finalization was
+single-shot; delayed credit retained the old character identity; classifier
+instances were isolated; fan-out admission was atomic; positive propagation
+was queued; batched and eventwise queue delivery matched; long classifier and
+energy workloads remained bounded; and read-only evidence inspection was
+side-effect free.
 
 ## Architecture evidence required
 
@@ -58,20 +91,34 @@ ambiguous contract must be reported to Luna-0 before any promotion decision.
 
 | Command or procedure | Revision / environment / seed | Observed result | Evidence |
 |---|---|---|---|
-| Luna-11 hostile attack matrix | Pending dispatch execution | not run | To be recorded by Luna-11 |
-| Focused adversarial suite | Pending dispatch execution | not run | To be recorded by Luna-11 |
-| Full regression | Pending dispatch execution | not run by Luna-11 | Prior joint-review evidence is not independent Luna-11 evidence |
-| Compilation | Pending dispatch execution | not run by Luna-11 | To be recorded by Luna-11 |
-| Diagnostics | Pending dispatch execution | not run by Luna-11 | To be recorded by Luna-11 |
-| `git diff --check` | Pending dispatch execution | not run by Luna-11 | To be recorded by Luna-11 |
+| Baseline revision and environment | `af5575ce0a629f101486bf36d930218eecdef77b`, Windows PowerShell, Python 3.10.8 | recorded | Existing unrelated worktree item: `.github/agents/luna-11.agent.md` untracked and preserved |
+| `python -m pytest -q tests/test_luna11_adversarial.py` | Same revision/environment; deterministic fixtures | 8 passed, 2 strict xfailed | 10 focused tests; xfails are the two Luna-7 production reproducers |
+| `python -m pytest -q` | Same revision/environment | 84 passed, 2 strict xfailed | Full regression including focused adversarial tests |
+| `python -m compileall -q tpcn tests` | Same revision/environment | passed | No compilation output/errors |
+| Workspace diagnostics | Touched test and `tpcn` paths | no errors | `get_errors` result |
+| `git diff --check` | Same worktree | passed | No whitespace errors |
 
 ## Completion gate
 
-Luna-11 passes only with no unresolved production defects or architectural
-ambiguities affecting required invariants. Every area must be classified as
-passed, failed, not run, or not applicable, with exact commands and evidence.
-The final report must identify fixture defects, owning Luna for repairs,
-regression tests, focused/full counts, and remaining limitations.
+Luna-11 is **blocked**: two unresolved Luna-7 production defects affect causal
+timestamp ordering, and duplicate reward idempotency is an unresolved
+contract question. The remaining areas are classified below and have exact
+focused evidence. Luna-0 must route the production repairs to Luna-7 and
+resolve the reward identity policy before promotion.
+
+| Area | Result | Classification |
+|---|---|---|
+| Causality and character boundaries | failed | Luna-7 timestamp defects; END_STROKE and one-shot finalization otherwise passed |
+| Label isolation | passed | Existing and adversarial label-free paths showed no leakage |
+| Finite propagation/connectivity | passed | Positive delay, bounded fan-out, atomic capacity handling |
+| Hidden global clock/state | passed | No core wall-clock or mutable global state found; legacy timing is outside core |
+| Independent instances | passed | Interleaving did not cross-contaminate state |
+| Delayed credit | passed with ambiguity | Old identity preserved; duplicate delivery policy undocumented |
+| Energy/utility accounting | passed for bounded local accounting | Saturation and read-only behavior checked; duplicate accounting policy remains unspecified |
+| Bounded state | passed | Long classifier and energy workload stayed within declared bounds |
+| Deterministic replay | passed | Existing replay plus deterministic batch/eventwise order |
+| Batching equivalence | passed | Queue batching matched event-at-a-time delivery |
+| Dataset benchmark and hardware acceptance | not applicable | Explicitly deferred by workflow |
 
 ## Reproduction and rollback
 

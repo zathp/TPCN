@@ -94,13 +94,18 @@ class StreamingCharacterClassifier:
         self._result: ClassificationResult | None = None
         self._last_timestamp = 0.0
 
+    def _validate_timestamp(self, timestamp: float) -> None:
+        if timestamp < self._last_timestamp:
+            raise ValueError("classifier events must have nondecreasing timestamps")
+
+    def _commit_timestamp(self, timestamp: float) -> None:
+        self._last_timestamp = timestamp
+
     def ingest_event(self, event: Event) -> ClassEvidence | ClassificationResult | None:
         """Consume one canonical boundary or numeric TPCN activity event."""
         if not isinstance(event, Event):
             raise TypeError("event must be a canonical Event")
-        if event.timestamp < self._last_timestamp:
-            raise ValueError("classifier events must have nondecreasing timestamps")
-        self._last_timestamp = event.timestamp
+        self._validate_timestamp(event.timestamp)
 
         if event.event_type == START_CHARACTER:
             if self._active:
@@ -111,12 +116,15 @@ class StreamingCharacterClassifier:
             self._result = None
             self._start_event = event
             self._character_index = getattr(event.payload, "character_index", None)
+            self._commit_timestamp(event.timestamp)
             return None
 
         if event.event_type == END_STROKE:
             if not self._active:
                 raise ValueError("stroke boundary received outside an active character")
-            return self.evidence()
+            evidence = self.evidence()
+            self._commit_timestamp(event.timestamp)
+            return evidence
 
         if event.event_type == END_CHARACTER:
             return self.finalize_character(event)
@@ -133,6 +141,7 @@ class StreamingCharacterClassifier:
             raise ValueError("activity received outside an active character")
         if event.event_type != ACTIVITY_EVENT:
             raise ValueError("event is not a classifier activity event")
+        self._validate_timestamp(event.timestamp)
         activity = _finite(event.payload, "activity payload")
         if self._activity_event_count >= self.max_activity_events:
             raise BufferError("character activity capacity reached")
@@ -143,6 +152,7 @@ class StreamingCharacterClassifier:
                 min(1.0, self._scores[class_index] + self.activity_gain * activity * direction),
             )
         self._activity_event_count += 1
+        self._commit_timestamp(event.timestamp)
         return self.evidence()
 
     def finalize_character(self, end_event: Event) -> ClassificationResult:
@@ -157,6 +167,7 @@ class StreamingCharacterClassifier:
         self._character_index = int(character_index)
         self._result = self._finalize(end_event)
         self._active = False
+        self._commit_timestamp(end_event.timestamp)
         return self._result
 
     def evidence(self) -> ClassEvidence:
