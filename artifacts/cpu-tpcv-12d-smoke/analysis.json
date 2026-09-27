@@ -1,0 +1,653 @@
+{
+  "activity_summary": {
+    "active_neuron_fraction_per_snapshot": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "always_active_neuron_count": 2,
+    "mean_activity_fraction": 1.0,
+    "median_activity_fraction": 1.0,
+    "never_active_neuron_count": 0
+  },
+  "classification": "persistent churn / no functional response",
+  "digest": "b07e15bb780eb0809ec134a0f1ddb6ae993c3d1c7e4e85bf7c828ec61305d9a8",
+  "edge_statistics": [
+    {
+      "added_count": 2,
+      "destination": "neuron-1",
+      "first_appearance_snapshot": 0,
+      "last_appearance_snapshot": 3,
+      "lifetime_snapshots": 3,
+      "lifetime_span_snapshots": 4,
+      "persisted_to_final_snapshot": true,
+      "propagation_delay": 1.0,
+      "reappearance_count": 1,
+      "removed_count": 1,
+      "source": "neuron-0",
+      "usage": "unavailable: TPCV-1 records topology existence, not per-edge event paths",
+      "used_frequently": null,
+      "used_recently": null
+    },
+    {
+      "added_count": 1,
+      "destination": "neuron-0",
+      "first_appearance_snapshot": 0,
+      "last_appearance_snapshot": 2,
+      "lifetime_snapshots": 3,
+      "lifetime_span_snapshots": 3,
+      "persisted_to_final_snapshot": false,
+      "propagation_delay": 1.0,
+      "reappearance_count": 0,
+      "removed_count": 1,
+      "source": "neuron-1",
+      "usage": "unavailable: TPCV-1 records topology existence, not per-edge event paths",
+      "used_frequently": null,
+      "used_recently": null
+    }
+  ],
+  "edge_summary": {
+    "additions_per_transition": [
+      0,
+      1,
+      0
+    ],
+    "churn_rate": 1.0,
+    "edge_use_evidence": "unavailable",
+    "final_graph_size": 1,
+    "mean_edge_lifetime": 3,
+    "median_edge_lifetime": 3.0,
+    "persistent_edge_count": 1,
+    "removals_per_transition": [
+      1,
+      0,
+      1
+    ],
+    "total_additions": 1,
+    "total_removals": 2,
+    "total_unique_edges_seen": 2,
+    "transient_edge_count": 1
+  },
+  "flat_metrics": {
+    "accuracy": {
+      "available": true,
+      "flat": true,
+      "max": 0.5,
+      "min": 0.5,
+      "range": 0.0,
+      "values": [
+        0.5,
+        0.5,
+        0.5,
+        0.5
+      ]
+    },
+    "energy": {
+      "available": true,
+      "flat": true,
+      "max": 4.401482863923839,
+      "min": 4.401482863923839,
+      "range": 0.0,
+      "values": [
+        4.401482863923839,
+        4.401482863923839,
+        4.401482863923839,
+        4.401482863923839
+      ]
+    },
+    "prediction_loss": {
+      "available": true,
+      "flat": true,
+      "max": 0.0840410359053751,
+      "min": 0.0840410359053751,
+      "range": 0.0,
+      "values": [
+        0.0840410359053751,
+        0.0840410359053751,
+        0.0840410359053751,
+        0.0840410359053751
+      ]
+    },
+    "reward": {
+      "available": true,
+      "flat": true,
+      "max": 0.0,
+      "min": 0.0,
+      "range": 0.0,
+      "values": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "utility": {
+      "available": true,
+      "flat": true,
+      "max": -4.401482863923839,
+      "min": -4.401482863923839,
+      "range": 0.0,
+      "values": [
+        -4.401482863923839,
+        -4.401482863923839,
+        -4.401482863923839,
+        -4.401482863923839
+      ]
+    }
+  },
+  "functional_metric_response_observed": false,
+  "limitations": [
+    "unavailable: TPCV-1 records topology existence, not per-edge event paths",
+    "TPCV-1 does not encode per-neuron emitted-event identity or mutation candidates rejected before metric capture."
+  ],
+  "mutation_rejections": {
+    "accepted": 2,
+    "candidate_capacity": 0,
+    "duplicate": 5,
+    "edge_capacity": 0,
+    "evidence": "recorded",
+    "fan_in_full": 0,
+    "fan_out_full": 0,
+    "growth_attempts": 7,
+    "invalid_candidate": 0,
+    "no_valid_candidate": 0,
+    "nonlocal": 0,
+    "other": 0,
+    "pruning_interaction": 0
+  },
+  "node_statistics": [
+    {
+      "active_snapshot_count": 4,
+      "activity_fraction": 1.0,
+      "emitted_event_count": null,
+      "emitted_event_evidence": "unavailable: snapshots do not encode emitted-event identity",
+      "event_count_over_time": 3,
+      "first_active_snapshot": 0,
+      "last_active_snapshot": 3,
+      "longest_inactive_span": 0,
+      "neuron_id": "neuron-0",
+      "permanently_inactive": false,
+      "received_event_count": 3,
+      "received_event_delta": 0
+    },
+    {
+      "active_snapshot_count": 4,
+      "activity_fraction": 1.0,
+      "emitted_event_count": null,
+      "emitted_event_evidence": "unavailable: snapshots do not encode emitted-event identity",
+      "event_count_over_time": 3,
+      "first_active_snapshot": 0,
+      "last_active_snapshot": 3,
+      "longest_inactive_span": 0,
+      "neuron_id": "neuron-1",
+      "permanently_inactive": false,
+      "received_event_count": 3,
+      "received_event_delta": 0
+    }
+  ],
+  "schema_version": 1,
+  "snapshot_count": 4,
+  "snapshot_metrics": [
+    {
+      "activation_count": 2,
+      "active_neuron_fraction": 1.0,
+      "additions": 2,
+      "connection_count": 2,
+      "epoch": 0,
+      "event_count": 6,
+      "metric_deltas": {},
+      "metrics": {
+        "accepted_additions": 1,
+        "accuracy": 0.5,
+        "activation_count": 6,
+        "active_neuron_count": 2,
+        "average_reward": 0.0,
+        "confusion": [
+          [
+            "A",
+            "A",
+            1
+          ],
+          [
+            "Z",
+            "A",
+            1
+          ]
+        ],
+        "connection_capacity": 8,
+        "connection_count": 2,
+        "cumulative_reward": 0.0,
+        "emitting_neuron_count": 2,
+        "energy": 4.401482863923839,
+        "epoch": 0,
+        "event_count": 6,
+        "fan_in_utilization": 0.5,
+        "fan_out_utilization": 0.5,
+        "mean_confidence": 0.23416461771831817,
+        "mutation_count": 2,
+        "mutation_history": [
+          [
+            "duplicate",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "grown",
+            "neuron-1",
+            "neuron-0",
+            "local_activity_prediction_error"
+          ]
+        ],
+        "mutation_rejection_reasons": [
+          [
+            "duplicate",
+            1
+          ]
+        ],
+        "never_activated_fraction": 0.0,
+        "per_class_counts": [
+          [
+            "A",
+            1
+          ],
+          [
+            "Z",
+            1
+          ]
+        ],
+        "prediction_loss": 0.0840410359053751,
+        "pruned_connections": 0,
+        "receiving_neuron_count": 2,
+        "rejected_mutations": 1,
+        "retained_count": 2,
+        "reward": 0.0,
+        "reward_update_latency": 0.0,
+        "topology_edges": [
+          [
+            "neuron-0",
+            "neuron-1",
+            1.0
+          ],
+          [
+            "neuron-1",
+            "neuron-0",
+            1.0
+          ]
+        ],
+        "update_count": 1,
+        "utility": -4.401482863923839
+      },
+      "removals": 0,
+      "snapshot": 0
+    },
+    {
+      "activation_count": 2,
+      "active_neuron_fraction": 1.0,
+      "additions": 0,
+      "connection_count": 1,
+      "epoch": 1,
+      "event_count": 6,
+      "metric_deltas": {
+        "accuracy": 0.0,
+        "energy": 0.0,
+        "prediction_loss": 0.0,
+        "reward": 0.0,
+        "utility": 0.0
+      },
+      "metrics": {
+        "accepted_additions": 0,
+        "accuracy": 0.5,
+        "activation_count": 6,
+        "active_neuron_count": 2,
+        "average_reward": 0.0,
+        "confusion": [
+          [
+            "A",
+            "A",
+            1
+          ],
+          [
+            "Z",
+            "A",
+            1
+          ]
+        ],
+        "connection_capacity": 8,
+        "connection_count": 1,
+        "cumulative_reward": 0.0,
+        "emitting_neuron_count": 2,
+        "energy": 4.401482863923839,
+        "epoch": 1,
+        "event_count": 6,
+        "fan_in_utilization": 0.25,
+        "fan_out_utilization": 0.25,
+        "mean_confidence": 0.7026620918507115,
+        "mutation_count": 3,
+        "mutation_history": [
+          [
+            "duplicate",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "grown",
+            "neuron-1",
+            "neuron-0",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-1",
+            "neuron-0",
+            "local_activity_prediction_error"
+          ],
+          [
+            "pruned",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_retention"
+          ]
+        ],
+        "mutation_rejection_reasons": [
+          [
+            "duplicate",
+            2
+          ]
+        ],
+        "never_activated_fraction": 0.0,
+        "per_class_counts": [
+          [
+            "A",
+            1
+          ],
+          [
+            "Z",
+            1
+          ]
+        ],
+        "prediction_loss": 0.0840410359053751,
+        "pruned_connections": 1,
+        "receiving_neuron_count": 2,
+        "rejected_mutations": 2,
+        "retained_count": 2,
+        "reward": 0.0,
+        "reward_update_latency": 0.0,
+        "topology_edges": [
+          [
+            "neuron-1",
+            "neuron-0",
+            1.0
+          ]
+        ],
+        "update_count": 2,
+        "utility": -4.401482863923839
+      },
+      "removals": 1,
+      "snapshot": 1
+    },
+    {
+      "activation_count": 2,
+      "active_neuron_fraction": 1.0,
+      "additions": 1,
+      "connection_count": 2,
+      "epoch": 2,
+      "event_count": 6,
+      "metric_deltas": {
+        "accuracy": 0.0,
+        "energy": 0.0,
+        "prediction_loss": 0.0,
+        "reward": 0.0,
+        "utility": 0.0
+      },
+      "metrics": {
+        "accepted_additions": 1,
+        "accuracy": 0.5,
+        "activation_count": 6,
+        "active_neuron_count": 2,
+        "average_reward": 0.0,
+        "confusion": [
+          [
+            "A",
+            "A",
+            1
+          ],
+          [
+            "Z",
+            "A",
+            1
+          ]
+        ],
+        "connection_capacity": 8,
+        "connection_count": 2,
+        "cumulative_reward": 0.0,
+        "emitting_neuron_count": 2,
+        "energy": 4.401482863923839,
+        "epoch": 2,
+        "event_count": 6,
+        "fan_in_utilization": 0.5,
+        "fan_out_utilization": 0.5,
+        "mean_confidence": 0.7026620918507115,
+        "mutation_count": 1,
+        "mutation_history": [
+          [
+            "duplicate",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "grown",
+            "neuron-1",
+            "neuron-0",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-1",
+            "neuron-0",
+            "local_activity_prediction_error"
+          ],
+          [
+            "pruned",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_retention"
+          ],
+          [
+            "grown",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ]
+        ],
+        "mutation_rejection_reasons": [],
+        "never_activated_fraction": 0.0,
+        "per_class_counts": [
+          [
+            "A",
+            1
+          ],
+          [
+            "Z",
+            1
+          ]
+        ],
+        "prediction_loss": 0.0840410359053751,
+        "pruned_connections": 0,
+        "receiving_neuron_count": 2,
+        "rejected_mutations": 0,
+        "retained_count": 2,
+        "reward": 0.0,
+        "reward_update_latency": 0.0,
+        "topology_edges": [
+          [
+            "neuron-1",
+            "neuron-0",
+            1.0
+          ],
+          [
+            "neuron-0",
+            "neuron-1",
+            1.0
+          ]
+        ],
+        "update_count": 3,
+        "utility": -4.401482863923839
+      },
+      "removals": 0,
+      "snapshot": 2
+    },
+    {
+      "activation_count": 2,
+      "active_neuron_fraction": 1.0,
+      "additions": 0,
+      "connection_count": 1,
+      "epoch": 3,
+      "event_count": 6,
+      "metric_deltas": {
+        "accuracy": 0.0,
+        "energy": 0.0,
+        "prediction_loss": 0.0,
+        "reward": 0.0,
+        "utility": 0.0
+      },
+      "metrics": {
+        "accepted_additions": 0,
+        "accuracy": 0.5,
+        "activation_count": 6,
+        "active_neuron_count": 2,
+        "average_reward": 0.0,
+        "confusion": [
+          [
+            "A",
+            "A",
+            1
+          ],
+          [
+            "Z",
+            "A",
+            1
+          ]
+        ],
+        "connection_capacity": 8,
+        "connection_count": 1,
+        "cumulative_reward": 0.0,
+        "emitting_neuron_count": 2,
+        "energy": 4.401482863923839,
+        "epoch": 3,
+        "event_count": 6,
+        "fan_in_utilization": 0.25,
+        "fan_out_utilization": 0.25,
+        "mean_confidence": 0.7026620918507115,
+        "mutation_count": 3,
+        "mutation_history": [
+          [
+            "duplicate",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "grown",
+            "neuron-1",
+            "neuron-0",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-1",
+            "neuron-0",
+            "local_activity_prediction_error"
+          ],
+          [
+            "pruned",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_retention"
+          ],
+          [
+            "grown",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-1",
+            "neuron-0",
+            "local_activity_prediction_error"
+          ],
+          [
+            "pruned",
+            "neuron-1",
+            "neuron-0",
+            "local_activity_retention"
+          ]
+        ],
+        "mutation_rejection_reasons": [
+          [
+            "duplicate",
+            2
+          ]
+        ],
+        "never_activated_fraction": 0.0,
+        "per_class_counts": [
+          [
+            "A",
+            1
+          ],
+          [
+            "Z",
+            1
+          ]
+        ],
+        "prediction_loss": 0.0840410359053751,
+        "pruned_connections": 1,
+        "receiving_neuron_count": 2,
+        "rejected_mutations": 2,
+        "retained_count": 2,
+        "reward": 0.0,
+        "reward_update_latency": 0.0,
+        "topology_edges": [
+          [
+            "neuron-0",
+            "neuron-1",
+            1.0
+          ]
+        ],
+        "update_count": 4,
+        "utility": -4.401482863923839
+      },
+      "removals": 1,
+      "snapshot": 3
+    }
+  ],
+  "topology_changes_with_flat_functional_metrics": true
+}
