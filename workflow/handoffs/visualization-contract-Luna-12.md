@@ -123,10 +123,10 @@ preserve the unrelated pre-existing worktree changes listed by `git status`.
 ## Next assignment
 
 Return control to Luna-0. Luna-0 may review this evidence and decide whether the
-Luna-12 gate passes. Luna-13 may rely on the TPCV-1 parser and logical record
-contract only after explicit Luna-0 authorization. Luna-14 may likewise rely on
-the format for a later ModelSim/FPGA bridge. Neither milestone is authorized by
-this handoff, and no subsequent milestone is promoted automatically.
+Luna-12 gate passes. Luna-0 has explicitly authorized Luna-13 to implement the
+GPU-compatible visualization path and Luna-14 independently to implement the
+ModelSim/FPGA diagnostic bridge and DE1-SoC visualization foundation. No
+subsequent milestone is promoted automatically.
 
 ## Required completion evidence
 

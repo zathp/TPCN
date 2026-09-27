@@ -10,6 +10,7 @@ from .space import (
     parse_index_spec,
 )
 from .trainer import train_signal_copy_distance
+from .gpu_visualization import TorchSnapshotExporter
 
 __all__ = [
     "SignalCopyConfig",
@@ -24,4 +25,5 @@ __all__ = [
     "make_layout_from_indices",
     "parse_index_spec",
     "train_signal_copy_distance",
+    "TorchSnapshotExporter",
 ]

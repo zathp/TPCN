@@ -73,7 +73,25 @@ without storing or consuming a snapshot.
 ## Later targets
 
 - CPU visualization and offline replay use this version-1 parser.
-- Luna-13 may add a GPU exporter producing the same logical records.
+- Luna-13 uses `tpcn.signal_copy_distance.TorchSnapshotExporter` to produce
+  the same logical records. It captures a detached hidden-state vector and
+  recurrent structural mask only at the requested epoch interval, then uses a
+  synchronous device-to-host transfer and the canonical CPU exporter. This is
+  deliberately a correctness-first path; double buffering and device-side
+  compact records are deferred until measurement justifies them.
+- GPU capture is optional and downstream-only. The transfer may synchronize the
+  requested tensors, but it is not on the model computation path and does not
+  change event ordering, propagation, rewards, topology updates, timestamps,
+  bounded queues, or deterministic workload results.
+- The signal-copy model has no native processed-event counter or per-edge
+  delay. The adapter therefore defaults those observable fields to `0` and
+  `1.0` respectively unless supplied by the caller; labels, rewards, queues,
+  gradients, and optimizer state remain unsupported.
+- Supported capture frequency is every positive integer epoch interval; a
+  disabled exporter performs no tensor transfer. Expected overhead is one
+  host copy and canonical serialization per captured snapshot, dependent on
+  tensor size and device transfer cost. Performance is observational only and
+  is not an architecture requirement.
 - Luna-14 may add ModelSim hexadecimal/binary trace export and a downstream
   FPGA diagnostic path for the DE1-SoC.
 - VGA and/or Ethernet are later display/transport targets, not computational

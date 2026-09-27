@@ -77,6 +77,16 @@ from .visualization import (
     export_snapshot,
     parse_snapshot,
 )
+from .fpga_visualization import (
+    DiagnosticStream,
+    TraceDecodeError,
+    TraceFrame,
+    decode_hex_trace,
+    decode_snapshot_trace,
+    encode_hex_trace,
+    encode_snapshot_trace,
+    encode_trace_frame,
+)
 
 __all__ = [
     "SignalCopyConfig",
@@ -148,4 +158,12 @@ __all__ = [
     "VisualizationSnapshot",
     "export_snapshot",
     "parse_snapshot",
+    "DiagnosticStream",
+    "TraceDecodeError",
+    "TraceFrame",
+    "decode_hex_trace",
+    "decode_snapshot_trace",
+    "encode_hex_trace",
+    "encode_snapshot_trace",
+    "encode_trace_frame",
 ]

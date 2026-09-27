@@ -147,7 +147,6 @@ def test_reward_replay_is_not_silently_idempotent_without_a_message_identity() -
     assert second.credit > first.credit
 
 
-@pytest.mark.xfail(strict=True, reason="Luna-7: rejected event advances classifier local timestamp")
 def test_rejected_classifier_event_can_be_retried_without_poisoning_order() -> None:
     classifier = StreamingCharacterClassifier()
     classifier.ingest_event(boundary(START_CHARACTER, 0.0, 0))
@@ -158,7 +157,6 @@ def test_rejected_classifier_event_can_be_retried_without_poisoning_order() -> N
     assert classifier.activity_event_count == 1
 
 
-@pytest.mark.xfail(strict=True, reason="Luna-7: direct finalization does not commit local timestamp")
 def test_direct_finalization_rejects_earlier_next_character() -> None:
     classifier = StreamingCharacterClassifier()
     classifier.ingest_event(boundary(START_CHARACTER, 0.0, 0))
