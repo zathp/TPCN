@@ -77,9 +77,10 @@ def test_rejected_fan_out_is_atomic_and_retryable_without_duplicates() -> None:
     assert queue.peek() is not None
     assert queue.peek().destination == "b"
 
-    retry_queue = EventQueue(capacity=2)
-    queued = topology.route(event, retry_queue)
+    assert queue.pop_ready(0.0).source == "existing"
+    queued = topology.route(event, queue)
     assert [item.destination for item in queued] == ["b", "c"]
+    assert [item.destination for item in queue.drain()] == ["b", "c"]
 
 
 def test_seeded_construction_is_deterministic_and_finite() -> None:
