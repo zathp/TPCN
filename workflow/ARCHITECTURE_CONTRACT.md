@@ -14,9 +14,28 @@ Neurons execute because events arrive or because a locally scheduled event becom
 
 Hardware clocks may exist for implementation purposes but must not implicitly become the neural network clock.
 
-### A02 — Local time
+### A02 — Local time and intrinsic temporal state
 
-Neurons may maintain local timestamps and elapsed time.
+Neurons may maintain persistent local state, local timestamps and elapsed time.
+Neuron computation may depend on the state before an event, the incoming event,
+and elapsed local time. Conceptually, for a neuron whose last state update was
+at local time \(t_0\),
+
+\[
+s(t_1^-)=\Phi(s(t_0^+),t_1-t_0)
+\]
+
+is applied before an event at \(t_1\), followed by
+
+\[
+s(t_1^+)=F(s(t_1^-),e_{t_1}).
+\]
+
+The implementation may evaluate \(\Phi\) analytically or when an event is
+processed; it need not step through every intermediate time. A single event
+must be capable of changing state that remains observable at a later event or
+local observation before a declared character/sequence reset. The state,
+decay/evolution rule and reset boundary must be explicit and bounded.
 
 State evolution should support:
 
@@ -25,6 +44,15 @@ State evolution should support:
 \]
 
 rather than assuming fixed simulation timesteps.
+
+The canonical/reference neuron must expose at least one deterministic fixture
+where event order changes the resulting state, output or trace. The contract
+does not require every parameter choice to be order-sensitive, but permits
+temporal noncommutativity such as
+
+\[
+F(F(s,e_1),e_2)\ne F(F(s,e_2),e_1).
+\]
 
 ### A03 — Finite propagation
 
@@ -35,6 +63,13 @@ An event emitted at time \(t_e\) has an arrival time such as
 \[
 t_a=t_e+\tau_{ij}.
 \]
+
+Path delay is the cumulative causal delay over all edges in a path, not merely
+its hop count. The topology must permit convergent paths with unequal delays,
+so an older consequence on a long path can arrive alongside a newer
+consequence on a short path. Fan-in processing preserves event timestamps and
+the canonical deterministic ordering; events at different times must not be
+collapsed into an unordered sum before neuron processing.
 
 ### A04 — Bounded topology
 
@@ -90,7 +125,11 @@ They must not silently become neural inputs.
 
 ### A08 — Bounded dynamics
 
-Neuron state and recurrent dynamics must include mechanisms preventing uncontrolled divergence.
+Neuron state and recurrent dynamics must include mechanisms preventing
+uncontrolled divergence. Recurrent topology and cycles are permitted only
+within finite propagation, event-budget, lineage/path, queue and state bounds.
+Monotonic local time and deterministic tie ordering remain required. A cycle
+must never require an implicit global tick or enable infinite propagation.
 
 ### A09 — Energy is local
 

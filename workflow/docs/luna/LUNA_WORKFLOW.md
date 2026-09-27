@@ -865,6 +865,115 @@ fixed-topology, and structural-plasticity results are separately reported;
 ordered, shuffled, and reversal behavior is analyzed; deterministic replay and
 bounded core/regression checks pass; and no accuracy threshold is invented.
 
+## Luna-12H - Intrinsic Temporal State, Recurrence, and Unequal-Delay Convergence
+
+**Authorization:** Authorized by Luna-0 on 2026-09-27 after the Luna-12G
+benchmark reported identical ordered, shuffled, and reversed classification
+results. The existing architecture already permits local elapsed-time state,
+finite propagation, and bounded recurrent dynamics; this milestone makes the
+canonical evidence requirements explicit. No ACP is required. This dispatch
+does not authorize a real dataset, hardware acceptance, or a spiral-specific
+neuron/classifier redesign.
+
+**Purpose:** Determine whether the neural core itself preserves temporal
+information before adding a more sophisticated external temporal classifier.
+Verify two distinct mechanisms: intrinsic local state that persists and
+evolves between events, and network/path temporal state in which consequences
+with unequal cumulative delays converge at a downstream neuron.
+
+**Dependency shape:**
+
+```text
+Luna-12C -> Luna-12D -> Luna-12E -> Luna-12F -> Luna-12G -> Luna-12H
+
+Luna-12 -> Luna-13  GPU-compatible visualization
+Luna-12 -> Luna-14  ModelSim/FPGA visualization
+```
+
+Luna-12H uses the accepted Luna-12E event-routing path and the Luna-12G
+temporal-order limitation as motivation. Luna-13 and Luna-14 remain
+independent siblings and do not depend on 12H.
+
+**Canonical temporal semantics:** A neuron is not a memoryless event
+transform. Processing may depend on `state_before`, `incoming_event`, and
+`elapsed_local_time`. Conceptually, local state evolves analytically or when
+an event is processed:
+
+```text
+s(t1-) = Phi(s(t0+), t1 - t0)
+s(t1+) = F(s(t1-), event_t1)
+```
+
+A single event must be able to perturb bounded state that is observable later
+before a declared character/sequence reset. The reference neuron must expose
+at least one deterministic temporal noncommutativity fixture where exchanging
+event order changes state, output, or trace; this is a capability requirement,
+not a claim that every parameter choice is order-sensitive. Elapsed time comes
+from canonical event timestamps and local neuron time. No synchronous whole-
+network step, global frame update, or hidden recurrent tick may be required
+for correctness. Internally scheduled events may be documented and tested only
+if already supported cleanly; do not invent autonomous events merely to pass
+these checks when analytic event-time evolution is sufficient.
+
+**Routing and recurrence semantics:** Permit `A -> C` and
+`A -> B -> D -> C` to have different cumulative causal delays; path delay is
+the sum of declared edge delays, not edge count. Preserve event timestamps and
+canonical deterministic tie-breaking at fan-in. An older long-path consequence
+must be able to converge with a newer short-path consequence and affect the
+downstream result according to relative arrival timing. Cycles remain subject
+to finite event budgets, lineage/path safeguards, queue bounds, monotonic local
+time, bounded state and deterministic ordering. Luna-12H must not enable
+infinite recurrent propagation.
+
+**Reset and isolation:** Temporal neuron state persists within a character or
+sequence and resets only at declared reset boundaries. Topology may persist
+independently. Pending events, internal state, eligibility and prediction
+records require an explicit boundary policy. No state may leak between
+examples unless explicitly authorized, and labels remain outside neural
+events, state, routing, topology, energy and prediction/error computation.
+
+**Required controlled fixtures:**
+
+1. Single-spike persistence: `+1` at `t=0`, then observe state before reset.
+2. Ordered-pair noncommutativity: `(+1 at 0, -1 at 1)` versus
+  `(-1 at 0, +1 at 1)` produces a state/output/trace difference.
+3. Equal-event multiset distinction: the same event values with different
+  order produce a deterministic difference.
+4. Same values, changed interval: `+1 at 0, -1 at 1` versus
+  `+1 at 0, -1 at 5` differs when elapsed time is relevant.
+5. Unequal paths: verify `D_long > D_short` and timestamp-correct arrival for
+  direct and multi-hop paths.
+6. Convergent old/new arrival: an older event uses the long path and a newer
+  event uses the short path; changing their timing relationship changes the
+  downstream result.
+7. Path pruning: pruning either path removes its future causal effect.
+8. Arrival timing: the same total input with different arrival timing changes
+  downstream state/output in at least one deterministic fixture.
+9. Character reset: reset removes prior temporal state according to policy.
+10. Same-seed determinism: state, queue, timestamps and ties reproduce.
+11. Bounded recurrence: cycles terminate under declared budgets and bounds.
+12. Label isolation: relabeling identical streams does not alter core traces.
+
+**Expected handoff:** A focused implementation and verification slice for the
+canonical neuron and event-routing path, fixture-level traces with units and
+seeds, explicit decay/evolution/reset and tie policies, bounded-cycle and
+pruning evidence, focused tests, applicable regression/compile/diagnostic
+results, and a Luna-0 readiness decision. Report whether intrinsic or path
+temporal state is demonstrated; do not infer temporal representation from
+external classifier accuracy alone.
+
+**Non-goals:** Do not hard-code spiral handedness, introduce a mandatory
+global timestep, replace the event queue with synchronous stepping, add a
+spatial reservoir, leak labels or future points into the core, or redesign the
+external classifier before the core fixtures are measured.
+
+**Completion gate:** All twelve controlled checks and the four minimal fixture
+families are run or explicitly marked not applicable; timestamps, cumulative
+delays and fan-in order are evidenced; reset/isolation and label isolation
+pass; cycles remain bounded; same-seed replay passes; and no A01-A15 invariant
+is weakened. An absent temporal effect is a valid result, but must be reported
+as a failed capability check rather than hidden by readout changes.
+
 ## Luna-13 — GPU-Compatible Visualization Path
 
 **Authorization:** Blocked until Luna-12 passes and Luna-0 explicitly authorizes this milestone. The prompt or handoff alone is not authorization.
@@ -1200,9 +1309,15 @@ Neuron              Topology
             12A 13             14
              │  GPU            ModelSim/
              ▼  visualization  FPGA
-            12B
+            12E
              │
-             ▼
+            12F
+             │
+            12G
+             │
+            12H
+             │
+             └───────┬───────┘
             12C
              │
              ▼

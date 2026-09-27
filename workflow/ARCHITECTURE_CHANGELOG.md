@@ -113,3 +113,26 @@ Benchmark.
 - Luna-13 and Luna-14 remain independent siblings with no new dependency on
 	Luna-12G. No A01-A15 clause changed and no ACP is required.
 
+## Luna-12H authorization - 2026-09-27
+
+Authorized Luna-12H, Intrinsic Temporal State, Recurrence, and Unequal-Delay
+Convergence, after the Luna-12G evidence showed identical ordered, shuffled,
+and reversed classification results. This is a core implementation and
+verification clarification, not a benchmark-specific handedness rule.
+
+- The existing contract already permits local elapsed-time state, finite
+	recurrent dynamics, finite propagation, and locally scheduled events. The
+	contract now explicitly requires the canonical/reference path to expose
+	persistent bounded local state, deterministic temporal noncommutativity,
+	unequal cumulative path delays, timestamp-preserving fan-in, reset/isolation
+	policy, and bounded cycle behavior.
+- Luna-12H must verify intrinsic temporal state and network/path temporal state
+	without a mandatory global neural timestep or hidden recurrent tick. It must
+	use the accepted Luna-12E event-routing path and Luna-12G limitation as
+	motivation, while keeping labels outside the neural core.
+- No ACP is required: these semantics are already permitted by A01-A03 and
+	A08; this entry makes their canonical evidence obligations explicit.
+- Luna-12H follows Luna-12G. Luna-13 and Luna-14 remain independent siblings
+	and do not depend on 12H. Real-dataset, hardware, and post-observability
+	milestones remain separately gated.
+
