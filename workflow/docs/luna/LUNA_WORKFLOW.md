@@ -8,93 +8,6 @@ The immediate benchmark is sequential letter-stroke classification. Each stroke 
 
 The workflow must support eventual:
 
-- FPGA/VHDL implementation
-- FPAA implementation
-- FPGA/FPAA hybrid implementation
-- bounded hardware resources
-- local learning
-- local energy/resource accounting
-- structural plasticity
-- asynchronous/event-driven computation
-
----
-
-## Authoritative contract
-
-Read [ARCHITECTURE_CONTRACT.md](../../ARCHITECTURE_CONTRACT.md) first. Its A01–A15 clauses govern this workflow. A12–A13 are soft/experimental, and example sizes and utility formulas are not invariants.
-
-# 2. Branch Policy
-
-Use:
-
-```text
-main
-
-architecture/event-tpcn
-    |
-    +-- event-core
-    +-- predictive-dynamics
-    +-- bounded-topology
-    +-- energy-utility
-    +-- structural-plasticity
-    +-- stroke-classifier
-
-hardware/fpga
-hardware/fpaa
-hardware/hybrid
-
-experiment/explicit-gates
-experiment/event-only-gating
-experiment/utility-gating
-experiment/*
-
-legacy/spatial-reservoir
-```
-
-`architecture/event-tpcn` is the integration branch for the candidate architecture.
-
-Do not merge experimental architectural behavior into it without an Architecture Change Proposal.
-
----
-
-# 3. Luna-0 — Architecture Guardian
-
-## Responsibility
-
-Luna-0 coordinates the other agents.
-
-It should perform minimal implementation work.
-
-Its primary job is preventing architectural drift.
-
-## Responsibilities
-
-Maintain:
-
-```text
-ARCHITECTURE_CONTRACT.md
-ARCHITECTURE_CHANGELOG.md
-docs/architecture/
-docs/architecture_proposals/
-```
-
-Review changes for:
-
-- accidental global clock assumptions,
-- global-state leakage,
-- spatial-reservoir reintroduction,
-- unlimited connectivity,
-- unrestricted backprop replacing local learning,
-- energy minimization causing trivial inactivity,
-- classifier-specific logic leaking into TPCN core,
-- software structures impossible to reasonably map to FPGA/FPAA.
-
-## Luna-0 rule
-
-When implementation convenience conflicts with architecture, implementation must adapt unless an Architecture Change Proposal is accepted.
-
----
-
 # 4. Luna-1 — Event Runtime
 
 ## Goal
@@ -573,7 +486,73 @@ Also test that batching events produces behavior consistent with unbatched causa
 
 ---
 
-# 15. Luna-12 — FPGA/VHDL Branch
+# Visualization / Observability Milestone Family
+
+Visualization is not part of the canonical TPCN computational architecture. It is an observability and verification facility used to inspect structure formation and activity across CPU, GPU, simulation, and FPGA implementations.
+
+The branch is strictly downstream and has no return path into the TPCN computational datapath:
+
+```text
+TPCN core
+|
++--> diagnostic snapshot/trace interface
+|
++--> CPU exporter / visualizer
++--> GPU exporter
++--> ModelSim hex/binary trace
++--> FPGA diagnostic stream
+|
++--> VGA local visualization
++--> Ethernet host visualization
+```
+
+The snapshot/trace interface is observational only. Capture, transport, rendering, reset, and display timing must not become computational inputs, a global neural clock, or computational backpressure. Dropped or incomplete records must be explicit.
+
+## Luna-12 — Visualization Contract and CPU Reference Exporter
+
+**Authorization:** The owner-supplied Luna-11 software-reference gate is authoritative for this dispatch: adversarial suite 10 passed, focused reward/replay/bounded/label checks 5 passed, full regression 89 passed, compilation passed, diagnostics reported no errors, and `git diff --check` passed. The existing Luna-11 handoff remains historical evidence and is not rewritten or used to reopen Luna-11. Luna-0 authorizes Luna-12 as the next visualization milestone; existing Luna-9/Luna-10 boundaries are unchanged.
+
+**Purpose:** Define a canonical diagnostic snapshot/event format and implement the first CPU reference export, parse, and minimal visualization path.
+
+**Scope:** Define a compact deterministic binary or hexadecimal-friendly format suitable for CPU, GPU, ModelSim, and FPGA use; document versioning, layout, endianness, field widths, framing, reserved values, overflow behavior, deterministic ordering, and legitimate observable state; implement the CPU reference exporter/parser/visualizer; and add deterministic, malformed-input, version-mismatch, empty-state, boundedness, and capture-on/off invariance checks.
+
+**Explicit non-goals:** Do not redesign neuron behavior, inject visualization events, mutate classifier/reward/topology/timestamp/queue state, or implement GPU, ModelSim, VGA, or Ethernet support beyond compatibility stubs required by the format.
+
+**Expected handoff:** A stable canonical visualization format plus CPU reference exporter/parser that later implementations can target.
+
+**Completion gate:** Record focused serialization, parser, boundedness, and non-interference evidence. Luna-13 and Luna-14 remain blocked until Luna-12 passes.
+
+## Luna-13 — GPU-Compatible Visualization Path
+
+**Authorization:** Blocked until Luna-12 passes and Luna-0 explicitly authorizes this milestone. The prompt or handoff alone is not authorization.
+
+**Purpose:** Produce semantically compatible GPU visualization records using the Luna-12 format.
+
+**Scope:** Use no GPU-specific schema; implement GPU snapshot/export support; evaluate device buffers, periodic capture, double buffering, or host transfer as appropriate; add CPU/GPU parity and visualization-on/off invariance tests; consume records with Luna-12 tooling; and document synchronization/performance implications without making performance an architecture contract.
+
+**Explicit non-goals:** Do not alter neuron updates, event ordering, propagation, topology, reward, classifier, bounded state, or synchronization semantics. Do not implement ModelSim, FPGA, VGA, or Ethernet visualization.
+
+**Expected handoff:** A GPU exporter producing records semantically consumable by the Luna-12 parser/visualizer.
+
+**Completion gate:** Record CPU/GPU parity and non-interference evidence. This milestone does not authorize Luna-14.
+
+## Luna-14 — ModelSim/FPGA Trace Bridge and DE1-SoC Visualization Foundation
+
+**Authorization:** Blocked until Luna-12 passes and Luna-0 explicitly authorizes this milestone. Luna-13 is an optional parity reference, not a prerequisite.
+
+**Purpose:** Bridge the canonical format into ModelSim and downstream FPGA diagnostic infrastructure for the Terasic DE1-SoC.
+
+**Scope:** Implement deterministic ModelSim-compatible hex/binary framing and ordering; define HDL X/Z/unknown handling and reset/snapshot boundaries; decode known traces with reference tooling; define a downstream-only FPGA diagnostic stream with non-blocking overflow/drop reporting; establish VGA as the preferred first local display path; and retain Ethernet as a later richer host path without adding a full stack solely for this milestone.
+
+**Explicit non-goals:** Do not redefine the Luna-12 format, inject events, modify topology/classifier/reward/core reset semantics, make visualization backpressure computational backpressure, or claim hardware equivalence.
+
+**Expected handoff:** A ModelSim trace bridge, hardware diagnostic interface, and DE1-SoC visualization foundation suitable for later VGA and Ethernet expansion.
+
+**Completion gate:** Record trace-decoding, reset-boundary, overflow/non-blocking, and downstream-only evidence. Removing visualization must leave TPCN behavior unchanged.
+
+---
+
+# 18. Luna-15 — FPGA/VHDL Branch
 
 Begin only after software event semantics stabilize.
 
@@ -610,7 +589,7 @@ Treat it initially as architectural switching cost.
 
 ---
 
-# 16. Luna-13 — FPAA Branch
+# 19. Luna-16 — FPAA Branch
 
 Investigate analog realization of:
 
@@ -634,7 +613,7 @@ Maintain behavioral compatibility with the software reference rather than attemp
 
 ---
 
-# 17. Luna-14 — Hardware Equivalence
+# 20. Luna-17 — Hardware Equivalence
 
 Compare:
 
@@ -659,7 +638,7 @@ Exact internal numerical equality is not required across fundamentally different
 
 ---
 
-# 18. First Integration Model
+# 21. First Integration Model
 
 Start conservatively.
 
@@ -699,7 +678,7 @@ The first objective is proving the architecture works.
 
 ---
 
-# 19. Required Metrics
+# 22. Required Metrics
 
 Every training run should record:
 
@@ -750,7 +729,7 @@ connectivity utilization
 
 ---
 
-# 20. Agent Handoff Format
+# 23. Agent Handoff Format
 
 Every Luna agent must leave:
 
@@ -792,7 +771,7 @@ No agent should silently change architecture.
 
 ---
 
-# 21. Architecture Change Proposal
+# 24. Architecture Change Proposal
 
 If an agent discovers that an invariant should change, create:
 
@@ -830,7 +809,7 @@ The change remains experimental until reviewed.
 
 ---
 
-# 22. Execution Order
+# 25. Execution Order
 
 Run agents in this dependency order:
 
@@ -869,90 +848,25 @@ Neuron              Topology
            Luna-11
           Verification
                │
-               ▼
-     Visualization-1/2
-     Contract + CPU viewer
-               │
-       ┌───────┼────────┐
-       ▼       ▼        ▼
-    Luna-9  Luna-10   Optimization
-    Gating  Plasticity
-       │       │
-       └───┬───┘
-           ▼
-      Architecture
-       evaluation
-           │
-      ┌────┴─────┐
-      ▼          ▼
-   Luna-12     Luna-13
-    FPGA        FPAA
-      \          /
-       \        /
-        ▼      ▼
-         Luna-14
-     HW Equivalence
+                 ▼
+             Luna-12 (authorized next)
+             Contract + CPU exporter
+                 │
+              ┌────┴────┐
+              ▼         ▼
+             Luna-13    Luna-14
+            GPU       ModelSim/FPGA
+                   bridge
+              └────┬────┘
+                 ▼
+             Post-observability
+             hardware track
+             Luna-15 / Luna-16 / Luna-17
 ```
 
 ---
 
-## Visual Examination / Observability milestone family
-
-This is an implementation observability and validation track, not an extension of the normative TPCN architecture. The snapshot contract is read-only and non-semantic: exporters observe existing state; neither snapshots nor viewers define neuron behavior, event timing/order, routing, learning, plasticity or topology formation. Viewer layouts and capture timestamps must not become neural features or a global neural timestep. No viewer command or exported aggregate may feed back into computation.
-
-Instrumentation must preserve computational behavior with capture enabled or disabled. Report capture, transport and rendering overhead separately. Use bounded observation buffers and explicitly mark dropped/incomplete captures; a slow or disconnected viewer must not impose backpressure on neural execution. Any coherent capture mechanism must preserve existing event semantics and avoid torn state without adding a neural synchronization rule.
-
-### Visualization-1 — Canonical versioned snapshot contract
-
-Define an implementation-neutral observation schema and fixtures after event, neuron and topology interfaces stabilize, before deep optimization. Record schema version, run/configuration/seed identity, backend and source revision, snapshot sequence ID, simulation timestamp/epoch with declared units, and capture boundary/consistency metadata. An epoch is an observation identifier, not a neural tick.
-
-Represent stable neuron IDs (including allocation generation if IDs are reused), existing state/type, directed structural connections and endpoints, relevant weights/strengths, and activity with a declared observation interval. Identify optional/unavailable fields explicitly. Define numeric encoding, units, ordering, version compatibility, completeness and validation rules. Specify a human-readable reference representation plus compact binary/hex serialization; these are observation formats, not execution-state or architecture requirements.
-
-Acceptance: documented schema and valid/invalid fixtures round-trip without losing logical IDs, edges or represented values; unknown versions and incomplete captures are detected explicitly.
-
-### Visualization-2 — CPU exporter and reference viewer
-
-Export CPU reference state through Visualization-1 and build the first host viewer for neuron state, activity and bounded connectivity. Distinguish display coordinates from physical placement metadata. Establish golden snapshots from small reproducible fixtures, initially with structural plasticity disabled.
-
-Acceptance: the viewer reproduces known fixture nodes/edges and state, and capture-on/off runs preserve causal outputs and computational state. Complete this milestone after the first software integration/verification gate and before deep optimization.
-
-### Visualization-3 — GPU exporter using the same logical format
-
-Export GPU state into the same versioned logical snapshot contract and host viewer. Backend-specific memory layouts and transfer formats are adapters only. Capture at declared causally comparable boundaries without treating a CUDA batch as a neural timestep.
-
-Acceptance: matched CPU/GPU fixtures compare IDs, connectivity, activity intervals and represented state under predeclared numerical tolerances; document any unavailable fields and capture overhead.
-
-### Visualization-4 — Temporal snapshot sequences
-
-Support ordered snapshot sequences with run identity, simulation times, capture boundaries and explicit gaps. Provide playback, pause, step and structural differences to inspect formation, pruning, reinforcement and activity propagation. Begin sequence support with fixed topology; add formation/pruning fixtures after Luna-10's verified plasticity work.
-
-Acceptance: known changes appear at the correct recorded boundaries, reused IDs remain distinguishable, and missing captures are shown as gaps rather than inferred neural events. Playback speed and sampling cadence must not alter model execution.
-
-### Visualization-5 — ModelSim/RTL dump and canonical conversion
-
-After software event semantics stabilize, have ModelSim/RTL simulation export a hex or binary state dump with schema/adapter version, field map, widths, signedness, byte/word order, fixed-point scaling and capture metadata. Convert the dump into Visualization-1 snapshots for the same viewer.
-
-Acceptance: a small known RTL fixture decodes to expected neurons, connections and state; malformed/truncated dumps and unknown RTL values are reported rather than silently converted to valid zeros. Compare against software at declared equivalent causal boundaries, not merely equal host or hardware clock counts.
-
-### Visualization-6 — DE1-SoC hardware observability
-
-Use Ethernet as the primary DE1-SoC state-streaming path to the host viewer, with a board-specific transport adapter converting captured state to the canonical snapshot. Plan the FPGA-to-HPS capture/transfer and host framing, sequencing, bounded buffering and loss reporting without making transport part of neural semantics.
-
-Keep VGA optional as an on-board diagnostic view for activity, occupancy and selected local connections. VGA refresh and Ethernet delivery rates are display/transport concerns only; neither may control neuron updates or structural decisions.
-
-Acceptance: host captures decode correctly, disconnects/slow receivers are handled without changing computation, and capture loss/overhead is reported. If VGA is implemented, verify its display-only behavior independently of the host path.
-
-### Visualization-7 — Cross-backend structural validation
-
-Luna-11 and Luna-14 compare CPU, GPU, ModelSim/RTL and FPGA snapshots from matched inputs, seeds, initial topology, resource budgets and supported operations. Match stable IDs and declared causal boundaries; compare nodes, directed edges, fan-in/out, creation/pruning changes, relevant strengths and activity/state under predeclared precision and timing tolerances.
-
-Acceptance: reproducible fixtures, machine-readable structural differences and linked viewer evidence identify the first observed divergence or explicitly report unavailable/incomparable captures. Visual inspection supplements numerical regression and invariant checks; it does not replace them or establish exact equality across differing hardware.
-
-Sequence Visualization-1 → Visualization-2 before deep optimization; add Visualization-3 with GPU work and Visualization-4 with temporal/structural experiments. Visualization-5 and Visualization-6 follow stable software semantics and the FPGA branch. Apply Visualization-7 incrementally as each backend becomes available; final coverage includes all four backends. Luna-0 assigns bounded ownership using the existing roles and handoff format; no new Luna numbering or architecture clause is introduced.
-
----
-
-# 23. Immediate Success Criteria
+# 26. Immediate Success Criteria
 
 The first milestone is successful when a software TPCN can:
 
@@ -975,7 +889,7 @@ Correct architectural behavior comes first.
 
 ---
 
-# 24. Guiding Principle
+# 27. Guiding Principle
 
 TPCN should not ask:
 
@@ -1014,7 +928,7 @@ Only parallelize tasks after their shared interfaces are stable and their file o
 
 Use the [handoff template](AGENT_HANDOFF_TEMPLATE.md) for every completed or blocked assignment. Luna-11 records actual commands and observed results; proposed tests must never be reported as passing. Failed invariants block integration. Luna-0 integrates only compatible, verified changes, then updates the architecture changelog when a decision changes.
 
-Experimental gating and plasticity begin after the first integrated software milestone passes. FPGA and FPAA branches begin after software event semantics are stable; Luna-14 compares both against versioned reference traces. Hardware-specific clocks, quantization and metering must not redefine neural semantics.
+Experimental gating and plasticity begin after the first integrated software milestone passes. The visualization track begins after Luna-11 and remains downstream-only. FPGA and FPAA implementation branches begin after software event semantics are stable; post-observability hardware equivalence compares implementations against versioned reference traces. Hardware-specific clocks, quantization and metering must not redefine neural semantics.
 
 See [acceptance criteria](../architecture/ACCEPTANCE_CRITERIA.md) and [proposal process](../architecture_proposals/README.md).
 

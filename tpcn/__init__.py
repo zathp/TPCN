@@ -48,6 +48,35 @@ from .eligibility import (
     REWARD_EVENT,
     RewardSignal,
 )
+from .energy_utility import (
+    EnergySnapshot,
+    LocalEnergyModel,
+    RewardAdjustedUtility,
+    RewardMessage,
+    UsefulnessObservation,
+    UtilityDecision,
+)
+from .streaming_classifier import (
+    ACTIVITY_EVENT,
+    CLASS_LABELS,
+    ClassEvidence,
+    ClassificationResult,
+    END_STROKE,
+    StreamingCharacterClassifier,
+)
+from .visualization import (
+    ConnectionRecord,
+    FORMAT_VERSION,
+    MAX_EXPORT_BYTES,
+    MAX_RECORDS,
+    NeuronRecord,
+    ReferenceVisualizer,
+    SnapshotCollector,
+    VisualizationFormatError,
+    VisualizationSnapshot,
+    export_snapshot,
+    parse_snapshot,
+)
 
 __all__ = [
     "SignalCopyConfig",
@@ -96,4 +125,27 @@ __all__ = [
     "EligibilityTrace",
     "REWARD_EVENT",
     "RewardSignal",
+    "EnergySnapshot",
+    "LocalEnergyModel",
+    "RewardAdjustedUtility",
+    "RewardMessage",
+    "UsefulnessObservation",
+    "UtilityDecision",
+    "ACTIVITY_EVENT",
+    "CLASS_LABELS",
+    "ClassEvidence",
+    "ClassificationResult",
+    "END_STROKE",
+    "StreamingCharacterClassifier",
+    "ConnectionRecord",
+    "FORMAT_VERSION",
+    "MAX_EXPORT_BYTES",
+    "MAX_RECORDS",
+    "NeuronRecord",
+    "ReferenceVisualizer",
+    "SnapshotCollector",
+    "VisualizationFormatError",
+    "VisualizationSnapshot",
+    "export_snapshot",
+    "parse_snapshot",
 ]

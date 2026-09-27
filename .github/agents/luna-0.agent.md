@@ -50,7 +50,7 @@ Use the workflow's role definitions rather than having every worker rediscover t
 4. Luna-5 handles local energy, Luna-6 streaming stroke data and Luna-8 delayed credit. Agree on energy/eligibility/reward interfaces before integration.
 5. Luna-7 integrates the classification interface; Luna-11 independently verifies the integrated milestone when execution resources permit.
 6. After the first milestone, Luna-9 compares gating choices and Luna-10 develops constrained structural plasticity.
-7. After software semantics stabilize, Luna-12 handles FPGA/VHDL, Luna-13 FPAA and Luna-14 behavioral equivalence, including hybrid boundaries when relevant.
+7. After Luna-11 passes, Luna-12 defines the downstream-only visualization contract and CPU reference exporter. Luna-13 depends on Luna-12 for GPU parity; Luna-14 depends on Luna-12 for the ModelSim/FPGA bridge and DE1-SoC foundation. The former FPGA/VHDL, FPAA, and hardware-equivalence contracts are preserved as post-observability Luna-15, Luna-16, and Luna-17.
 
 Delegate only when authorized by the active task and supported by the available runtime. These role names do not mean their agent profiles already exist. If delegation is unavailable, supply executable task briefs or perform authorized work sequentially; never claim another agent ran. Allocate roles on demand rather than launching all roles at once.
 
