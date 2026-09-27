@@ -13,7 +13,7 @@ Documentation package for the event-driven TPCN candidate architecture, based on
 
 ## Visualization / observability milestones
 
-The [workflow milestone family](docs/luna/LUNA_WORKFLOW.md#visualization--observability-milestone-family) adds Luna-12 (canonical contract and CPU exporter), Luna-12A (CPU training and TPCV-1 replay integration), authorized Luna-12B (persistent topology and structural-plasticity observability), Luna-13 (GPU-compatible exporter), and Luna-14 (ModelSim/FPGA trace bridge and DE1-SoC foundation). Luna-12A and Luna-12B are authorized only for the deterministic Luna-9 synthetic workload; Luna-12B is not a prerequisite for Luna-13 or Luna-14. Visualization is downstream-only, non-semantic infrastructure and must not affect computation or change the normative TPCN architecture; its checks are in the [acceptance criteria](docs/architecture/ACCEPTANCE_CRITERIA.md#visualization--observability-gate). The canonical Luna-12 format is documented in [VISUALIZATION_CONTRACT.md](docs/luna/VISUALIZATION_CONTRACT.md).
+The [workflow milestone family](docs/luna/LUNA_WORKFLOW.md#visualization--observability-milestone-family) adds Luna-12 (canonical contract and CPU exporter), Luna-12A (CPU training and TPCV-1 replay integration), authorized Luna-12B (persistent topology and structural-plasticity observability), authorized Luna-12C (human-interpretable 3D temporal replay), Luna-13 (GPU-compatible exporter), and Luna-14 (ModelSim/FPGA trace bridge and DE1-SoC foundation). Luna-12A and Luna-12B remain authorized only for the deterministic Luna-9 synthetic workload; Luna-12B and Luna-12C are not prerequisites for Luna-13 or Luna-14. Visualization is downstream-only, non-semantic infrastructure and must not affect computation or change the normative TPCN architecture; its checks are in the [acceptance criteria](docs/architecture/ACCEPTANCE_CRITERIA.md#visualization--observability-gate). The canonical Luna-12 format is documented in [VISUALIZATION_CONTRACT.md](docs/luna/VISUALIZATION_CONTRACT.md).
 
 ## Package layout
 
@@ -50,12 +50,16 @@ From the implementation repository root, run:
 ```text
 python train_cpu_visualization.py --epochs 3 --seed 7 --examples-per-class 1 --snapshot-every 1 --output-dir artifacts/cpu-tpcv
 python train_cpu_visualization.py --replay artifacts/cpu-tpcv
+python viz_tpcn_3d.py artifacts/cpu-tpcv --inspect-only
+python viz_tpcn_3d.py artifacts/cpu-tpcv
 ```
 
 This uses only the deterministic Luna-9 synthetic A/Z workload. The first
 command writes bounded TPCV-1 records and a metrics timeline; the second loads
-them without running training. Structural plasticity remains deferred for this
-CPU integration, and no real-dataset benchmark is implied.
+them without running training. The third command validates a replay without a
+graphics context; the fourth opens the Luna-12C pygame/PyOpenGL viewer.
+Structural plasticity remains deferred for this CPU smoke example, and no
+real-dataset benchmark is implied.
 
 Open decisions include the exact dataset/version and split, event tie handling and time units, credit attribution, utility formula, resource capacities beyond the initial examples, and hardware tolerances. Record these before their dependent implementation or experiments.
 

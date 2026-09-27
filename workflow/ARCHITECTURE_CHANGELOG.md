@@ -37,3 +37,23 @@ Authorized Luna-12B, Persistent Topology and Structural Plasticity Visualization
 - Luna-12B is not a prerequisite for independently authorized Luna-13 or Luna-14.
 - Real-dataset benchmarking and Luna-15/Luna-16/Luna-17 remain separately gated and are not authorized by this entry.
 
+## Luna-12C authorization - 2026-09-27
+
+Authorized Luna-12C, Human-Interpretable 3D Temporal Visualization, as a
+replay-first observational milestone after the existing Luna-12 TPCV contract
+and CPU replay integrations.
+
+- Luna-12C adapts the existing Python pygame/PyOpenGL and NumPy infrastructure
+	for deterministic 3D replay, stable layout, topology-change inspection,
+	playback, filtering, neuron selection, and synchronized metrics.
+- Luna-12C is downstream-only and does not change A01-A15, TPCV-1 semantics,
+	computation, event ordering, timestamps, topology decisions, reward,
+	classifier behavior, training, or reproducibility; no ACP is required.
+- Current TPCV-1 lacks canonical 3D coordinates, event-by-event propagation
+	timing, per-edge traffic, and per-neuron energy/utility fields. The viewer
+	must show snapshot-level activity and unavailable fields honestly rather
+	than fabricate pulses or values.
+- Luna-12C is not a prerequisite for Luna-13 or Luna-14; their dependencies
+	and authorization boundaries are unchanged. Luna-15/Luna-16/Luna-17 remain
+	separately gated and unauthorized by this entry.
+

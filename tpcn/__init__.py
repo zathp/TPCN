@@ -1,7 +1,3 @@
-from .signal_copy_distance.config import SignalCopyConfig
-from .signal_copy_distance.model import DistanceSignalCopyNet
-from .signal_copy_distance.space import NeuronSpaceLayout, make_contiguous_layout
-from .signal_copy_distance.trainer import train_signal_copy_distance
 from .event_runtime import (
     Event,
     EventPayload,
@@ -88,13 +84,9 @@ from .fpga_visualization import (
     encode_trace_frame,
 )
 from .cpu_visualization import CPUTrainingCapture, ReplaySequence, ReplaySequenceError, run_cpu_training
+from .viewer_3d import CameraState, EdgeView, NodeView, SnapshotDiff, ViewerFilters, VisualizationScene
 
 __all__ = [
-    "SignalCopyConfig",
-    "DistanceSignalCopyNet",
-    "NeuronSpaceLayout",
-    "make_contiguous_layout",
-    "train_signal_copy_distance",
     "Event",
     "EventPayload",
     "EventQueue",
@@ -171,4 +163,10 @@ __all__ = [
     "ReplaySequence",
     "ReplaySequenceError",
     "run_cpu_training",
+    "CameraState",
+    "EdgeView",
+    "NodeView",
+    "SnapshotDiff",
+    "ViewerFilters",
+    "VisualizationScene",
 ]

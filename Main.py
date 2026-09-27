@@ -111,6 +111,14 @@ def run_signal_copy_opengl_gui(extra_args: list[str]) -> int:
 	return subprocess.run(cmd, cwd=ROOT).returncode
 
 
+def run_tpcn_3d(extra_args: list[str]) -> int:
+	entry = ROOT / "viz_tpcn_3d.py"
+	forward_args = extra_args[1:] if extra_args and extra_args[0] == "--" else extra_args
+	cmd = [sys.executable, str(entry), *forward_args]
+	print("Launching TPCV-1 replay viewer...")
+	return subprocess.run(cmd, cwd=ROOT).returncode
+
+
 def build_parser() -> argparse.ArgumentParser:
 	parser = argparse.ArgumentParser(
 		description="TPCN project launcher (VHDL simulation + baseline engine)."
@@ -174,6 +182,9 @@ def build_parser() -> argparse.ArgumentParser:
 		help="Optional arguments forwarded to gui_signal_copy_opengl_3d.py",
 	)
 
+	viz_parser = subparsers.add_parser("viz3d", help="Replay TPCV artifacts in the Luna-12C 3D viewer")
+	viz_parser.add_argument("args", nargs=argparse.REMAINDER, help="Arguments forwarded to viz_tpcn_3d.py")
+
 	return parser
 
 
@@ -202,6 +213,9 @@ def main() -> int:
 
 	if args.command == "guicopy3d":
 		return run_signal_copy_opengl_gui(extra_args=args.args)
+
+	if args.command == "viz3d":
+		return run_tpcn_3d(extra_args=args.args)
 
 	parser.print_help()
 	return 2

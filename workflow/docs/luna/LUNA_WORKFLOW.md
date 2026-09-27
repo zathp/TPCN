@@ -590,6 +590,44 @@ TPCV remains downstream-only. Replay may distinguish unchanged, added, and recen
 
 **Completion gate:** The implementation uses one validated bounded topology across the declared training scope; mutation accounting and rejection reasons are inspectable; fixed/plasticity/control comparisons run; topology and activity replay is deterministic and downstream-only; boundedness and non-interference checks pass; metrics support an evidence-based inertness/usefulness classification; and no architecture invariant is weakened.
 
+## Luna-12C - Human-Interpretable 3D Temporal Visualization
+
+**Authorization:** Luna-12C is authorized by Luna-0 on 2026-09-27 as an observational, replay-first milestone. It preserves the downstream-only TPCV architecture and does not change A01-A15 or require an ACP.
+
+**Dependency shape:**
+
+```text
+Luna-12
+|
++--> Luna-12A  CPU training + replay
+|      |
+|      +--> Luna-12B  persistent topology + plasticity observability
+|
++--> Luna-12C  human-interpretable 3D temporal viewer
+|
++--> Luna-13  GPU-compatible visualization
+|
++--> Luna-14  ModelSim/FPGA visualization
+```
+
+Luna-12C may consume Luna-12A/B replay artifacts but is not a prerequisite for Luna-13 or Luna-14. Those milestones remain independent siblings under their existing authorization records.
+
+**Purpose:** Provide human-interpretable 3D replay of stable neuron identity, activity, directed connections, structural changes, and synchronized behavioral/structural metrics during recorded learning.
+
+**Graphics strategy:** Adapt the existing Python `pygame` + `PyOpenGL` path with NumPy buffers. The older GLFW path is coupled to simulation objects and CuPy, so it is not the primary foundation for this replay viewer.
+
+**Scope:** Load bounded TPCV replay artifacts; preserve canonical coordinates when present or derive a deterministic diagnostic 3D layout; render neurons and directed edges with separate readable encodings; distinguish persistent, added, and recently pruned edges where replay history permits; provide configurable topology highlights and dense-graph filters; support play/pause, speed, both-direction stepping, first/last, direct snapshot selection, orbit, pan, zoom, reset, fit, neuron inspection, and synchronized metrics; and use packed/batched rendering with a path for later run/seed comparison.
+
+TPCV-1 currently lacks canonical 3D coordinates, event-by-event propagation timing, per-edge traffic, and per-neuron energy/utility fields. Luna-12C must therefore show deterministic diagnostic positions and snapshot-level activity, display unavailable fields as unavailable, and never synthesize event pulses or timing.
+
+**Non-interference:** Loading, layout, rendering, filters, playback, selection, window timing, dropped frames, and a slow viewer must not affect event ordering, timestamps, queues, routing, topology or structural plasticity, reward, utility, classifier behavior, training, or reproducibility. The renderer is not part of the TPCN architecture.
+
+**Explicit non-goals:** Do not alter TPCV-1 semantics, implement GPU or ModelSim/FPGA paths, select a real dataset, add live-training coupling, create visualization-only mutations, or authorize Luna-15/Luna-16/Luna-17.
+
+**Expected handoff:** A replay-first 3D viewer, deterministic layout and playback evidence, neuron inspection and filtering, synchronized metric presentation, focused headless/viewer tests, artifact fixtures/digests, unsupported-field documentation, and an explicit non-interference result.
+
+**Completion gate:** Existing replay artifacts load; stable neurons and edges render; topology changes are distinguishable; deterministic playback/navigation, inspection, filters, and metrics work; repeated replay produces the same layout/view state; focused and relevant regression tests pass; and visualization has no effect on recorded computation.
+
 ## Luna-13 — GPU-Compatible Visualization Path
 
 **Authorization:** Blocked until Luna-12 passes and Luna-0 explicitly authorizes this milestone. The prompt or handoff alone is not authorization.
