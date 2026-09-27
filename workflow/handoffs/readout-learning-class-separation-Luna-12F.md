@@ -5,7 +5,7 @@ tpcn_handoff:
   agent: Luna-12F Readout Learning and Class-Separation Verification
   task_id: "readout-learning-class-separation-luna-12f"
   component: "bounded external supervised readout and class-separation diagnostics"
-  status: "complete-pending-Luna-0-review"
+  status: "complete"
   contract_version: "1.0"
   baseline_revision: "09c19914ea9a1f06a10acb35390e613a9d4bcef9"
   result_revision: "uncommitted"

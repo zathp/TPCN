@@ -465,8 +465,10 @@ class ExperimentRunner:
             ledger.record_activity(Event(timestamp, neuron.neuron_id, ledger.ledger_id, "eligibility_activity",
                                          EligibilityActivity(f"{example.example_id}:{point_index}", abs(activation), prediction.prediction_id)))
             classifier.ingest_event(Event(timestamp, neuron.neuron_id, "readout", ACTIVITY_EVENT, sum(activations)))
-        result = classifier.ingest_event(Event(float(len(example.points)), example.example_id, "readout",
-                                               END_CHARACTER, CharacterBoundary(index)))
+        end_timestamp = max(float(len(example.points)),
+                    float(example.points[-1].timestamp or len(example.points)))
+        result = classifier.ingest_event(Event(end_timestamp, example.example_id, "readout",
+                               END_CHARACTER, CharacterBoundary(index)))
         assert result is not None
         raw_prediction = result.label
         network_feature = feature / len(example.points)
@@ -479,7 +481,7 @@ class ExperimentRunner:
         reward = 0.0 if config.reward_mode == "neutral" else (config.correct_reward if correct else config.incorrect_reward)
         if config.reward_mode == "sparse" and not correct:
             reward = 0.0
-        message_timestamp = float(len(example.points)) + config.reward_delay
+        message_timestamp = end_timestamp + config.reward_delay
         message = RewardMessage(f"{example.example_id}:result", reward, message_timestamp)
         utility.observe_reward(message)
         attribution = ledger.apply_signal(Event(message.timestamp, "utility", ledger.ledger_id, "reward",
@@ -497,7 +499,7 @@ class ExperimentRunner:
         representations = self.prototypes
         return _ExampleRun(example.example_id, example.label, classifier_prediction, prediction, network_feature, confidence, prediction_loss,
                    meter.energy, routed_events, routed_events, retained, tuple(trace), reward,
-                           message.timestamp - float(len(example.points)) if attribution.status == "matched" else 0.0,
+                           message.timestamp - end_timestamp if attribution.status == "matched" else 0.0,
                            utility.evaluate(meter.energy, reward).utility,
                neuron, routed_events - len(example.points), network_feature, readout_updated,
                representations, distances, learned_prediction, winning_distance, runner_up_distance, margin)

@@ -86,6 +86,20 @@ from .fpga_visualization import (
 from .cpu_visualization import CPUTrainingCapture, ReplaySequence, ReplaySequenceError, run_cpu_training
 from .viewer_3d import CameraState, EdgeView, NodeView, SnapshotDiff, ViewerFilters, VisualizationScene
 from .temporal_analysis import analyze_replay, compare_replays, summarize_analysis
+from .spiral_benchmark import (
+    ControlResult,
+    SpiralConfig,
+    SpiralDataset,
+    SpiralExample,
+    SpiralMetadata,
+    generate_matched_pair,
+    generate_spiral,
+    generate_variant,
+    make_spiral_dataset,
+    metadata_json,
+    run_controls,
+    transform_points,
+)
 
 __all__ = [
     "Event",
@@ -173,4 +187,16 @@ __all__ = [
     "analyze_replay",
     "compare_replays",
     "summarize_analysis",
+    "ControlResult",
+    "SpiralConfig",
+    "SpiralDataset",
+    "SpiralExample",
+    "SpiralMetadata",
+    "generate_matched_pair",
+    "generate_spiral",
+    "generate_variant",
+    "make_spiral_dataset",
+    "metadata_json",
+    "run_controls",
+    "transform_points",
 ]

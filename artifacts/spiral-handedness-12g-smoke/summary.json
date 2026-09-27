@@ -1,0 +1,381 @@
+[
+  {
+    "accuracy": 0.0,
+    "confidence": 0.07131054981902565,
+    "confusion": [
+      [
+        "spiral-left",
+        "A",
+        1
+      ],
+      [
+        "spiral-left",
+        "Z",
+        1
+      ],
+      [
+        "spiral-right",
+        "A",
+        1
+      ],
+      [
+        "spiral-right",
+        "Z",
+        1
+      ]
+    ],
+    "connection_count": 1,
+    "energy": 22.917314378074852,
+    "event_count": 80,
+    "margin": 0.0,
+    "name": "no-learning",
+    "per_class_accuracy": [
+      [
+        "spiral-left",
+        0.0
+      ],
+      [
+        "spiral-right",
+        0.0
+      ]
+    ],
+    "prediction_loss": 0.0,
+    "represented_classes": [],
+    "reward": -4.0,
+    "sample_count": 4,
+    "utility": -26.917314378074852
+  },
+  {
+    "accuracy": 0.5,
+    "confidence": 0.8363025624771772,
+    "confusion": [
+      [
+        "spiral-left",
+        "spiral-left",
+        1
+      ],
+      [
+        "spiral-left",
+        "spiral-right",
+        1
+      ],
+      [
+        "spiral-right",
+        "spiral-left",
+        1
+      ],
+      [
+        "spiral-right",
+        "spiral-right",
+        1
+      ]
+    ],
+    "connection_count": 1,
+    "energy": 22.917314378074852,
+    "event_count": 80,
+    "margin": 0.22714332987267166,
+    "name": "fixed-topology",
+    "per_class_accuracy": [
+      [
+        "spiral-left",
+        0.5
+      ],
+      [
+        "spiral-right",
+        0.5
+      ]
+    ],
+    "prediction_loss": 0.0,
+    "represented_classes": [
+      "spiral-left",
+      "spiral-right"
+    ],
+    "reward": 0.0,
+    "sample_count": 4,
+    "utility": -22.917314378074852
+  },
+  {
+    "accuracy": 0.5,
+    "confidence": 0.8166884288003161,
+    "confusion": [
+      [
+        "spiral-left",
+        "spiral-left",
+        1
+      ],
+      [
+        "spiral-left",
+        "spiral-right",
+        1
+      ],
+      [
+        "spiral-right",
+        "spiral-left",
+        1
+      ],
+      [
+        "spiral-right",
+        "spiral-right",
+        1
+      ]
+    ],
+    "connection_count": 2,
+    "energy": 24.818716455399393,
+    "event_count": 93,
+    "margin": 0.22714332987267166,
+    "name": "structural-plasticity",
+    "per_class_accuracy": [
+      [
+        "spiral-left",
+        0.5
+      ],
+      [
+        "spiral-right",
+        0.5
+      ]
+    ],
+    "prediction_loss": 0.0,
+    "represented_classes": [
+      "spiral-left",
+      "spiral-right"
+    ],
+    "reward": 0.0,
+    "sample_count": 4,
+    "utility": -24.818716455399393
+  },
+  {
+    "accuracy": 0.5,
+    "confidence": 0.8363025604780815,
+    "confusion": [
+      [
+        "spiral-left",
+        "spiral-left",
+        1
+      ],
+      [
+        "spiral-left",
+        "spiral-right",
+        1
+      ],
+      [
+        "spiral-right",
+        "spiral-left",
+        1
+      ],
+      [
+        "spiral-right",
+        "spiral-right",
+        1
+      ]
+    ],
+    "connection_count": 1,
+    "energy": 22.91731393916441,
+    "event_count": 80,
+    "margin": 0.22714332990129069,
+    "name": "shuffled-order (shuffle)",
+    "per_class_accuracy": [
+      [
+        "spiral-left",
+        0.5
+      ],
+      [
+        "spiral-right",
+        0.5
+      ]
+    ],
+    "prediction_loss": 0.0,
+    "represented_classes": [
+      "spiral-left",
+      "spiral-right"
+    ],
+    "reward": 0.0,
+    "sample_count": 4,
+    "utility": -22.91731393916441
+  },
+  {
+    "accuracy": 0.5,
+    "confidence": 0.8363025639060588,
+    "confusion": [
+      [
+        "spiral-left",
+        "spiral-left",
+        1
+      ],
+      [
+        "spiral-left",
+        "spiral-right",
+        1
+      ],
+      [
+        "spiral-right",
+        "spiral-left",
+        1
+      ],
+      [
+        "spiral-right",
+        "spiral-right",
+        1
+      ]
+    ],
+    "connection_count": 1,
+    "energy": 22.917314024091826,
+    "event_count": 80,
+    "margin": 0.22714332987923205,
+    "name": "time-reversal (reverse)",
+    "per_class_accuracy": [
+      [
+        "spiral-left",
+        0.5
+      ],
+      [
+        "spiral-right",
+        0.5
+      ]
+    ],
+    "prediction_loss": 0.0,
+    "represented_classes": [
+      "spiral-left",
+      "spiral-right"
+    ],
+    "reward": 0.0,
+    "sample_count": 4,
+    "utility": -22.917314024091826
+  },
+  {
+    "accuracy": 0.5,
+    "confidence": 0.8775903865968182,
+    "confusion": [
+      [
+        "spiral-left",
+        "spiral-left",
+        4
+      ],
+      [
+        "spiral-left",
+        "spiral-right",
+        4
+      ],
+      [
+        "spiral-right",
+        "spiral-left",
+        4
+      ],
+      [
+        "spiral-right",
+        "spiral-right",
+        4
+      ]
+    ],
+    "connection_count": 1,
+    "energy": 78.15201951833147,
+    "event_count": 255,
+    "margin": 0.27013867035279393,
+    "name": "rotation-invariance",
+    "per_class_accuracy": [
+      [
+        "spiral-left",
+        0.5
+      ],
+      [
+        "spiral-right",
+        0.5
+      ]
+    ],
+    "prediction_loss": 0.0,
+    "represented_classes": [
+      "spiral-left",
+      "spiral-right"
+    ],
+    "reward": 0.0,
+    "sample_count": 16,
+    "utility": -78.15201951833147
+  },
+  {
+    "accuracy": 0.5,
+    "confidence": 0.979769458148542,
+    "confusion": [
+      [
+        "spiral-left",
+        "spiral-right",
+        2
+      ],
+      [
+        "spiral-right",
+        "spiral-right",
+        2
+      ]
+    ],
+    "connection_count": 1,
+    "energy": 11.158250590463638,
+    "event_count": 80,
+    "margin": 0.24589720329886883,
+    "name": "scale-translation",
+    "per_class_accuracy": [
+      [
+        "spiral-left",
+        0.0
+      ],
+      [
+        "spiral-right",
+        1.0
+      ]
+    ],
+    "prediction_loss": 0.0,
+    "represented_classes": [
+      "spiral-left",
+      "spiral-right"
+    ],
+    "reward": 0.0,
+    "sample_count": 4,
+    "utility": -11.158250590463638
+  },
+  {
+    "accuracy": 0.5,
+    "confidence": 0.8527365254356193,
+    "confusion": [
+      [
+        "spiral-left",
+        "spiral-left",
+        3
+      ],
+      [
+        "spiral-left",
+        "spiral-right",
+        3
+      ],
+      [
+        "spiral-right",
+        "spiral-left",
+        3
+      ],
+      [
+        "spiral-right",
+        "spiral-right",
+        3
+      ]
+    ],
+    "connection_count": 1,
+    "energy": 60.74444529197555,
+    "event_count": 200,
+    "margin": 0.22903364853613095,
+    "name": "noise-robustness",
+    "per_class_accuracy": [
+      [
+        "spiral-left",
+        0.5
+      ],
+      [
+        "spiral-right",
+        0.5
+      ]
+    ],
+    "prediction_loss": 0.0,
+    "represented_classes": [
+      "spiral-left",
+      "spiral-right"
+    ],
+    "reward": 0.0,
+    "sample_count": 12,
+    "utility": -60.74444529197555
+  }
+]

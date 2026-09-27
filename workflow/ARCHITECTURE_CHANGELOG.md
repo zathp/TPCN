@@ -94,3 +94,22 @@ until the 12F fixture verifies it.
 - Real-dataset benchmarking, Luna-15/Luna-16/Luna-17, and an architecture-wide
 	classifier redesign remain unauthorized.
 
+## Luna-12G authorization - 2026-09-27
+
+Accepted the Luna-12F completion handoff for the corrected bounded external
+readout and authorized Luna-12G, Spiral Handedness Temporal Classification
+Benchmark.
+
+- Luna-12G replaces the shortcut-prone synthetic A/Z workload with disjoint,
+	seeded center-outward left/right spiral trajectories whose primary class
+	information is ordered handedness.
+- The benchmark requires class-independent nuisance variation, no-learning,
+	fixed-topology, structural-plasticity, shuffled-order, time-reversal,
+	matched-nuisance, and opposite-handed controls.
+- Labels remain external to canonical events, neuron/predictor state, routing,
+	topology evidence, structural-plasticity evidence, and energy computation.
+- Luna-12G is a synthetic software-reference experiment and does not authorize
+	real handwriting, GPU/FPGA/ModelSim acceptance, or hardware promotion.
+- Luna-13 and Luna-14 remain independent siblings with no new dependency on
+	Luna-12G. No A01-A15 clause changed and no ACP is required.
+

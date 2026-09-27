@@ -1,0 +1,575 @@
+[
+  {
+    "accepted_additions": 0,
+    "accuracy": 0.0,
+    "active_neuron_count": 1,
+    "confidence": 0.0686459217528131,
+    "confusion": [
+      [
+        "spiral-left",
+        "A",
+        14
+      ],
+      [
+        "spiral-left",
+        "B",
+        1
+      ],
+      [
+        "spiral-left",
+        "C",
+        1
+      ],
+      [
+        "spiral-left",
+        "E",
+        1
+      ],
+      [
+        "spiral-left",
+        "S",
+        1
+      ],
+      [
+        "spiral-left",
+        "T",
+        3
+      ],
+      [
+        "spiral-left",
+        "U",
+        1
+      ],
+      [
+        "spiral-left",
+        "V",
+        2
+      ],
+      [
+        "spiral-left",
+        "Z",
+        8
+      ],
+      [
+        "spiral-right",
+        "A",
+        13
+      ],
+      [
+        "spiral-right",
+        "E",
+        1
+      ],
+      [
+        "spiral-right",
+        "R",
+        1
+      ],
+      [
+        "spiral-right",
+        "T",
+        2
+      ],
+      [
+        "spiral-right",
+        "U",
+        3
+      ],
+      [
+        "spiral-right",
+        "V",
+        1
+      ],
+      [
+        "spiral-right",
+        "W",
+        1
+      ],
+      [
+        "spiral-right",
+        "Y",
+        1
+      ],
+      [
+        "spiral-right",
+        "Z",
+        9
+      ]
+    ],
+    "connection_count": 1,
+    "energy": 357.65351181444396,
+    "event_count": 1027,
+    "margin": 0.0,
+    "mutation_count": 0,
+    "name": "no-learning",
+    "per_class_accuracy": [
+      [
+        "spiral-left",
+        0.0
+      ],
+      [
+        "spiral-right",
+        0.0
+      ]
+    ],
+    "prediction_loss": 0.0,
+    "pruned_connections": 0,
+    "represented_classes": [],
+    "reward": -64.0,
+    "sample_count": 64,
+    "utility": -421.65351181444396
+  },
+  {
+    "accepted_additions": 0,
+    "accuracy": 0.53125,
+    "active_neuron_count": 1,
+    "confidence": 0.8077936092979955,
+    "confusion": [
+      [
+        "spiral-left",
+        "spiral-left",
+        15
+      ],
+      [
+        "spiral-left",
+        "spiral-right",
+        17
+      ],
+      [
+        "spiral-right",
+        "spiral-left",
+        13
+      ],
+      [
+        "spiral-right",
+        "spiral-right",
+        19
+      ]
+    ],
+    "connection_count": 1,
+    "energy": 357.65351181444396,
+    "event_count": 1027,
+    "margin": 0.057009730965014445,
+    "mutation_count": 0,
+    "name": "fixed-topology",
+    "per_class_accuracy": [
+      [
+        "spiral-left",
+        0.46875
+      ],
+      [
+        "spiral-right",
+        0.59375
+      ]
+    ],
+    "prediction_loss": 0.0,
+    "pruned_connections": 0,
+    "represented_classes": [
+      "spiral-left",
+      "spiral-right"
+    ],
+    "reward": 4.0,
+    "sample_count": 64,
+    "utility": -353.65351181444396
+  },
+  {
+    "accepted_additions": 12,
+    "accuracy": 0.53125,
+    "active_neuron_count": 1,
+    "confidence": 0.802208032135313,
+    "confusion": [
+      [
+        "spiral-left",
+        "spiral-left",
+        15
+      ],
+      [
+        "spiral-left",
+        "spiral-right",
+        17
+      ],
+      [
+        "spiral-right",
+        "spiral-left",
+        13
+      ],
+      [
+        "spiral-right",
+        "spiral-right",
+        19
+      ]
+    ],
+    "connection_count": 7,
+    "energy": 371.04079006756206,
+    "event_count": 1124,
+    "margin": 0.055268117010888386,
+    "mutation_count": 325,
+    "name": "structural-plasticity",
+    "per_class_accuracy": [
+      [
+        "spiral-left",
+        0.46875
+      ],
+      [
+        "spiral-right",
+        0.59375
+      ]
+    ],
+    "prediction_loss": 0.0,
+    "pruned_connections": 8,
+    "represented_classes": [
+      "spiral-left",
+      "spiral-right"
+    ],
+    "reward": 4.0,
+    "sample_count": 64,
+    "utility": -367.04079006756206
+  },
+  {
+    "accepted_additions": 0,
+    "accuracy": 0.53125,
+    "active_neuron_count": 1,
+    "confidence": 0.8077936094573914,
+    "confusion": [
+      [
+        "spiral-left",
+        "spiral-left",
+        15
+      ],
+      [
+        "spiral-left",
+        "spiral-right",
+        17
+      ],
+      [
+        "spiral-right",
+        "spiral-left",
+        13
+      ],
+      [
+        "spiral-right",
+        "spiral-right",
+        19
+      ]
+    ],
+    "connection_count": 1,
+    "energy": 357.6535012035779,
+    "event_count": 1027,
+    "margin": 0.05700973197097109,
+    "mutation_count": 0,
+    "name": "shuffled-order (shuffle)",
+    "per_class_accuracy": [
+      [
+        "spiral-left",
+        0.46875
+      ],
+      [
+        "spiral-right",
+        0.59375
+      ]
+    ],
+    "prediction_loss": 0.0,
+    "pruned_connections": 0,
+    "represented_classes": [
+      "spiral-left",
+      "spiral-right"
+    ],
+    "reward": 4.0,
+    "sample_count": 64,
+    "utility": -353.6535012035779
+  },
+  {
+    "accepted_additions": 0,
+    "accuracy": 0.53125,
+    "active_neuron_count": 1,
+    "confidence": 0.8077936103067286,
+    "confusion": [
+      [
+        "spiral-left",
+        "spiral-left",
+        15
+      ],
+      [
+        "spiral-left",
+        "spiral-right",
+        17
+      ],
+      [
+        "spiral-right",
+        "spiral-left",
+        13
+      ],
+      [
+        "spiral-right",
+        "spiral-right",
+        19
+      ]
+    ],
+    "connection_count": 1,
+    "energy": 357.65351052515564,
+    "event_count": 1027,
+    "margin": 0.05700973192266953,
+    "mutation_count": 0,
+    "name": "time-reversal (reverse)",
+    "per_class_accuracy": [
+      [
+        "spiral-left",
+        0.46875
+      ],
+      [
+        "spiral-right",
+        0.59375
+      ]
+    ],
+    "prediction_loss": 0.0,
+    "pruned_connections": 0,
+    "represented_classes": [
+      "spiral-left",
+      "spiral-right"
+    ],
+    "reward": 4.0,
+    "sample_count": 64,
+    "utility": -353.65351052515564
+  },
+  {
+    "accepted_additions": 0,
+    "accuracy": 0.4921875,
+    "active_neuron_count": 1,
+    "confidence": 0.8083854748194474,
+    "confusion": [
+      [
+        "spiral-left",
+        "spiral-left",
+        49
+      ],
+      [
+        "spiral-left",
+        "spiral-right",
+        79
+      ],
+      [
+        "spiral-right",
+        "spiral-left",
+        51
+      ],
+      [
+        "spiral-right",
+        "spiral-right",
+        77
+      ]
+    ],
+    "connection_count": 1,
+    "energy": 1412.4766497305347,
+    "event_count": 4060,
+    "margin": 0.05631974135990873,
+    "mutation_count": 0,
+    "name": "rotation-invariance",
+    "per_class_accuracy": [
+      [
+        "spiral-left",
+        0.3828125
+      ],
+      [
+        "spiral-right",
+        0.6015625
+      ]
+    ],
+    "prediction_loss": 0.0,
+    "pruned_connections": 0,
+    "represented_classes": [
+      "spiral-left",
+      "spiral-right"
+    ],
+    "reward": -4.0,
+    "sample_count": 256,
+    "utility": -1416.4766497305345
+  },
+  {
+    "accepted_additions": 0,
+    "accuracy": 0.484375,
+    "active_neuron_count": 1,
+    "confidence": 0.9781782588980741,
+    "confusion": [
+      [
+        "spiral-left",
+        "spiral-left",
+        1
+      ],
+      [
+        "spiral-left",
+        "spiral-right",
+        31
+      ],
+      [
+        "spiral-right",
+        "spiral-left",
+        2
+      ],
+      [
+        "spiral-right",
+        "spiral-right",
+        30
+      ]
+    ],
+    "connection_count": 1,
+    "energy": 173.512294728675,
+    "event_count": 1027,
+    "margin": 0.04745850656067251,
+    "mutation_count": 0,
+    "name": "scale-translation",
+    "per_class_accuracy": [
+      [
+        "spiral-left",
+        0.03125
+      ],
+      [
+        "spiral-right",
+        0.9375
+      ]
+    ],
+    "prediction_loss": 0.0,
+    "pruned_connections": 0,
+    "represented_classes": [
+      "spiral-left",
+      "spiral-right"
+    ],
+    "reward": -2.0,
+    "sample_count": 64,
+    "utility": -175.512294728675
+  },
+  {
+    "accepted_additions": 0,
+    "accuracy": 0.53125,
+    "active_neuron_count": 1,
+    "confidence": 0.8091246030783158,
+    "confusion": [
+      [
+        "spiral-left",
+        "spiral-left",
+        45
+      ],
+      [
+        "spiral-left",
+        "spiral-right",
+        51
+      ],
+      [
+        "spiral-right",
+        "spiral-left",
+        39
+      ],
+      [
+        "spiral-right",
+        "spiral-right",
+        57
+      ]
+    ],
+    "connection_count": 1,
+    "energy": 1062.3408019915498,
+    "event_count": 3051,
+    "margin": 0.057225955400984685,
+    "mutation_count": 0,
+    "name": "noise-robustness",
+    "per_class_accuracy": [
+      [
+        "spiral-left",
+        0.46875
+      ],
+      [
+        "spiral-right",
+        0.59375
+      ]
+    ],
+    "prediction_loss": 0.0,
+    "pruned_connections": 0,
+    "represented_classes": [
+      "spiral-left",
+      "spiral-right"
+    ],
+    "reward": 12.0,
+    "sample_count": 192,
+    "utility": -1050.3408019915496
+  },
+  {
+    "accepted_additions": 0,
+    "accuracy": 0.5,
+    "active_neuron_count": 1,
+    "confidence": 0.9724545039591825,
+    "confusion": [
+      [
+        "spiral-left",
+        "spiral-left",
+        1
+      ],
+      [
+        "spiral-left",
+        "spiral-right",
+        1
+      ]
+    ],
+    "connection_count": 1,
+    "energy": 8.834248976125874,
+    "event_count": 60,
+    "margin": 0.058771830698046826,
+    "mutation_count": 0,
+    "name": "same-class-nuisance-pair",
+    "per_class_accuracy": [
+      [
+        "spiral-left",
+        0.5
+      ]
+    ],
+    "prediction_loss": 0.0,
+    "pruned_connections": 0,
+    "represented_classes": [
+      "spiral-left",
+      "spiral-right"
+    ],
+    "reward": 0.0,
+    "sample_count": 2,
+    "utility": -8.834248976125874
+  },
+  {
+    "accepted_additions": 0,
+    "accuracy": 0.5,
+    "active_neuron_count": 1,
+    "confidence": 0.6441727211831184,
+    "confusion": [
+      [
+        "spiral-left",
+        "spiral-left",
+        1
+      ],
+      [
+        "spiral-right",
+        "spiral-left",
+        1
+      ]
+    ],
+    "connection_count": 1,
+    "energy": 25.3001250412633,
+    "event_count": 60,
+    "margin": 0.05877183069804681,
+    "mutation_count": 0,
+    "name": "opposite-handed-matched-pair",
+    "per_class_accuracy": [
+      [
+        "spiral-left",
+        1.0
+      ],
+      [
+        "spiral-right",
+        0.0
+      ]
+    ],
+    "prediction_loss": 0.0,
+    "pruned_connections": 0,
+    "represented_classes": [
+      "spiral-left",
+      "spiral-right"
+    ],
+    "reward": 0.0,
+    "sample_count": 2,
+    "utility": -25.3001250412633
+  }
+]

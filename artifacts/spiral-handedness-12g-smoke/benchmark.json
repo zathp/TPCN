@@ -1,0 +1,525 @@
+{
+  "controls": [
+    {
+      "accuracy": 0.0,
+      "confidence": 0.07131054981902565,
+      "confusion": [
+        [
+          "spiral-left",
+          "A",
+          1
+        ],
+        [
+          "spiral-left",
+          "Z",
+          1
+        ],
+        [
+          "spiral-right",
+          "A",
+          1
+        ],
+        [
+          "spiral-right",
+          "Z",
+          1
+        ]
+      ],
+      "connection_count": 1,
+      "energy": 22.917314378074852,
+      "event_count": 80,
+      "margin": 0.0,
+      "name": "no-learning",
+      "per_class_accuracy": [
+        [
+          "spiral-left",
+          0.0
+        ],
+        [
+          "spiral-right",
+          0.0
+        ]
+      ],
+      "prediction_loss": 0.0,
+      "represented_classes": [],
+      "reward": -4.0,
+      "sample_count": 4,
+      "utility": -26.917314378074852
+    },
+    {
+      "accuracy": 0.5,
+      "confidence": 0.8363025624771772,
+      "confusion": [
+        [
+          "spiral-left",
+          "spiral-left",
+          1
+        ],
+        [
+          "spiral-left",
+          "spiral-right",
+          1
+        ],
+        [
+          "spiral-right",
+          "spiral-left",
+          1
+        ],
+        [
+          "spiral-right",
+          "spiral-right",
+          1
+        ]
+      ],
+      "connection_count": 1,
+      "energy": 22.917314378074852,
+      "event_count": 80,
+      "margin": 0.22714332987267166,
+      "name": "fixed-topology",
+      "per_class_accuracy": [
+        [
+          "spiral-left",
+          0.5
+        ],
+        [
+          "spiral-right",
+          0.5
+        ]
+      ],
+      "prediction_loss": 0.0,
+      "represented_classes": [
+        "spiral-left",
+        "spiral-right"
+      ],
+      "reward": 0.0,
+      "sample_count": 4,
+      "utility": -22.917314378074852
+    },
+    {
+      "accuracy": 0.5,
+      "confidence": 0.8166884288003161,
+      "confusion": [
+        [
+          "spiral-left",
+          "spiral-left",
+          1
+        ],
+        [
+          "spiral-left",
+          "spiral-right",
+          1
+        ],
+        [
+          "spiral-right",
+          "spiral-left",
+          1
+        ],
+        [
+          "spiral-right",
+          "spiral-right",
+          1
+        ]
+      ],
+      "connection_count": 2,
+      "energy": 24.818716455399393,
+      "event_count": 93,
+      "margin": 0.22714332987267166,
+      "name": "structural-plasticity",
+      "per_class_accuracy": [
+        [
+          "spiral-left",
+          0.5
+        ],
+        [
+          "spiral-right",
+          0.5
+        ]
+      ],
+      "prediction_loss": 0.0,
+      "represented_classes": [
+        "spiral-left",
+        "spiral-right"
+      ],
+      "reward": 0.0,
+      "sample_count": 4,
+      "utility": -24.818716455399393
+    },
+    {
+      "accuracy": 0.5,
+      "confidence": 0.8363025604780815,
+      "confusion": [
+        [
+          "spiral-left",
+          "spiral-left",
+          1
+        ],
+        [
+          "spiral-left",
+          "spiral-right",
+          1
+        ],
+        [
+          "spiral-right",
+          "spiral-left",
+          1
+        ],
+        [
+          "spiral-right",
+          "spiral-right",
+          1
+        ]
+      ],
+      "connection_count": 1,
+      "energy": 22.91731393916441,
+      "event_count": 80,
+      "margin": 0.22714332990129069,
+      "name": "shuffled-order (shuffle)",
+      "per_class_accuracy": [
+        [
+          "spiral-left",
+          0.5
+        ],
+        [
+          "spiral-right",
+          0.5
+        ]
+      ],
+      "prediction_loss": 0.0,
+      "represented_classes": [
+        "spiral-left",
+        "spiral-right"
+      ],
+      "reward": 0.0,
+      "sample_count": 4,
+      "utility": -22.91731393916441
+    },
+    {
+      "accuracy": 0.5,
+      "confidence": 0.8363025639060588,
+      "confusion": [
+        [
+          "spiral-left",
+          "spiral-left",
+          1
+        ],
+        [
+          "spiral-left",
+          "spiral-right",
+          1
+        ],
+        [
+          "spiral-right",
+          "spiral-left",
+          1
+        ],
+        [
+          "spiral-right",
+          "spiral-right",
+          1
+        ]
+      ],
+      "connection_count": 1,
+      "energy": 22.917314024091826,
+      "event_count": 80,
+      "margin": 0.22714332987923205,
+      "name": "time-reversal (reverse)",
+      "per_class_accuracy": [
+        [
+          "spiral-left",
+          0.5
+        ],
+        [
+          "spiral-right",
+          0.5
+        ]
+      ],
+      "prediction_loss": 0.0,
+      "represented_classes": [
+        "spiral-left",
+        "spiral-right"
+      ],
+      "reward": 0.0,
+      "sample_count": 4,
+      "utility": -22.917314024091826
+    },
+    {
+      "accuracy": 0.5,
+      "confidence": 0.8775903865968182,
+      "confusion": [
+        [
+          "spiral-left",
+          "spiral-left",
+          4
+        ],
+        [
+          "spiral-left",
+          "spiral-right",
+          4
+        ],
+        [
+          "spiral-right",
+          "spiral-left",
+          4
+        ],
+        [
+          "spiral-right",
+          "spiral-right",
+          4
+        ]
+      ],
+      "connection_count": 1,
+      "energy": 78.15201951833147,
+      "event_count": 255,
+      "margin": 0.27013867035279393,
+      "name": "rotation-invariance",
+      "per_class_accuracy": [
+        [
+          "spiral-left",
+          0.5
+        ],
+        [
+          "spiral-right",
+          0.5
+        ]
+      ],
+      "prediction_loss": 0.0,
+      "represented_classes": [
+        "spiral-left",
+        "spiral-right"
+      ],
+      "reward": 0.0,
+      "sample_count": 16,
+      "utility": -78.15201951833147
+    },
+    {
+      "accuracy": 0.5,
+      "confidence": 0.979769458148542,
+      "confusion": [
+        [
+          "spiral-left",
+          "spiral-right",
+          2
+        ],
+        [
+          "spiral-right",
+          "spiral-right",
+          2
+        ]
+      ],
+      "connection_count": 1,
+      "energy": 11.158250590463638,
+      "event_count": 80,
+      "margin": 0.24589720329886883,
+      "name": "scale-translation",
+      "per_class_accuracy": [
+        [
+          "spiral-left",
+          0.0
+        ],
+        [
+          "spiral-right",
+          1.0
+        ]
+      ],
+      "prediction_loss": 0.0,
+      "represented_classes": [
+        "spiral-left",
+        "spiral-right"
+      ],
+      "reward": 0.0,
+      "sample_count": 4,
+      "utility": -11.158250590463638
+    },
+    {
+      "accuracy": 0.5,
+      "confidence": 0.8527365254356193,
+      "confusion": [
+        [
+          "spiral-left",
+          "spiral-left",
+          3
+        ],
+        [
+          "spiral-left",
+          "spiral-right",
+          3
+        ],
+        [
+          "spiral-right",
+          "spiral-left",
+          3
+        ],
+        [
+          "spiral-right",
+          "spiral-right",
+          3
+        ]
+      ],
+      "connection_count": 1,
+      "energy": 60.74444529197555,
+      "event_count": 200,
+      "margin": 0.22903364853613095,
+      "name": "noise-robustness",
+      "per_class_accuracy": [
+        [
+          "spiral-left",
+          0.5
+        ],
+        [
+          "spiral-right",
+          0.5
+        ]
+      ],
+      "prediction_loss": 0.0,
+      "represented_classes": [
+        "spiral-left",
+        "spiral-right"
+      ],
+      "reward": 0.0,
+      "sample_count": 12,
+      "utility": -60.74444529197555
+    }
+  ],
+  "evaluation": [
+    {
+      "angular_speed": 1.731263088841352,
+      "coordinate_noise": 0.008972234918137029,
+      "duration": 252.9345589092386,
+      "handedness": 1,
+      "label": "spiral-left",
+      "offset_x": -0.34441153447366535,
+      "offset_y": -0.20544148184245592,
+      "path_length": 4.511712316884092,
+      "radial_growth": 0.8103542827683851,
+      "radial_jitter": 0.0070627344188954975,
+      "rotation": 1.8704553039888951,
+      "sample_count": 13,
+      "scale": 1.0246513305194545,
+      "seed": 12017,
+      "timing_jitter": 0.06930902881133415
+    },
+    {
+      "angular_speed": 2.237043467277327,
+      "coordinate_noise": 0.00010959124997347303,
+      "duration": 264.1163885777614,
+      "handedness": -1,
+      "label": "spiral-right",
+      "offset_x": 0.7779140684051755,
+      "offset_y": -0.36566371646659057,
+      "path_length": 5.674787871078804,
+      "radial_growth": 0.7248460923179038,
+      "radial_jitter": 0.009742282729538362,
+      "rotation": 3.854668282146073,
+      "sample_count": 15,
+      "scale": 1.1376277015961938,
+      "seed": 12018,
+      "timing_jitter": 0.07472820013132174
+    },
+    {
+      "angular_speed": 2.2083389567671383,
+      "coordinate_noise": 0.021986440081926222,
+      "duration": 261.9041104978053,
+      "handedness": 1,
+      "label": "spiral-left",
+      "offset_x": -0.1840443267215317,
+      "offset_y": 0.6822973751030679,
+      "path_length": 5.620086607055283,
+      "radial_growth": 0.8661669007384641,
+      "radial_jitter": 0.006541828000875576,
+      "rotation": 2.5712745385491664,
+      "sample_count": 12,
+      "scale": 0.9794150669381041,
+      "seed": 12019,
+      "timing_jitter": 0.06329468355128254
+    },
+    {
+      "angular_speed": 2.4728462140125407,
+      "coordinate_noise": 0.005810471215327365,
+      "duration": 271.4850844471176,
+      "handedness": -1,
+      "label": "spiral-right",
+      "offset_x": -0.695968652038458,
+      "offset_y": -0.17638066917801898,
+      "path_length": 6.916386555804461,
+      "radial_growth": 0.8443137625722675,
+      "radial_jitter": 0.03665291248994098,
+      "rotation": 5.033831743751763,
+      "sample_count": 20,
+      "scale": 1.0707140822271761,
+      "seed": 12020,
+      "timing_jitter": 0.051284296048875855
+    }
+  ],
+  "evaluation_digest": "aeca934f5faf188fa569ad9037e5a0451f80af9d47f68512a119a272b53f45cd",
+  "train": [
+    {
+      "angular_speed": 2.137317339980596,
+      "coordinate_noise": 0.015158039393141354,
+      "duration": 253.54668419650517,
+      "handedness": 1,
+      "label": "spiral-left",
+      "offset_x": -0.4013631567683609,
+      "offset_y": 0.5017129195093657,
+      "path_length": 6.008685757771933,
+      "radial_growth": 0.986428237008387,
+      "radial_jitter": 0.01924343525356613,
+      "rotation": 2.3462326726419764,
+      "sample_count": 15,
+      "scale": 0.9105232724378064,
+      "seed": 12007,
+      "timing_jitter": 0.0643637867695365
+    },
+    {
+      "angular_speed": 2.2628919012209865,
+      "coordinate_noise": 0.014884944208595922,
+      "duration": 265.93784650844765,
+      "handedness": -1,
+      "label": "spiral-right",
+      "offset_x": -0.24574924978763057,
+      "offset_y": 0.43193616966209647,
+      "path_length": 6.398092756335956,
+      "radial_growth": 1.0097045144073453,
+      "radial_jitter": 0.03707291708313737,
+      "rotation": 0.7574304038069153,
+      "sample_count": 19,
+      "scale": 0.90397048724609,
+      "seed": 12008,
+      "timing_jitter": 0.038870512216208415
+    },
+    {
+      "angular_speed": 2.2940654454716656,
+      "coordinate_noise": 0.018139520444340227,
+      "duration": 267.7339923419915,
+      "handedness": 1,
+      "label": "spiral-left",
+      "offset_x": 0.9327056685000767,
+      "offset_y": 0.05545837473027326,
+      "path_length": 6.358691921541243,
+      "radial_growth": 0.9272610339313957,
+      "radial_jitter": 0.01084270799328217,
+      "rotation": 4.860981331683018,
+      "sample_count": 19,
+      "scale": 0.9346786233247036,
+      "seed": 12009,
+      "timing_jitter": 0.031030297482198172
+    },
+    {
+      "angular_speed": 2.418019034537264,
+      "coordinate_noise": 0.016486292444187443,
+      "duration": 260.86845058348206,
+      "handedness": -1,
+      "label": "spiral-right",
+      "offset_x": 0.22095556697592955,
+      "offset_y": -0.5852259723406454,
+      "path_length": 6.032655318781886,
+      "radial_growth": 0.8643924302644972,
+      "radial_jitter": 0.03789866551857475,
+      "rotation": 2.222797602654992,
+      "sample_count": 20,
+      "scale": 0.9233219520952181,
+      "seed": 12010,
+      "timing_jitter": 0.023722165084122563
+    }
+  ],
+  "train_digest": "86512e0f183021be772204c2403903f38a6f01918268dcb47c32ddc98a3954a0"
+}

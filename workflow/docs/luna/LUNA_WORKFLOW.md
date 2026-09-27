@@ -803,6 +803,68 @@ class-acquisition, before/after, and topology-interaction evidence is recorded;
 the Luna-12E causal tests remain passing; applicable regression, compile,
 diagnostic, and diff checks pass; and no A01-A15 invariant is weakened.
 
+## Luna-12G - Spiral Handedness Temporal Classification Benchmark
+
+**Authorization:** Luna-12F is accepted by Luna-0 for the corrected external
+readout dependency. Luna-0 authorizes Luna-12G on 2026-09-27 as a synthetic
+software-reference benchmark. This authorization does not authorize real
+handwriting data, GPU/FPGA/ModelSim acceptance, hardware promotion, or an
+architecture-wide classifier redesign.
+
+**Purpose:** Replace the overly separable synthetic A/Z workload with a
+two-class center-outward spiral benchmark whose primary class information is
+ordered temporal handedness: left-handed versus right-handed trajectories.
+Both classes start at the center and share the same nuisance distributions.
+
+**Dependency shape:**
+
+```text
+Luna-12C -> Luna-12D -> Luna-12E -> Luna-12F -> Luna-12G
+
+Luna-12 -> Luna-13  GPU-compatible visualization
+Luna-12 -> Luna-14  ModelSim/FPGA visualization
+```
+
+Luna-12G consumes the accepted Luna-12E event-routing path and Luna-12F
+external readout. Luna-13 and Luna-14 remain independent siblings and do not
+depend on 12G.
+
+**Scope:** Define a deterministic seeded generator and disjoint train/eval
+streams for left/right center-outward spirals. Sample global rotation, scale,
+translation, angular speed, bounded radial growth, sampling timing, mild
+coordinate noise, and mild radial jitter independently of class. Record
+generator metadata for reproduction, but feed only ordered stroke and timing
+events plus legitimate boundary events to the neural computation.
+
+Run fixed-topology learning, structural-plasticity learning, and a no-learning
+control with external readout learning disabled. Add shuffled-order, carefully defined time-reversal, same-class
+nuisance-invariance, and opposite-handed matched-pair controls. Report
+accuracy without treating 1.0 as a success threshold; investigate any perfect
+no-learning result as possible benchmark leakage.
+
+**Architectural boundary:** Handedness labels remain external. They must not
+enter canonical events, node or neuron IDs, event types, predictor state,
+topology mutation evidence, structural-plasticity decisions, energy state, or
+routing. Readout supervision may use the target only after label-free neural
+processing, through the bounded Luna-12F readout interface.
+
+**Non-goals:** Do not alter A01-A15, add a global neural timestep, introduce a
+spatial reservoir, use future points or whole-example normalization, benchmark
+real handwriting, or authorize sibling visualization/hardware work.
+
+**Expected handoff:** A benchmark specification and reproducible implementation
+with exact seeds/splits, trajectory metadata, all controls, per-class and
+confusion diagnostics, prediction/readout/energy/utility/event/topology/
+mutation metrics, label-isolation evidence, and a report of whether fixed or
+structural topology contributes useful behavior.
+
+**Completion gate:** Train and evaluation examples are disjoint and nuisance
+combinations are not copied verbatim; both classes and all required controls
+are measured; labels are isolated from neural computation; no-learning,
+fixed-topology, and structural-plasticity results are separately reported;
+ordered, shuffled, and reversal behavior is analyzed; deterministic replay and
+bounded core/regression checks pass; and no accuracy threshold is invented.
+
 ## Luna-13 — GPU-Compatible Visualization Path
 
 **Authorization:** Blocked until Luna-12 passes and Luna-0 explicitly authorizes this milestone. The prompt or handoff alone is not authorization.
