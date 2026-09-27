@@ -64,8 +64,69 @@ def test_delayed_sparse_and_neutral_rewards_are_bounded_and_observable() -> None
     neutral = train(workload, config=ExperimentConfig(epochs=2, reward_mode="neutral"))
 
     assert delayed.history[-1].reward_update_latency == 4.0
-    assert neutral.parameter_updates == 0
+    assert neutral.parameter_updates == 4
+    assert neutral.evaluation.metrics.reward == 0.0
     assert len(delayed.history) == len(neutral.history) == 2
+
+
+def test_misclassified_class_acquires_supervised_readout_state() -> None:
+    workload = make_synthetic_workload(examples_per_class=1, seed=7)
+    result = train(workload, config=ExperimentConfig(epochs=1, seed=7, correct_reward=0.0))
+
+    assert result.history[0].reward < 0.0
+    assert result.history[0].readout_diagnostics[1].prediction == "A"
+    assert result.history[0].readout_diagnostics[1].reward < 0.0
+    assert result.history[0].readout_diagnostics[1].readout_updated
+    assert result.parameter_updates == 2
+    assert set(result.evaluation.metrics.represented_classes) == {"A", "Z"}
+    assert result.evaluation.metrics.prototype_count == 2
+    assert {label for label, _, _ in result.evaluation.readout_diagnostics[1].class_representations} == {"A", "Z"}
+
+
+def test_readout_diagnostics_report_bounded_separation_and_class_metrics() -> None:
+    workload = make_synthetic_workload(examples_per_class=5, seed=7)
+    runner = ExperimentRunner(ExperimentConfig(epochs=20, seed=7, max_classes=2))
+    result = runner.train(workload)
+    metrics = result.evaluation.metrics
+
+    assert len(runner.prototypes) == 2
+    assert metrics.per_class_accuracy == (("A", 1.0), ("Z", 1.0))
+    assert metrics.confusion == (("A", "A", 5), ("Z", "Z", 5))
+    assert metrics.mean_margin >= 0.0
+    assert all(d.class_distances for d in result.evaluation.readout_diagnostics)
+    assert all(d.winning_distance <= d.runner_up_distance for d in result.evaluation.readout_diagnostics)
+
+
+def test_readout_state_respects_max_classes_and_is_deterministic() -> None:
+    workload = make_synthetic_workload(examples_per_class=1, seed=3)
+    config = ExperimentConfig(epochs=3, seed=3, max_classes=2)
+    first = ExperimentRunner(config)
+    second = ExperimentRunner(config)
+
+    first_result = first.train(workload)
+    second_result = second.train(workload)
+
+    assert len(first.prototypes) <= config.max_classes
+    assert first.prototypes == second.prototypes
+    assert first_result.evaluation.readout_diagnostics == second_result.evaluation.readout_diagnostics
+
+
+def test_external_labels_do_not_change_neural_trace_or_topology() -> None:
+    workload = make_synthetic_workload(examples_per_class=2, seed=11)
+    relabeled = tuple(type(example)(example.example_id, example.points, "Z" if example.label == "A" else "A")
+                      for example in workload)
+    config = ExperimentConfig(epochs=2, seed=11, structural_plasticity=True)
+
+    first = ExperimentRunner(config)
+    second = ExperimentRunner(config)
+    first_result = first.train(workload)
+    second_result = second.train(relabeled)
+
+    assert first_result.evaluation.event_trace == second_result.evaluation.event_trace
+    assert tuple((edge.source, edge.destination, edge.propagation_delay) for edge in first.topology.edges) == tuple(
+        (edge.source, edge.destination, edge.propagation_delay) for edge in second.topology.edges)
+    assert tuple(item[:4] for item in first_result.evaluation.event_trace) == tuple(
+        item[:4] for item in second_result.evaluation.event_trace)
 
 
 def test_independent_runner_instances_and_reset_do_not_cross_contaminate() -> None:

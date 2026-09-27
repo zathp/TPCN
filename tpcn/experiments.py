@@ -123,6 +123,33 @@ class ExperimentMetrics:
     topology_edges: tuple[tuple[str, str, float], ...] = ()
     mutation_history: tuple[tuple[str, str, str, str], ...] = ()
     mutation_rejection_reasons: tuple[tuple[str, int], ...] = ()
+    per_class_accuracy: tuple[tuple[str, float], ...] = ()
+    represented_classes: tuple[str, ...] = ()
+    missing_classes: tuple[str, ...] = ()
+    prototype_count: int = 0
+    starvation_count: int = 0
+    mean_margin: float = 0.0
+    readout_diagnostics: tuple[ReadoutDiagnostic, ...] = ()
+
+
+@dataclass(frozen=True, slots=True)
+class ReadoutDiagnostic:
+    """Bounded external-readout evidence for one labeled example."""
+
+    example_id: str
+    external_label: str
+    network_feature: float
+    raw_prediction: str
+    prediction: str
+    reward: float
+    readout_updated: bool
+    class_representations: tuple[tuple[str, float, int], ...]
+    class_distances: tuple[tuple[str, float], ...]
+    nearest_class: str
+    winning_distance: float
+    runner_up_distance: float
+    margin: float
+    confidence: float
 
 
 @dataclass(frozen=True, slots=True)
@@ -131,6 +158,7 @@ class EvaluationResult:
     predictions: tuple[str, ...]
     event_trace: tuple[tuple[object, ...], ...]
     converged: bool
+    readout_diagnostics: tuple[ReadoutDiagnostic, ...] = ()
 
 
 @dataclass(frozen=True, slots=True)
@@ -236,6 +264,9 @@ def _validate_workload(workload: tuple[SyntheticExample, ...], config: Experimen
 
 @dataclass(frozen=True, slots=True)
 class _ExampleRun:
+    example_id: str
+    external_label: str
+    classifier_prediction: str
     raw_prediction: str
     feature: float
     confidence: float
@@ -251,6 +282,13 @@ class _ExampleRun:
     neuron: TPCNNeuron
     routed_events: int
     propagated_activity: float
+    readout_updated: bool
+    class_representations: tuple[tuple[str, float, int], ...]
+    class_distances: tuple[tuple[str, float], ...]
+    nearest_class: str
+    winning_distance: float
+    runner_up_distance: float
+    margin: float
 
 
 class ExperimentRunner:
@@ -280,6 +318,11 @@ class ExperimentRunner:
     @property
     def updates(self) -> int:
         return self._updates
+
+    @property
+    def prototypes(self) -> tuple[tuple[str, float, int], ...]:
+        """Return deterministic bounded external readout state."""
+        return tuple((label, value, count) for label, (value, count) in sorted(self._prototypes.items()))
 
     @property
     def last_neurons(self) -> tuple[TPCNNeuron, ...]:
@@ -379,6 +422,16 @@ class ExperimentRunner:
         distance = abs(feature - value / count)
         return label, 1.0 / (1.0 + distance)
 
+    def _readout_evidence(self, feature: float, fallback: str) -> tuple[str, float, tuple[tuple[str, float], ...], float, float, float]:
+        if not self._prototypes:
+            return fallback, 0.0, (), 0.0, 0.0, 0.0
+        distances = tuple(sorted(
+            (label, abs(feature - value / count)) for label, (value, count) in self._prototypes.items()))
+        ordered = sorted(distances, key=lambda item: (item[1], item[0]))
+        winning = ordered[0][1]
+        runner_up = ordered[1][1] if len(ordered) > 1 else winning
+        return ordered[0][0], 1.0 / (1.0 + winning), distances, winning, runner_up, runner_up - winning
+
     def _run_example(self, example: SyntheticExample, index: int, *, update: bool) -> _ExampleRun:
         config = self.config
         assert self._network is not None
@@ -416,7 +469,10 @@ class ExperimentRunner:
                                                END_CHARACTER, CharacterBoundary(index)))
         assert result is not None
         raw_prediction = result.label
-        learned_prediction, learned_confidence = self._learned_prediction(feature / len(example.points), raw_prediction)
+        network_feature = feature / len(example.points)
+        classifier_prediction = raw_prediction
+        learned_prediction, learned_confidence, distances, winning_distance, runner_up_distance, margin = self._readout_evidence(
+            network_feature, raw_prediction)
         prediction = learned_prediction if self._prototypes else raw_prediction
         confidence = learned_confidence if self._prototypes else result.confidence
         correct = prediction == example.label
@@ -428,17 +484,23 @@ class ExperimentRunner:
         utility.observe_reward(message)
         attribution = ledger.apply_signal(Event(message.timestamp, "utility", ledger.ledger_id, "reward",
                             RewardSignal(reward, trace_id=f"{example.example_id}:0")))
-        if update and config.learning_enabled and reward > 0.0:
+        readout_updated = False
+        if update and config.learning_enabled:
+            if example.label not in self._prototypes and len(self._prototypes) >= config.max_classes:
+                raise BufferError("readout max_classes capacity reached")
             old_value, old_count = self._prototypes.get(example.label, (0.0, 0))
-            self._prototypes[example.label] = (old_value + feature / len(example.points), old_count + 1)
+            self._prototypes[example.label] = (old_value + network_feature, old_count + 1)
             self._updates += 1
+            readout_updated = True
         retained = 1 if config.activation_mode == "event_only" or utility.evaluate(meter.energy, reward).retain else 0
         routed_events = len(trace)
-        return _ExampleRun(prediction, feature / len(example.points), confidence, prediction_loss,
+        representations = self.prototypes
+        return _ExampleRun(example.example_id, example.label, classifier_prediction, prediction, network_feature, confidence, prediction_loss,
                    meter.energy, routed_events, routed_events, retained, tuple(trace), reward,
                            message.timestamp - float(len(example.points)) if attribution.status == "matched" else 0.0,
                            utility.evaluate(meter.energy, reward).utility,
-                   neuron, routed_events - len(example.points), feature / len(example.points))
+               neuron, routed_events - len(example.points), network_feature, readout_updated,
+               representations, distances, learned_prediction, winning_distance, runner_up_distance, margin)
 
     def _execute(self, workload: tuple[SyntheticExample, ...], epoch: int, *, update: bool) -> EvaluationResult:
         runs = [self._run_example(example, index, update=update) for index, example in enumerate(workload)]
@@ -447,11 +509,21 @@ class ExperimentRunner:
         counts: dict[str, int] = {}
         confusion: dict[tuple[str, str], int] = {}
         correct = 0
+        per_class_correct: dict[str, int] = {}
+        diagnostics: list[ReadoutDiagnostic] = []
         for example, run in zip(workload, runs):
             counts[example.label] = counts.get(example.label, 0) + 1
             confusion[(example.label, run.raw_prediction)] = confusion.get((example.label, run.raw_prediction), 0) + 1
             correct += int(run.raw_prediction == example.label)
+            per_class_correct[example.label] = per_class_correct.get(example.label, 0) + int(run.raw_prediction == example.label)
+            diagnostics.append(ReadoutDiagnostic(
+                run.example_id, run.external_label, run.feature, run.classifier_prediction,
+                run.raw_prediction, run.reward, run.readout_updated, run.class_representations,
+                run.class_distances, run.nearest_class, run.winning_distance,
+                run.runner_up_distance, run.margin, run.confidence))
         total = len(runs)
+        represented = tuple(label for label, _, _ in self.prototypes)
+        declared = tuple(sorted(counts))
         reward = sum(run.reward for run in runs)
         cumulative_reward = self._cumulative_reward + reward
         if update:
@@ -468,11 +540,22 @@ class ExperimentRunner:
             sum(run.neuron.processed_events > 0 for run in runs),
             sum(run.neuron.activation != 0.0 for run in runs),
             sum(run.neuron.activation == 0.0 for run in runs) / total,
-            **self._topology_metrics(mutations))
+            **self._topology_metrics(mutations),
+            per_class_accuracy=tuple(
+                (label, per_class_correct.get(label, 0) / count)
+                for label, count in sorted(counts.items())
+            ),
+            represented_classes=represented,
+            missing_classes=tuple(label for label in declared if label not in represented),
+            prototype_count=len(represented),
+            starvation_count=sum(label not in represented for label in declared),
+            mean_margin=sum(run.margin for run in runs) / total,
+            readout_diagnostics=tuple(diagnostics),
+        )
         predictions = tuple(run.raw_prediction for run in runs)
         trace = tuple(item for run in runs for item in run.trace)
         converged = len(self._history) > 0 and metrics == self._history[-1]
-        return EvaluationResult(metrics, predictions, trace, converged)
+        return EvaluationResult(metrics, predictions, trace, converged, tuple(diagnostics))
 
     def evaluate(self, workload: tuple[SyntheticExample, ...]) -> EvaluationResult:
         _validate_workload(workload, self.config)
@@ -505,6 +588,6 @@ def train(workload: tuple[SyntheticExample, ...], *, config: ExperimentConfig | 
 
 
 __all__ = [
-    "EvaluationResult", "ExperimentConfig", "ExperimentMetrics", "ExperimentRunner",
+    "EvaluationResult", "ExperimentConfig", "ExperimentMetrics", "ExperimentRunner", "ReadoutDiagnostic",
     "SyntheticExample", "TrainingObserver", "TrainingResult", "evaluate", "make_synthetic_workload", "train",
 ]

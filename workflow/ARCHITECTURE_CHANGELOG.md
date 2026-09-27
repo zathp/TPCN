@@ -74,3 +74,23 @@ canonical architecture contract or requiring an ACP.
 	12E. Real-dataset benchmarking, hardware acceptance, and Luna-15/16/17 are
 	not authorized by this entry.
 
+## Luna-12F authorization - 2026-09-27
+
+Authorized Luna-12F, Readout Learning and Class-Separation Verification, after
+the accepted Luna-12E evidence established persistent bounded topology in the
+actual event-routing path and causal reachable-edge effects. The current
+implementation condition `reward > 0.0` for prototype updates is confirmed as
+an observed gate and remains a root-cause hypothesis for Z class starvation
+until the 12F fixture verifies it.
+
+- Luna-12F is an external supervised-readout milestone, not a topology
+	milestone and not a change to A01-A15; no ACP is required.
+- Labels remain forbidden from canonical events, neuron/predictor state,
+	topology mutation evidence, routing, structural-plasticity decisions, and
+	energy computation.
+- Luna-12F follows Luna-12E and preserves its computational topology
+	integration. Luna-13 and Luna-14 remain independent siblings with no new
+	dependency on 12F.
+- Real-dataset benchmarking, Luna-15/Luna-16/Luna-17, and an architecture-wide
+	classifier redesign remain unauthorized.
+

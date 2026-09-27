@@ -721,6 +721,88 @@ effects; prediction/error and functional metrics derive from propagated
 activity; matched controls rule out observational confounds; and applicable
 core/non-interference checks pass.
 
+## Luna-12F - Readout Learning and Class-Separation Verification
+
+**Authorization:** Luna-12E is complete and accepted by Luna-0 for the
+computational-topology gate. Luna-0 authorizes Luna-12F for deterministic
+synthetic A/Z readout verification and correction of the external supervised
+readout path only. This does not authorize real-dataset benchmarking,
+Luna-15/Luna-16/Luna-17, or an architecture-wide classifier redesign.
+
+**Purpose:** Determine whether the current positive-reward-only readout update
+condition starves an initially misclassified class, measure class separation
+before readout selection, and apply the smallest bounded external-readout
+correction that permits every supervised training class to acquire a
+representation.
+
+**Dependency shape:**
+
+```text
+Luna-12C -> Luna-12D -> Luna-12E -> Luna-12F
+
+Luna-12 -> Luna-13  GPU-compatible visualization
+Luna-12 -> Luna-14  ModelSim/FPGA visualization
+```
+
+Luna-12F preserves the successful Luna-12E event-routing and persistent
+bounded-topology integration. Luna-13 and Luna-14 remain independent siblings
+and do not depend on Luna-12F.
+
+**Architectural boundary:** Labels may enter only the external supervised
+training/readout layer after label-free neural computation has completed. They
+must not enter canonical events, neuron or predictor state, topology mutation
+evidence, structural-plasticity decisions, routing, or energy computation.
+Readout state is external, bounded by `max_classes`, deterministic, and
+resettable. Reward may modulate refinement, but reward sign must not be the
+sole condition for creating a supervised class representation.
+
+**Required work:**
+
+1. Reproduce the current gate with a deterministic A/Z fixture, recording
+  initial prediction, reward, update decision, and prototype/readout state;
+  explicitly test whether a misclassified Z can create Z state.
+2. Expose pre-readout network features, target label for evaluation only,
+  class distances/scores, prediction, confidence, and winner margin. Measure
+  whether A and Z are separable before the readout and whether the readout
+  discards that difference.
+3. Implement the smallest compatible supervised prototype/centroid or class
+  statistics correction. Separate target acquisition from any
+  reward-modulated refinement and report missing declared class
+  representations.
+4. Compare positive-reward-gated and corrected readouts on identical seeds
+  and workloads. Report accuracy, per-class accuracy, confusion matrix,
+  confidence/margin, prediction loss, reward, energy, utility, topology,
+  update count, prototype count, and starvation count.
+5. Compare fixed topology, structural plasticity, and useful no-learning
+  controls after readout correction. Do not require topology to improve
+  accuracy and do not claim readout changes improve the neural predictor.
+6. Add replay-side diagnostics where compatible with existing TPCV-1 fields;
+  keep capture and analysis downstream-only and avoid incompatible schema
+  changes without Luna-0 review.
+
+**Required tests:** Both classes acquire bounded readout state; an initially
+misclassified Z can become correct after supervised updates; label changes do
+not change the neural event trace for identical inputs; labels affect only
+external readout learning/evaluation; `max_classes` bounds state; and same-seed
+training reproduces readout state. Include Luna-12E causal integration,
+experiment, classifier/readout, structural-plasticity, and relevant
+visualization/analysis regressions.
+
+**Non-goals:** Do not modify canonical event semantics, neuron/predictor
+state, topology mutation logic, routing, energy computation, TPCV-1 semantics,
+or sibling milestone dependencies. Do not benchmark a real dataset or replace
+the network with a large unrelated classifier.
+
+**Expected handoff:** A reproducible before/after starvation analysis,
+pre-readout separation diagnostics, bounded corrected-readout implementation,
+fixed/plasticity/control comparisons, focused and full validation results, and
+an explicit statement of whether the readout bottleneck was confirmed.
+
+**Completion gate:** All required label-isolation, boundedness, determinism,
+class-acquisition, before/after, and topology-interaction evidence is recorded;
+the Luna-12E causal tests remain passing; applicable regression, compile,
+diagnostic, and diff checks pass; and no A01-A15 invariant is weakened.
+
 ## Luna-13 — GPU-Compatible Visualization Path
 
 **Authorization:** Blocked until Luna-12 passes and Luna-0 explicitly authorizes this milestone. The prompt or handoff alone is not authorization.

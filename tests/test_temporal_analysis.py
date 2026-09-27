@@ -34,7 +34,7 @@ def test_flat_metrics_and_changing_topology_are_reported():
     result = analyze_replay(ReplaySequence(capture.snapshots, capture.metrics))
     assert result["flat_metrics"]["prediction_loss"]["flat"] is False
     assert result["topology_changes_with_flat_functional_metrics"] is False
-    assert result["classification"] == "changing topology / flat behavior"
+    assert result["classification"] == "changing topology / improving behavior"
     assert "metric_deltas" in result["snapshot_metrics"][0]
 
 
