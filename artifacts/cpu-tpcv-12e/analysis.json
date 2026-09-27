@@ -1,0 +1,5324 @@
+{
+  "activity_summary": {
+    "active_neuron_fraction_per_snapshot": [
+      0.1,
+      0.1,
+      0.1,
+      0.1,
+      0.1,
+      0.1,
+      0.1,
+      0.1,
+      0.1,
+      0.1,
+      0.1,
+      0.1,
+      0.1,
+      0.1,
+      0.1,
+      0.1,
+      0.1,
+      0.1,
+      0.1,
+      0.1
+    ],
+    "always_active_neuron_count": 1,
+    "mean_activity_fraction": 0.1,
+    "median_activity_fraction": 0.0,
+    "never_active_neuron_count": 9
+  },
+  "classification": "changing topology / flat behavior",
+  "digest": "19ca43dddbb0e15f15bc706d305c31ef9c9e5b301043755eebbfe6ebfd30659f",
+  "edge_statistics": [
+    {
+      "added_count": 10,
+      "destination": "neuron-1",
+      "first_appearance_snapshot": 0,
+      "last_appearance_snapshot": 18,
+      "lifetime_snapshots": 10,
+      "lifetime_span_snapshots": 19,
+      "persisted_to_final_snapshot": false,
+      "propagation_delay": 1.0,
+      "reappearance_count": 9,
+      "removed_count": 0,
+      "source": "neuron-0",
+      "usage": "unavailable: TPCV-1 records topology existence, not per-edge event paths",
+      "used_frequently": null,
+      "used_recently": null
+    },
+    {
+      "added_count": 1,
+      "destination": "neuron-2",
+      "first_appearance_snapshot": 1,
+      "last_appearance_snapshot": 19,
+      "lifetime_snapshots": 19,
+      "lifetime_span_snapshots": 19,
+      "persisted_to_final_snapshot": true,
+      "propagation_delay": 1.0,
+      "reappearance_count": 0,
+      "removed_count": 0,
+      "source": "neuron-1",
+      "usage": "unavailable: TPCV-1 records topology existence, not per-edge event paths",
+      "used_frequently": null,
+      "used_recently": null
+    },
+    {
+      "added_count": 1,
+      "destination": "neuron-3",
+      "first_appearance_snapshot": 3,
+      "last_appearance_snapshot": 19,
+      "lifetime_snapshots": 17,
+      "lifetime_span_snapshots": 17,
+      "persisted_to_final_snapshot": true,
+      "propagation_delay": 1.0,
+      "reappearance_count": 0,
+      "removed_count": 0,
+      "source": "neuron-2",
+      "usage": "unavailable: TPCV-1 records topology existence, not per-edge event paths",
+      "used_frequently": null,
+      "used_recently": null
+    },
+    {
+      "added_count": 1,
+      "destination": "neuron-4",
+      "first_appearance_snapshot": 5,
+      "last_appearance_snapshot": 19,
+      "lifetime_snapshots": 15,
+      "lifetime_span_snapshots": 15,
+      "persisted_to_final_snapshot": true,
+      "propagation_delay": 1.0,
+      "reappearance_count": 0,
+      "removed_count": 0,
+      "source": "neuron-3",
+      "usage": "unavailable: TPCV-1 records topology existence, not per-edge event paths",
+      "used_frequently": null,
+      "used_recently": null
+    },
+    {
+      "added_count": 1,
+      "destination": "neuron-3",
+      "first_appearance_snapshot": 0,
+      "last_appearance_snapshot": 19,
+      "lifetime_snapshots": 20,
+      "lifetime_span_snapshots": 20,
+      "persisted_to_final_snapshot": true,
+      "propagation_delay": 1.0,
+      "reappearance_count": 0,
+      "removed_count": 0,
+      "source": "neuron-4",
+      "usage": "unavailable: TPCV-1 records topology existence, not per-edge event paths",
+      "used_frequently": null,
+      "used_recently": null
+    },
+    {
+      "added_count": 1,
+      "destination": "neuron-5",
+      "first_appearance_snapshot": 7,
+      "last_appearance_snapshot": 19,
+      "lifetime_snapshots": 13,
+      "lifetime_span_snapshots": 13,
+      "persisted_to_final_snapshot": true,
+      "propagation_delay": 1.0,
+      "reappearance_count": 0,
+      "removed_count": 0,
+      "source": "neuron-4",
+      "usage": "unavailable: TPCV-1 records topology existence, not per-edge event paths",
+      "used_frequently": null,
+      "used_recently": null
+    },
+    {
+      "added_count": 1,
+      "destination": "neuron-6",
+      "first_appearance_snapshot": 9,
+      "last_appearance_snapshot": 19,
+      "lifetime_snapshots": 11,
+      "lifetime_span_snapshots": 11,
+      "persisted_to_final_snapshot": true,
+      "propagation_delay": 1.0,
+      "reappearance_count": 0,
+      "removed_count": 0,
+      "source": "neuron-5",
+      "usage": "unavailable: TPCV-1 records topology existence, not per-edge event paths",
+      "used_frequently": null,
+      "used_recently": null
+    },
+    {
+      "added_count": 1,
+      "destination": "neuron-7",
+      "first_appearance_snapshot": 11,
+      "last_appearance_snapshot": 19,
+      "lifetime_snapshots": 9,
+      "lifetime_span_snapshots": 9,
+      "persisted_to_final_snapshot": true,
+      "propagation_delay": 1.0,
+      "reappearance_count": 0,
+      "removed_count": 0,
+      "source": "neuron-6",
+      "usage": "unavailable: TPCV-1 records topology existence, not per-edge event paths",
+      "used_frequently": null,
+      "used_recently": null
+    }
+  ],
+  "edge_summary": {
+    "additions_per_transition": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      0,
+      1,
+      0,
+      1,
+      0,
+      1,
+      0
+    ],
+    "churn_rate": 1.3157894736842106,
+    "edge_use_evidence": "unavailable",
+    "final_graph_size": 7,
+    "mean_edge_lifetime": 14.25,
+    "median_edge_lifetime": 14.0,
+    "persistent_edge_count": 7,
+    "removals_per_transition": [
+      1,
+      0,
+      1,
+      0,
+      1,
+      0,
+      1,
+      0,
+      1,
+      0,
+      1,
+      0,
+      1,
+      0,
+      1,
+      0,
+      1,
+      0,
+      1
+    ],
+    "total_additions": 15,
+    "total_removals": 10,
+    "total_unique_edges_seen": 8,
+    "transient_edge_count": 1
+  },
+  "flat_metrics": {
+    "accuracy": {
+      "available": true,
+      "flat": true,
+      "max": 0.5,
+      "min": 0.5,
+      "range": 0.0,
+      "values": [
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5
+      ]
+    },
+    "energy": {
+      "available": true,
+      "flat": false,
+      "max": 32.41837138825592,
+      "min": 23.30445516331425,
+      "range": 9.113916224941672,
+      "values": [
+        23.30445516331425,
+        24.601496007009295,
+        24.601496007009295,
+        25.898536850704346,
+        25.898536850704346,
+        27.195577694399393,
+        27.195577694399397,
+        28.492618538094444,
+        28.492618538094444,
+        29.78965938178949,
+        29.806974541327662,
+        31.104015385022706,
+        31.12133054456088,
+        32.41837138825592,
+        31.12133054456088,
+        32.41837138825592,
+        31.12133054456088,
+        32.41837138825592,
+        31.12133054456088,
+        32.41837138825592
+      ]
+    },
+    "prediction_loss": {
+      "available": true,
+      "flat": false,
+      "max": 0.1533755840101248,
+      "min": 0.09348013553079858,
+      "range": 0.05989544847932622,
+      "values": [
+        0.09348013553079858,
+        0.10291923515622206,
+        0.10291923515622206,
+        0.11235833478164552,
+        0.11235833478164552,
+        0.12179743440706906,
+        0.12179743440706906,
+        0.13123653403249252,
+        0.12179743440706906,
+        0.13123653403249252,
+        0.1328669593958852,
+        0.1423060590213087,
+        0.1439364843847013,
+        0.1533755840101248,
+        0.1439364843847013,
+        0.1533755840101248,
+        0.1439364843847013,
+        0.1533755840101248,
+        0.1439364843847013,
+        0.1533755840101248
+      ]
+    },
+    "reward": {
+      "available": true,
+      "flat": true,
+      "max": 0.0,
+      "min": 0.0,
+      "range": 0.0,
+      "values": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "utility": {
+      "available": true,
+      "flat": false,
+      "max": -23.304455163314245,
+      "min": -32.41837138825592,
+      "range": 9.113916224941676,
+      "values": [
+        -23.304455163314245,
+        -24.601496007009295,
+        -24.601496007009295,
+        -25.898536850704346,
+        -25.898536850704346,
+        -27.195577694399393,
+        -27.195577694399393,
+        -28.492618538094444,
+        -28.492618538094444,
+        -29.78965938178949,
+        -29.806974541327662,
+        -31.104015385022706,
+        -31.12133054456088,
+        -32.41837138825592,
+        -31.12133054456088,
+        -32.41837138825592,
+        -31.12133054456088,
+        -32.41837138825592,
+        -31.12133054456088,
+        -32.41837138825592
+      ]
+    }
+  },
+  "functional_metric_response_observed": true,
+  "limitations": [
+    "unavailable: TPCV-1 records topology existence, not per-edge event paths",
+    "TPCV-1 does not encode per-neuron emitted-event identity or mutation candidates rejected before metric capture."
+  ],
+  "mutation_rejections": {
+    "accepted": 16,
+    "candidate_capacity": 0,
+    "duplicate": 49,
+    "edge_capacity": 0,
+    "evidence": "recorded",
+    "fan_in_full": 0,
+    "fan_out_full": 0,
+    "growth_attempts": 65,
+    "invalid_candidate": 0,
+    "no_valid_candidate": 0,
+    "nonlocal": 0,
+    "other": 0,
+    "pruning_interaction": 0
+  },
+  "node_statistics": [
+    {
+      "active_snapshot_count": 0,
+      "activity_fraction": 0.0,
+      "emitted_event_count": null,
+      "emitted_event_evidence": "unavailable: snapshots do not encode emitted-event identity",
+      "event_count_over_time": 0,
+      "first_active_snapshot": null,
+      "last_active_snapshot": null,
+      "longest_inactive_span": 20,
+      "neuron_id": "neuron-0",
+      "permanently_inactive": true,
+      "received_event_count": 0,
+      "received_event_delta": 0
+    },
+    {
+      "active_snapshot_count": 0,
+      "activity_fraction": 0.0,
+      "emitted_event_count": null,
+      "emitted_event_evidence": "unavailable: snapshots do not encode emitted-event identity",
+      "event_count_over_time": 0,
+      "first_active_snapshot": null,
+      "last_active_snapshot": null,
+      "longest_inactive_span": 20,
+      "neuron_id": "neuron-1",
+      "permanently_inactive": true,
+      "received_event_count": 0,
+      "received_event_delta": 0
+    },
+    {
+      "active_snapshot_count": 0,
+      "activity_fraction": 0.0,
+      "emitted_event_count": null,
+      "emitted_event_evidence": "unavailable: snapshots do not encode emitted-event identity",
+      "event_count_over_time": 0,
+      "first_active_snapshot": null,
+      "last_active_snapshot": null,
+      "longest_inactive_span": 20,
+      "neuron_id": "neuron-2",
+      "permanently_inactive": true,
+      "received_event_count": 0,
+      "received_event_delta": 0
+    },
+    {
+      "active_snapshot_count": 0,
+      "activity_fraction": 0.0,
+      "emitted_event_count": null,
+      "emitted_event_evidence": "unavailable: snapshots do not encode emitted-event identity",
+      "event_count_over_time": 0,
+      "first_active_snapshot": null,
+      "last_active_snapshot": null,
+      "longest_inactive_span": 20,
+      "neuron_id": "neuron-3",
+      "permanently_inactive": true,
+      "received_event_count": 0,
+      "received_event_delta": 0
+    },
+    {
+      "active_snapshot_count": 0,
+      "activity_fraction": 0.0,
+      "emitted_event_count": null,
+      "emitted_event_evidence": "unavailable: snapshots do not encode emitted-event identity",
+      "event_count_over_time": 0,
+      "first_active_snapshot": null,
+      "last_active_snapshot": null,
+      "longest_inactive_span": 20,
+      "neuron_id": "neuron-4",
+      "permanently_inactive": true,
+      "received_event_count": 0,
+      "received_event_delta": 0
+    },
+    {
+      "active_snapshot_count": 0,
+      "activity_fraction": 0.0,
+      "emitted_event_count": null,
+      "emitted_event_evidence": "unavailable: snapshots do not encode emitted-event identity",
+      "event_count_over_time": 0,
+      "first_active_snapshot": null,
+      "last_active_snapshot": null,
+      "longest_inactive_span": 20,
+      "neuron_id": "neuron-5",
+      "permanently_inactive": true,
+      "received_event_count": 0,
+      "received_event_delta": 0
+    },
+    {
+      "active_snapshot_count": 0,
+      "activity_fraction": 0.0,
+      "emitted_event_count": null,
+      "emitted_event_evidence": "unavailable: snapshots do not encode emitted-event identity",
+      "event_count_over_time": 0,
+      "first_active_snapshot": null,
+      "last_active_snapshot": null,
+      "longest_inactive_span": 20,
+      "neuron_id": "neuron-6",
+      "permanently_inactive": true,
+      "received_event_count": 0,
+      "received_event_delta": 0
+    },
+    {
+      "active_snapshot_count": 0,
+      "activity_fraction": 0.0,
+      "emitted_event_count": null,
+      "emitted_event_evidence": "unavailable: snapshots do not encode emitted-event identity",
+      "event_count_over_time": 0,
+      "first_active_snapshot": null,
+      "last_active_snapshot": null,
+      "longest_inactive_span": 20,
+      "neuron_id": "neuron-7",
+      "permanently_inactive": true,
+      "received_event_count": 0,
+      "received_event_delta": 0
+    },
+    {
+      "active_snapshot_count": 0,
+      "activity_fraction": 0.0,
+      "emitted_event_count": null,
+      "emitted_event_evidence": "unavailable: snapshots do not encode emitted-event identity",
+      "event_count_over_time": 0,
+      "first_active_snapshot": null,
+      "last_active_snapshot": null,
+      "longest_inactive_span": 20,
+      "neuron_id": "neuron-8",
+      "permanently_inactive": true,
+      "received_event_count": 0,
+      "received_event_delta": 0
+    },
+    {
+      "active_snapshot_count": 20,
+      "activity_fraction": 1.0,
+      "emitted_event_count": null,
+      "emitted_event_evidence": "unavailable: snapshots do not encode emitted-event identity",
+      "event_count_over_time": 3,
+      "first_active_snapshot": 0,
+      "last_active_snapshot": 19,
+      "longest_inactive_span": 0,
+      "neuron_id": "neuron-9",
+      "permanently_inactive": false,
+      "received_event_count": 3,
+      "received_event_delta": 0
+    }
+  ],
+  "schema_version": 1,
+  "snapshot_count": 20,
+  "snapshot_metrics": [
+    {
+      "activation_count": 1,
+      "active_neuron_fraction": 0.1,
+      "additions": 2,
+      "connection_count": 2,
+      "epoch": 0,
+      "event_count": 3,
+      "metric_deltas": {},
+      "metrics": {
+        "accepted_additions": 1,
+        "accuracy": 0.5,
+        "activation_count": 33,
+        "active_neuron_count": 1,
+        "average_reward": 0.0,
+        "confusion": [
+          [
+            "A",
+            "A",
+            5
+          ],
+          [
+            "Z",
+            "A",
+            5
+          ]
+        ],
+        "connection_capacity": 8,
+        "connection_count": 2,
+        "cumulative_reward": 0.0,
+        "emitting_neuron_count": 1,
+        "energy": 23.30445516331425,
+        "epoch": 0,
+        "event_count": 33,
+        "fan_in_utilization": 0.1,
+        "fan_out_utilization": 0.1,
+        "mean_confidence": 0.5719156707095554,
+        "mutation_count": 1,
+        "mutation_history": [
+          [
+            "grown",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ]
+        ],
+        "mutation_rejection_reasons": [],
+        "never_activated_fraction": 0.9,
+        "per_class_counts": [
+          [
+            "A",
+            5
+          ],
+          [
+            "Z",
+            5
+          ]
+        ],
+        "prediction_loss": 0.09348013553079858,
+        "pruned_connections": 0,
+        "receiving_neuron_count": 1,
+        "rejected_mutations": 0,
+        "retained_count": 10,
+        "reward": 0.0,
+        "reward_update_latency": 0.0,
+        "topology_edges": [
+          [
+            "neuron-4",
+            "neuron-3",
+            1.0
+          ],
+          [
+            "neuron-0",
+            "neuron-1",
+            1.0
+          ]
+        ],
+        "update_count": 5,
+        "utility": -23.304455163314245
+      },
+      "removals": 0,
+      "snapshot": 0
+    },
+    {
+      "activation_count": 1,
+      "active_neuron_fraction": 0.1,
+      "additions": 1,
+      "connection_count": 2,
+      "epoch": 1,
+      "event_count": 3,
+      "metric_deltas": {
+        "accuracy": 0.0,
+        "energy": 1.2970408436950471,
+        "prediction_loss": 0.009439099625423483,
+        "reward": 0.0,
+        "utility": -1.2970408436950507
+      },
+      "metrics": {
+        "accepted_additions": 1,
+        "accuracy": 0.5,
+        "activation_count": 36,
+        "active_neuron_count": 1,
+        "average_reward": 0.0,
+        "confusion": [
+          [
+            "A",
+            "A",
+            5
+          ],
+          [
+            "Z",
+            "A",
+            5
+          ]
+        ],
+        "connection_capacity": 8,
+        "connection_count": 2,
+        "cumulative_reward": 0.0,
+        "emitting_neuron_count": 1,
+        "energy": 24.601496007009295,
+        "epoch": 1,
+        "event_count": 36,
+        "fan_in_utilization": 0.1,
+        "fan_out_utilization": 0.1,
+        "mean_confidence": 0.6083307618273232,
+        "mutation_count": 3,
+        "mutation_history": [
+          [
+            "grown",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "grown",
+            "neuron-1",
+            "neuron-2",
+            "local_activity_prediction_error"
+          ],
+          [
+            "pruned",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_retention"
+          ]
+        ],
+        "mutation_rejection_reasons": [
+          [
+            "duplicate",
+            1
+          ]
+        ],
+        "never_activated_fraction": 0.9,
+        "per_class_counts": [
+          [
+            "A",
+            5
+          ],
+          [
+            "Z",
+            5
+          ]
+        ],
+        "prediction_loss": 0.10291923515622206,
+        "pruned_connections": 1,
+        "receiving_neuron_count": 1,
+        "rejected_mutations": 1,
+        "retained_count": 10,
+        "reward": 0.0,
+        "reward_update_latency": 0.0,
+        "topology_edges": [
+          [
+            "neuron-4",
+            "neuron-3",
+            1.0
+          ],
+          [
+            "neuron-1",
+            "neuron-2",
+            1.0
+          ]
+        ],
+        "update_count": 10,
+        "utility": -24.601496007009295
+      },
+      "removals": 1,
+      "snapshot": 1
+    },
+    {
+      "activation_count": 1,
+      "active_neuron_fraction": 0.1,
+      "additions": 1,
+      "connection_count": 3,
+      "epoch": 2,
+      "event_count": 3,
+      "metric_deltas": {
+        "accuracy": 0.0,
+        "energy": 0.0,
+        "prediction_loss": 0.0,
+        "reward": 0.0,
+        "utility": 0.0
+      },
+      "metrics": {
+        "accepted_additions": 1,
+        "accuracy": 0.5,
+        "activation_count": 36,
+        "active_neuron_count": 1,
+        "average_reward": 0.0,
+        "confusion": [
+          [
+            "A",
+            "A",
+            5
+          ],
+          [
+            "Z",
+            "A",
+            5
+          ]
+        ],
+        "connection_capacity": 8,
+        "connection_count": 3,
+        "cumulative_reward": 0.0,
+        "emitting_neuron_count": 1,
+        "energy": 24.601496007009295,
+        "epoch": 2,
+        "event_count": 36,
+        "fan_in_utilization": 0.15,
+        "fan_out_utilization": 0.15,
+        "mean_confidence": 0.6081417716892448,
+        "mutation_count": 1,
+        "mutation_history": [
+          [
+            "grown",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "grown",
+            "neuron-1",
+            "neuron-2",
+            "local_activity_prediction_error"
+          ],
+          [
+            "pruned",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_retention"
+          ],
+          [
+            "grown",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ]
+        ],
+        "mutation_rejection_reasons": [],
+        "never_activated_fraction": 0.9,
+        "per_class_counts": [
+          [
+            "A",
+            5
+          ],
+          [
+            "Z",
+            5
+          ]
+        ],
+        "prediction_loss": 0.10291923515622206,
+        "pruned_connections": 0,
+        "receiving_neuron_count": 1,
+        "rejected_mutations": 0,
+        "retained_count": 10,
+        "reward": 0.0,
+        "reward_update_latency": 0.0,
+        "topology_edges": [
+          [
+            "neuron-4",
+            "neuron-3",
+            1.0
+          ],
+          [
+            "neuron-1",
+            "neuron-2",
+            1.0
+          ],
+          [
+            "neuron-0",
+            "neuron-1",
+            1.0
+          ]
+        ],
+        "update_count": 15,
+        "utility": -24.601496007009295
+      },
+      "removals": 0,
+      "snapshot": 2
+    },
+    {
+      "activation_count": 1,
+      "active_neuron_fraction": 0.1,
+      "additions": 1,
+      "connection_count": 3,
+      "epoch": 3,
+      "event_count": 3,
+      "metric_deltas": {
+        "accuracy": 0.0,
+        "energy": 1.2970408436950507,
+        "prediction_loss": 0.009439099625423455,
+        "reward": 0.0,
+        "utility": -1.2970408436950507
+      },
+      "metrics": {
+        "accepted_additions": 1,
+        "accuracy": 0.5,
+        "activation_count": 39,
+        "active_neuron_count": 1,
+        "average_reward": 0.0,
+        "confusion": [
+          [
+            "A",
+            "A",
+            5
+          ],
+          [
+            "Z",
+            "A",
+            5
+          ]
+        ],
+        "connection_capacity": 8,
+        "connection_count": 3,
+        "cumulative_reward": 0.0,
+        "emitting_neuron_count": 1,
+        "energy": 25.898536850704346,
+        "epoch": 3,
+        "event_count": 39,
+        "fan_in_utilization": 0.15,
+        "fan_out_utilization": 0.15,
+        "mean_confidence": 0.5947845048664581,
+        "mutation_count": 4,
+        "mutation_history": [
+          [
+            "grown",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "grown",
+            "neuron-1",
+            "neuron-2",
+            "local_activity_prediction_error"
+          ],
+          [
+            "pruned",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_retention"
+          ],
+          [
+            "grown",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-1",
+            "neuron-2",
+            "local_activity_prediction_error"
+          ],
+          [
+            "grown",
+            "neuron-2",
+            "neuron-3",
+            "local_activity_prediction_error"
+          ],
+          [
+            "pruned",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_retention"
+          ]
+        ],
+        "mutation_rejection_reasons": [
+          [
+            "duplicate",
+            2
+          ]
+        ],
+        "never_activated_fraction": 0.9,
+        "per_class_counts": [
+          [
+            "A",
+            5
+          ],
+          [
+            "Z",
+            5
+          ]
+        ],
+        "prediction_loss": 0.11235833478164552,
+        "pruned_connections": 1,
+        "receiving_neuron_count": 1,
+        "rejected_mutations": 2,
+        "retained_count": 10,
+        "reward": 0.0,
+        "reward_update_latency": 0.0,
+        "topology_edges": [
+          [
+            "neuron-4",
+            "neuron-3",
+            1.0
+          ],
+          [
+            "neuron-1",
+            "neuron-2",
+            1.0
+          ],
+          [
+            "neuron-2",
+            "neuron-3",
+            1.0
+          ]
+        ],
+        "update_count": 20,
+        "utility": -25.898536850704346
+      },
+      "removals": 1,
+      "snapshot": 3
+    },
+    {
+      "activation_count": 1,
+      "active_neuron_fraction": 0.1,
+      "additions": 1,
+      "connection_count": 4,
+      "epoch": 4,
+      "event_count": 3,
+      "metric_deltas": {
+        "accuracy": 0.0,
+        "energy": 0.0,
+        "prediction_loss": 0.0,
+        "reward": 0.0,
+        "utility": 0.0
+      },
+      "metrics": {
+        "accepted_additions": 1,
+        "accuracy": 0.5,
+        "activation_count": 39,
+        "active_neuron_count": 1,
+        "average_reward": 0.0,
+        "confusion": [
+          [
+            "A",
+            "A",
+            5
+          ],
+          [
+            "Z",
+            "A",
+            5
+          ]
+        ],
+        "connection_capacity": 8,
+        "connection_count": 4,
+        "cumulative_reward": 0.0,
+        "emitting_neuron_count": 1,
+        "energy": 25.898536850704346,
+        "epoch": 4,
+        "event_count": 39,
+        "fan_in_utilization": 0.2,
+        "fan_out_utilization": 0.2,
+        "mean_confidence": 0.595983738065795,
+        "mutation_count": 1,
+        "mutation_history": [
+          [
+            "grown",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "grown",
+            "neuron-1",
+            "neuron-2",
+            "local_activity_prediction_error"
+          ],
+          [
+            "pruned",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_retention"
+          ],
+          [
+            "grown",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-1",
+            "neuron-2",
+            "local_activity_prediction_error"
+          ],
+          [
+            "grown",
+            "neuron-2",
+            "neuron-3",
+            "local_activity_prediction_error"
+          ],
+          [
+            "pruned",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_retention"
+          ],
+          [
+            "grown",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ]
+        ],
+        "mutation_rejection_reasons": [],
+        "never_activated_fraction": 0.9,
+        "per_class_counts": [
+          [
+            "A",
+            5
+          ],
+          [
+            "Z",
+            5
+          ]
+        ],
+        "prediction_loss": 0.11235833478164552,
+        "pruned_connections": 0,
+        "receiving_neuron_count": 1,
+        "rejected_mutations": 0,
+        "retained_count": 10,
+        "reward": 0.0,
+        "reward_update_latency": 0.0,
+        "topology_edges": [
+          [
+            "neuron-4",
+            "neuron-3",
+            1.0
+          ],
+          [
+            "neuron-1",
+            "neuron-2",
+            1.0
+          ],
+          [
+            "neuron-2",
+            "neuron-3",
+            1.0
+          ],
+          [
+            "neuron-0",
+            "neuron-1",
+            1.0
+          ]
+        ],
+        "update_count": 25,
+        "utility": -25.898536850704346
+      },
+      "removals": 0,
+      "snapshot": 4
+    },
+    {
+      "activation_count": 1,
+      "active_neuron_fraction": 0.1,
+      "additions": 1,
+      "connection_count": 4,
+      "epoch": 5,
+      "event_count": 3,
+      "metric_deltas": {
+        "accuracy": 0.0,
+        "energy": 1.2970408436950471,
+        "prediction_loss": 0.009439099625423539,
+        "reward": 0.0,
+        "utility": -1.2970408436950471
+      },
+      "metrics": {
+        "accepted_additions": 1,
+        "accuracy": 0.5,
+        "activation_count": 42,
+        "active_neuron_count": 1,
+        "average_reward": 0.0,
+        "confusion": [
+          [
+            "A",
+            "A",
+            5
+          ],
+          [
+            "Z",
+            "A",
+            5
+          ]
+        ],
+        "connection_capacity": 8,
+        "connection_count": 4,
+        "cumulative_reward": 0.0,
+        "emitting_neuron_count": 1,
+        "energy": 27.195577694399393,
+        "epoch": 5,
+        "event_count": 42,
+        "fan_in_utilization": 0.2,
+        "fan_out_utilization": 0.2,
+        "mean_confidence": 0.593595884804731,
+        "mutation_count": 5,
+        "mutation_history": [
+          [
+            "grown",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "grown",
+            "neuron-1",
+            "neuron-2",
+            "local_activity_prediction_error"
+          ],
+          [
+            "pruned",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_retention"
+          ],
+          [
+            "grown",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-1",
+            "neuron-2",
+            "local_activity_prediction_error"
+          ],
+          [
+            "grown",
+            "neuron-2",
+            "neuron-3",
+            "local_activity_prediction_error"
+          ],
+          [
+            "pruned",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_retention"
+          ],
+          [
+            "grown",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-1",
+            "neuron-2",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-2",
+            "neuron-3",
+            "local_activity_prediction_error"
+          ],
+          [
+            "grown",
+            "neuron-3",
+            "neuron-4",
+            "local_activity_prediction_error"
+          ],
+          [
+            "pruned",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_retention"
+          ]
+        ],
+        "mutation_rejection_reasons": [
+          [
+            "duplicate",
+            3
+          ]
+        ],
+        "never_activated_fraction": 0.9,
+        "per_class_counts": [
+          [
+            "A",
+            5
+          ],
+          [
+            "Z",
+            5
+          ]
+        ],
+        "prediction_loss": 0.12179743440706906,
+        "pruned_connections": 1,
+        "receiving_neuron_count": 1,
+        "rejected_mutations": 3,
+        "retained_count": 10,
+        "reward": 0.0,
+        "reward_update_latency": 0.0,
+        "topology_edges": [
+          [
+            "neuron-4",
+            "neuron-3",
+            1.0
+          ],
+          [
+            "neuron-1",
+            "neuron-2",
+            1.0
+          ],
+          [
+            "neuron-2",
+            "neuron-3",
+            1.0
+          ],
+          [
+            "neuron-3",
+            "neuron-4",
+            1.0
+          ]
+        ],
+        "update_count": 30,
+        "utility": -27.195577694399393
+      },
+      "removals": 1,
+      "snapshot": 5
+    },
+    {
+      "activation_count": 1,
+      "active_neuron_fraction": 0.1,
+      "additions": 1,
+      "connection_count": 5,
+      "epoch": 6,
+      "event_count": 3,
+      "metric_deltas": {
+        "accuracy": 0.0,
+        "energy": 3.552713678800501e-15,
+        "prediction_loss": 0.0,
+        "reward": 0.0,
+        "utility": 0.0
+      },
+      "metrics": {
+        "accepted_additions": 1,
+        "accuracy": 0.5,
+        "activation_count": 42,
+        "active_neuron_count": 1,
+        "average_reward": 0.0,
+        "confusion": [
+          [
+            "A",
+            "A",
+            5
+          ],
+          [
+            "Z",
+            "A",
+            5
+          ]
+        ],
+        "connection_capacity": 8,
+        "connection_count": 5,
+        "cumulative_reward": 0.0,
+        "emitting_neuron_count": 1,
+        "energy": 27.195577694399397,
+        "epoch": 6,
+        "event_count": 42,
+        "fan_in_utilization": 0.25,
+        "fan_out_utilization": 0.25,
+        "mean_confidence": 0.5970283426821696,
+        "mutation_count": 1,
+        "mutation_history": [
+          [
+            "grown",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "grown",
+            "neuron-1",
+            "neuron-2",
+            "local_activity_prediction_error"
+          ],
+          [
+            "pruned",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_retention"
+          ],
+          [
+            "grown",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-1",
+            "neuron-2",
+            "local_activity_prediction_error"
+          ],
+          [
+            "grown",
+            "neuron-2",
+            "neuron-3",
+            "local_activity_prediction_error"
+          ],
+          [
+            "pruned",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_retention"
+          ],
+          [
+            "grown",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-1",
+            "neuron-2",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-2",
+            "neuron-3",
+            "local_activity_prediction_error"
+          ],
+          [
+            "grown",
+            "neuron-3",
+            "neuron-4",
+            "local_activity_prediction_error"
+          ],
+          [
+            "pruned",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_retention"
+          ],
+          [
+            "grown",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ]
+        ],
+        "mutation_rejection_reasons": [],
+        "never_activated_fraction": 0.9,
+        "per_class_counts": [
+          [
+            "A",
+            5
+          ],
+          [
+            "Z",
+            5
+          ]
+        ],
+        "prediction_loss": 0.12179743440706906,
+        "pruned_connections": 0,
+        "receiving_neuron_count": 1,
+        "rejected_mutations": 0,
+        "retained_count": 10,
+        "reward": 0.0,
+        "reward_update_latency": 0.0,
+        "topology_edges": [
+          [
+            "neuron-4",
+            "neuron-3",
+            1.0
+          ],
+          [
+            "neuron-1",
+            "neuron-2",
+            1.0
+          ],
+          [
+            "neuron-2",
+            "neuron-3",
+            1.0
+          ],
+          [
+            "neuron-3",
+            "neuron-4",
+            1.0
+          ],
+          [
+            "neuron-0",
+            "neuron-1",
+            1.0
+          ]
+        ],
+        "update_count": 35,
+        "utility": -27.195577694399393
+      },
+      "removals": 0,
+      "snapshot": 6
+    },
+    {
+      "activation_count": 1,
+      "active_neuron_fraction": 0.1,
+      "additions": 1,
+      "connection_count": 5,
+      "epoch": 7,
+      "event_count": 3,
+      "metric_deltas": {
+        "accuracy": 0.0,
+        "energy": 1.2970408436950471,
+        "prediction_loss": 0.00943909962542347,
+        "reward": 0.0,
+        "utility": -1.2970408436950507
+      },
+      "metrics": {
+        "accepted_additions": 1,
+        "accuracy": 0.5,
+        "activation_count": 45,
+        "active_neuron_count": 1,
+        "average_reward": 0.0,
+        "confusion": [
+          [
+            "A",
+            "A",
+            5
+          ],
+          [
+            "Z",
+            "A",
+            5
+          ]
+        ],
+        "connection_capacity": 8,
+        "connection_count": 5,
+        "cumulative_reward": 0.0,
+        "emitting_neuron_count": 1,
+        "energy": 28.492618538094444,
+        "epoch": 7,
+        "event_count": 45,
+        "fan_in_utilization": 0.25,
+        "fan_out_utilization": 0.25,
+        "mean_confidence": 0.6045427216134659,
+        "mutation_count": 6,
+        "mutation_history": [
+          [
+            "grown",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "grown",
+            "neuron-1",
+            "neuron-2",
+            "local_activity_prediction_error"
+          ],
+          [
+            "pruned",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_retention"
+          ],
+          [
+            "grown",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-1",
+            "neuron-2",
+            "local_activity_prediction_error"
+          ],
+          [
+            "grown",
+            "neuron-2",
+            "neuron-3",
+            "local_activity_prediction_error"
+          ],
+          [
+            "pruned",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_retention"
+          ],
+          [
+            "grown",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-1",
+            "neuron-2",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-2",
+            "neuron-3",
+            "local_activity_prediction_error"
+          ],
+          [
+            "grown",
+            "neuron-3",
+            "neuron-4",
+            "local_activity_prediction_error"
+          ],
+          [
+            "pruned",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_retention"
+          ],
+          [
+            "grown",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-1",
+            "neuron-2",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-2",
+            "neuron-3",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-3",
+            "neuron-4",
+            "local_activity_prediction_error"
+          ],
+          [
+            "grown",
+            "neuron-4",
+            "neuron-5",
+            "local_activity_prediction_error"
+          ],
+          [
+            "pruned",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_retention"
+          ]
+        ],
+        "mutation_rejection_reasons": [
+          [
+            "duplicate",
+            4
+          ]
+        ],
+        "never_activated_fraction": 0.9,
+        "per_class_counts": [
+          [
+            "A",
+            5
+          ],
+          [
+            "Z",
+            5
+          ]
+        ],
+        "prediction_loss": 0.13123653403249252,
+        "pruned_connections": 1,
+        "receiving_neuron_count": 1,
+        "rejected_mutations": 4,
+        "retained_count": 10,
+        "reward": 0.0,
+        "reward_update_latency": 0.0,
+        "topology_edges": [
+          [
+            "neuron-4",
+            "neuron-3",
+            1.0
+          ],
+          [
+            "neuron-1",
+            "neuron-2",
+            1.0
+          ],
+          [
+            "neuron-2",
+            "neuron-3",
+            1.0
+          ],
+          [
+            "neuron-3",
+            "neuron-4",
+            1.0
+          ],
+          [
+            "neuron-4",
+            "neuron-5",
+            1.0
+          ]
+        ],
+        "update_count": 40,
+        "utility": -28.492618538094444
+      },
+      "removals": 1,
+      "snapshot": 7
+    },
+    {
+      "activation_count": 1,
+      "active_neuron_fraction": 0.1,
+      "additions": 1,
+      "connection_count": 6,
+      "epoch": 8,
+      "event_count": 3,
+      "metric_deltas": {
+        "accuracy": 0.0,
+        "energy": 0.0,
+        "prediction_loss": -0.00943909962542347,
+        "reward": 0.0,
+        "utility": 0.0
+      },
+      "metrics": {
+        "accepted_additions": 1,
+        "accuracy": 0.5,
+        "activation_count": 45,
+        "active_neuron_count": 1,
+        "average_reward": 0.0,
+        "confusion": [
+          [
+            "A",
+            "A",
+            5
+          ],
+          [
+            "Z",
+            "A",
+            5
+          ]
+        ],
+        "connection_capacity": 8,
+        "connection_count": 6,
+        "cumulative_reward": 0.0,
+        "emitting_neuron_count": 1,
+        "energy": 28.492618538094444,
+        "epoch": 8,
+        "event_count": 45,
+        "fan_in_utilization": 0.3,
+        "fan_out_utilization": 0.3,
+        "mean_confidence": 0.5793309669460756,
+        "mutation_count": 1,
+        "mutation_history": [
+          [
+            "grown",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "grown",
+            "neuron-1",
+            "neuron-2",
+            "local_activity_prediction_error"
+          ],
+          [
+            "pruned",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_retention"
+          ],
+          [
+            "grown",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-1",
+            "neuron-2",
+            "local_activity_prediction_error"
+          ],
+          [
+            "grown",
+            "neuron-2",
+            "neuron-3",
+            "local_activity_prediction_error"
+          ],
+          [
+            "pruned",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_retention"
+          ],
+          [
+            "grown",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-1",
+            "neuron-2",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-2",
+            "neuron-3",
+            "local_activity_prediction_error"
+          ],
+          [
+            "grown",
+            "neuron-3",
+            "neuron-4",
+            "local_activity_prediction_error"
+          ],
+          [
+            "pruned",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_retention"
+          ],
+          [
+            "grown",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-1",
+            "neuron-2",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-2",
+            "neuron-3",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-3",
+            "neuron-4",
+            "local_activity_prediction_error"
+          ],
+          [
+            "grown",
+            "neuron-4",
+            "neuron-5",
+            "local_activity_prediction_error"
+          ],
+          [
+            "pruned",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_retention"
+          ],
+          [
+            "grown",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ]
+        ],
+        "mutation_rejection_reasons": [],
+        "never_activated_fraction": 0.9,
+        "per_class_counts": [
+          [
+            "A",
+            5
+          ],
+          [
+            "Z",
+            5
+          ]
+        ],
+        "prediction_loss": 0.12179743440706906,
+        "pruned_connections": 0,
+        "receiving_neuron_count": 1,
+        "rejected_mutations": 0,
+        "retained_count": 10,
+        "reward": 0.0,
+        "reward_update_latency": 0.0,
+        "topology_edges": [
+          [
+            "neuron-4",
+            "neuron-3",
+            1.0
+          ],
+          [
+            "neuron-1",
+            "neuron-2",
+            1.0
+          ],
+          [
+            "neuron-2",
+            "neuron-3",
+            1.0
+          ],
+          [
+            "neuron-3",
+            "neuron-4",
+            1.0
+          ],
+          [
+            "neuron-4",
+            "neuron-5",
+            1.0
+          ],
+          [
+            "neuron-0",
+            "neuron-1",
+            1.0
+          ]
+        ],
+        "update_count": 45,
+        "utility": -28.492618538094444
+      },
+      "removals": 0,
+      "snapshot": 8
+    },
+    {
+      "activation_count": 1,
+      "active_neuron_fraction": 0.1,
+      "additions": 1,
+      "connection_count": 6,
+      "epoch": 9,
+      "event_count": 3,
+      "metric_deltas": {
+        "accuracy": 0.0,
+        "energy": 1.2970408436950471,
+        "prediction_loss": 0.00943909962542347,
+        "reward": 0.0,
+        "utility": -1.2970408436950471
+      },
+      "metrics": {
+        "accepted_additions": 1,
+        "accuracy": 0.5,
+        "activation_count": 48,
+        "active_neuron_count": 1,
+        "average_reward": 0.0,
+        "confusion": [
+          [
+            "A",
+            "A",
+            5
+          ],
+          [
+            "Z",
+            "A",
+            5
+          ]
+        ],
+        "connection_capacity": 8,
+        "connection_count": 6,
+        "cumulative_reward": 0.0,
+        "emitting_neuron_count": 1,
+        "energy": 29.78965938178949,
+        "epoch": 9,
+        "event_count": 48,
+        "fan_in_utilization": 0.3,
+        "fan_out_utilization": 0.3,
+        "mean_confidence": 0.592247377477175,
+        "mutation_count": 7,
+        "mutation_history": [
+          [
+            "grown",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "grown",
+            "neuron-1",
+            "neuron-2",
+            "local_activity_prediction_error"
+          ],
+          [
+            "pruned",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_retention"
+          ],
+          [
+            "grown",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-1",
+            "neuron-2",
+            "local_activity_prediction_error"
+          ],
+          [
+            "grown",
+            "neuron-2",
+            "neuron-3",
+            "local_activity_prediction_error"
+          ],
+          [
+            "pruned",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_retention"
+          ],
+          [
+            "grown",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-1",
+            "neuron-2",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-2",
+            "neuron-3",
+            "local_activity_prediction_error"
+          ],
+          [
+            "grown",
+            "neuron-3",
+            "neuron-4",
+            "local_activity_prediction_error"
+          ],
+          [
+            "pruned",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_retention"
+          ],
+          [
+            "grown",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-1",
+            "neuron-2",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-2",
+            "neuron-3",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-3",
+            "neuron-4",
+            "local_activity_prediction_error"
+          ],
+          [
+            "grown",
+            "neuron-4",
+            "neuron-5",
+            "local_activity_prediction_error"
+          ],
+          [
+            "pruned",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_retention"
+          ],
+          [
+            "grown",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-1",
+            "neuron-2",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-2",
+            "neuron-3",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-3",
+            "neuron-4",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-4",
+            "neuron-5",
+            "local_activity_prediction_error"
+          ],
+          [
+            "grown",
+            "neuron-5",
+            "neuron-6",
+            "local_activity_prediction_error"
+          ],
+          [
+            "pruned",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_retention"
+          ]
+        ],
+        "mutation_rejection_reasons": [
+          [
+            "duplicate",
+            5
+          ]
+        ],
+        "never_activated_fraction": 0.9,
+        "per_class_counts": [
+          [
+            "A",
+            5
+          ],
+          [
+            "Z",
+            5
+          ]
+        ],
+        "prediction_loss": 0.13123653403249252,
+        "pruned_connections": 1,
+        "receiving_neuron_count": 1,
+        "rejected_mutations": 5,
+        "retained_count": 10,
+        "reward": 0.0,
+        "reward_update_latency": 0.0,
+        "topology_edges": [
+          [
+            "neuron-4",
+            "neuron-3",
+            1.0
+          ],
+          [
+            "neuron-1",
+            "neuron-2",
+            1.0
+          ],
+          [
+            "neuron-2",
+            "neuron-3",
+            1.0
+          ],
+          [
+            "neuron-3",
+            "neuron-4",
+            1.0
+          ],
+          [
+            "neuron-4",
+            "neuron-5",
+            1.0
+          ],
+          [
+            "neuron-5",
+            "neuron-6",
+            1.0
+          ]
+        ],
+        "update_count": 50,
+        "utility": -29.78965938178949
+      },
+      "removals": 1,
+      "snapshot": 9
+    },
+    {
+      "activation_count": 1,
+      "active_neuron_fraction": 0.1,
+      "additions": 1,
+      "connection_count": 7,
+      "epoch": 10,
+      "event_count": 3,
+      "metric_deltas": {
+        "accuracy": 0.0,
+        "energy": 0.017315159538171088,
+        "prediction_loss": 0.001630425363392668,
+        "reward": 0.0,
+        "utility": -0.017315159538171088
+      },
+      "metrics": {
+        "accepted_additions": 1,
+        "accuracy": 0.5,
+        "activation_count": 48,
+        "active_neuron_count": 1,
+        "average_reward": 0.0,
+        "confusion": [
+          [
+            "A",
+            "A",
+            5
+          ],
+          [
+            "Z",
+            "A",
+            5
+          ]
+        ],
+        "connection_capacity": 8,
+        "connection_count": 7,
+        "cumulative_reward": 0.0,
+        "emitting_neuron_count": 1,
+        "energy": 29.806974541327662,
+        "epoch": 10,
+        "event_count": 48,
+        "fan_in_utilization": 0.35,
+        "fan_out_utilization": 0.35,
+        "mean_confidence": 0.5804821657212755,
+        "mutation_count": 1,
+        "mutation_history": [
+          [
+            "grown",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "grown",
+            "neuron-1",
+            "neuron-2",
+            "local_activity_prediction_error"
+          ],
+          [
+            "pruned",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_retention"
+          ],
+          [
+            "grown",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-1",
+            "neuron-2",
+            "local_activity_prediction_error"
+          ],
+          [
+            "grown",
+            "neuron-2",
+            "neuron-3",
+            "local_activity_prediction_error"
+          ],
+          [
+            "pruned",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_retention"
+          ],
+          [
+            "grown",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-1",
+            "neuron-2",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-2",
+            "neuron-3",
+            "local_activity_prediction_error"
+          ],
+          [
+            "grown",
+            "neuron-3",
+            "neuron-4",
+            "local_activity_prediction_error"
+          ],
+          [
+            "pruned",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_retention"
+          ],
+          [
+            "grown",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-1",
+            "neuron-2",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-2",
+            "neuron-3",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-3",
+            "neuron-4",
+            "local_activity_prediction_error"
+          ],
+          [
+            "grown",
+            "neuron-4",
+            "neuron-5",
+            "local_activity_prediction_error"
+          ],
+          [
+            "pruned",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_retention"
+          ],
+          [
+            "grown",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-1",
+            "neuron-2",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-2",
+            "neuron-3",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-3",
+            "neuron-4",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-4",
+            "neuron-5",
+            "local_activity_prediction_error"
+          ],
+          [
+            "grown",
+            "neuron-5",
+            "neuron-6",
+            "local_activity_prediction_error"
+          ],
+          [
+            "pruned",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_retention"
+          ],
+          [
+            "grown",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ]
+        ],
+        "mutation_rejection_reasons": [],
+        "never_activated_fraction": 0.9,
+        "per_class_counts": [
+          [
+            "A",
+            5
+          ],
+          [
+            "Z",
+            5
+          ]
+        ],
+        "prediction_loss": 0.1328669593958852,
+        "pruned_connections": 0,
+        "receiving_neuron_count": 1,
+        "rejected_mutations": 0,
+        "retained_count": 10,
+        "reward": 0.0,
+        "reward_update_latency": 0.0,
+        "topology_edges": [
+          [
+            "neuron-4",
+            "neuron-3",
+            1.0
+          ],
+          [
+            "neuron-1",
+            "neuron-2",
+            1.0
+          ],
+          [
+            "neuron-2",
+            "neuron-3",
+            1.0
+          ],
+          [
+            "neuron-3",
+            "neuron-4",
+            1.0
+          ],
+          [
+            "neuron-4",
+            "neuron-5",
+            1.0
+          ],
+          [
+            "neuron-5",
+            "neuron-6",
+            1.0
+          ],
+          [
+            "neuron-0",
+            "neuron-1",
+            1.0
+          ]
+        ],
+        "update_count": 55,
+        "utility": -29.806974541327662
+      },
+      "removals": 0,
+      "snapshot": 10
+    },
+    {
+      "activation_count": 1,
+      "active_neuron_fraction": 0.1,
+      "additions": 1,
+      "connection_count": 7,
+      "epoch": 11,
+      "event_count": 3,
+      "metric_deltas": {
+        "accuracy": 0.0,
+        "energy": 1.2970408436950436,
+        "prediction_loss": 0.009439099625423497,
+        "reward": 0.0,
+        "utility": -1.2970408436950436
+      },
+      "metrics": {
+        "accepted_additions": 1,
+        "accuracy": 0.5,
+        "activation_count": 51,
+        "active_neuron_count": 1,
+        "average_reward": 0.0,
+        "confusion": [
+          [
+            "A",
+            "A",
+            5
+          ],
+          [
+            "Z",
+            "A",
+            5
+          ]
+        ],
+        "connection_capacity": 8,
+        "connection_count": 7,
+        "cumulative_reward": 0.0,
+        "emitting_neuron_count": 1,
+        "energy": 31.104015385022706,
+        "epoch": 11,
+        "event_count": 51,
+        "fan_in_utilization": 0.35,
+        "fan_out_utilization": 0.35,
+        "mean_confidence": 0.5974635767752954,
+        "mutation_count": 8,
+        "mutation_history": [
+          [
+            "grown",
+            "neuron-2",
+            "neuron-3",
+            "local_activity_prediction_error"
+          ],
+          [
+            "pruned",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_retention"
+          ],
+          [
+            "grown",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-1",
+            "neuron-2",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-2",
+            "neuron-3",
+            "local_activity_prediction_error"
+          ],
+          [
+            "grown",
+            "neuron-3",
+            "neuron-4",
+            "local_activity_prediction_error"
+          ],
+          [
+            "pruned",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_retention"
+          ],
+          [
+            "grown",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-1",
+            "neuron-2",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-2",
+            "neuron-3",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-3",
+            "neuron-4",
+            "local_activity_prediction_error"
+          ],
+          [
+            "grown",
+            "neuron-4",
+            "neuron-5",
+            "local_activity_prediction_error"
+          ],
+          [
+            "pruned",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_retention"
+          ],
+          [
+            "grown",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-1",
+            "neuron-2",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-2",
+            "neuron-3",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-3",
+            "neuron-4",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-4",
+            "neuron-5",
+            "local_activity_prediction_error"
+          ],
+          [
+            "grown",
+            "neuron-5",
+            "neuron-6",
+            "local_activity_prediction_error"
+          ],
+          [
+            "pruned",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_retention"
+          ],
+          [
+            "grown",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-1",
+            "neuron-2",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-2",
+            "neuron-3",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-3",
+            "neuron-4",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-4",
+            "neuron-5",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-5",
+            "neuron-6",
+            "local_activity_prediction_error"
+          ],
+          [
+            "grown",
+            "neuron-6",
+            "neuron-7",
+            "local_activity_prediction_error"
+          ],
+          [
+            "pruned",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_retention"
+          ]
+        ],
+        "mutation_rejection_reasons": [
+          [
+            "duplicate",
+            6
+          ]
+        ],
+        "never_activated_fraction": 0.9,
+        "per_class_counts": [
+          [
+            "A",
+            5
+          ],
+          [
+            "Z",
+            5
+          ]
+        ],
+        "prediction_loss": 0.1423060590213087,
+        "pruned_connections": 1,
+        "receiving_neuron_count": 1,
+        "rejected_mutations": 6,
+        "retained_count": 10,
+        "reward": 0.0,
+        "reward_update_latency": 0.0,
+        "topology_edges": [
+          [
+            "neuron-4",
+            "neuron-3",
+            1.0
+          ],
+          [
+            "neuron-1",
+            "neuron-2",
+            1.0
+          ],
+          [
+            "neuron-2",
+            "neuron-3",
+            1.0
+          ],
+          [
+            "neuron-3",
+            "neuron-4",
+            1.0
+          ],
+          [
+            "neuron-4",
+            "neuron-5",
+            1.0
+          ],
+          [
+            "neuron-5",
+            "neuron-6",
+            1.0
+          ],
+          [
+            "neuron-6",
+            "neuron-7",
+            1.0
+          ]
+        ],
+        "update_count": 60,
+        "utility": -31.104015385022706
+      },
+      "removals": 1,
+      "snapshot": 11
+    },
+    {
+      "activation_count": 1,
+      "active_neuron_fraction": 0.1,
+      "additions": 1,
+      "connection_count": 8,
+      "epoch": 12,
+      "event_count": 3,
+      "metric_deltas": {
+        "accuracy": 0.0,
+        "energy": 0.01731515953817464,
+        "prediction_loss": 0.0016304253633926125,
+        "reward": 0.0,
+        "utility": -0.01731515953817464
+      },
+      "metrics": {
+        "accepted_additions": 1,
+        "accuracy": 0.5,
+        "activation_count": 51,
+        "active_neuron_count": 1,
+        "average_reward": 0.0,
+        "confusion": [
+          [
+            "A",
+            "A",
+            5
+          ],
+          [
+            "Z",
+            "A",
+            5
+          ]
+        ],
+        "connection_capacity": 8,
+        "connection_count": 8,
+        "cumulative_reward": 0.0,
+        "emitting_neuron_count": 1,
+        "energy": 31.12133054456088,
+        "epoch": 12,
+        "event_count": 51,
+        "fan_in_utilization": 0.4,
+        "fan_out_utilization": 0.4,
+        "mean_confidence": 0.5804370636546154,
+        "mutation_count": 1,
+        "mutation_history": [
+          [
+            "pruned",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_retention"
+          ],
+          [
+            "grown",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-1",
+            "neuron-2",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-2",
+            "neuron-3",
+            "local_activity_prediction_error"
+          ],
+          [
+            "grown",
+            "neuron-3",
+            "neuron-4",
+            "local_activity_prediction_error"
+          ],
+          [
+            "pruned",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_retention"
+          ],
+          [
+            "grown",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-1",
+            "neuron-2",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-2",
+            "neuron-3",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-3",
+            "neuron-4",
+            "local_activity_prediction_error"
+          ],
+          [
+            "grown",
+            "neuron-4",
+            "neuron-5",
+            "local_activity_prediction_error"
+          ],
+          [
+            "pruned",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_retention"
+          ],
+          [
+            "grown",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-1",
+            "neuron-2",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-2",
+            "neuron-3",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-3",
+            "neuron-4",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-4",
+            "neuron-5",
+            "local_activity_prediction_error"
+          ],
+          [
+            "grown",
+            "neuron-5",
+            "neuron-6",
+            "local_activity_prediction_error"
+          ],
+          [
+            "pruned",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_retention"
+          ],
+          [
+            "grown",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-1",
+            "neuron-2",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-2",
+            "neuron-3",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-3",
+            "neuron-4",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-4",
+            "neuron-5",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-5",
+            "neuron-6",
+            "local_activity_prediction_error"
+          ],
+          [
+            "grown",
+            "neuron-6",
+            "neuron-7",
+            "local_activity_prediction_error"
+          ],
+          [
+            "pruned",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_retention"
+          ],
+          [
+            "grown",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ]
+        ],
+        "mutation_rejection_reasons": [],
+        "never_activated_fraction": 0.9,
+        "per_class_counts": [
+          [
+            "A",
+            5
+          ],
+          [
+            "Z",
+            5
+          ]
+        ],
+        "prediction_loss": 0.1439364843847013,
+        "pruned_connections": 0,
+        "receiving_neuron_count": 1,
+        "rejected_mutations": 0,
+        "retained_count": 10,
+        "reward": 0.0,
+        "reward_update_latency": 0.0,
+        "topology_edges": [
+          [
+            "neuron-4",
+            "neuron-3",
+            1.0
+          ],
+          [
+            "neuron-1",
+            "neuron-2",
+            1.0
+          ],
+          [
+            "neuron-2",
+            "neuron-3",
+            1.0
+          ],
+          [
+            "neuron-3",
+            "neuron-4",
+            1.0
+          ],
+          [
+            "neuron-4",
+            "neuron-5",
+            1.0
+          ],
+          [
+            "neuron-5",
+            "neuron-6",
+            1.0
+          ],
+          [
+            "neuron-6",
+            "neuron-7",
+            1.0
+          ],
+          [
+            "neuron-0",
+            "neuron-1",
+            1.0
+          ]
+        ],
+        "update_count": 65,
+        "utility": -31.12133054456088
+      },
+      "removals": 0,
+      "snapshot": 12
+    },
+    {
+      "activation_count": 1,
+      "active_neuron_fraction": 0.1,
+      "additions": 0,
+      "connection_count": 7,
+      "epoch": 13,
+      "event_count": 3,
+      "metric_deltas": {
+        "accuracy": 0.0,
+        "energy": 1.29704084369504,
+        "prediction_loss": 0.009439099625423497,
+        "reward": 0.0,
+        "utility": -1.29704084369504
+      },
+      "metrics": {
+        "accepted_additions": 0,
+        "accuracy": 0.5,
+        "activation_count": 54,
+        "active_neuron_count": 1,
+        "average_reward": 0.0,
+        "confusion": [
+          [
+            "A",
+            "A",
+            5
+          ],
+          [
+            "Z",
+            "A",
+            5
+          ]
+        ],
+        "connection_capacity": 8,
+        "connection_count": 7,
+        "cumulative_reward": 0.0,
+        "emitting_neuron_count": 1,
+        "energy": 32.41837138825592,
+        "epoch": 13,
+        "event_count": 54,
+        "fan_in_utilization": 0.35,
+        "fan_out_utilization": 0.35,
+        "mean_confidence": 0.6002203106010364,
+        "mutation_count": 11,
+        "mutation_history": [
+          [
+            "duplicate",
+            "neuron-3",
+            "neuron-4",
+            "local_activity_prediction_error"
+          ],
+          [
+            "grown",
+            "neuron-4",
+            "neuron-5",
+            "local_activity_prediction_error"
+          ],
+          [
+            "pruned",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_retention"
+          ],
+          [
+            "grown",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-1",
+            "neuron-2",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-2",
+            "neuron-3",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-3",
+            "neuron-4",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-4",
+            "neuron-5",
+            "local_activity_prediction_error"
+          ],
+          [
+            "grown",
+            "neuron-5",
+            "neuron-6",
+            "local_activity_prediction_error"
+          ],
+          [
+            "pruned",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_retention"
+          ],
+          [
+            "grown",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-1",
+            "neuron-2",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-2",
+            "neuron-3",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-3",
+            "neuron-4",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-4",
+            "neuron-5",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-5",
+            "neuron-6",
+            "local_activity_prediction_error"
+          ],
+          [
+            "grown",
+            "neuron-6",
+            "neuron-7",
+            "local_activity_prediction_error"
+          ],
+          [
+            "pruned",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_retention"
+          ],
+          [
+            "grown",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-1",
+            "neuron-2",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-2",
+            "neuron-3",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-3",
+            "neuron-4",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-4",
+            "neuron-5",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-5",
+            "neuron-6",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-6",
+            "neuron-7",
+            "local_activity_prediction_error"
+          ],
+          [
+            "full_capacity",
+            "neuron-7",
+            "neuron-8",
+            "local_activity_prediction_error"
+          ],
+          [
+            "full_capacity",
+            "neuron-8",
+            "neuron-9",
+            "local_activity_prediction_error"
+          ],
+          [
+            "full_capacity",
+            "neuron-9",
+            "neuron-0",
+            "local_activity_prediction_error"
+          ],
+          [
+            "pruned",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_retention"
+          ]
+        ],
+        "mutation_rejection_reasons": [
+          [
+            "duplicate",
+            7
+          ],
+          [
+            "full_capacity",
+            3
+          ]
+        ],
+        "never_activated_fraction": 0.9,
+        "per_class_counts": [
+          [
+            "A",
+            5
+          ],
+          [
+            "Z",
+            5
+          ]
+        ],
+        "prediction_loss": 0.1533755840101248,
+        "pruned_connections": 1,
+        "receiving_neuron_count": 1,
+        "rejected_mutations": 10,
+        "retained_count": 10,
+        "reward": 0.0,
+        "reward_update_latency": 0.0,
+        "topology_edges": [
+          [
+            "neuron-4",
+            "neuron-3",
+            1.0
+          ],
+          [
+            "neuron-1",
+            "neuron-2",
+            1.0
+          ],
+          [
+            "neuron-2",
+            "neuron-3",
+            1.0
+          ],
+          [
+            "neuron-3",
+            "neuron-4",
+            1.0
+          ],
+          [
+            "neuron-4",
+            "neuron-5",
+            1.0
+          ],
+          [
+            "neuron-5",
+            "neuron-6",
+            1.0
+          ],
+          [
+            "neuron-6",
+            "neuron-7",
+            1.0
+          ]
+        ],
+        "update_count": 70,
+        "utility": -32.41837138825592
+      },
+      "removals": 1,
+      "snapshot": 13
+    },
+    {
+      "activation_count": 1,
+      "active_neuron_fraction": 0.1,
+      "additions": 1,
+      "connection_count": 8,
+      "epoch": 14,
+      "event_count": 3,
+      "metric_deltas": {
+        "accuracy": 0.0,
+        "energy": -1.29704084369504,
+        "prediction_loss": -0.009439099625423497,
+        "reward": 0.0,
+        "utility": 1.29704084369504
+      },
+      "metrics": {
+        "accepted_additions": 1,
+        "accuracy": 0.5,
+        "activation_count": 51,
+        "active_neuron_count": 1,
+        "average_reward": 0.0,
+        "confusion": [
+          [
+            "A",
+            "A",
+            5
+          ],
+          [
+            "Z",
+            "A",
+            5
+          ]
+        ],
+        "connection_capacity": 8,
+        "connection_count": 8,
+        "cumulative_reward": 0.0,
+        "emitting_neuron_count": 1,
+        "energy": 31.12133054456088,
+        "epoch": 14,
+        "event_count": 51,
+        "fan_in_utilization": 0.4,
+        "fan_out_utilization": 0.4,
+        "mean_confidence": 0.5842486549204373,
+        "mutation_count": 1,
+        "mutation_history": [
+          [
+            "grown",
+            "neuron-4",
+            "neuron-5",
+            "local_activity_prediction_error"
+          ],
+          [
+            "pruned",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_retention"
+          ],
+          [
+            "grown",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-1",
+            "neuron-2",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-2",
+            "neuron-3",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-3",
+            "neuron-4",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-4",
+            "neuron-5",
+            "local_activity_prediction_error"
+          ],
+          [
+            "grown",
+            "neuron-5",
+            "neuron-6",
+            "local_activity_prediction_error"
+          ],
+          [
+            "pruned",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_retention"
+          ],
+          [
+            "grown",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-1",
+            "neuron-2",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-2",
+            "neuron-3",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-3",
+            "neuron-4",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-4",
+            "neuron-5",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-5",
+            "neuron-6",
+            "local_activity_prediction_error"
+          ],
+          [
+            "grown",
+            "neuron-6",
+            "neuron-7",
+            "local_activity_prediction_error"
+          ],
+          [
+            "pruned",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_retention"
+          ],
+          [
+            "grown",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-1",
+            "neuron-2",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-2",
+            "neuron-3",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-3",
+            "neuron-4",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-4",
+            "neuron-5",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-5",
+            "neuron-6",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-6",
+            "neuron-7",
+            "local_activity_prediction_error"
+          ],
+          [
+            "full_capacity",
+            "neuron-7",
+            "neuron-8",
+            "local_activity_prediction_error"
+          ],
+          [
+            "full_capacity",
+            "neuron-8",
+            "neuron-9",
+            "local_activity_prediction_error"
+          ],
+          [
+            "full_capacity",
+            "neuron-9",
+            "neuron-0",
+            "local_activity_prediction_error"
+          ],
+          [
+            "pruned",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_retention"
+          ],
+          [
+            "grown",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ]
+        ],
+        "mutation_rejection_reasons": [],
+        "never_activated_fraction": 0.9,
+        "per_class_counts": [
+          [
+            "A",
+            5
+          ],
+          [
+            "Z",
+            5
+          ]
+        ],
+        "prediction_loss": 0.1439364843847013,
+        "pruned_connections": 0,
+        "receiving_neuron_count": 1,
+        "rejected_mutations": 0,
+        "retained_count": 10,
+        "reward": 0.0,
+        "reward_update_latency": 0.0,
+        "topology_edges": [
+          [
+            "neuron-4",
+            "neuron-3",
+            1.0
+          ],
+          [
+            "neuron-1",
+            "neuron-2",
+            1.0
+          ],
+          [
+            "neuron-2",
+            "neuron-3",
+            1.0
+          ],
+          [
+            "neuron-3",
+            "neuron-4",
+            1.0
+          ],
+          [
+            "neuron-4",
+            "neuron-5",
+            1.0
+          ],
+          [
+            "neuron-5",
+            "neuron-6",
+            1.0
+          ],
+          [
+            "neuron-6",
+            "neuron-7",
+            1.0
+          ],
+          [
+            "neuron-0",
+            "neuron-1",
+            1.0
+          ]
+        ],
+        "update_count": 75,
+        "utility": -31.12133054456088
+      },
+      "removals": 0,
+      "snapshot": 14
+    },
+    {
+      "activation_count": 1,
+      "active_neuron_fraction": 0.1,
+      "additions": 0,
+      "connection_count": 7,
+      "epoch": 15,
+      "event_count": 3,
+      "metric_deltas": {
+        "accuracy": 0.0,
+        "energy": 1.29704084369504,
+        "prediction_loss": 0.009439099625423497,
+        "reward": 0.0,
+        "utility": -1.29704084369504
+      },
+      "metrics": {
+        "accepted_additions": 0,
+        "accuracy": 0.5,
+        "activation_count": 54,
+        "active_neuron_count": 1,
+        "average_reward": 0.0,
+        "confusion": [
+          [
+            "A",
+            "A",
+            5
+          ],
+          [
+            "Z",
+            "A",
+            5
+          ]
+        ],
+        "connection_capacity": 8,
+        "connection_count": 7,
+        "cumulative_reward": 0.0,
+        "emitting_neuron_count": 1,
+        "energy": 32.41837138825592,
+        "epoch": 15,
+        "event_count": 54,
+        "fan_in_utilization": 0.35,
+        "fan_out_utilization": 0.35,
+        "mean_confidence": 0.6060730146143367,
+        "mutation_count": 11,
+        "mutation_history": [
+          [
+            "duplicate",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-1",
+            "neuron-2",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-2",
+            "neuron-3",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-3",
+            "neuron-4",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-4",
+            "neuron-5",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-5",
+            "neuron-6",
+            "local_activity_prediction_error"
+          ],
+          [
+            "grown",
+            "neuron-6",
+            "neuron-7",
+            "local_activity_prediction_error"
+          ],
+          [
+            "pruned",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_retention"
+          ],
+          [
+            "grown",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-1",
+            "neuron-2",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-2",
+            "neuron-3",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-3",
+            "neuron-4",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-4",
+            "neuron-5",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-5",
+            "neuron-6",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-6",
+            "neuron-7",
+            "local_activity_prediction_error"
+          ],
+          [
+            "full_capacity",
+            "neuron-7",
+            "neuron-8",
+            "local_activity_prediction_error"
+          ],
+          [
+            "full_capacity",
+            "neuron-8",
+            "neuron-9",
+            "local_activity_prediction_error"
+          ],
+          [
+            "full_capacity",
+            "neuron-9",
+            "neuron-0",
+            "local_activity_prediction_error"
+          ],
+          [
+            "pruned",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_retention"
+          ],
+          [
+            "grown",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-1",
+            "neuron-2",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-2",
+            "neuron-3",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-3",
+            "neuron-4",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-4",
+            "neuron-5",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-5",
+            "neuron-6",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-6",
+            "neuron-7",
+            "local_activity_prediction_error"
+          ],
+          [
+            "full_capacity",
+            "neuron-7",
+            "neuron-8",
+            "local_activity_prediction_error"
+          ],
+          [
+            "full_capacity",
+            "neuron-8",
+            "neuron-9",
+            "local_activity_prediction_error"
+          ],
+          [
+            "full_capacity",
+            "neuron-9",
+            "neuron-0",
+            "local_activity_prediction_error"
+          ],
+          [
+            "pruned",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_retention"
+          ]
+        ],
+        "mutation_rejection_reasons": [
+          [
+            "duplicate",
+            7
+          ],
+          [
+            "full_capacity",
+            3
+          ]
+        ],
+        "never_activated_fraction": 0.9,
+        "per_class_counts": [
+          [
+            "A",
+            5
+          ],
+          [
+            "Z",
+            5
+          ]
+        ],
+        "prediction_loss": 0.1533755840101248,
+        "pruned_connections": 1,
+        "receiving_neuron_count": 1,
+        "rejected_mutations": 10,
+        "retained_count": 10,
+        "reward": 0.0,
+        "reward_update_latency": 0.0,
+        "topology_edges": [
+          [
+            "neuron-4",
+            "neuron-3",
+            1.0
+          ],
+          [
+            "neuron-1",
+            "neuron-2",
+            1.0
+          ],
+          [
+            "neuron-2",
+            "neuron-3",
+            1.0
+          ],
+          [
+            "neuron-3",
+            "neuron-4",
+            1.0
+          ],
+          [
+            "neuron-4",
+            "neuron-5",
+            1.0
+          ],
+          [
+            "neuron-5",
+            "neuron-6",
+            1.0
+          ],
+          [
+            "neuron-6",
+            "neuron-7",
+            1.0
+          ]
+        ],
+        "update_count": 80,
+        "utility": -32.41837138825592
+      },
+      "removals": 1,
+      "snapshot": 15
+    },
+    {
+      "activation_count": 1,
+      "active_neuron_fraction": 0.1,
+      "additions": 1,
+      "connection_count": 8,
+      "epoch": 16,
+      "event_count": 3,
+      "metric_deltas": {
+        "accuracy": 0.0,
+        "energy": -1.29704084369504,
+        "prediction_loss": -0.009439099625423497,
+        "reward": 0.0,
+        "utility": 1.29704084369504
+      },
+      "metrics": {
+        "accepted_additions": 1,
+        "accuracy": 0.5,
+        "activation_count": 51,
+        "active_neuron_count": 1,
+        "average_reward": 0.0,
+        "confusion": [
+          [
+            "A",
+            "A",
+            5
+          ],
+          [
+            "Z",
+            "A",
+            5
+          ]
+        ],
+        "connection_capacity": 8,
+        "connection_count": 8,
+        "cumulative_reward": 0.0,
+        "emitting_neuron_count": 1,
+        "energy": 31.12133054456088,
+        "epoch": 16,
+        "event_count": 51,
+        "fan_in_utilization": 0.4,
+        "fan_out_utilization": 0.4,
+        "mean_confidence": 0.5873103930977647,
+        "mutation_count": 1,
+        "mutation_history": [
+          [
+            "duplicate",
+            "neuron-1",
+            "neuron-2",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-2",
+            "neuron-3",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-3",
+            "neuron-4",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-4",
+            "neuron-5",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-5",
+            "neuron-6",
+            "local_activity_prediction_error"
+          ],
+          [
+            "grown",
+            "neuron-6",
+            "neuron-7",
+            "local_activity_prediction_error"
+          ],
+          [
+            "pruned",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_retention"
+          ],
+          [
+            "grown",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-1",
+            "neuron-2",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-2",
+            "neuron-3",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-3",
+            "neuron-4",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-4",
+            "neuron-5",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-5",
+            "neuron-6",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-6",
+            "neuron-7",
+            "local_activity_prediction_error"
+          ],
+          [
+            "full_capacity",
+            "neuron-7",
+            "neuron-8",
+            "local_activity_prediction_error"
+          ],
+          [
+            "full_capacity",
+            "neuron-8",
+            "neuron-9",
+            "local_activity_prediction_error"
+          ],
+          [
+            "full_capacity",
+            "neuron-9",
+            "neuron-0",
+            "local_activity_prediction_error"
+          ],
+          [
+            "pruned",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_retention"
+          ],
+          [
+            "grown",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-1",
+            "neuron-2",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-2",
+            "neuron-3",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-3",
+            "neuron-4",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-4",
+            "neuron-5",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-5",
+            "neuron-6",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-6",
+            "neuron-7",
+            "local_activity_prediction_error"
+          ],
+          [
+            "full_capacity",
+            "neuron-7",
+            "neuron-8",
+            "local_activity_prediction_error"
+          ],
+          [
+            "full_capacity",
+            "neuron-8",
+            "neuron-9",
+            "local_activity_prediction_error"
+          ],
+          [
+            "full_capacity",
+            "neuron-9",
+            "neuron-0",
+            "local_activity_prediction_error"
+          ],
+          [
+            "pruned",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_retention"
+          ],
+          [
+            "grown",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ]
+        ],
+        "mutation_rejection_reasons": [],
+        "never_activated_fraction": 0.9,
+        "per_class_counts": [
+          [
+            "A",
+            5
+          ],
+          [
+            "Z",
+            5
+          ]
+        ],
+        "prediction_loss": 0.1439364843847013,
+        "pruned_connections": 0,
+        "receiving_neuron_count": 1,
+        "rejected_mutations": 0,
+        "retained_count": 10,
+        "reward": 0.0,
+        "reward_update_latency": 0.0,
+        "topology_edges": [
+          [
+            "neuron-4",
+            "neuron-3",
+            1.0
+          ],
+          [
+            "neuron-1",
+            "neuron-2",
+            1.0
+          ],
+          [
+            "neuron-2",
+            "neuron-3",
+            1.0
+          ],
+          [
+            "neuron-3",
+            "neuron-4",
+            1.0
+          ],
+          [
+            "neuron-4",
+            "neuron-5",
+            1.0
+          ],
+          [
+            "neuron-5",
+            "neuron-6",
+            1.0
+          ],
+          [
+            "neuron-6",
+            "neuron-7",
+            1.0
+          ],
+          [
+            "neuron-0",
+            "neuron-1",
+            1.0
+          ]
+        ],
+        "update_count": 85,
+        "utility": -31.12133054456088
+      },
+      "removals": 0,
+      "snapshot": 16
+    },
+    {
+      "activation_count": 1,
+      "active_neuron_fraction": 0.1,
+      "additions": 0,
+      "connection_count": 7,
+      "epoch": 17,
+      "event_count": 3,
+      "metric_deltas": {
+        "accuracy": 0.0,
+        "energy": 1.29704084369504,
+        "prediction_loss": 0.009439099625423497,
+        "reward": 0.0,
+        "utility": -1.29704084369504
+      },
+      "metrics": {
+        "accepted_additions": 0,
+        "accuracy": 0.5,
+        "activation_count": 54,
+        "active_neuron_count": 1,
+        "average_reward": 0.0,
+        "confusion": [
+          [
+            "A",
+            "A",
+            5
+          ],
+          [
+            "Z",
+            "A",
+            5
+          ]
+        ],
+        "connection_capacity": 8,
+        "connection_count": 7,
+        "cumulative_reward": 0.0,
+        "emitting_neuron_count": 1,
+        "energy": 32.41837138825592,
+        "epoch": 17,
+        "event_count": 54,
+        "fan_in_utilization": 0.35,
+        "fan_out_utilization": 0.35,
+        "mean_confidence": 0.6107211819037148,
+        "mutation_count": 11,
+        "mutation_history": [
+          [
+            "duplicate",
+            "neuron-3",
+            "neuron-4",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-4",
+            "neuron-5",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-5",
+            "neuron-6",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-6",
+            "neuron-7",
+            "local_activity_prediction_error"
+          ],
+          [
+            "full_capacity",
+            "neuron-7",
+            "neuron-8",
+            "local_activity_prediction_error"
+          ],
+          [
+            "full_capacity",
+            "neuron-8",
+            "neuron-9",
+            "local_activity_prediction_error"
+          ],
+          [
+            "full_capacity",
+            "neuron-9",
+            "neuron-0",
+            "local_activity_prediction_error"
+          ],
+          [
+            "pruned",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_retention"
+          ],
+          [
+            "grown",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-1",
+            "neuron-2",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-2",
+            "neuron-3",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-3",
+            "neuron-4",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-4",
+            "neuron-5",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-5",
+            "neuron-6",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-6",
+            "neuron-7",
+            "local_activity_prediction_error"
+          ],
+          [
+            "full_capacity",
+            "neuron-7",
+            "neuron-8",
+            "local_activity_prediction_error"
+          ],
+          [
+            "full_capacity",
+            "neuron-8",
+            "neuron-9",
+            "local_activity_prediction_error"
+          ],
+          [
+            "full_capacity",
+            "neuron-9",
+            "neuron-0",
+            "local_activity_prediction_error"
+          ],
+          [
+            "pruned",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_retention"
+          ],
+          [
+            "grown",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-1",
+            "neuron-2",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-2",
+            "neuron-3",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-3",
+            "neuron-4",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-4",
+            "neuron-5",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-5",
+            "neuron-6",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-6",
+            "neuron-7",
+            "local_activity_prediction_error"
+          ],
+          [
+            "full_capacity",
+            "neuron-7",
+            "neuron-8",
+            "local_activity_prediction_error"
+          ],
+          [
+            "full_capacity",
+            "neuron-8",
+            "neuron-9",
+            "local_activity_prediction_error"
+          ],
+          [
+            "full_capacity",
+            "neuron-9",
+            "neuron-0",
+            "local_activity_prediction_error"
+          ],
+          [
+            "pruned",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_retention"
+          ]
+        ],
+        "mutation_rejection_reasons": [
+          [
+            "duplicate",
+            7
+          ],
+          [
+            "full_capacity",
+            3
+          ]
+        ],
+        "never_activated_fraction": 0.9,
+        "per_class_counts": [
+          [
+            "A",
+            5
+          ],
+          [
+            "Z",
+            5
+          ]
+        ],
+        "prediction_loss": 0.1533755840101248,
+        "pruned_connections": 1,
+        "receiving_neuron_count": 1,
+        "rejected_mutations": 10,
+        "retained_count": 10,
+        "reward": 0.0,
+        "reward_update_latency": 0.0,
+        "topology_edges": [
+          [
+            "neuron-4",
+            "neuron-3",
+            1.0
+          ],
+          [
+            "neuron-1",
+            "neuron-2",
+            1.0
+          ],
+          [
+            "neuron-2",
+            "neuron-3",
+            1.0
+          ],
+          [
+            "neuron-3",
+            "neuron-4",
+            1.0
+          ],
+          [
+            "neuron-4",
+            "neuron-5",
+            1.0
+          ],
+          [
+            "neuron-5",
+            "neuron-6",
+            1.0
+          ],
+          [
+            "neuron-6",
+            "neuron-7",
+            1.0
+          ]
+        ],
+        "update_count": 90,
+        "utility": -32.41837138825592
+      },
+      "removals": 1,
+      "snapshot": 17
+    },
+    {
+      "activation_count": 1,
+      "active_neuron_fraction": 0.1,
+      "additions": 1,
+      "connection_count": 8,
+      "epoch": 18,
+      "event_count": 3,
+      "metric_deltas": {
+        "accuracy": 0.0,
+        "energy": -1.29704084369504,
+        "prediction_loss": -0.009439099625423497,
+        "reward": 0.0,
+        "utility": 1.29704084369504
+      },
+      "metrics": {
+        "accepted_additions": 1,
+        "accuracy": 0.5,
+        "activation_count": 51,
+        "active_neuron_count": 1,
+        "average_reward": 0.0,
+        "confusion": [
+          [
+            "A",
+            "A",
+            5
+          ],
+          [
+            "Z",
+            "A",
+            5
+          ]
+        ],
+        "connection_capacity": 8,
+        "connection_count": 8,
+        "cumulative_reward": 0.0,
+        "emitting_neuron_count": 1,
+        "energy": 31.12133054456088,
+        "epoch": 18,
+        "event_count": 51,
+        "fan_in_utilization": 0.4,
+        "fan_out_utilization": 0.4,
+        "mean_confidence": 0.5898178296374132,
+        "mutation_count": 1,
+        "mutation_history": [
+          [
+            "duplicate",
+            "neuron-4",
+            "neuron-5",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-5",
+            "neuron-6",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-6",
+            "neuron-7",
+            "local_activity_prediction_error"
+          ],
+          [
+            "full_capacity",
+            "neuron-7",
+            "neuron-8",
+            "local_activity_prediction_error"
+          ],
+          [
+            "full_capacity",
+            "neuron-8",
+            "neuron-9",
+            "local_activity_prediction_error"
+          ],
+          [
+            "full_capacity",
+            "neuron-9",
+            "neuron-0",
+            "local_activity_prediction_error"
+          ],
+          [
+            "pruned",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_retention"
+          ],
+          [
+            "grown",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-1",
+            "neuron-2",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-2",
+            "neuron-3",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-3",
+            "neuron-4",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-4",
+            "neuron-5",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-5",
+            "neuron-6",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-6",
+            "neuron-7",
+            "local_activity_prediction_error"
+          ],
+          [
+            "full_capacity",
+            "neuron-7",
+            "neuron-8",
+            "local_activity_prediction_error"
+          ],
+          [
+            "full_capacity",
+            "neuron-8",
+            "neuron-9",
+            "local_activity_prediction_error"
+          ],
+          [
+            "full_capacity",
+            "neuron-9",
+            "neuron-0",
+            "local_activity_prediction_error"
+          ],
+          [
+            "pruned",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_retention"
+          ],
+          [
+            "grown",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-1",
+            "neuron-2",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-2",
+            "neuron-3",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-3",
+            "neuron-4",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-4",
+            "neuron-5",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-5",
+            "neuron-6",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-6",
+            "neuron-7",
+            "local_activity_prediction_error"
+          ],
+          [
+            "full_capacity",
+            "neuron-7",
+            "neuron-8",
+            "local_activity_prediction_error"
+          ],
+          [
+            "full_capacity",
+            "neuron-8",
+            "neuron-9",
+            "local_activity_prediction_error"
+          ],
+          [
+            "full_capacity",
+            "neuron-9",
+            "neuron-0",
+            "local_activity_prediction_error"
+          ],
+          [
+            "pruned",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_retention"
+          ],
+          [
+            "grown",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ]
+        ],
+        "mutation_rejection_reasons": [],
+        "never_activated_fraction": 0.9,
+        "per_class_counts": [
+          [
+            "A",
+            5
+          ],
+          [
+            "Z",
+            5
+          ]
+        ],
+        "prediction_loss": 0.1439364843847013,
+        "pruned_connections": 0,
+        "receiving_neuron_count": 1,
+        "rejected_mutations": 0,
+        "retained_count": 10,
+        "reward": 0.0,
+        "reward_update_latency": 0.0,
+        "topology_edges": [
+          [
+            "neuron-4",
+            "neuron-3",
+            1.0
+          ],
+          [
+            "neuron-1",
+            "neuron-2",
+            1.0
+          ],
+          [
+            "neuron-2",
+            "neuron-3",
+            1.0
+          ],
+          [
+            "neuron-3",
+            "neuron-4",
+            1.0
+          ],
+          [
+            "neuron-4",
+            "neuron-5",
+            1.0
+          ],
+          [
+            "neuron-5",
+            "neuron-6",
+            1.0
+          ],
+          [
+            "neuron-6",
+            "neuron-7",
+            1.0
+          ],
+          [
+            "neuron-0",
+            "neuron-1",
+            1.0
+          ]
+        ],
+        "update_count": 95,
+        "utility": -31.12133054456088
+      },
+      "removals": 0,
+      "snapshot": 18
+    },
+    {
+      "activation_count": 1,
+      "active_neuron_fraction": 0.1,
+      "additions": 0,
+      "connection_count": 7,
+      "epoch": 19,
+      "event_count": 3,
+      "metric_deltas": {
+        "accuracy": 0.0,
+        "energy": 1.29704084369504,
+        "prediction_loss": 0.009439099625423497,
+        "reward": 0.0,
+        "utility": -1.29704084369504
+      },
+      "metrics": {
+        "accepted_additions": 0,
+        "accuracy": 0.5,
+        "activation_count": 54,
+        "active_neuron_count": 1,
+        "average_reward": 0.0,
+        "confusion": [
+          [
+            "A",
+            "A",
+            5
+          ],
+          [
+            "Z",
+            "A",
+            5
+          ]
+        ],
+        "connection_capacity": 8,
+        "connection_count": 7,
+        "cumulative_reward": 0.0,
+        "emitting_neuron_count": 1,
+        "energy": 32.41837138825592,
+        "epoch": 19,
+        "event_count": 54,
+        "fan_in_utilization": 0.35,
+        "fan_out_utilization": 0.35,
+        "mean_confidence": 0.6145015515766324,
+        "mutation_count": 11,
+        "mutation_history": [
+          [
+            "duplicate",
+            "neuron-3",
+            "neuron-4",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-4",
+            "neuron-5",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-5",
+            "neuron-6",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-6",
+            "neuron-7",
+            "local_activity_prediction_error"
+          ],
+          [
+            "full_capacity",
+            "neuron-7",
+            "neuron-8",
+            "local_activity_prediction_error"
+          ],
+          [
+            "full_capacity",
+            "neuron-8",
+            "neuron-9",
+            "local_activity_prediction_error"
+          ],
+          [
+            "full_capacity",
+            "neuron-9",
+            "neuron-0",
+            "local_activity_prediction_error"
+          ],
+          [
+            "pruned",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_retention"
+          ],
+          [
+            "grown",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-1",
+            "neuron-2",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-2",
+            "neuron-3",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-3",
+            "neuron-4",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-4",
+            "neuron-5",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-5",
+            "neuron-6",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-6",
+            "neuron-7",
+            "local_activity_prediction_error"
+          ],
+          [
+            "full_capacity",
+            "neuron-7",
+            "neuron-8",
+            "local_activity_prediction_error"
+          ],
+          [
+            "full_capacity",
+            "neuron-8",
+            "neuron-9",
+            "local_activity_prediction_error"
+          ],
+          [
+            "full_capacity",
+            "neuron-9",
+            "neuron-0",
+            "local_activity_prediction_error"
+          ],
+          [
+            "pruned",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_retention"
+          ],
+          [
+            "grown",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-1",
+            "neuron-2",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-2",
+            "neuron-3",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-3",
+            "neuron-4",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-4",
+            "neuron-5",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-5",
+            "neuron-6",
+            "local_activity_prediction_error"
+          ],
+          [
+            "duplicate",
+            "neuron-6",
+            "neuron-7",
+            "local_activity_prediction_error"
+          ],
+          [
+            "full_capacity",
+            "neuron-7",
+            "neuron-8",
+            "local_activity_prediction_error"
+          ],
+          [
+            "full_capacity",
+            "neuron-8",
+            "neuron-9",
+            "local_activity_prediction_error"
+          ],
+          [
+            "full_capacity",
+            "neuron-9",
+            "neuron-0",
+            "local_activity_prediction_error"
+          ],
+          [
+            "pruned",
+            "neuron-0",
+            "neuron-1",
+            "local_activity_retention"
+          ]
+        ],
+        "mutation_rejection_reasons": [
+          [
+            "duplicate",
+            7
+          ],
+          [
+            "full_capacity",
+            3
+          ]
+        ],
+        "never_activated_fraction": 0.9,
+        "per_class_counts": [
+          [
+            "A",
+            5
+          ],
+          [
+            "Z",
+            5
+          ]
+        ],
+        "prediction_loss": 0.1533755840101248,
+        "pruned_connections": 1,
+        "receiving_neuron_count": 1,
+        "rejected_mutations": 10,
+        "retained_count": 10,
+        "reward": 0.0,
+        "reward_update_latency": 0.0,
+        "topology_edges": [
+          [
+            "neuron-4",
+            "neuron-3",
+            1.0
+          ],
+          [
+            "neuron-1",
+            "neuron-2",
+            1.0
+          ],
+          [
+            "neuron-2",
+            "neuron-3",
+            1.0
+          ],
+          [
+            "neuron-3",
+            "neuron-4",
+            1.0
+          ],
+          [
+            "neuron-4",
+            "neuron-5",
+            1.0
+          ],
+          [
+            "neuron-5",
+            "neuron-6",
+            1.0
+          ],
+          [
+            "neuron-6",
+            "neuron-7",
+            1.0
+          ]
+        ],
+        "update_count": 100,
+        "utility": -32.41837138825592
+      },
+      "removals": 1,
+      "snapshot": 19
+    }
+  ],
+  "topology_changes_with_flat_functional_metrics": false
+}
