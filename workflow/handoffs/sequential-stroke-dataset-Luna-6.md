@@ -27,7 +27,8 @@ tpcn_handoff:
     - "tests/test_stroke_dataset.py"
   tests_passing:
     - "python -m pytest -q tests/test_stroke_dataset.py: 6 passed"
-    - "python -m pytest -q: 45 passed"
+    - "python -m pytest -q tests/test_energy_utility.py tests/test_stroke_dataset.py tests/test_eligibility.py: 20 passed"
+    - "python -m pytest -q: 59 passed"
     - "python -m compileall -q tpcn tests: passed"
     - "git diff --check: passed"
   tests_failed: []
@@ -46,7 +47,7 @@ tpcn_handoff:
     - "Writer-disjoint splitting remains unresolved until writer identity is known."
     - "Native timestamp availability and units remain unresolved; synthetic interval is explicitly configurable but not a benchmark decision."
     - "Luna-7 must define the external readout and post-END_CHARACTER classification policy."
-    - "Luna-5 and Luna-8 must define reward, energy, eligibility, and error-boundary integration."
+    - "Luna-7 must define the external readout and post-END_CHARACTER classification policy."
   recommended_next_agent:
     - "Luna-0: resolve dataset, split, licensing, class, and timing decisions before benchmark claims."
     - "Luna-7: consume the label-free stream and define external classification after END_CHARACTER."
@@ -114,6 +115,9 @@ label absence, bounded point capacity, declared synthetic timing, reset and
 cross-character delta isolation, timestamp rejection, deterministic
 serialization, and Luna-1 queue delivery/equal-time ordering.
 
+The joint gate additionally verified that Luna-5 RewardMessage values can be
+converted to Luna-8 local reward signals without labels or global state.
+
 ## Benchmark and resource results
 
 No actual dataset is present in this repository, so no dataset/version,
@@ -155,10 +159,10 @@ Luna-6 changes without reverting unrelated worktree changes.
 
 ## Next assignment
 
-Luna-0 should resolve the actual dataset/version, permitted use, classes,
-native timing, and split before benchmark execution. Luna-7 may then build the
-external classifier/readout against this label-free stream. Luna-11 should
-independently verify streaming classification, prediction/error instrumentation,
-reset/retention, bounded resources, and the remaining energy, credit, and
-hardware gates. This handoff does not declare the broader integration milestone
-ready.
+Luna-7 is explicitly authorized to build the external classifier/readout
+against this label-free stream. It must emit 26 A-Z outputs only when the
+selected dataset has those classes, keep labels outside inference, and defer
+authoritative classification until END_CHARACTER. Luna-0 still must resolve
+dataset/version, permitted use, native timing, and split before benchmark
+claims. Luna-11 remains deferred until the combined Luna-5/Luna-6/Luna-7/Luna-8
+gate is complete.

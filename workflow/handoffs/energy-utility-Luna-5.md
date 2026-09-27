@@ -21,12 +21,15 @@ tpcn_handoff:
     - "tpcn/energy_utility.py"
     - "tpcn/__init__.py"
     - "tests/test_energy_utility.py"
+    - "tests/test_eligibility.py"
     - "workflow/handoffs/energy-utility-Luna-5.md"
   tests_added:
     - "tests/test_energy_utility.py"
+    - "tests/test_eligibility.py: RewardMessage causal adapter regression"
   tests_passing:
     - "Focused Luna-5 suite: 7 passed"
-    - "Full available regression suite: 58 passed"
+    - "Focused Luna-5 plus Luna-6 plus Luna-8 joint suite: 20 passed"
+    - "Full available regression suite: 59 passed"
     - "Package and test compilation: passed"
   tests_failed: []
   tests_not_run:
@@ -38,7 +41,7 @@ tpcn_handoff:
     - "Saturating counters and energy define deterministic finite overflow behavior."
     - "Utility formula is explicitly selected per instance; the core mandates neither net nor ratio utility."
   unresolved:
-    - "Luna-8 must choose eligibility decay, attribution, expiry, and whether it consumes cost snapshots or utility decisions."
+    - "Luna-8 retains ownership of eligibility decay, attribution, expiry, and whether it consumes cost snapshots or utility decisions."
     - "Luna-0/Luna-11 must set integration-level proxy coefficients, capacities, and hardware precision tolerances."
   recommended_next_agent:
     - "Luna-8: consume RewardMessage.credit_id/timestamp and local activity cost without moving attribution policy into Luna-5."
@@ -60,6 +63,21 @@ neither is promoted to a permanent architecture formula. Retention requires
 positive-cost work and utility above the configured threshold, so idle work is
 not rewarded as useful efficiency.
 
+## Interface defect and repair
+
+The integration review identified that `RewardMessage` carried `credit_id`,
+`reward`, and `timestamp`, while `EligibilityLedger.apply_signal()` accepted
+only `RewardSignal` or `PredictionError`. That left causal Luna-5 rewards
+dependent on an undocumented adapter.
+
+`RewardMessage.to_reward_signal()` is the narrow Luna-5-owned typed adapter. It
+maps the opaque `credit_id` deterministically to
+`RewardSignal.prediction_id` and preserves the reward amount. The caller wraps
+that payload in an `Event` using `RewardMessage.timestamp`; the existing event
+envelope therefore preserves causal time without changing the ledger or event
+runtime APIs. The ledger continues to own matching, decay, expiry, and credit
+attribution.
+
 ## Architecture evidence
 
 - **A01-A02:** meter timestamps and `update(dt)` are local measurement details;
@@ -78,6 +96,9 @@ not rewarded as useful efficiency.
 - **A15:** fixed-schema records, finite state, and abstract proxy units leave
   FPGA popcount and FPAA continuous approximation as documented hardware
   mappings, without claiming equivalence.
+
+The adapter preserves A01-A03 and A11: it performs no inline remote mutation,
+adds no global clock or state, and leaves delayed-credit policy to the ledger.
 
 No Architecture Change Proposal is required. Ten-pathway gating, structural
 plasticity, classifier behavior, delayed credit, and hardware validation remain
@@ -98,6 +119,8 @@ the energy model does not infer reward from labels or prediction outcomes.
 | `python -m pytest -q tests/test_energy_utility.py` | `e2b8276`, Windows PowerShell, Python 3.10.8; deterministic inputs | Pass, 7 tests | Focused Luna-5 suite |
 | `python -m pytest -q` | `e2b8276`, Windows PowerShell, Python 3.10.8; existing seed 17 tests | Pass, 58 tests | Full available regression |
 | `python -m compileall -q tpcn tests` | Windows PowerShell, Python 3.10.8 | Pass | Package and tests compile |
+| `python -m pytest -q tests/test_energy_utility.py tests/test_stroke_dataset.py tests/test_eligibility.py` | Windows PowerShell, deterministic inputs | Pass, 20 tests | Joint Luna-5/Luna-6/Luna-8 gate |
+| `python -c "... deterministic stream and reward conversion ..."` | Windows PowerShell, explicit timestamps | Pass | Same serialized stream and timestamp-preserving RewardMessage conversion |
 
 ## Benchmark and resource results
 
@@ -116,6 +139,12 @@ categories are a fixed finite set. Reward totals are bounded by message count
 but do not attribute credit. Luna-8 must define its eligibility trace
 representation and attribution rules before cross-component integration.
 
+The adapter does not implement delayed credit, eligibility, reward shaping,
+label handling, classifier policy, or global attribution. FPGA popcount-style
+and FPAA continuous-approximation boundaries remain documented proxy mappings,
+not hardware-equivalence results. The joint review found no remaining
+Luna-5/Luna-8 interface defect.
+
 ## Reproduction and rollback
 
 From the repository root:
@@ -132,7 +161,7 @@ unrelated worktree changes.
 
 ## Next assignment
 
-Luna-8 should implement bounded local eligibility and delayed reward attribution
-against this explicit boundary. Luna-11 should independently verify energy,
-usefulness, delayed credit, hardware limitations, and the complete streaming
-milestone. The architecture is not integration-ready until those checks pass.
+Luna-7 is authorized to implement the external streaming classification
+interface against the label-free Luna-6 events and this causal reward adapter.
+Luna-11 remains deferred until the combined Luna-5/Luna-6/Luna-7/Luna-8 gate
+has a real benchmark run; hardware acceptance remains deferred.

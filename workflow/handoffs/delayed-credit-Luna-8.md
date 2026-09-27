@@ -27,7 +27,8 @@ tpcn_handoff:
     - "tests/test_eligibility.py"
   tests_passing:
     - "python -m pytest -q tests/test_eligibility.py: 6 passed"
-    - "python -m pytest -q: 50 passed"
+    - "python -m pytest -q tests/test_energy_utility.py tests/test_stroke_dataset.py tests/test_eligibility.py: 20 passed"
+    - "python -m pytest -q: 59 passed"
     - "python -m compileall -q tpcn tests: passed"
     - "git diff --check: passed"
   tests_failed: []
@@ -40,7 +41,7 @@ tpcn_handoff:
     - "A signed PredictionError is a local causal learning signal; this does not define a global loss or utility objective."
     - "Trace identity is local and may be associated with one Luna-3 prediction_id."
   unresolved:
-    - "Luna-0 and Luna-5 must agree on reward units, producer/interface, and how reward availability crosses the local resource boundary before integration."
+    - "Reward units remain abstract declared values; Luna-5 now provides the typed RewardMessage-to-RewardSignal adapter and preserves causal timestamps through Event."
     - "Luna-0 must retain ownership of the final reward-versus-energy utility formula, coefficients, and retention/suppression policy; Luna-8 does not choose them."
   recommended_next_agent:
     - "Luna-5: define the compatible local resource/usefulness adapter and reward signal contract."
@@ -66,6 +67,11 @@ The implementation deliberately does not calculate energy, usefulness,
 utility, reward normalization, classifier output, structural plasticity, or
 global reward broadcast. It does not mutate a remote component inline; callers
 deliver the typed payload through the existing event runtime.
+
+The Luna-5/Luna-8 boundary is now integrated: callers convert a
+`RewardMessage` with `to_reward_signal()`, wrap it in an addressed `Event` at
+the message timestamp, and deliver it to this ledger. The ledger retains
+ownership of local matching, decay, expiry, and credit attribution.
 
 ## Architecture evidence
 
@@ -99,6 +105,9 @@ values remain bounded, unrelated rewards do not mutate local traces, local
 prediction IDs identify error attribution without global state, and expired
 work cannot receive late credit.
 
+The joint gate verifies the Luna-5 adapter preserves `credit_id`, reward, and
+causal timestamp while matching the local prediction identity.
+
 ## Benchmark and resource results
 
 No dataset, classification metric, connectivity utilization, calibrated energy
@@ -117,11 +126,10 @@ matches by explicit `trace_id` or `prediction_id`, with deterministic
 lexicographic tie selection if a signal identifies multiple local traces.
 This is a compatible reference choice, not a permanent architecture mandate.
 
-The Luna-5 agent definition is present, but no accepted Luna-5 implementation
-handoff or resource interface exists in the current worktree. Cross-component
-integration is therefore intentionally unresolved and should return to Luna-0
-for interface review. The complete first integration milestone remains not
-ready.
+The reward units remain abstract proxy values and the final reward-versus-energy
+utility policy remains outside this ledger. No cross-component interface issue
+remains for the Luna-5/Luna-6/Luna-8 gate. The complete first integration
+milestone remains incomplete until Luna-7 and the real streaming benchmark.
 
 ## Reproduction and rollback
 
@@ -132,8 +140,7 @@ restores Luna-8 work while preserving unrelated working-tree changes.
 
 ## Next assignment
 
-Luna-5 should define the local resource/usefulness adapter and agree with
-Luna-0 on reward units and delivery ownership. Luna-11 should then independently
-verify delayed credit together with energy, streaming classification, and the
-remaining acceptance matrix. This handoff does not claim benchmark,
-energy/utility, Luna-11, or hardware readiness.
+Luna-7 is explicitly authorized to implement the streaming classification
+interface using activity-derived inputs and the completed causal reward
+boundary. Luna-11 remains deferred until the combined Luna-5/Luna-6/Luna-7/Luna-8
+gate has benchmark evidence; this handoff does not claim hardware readiness.

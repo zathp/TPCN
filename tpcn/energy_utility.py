@@ -60,6 +60,12 @@ class RewardMessage:
         object.__setattr__(self, "reward", _finite(self.reward, "reward"))
         object.__setattr__(self, "timestamp", _nonnegative(self.timestamp, "timestamp"))
 
+    def to_reward_signal(self) -> RewardSignal:
+        """Adapt this local reward for causal delivery to an eligibility ledger."""
+        from .eligibility import RewardSignal
+
+        return RewardSignal(self.reward, prediction_id=self.credit_id)
+
 
 @dataclass(frozen=True, slots=True)
 class UsefulnessObservation:

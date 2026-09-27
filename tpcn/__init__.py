@@ -56,6 +56,14 @@ from .eligibility import (
     REWARD_EVENT,
     RewardSignal,
 )
+from .streaming_classifier import (
+    ACTIVITY_EVENT,
+    CLASS_LABELS,
+    ClassEvidence,
+    ClassificationResult,
+    END_STROKE,
+    StreamingCharacterClassifier,
+)
 
 __all__ = [
     "SignalCopyConfig",
@@ -110,4 +118,10 @@ __all__ = [
     "EligibilityTrace",
     "REWARD_EVENT",
     "RewardSignal",
+    "CLASS_LABELS",
+    "ACTIVITY_EVENT",
+    "ClassEvidence",
+    "ClassificationResult",
+    "END_STROKE",
+    "StreamingCharacterClassifier",
 ]
