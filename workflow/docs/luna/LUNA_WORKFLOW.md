@@ -869,6 +869,10 @@ Neuron              Topology
            Luna-11
           Verification
                │
+               ▼
+     Visualization-1/2
+     Contract + CPU viewer
+               │
        ┌───────┼────────┐
        ▼       ▼        ▼
     Luna-9  Luna-10   Optimization
@@ -889,6 +893,62 @@ Neuron              Topology
          Luna-14
      HW Equivalence
 ```
+
+---
+
+## Visual Examination / Observability milestone family
+
+This is an implementation observability and validation track, not an extension of the normative TPCN architecture. The snapshot contract is read-only and non-semantic: exporters observe existing state; neither snapshots nor viewers define neuron behavior, event timing/order, routing, learning, plasticity or topology formation. Viewer layouts and capture timestamps must not become neural features or a global neural timestep. No viewer command or exported aggregate may feed back into computation.
+
+Instrumentation must preserve computational behavior with capture enabled or disabled. Report capture, transport and rendering overhead separately. Use bounded observation buffers and explicitly mark dropped/incomplete captures; a slow or disconnected viewer must not impose backpressure on neural execution. Any coherent capture mechanism must preserve existing event semantics and avoid torn state without adding a neural synchronization rule.
+
+### Visualization-1 — Canonical versioned snapshot contract
+
+Define an implementation-neutral observation schema and fixtures after event, neuron and topology interfaces stabilize, before deep optimization. Record schema version, run/configuration/seed identity, backend and source revision, snapshot sequence ID, simulation timestamp/epoch with declared units, and capture boundary/consistency metadata. An epoch is an observation identifier, not a neural tick.
+
+Represent stable neuron IDs (including allocation generation if IDs are reused), existing state/type, directed structural connections and endpoints, relevant weights/strengths, and activity with a declared observation interval. Identify optional/unavailable fields explicitly. Define numeric encoding, units, ordering, version compatibility, completeness and validation rules. Specify a human-readable reference representation plus compact binary/hex serialization; these are observation formats, not execution-state or architecture requirements.
+
+Acceptance: documented schema and valid/invalid fixtures round-trip without losing logical IDs, edges or represented values; unknown versions and incomplete captures are detected explicitly.
+
+### Visualization-2 — CPU exporter and reference viewer
+
+Export CPU reference state through Visualization-1 and build the first host viewer for neuron state, activity and bounded connectivity. Distinguish display coordinates from physical placement metadata. Establish golden snapshots from small reproducible fixtures, initially with structural plasticity disabled.
+
+Acceptance: the viewer reproduces known fixture nodes/edges and state, and capture-on/off runs preserve causal outputs and computational state. Complete this milestone after the first software integration/verification gate and before deep optimization.
+
+### Visualization-3 — GPU exporter using the same logical format
+
+Export GPU state into the same versioned logical snapshot contract and host viewer. Backend-specific memory layouts and transfer formats are adapters only. Capture at declared causally comparable boundaries without treating a CUDA batch as a neural timestep.
+
+Acceptance: matched CPU/GPU fixtures compare IDs, connectivity, activity intervals and represented state under predeclared numerical tolerances; document any unavailable fields and capture overhead.
+
+### Visualization-4 — Temporal snapshot sequences
+
+Support ordered snapshot sequences with run identity, simulation times, capture boundaries and explicit gaps. Provide playback, pause, step and structural differences to inspect formation, pruning, reinforcement and activity propagation. Begin sequence support with fixed topology; add formation/pruning fixtures after Luna-10's verified plasticity work.
+
+Acceptance: known changes appear at the correct recorded boundaries, reused IDs remain distinguishable, and missing captures are shown as gaps rather than inferred neural events. Playback speed and sampling cadence must not alter model execution.
+
+### Visualization-5 — ModelSim/RTL dump and canonical conversion
+
+After software event semantics stabilize, have ModelSim/RTL simulation export a hex or binary state dump with schema/adapter version, field map, widths, signedness, byte/word order, fixed-point scaling and capture metadata. Convert the dump into Visualization-1 snapshots for the same viewer.
+
+Acceptance: a small known RTL fixture decodes to expected neurons, connections and state; malformed/truncated dumps and unknown RTL values are reported rather than silently converted to valid zeros. Compare against software at declared equivalent causal boundaries, not merely equal host or hardware clock counts.
+
+### Visualization-6 — DE1-SoC hardware observability
+
+Use Ethernet as the primary DE1-SoC state-streaming path to the host viewer, with a board-specific transport adapter converting captured state to the canonical snapshot. Plan the FPGA-to-HPS capture/transfer and host framing, sequencing, bounded buffering and loss reporting without making transport part of neural semantics.
+
+Keep VGA optional as an on-board diagnostic view for activity, occupancy and selected local connections. VGA refresh and Ethernet delivery rates are display/transport concerns only; neither may control neuron updates or structural decisions.
+
+Acceptance: host captures decode correctly, disconnects/slow receivers are handled without changing computation, and capture loss/overhead is reported. If VGA is implemented, verify its display-only behavior independently of the host path.
+
+### Visualization-7 — Cross-backend structural validation
+
+Luna-11 and Luna-14 compare CPU, GPU, ModelSim/RTL and FPGA snapshots from matched inputs, seeds, initial topology, resource budgets and supported operations. Match stable IDs and declared causal boundaries; compare nodes, directed edges, fan-in/out, creation/pruning changes, relevant strengths and activity/state under predeclared precision and timing tolerances.
+
+Acceptance: reproducible fixtures, machine-readable structural differences and linked viewer evidence identify the first observed divergence or explicitly report unavailable/incomparable captures. Visual inspection supplements numerical regression and invariant checks; it does not replace them or establish exact equality across differing hardware.
+
+Sequence Visualization-1 → Visualization-2 before deep optimization; add Visualization-3 with GPU work and Visualization-4 with temporal/structural experiments. Visualization-5 and Visualization-6 follow stable software semantics and the FPGA branch. Apply Visualization-7 incrementally as each backend becomes available; final coverage includes all four backends. Luna-0 assigns bounded ownership using the existing roles and handoff format; no new Luna numbering or architecture clause is introduced.
 
 ---
 

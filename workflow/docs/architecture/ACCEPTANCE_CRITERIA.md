@@ -52,6 +52,22 @@ The first milestone must demonstrate all twelve immediate success criteria in th
 
 Luna-11 supplies evidence for applicable core checks. Failed invariants block integration. Experimental gating and plasticity claims require their own comparative evidence.
 
+## Visual Examination / Observability gate
+
+The [Visual Examination / Observability milestone family](../luna/LUNA_WORKFLOW.md#visual-examination--observability-milestone-family) is a read-only, non-semantic validation track. These are future acceptance checks, not implemented capabilities or passing results. Complete Visualization-1 and Visualization-2 before deep optimization; retain the existing Milestone 1 integration criteria.
+
+| Check | Required observation |
+|---|---|
+| versioned snapshot contract | Human-readable and binary/hex fixtures preserve the same logical IDs, directed edges and represented state; unsupported versions, absent fields and incomplete captures are explicit. |
+| observation non-interference | Matched capture-on/off runs preserve computational state, causal outputs, learning and topology decisions; a slow/disconnected viewer or full observation buffer cannot backpressure neural execution. Report observation overhead and losses separately. |
+| CPU/GPU snapshot parity | Matched fixtures and declared capture boundaries produce comparable logical snapshots through the same viewer, with precision tolerances fixed before comparison. |
+| temporal structure inspection | Sequence playback and differences expose known creation, pruning, reinforcement and activity changes; gaps and ID reuse are unambiguous. |
+| ModelSim/RTL conversion | A documented hex/binary field map decodes a known fixture into the canonical snapshot; truncation and unknown RTL values are surfaced. |
+| DE1-SoC observation | Ethernet supplies the primary host stream with bounded capture buffering and loss reporting; optional VGA remains a display-only diagnostic path. |
+| cross-backend structural validation | CPU/GPU/ModelSim/FPGA fixtures compare nodes, edges, bounds and structural changes at equivalent causal boundaries; record numeric/timing tolerances, machine-readable differences and unsupported coverage. |
+
+Visual evidence supplements the core and hardware gates. Snapshot metadata, viewer layouts, transport timing and display refresh must not become computational inputs or impose a global neural clock.
+
 ## Hardware gate
 
 Stabilize and version software event semantics before FPGA/VHDL and FPAA implementation. Compare reference traces for causality, predictions, classifications, state/connectivity bounds and energy/utility decisions. Predeclare precision, timing and analog tolerances; exact internal equality is not required. FPGA metering clocks must not impose a neural clock. FPAA energy approximations need not copy digital switching metrics. Record unsupported behavior and calibration limits.

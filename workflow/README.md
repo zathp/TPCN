@@ -11,6 +11,10 @@ Documentation package for the event-driven TPCN candidate architecture, based on
 5. [Agent handoff template](docs/luna/AGENT_HANDOFF_TEMPLATE.md)
 6. [Architecture changelog](ARCHITECTURE_CHANGELOG.md)
 
+## Visual Examination / Observability milestones
+
+The [workflow milestone family](docs/luna/LUNA_WORKFLOW.md#visual-examination--observability-milestone-family) adds Visualization-1 through Visualization-7: a canonical versioned snapshot contract, CPU exporter/viewer, compatible GPU exporter, temporal sequences, ModelSim/RTL dump conversion, DE1-SoC Ethernet host streaming with optional VGA diagnostics, and cross-backend structural validation. The contract and CPU viewer precede deep optimization. This read-only, non-semantic track must not affect computation or change the normative TPCN architecture; its checks are in the [acceptance criteria](docs/architecture/ACCEPTANCE_CRITERIA.md#visual-examination--observability-gate).
+
 ## Package layout
 
 ```text
