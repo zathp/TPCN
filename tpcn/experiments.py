@@ -10,6 +10,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 import hashlib
 import math
+import random
 from typing import Callable, Literal
 
 from .canonical_neuron import TPCNNeuron
@@ -19,6 +20,8 @@ from .event_runtime import Event, EventQueue
 from .predictive_coding import LocalPredictor, Observation
 from .streaming_classifier import ACTIVITY_EVENT, StreamingCharacterClassifier
 from .stroke_dataset import CharacterBoundary, END_CHARACTER, START_CHARACTER, StrokePoint
+from .structural_plasticity import CandidateEvidence, StructuralPlasticityController
+from .topology import BoundedTopology
 
 ActivationMode = Literal["event_only", "utility"]
 RewardMode = Literal["dense", "sparse", "neutral"]
@@ -46,12 +49,29 @@ class ExperimentConfig:
     correct_reward: float = 1.0
     incorrect_reward: float = -1.0
     max_classes: int = 26
+    structural_plasticity: bool = False
+    topology_fan_in: int = 2
+    topology_fan_out: int = 2
+    topology_edge_capacity: int = 8
+    topology_initial_edges: int = 1
+    mutation_history_limit: int = 32
+    candidate_capacity: int = 16
+    max_growth_per_epoch: int = 1
 
     def __post_init__(self) -> None:
         for name in ("epochs", "history_limit", "max_points", "prediction_capacity", "max_classes"):
             value = getattr(self, name)
             if isinstance(value, bool) or not isinstance(value, int) or value <= 0:
                 raise ValueError(f"{name} must be a positive integer")
+        for name in ("topology_fan_in", "topology_fan_out", "topology_edge_capacity", "mutation_history_limit",
+                     "candidate_capacity", "max_growth_per_epoch"):
+            value = getattr(self, name)
+            if isinstance(value, bool) or not isinstance(value, int) or value <= 0:
+                raise ValueError(f"{name} must be a positive integer")
+        if isinstance(self.topology_initial_edges, bool) or not isinstance(self.topology_initial_edges, int) or self.topology_initial_edges < 0:
+            raise ValueError("topology_initial_edges must be a nonnegative integer")
+        if not isinstance(self.structural_plasticity, bool):
+            raise TypeError("structural_plasticity must be a boolean")
         if self.activation_mode not in ("event_only", "utility"):
             raise ValueError("activation_mode must be 'event_only' or 'utility'")
         if self.reward_mode not in ("dense", "sparse", "neutral"):
@@ -87,6 +107,21 @@ class ExperimentMetrics:
     confusion: tuple[tuple[str, str, int], ...] = ()
     mean_confidence: float = 0.0
     reward_update_latency: float = 0.0
+    utility: float = 0.0
+    active_neuron_count: int = 0
+    receiving_neuron_count: int = 0
+    emitting_neuron_count: int = 0
+    never_activated_fraction: float = 1.0
+    connection_count: int = 0
+    connection_capacity: int = 0
+    fan_in_utilization: float = 0.0
+    fan_out_utilization: float = 0.0
+    mutation_count: int = 0
+    accepted_additions: int = 0
+    pruned_connections: int = 0
+    rejected_mutations: int = 0
+    topology_edges: tuple[tuple[str, str, float], ...] = ()
+    mutation_history: tuple[tuple[str, str, str, str], ...] = ()
 
 
 @dataclass(frozen=True, slots=True)
@@ -166,6 +201,7 @@ class _ExampleRun:
     trace: tuple[tuple[object, ...], ...]
     reward: float
     latency: float
+    utility: float
     neuron: TPCNNeuron
 
 
@@ -182,6 +218,9 @@ class ExperimentRunner:
         self._cumulative_reward = 0.0
         self._history: list[ExperimentMetrics] = []
         self._last_neurons: tuple[TPCNNeuron, ...] = ()
+        self._topology: BoundedTopology | None = None
+        self._plasticity: StructuralPlasticityController | None = None
+        self._mutation_history: list[tuple[str, str, str, str]] = []
 
     @property
     def history(self) -> tuple[ExperimentMetrics, ...]:
@@ -195,6 +234,81 @@ class ExperimentRunner:
     def last_neurons(self) -> tuple[TPCNNeuron, ...]:
         """Publicly observable neurons from the most recent workload pass."""
         return self._last_neurons
+
+    @property
+    def topology(self) -> BoundedTopology | None:
+        return self._topology
+
+    @property
+    def plasticity(self) -> StructuralPlasticityController | None:
+        return self._plasticity
+
+    def _ensure_topology(self, workload: tuple[SyntheticExample, ...]) -> None:
+        nodes = tuple(f"neuron-{index}" for index in range(len(workload)))
+        if self._topology is not None and self._topology.nodes == nodes:
+            return
+        possible_edges = len(nodes) * max(0, len(nodes) - 1)
+        initial_edges = min(self.config.topology_initial_edges, self.config.topology_edge_capacity, possible_edges)
+        self._topology = BoundedTopology(
+            nodes, fan_in_limit=self.config.topology_fan_in, fan_out_limit=self.config.topology_fan_out,
+            edge_capacity=self.config.topology_edge_capacity)
+        candidates = [(source, destination) for source in sorted(nodes) for destination in sorted(nodes)
+                      if source != destination]
+        random.Random(self.config.seed).shuffle(candidates)
+        for source, destination in candidates:
+            if len(self._topology) >= initial_edges:
+                break
+            self._topology.connect(source, destination, 1.0)
+        neighbors = {node: (nodes[(index + 1) % len(nodes)],) for index, node in enumerate(nodes) if len(nodes) > 1}
+        self._plasticity = StructuralPlasticityController(
+            self._topology, candidate_capacity=self.config.candidate_capacity,
+            max_growth_per_adaptation=self.config.max_growth_per_epoch,
+            minimum_edge_count=0, local_neighbors=neighbors)
+        self._mutation_history = []
+
+    def _topology_metrics(self, mutations: tuple[tuple[str, str, str, str], ...]) -> dict[str, object]:
+        topology = self._topology
+        if topology is None:
+            return {}
+        edge_count = len(topology)
+        denominator = max(1, len(topology.nodes))
+        return {
+            "connection_count": edge_count,
+            "connection_capacity": topology.edge_capacity,
+            "fan_in_utilization": edge_count / (denominator * topology.fan_in_limit),
+            "fan_out_utilization": edge_count / (denominator * topology.fan_out_limit),
+            "topology_edges": tuple((edge.source, edge.destination, float(edge.propagation_delay)) for edge in topology.edges),
+            "mutation_history": tuple(self._mutation_history),
+            "mutation_count": len(mutations),
+            "accepted_additions": sum(item[0] == "grown" for item in mutations),
+            "pruned_connections": sum(item[0] == "pruned" for item in mutations),
+            "rejected_mutations": sum(item[0] not in ("grown", "pruned") for item in mutations),
+        }
+
+    def _adapt_topology(self, runs: list[_ExampleRun], epoch: int) -> tuple[tuple[str, str, str, str], ...]:
+        if not self.config.structural_plasticity or self._plasticity is None or len(runs) < 2:
+            return ()
+        mutations: list[tuple[str, str, str, str]] = []
+        nodes = self._topology.nodes
+        for index, run in enumerate(runs):
+            source = nodes[index]
+            destination = nodes[(index + 1) % len(nodes)]
+            evidence = CandidateEvidence(source, source, destination, abs(run.feature) + run.loss,
+                                         1.0, f"epoch-{epoch}-neuron-{index}")
+            result = self._plasticity.grow(evidence)
+            mutations.append((result.status, source, destination, "local_activity_prediction_error"))
+            if result.status == "grown":
+                break
+        if epoch % 2 == 1 and self._topology is not None and len(self._topology) > 1:
+            scores = {(edge.source, edge.destination): abs(runs[index % len(runs)].feature)
+                      for index, edge in enumerate(self._topology.edges)}
+            for result in self._plasticity.prune_by_score(scores, maximum=1):
+                assert result.edge is not None
+                mutations.append((result.status, result.edge.source, result.edge.destination, "local_activity_retention"))
+        self._topology = self._plasticity.topology
+        self._mutation_history.extend(mutations)
+        del self._mutation_history[:-self.config.mutation_history_limit]
+        return tuple(mutations)
 
     def _learned_prediction(self, feature: float, fallback: str) -> tuple[str, float]:
         if not self._prototypes:
@@ -260,11 +374,13 @@ class ExperimentRunner:
         return _ExampleRun(prediction, feature / len(example.points), confidence, prediction_loss,
                            meter.energy, len(example.points), len(example.points), retained, tuple(trace), reward,
                            message.timestamp - float(len(example.points)) if attribution.status == "matched" else 0.0,
+                           utility.evaluate(meter.energy, reward).utility,
                            neuron)
 
     def _execute(self, workload: tuple[SyntheticExample, ...], epoch: int, *, update: bool) -> EvaluationResult:
         runs = [self._run_example(example, index, update=update) for index, example in enumerate(workload)]
         self._last_neurons = tuple(run.neuron for run in runs)
+        mutations = self._adapt_topology(runs, epoch) if update else ()
         counts: dict[str, int] = {}
         confusion: dict[tuple[str, str], int] = {}
         correct = 0
@@ -283,7 +399,13 @@ class ExperimentRunner:
             sum(run.activations for run in runs), sum(run.retained for run in runs),
             reward / total, cumulative_reward, self._updates,
             tuple(sorted(counts.items())), tuple((key[0], key[1], value) for key, value in sorted(confusion.items())),
-            sum(run.confidence for run in runs) / total, sum(run.latency for run in runs) / total)
+            sum(run.confidence for run in runs) / total, sum(run.latency for run in runs) / total,
+            sum(run.utility for run in runs),
+            sum(run.neuron.activation != 0.0 for run in runs),
+            sum(run.neuron.processed_events > 0 for run in runs),
+            sum(run.neuron.activation != 0.0 for run in runs),
+            sum(run.neuron.activation == 0.0 for run in runs) / total,
+            **self._topology_metrics(mutations))
         predictions = tuple(run.raw_prediction for run in runs)
         trace = tuple(item for run in runs for item in run.trace)
         converged = len(self._history) > 0 and metrics == self._history[-1]
@@ -291,10 +413,12 @@ class ExperimentRunner:
 
     def evaluate(self, workload: tuple[SyntheticExample, ...]) -> EvaluationResult:
         _validate_workload(workload, self.config)
+        self._ensure_topology(workload)
         return self._execute(workload, 0, update=False)
 
     def train(self, workload: tuple[SyntheticExample, ...], *, observer: TrainingObserver | None = None) -> TrainingResult:
         _validate_workload(workload, self.config)
+        self._ensure_topology(workload)
         if observer is not None and not callable(observer):
             raise TypeError("observer must be callable")
         before = self.evaluate(workload)

@@ -315,6 +315,21 @@ class ReferenceVisualizer:
             })
         return tuple(changes)
 
+    def connection_timeline(self) -> tuple[dict[str, object], ...]:
+        """Describe real edge persistence and deltas without mutating execution."""
+        timeline: list[dict[str, object]] = []
+        for previous, current in zip(self.snapshots, self.snapshots[1:]):
+            previous_edges = {(item.source, item.destination) for item in previous.connections}
+            current_edges = {(item.source, item.destination) for item in current.connections}
+            timeline.append({
+                "from_epoch": previous.epoch,
+                "to_epoch": current.epoch,
+                "unchanged_connections": tuple(sorted(previous_edges & current_edges)),
+                "added_connections": tuple(sorted(current_edges - previous_edges)),
+                "recently_pruned_connections": tuple(sorted(previous_edges - current_edges)),
+            })
+        return tuple(timeline)
+
 
 __all__ = [
     "ConnectionRecord", "FORMAT_VERSION", "MAX_EXPORT_BYTES", "MAX_RECORDS", "NeuronRecord",

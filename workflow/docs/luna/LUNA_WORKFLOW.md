@@ -554,6 +554,42 @@ Use Luna-10 structural plasticity only when its existing public API can be consu
 
 **Completion gate:** CPU training runs through the current Luna-9 event-driven experiment path; snapshots decode and replay through Luna-12 tooling; malformed, missing, and over-limit captures fail clearly; visualization-on/off and snapshot-frequency comparisons match; deterministic snapshot sequences pass; relevant regression and compile checks pass; and no architecture invariant is weakened. Real-dataset benchmarking remains separately gated.
 
+## Luna-12B — Persistent Topology and Structural Plasticity Visualization Integration
+
+**Authorization:** Luna-12A has passed its stated completion gate on the deterministic Luna-9 synthetic path: full suite 130 passed, 1 skipped; focused Luna-12A tests 3 passed; compilation passed; diagnostics reported no errors; `git diff --check` passed; and a three-snapshot smoke run was saved and replayed deterministically. Luna-0 explicitly authorizes Luna-12B as the next CPU visualization/integration milestone. This authorization does not authorize real-dataset benchmarking, Luna-15, Luna-16, or Luna-17. Luna-13 and Luna-14 remain independently authorized from Luna-12 and do not depend on Luna-12B.
+
+**Purpose:** Integrate a persistent bounded Luna-4 topology into the CPU experiment path so the validated Luna-10 structural-plasticity mechanism can operate across examples and epochs, and expose measured structure/function behavior through TPCV-1.
+
+**Dependency shape:**
+
+```text
+Luna-12
+|
++--> Luna-12A  CPU training + visualization integration
+|      |
+|      +--> Luna-12B  persistent topology + structural plasticity
+|
++--> Luna-13  GPU-compatible visualization
+|
++--> Luna-14  ModelSim/FPGA visualization
+```
+
+Luna-12B depends on the completed Luna-12A CPU capture/replay path and the public Luna-9/Luna-10 interfaces. It must not create a second topology model, redefine TPCN architecture, or become a prerequisite for Luna-13 or Luna-14.
+
+**Scope:** Preserve topology across examples and epochs where adaptation requires it; use the existing bounded topology and Luna-10 mutation APIs; capture accepted additions, removals, rejected mutations and reasons, active edge count, fan-in/out utilization, bounded mutation history, and replay-visible topology deltas; and add fixed-topology/learning, structural-plasticity, and supported no/reduced-learning comparisons. Report activity coverage and structure/function metrics sufficient to distinguish active, adaptive, useful-static, changing-without-benefit, and inert outcomes using measurements rather than subjective labels.
+
+The runner should follow repository CLI conventions and support an equivalent developer command to `python <runner>.py --epochs 20 --structural-plasticity --snapshot-every 1`. A completed run must report starting/ending connections, additions, removals, rejected mutations, active-neuron fraction, prediction loss, accuracy, reward, energy, and utility before/after. Zero mutations are not automatically a failure; interpret them with behavior, reward, utility, event activity, and activation coverage.
+
+TPCV remains downstream-only. Replay may distinguish unchanged, added, and recently removed connections from history, active/inactive neurons, snapshot/epoch index, and structural/behavioral metrics, but capture and viewing must not approve, trigger, or alter mutations, event ordering, routing, reward, classifier behavior, training, or backpressure.
+
+**Required evidence:** Same-seed mutation sequences, final topology, snapshot sequences, and functional results reproduce where the underlying contracts guarantee determinism; capture-on/off results match; fan-in/out, finite propagation, bounded state/history, failed admission, pruning, routing validity, and non-interference checks pass. Record all beneficial and harmful outcomes and explicitly report topology/behavior combinations: unchanged/unchanged, unchanged/improved, changed/unchanged, changed/improved, and changed/degraded where observed.
+
+**Explicit non-goals:** Do not select or benchmark a real dataset, redesign Luna-4/Luna-10 APIs, invent visualization-only mutations, alter TPCV-1 semantics, add a visualization return path, authorize Luna-15/Luna-16/Luna-17, or weaken A01-A15.
+
+**Expected handoff:** A persistent-topology CPU runner, bounded structural-plasticity and structure/function evidence, TPCV replay artifacts/tests, inertness reporting, deterministic capture-on/off comparisons, and an explicit integration-readiness decision returned to Luna-0.
+
+**Completion gate:** The implementation uses one validated bounded topology across the declared training scope; mutation accounting and rejection reasons are inspectable; fixed/plasticity/control comparisons run; topology and activity replay is deterministic and downstream-only; boundedness and non-interference checks pass; metrics support an evidence-based inertness/usefulness classification; and no architecture invariant is weakened.
+
 ## Luna-13 — GPU-Compatible Visualization Path
 
 **Authorization:** Blocked until Luna-12 passes and Luna-0 explicitly authorizes this milestone. The prompt or handoff alone is not authorization.
@@ -881,19 +917,20 @@ Neuron              Topology
           Verification
                │
                  ▼
-             Luna-12 (authorized next)
+             Luna-12 (passed)
              Contract + CPU exporter
-                 │
-              ┌────┴────┐
-              ▼         ▼
-             Luna-13    Luna-14
-            GPU       ModelSim/FPGA
-                   bridge
-              └────┬────┘
-                 ▼
-             Post-observability
-             hardware track
-             Luna-15 / Luna-16 / Luna-17
+               │
+              ┌──┼──┬──┐
+              ▼  ▼  ▼  ▼
+             12A 12B 13 14
+             CPU persistent GPU ModelSim/
+             train topology     FPGA
+               │
+               └────┬─────────┘
+                  ▼
+                Post-observability
+                hardware track
+                Luna-15 / Luna-16 / Luna-17
 ```
 
 ---

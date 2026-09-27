@@ -38,11 +38,13 @@ class CPUTrainingCapture:
         self.collector = SnapshotCollector(enabled=snapshot_every > 0, capacity=max_snapshots)
         self.metrics: list[dict[str, object]] = []
 
-    def observe(self, epoch: int, neurons: tuple[object, ...], metrics: ExperimentMetrics) -> None:
+    def observe(self, epoch: int, neurons: tuple[object, ...], metrics: ExperimentMetrics,
+                topology: object | None = None) -> None:
         self.metrics.append(asdict(metrics))
         if self.snapshot_every and epoch % self.snapshot_every == 0:
             snapshot = VisualizationSnapshot.from_components(
                 neurons,
+                topology=topology,
                 timestamp=max((neuron.clock.timestamp for neuron in neurons), default=0.0),
                 epoch=metrics.epoch,
             )
@@ -80,6 +82,9 @@ class ReplaySequence:
 
     def changes(self) -> tuple[dict[str, object], ...]:
         return ReferenceVisualizer(self.snapshots).changes()
+
+    def connection_timeline(self) -> tuple[dict[str, object], ...]:
+        return ReferenceVisualizer(self.snapshots).connection_timeline()
 
     def inspect(self, index: int) -> dict[str, object]:
         if isinstance(index, bool) or not isinstance(index, int) or not 0 <= index < len(self.snapshots):
@@ -145,11 +150,16 @@ def run_cpu_training(
     examples_per_class: int = 2,
     snapshot_every: int = 0,
     max_snapshots: int = 64,
+    structural_plasticity: bool = False,
+    learning_enabled: bool = True,
 ) -> tuple[TrainingResult, CPUTrainingCapture]:
-    config = ExperimentConfig(epochs=epochs, seed=seed)
+    config = ExperimentConfig(epochs=epochs, seed=seed, structural_plasticity=structural_plasticity,
+                              learning_enabled=learning_enabled)
     workload = make_synthetic_workload(examples_per_class=examples_per_class, seed=seed)
     capture = CPUTrainingCapture(snapshot_every=snapshot_every, max_snapshots=max_snapshots)
-    result = ExperimentRunner(config).train(workload, observer=capture.observe)
+    runner = ExperimentRunner(config)
+    result = runner.train(workload, observer=lambda epoch, neurons, metrics: capture.observe(
+        epoch, neurons, metrics, runner.topology))
     return result, capture
 
 

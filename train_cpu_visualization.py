@@ -18,15 +18,15 @@ def main() -> int:
     parser.add_argument("--max-snapshots", type=int, default=64)
     parser.add_argument("--output-dir", type=Path, default=Path("artifacts/cpu-tpcv"))
     parser.add_argument("--replay", type=Path, help="Load and inspect an existing replay directory")
-    parser.add_argument("--structural-plasticity", action="store_true", help="Reserved; Luna-10 integration is deferred")
+    parser.add_argument("--structural-plasticity", action="store_true", help="Enable bounded Luna-10 topology adaptation")
+    parser.add_argument("--no-learning", action="store_true", help="Disable the bounded outer-loop readout updates")
     args = parser.parse_args()
 
-    if args.structural_plasticity:
-        parser.error("structural-plasticity visualization is deferred; fixed topology is the validated default")
     if args.replay is not None:
         sequence = ReplaySequence.load(args.replay, max_snapshots=args.max_snapshots)
         print(json.dumps({"snapshots": len(sequence.snapshots), "digest": sequence.digest,
                           "frames": sequence.frames(), "changes": sequence.changes(),
+                          "connection_timeline": sequence.connection_timeline(),
                           "metrics": sequence.metrics}, sort_keys=True, default=list))
         return 0
 
@@ -36,11 +36,25 @@ def main() -> int:
         examples_per_class=args.examples_per_class,
         snapshot_every=args.snapshot_every,
         max_snapshots=args.max_snapshots,
+        structural_plasticity=args.structural_plasticity,
+        learning_enabled=not args.no_learning,
     )
     sequence = ReplaySequence(capture.snapshots, capture.metrics)
     sequence.save(args.output_dir)
+    before = result.before.metrics if result.before is not None else result.evaluation.metrics
+    after = result.after.metrics if result.after is not None else result.evaluation.metrics
     print(json.dumps({"output_dir": str(args.output_dir), "snapshots": len(sequence.snapshots),
-                      "digest": sequence.digest, "accuracy": result.evaluation.metrics.accuracy,
+                      "digest": sequence.digest, "starting_connections": before.connection_count,
+                      "ending_connections": after.connection_count,
+                      "additions": sum(item.accepted_additions for item in result.history),
+                      "removals": sum(item.pruned_connections for item in result.history),
+                      "mutation_rejections": sum(item.rejected_mutations for item in result.history),
+                      "active_neuron_fraction": after.active_neuron_count / max(1, args.examples_per_class * 2),
+                      "prediction_loss_before": before.prediction_loss, "prediction_loss_after": after.prediction_loss,
+                      "accuracy_before": before.accuracy, "accuracy_after": after.accuracy,
+                      "reward_before": before.reward, "reward_after": after.reward,
+                      "energy_before": before.energy, "energy_after": after.energy,
+                      "utility_before": before.utility, "utility_after": after.utility,
                       "replay": f"python train_cpu_visualization.py --replay {args.output_dir}"}, sort_keys=True))
     return 0
 
