@@ -54,11 +54,13 @@ Luna-11 supplies evidence for applicable core checks. Failed invariants block in
 
 ## Visualization / Observability gate
 
-The [Visualization / Observability milestone family](../luna/LUNA_WORKFLOW.md#visualization--observability-milestone-family) is a read-only, non-semantic validation track. These are future acceptance checks, not implemented capabilities or passing results. Luna-12 must pass before Luna-13 or Luna-14 implementation; retain the existing Milestone 1 integration criteria.
+The [Visualization / Observability milestone family](../luna/LUNA_WORKFLOW.md#visualization--observability-milestone-family) is a read-only, non-semantic validation track. These are future acceptance checks, not implemented capabilities or passing results. Luna-12 must pass before Luna-12A, Luna-13, or Luna-14 implementation; Luna-12A is an optional CPU training integration and is not a prerequisite for Luna-13 or Luna-14. Retain the existing Milestone 1 integration criteria.
 
 | Check | Required observation |
 |---|---|
 | Luna-12 format and CPU reference | Binary/hex fixtures preserve logical IDs, directed edges, represented state, framing, ordering, and declared fields; malformed input, unsupported versions, empty state, overflow, and incomplete captures are explicit and bounded. |
+| Luna-12A CPU training integration | Deterministic Luna-9 synthetic training captures bounded TPCV-1 snapshots; replay works without the training process; capture disabled, epoch-frequency, and more-frequent capture runs preserve predictions, metrics, replay digest, updates, topology where applicable, reward/utility state, and final network state; missing/malformed/over-limit snapshots fail clearly. |
+| Luna-12A inspection path | A CLI/demo or deterministic replay/export path exposes neuron identity, activity/state, connections, snapshot/epoch index, and available prediction, reward, energy, utility, and accuracy metrics; topology evolution is shown when validated structural plasticity is enabled or explicitly reported deferred. |
 | observation non-interference | Matched capture-on/off runs preserve computational state, causal outputs, learning, topology, classifier, reward, timestamps, and queues; a slow/disconnected viewer or full observation buffer cannot backpressure neural execution. |
 | Luna-13 CPU/GPU parity | Matched fixtures and declared capture boundaries produce semantically equivalent records through the Luna-12 parser, with fixed precision tolerances and no GPU-specific schema. |
 | Luna-14 ModelSim/FPGA bridge | A documented hex/binary field map decodes known traces; truncation and HDL X/Z/unknown values are surfaced; reset and snapshot boundaries are deterministic. |

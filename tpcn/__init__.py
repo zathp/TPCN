@@ -87,6 +87,7 @@ from .fpga_visualization import (
     encode_snapshot_trace,
     encode_trace_frame,
 )
+from .cpu_visualization import CPUTrainingCapture, ReplaySequence, ReplaySequenceError, run_cpu_training
 
 __all__ = [
     "SignalCopyConfig",
@@ -166,4 +167,8 @@ __all__ = [
     "encode_hex_trace",
     "encode_snapshot_trace",
     "encode_trace_frame",
+    "CPUTrainingCapture",
+    "ReplaySequence",
+    "ReplaySequenceError",
+    "run_cpu_training",
 ]

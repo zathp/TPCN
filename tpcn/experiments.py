@@ -10,7 +10,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 import hashlib
 import math
-from typing import Literal
+from typing import Callable, Literal
 
 from .canonical_neuron import TPCNNeuron
 from .eligibility import EligibilityActivity, EligibilityLedger, RewardSignal
@@ -107,6 +107,9 @@ class TrainingResult:
     after: EvaluationResult | None = None
 
 
+TrainingObserver = Callable[[int, tuple[TPCNNeuron, ...], ExperimentMetrics], None]
+
+
 def make_synthetic_workload(*, examples_per_class: int = 2, seed: int = 0,
                             points_per_example: int = 3,
                             labels: tuple[str, ...] = ("A", "Z"),
@@ -163,6 +166,7 @@ class _ExampleRun:
     trace: tuple[tuple[object, ...], ...]
     reward: float
     latency: float
+    neuron: TPCNNeuron
 
 
 class ExperimentRunner:
@@ -177,6 +181,7 @@ class ExperimentRunner:
         self._updates = 0
         self._cumulative_reward = 0.0
         self._history: list[ExperimentMetrics] = []
+        self._last_neurons: tuple[TPCNNeuron, ...] = ()
 
     @property
     def history(self) -> tuple[ExperimentMetrics, ...]:
@@ -185,6 +190,11 @@ class ExperimentRunner:
     @property
     def updates(self) -> int:
         return self._updates
+
+    @property
+    def last_neurons(self) -> tuple[TPCNNeuron, ...]:
+        """Publicly observable neurons from the most recent workload pass."""
+        return self._last_neurons
 
     def _learned_prediction(self, feature: float, fallback: str) -> tuple[str, float]:
         if not self._prototypes:
@@ -249,10 +259,12 @@ class ExperimentRunner:
         retained = 1 if config.activation_mode == "event_only" or utility.evaluate(meter.energy, reward).retain else 0
         return _ExampleRun(prediction, feature / len(example.points), confidence, prediction_loss,
                            meter.energy, len(example.points), len(example.points), retained, tuple(trace), reward,
-                           message.timestamp - float(len(example.points)) if attribution.status == "matched" else 0.0)
+                           message.timestamp - float(len(example.points)) if attribution.status == "matched" else 0.0,
+                           neuron)
 
     def _execute(self, workload: tuple[SyntheticExample, ...], epoch: int, *, update: bool) -> EvaluationResult:
         runs = [self._run_example(example, index, update=update) for index, example in enumerate(workload)]
+        self._last_neurons = tuple(run.neuron for run in runs)
         counts: dict[str, int] = {}
         confusion: dict[tuple[str, str], int] = {}
         correct = 0
@@ -281,13 +293,17 @@ class ExperimentRunner:
         _validate_workload(workload, self.config)
         return self._execute(workload, 0, update=False)
 
-    def train(self, workload: tuple[SyntheticExample, ...]) -> TrainingResult:
+    def train(self, workload: tuple[SyntheticExample, ...], *, observer: TrainingObserver | None = None) -> TrainingResult:
         _validate_workload(workload, self.config)
+        if observer is not None and not callable(observer):
+            raise TypeError("observer must be callable")
         before = self.evaluate(workload)
         for epoch in range(self.config.epochs):
             result = self._execute(workload, epoch, update=True)
             self._history.append(result.metrics)
             del self._history[:-self.config.history_limit]
+            if observer is not None:
+                observer(epoch + 1, self.last_neurons, result.metrics)
         after = self.evaluate(workload)
         digest = hashlib.sha256(repr((self.config, tuple(self._history), after, self._prototypes)).encode()).hexdigest()
         return TrainingResult(tuple(self._history), after, self._updates, digest, before, after)
@@ -303,5 +319,5 @@ def train(workload: tuple[SyntheticExample, ...], *, config: ExperimentConfig | 
 
 __all__ = [
     "EvaluationResult", "ExperimentConfig", "ExperimentMetrics", "ExperimentRunner",
-    "SyntheticExample", "TrainingResult", "evaluate", "make_synthetic_workload", "train",
+    "SyntheticExample", "TrainingObserver", "TrainingResult", "evaluate", "make_synthetic_workload", "train",
 ]

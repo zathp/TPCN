@@ -522,6 +522,38 @@ The snapshot/trace interface is observational only. Capture, transport, renderin
 
 **Completion gate:** Record focused serialization, parser, boundedness, and non-interference evidence. Luna-13 and Luna-14 remain blocked until Luna-12 passes.
 
+## Luna-12A — CPU Training Visualization Integration
+
+**Authorization:** Luna-12 has passed its CPU reference/exporter gate. Luna-0 explicitly authorizes Luna-12A for the deterministic Luna-9 synthetic training/evaluation path only. This authorization does not select or authorize a real dataset benchmark, and it does not make Luna-12A a prerequisite for Luna-13 or Luna-14.
+
+**Purpose:** Run bounded CPU-side TPCN training while capturing TPCV-1 snapshots so activity, represented state, connectivity, reward/utility behavior, and any validated structural changes can be inspected over time.
+
+**Dependency shape:**
+
+```text
+Luna-12
+|
++--> Luna-12A  CPU training + visualization integration
+|
++--> Luna-13  GPU-compatible visualization
+|
++--> Luna-14  ModelSim/FPGA visualization
+```
+
+Luna-13 and Luna-14 remain separate downstream branches. Neither depends on Luna-12A unless Luna-0 later records an explicit decision.
+
+**Scope:** Integrate the Luna-9 deterministic synthetic workload with TPCV-1 capture; provide a configurable CPU runner for epochs and snapshot intervals; store and replay bounded snapshots through the Luna-12 parser; expose epoch/snapshot indices, neuron identity, active state, represented state or activation magnitude, connections, metrics, and topology evolution where available; and provide a lightweight viewer or deterministic replay/export path that a user can run from the command line.
+
+Visualization is strictly downstream-only and non-semantic. Capture, serialization, replay, rendering, storage limits, viewer timing, and dropped/incomplete records must not influence event ordering, neuron updates, predictions, reward, eligibility, classifier behavior, topology decisions, queue behavior, timestamps, or training results. The same deterministic workload with visualization disabled, snapshots every epoch, and more frequent snapshots must produce identical predictions, metrics, replay digest, update/parameter counts, topology where applicable, reward/utility state, and final network state.
+
+Use Luna-10 structural plasticity only when its existing public API can be consumed without architecture changes and bounded topology invariants remain enforced. Fixed topology is the valid default. If those conditions are not met, defer structural-plasticity visualization and report that limitation; do not redesign the topology or core interfaces under Luna-12A.
+
+**Explicit non-goals:** Do not implement GPU or ModelSim/FPGA visualization, authorize real-dataset benchmarking, alter TPCV-1 semantics, add a visualization return path, or weaken any A01-A15 invariant. This milestone does not authorize Luna-13 or Luna-14 work.
+
+**Expected handoff:** A reproducible CPU training/demo runner, bounded TPCV-1 snapshot capture and replay evidence, a minimal inspection path, non-interference results, deterministic replay tests, and an explicit structural-plasticity included/deferred decision.
+
+**Completion gate:** CPU training runs through the current Luna-9 event-driven experiment path; snapshots decode and replay through Luna-12 tooling; malformed, missing, and over-limit captures fail clearly; visualization-on/off and snapshot-frequency comparisons match; deterministic snapshot sequences pass; relevant regression and compile checks pass; and no architecture invariant is weakened. Real-dataset benchmarking remains separately gated.
+
 ## Luna-13 — GPU-Compatible Visualization Path
 
 **Authorization:** Blocked until Luna-12 passes and Luna-0 explicitly authorizes this milestone. The prompt or handoff alone is not authorization.
