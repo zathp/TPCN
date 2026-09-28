@@ -15,6 +15,29 @@ Established the documented candidate contract from the source conversation and c
 
 This entry records documentation establishment, not completed implementation or hardware validation.
 
+## 1.1 — 2026-09-28 — ACP-0001
+
+Accepted by explicit project-owner direction in the post-12H architecture
+request; exact temporal-association and bootstrap algorithms remain
+experimental and are not promoted by this entry.
+
+- Strengthened A14 so bounded structural plasticity must retain a legal,
+	measurable route to useful convergent causal structure without prescribing a
+	graph shape or learning formula.
+- Required explicit bounded admission/replacement/pruning outcomes and
+	rejection causes, including duplicate and capacity/locality/utility causes.
+- Permitted causally available temporal relationships and finite-delay path
+	shortening as experimental evidence, without making a timing rule mandatory.
+- Clarified under A07 that offline/module bootstrap initialization may prepare
+	reproducible state but cannot leak global trainer information into runtime
+	neural computation.
+- Added the Future Luna Contract, Luna-12I temporal-associative structural
+	growth, and Luna-12J modular/bootstrap initialization milestones.
+
+This is a contract/governance change, not evidence that temporal association or
+modular bootstrap training works. Luna-13 through Luna-17 retain their prior
+meanings and independent observability/hardware gates.
+
 For later changes record date, contract version, accepted ACP, decision owner, clauses affected, evidence, compatibility and migration/rollback implications.
 
 ## Workflow observability track — 2026-09-27

@@ -123,6 +123,13 @@ Global statistics are permitted for:
 
 They must not silently become neural inputs.
 
+Outer or offline training orchestration may prepare reproducible initial
+parameters, bounded topology fragments and other explicitly declared module
+state. This is initialization, not a runtime exception to locality. Once
+execution begins, trainer state and global statistics must not become hidden
+neural inputs. Independently initialized reference configurations remain
+legal.
+
 ### A08 — Bounded dynamics
 
 Neuron state and recurrent dynamics must include mechanisms preventing
@@ -193,7 +200,31 @@ Explicit learned pathway gates must therefore be tested rather than assumed nece
 
 Connections and eventually computational resources may change based on locally obtainable evidence.
 
-Structural changes must respect hardware/topological constraints.
+Structural changes must respect hardware/topological constraints and explicit
+finite admission, replacement and pruning policies.
+
+Bounded fan-in, fan-out, edge and routing capacities are resource limits, not
+objectives. An enabled structural-learning policy must retain a legal route to
+useful convergent causal structure: it must not systematically consume
+available capacity in a way that makes relevant multi-path fan-in impossible
+before it can be evaluated. This does not require a particular graph shape or
+fan-in at every node.
+
+Growth, rejection, replacement and pruning outcomes must be observable. A
+failed admission must not be counted as successful learning, and the policy
+must record an explicit cause where applicable, including duplicate, source
+fan-out full, destination fan-in full, global edge capacity, candidate
+unavailable, locality restriction, utility rejection, replacement rejection or
+another declared cause.
+
+Causally/locality available temporal relationships between activity events may
+be used as structural evidence. This permits experiments with directed
+earlier-to-later associations and path shortening, but does not require a
+matching interval, timing window, correlation formula, path-shortening
+equation or fan-in heuristic. A new edge is a new finite-delay causal path; it
+must not retroactively alter emitted events or create instantaneous
+propagation. Structural learning remains subject to A01-A08, A07 locality,
+resource bounds, reset/learning boundaries and A15 hardware realizability.
 
 ### A15 — Hardware independence
 
@@ -211,13 +242,21 @@ Software conveniences that fundamentally prevent hardware implementation should 
 
 ## Authority and interpretation
 
-Version: 1.0 — 2026-09-26. This is the authoritative contract for the candidate event-driven TPCN architecture. It governs new core work; it does not claim that the existing implementation already conforms.
+Version: 1.1 — 2026-09-28. This is the authoritative contract for the candidate event-driven TPCN architecture. It governs new core work; it does not claim that the existing implementation already conforms.
 
 Current project-owner decisions take precedence. This contract takes precedence over workflow examples, legacy documentation and experimental results. Accepted changes require an [Architecture Change Proposal](docs/architecture_proposals/ACP-TEMPLATE.md), a contract revision and a changelog entry. Experiments may depart from named clauses on isolated branches, but must identify the departure and cannot silently become the core.
 
 A10 means **minimize unrewarded energy expenditure, not energy itself**. Reward attribution, utility formulas and tuning coefficients remain research choices. Evaluate both high-cost/high-reward retention and high-cost/low-reward suppression. An inactive network is not evidence of useful efficiency.
 
-A14 requires constrained, locally informed structural adaptation as a supported direction; the first integration model may keep structural plasticity disabled. A15 is a portability requirement, not a claim of completed hardware validation.
+A14 requires constrained, locally informed structural adaptation as a supported direction; the first integration model may keep structural plasticity disabled. When enabled, its policy must leave useful convergent causal structure measurable and attainable under the finite resource budget, with explicit failed-admission accounting. Temporal association and path-shortening rules remain experimental. A15 is a portability requirement, not a claim of completed hardware validation.
+
+Modular/offline bootstrap initialization is a supported training direction, not
+a mandatory runtime feature or the only legal initialization path. A module
+must declare its boundaries, event semantics, state, reset behavior, resource
+requirements, time units, parameter bounds, hardware assumptions and training
+provenance before composition. Initial state must be serializable/versionable
+or reproducibly generated, and post-composition local learning and causal
+behavior require separate evidence.
 
 ## First integration target
 

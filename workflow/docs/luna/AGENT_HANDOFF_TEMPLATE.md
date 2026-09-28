@@ -5,13 +5,31 @@ Copy to handoffs/<task-id>-Luna-X.md. Replace placeholders; use “not run” fo
 ```yaml
 tpcn_handoff:
   agent: Luna-X
+  luna_identifier: "Luna-X"
+  descriptive_name: "<name>"
   task_id: "<task-id>"
   component: "<component>"
   status: "<complete|blocked|partial>"
-  contract_version: "1.0"
+  contract_version: "1.1"
   branch: "<branch>"
   base_revision: "<revision>"
   result_revision: "<revision or uncommitted>"
+  dependencies: []
+  owner: "<owner>"
+  classification: []
+  hypothesis: "<falsifiable hypothesis or not applicable>"
+  counter_hypothesis: "<result that would count against it or not applicable>"
+  interfaces_relied_on: []
+  label_information_boundary: []
+  timing_assumptions: []
+  reset_boundaries: []
+  resource_bounds: []
+  authorized_scope: []
+  unauthorized_scope: []
+  controls: []
+  measurements: []
+  information_boundary_check: []
+  hardware_mapping: []
   architecture_invariants_touched: []
   preserves: []
   architecture_change: false
@@ -25,6 +43,13 @@ tpcn_handoff:
   unresolved: []
   recommended_next_agent: []
 ```
+
+Every new Luna must complete the identity, classification, hypothesis,
+invariants, scope, controls, measurements, boundedness, information-boundary,
+hardware, verification and promotion-boundary fields before implementation.
+Use `OBSERVED`, `INFERRED` and `HYPOTHESIZED` labels in the narrative. The
+handoff must state what was tested, changed, unchanged, measured, failed,
+unexpected, architecturally inferred, uncertain, and authorized next.
 
 ## Outcome and owned scope
 

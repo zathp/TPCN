@@ -8,6 +8,64 @@ The immediate benchmark is sequential letter-stroke classification. Each stroke 
 
 The workflow must support eventual:
 
+## Future Luna Contract
+
+Every newly created Luna must publish a bounded dispatch record before
+implementation begins. The record is normative for the workflow and must use
+the handoff template.
+
+### Required identity and classification
+
+Declare the Luna identifier, descriptive name, task ID, baseline repository
+revision, dependencies, owner and exact owned files/components. Classify the
+work as one or more of `OBSERVATION`, `VERIFICATION`, `EXPERIMENT`,
+`INTEGRATION`, `IMPLEMENTATION`, `ARCHITECTURE-PROMOTION` and `HARDWARE`.
+Classification controls scope: an experiment does not amend the canonical
+architecture; verification should not repair unrelated production behavior;
+architecture promotion requires explicit Luna-0/project-owner approval and the
+ACP process.
+
+### Required hypothesis, invariants and scope
+
+An experimental Luna must state a falsifiable hypothesis and the result that
+would count against it. It must list clauses touched and preserved, interfaces,
+label/information boundaries, resource bounds, timing assumptions and reset
+boundaries. It must state authorized files/components and production-code
+authority, plus relevant explicit exclusions such as labels, global learning,
+unbounded topology, hardware acceptance, real-data claims, classifier redesign
+or unrelated refactoring.
+
+### Required controls and evidence
+
+Controls and comparison conditions must be declared before implementation.
+Metrics must be declared before running the experiment, including negative
+results and failed seeds. Record baseline revision, seeds, configuration,
+workload/dataset version, commands and environment where applicable. Every
+mechanism must account for finite state, events, queues, fan-in, fan-out,
+edges, candidate lists, history/eligibility, lineage/path depth, memory and
+hardware representation. Do not add an effectively unbounded structure to the
+canonical path without architecture review.
+
+### Required boundary and verification checks
+
+State whether each information source is available to a physical local
+component; global evaluation/orchestration may remain outside canonical neural
+computation. For canonical mechanisms, describe eventual FPGA, FPAA or hybrid
+mapping and identify software-only conveniences. The completion record must
+separate passed, failed, not-run and not-applicable results and include focused
+tests, relevant prior-Luna regressions, full regression where applicable,
+compile/static validation, diagnostics and `git diff --check`.
+
+### Promotion and handoff boundary
+
+Experimental success does not change the architecture. Promotion requires
+completed evidence, Luna-0 review, explicit owner decision where required, an
+ACP for material contract changes, synchronized contract/changelog revisions,
+and updated acceptance criteria. Every Luna leaves a machine-readable and
+human-readable handoff distinguishing `OBSERVED`, `INFERRED` and
+`HYPOTHESIZED`, with changes, unchanged behavior, measurements, failures,
+uncertainty, gate decision and authorized next work.
+
 # 4. Luna-1 — Event Runtime
 
 ## Goal
@@ -974,6 +1032,103 @@ pass; cycles remain bounded; same-seed replay passes; and no A01-A15 invariant
 is weakened. An absent temporal effect is a valid result, but must be reported
 as a failed capability check rather than hidden by readout changes.
 
+## Luna-12I - Temporal-Associative Structural Growth and Fan-In Formation
+
+**Authorization:** A post-12H experiment specified by ACP-0001 and the
+project-owner request. It is not evidence that the mechanism works and does
+not promote its rule into A14. Luna-13 and Luna-14 remain independent siblings.
+
+**Classification:** `EXPERIMENT`, with `VERIFICATION` of bounded topology and
+locality invariants. **Baseline:** the current repository revision recorded in
+the dispatch handoff. **Dependencies:** accepted 12H semantics, Luna-4
+bounded topology, Luna-10 structural-plasticity API, and the Luna-12E actual
+event-routing path.
+
+**Hypothesis:** If activity at two neurons repeatedly occurs in a consistent
+short causal sequence, locally available timing evidence can increase
+preference for a directed edge from the earlier neuron to the later neuron.
+This may encourage causal path shortening and useful fan-in without global
+topology knowledge. Evidence against the hypothesis includes no increase in
+convergent causal structure over controls, timing-shuffled/reversed controls
+performing equivalently, or increased churn/energy/resource use without
+improved structural organization or task behavior.
+
+**Controls:** Compare matched fixed topology, the existing structural-
+plasticity policy, random legal candidate selection, and temporal-association
+candidate selection. Where practical add timing-destroyed/shuffled and
+reversed-order association controls. Keep seeds, budgets, workload, delays,
+reset policy and training effort matched.
+
+**Measurements:** Report fan-in/out distributions and saturation, edge
+utilization, accepted growth, every rejection cause, duplicate proposals,
+candidate availability, path lengths and cumulative causal delays, convergent
+motif count, repeated temporal associations, path shortening,
+replacement/pruning, edge lifetimes/churn, event count, prediction error,
+energy/resource proxy with units, utility, task performance and determinism.
+Distinguish degree saturation, random growth, duplicate churn and true useful
+convergent fan-in. Record negative results and unavailable fields explicitly.
+
+**Scope and invariants:** Production changes are authorized only in the
+declared experiment components and tests. Preserve A01-A08, A07 label/local
+information boundaries, A09-A11 accounting, A14 finite admission and causal
+growth, and A15 portability. The mechanism may use only causal/local temporal
+evidence; it may not inspect global topology, labels, future events or
+evaluation-only metrics. A direct edge is a new positive-delay path and cannot
+rewrite in-flight events. Bound candidate lists, evidence/history retention,
+edge count, mutation count, event/lineage/queue budgets and all hardware-facing
+representations.
+
+**Non-goals:** Do not claim a useful learner from topology appearance alone,
+make a timing window/correlation formula mandatory, redesign the classifier,
+perform real-dataset or hardware acceptance, promote A14, add global learning
+or implement unbounded topology.
+
+**Expected handoff and gate:** Include the full Future Luna Contract fields,
+controlled traces, all seeds/configurations/commands, negative results,
+rejection accounting and `OBSERVED`/`INFERRED`/`HYPOTHESIZED` labels. The
+mechanism is not accepted merely because it runs; Luna-0 reviews whether the
+evidence supports a later experiment or ACP.
+
+## Luna-12J - Modular/Bootstrap Initialization and Integration
+
+**Authorization:** A separate future initialization experiment. It is not
+authorized by this documentation to implement a bootstrap trainer. It does
+not require Luna-12I and does not block Luna-13, Luna-14, Luna-15, Luna-16 or
+Luna-17.
+
+**Classification:** `EXPERIMENT`, `INTEGRATION`, and, where applicable,
+`VERIFICATION`. **Hypothesis:** bounded modules initialized from reproducible
+parameter/topology fragments can compose into a useful TPCN starting state
+without hidden global runtime computation. Evidence against it includes
+interface incompatibility, causal/timing violations, unbounded state or
+topology, reset leakage, non-deterministic composition, hidden trainer inputs,
+or failure of post-integration local learning compared with legal reference
+initializations.
+
+**Module contract:** Each independently prepared module declares inputs,
+outputs, event semantics, state, reset behavior, topology/resource
+requirements, time units, parameter bounds, hardware assumptions and training
+provenance. Composition must not rely on invisible shared state. Bootstrap
+state must be serializable/versionable or reproducibly generated.
+
+**Controls and measurements:** Compare at least zero, random and simple
+deterministic legal initialization against the modular/bootstrap condition.
+Test interface compatibility, causal event exchange, timing compatibility,
+bounded state/topology, reset/isolation, prediction/error behavior,
+energy/resource behavior, determinism, software/hardware traceability and
+post-integration local learning. Outer orchestration may use global data only
+before execution; it must not become an undeclared neural input.
+
+**Non-goals:** Do not require pretrained modules, replace runtime local
+learning, claim hardware equivalence, introduce global runtime state, leak
+labels/future data, implement an opaque trainer, or promote bootstrap as the
+only legal initialization path.
+
+**Expected handoff and gate:** Record module manifests, provenance, serialized
+state/version, exact commands and environments, composition traces, controls,
+failures and boundedness. Luna-0 reviews the evidence before any runtime or
+architecture promotion.
+
 ## Luna-13 — GPU-Compatible Visualization Path
 
 **Authorization:** Blocked until Luna-12 passes and Luna-0 explicitly authorizes this milestone. The prompt or handoff alone is not authorization.
@@ -1304,32 +1459,32 @@ Neuron              Topology
              Luna-12 (passed)
              Contract + CPU exporter
                │
-              ┌─┼──────────────┐
-              ▼ ▼              ▼
-            12A 13             14
-             │  GPU            ModelSim/
-             ▼  visualization  FPGA
-            12E
-             │
-            12F
-             │
-            12G
-             │
-            12H
-             │
-             └───────┬───────┘
-            12C
-             │
-             ▼
-            12D
-             │
-             ▼
-            12E
-             │
-             └───────┬─────────┘
+              ┌─┼──────────────────────────────┐
+              ▼ ▼                              ▼
+             12A 13                             14
+              │  GPU                            ModelSim/
+              ▼  visualization                  FPGA
+             12B
+              │
+             12C
+              │
+             12D
+              │
+             12E
+              │
+             12F
+              │
+             12G
+              │
+             12H
+              ├───────► 12I  structural growth
+              │
+              └───────► 12J  modular/bootstrap initialization
+
+        Stable software event semantics
+                     │
                      ▼
                 Post-observability
-                hardware track
                 Luna-15 / Luna-16 / Luna-17
 ```
 
