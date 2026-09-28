@@ -1,0 +1,5602 @@
+[
+  {
+    "accepted_additions": 0,
+    "accuracy": 0.125,
+    "accuracy_per_event": 0.0008620689655172414,
+    "accuracy_per_proxy_energy": 0.0026996551801099938,
+    "activation_count": 2,
+    "active_edge_utilization": 1.0,
+    "candidate_considered": 4,
+    "candidate_exposure": 4,
+    "causal_intervention_changed": false,
+    "class_count": 4,
+    "class_separation": 0.13143892268935825,
+    "classifier_candidate_capacity": 8,
+    "classifier_config_digest": "d53c8e5cf8c0328ce55443bcfbfb39f4a08df1cd1b0691bb6473a4398182a803",
+    "classifier_edge_capacity": 6,
+    "classifier_fan_in_limit": 2,
+    "classifier_fan_out_limit": 2,
+    "classifier_neuron_count": 7,
+    "classifier_topology_edges": 1,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-left-inward",
+        "spiral-right-inward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-right-outward",
+        1
+      ]
+    ],
+    "edge_count": 3,
+    "energy_unit": "activity-cost-proxy; uncalibrated",
+    "event_count": 145,
+    "events_per_correct": 1160.0,
+    "executed_policy": "fixed",
+    "executed_scale": "reference",
+    "fan_in_saturation": 0.5,
+    "fan_out_saturation": 0.5,
+    "growth_attempts": 0,
+    "order_control_accuracy": 0.125,
+    "order_control_prediction_loss": 0.0,
+    "path_delay": 3.0,
+    "path_hops": 3.0,
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        0.0
+      ],
+      [
+        "spiral-left-outward",
+        0.0
+      ],
+      [
+        "spiral-right-inward",
+        0.0
+      ],
+      [
+        "spiral-right-outward",
+        0.5
+      ]
+    ],
+    "policy": "fixed",
+    "prediction_error_count": 0,
+    "prediction_loss": 0.0,
+    "proxy_energy": 46.302209601045064,
+    "proxy_energy_per_correct": 370.4176768083605,
+    "rejected_mutations": 0,
+    "rejection_reasons": [],
+    "replay_digest": "0ba724e0abcfd3d96a4ffba48ecbaeb88bba8f326aa353fa75a7136a5ae66140",
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "requested_policy": "fixed",
+    "requested_scale": "reference",
+    "scale": "reference",
+    "seed": 0,
+    "shortcut_selected": false
+  },
+  {
+    "accepted_additions": 2,
+    "accuracy": 0.25,
+    "accuracy_per_event": 0.0013440860215053765,
+    "accuracy_per_proxy_energy": 0.005000282801170997,
+    "activation_count": 3,
+    "active_edge_utilization": 0.8,
+    "candidate_considered": 9,
+    "candidate_exposure": 4,
+    "causal_intervention_changed": false,
+    "class_count": 4,
+    "class_separation": 0.11710403290285291,
+    "classifier_candidate_capacity": 8,
+    "classifier_config_digest": "fb9b8403ac9c1daa189d0e2305482e57d31593d8fb681973127ed1431797d688",
+    "classifier_edge_capacity": 6,
+    "classifier_fan_in_limit": 2,
+    "classifier_fan_out_limit": 2,
+    "classifier_neuron_count": 7,
+    "classifier_topology_edges": 2,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-inward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-outward",
+        2
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-right-outward",
+        1
+      ]
+    ],
+    "edge_count": 5,
+    "energy_unit": "activity-cost-proxy; uncalibrated",
+    "event_count": 186,
+    "events_per_correct": 744.0,
+    "executed_policy": "baseline",
+    "executed_scale": "reference",
+    "fan_in_saturation": 1.0,
+    "fan_out_saturation": 1.0,
+    "growth_attempts": 3,
+    "order_control_accuracy": 0.25,
+    "order_control_prediction_loss": 0.0,
+    "path_delay": 3.0,
+    "path_hops": 3.0,
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        0.5
+      ],
+      [
+        "spiral-left-outward",
+        0.0
+      ],
+      [
+        "spiral-right-inward",
+        0.0
+      ],
+      [
+        "spiral-right-outward",
+        0.5
+      ]
+    ],
+    "policy": "baseline",
+    "prediction_error_count": 0,
+    "prediction_loss": 0.0,
+    "proxy_energy": 49.99717214823399,
+    "proxy_energy_per_correct": 199.98868859293597,
+    "rejected_mutations": 1,
+    "rejection_reasons": [
+      [
+        "fan_out_full",
+        1
+      ]
+    ],
+    "replay_digest": "8c1c71c7882f972b209482c2f0543bcd5aba67e535c91d3c7ea2276cb90d059a",
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "requested_policy": "baseline",
+    "requested_scale": "reference",
+    "scale": "reference",
+    "seed": 0,
+    "shortcut_selected": false
+  },
+  {
+    "accepted_additions": 2,
+    "accuracy": 0.25,
+    "accuracy_per_event": 0.001201923076923077,
+    "accuracy_per_proxy_energy": 0.004789970492540069,
+    "activation_count": 4,
+    "active_edge_utilization": 0.8,
+    "candidate_considered": 9,
+    "candidate_exposure": 4,
+    "causal_intervention_changed": false,
+    "class_count": 4,
+    "class_separation": 0.13069508769377242,
+    "classifier_candidate_capacity": 8,
+    "classifier_config_digest": "df4557074741fbaabf4e3aa82144395419c4113e1977d79011ef7844888d0935",
+    "classifier_edge_capacity": 6,
+    "classifier_fan_in_limit": 2,
+    "classifier_fan_out_limit": 2,
+    "classifier_neuron_count": 7,
+    "classifier_topology_edges": 2,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-inward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-outward",
+        2
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-right-outward",
+        1
+      ]
+    ],
+    "edge_count": 5,
+    "energy_unit": "activity-cost-proxy; uncalibrated",
+    "event_count": 208,
+    "events_per_correct": 832.0,
+    "executed_policy": "random",
+    "executed_scale": "reference",
+    "fan_in_saturation": 1.0,
+    "fan_out_saturation": 1.0,
+    "growth_attempts": 3,
+    "order_control_accuracy": 0.25,
+    "order_control_prediction_loss": 0.0,
+    "path_delay": 3.0,
+    "path_hops": 3.0,
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        0.5
+      ],
+      [
+        "spiral-left-outward",
+        0.0
+      ],
+      [
+        "spiral-right-inward",
+        0.0
+      ],
+      [
+        "spiral-right-outward",
+        0.5
+      ]
+    ],
+    "policy": "random",
+    "prediction_error_count": 0,
+    "prediction_loss": 0.0,
+    "proxy_energy": 52.19238832250671,
+    "proxy_energy_per_correct": 208.76955329002683,
+    "rejected_mutations": 1,
+    "rejection_reasons": [
+      [
+        "fan_in_full",
+        1
+      ]
+    ],
+    "replay_digest": "d940a9635dbd72c14e7673a88c4812aa38ae2c6a00fd3615717357d53caedeb7",
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "requested_policy": "random",
+    "requested_scale": "reference",
+    "scale": "reference",
+    "seed": 0,
+    "shortcut_selected": false
+  },
+  {
+    "accepted_additions": 1,
+    "accuracy": 0.25,
+    "accuracy_per_event": 0.0013440860215053765,
+    "accuracy_per_proxy_energy": 0.005000282801170997,
+    "activation_count": 3,
+    "active_edge_utilization": 1.0,
+    "candidate_considered": 9,
+    "candidate_exposure": 4,
+    "causal_intervention_changed": true,
+    "class_count": 4,
+    "class_separation": 0.11710403290285291,
+    "classifier_candidate_capacity": 8,
+    "classifier_config_digest": "469a635839288a3400877138549656f213b7c9230c364358284ad27ade4b4c7b",
+    "classifier_edge_capacity": 6,
+    "classifier_fan_in_limit": 2,
+    "classifier_fan_out_limit": 2,
+    "classifier_neuron_count": 7,
+    "classifier_topology_edges": 2,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-inward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-outward",
+        2
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-right-outward",
+        1
+      ]
+    ],
+    "edge_count": 4,
+    "energy_unit": "activity-cost-proxy; uncalibrated",
+    "event_count": 186,
+    "events_per_correct": 744.0,
+    "executed_policy": "temporal",
+    "executed_scale": "reference",
+    "fan_in_saturation": 1.0,
+    "fan_out_saturation": 1.0,
+    "growth_attempts": 3,
+    "order_control_accuracy": 0.25,
+    "order_control_prediction_loss": 0.0,
+    "path_delay": 1.875,
+    "path_hops": 2.0,
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        0.5
+      ],
+      [
+        "spiral-left-outward",
+        0.0
+      ],
+      [
+        "spiral-right-inward",
+        0.0
+      ],
+      [
+        "spiral-right-outward",
+        0.5
+      ]
+    ],
+    "policy": "temporal",
+    "prediction_error_count": 0,
+    "prediction_loss": 0.0,
+    "proxy_energy": 49.99717214823399,
+    "proxy_energy_per_correct": 199.98868859293597,
+    "rejected_mutations": 2,
+    "rejection_reasons": [
+      [
+        "fan_in_full",
+        1
+      ],
+      [
+        "fan_out_full",
+        1
+      ]
+    ],
+    "replay_digest": "71083707f8eab8f277a940656f1706d84832c7f91092e48557014696e3cd1bdd",
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "requested_policy": "temporal",
+    "requested_scale": "reference",
+    "scale": "reference",
+    "seed": 0,
+    "shortcut_selected": true
+  },
+  {
+    "accepted_additions": 2,
+    "accuracy": 0.25,
+    "accuracy_per_event": 0.0013440860215053765,
+    "accuracy_per_proxy_energy": 0.005000282801170997,
+    "activation_count": 3,
+    "active_edge_utilization": 0.8,
+    "candidate_considered": 9,
+    "candidate_exposure": 4,
+    "causal_intervention_changed": false,
+    "class_count": 4,
+    "class_separation": 0.11710403290285291,
+    "classifier_candidate_capacity": 8,
+    "classifier_config_digest": "b194cd38a5918f27ab320d9f35874d7a7787545d115293575958d9a399433d8d",
+    "classifier_edge_capacity": 6,
+    "classifier_fan_in_limit": 2,
+    "classifier_fan_out_limit": 2,
+    "classifier_neuron_count": 7,
+    "classifier_topology_edges": 2,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-inward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-outward",
+        2
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-right-outward",
+        1
+      ]
+    ],
+    "edge_count": 5,
+    "energy_unit": "activity-cost-proxy; uncalibrated",
+    "event_count": 186,
+    "events_per_correct": 744.0,
+    "executed_policy": "reversed",
+    "executed_scale": "reference",
+    "fan_in_saturation": 1.0,
+    "fan_out_saturation": 1.0,
+    "growth_attempts": 3,
+    "order_control_accuracy": 0.25,
+    "order_control_prediction_loss": 0.0,
+    "path_delay": 3.0,
+    "path_hops": 3.0,
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        0.5
+      ],
+      [
+        "spiral-left-outward",
+        0.0
+      ],
+      [
+        "spiral-right-inward",
+        0.0
+      ],
+      [
+        "spiral-right-outward",
+        0.5
+      ]
+    ],
+    "policy": "reversed",
+    "prediction_error_count": 0,
+    "prediction_loss": 0.0,
+    "proxy_energy": 49.99717214823399,
+    "proxy_energy_per_correct": 199.98868859293597,
+    "rejected_mutations": 1,
+    "rejection_reasons": [
+      [
+        "fan_out_full",
+        1
+      ]
+    ],
+    "replay_digest": "8c1c71c7882f972b209482c2f0543bcd5aba67e535c91d3c7ea2276cb90d059a",
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "requested_policy": "reversed",
+    "requested_scale": "reference",
+    "scale": "reference",
+    "seed": 0,
+    "shortcut_selected": false
+  },
+  {
+    "accepted_additions": 0,
+    "accuracy": 0.25,
+    "accuracy_per_event": 0.0017006802721088435,
+    "accuracy_per_proxy_energy": 0.005265530059794019,
+    "activation_count": 2,
+    "active_edge_utilization": 1.0,
+    "candidate_considered": 4,
+    "candidate_exposure": 4,
+    "causal_intervention_changed": false,
+    "class_count": 4,
+    "class_separation": 0.07961452822205148,
+    "classifier_candidate_capacity": 8,
+    "classifier_config_digest": "c477e2b958bf18785b272603c24dbe7de68f0c2add30da985fbaa1069fa761f2",
+    "classifier_edge_capacity": 6,
+    "classifier_fan_in_limit": 2,
+    "classifier_fan_out_limit": 2,
+    "classifier_neuron_count": 7,
+    "classifier_topology_edges": 1,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-outward",
+        2
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-inward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-right-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-outward",
+        1
+      ]
+    ],
+    "edge_count": 3,
+    "energy_unit": "activity-cost-proxy; uncalibrated",
+    "event_count": 147,
+    "events_per_correct": 588.0,
+    "executed_policy": "fixed",
+    "executed_scale": "reference",
+    "fan_in_saturation": 0.5,
+    "fan_out_saturation": 0.5,
+    "growth_attempts": 0,
+    "order_control_accuracy": 0.25,
+    "order_control_prediction_loss": 0.0,
+    "path_delay": 3.0,
+    "path_hops": 3.0,
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        0.0
+      ],
+      [
+        "spiral-left-outward",
+        0.5
+      ],
+      [
+        "spiral-right-inward",
+        0.5
+      ],
+      [
+        "spiral-right-outward",
+        0.0
+      ]
+    ],
+    "policy": "fixed",
+    "prediction_error_count": 0,
+    "prediction_loss": 0.0,
+    "proxy_energy": 47.47860085519666,
+    "proxy_energy_per_correct": 189.91440342078664,
+    "rejected_mutations": 0,
+    "rejection_reasons": [],
+    "replay_digest": "0ba724e0abcfd3d96a4ffba48ecbaeb88bba8f326aa353fa75a7136a5ae66140",
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "requested_policy": "fixed",
+    "requested_scale": "reference",
+    "scale": "reference",
+    "seed": 1,
+    "shortcut_selected": false
+  },
+  {
+    "accepted_additions": 2,
+    "accuracy": 0.25,
+    "accuracy_per_event": 0.001358695652173913,
+    "accuracy_per_proxy_energy": 0.004954407512080527,
+    "activation_count": 3,
+    "active_edge_utilization": 0.8,
+    "candidate_considered": 9,
+    "candidate_exposure": 4,
+    "causal_intervention_changed": false,
+    "class_count": 4,
+    "class_separation": 0.07177140494563736,
+    "classifier_candidate_capacity": 8,
+    "classifier_config_digest": "2a0a9d70293439d1a9ee291c73a14525dfa495333e2c959caff431fb0ebcf028",
+    "classifier_edge_capacity": 6,
+    "classifier_fan_in_limit": 2,
+    "classifier_fan_out_limit": 2,
+    "classifier_neuron_count": 7,
+    "classifier_topology_edges": 2,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-outward",
+        2
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-right-outward",
+        1
+      ]
+    ],
+    "edge_count": 5,
+    "energy_unit": "activity-cost-proxy; uncalibrated",
+    "event_count": 184,
+    "events_per_correct": 736.0,
+    "executed_policy": "baseline",
+    "executed_scale": "reference",
+    "fan_in_saturation": 1.0,
+    "fan_out_saturation": 1.0,
+    "growth_attempts": 3,
+    "order_control_accuracy": 0.25,
+    "order_control_prediction_loss": 0.0,
+    "path_delay": 3.0,
+    "path_hops": 3.0,
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        0.0
+      ],
+      [
+        "spiral-left-outward",
+        0.5
+      ],
+      [
+        "spiral-right-inward",
+        0.0
+      ],
+      [
+        "spiral-right-outward",
+        0.5
+      ]
+    ],
+    "policy": "baseline",
+    "prediction_error_count": 0,
+    "prediction_loss": 0.0,
+    "proxy_energy": 50.46012048674138,
+    "proxy_energy_per_correct": 201.84048194696553,
+    "rejected_mutations": 1,
+    "rejection_reasons": [
+      [
+        "fan_out_full",
+        1
+      ]
+    ],
+    "replay_digest": "8c1c71c7882f972b209482c2f0543bcd5aba67e535c91d3c7ea2276cb90d059a",
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "requested_policy": "baseline",
+    "requested_scale": "reference",
+    "scale": "reference",
+    "seed": 1,
+    "shortcut_selected": false
+  },
+  {
+    "accepted_additions": 2,
+    "accuracy": 0.125,
+    "accuracy_per_event": 0.0006038647342995169,
+    "accuracy_per_proxy_energy": 0.0023890498392589964,
+    "activation_count": 4,
+    "active_edge_utilization": 0.8,
+    "candidate_considered": 9,
+    "candidate_exposure": 4,
+    "causal_intervention_changed": false,
+    "class_count": 4,
+    "class_separation": 0.07314798528296615,
+    "classifier_candidate_capacity": 8,
+    "classifier_config_digest": "50df638c44f85529dc098661c7aad09721614c6e1633a126fae85b41905d1bc9",
+    "classifier_edge_capacity": 6,
+    "classifier_fan_in_limit": 2,
+    "classifier_fan_out_limit": 2,
+    "classifier_neuron_count": 7,
+    "classifier_topology_edges": 2,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-outward",
+        2
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-outward",
+        1
+      ]
+    ],
+    "edge_count": 5,
+    "energy_unit": "activity-cost-proxy; uncalibrated",
+    "event_count": 207,
+    "events_per_correct": 1656.0,
+    "executed_policy": "random",
+    "executed_scale": "reference",
+    "fan_in_saturation": 1.0,
+    "fan_out_saturation": 1.0,
+    "growth_attempts": 3,
+    "order_control_accuracy": 0.125,
+    "order_control_prediction_loss": 0.0,
+    "path_delay": 3.0,
+    "path_hops": 3.0,
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        0.0
+      ],
+      [
+        "spiral-left-outward",
+        0.5
+      ],
+      [
+        "spiral-right-inward",
+        0.0
+      ],
+      [
+        "spiral-right-outward",
+        0.0
+      ]
+    ],
+    "policy": "random",
+    "prediction_error_count": 0,
+    "prediction_loss": 0.0,
+    "proxy_energy": 52.32205621912468,
+    "proxy_energy_per_correct": 418.57644975299746,
+    "rejected_mutations": 1,
+    "rejection_reasons": [
+      [
+        "fan_in_full",
+        1
+      ]
+    ],
+    "replay_digest": "8c1c71c7882f972b209482c2f0543bcd5aba67e535c91d3c7ea2276cb90d059a",
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "requested_policy": "random",
+    "requested_scale": "reference",
+    "scale": "reference",
+    "seed": 1,
+    "shortcut_selected": false
+  },
+  {
+    "accepted_additions": 1,
+    "accuracy": 0.25,
+    "accuracy_per_event": 0.001358695652173913,
+    "accuracy_per_proxy_energy": 0.004954407512080527,
+    "activation_count": 3,
+    "active_edge_utilization": 1.0,
+    "candidate_considered": 9,
+    "candidate_exposure": 4,
+    "causal_intervention_changed": true,
+    "class_count": 4,
+    "class_separation": 0.07177140494563736,
+    "classifier_candidate_capacity": 8,
+    "classifier_config_digest": "4cb8117046beb8e000e3ef19b736439dfe98706361c544db0047297d7bbf959a",
+    "classifier_edge_capacity": 6,
+    "classifier_fan_in_limit": 2,
+    "classifier_fan_out_limit": 2,
+    "classifier_neuron_count": 7,
+    "classifier_topology_edges": 2,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-outward",
+        2
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-right-outward",
+        1
+      ]
+    ],
+    "edge_count": 4,
+    "energy_unit": "activity-cost-proxy; uncalibrated",
+    "event_count": 184,
+    "events_per_correct": 736.0,
+    "executed_policy": "temporal",
+    "executed_scale": "reference",
+    "fan_in_saturation": 1.0,
+    "fan_out_saturation": 1.0,
+    "growth_attempts": 3,
+    "order_control_accuracy": 0.25,
+    "order_control_prediction_loss": 0.0,
+    "path_delay": 1.875,
+    "path_hops": 2.0,
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        0.0
+      ],
+      [
+        "spiral-left-outward",
+        0.5
+      ],
+      [
+        "spiral-right-inward",
+        0.0
+      ],
+      [
+        "spiral-right-outward",
+        0.5
+      ]
+    ],
+    "policy": "temporal",
+    "prediction_error_count": 0,
+    "prediction_loss": 0.0,
+    "proxy_energy": 50.46012048674138,
+    "proxy_energy_per_correct": 201.84048194696553,
+    "rejected_mutations": 2,
+    "rejection_reasons": [
+      [
+        "fan_in_full",
+        1
+      ],
+      [
+        "fan_out_full",
+        1
+      ]
+    ],
+    "replay_digest": "71083707f8eab8f277a940656f1706d84832c7f91092e48557014696e3cd1bdd",
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "requested_policy": "temporal",
+    "requested_scale": "reference",
+    "scale": "reference",
+    "seed": 1,
+    "shortcut_selected": true
+  },
+  {
+    "accepted_additions": 2,
+    "accuracy": 0.25,
+    "accuracy_per_event": 0.001358695652173913,
+    "accuracy_per_proxy_energy": 0.004954407512080527,
+    "activation_count": 3,
+    "active_edge_utilization": 0.8,
+    "candidate_considered": 9,
+    "candidate_exposure": 4,
+    "causal_intervention_changed": false,
+    "class_count": 4,
+    "class_separation": 0.07177140494563736,
+    "classifier_candidate_capacity": 8,
+    "classifier_config_digest": "c90fc01a6487a54b4b1a76984f5978c83cc82ed5464c761deafee83b97310bae",
+    "classifier_edge_capacity": 6,
+    "classifier_fan_in_limit": 2,
+    "classifier_fan_out_limit": 2,
+    "classifier_neuron_count": 7,
+    "classifier_topology_edges": 2,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-outward",
+        2
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-right-outward",
+        1
+      ]
+    ],
+    "edge_count": 5,
+    "energy_unit": "activity-cost-proxy; uncalibrated",
+    "event_count": 184,
+    "events_per_correct": 736.0,
+    "executed_policy": "reversed",
+    "executed_scale": "reference",
+    "fan_in_saturation": 1.0,
+    "fan_out_saturation": 1.0,
+    "growth_attempts": 3,
+    "order_control_accuracy": 0.25,
+    "order_control_prediction_loss": 0.0,
+    "path_delay": 3.0,
+    "path_hops": 3.0,
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        0.0
+      ],
+      [
+        "spiral-left-outward",
+        0.5
+      ],
+      [
+        "spiral-right-inward",
+        0.0
+      ],
+      [
+        "spiral-right-outward",
+        0.5
+      ]
+    ],
+    "policy": "reversed",
+    "prediction_error_count": 0,
+    "prediction_loss": 0.0,
+    "proxy_energy": 50.46012048674138,
+    "proxy_energy_per_correct": 201.84048194696553,
+    "rejected_mutations": 1,
+    "rejection_reasons": [
+      [
+        "fan_out_full",
+        1
+      ]
+    ],
+    "replay_digest": "8c1c71c7882f972b209482c2f0543bcd5aba67e535c91d3c7ea2276cb90d059a",
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "requested_policy": "reversed",
+    "requested_scale": "reference",
+    "scale": "reference",
+    "seed": 1,
+    "shortcut_selected": false
+  },
+  {
+    "accepted_additions": 0,
+    "accuracy": 0.375,
+    "accuracy_per_event": 0.0027573529411764708,
+    "accuracy_per_proxy_energy": 0.007106747338621133,
+    "activation_count": 2,
+    "active_edge_utilization": 1.0,
+    "candidate_considered": 4,
+    "candidate_exposure": 4,
+    "causal_intervention_changed": false,
+    "class_count": 4,
+    "class_separation": 0.13914115430496235,
+    "classifier_candidate_capacity": 8,
+    "classifier_config_digest": "eb00287497e89499d4daf901446fd07cad86a0d4f5d05ad51808495af4f1156f",
+    "classifier_edge_capacity": 6,
+    "classifier_fan_in_limit": 2,
+    "classifier_fan_out_limit": 2,
+    "classifier_neuron_count": 7,
+    "classifier_topology_edges": 1,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-inward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-inward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-right-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-outward",
+        1
+      ]
+    ],
+    "edge_count": 3,
+    "energy_unit": "activity-cost-proxy; uncalibrated",
+    "event_count": 136,
+    "events_per_correct": 362.6666666666667,
+    "executed_policy": "fixed",
+    "executed_scale": "reference",
+    "fan_in_saturation": 0.5,
+    "fan_out_saturation": 0.5,
+    "growth_attempts": 0,
+    "order_control_accuracy": 0.375,
+    "order_control_prediction_loss": 0.0,
+    "path_delay": 3.0,
+    "path_hops": 3.0,
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        0.5
+      ],
+      [
+        "spiral-left-outward",
+        0.5
+      ],
+      [
+        "spiral-right-inward",
+        0.5
+      ],
+      [
+        "spiral-right-outward",
+        0.0
+      ]
+    ],
+    "policy": "fixed",
+    "prediction_error_count": 0,
+    "prediction_loss": 0.0,
+    "proxy_energy": 52.76675561013519,
+    "proxy_energy_per_correct": 140.71134829369385,
+    "rejected_mutations": 0,
+    "rejection_reasons": [],
+    "replay_digest": "0ba724e0abcfd3d96a4ffba48ecbaeb88bba8f326aa353fa75a7136a5ae66140",
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "requested_policy": "fixed",
+    "requested_scale": "reference",
+    "scale": "reference",
+    "seed": 2,
+    "shortcut_selected": false
+  },
+  {
+    "accepted_additions": 2,
+    "accuracy": 0.375,
+    "accuracy_per_event": 0.0024834437086092716,
+    "accuracy_per_proxy_energy": 0.006665908065245922,
+    "activation_count": 2,
+    "active_edge_utilization": 0.8,
+    "candidate_considered": 9,
+    "candidate_exposure": 4,
+    "causal_intervention_changed": false,
+    "class_count": 4,
+    "class_separation": 0.15263711195731483,
+    "classifier_candidate_capacity": 8,
+    "classifier_config_digest": "a64a355c1b775f1b91b951c3f1fc8e48cab1fc3b86b673aad1a5260946a50bbb",
+    "classifier_edge_capacity": 6,
+    "classifier_fan_in_limit": 2,
+    "classifier_fan_out_limit": 2,
+    "classifier_neuron_count": 7,
+    "classifier_topology_edges": 2,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-inward",
+        "spiral-right-inward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-right-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-outward",
+        1
+      ]
+    ],
+    "edge_count": 5,
+    "energy_unit": "activity-cost-proxy; uncalibrated",
+    "event_count": 151,
+    "events_per_correct": 402.6666666666667,
+    "executed_policy": "baseline",
+    "executed_scale": "reference",
+    "fan_in_saturation": 1.0,
+    "fan_out_saturation": 1.0,
+    "growth_attempts": 3,
+    "order_control_accuracy": 0.375,
+    "order_control_prediction_loss": 0.0,
+    "path_delay": 3.0,
+    "path_hops": 3.0,
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        0.5
+      ],
+      [
+        "spiral-left-outward",
+        0.5
+      ],
+      [
+        "spiral-right-inward",
+        0.5
+      ],
+      [
+        "spiral-right-outward",
+        0.0
+      ]
+    ],
+    "policy": "baseline",
+    "prediction_error_count": 0,
+    "prediction_loss": 0.0,
+    "proxy_energy": 56.25640142790738,
+    "proxy_energy_per_correct": 150.01707047441968,
+    "rejected_mutations": 1,
+    "rejection_reasons": [
+      [
+        "fan_out_full",
+        1
+      ]
+    ],
+    "replay_digest": "8c1c71c7882f972b209482c2f0543bcd5aba67e535c91d3c7ea2276cb90d059a",
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "requested_policy": "baseline",
+    "requested_scale": "reference",
+    "scale": "reference",
+    "seed": 2,
+    "shortcut_selected": false
+  },
+  {
+    "accepted_additions": 2,
+    "accuracy": 0.375,
+    "accuracy_per_event": 0.0022058823529411764,
+    "accuracy_per_proxy_energy": 0.006062951416606169,
+    "activation_count": 3,
+    "active_edge_utilization": 0.8,
+    "candidate_considered": 9,
+    "candidate_exposure": 4,
+    "causal_intervention_changed": false,
+    "class_count": 4,
+    "class_separation": 0.1526371119573148,
+    "classifier_candidate_capacity": 8,
+    "classifier_config_digest": "6cde7970c0d8a58c1221d88d4aee8fb22638c6d200eab2f229116f59950eecc1",
+    "classifier_edge_capacity": 6,
+    "classifier_fan_in_limit": 2,
+    "classifier_fan_out_limit": 2,
+    "classifier_neuron_count": 7,
+    "classifier_topology_edges": 2,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-inward",
+        "spiral-right-inward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-right-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-outward",
+        1
+      ]
+    ],
+    "edge_count": 5,
+    "energy_unit": "activity-cost-proxy; uncalibrated",
+    "event_count": 170,
+    "events_per_correct": 453.3333333333333,
+    "executed_policy": "random",
+    "executed_scale": "reference",
+    "fan_in_saturation": 1.0,
+    "fan_out_saturation": 1.0,
+    "growth_attempts": 3,
+    "order_control_accuracy": 0.375,
+    "order_control_prediction_loss": 0.0,
+    "path_delay": 3.0,
+    "path_hops": 3.0,
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        0.5
+      ],
+      [
+        "spiral-left-outward",
+        0.5
+      ],
+      [
+        "spiral-right-inward",
+        0.5
+      ],
+      [
+        "spiral-right-outward",
+        0.0
+      ]
+    ],
+    "policy": "random",
+    "prediction_error_count": 0,
+    "prediction_loss": 0.0,
+    "proxy_energy": 61.8510646436801,
+    "proxy_energy_per_correct": 164.93617238314692,
+    "rejected_mutations": 1,
+    "rejection_reasons": [
+      [
+        "fan_in_full",
+        1
+      ]
+    ],
+    "replay_digest": "2909b4f71a3518547bd21dee93db24fd745c0473e2046fa1d5cab8d170ea7699",
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "requested_policy": "random",
+    "requested_scale": "reference",
+    "scale": "reference",
+    "seed": 2,
+    "shortcut_selected": false
+  },
+  {
+    "accepted_additions": 1,
+    "accuracy": 0.375,
+    "accuracy_per_event": 0.0025,
+    "accuracy_per_proxy_energy": 0.006738899798747037,
+    "activation_count": 2,
+    "active_edge_utilization": 1.0,
+    "candidate_considered": 9,
+    "candidate_exposure": 4,
+    "causal_intervention_changed": true,
+    "class_count": 4,
+    "class_separation": 0.1526371119573148,
+    "classifier_candidate_capacity": 8,
+    "classifier_config_digest": "218790e270340c14a083be77de2dd81d22fbbbc74afb921555173e0943779ddf",
+    "classifier_edge_capacity": 6,
+    "classifier_fan_in_limit": 2,
+    "classifier_fan_out_limit": 2,
+    "classifier_neuron_count": 7,
+    "classifier_topology_edges": 2,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-inward",
+        "spiral-right-inward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-right-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-outward",
+        1
+      ]
+    ],
+    "edge_count": 4,
+    "energy_unit": "activity-cost-proxy; uncalibrated",
+    "event_count": 150,
+    "events_per_correct": 400.0,
+    "executed_policy": "temporal",
+    "executed_scale": "reference",
+    "fan_in_saturation": 1.0,
+    "fan_out_saturation": 1.0,
+    "growth_attempts": 3,
+    "order_control_accuracy": 0.375,
+    "order_control_prediction_loss": 0.0,
+    "path_delay": 1.875,
+    "path_hops": 2.0,
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        0.5
+      ],
+      [
+        "spiral-left-outward",
+        0.5
+      ],
+      [
+        "spiral-right-inward",
+        0.5
+      ],
+      [
+        "spiral-right-outward",
+        0.0
+      ]
+    ],
+    "policy": "temporal",
+    "prediction_error_count": 0,
+    "prediction_loss": 0.0,
+    "proxy_energy": 55.64706572276438,
+    "proxy_energy_per_correct": 148.39217526070502,
+    "rejected_mutations": 2,
+    "rejection_reasons": [
+      [
+        "fan_in_full",
+        1
+      ],
+      [
+        "fan_out_full",
+        1
+      ]
+    ],
+    "replay_digest": "71083707f8eab8f277a940656f1706d84832c7f91092e48557014696e3cd1bdd",
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "requested_policy": "temporal",
+    "requested_scale": "reference",
+    "scale": "reference",
+    "seed": 2,
+    "shortcut_selected": true
+  },
+  {
+    "accepted_additions": 2,
+    "accuracy": 0.375,
+    "accuracy_per_event": 0.0025,
+    "accuracy_per_proxy_energy": 0.006738899798747037,
+    "activation_count": 2,
+    "active_edge_utilization": 0.8,
+    "candidate_considered": 9,
+    "candidate_exposure": 4,
+    "causal_intervention_changed": false,
+    "class_count": 4,
+    "class_separation": 0.1526371119573148,
+    "classifier_candidate_capacity": 8,
+    "classifier_config_digest": "fc98ac44787f3ca8a1fc17879d3158c0949f17aeb3debbe5a63ce55e17495c6e",
+    "classifier_edge_capacity": 6,
+    "classifier_fan_in_limit": 2,
+    "classifier_fan_out_limit": 2,
+    "classifier_neuron_count": 7,
+    "classifier_topology_edges": 2,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-inward",
+        "spiral-right-inward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-right-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-outward",
+        1
+      ]
+    ],
+    "edge_count": 5,
+    "energy_unit": "activity-cost-proxy; uncalibrated",
+    "event_count": 150,
+    "events_per_correct": 400.0,
+    "executed_policy": "reversed",
+    "executed_scale": "reference",
+    "fan_in_saturation": 1.0,
+    "fan_out_saturation": 1.0,
+    "growth_attempts": 3,
+    "order_control_accuracy": 0.375,
+    "order_control_prediction_loss": 0.0,
+    "path_delay": 3.0,
+    "path_hops": 3.0,
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        0.5
+      ],
+      [
+        "spiral-left-outward",
+        0.5
+      ],
+      [
+        "spiral-right-inward",
+        0.5
+      ],
+      [
+        "spiral-right-outward",
+        0.0
+      ]
+    ],
+    "policy": "reversed",
+    "prediction_error_count": 0,
+    "prediction_loss": 0.0,
+    "proxy_energy": 55.64706572276438,
+    "proxy_energy_per_correct": 148.39217526070502,
+    "rejected_mutations": 1,
+    "rejection_reasons": [
+      [
+        "fan_out_full",
+        1
+      ]
+    ],
+    "replay_digest": "8c1c71c7882f972b209482c2f0543bcd5aba67e535c91d3c7ea2276cb90d059a",
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "requested_policy": "reversed",
+    "requested_scale": "reference",
+    "scale": "reference",
+    "seed": 2,
+    "shortcut_selected": false
+  },
+  {
+    "accepted_additions": 0,
+    "accuracy": 0.25,
+    "accuracy_per_event": 0.001893939393939394,
+    "accuracy_per_proxy_energy": 0.005985723614182649,
+    "activation_count": 2,
+    "active_edge_utilization": 1.0,
+    "candidate_considered": 4,
+    "candidate_exposure": 4,
+    "causal_intervention_changed": false,
+    "class_count": 4,
+    "class_separation": 0.1543568548430359,
+    "classifier_candidate_capacity": 8,
+    "classifier_config_digest": "77ad64f52912924ce96f0eceec981cb1117196fa302cfa9b082f331cbcd2b6f5",
+    "classifier_edge_capacity": 6,
+    "classifier_fan_in_limit": 2,
+    "classifier_fan_out_limit": 2,
+    "classifier_neuron_count": 7,
+    "classifier_topology_edges": 1,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-inward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-inward",
+        2
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-right-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-right-outward",
+        1
+      ]
+    ],
+    "edge_count": 3,
+    "energy_unit": "activity-cost-proxy; uncalibrated",
+    "event_count": 132,
+    "events_per_correct": 528.0,
+    "executed_policy": "fixed",
+    "executed_scale": "reference",
+    "fan_in_saturation": 0.5,
+    "fan_out_saturation": 0.5,
+    "growth_attempts": 0,
+    "order_control_accuracy": 0.25,
+    "order_control_prediction_loss": 0.0,
+    "path_delay": 3.0,
+    "path_hops": 3.0,
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        0.5
+      ],
+      [
+        "spiral-left-outward",
+        0.0
+      ],
+      [
+        "spiral-right-inward",
+        0.0
+      ],
+      [
+        "spiral-right-outward",
+        0.5
+      ]
+    ],
+    "policy": "fixed",
+    "prediction_error_count": 0,
+    "prediction_loss": 0.0,
+    "proxy_energy": 41.76604469468768,
+    "proxy_energy_per_correct": 167.06417877875072,
+    "rejected_mutations": 0,
+    "rejection_reasons": [],
+    "replay_digest": "0ba724e0abcfd3d96a4ffba48ecbaeb88bba8f326aa353fa75a7136a5ae66140",
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "requested_policy": "fixed",
+    "requested_scale": "reference",
+    "scale": "reference",
+    "seed": 3,
+    "shortcut_selected": false
+  },
+  {
+    "accepted_additions": 2,
+    "accuracy": 0.25,
+    "accuracy_per_event": 0.0017123287671232876,
+    "accuracy_per_proxy_energy": 0.005761711779851487,
+    "activation_count": 2,
+    "active_edge_utilization": 0.8,
+    "candidate_considered": 9,
+    "candidate_exposure": 4,
+    "causal_intervention_changed": false,
+    "class_count": 4,
+    "class_separation": 0.14201967078347966,
+    "classifier_candidate_capacity": 8,
+    "classifier_config_digest": "7d67b398cbd23b5a68b9159e302d70298cb8b2a224b0c0bcfb7245f16b75b8a0",
+    "classifier_edge_capacity": 6,
+    "classifier_fan_in_limit": 2,
+    "classifier_fan_out_limit": 2,
+    "classifier_neuron_count": 7,
+    "classifier_topology_edges": 2,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-inward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-inward",
+        2
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-right-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-right-outward",
+        1
+      ]
+    ],
+    "edge_count": 5,
+    "energy_unit": "activity-cost-proxy; uncalibrated",
+    "event_count": 146,
+    "events_per_correct": 584.0,
+    "executed_policy": "baseline",
+    "executed_scale": "reference",
+    "fan_in_saturation": 1.0,
+    "fan_out_saturation": 1.0,
+    "growth_attempts": 3,
+    "order_control_accuracy": 0.25,
+    "order_control_prediction_loss": 0.0,
+    "path_delay": 3.0,
+    "path_hops": 3.0,
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        0.5
+      ],
+      [
+        "spiral-left-outward",
+        0.0
+      ],
+      [
+        "spiral-right-inward",
+        0.0
+      ],
+      [
+        "spiral-right-outward",
+        0.5
+      ]
+    ],
+    "policy": "baseline",
+    "prediction_error_count": 0,
+    "prediction_loss": 0.0,
+    "proxy_energy": 43.389882998702156,
+    "proxy_energy_per_correct": 173.55953199480862,
+    "rejected_mutations": 1,
+    "rejection_reasons": [
+      [
+        "fan_out_full",
+        1
+      ]
+    ],
+    "replay_digest": "8c1c71c7882f972b209482c2f0543bcd5aba67e535c91d3c7ea2276cb90d059a",
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "requested_policy": "baseline",
+    "requested_scale": "reference",
+    "scale": "reference",
+    "seed": 3,
+    "shortcut_selected": false
+  },
+  {
+    "accepted_additions": 2,
+    "accuracy": 0.25,
+    "accuracy_per_event": 0.0017123287671232876,
+    "accuracy_per_proxy_energy": 0.005761711779851487,
+    "activation_count": 2,
+    "active_edge_utilization": 0.8,
+    "candidate_considered": 9,
+    "candidate_exposure": 4,
+    "causal_intervention_changed": false,
+    "class_count": 4,
+    "class_separation": 0.14201967078347966,
+    "classifier_candidate_capacity": 8,
+    "classifier_config_digest": "b62ebddd7d6b536110b9c32f63c7dcad5c754bce755b37a1b515750ed9dfd2c7",
+    "classifier_edge_capacity": 6,
+    "classifier_fan_in_limit": 2,
+    "classifier_fan_out_limit": 2,
+    "classifier_neuron_count": 7,
+    "classifier_topology_edges": 2,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-inward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-inward",
+        2
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-right-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-right-outward",
+        1
+      ]
+    ],
+    "edge_count": 5,
+    "energy_unit": "activity-cost-proxy; uncalibrated",
+    "event_count": 146,
+    "events_per_correct": 584.0,
+    "executed_policy": "random",
+    "executed_scale": "reference",
+    "fan_in_saturation": 1.0,
+    "fan_out_saturation": 1.0,
+    "growth_attempts": 3,
+    "order_control_accuracy": 0.25,
+    "order_control_prediction_loss": 0.0,
+    "path_delay": 3.0,
+    "path_hops": 3.0,
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        0.5
+      ],
+      [
+        "spiral-left-outward",
+        0.0
+      ],
+      [
+        "spiral-right-inward",
+        0.0
+      ],
+      [
+        "spiral-right-outward",
+        0.5
+      ]
+    ],
+    "policy": "random",
+    "prediction_error_count": 0,
+    "prediction_loss": 0.0,
+    "proxy_energy": 43.389882998702156,
+    "proxy_energy_per_correct": 173.55953199480862,
+    "rejected_mutations": 1,
+    "rejection_reasons": [
+      [
+        "fan_in_full",
+        1
+      ]
+    ],
+    "replay_digest": "8c1c71c7882f972b209482c2f0543bcd5aba67e535c91d3c7ea2276cb90d059a",
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "requested_policy": "random",
+    "requested_scale": "reference",
+    "scale": "reference",
+    "seed": 3,
+    "shortcut_selected": false
+  },
+  {
+    "accepted_additions": 1,
+    "accuracy": 0.25,
+    "accuracy_per_event": 0.0017123287671232876,
+    "accuracy_per_proxy_energy": 0.005761711779851487,
+    "activation_count": 2,
+    "active_edge_utilization": 1.0,
+    "candidate_considered": 9,
+    "candidate_exposure": 4,
+    "causal_intervention_changed": true,
+    "class_count": 4,
+    "class_separation": 0.14201967078347966,
+    "classifier_candidate_capacity": 8,
+    "classifier_config_digest": "bedb1779fbcf6e3f665da2ff76e9026217a973d098c1ba94209cf86858b5a50b",
+    "classifier_edge_capacity": 6,
+    "classifier_fan_in_limit": 2,
+    "classifier_fan_out_limit": 2,
+    "classifier_neuron_count": 7,
+    "classifier_topology_edges": 2,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-inward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-inward",
+        2
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-right-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-right-outward",
+        1
+      ]
+    ],
+    "edge_count": 4,
+    "energy_unit": "activity-cost-proxy; uncalibrated",
+    "event_count": 146,
+    "events_per_correct": 584.0,
+    "executed_policy": "temporal",
+    "executed_scale": "reference",
+    "fan_in_saturation": 1.0,
+    "fan_out_saturation": 1.0,
+    "growth_attempts": 3,
+    "order_control_accuracy": 0.25,
+    "order_control_prediction_loss": 0.0,
+    "path_delay": 1.875,
+    "path_hops": 2.0,
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        0.5
+      ],
+      [
+        "spiral-left-outward",
+        0.0
+      ],
+      [
+        "spiral-right-inward",
+        0.0
+      ],
+      [
+        "spiral-right-outward",
+        0.5
+      ]
+    ],
+    "policy": "temporal",
+    "prediction_error_count": 0,
+    "prediction_loss": 0.0,
+    "proxy_energy": 43.389882998702156,
+    "proxy_energy_per_correct": 173.55953199480862,
+    "rejected_mutations": 2,
+    "rejection_reasons": [
+      [
+        "fan_in_full",
+        1
+      ],
+      [
+        "fan_out_full",
+        1
+      ]
+    ],
+    "replay_digest": "71083707f8eab8f277a940656f1706d84832c7f91092e48557014696e3cd1bdd",
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "requested_policy": "temporal",
+    "requested_scale": "reference",
+    "scale": "reference",
+    "seed": 3,
+    "shortcut_selected": true
+  },
+  {
+    "accepted_additions": 2,
+    "accuracy": 0.25,
+    "accuracy_per_event": 0.0017123287671232876,
+    "accuracy_per_proxy_energy": 0.005761711779851487,
+    "activation_count": 2,
+    "active_edge_utilization": 0.8,
+    "candidate_considered": 9,
+    "candidate_exposure": 4,
+    "causal_intervention_changed": false,
+    "class_count": 4,
+    "class_separation": 0.14201967078347966,
+    "classifier_candidate_capacity": 8,
+    "classifier_config_digest": "f4fb9e11a16ce6adaff8cf9029adf94c0e23c87eb0492a58949dfc0b5f0d1a49",
+    "classifier_edge_capacity": 6,
+    "classifier_fan_in_limit": 2,
+    "classifier_fan_out_limit": 2,
+    "classifier_neuron_count": 7,
+    "classifier_topology_edges": 2,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-inward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-inward",
+        2
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-right-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-right-outward",
+        1
+      ]
+    ],
+    "edge_count": 5,
+    "energy_unit": "activity-cost-proxy; uncalibrated",
+    "event_count": 146,
+    "events_per_correct": 584.0,
+    "executed_policy": "reversed",
+    "executed_scale": "reference",
+    "fan_in_saturation": 1.0,
+    "fan_out_saturation": 1.0,
+    "growth_attempts": 3,
+    "order_control_accuracy": 0.25,
+    "order_control_prediction_loss": 0.0,
+    "path_delay": 3.0,
+    "path_hops": 3.0,
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        0.5
+      ],
+      [
+        "spiral-left-outward",
+        0.0
+      ],
+      [
+        "spiral-right-inward",
+        0.0
+      ],
+      [
+        "spiral-right-outward",
+        0.5
+      ]
+    ],
+    "policy": "reversed",
+    "prediction_error_count": 0,
+    "prediction_loss": 0.0,
+    "proxy_energy": 43.389882998702156,
+    "proxy_energy_per_correct": 173.55953199480862,
+    "rejected_mutations": 1,
+    "rejection_reasons": [
+      [
+        "fan_out_full",
+        1
+      ]
+    ],
+    "replay_digest": "8c1c71c7882f972b209482c2f0543bcd5aba67e535c91d3c7ea2276cb90d059a",
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "requested_policy": "reversed",
+    "requested_scale": "reference",
+    "scale": "reference",
+    "seed": 3,
+    "shortcut_selected": false
+  },
+  {
+    "accepted_additions": 0,
+    "accuracy": 0.5,
+    "accuracy_per_event": 0.0035971223021582736,
+    "accuracy_per_proxy_energy": 0.009578492593367294,
+    "activation_count": 2,
+    "active_edge_utilization": 1.0,
+    "candidate_considered": 4,
+    "candidate_exposure": 4,
+    "causal_intervention_changed": false,
+    "class_count": 4,
+    "class_separation": 0.09439375731222137,
+    "classifier_candidate_capacity": 8,
+    "classifier_config_digest": "ba2275c249701b80dfa5c6d479f7704127a0047ae26694e1d249d8f91f5f720e",
+    "classifier_edge_capacity": 6,
+    "classifier_fan_in_limit": 2,
+    "classifier_fan_out_limit": 2,
+    "classifier_neuron_count": 7,
+    "classifier_topology_edges": 1,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-inward",
+        2
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-inward",
+        2
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-right-outward",
+        1
+      ]
+    ],
+    "edge_count": 3,
+    "energy_unit": "activity-cost-proxy; uncalibrated",
+    "event_count": 139,
+    "events_per_correct": 278.0,
+    "executed_policy": "fixed",
+    "executed_scale": "reference",
+    "fan_in_saturation": 0.5,
+    "fan_out_saturation": 0.5,
+    "growth_attempts": 0,
+    "order_control_accuracy": 0.5,
+    "order_control_prediction_loss": 0.0,
+    "path_delay": 3.0,
+    "path_hops": 3.0,
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        1.0
+      ],
+      [
+        "spiral-left-outward",
+        0.5
+      ],
+      [
+        "spiral-right-inward",
+        0.0
+      ],
+      [
+        "spiral-right-outward",
+        0.5
+      ]
+    ],
+    "policy": "fixed",
+    "prediction_error_count": 0,
+    "prediction_loss": 0.0,
+    "proxy_energy": 52.20028048528525,
+    "proxy_energy_per_correct": 104.4005609705705,
+    "rejected_mutations": 0,
+    "rejection_reasons": [],
+    "replay_digest": "0ba724e0abcfd3d96a4ffba48ecbaeb88bba8f326aa353fa75a7136a5ae66140",
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "requested_policy": "fixed",
+    "requested_scale": "reference",
+    "scale": "reference",
+    "seed": 4,
+    "shortcut_selected": false
+  },
+  {
+    "accepted_additions": 2,
+    "accuracy": 0.375,
+    "accuracy_per_event": 0.0023734177215189874,
+    "accuracy_per_proxy_energy": 0.006483310180409797,
+    "activation_count": 2,
+    "active_edge_utilization": 0.8,
+    "candidate_considered": 9,
+    "candidate_exposure": 4,
+    "causal_intervention_changed": false,
+    "class_count": 4,
+    "class_separation": 0.12768731029947292,
+    "classifier_candidate_capacity": 8,
+    "classifier_config_digest": "bd784f685a4e546f3da0bb32affd3e955899ec1009066361e3ad2c7b62447848",
+    "classifier_edge_capacity": 6,
+    "classifier_fan_in_limit": 2,
+    "classifier_fan_out_limit": 2,
+    "classifier_neuron_count": 7,
+    "classifier_topology_edges": 2,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-inward",
+        2
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-inward",
+        2
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-right-inward",
+        1
+      ]
+    ],
+    "edge_count": 5,
+    "energy_unit": "activity-cost-proxy; uncalibrated",
+    "event_count": 158,
+    "events_per_correct": 421.3333333333333,
+    "executed_policy": "baseline",
+    "executed_scale": "reference",
+    "fan_in_saturation": 1.0,
+    "fan_out_saturation": 1.0,
+    "growth_attempts": 3,
+    "order_control_accuracy": 0.375,
+    "order_control_prediction_loss": 0.0,
+    "path_delay": 3.0,
+    "path_hops": 3.0,
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        1.0
+      ],
+      [
+        "spiral-left-outward",
+        0.5
+      ],
+      [
+        "spiral-right-inward",
+        0.0
+      ],
+      [
+        "spiral-right-outward",
+        0.0
+      ]
+    ],
+    "policy": "baseline",
+    "prediction_error_count": 0,
+    "prediction_loss": 0.0,
+    "proxy_energy": 57.84082352454977,
+    "proxy_energy_per_correct": 154.24219606546606,
+    "rejected_mutations": 1,
+    "rejection_reasons": [
+      [
+        "fan_out_full",
+        1
+      ]
+    ],
+    "replay_digest": "8c1c71c7882f972b209482c2f0543bcd5aba67e535c91d3c7ea2276cb90d059a",
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "requested_policy": "baseline",
+    "requested_scale": "reference",
+    "scale": "reference",
+    "seed": 4,
+    "shortcut_selected": false
+  },
+  {
+    "accepted_additions": 2,
+    "accuracy": 0.25,
+    "accuracy_per_event": 0.001524390243902439,
+    "accuracy_per_proxy_energy": 0.004472624183249795,
+    "activation_count": 3,
+    "active_edge_utilization": 0.8,
+    "candidate_considered": 9,
+    "candidate_exposure": 4,
+    "causal_intervention_changed": false,
+    "class_count": 4,
+    "class_separation": 0.11875828770722635,
+    "classifier_candidate_capacity": 8,
+    "classifier_config_digest": "c0d08af1d58487dc6460257fedb69ad3da7bc7ca2fb91cc1ca13a01ddc9c9e6e",
+    "classifier_edge_capacity": 6,
+    "classifier_fan_in_limit": 2,
+    "classifier_fan_out_limit": 2,
+    "classifier_neuron_count": 7,
+    "classifier_topology_edges": 2,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-inward",
+        2
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-inward",
+        2
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-right-inward",
+        1
+      ]
+    ],
+    "edge_count": 5,
+    "energy_unit": "activity-cost-proxy; uncalibrated",
+    "event_count": 164,
+    "events_per_correct": 656.0,
+    "executed_policy": "random",
+    "executed_scale": "reference",
+    "fan_in_saturation": 1.0,
+    "fan_out_saturation": 1.0,
+    "growth_attempts": 3,
+    "order_control_accuracy": 0.25,
+    "order_control_prediction_loss": 0.0,
+    "path_delay": 3.0,
+    "path_hops": 3.0,
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        1.0
+      ],
+      [
+        "spiral-left-outward",
+        0.0
+      ],
+      [
+        "spiral-right-inward",
+        0.0
+      ],
+      [
+        "spiral-right-outward",
+        0.0
+      ]
+    ],
+    "policy": "random",
+    "prediction_error_count": 0,
+    "prediction_loss": 0.0,
+    "proxy_energy": 55.89559725054984,
+    "proxy_energy_per_correct": 223.58238900219936,
+    "rejected_mutations": 1,
+    "rejection_reasons": [
+      [
+        "fan_in_full",
+        1
+      ]
+    ],
+    "replay_digest": "2909b4f71a3518547bd21dee93db24fd745c0473e2046fa1d5cab8d170ea7699",
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "requested_policy": "random",
+    "requested_scale": "reference",
+    "scale": "reference",
+    "seed": 4,
+    "shortcut_selected": false
+  },
+  {
+    "accepted_additions": 1,
+    "accuracy": 0.375,
+    "accuracy_per_event": 0.0023734177215189874,
+    "accuracy_per_proxy_energy": 0.006483310180409797,
+    "activation_count": 2,
+    "active_edge_utilization": 1.0,
+    "candidate_considered": 9,
+    "candidate_exposure": 4,
+    "causal_intervention_changed": true,
+    "class_count": 4,
+    "class_separation": 0.12768731029947292,
+    "classifier_candidate_capacity": 8,
+    "classifier_config_digest": "df6914e8c3bbcbd1fb9b2b9de3e93e73cb61bc2b8ea56050cfc5a054543aeb14",
+    "classifier_edge_capacity": 6,
+    "classifier_fan_in_limit": 2,
+    "classifier_fan_out_limit": 2,
+    "classifier_neuron_count": 7,
+    "classifier_topology_edges": 2,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-inward",
+        2
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-inward",
+        2
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-right-inward",
+        1
+      ]
+    ],
+    "edge_count": 4,
+    "energy_unit": "activity-cost-proxy; uncalibrated",
+    "event_count": 158,
+    "events_per_correct": 421.3333333333333,
+    "executed_policy": "temporal",
+    "executed_scale": "reference",
+    "fan_in_saturation": 1.0,
+    "fan_out_saturation": 1.0,
+    "growth_attempts": 3,
+    "order_control_accuracy": 0.375,
+    "order_control_prediction_loss": 0.0,
+    "path_delay": 1.875,
+    "path_hops": 2.0,
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        1.0
+      ],
+      [
+        "spiral-left-outward",
+        0.5
+      ],
+      [
+        "spiral-right-inward",
+        0.0
+      ],
+      [
+        "spiral-right-outward",
+        0.0
+      ]
+    ],
+    "policy": "temporal",
+    "prediction_error_count": 0,
+    "prediction_loss": 0.0,
+    "proxy_energy": 57.84082352454977,
+    "proxy_energy_per_correct": 154.24219606546606,
+    "rejected_mutations": 2,
+    "rejection_reasons": [
+      [
+        "fan_in_full",
+        1
+      ],
+      [
+        "fan_out_full",
+        1
+      ]
+    ],
+    "replay_digest": "71083707f8eab8f277a940656f1706d84832c7f91092e48557014696e3cd1bdd",
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "requested_policy": "temporal",
+    "requested_scale": "reference",
+    "scale": "reference",
+    "seed": 4,
+    "shortcut_selected": true
+  },
+  {
+    "accepted_additions": 2,
+    "accuracy": 0.375,
+    "accuracy_per_event": 0.0023734177215189874,
+    "accuracy_per_proxy_energy": 0.006483310180409797,
+    "activation_count": 2,
+    "active_edge_utilization": 0.8,
+    "candidate_considered": 9,
+    "candidate_exposure": 4,
+    "causal_intervention_changed": false,
+    "class_count": 4,
+    "class_separation": 0.12768731029947292,
+    "classifier_candidate_capacity": 8,
+    "classifier_config_digest": "32c0a92a2570b6dd1b52882749d35d3464b017de9d8086a9ab0ae9bb84645ae0",
+    "classifier_edge_capacity": 6,
+    "classifier_fan_in_limit": 2,
+    "classifier_fan_out_limit": 2,
+    "classifier_neuron_count": 7,
+    "classifier_topology_edges": 2,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-inward",
+        2
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-inward",
+        2
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-right-inward",
+        1
+      ]
+    ],
+    "edge_count": 5,
+    "energy_unit": "activity-cost-proxy; uncalibrated",
+    "event_count": 158,
+    "events_per_correct": 421.3333333333333,
+    "executed_policy": "reversed",
+    "executed_scale": "reference",
+    "fan_in_saturation": 1.0,
+    "fan_out_saturation": 1.0,
+    "growth_attempts": 3,
+    "order_control_accuracy": 0.375,
+    "order_control_prediction_loss": 0.0,
+    "path_delay": 3.0,
+    "path_hops": 3.0,
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        1.0
+      ],
+      [
+        "spiral-left-outward",
+        0.5
+      ],
+      [
+        "spiral-right-inward",
+        0.0
+      ],
+      [
+        "spiral-right-outward",
+        0.0
+      ]
+    ],
+    "policy": "reversed",
+    "prediction_error_count": 0,
+    "prediction_loss": 0.0,
+    "proxy_energy": 57.84082352454977,
+    "proxy_energy_per_correct": 154.24219606546606,
+    "rejected_mutations": 1,
+    "rejection_reasons": [
+      [
+        "fan_out_full",
+        1
+      ]
+    ],
+    "replay_digest": "8c1c71c7882f972b209482c2f0543bcd5aba67e535c91d3c7ea2276cb90d059a",
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "requested_policy": "reversed",
+    "requested_scale": "reference",
+    "scale": "reference",
+    "seed": 4,
+    "shortcut_selected": false
+  },
+  {
+    "accepted_additions": 0,
+    "accuracy": 0.125,
+    "accuracy_per_event": 0.0008561643835616438,
+    "accuracy_per_proxy_energy": 0.0025711719525786715,
+    "activation_count": 1,
+    "active_edge_utilization": 1.0,
+    "candidate_considered": 4,
+    "candidate_exposure": 4,
+    "causal_intervention_changed": false,
+    "class_count": 4,
+    "class_separation": 0.09883897126748516,
+    "classifier_candidate_capacity": 12,
+    "classifier_config_digest": "db6785c2b954974e22dc55b6c923f8b8f96758f5a8db6bf547f925bf40d347ba",
+    "classifier_edge_capacity": 10,
+    "classifier_fan_in_limit": 3,
+    "classifier_fan_out_limit": 3,
+    "classifier_neuron_count": 12,
+    "classifier_topology_edges": 1,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-inward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-inward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-inward",
+        2
+      ]
+    ],
+    "edge_count": 3,
+    "energy_unit": "activity-cost-proxy; uncalibrated",
+    "event_count": 146,
+    "events_per_correct": 1168.0,
+    "executed_policy": "fixed",
+    "executed_scale": "expanded",
+    "fan_in_saturation": 0.3333333333333333,
+    "fan_out_saturation": 0.3333333333333333,
+    "growth_attempts": 0,
+    "order_control_accuracy": 0.125,
+    "order_control_prediction_loss": 0.0,
+    "path_delay": 3.0,
+    "path_hops": 3.0,
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        0.5
+      ],
+      [
+        "spiral-left-outward",
+        0.0
+      ],
+      [
+        "spiral-right-inward",
+        0.0
+      ],
+      [
+        "spiral-right-outward",
+        0.0
+      ]
+    ],
+    "policy": "fixed",
+    "prediction_error_count": 0,
+    "prediction_loss": 0.0,
+    "proxy_energy": 48.615962800401356,
+    "proxy_energy_per_correct": 388.92770240321084,
+    "rejected_mutations": 0,
+    "rejection_reasons": [],
+    "replay_digest": "0ba724e0abcfd3d96a4ffba48ecbaeb88bba8f326aa353fa75a7136a5ae66140",
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "requested_policy": "fixed",
+    "requested_scale": "expanded",
+    "scale": "expanded",
+    "seed": 0,
+    "shortcut_selected": false
+  },
+  {
+    "accepted_additions": 3,
+    "accuracy": 0.125,
+    "accuracy_per_event": 0.000744047619047619,
+    "accuracy_per_proxy_energy": 0.002632500096716154,
+    "activation_count": 1,
+    "active_edge_utilization": 0.8333333333333334,
+    "candidate_considered": 10,
+    "candidate_exposure": 4,
+    "causal_intervention_changed": true,
+    "class_count": 4,
+    "class_separation": 0.09924577823478674,
+    "classifier_candidate_capacity": 12,
+    "classifier_config_digest": "c1d020fe57514e4a45f95d2ef551ce665eed0dad12fb8fb571db19740935ec52",
+    "classifier_edge_capacity": 10,
+    "classifier_fan_in_limit": 3,
+    "classifier_fan_out_limit": 3,
+    "classifier_neuron_count": 12,
+    "classifier_topology_edges": 2,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-inward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-inward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-inward",
+        2
+      ]
+    ],
+    "edge_count": 6,
+    "energy_unit": "activity-cost-proxy; uncalibrated",
+    "event_count": 168,
+    "events_per_correct": 1344.0,
+    "executed_policy": "baseline",
+    "executed_scale": "expanded",
+    "fan_in_saturation": 1.0,
+    "fan_out_saturation": 1.0,
+    "growth_attempts": 4,
+    "order_control_accuracy": 0.125,
+    "order_control_prediction_loss": 0.0,
+    "path_delay": 1.875,
+    "path_hops": 2.0,
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        0.5
+      ],
+      [
+        "spiral-left-outward",
+        0.0
+      ],
+      [
+        "spiral-right-inward",
+        0.0
+      ],
+      [
+        "spiral-right-outward",
+        0.0
+      ]
+    ],
+    "policy": "baseline",
+    "prediction_error_count": 0,
+    "prediction_loss": 0.0,
+    "proxy_energy": 47.483379072209,
+    "proxy_energy_per_correct": 379.867032577672,
+    "rejected_mutations": 1,
+    "rejection_reasons": [
+      [
+        "fan_in_full",
+        1
+      ]
+    ],
+    "replay_digest": "f33cc21ca862817c944c6edba34ac1e118121125fd2a06381b3f0d3ba8db5a04",
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "requested_policy": "baseline",
+    "requested_scale": "expanded",
+    "scale": "expanded",
+    "seed": 0,
+    "shortcut_selected": true
+  },
+  {
+    "accepted_additions": 3,
+    "accuracy": 0.125,
+    "accuracy_per_event": 0.0007267441860465116,
+    "accuracy_per_proxy_energy": 0.002650281443951397,
+    "activation_count": 1,
+    "active_edge_utilization": 0.6666666666666666,
+    "candidate_considered": 10,
+    "candidate_exposure": 4,
+    "causal_intervention_changed": false,
+    "class_count": 4,
+    "class_separation": 0.08913560200635806,
+    "classifier_candidate_capacity": 12,
+    "classifier_config_digest": "87a79da9ed819afa0ca4f903fc101fb62262bc37537d8361582edab30b84b97a",
+    "classifier_edge_capacity": 10,
+    "classifier_fan_in_limit": 3,
+    "classifier_fan_out_limit": 3,
+    "classifier_neuron_count": 12,
+    "classifier_topology_edges": 2,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-inward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-inward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-inward",
+        2
+      ]
+    ],
+    "edge_count": 6,
+    "energy_unit": "activity-cost-proxy; uncalibrated",
+    "event_count": 172,
+    "events_per_correct": 1376.0,
+    "executed_policy": "random",
+    "executed_scale": "expanded",
+    "fan_in_saturation": 1.0,
+    "fan_out_saturation": 0.6666666666666666,
+    "growth_attempts": 4,
+    "order_control_accuracy": 0.125,
+    "order_control_prediction_loss": 0.0,
+    "path_delay": 3.0,
+    "path_hops": 3.0,
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        0.5
+      ],
+      [
+        "spiral-left-outward",
+        0.0
+      ],
+      [
+        "spiral-right-inward",
+        0.0
+      ],
+      [
+        "spiral-right-outward",
+        0.0
+      ]
+    ],
+    "policy": "random",
+    "prediction_error_count": 0,
+    "prediction_loss": 0.0,
+    "proxy_energy": 47.16480217045672,
+    "proxy_energy_per_correct": 377.31841736365374,
+    "rejected_mutations": 1,
+    "rejection_reasons": [
+      [
+        "fan_in_full",
+        1
+      ]
+    ],
+    "replay_digest": "f64d13443549fed6d3b0872aad3e20da778cf12052453115d2bad173de1244aa",
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "requested_policy": "random",
+    "requested_scale": "expanded",
+    "scale": "expanded",
+    "seed": 0,
+    "shortcut_selected": false
+  },
+  {
+    "accepted_additions": 3,
+    "accuracy": 0.125,
+    "accuracy_per_event": 0.000744047619047619,
+    "accuracy_per_proxy_energy": 0.002632500096716154,
+    "activation_count": 1,
+    "active_edge_utilization": 0.8333333333333334,
+    "candidate_considered": 10,
+    "candidate_exposure": 4,
+    "causal_intervention_changed": true,
+    "class_count": 4,
+    "class_separation": 0.09924577823478674,
+    "classifier_candidate_capacity": 12,
+    "classifier_config_digest": "4e3b7a343e4988b841d76a863d7d05b1b344037ae91c9673d4a86893f43bdef5",
+    "classifier_edge_capacity": 10,
+    "classifier_fan_in_limit": 3,
+    "classifier_fan_out_limit": 3,
+    "classifier_neuron_count": 12,
+    "classifier_topology_edges": 2,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-inward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-inward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-inward",
+        2
+      ]
+    ],
+    "edge_count": 6,
+    "energy_unit": "activity-cost-proxy; uncalibrated",
+    "event_count": 168,
+    "events_per_correct": 1344.0,
+    "executed_policy": "temporal",
+    "executed_scale": "expanded",
+    "fan_in_saturation": 1.0,
+    "fan_out_saturation": 1.0,
+    "growth_attempts": 4,
+    "order_control_accuracy": 0.125,
+    "order_control_prediction_loss": 0.0,
+    "path_delay": 1.875,
+    "path_hops": 2.0,
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        0.5
+      ],
+      [
+        "spiral-left-outward",
+        0.0
+      ],
+      [
+        "spiral-right-inward",
+        0.0
+      ],
+      [
+        "spiral-right-outward",
+        0.0
+      ]
+    ],
+    "policy": "temporal",
+    "prediction_error_count": 0,
+    "prediction_loss": 0.0,
+    "proxy_energy": 47.483379072209,
+    "proxy_energy_per_correct": 379.867032577672,
+    "rejected_mutations": 1,
+    "rejection_reasons": [
+      [
+        "fan_in_full",
+        1
+      ]
+    ],
+    "replay_digest": "026cda632b56454f9978f5af240688fcfaa74b344ddfeaf71936b15c098136ad",
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "requested_policy": "temporal",
+    "requested_scale": "expanded",
+    "scale": "expanded",
+    "seed": 0,
+    "shortcut_selected": true
+  },
+  {
+    "accepted_additions": 3,
+    "accuracy": 0.125,
+    "accuracy_per_event": 0.000744047619047619,
+    "accuracy_per_proxy_energy": 0.002632500096716154,
+    "activation_count": 1,
+    "active_edge_utilization": 0.8333333333333334,
+    "candidate_considered": 10,
+    "candidate_exposure": 4,
+    "causal_intervention_changed": true,
+    "class_count": 4,
+    "class_separation": 0.09924577823478674,
+    "classifier_candidate_capacity": 12,
+    "classifier_config_digest": "480131ef4ac625ce785d4286ded518bab5a922789ee89876ea874bd1f060fe23",
+    "classifier_edge_capacity": 10,
+    "classifier_fan_in_limit": 3,
+    "classifier_fan_out_limit": 3,
+    "classifier_neuron_count": 12,
+    "classifier_topology_edges": 2,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-inward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-inward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-inward",
+        2
+      ]
+    ],
+    "edge_count": 6,
+    "energy_unit": "activity-cost-proxy; uncalibrated",
+    "event_count": 168,
+    "events_per_correct": 1344.0,
+    "executed_policy": "reversed",
+    "executed_scale": "expanded",
+    "fan_in_saturation": 1.0,
+    "fan_out_saturation": 1.0,
+    "growth_attempts": 4,
+    "order_control_accuracy": 0.125,
+    "order_control_prediction_loss": 0.0,
+    "path_delay": 1.875,
+    "path_hops": 2.0,
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        0.5
+      ],
+      [
+        "spiral-left-outward",
+        0.0
+      ],
+      [
+        "spiral-right-inward",
+        0.0
+      ],
+      [
+        "spiral-right-outward",
+        0.0
+      ]
+    ],
+    "policy": "reversed",
+    "prediction_error_count": 0,
+    "prediction_loss": 0.0,
+    "proxy_energy": 47.483379072209,
+    "proxy_energy_per_correct": 379.867032577672,
+    "rejected_mutations": 1,
+    "rejection_reasons": [
+      [
+        "fan_in_full",
+        1
+      ]
+    ],
+    "replay_digest": "f33cc21ca862817c944c6edba34ac1e118121125fd2a06381b3f0d3ba8db5a04",
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "requested_policy": "reversed",
+    "requested_scale": "expanded",
+    "scale": "expanded",
+    "seed": 0,
+    "shortcut_selected": true
+  },
+  {
+    "accepted_additions": 0,
+    "accuracy": 0.125,
+    "accuracy_per_event": 0.0008561643835616438,
+    "accuracy_per_proxy_energy": 0.002717789650213638,
+    "activation_count": 1,
+    "active_edge_utilization": 1.0,
+    "candidate_considered": 4,
+    "candidate_exposure": 4,
+    "causal_intervention_changed": false,
+    "class_count": 4,
+    "class_separation": 0.09523563233032442,
+    "classifier_candidate_capacity": 12,
+    "classifier_config_digest": "8452d5b2919c7f97c2b128588b99b3f78f63dfad7087601a14db09a6cd39cb78",
+    "classifier_edge_capacity": 10,
+    "classifier_fan_in_limit": 3,
+    "classifier_fan_out_limit": 3,
+    "classifier_neuron_count": 12,
+    "classifier_topology_edges": 1,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-outward",
+        2
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-outward",
+        1
+      ]
+    ],
+    "edge_count": 3,
+    "energy_unit": "activity-cost-proxy; uncalibrated",
+    "event_count": 146,
+    "events_per_correct": 1168.0,
+    "executed_policy": "fixed",
+    "executed_scale": "expanded",
+    "fan_in_saturation": 0.3333333333333333,
+    "fan_out_saturation": 0.3333333333333333,
+    "growth_attempts": 0,
+    "order_control_accuracy": 0.125,
+    "order_control_prediction_loss": 0.0,
+    "path_delay": 3.0,
+    "path_hops": 3.0,
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        0.0
+      ],
+      [
+        "spiral-left-outward",
+        0.5
+      ],
+      [
+        "spiral-right-inward",
+        0.0
+      ],
+      [
+        "spiral-right-outward",
+        0.0
+      ]
+    ],
+    "policy": "fixed",
+    "prediction_error_count": 0,
+    "prediction_loss": 0.0,
+    "proxy_energy": 45.993257789532784,
+    "proxy_energy_per_correct": 367.94606231626227,
+    "rejected_mutations": 0,
+    "rejection_reasons": [],
+    "replay_digest": "0ba724e0abcfd3d96a4ffba48ecbaeb88bba8f326aa353fa75a7136a5ae66140",
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "requested_policy": "fixed",
+    "requested_scale": "expanded",
+    "scale": "expanded",
+    "seed": 1,
+    "shortcut_selected": false
+  },
+  {
+    "accepted_additions": 3,
+    "accuracy": 0.125,
+    "accuracy_per_event": 0.0007575757575757576,
+    "accuracy_per_proxy_energy": 0.0025760562673105094,
+    "activation_count": 1,
+    "active_edge_utilization": 0.8333333333333334,
+    "candidate_considered": 10,
+    "candidate_exposure": 4,
+    "causal_intervention_changed": true,
+    "class_count": 4,
+    "class_separation": 0.10281387901785367,
+    "classifier_candidate_capacity": 12,
+    "classifier_config_digest": "393860a2fe1d1e5a44ea98dc6d7837131cdb362ce3282a37a0665bac8922f9ea",
+    "classifier_edge_capacity": 10,
+    "classifier_fan_in_limit": 3,
+    "classifier_fan_out_limit": 3,
+    "classifier_neuron_count": 12,
+    "classifier_topology_edges": 2,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-outward",
+        2
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-outward",
+        1
+      ]
+    ],
+    "edge_count": 6,
+    "energy_unit": "activity-cost-proxy; uncalibrated",
+    "event_count": 165,
+    "events_per_correct": 1320.0,
+    "executed_policy": "baseline",
+    "executed_scale": "expanded",
+    "fan_in_saturation": 1.0,
+    "fan_out_saturation": 1.0,
+    "growth_attempts": 4,
+    "order_control_accuracy": 0.125,
+    "order_control_prediction_loss": 0.0,
+    "path_delay": 1.875,
+    "path_hops": 2.0,
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        0.0
+      ],
+      [
+        "spiral-left-outward",
+        0.5
+      ],
+      [
+        "spiral-right-inward",
+        0.0
+      ],
+      [
+        "spiral-right-outward",
+        0.0
+      ]
+    ],
+    "policy": "baseline",
+    "prediction_error_count": 0,
+    "prediction_loss": 0.0,
+    "proxy_energy": 48.523784820315385,
+    "proxy_energy_per_correct": 388.1902785625231,
+    "rejected_mutations": 1,
+    "rejection_reasons": [
+      [
+        "fan_in_full",
+        1
+      ]
+    ],
+    "replay_digest": "f33cc21ca862817c944c6edba34ac1e118121125fd2a06381b3f0d3ba8db5a04",
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "requested_policy": "baseline",
+    "requested_scale": "expanded",
+    "scale": "expanded",
+    "seed": 1,
+    "shortcut_selected": true
+  },
+  {
+    "accepted_additions": 3,
+    "accuracy": 0.125,
+    "accuracy_per_event": 0.0007396449704142012,
+    "accuracy_per_proxy_energy": 0.0025800121156010097,
+    "activation_count": 1,
+    "active_edge_utilization": 0.6666666666666666,
+    "candidate_considered": 10,
+    "candidate_exposure": 4,
+    "causal_intervention_changed": false,
+    "class_count": 4,
+    "class_separation": 0.0881284620787377,
+    "classifier_candidate_capacity": 12,
+    "classifier_config_digest": "7369dd81b7975e01754988b3787442e0306b3869f3d6a15358bb70bba89721b2",
+    "classifier_edge_capacity": 10,
+    "classifier_fan_in_limit": 3,
+    "classifier_fan_out_limit": 3,
+    "classifier_neuron_count": 12,
+    "classifier_topology_edges": 2,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-outward",
+        2
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-outward",
+        1
+      ]
+    ],
+    "edge_count": 6,
+    "energy_unit": "activity-cost-proxy; uncalibrated",
+    "event_count": 169,
+    "events_per_correct": 1352.0,
+    "executed_policy": "random",
+    "executed_scale": "expanded",
+    "fan_in_saturation": 1.0,
+    "fan_out_saturation": 0.6666666666666666,
+    "growth_attempts": 4,
+    "order_control_accuracy": 0.125,
+    "order_control_prediction_loss": 0.0,
+    "path_delay": 3.0,
+    "path_hops": 3.0,
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        0.0
+      ],
+      [
+        "spiral-left-outward",
+        0.5
+      ],
+      [
+        "spiral-right-inward",
+        0.0
+      ],
+      [
+        "spiral-right-outward",
+        0.0
+      ]
+    ],
+    "policy": "random",
+    "prediction_error_count": 0,
+    "prediction_loss": 0.0,
+    "proxy_energy": 48.449384886272696,
+    "proxy_energy_per_correct": 387.59507909018157,
+    "rejected_mutations": 1,
+    "rejection_reasons": [
+      [
+        "fan_in_full",
+        1
+      ]
+    ],
+    "replay_digest": "fe9c0461b464bfb393d1a22af509f76f30f3a1fa40d73cb1d5877aa722162b2d",
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "requested_policy": "random",
+    "requested_scale": "expanded",
+    "scale": "expanded",
+    "seed": 1,
+    "shortcut_selected": false
+  },
+  {
+    "accepted_additions": 3,
+    "accuracy": 0.125,
+    "accuracy_per_event": 0.0007575757575757576,
+    "accuracy_per_proxy_energy": 0.0025760562673105094,
+    "activation_count": 1,
+    "active_edge_utilization": 0.8333333333333334,
+    "candidate_considered": 10,
+    "candidate_exposure": 4,
+    "causal_intervention_changed": true,
+    "class_count": 4,
+    "class_separation": 0.10281387901785367,
+    "classifier_candidate_capacity": 12,
+    "classifier_config_digest": "d85d5378dc65e2f15be71009339ed9c4a49367cf7c1d42bdb0f7515a6ff65589",
+    "classifier_edge_capacity": 10,
+    "classifier_fan_in_limit": 3,
+    "classifier_fan_out_limit": 3,
+    "classifier_neuron_count": 12,
+    "classifier_topology_edges": 2,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-outward",
+        2
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-outward",
+        1
+      ]
+    ],
+    "edge_count": 6,
+    "energy_unit": "activity-cost-proxy; uncalibrated",
+    "event_count": 165,
+    "events_per_correct": 1320.0,
+    "executed_policy": "temporal",
+    "executed_scale": "expanded",
+    "fan_in_saturation": 1.0,
+    "fan_out_saturation": 1.0,
+    "growth_attempts": 4,
+    "order_control_accuracy": 0.125,
+    "order_control_prediction_loss": 0.0,
+    "path_delay": 1.875,
+    "path_hops": 2.0,
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        0.0
+      ],
+      [
+        "spiral-left-outward",
+        0.5
+      ],
+      [
+        "spiral-right-inward",
+        0.0
+      ],
+      [
+        "spiral-right-outward",
+        0.0
+      ]
+    ],
+    "policy": "temporal",
+    "prediction_error_count": 0,
+    "prediction_loss": 0.0,
+    "proxy_energy": 48.523784820315385,
+    "proxy_energy_per_correct": 388.1902785625231,
+    "rejected_mutations": 1,
+    "rejection_reasons": [
+      [
+        "fan_in_full",
+        1
+      ]
+    ],
+    "replay_digest": "026cda632b56454f9978f5af240688fcfaa74b344ddfeaf71936b15c098136ad",
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "requested_policy": "temporal",
+    "requested_scale": "expanded",
+    "scale": "expanded",
+    "seed": 1,
+    "shortcut_selected": true
+  },
+  {
+    "accepted_additions": 3,
+    "accuracy": 0.125,
+    "accuracy_per_event": 0.0007575757575757576,
+    "accuracy_per_proxy_energy": 0.0025760562673105094,
+    "activation_count": 1,
+    "active_edge_utilization": 0.8333333333333334,
+    "candidate_considered": 10,
+    "candidate_exposure": 4,
+    "causal_intervention_changed": true,
+    "class_count": 4,
+    "class_separation": 0.10281387901785367,
+    "classifier_candidate_capacity": 12,
+    "classifier_config_digest": "b151d4b0e468437b1db225448de7eae783b31b41a472335c5a8aa90409ecbe39",
+    "classifier_edge_capacity": 10,
+    "classifier_fan_in_limit": 3,
+    "classifier_fan_out_limit": 3,
+    "classifier_neuron_count": 12,
+    "classifier_topology_edges": 2,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-outward",
+        2
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-outward",
+        1
+      ]
+    ],
+    "edge_count": 6,
+    "energy_unit": "activity-cost-proxy; uncalibrated",
+    "event_count": 165,
+    "events_per_correct": 1320.0,
+    "executed_policy": "reversed",
+    "executed_scale": "expanded",
+    "fan_in_saturation": 1.0,
+    "fan_out_saturation": 1.0,
+    "growth_attempts": 4,
+    "order_control_accuracy": 0.125,
+    "order_control_prediction_loss": 0.0,
+    "path_delay": 1.875,
+    "path_hops": 2.0,
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        0.0
+      ],
+      [
+        "spiral-left-outward",
+        0.5
+      ],
+      [
+        "spiral-right-inward",
+        0.0
+      ],
+      [
+        "spiral-right-outward",
+        0.0
+      ]
+    ],
+    "policy": "reversed",
+    "prediction_error_count": 0,
+    "prediction_loss": 0.0,
+    "proxy_energy": 48.523784820315385,
+    "proxy_energy_per_correct": 388.1902785625231,
+    "rejected_mutations": 1,
+    "rejection_reasons": [
+      [
+        "fan_in_full",
+        1
+      ]
+    ],
+    "replay_digest": "f33cc21ca862817c944c6edba34ac1e118121125fd2a06381b3f0d3ba8db5a04",
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "requested_policy": "reversed",
+    "requested_scale": "expanded",
+    "scale": "expanded",
+    "seed": 1,
+    "shortcut_selected": true
+  },
+  {
+    "accepted_additions": 0,
+    "accuracy": 0.375,
+    "accuracy_per_event": 0.0027573529411764708,
+    "accuracy_per_proxy_energy": 0.006999279151908448,
+    "activation_count": 1,
+    "active_edge_utilization": 1.0,
+    "candidate_considered": 4,
+    "candidate_exposure": 4,
+    "causal_intervention_changed": false,
+    "class_count": 4,
+    "class_separation": 0.20977087435897052,
+    "classifier_candidate_capacity": 12,
+    "classifier_config_digest": "e94f807c311b5f551039d8f758ca1a2eae8c713b3bc75f3b643fb1a493b47b02",
+    "classifier_edge_capacity": 10,
+    "classifier_fan_in_limit": 3,
+    "classifier_fan_out_limit": 3,
+    "classifier_neuron_count": 12,
+    "classifier_topology_edges": 1,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-inward",
+        "spiral-right-inward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-inward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-right-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-outward",
+        1
+      ]
+    ],
+    "edge_count": 3,
+    "energy_unit": "activity-cost-proxy; uncalibrated",
+    "event_count": 136,
+    "events_per_correct": 362.6666666666667,
+    "executed_policy": "fixed",
+    "executed_scale": "expanded",
+    "fan_in_saturation": 0.3333333333333333,
+    "fan_out_saturation": 0.3333333333333333,
+    "growth_attempts": 0,
+    "order_control_accuracy": 0.375,
+    "order_control_prediction_loss": 0.0,
+    "path_delay": 3.0,
+    "path_hops": 3.0,
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        0.5
+      ],
+      [
+        "spiral-left-outward",
+        0.5
+      ],
+      [
+        "spiral-right-inward",
+        0.5
+      ],
+      [
+        "spiral-right-outward",
+        0.0
+      ]
+    ],
+    "policy": "fixed",
+    "prediction_error_count": 0,
+    "prediction_loss": 0.0,
+    "proxy_energy": 53.5769458341651,
+    "proxy_energy_per_correct": 142.8718555577736,
+    "rejected_mutations": 0,
+    "rejection_reasons": [],
+    "replay_digest": "0ba724e0abcfd3d96a4ffba48ecbaeb88bba8f326aa353fa75a7136a5ae66140",
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "requested_policy": "fixed",
+    "requested_scale": "expanded",
+    "scale": "expanded",
+    "seed": 2,
+    "shortcut_selected": false
+  },
+  {
+    "accepted_additions": 3,
+    "accuracy": 0.375,
+    "accuracy_per_event": 0.0025,
+    "accuracy_per_proxy_energy": 0.0066421931727146406,
+    "activation_count": 1,
+    "active_edge_utilization": 0.8333333333333334,
+    "candidate_considered": 10,
+    "candidate_exposure": 4,
+    "causal_intervention_changed": true,
+    "class_count": 4,
+    "class_separation": 0.23064258844367053,
+    "classifier_candidate_capacity": 12,
+    "classifier_config_digest": "e29443041d4c39dccec375c1ba5c4b213ee8592985fa8498de8bc8b01e35f424",
+    "classifier_edge_capacity": 10,
+    "classifier_fan_in_limit": 3,
+    "classifier_fan_out_limit": 3,
+    "classifier_neuron_count": 12,
+    "classifier_topology_edges": 2,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-inward",
+        "spiral-right-inward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-inward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-right-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-outward",
+        1
+      ]
+    ],
+    "edge_count": 6,
+    "energy_unit": "activity-cost-proxy; uncalibrated",
+    "event_count": 150,
+    "events_per_correct": 400.0,
+    "executed_policy": "baseline",
+    "executed_scale": "expanded",
+    "fan_in_saturation": 1.0,
+    "fan_out_saturation": 1.0,
+    "growth_attempts": 4,
+    "order_control_accuracy": 0.375,
+    "order_control_prediction_loss": 0.0,
+    "path_delay": 1.875,
+    "path_hops": 2.0,
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        0.5
+      ],
+      [
+        "spiral-left-outward",
+        0.5
+      ],
+      [
+        "spiral-right-inward",
+        0.5
+      ],
+      [
+        "spiral-right-outward",
+        0.0
+      ]
+    ],
+    "policy": "baseline",
+    "prediction_error_count": 0,
+    "prediction_loss": 0.0,
+    "proxy_energy": 56.45725594679428,
+    "proxy_energy_per_correct": 150.55268252478473,
+    "rejected_mutations": 1,
+    "rejection_reasons": [
+      [
+        "fan_in_full",
+        1
+      ]
+    ],
+    "replay_digest": "f33cc21ca862817c944c6edba34ac1e118121125fd2a06381b3f0d3ba8db5a04",
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "requested_policy": "baseline",
+    "requested_scale": "expanded",
+    "scale": "expanded",
+    "seed": 2,
+    "shortcut_selected": true
+  },
+  {
+    "accepted_additions": 3,
+    "accuracy": 0.375,
+    "accuracy_per_event": 0.0025,
+    "accuracy_per_proxy_energy": 0.006548222857387515,
+    "activation_count": 1,
+    "active_edge_utilization": 0.8333333333333334,
+    "candidate_considered": 10,
+    "candidate_exposure": 4,
+    "causal_intervention_changed": true,
+    "class_count": 4,
+    "class_separation": 0.23064258844367053,
+    "classifier_candidate_capacity": 12,
+    "classifier_config_digest": "99760e8dcc67e40f9211887da4d8ed2b49254fbf06a697147a0372781f31d146",
+    "classifier_edge_capacity": 10,
+    "classifier_fan_in_limit": 3,
+    "classifier_fan_out_limit": 3,
+    "classifier_neuron_count": 12,
+    "classifier_topology_edges": 2,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-inward",
+        "spiral-right-inward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-inward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-right-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-outward",
+        1
+      ]
+    ],
+    "edge_count": 6,
+    "energy_unit": "activity-cost-proxy; uncalibrated",
+    "event_count": 150,
+    "events_per_correct": 400.0,
+    "executed_policy": "random",
+    "executed_scale": "expanded",
+    "fan_in_saturation": 1.0,
+    "fan_out_saturation": 1.0,
+    "growth_attempts": 4,
+    "order_control_accuracy": 0.375,
+    "order_control_prediction_loss": 0.0,
+    "path_delay": 1.875,
+    "path_hops": 2.0,
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        0.5
+      ],
+      [
+        "spiral-left-outward",
+        0.5
+      ],
+      [
+        "spiral-right-inward",
+        0.5
+      ],
+      [
+        "spiral-right-outward",
+        0.0
+      ]
+    ],
+    "policy": "random",
+    "prediction_error_count": 0,
+    "prediction_loss": 0.0,
+    "proxy_energy": 57.26744617082417,
+    "proxy_energy_per_correct": 152.71318978886447,
+    "rejected_mutations": 1,
+    "rejection_reasons": [
+      [
+        "fan_in_full",
+        1
+      ]
+    ],
+    "replay_digest": "941d9354ecb8e9918953fd7994640aa5d61d339a6622b0c84e8ce4a0eb91ff87",
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "requested_policy": "random",
+    "requested_scale": "expanded",
+    "scale": "expanded",
+    "seed": 2,
+    "shortcut_selected": true
+  },
+  {
+    "accepted_additions": 3,
+    "accuracy": 0.375,
+    "accuracy_per_event": 0.0025,
+    "accuracy_per_proxy_energy": 0.0066421931727146406,
+    "activation_count": 1,
+    "active_edge_utilization": 0.8333333333333334,
+    "candidate_considered": 10,
+    "candidate_exposure": 4,
+    "causal_intervention_changed": true,
+    "class_count": 4,
+    "class_separation": 0.23064258844367053,
+    "classifier_candidate_capacity": 12,
+    "classifier_config_digest": "76043a4f4596fec3d5b6dc58719ebdff77b39ab43ccad22f4986ab80411c8af6",
+    "classifier_edge_capacity": 10,
+    "classifier_fan_in_limit": 3,
+    "classifier_fan_out_limit": 3,
+    "classifier_neuron_count": 12,
+    "classifier_topology_edges": 2,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-inward",
+        "spiral-right-inward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-inward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-right-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-outward",
+        1
+      ]
+    ],
+    "edge_count": 6,
+    "energy_unit": "activity-cost-proxy; uncalibrated",
+    "event_count": 150,
+    "events_per_correct": 400.0,
+    "executed_policy": "temporal",
+    "executed_scale": "expanded",
+    "fan_in_saturation": 1.0,
+    "fan_out_saturation": 1.0,
+    "growth_attempts": 4,
+    "order_control_accuracy": 0.375,
+    "order_control_prediction_loss": 0.0,
+    "path_delay": 1.875,
+    "path_hops": 2.0,
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        0.5
+      ],
+      [
+        "spiral-left-outward",
+        0.5
+      ],
+      [
+        "spiral-right-inward",
+        0.5
+      ],
+      [
+        "spiral-right-outward",
+        0.0
+      ]
+    ],
+    "policy": "temporal",
+    "prediction_error_count": 0,
+    "prediction_loss": 0.0,
+    "proxy_energy": 56.45725594679428,
+    "proxy_energy_per_correct": 150.55268252478473,
+    "rejected_mutations": 1,
+    "rejection_reasons": [
+      [
+        "fan_in_full",
+        1
+      ]
+    ],
+    "replay_digest": "026cda632b56454f9978f5af240688fcfaa74b344ddfeaf71936b15c098136ad",
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "requested_policy": "temporal",
+    "requested_scale": "expanded",
+    "scale": "expanded",
+    "seed": 2,
+    "shortcut_selected": true
+  },
+  {
+    "accepted_additions": 3,
+    "accuracy": 0.375,
+    "accuracy_per_event": 0.0025,
+    "accuracy_per_proxy_energy": 0.0066421931727146406,
+    "activation_count": 1,
+    "active_edge_utilization": 0.8333333333333334,
+    "candidate_considered": 10,
+    "candidate_exposure": 4,
+    "causal_intervention_changed": true,
+    "class_count": 4,
+    "class_separation": 0.23064258844367053,
+    "classifier_candidate_capacity": 12,
+    "classifier_config_digest": "0e26dc98929f12b19dc97249e8b01523ba85be7fb7206ceca98ad36bfb15e673",
+    "classifier_edge_capacity": 10,
+    "classifier_fan_in_limit": 3,
+    "classifier_fan_out_limit": 3,
+    "classifier_neuron_count": 12,
+    "classifier_topology_edges": 2,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-inward",
+        "spiral-right-inward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-inward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-right-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-outward",
+        1
+      ]
+    ],
+    "edge_count": 6,
+    "energy_unit": "activity-cost-proxy; uncalibrated",
+    "event_count": 150,
+    "events_per_correct": 400.0,
+    "executed_policy": "reversed",
+    "executed_scale": "expanded",
+    "fan_in_saturation": 1.0,
+    "fan_out_saturation": 1.0,
+    "growth_attempts": 4,
+    "order_control_accuracy": 0.375,
+    "order_control_prediction_loss": 0.0,
+    "path_delay": 1.875,
+    "path_hops": 2.0,
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        0.5
+      ],
+      [
+        "spiral-left-outward",
+        0.5
+      ],
+      [
+        "spiral-right-inward",
+        0.5
+      ],
+      [
+        "spiral-right-outward",
+        0.0
+      ]
+    ],
+    "policy": "reversed",
+    "prediction_error_count": 0,
+    "prediction_loss": 0.0,
+    "proxy_energy": 56.45725594679428,
+    "proxy_energy_per_correct": 150.55268252478473,
+    "rejected_mutations": 1,
+    "rejection_reasons": [
+      [
+        "fan_in_full",
+        1
+      ]
+    ],
+    "replay_digest": "f33cc21ca862817c944c6edba34ac1e118121125fd2a06381b3f0d3ba8db5a04",
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "requested_policy": "reversed",
+    "requested_scale": "expanded",
+    "scale": "expanded",
+    "seed": 2,
+    "shortcut_selected": true
+  },
+  {
+    "accepted_additions": 0,
+    "accuracy": 0.25,
+    "accuracy_per_event": 0.0018248175182481751,
+    "accuracy_per_proxy_energy": 0.006188761551155416,
+    "activation_count": 1,
+    "active_edge_utilization": 1.0,
+    "candidate_considered": 4,
+    "candidate_exposure": 4,
+    "causal_intervention_changed": false,
+    "class_count": 4,
+    "class_separation": 0.16123999212583784,
+    "classifier_candidate_capacity": 12,
+    "classifier_config_digest": "d7c5e76b8ef084015c24af5c0f85991c8a3d7098ba44a90e4ebd1df46f93accf",
+    "classifier_edge_capacity": 10,
+    "classifier_fan_in_limit": 3,
+    "classifier_fan_out_limit": 3,
+    "classifier_neuron_count": 12,
+    "classifier_topology_edges": 1,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-inward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-inward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-right-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-right-outward",
+        1
+      ]
+    ],
+    "edge_count": 3,
+    "energy_unit": "activity-cost-proxy; uncalibrated",
+    "event_count": 137,
+    "events_per_correct": 548.0,
+    "executed_policy": "fixed",
+    "executed_scale": "expanded",
+    "fan_in_saturation": 0.3333333333333333,
+    "fan_out_saturation": 0.3333333333333333,
+    "growth_attempts": 0,
+    "order_control_accuracy": 0.25,
+    "order_control_prediction_loss": 0.0,
+    "path_delay": 3.0,
+    "path_hops": 3.0,
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        0.5
+      ],
+      [
+        "spiral-left-outward",
+        0.0
+      ],
+      [
+        "spiral-right-inward",
+        0.0
+      ],
+      [
+        "spiral-right-outward",
+        0.5
+      ]
+    ],
+    "policy": "fixed",
+    "prediction_error_count": 0,
+    "prediction_loss": 0.0,
+    "proxy_energy": 40.39580422246613,
+    "proxy_energy_per_correct": 161.58321688986453,
+    "rejected_mutations": 0,
+    "rejection_reasons": [],
+    "replay_digest": "0ba724e0abcfd3d96a4ffba48ecbaeb88bba8f326aa353fa75a7136a5ae66140",
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "requested_policy": "fixed",
+    "requested_scale": "expanded",
+    "scale": "expanded",
+    "seed": 3,
+    "shortcut_selected": false
+  },
+  {
+    "accepted_additions": 3,
+    "accuracy": 0.25,
+    "accuracy_per_event": 0.0016556291390728477,
+    "accuracy_per_proxy_energy": 0.0059495984489266185,
+    "activation_count": 1,
+    "active_edge_utilization": 0.8333333333333334,
+    "candidate_considered": 10,
+    "candidate_exposure": 4,
+    "causal_intervention_changed": true,
+    "class_count": 4,
+    "class_separation": 0.16783568504096158,
+    "classifier_candidate_capacity": 12,
+    "classifier_config_digest": "a42047e1dd4eb376b6a47f3342fec2a834fc4377650367f25740721925c7a00a",
+    "classifier_edge_capacity": 10,
+    "classifier_fan_in_limit": 3,
+    "classifier_fan_out_limit": 3,
+    "classifier_neuron_count": 12,
+    "classifier_topology_edges": 2,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-inward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-inward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-right-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-right-outward",
+        1
+      ]
+    ],
+    "edge_count": 6,
+    "energy_unit": "activity-cost-proxy; uncalibrated",
+    "event_count": 151,
+    "events_per_correct": 604.0,
+    "executed_policy": "baseline",
+    "executed_scale": "expanded",
+    "fan_in_saturation": 1.0,
+    "fan_out_saturation": 1.0,
+    "growth_attempts": 4,
+    "order_control_accuracy": 0.25,
+    "order_control_prediction_loss": 0.0,
+    "path_delay": 1.875,
+    "path_hops": 2.0,
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        0.5
+      ],
+      [
+        "spiral-left-outward",
+        0.0
+      ],
+      [
+        "spiral-right-inward",
+        0.0
+      ],
+      [
+        "spiral-right-outward",
+        0.5
+      ]
+    ],
+    "policy": "baseline",
+    "prediction_error_count": 0,
+    "prediction_loss": 0.0,
+    "proxy_energy": 42.01964252648061,
+    "proxy_energy_per_correct": 168.07857010592244,
+    "rejected_mutations": 1,
+    "rejection_reasons": [
+      [
+        "fan_in_full",
+        1
+      ]
+    ],
+    "replay_digest": "f33cc21ca862817c944c6edba34ac1e118121125fd2a06381b3f0d3ba8db5a04",
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "requested_policy": "baseline",
+    "requested_scale": "expanded",
+    "scale": "expanded",
+    "seed": 3,
+    "shortcut_selected": true
+  },
+  {
+    "accepted_additions": 3,
+    "accuracy": 0.25,
+    "accuracy_per_event": 0.0016556291390728477,
+    "accuracy_per_proxy_energy": 0.0059495984489266185,
+    "activation_count": 1,
+    "active_edge_utilization": 0.6666666666666666,
+    "candidate_considered": 10,
+    "candidate_exposure": 4,
+    "causal_intervention_changed": false,
+    "class_count": 4,
+    "class_separation": 0.16783568504096158,
+    "classifier_candidate_capacity": 12,
+    "classifier_config_digest": "3e574173129f2eaf92b5ece8cd97edc029d604f0c99b665826a1857793469ad0",
+    "classifier_edge_capacity": 10,
+    "classifier_fan_in_limit": 3,
+    "classifier_fan_out_limit": 3,
+    "classifier_neuron_count": 12,
+    "classifier_topology_edges": 2,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-inward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-inward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-right-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-right-outward",
+        1
+      ]
+    ],
+    "edge_count": 6,
+    "energy_unit": "activity-cost-proxy; uncalibrated",
+    "event_count": 151,
+    "events_per_correct": 604.0,
+    "executed_policy": "random",
+    "executed_scale": "expanded",
+    "fan_in_saturation": 1.0,
+    "fan_out_saturation": 0.6666666666666666,
+    "growth_attempts": 4,
+    "order_control_accuracy": 0.25,
+    "order_control_prediction_loss": 0.0,
+    "path_delay": 3.0,
+    "path_hops": 3.0,
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        0.5
+      ],
+      [
+        "spiral-left-outward",
+        0.0
+      ],
+      [
+        "spiral-right-inward",
+        0.0
+      ],
+      [
+        "spiral-right-outward",
+        0.5
+      ]
+    ],
+    "policy": "random",
+    "prediction_error_count": 0,
+    "prediction_loss": 0.0,
+    "proxy_energy": 42.01964252648061,
+    "proxy_energy_per_correct": 168.07857010592244,
+    "rejected_mutations": 1,
+    "rejection_reasons": [
+      [
+        "fan_in_full",
+        1
+      ]
+    ],
+    "replay_digest": "fe9c0461b464bfb393d1a22af509f76f30f3a1fa40d73cb1d5877aa722162b2d",
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "requested_policy": "random",
+    "requested_scale": "expanded",
+    "scale": "expanded",
+    "seed": 3,
+    "shortcut_selected": false
+  },
+  {
+    "accepted_additions": 3,
+    "accuracy": 0.25,
+    "accuracy_per_event": 0.0016556291390728477,
+    "accuracy_per_proxy_energy": 0.0059495984489266185,
+    "activation_count": 1,
+    "active_edge_utilization": 0.8333333333333334,
+    "candidate_considered": 10,
+    "candidate_exposure": 4,
+    "causal_intervention_changed": true,
+    "class_count": 4,
+    "class_separation": 0.16783568504096158,
+    "classifier_candidate_capacity": 12,
+    "classifier_config_digest": "0701d660b0da530432dd1a9bddb263dff04b507b182979c04c65f0a891494946",
+    "classifier_edge_capacity": 10,
+    "classifier_fan_in_limit": 3,
+    "classifier_fan_out_limit": 3,
+    "classifier_neuron_count": 12,
+    "classifier_topology_edges": 2,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-inward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-inward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-right-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-right-outward",
+        1
+      ]
+    ],
+    "edge_count": 6,
+    "energy_unit": "activity-cost-proxy; uncalibrated",
+    "event_count": 151,
+    "events_per_correct": 604.0,
+    "executed_policy": "temporal",
+    "executed_scale": "expanded",
+    "fan_in_saturation": 1.0,
+    "fan_out_saturation": 1.0,
+    "growth_attempts": 4,
+    "order_control_accuracy": 0.25,
+    "order_control_prediction_loss": 0.0,
+    "path_delay": 1.875,
+    "path_hops": 2.0,
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        0.5
+      ],
+      [
+        "spiral-left-outward",
+        0.0
+      ],
+      [
+        "spiral-right-inward",
+        0.0
+      ],
+      [
+        "spiral-right-outward",
+        0.5
+      ]
+    ],
+    "policy": "temporal",
+    "prediction_error_count": 0,
+    "prediction_loss": 0.0,
+    "proxy_energy": 42.01964252648061,
+    "proxy_energy_per_correct": 168.07857010592244,
+    "rejected_mutations": 1,
+    "rejection_reasons": [
+      [
+        "fan_in_full",
+        1
+      ]
+    ],
+    "replay_digest": "026cda632b56454f9978f5af240688fcfaa74b344ddfeaf71936b15c098136ad",
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "requested_policy": "temporal",
+    "requested_scale": "expanded",
+    "scale": "expanded",
+    "seed": 3,
+    "shortcut_selected": true
+  },
+  {
+    "accepted_additions": 3,
+    "accuracy": 0.25,
+    "accuracy_per_event": 0.0016556291390728477,
+    "accuracy_per_proxy_energy": 0.0059495984489266185,
+    "activation_count": 1,
+    "active_edge_utilization": 0.8333333333333334,
+    "candidate_considered": 10,
+    "candidate_exposure": 4,
+    "causal_intervention_changed": true,
+    "class_count": 4,
+    "class_separation": 0.16783568504096158,
+    "classifier_candidate_capacity": 12,
+    "classifier_config_digest": "5646ef10dc61f9789754a6fd704111a34309d392713f721e90e31b831e507e9a",
+    "classifier_edge_capacity": 10,
+    "classifier_fan_in_limit": 3,
+    "classifier_fan_out_limit": 3,
+    "classifier_neuron_count": 12,
+    "classifier_topology_edges": 2,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-inward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-inward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-right-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-right-outward",
+        1
+      ]
+    ],
+    "edge_count": 6,
+    "energy_unit": "activity-cost-proxy; uncalibrated",
+    "event_count": 151,
+    "events_per_correct": 604.0,
+    "executed_policy": "reversed",
+    "executed_scale": "expanded",
+    "fan_in_saturation": 1.0,
+    "fan_out_saturation": 1.0,
+    "growth_attempts": 4,
+    "order_control_accuracy": 0.25,
+    "order_control_prediction_loss": 0.0,
+    "path_delay": 1.875,
+    "path_hops": 2.0,
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        0.5
+      ],
+      [
+        "spiral-left-outward",
+        0.0
+      ],
+      [
+        "spiral-right-inward",
+        0.0
+      ],
+      [
+        "spiral-right-outward",
+        0.5
+      ]
+    ],
+    "policy": "reversed",
+    "prediction_error_count": 0,
+    "prediction_loss": 0.0,
+    "proxy_energy": 42.01964252648061,
+    "proxy_energy_per_correct": 168.07857010592244,
+    "rejected_mutations": 1,
+    "rejection_reasons": [
+      [
+        "fan_in_full",
+        1
+      ]
+    ],
+    "replay_digest": "f33cc21ca862817c944c6edba34ac1e118121125fd2a06381b3f0d3ba8db5a04",
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "requested_policy": "reversed",
+    "requested_scale": "expanded",
+    "scale": "expanded",
+    "seed": 3,
+    "shortcut_selected": true
+  },
+  {
+    "accepted_additions": 0,
+    "accuracy": 0.25,
+    "accuracy_per_event": 0.0017241379310344827,
+    "accuracy_per_proxy_energy": 0.004461851935620297,
+    "activation_count": 1,
+    "active_edge_utilization": 1.0,
+    "candidate_considered": 4,
+    "candidate_exposure": 4,
+    "causal_intervention_changed": false,
+    "class_count": 4,
+    "class_separation": 0.09301330163839164,
+    "classifier_candidate_capacity": 12,
+    "classifier_config_digest": "1f0f08d414987d89fcd8a92fbcac5e6f42cfa5c12c11f3cbb7cca64ca8987340",
+    "classifier_edge_capacity": 10,
+    "classifier_fan_in_limit": 3,
+    "classifier_fan_out_limit": 3,
+    "classifier_neuron_count": 12,
+    "classifier_topology_edges": 1,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-inward",
+        2
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-inward",
+        2
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-right-inward",
+        1
+      ]
+    ],
+    "edge_count": 3,
+    "energy_unit": "activity-cost-proxy; uncalibrated",
+    "event_count": 145,
+    "events_per_correct": 580.0,
+    "executed_policy": "fixed",
+    "executed_scale": "expanded",
+    "fan_in_saturation": 0.3333333333333333,
+    "fan_out_saturation": 0.3333333333333333,
+    "growth_attempts": 0,
+    "order_control_accuracy": 0.25,
+    "order_control_prediction_loss": 0.0,
+    "path_delay": 3.0,
+    "path_hops": 3.0,
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        1.0
+      ],
+      [
+        "spiral-left-outward",
+        0.0
+      ],
+      [
+        "spiral-right-inward",
+        0.0
+      ],
+      [
+        "spiral-right-outward",
+        0.0
+      ]
+    ],
+    "policy": "fixed",
+    "prediction_error_count": 0,
+    "prediction_loss": 0.0,
+    "proxy_energy": 56.030545972217354,
+    "proxy_energy_per_correct": 224.12218388886942,
+    "rejected_mutations": 0,
+    "rejection_reasons": [],
+    "replay_digest": "0ba724e0abcfd3d96a4ffba48ecbaeb88bba8f326aa353fa75a7136a5ae66140",
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "requested_policy": "fixed",
+    "requested_scale": "expanded",
+    "scale": "expanded",
+    "seed": 4,
+    "shortcut_selected": false
+  },
+  {
+    "accepted_additions": 3,
+    "accuracy": 0.25,
+    "accuracy_per_event": 0.001524390243902439,
+    "accuracy_per_proxy_energy": 0.004053763343686945,
+    "activation_count": 1,
+    "active_edge_utilization": 0.8333333333333334,
+    "candidate_considered": 10,
+    "candidate_exposure": 4,
+    "causal_intervention_changed": true,
+    "class_count": 4,
+    "class_separation": 0.12227500650156958,
+    "classifier_candidate_capacity": 12,
+    "classifier_config_digest": "78c0b97a0ab40e7b7ed8926c0e604a15414bea2c705d1276b3dd81a3c412c628",
+    "classifier_edge_capacity": 10,
+    "classifier_fan_in_limit": 3,
+    "classifier_fan_out_limit": 3,
+    "classifier_neuron_count": 12,
+    "classifier_topology_edges": 2,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-inward",
+        2
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-inward",
+        2
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-right-inward",
+        1
+      ]
+    ],
+    "edge_count": 6,
+    "energy_unit": "activity-cost-proxy; uncalibrated",
+    "event_count": 164,
+    "events_per_correct": 656.0,
+    "executed_policy": "baseline",
+    "executed_scale": "expanded",
+    "fan_in_saturation": 1.0,
+    "fan_out_saturation": 1.0,
+    "growth_attempts": 4,
+    "order_control_accuracy": 0.25,
+    "order_control_prediction_loss": 0.0,
+    "path_delay": 1.875,
+    "path_hops": 2.0,
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        1.0
+      ],
+      [
+        "spiral-left-outward",
+        0.0
+      ],
+      [
+        "spiral-right-inward",
+        0.0
+      ],
+      [
+        "spiral-right-outward",
+        0.0
+      ]
+    ],
+    "policy": "baseline",
+    "prediction_error_count": 0,
+    "prediction_loss": 0.0,
+    "proxy_energy": 61.671089011481875,
+    "proxy_energy_per_correct": 246.6843560459275,
+    "rejected_mutations": 1,
+    "rejection_reasons": [
+      [
+        "fan_in_full",
+        1
+      ]
+    ],
+    "replay_digest": "f33cc21ca862817c944c6edba34ac1e118121125fd2a06381b3f0d3ba8db5a04",
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "requested_policy": "baseline",
+    "requested_scale": "expanded",
+    "scale": "expanded",
+    "seed": 4,
+    "shortcut_selected": true
+  },
+  {
+    "accepted_additions": 3,
+    "accuracy": 0.25,
+    "accuracy_per_event": 0.0015923566878980893,
+    "accuracy_per_proxy_energy": 0.004299364228227715,
+    "activation_count": 1,
+    "active_edge_utilization": 0.6666666666666666,
+    "candidate_considered": 10,
+    "candidate_exposure": 4,
+    "causal_intervention_changed": false,
+    "class_count": 4,
+    "class_separation": 0.13227777819933859,
+    "classifier_candidate_capacity": 12,
+    "classifier_config_digest": "3aac52a19b6346ae7cfe2f1560953f524c0c7fa286c5dcdb4e54c7184f2c933c",
+    "classifier_edge_capacity": 10,
+    "classifier_fan_in_limit": 3,
+    "classifier_fan_out_limit": 3,
+    "classifier_neuron_count": 12,
+    "classifier_topology_edges": 2,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-inward",
+        2
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-inward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-inward",
+        2
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-right-inward",
+        1
+      ]
+    ],
+    "edge_count": 6,
+    "energy_unit": "activity-cost-proxy; uncalibrated",
+    "event_count": 157,
+    "events_per_correct": 628.0,
+    "executed_policy": "random",
+    "executed_scale": "expanded",
+    "fan_in_saturation": 1.0,
+    "fan_out_saturation": 0.6666666666666666,
+    "growth_attempts": 4,
+    "order_control_accuracy": 0.25,
+    "order_control_prediction_loss": 0.0,
+    "path_delay": 3.0,
+    "path_hops": 3.0,
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        1.0
+      ],
+      [
+        "spiral-left-outward",
+        0.0
+      ],
+      [
+        "spiral-right-inward",
+        0.0
+      ],
+      [
+        "spiral-right-outward",
+        0.0
+      ]
+    ],
+    "policy": "random",
+    "prediction_error_count": 0,
+    "prediction_loss": 0.0,
+    "proxy_energy": 58.14813231189185,
+    "proxy_energy_per_correct": 232.5925292475674,
+    "rejected_mutations": 1,
+    "rejection_reasons": [
+      [
+        "fan_in_full",
+        1
+      ]
+    ],
+    "replay_digest": "6d252135abf05881277611153db7c8becb57a8013f270157381aaef4de36c363",
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "requested_policy": "random",
+    "requested_scale": "expanded",
+    "scale": "expanded",
+    "seed": 4,
+    "shortcut_selected": false
+  },
+  {
+    "accepted_additions": 3,
+    "accuracy": 0.25,
+    "accuracy_per_event": 0.001524390243902439,
+    "accuracy_per_proxy_energy": 0.004053763343686945,
+    "activation_count": 1,
+    "active_edge_utilization": 0.8333333333333334,
+    "candidate_considered": 10,
+    "candidate_exposure": 4,
+    "causal_intervention_changed": true,
+    "class_count": 4,
+    "class_separation": 0.12227500650156958,
+    "classifier_candidate_capacity": 12,
+    "classifier_config_digest": "270ec1b466bf3f996002ce1ea7c2a7f1ebc1bf3762cd2a9a7b80bd74ca5bec23",
+    "classifier_edge_capacity": 10,
+    "classifier_fan_in_limit": 3,
+    "classifier_fan_out_limit": 3,
+    "classifier_neuron_count": 12,
+    "classifier_topology_edges": 2,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-inward",
+        2
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-inward",
+        2
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-right-inward",
+        1
+      ]
+    ],
+    "edge_count": 6,
+    "energy_unit": "activity-cost-proxy; uncalibrated",
+    "event_count": 164,
+    "events_per_correct": 656.0,
+    "executed_policy": "temporal",
+    "executed_scale": "expanded",
+    "fan_in_saturation": 1.0,
+    "fan_out_saturation": 1.0,
+    "growth_attempts": 4,
+    "order_control_accuracy": 0.25,
+    "order_control_prediction_loss": 0.0,
+    "path_delay": 1.875,
+    "path_hops": 2.0,
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        1.0
+      ],
+      [
+        "spiral-left-outward",
+        0.0
+      ],
+      [
+        "spiral-right-inward",
+        0.0
+      ],
+      [
+        "spiral-right-outward",
+        0.0
+      ]
+    ],
+    "policy": "temporal",
+    "prediction_error_count": 0,
+    "prediction_loss": 0.0,
+    "proxy_energy": 61.671089011481875,
+    "proxy_energy_per_correct": 246.6843560459275,
+    "rejected_mutations": 1,
+    "rejection_reasons": [
+      [
+        "fan_in_full",
+        1
+      ]
+    ],
+    "replay_digest": "026cda632b56454f9978f5af240688fcfaa74b344ddfeaf71936b15c098136ad",
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "requested_policy": "temporal",
+    "requested_scale": "expanded",
+    "scale": "expanded",
+    "seed": 4,
+    "shortcut_selected": true
+  },
+  {
+    "accepted_additions": 3,
+    "accuracy": 0.25,
+    "accuracy_per_event": 0.001524390243902439,
+    "accuracy_per_proxy_energy": 0.004053763343686945,
+    "activation_count": 1,
+    "active_edge_utilization": 0.8333333333333334,
+    "candidate_considered": 10,
+    "candidate_exposure": 4,
+    "causal_intervention_changed": true,
+    "class_count": 4,
+    "class_separation": 0.12227500650156958,
+    "classifier_candidate_capacity": 12,
+    "classifier_config_digest": "daa3fdff564c6571a1179a77b8fb6c35b0f265e8076eeddd45fe8e38f8af6432",
+    "classifier_edge_capacity": 10,
+    "classifier_fan_in_limit": 3,
+    "classifier_fan_out_limit": 3,
+    "classifier_neuron_count": 12,
+    "classifier_topology_edges": 2,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-inward",
+        2
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-inward",
+        2
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-right-inward",
+        1
+      ]
+    ],
+    "edge_count": 6,
+    "energy_unit": "activity-cost-proxy; uncalibrated",
+    "event_count": 164,
+    "events_per_correct": 656.0,
+    "executed_policy": "reversed",
+    "executed_scale": "expanded",
+    "fan_in_saturation": 1.0,
+    "fan_out_saturation": 1.0,
+    "growth_attempts": 4,
+    "order_control_accuracy": 0.25,
+    "order_control_prediction_loss": 0.0,
+    "path_delay": 1.875,
+    "path_hops": 2.0,
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        1.0
+      ],
+      [
+        "spiral-left-outward",
+        0.0
+      ],
+      [
+        "spiral-right-inward",
+        0.0
+      ],
+      [
+        "spiral-right-outward",
+        0.0
+      ]
+    ],
+    "policy": "reversed",
+    "prediction_error_count": 0,
+    "prediction_loss": 0.0,
+    "proxy_energy": 61.671089011481875,
+    "proxy_energy_per_correct": 246.6843560459275,
+    "rejected_mutations": 1,
+    "rejection_reasons": [
+      [
+        "fan_in_full",
+        1
+      ]
+    ],
+    "replay_digest": "f33cc21ca862817c944c6edba34ac1e118121125fd2a06381b3f0d3ba8db5a04",
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "requested_policy": "reversed",
+    "requested_scale": "expanded",
+    "scale": "expanded",
+    "seed": 4,
+    "shortcut_selected": true
+  }
+]

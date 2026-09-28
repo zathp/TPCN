@@ -17,7 +17,11 @@ from typing import Any, Literal
 from .experiments import ExperimentConfig, ExperimentRunner, SyntheticExample
 from .stroke_dataset import StrokePoint
 
-SpiralLabel = Literal["spiral-left", "spiral-right"]
+SpiralLabel = Literal[
+    "spiral-left-outward", "spiral-right-outward",
+    "spiral-left-inward", "spiral-right-inward",
+    "spiral-left", "spiral-right",
+]
 
 
 @dataclass(frozen=True, slots=True)
@@ -69,6 +73,7 @@ class SpiralMetadata:
     sample_count: int
     duration: float
     path_length: float
+    traversal: str = "outward"
 
     @property
     def nuisance_tuple(self) -> tuple[float | int, ...]:
@@ -118,6 +123,8 @@ class ControlResult:
     accepted_additions: int
     pruned_connections: int
     represented_classes: tuple[str, ...]
+    activation_count: int = 0
+    prediction_error_count: int = 0
 
 
 def _digest(value: object) -> str:
@@ -147,10 +154,13 @@ def _sample_nuisance(seed: int, config: SpiralConfig) -> dict[str, float | int]:
 
 def _make_example(seed: int, label: SpiralLabel, config: SpiralConfig,
                   nuisance: dict[str, float | int] | None = None) -> SpiralExample:
-    if label not in ("spiral-left", "spiral-right"):
-        raise ValueError("label must be spiral-left or spiral-right")
+    if label not in ("spiral-left", "spiral-right", "spiral-left-outward", "spiral-right-outward",
+                     "spiral-left-inward", "spiral-right-inward"):
+        raise ValueError("label must identify a supported spiral class")
     values = _sample_nuisance(seed, config) if nuisance is None else nuisance
-    handedness = 1 if label == "spiral-left" else -1
+    base_label = label.replace("-outward", "").replace("-inward", "")
+    handedness = 1 if base_label == "spiral-left" else -1
+    traversal = "inward" if label.endswith("-inward") else "outward"
     rng = random.Random(seed ^ 0x5EED5EED)
     count = int(values["sample_count"])
     duration = float(values["duration"])
@@ -164,8 +174,9 @@ def _make_example(seed: int, label: SpiralLabel, config: SpiralConfig,
     points: list[StrokePoint] = []
     path_length = 0.0
     previous: tuple[float, float] | None = None
+    fractions = tuple(index / (count - 1) for index in range(count))
     for index, timestamp in enumerate(timestamps):
-        fraction = index / (count - 1)
+        fraction = fractions[index]
         radial = float(values["radial_growth"]) * fraction
         if index:
             radial += rng.uniform(-float(values["radial_jitter"]), float(values["radial_jitter"]))
@@ -183,11 +194,15 @@ def _make_example(seed: int, label: SpiralLabel, config: SpiralConfig,
             path_length += math.hypot(x - previous[0], y - previous[1])
         previous = (x, y)
         points.append(StrokePoint(x, y, timestamp=timestamp))
+    if traversal == "inward":
+        timestamps = tuple(point.timestamp for point in points)
+        points = [StrokePoint(point.x, point.y, timestamp)
+                  for point, timestamp in zip(reversed(points), timestamps)]
     metadata = SpiralMetadata(seed, label, handedness, float(values["rotation"]), float(values["scale"]),
                               float(values["offset_x"]), float(values["offset_y"]), float(values["angular_speed"]),
                               float(values["radial_growth"]), float(values["timing_jitter"]),
                               float(values["coordinate_noise"]), float(values["radial_jitter"]),
-                              count, duration, path_length)
+                              count, duration, path_length, traversal)
     return SpiralExample(f"spiral-{seed}", tuple(points), label, metadata, _sequence_digest(tuple(points)))
 
 
@@ -200,8 +215,20 @@ def generate_matched_pair(seed: int, *, config: SpiralConfig | None = None) -> t
     """Generate opposite handedness with exactly shared nuisance parameters."""
     selected = config or SpiralConfig()
     nuisance = _sample_nuisance(seed, selected)
-    return (_make_example(seed, "spiral-left", selected, nuisance),
-            _make_example(seed, "spiral-right", selected, nuisance))
+    return (_make_example(seed, "spiral-left-outward", selected, nuisance),
+            _make_example(seed, "spiral-right-outward", selected, nuisance))
+
+
+def generate_traversal_pair(seed: int, *, handedness: str = "left",
+                            config: SpiralConfig | None = None) -> tuple[SpiralExample, SpiralExample]:
+    """Generate matched outward/inward streams over the same geometric path."""
+    if handedness not in ("left", "right"):
+        raise ValueError("handedness must be left or right")
+    selected = config or SpiralConfig()
+    nuisance = _sample_nuisance(seed, selected)
+    prefix = f"spiral-{handedness}"
+    return (_make_example(seed, f"{prefix}-outward", selected, nuisance),
+            _make_example(seed, f"{prefix}-inward", selected, nuisance))
 
 
 def make_spiral_dataset(*, examples_per_class: int = 32, train_seed: int = 12007,
@@ -212,8 +239,10 @@ def make_spiral_dataset(*, examples_per_class: int = 32, train_seed: int = 12007
     def stream(seed: int, split: str) -> tuple[SpiralExample, ...]:
         examples = []
         for index in range(examples_per_class):
-            for label_index, label in enumerate(("spiral-left", "spiral-right")):
-                example_seed = seed * 1_000_000 + index * 2 + label_index
+            labels = ("spiral-left-outward", "spiral-right-outward",
+                      "spiral-left-inward", "spiral-right-inward")
+            for label_index, label in enumerate(labels):
+                example_seed = seed * 1_000_000 + index * len(labels) + label_index
                 example = _make_example(example_seed, label, selected)
                 examples.append(SpiralExample(f"{split}-{example.example_id}", example.points,
                                                example.label, example.metadata, example.sequence_digest))
@@ -290,13 +319,14 @@ def _control(name: str, examples: tuple[SpiralExample, ...], config: ExperimentC
                          result.metrics.reward, result.metrics.energy, result.metrics.utility, result.metrics.event_count,
                          result.metrics.active_neuron_count, result.metrics.connection_count,
                          mutation_count, accepted_additions, pruned_connections,
-                         result.metrics.represented_classes)
+                         result.metrics.represented_classes, result.metrics.activation_count,
+                         result.metrics.prediction_error_count)
 
 
 def run_controls(dataset: SpiralDataset, *, epochs: int = 20, max_points: int | None = None) -> tuple[ControlResult, ...]:
     point_limit = max_points or max(len(item.points) for item in dataset.train + dataset.evaluation)
     base = dict(epochs=epochs, max_points=point_limit, prediction_capacity=point_limit,
-                max_classes=2, seed=17)
+                max_classes=4, seed=17)
     no_learning = _control("no-learning", dataset.evaluation, ExperimentConfig(**base, learning_enabled=False))
     fixed = _control("fixed-topology", dataset.evaluation, ExperimentConfig(**base), train=dataset.train)
     plastic = _control("structural-plasticity", dataset.evaluation,
@@ -327,6 +357,21 @@ def run_controls(dataset: SpiralDataset, *, epochs: int = 20, max_points: int | 
             _control("opposite-handed-matched-pair", opposite_pair, ExperimentConfig(**base), train=dataset.train))
 
 
+def run_policy_control(dataset: SpiralDataset, *, policy: str, config: ExperimentConfig,
+                       order_transform: Literal["ordered", "reverse"] = "ordered") -> ControlResult:
+    """Run one explicitly named policy through the classifier experiment."""
+    if policy not in ("fixed", "baseline", "random", "temporal", "reversed"):
+        raise ValueError("policy must be a supported structural policy")
+    if order_transform == "reverse":
+        train = tuple(transform_points(item, "reverse") for item in dataset.train)
+        evaluation = tuple(transform_points(item, "reverse") for item in dataset.evaluation)
+    elif order_transform == "ordered":
+        train, evaluation = dataset.train, dataset.evaluation
+    else:
+        raise ValueError("order_transform must be ordered or reverse")
+    return _control(policy, evaluation, config, train=train, transform=order_transform)
+
+
 def metadata_json(dataset: SpiralDataset, controls: tuple[ControlResult, ...]) -> str:
     return json.dumps({"train_digest": dataset.train_digest, "evaluation_digest": dataset.evaluation_digest,
                        "train": [asdict(item.metadata) for item in dataset.train],
@@ -335,5 +380,5 @@ def metadata_json(dataset: SpiralDataset, controls: tuple[ControlResult, ...]) -
 
 
 __all__ = ["ControlResult", "SpiralConfig", "SpiralDataset", "SpiralExample", "SpiralMetadata",
-           "generate_matched_pair", "generate_spiral", "generate_variant", "make_spiral_dataset",
-           "metadata_json", "run_controls", "transform_points"]
+           "generate_matched_pair", "generate_spiral", "generate_traversal_pair", "generate_variant", "make_spiral_dataset",
+           "metadata_json", "run_controls", "run_policy_control", "transform_points"]

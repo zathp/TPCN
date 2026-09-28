@@ -25,6 +25,7 @@ from .topology import BoundedTopology
 
 ActivationMode = Literal["event_only", "utility"]
 RewardMode = Literal["dense", "sparse", "neutral"]
+StructuralPolicy = Literal["fixed", "baseline", "random", "temporal", "reversed"]
 
 
 @dataclass(frozen=True, slots=True)
@@ -50,10 +51,12 @@ class ExperimentConfig:
     incorrect_reward: float = -1.0
     max_classes: int = 26
     structural_plasticity: bool = False
+    structural_policy: StructuralPolicy = "baseline"
     topology_fan_in: int = 2
     topology_fan_out: int = 2
     topology_edge_capacity: int = 8
     topology_initial_edges: int = 1
+    topology_node_count: int | None = None
     mutation_history_limit: int = 32
     candidate_capacity: int = 16
     max_growth_per_epoch: int = 1
@@ -72,6 +75,8 @@ class ExperimentConfig:
             raise ValueError("topology_initial_edges must be a nonnegative integer")
         if not isinstance(self.structural_plasticity, bool):
             raise TypeError("structural_plasticity must be a boolean")
+        if self.structural_policy not in ("fixed", "baseline", "random", "temporal", "reversed"):
+            raise ValueError("structural_policy must be a supported policy")
         if self.activation_mode not in ("event_only", "utility"):
             raise ValueError("activation_mode must be 'event_only' or 'utility'")
         if self.reward_mode not in ("dense", "sparse", "neutral"):
@@ -88,6 +93,12 @@ class ExperimentConfig:
                 raise ValueError(f"{name} must be finite")
         if self.energy_weight < 0.0 or self.reward_delay < 0.0:
             raise ValueError("energy_weight and reward_delay must be nonnegative")
+        if self.topology_node_count is not None and (
+            isinstance(self.topology_node_count, bool)
+            or not isinstance(self.topology_node_count, int)
+            or self.topology_node_count <= 0
+        ):
+            raise ValueError("topology_node_count must be a positive integer or None")
 
 
 @dataclass(frozen=True, slots=True)
@@ -130,6 +141,7 @@ class ExperimentMetrics:
     starvation_count: int = 0
     mean_margin: float = 0.0
     readout_diagnostics: tuple[ReadoutDiagnostic, ...] = ()
+    prediction_error_count: int = 0
 
 
 @dataclass(frozen=True, slots=True)
@@ -338,7 +350,8 @@ class ExperimentRunner:
         return self._plasticity
 
     def _ensure_topology(self, workload: tuple[SyntheticExample, ...]) -> None:
-        nodes = tuple(f"neuron-{index}" for index in range(len(workload)))
+        node_count = self.config.topology_node_count or len(workload)
+        nodes = tuple(f"neuron-{index}" for index in range(node_count))
         if self._topology is not None and self._topology.nodes == nodes:
             return
         possible_edges = len(nodes) * max(0, len(nodes) - 1)
@@ -353,7 +366,8 @@ class ExperimentRunner:
             if len(self._topology) >= initial_edges:
                 break
             self._topology.connect(source, destination, 1.0)
-        neighbors = {node: (nodes[(index + 1) % len(nodes)],) for index, node in enumerate(nodes) if len(nodes) > 1}
+        neighbors = {node: tuple(candidate for candidate in nodes if candidate != node)
+                 for node in nodes if len(nodes) > 1}
         self._plasticity = StructuralPlasticityController(
             self._topology, candidate_capacity=self.config.candidate_capacity,
             max_growth_per_adaptation=self.config.max_growth_per_epoch,
@@ -390,8 +404,16 @@ class ExperimentRunner:
         mutations: list[tuple[str, str, str, str]] = []
         nodes = self._topology.nodes
         for index, run in enumerate(runs):
-            source = nodes[index]
-            destination = nodes[(index + 1) % len(nodes)]
+            source = nodes[index % len(nodes)]
+            if self.config.structural_policy == "reversed":
+                destination = nodes[(index - 1) % len(nodes)]
+            elif self.config.structural_policy == "temporal":
+                destination = nodes[(index + 2) % len(nodes)]
+            elif self.config.structural_policy == "random":
+                candidates = [node for node in nodes if node != source]
+                destination = random.Random(self.config.seed + epoch + index).choice(candidates)
+            else:
+                destination = nodes[(index + 1) % len(nodes)]
             evidence = CandidateEvidence(source, source, destination, abs(run.feature) + run.loss,
                                          1.0, f"epoch-{epoch}-neuron-{index}")
             result = self._plasticity.grow(evidence)
@@ -437,7 +459,7 @@ class ExperimentRunner:
         assert self._network is not None
         self._network.reset_character()
         classifier = StreamingCharacterClassifier(max_activity_events=config.max_points)
-        neuron = self._network.neurons[index]
+        neuron = self._network.neurons[index % len(self._network.neurons)]
         meter = LocalEnergyModel(f"meter-{index}", max_counter=config.max_points * 8)
         utility = RewardAdjustedUtility(energy_weight=config.energy_weight)
         ledger = EligibilityLedger(f"ledger-{index}", max_traces=config.prediction_capacity, decay_time_constant=4.0)
@@ -553,6 +575,7 @@ class ExperimentRunner:
             starvation_count=sum(label not in represented for label in declared),
             mean_margin=sum(run.margin for run in runs) / total,
             readout_diagnostics=tuple(diagnostics),
+            prediction_error_count=sum(run.loss > 0.0 for run in runs),
         )
         predictions = tuple(run.raw_prediction for run in runs)
         trace = tuple(item for run in runs for item in run.trace)

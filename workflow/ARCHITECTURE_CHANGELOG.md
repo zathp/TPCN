@@ -197,3 +197,23 @@ Verification** follow-up from the current HEAD
 - Luna-13 and Luna-14 remain independent siblings, and the legacy baseline is
 	preserved.
 
+## Luna-12L creation - 2026-09-28
+
+Created **Energy/Prediction Tradeoff and Four-Class Temporal Scale
+Verification** from the Luna-0 review of Luna-12K at current HEAD
+`3122c7dbae2589c1c78fe6169d394f525c212ec1`.
+
+- Luna-12L is classified `EXPERIMENT` and `VERIFICATION`; it compares fixed,
+	pre-12I, random, temporal-associative and reversed/shuffled timing controls
+	on a four-class spiral benchmark at reference and modest expanded scales.
+- It directly addresses the observed Luna-12K tradeoff: temporal proxy energy
+	`9.850877` versus adaptive-control `9.274247`, and temporal prediction loss
+	`1.284030` versus `1.025229`.
+- It requires class-neutral inward/outward generation, no class-marker events,
+	equal declared budgets, seeds `0..4`, joint classification/prediction/
+	resource measurements, class-conflict analysis and a learned-edge causal
+	intervention.
+- This is a workflow and experiment-scope update only. A14 and the
+	architecture contract are unchanged; execution requires a separate explicit
+	assignment and all results return to Luna-0. No later Luna is authorized.
+

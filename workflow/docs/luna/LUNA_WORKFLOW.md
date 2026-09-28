@@ -1185,6 +1185,65 @@ analysis buffers are finite. The handoff must distinguish `OBSERVED`,
 focused, regression, full-suite, compile, diagnostic and diff check as passed,
 failed, not run or not applicable. Any result returns to Luna-0.
 
+## Luna-12L - Energy/Prediction Tradeoff and Four-Class Temporal Scale Verification
+
+**Authorization:** Luna-12L is a separately scoped `EXPERIMENT` and
+`VERIFICATION` follow-up created after the Luna-12K `PASS WITH FOLLOW-UP`
+review. Creation does not execute the experiment, amend A14 or authorize a
+later Luna. Execution requires a separate explicit assignment and a completed
+12L handoff returning to Luna-0.
+
+**Question and hypothesis:** Determine whether temporal-associative growth
+retains useful classification and causal path-allocation behavior when the
+Luna-12G spiral task expands to four classes combining handedness and
+traversal direction, and whether the Luna-12K proxy-energy/prediction-loss
+cost is bounded, explained or improved without destroying the causal benefit.
+The primary hypothesis is falsified by loss of useful classification or path
+allocation at the expanded scale, temporal-order controls performing
+equivalently, or an unfavorable resource/prediction tradeoff without a
+measured compensating benefit. A negative result is valid.
+
+**Four-class benchmark:** Use the existing Luna-12G naming convention extended
+to `spiral-left-outward`, `spiral-right-outward`, `spiral-left-inward` and
+`spiral-right-inward`. Inward examples must use the same trajectory family as
+outward examples and depend on traversal direction rather than a static class
+marker. Match point count, radius, center, scale, noise, sampling, amplitude,
+duration, payload conventions and identifiers across classes where practical.
+Labels remain external to canonical events, prediction, routing, topology,
+structural evidence, eligibility and energy. A reused sequence boundary/check
+event must be identical and class-neutral across all classes.
+
+**Controls and scales:** At both a seven-node reference scale and a modest
+12-node expanded scale, compare fixed topology, pre-12I growth, random legal
+growth, Luna-12I temporal growth and reversed/shuffled/timing-destroyed
+evidence. Use seeds `0, 1, 2, 3, 4` and equal candidate exposure, mutation
+budgets, bounds, workload and reset policy within each scale. The reference
+scale preserves 12K capacities; the expanded scale uses bounded capacities of
+10 edges, fan-in/out 3, candidate/history 12 and queue/event 24 with five
+growth attempts. Serialize exact configurations before execution.
+
+**Measurements and intervention:** Report four-class and per-class accuracy,
+four-by-four confusion, handedness/direction pair confusion, class separation,
+prediction loss/error activity, proxy energy and units, events, activations,
+edges/utilization, path hops/delays, candidate exposure, mutations,
+rejections, fan-in/out pressure, class-specific utilization and causal
+shortcut evidence. Calculate accuracy/resource and prediction/resource
+summaries without making them permanent objectives. Retain the 12K learned-edge
+removal replay and compare routed traces, downstream state/output,
+classification, prediction, energy and path delay. Investigate the 12K
+prediction-loss increase without redesigning the predictor.
+
+**Evidence and gate:** Focused tests must cover deterministic four-class
+generation, matched inward/outward pairs, label and boundary-event isolation,
+same-seed replay, equal bounds, four-class readout, temporal-order intervention,
+consistent energy/prediction metrics and causal edge removal. The handoff must
+separate `OBSERVED`, `INFERRED` and `HYPOTHESIZED` evidence and classify all
+validation as passed, failed, not run or not applicable. Gates are `PASS`,
+`PASS WITH FOLLOW-UP`, `NOT SUPPORTED`, `INCONCLUSIVE` and `BLOCKED` as
+defined in the 12L specification. Any result returns to Luna-0; no A14
+promotion, permanent energy/prediction formula, real-data claim, hardware
+acceptance or successor authorization follows automatically.
+
 ## Luna-13 — GPU-Compatible Visualization Path
 
 **Authorization:** Blocked until Luna-12 passes and Luna-0 explicitly authorizes this milestone. The prompt or handoff alone is not authorization.
@@ -1542,6 +1601,10 @@ Neuron              Topology
                      and path shortening
                       │
                       ▼
+                        12L energy / prediction
+                        four-class temporal scale
+                          │
+                          ▼
                     Luna-0 review
 
         Stable software event semantics

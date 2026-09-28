@@ -107,6 +107,15 @@ from .temporal_efficacy import (
     run_temporal_efficacy,
     run_temporal_efficacy_suite,
 )
+from .temporal_scale import (
+    CLASS_LABELS,
+    FourClassMetrics,
+    POLICIES,
+    SCALES,
+    ScaleConfig,
+    run_luna12l_condition,
+    run_luna12l_suite,
+)
 from .spiral_benchmark import (
     ControlResult,
     SpiralConfig,
@@ -115,10 +124,12 @@ from .spiral_benchmark import (
     SpiralMetadata,
     generate_matched_pair,
     generate_spiral,
+    generate_traversal_pair,
     generate_variant,
     make_spiral_dataset,
     metadata_json,
     run_controls,
+    run_policy_control,
     transform_points,
 )
 
@@ -222,6 +233,14 @@ __all__ = [
     "run_temporal_capacity_suite",
     "CausalIntervention",
     "TemporalEfficacyConfig",
+    "CLASS_LABELS",
+    "FourClassMetrics",
+    "POLICIES",
+    "SCALES",
+    "ScaleConfig",
+    "run_luna12l_condition",
+    "run_luna12l_suite",
+    "run_policy_control",
     "TemporalEfficacyMetrics",
     "TemporalEfficacyResult",
     "run_temporal_efficacy",
@@ -233,6 +252,7 @@ __all__ = [
     "SpiralMetadata",
     "generate_matched_pair",
     "generate_spiral",
+    "generate_traversal_pair",
     "generate_variant",
     "make_spiral_dataset",
     "metadata_json",

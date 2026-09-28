@@ -30,6 +30,7 @@ CANDIDATE_ENDPOINTS = (
 
 @dataclass(frozen=True, slots=True)
 class CapacityPressureConfig:
+    node_count: int = 7
     fan_in_limit: int = 2
     fan_out_limit: int = 2
     edge_capacity: int = 6
@@ -47,7 +48,7 @@ class CapacityPressureConfig:
 
     def __post_init__(self) -> None:
         for name in (
-            "fan_in_limit", "fan_out_limit", "edge_capacity", "routing_capacity",
+            "node_count", "fan_in_limit", "fan_out_limit", "edge_capacity", "routing_capacity",
             "candidate_capacity", "history_capacity", "maximum_score",
             "max_growth_attempts", "queue_capacity", "max_events",
             "temporal_observation_count",
@@ -145,8 +146,9 @@ class CapacityPressureResult:
 
 
 def _initial_topology(config: CapacityPressureConfig) -> BoundedTopology:
+    nodes = NODES + tuple(f"aux-{index}" for index in range(max(0, config.node_count - len(NODES))))
     return BoundedTopology.from_edges(
-        NODES,
+        nodes,
         tuple((source, destination, config.long_delay) for source, destination in LONG_PATH),
         fan_in_limit=config.fan_in_limit,
         fan_out_limit=config.fan_out_limit,
@@ -180,8 +182,9 @@ def _candidate_scores(policy: PolicyName, seed: int, config: CapacityPressureCon
 
 
 def _temporal_policy(config: CapacityPressureConfig, *, reversed_order: bool) -> TemporalAssociationPolicy:
+    nodes = NODES + tuple(f"aux-{index}" for index in range(max(0, config.node_count - len(NODES))))
     policy = TemporalAssociationPolicy(
-        NODES,
+        nodes,
         history_capacity=config.history_capacity,
         candidate_capacity=config.candidate_capacity,
         association_window=config.association_window,
@@ -219,6 +222,7 @@ def _candidates(policy: PolicyName, seed: int, config: CapacityPressureConfig) -
 
 
 def _controller(config: CapacityPressureConfig) -> StructuralPlasticityController:
+    nodes = NODES + tuple(f"aux-{index}" for index in range(max(0, config.node_count - len(NODES))))
     return StructuralPlasticityController(
         _initial_topology(config),
         candidate_capacity=config.candidate_capacity,
@@ -266,7 +270,7 @@ def _edge_records(topology: BoundedTopology) -> tuple[tuple[str, str, float], ..
 
 def _replay(topology: BoundedTopology, config: CapacityPressureConfig) -> ReplayMetrics:
     examples = (("positive", 1.0), ("negative", -1.0))
-    neurons = {node: TPCNNeuron(node, decay_rate=0.5, input_gain=1.0) for node in NODES}
+    neurons = {node: TPCNNeuron(node, decay_rate=0.5, input_gain=1.0) for node in topology.nodes}
     trace: list[tuple[object, ...]] = []
     active_edges: set[tuple[str, str]] = set()
     path_hops: list[int] = []
@@ -316,7 +320,7 @@ def _replay(topology: BoundedTopology, config: CapacityPressureConfig) -> Replay
                 path_hops.append(len(path) - 1)
                 path_delays.append(event.timestamp)
                 target_arrivals.append((example_id, event.timestamp, len(path) - 1, activation))
-            if event.destination in topology.nodes and len(path) < len(NODES) and event.destination not in path[:-1]:
+            if event.destination in topology.nodes and len(path) < len(topology.nodes) and event.destination not in path[:-1]:
                 emitted = Event(event.timestamp, event.destination, event.destination, event.event_type, activation)
                 routed = topology.route(emitted, queue)
                 routed_event_count += len(routed)
@@ -385,8 +389,8 @@ def run_temporal_capacity(
         )
     after = _replay(controller.topology, config)
     topology_after = _edge_records(controller.topology)
-    fan_in = tuple((node, len(controller.topology.incoming(node))) for node in NODES)
-    fan_out = tuple((node, len(controller.topology.outgoing(node))) for node in NODES)
+    fan_in = tuple((node, len(controller.topology.incoming(node))) for node in controller.topology.nodes)
+    fan_out = tuple((node, len(controller.topology.outgoing(node))) for node in controller.topology.nodes)
     shortest_before_hops, shortest_before_delay = _shortest_target_path(_initial_topology(config))
     shortest_after_hops, shortest_after_delay = _shortest_target_path(controller.topology)
     shortcut = ("source", TARGET_NODE)

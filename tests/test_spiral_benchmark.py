@@ -42,8 +42,12 @@ def test_split_is_disjoint_balanced_and_nuisance_distributions_are_class_symmetr
 
     assert not train_ids & evaluation_ids
     assert not train_sequences & evaluation_sequences
-    assert {item.label for item in dataset.train} == {"spiral-left", "spiral-right"}
-    assert {item.label for item in dataset.evaluation} == {"spiral-left", "spiral-right"}
+    expected_labels = {
+        "spiral-left-outward", "spiral-right-outward",
+        "spiral-left-inward", "spiral-right-inward",
+    }
+    assert {item.label for item in dataset.train} == expected_labels
+    assert {item.label for item in dataset.evaluation} == expected_labels
     assert all(item.metadata.nuisance_tuple[9] >= 12 for item in dataset.train + dataset.evaluation)
     assert all(item.metadata.nuisance_tuple[9] <= 20 for item in dataset.train + dataset.evaluation)
 

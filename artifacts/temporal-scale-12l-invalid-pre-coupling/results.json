@@ -1,0 +1,4972 @@
+[
+  {
+    "accepted_additions": 0,
+    "accuracy": 0.125,
+    "accuracy_per_event": 0.015625,
+    "accuracy_per_proxy_energy": 0.015644130980028,
+    "activation_count": 8,
+    "active_edge_utilization": 1.0,
+    "candidate_considered": 4,
+    "candidate_exposure": 4,
+    "causal_intervention_changed": false,
+    "class_separation": 0.11150300627152124,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-inward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-outward",
+        2
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-inward",
+        2
+      ]
+    ],
+    "edge_count": 3,
+    "energy_unit": "activity-cost-proxy; uncalibrated",
+    "event_count": 8,
+    "events_per_correct": 64.0,
+    "fan_in_saturation": 0.5,
+    "fan_out_saturation": 0.5,
+    "growth_attempts": 0,
+    "order_control_accuracy": 0.125,
+    "order_control_prediction_loss": 0.0,
+    "path_delay": 3.0,
+    "path_hops": 3.0,
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        0.5
+      ],
+      [
+        "spiral-left-outward",
+        0.0
+      ],
+      [
+        "spiral-right-inward",
+        0.0
+      ],
+      [
+        "spiral-right-outward",
+        0.0
+      ]
+    ],
+    "policy": "fixed",
+    "prediction_error_count": 2,
+    "prediction_loss": 1.0252293343028116,
+    "proxy_energy": 7.990216916464112,
+    "proxy_energy_per_correct": 63.921735331712895,
+    "rejected_mutations": 0,
+    "rejection_reasons": [],
+    "replay_digest": "0ba724e0abcfd3d96a4ffba48ecbaeb88bba8f326aa353fa75a7136a5ae66140",
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "scale": "reference",
+    "seed": 0,
+    "shortcut_selected": false
+  },
+  {
+    "accepted_additions": 2,
+    "accuracy": 0.125,
+    "accuracy_per_event": 0.0125,
+    "accuracy_per_proxy_energy": 0.013478183332969185,
+    "activation_count": 10,
+    "active_edge_utilization": 0.8,
+    "candidate_considered": 9,
+    "candidate_exposure": 4,
+    "causal_intervention_changed": false,
+    "class_separation": 0.11150300627152124,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-inward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-outward",
+        2
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-inward",
+        2
+      ]
+    ],
+    "edge_count": 5,
+    "energy_unit": "activity-cost-proxy; uncalibrated",
+    "event_count": 10,
+    "events_per_correct": 80.0,
+    "fan_in_saturation": 1.0,
+    "fan_out_saturation": 1.0,
+    "growth_attempts": 3,
+    "order_control_accuracy": 0.125,
+    "order_control_prediction_loss": 0.0,
+    "path_delay": 3.0,
+    "path_hops": 3.0,
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        0.5
+      ],
+      [
+        "spiral-left-outward",
+        0.0
+      ],
+      [
+        "spiral-right-inward",
+        0.0
+      ],
+      [
+        "spiral-right-outward",
+        0.0
+      ]
+    ],
+    "policy": "baseline",
+    "prediction_error_count": 2,
+    "prediction_loss": 1.0252293343028116,
+    "proxy_energy": 9.274246900488112,
+    "proxy_energy_per_correct": 74.1939752039049,
+    "rejected_mutations": 1,
+    "rejection_reasons": [
+      [
+        "fan_out_full",
+        1
+      ]
+    ],
+    "replay_digest": "8c1c71c7882f972b209482c2f0543bcd5aba67e535c91d3c7ea2276cb90d059a",
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "scale": "reference",
+    "seed": 0,
+    "shortcut_selected": false
+  },
+  {
+    "accepted_additions": 2,
+    "accuracy": 0.125,
+    "accuracy_per_event": 0.0125,
+    "accuracy_per_proxy_energy": 0.013478183332969185,
+    "activation_count": 10,
+    "active_edge_utilization": 0.8,
+    "candidate_considered": 9,
+    "candidate_exposure": 4,
+    "causal_intervention_changed": false,
+    "class_separation": 0.11150300627152124,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-inward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-outward",
+        2
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-inward",
+        2
+      ]
+    ],
+    "edge_count": 5,
+    "energy_unit": "activity-cost-proxy; uncalibrated",
+    "event_count": 10,
+    "events_per_correct": 80.0,
+    "fan_in_saturation": 1.0,
+    "fan_out_saturation": 1.0,
+    "growth_attempts": 3,
+    "order_control_accuracy": 0.125,
+    "order_control_prediction_loss": 0.0,
+    "path_delay": 3.0,
+    "path_hops": 3.0,
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        0.5
+      ],
+      [
+        "spiral-left-outward",
+        0.0
+      ],
+      [
+        "spiral-right-inward",
+        0.0
+      ],
+      [
+        "spiral-right-outward",
+        0.0
+      ]
+    ],
+    "policy": "random",
+    "prediction_error_count": 2,
+    "prediction_loss": 1.0252293343028116,
+    "proxy_energy": 9.274246900488112,
+    "proxy_energy_per_correct": 74.1939752039049,
+    "rejected_mutations": 1,
+    "rejection_reasons": [
+      [
+        "fan_in_full",
+        1
+      ]
+    ],
+    "replay_digest": "d940a9635dbd72c14e7673a88c4812aa38ae2c6a00fd3615717357d53caedeb7",
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "scale": "reference",
+    "seed": 0,
+    "shortcut_selected": false
+  },
+  {
+    "accepted_additions": 1,
+    "accuracy": 0.125,
+    "accuracy_per_event": 0.0125,
+    "accuracy_per_proxy_energy": 0.012689225632681506,
+    "activation_count": 10,
+    "active_edge_utilization": 1.0,
+    "candidate_considered": 9,
+    "candidate_exposure": 4,
+    "causal_intervention_changed": true,
+    "class_separation": 0.11150300627152124,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-inward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-outward",
+        2
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-inward",
+        2
+      ]
+    ],
+    "edge_count": 4,
+    "energy_unit": "activity-cost-proxy; uncalibrated",
+    "event_count": 10,
+    "events_per_correct": 80.0,
+    "fan_in_saturation": 1.0,
+    "fan_out_saturation": 1.0,
+    "growth_attempts": 3,
+    "order_control_accuracy": 0.125,
+    "order_control_prediction_loss": 0.0,
+    "path_delay": 1.875,
+    "path_hops": 2.0,
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        0.5
+      ],
+      [
+        "spiral-left-outward",
+        0.0
+      ],
+      [
+        "spiral-right-inward",
+        0.0
+      ],
+      [
+        "spiral-right-outward",
+        0.0
+      ]
+    ],
+    "policy": "temporal",
+    "prediction_error_count": 2,
+    "prediction_loss": 1.2840299840239995,
+    "proxy_energy": 9.850876926489391,
+    "proxy_energy_per_correct": 78.80701541191513,
+    "rejected_mutations": 2,
+    "rejection_reasons": [
+      [
+        "fan_in_full",
+        1
+      ],
+      [
+        "fan_out_full",
+        1
+      ]
+    ],
+    "replay_digest": "71083707f8eab8f277a940656f1706d84832c7f91092e48557014696e3cd1bdd",
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "scale": "reference",
+    "seed": 0,
+    "shortcut_selected": true
+  },
+  {
+    "accepted_additions": 2,
+    "accuracy": 0.125,
+    "accuracy_per_event": 0.0125,
+    "accuracy_per_proxy_energy": 0.013478183332969185,
+    "activation_count": 10,
+    "active_edge_utilization": 0.8,
+    "candidate_considered": 9,
+    "candidate_exposure": 4,
+    "causal_intervention_changed": false,
+    "class_separation": 0.11150300627152124,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-inward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-outward",
+        2
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-inward",
+        2
+      ]
+    ],
+    "edge_count": 5,
+    "energy_unit": "activity-cost-proxy; uncalibrated",
+    "event_count": 10,
+    "events_per_correct": 80.0,
+    "fan_in_saturation": 1.0,
+    "fan_out_saturation": 1.0,
+    "growth_attempts": 3,
+    "order_control_accuracy": 0.125,
+    "order_control_prediction_loss": 0.0,
+    "path_delay": 3.0,
+    "path_hops": 3.0,
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        0.5
+      ],
+      [
+        "spiral-left-outward",
+        0.0
+      ],
+      [
+        "spiral-right-inward",
+        0.0
+      ],
+      [
+        "spiral-right-outward",
+        0.0
+      ]
+    ],
+    "policy": "reversed",
+    "prediction_error_count": 2,
+    "prediction_loss": 1.0252293343028116,
+    "proxy_energy": 9.274246900488112,
+    "proxy_energy_per_correct": 74.1939752039049,
+    "rejected_mutations": 1,
+    "rejection_reasons": [
+      [
+        "fan_out_full",
+        1
+      ]
+    ],
+    "replay_digest": "8c1c71c7882f972b209482c2f0543bcd5aba67e535c91d3c7ea2276cb90d059a",
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "scale": "reference",
+    "seed": 0,
+    "shortcut_selected": false
+  },
+  {
+    "accepted_additions": 0,
+    "accuracy": 0.125,
+    "accuracy_per_event": 0.015625,
+    "accuracy_per_proxy_energy": 0.015644130980028,
+    "activation_count": 8,
+    "active_edge_utilization": 1.0,
+    "candidate_considered": 4,
+    "candidate_exposure": 4,
+    "causal_intervention_changed": false,
+    "class_separation": 0.07163279636995135,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-outward",
+        2
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-outward",
+        1
+      ]
+    ],
+    "edge_count": 3,
+    "energy_unit": "activity-cost-proxy; uncalibrated",
+    "event_count": 8,
+    "events_per_correct": 64.0,
+    "fan_in_saturation": 0.5,
+    "fan_out_saturation": 0.5,
+    "growth_attempts": 0,
+    "order_control_accuracy": 0.125,
+    "order_control_prediction_loss": 0.0,
+    "path_delay": 3.0,
+    "path_hops": 3.0,
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        0.0
+      ],
+      [
+        "spiral-left-outward",
+        0.5
+      ],
+      [
+        "spiral-right-inward",
+        0.0
+      ],
+      [
+        "spiral-right-outward",
+        0.0
+      ]
+    ],
+    "policy": "fixed",
+    "prediction_error_count": 2,
+    "prediction_loss": 1.0252293343028116,
+    "proxy_energy": 7.990216916464112,
+    "proxy_energy_per_correct": 63.921735331712895,
+    "rejected_mutations": 0,
+    "rejection_reasons": [],
+    "replay_digest": "0ba724e0abcfd3d96a4ffba48ecbaeb88bba8f326aa353fa75a7136a5ae66140",
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "scale": "reference",
+    "seed": 1,
+    "shortcut_selected": false
+  },
+  {
+    "accepted_additions": 2,
+    "accuracy": 0.125,
+    "accuracy_per_event": 0.0125,
+    "accuracy_per_proxy_energy": 0.013478183332969185,
+    "activation_count": 10,
+    "active_edge_utilization": 0.8,
+    "candidate_considered": 9,
+    "candidate_exposure": 4,
+    "causal_intervention_changed": false,
+    "class_separation": 0.07163279636995135,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-outward",
+        2
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-outward",
+        1
+      ]
+    ],
+    "edge_count": 5,
+    "energy_unit": "activity-cost-proxy; uncalibrated",
+    "event_count": 10,
+    "events_per_correct": 80.0,
+    "fan_in_saturation": 1.0,
+    "fan_out_saturation": 1.0,
+    "growth_attempts": 3,
+    "order_control_accuracy": 0.125,
+    "order_control_prediction_loss": 0.0,
+    "path_delay": 3.0,
+    "path_hops": 3.0,
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        0.0
+      ],
+      [
+        "spiral-left-outward",
+        0.5
+      ],
+      [
+        "spiral-right-inward",
+        0.0
+      ],
+      [
+        "spiral-right-outward",
+        0.0
+      ]
+    ],
+    "policy": "baseline",
+    "prediction_error_count": 2,
+    "prediction_loss": 1.0252293343028116,
+    "proxy_energy": 9.274246900488112,
+    "proxy_energy_per_correct": 74.1939752039049,
+    "rejected_mutations": 1,
+    "rejection_reasons": [
+      [
+        "fan_out_full",
+        1
+      ]
+    ],
+    "replay_digest": "8c1c71c7882f972b209482c2f0543bcd5aba67e535c91d3c7ea2276cb90d059a",
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "scale": "reference",
+    "seed": 1,
+    "shortcut_selected": false
+  },
+  {
+    "accepted_additions": 2,
+    "accuracy": 0.125,
+    "accuracy_per_event": 0.0125,
+    "accuracy_per_proxy_energy": 0.013478183332969185,
+    "activation_count": 10,
+    "active_edge_utilization": 0.8,
+    "candidate_considered": 9,
+    "candidate_exposure": 4,
+    "causal_intervention_changed": false,
+    "class_separation": 0.07163279636995135,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-outward",
+        2
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-outward",
+        1
+      ]
+    ],
+    "edge_count": 5,
+    "energy_unit": "activity-cost-proxy; uncalibrated",
+    "event_count": 10,
+    "events_per_correct": 80.0,
+    "fan_in_saturation": 1.0,
+    "fan_out_saturation": 1.0,
+    "growth_attempts": 3,
+    "order_control_accuracy": 0.125,
+    "order_control_prediction_loss": 0.0,
+    "path_delay": 3.0,
+    "path_hops": 3.0,
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        0.0
+      ],
+      [
+        "spiral-left-outward",
+        0.5
+      ],
+      [
+        "spiral-right-inward",
+        0.0
+      ],
+      [
+        "spiral-right-outward",
+        0.0
+      ]
+    ],
+    "policy": "random",
+    "prediction_error_count": 2,
+    "prediction_loss": 1.0252293343028116,
+    "proxy_energy": 9.274246900488112,
+    "proxy_energy_per_correct": 74.1939752039049,
+    "rejected_mutations": 1,
+    "rejection_reasons": [
+      [
+        "fan_in_full",
+        1
+      ]
+    ],
+    "replay_digest": "8c1c71c7882f972b209482c2f0543bcd5aba67e535c91d3c7ea2276cb90d059a",
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "scale": "reference",
+    "seed": 1,
+    "shortcut_selected": false
+  },
+  {
+    "accepted_additions": 1,
+    "accuracy": 0.125,
+    "accuracy_per_event": 0.0125,
+    "accuracy_per_proxy_energy": 0.012689225632681506,
+    "activation_count": 10,
+    "active_edge_utilization": 1.0,
+    "candidate_considered": 9,
+    "candidate_exposure": 4,
+    "causal_intervention_changed": true,
+    "class_separation": 0.07163279636995135,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-outward",
+        2
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-outward",
+        1
+      ]
+    ],
+    "edge_count": 4,
+    "energy_unit": "activity-cost-proxy; uncalibrated",
+    "event_count": 10,
+    "events_per_correct": 80.0,
+    "fan_in_saturation": 1.0,
+    "fan_out_saturation": 1.0,
+    "growth_attempts": 3,
+    "order_control_accuracy": 0.125,
+    "order_control_prediction_loss": 0.0,
+    "path_delay": 1.875,
+    "path_hops": 2.0,
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        0.0
+      ],
+      [
+        "spiral-left-outward",
+        0.5
+      ],
+      [
+        "spiral-right-inward",
+        0.0
+      ],
+      [
+        "spiral-right-outward",
+        0.0
+      ]
+    ],
+    "policy": "temporal",
+    "prediction_error_count": 2,
+    "prediction_loss": 1.2840299840239995,
+    "proxy_energy": 9.850876926489391,
+    "proxy_energy_per_correct": 78.80701541191513,
+    "rejected_mutations": 2,
+    "rejection_reasons": [
+      [
+        "fan_in_full",
+        1
+      ],
+      [
+        "fan_out_full",
+        1
+      ]
+    ],
+    "replay_digest": "71083707f8eab8f277a940656f1706d84832c7f91092e48557014696e3cd1bdd",
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "scale": "reference",
+    "seed": 1,
+    "shortcut_selected": true
+  },
+  {
+    "accepted_additions": 2,
+    "accuracy": 0.125,
+    "accuracy_per_event": 0.0125,
+    "accuracy_per_proxy_energy": 0.013478183332969185,
+    "activation_count": 10,
+    "active_edge_utilization": 0.8,
+    "candidate_considered": 9,
+    "candidate_exposure": 4,
+    "causal_intervention_changed": false,
+    "class_separation": 0.07163279636995135,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-outward",
+        2
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-outward",
+        1
+      ]
+    ],
+    "edge_count": 5,
+    "energy_unit": "activity-cost-proxy; uncalibrated",
+    "event_count": 10,
+    "events_per_correct": 80.0,
+    "fan_in_saturation": 1.0,
+    "fan_out_saturation": 1.0,
+    "growth_attempts": 3,
+    "order_control_accuracy": 0.125,
+    "order_control_prediction_loss": 0.0,
+    "path_delay": 3.0,
+    "path_hops": 3.0,
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        0.0
+      ],
+      [
+        "spiral-left-outward",
+        0.5
+      ],
+      [
+        "spiral-right-inward",
+        0.0
+      ],
+      [
+        "spiral-right-outward",
+        0.0
+      ]
+    ],
+    "policy": "reversed",
+    "prediction_error_count": 2,
+    "prediction_loss": 1.0252293343028116,
+    "proxy_energy": 9.274246900488112,
+    "proxy_energy_per_correct": 74.1939752039049,
+    "rejected_mutations": 1,
+    "rejection_reasons": [
+      [
+        "fan_out_full",
+        1
+      ]
+    ],
+    "replay_digest": "8c1c71c7882f972b209482c2f0543bcd5aba67e535c91d3c7ea2276cb90d059a",
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "scale": "reference",
+    "seed": 1,
+    "shortcut_selected": false
+  },
+  {
+    "accepted_additions": 0,
+    "accuracy": 0.375,
+    "accuracy_per_event": 0.046875,
+    "accuracy_per_proxy_energy": 0.04693239294008399,
+    "activation_count": 8,
+    "active_edge_utilization": 1.0,
+    "candidate_considered": 4,
+    "candidate_exposure": 4,
+    "causal_intervention_changed": false,
+    "class_separation": 0.14775578548032628,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-inward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-inward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-right-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-right-inward",
+        1
+      ]
+    ],
+    "edge_count": 3,
+    "energy_unit": "activity-cost-proxy; uncalibrated",
+    "event_count": 8,
+    "events_per_correct": 21.333333333333332,
+    "fan_in_saturation": 0.5,
+    "fan_out_saturation": 0.5,
+    "growth_attempts": 0,
+    "order_control_accuracy": 0.375,
+    "order_control_prediction_loss": 0.0,
+    "path_delay": 3.0,
+    "path_hops": 3.0,
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        0.5
+      ],
+      [
+        "spiral-left-outward",
+        0.5
+      ],
+      [
+        "spiral-right-inward",
+        0.5
+      ],
+      [
+        "spiral-right-outward",
+        0.0
+      ]
+    ],
+    "policy": "fixed",
+    "prediction_error_count": 2,
+    "prediction_loss": 1.0252293343028116,
+    "proxy_energy": 7.990216916464112,
+    "proxy_energy_per_correct": 21.307245110570964,
+    "rejected_mutations": 0,
+    "rejection_reasons": [],
+    "replay_digest": "0ba724e0abcfd3d96a4ffba48ecbaeb88bba8f326aa353fa75a7136a5ae66140",
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "scale": "reference",
+    "seed": 2,
+    "shortcut_selected": false
+  },
+  {
+    "accepted_additions": 2,
+    "accuracy": 0.375,
+    "accuracy_per_event": 0.0375,
+    "accuracy_per_proxy_energy": 0.040434549998907554,
+    "activation_count": 10,
+    "active_edge_utilization": 0.8,
+    "candidate_considered": 9,
+    "candidate_exposure": 4,
+    "causal_intervention_changed": false,
+    "class_separation": 0.14775578548032628,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-inward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-inward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-right-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-right-inward",
+        1
+      ]
+    ],
+    "edge_count": 5,
+    "energy_unit": "activity-cost-proxy; uncalibrated",
+    "event_count": 10,
+    "events_per_correct": 26.666666666666668,
+    "fan_in_saturation": 1.0,
+    "fan_out_saturation": 1.0,
+    "growth_attempts": 3,
+    "order_control_accuracy": 0.375,
+    "order_control_prediction_loss": 0.0,
+    "path_delay": 3.0,
+    "path_hops": 3.0,
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        0.5
+      ],
+      [
+        "spiral-left-outward",
+        0.5
+      ],
+      [
+        "spiral-right-inward",
+        0.5
+      ],
+      [
+        "spiral-right-outward",
+        0.0
+      ]
+    ],
+    "policy": "baseline",
+    "prediction_error_count": 2,
+    "prediction_loss": 1.0252293343028116,
+    "proxy_energy": 9.274246900488112,
+    "proxy_energy_per_correct": 24.7313250679683,
+    "rejected_mutations": 1,
+    "rejection_reasons": [
+      [
+        "fan_out_full",
+        1
+      ]
+    ],
+    "replay_digest": "8c1c71c7882f972b209482c2f0543bcd5aba67e535c91d3c7ea2276cb90d059a",
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "scale": "reference",
+    "seed": 2,
+    "shortcut_selected": false
+  },
+  {
+    "accepted_additions": 2,
+    "accuracy": 0.375,
+    "accuracy_per_event": 0.0375,
+    "accuracy_per_proxy_energy": 0.040434549998907554,
+    "activation_count": 10,
+    "active_edge_utilization": 0.8,
+    "candidate_considered": 9,
+    "candidate_exposure": 4,
+    "causal_intervention_changed": false,
+    "class_separation": 0.14775578548032628,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-inward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-inward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-right-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-right-inward",
+        1
+      ]
+    ],
+    "edge_count": 5,
+    "energy_unit": "activity-cost-proxy; uncalibrated",
+    "event_count": 10,
+    "events_per_correct": 26.666666666666668,
+    "fan_in_saturation": 1.0,
+    "fan_out_saturation": 1.0,
+    "growth_attempts": 3,
+    "order_control_accuracy": 0.375,
+    "order_control_prediction_loss": 0.0,
+    "path_delay": 3.0,
+    "path_hops": 3.0,
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        0.5
+      ],
+      [
+        "spiral-left-outward",
+        0.5
+      ],
+      [
+        "spiral-right-inward",
+        0.5
+      ],
+      [
+        "spiral-right-outward",
+        0.0
+      ]
+    ],
+    "policy": "random",
+    "prediction_error_count": 2,
+    "prediction_loss": 1.0252293343028116,
+    "proxy_energy": 9.274246900488112,
+    "proxy_energy_per_correct": 24.7313250679683,
+    "rejected_mutations": 1,
+    "rejection_reasons": [
+      [
+        "fan_in_full",
+        1
+      ]
+    ],
+    "replay_digest": "2909b4f71a3518547bd21dee93db24fd745c0473e2046fa1d5cab8d170ea7699",
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "scale": "reference",
+    "seed": 2,
+    "shortcut_selected": false
+  },
+  {
+    "accepted_additions": 1,
+    "accuracy": 0.375,
+    "accuracy_per_event": 0.0375,
+    "accuracy_per_proxy_energy": 0.03806767689804452,
+    "activation_count": 10,
+    "active_edge_utilization": 1.0,
+    "candidate_considered": 9,
+    "candidate_exposure": 4,
+    "causal_intervention_changed": true,
+    "class_separation": 0.14775578548032628,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-inward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-inward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-right-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-right-inward",
+        1
+      ]
+    ],
+    "edge_count": 4,
+    "energy_unit": "activity-cost-proxy; uncalibrated",
+    "event_count": 10,
+    "events_per_correct": 26.666666666666668,
+    "fan_in_saturation": 1.0,
+    "fan_out_saturation": 1.0,
+    "growth_attempts": 3,
+    "order_control_accuracy": 0.375,
+    "order_control_prediction_loss": 0.0,
+    "path_delay": 1.875,
+    "path_hops": 2.0,
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        0.5
+      ],
+      [
+        "spiral-left-outward",
+        0.5
+      ],
+      [
+        "spiral-right-inward",
+        0.5
+      ],
+      [
+        "spiral-right-outward",
+        0.0
+      ]
+    ],
+    "policy": "temporal",
+    "prediction_error_count": 2,
+    "prediction_loss": 1.2840299840239995,
+    "proxy_energy": 9.850876926489391,
+    "proxy_energy_per_correct": 26.269005137305044,
+    "rejected_mutations": 2,
+    "rejection_reasons": [
+      [
+        "fan_in_full",
+        1
+      ],
+      [
+        "fan_out_full",
+        1
+      ]
+    ],
+    "replay_digest": "71083707f8eab8f277a940656f1706d84832c7f91092e48557014696e3cd1bdd",
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "scale": "reference",
+    "seed": 2,
+    "shortcut_selected": true
+  },
+  {
+    "accepted_additions": 2,
+    "accuracy": 0.375,
+    "accuracy_per_event": 0.0375,
+    "accuracy_per_proxy_energy": 0.040434549998907554,
+    "activation_count": 10,
+    "active_edge_utilization": 0.8,
+    "candidate_considered": 9,
+    "candidate_exposure": 4,
+    "causal_intervention_changed": false,
+    "class_separation": 0.14775578548032628,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-inward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-inward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-right-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-right-inward",
+        1
+      ]
+    ],
+    "edge_count": 5,
+    "energy_unit": "activity-cost-proxy; uncalibrated",
+    "event_count": 10,
+    "events_per_correct": 26.666666666666668,
+    "fan_in_saturation": 1.0,
+    "fan_out_saturation": 1.0,
+    "growth_attempts": 3,
+    "order_control_accuracy": 0.375,
+    "order_control_prediction_loss": 0.0,
+    "path_delay": 3.0,
+    "path_hops": 3.0,
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        0.5
+      ],
+      [
+        "spiral-left-outward",
+        0.5
+      ],
+      [
+        "spiral-right-inward",
+        0.5
+      ],
+      [
+        "spiral-right-outward",
+        0.0
+      ]
+    ],
+    "policy": "reversed",
+    "prediction_error_count": 2,
+    "prediction_loss": 1.0252293343028116,
+    "proxy_energy": 9.274246900488112,
+    "proxy_energy_per_correct": 24.7313250679683,
+    "rejected_mutations": 1,
+    "rejection_reasons": [
+      [
+        "fan_out_full",
+        1
+      ]
+    ],
+    "replay_digest": "8c1c71c7882f972b209482c2f0543bcd5aba67e535c91d3c7ea2276cb90d059a",
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "scale": "reference",
+    "seed": 2,
+    "shortcut_selected": false
+  },
+  {
+    "accepted_additions": 0,
+    "accuracy": 0.25,
+    "accuracy_per_event": 0.03125,
+    "accuracy_per_proxy_energy": 0.031288261960056,
+    "activation_count": 8,
+    "active_edge_utilization": 1.0,
+    "candidate_considered": 4,
+    "candidate_exposure": 4,
+    "causal_intervention_changed": false,
+    "class_separation": 0.14534804782671884,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-inward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-inward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-right-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-right-outward",
+        1
+      ]
+    ],
+    "edge_count": 3,
+    "energy_unit": "activity-cost-proxy; uncalibrated",
+    "event_count": 8,
+    "events_per_correct": 32.0,
+    "fan_in_saturation": 0.5,
+    "fan_out_saturation": 0.5,
+    "growth_attempts": 0,
+    "order_control_accuracy": 0.25,
+    "order_control_prediction_loss": 0.0,
+    "path_delay": 3.0,
+    "path_hops": 3.0,
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        0.5
+      ],
+      [
+        "spiral-left-outward",
+        0.0
+      ],
+      [
+        "spiral-right-inward",
+        0.0
+      ],
+      [
+        "spiral-right-outward",
+        0.5
+      ]
+    ],
+    "policy": "fixed",
+    "prediction_error_count": 2,
+    "prediction_loss": 1.0252293343028116,
+    "proxy_energy": 7.990216916464112,
+    "proxy_energy_per_correct": 31.960867665856448,
+    "rejected_mutations": 0,
+    "rejection_reasons": [],
+    "replay_digest": "0ba724e0abcfd3d96a4ffba48ecbaeb88bba8f326aa353fa75a7136a5ae66140",
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "scale": "reference",
+    "seed": 3,
+    "shortcut_selected": false
+  },
+  {
+    "accepted_additions": 2,
+    "accuracy": 0.25,
+    "accuracy_per_event": 0.025,
+    "accuracy_per_proxy_energy": 0.02695636666593837,
+    "activation_count": 10,
+    "active_edge_utilization": 0.8,
+    "candidate_considered": 9,
+    "candidate_exposure": 4,
+    "causal_intervention_changed": false,
+    "class_separation": 0.14534804782671884,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-inward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-inward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-right-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-right-outward",
+        1
+      ]
+    ],
+    "edge_count": 5,
+    "energy_unit": "activity-cost-proxy; uncalibrated",
+    "event_count": 10,
+    "events_per_correct": 40.0,
+    "fan_in_saturation": 1.0,
+    "fan_out_saturation": 1.0,
+    "growth_attempts": 3,
+    "order_control_accuracy": 0.25,
+    "order_control_prediction_loss": 0.0,
+    "path_delay": 3.0,
+    "path_hops": 3.0,
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        0.5
+      ],
+      [
+        "spiral-left-outward",
+        0.0
+      ],
+      [
+        "spiral-right-inward",
+        0.0
+      ],
+      [
+        "spiral-right-outward",
+        0.5
+      ]
+    ],
+    "policy": "baseline",
+    "prediction_error_count": 2,
+    "prediction_loss": 1.0252293343028116,
+    "proxy_energy": 9.274246900488112,
+    "proxy_energy_per_correct": 37.09698760195245,
+    "rejected_mutations": 1,
+    "rejection_reasons": [
+      [
+        "fan_out_full",
+        1
+      ]
+    ],
+    "replay_digest": "8c1c71c7882f972b209482c2f0543bcd5aba67e535c91d3c7ea2276cb90d059a",
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "scale": "reference",
+    "seed": 3,
+    "shortcut_selected": false
+  },
+  {
+    "accepted_additions": 2,
+    "accuracy": 0.25,
+    "accuracy_per_event": 0.025,
+    "accuracy_per_proxy_energy": 0.02695636666593837,
+    "activation_count": 10,
+    "active_edge_utilization": 0.8,
+    "candidate_considered": 9,
+    "candidate_exposure": 4,
+    "causal_intervention_changed": false,
+    "class_separation": 0.14534804782671884,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-inward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-inward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-right-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-right-outward",
+        1
+      ]
+    ],
+    "edge_count": 5,
+    "energy_unit": "activity-cost-proxy; uncalibrated",
+    "event_count": 10,
+    "events_per_correct": 40.0,
+    "fan_in_saturation": 1.0,
+    "fan_out_saturation": 1.0,
+    "growth_attempts": 3,
+    "order_control_accuracy": 0.25,
+    "order_control_prediction_loss": 0.0,
+    "path_delay": 3.0,
+    "path_hops": 3.0,
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        0.5
+      ],
+      [
+        "spiral-left-outward",
+        0.0
+      ],
+      [
+        "spiral-right-inward",
+        0.0
+      ],
+      [
+        "spiral-right-outward",
+        0.5
+      ]
+    ],
+    "policy": "random",
+    "prediction_error_count": 2,
+    "prediction_loss": 1.0252293343028116,
+    "proxy_energy": 9.274246900488112,
+    "proxy_energy_per_correct": 37.09698760195245,
+    "rejected_mutations": 1,
+    "rejection_reasons": [
+      [
+        "fan_in_full",
+        1
+      ]
+    ],
+    "replay_digest": "8c1c71c7882f972b209482c2f0543bcd5aba67e535c91d3c7ea2276cb90d059a",
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "scale": "reference",
+    "seed": 3,
+    "shortcut_selected": false
+  },
+  {
+    "accepted_additions": 1,
+    "accuracy": 0.25,
+    "accuracy_per_event": 0.025,
+    "accuracy_per_proxy_energy": 0.025378451265363013,
+    "activation_count": 10,
+    "active_edge_utilization": 1.0,
+    "candidate_considered": 9,
+    "candidate_exposure": 4,
+    "causal_intervention_changed": true,
+    "class_separation": 0.14534804782671884,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-inward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-inward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-right-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-right-outward",
+        1
+      ]
+    ],
+    "edge_count": 4,
+    "energy_unit": "activity-cost-proxy; uncalibrated",
+    "event_count": 10,
+    "events_per_correct": 40.0,
+    "fan_in_saturation": 1.0,
+    "fan_out_saturation": 1.0,
+    "growth_attempts": 3,
+    "order_control_accuracy": 0.25,
+    "order_control_prediction_loss": 0.0,
+    "path_delay": 1.875,
+    "path_hops": 2.0,
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        0.5
+      ],
+      [
+        "spiral-left-outward",
+        0.0
+      ],
+      [
+        "spiral-right-inward",
+        0.0
+      ],
+      [
+        "spiral-right-outward",
+        0.5
+      ]
+    ],
+    "policy": "temporal",
+    "prediction_error_count": 2,
+    "prediction_loss": 1.2840299840239995,
+    "proxy_energy": 9.850876926489391,
+    "proxy_energy_per_correct": 39.403507705957566,
+    "rejected_mutations": 2,
+    "rejection_reasons": [
+      [
+        "fan_in_full",
+        1
+      ],
+      [
+        "fan_out_full",
+        1
+      ]
+    ],
+    "replay_digest": "71083707f8eab8f277a940656f1706d84832c7f91092e48557014696e3cd1bdd",
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "scale": "reference",
+    "seed": 3,
+    "shortcut_selected": true
+  },
+  {
+    "accepted_additions": 2,
+    "accuracy": 0.25,
+    "accuracy_per_event": 0.025,
+    "accuracy_per_proxy_energy": 0.02695636666593837,
+    "activation_count": 10,
+    "active_edge_utilization": 0.8,
+    "candidate_considered": 9,
+    "candidate_exposure": 4,
+    "causal_intervention_changed": false,
+    "class_separation": 0.14534804782671884,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-inward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-inward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-right-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-right-outward",
+        1
+      ]
+    ],
+    "edge_count": 5,
+    "energy_unit": "activity-cost-proxy; uncalibrated",
+    "event_count": 10,
+    "events_per_correct": 40.0,
+    "fan_in_saturation": 1.0,
+    "fan_out_saturation": 1.0,
+    "growth_attempts": 3,
+    "order_control_accuracy": 0.25,
+    "order_control_prediction_loss": 0.0,
+    "path_delay": 3.0,
+    "path_hops": 3.0,
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        0.5
+      ],
+      [
+        "spiral-left-outward",
+        0.0
+      ],
+      [
+        "spiral-right-inward",
+        0.0
+      ],
+      [
+        "spiral-right-outward",
+        0.5
+      ]
+    ],
+    "policy": "reversed",
+    "prediction_error_count": 2,
+    "prediction_loss": 1.0252293343028116,
+    "proxy_energy": 9.274246900488112,
+    "proxy_energy_per_correct": 37.09698760195245,
+    "rejected_mutations": 1,
+    "rejection_reasons": [
+      [
+        "fan_out_full",
+        1
+      ]
+    ],
+    "replay_digest": "8c1c71c7882f972b209482c2f0543bcd5aba67e535c91d3c7ea2276cb90d059a",
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "scale": "reference",
+    "seed": 3,
+    "shortcut_selected": false
+  },
+  {
+    "accepted_additions": 0,
+    "accuracy": 0.25,
+    "accuracy_per_event": 0.03125,
+    "accuracy_per_proxy_energy": 0.031288261960056,
+    "activation_count": 8,
+    "active_edge_utilization": 1.0,
+    "candidate_considered": 4,
+    "candidate_exposure": 4,
+    "causal_intervention_changed": false,
+    "class_separation": 0.1155132651872526,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-inward",
+        2
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-inward",
+        2
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-right-inward",
+        1
+      ]
+    ],
+    "edge_count": 3,
+    "energy_unit": "activity-cost-proxy; uncalibrated",
+    "event_count": 8,
+    "events_per_correct": 32.0,
+    "fan_in_saturation": 0.5,
+    "fan_out_saturation": 0.5,
+    "growth_attempts": 0,
+    "order_control_accuracy": 0.25,
+    "order_control_prediction_loss": 0.0,
+    "path_delay": 3.0,
+    "path_hops": 3.0,
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        1.0
+      ],
+      [
+        "spiral-left-outward",
+        0.0
+      ],
+      [
+        "spiral-right-inward",
+        0.0
+      ],
+      [
+        "spiral-right-outward",
+        0.0
+      ]
+    ],
+    "policy": "fixed",
+    "prediction_error_count": 2,
+    "prediction_loss": 1.0252293343028116,
+    "proxy_energy": 7.990216916464112,
+    "proxy_energy_per_correct": 31.960867665856448,
+    "rejected_mutations": 0,
+    "rejection_reasons": [],
+    "replay_digest": "0ba724e0abcfd3d96a4ffba48ecbaeb88bba8f326aa353fa75a7136a5ae66140",
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "scale": "reference",
+    "seed": 4,
+    "shortcut_selected": false
+  },
+  {
+    "accepted_additions": 2,
+    "accuracy": 0.25,
+    "accuracy_per_event": 0.025,
+    "accuracy_per_proxy_energy": 0.02695636666593837,
+    "activation_count": 10,
+    "active_edge_utilization": 0.8,
+    "candidate_considered": 9,
+    "candidate_exposure": 4,
+    "causal_intervention_changed": false,
+    "class_separation": 0.1155132651872526,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-inward",
+        2
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-inward",
+        2
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-right-inward",
+        1
+      ]
+    ],
+    "edge_count": 5,
+    "energy_unit": "activity-cost-proxy; uncalibrated",
+    "event_count": 10,
+    "events_per_correct": 40.0,
+    "fan_in_saturation": 1.0,
+    "fan_out_saturation": 1.0,
+    "growth_attempts": 3,
+    "order_control_accuracy": 0.25,
+    "order_control_prediction_loss": 0.0,
+    "path_delay": 3.0,
+    "path_hops": 3.0,
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        1.0
+      ],
+      [
+        "spiral-left-outward",
+        0.0
+      ],
+      [
+        "spiral-right-inward",
+        0.0
+      ],
+      [
+        "spiral-right-outward",
+        0.0
+      ]
+    ],
+    "policy": "baseline",
+    "prediction_error_count": 2,
+    "prediction_loss": 1.0252293343028116,
+    "proxy_energy": 9.274246900488112,
+    "proxy_energy_per_correct": 37.09698760195245,
+    "rejected_mutations": 1,
+    "rejection_reasons": [
+      [
+        "fan_out_full",
+        1
+      ]
+    ],
+    "replay_digest": "8c1c71c7882f972b209482c2f0543bcd5aba67e535c91d3c7ea2276cb90d059a",
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "scale": "reference",
+    "seed": 4,
+    "shortcut_selected": false
+  },
+  {
+    "accepted_additions": 2,
+    "accuracy": 0.25,
+    "accuracy_per_event": 0.025,
+    "accuracy_per_proxy_energy": 0.02695636666593837,
+    "activation_count": 10,
+    "active_edge_utilization": 0.8,
+    "candidate_considered": 9,
+    "candidate_exposure": 4,
+    "causal_intervention_changed": false,
+    "class_separation": 0.1155132651872526,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-inward",
+        2
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-inward",
+        2
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-right-inward",
+        1
+      ]
+    ],
+    "edge_count": 5,
+    "energy_unit": "activity-cost-proxy; uncalibrated",
+    "event_count": 10,
+    "events_per_correct": 40.0,
+    "fan_in_saturation": 1.0,
+    "fan_out_saturation": 1.0,
+    "growth_attempts": 3,
+    "order_control_accuracy": 0.25,
+    "order_control_prediction_loss": 0.0,
+    "path_delay": 3.0,
+    "path_hops": 3.0,
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        1.0
+      ],
+      [
+        "spiral-left-outward",
+        0.0
+      ],
+      [
+        "spiral-right-inward",
+        0.0
+      ],
+      [
+        "spiral-right-outward",
+        0.0
+      ]
+    ],
+    "policy": "random",
+    "prediction_error_count": 2,
+    "prediction_loss": 1.0252293343028116,
+    "proxy_energy": 9.274246900488112,
+    "proxy_energy_per_correct": 37.09698760195245,
+    "rejected_mutations": 1,
+    "rejection_reasons": [
+      [
+        "fan_in_full",
+        1
+      ]
+    ],
+    "replay_digest": "2909b4f71a3518547bd21dee93db24fd745c0473e2046fa1d5cab8d170ea7699",
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "scale": "reference",
+    "seed": 4,
+    "shortcut_selected": false
+  },
+  {
+    "accepted_additions": 1,
+    "accuracy": 0.25,
+    "accuracy_per_event": 0.025,
+    "accuracy_per_proxy_energy": 0.025378451265363013,
+    "activation_count": 10,
+    "active_edge_utilization": 1.0,
+    "candidate_considered": 9,
+    "candidate_exposure": 4,
+    "causal_intervention_changed": true,
+    "class_separation": 0.1155132651872526,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-inward",
+        2
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-inward",
+        2
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-right-inward",
+        1
+      ]
+    ],
+    "edge_count": 4,
+    "energy_unit": "activity-cost-proxy; uncalibrated",
+    "event_count": 10,
+    "events_per_correct": 40.0,
+    "fan_in_saturation": 1.0,
+    "fan_out_saturation": 1.0,
+    "growth_attempts": 3,
+    "order_control_accuracy": 0.25,
+    "order_control_prediction_loss": 0.0,
+    "path_delay": 1.875,
+    "path_hops": 2.0,
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        1.0
+      ],
+      [
+        "spiral-left-outward",
+        0.0
+      ],
+      [
+        "spiral-right-inward",
+        0.0
+      ],
+      [
+        "spiral-right-outward",
+        0.0
+      ]
+    ],
+    "policy": "temporal",
+    "prediction_error_count": 2,
+    "prediction_loss": 1.2840299840239995,
+    "proxy_energy": 9.850876926489391,
+    "proxy_energy_per_correct": 39.403507705957566,
+    "rejected_mutations": 2,
+    "rejection_reasons": [
+      [
+        "fan_in_full",
+        1
+      ],
+      [
+        "fan_out_full",
+        1
+      ]
+    ],
+    "replay_digest": "71083707f8eab8f277a940656f1706d84832c7f91092e48557014696e3cd1bdd",
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "scale": "reference",
+    "seed": 4,
+    "shortcut_selected": true
+  },
+  {
+    "accepted_additions": 2,
+    "accuracy": 0.25,
+    "accuracy_per_event": 0.025,
+    "accuracy_per_proxy_energy": 0.02695636666593837,
+    "activation_count": 10,
+    "active_edge_utilization": 0.8,
+    "candidate_considered": 9,
+    "candidate_exposure": 4,
+    "causal_intervention_changed": false,
+    "class_separation": 0.1155132651872526,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-inward",
+        2
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-inward",
+        2
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-right-inward",
+        1
+      ]
+    ],
+    "edge_count": 5,
+    "energy_unit": "activity-cost-proxy; uncalibrated",
+    "event_count": 10,
+    "events_per_correct": 40.0,
+    "fan_in_saturation": 1.0,
+    "fan_out_saturation": 1.0,
+    "growth_attempts": 3,
+    "order_control_accuracy": 0.25,
+    "order_control_prediction_loss": 0.0,
+    "path_delay": 3.0,
+    "path_hops": 3.0,
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        1.0
+      ],
+      [
+        "spiral-left-outward",
+        0.0
+      ],
+      [
+        "spiral-right-inward",
+        0.0
+      ],
+      [
+        "spiral-right-outward",
+        0.0
+      ]
+    ],
+    "policy": "reversed",
+    "prediction_error_count": 2,
+    "prediction_loss": 1.0252293343028116,
+    "proxy_energy": 9.274246900488112,
+    "proxy_energy_per_correct": 37.09698760195245,
+    "rejected_mutations": 1,
+    "rejection_reasons": [
+      [
+        "fan_out_full",
+        1
+      ]
+    ],
+    "replay_digest": "8c1c71c7882f972b209482c2f0543bcd5aba67e535c91d3c7ea2276cb90d059a",
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "scale": "reference",
+    "seed": 4,
+    "shortcut_selected": false
+  },
+  {
+    "accepted_additions": 0,
+    "accuracy": 0.125,
+    "accuracy_per_event": 0.015625,
+    "accuracy_per_proxy_energy": 0.015644130980028,
+    "activation_count": 8,
+    "active_edge_utilization": 1.0,
+    "candidate_considered": 4,
+    "candidate_exposure": 4,
+    "causal_intervention_changed": false,
+    "class_separation": 0.11150300627152124,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-inward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-outward",
+        2
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-inward",
+        2
+      ]
+    ],
+    "edge_count": 3,
+    "energy_unit": "activity-cost-proxy; uncalibrated",
+    "event_count": 8,
+    "events_per_correct": 64.0,
+    "fan_in_saturation": 0.3333333333333333,
+    "fan_out_saturation": 0.3333333333333333,
+    "growth_attempts": 0,
+    "order_control_accuracy": 0.125,
+    "order_control_prediction_loss": 0.0,
+    "path_delay": 3.0,
+    "path_hops": 3.0,
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        0.5
+      ],
+      [
+        "spiral-left-outward",
+        0.0
+      ],
+      [
+        "spiral-right-inward",
+        0.0
+      ],
+      [
+        "spiral-right-outward",
+        0.0
+      ]
+    ],
+    "policy": "fixed",
+    "prediction_error_count": 2,
+    "prediction_loss": 1.0252293343028116,
+    "proxy_energy": 7.990216916464112,
+    "proxy_energy_per_correct": 63.921735331712895,
+    "rejected_mutations": 0,
+    "rejection_reasons": [],
+    "replay_digest": "0ba724e0abcfd3d96a4ffba48ecbaeb88bba8f326aa353fa75a7136a5ae66140",
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "scale": "expanded",
+    "seed": 0,
+    "shortcut_selected": false
+  },
+  {
+    "accepted_additions": 3,
+    "accuracy": 0.125,
+    "accuracy_per_event": 0.010416666666666666,
+    "accuracy_per_proxy_energy": 0.011225958241462901,
+    "activation_count": 12,
+    "active_edge_utilization": 0.8333333333333334,
+    "candidate_considered": 10,
+    "candidate_exposure": 4,
+    "causal_intervention_changed": true,
+    "class_separation": 0.11150300627152124,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-inward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-outward",
+        2
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-inward",
+        2
+      ]
+    ],
+    "edge_count": 6,
+    "energy_unit": "activity-cost-proxy; uncalibrated",
+    "event_count": 12,
+    "events_per_correct": 96.0,
+    "fan_in_saturation": 1.0,
+    "fan_out_saturation": 1.0,
+    "growth_attempts": 4,
+    "order_control_accuracy": 0.125,
+    "order_control_prediction_loss": 0.0,
+    "path_delay": 1.875,
+    "path_hops": 2.0,
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        0.5
+      ],
+      [
+        "spiral-left-outward",
+        0.0
+      ],
+      [
+        "spiral-right-inward",
+        0.0
+      ],
+      [
+        "spiral-right-outward",
+        0.0
+      ]
+    ],
+    "policy": "baseline",
+    "prediction_error_count": 2,
+    "prediction_loss": 1.2840299840239995,
+    "proxy_energy": 11.13490691051339,
+    "proxy_energy_per_correct": 89.07925528410712,
+    "rejected_mutations": 1,
+    "rejection_reasons": [
+      [
+        "fan_in_full",
+        1
+      ]
+    ],
+    "replay_digest": "f33cc21ca862817c944c6edba34ac1e118121125fd2a06381b3f0d3ba8db5a04",
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "scale": "expanded",
+    "seed": 0,
+    "shortcut_selected": true
+  },
+  {
+    "accepted_additions": 3,
+    "accuracy": 0.125,
+    "accuracy_per_event": 0.0125,
+    "accuracy_per_proxy_energy": 0.013478183332969185,
+    "activation_count": 10,
+    "active_edge_utilization": 0.6666666666666666,
+    "candidate_considered": 10,
+    "candidate_exposure": 4,
+    "causal_intervention_changed": false,
+    "class_separation": 0.11150300627152124,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-inward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-outward",
+        2
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-inward",
+        2
+      ]
+    ],
+    "edge_count": 6,
+    "energy_unit": "activity-cost-proxy; uncalibrated",
+    "event_count": 10,
+    "events_per_correct": 80.0,
+    "fan_in_saturation": 1.0,
+    "fan_out_saturation": 0.6666666666666666,
+    "growth_attempts": 4,
+    "order_control_accuracy": 0.125,
+    "order_control_prediction_loss": 0.0,
+    "path_delay": 3.0,
+    "path_hops": 3.0,
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        0.5
+      ],
+      [
+        "spiral-left-outward",
+        0.0
+      ],
+      [
+        "spiral-right-inward",
+        0.0
+      ],
+      [
+        "spiral-right-outward",
+        0.0
+      ]
+    ],
+    "policy": "random",
+    "prediction_error_count": 2,
+    "prediction_loss": 1.0252293343028116,
+    "proxy_energy": 9.274246900488112,
+    "proxy_energy_per_correct": 74.1939752039049,
+    "rejected_mutations": 1,
+    "rejection_reasons": [
+      [
+        "fan_in_full",
+        1
+      ]
+    ],
+    "replay_digest": "f64d13443549fed6d3b0872aad3e20da778cf12052453115d2bad173de1244aa",
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "scale": "expanded",
+    "seed": 0,
+    "shortcut_selected": false
+  },
+  {
+    "accepted_additions": 3,
+    "accuracy": 0.125,
+    "accuracy_per_event": 0.010416666666666666,
+    "accuracy_per_proxy_energy": 0.011225958241462901,
+    "activation_count": 12,
+    "active_edge_utilization": 0.8333333333333334,
+    "candidate_considered": 10,
+    "candidate_exposure": 4,
+    "causal_intervention_changed": true,
+    "class_separation": 0.11150300627152124,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-inward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-outward",
+        2
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-inward",
+        2
+      ]
+    ],
+    "edge_count": 6,
+    "energy_unit": "activity-cost-proxy; uncalibrated",
+    "event_count": 12,
+    "events_per_correct": 96.0,
+    "fan_in_saturation": 1.0,
+    "fan_out_saturation": 1.0,
+    "growth_attempts": 4,
+    "order_control_accuracy": 0.125,
+    "order_control_prediction_loss": 0.0,
+    "path_delay": 1.875,
+    "path_hops": 2.0,
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        0.5
+      ],
+      [
+        "spiral-left-outward",
+        0.0
+      ],
+      [
+        "spiral-right-inward",
+        0.0
+      ],
+      [
+        "spiral-right-outward",
+        0.0
+      ]
+    ],
+    "policy": "temporal",
+    "prediction_error_count": 2,
+    "prediction_loss": 1.2840299840239995,
+    "proxy_energy": 11.13490691051339,
+    "proxy_energy_per_correct": 89.07925528410712,
+    "rejected_mutations": 1,
+    "rejection_reasons": [
+      [
+        "fan_in_full",
+        1
+      ]
+    ],
+    "replay_digest": "026cda632b56454f9978f5af240688fcfaa74b344ddfeaf71936b15c098136ad",
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "scale": "expanded",
+    "seed": 0,
+    "shortcut_selected": true
+  },
+  {
+    "accepted_additions": 3,
+    "accuracy": 0.125,
+    "accuracy_per_event": 0.010416666666666666,
+    "accuracy_per_proxy_energy": 0.011225958241462901,
+    "activation_count": 12,
+    "active_edge_utilization": 0.8333333333333334,
+    "candidate_considered": 10,
+    "candidate_exposure": 4,
+    "causal_intervention_changed": true,
+    "class_separation": 0.11150300627152124,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-inward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-outward",
+        2
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-inward",
+        2
+      ]
+    ],
+    "edge_count": 6,
+    "energy_unit": "activity-cost-proxy; uncalibrated",
+    "event_count": 12,
+    "events_per_correct": 96.0,
+    "fan_in_saturation": 1.0,
+    "fan_out_saturation": 1.0,
+    "growth_attempts": 4,
+    "order_control_accuracy": 0.125,
+    "order_control_prediction_loss": 0.0,
+    "path_delay": 1.875,
+    "path_hops": 2.0,
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        0.5
+      ],
+      [
+        "spiral-left-outward",
+        0.0
+      ],
+      [
+        "spiral-right-inward",
+        0.0
+      ],
+      [
+        "spiral-right-outward",
+        0.0
+      ]
+    ],
+    "policy": "reversed",
+    "prediction_error_count": 2,
+    "prediction_loss": 1.2840299840239995,
+    "proxy_energy": 11.13490691051339,
+    "proxy_energy_per_correct": 89.07925528410712,
+    "rejected_mutations": 1,
+    "rejection_reasons": [
+      [
+        "fan_in_full",
+        1
+      ]
+    ],
+    "replay_digest": "f33cc21ca862817c944c6edba34ac1e118121125fd2a06381b3f0d3ba8db5a04",
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "scale": "expanded",
+    "seed": 0,
+    "shortcut_selected": true
+  },
+  {
+    "accepted_additions": 0,
+    "accuracy": 0.125,
+    "accuracy_per_event": 0.015625,
+    "accuracy_per_proxy_energy": 0.015644130980028,
+    "activation_count": 8,
+    "active_edge_utilization": 1.0,
+    "candidate_considered": 4,
+    "candidate_exposure": 4,
+    "causal_intervention_changed": false,
+    "class_separation": 0.07163279636995135,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-outward",
+        2
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-outward",
+        1
+      ]
+    ],
+    "edge_count": 3,
+    "energy_unit": "activity-cost-proxy; uncalibrated",
+    "event_count": 8,
+    "events_per_correct": 64.0,
+    "fan_in_saturation": 0.3333333333333333,
+    "fan_out_saturation": 0.3333333333333333,
+    "growth_attempts": 0,
+    "order_control_accuracy": 0.125,
+    "order_control_prediction_loss": 0.0,
+    "path_delay": 3.0,
+    "path_hops": 3.0,
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        0.0
+      ],
+      [
+        "spiral-left-outward",
+        0.5
+      ],
+      [
+        "spiral-right-inward",
+        0.0
+      ],
+      [
+        "spiral-right-outward",
+        0.0
+      ]
+    ],
+    "policy": "fixed",
+    "prediction_error_count": 2,
+    "prediction_loss": 1.0252293343028116,
+    "proxy_energy": 7.990216916464112,
+    "proxy_energy_per_correct": 63.921735331712895,
+    "rejected_mutations": 0,
+    "rejection_reasons": [],
+    "replay_digest": "0ba724e0abcfd3d96a4ffba48ecbaeb88bba8f326aa353fa75a7136a5ae66140",
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "scale": "expanded",
+    "seed": 1,
+    "shortcut_selected": false
+  },
+  {
+    "accepted_additions": 3,
+    "accuracy": 0.125,
+    "accuracy_per_event": 0.010416666666666666,
+    "accuracy_per_proxy_energy": 0.011225958241462901,
+    "activation_count": 12,
+    "active_edge_utilization": 0.8333333333333334,
+    "candidate_considered": 10,
+    "candidate_exposure": 4,
+    "causal_intervention_changed": true,
+    "class_separation": 0.07163279636995135,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-outward",
+        2
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-outward",
+        1
+      ]
+    ],
+    "edge_count": 6,
+    "energy_unit": "activity-cost-proxy; uncalibrated",
+    "event_count": 12,
+    "events_per_correct": 96.0,
+    "fan_in_saturation": 1.0,
+    "fan_out_saturation": 1.0,
+    "growth_attempts": 4,
+    "order_control_accuracy": 0.125,
+    "order_control_prediction_loss": 0.0,
+    "path_delay": 1.875,
+    "path_hops": 2.0,
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        0.0
+      ],
+      [
+        "spiral-left-outward",
+        0.5
+      ],
+      [
+        "spiral-right-inward",
+        0.0
+      ],
+      [
+        "spiral-right-outward",
+        0.0
+      ]
+    ],
+    "policy": "baseline",
+    "prediction_error_count": 2,
+    "prediction_loss": 1.2840299840239995,
+    "proxy_energy": 11.13490691051339,
+    "proxy_energy_per_correct": 89.07925528410712,
+    "rejected_mutations": 1,
+    "rejection_reasons": [
+      [
+        "fan_in_full",
+        1
+      ]
+    ],
+    "replay_digest": "f33cc21ca862817c944c6edba34ac1e118121125fd2a06381b3f0d3ba8db5a04",
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "scale": "expanded",
+    "seed": 1,
+    "shortcut_selected": true
+  },
+  {
+    "accepted_additions": 3,
+    "accuracy": 0.125,
+    "accuracy_per_event": 0.0125,
+    "accuracy_per_proxy_energy": 0.013478183332969185,
+    "activation_count": 10,
+    "active_edge_utilization": 0.6666666666666666,
+    "candidate_considered": 10,
+    "candidate_exposure": 4,
+    "causal_intervention_changed": false,
+    "class_separation": 0.07163279636995135,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-outward",
+        2
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-outward",
+        1
+      ]
+    ],
+    "edge_count": 6,
+    "energy_unit": "activity-cost-proxy; uncalibrated",
+    "event_count": 10,
+    "events_per_correct": 80.0,
+    "fan_in_saturation": 1.0,
+    "fan_out_saturation": 0.6666666666666666,
+    "growth_attempts": 4,
+    "order_control_accuracy": 0.125,
+    "order_control_prediction_loss": 0.0,
+    "path_delay": 3.0,
+    "path_hops": 3.0,
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        0.0
+      ],
+      [
+        "spiral-left-outward",
+        0.5
+      ],
+      [
+        "spiral-right-inward",
+        0.0
+      ],
+      [
+        "spiral-right-outward",
+        0.0
+      ]
+    ],
+    "policy": "random",
+    "prediction_error_count": 2,
+    "prediction_loss": 1.0252293343028116,
+    "proxy_energy": 9.274246900488112,
+    "proxy_energy_per_correct": 74.1939752039049,
+    "rejected_mutations": 1,
+    "rejection_reasons": [
+      [
+        "fan_in_full",
+        1
+      ]
+    ],
+    "replay_digest": "fe9c0461b464bfb393d1a22af509f76f30f3a1fa40d73cb1d5877aa722162b2d",
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "scale": "expanded",
+    "seed": 1,
+    "shortcut_selected": false
+  },
+  {
+    "accepted_additions": 3,
+    "accuracy": 0.125,
+    "accuracy_per_event": 0.010416666666666666,
+    "accuracy_per_proxy_energy": 0.011225958241462901,
+    "activation_count": 12,
+    "active_edge_utilization": 0.8333333333333334,
+    "candidate_considered": 10,
+    "candidate_exposure": 4,
+    "causal_intervention_changed": true,
+    "class_separation": 0.07163279636995135,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-outward",
+        2
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-outward",
+        1
+      ]
+    ],
+    "edge_count": 6,
+    "energy_unit": "activity-cost-proxy; uncalibrated",
+    "event_count": 12,
+    "events_per_correct": 96.0,
+    "fan_in_saturation": 1.0,
+    "fan_out_saturation": 1.0,
+    "growth_attempts": 4,
+    "order_control_accuracy": 0.125,
+    "order_control_prediction_loss": 0.0,
+    "path_delay": 1.875,
+    "path_hops": 2.0,
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        0.0
+      ],
+      [
+        "spiral-left-outward",
+        0.5
+      ],
+      [
+        "spiral-right-inward",
+        0.0
+      ],
+      [
+        "spiral-right-outward",
+        0.0
+      ]
+    ],
+    "policy": "temporal",
+    "prediction_error_count": 2,
+    "prediction_loss": 1.2840299840239995,
+    "proxy_energy": 11.13490691051339,
+    "proxy_energy_per_correct": 89.07925528410712,
+    "rejected_mutations": 1,
+    "rejection_reasons": [
+      [
+        "fan_in_full",
+        1
+      ]
+    ],
+    "replay_digest": "026cda632b56454f9978f5af240688fcfaa74b344ddfeaf71936b15c098136ad",
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "scale": "expanded",
+    "seed": 1,
+    "shortcut_selected": true
+  },
+  {
+    "accepted_additions": 3,
+    "accuracy": 0.125,
+    "accuracy_per_event": 0.010416666666666666,
+    "accuracy_per_proxy_energy": 0.011225958241462901,
+    "activation_count": 12,
+    "active_edge_utilization": 0.8333333333333334,
+    "candidate_considered": 10,
+    "candidate_exposure": 4,
+    "causal_intervention_changed": true,
+    "class_separation": 0.07163279636995135,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-outward",
+        2
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-outward",
+        1
+      ]
+    ],
+    "edge_count": 6,
+    "energy_unit": "activity-cost-proxy; uncalibrated",
+    "event_count": 12,
+    "events_per_correct": 96.0,
+    "fan_in_saturation": 1.0,
+    "fan_out_saturation": 1.0,
+    "growth_attempts": 4,
+    "order_control_accuracy": 0.125,
+    "order_control_prediction_loss": 0.0,
+    "path_delay": 1.875,
+    "path_hops": 2.0,
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        0.0
+      ],
+      [
+        "spiral-left-outward",
+        0.5
+      ],
+      [
+        "spiral-right-inward",
+        0.0
+      ],
+      [
+        "spiral-right-outward",
+        0.0
+      ]
+    ],
+    "policy": "reversed",
+    "prediction_error_count": 2,
+    "prediction_loss": 1.2840299840239995,
+    "proxy_energy": 11.13490691051339,
+    "proxy_energy_per_correct": 89.07925528410712,
+    "rejected_mutations": 1,
+    "rejection_reasons": [
+      [
+        "fan_in_full",
+        1
+      ]
+    ],
+    "replay_digest": "f33cc21ca862817c944c6edba34ac1e118121125fd2a06381b3f0d3ba8db5a04",
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "scale": "expanded",
+    "seed": 1,
+    "shortcut_selected": true
+  },
+  {
+    "accepted_additions": 0,
+    "accuracy": 0.375,
+    "accuracy_per_event": 0.046875,
+    "accuracy_per_proxy_energy": 0.04693239294008399,
+    "activation_count": 8,
+    "active_edge_utilization": 1.0,
+    "candidate_considered": 4,
+    "candidate_exposure": 4,
+    "causal_intervention_changed": false,
+    "class_separation": 0.14775578548032628,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-inward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-inward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-right-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-right-inward",
+        1
+      ]
+    ],
+    "edge_count": 3,
+    "energy_unit": "activity-cost-proxy; uncalibrated",
+    "event_count": 8,
+    "events_per_correct": 21.333333333333332,
+    "fan_in_saturation": 0.3333333333333333,
+    "fan_out_saturation": 0.3333333333333333,
+    "growth_attempts": 0,
+    "order_control_accuracy": 0.375,
+    "order_control_prediction_loss": 0.0,
+    "path_delay": 3.0,
+    "path_hops": 3.0,
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        0.5
+      ],
+      [
+        "spiral-left-outward",
+        0.5
+      ],
+      [
+        "spiral-right-inward",
+        0.5
+      ],
+      [
+        "spiral-right-outward",
+        0.0
+      ]
+    ],
+    "policy": "fixed",
+    "prediction_error_count": 2,
+    "prediction_loss": 1.0252293343028116,
+    "proxy_energy": 7.990216916464112,
+    "proxy_energy_per_correct": 21.307245110570964,
+    "rejected_mutations": 0,
+    "rejection_reasons": [],
+    "replay_digest": "0ba724e0abcfd3d96a4ffba48ecbaeb88bba8f326aa353fa75a7136a5ae66140",
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "scale": "expanded",
+    "seed": 2,
+    "shortcut_selected": false
+  },
+  {
+    "accepted_additions": 3,
+    "accuracy": 0.375,
+    "accuracy_per_event": 0.03125,
+    "accuracy_per_proxy_energy": 0.033677874724388705,
+    "activation_count": 12,
+    "active_edge_utilization": 0.8333333333333334,
+    "candidate_considered": 10,
+    "candidate_exposure": 4,
+    "causal_intervention_changed": true,
+    "class_separation": 0.14775578548032628,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-inward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-inward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-right-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-right-inward",
+        1
+      ]
+    ],
+    "edge_count": 6,
+    "energy_unit": "activity-cost-proxy; uncalibrated",
+    "event_count": 12,
+    "events_per_correct": 32.0,
+    "fan_in_saturation": 1.0,
+    "fan_out_saturation": 1.0,
+    "growth_attempts": 4,
+    "order_control_accuracy": 0.375,
+    "order_control_prediction_loss": 0.0,
+    "path_delay": 1.875,
+    "path_hops": 2.0,
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        0.5
+      ],
+      [
+        "spiral-left-outward",
+        0.5
+      ],
+      [
+        "spiral-right-inward",
+        0.5
+      ],
+      [
+        "spiral-right-outward",
+        0.0
+      ]
+    ],
+    "policy": "baseline",
+    "prediction_error_count": 2,
+    "prediction_loss": 1.2840299840239995,
+    "proxy_energy": 11.13490691051339,
+    "proxy_energy_per_correct": 29.693085094702372,
+    "rejected_mutations": 1,
+    "rejection_reasons": [
+      [
+        "fan_in_full",
+        1
+      ]
+    ],
+    "replay_digest": "f33cc21ca862817c944c6edba34ac1e118121125fd2a06381b3f0d3ba8db5a04",
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "scale": "expanded",
+    "seed": 2,
+    "shortcut_selected": true
+  },
+  {
+    "accepted_additions": 3,
+    "accuracy": 0.375,
+    "accuracy_per_event": 0.03125,
+    "accuracy_per_proxy_energy": 0.033677874724388705,
+    "activation_count": 12,
+    "active_edge_utilization": 0.8333333333333334,
+    "candidate_considered": 10,
+    "candidate_exposure": 4,
+    "causal_intervention_changed": true,
+    "class_separation": 0.14775578548032628,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-inward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-inward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-right-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-right-inward",
+        1
+      ]
+    ],
+    "edge_count": 6,
+    "energy_unit": "activity-cost-proxy; uncalibrated",
+    "event_count": 12,
+    "events_per_correct": 32.0,
+    "fan_in_saturation": 1.0,
+    "fan_out_saturation": 1.0,
+    "growth_attempts": 4,
+    "order_control_accuracy": 0.375,
+    "order_control_prediction_loss": 0.0,
+    "path_delay": 1.875,
+    "path_hops": 2.0,
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        0.5
+      ],
+      [
+        "spiral-left-outward",
+        0.5
+      ],
+      [
+        "spiral-right-inward",
+        0.5
+      ],
+      [
+        "spiral-right-outward",
+        0.0
+      ]
+    ],
+    "policy": "random",
+    "prediction_error_count": 2,
+    "prediction_loss": 1.2840299840239995,
+    "proxy_energy": 11.13490691051339,
+    "proxy_energy_per_correct": 29.693085094702372,
+    "rejected_mutations": 1,
+    "rejection_reasons": [
+      [
+        "fan_in_full",
+        1
+      ]
+    ],
+    "replay_digest": "941d9354ecb8e9918953fd7994640aa5d61d339a6622b0c84e8ce4a0eb91ff87",
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "scale": "expanded",
+    "seed": 2,
+    "shortcut_selected": true
+  },
+  {
+    "accepted_additions": 3,
+    "accuracy": 0.375,
+    "accuracy_per_event": 0.03125,
+    "accuracy_per_proxy_energy": 0.033677874724388705,
+    "activation_count": 12,
+    "active_edge_utilization": 0.8333333333333334,
+    "candidate_considered": 10,
+    "candidate_exposure": 4,
+    "causal_intervention_changed": true,
+    "class_separation": 0.14775578548032628,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-inward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-inward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-right-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-right-inward",
+        1
+      ]
+    ],
+    "edge_count": 6,
+    "energy_unit": "activity-cost-proxy; uncalibrated",
+    "event_count": 12,
+    "events_per_correct": 32.0,
+    "fan_in_saturation": 1.0,
+    "fan_out_saturation": 1.0,
+    "growth_attempts": 4,
+    "order_control_accuracy": 0.375,
+    "order_control_prediction_loss": 0.0,
+    "path_delay": 1.875,
+    "path_hops": 2.0,
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        0.5
+      ],
+      [
+        "spiral-left-outward",
+        0.5
+      ],
+      [
+        "spiral-right-inward",
+        0.5
+      ],
+      [
+        "spiral-right-outward",
+        0.0
+      ]
+    ],
+    "policy": "temporal",
+    "prediction_error_count": 2,
+    "prediction_loss": 1.2840299840239995,
+    "proxy_energy": 11.13490691051339,
+    "proxy_energy_per_correct": 29.693085094702372,
+    "rejected_mutations": 1,
+    "rejection_reasons": [
+      [
+        "fan_in_full",
+        1
+      ]
+    ],
+    "replay_digest": "026cda632b56454f9978f5af240688fcfaa74b344ddfeaf71936b15c098136ad",
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "scale": "expanded",
+    "seed": 2,
+    "shortcut_selected": true
+  },
+  {
+    "accepted_additions": 3,
+    "accuracy": 0.375,
+    "accuracy_per_event": 0.03125,
+    "accuracy_per_proxy_energy": 0.033677874724388705,
+    "activation_count": 12,
+    "active_edge_utilization": 0.8333333333333334,
+    "candidate_considered": 10,
+    "candidate_exposure": 4,
+    "causal_intervention_changed": true,
+    "class_separation": 0.14775578548032628,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-inward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-inward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-right-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-right-inward",
+        1
+      ]
+    ],
+    "edge_count": 6,
+    "energy_unit": "activity-cost-proxy; uncalibrated",
+    "event_count": 12,
+    "events_per_correct": 32.0,
+    "fan_in_saturation": 1.0,
+    "fan_out_saturation": 1.0,
+    "growth_attempts": 4,
+    "order_control_accuracy": 0.375,
+    "order_control_prediction_loss": 0.0,
+    "path_delay": 1.875,
+    "path_hops": 2.0,
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        0.5
+      ],
+      [
+        "spiral-left-outward",
+        0.5
+      ],
+      [
+        "spiral-right-inward",
+        0.5
+      ],
+      [
+        "spiral-right-outward",
+        0.0
+      ]
+    ],
+    "policy": "reversed",
+    "prediction_error_count": 2,
+    "prediction_loss": 1.2840299840239995,
+    "proxy_energy": 11.13490691051339,
+    "proxy_energy_per_correct": 29.693085094702372,
+    "rejected_mutations": 1,
+    "rejection_reasons": [
+      [
+        "fan_in_full",
+        1
+      ]
+    ],
+    "replay_digest": "f33cc21ca862817c944c6edba34ac1e118121125fd2a06381b3f0d3ba8db5a04",
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "scale": "expanded",
+    "seed": 2,
+    "shortcut_selected": true
+  },
+  {
+    "accepted_additions": 0,
+    "accuracy": 0.25,
+    "accuracy_per_event": 0.03125,
+    "accuracy_per_proxy_energy": 0.031288261960056,
+    "activation_count": 8,
+    "active_edge_utilization": 1.0,
+    "candidate_considered": 4,
+    "candidate_exposure": 4,
+    "causal_intervention_changed": false,
+    "class_separation": 0.14534804782671884,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-inward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-inward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-right-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-right-outward",
+        1
+      ]
+    ],
+    "edge_count": 3,
+    "energy_unit": "activity-cost-proxy; uncalibrated",
+    "event_count": 8,
+    "events_per_correct": 32.0,
+    "fan_in_saturation": 0.3333333333333333,
+    "fan_out_saturation": 0.3333333333333333,
+    "growth_attempts": 0,
+    "order_control_accuracy": 0.25,
+    "order_control_prediction_loss": 0.0,
+    "path_delay": 3.0,
+    "path_hops": 3.0,
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        0.5
+      ],
+      [
+        "spiral-left-outward",
+        0.0
+      ],
+      [
+        "spiral-right-inward",
+        0.0
+      ],
+      [
+        "spiral-right-outward",
+        0.5
+      ]
+    ],
+    "policy": "fixed",
+    "prediction_error_count": 2,
+    "prediction_loss": 1.0252293343028116,
+    "proxy_energy": 7.990216916464112,
+    "proxy_energy_per_correct": 31.960867665856448,
+    "rejected_mutations": 0,
+    "rejection_reasons": [],
+    "replay_digest": "0ba724e0abcfd3d96a4ffba48ecbaeb88bba8f326aa353fa75a7136a5ae66140",
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "scale": "expanded",
+    "seed": 3,
+    "shortcut_selected": false
+  },
+  {
+    "accepted_additions": 3,
+    "accuracy": 0.25,
+    "accuracy_per_event": 0.020833333333333332,
+    "accuracy_per_proxy_energy": 0.022451916482925802,
+    "activation_count": 12,
+    "active_edge_utilization": 0.8333333333333334,
+    "candidate_considered": 10,
+    "candidate_exposure": 4,
+    "causal_intervention_changed": true,
+    "class_separation": 0.14534804782671884,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-inward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-inward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-right-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-right-outward",
+        1
+      ]
+    ],
+    "edge_count": 6,
+    "energy_unit": "activity-cost-proxy; uncalibrated",
+    "event_count": 12,
+    "events_per_correct": 48.0,
+    "fan_in_saturation": 1.0,
+    "fan_out_saturation": 1.0,
+    "growth_attempts": 4,
+    "order_control_accuracy": 0.25,
+    "order_control_prediction_loss": 0.0,
+    "path_delay": 1.875,
+    "path_hops": 2.0,
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        0.5
+      ],
+      [
+        "spiral-left-outward",
+        0.0
+      ],
+      [
+        "spiral-right-inward",
+        0.0
+      ],
+      [
+        "spiral-right-outward",
+        0.5
+      ]
+    ],
+    "policy": "baseline",
+    "prediction_error_count": 2,
+    "prediction_loss": 1.2840299840239995,
+    "proxy_energy": 11.13490691051339,
+    "proxy_energy_per_correct": 44.53962764205356,
+    "rejected_mutations": 1,
+    "rejection_reasons": [
+      [
+        "fan_in_full",
+        1
+      ]
+    ],
+    "replay_digest": "f33cc21ca862817c944c6edba34ac1e118121125fd2a06381b3f0d3ba8db5a04",
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "scale": "expanded",
+    "seed": 3,
+    "shortcut_selected": true
+  },
+  {
+    "accepted_additions": 3,
+    "accuracy": 0.25,
+    "accuracy_per_event": 0.025,
+    "accuracy_per_proxy_energy": 0.02695636666593837,
+    "activation_count": 10,
+    "active_edge_utilization": 0.6666666666666666,
+    "candidate_considered": 10,
+    "candidate_exposure": 4,
+    "causal_intervention_changed": false,
+    "class_separation": 0.14534804782671884,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-inward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-inward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-right-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-right-outward",
+        1
+      ]
+    ],
+    "edge_count": 6,
+    "energy_unit": "activity-cost-proxy; uncalibrated",
+    "event_count": 10,
+    "events_per_correct": 40.0,
+    "fan_in_saturation": 1.0,
+    "fan_out_saturation": 0.6666666666666666,
+    "growth_attempts": 4,
+    "order_control_accuracy": 0.25,
+    "order_control_prediction_loss": 0.0,
+    "path_delay": 3.0,
+    "path_hops": 3.0,
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        0.5
+      ],
+      [
+        "spiral-left-outward",
+        0.0
+      ],
+      [
+        "spiral-right-inward",
+        0.0
+      ],
+      [
+        "spiral-right-outward",
+        0.5
+      ]
+    ],
+    "policy": "random",
+    "prediction_error_count": 2,
+    "prediction_loss": 1.0252293343028116,
+    "proxy_energy": 9.274246900488112,
+    "proxy_energy_per_correct": 37.09698760195245,
+    "rejected_mutations": 1,
+    "rejection_reasons": [
+      [
+        "fan_in_full",
+        1
+      ]
+    ],
+    "replay_digest": "fe9c0461b464bfb393d1a22af509f76f30f3a1fa40d73cb1d5877aa722162b2d",
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "scale": "expanded",
+    "seed": 3,
+    "shortcut_selected": false
+  },
+  {
+    "accepted_additions": 3,
+    "accuracy": 0.25,
+    "accuracy_per_event": 0.020833333333333332,
+    "accuracy_per_proxy_energy": 0.022451916482925802,
+    "activation_count": 12,
+    "active_edge_utilization": 0.8333333333333334,
+    "candidate_considered": 10,
+    "candidate_exposure": 4,
+    "causal_intervention_changed": true,
+    "class_separation": 0.14534804782671884,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-inward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-inward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-right-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-right-outward",
+        1
+      ]
+    ],
+    "edge_count": 6,
+    "energy_unit": "activity-cost-proxy; uncalibrated",
+    "event_count": 12,
+    "events_per_correct": 48.0,
+    "fan_in_saturation": 1.0,
+    "fan_out_saturation": 1.0,
+    "growth_attempts": 4,
+    "order_control_accuracy": 0.25,
+    "order_control_prediction_loss": 0.0,
+    "path_delay": 1.875,
+    "path_hops": 2.0,
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        0.5
+      ],
+      [
+        "spiral-left-outward",
+        0.0
+      ],
+      [
+        "spiral-right-inward",
+        0.0
+      ],
+      [
+        "spiral-right-outward",
+        0.5
+      ]
+    ],
+    "policy": "temporal",
+    "prediction_error_count": 2,
+    "prediction_loss": 1.2840299840239995,
+    "proxy_energy": 11.13490691051339,
+    "proxy_energy_per_correct": 44.53962764205356,
+    "rejected_mutations": 1,
+    "rejection_reasons": [
+      [
+        "fan_in_full",
+        1
+      ]
+    ],
+    "replay_digest": "026cda632b56454f9978f5af240688fcfaa74b344ddfeaf71936b15c098136ad",
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "scale": "expanded",
+    "seed": 3,
+    "shortcut_selected": true
+  },
+  {
+    "accepted_additions": 3,
+    "accuracy": 0.25,
+    "accuracy_per_event": 0.020833333333333332,
+    "accuracy_per_proxy_energy": 0.022451916482925802,
+    "activation_count": 12,
+    "active_edge_utilization": 0.8333333333333334,
+    "candidate_considered": 10,
+    "candidate_exposure": 4,
+    "causal_intervention_changed": true,
+    "class_separation": 0.14534804782671884,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-inward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-inward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-right-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-right-outward",
+        1
+      ]
+    ],
+    "edge_count": 6,
+    "energy_unit": "activity-cost-proxy; uncalibrated",
+    "event_count": 12,
+    "events_per_correct": 48.0,
+    "fan_in_saturation": 1.0,
+    "fan_out_saturation": 1.0,
+    "growth_attempts": 4,
+    "order_control_accuracy": 0.25,
+    "order_control_prediction_loss": 0.0,
+    "path_delay": 1.875,
+    "path_hops": 2.0,
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        0.5
+      ],
+      [
+        "spiral-left-outward",
+        0.0
+      ],
+      [
+        "spiral-right-inward",
+        0.0
+      ],
+      [
+        "spiral-right-outward",
+        0.5
+      ]
+    ],
+    "policy": "reversed",
+    "prediction_error_count": 2,
+    "prediction_loss": 1.2840299840239995,
+    "proxy_energy": 11.13490691051339,
+    "proxy_energy_per_correct": 44.53962764205356,
+    "rejected_mutations": 1,
+    "rejection_reasons": [
+      [
+        "fan_in_full",
+        1
+      ]
+    ],
+    "replay_digest": "f33cc21ca862817c944c6edba34ac1e118121125fd2a06381b3f0d3ba8db5a04",
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "scale": "expanded",
+    "seed": 3,
+    "shortcut_selected": true
+  },
+  {
+    "accepted_additions": 0,
+    "accuracy": 0.25,
+    "accuracy_per_event": 0.03125,
+    "accuracy_per_proxy_energy": 0.031288261960056,
+    "activation_count": 8,
+    "active_edge_utilization": 1.0,
+    "candidate_considered": 4,
+    "candidate_exposure": 4,
+    "causal_intervention_changed": false,
+    "class_separation": 0.1155132651872526,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-inward",
+        2
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-inward",
+        2
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-right-inward",
+        1
+      ]
+    ],
+    "edge_count": 3,
+    "energy_unit": "activity-cost-proxy; uncalibrated",
+    "event_count": 8,
+    "events_per_correct": 32.0,
+    "fan_in_saturation": 0.3333333333333333,
+    "fan_out_saturation": 0.3333333333333333,
+    "growth_attempts": 0,
+    "order_control_accuracy": 0.25,
+    "order_control_prediction_loss": 0.0,
+    "path_delay": 3.0,
+    "path_hops": 3.0,
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        1.0
+      ],
+      [
+        "spiral-left-outward",
+        0.0
+      ],
+      [
+        "spiral-right-inward",
+        0.0
+      ],
+      [
+        "spiral-right-outward",
+        0.0
+      ]
+    ],
+    "policy": "fixed",
+    "prediction_error_count": 2,
+    "prediction_loss": 1.0252293343028116,
+    "proxy_energy": 7.990216916464112,
+    "proxy_energy_per_correct": 31.960867665856448,
+    "rejected_mutations": 0,
+    "rejection_reasons": [],
+    "replay_digest": "0ba724e0abcfd3d96a4ffba48ecbaeb88bba8f326aa353fa75a7136a5ae66140",
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "scale": "expanded",
+    "seed": 4,
+    "shortcut_selected": false
+  },
+  {
+    "accepted_additions": 3,
+    "accuracy": 0.25,
+    "accuracy_per_event": 0.020833333333333332,
+    "accuracy_per_proxy_energy": 0.022451916482925802,
+    "activation_count": 12,
+    "active_edge_utilization": 0.8333333333333334,
+    "candidate_considered": 10,
+    "candidate_exposure": 4,
+    "causal_intervention_changed": true,
+    "class_separation": 0.1155132651872526,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-inward",
+        2
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-inward",
+        2
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-right-inward",
+        1
+      ]
+    ],
+    "edge_count": 6,
+    "energy_unit": "activity-cost-proxy; uncalibrated",
+    "event_count": 12,
+    "events_per_correct": 48.0,
+    "fan_in_saturation": 1.0,
+    "fan_out_saturation": 1.0,
+    "growth_attempts": 4,
+    "order_control_accuracy": 0.25,
+    "order_control_prediction_loss": 0.0,
+    "path_delay": 1.875,
+    "path_hops": 2.0,
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        1.0
+      ],
+      [
+        "spiral-left-outward",
+        0.0
+      ],
+      [
+        "spiral-right-inward",
+        0.0
+      ],
+      [
+        "spiral-right-outward",
+        0.0
+      ]
+    ],
+    "policy": "baseline",
+    "prediction_error_count": 2,
+    "prediction_loss": 1.2840299840239995,
+    "proxy_energy": 11.13490691051339,
+    "proxy_energy_per_correct": 44.53962764205356,
+    "rejected_mutations": 1,
+    "rejection_reasons": [
+      [
+        "fan_in_full",
+        1
+      ]
+    ],
+    "replay_digest": "f33cc21ca862817c944c6edba34ac1e118121125fd2a06381b3f0d3ba8db5a04",
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "scale": "expanded",
+    "seed": 4,
+    "shortcut_selected": true
+  },
+  {
+    "accepted_additions": 3,
+    "accuracy": 0.25,
+    "accuracy_per_event": 0.025,
+    "accuracy_per_proxy_energy": 0.02695636666593837,
+    "activation_count": 10,
+    "active_edge_utilization": 0.6666666666666666,
+    "candidate_considered": 10,
+    "candidate_exposure": 4,
+    "causal_intervention_changed": false,
+    "class_separation": 0.1155132651872526,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-inward",
+        2
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-inward",
+        2
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-right-inward",
+        1
+      ]
+    ],
+    "edge_count": 6,
+    "energy_unit": "activity-cost-proxy; uncalibrated",
+    "event_count": 10,
+    "events_per_correct": 40.0,
+    "fan_in_saturation": 1.0,
+    "fan_out_saturation": 0.6666666666666666,
+    "growth_attempts": 4,
+    "order_control_accuracy": 0.25,
+    "order_control_prediction_loss": 0.0,
+    "path_delay": 3.0,
+    "path_hops": 3.0,
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        1.0
+      ],
+      [
+        "spiral-left-outward",
+        0.0
+      ],
+      [
+        "spiral-right-inward",
+        0.0
+      ],
+      [
+        "spiral-right-outward",
+        0.0
+      ]
+    ],
+    "policy": "random",
+    "prediction_error_count": 2,
+    "prediction_loss": 1.0252293343028116,
+    "proxy_energy": 9.274246900488112,
+    "proxy_energy_per_correct": 37.09698760195245,
+    "rejected_mutations": 1,
+    "rejection_reasons": [
+      [
+        "fan_in_full",
+        1
+      ]
+    ],
+    "replay_digest": "6d252135abf05881277611153db7c8becb57a8013f270157381aaef4de36c363",
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "scale": "expanded",
+    "seed": 4,
+    "shortcut_selected": false
+  },
+  {
+    "accepted_additions": 3,
+    "accuracy": 0.25,
+    "accuracy_per_event": 0.020833333333333332,
+    "accuracy_per_proxy_energy": 0.022451916482925802,
+    "activation_count": 12,
+    "active_edge_utilization": 0.8333333333333334,
+    "candidate_considered": 10,
+    "candidate_exposure": 4,
+    "causal_intervention_changed": true,
+    "class_separation": 0.1155132651872526,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-inward",
+        2
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-inward",
+        2
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-right-inward",
+        1
+      ]
+    ],
+    "edge_count": 6,
+    "energy_unit": "activity-cost-proxy; uncalibrated",
+    "event_count": 12,
+    "events_per_correct": 48.0,
+    "fan_in_saturation": 1.0,
+    "fan_out_saturation": 1.0,
+    "growth_attempts": 4,
+    "order_control_accuracy": 0.25,
+    "order_control_prediction_loss": 0.0,
+    "path_delay": 1.875,
+    "path_hops": 2.0,
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        1.0
+      ],
+      [
+        "spiral-left-outward",
+        0.0
+      ],
+      [
+        "spiral-right-inward",
+        0.0
+      ],
+      [
+        "spiral-right-outward",
+        0.0
+      ]
+    ],
+    "policy": "temporal",
+    "prediction_error_count": 2,
+    "prediction_loss": 1.2840299840239995,
+    "proxy_energy": 11.13490691051339,
+    "proxy_energy_per_correct": 44.53962764205356,
+    "rejected_mutations": 1,
+    "rejection_reasons": [
+      [
+        "fan_in_full",
+        1
+      ]
+    ],
+    "replay_digest": "026cda632b56454f9978f5af240688fcfaa74b344ddfeaf71936b15c098136ad",
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "scale": "expanded",
+    "seed": 4,
+    "shortcut_selected": true
+  },
+  {
+    "accepted_additions": 3,
+    "accuracy": 0.25,
+    "accuracy_per_event": 0.020833333333333332,
+    "accuracy_per_proxy_energy": 0.022451916482925802,
+    "activation_count": 12,
+    "active_edge_utilization": 0.8333333333333334,
+    "candidate_considered": 10,
+    "candidate_exposure": 4,
+    "causal_intervention_changed": true,
+    "class_separation": 0.1155132651872526,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-inward",
+        2
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-inward",
+        2
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-right-inward",
+        1
+      ]
+    ],
+    "edge_count": 6,
+    "energy_unit": "activity-cost-proxy; uncalibrated",
+    "event_count": 12,
+    "events_per_correct": 48.0,
+    "fan_in_saturation": 1.0,
+    "fan_out_saturation": 1.0,
+    "growth_attempts": 4,
+    "order_control_accuracy": 0.25,
+    "order_control_prediction_loss": 0.0,
+    "path_delay": 1.875,
+    "path_hops": 2.0,
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        1.0
+      ],
+      [
+        "spiral-left-outward",
+        0.0
+      ],
+      [
+        "spiral-right-inward",
+        0.0
+      ],
+      [
+        "spiral-right-outward",
+        0.0
+      ]
+    ],
+    "policy": "reversed",
+    "prediction_error_count": 2,
+    "prediction_loss": 1.2840299840239995,
+    "proxy_energy": 11.13490691051339,
+    "proxy_energy_per_correct": 44.53962764205356,
+    "rejected_mutations": 1,
+    "rejection_reasons": [
+      [
+        "fan_in_full",
+        1
+      ]
+    ],
+    "replay_digest": "f33cc21ca862817c944c6edba34ac1e118121125fd2a06381b3f0d3ba8db5a04",
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "scale": "expanded",
+    "seed": 4,
+    "shortcut_selected": true
+  }
+]
