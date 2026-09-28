@@ -176,3 +176,24 @@ verification clarification, not a benchmark-specific handedness rule.
 	and do not depend on 12H. Real-dataset, hardware, and post-observability
 	milestones remain separately gated.
 
+## Luna-12K creation - 2026-09-28
+
+Created the formal **Capacity-Pressure, Equal-Exposure, and Path-Shortening
+Verification** follow-up from the current HEAD
+`e0f308f5aa76cdf41578f0574a2135b9bb0b256d` after verifying the Luna-12J
+`partially supported` / `PASS WITH FOLLOW-UP` result.
+
+- Luna-12K is classified `EXPERIMENT` and `VERIFICATION`; it requires equal
+	candidate exposure, competing legal candidates, actual bounded capacity
+	pressure with precise rejection causes, and a functional long-path fixture
+	with a causal shortcut intervention.
+- The 12J raw evidence and handoff confirm five declared seeds, temporal
+	accuracy `1.0`, one convergent motif, eight routed events, lower proxy
+	energy than baseline, the eight-to-six causal intervention, and no
+	demonstrated path shortening because no initial long path existed.
+- This entry authorizes milestone creation only. Luna-12K execution requires
+	a separate explicit assignment and returns to Luna-0; no A14 clause,
+	architecture contract, ACP status, Luna-12L or later work is authorized.
+- Luna-13 and Luna-14 remain independent siblings, and the legacy baseline is
+	preserved.
+

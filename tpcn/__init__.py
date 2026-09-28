@@ -87,6 +87,18 @@ from .cpu_visualization import CPUTrainingCapture, ReplaySequence, ReplaySequenc
 from .viewer_3d import CameraState, EdgeView, NodeView, SnapshotDiff, ViewerFilters, VisualizationScene
 from .temporal_analysis import analyze_replay, compare_replays, summarize_analysis
 from .temporal_association import TemporalAssociationPolicy, TemporalAssociationState
+from .temporal_capacity import (
+    CANDIDATE_ENDPOINTS,
+    CapacityPressureConfig,
+    CapacityPressureMetrics,
+    CapacityPressureResult,
+    CausalPathIntervention,
+    LONG_PATH,
+    NODES,
+    ReplayMetrics,
+    run_temporal_capacity,
+    run_temporal_capacity_suite,
+)
 from .temporal_efficacy import (
     CausalIntervention,
     TemporalEfficacyConfig,
@@ -198,6 +210,16 @@ __all__ = [
     "summarize_analysis",
     "TemporalAssociationPolicy",
     "TemporalAssociationState",
+    "CANDIDATE_ENDPOINTS",
+    "CapacityPressureConfig",
+    "CapacityPressureMetrics",
+    "CapacityPressureResult",
+    "CausalPathIntervention",
+    "LONG_PATH",
+    "NODES",
+    "ReplayMetrics",
+    "run_temporal_capacity",
+    "run_temporal_capacity_suite",
     "CausalIntervention",
     "TemporalEfficacyConfig",
     "TemporalEfficacyMetrics",

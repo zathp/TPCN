@@ -1133,7 +1133,57 @@ raw and summarized measurements, negative results, limitations and direct
 answers to the seven Luna-12J questions. Separate `OBSERVED`, `INFERRED` and
 `HYPOTHESIZED`, and passed/failed/not-run/not-applicable checks. Gate values are
 PASS, PASS WITH FOLLOW-UP, INCONCLUSIVE, NOT SUPPORTED and BLOCKED. Any result
-returns to Luna-0; even PASS does not promote A14 or authorize Luna-12K.
+returns to Luna-0; even PASS does not promote A14 or automatically authorize
+Luna-12K execution. Luna-0 may separately create a bounded follow-up after a
+PASS WITH FOLLOW-UP decision.
+
+## Luna-12K - Capacity-Pressure, Equal-Exposure, and Path-Shortening Verification
+
+**Authorization:** Luna-12K is a separately scoped `EXPERIMENT` and
+`VERIFICATION` follow-up created after the verified Luna-12J result
+`partially supported` with gate `PASS WITH FOLLOW-UP`. Creation does not
+execute the experiment. Execution requires an explicit assignment and a
+completed 12K handoff; no A14 promotion or Luna-12L/later work is authorized.
+
+**Question and hypothesis:** Under equal candidate exposure and bounded
+topology pressure, temporal-associative structural growth is hypothesized to
+allocate scarce connection capacity toward useful causal convergence and to
+create a legal shortcut that measurably reduces meaningful propagation path
+length or delay compared with temporally uninformed controls. The hypothesis
+is falsified when equalized controls match or exceed useful allocation, real
+capacity pressure is absent, temporal evidence does not alter selection, the
+shortcut does not change routed computation, or the result disappears under
+reversed/timing-destroyed evidence. Valid results are supported, partially
+supported, not supported, inconclusive or blocked.
+
+**Controls and equal exposure:** Compare fixed topology, pre-12I structural
+growth, random legal growth, Luna-12I temporal growth and reversed/shuffled or
+timing-destroyed temporal evidence. Equalize candidate set/count, mutation
+opportunities, growth attempts, edge/fan-in/out bounds, pruning/replacement
+budget, trials, event workload and seeds. Measure candidates exposed,
+considered and selected. Record and quantify every mismatch; do not credit a
+policy for extra useful candidates or computation. An oracle-like selector is
+diagnostic only and is not a legal learning mechanism.
+
+**Fixture and intervention:** Use multiple legal, resource-competitive
+candidates, including temporally relevant and irrelevant edges. Reach actual
+fan-in, fan-out, global-edge, candidate-capacity or replacement/pruning
+pressure and record precise rejection causes. Begin with a functional
+finite-delay long path and a legal initially absent shortcut in the actual
+Luna-12E routed topology. Compare before growth, after shortcut formation and
+after shortcut removal on hop count, cumulative delay, arrival timestamps,
+routed events, activations, downstream state/output, prediction/error and
+energy/resource proxy. Graph-distance change alone is insufficient.
+
+**Invariants and evidence:** Preserve A01-A04, A06-A11, A14 and A15. Labels,
+future events, global topology statistics, evaluation metrics, wall-clock state
+and unrestricted trainer state remain outside canonical events, predictor
+state, routing, topology evidence, structural evidence, eligibility and
+energy computation. All candidates, histories, queues, paths, mutations and
+analysis buffers are finite. The handoff must distinguish `OBSERVED`,
+`INFERRED` and `HYPOTHESIZED`, retain unfavorable seeds, and classify every
+focused, regression, full-suite, compile, diagnostic and diff check as passed,
+failed, not run or not applicable. Any result returns to Luna-0.
 
 ## Luna-13 — GPU-Compatible Visualization Path
 
@@ -1486,6 +1536,13 @@ Neuron              Topology
               ├───────► 12I  structural growth
               │
               └───────► 12J  efficacy + causal verification
+                      │
+                      ▼
+                   12K capacity pressure
+                     and path shortening
+                      │
+                      ▼
+                    Luna-0 review
 
         Stable software event semantics
                      │
