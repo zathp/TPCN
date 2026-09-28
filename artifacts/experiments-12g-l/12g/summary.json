@@ -1,0 +1,1047 @@
+[
+  {
+    "accepted_additions": 0,
+    "accuracy": 0.0,
+    "activation_count": 2042,
+    "active_neuron_count": 1,
+    "confidence": 0.06906896980386258,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "A",
+        16
+      ],
+      [
+        "spiral-left-inward",
+        "S",
+        3
+      ],
+      [
+        "spiral-left-inward",
+        "T",
+        3
+      ],
+      [
+        "spiral-left-inward",
+        "U",
+        1
+      ],
+      [
+        "spiral-left-inward",
+        "V",
+        1
+      ],
+      [
+        "spiral-left-inward",
+        "X",
+        1
+      ],
+      [
+        "spiral-left-inward",
+        "Y",
+        1
+      ],
+      [
+        "spiral-left-inward",
+        "Z",
+        6
+      ],
+      [
+        "spiral-left-outward",
+        "A",
+        13
+      ],
+      [
+        "spiral-left-outward",
+        "C",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "E",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "R",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "T",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "U",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "V",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "X",
+        2
+      ],
+      [
+        "spiral-left-outward",
+        "Y",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "Z",
+        10
+      ],
+      [
+        "spiral-right-inward",
+        "A",
+        14
+      ],
+      [
+        "spiral-right-inward",
+        "S",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "T",
+        2
+      ],
+      [
+        "spiral-right-inward",
+        "U",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "W",
+        2
+      ],
+      [
+        "spiral-right-inward",
+        "Y",
+        1
+      ],
+      [
+        "spiral-right-inward",
+        "Z",
+        11
+      ],
+      [
+        "spiral-right-outward",
+        "A",
+        14
+      ],
+      [
+        "spiral-right-outward",
+        "G",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "S",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "T",
+        4
+      ],
+      [
+        "spiral-right-outward",
+        "U",
+        2
+      ],
+      [
+        "spiral-right-outward",
+        "V",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "W",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "Y",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "Z",
+        7
+      ]
+    ],
+    "connection_count": 1,
+    "energy": 706.0226334658263,
+    "event_count": 2042,
+    "margin": 0.0,
+    "mutation_count": 0,
+    "name": "no-learning",
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        0.0
+      ],
+      [
+        "spiral-left-outward",
+        0.0
+      ],
+      [
+        "spiral-right-inward",
+        0.0
+      ],
+      [
+        "spiral-right-outward",
+        0.0
+      ]
+    ],
+    "prediction_error_count": 0,
+    "prediction_loss": 0.0,
+    "pruned_connections": 0,
+    "represented_classes": [],
+    "reward": -128.0,
+    "sample_count": 128,
+    "utility": -834.0226334658263
+  },
+  {
+    "accepted_additions": 0,
+    "accuracy": 0.2421875,
+    "activation_count": 2042,
+    "active_neuron_count": 1,
+    "confidence": 0.8268768157497872,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-outward",
+        18
+      ],
+      [
+        "spiral-left-inward",
+        "spiral-right-inward",
+        10
+      ],
+      [
+        "spiral-left-inward",
+        "spiral-right-outward",
+        4
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-outward",
+        17
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-inward",
+        13
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-outward",
+        2
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-outward",
+        20
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-right-inward",
+        12
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-outward",
+        17
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-right-inward",
+        12
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-right-outward",
+        2
+      ]
+    ],
+    "connection_count": 1,
+    "energy": 706.0226334658263,
+    "event_count": 2042,
+    "margin": 0.05437685435246116,
+    "mutation_count": 0,
+    "name": "fixed-topology",
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        0.0
+      ],
+      [
+        "spiral-left-outward",
+        0.53125
+      ],
+      [
+        "spiral-right-inward",
+        0.375
+      ],
+      [
+        "spiral-right-outward",
+        0.0625
+      ]
+    ],
+    "prediction_error_count": 0,
+    "prediction_loss": 0.0,
+    "pruned_connections": 0,
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "reward": -66.0,
+    "sample_count": 128,
+    "utility": -772.0226334658263
+  },
+  {
+    "accepted_additions": 12,
+    "accuracy": 0.2421875,
+    "activation_count": 2136,
+    "active_neuron_count": 1,
+    "confidence": 0.8269325110363656,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-outward",
+        18
+      ],
+      [
+        "spiral-left-inward",
+        "spiral-right-inward",
+        10
+      ],
+      [
+        "spiral-left-inward",
+        "spiral-right-outward",
+        4
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-outward",
+        17
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-inward",
+        11
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-outward",
+        4
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-outward",
+        20
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-right-inward",
+        12
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-outward",
+        17
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-right-inward",
+        12
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-right-outward",
+        2
+      ]
+    ],
+    "connection_count": 7,
+    "energy": 721.4698860763488,
+    "event_count": 2136,
+    "margin": 0.057099129905422506,
+    "mutation_count": 581,
+    "name": "structural-plasticity",
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        0.0
+      ],
+      [
+        "spiral-left-outward",
+        0.53125
+      ],
+      [
+        "spiral-right-inward",
+        0.375
+      ],
+      [
+        "spiral-right-outward",
+        0.0625
+      ]
+    ],
+    "prediction_error_count": 0,
+    "prediction_loss": 0.0,
+    "pruned_connections": 8,
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "reward": -66.0,
+    "sample_count": 128,
+    "utility": -787.4698860763488
+  },
+  {
+    "accepted_additions": 0,
+    "accuracy": 0.2421875,
+    "activation_count": 2042,
+    "active_neuron_count": 1,
+    "confidence": 0.8268768143571745,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-outward",
+        18
+      ],
+      [
+        "spiral-left-inward",
+        "spiral-right-inward",
+        10
+      ],
+      [
+        "spiral-left-inward",
+        "spiral-right-outward",
+        4
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-outward",
+        17
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-inward",
+        13
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-outward",
+        2
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-outward",
+        20
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-right-inward",
+        12
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-outward",
+        17
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-right-inward",
+        12
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-right-outward",
+        2
+      ]
+    ],
+    "connection_count": 1,
+    "energy": 706.0226215516325,
+    "event_count": 2042,
+    "margin": 0.054376854573324765,
+    "mutation_count": 0,
+    "name": "shuffled-order (shuffle)",
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        0.0
+      ],
+      [
+        "spiral-left-outward",
+        0.53125
+      ],
+      [
+        "spiral-right-inward",
+        0.375
+      ],
+      [
+        "spiral-right-outward",
+        0.0625
+      ]
+    ],
+    "prediction_error_count": 0,
+    "prediction_loss": 0.0,
+    "pruned_connections": 0,
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "reward": -66.0,
+    "sample_count": 128,
+    "utility": -772.0226215516326
+  },
+  {
+    "accepted_additions": 0,
+    "accuracy": 0.2421875,
+    "activation_count": 2042,
+    "active_neuron_count": 1,
+    "confidence": 0.8268768149997344,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-outward",
+        18
+      ],
+      [
+        "spiral-left-inward",
+        "spiral-right-inward",
+        10
+      ],
+      [
+        "spiral-left-inward",
+        "spiral-right-outward",
+        4
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-outward",
+        17
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-inward",
+        13
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-outward",
+        2
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-outward",
+        20
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-right-inward",
+        12
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-outward",
+        17
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-right-inward",
+        12
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-right-outward",
+        2
+      ]
+    ],
+    "connection_count": 1,
+    "energy": 706.0226388515001,
+    "event_count": 2042,
+    "margin": 0.05437685436348932,
+    "mutation_count": 0,
+    "name": "time-reversal (reverse)",
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        0.0
+      ],
+      [
+        "spiral-left-outward",
+        0.53125
+      ],
+      [
+        "spiral-right-inward",
+        0.375
+      ],
+      [
+        "spiral-right-outward",
+        0.0625
+      ]
+    ],
+    "prediction_error_count": 0,
+    "prediction_loss": 0.0,
+    "pruned_connections": 0,
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "reward": -66.0,
+    "sample_count": 128,
+    "utility": -772.0226388515001
+  },
+  {
+    "accepted_additions": 0,
+    "accuracy": 0.259765625,
+    "activation_count": 8104,
+    "active_neuron_count": 1,
+    "confidence": 0.8275588934839027,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-inward",
+        5
+      ],
+      [
+        "spiral-left-inward",
+        "spiral-left-outward",
+        71
+      ],
+      [
+        "spiral-left-inward",
+        "spiral-right-inward",
+        44
+      ],
+      [
+        "spiral-left-inward",
+        "spiral-right-outward",
+        8
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-inward",
+        8
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-outward",
+        72
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-inward",
+        40
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-outward",
+        8
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-inward",
+        3
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-outward",
+        76
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-right-inward",
+        48
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-right-outward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-outward",
+        68
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-right-inward",
+        51
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-right-outward",
+        8
+      ]
+    ],
+    "connection_count": 1,
+    "energy": 2812.802198154965,
+    "event_count": 8104,
+    "margin": 0.05480740580758917,
+    "mutation_count": 0,
+    "name": "rotation-invariance",
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        0.0390625
+      ],
+      [
+        "spiral-left-outward",
+        0.5625
+      ],
+      [
+        "spiral-right-inward",
+        0.375
+      ],
+      [
+        "spiral-right-outward",
+        0.0625
+      ]
+    ],
+    "prediction_error_count": 0,
+    "prediction_loss": 0.0,
+    "pruned_connections": 0,
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "reward": -246.0,
+    "sample_count": 512,
+    "utility": -3058.8021981549646
+  },
+  {
+    "accepted_additions": 0,
+    "accuracy": 0.2421875,
+    "activation_count": 2042,
+    "active_neuron_count": 1,
+    "confidence": 0.9823161900241314,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-inward",
+        7
+      ],
+      [
+        "spiral-left-inward",
+        "spiral-left-outward",
+        23
+      ],
+      [
+        "spiral-left-inward",
+        "spiral-right-outward",
+        2
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-inward",
+        8
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-outward",
+        24
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-inward",
+        6
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-outward",
+        24
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-right-outward",
+        2
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-inward",
+        7
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-outward",
+        25
+      ]
+    ],
+    "connection_count": 1,
+    "energy": 349.0367064052934,
+    "event_count": 2042,
+    "margin": 0.029494322408655873,
+    "mutation_count": 0,
+    "name": "scale-translation",
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        0.21875
+      ],
+      [
+        "spiral-left-outward",
+        0.75
+      ],
+      [
+        "spiral-right-inward",
+        0.0
+      ],
+      [
+        "spiral-right-outward",
+        0.0
+      ]
+    ],
+    "prediction_error_count": 0,
+    "prediction_loss": 0.0,
+    "pruned_connections": 0,
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "reward": -66.0,
+    "sample_count": 128,
+    "utility": -415.03670640529344
+  },
+  {
+    "accepted_additions": 0,
+    "accuracy": 0.2421875,
+    "activation_count": 6088,
+    "active_neuron_count": 1,
+    "confidence": 0.8270930306319751,
+    "confusion": [
+      [
+        "spiral-left-inward",
+        "spiral-left-outward",
+        54
+      ],
+      [
+        "spiral-left-inward",
+        "spiral-right-inward",
+        30
+      ],
+      [
+        "spiral-left-inward",
+        "spiral-right-outward",
+        12
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-left-outward",
+        51
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-inward",
+        39
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-outward",
+        6
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-left-outward",
+        60
+      ],
+      [
+        "spiral-right-inward",
+        "spiral-right-inward",
+        36
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-inward",
+        3
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-left-outward",
+        51
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-right-inward",
+        36
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-right-outward",
+        6
+      ]
+    ],
+    "connection_count": 1,
+    "energy": 2114.156426531626,
+    "event_count": 6088,
+    "margin": 0.054459793612762285,
+    "mutation_count": 0,
+    "name": "noise-robustness",
+    "per_class_accuracy": [
+      [
+        "spiral-left-inward",
+        0.0
+      ],
+      [
+        "spiral-left-outward",
+        0.53125
+      ],
+      [
+        "spiral-right-inward",
+        0.375
+      ],
+      [
+        "spiral-right-outward",
+        0.0625
+      ]
+    ],
+    "prediction_error_count": 0,
+    "prediction_loss": 0.0,
+    "pruned_connections": 0,
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "reward": -198.0,
+    "sample_count": 384,
+    "utility": -2312.156426531626
+  },
+  {
+    "accepted_additions": 0,
+    "accuracy": 0.5,
+    "activation_count": 60,
+    "active_neuron_count": 1,
+    "confidence": 0.9665024462221508,
+    "confusion": [
+      [
+        "spiral-left-outward",
+        "spiral-left-outward",
+        1
+      ],
+      [
+        "spiral-left-outward",
+        "spiral-right-outward",
+        1
+      ]
+    ],
+    "connection_count": 1,
+    "energy": 8.834248976125874,
+    "event_count": 60,
+    "margin": 0.02338248773837673,
+    "mutation_count": 0,
+    "name": "same-class-nuisance-pair",
+    "per_class_accuracy": [
+      [
+        "spiral-left-outward",
+        0.5
+      ]
+    ],
+    "prediction_error_count": 0,
+    "prediction_loss": 0.0,
+    "pruned_connections": 0,
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "reward": 0.0,
+    "sample_count": 2,
+    "utility": -8.834248976125874
+  },
+  {
+    "accepted_additions": 0,
+    "accuracy": 0.0,
+    "activation_count": 60,
+    "active_neuron_count": 1,
+    "confidence": 0.6697548356300855,
+    "confusion": [
+      [
+        "spiral-left-outward",
+        "spiral-right-inward",
+        1
+      ],
+      [
+        "spiral-right-outward",
+        "spiral-right-inward",
+        1
+      ]
+    ],
+    "connection_count": 1,
+    "energy": 25.3001250412633,
+    "event_count": 60,
+    "margin": 0.08620963389290007,
+    "mutation_count": 0,
+    "name": "opposite-handed-matched-pair",
+    "per_class_accuracy": [
+      [
+        "spiral-left-outward",
+        0.0
+      ],
+      [
+        "spiral-right-outward",
+        0.0
+      ]
+    ],
+    "prediction_error_count": 0,
+    "prediction_loss": 0.0,
+    "pruned_connections": 0,
+    "represented_classes": [
+      "spiral-left-inward",
+      "spiral-left-outward",
+      "spiral-right-inward",
+      "spiral-right-outward"
+    ],
+    "reward": -2.0,
+    "sample_count": 2,
+    "utility": -27.3001250412633
+  }
+]

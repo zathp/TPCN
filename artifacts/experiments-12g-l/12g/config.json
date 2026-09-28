@@ -1,0 +1,23 @@
+{
+  "epochs": 20,
+  "evaluation_seed": 12017,
+  "examples_per_class": 32,
+  "generator": {
+    "max_angular_speed": 2.5,
+    "max_coordinate_noise": 0.025,
+    "max_duration": 320.0,
+    "max_points": 20,
+    "max_radial_growth": 1.1,
+    "max_radial_jitter": 0.04,
+    "max_rotation": 6.283185307179586,
+    "max_scale": 1.2,
+    "max_timing_jitter": 0.08,
+    "max_translation": 1.0,
+    "min_angular_speed": 1.7,
+    "min_duration": 240.0,
+    "min_points": 12,
+    "min_radial_growth": 0.7,
+    "min_scale": 0.8
+  },
+  "train_seed": 12007
+}

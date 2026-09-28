@@ -1,0 +1,27 @@
+{
+  "baseline_revision": "e0f308f5aa76cdf41578f0574a2135b9bb0b256d",
+  "config": {
+    "association_window": 1.0,
+    "candidate_capacity": 8,
+    "edge_capacity": 6,
+    "fan_in_limit": 2,
+    "fan_out_limit": 2,
+    "history_capacity": 8,
+    "long_delay": 1.0,
+    "max_events": 16,
+    "max_growth_attempts": 3,
+    "maximum_score": 8,
+    "node_count": 7,
+    "queue_capacity": 16,
+    "routing_capacity": 6,
+    "shortcut_delay": 0.75,
+    "temporal_observation_count": 6
+  },
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ]
+}

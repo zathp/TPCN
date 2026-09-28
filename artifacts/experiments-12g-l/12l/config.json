@@ -1,0 +1,49 @@
+{
+  "baseline_revision": "3122c7dbae2589c1c78fe6169d394f525c212ec1",
+  "class_labels": [
+    "spiral-left-outward",
+    "spiral-right-outward",
+    "spiral-left-inward",
+    "spiral-right-inward"
+  ],
+  "policies": [
+    "fixed",
+    "baseline",
+    "random",
+    "temporal",
+    "reversed"
+  ],
+  "policy_scale_coupling": "classifier and structural metrics are executed from the same requested policy and scale; mismatches raise",
+  "run_status": "corrective-rerun-after-luna-0-blocked-review",
+  "scales": [
+    {
+      "candidate_history_capacity": 8,
+      "edge_capacity": 6,
+      "examples_per_class": 2,
+      "fan_in_out": 2,
+      "growth_attempts": 3,
+      "name": "reference",
+      "neuron_count": 7,
+      "queue_event_capacity": 16
+    },
+    {
+      "candidate_history_capacity": 12,
+      "edge_capacity": 10,
+      "examples_per_class": 2,
+      "fan_in_out": 3,
+      "growth_attempts": 5,
+      "name": "expanded",
+      "neuron_count": 12,
+      "queue_event_capacity": 24
+    }
+  ],
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "supersedes": "artifacts/temporal-scale-12l-invalid-pre-coupling",
+  "zero_correct_ratio_policy": "null"
+}
