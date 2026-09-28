@@ -86,6 +86,7 @@ from .fpga_visualization import (
 from .cpu_visualization import CPUTrainingCapture, ReplaySequence, ReplaySequenceError, run_cpu_training
 from .viewer_3d import CameraState, EdgeView, NodeView, SnapshotDiff, ViewerFilters, VisualizationScene
 from .temporal_analysis import analyze_replay, compare_replays, summarize_analysis
+from .temporal_association import TemporalAssociationPolicy, TemporalAssociationState
 from .spiral_benchmark import (
     ControlResult,
     SpiralConfig,
@@ -187,6 +188,8 @@ __all__ = [
     "analyze_replay",
     "compare_replays",
     "summarize_analysis",
+    "TemporalAssociationPolicy",
+    "TemporalAssociationState",
     "ControlResult",
     "SpiralConfig",
     "SpiralDataset",
