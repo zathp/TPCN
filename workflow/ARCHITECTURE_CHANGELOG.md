@@ -38,6 +38,23 @@ This is a contract/governance change, not evidence that temporal association or
 modular bootstrap training works. Luna-13 through Luna-17 retain their prior
 meanings and independent observability/hardware gates.
 
+## Luna-12J dispatch scaffold - 2026-09-28
+
+Re-scoped the previously unexecuted Luna-12J placeholder as **Temporal-
+Associative Structural Learning Efficacy and Causal Verification** after the
+Luna-12I handoff returned **PASS WITH FOLLOW-UP**. This is a workflow and
+experiment-scope update, not an architecture change.
+
+- Luna-12J is classified `EXPERIMENT`, `VERIFICATION` and follows Luna-12I.
+- It compares fixed topology, the pre-12I policy, random legal growth and
+	Luna-12I temporal growth under comparable resources and temporal controls.
+- It verifies that learned topology changes the real Luna-12E routed path and
+	uses a causal intervention; topology appearance alone is insufficient.
+- A14 remains unchanged. A successful result returns to Luna-0 for separate
+	architecture review and does not authorize a later implementation Luna.
+- Luna-13 and Luna-14 remain independent siblings. No real-data, hardware or
+	bootstrap-trainer work is authorized by this entry.
+
 For later changes record date, contract version, accepted ACP, decision owner, clauses affected, evidence, compatibility and migration/rollback implications.
 
 ## Workflow observability track — 2026-09-27

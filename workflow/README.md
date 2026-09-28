@@ -13,7 +13,7 @@ Documentation package for the event-driven TPCN candidate architecture, based on
 
 ## Visualization / observability and post-12H milestones
 
-The [workflow milestone family](docs/luna/LUNA_WORKFLOW.md#visualization--observability-milestone-family) adds Luna-12 (canonical contract and CPU exporter), Luna-12A through Luna-12H (CPU/replay, topology, readout, spiral and intrinsic temporal milestones), Luna-12I (temporal-associative structural growth and fan-in formation), Luna-12J (modular/bootstrap initialization), Luna-13 (GPU-compatible exporter), and Luna-14 (ModelSim/FPGA trace bridge and DE1-SoC foundation). Luna-12I and Luna-12J are separate future experiments and do not block Luna-13, Luna-14, Luna-15, Luna-16 or Luna-17. Visualization remains downstream-only, non-semantic infrastructure, and the canonical Luna-12 format is documented in [VISUALIZATION_CONTRACT.md](docs/luna/VISUALIZATION_CONTRACT.md).
+The [workflow milestone family](docs/luna/LUNA_WORKFLOW.md#visualization--observability-milestone-family) adds Luna-12 (canonical contract and CPU exporter), Luna-12A through Luna-12H (CPU/replay, topology, readout, spiral and intrinsic temporal milestones), Luna-12I (temporal-associative structural growth and fan-in formation), Luna-12J (temporal-associative efficacy and causal verification), Luna-13 (GPU-compatible exporter), and Luna-14 (ModelSim/FPGA trace bridge and DE1-SoC foundation). Luna-12J follows a separate Luna-0 dispatch after 12I and does not block Luna-13, Luna-14, Luna-15, Luna-16 or Luna-17. Visualization remains downstream-only, non-semantic infrastructure, and the canonical Luna-12 format is documented in [VISUALIZATION_CONTRACT.md](docs/luna/VISUALIZATION_CONTRACT.md).
 
 ## Package layout
 

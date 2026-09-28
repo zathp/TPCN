@@ -1,0 +1,2537 @@
+[
+  {
+    "causal_intervention": null,
+    "metrics": {
+      "accepted_additions": 0,
+      "accuracy": 0.5,
+      "activation_count": 4,
+      "active_edge_count": 0,
+      "active_edge_utilization": 0.0,
+      "candidate_count": 0,
+      "candidate_proposals": 0,
+      "candidate_space_size": 6,
+      "class_separation": 0.0,
+      "convergent_fan_in_motifs": 0,
+      "duplicate_proposals": 0,
+      "edge_capacity": 4,
+      "edge_count": 0,
+      "energy": 3.0463766238230594,
+      "energy_unit": "activity-cost-proxy",
+      "event_count": 4,
+      "fan_in_distribution": [
+        [
+          "a",
+          0
+        ],
+        [
+          "b",
+          0
+        ],
+        [
+          "target",
+          0
+        ],
+        [
+          "d1",
+          0
+        ],
+        [
+          "d2",
+          0
+        ]
+      ],
+      "fan_out_distribution": [
+        [
+          "a",
+          0
+        ],
+        [
+          "b",
+          0
+        ],
+        [
+          "target",
+          0
+        ],
+        [
+          "d1",
+          0
+        ],
+        [
+          "d2",
+          0
+        ]
+      ],
+      "mean_path_delay": 0.0,
+      "mean_path_length": 0.0,
+      "mutation_statuses": [],
+      "path_shortening": 0.0,
+      "policy": "fixed",
+      "prediction_error_count": 0,
+      "prediction_loss": 0.0,
+      "rejected_mutations": 0,
+      "rejection_reasons": [],
+      "removed_edges": 0,
+      "replay_digest": "462ab389efe22833bace465bdfeba66eefdef0af70417b40713694949699be0b",
+      "seed": 0,
+      "shortest_target_delay": null,
+      "target_states": [
+        [
+          "a-first",
+          0.0
+        ],
+        [
+          "b-first",
+          0.0
+        ]
+      ],
+      "topology_edges": [],
+      "topology_stabilized": true,
+      "utility": -2.0463766238230594
+    }
+  },
+  {
+    "causal_intervention": null,
+    "metrics": {
+      "accepted_additions": 2,
+      "accuracy": 0.5,
+      "activation_count": 8,
+      "active_edge_count": 2,
+      "active_edge_utilization": 1.0,
+      "candidate_count": 6,
+      "candidate_proposals": 6,
+      "candidate_space_size": 6,
+      "class_separation": 0.0,
+      "convergent_fan_in_motifs": 0,
+      "duplicate_proposals": 0,
+      "edge_capacity": 4,
+      "edge_count": 2,
+      "energy": 5.614436591871058,
+      "energy_unit": "activity-cost-proxy",
+      "event_count": 8,
+      "fan_in_distribution": [
+        [
+          "a",
+          0
+        ],
+        [
+          "b",
+          0
+        ],
+        [
+          "target",
+          0
+        ],
+        [
+          "d1",
+          1
+        ],
+        [
+          "d2",
+          1
+        ]
+      ],
+      "fan_out_distribution": [
+        [
+          "a",
+          2
+        ],
+        [
+          "b",
+          0
+        ],
+        [
+          "target",
+          0
+        ],
+        [
+          "d1",
+          0
+        ],
+        [
+          "d2",
+          0
+        ]
+      ],
+      "mean_path_delay": 0.0,
+      "mean_path_length": 0.0,
+      "mutation_statuses": [
+        "grown",
+        "grown"
+      ],
+      "path_shortening": 0.0,
+      "policy": "baseline",
+      "prediction_error_count": 0,
+      "prediction_loss": 0.0,
+      "rejected_mutations": 0,
+      "rejection_reasons": [],
+      "removed_edges": 0,
+      "replay_digest": "5ad310205acbb37db6cb90d5dbdeff26efdbf5837b9d19506c1a4d0b540d8943",
+      "seed": 0,
+      "shortest_target_delay": null,
+      "target_states": [
+        [
+          "a-first",
+          0.0
+        ],
+        [
+          "b-first",
+          0.0
+        ]
+      ],
+      "topology_edges": [
+        [
+          "a",
+          "d1",
+          1.0
+        ],
+        [
+          "a",
+          "d2",
+          1.0
+        ]
+      ],
+      "topology_stabilized": true,
+      "utility": -4.614436591871058
+    }
+  },
+  {
+    "causal_intervention": null,
+    "metrics": {
+      "accepted_additions": 2,
+      "accuracy": 0.5,
+      "activation_count": 8,
+      "active_edge_count": 2,
+      "active_edge_utilization": 1.0,
+      "candidate_count": 2,
+      "candidate_proposals": 2,
+      "candidate_space_size": 6,
+      "class_separation": 0.0,
+      "convergent_fan_in_motifs": 0,
+      "duplicate_proposals": 0,
+      "edge_capacity": 4,
+      "edge_count": 2,
+      "energy": 5.614436591871058,
+      "energy_unit": "activity-cost-proxy",
+      "event_count": 8,
+      "fan_in_distribution": [
+        [
+          "a",
+          0
+        ],
+        [
+          "b",
+          0
+        ],
+        [
+          "target",
+          1
+        ],
+        [
+          "d1",
+          1
+        ],
+        [
+          "d2",
+          0
+        ]
+      ],
+      "fan_out_distribution": [
+        [
+          "a",
+          0
+        ],
+        [
+          "b",
+          2
+        ],
+        [
+          "target",
+          0
+        ],
+        [
+          "d1",
+          0
+        ],
+        [
+          "d2",
+          0
+        ]
+      ],
+      "mean_path_delay": 1.0,
+      "mean_path_length": 1.0,
+      "mutation_statuses": [
+        "grown",
+        "grown"
+      ],
+      "path_shortening": 0.0,
+      "policy": "random",
+      "prediction_error_count": 2,
+      "prediction_loss": 1.2840299840239995,
+      "rejected_mutations": 0,
+      "rejection_reasons": [],
+      "removed_edges": 0,
+      "replay_digest": "b74d08785bd58f03f220340af847a11f87ef664ee0bde43aaefcf33487751db5",
+      "seed": 0,
+      "shortest_target_delay": 1.0,
+      "target_states": [
+        [
+          "a-first",
+          -0.7615941559557649
+        ],
+        [
+          "b-first",
+          -0.7615941559557649
+        ]
+      ],
+      "topology_edges": [
+        [
+          "b",
+          "d1",
+          1.0
+        ],
+        [
+          "b",
+          "target",
+          1.0
+        ]
+      ],
+      "topology_stabilized": true,
+      "utility": -4.614436591871058
+    }
+  },
+  {
+    "causal_intervention": {
+      "changed": true,
+      "edge": [
+        "a",
+        "target"
+      ],
+      "present_event_count": 8,
+      "present_target_state": -0.16846403091480955,
+      "removed_event_count": 6,
+      "removed_target_state": -0.7615941559557649
+    },
+    "metrics": {
+      "accepted_additions": 2,
+      "accuracy": 1.0,
+      "activation_count": 8,
+      "active_edge_count": 2,
+      "active_edge_utilization": 1.0,
+      "candidate_count": 2,
+      "candidate_proposals": 2,
+      "candidate_space_size": 6,
+      "class_separation": 0.3369280618296191,
+      "convergent_fan_in_motifs": 1,
+      "duplicate_proposals": 0,
+      "edge_capacity": 4,
+      "edge_count": 2,
+      "energy": 4.664183087736666,
+      "energy_unit": "activity-cost-proxy",
+      "event_count": 8,
+      "fan_in_distribution": [
+        [
+          "a",
+          0
+        ],
+        [
+          "b",
+          0
+        ],
+        [
+          "target",
+          2
+        ],
+        [
+          "d1",
+          0
+        ],
+        [
+          "d2",
+          0
+        ]
+      ],
+      "fan_out_distribution": [
+        [
+          "a",
+          1
+        ],
+        [
+          "b",
+          1
+        ],
+        [
+          "target",
+          0
+        ],
+        [
+          "d1",
+          0
+        ],
+        [
+          "d2",
+          0
+        ]
+      ],
+      "mean_path_delay": 1.0,
+      "mean_path_length": 1.0,
+      "mutation_statuses": [
+        "grown",
+        "grown"
+      ],
+      "path_shortening": 0.0,
+      "policy": "temporal",
+      "prediction_error_count": 2,
+      "prediction_loss": 1.2840299840239995,
+      "rejected_mutations": 0,
+      "rejection_reasons": [],
+      "removed_edges": 0,
+      "replay_digest": "dd2731b248dcab544ea3d09067aada655279c19dec5298fc4b329a4ede4f449b",
+      "seed": 0,
+      "shortest_target_delay": 1.0,
+      "target_states": [
+        [
+          "a-first",
+          -0.16846403091480955
+        ],
+        [
+          "b-first",
+          0.16846403091480955
+        ]
+      ],
+      "topology_edges": [
+        [
+          "a",
+          "target",
+          1.0
+        ],
+        [
+          "b",
+          "target",
+          1.0
+        ]
+      ],
+      "topology_stabilized": true,
+      "utility": -2.6641830877366663
+    }
+  },
+  {
+    "causal_intervention": null,
+    "metrics": {
+      "accepted_additions": 0,
+      "accuracy": 0.5,
+      "activation_count": 4,
+      "active_edge_count": 0,
+      "active_edge_utilization": 0.0,
+      "candidate_count": 0,
+      "candidate_proposals": 0,
+      "candidate_space_size": 6,
+      "class_separation": 0.0,
+      "convergent_fan_in_motifs": 0,
+      "duplicate_proposals": 0,
+      "edge_capacity": 4,
+      "edge_count": 0,
+      "energy": 3.0463766238230594,
+      "energy_unit": "activity-cost-proxy",
+      "event_count": 4,
+      "fan_in_distribution": [
+        [
+          "a",
+          0
+        ],
+        [
+          "b",
+          0
+        ],
+        [
+          "target",
+          0
+        ],
+        [
+          "d1",
+          0
+        ],
+        [
+          "d2",
+          0
+        ]
+      ],
+      "fan_out_distribution": [
+        [
+          "a",
+          0
+        ],
+        [
+          "b",
+          0
+        ],
+        [
+          "target",
+          0
+        ],
+        [
+          "d1",
+          0
+        ],
+        [
+          "d2",
+          0
+        ]
+      ],
+      "mean_path_delay": 0.0,
+      "mean_path_length": 0.0,
+      "mutation_statuses": [],
+      "path_shortening": 0.0,
+      "policy": "reversed",
+      "prediction_error_count": 0,
+      "prediction_loss": 0.0,
+      "rejected_mutations": 0,
+      "rejection_reasons": [],
+      "removed_edges": 0,
+      "replay_digest": "462ab389efe22833bace465bdfeba66eefdef0af70417b40713694949699be0b",
+      "seed": 0,
+      "shortest_target_delay": null,
+      "target_states": [
+        [
+          "a-first",
+          0.0
+        ],
+        [
+          "b-first",
+          0.0
+        ]
+      ],
+      "topology_edges": [],
+      "topology_stabilized": true,
+      "utility": -2.0463766238230594
+    }
+  },
+  {
+    "causal_intervention": null,
+    "metrics": {
+      "accepted_additions": 0,
+      "accuracy": 0.5,
+      "activation_count": 4,
+      "active_edge_count": 0,
+      "active_edge_utilization": 0.0,
+      "candidate_count": 0,
+      "candidate_proposals": 0,
+      "candidate_space_size": 6,
+      "class_separation": 0.0,
+      "convergent_fan_in_motifs": 0,
+      "duplicate_proposals": 0,
+      "edge_capacity": 4,
+      "edge_count": 0,
+      "energy": 3.0463766238230594,
+      "energy_unit": "activity-cost-proxy",
+      "event_count": 4,
+      "fan_in_distribution": [
+        [
+          "a",
+          0
+        ],
+        [
+          "b",
+          0
+        ],
+        [
+          "target",
+          0
+        ],
+        [
+          "d1",
+          0
+        ],
+        [
+          "d2",
+          0
+        ]
+      ],
+      "fan_out_distribution": [
+        [
+          "a",
+          0
+        ],
+        [
+          "b",
+          0
+        ],
+        [
+          "target",
+          0
+        ],
+        [
+          "d1",
+          0
+        ],
+        [
+          "d2",
+          0
+        ]
+      ],
+      "mean_path_delay": 0.0,
+      "mean_path_length": 0.0,
+      "mutation_statuses": [],
+      "path_shortening": 0.0,
+      "policy": "fixed",
+      "prediction_error_count": 0,
+      "prediction_loss": 0.0,
+      "rejected_mutations": 0,
+      "rejection_reasons": [],
+      "removed_edges": 0,
+      "replay_digest": "462ab389efe22833bace465bdfeba66eefdef0af70417b40713694949699be0b",
+      "seed": 1,
+      "shortest_target_delay": null,
+      "target_states": [
+        [
+          "a-first",
+          0.0
+        ],
+        [
+          "b-first",
+          0.0
+        ]
+      ],
+      "topology_edges": [],
+      "topology_stabilized": true,
+      "utility": -2.0463766238230594
+    }
+  },
+  {
+    "causal_intervention": null,
+    "metrics": {
+      "accepted_additions": 2,
+      "accuracy": 0.5,
+      "activation_count": 8,
+      "active_edge_count": 2,
+      "active_edge_utilization": 1.0,
+      "candidate_count": 6,
+      "candidate_proposals": 6,
+      "candidate_space_size": 6,
+      "class_separation": 0.0,
+      "convergent_fan_in_motifs": 0,
+      "duplicate_proposals": 0,
+      "edge_capacity": 4,
+      "edge_count": 2,
+      "energy": 5.614436591871058,
+      "energy_unit": "activity-cost-proxy",
+      "event_count": 8,
+      "fan_in_distribution": [
+        [
+          "a",
+          0
+        ],
+        [
+          "b",
+          0
+        ],
+        [
+          "target",
+          0
+        ],
+        [
+          "d1",
+          1
+        ],
+        [
+          "d2",
+          1
+        ]
+      ],
+      "fan_out_distribution": [
+        [
+          "a",
+          2
+        ],
+        [
+          "b",
+          0
+        ],
+        [
+          "target",
+          0
+        ],
+        [
+          "d1",
+          0
+        ],
+        [
+          "d2",
+          0
+        ]
+      ],
+      "mean_path_delay": 0.0,
+      "mean_path_length": 0.0,
+      "mutation_statuses": [
+        "grown",
+        "grown"
+      ],
+      "path_shortening": 0.0,
+      "policy": "baseline",
+      "prediction_error_count": 0,
+      "prediction_loss": 0.0,
+      "rejected_mutations": 0,
+      "rejection_reasons": [],
+      "removed_edges": 0,
+      "replay_digest": "5ad310205acbb37db6cb90d5dbdeff26efdbf5837b9d19506c1a4d0b540d8943",
+      "seed": 1,
+      "shortest_target_delay": null,
+      "target_states": [
+        [
+          "a-first",
+          0.0
+        ],
+        [
+          "b-first",
+          0.0
+        ]
+      ],
+      "topology_edges": [
+        [
+          "a",
+          "d1",
+          1.0
+        ],
+        [
+          "a",
+          "d2",
+          1.0
+        ]
+      ],
+      "topology_stabilized": true,
+      "utility": -4.614436591871058
+    }
+  },
+  {
+    "causal_intervention": null,
+    "metrics": {
+      "accepted_additions": 2,
+      "accuracy": 0.5,
+      "activation_count": 8,
+      "active_edge_count": 2,
+      "active_edge_utilization": 1.0,
+      "candidate_count": 2,
+      "candidate_proposals": 2,
+      "candidate_space_size": 6,
+      "class_separation": 0.0,
+      "convergent_fan_in_motifs": 1,
+      "duplicate_proposals": 0,
+      "edge_capacity": 4,
+      "edge_count": 2,
+      "energy": 4.664183087736666,
+      "energy_unit": "activity-cost-proxy",
+      "event_count": 8,
+      "fan_in_distribution": [
+        [
+          "a",
+          0
+        ],
+        [
+          "b",
+          0
+        ],
+        [
+          "target",
+          0
+        ],
+        [
+          "d1",
+          0
+        ],
+        [
+          "d2",
+          2
+        ]
+      ],
+      "fan_out_distribution": [
+        [
+          "a",
+          1
+        ],
+        [
+          "b",
+          1
+        ],
+        [
+          "target",
+          0
+        ],
+        [
+          "d1",
+          0
+        ],
+        [
+          "d2",
+          0
+        ]
+      ],
+      "mean_path_delay": 0.0,
+      "mean_path_length": 0.0,
+      "mutation_statuses": [
+        "grown",
+        "grown"
+      ],
+      "path_shortening": 0.0,
+      "policy": "random",
+      "prediction_error_count": 0,
+      "prediction_loss": 0.0,
+      "rejected_mutations": 0,
+      "rejection_reasons": [],
+      "removed_edges": 0,
+      "replay_digest": "83463201a3a0829861f480811f9b8a1d6b9edc97ce18d6f65b178e71fcf51f3c",
+      "seed": 1,
+      "shortest_target_delay": null,
+      "target_states": [
+        [
+          "a-first",
+          0.0
+        ],
+        [
+          "b-first",
+          0.0
+        ]
+      ],
+      "topology_edges": [
+        [
+          "a",
+          "d2",
+          1.0
+        ],
+        [
+          "b",
+          "d2",
+          1.0
+        ]
+      ],
+      "topology_stabilized": true,
+      "utility": -3.6641830877366663
+    }
+  },
+  {
+    "causal_intervention": {
+      "changed": true,
+      "edge": [
+        "a",
+        "target"
+      ],
+      "present_event_count": 8,
+      "present_target_state": -0.16846403091480955,
+      "removed_event_count": 6,
+      "removed_target_state": -0.7615941559557649
+    },
+    "metrics": {
+      "accepted_additions": 2,
+      "accuracy": 1.0,
+      "activation_count": 8,
+      "active_edge_count": 2,
+      "active_edge_utilization": 1.0,
+      "candidate_count": 2,
+      "candidate_proposals": 2,
+      "candidate_space_size": 6,
+      "class_separation": 0.3369280618296191,
+      "convergent_fan_in_motifs": 1,
+      "duplicate_proposals": 0,
+      "edge_capacity": 4,
+      "edge_count": 2,
+      "energy": 4.664183087736666,
+      "energy_unit": "activity-cost-proxy",
+      "event_count": 8,
+      "fan_in_distribution": [
+        [
+          "a",
+          0
+        ],
+        [
+          "b",
+          0
+        ],
+        [
+          "target",
+          2
+        ],
+        [
+          "d1",
+          0
+        ],
+        [
+          "d2",
+          0
+        ]
+      ],
+      "fan_out_distribution": [
+        [
+          "a",
+          1
+        ],
+        [
+          "b",
+          1
+        ],
+        [
+          "target",
+          0
+        ],
+        [
+          "d1",
+          0
+        ],
+        [
+          "d2",
+          0
+        ]
+      ],
+      "mean_path_delay": 1.0,
+      "mean_path_length": 1.0,
+      "mutation_statuses": [
+        "grown",
+        "grown"
+      ],
+      "path_shortening": 0.0,
+      "policy": "temporal",
+      "prediction_error_count": 2,
+      "prediction_loss": 1.2840299840239995,
+      "rejected_mutations": 0,
+      "rejection_reasons": [],
+      "removed_edges": 0,
+      "replay_digest": "dd2731b248dcab544ea3d09067aada655279c19dec5298fc4b329a4ede4f449b",
+      "seed": 1,
+      "shortest_target_delay": 1.0,
+      "target_states": [
+        [
+          "a-first",
+          -0.16846403091480955
+        ],
+        [
+          "b-first",
+          0.16846403091480955
+        ]
+      ],
+      "topology_edges": [
+        [
+          "a",
+          "target",
+          1.0
+        ],
+        [
+          "b",
+          "target",
+          1.0
+        ]
+      ],
+      "topology_stabilized": true,
+      "utility": -2.6641830877366663
+    }
+  },
+  {
+    "causal_intervention": null,
+    "metrics": {
+      "accepted_additions": 0,
+      "accuracy": 0.5,
+      "activation_count": 4,
+      "active_edge_count": 0,
+      "active_edge_utilization": 0.0,
+      "candidate_count": 0,
+      "candidate_proposals": 0,
+      "candidate_space_size": 6,
+      "class_separation": 0.0,
+      "convergent_fan_in_motifs": 0,
+      "duplicate_proposals": 0,
+      "edge_capacity": 4,
+      "edge_count": 0,
+      "energy": 3.0463766238230594,
+      "energy_unit": "activity-cost-proxy",
+      "event_count": 4,
+      "fan_in_distribution": [
+        [
+          "a",
+          0
+        ],
+        [
+          "b",
+          0
+        ],
+        [
+          "target",
+          0
+        ],
+        [
+          "d1",
+          0
+        ],
+        [
+          "d2",
+          0
+        ]
+      ],
+      "fan_out_distribution": [
+        [
+          "a",
+          0
+        ],
+        [
+          "b",
+          0
+        ],
+        [
+          "target",
+          0
+        ],
+        [
+          "d1",
+          0
+        ],
+        [
+          "d2",
+          0
+        ]
+      ],
+      "mean_path_delay": 0.0,
+      "mean_path_length": 0.0,
+      "mutation_statuses": [],
+      "path_shortening": 0.0,
+      "policy": "reversed",
+      "prediction_error_count": 0,
+      "prediction_loss": 0.0,
+      "rejected_mutations": 0,
+      "rejection_reasons": [],
+      "removed_edges": 0,
+      "replay_digest": "462ab389efe22833bace465bdfeba66eefdef0af70417b40713694949699be0b",
+      "seed": 1,
+      "shortest_target_delay": null,
+      "target_states": [
+        [
+          "a-first",
+          0.0
+        ],
+        [
+          "b-first",
+          0.0
+        ]
+      ],
+      "topology_edges": [],
+      "topology_stabilized": true,
+      "utility": -2.0463766238230594
+    }
+  },
+  {
+    "causal_intervention": null,
+    "metrics": {
+      "accepted_additions": 0,
+      "accuracy": 0.5,
+      "activation_count": 4,
+      "active_edge_count": 0,
+      "active_edge_utilization": 0.0,
+      "candidate_count": 0,
+      "candidate_proposals": 0,
+      "candidate_space_size": 6,
+      "class_separation": 0.0,
+      "convergent_fan_in_motifs": 0,
+      "duplicate_proposals": 0,
+      "edge_capacity": 4,
+      "edge_count": 0,
+      "energy": 3.0463766238230594,
+      "energy_unit": "activity-cost-proxy",
+      "event_count": 4,
+      "fan_in_distribution": [
+        [
+          "a",
+          0
+        ],
+        [
+          "b",
+          0
+        ],
+        [
+          "target",
+          0
+        ],
+        [
+          "d1",
+          0
+        ],
+        [
+          "d2",
+          0
+        ]
+      ],
+      "fan_out_distribution": [
+        [
+          "a",
+          0
+        ],
+        [
+          "b",
+          0
+        ],
+        [
+          "target",
+          0
+        ],
+        [
+          "d1",
+          0
+        ],
+        [
+          "d2",
+          0
+        ]
+      ],
+      "mean_path_delay": 0.0,
+      "mean_path_length": 0.0,
+      "mutation_statuses": [],
+      "path_shortening": 0.0,
+      "policy": "fixed",
+      "prediction_error_count": 0,
+      "prediction_loss": 0.0,
+      "rejected_mutations": 0,
+      "rejection_reasons": [],
+      "removed_edges": 0,
+      "replay_digest": "462ab389efe22833bace465bdfeba66eefdef0af70417b40713694949699be0b",
+      "seed": 2,
+      "shortest_target_delay": null,
+      "target_states": [
+        [
+          "a-first",
+          0.0
+        ],
+        [
+          "b-first",
+          0.0
+        ]
+      ],
+      "topology_edges": [],
+      "topology_stabilized": true,
+      "utility": -2.0463766238230594
+    }
+  },
+  {
+    "causal_intervention": null,
+    "metrics": {
+      "accepted_additions": 2,
+      "accuracy": 0.5,
+      "activation_count": 8,
+      "active_edge_count": 2,
+      "active_edge_utilization": 1.0,
+      "candidate_count": 6,
+      "candidate_proposals": 6,
+      "candidate_space_size": 6,
+      "class_separation": 0.0,
+      "convergent_fan_in_motifs": 0,
+      "duplicate_proposals": 0,
+      "edge_capacity": 4,
+      "edge_count": 2,
+      "energy": 5.614436591871058,
+      "energy_unit": "activity-cost-proxy",
+      "event_count": 8,
+      "fan_in_distribution": [
+        [
+          "a",
+          0
+        ],
+        [
+          "b",
+          0
+        ],
+        [
+          "target",
+          0
+        ],
+        [
+          "d1",
+          1
+        ],
+        [
+          "d2",
+          1
+        ]
+      ],
+      "fan_out_distribution": [
+        [
+          "a",
+          2
+        ],
+        [
+          "b",
+          0
+        ],
+        [
+          "target",
+          0
+        ],
+        [
+          "d1",
+          0
+        ],
+        [
+          "d2",
+          0
+        ]
+      ],
+      "mean_path_delay": 0.0,
+      "mean_path_length": 0.0,
+      "mutation_statuses": [
+        "grown",
+        "grown"
+      ],
+      "path_shortening": 0.0,
+      "policy": "baseline",
+      "prediction_error_count": 0,
+      "prediction_loss": 0.0,
+      "rejected_mutations": 0,
+      "rejection_reasons": [],
+      "removed_edges": 0,
+      "replay_digest": "5ad310205acbb37db6cb90d5dbdeff26efdbf5837b9d19506c1a4d0b540d8943",
+      "seed": 2,
+      "shortest_target_delay": null,
+      "target_states": [
+        [
+          "a-first",
+          0.0
+        ],
+        [
+          "b-first",
+          0.0
+        ]
+      ],
+      "topology_edges": [
+        [
+          "a",
+          "d1",
+          1.0
+        ],
+        [
+          "a",
+          "d2",
+          1.0
+        ]
+      ],
+      "topology_stabilized": true,
+      "utility": -4.614436591871058
+    }
+  },
+  {
+    "causal_intervention": null,
+    "metrics": {
+      "accepted_additions": 2,
+      "accuracy": 0.5,
+      "activation_count": 8,
+      "active_edge_count": 2,
+      "active_edge_utilization": 1.0,
+      "candidate_count": 2,
+      "candidate_proposals": 2,
+      "candidate_space_size": 6,
+      "class_separation": 0.0,
+      "convergent_fan_in_motifs": 0,
+      "duplicate_proposals": 0,
+      "edge_capacity": 4,
+      "edge_count": 2,
+      "energy": 5.614436591871058,
+      "energy_unit": "activity-cost-proxy",
+      "event_count": 8,
+      "fan_in_distribution": [
+        [
+          "a",
+          0
+        ],
+        [
+          "b",
+          0
+        ],
+        [
+          "target",
+          1
+        ],
+        [
+          "d1",
+          1
+        ],
+        [
+          "d2",
+          0
+        ]
+      ],
+      "fan_out_distribution": [
+        [
+          "a",
+          1
+        ],
+        [
+          "b",
+          1
+        ],
+        [
+          "target",
+          0
+        ],
+        [
+          "d1",
+          0
+        ],
+        [
+          "d2",
+          0
+        ]
+      ],
+      "mean_path_delay": 1.0,
+      "mean_path_length": 1.0,
+      "mutation_statuses": [
+        "grown",
+        "grown"
+      ],
+      "path_shortening": 0.0,
+      "policy": "random",
+      "prediction_error_count": 2,
+      "prediction_loss": 1.2840299840239995,
+      "rejected_mutations": 0,
+      "rejection_reasons": [],
+      "removed_edges": 0,
+      "replay_digest": "d3f276000ec407df167b7e77288098616511b0868b27e2571365cb4658a566d7",
+      "seed": 2,
+      "shortest_target_delay": 1.0,
+      "target_states": [
+        [
+          "a-first",
+          -0.7615941559557649
+        ],
+        [
+          "b-first",
+          -0.7615941559557649
+        ]
+      ],
+      "topology_edges": [
+        [
+          "a",
+          "d1",
+          1.0
+        ],
+        [
+          "b",
+          "target",
+          1.0
+        ]
+      ],
+      "topology_stabilized": true,
+      "utility": -4.614436591871058
+    }
+  },
+  {
+    "causal_intervention": {
+      "changed": true,
+      "edge": [
+        "a",
+        "target"
+      ],
+      "present_event_count": 8,
+      "present_target_state": -0.16846403091480955,
+      "removed_event_count": 6,
+      "removed_target_state": -0.7615941559557649
+    },
+    "metrics": {
+      "accepted_additions": 2,
+      "accuracy": 1.0,
+      "activation_count": 8,
+      "active_edge_count": 2,
+      "active_edge_utilization": 1.0,
+      "candidate_count": 2,
+      "candidate_proposals": 2,
+      "candidate_space_size": 6,
+      "class_separation": 0.3369280618296191,
+      "convergent_fan_in_motifs": 1,
+      "duplicate_proposals": 0,
+      "edge_capacity": 4,
+      "edge_count": 2,
+      "energy": 4.664183087736666,
+      "energy_unit": "activity-cost-proxy",
+      "event_count": 8,
+      "fan_in_distribution": [
+        [
+          "a",
+          0
+        ],
+        [
+          "b",
+          0
+        ],
+        [
+          "target",
+          2
+        ],
+        [
+          "d1",
+          0
+        ],
+        [
+          "d2",
+          0
+        ]
+      ],
+      "fan_out_distribution": [
+        [
+          "a",
+          1
+        ],
+        [
+          "b",
+          1
+        ],
+        [
+          "target",
+          0
+        ],
+        [
+          "d1",
+          0
+        ],
+        [
+          "d2",
+          0
+        ]
+      ],
+      "mean_path_delay": 1.0,
+      "mean_path_length": 1.0,
+      "mutation_statuses": [
+        "grown",
+        "grown"
+      ],
+      "path_shortening": 0.0,
+      "policy": "temporal",
+      "prediction_error_count": 2,
+      "prediction_loss": 1.2840299840239995,
+      "rejected_mutations": 0,
+      "rejection_reasons": [],
+      "removed_edges": 0,
+      "replay_digest": "dd2731b248dcab544ea3d09067aada655279c19dec5298fc4b329a4ede4f449b",
+      "seed": 2,
+      "shortest_target_delay": 1.0,
+      "target_states": [
+        [
+          "a-first",
+          -0.16846403091480955
+        ],
+        [
+          "b-first",
+          0.16846403091480955
+        ]
+      ],
+      "topology_edges": [
+        [
+          "a",
+          "target",
+          1.0
+        ],
+        [
+          "b",
+          "target",
+          1.0
+        ]
+      ],
+      "topology_stabilized": true,
+      "utility": -2.6641830877366663
+    }
+  },
+  {
+    "causal_intervention": null,
+    "metrics": {
+      "accepted_additions": 0,
+      "accuracy": 0.5,
+      "activation_count": 4,
+      "active_edge_count": 0,
+      "active_edge_utilization": 0.0,
+      "candidate_count": 0,
+      "candidate_proposals": 0,
+      "candidate_space_size": 6,
+      "class_separation": 0.0,
+      "convergent_fan_in_motifs": 0,
+      "duplicate_proposals": 0,
+      "edge_capacity": 4,
+      "edge_count": 0,
+      "energy": 3.0463766238230594,
+      "energy_unit": "activity-cost-proxy",
+      "event_count": 4,
+      "fan_in_distribution": [
+        [
+          "a",
+          0
+        ],
+        [
+          "b",
+          0
+        ],
+        [
+          "target",
+          0
+        ],
+        [
+          "d1",
+          0
+        ],
+        [
+          "d2",
+          0
+        ]
+      ],
+      "fan_out_distribution": [
+        [
+          "a",
+          0
+        ],
+        [
+          "b",
+          0
+        ],
+        [
+          "target",
+          0
+        ],
+        [
+          "d1",
+          0
+        ],
+        [
+          "d2",
+          0
+        ]
+      ],
+      "mean_path_delay": 0.0,
+      "mean_path_length": 0.0,
+      "mutation_statuses": [],
+      "path_shortening": 0.0,
+      "policy": "reversed",
+      "prediction_error_count": 0,
+      "prediction_loss": 0.0,
+      "rejected_mutations": 0,
+      "rejection_reasons": [],
+      "removed_edges": 0,
+      "replay_digest": "462ab389efe22833bace465bdfeba66eefdef0af70417b40713694949699be0b",
+      "seed": 2,
+      "shortest_target_delay": null,
+      "target_states": [
+        [
+          "a-first",
+          0.0
+        ],
+        [
+          "b-first",
+          0.0
+        ]
+      ],
+      "topology_edges": [],
+      "topology_stabilized": true,
+      "utility": -2.0463766238230594
+    }
+  },
+  {
+    "causal_intervention": null,
+    "metrics": {
+      "accepted_additions": 0,
+      "accuracy": 0.5,
+      "activation_count": 4,
+      "active_edge_count": 0,
+      "active_edge_utilization": 0.0,
+      "candidate_count": 0,
+      "candidate_proposals": 0,
+      "candidate_space_size": 6,
+      "class_separation": 0.0,
+      "convergent_fan_in_motifs": 0,
+      "duplicate_proposals": 0,
+      "edge_capacity": 4,
+      "edge_count": 0,
+      "energy": 3.0463766238230594,
+      "energy_unit": "activity-cost-proxy",
+      "event_count": 4,
+      "fan_in_distribution": [
+        [
+          "a",
+          0
+        ],
+        [
+          "b",
+          0
+        ],
+        [
+          "target",
+          0
+        ],
+        [
+          "d1",
+          0
+        ],
+        [
+          "d2",
+          0
+        ]
+      ],
+      "fan_out_distribution": [
+        [
+          "a",
+          0
+        ],
+        [
+          "b",
+          0
+        ],
+        [
+          "target",
+          0
+        ],
+        [
+          "d1",
+          0
+        ],
+        [
+          "d2",
+          0
+        ]
+      ],
+      "mean_path_delay": 0.0,
+      "mean_path_length": 0.0,
+      "mutation_statuses": [],
+      "path_shortening": 0.0,
+      "policy": "fixed",
+      "prediction_error_count": 0,
+      "prediction_loss": 0.0,
+      "rejected_mutations": 0,
+      "rejection_reasons": [],
+      "removed_edges": 0,
+      "replay_digest": "462ab389efe22833bace465bdfeba66eefdef0af70417b40713694949699be0b",
+      "seed": 3,
+      "shortest_target_delay": null,
+      "target_states": [
+        [
+          "a-first",
+          0.0
+        ],
+        [
+          "b-first",
+          0.0
+        ]
+      ],
+      "topology_edges": [],
+      "topology_stabilized": true,
+      "utility": -2.0463766238230594
+    }
+  },
+  {
+    "causal_intervention": null,
+    "metrics": {
+      "accepted_additions": 2,
+      "accuracy": 0.5,
+      "activation_count": 8,
+      "active_edge_count": 2,
+      "active_edge_utilization": 1.0,
+      "candidate_count": 6,
+      "candidate_proposals": 6,
+      "candidate_space_size": 6,
+      "class_separation": 0.0,
+      "convergent_fan_in_motifs": 0,
+      "duplicate_proposals": 0,
+      "edge_capacity": 4,
+      "edge_count": 2,
+      "energy": 5.614436591871058,
+      "energy_unit": "activity-cost-proxy",
+      "event_count": 8,
+      "fan_in_distribution": [
+        [
+          "a",
+          0
+        ],
+        [
+          "b",
+          0
+        ],
+        [
+          "target",
+          0
+        ],
+        [
+          "d1",
+          1
+        ],
+        [
+          "d2",
+          1
+        ]
+      ],
+      "fan_out_distribution": [
+        [
+          "a",
+          2
+        ],
+        [
+          "b",
+          0
+        ],
+        [
+          "target",
+          0
+        ],
+        [
+          "d1",
+          0
+        ],
+        [
+          "d2",
+          0
+        ]
+      ],
+      "mean_path_delay": 0.0,
+      "mean_path_length": 0.0,
+      "mutation_statuses": [
+        "grown",
+        "grown"
+      ],
+      "path_shortening": 0.0,
+      "policy": "baseline",
+      "prediction_error_count": 0,
+      "prediction_loss": 0.0,
+      "rejected_mutations": 0,
+      "rejection_reasons": [],
+      "removed_edges": 0,
+      "replay_digest": "5ad310205acbb37db6cb90d5dbdeff26efdbf5837b9d19506c1a4d0b540d8943",
+      "seed": 3,
+      "shortest_target_delay": null,
+      "target_states": [
+        [
+          "a-first",
+          0.0
+        ],
+        [
+          "b-first",
+          0.0
+        ]
+      ],
+      "topology_edges": [
+        [
+          "a",
+          "d1",
+          1.0
+        ],
+        [
+          "a",
+          "d2",
+          1.0
+        ]
+      ],
+      "topology_stabilized": true,
+      "utility": -4.614436591871058
+    }
+  },
+  {
+    "causal_intervention": null,
+    "metrics": {
+      "accepted_additions": 2,
+      "accuracy": 0.5,
+      "activation_count": 8,
+      "active_edge_count": 2,
+      "active_edge_utilization": 1.0,
+      "candidate_count": 2,
+      "candidate_proposals": 2,
+      "candidate_space_size": 6,
+      "class_separation": 0.0,
+      "convergent_fan_in_motifs": 1,
+      "duplicate_proposals": 0,
+      "edge_capacity": 4,
+      "edge_count": 2,
+      "energy": 4.664183087736666,
+      "energy_unit": "activity-cost-proxy",
+      "event_count": 8,
+      "fan_in_distribution": [
+        [
+          "a",
+          0
+        ],
+        [
+          "b",
+          0
+        ],
+        [
+          "target",
+          0
+        ],
+        [
+          "d1",
+          0
+        ],
+        [
+          "d2",
+          2
+        ]
+      ],
+      "fan_out_distribution": [
+        [
+          "a",
+          1
+        ],
+        [
+          "b",
+          1
+        ],
+        [
+          "target",
+          0
+        ],
+        [
+          "d1",
+          0
+        ],
+        [
+          "d2",
+          0
+        ]
+      ],
+      "mean_path_delay": 0.0,
+      "mean_path_length": 0.0,
+      "mutation_statuses": [
+        "grown",
+        "grown"
+      ],
+      "path_shortening": 0.0,
+      "policy": "random",
+      "prediction_error_count": 0,
+      "prediction_loss": 0.0,
+      "rejected_mutations": 0,
+      "rejection_reasons": [],
+      "removed_edges": 0,
+      "replay_digest": "83463201a3a0829861f480811f9b8a1d6b9edc97ce18d6f65b178e71fcf51f3c",
+      "seed": 3,
+      "shortest_target_delay": null,
+      "target_states": [
+        [
+          "a-first",
+          0.0
+        ],
+        [
+          "b-first",
+          0.0
+        ]
+      ],
+      "topology_edges": [
+        [
+          "a",
+          "d2",
+          1.0
+        ],
+        [
+          "b",
+          "d2",
+          1.0
+        ]
+      ],
+      "topology_stabilized": true,
+      "utility": -3.6641830877366663
+    }
+  },
+  {
+    "causal_intervention": {
+      "changed": true,
+      "edge": [
+        "a",
+        "target"
+      ],
+      "present_event_count": 8,
+      "present_target_state": -0.16846403091480955,
+      "removed_event_count": 6,
+      "removed_target_state": -0.7615941559557649
+    },
+    "metrics": {
+      "accepted_additions": 2,
+      "accuracy": 1.0,
+      "activation_count": 8,
+      "active_edge_count": 2,
+      "active_edge_utilization": 1.0,
+      "candidate_count": 2,
+      "candidate_proposals": 2,
+      "candidate_space_size": 6,
+      "class_separation": 0.3369280618296191,
+      "convergent_fan_in_motifs": 1,
+      "duplicate_proposals": 0,
+      "edge_capacity": 4,
+      "edge_count": 2,
+      "energy": 4.664183087736666,
+      "energy_unit": "activity-cost-proxy",
+      "event_count": 8,
+      "fan_in_distribution": [
+        [
+          "a",
+          0
+        ],
+        [
+          "b",
+          0
+        ],
+        [
+          "target",
+          2
+        ],
+        [
+          "d1",
+          0
+        ],
+        [
+          "d2",
+          0
+        ]
+      ],
+      "fan_out_distribution": [
+        [
+          "a",
+          1
+        ],
+        [
+          "b",
+          1
+        ],
+        [
+          "target",
+          0
+        ],
+        [
+          "d1",
+          0
+        ],
+        [
+          "d2",
+          0
+        ]
+      ],
+      "mean_path_delay": 1.0,
+      "mean_path_length": 1.0,
+      "mutation_statuses": [
+        "grown",
+        "grown"
+      ],
+      "path_shortening": 0.0,
+      "policy": "temporal",
+      "prediction_error_count": 2,
+      "prediction_loss": 1.2840299840239995,
+      "rejected_mutations": 0,
+      "rejection_reasons": [],
+      "removed_edges": 0,
+      "replay_digest": "dd2731b248dcab544ea3d09067aada655279c19dec5298fc4b329a4ede4f449b",
+      "seed": 3,
+      "shortest_target_delay": 1.0,
+      "target_states": [
+        [
+          "a-first",
+          -0.16846403091480955
+        ],
+        [
+          "b-first",
+          0.16846403091480955
+        ]
+      ],
+      "topology_edges": [
+        [
+          "a",
+          "target",
+          1.0
+        ],
+        [
+          "b",
+          "target",
+          1.0
+        ]
+      ],
+      "topology_stabilized": true,
+      "utility": -2.6641830877366663
+    }
+  },
+  {
+    "causal_intervention": null,
+    "metrics": {
+      "accepted_additions": 0,
+      "accuracy": 0.5,
+      "activation_count": 4,
+      "active_edge_count": 0,
+      "active_edge_utilization": 0.0,
+      "candidate_count": 0,
+      "candidate_proposals": 0,
+      "candidate_space_size": 6,
+      "class_separation": 0.0,
+      "convergent_fan_in_motifs": 0,
+      "duplicate_proposals": 0,
+      "edge_capacity": 4,
+      "edge_count": 0,
+      "energy": 3.0463766238230594,
+      "energy_unit": "activity-cost-proxy",
+      "event_count": 4,
+      "fan_in_distribution": [
+        [
+          "a",
+          0
+        ],
+        [
+          "b",
+          0
+        ],
+        [
+          "target",
+          0
+        ],
+        [
+          "d1",
+          0
+        ],
+        [
+          "d2",
+          0
+        ]
+      ],
+      "fan_out_distribution": [
+        [
+          "a",
+          0
+        ],
+        [
+          "b",
+          0
+        ],
+        [
+          "target",
+          0
+        ],
+        [
+          "d1",
+          0
+        ],
+        [
+          "d2",
+          0
+        ]
+      ],
+      "mean_path_delay": 0.0,
+      "mean_path_length": 0.0,
+      "mutation_statuses": [],
+      "path_shortening": 0.0,
+      "policy": "reversed",
+      "prediction_error_count": 0,
+      "prediction_loss": 0.0,
+      "rejected_mutations": 0,
+      "rejection_reasons": [],
+      "removed_edges": 0,
+      "replay_digest": "462ab389efe22833bace465bdfeba66eefdef0af70417b40713694949699be0b",
+      "seed": 3,
+      "shortest_target_delay": null,
+      "target_states": [
+        [
+          "a-first",
+          0.0
+        ],
+        [
+          "b-first",
+          0.0
+        ]
+      ],
+      "topology_edges": [],
+      "topology_stabilized": true,
+      "utility": -2.0463766238230594
+    }
+  },
+  {
+    "causal_intervention": null,
+    "metrics": {
+      "accepted_additions": 0,
+      "accuracy": 0.5,
+      "activation_count": 4,
+      "active_edge_count": 0,
+      "active_edge_utilization": 0.0,
+      "candidate_count": 0,
+      "candidate_proposals": 0,
+      "candidate_space_size": 6,
+      "class_separation": 0.0,
+      "convergent_fan_in_motifs": 0,
+      "duplicate_proposals": 0,
+      "edge_capacity": 4,
+      "edge_count": 0,
+      "energy": 3.0463766238230594,
+      "energy_unit": "activity-cost-proxy",
+      "event_count": 4,
+      "fan_in_distribution": [
+        [
+          "a",
+          0
+        ],
+        [
+          "b",
+          0
+        ],
+        [
+          "target",
+          0
+        ],
+        [
+          "d1",
+          0
+        ],
+        [
+          "d2",
+          0
+        ]
+      ],
+      "fan_out_distribution": [
+        [
+          "a",
+          0
+        ],
+        [
+          "b",
+          0
+        ],
+        [
+          "target",
+          0
+        ],
+        [
+          "d1",
+          0
+        ],
+        [
+          "d2",
+          0
+        ]
+      ],
+      "mean_path_delay": 0.0,
+      "mean_path_length": 0.0,
+      "mutation_statuses": [],
+      "path_shortening": 0.0,
+      "policy": "fixed",
+      "prediction_error_count": 0,
+      "prediction_loss": 0.0,
+      "rejected_mutations": 0,
+      "rejection_reasons": [],
+      "removed_edges": 0,
+      "replay_digest": "462ab389efe22833bace465bdfeba66eefdef0af70417b40713694949699be0b",
+      "seed": 4,
+      "shortest_target_delay": null,
+      "target_states": [
+        [
+          "a-first",
+          0.0
+        ],
+        [
+          "b-first",
+          0.0
+        ]
+      ],
+      "topology_edges": [],
+      "topology_stabilized": true,
+      "utility": -2.0463766238230594
+    }
+  },
+  {
+    "causal_intervention": null,
+    "metrics": {
+      "accepted_additions": 2,
+      "accuracy": 0.5,
+      "activation_count": 8,
+      "active_edge_count": 2,
+      "active_edge_utilization": 1.0,
+      "candidate_count": 6,
+      "candidate_proposals": 6,
+      "candidate_space_size": 6,
+      "class_separation": 0.0,
+      "convergent_fan_in_motifs": 0,
+      "duplicate_proposals": 0,
+      "edge_capacity": 4,
+      "edge_count": 2,
+      "energy": 5.614436591871058,
+      "energy_unit": "activity-cost-proxy",
+      "event_count": 8,
+      "fan_in_distribution": [
+        [
+          "a",
+          0
+        ],
+        [
+          "b",
+          0
+        ],
+        [
+          "target",
+          0
+        ],
+        [
+          "d1",
+          1
+        ],
+        [
+          "d2",
+          1
+        ]
+      ],
+      "fan_out_distribution": [
+        [
+          "a",
+          2
+        ],
+        [
+          "b",
+          0
+        ],
+        [
+          "target",
+          0
+        ],
+        [
+          "d1",
+          0
+        ],
+        [
+          "d2",
+          0
+        ]
+      ],
+      "mean_path_delay": 0.0,
+      "mean_path_length": 0.0,
+      "mutation_statuses": [
+        "grown",
+        "grown"
+      ],
+      "path_shortening": 0.0,
+      "policy": "baseline",
+      "prediction_error_count": 0,
+      "prediction_loss": 0.0,
+      "rejected_mutations": 0,
+      "rejection_reasons": [],
+      "removed_edges": 0,
+      "replay_digest": "5ad310205acbb37db6cb90d5dbdeff26efdbf5837b9d19506c1a4d0b540d8943",
+      "seed": 4,
+      "shortest_target_delay": null,
+      "target_states": [
+        [
+          "a-first",
+          0.0
+        ],
+        [
+          "b-first",
+          0.0
+        ]
+      ],
+      "topology_edges": [
+        [
+          "a",
+          "d1",
+          1.0
+        ],
+        [
+          "a",
+          "d2",
+          1.0
+        ]
+      ],
+      "topology_stabilized": true,
+      "utility": -4.614436591871058
+    }
+  },
+  {
+    "causal_intervention": null,
+    "metrics": {
+      "accepted_additions": 2,
+      "accuracy": 0.5,
+      "activation_count": 8,
+      "active_edge_count": 2,
+      "active_edge_utilization": 1.0,
+      "candidate_count": 2,
+      "candidate_proposals": 2,
+      "candidate_space_size": 6,
+      "class_separation": 0.0,
+      "convergent_fan_in_motifs": 0,
+      "duplicate_proposals": 0,
+      "edge_capacity": 4,
+      "edge_count": 2,
+      "energy": 5.614436591871058,
+      "energy_unit": "activity-cost-proxy",
+      "event_count": 8,
+      "fan_in_distribution": [
+        [
+          "a",
+          0
+        ],
+        [
+          "b",
+          0
+        ],
+        [
+          "target",
+          1
+        ],
+        [
+          "d1",
+          0
+        ],
+        [
+          "d2",
+          1
+        ]
+      ],
+      "fan_out_distribution": [
+        [
+          "a",
+          2
+        ],
+        [
+          "b",
+          0
+        ],
+        [
+          "target",
+          0
+        ],
+        [
+          "d1",
+          0
+        ],
+        [
+          "d2",
+          0
+        ]
+      ],
+      "mean_path_delay": 1.0,
+      "mean_path_length": 1.0,
+      "mutation_statuses": [
+        "grown",
+        "grown"
+      ],
+      "path_shortening": 0.0,
+      "policy": "random",
+      "prediction_error_count": 2,
+      "prediction_loss": 1.2840299840239995,
+      "rejected_mutations": 0,
+      "rejection_reasons": [],
+      "removed_edges": 0,
+      "replay_digest": "8b9c1c9eafe078eaf7e668b853f765c28cc25ce4804c576c2ecf82eca7b358a9",
+      "seed": 4,
+      "shortest_target_delay": 1.0,
+      "target_states": [
+        [
+          "a-first",
+          0.7615941559557649
+        ],
+        [
+          "b-first",
+          0.7615941559557649
+        ]
+      ],
+      "topology_edges": [
+        [
+          "a",
+          "d2",
+          1.0
+        ],
+        [
+          "a",
+          "target",
+          1.0
+        ]
+      ],
+      "topology_stabilized": true,
+      "utility": -4.614436591871058
+    }
+  },
+  {
+    "causal_intervention": {
+      "changed": true,
+      "edge": [
+        "a",
+        "target"
+      ],
+      "present_event_count": 8,
+      "present_target_state": -0.16846403091480955,
+      "removed_event_count": 6,
+      "removed_target_state": -0.7615941559557649
+    },
+    "metrics": {
+      "accepted_additions": 2,
+      "accuracy": 1.0,
+      "activation_count": 8,
+      "active_edge_count": 2,
+      "active_edge_utilization": 1.0,
+      "candidate_count": 2,
+      "candidate_proposals": 2,
+      "candidate_space_size": 6,
+      "class_separation": 0.3369280618296191,
+      "convergent_fan_in_motifs": 1,
+      "duplicate_proposals": 0,
+      "edge_capacity": 4,
+      "edge_count": 2,
+      "energy": 4.664183087736666,
+      "energy_unit": "activity-cost-proxy",
+      "event_count": 8,
+      "fan_in_distribution": [
+        [
+          "a",
+          0
+        ],
+        [
+          "b",
+          0
+        ],
+        [
+          "target",
+          2
+        ],
+        [
+          "d1",
+          0
+        ],
+        [
+          "d2",
+          0
+        ]
+      ],
+      "fan_out_distribution": [
+        [
+          "a",
+          1
+        ],
+        [
+          "b",
+          1
+        ],
+        [
+          "target",
+          0
+        ],
+        [
+          "d1",
+          0
+        ],
+        [
+          "d2",
+          0
+        ]
+      ],
+      "mean_path_delay": 1.0,
+      "mean_path_length": 1.0,
+      "mutation_statuses": [
+        "grown",
+        "grown"
+      ],
+      "path_shortening": 0.0,
+      "policy": "temporal",
+      "prediction_error_count": 2,
+      "prediction_loss": 1.2840299840239995,
+      "rejected_mutations": 0,
+      "rejection_reasons": [],
+      "removed_edges": 0,
+      "replay_digest": "dd2731b248dcab544ea3d09067aada655279c19dec5298fc4b329a4ede4f449b",
+      "seed": 4,
+      "shortest_target_delay": 1.0,
+      "target_states": [
+        [
+          "a-first",
+          -0.16846403091480955
+        ],
+        [
+          "b-first",
+          0.16846403091480955
+        ]
+      ],
+      "topology_edges": [
+        [
+          "a",
+          "target",
+          1.0
+        ],
+        [
+          "b",
+          "target",
+          1.0
+        ]
+      ],
+      "topology_stabilized": true,
+      "utility": -2.6641830877366663
+    }
+  },
+  {
+    "causal_intervention": null,
+    "metrics": {
+      "accepted_additions": 0,
+      "accuracy": 0.5,
+      "activation_count": 4,
+      "active_edge_count": 0,
+      "active_edge_utilization": 0.0,
+      "candidate_count": 0,
+      "candidate_proposals": 0,
+      "candidate_space_size": 6,
+      "class_separation": 0.0,
+      "convergent_fan_in_motifs": 0,
+      "duplicate_proposals": 0,
+      "edge_capacity": 4,
+      "edge_count": 0,
+      "energy": 3.0463766238230594,
+      "energy_unit": "activity-cost-proxy",
+      "event_count": 4,
+      "fan_in_distribution": [
+        [
+          "a",
+          0
+        ],
+        [
+          "b",
+          0
+        ],
+        [
+          "target",
+          0
+        ],
+        [
+          "d1",
+          0
+        ],
+        [
+          "d2",
+          0
+        ]
+      ],
+      "fan_out_distribution": [
+        [
+          "a",
+          0
+        ],
+        [
+          "b",
+          0
+        ],
+        [
+          "target",
+          0
+        ],
+        [
+          "d1",
+          0
+        ],
+        [
+          "d2",
+          0
+        ]
+      ],
+      "mean_path_delay": 0.0,
+      "mean_path_length": 0.0,
+      "mutation_statuses": [],
+      "path_shortening": 0.0,
+      "policy": "reversed",
+      "prediction_error_count": 0,
+      "prediction_loss": 0.0,
+      "rejected_mutations": 0,
+      "rejection_reasons": [],
+      "removed_edges": 0,
+      "replay_digest": "462ab389efe22833bace465bdfeba66eefdef0af70417b40713694949699be0b",
+      "seed": 4,
+      "shortest_target_delay": null,
+      "target_states": [
+        [
+          "a-first",
+          0.0
+        ],
+        [
+          "b-first",
+          0.0
+        ]
+      ],
+      "topology_edges": [],
+      "topology_stabilized": true,
+      "utility": -2.0463766238230594
+    }
+  }
+]

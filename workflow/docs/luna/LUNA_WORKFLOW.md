@@ -1089,45 +1089,51 @@ rejection accounting and `OBSERVED`/`INFERRED`/`HYPOTHESIZED` labels. The
 mechanism is not accepted merely because it runs; Luna-0 reviews whether the
 evidence supports a later experiment or ACP.
 
-## Luna-12J - Modular/Bootstrap Initialization and Integration
+## Luna-12J - Temporal-Associative Structural Learning Efficacy and Causal Verification
 
-**Authorization:** A separate future initialization experiment. It is not
-authorized by this documentation to implement a bootstrap trainer. It does
-not require Luna-12I and does not block Luna-13, Luna-14, Luna-15, Luna-16 or
-Luna-17.
+**Authorization:** This is a separately dispatched `EXPERIMENT` and
+`VERIFICATION` milestone after Luna-12I. Creating the scaffold does not
+execute it. It does not amend A14, authorize temporal association as
+mandatory, or block Luna-13, Luna-14, Luna-15, Luna-16 or Luna-17.
 
-**Classification:** `EXPERIMENT`, `INTEGRATION`, and, where applicable,
-`VERIFICATION`. **Hypothesis:** bounded modules initialized from reproducible
-parameter/topology fragments can compose into a useful TPCN starting state
-without hidden global runtime computation. Evidence against it includes
-interface incompatibility, causal/timing violations, unbounded state or
-topology, reset leakage, non-deterministic composition, hidden trainer inputs,
-or failure of post-integration local learning compared with legal reference
-initializations.
+**Question and hypothesis:** Determine whether Luna-12I temporal-associative
+growth produces useful computational or task-level benefit attributable to
+learned topology rather than merely added edges or churn. Repeated local
+temporal succession is hypothesized to guide bounded growth toward useful
+convergence and/or shorter causal paths. Equivalent controls, no causal effect,
+temporal-order destruction, or resource/churn costs that erase benefit count
+against the hypothesis. Valid results include supported, partially supported,
+not supported, inconclusive and blocked.
 
-**Module contract:** Each independently prepared module declares inputs,
-outputs, event semantics, state, reset behavior, topology/resource
-requirements, time units, parameter bounds, hardware assumptions and training
-provenance. Composition must not rely on invisible shared state. Bootstrap
-state must be serializable/versionable or reproducibly generated.
+**Required controls:** Compare fixed topology, the existing pre-12I policy,
+random legal structural growth and Luna-12I growth under comparable nodes,
+edges, fan-in/out, candidates, state, events, mutation attempts, epochs,
+delays, resets and seeds. Include shuffled, reversed, destroyed-timing or
+matched-event-multiset controls where practical. Record and explain any budget
+mismatch; do not search for favorable seeds.
 
-**Controls and measurements:** Compare at least zero, random and simple
-deterministic legal initialization against the modular/bootstrap condition.
-Test interface compatibility, causal event exchange, timing compatibility,
-bounded state/topology, reset/isolation, prediction/error behavior,
-energy/resource behavior, determinism, software/hardware traceability and
-post-integration local learning. Outer orchestration may use global data only
-before execution; it must not become an undeclared neural input.
+**Computational and information boundary:** Use the persistent Luna-12E
+topology and actual event-routing path. A disconnected visualization graph,
+auxiliary topology or topology-only correlation is not evidence. Labels, future
+events, global topology statistics, evaluation metrics and unrestricted trainer
+state remain outside events, predictor state, routing, topology evidence,
+structural evidence, eligibility and energy computation.
 
-**Non-goals:** Do not require pretrained modules, replace runtime local
-learning, claim hardware equivalence, introduce global runtime state, leak
-labels/future data, implement an opaque trainer, or promote bootstrap as the
-only legal initialization path.
+**Measurements and intervention:** Record task/class separation, prediction and
+error behavior, events, activations, energy/resource proxy and units, edges,
+additions/removals/rejections, fan-in/out and convergent motifs, utilization,
+path delays/shortening, duplicates, replacement, churn, stabilization and
+same-seed determinism. Perform a focused removal, freeze, legal replacement or
+before/after replay intervention to test the chain from local evidence through
+real topology and routed events to downstream state/output. Explicitly answer
+whether ordinary growth saturates capacity before useful fan-in forms.
 
-**Expected handoff and gate:** Record module manifests, provenance, serialized
-state/version, exact commands and environments, composition traces, controls,
-failures and boundedness. Luna-0 reviews the evidence before any runtime or
-architecture promotion.
+**Expected handoff and gate:** The handoff must include the full dispatch fields,
+raw and summarized measurements, negative results, limitations and direct
+answers to the seven Luna-12J questions. Separate `OBSERVED`, `INFERRED` and
+`HYPOTHESIZED`, and passed/failed/not-run/not-applicable checks. Gate values are
+PASS, PASS WITH FOLLOW-UP, INCONCLUSIVE, NOT SUPPORTED and BLOCKED. Any result
+returns to Luna-0; even PASS does not promote A14 or authorize Luna-12K.
 
 ## Luna-13 — GPU-Compatible Visualization Path
 
@@ -1479,7 +1485,7 @@ Neuron              Topology
              12H
               ├───────► 12I  structural growth
               │
-              └───────► 12J  modular/bootstrap initialization
+              └───────► 12J  efficacy + causal verification
 
         Stable software event semantics
                      │
