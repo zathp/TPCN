@@ -1,0 +1,3239 @@
+{
+  "baseline_revision": "96454747613f01aa9be418e911732b4b796c4dcb",
+  "configuration": {
+    "amplitudes": [
+      0.7,
+      1.0
+    ],
+    "candidate_ids": [
+      "left",
+      "right"
+    ],
+    "candidate_propagation_delay": 1.0,
+    "candidate_roles": [
+      "left",
+      "right"
+    ],
+    "event_budget": 12,
+    "execution_decay": 0.1,
+    "fixture_id": "luna-13b-runtime-local-crossover-v1",
+    "observation_intervals": [
+      1.0,
+      3.0
+    ],
+    "queue_capacity": 16,
+    "scoring_decay_high": 0.2,
+    "scoring_decay_low": 0.0,
+    "stimulus_delay": 0.25,
+    "stimulus_id": "stimulus",
+    "target_id": "target"
+  },
+  "deterministic_repetitions": true,
+  "environment": {
+    "platform": "Windows-10-10.0.19045-SP0",
+    "python": "3.10.8 (tags/v3.10.8:aaaf517, Oct 11 2022, 16:50:30) [MSC v.1933 64 bit (AMD64)]"
+  },
+  "executed_revision": "e15260d6dd41f5cb5bd5b80b1d3433953c55e735",
+  "experiment": "Luna-13B causal local temporal structural crossover",
+  "fixture_id": "luna-13b-runtime-local-crossover-v1",
+  "frozen_crossover": {
+    "equality": "r_left * exp(-mu * dt_left) = r_right * exp(-mu * dt_right)",
+    "equation": "score = abs(local_residual) * exp(-scoring_decay * elapsed)",
+    "interval_delta": 2.0,
+    "left_residual_at_execution_decay": 0.6333861926251716,
+    "right_residual_at_execution_decay": 0.7408182206817179,
+    "scoring_decay_crossover": 0.07833747196936626
+  },
+  "results": [
+    {
+      "admission": {
+        "candidate_set": [
+          [
+            "left",
+            "target"
+          ],
+          [
+            "right",
+            "target"
+          ]
+        ],
+        "capacity_before": {
+          "edge_capacity": 1,
+          "edge_count": 0,
+          "fan_in_limit": 2,
+          "fan_in_target": 0,
+          "fan_out_by_candidate": {
+            "left": 0,
+            "right": 0
+          },
+          "fan_out_limit": 1,
+          "remaining_slots": 1
+        },
+        "final_edges": [
+          [
+            "right",
+            "target",
+            1.0
+          ]
+        ],
+        "graph_fingerprint": "d407107716ddd99aa69d21fcb89519ff2f061d391af75489cdd8562bf8835200",
+        "projected_capacity": {
+          "edge_capacity": 1,
+          "edge_count": 1
+        },
+        "rejected_candidates": [
+          {
+            "candidate": [
+              "left",
+              "target"
+            ],
+            "reason": "edge_capacity",
+            "status": "full_capacity"
+          }
+        ],
+        "selected_candidate": "right",
+        "selected_result": {
+          "edge": [
+            "right",
+            "target"
+          ],
+          "reason": null,
+          "status": "grown"
+        },
+        "selected_role": "right",
+        "tie_rule": "score descending, then candidate identifier ascending"
+      },
+      "candidate_scores": [
+        [
+          "left",
+          0.6333861926251716
+        ],
+        [
+          "right",
+          0.7408182206817179
+        ]
+      ],
+      "complete": true,
+      "condition": "decay_low",
+      "crossover": {
+        "equality": "r_left * exp(-mu * dt_left) = r_right * exp(-mu * dt_right)",
+        "equation": "score = abs(local_residual) * exp(-scoring_decay * elapsed)",
+        "interval_delta": 2.0,
+        "left_residual_at_execution_decay": 0.6333861926251716,
+        "right_residual_at_execution_decay": 0.7408182206817179,
+        "scoring_decay_crossover": 0.07833747196936626
+      },
+      "decision_timestamp": 3.25,
+      "execution_decay": 0.1,
+      "fixture_id": "luna-13b-runtime-local-crossover-v1",
+      "future_probe": false,
+      "mirror": false,
+      "ranked_candidates": [
+        "right",
+        "left"
+      ],
+      "records": [
+        {
+          "admission_score": 0.6333861926251716,
+          "admitted": false,
+          "candidate_id": "left",
+          "candidate_role": "left",
+          "decision_observation_timestamp": 1.25,
+          "decision_timestamp": 1.25,
+          "elapsed_interval": 1.0,
+          "evidence_source": "runtime_local_decay_score",
+          "execution_decay": 0.1,
+          "followup_observation": {
+            "payload": 0.0,
+            "sequence": 5,
+            "source": "target",
+            "timestamp": 1.25
+          },
+          "local_pre_state": 0.7,
+          "local_residual_state": 0.6333861926251716,
+          "observation_timestamp": 0.25,
+          "originating_observation": {
+            "payload": 0.7,
+            "sequence": 3,
+            "source": "stimulus-left",
+            "timestamp": 0.25
+          },
+          "rank": 2,
+          "score": 0.6333861926251716,
+          "score_components": {
+            "elapsed_decay_factor": 1.0,
+            "local_residual_magnitude": 0.6333861926251716
+          },
+          "scoring_decay": 0.0
+        },
+        {
+          "admission_score": 0.7408182206817179,
+          "admitted": true,
+          "candidate_id": "right",
+          "candidate_role": "right",
+          "decision_observation_timestamp": 3.25,
+          "decision_timestamp": 3.25,
+          "elapsed_interval": 3.0,
+          "evidence_source": "runtime_local_decay_score",
+          "execution_decay": 0.1,
+          "followup_observation": {
+            "payload": 0.0,
+            "sequence": 6,
+            "source": "target",
+            "timestamp": 3.25
+          },
+          "local_pre_state": 1.0,
+          "local_residual_state": 0.7408182206817179,
+          "observation_timestamp": 0.25,
+          "originating_observation": {
+            "payload": 1.0,
+            "sequence": 4,
+            "source": "stimulus-right",
+            "timestamp": 0.25
+          },
+          "rank": 1,
+          "score": 0.7408182206817179,
+          "score_components": {
+            "elapsed_decay_factor": 1.0,
+            "local_residual_magnitude": 0.7408182206817179
+          },
+          "scoring_decay": 0.0
+        }
+      ],
+      "runtime": {
+        "execution": {
+          "budget_exhausted": false,
+          "completed": true,
+          "configured_event_budget": 12,
+          "peak_queue_occupancy": 4,
+          "pending_event_count": 0,
+          "processed_event_count": 7,
+          "termination_reason": "completed"
+        },
+        "observation_topology": [
+          [
+            "stimulus-left",
+            "left",
+            0.25
+          ],
+          [
+            "stimulus-right",
+            "right",
+            0.25
+          ],
+          [
+            "target",
+            "left",
+            1.25
+          ],
+          [
+            "target",
+            "right",
+            3.25
+          ]
+        ],
+        "trace": [
+          {
+            "kind": "route_seed",
+            "sequence": 0,
+            "source": "stimulus-left",
+            "timestamp": 0.0
+          },
+          {
+            "kind": "route_seed",
+            "sequence": 1,
+            "source": "stimulus-right",
+            "timestamp": 0.0
+          },
+          {
+            "kind": "route_seed",
+            "sequence": 2,
+            "source": "target",
+            "timestamp": 0.0
+          },
+          {
+            "destination": "left",
+            "kind": "local_observation",
+            "payload": 0.7,
+            "sequence": 3,
+            "source": "stimulus-left",
+            "timestamp": 0.25
+          },
+          {
+            "destination": "right",
+            "kind": "local_observation",
+            "payload": 1.0,
+            "sequence": 4,
+            "source": "stimulus-right",
+            "timestamp": 0.25
+          },
+          {
+            "destination": "left",
+            "kind": "local_observation",
+            "payload": 0.0,
+            "sequence": 5,
+            "source": "target",
+            "timestamp": 1.25
+          },
+          {
+            "destination": "right",
+            "kind": "local_observation",
+            "payload": 0.0,
+            "sequence": 6,
+            "source": "target",
+            "timestamp": 3.25
+          }
+        ]
+      },
+      "scoring_decay": 0.0,
+      "seed": 0
+    },
+    {
+      "admission": {
+        "candidate_set": [
+          [
+            "left",
+            "target"
+          ],
+          [
+            "right",
+            "target"
+          ]
+        ],
+        "capacity_before": {
+          "edge_capacity": 1,
+          "edge_count": 0,
+          "fan_in_limit": 2,
+          "fan_in_target": 0,
+          "fan_out_by_candidate": {
+            "left": 0,
+            "right": 0
+          },
+          "fan_out_limit": 1,
+          "remaining_slots": 1
+        },
+        "final_edges": [
+          [
+            "left",
+            "target",
+            1.0
+          ]
+        ],
+        "graph_fingerprint": "4f1a25a84db889ee0e33cf1a9c25f887f6c4d5144e019e81301a1789f8fc77f1",
+        "projected_capacity": {
+          "edge_capacity": 1,
+          "edge_count": 1
+        },
+        "rejected_candidates": [
+          {
+            "candidate": [
+              "right",
+              "target"
+            ],
+            "reason": "edge_capacity",
+            "status": "full_capacity"
+          }
+        ],
+        "selected_candidate": "left",
+        "selected_result": {
+          "edge": [
+            "left",
+            "target"
+          ],
+          "reason": null,
+          "status": "grown"
+        },
+        "selected_role": "left",
+        "tie_rule": "score descending, then candidate identifier ascending"
+      },
+      "candidate_scores": [
+        [
+          "left",
+          0.5185727544772024
+        ],
+        [
+          "right",
+          0.4065696597405991
+        ]
+      ],
+      "complete": true,
+      "condition": "decay_high",
+      "crossover": {
+        "equality": "r_left * exp(-mu * dt_left) = r_right * exp(-mu * dt_right)",
+        "equation": "score = abs(local_residual) * exp(-scoring_decay * elapsed)",
+        "interval_delta": 2.0,
+        "left_residual_at_execution_decay": 0.6333861926251716,
+        "right_residual_at_execution_decay": 0.7408182206817179,
+        "scoring_decay_crossover": 0.07833747196936626
+      },
+      "decision_timestamp": 3.25,
+      "execution_decay": 0.1,
+      "fixture_id": "luna-13b-runtime-local-crossover-v1",
+      "future_probe": false,
+      "mirror": false,
+      "ranked_candidates": [
+        "left",
+        "right"
+      ],
+      "records": [
+        {
+          "admission_score": 0.5185727544772024,
+          "admitted": true,
+          "candidate_id": "left",
+          "candidate_role": "left",
+          "decision_observation_timestamp": 1.25,
+          "decision_timestamp": 1.25,
+          "elapsed_interval": 1.0,
+          "evidence_source": "runtime_local_decay_score",
+          "execution_decay": 0.1,
+          "followup_observation": {
+            "payload": 0.0,
+            "sequence": 5,
+            "source": "target",
+            "timestamp": 1.25
+          },
+          "local_pre_state": 0.7,
+          "local_residual_state": 0.6333861926251716,
+          "observation_timestamp": 0.25,
+          "originating_observation": {
+            "payload": 0.7,
+            "sequence": 3,
+            "source": "stimulus-left",
+            "timestamp": 0.25
+          },
+          "rank": 1,
+          "score": 0.5185727544772024,
+          "score_components": {
+            "elapsed_decay_factor": 0.8187307530779818,
+            "local_residual_magnitude": 0.6333861926251716
+          },
+          "scoring_decay": 0.2
+        },
+        {
+          "admission_score": 0.4065696597405991,
+          "admitted": false,
+          "candidate_id": "right",
+          "candidate_role": "right",
+          "decision_observation_timestamp": 3.25,
+          "decision_timestamp": 3.25,
+          "elapsed_interval": 3.0,
+          "evidence_source": "runtime_local_decay_score",
+          "execution_decay": 0.1,
+          "followup_observation": {
+            "payload": 0.0,
+            "sequence": 6,
+            "source": "target",
+            "timestamp": 3.25
+          },
+          "local_pre_state": 1.0,
+          "local_residual_state": 0.7408182206817179,
+          "observation_timestamp": 0.25,
+          "originating_observation": {
+            "payload": 1.0,
+            "sequence": 4,
+            "source": "stimulus-right",
+            "timestamp": 0.25
+          },
+          "rank": 2,
+          "score": 0.4065696597405991,
+          "score_components": {
+            "elapsed_decay_factor": 0.5488116360940264,
+            "local_residual_magnitude": 0.7408182206817179
+          },
+          "scoring_decay": 0.2
+        }
+      ],
+      "runtime": {
+        "execution": {
+          "budget_exhausted": false,
+          "completed": true,
+          "configured_event_budget": 12,
+          "peak_queue_occupancy": 4,
+          "pending_event_count": 0,
+          "processed_event_count": 7,
+          "termination_reason": "completed"
+        },
+        "observation_topology": [
+          [
+            "stimulus-left",
+            "left",
+            0.25
+          ],
+          [
+            "stimulus-right",
+            "right",
+            0.25
+          ],
+          [
+            "target",
+            "left",
+            1.25
+          ],
+          [
+            "target",
+            "right",
+            3.25
+          ]
+        ],
+        "trace": [
+          {
+            "kind": "route_seed",
+            "sequence": 0,
+            "source": "stimulus-left",
+            "timestamp": 0.0
+          },
+          {
+            "kind": "route_seed",
+            "sequence": 1,
+            "source": "stimulus-right",
+            "timestamp": 0.0
+          },
+          {
+            "kind": "route_seed",
+            "sequence": 2,
+            "source": "target",
+            "timestamp": 0.0
+          },
+          {
+            "destination": "left",
+            "kind": "local_observation",
+            "payload": 0.7,
+            "sequence": 3,
+            "source": "stimulus-left",
+            "timestamp": 0.25
+          },
+          {
+            "destination": "right",
+            "kind": "local_observation",
+            "payload": 1.0,
+            "sequence": 4,
+            "source": "stimulus-right",
+            "timestamp": 0.25
+          },
+          {
+            "destination": "left",
+            "kind": "local_observation",
+            "payload": 0.0,
+            "sequence": 5,
+            "source": "target",
+            "timestamp": 1.25
+          },
+          {
+            "destination": "right",
+            "kind": "local_observation",
+            "payload": 0.0,
+            "sequence": 6,
+            "source": "target",
+            "timestamp": 3.25
+          }
+        ]
+      },
+      "scoring_decay": 0.2,
+      "seed": 0
+    },
+    {
+      "admission": {
+        "candidate_set": [
+          [
+            "left",
+            "target"
+          ],
+          [
+            "right",
+            "target"
+          ]
+        ],
+        "capacity_before": {
+          "edge_capacity": 1,
+          "edge_count": 0,
+          "fan_in_limit": 2,
+          "fan_in_target": 0,
+          "fan_out_by_candidate": {
+            "left": 0,
+            "right": 0
+          },
+          "fan_out_limit": 1,
+          "remaining_slots": 1
+        },
+        "final_edges": [
+          [
+            "left",
+            "target",
+            1.0
+          ]
+        ],
+        "graph_fingerprint": "4f1a25a84db889ee0e33cf1a9c25f887f6c4d5144e019e81301a1789f8fc77f1",
+        "projected_capacity": {
+          "edge_capacity": 1,
+          "edge_count": 1
+        },
+        "rejected_candidates": [
+          {
+            "candidate": [
+              "right",
+              "target"
+            ],
+            "reason": "edge_capacity",
+            "status": "full_capacity"
+          }
+        ],
+        "selected_candidate": "left",
+        "selected_result": {
+          "edge": [
+            "left",
+            "target"
+          ],
+          "reason": null,
+          "status": "grown"
+        },
+        "selected_role": "left",
+        "tie_rule": "score descending, then candidate identifier ascending"
+      },
+      "candidate_scores": [
+        [
+          "left",
+          0.5856620185738528
+        ],
+        [
+          "right",
+          0.5856620185738527
+        ]
+      ],
+      "complete": true,
+      "condition": "decay_near",
+      "crossover": {
+        "equality": "r_left * exp(-mu * dt_left) = r_right * exp(-mu * dt_right)",
+        "equation": "score = abs(local_residual) * exp(-scoring_decay * elapsed)",
+        "interval_delta": 2.0,
+        "left_residual_at_execution_decay": 0.6333861926251716,
+        "right_residual_at_execution_decay": 0.7408182206817179,
+        "scoring_decay_crossover": 0.07833747196936626
+      },
+      "decision_timestamp": 3.25,
+      "execution_decay": 0.1,
+      "fixture_id": "luna-13b-runtime-local-crossover-v1",
+      "future_probe": false,
+      "mirror": false,
+      "ranked_candidates": [
+        "left",
+        "right"
+      ],
+      "records": [
+        {
+          "admission_score": 0.5856620185738528,
+          "admitted": true,
+          "candidate_id": "left",
+          "candidate_role": "left",
+          "decision_observation_timestamp": 1.25,
+          "decision_timestamp": 1.25,
+          "elapsed_interval": 1.0,
+          "evidence_source": "runtime_local_decay_score",
+          "execution_decay": 0.1,
+          "followup_observation": {
+            "payload": 0.0,
+            "sequence": 5,
+            "source": "target",
+            "timestamp": 1.25
+          },
+          "local_pre_state": 0.7,
+          "local_residual_state": 0.6333861926251716,
+          "observation_timestamp": 0.25,
+          "originating_observation": {
+            "payload": 0.7,
+            "sequence": 3,
+            "source": "stimulus-left",
+            "timestamp": 0.25
+          },
+          "rank": 1,
+          "score": 0.5856620185738528,
+          "score_components": {
+            "elapsed_decay_factor": 0.92465232964186,
+            "local_residual_magnitude": 0.6333861926251716
+          },
+          "scoring_decay": 0.07833747196936626
+        },
+        {
+          "admission_score": 0.5856620185738527,
+          "admitted": false,
+          "candidate_id": "right",
+          "candidate_role": "right",
+          "decision_observation_timestamp": 3.25,
+          "decision_timestamp": 3.25,
+          "elapsed_interval": 3.0,
+          "evidence_source": "runtime_local_decay_score",
+          "execution_decay": 0.1,
+          "followup_observation": {
+            "payload": 0.0,
+            "sequence": 6,
+            "source": "target",
+            "timestamp": 3.25
+          },
+          "local_pre_state": 1.0,
+          "local_residual_state": 0.7408182206817179,
+          "observation_timestamp": 0.25,
+          "originating_observation": {
+            "payload": 1.0,
+            "sequence": 4,
+            "source": "stimulus-right",
+            "timestamp": 0.25
+          },
+          "rank": 2,
+          "score": 0.5856620185738527,
+          "score_components": {
+            "elapsed_decay_factor": 0.7905610340346558,
+            "local_residual_magnitude": 0.7408182206817179
+          },
+          "scoring_decay": 0.07833747196936626
+        }
+      ],
+      "runtime": {
+        "execution": {
+          "budget_exhausted": false,
+          "completed": true,
+          "configured_event_budget": 12,
+          "peak_queue_occupancy": 4,
+          "pending_event_count": 0,
+          "processed_event_count": 7,
+          "termination_reason": "completed"
+        },
+        "observation_topology": [
+          [
+            "stimulus-left",
+            "left",
+            0.25
+          ],
+          [
+            "stimulus-right",
+            "right",
+            0.25
+          ],
+          [
+            "target",
+            "left",
+            1.25
+          ],
+          [
+            "target",
+            "right",
+            3.25
+          ]
+        ],
+        "trace": [
+          {
+            "kind": "route_seed",
+            "sequence": 0,
+            "source": "stimulus-left",
+            "timestamp": 0.0
+          },
+          {
+            "kind": "route_seed",
+            "sequence": 1,
+            "source": "stimulus-right",
+            "timestamp": 0.0
+          },
+          {
+            "kind": "route_seed",
+            "sequence": 2,
+            "source": "target",
+            "timestamp": 0.0
+          },
+          {
+            "destination": "left",
+            "kind": "local_observation",
+            "payload": 0.7,
+            "sequence": 3,
+            "source": "stimulus-left",
+            "timestamp": 0.25
+          },
+          {
+            "destination": "right",
+            "kind": "local_observation",
+            "payload": 1.0,
+            "sequence": 4,
+            "source": "stimulus-right",
+            "timestamp": 0.25
+          },
+          {
+            "destination": "left",
+            "kind": "local_observation",
+            "payload": 0.0,
+            "sequence": 5,
+            "source": "target",
+            "timestamp": 1.25
+          },
+          {
+            "destination": "right",
+            "kind": "local_observation",
+            "payload": 0.0,
+            "sequence": 6,
+            "source": "target",
+            "timestamp": 3.25
+          }
+        ]
+      },
+      "scoring_decay": 0.07833747196936626,
+      "seed": 0
+    },
+    {
+      "admission": {
+        "candidate_set": [
+          [
+            "left",
+            "target"
+          ],
+          [
+            "right",
+            "target"
+          ]
+        ],
+        "capacity_before": {
+          "edge_capacity": 1,
+          "edge_count": 0,
+          "fan_in_limit": 2,
+          "fan_in_target": 0,
+          "fan_out_by_candidate": {
+            "left": 0,
+            "right": 0
+          },
+          "fan_out_limit": 1,
+          "remaining_slots": 1
+        },
+        "final_edges": [
+          [
+            "left",
+            "target",
+            1.0
+          ]
+        ],
+        "graph_fingerprint": "4f1a25a84db889ee0e33cf1a9c25f887f6c4d5144e019e81301a1789f8fc77f1",
+        "projected_capacity": {
+          "edge_capacity": 1,
+          "edge_count": 1
+        },
+        "rejected_candidates": [
+          {
+            "candidate": [
+              "right",
+              "target"
+            ],
+            "reason": "edge_capacity",
+            "status": "full_capacity"
+          }
+        ],
+        "selected_candidate": "left",
+        "selected_result": {
+          "edge": [
+            "left",
+            "target"
+          ],
+          "reason": null,
+          "status": "grown"
+        },
+        "selected_role": "left",
+        "tie_rule": "score descending, then candidate identifier ascending"
+      },
+      "candidate_scores": [
+        [
+          "left",
+          1.0
+        ],
+        [
+          "right",
+          1.0
+        ]
+      ],
+      "complete": true,
+      "condition": "ordinary",
+      "crossover": {
+        "equality": "r_left * exp(-mu * dt_left) = r_right * exp(-mu * dt_right)",
+        "equation": "score = abs(local_residual) * exp(-scoring_decay * elapsed)",
+        "interval_delta": 2.0,
+        "left_residual_at_execution_decay": 0.6333861926251716,
+        "right_residual_at_execution_decay": 0.7408182206817179,
+        "scoring_decay_crossover": 0.07833747196936626
+      },
+      "decision_timestamp": 3.25,
+      "execution_decay": 0.1,
+      "fixture_id": "luna-13b-runtime-local-crossover-v1",
+      "future_probe": false,
+      "mirror": false,
+      "ranked_candidates": [
+        "left",
+        "right"
+      ],
+      "records": [
+        {
+          "admission_score": 1.0,
+          "admitted": true,
+          "candidate_id": "left",
+          "candidate_role": "left",
+          "decision_observation_timestamp": 1.25,
+          "decision_timestamp": 1.25,
+          "elapsed_interval": 1.0,
+          "evidence_source": "ordinary_temporal_association",
+          "execution_decay": 0.1,
+          "followup_observation": {
+            "payload": 0.0,
+            "sequence": 5,
+            "source": "target",
+            "timestamp": 1.25
+          },
+          "local_pre_state": 0.7,
+          "local_residual_state": 0.6333861926251716,
+          "observation_timestamp": 0.25,
+          "originating_observation": {
+            "payload": 0.7,
+            "sequence": 3,
+            "source": "stimulus-left",
+            "timestamp": 0.25
+          },
+          "rank": 1,
+          "score": 1.0,
+          "score_components": {
+            "elapsed_decay_factor": 1.0,
+            "local_residual_magnitude": 0.6333861926251716
+          },
+          "scoring_decay": 0.0
+        },
+        {
+          "admission_score": 1.0,
+          "admitted": false,
+          "candidate_id": "right",
+          "candidate_role": "right",
+          "decision_observation_timestamp": 3.25,
+          "decision_timestamp": 3.25,
+          "elapsed_interval": 3.0,
+          "evidence_source": "ordinary_temporal_association",
+          "execution_decay": 0.1,
+          "followup_observation": {
+            "payload": 0.0,
+            "sequence": 6,
+            "source": "target",
+            "timestamp": 3.25
+          },
+          "local_pre_state": 1.0,
+          "local_residual_state": 0.7408182206817179,
+          "observation_timestamp": 0.25,
+          "originating_observation": {
+            "payload": 1.0,
+            "sequence": 4,
+            "source": "stimulus-right",
+            "timestamp": 0.25
+          },
+          "rank": 2,
+          "score": 1.0,
+          "score_components": {
+            "elapsed_decay_factor": 1.0,
+            "local_residual_magnitude": 0.7408182206817179
+          },
+          "scoring_decay": 0.0
+        }
+      ],
+      "runtime": {
+        "execution": {
+          "budget_exhausted": false,
+          "completed": true,
+          "configured_event_budget": 12,
+          "peak_queue_occupancy": 4,
+          "pending_event_count": 0,
+          "processed_event_count": 7,
+          "termination_reason": "completed"
+        },
+        "observation_topology": [
+          [
+            "stimulus-left",
+            "left",
+            0.25
+          ],
+          [
+            "stimulus-right",
+            "right",
+            0.25
+          ],
+          [
+            "target",
+            "left",
+            1.25
+          ],
+          [
+            "target",
+            "right",
+            3.25
+          ]
+        ],
+        "trace": [
+          {
+            "kind": "route_seed",
+            "sequence": 0,
+            "source": "stimulus-left",
+            "timestamp": 0.0
+          },
+          {
+            "kind": "route_seed",
+            "sequence": 1,
+            "source": "stimulus-right",
+            "timestamp": 0.0
+          },
+          {
+            "kind": "route_seed",
+            "sequence": 2,
+            "source": "target",
+            "timestamp": 0.0
+          },
+          {
+            "destination": "left",
+            "kind": "local_observation",
+            "payload": 0.7,
+            "sequence": 3,
+            "source": "stimulus-left",
+            "timestamp": 0.25
+          },
+          {
+            "destination": "right",
+            "kind": "local_observation",
+            "payload": 1.0,
+            "sequence": 4,
+            "source": "stimulus-right",
+            "timestamp": 0.25
+          },
+          {
+            "destination": "left",
+            "kind": "local_observation",
+            "payload": 0.0,
+            "sequence": 5,
+            "source": "target",
+            "timestamp": 1.25
+          },
+          {
+            "destination": "right",
+            "kind": "local_observation",
+            "payload": 0.0,
+            "sequence": 6,
+            "source": "target",
+            "timestamp": 3.25
+          }
+        ]
+      },
+      "scoring_decay": 0.0,
+      "seed": 0
+    },
+    {
+      "admission": {
+        "candidate_set": [],
+        "capacity_before": {
+          "edge_capacity": 1,
+          "edge_count": 0,
+          "fan_in_limit": 2,
+          "fan_in_target": 0,
+          "fan_out_by_candidate": {
+            "left": 0,
+            "right": 0
+          },
+          "fan_out_limit": 1,
+          "remaining_slots": 1
+        },
+        "final_edges": [],
+        "graph_fingerprint": "2e38e77b22c314a449e91fafed92a43826ac6aa403ae6a8acb6cf58239fbaf5d",
+        "projected_capacity": {
+          "edge_capacity": 1,
+          "edge_count": 1
+        },
+        "rejected_candidates": [],
+        "selected_candidate": null,
+        "selected_result": {
+          "edge": null,
+          "reason": "no_valid_candidate",
+          "status": "rejected"
+        },
+        "selected_role": null,
+        "tie_rule": "score descending, then candidate identifier ascending"
+      },
+      "candidate_scores": [],
+      "complete": true,
+      "condition": "reversed",
+      "crossover": {
+        "equality": "r_left * exp(-mu * dt_left) = r_right * exp(-mu * dt_right)",
+        "equation": "score = abs(local_residual) * exp(-scoring_decay * elapsed)",
+        "interval_delta": 2.0,
+        "left_residual_at_execution_decay": 0.6333861926251716,
+        "right_residual_at_execution_decay": 0.7408182206817179,
+        "scoring_decay_crossover": 0.07833747196936626
+      },
+      "decision_timestamp": null,
+      "execution_decay": 0.1,
+      "fixture_id": "luna-13b-runtime-local-crossover-v1",
+      "future_probe": false,
+      "mirror": false,
+      "ranked_candidates": [],
+      "records": [],
+      "runtime": {
+        "execution": {
+          "budget_exhausted": false,
+          "completed": true,
+          "configured_event_budget": 12,
+          "peak_queue_occupancy": 4,
+          "pending_event_count": 0,
+          "processed_event_count": 7,
+          "termination_reason": "completed"
+        },
+        "observation_topology": [
+          [
+            "stimulus-left",
+            "left",
+            0.25
+          ],
+          [
+            "stimulus-right",
+            "right",
+            0.25
+          ],
+          [
+            "target",
+            "left",
+            1.25
+          ],
+          [
+            "target",
+            "right",
+            3.25
+          ]
+        ],
+        "trace": [
+          {
+            "kind": "route_seed",
+            "sequence": 2,
+            "source": "target",
+            "timestamp": 0.0
+          },
+          {
+            "destination": "left",
+            "kind": "local_observation",
+            "payload": 0.0,
+            "sequence": 3,
+            "source": "target",
+            "timestamp": 1.25
+          },
+          {
+            "destination": "right",
+            "kind": "local_observation",
+            "payload": 0.0,
+            "sequence": 4,
+            "source": "target",
+            "timestamp": 3.25
+          },
+          {
+            "kind": "route_seed",
+            "sequence": 0,
+            "source": "stimulus-left",
+            "timestamp": 4.0
+          },
+          {
+            "kind": "route_seed",
+            "sequence": 1,
+            "source": "stimulus-right",
+            "timestamp": 4.0
+          },
+          {
+            "destination": "left",
+            "kind": "local_observation",
+            "payload": 0.7,
+            "sequence": 5,
+            "source": "stimulus-left",
+            "timestamp": 4.25
+          },
+          {
+            "destination": "right",
+            "kind": "local_observation",
+            "payload": 1.0,
+            "sequence": 6,
+            "source": "stimulus-right",
+            "timestamp": 4.25
+          }
+        ]
+      },
+      "scoring_decay": 0.2,
+      "seed": 0
+    },
+    {
+      "admission": {
+        "candidate_set": [],
+        "capacity_before": {
+          "edge_capacity": 1,
+          "edge_count": 0,
+          "fan_in_limit": 2,
+          "fan_in_target": 0,
+          "fan_out_by_candidate": {
+            "left": 0,
+            "right": 0
+          },
+          "fan_out_limit": 1,
+          "remaining_slots": 1
+        },
+        "final_edges": [],
+        "graph_fingerprint": "2e38e77b22c314a449e91fafed92a43826ac6aa403ae6a8acb6cf58239fbaf5d",
+        "projected_capacity": {
+          "edge_capacity": 1,
+          "edge_count": 1
+        },
+        "rejected_candidates": [],
+        "selected_candidate": null,
+        "selected_result": {
+          "edge": null,
+          "reason": "no_valid_candidate",
+          "status": "rejected"
+        },
+        "selected_role": null,
+        "tie_rule": "score descending, then candidate identifier ascending"
+      },
+      "candidate_scores": [],
+      "complete": true,
+      "condition": "shuffled",
+      "crossover": {
+        "equality": "r_left * exp(-mu * dt_left) = r_right * exp(-mu * dt_right)",
+        "equation": "score = abs(local_residual) * exp(-scoring_decay * elapsed)",
+        "interval_delta": 2.0,
+        "left_residual_at_execution_decay": 0.6333861926251716,
+        "right_residual_at_execution_decay": 0.7408182206817179,
+        "scoring_decay_crossover": 0.07833747196936626
+      },
+      "decision_timestamp": null,
+      "execution_decay": 0.1,
+      "fixture_id": "luna-13b-runtime-local-crossover-v1",
+      "future_probe": false,
+      "mirror": false,
+      "ranked_candidates": [],
+      "records": [],
+      "runtime": {
+        "execution": {
+          "budget_exhausted": false,
+          "completed": true,
+          "configured_event_budget": 12,
+          "peak_queue_occupancy": 4,
+          "pending_event_count": 0,
+          "processed_event_count": 7,
+          "termination_reason": "completed"
+        },
+        "observation_topology": [
+          [
+            "stimulus-left",
+            "left",
+            0.25
+          ],
+          [
+            "stimulus-right",
+            "right",
+            0.25
+          ],
+          [
+            "target",
+            "left",
+            1.25
+          ],
+          [
+            "target",
+            "right",
+            3.25
+          ]
+        ],
+        "trace": [
+          {
+            "kind": "route_seed",
+            "sequence": 2,
+            "source": "target",
+            "timestamp": 0.0
+          },
+          {
+            "destination": "left",
+            "kind": "local_observation",
+            "payload": 0.0,
+            "sequence": 3,
+            "source": "target",
+            "timestamp": 1.25
+          },
+          {
+            "destination": "right",
+            "kind": "local_observation",
+            "payload": 0.0,
+            "sequence": 4,
+            "source": "target",
+            "timestamp": 3.25
+          },
+          {
+            "kind": "route_seed",
+            "sequence": 0,
+            "source": "stimulus-left",
+            "timestamp": 4.0
+          },
+          {
+            "kind": "route_seed",
+            "sequence": 1,
+            "source": "stimulus-right",
+            "timestamp": 4.0
+          },
+          {
+            "destination": "left",
+            "kind": "local_observation",
+            "payload": 0.7,
+            "sequence": 5,
+            "source": "stimulus-left",
+            "timestamp": 4.25
+          },
+          {
+            "destination": "right",
+            "kind": "local_observation",
+            "payload": 1.0,
+            "sequence": 6,
+            "source": "stimulus-right",
+            "timestamp": 4.25
+          }
+        ]
+      },
+      "scoring_decay": 0.2,
+      "seed": 0
+    },
+    {
+      "admission": {
+        "candidate_set": [
+          [
+            "left",
+            "target"
+          ],
+          [
+            "right",
+            "target"
+          ]
+        ],
+        "capacity_before": {
+          "edge_capacity": 1,
+          "edge_count": 0,
+          "fan_in_limit": 2,
+          "fan_in_target": 0,
+          "fan_out_by_candidate": {
+            "left": 0,
+            "right": 0
+          },
+          "fan_out_limit": 1,
+          "remaining_slots": 1
+        },
+        "final_edges": [
+          [
+            "right",
+            "target",
+            1.0
+          ]
+        ],
+        "graph_fingerprint": "d407107716ddd99aa69d21fcb89519ff2f061d391af75489cdd8562bf8835200",
+        "projected_capacity": {
+          "edge_capacity": 1,
+          "edge_count": 1
+        },
+        "rejected_candidates": [
+          {
+            "candidate": [
+              "left",
+              "target"
+            ],
+            "reason": "edge_capacity",
+            "status": "full_capacity"
+          }
+        ],
+        "selected_candidate": "right",
+        "selected_result": {
+          "edge": [
+            "right",
+            "target"
+          ],
+          "reason": null,
+          "status": "grown"
+        },
+        "selected_role": "right",
+        "tie_rule": "score descending, then candidate identifier ascending"
+      },
+      "candidate_scores": [
+        [
+          "left",
+          0.5185727544772024
+        ],
+        [
+          "right",
+          0.4065696597405991
+        ]
+      ],
+      "complete": true,
+      "condition": "random",
+      "crossover": {
+        "equality": "r_left * exp(-mu * dt_left) = r_right * exp(-mu * dt_right)",
+        "equation": "score = abs(local_residual) * exp(-scoring_decay * elapsed)",
+        "interval_delta": 2.0,
+        "left_residual_at_execution_decay": 0.6333861926251716,
+        "right_residual_at_execution_decay": 0.7408182206817179,
+        "scoring_decay_crossover": 0.07833747196936626
+      },
+      "decision_timestamp": 3.25,
+      "execution_decay": 0.1,
+      "fixture_id": "luna-13b-runtime-local-crossover-v1",
+      "future_probe": false,
+      "mirror": false,
+      "ranked_candidates": [
+        "left",
+        "right"
+      ],
+      "records": [
+        {
+          "admission_score": 0.5185727544772024,
+          "admitted": false,
+          "candidate_id": "left",
+          "candidate_role": "left",
+          "decision_observation_timestamp": 1.25,
+          "decision_timestamp": 1.25,
+          "elapsed_interval": 1.0,
+          "evidence_source": "runtime_local_decay_score",
+          "execution_decay": 0.1,
+          "followup_observation": {
+            "payload": 0.0,
+            "sequence": 5,
+            "source": "target",
+            "timestamp": 1.25
+          },
+          "local_pre_state": 0.7,
+          "local_residual_state": 0.6333861926251716,
+          "observation_timestamp": 0.25,
+          "originating_observation": {
+            "payload": 0.7,
+            "sequence": 3,
+            "source": "stimulus-left",
+            "timestamp": 0.25
+          },
+          "rank": 1,
+          "score": 0.5185727544772024,
+          "score_components": {
+            "elapsed_decay_factor": 0.8187307530779818,
+            "local_residual_magnitude": 0.6333861926251716
+          },
+          "scoring_decay": 0.2
+        },
+        {
+          "admission_score": 0.4065696597405991,
+          "admitted": true,
+          "candidate_id": "right",
+          "candidate_role": "right",
+          "decision_observation_timestamp": 3.25,
+          "decision_timestamp": 3.25,
+          "elapsed_interval": 3.0,
+          "evidence_source": "runtime_local_decay_score",
+          "execution_decay": 0.1,
+          "followup_observation": {
+            "payload": 0.0,
+            "sequence": 6,
+            "source": "target",
+            "timestamp": 3.25
+          },
+          "local_pre_state": 1.0,
+          "local_residual_state": 0.7408182206817179,
+          "observation_timestamp": 0.25,
+          "originating_observation": {
+            "payload": 1.0,
+            "sequence": 4,
+            "source": "stimulus-right",
+            "timestamp": 0.25
+          },
+          "rank": 2,
+          "score": 0.4065696597405991,
+          "score_components": {
+            "elapsed_decay_factor": 0.5488116360940264,
+            "local_residual_magnitude": 0.7408182206817179
+          },
+          "scoring_decay": 0.2
+        }
+      ],
+      "runtime": {
+        "execution": {
+          "budget_exhausted": false,
+          "completed": true,
+          "configured_event_budget": 12,
+          "peak_queue_occupancy": 4,
+          "pending_event_count": 0,
+          "processed_event_count": 7,
+          "termination_reason": "completed"
+        },
+        "observation_topology": [
+          [
+            "stimulus-left",
+            "left",
+            0.25
+          ],
+          [
+            "stimulus-right",
+            "right",
+            0.25
+          ],
+          [
+            "target",
+            "left",
+            1.25
+          ],
+          [
+            "target",
+            "right",
+            3.25
+          ]
+        ],
+        "trace": [
+          {
+            "kind": "route_seed",
+            "sequence": 0,
+            "source": "stimulus-left",
+            "timestamp": 0.0
+          },
+          {
+            "kind": "route_seed",
+            "sequence": 1,
+            "source": "stimulus-right",
+            "timestamp": 0.0
+          },
+          {
+            "kind": "route_seed",
+            "sequence": 2,
+            "source": "target",
+            "timestamp": 0.0
+          },
+          {
+            "destination": "left",
+            "kind": "local_observation",
+            "payload": 0.7,
+            "sequence": 3,
+            "source": "stimulus-left",
+            "timestamp": 0.25
+          },
+          {
+            "destination": "right",
+            "kind": "local_observation",
+            "payload": 1.0,
+            "sequence": 4,
+            "source": "stimulus-right",
+            "timestamp": 0.25
+          },
+          {
+            "destination": "left",
+            "kind": "local_observation",
+            "payload": 0.0,
+            "sequence": 5,
+            "source": "target",
+            "timestamp": 1.25
+          },
+          {
+            "destination": "right",
+            "kind": "local_observation",
+            "payload": 0.0,
+            "sequence": 6,
+            "source": "target",
+            "timestamp": 3.25
+          }
+        ]
+      },
+      "scoring_decay": 0.2,
+      "seed": 0
+    },
+    {
+      "admission": {
+        "candidate_set": [
+          [
+            "left",
+            "target"
+          ],
+          [
+            "right",
+            "target"
+          ]
+        ],
+        "capacity_before": {
+          "edge_capacity": 1,
+          "edge_count": 0,
+          "fan_in_limit": 2,
+          "fan_in_target": 0,
+          "fan_out_by_candidate": {
+            "left": 0,
+            "right": 0
+          },
+          "fan_out_limit": 1,
+          "remaining_slots": 1
+        },
+        "final_edges": [
+          [
+            "right",
+            "target",
+            1.0
+          ]
+        ],
+        "graph_fingerprint": "d407107716ddd99aa69d21fcb89519ff2f061d391af75489cdd8562bf8835200",
+        "projected_capacity": {
+          "edge_capacity": 1,
+          "edge_count": 1
+        },
+        "rejected_candidates": [
+          {
+            "candidate": [
+              "left",
+              "target"
+            ],
+            "reason": "edge_capacity",
+            "status": "full_capacity"
+          }
+        ],
+        "selected_candidate": "right",
+        "selected_result": {
+          "edge": [
+            "right",
+            "target"
+          ],
+          "reason": null,
+          "status": "grown"
+        },
+        "selected_role": "right",
+        "tie_rule": "score descending, then candidate identifier ascending"
+      },
+      "candidate_scores": [
+        [
+          "left",
+          0.5185727544772024
+        ],
+        [
+          "right",
+          0.4065696597405991
+        ]
+      ],
+      "complete": true,
+      "condition": "score_shuffled",
+      "crossover": {
+        "equality": "r_left * exp(-mu * dt_left) = r_right * exp(-mu * dt_right)",
+        "equation": "score = abs(local_residual) * exp(-scoring_decay * elapsed)",
+        "interval_delta": 2.0,
+        "left_residual_at_execution_decay": 0.6333861926251716,
+        "right_residual_at_execution_decay": 0.7408182206817179,
+        "scoring_decay_crossover": 0.07833747196936626
+      },
+      "decision_timestamp": 3.25,
+      "execution_decay": 0.1,
+      "fixture_id": "luna-13b-runtime-local-crossover-v1",
+      "future_probe": false,
+      "mirror": false,
+      "ranked_candidates": [
+        "left",
+        "right"
+      ],
+      "records": [
+        {
+          "admission_score": 0.5185727544772024,
+          "admitted": false,
+          "candidate_id": "left",
+          "candidate_role": "left",
+          "decision_observation_timestamp": 1.25,
+          "decision_timestamp": 1.25,
+          "elapsed_interval": 1.0,
+          "evidence_source": "runtime_local_decay_score",
+          "execution_decay": 0.1,
+          "followup_observation": {
+            "payload": 0.0,
+            "sequence": 5,
+            "source": "target",
+            "timestamp": 1.25
+          },
+          "local_pre_state": 0.7,
+          "local_residual_state": 0.6333861926251716,
+          "observation_timestamp": 0.25,
+          "originating_observation": {
+            "payload": 0.7,
+            "sequence": 3,
+            "source": "stimulus-left",
+            "timestamp": 0.25
+          },
+          "rank": 1,
+          "score": 0.5185727544772024,
+          "score_components": {
+            "elapsed_decay_factor": 0.8187307530779818,
+            "local_residual_magnitude": 0.6333861926251716
+          },
+          "scoring_decay": 0.2
+        },
+        {
+          "admission_score": 0.4065696597405991,
+          "admitted": true,
+          "candidate_id": "right",
+          "candidate_role": "right",
+          "decision_observation_timestamp": 3.25,
+          "decision_timestamp": 3.25,
+          "elapsed_interval": 3.0,
+          "evidence_source": "runtime_local_decay_score",
+          "execution_decay": 0.1,
+          "followup_observation": {
+            "payload": 0.0,
+            "sequence": 6,
+            "source": "target",
+            "timestamp": 3.25
+          },
+          "local_pre_state": 1.0,
+          "local_residual_state": 0.7408182206817179,
+          "observation_timestamp": 0.25,
+          "originating_observation": {
+            "payload": 1.0,
+            "sequence": 4,
+            "source": "stimulus-right",
+            "timestamp": 0.25
+          },
+          "rank": 2,
+          "score": 0.4065696597405991,
+          "score_components": {
+            "elapsed_decay_factor": 0.5488116360940264,
+            "local_residual_magnitude": 0.7408182206817179
+          },
+          "scoring_decay": 0.2
+        }
+      ],
+      "runtime": {
+        "execution": {
+          "budget_exhausted": false,
+          "completed": true,
+          "configured_event_budget": 12,
+          "peak_queue_occupancy": 4,
+          "pending_event_count": 0,
+          "processed_event_count": 7,
+          "termination_reason": "completed"
+        },
+        "observation_topology": [
+          [
+            "stimulus-left",
+            "left",
+            0.25
+          ],
+          [
+            "stimulus-right",
+            "right",
+            0.25
+          ],
+          [
+            "target",
+            "left",
+            1.25
+          ],
+          [
+            "target",
+            "right",
+            3.25
+          ]
+        ],
+        "trace": [
+          {
+            "kind": "route_seed",
+            "sequence": 0,
+            "source": "stimulus-left",
+            "timestamp": 0.0
+          },
+          {
+            "kind": "route_seed",
+            "sequence": 1,
+            "source": "stimulus-right",
+            "timestamp": 0.0
+          },
+          {
+            "kind": "route_seed",
+            "sequence": 2,
+            "source": "target",
+            "timestamp": 0.0
+          },
+          {
+            "destination": "left",
+            "kind": "local_observation",
+            "payload": 0.7,
+            "sequence": 3,
+            "source": "stimulus-left",
+            "timestamp": 0.25
+          },
+          {
+            "destination": "right",
+            "kind": "local_observation",
+            "payload": 1.0,
+            "sequence": 4,
+            "source": "stimulus-right",
+            "timestamp": 0.25
+          },
+          {
+            "destination": "left",
+            "kind": "local_observation",
+            "payload": 0.0,
+            "sequence": 5,
+            "source": "target",
+            "timestamp": 1.25
+          },
+          {
+            "destination": "right",
+            "kind": "local_observation",
+            "payload": 0.0,
+            "sequence": 6,
+            "source": "target",
+            "timestamp": 3.25
+          }
+        ]
+      },
+      "scoring_decay": 0.2,
+      "seed": 1
+    },
+    {
+      "admission": {
+        "candidate_set": [
+          [
+            "left",
+            "target"
+          ],
+          [
+            "right",
+            "target"
+          ]
+        ],
+        "capacity_before": {
+          "edge_capacity": 1,
+          "edge_count": 0,
+          "fan_in_limit": 2,
+          "fan_in_target": 0,
+          "fan_out_by_candidate": {
+            "left": 0,
+            "right": 0
+          },
+          "fan_out_limit": 1,
+          "remaining_slots": 1
+        },
+        "final_edges": [],
+        "graph_fingerprint": "2e38e77b22c314a449e91fafed92a43826ac6aa403ae6a8acb6cf58239fbaf5d",
+        "projected_capacity": {
+          "edge_capacity": 1,
+          "edge_count": 1
+        },
+        "rejected_candidates": [
+          {
+            "candidate": [
+              "left",
+              "target"
+            ],
+            "reason": "fixed_topology",
+            "status": "not_attempted"
+          },
+          {
+            "candidate": [
+              "right",
+              "target"
+            ],
+            "reason": "fixed_topology",
+            "status": "not_attempted"
+          }
+        ],
+        "selected_candidate": null,
+        "selected_result": {
+          "reason": "fixed_topology",
+          "status": "not_attempted"
+        },
+        "selected_role": null,
+        "tie_rule": "score descending, then candidate identifier ascending"
+      },
+      "candidate_scores": [
+        [
+          "left",
+          0.5185727544772024
+        ],
+        [
+          "right",
+          0.4065696597405991
+        ]
+      ],
+      "complete": true,
+      "condition": "fixed",
+      "crossover": {
+        "equality": "r_left * exp(-mu * dt_left) = r_right * exp(-mu * dt_right)",
+        "equation": "score = abs(local_residual) * exp(-scoring_decay * elapsed)",
+        "interval_delta": 2.0,
+        "left_residual_at_execution_decay": 0.6333861926251716,
+        "right_residual_at_execution_decay": 0.7408182206817179,
+        "scoring_decay_crossover": 0.07833747196936626
+      },
+      "decision_timestamp": 3.25,
+      "execution_decay": 0.1,
+      "fixture_id": "luna-13b-runtime-local-crossover-v1",
+      "future_probe": false,
+      "mirror": false,
+      "ranked_candidates": [
+        "left",
+        "right"
+      ],
+      "records": [
+        {
+          "admission_score": 0.5185727544772024,
+          "admitted": false,
+          "candidate_id": "left",
+          "candidate_role": "left",
+          "decision_observation_timestamp": 1.25,
+          "decision_timestamp": 1.25,
+          "elapsed_interval": 1.0,
+          "evidence_source": "runtime_local_decay_score",
+          "execution_decay": 0.1,
+          "followup_observation": {
+            "payload": 0.0,
+            "sequence": 5,
+            "source": "target",
+            "timestamp": 1.25
+          },
+          "local_pre_state": 0.7,
+          "local_residual_state": 0.6333861926251716,
+          "observation_timestamp": 0.25,
+          "originating_observation": {
+            "payload": 0.7,
+            "sequence": 3,
+            "source": "stimulus-left",
+            "timestamp": 0.25
+          },
+          "rank": 1,
+          "score": 0.5185727544772024,
+          "score_components": {
+            "elapsed_decay_factor": 0.8187307530779818,
+            "local_residual_magnitude": 0.6333861926251716
+          },
+          "scoring_decay": 0.2
+        },
+        {
+          "admission_score": 0.4065696597405991,
+          "admitted": false,
+          "candidate_id": "right",
+          "candidate_role": "right",
+          "decision_observation_timestamp": 3.25,
+          "decision_timestamp": 3.25,
+          "elapsed_interval": 3.0,
+          "evidence_source": "runtime_local_decay_score",
+          "execution_decay": 0.1,
+          "followup_observation": {
+            "payload": 0.0,
+            "sequence": 6,
+            "source": "target",
+            "timestamp": 3.25
+          },
+          "local_pre_state": 1.0,
+          "local_residual_state": 0.7408182206817179,
+          "observation_timestamp": 0.25,
+          "originating_observation": {
+            "payload": 1.0,
+            "sequence": 4,
+            "source": "stimulus-right",
+            "timestamp": 0.25
+          },
+          "rank": 2,
+          "score": 0.4065696597405991,
+          "score_components": {
+            "elapsed_decay_factor": 0.5488116360940264,
+            "local_residual_magnitude": 0.7408182206817179
+          },
+          "scoring_decay": 0.2
+        }
+      ],
+      "runtime": {
+        "execution": {
+          "budget_exhausted": false,
+          "completed": true,
+          "configured_event_budget": 12,
+          "peak_queue_occupancy": 4,
+          "pending_event_count": 0,
+          "processed_event_count": 7,
+          "termination_reason": "completed"
+        },
+        "observation_topology": [
+          [
+            "stimulus-left",
+            "left",
+            0.25
+          ],
+          [
+            "stimulus-right",
+            "right",
+            0.25
+          ],
+          [
+            "target",
+            "left",
+            1.25
+          ],
+          [
+            "target",
+            "right",
+            3.25
+          ]
+        ],
+        "trace": [
+          {
+            "kind": "route_seed",
+            "sequence": 0,
+            "source": "stimulus-left",
+            "timestamp": 0.0
+          },
+          {
+            "kind": "route_seed",
+            "sequence": 1,
+            "source": "stimulus-right",
+            "timestamp": 0.0
+          },
+          {
+            "kind": "route_seed",
+            "sequence": 2,
+            "source": "target",
+            "timestamp": 0.0
+          },
+          {
+            "destination": "left",
+            "kind": "local_observation",
+            "payload": 0.7,
+            "sequence": 3,
+            "source": "stimulus-left",
+            "timestamp": 0.25
+          },
+          {
+            "destination": "right",
+            "kind": "local_observation",
+            "payload": 1.0,
+            "sequence": 4,
+            "source": "stimulus-right",
+            "timestamp": 0.25
+          },
+          {
+            "destination": "left",
+            "kind": "local_observation",
+            "payload": 0.0,
+            "sequence": 5,
+            "source": "target",
+            "timestamp": 1.25
+          },
+          {
+            "destination": "right",
+            "kind": "local_observation",
+            "payload": 0.0,
+            "sequence": 6,
+            "source": "target",
+            "timestamp": 3.25
+          }
+        ]
+      },
+      "scoring_decay": 0.2,
+      "seed": 0
+    },
+    {
+      "admission": {
+        "candidate_set": [
+          [
+            "left",
+            "target"
+          ],
+          [
+            "right",
+            "target"
+          ]
+        ],
+        "capacity_before": {
+          "edge_capacity": 1,
+          "edge_count": 0,
+          "fan_in_limit": 2,
+          "fan_in_target": 0,
+          "fan_out_by_candidate": {
+            "left": 0,
+            "right": 0
+          },
+          "fan_out_limit": 1,
+          "remaining_slots": 1
+        },
+        "final_edges": [
+          [
+            "right",
+            "target",
+            1.0
+          ]
+        ],
+        "graph_fingerprint": "d407107716ddd99aa69d21fcb89519ff2f061d391af75489cdd8562bf8835200",
+        "projected_capacity": {
+          "edge_capacity": 1,
+          "edge_count": 1
+        },
+        "rejected_candidates": [
+          {
+            "candidate": [
+              "left",
+              "target"
+            ],
+            "reason": "edge_capacity",
+            "status": "full_capacity"
+          }
+        ],
+        "selected_candidate": "right",
+        "selected_result": {
+          "edge": [
+            "right",
+            "target"
+          ],
+          "reason": null,
+          "status": "grown"
+        },
+        "selected_role": "right",
+        "tie_rule": "score descending, then candidate identifier ascending"
+      },
+      "candidate_scores": [
+        [
+          "left",
+          0.5185727544772024
+        ],
+        [
+          "right",
+          0.7408182206817178
+        ]
+      ],
+      "complete": true,
+      "condition": "uniform",
+      "crossover": {
+        "equality": "r_left * exp(-mu * dt_left) = r_right * exp(-mu * dt_right)",
+        "equation": "score = abs(local_residual) * exp(-scoring_decay * elapsed)",
+        "interval_delta": 2.0,
+        "left_residual_at_execution_decay": 0.6333861926251716,
+        "right_residual_at_execution_decay": 0.7408182206817179,
+        "scoring_decay_crossover": 0.07833747196936626
+      },
+      "decision_timestamp": 1.25,
+      "execution_decay": 0.1,
+      "fixture_id": "luna-13b-runtime-local-crossover-v1",
+      "future_probe": false,
+      "mirror": false,
+      "ranked_candidates": [
+        "right",
+        "left"
+      ],
+      "records": [
+        {
+          "admission_score": 0.5185727544772024,
+          "admitted": false,
+          "candidate_id": "left",
+          "candidate_role": "left",
+          "decision_observation_timestamp": 1.25,
+          "decision_timestamp": 1.25,
+          "elapsed_interval": 1.0,
+          "evidence_source": "runtime_local_decay_score",
+          "execution_decay": 0.1,
+          "followup_observation": {
+            "payload": 0.0,
+            "sequence": 5,
+            "source": "target",
+            "timestamp": 1.25
+          },
+          "local_pre_state": 0.7,
+          "local_residual_state": 0.6333861926251716,
+          "observation_timestamp": 0.25,
+          "originating_observation": {
+            "payload": 0.7,
+            "sequence": 3,
+            "source": "stimulus-left",
+            "timestamp": 0.25
+          },
+          "rank": 2,
+          "score": 0.5185727544772024,
+          "score_components": {
+            "elapsed_decay_factor": 0.8187307530779818,
+            "local_residual_magnitude": 0.6333861926251716
+          },
+          "scoring_decay": 0.2
+        },
+        {
+          "admission_score": 0.7408182206817178,
+          "admitted": true,
+          "candidate_id": "right",
+          "candidate_role": "right",
+          "decision_observation_timestamp": 1.25,
+          "decision_timestamp": 1.25,
+          "elapsed_interval": 1.0,
+          "evidence_source": "runtime_local_decay_score",
+          "execution_decay": 0.1,
+          "followup_observation": {
+            "payload": 0.0,
+            "sequence": 6,
+            "source": "target",
+            "timestamp": 1.25
+          },
+          "local_pre_state": 1.0,
+          "local_residual_state": 0.9048374180359595,
+          "observation_timestamp": 0.25,
+          "originating_observation": {
+            "payload": 1.0,
+            "sequence": 4,
+            "source": "stimulus-right",
+            "timestamp": 0.25
+          },
+          "rank": 1,
+          "score": 0.7408182206817178,
+          "score_components": {
+            "elapsed_decay_factor": 0.8187307530779818,
+            "local_residual_magnitude": 0.9048374180359595
+          },
+          "scoring_decay": 0.2
+        }
+      ],
+      "runtime": {
+        "execution": {
+          "budget_exhausted": false,
+          "completed": true,
+          "configured_event_budget": 12,
+          "peak_queue_occupancy": 4,
+          "pending_event_count": 0,
+          "processed_event_count": 7,
+          "termination_reason": "completed"
+        },
+        "observation_topology": [
+          [
+            "stimulus-left",
+            "left",
+            0.25
+          ],
+          [
+            "stimulus-right",
+            "right",
+            0.25
+          ],
+          [
+            "target",
+            "left",
+            1.25
+          ],
+          [
+            "target",
+            "right",
+            1.25
+          ]
+        ],
+        "trace": [
+          {
+            "kind": "route_seed",
+            "sequence": 0,
+            "source": "stimulus-left",
+            "timestamp": 0.0
+          },
+          {
+            "kind": "route_seed",
+            "sequence": 1,
+            "source": "stimulus-right",
+            "timestamp": 0.0
+          },
+          {
+            "kind": "route_seed",
+            "sequence": 2,
+            "source": "target",
+            "timestamp": 0.0
+          },
+          {
+            "destination": "left",
+            "kind": "local_observation",
+            "payload": 0.7,
+            "sequence": 3,
+            "source": "stimulus-left",
+            "timestamp": 0.25
+          },
+          {
+            "destination": "right",
+            "kind": "local_observation",
+            "payload": 1.0,
+            "sequence": 4,
+            "source": "stimulus-right",
+            "timestamp": 0.25
+          },
+          {
+            "destination": "left",
+            "kind": "local_observation",
+            "payload": 0.0,
+            "sequence": 5,
+            "source": "target",
+            "timestamp": 1.25
+          },
+          {
+            "destination": "right",
+            "kind": "local_observation",
+            "payload": 0.0,
+            "sequence": 6,
+            "source": "target",
+            "timestamp": 1.25
+          }
+        ]
+      },
+      "scoring_decay": 0.2,
+      "seed": 0
+    },
+    {
+      "admission": {
+        "candidate_set": [
+          [
+            "left",
+            "target"
+          ],
+          [
+            "right",
+            "target"
+          ]
+        ],
+        "capacity_before": {
+          "edge_capacity": 1,
+          "edge_count": 0,
+          "fan_in_limit": 2,
+          "fan_in_target": 0,
+          "fan_out_by_candidate": {
+            "left": 0,
+            "right": 0
+          },
+          "fan_out_limit": 1,
+          "remaining_slots": 1
+        },
+        "final_edges": [
+          [
+            "right",
+            "target",
+            1.0
+          ]
+        ],
+        "graph_fingerprint": "d407107716ddd99aa69d21fcb89519ff2f061d391af75489cdd8562bf8835200",
+        "projected_capacity": {
+          "edge_capacity": 1,
+          "edge_count": 1
+        },
+        "rejected_candidates": [
+          {
+            "candidate": [
+              "left",
+              "target"
+            ],
+            "reason": "edge_capacity",
+            "status": "full_capacity"
+          }
+        ],
+        "selected_candidate": "right",
+        "selected_result": {
+          "edge": [
+            "right",
+            "target"
+          ],
+          "reason": null,
+          "status": "grown"
+        },
+        "selected_role": "right",
+        "tie_rule": "score descending, then candidate identifier ascending"
+      },
+      "candidate_scores": [
+        [
+          "left",
+          0.6333861926251716
+        ],
+        [
+          "right",
+          0.7408182206817179
+        ]
+      ],
+      "complete": true,
+      "condition": "neutral",
+      "crossover": {
+        "equality": "r_left * exp(-mu * dt_left) = r_right * exp(-mu * dt_right)",
+        "equation": "score = abs(local_residual) * exp(-scoring_decay * elapsed)",
+        "interval_delta": 2.0,
+        "left_residual_at_execution_decay": 0.6333861926251716,
+        "right_residual_at_execution_decay": 0.7408182206817179,
+        "scoring_decay_crossover": 0.07833747196936626
+      },
+      "decision_timestamp": 3.25,
+      "execution_decay": 0.1,
+      "fixture_id": "luna-13b-runtime-local-crossover-v1",
+      "future_probe": false,
+      "mirror": false,
+      "ranked_candidates": [
+        "right",
+        "left"
+      ],
+      "records": [
+        {
+          "admission_score": 0.6333861926251716,
+          "admitted": false,
+          "candidate_id": "left",
+          "candidate_role": "left",
+          "decision_observation_timestamp": 1.25,
+          "decision_timestamp": 1.25,
+          "elapsed_interval": 1.0,
+          "evidence_source": "runtime_local_decay_score",
+          "execution_decay": 0.1,
+          "followup_observation": {
+            "payload": 0.0,
+            "sequence": 5,
+            "source": "target",
+            "timestamp": 1.25
+          },
+          "local_pre_state": 0.7,
+          "local_residual_state": 0.6333861926251716,
+          "observation_timestamp": 0.25,
+          "originating_observation": {
+            "payload": 0.7,
+            "sequence": 3,
+            "source": "stimulus-left",
+            "timestamp": 0.25
+          },
+          "rank": 2,
+          "score": 0.6333861926251716,
+          "score_components": {
+            "elapsed_decay_factor": 1.0,
+            "local_residual_magnitude": 0.6333861926251716
+          },
+          "scoring_decay": 0.0
+        },
+        {
+          "admission_score": 0.7408182206817179,
+          "admitted": true,
+          "candidate_id": "right",
+          "candidate_role": "right",
+          "decision_observation_timestamp": 3.25,
+          "decision_timestamp": 3.25,
+          "elapsed_interval": 3.0,
+          "evidence_source": "runtime_local_decay_score",
+          "execution_decay": 0.1,
+          "followup_observation": {
+            "payload": 0.0,
+            "sequence": 6,
+            "source": "target",
+            "timestamp": 3.25
+          },
+          "local_pre_state": 1.0,
+          "local_residual_state": 0.7408182206817179,
+          "observation_timestamp": 0.25,
+          "originating_observation": {
+            "payload": 1.0,
+            "sequence": 4,
+            "source": "stimulus-right",
+            "timestamp": 0.25
+          },
+          "rank": 1,
+          "score": 0.7408182206817179,
+          "score_components": {
+            "elapsed_decay_factor": 1.0,
+            "local_residual_magnitude": 0.7408182206817179
+          },
+          "scoring_decay": 0.0
+        }
+      ],
+      "runtime": {
+        "execution": {
+          "budget_exhausted": false,
+          "completed": true,
+          "configured_event_budget": 12,
+          "peak_queue_occupancy": 4,
+          "pending_event_count": 0,
+          "processed_event_count": 7,
+          "termination_reason": "completed"
+        },
+        "observation_topology": [
+          [
+            "stimulus-left",
+            "left",
+            0.25
+          ],
+          [
+            "stimulus-right",
+            "right",
+            0.25
+          ],
+          [
+            "target",
+            "left",
+            1.25
+          ],
+          [
+            "target",
+            "right",
+            3.25
+          ]
+        ],
+        "trace": [
+          {
+            "kind": "route_seed",
+            "sequence": 0,
+            "source": "stimulus-left",
+            "timestamp": 0.0
+          },
+          {
+            "kind": "route_seed",
+            "sequence": 1,
+            "source": "stimulus-right",
+            "timestamp": 0.0
+          },
+          {
+            "kind": "route_seed",
+            "sequence": 2,
+            "source": "target",
+            "timestamp": 0.0
+          },
+          {
+            "destination": "left",
+            "kind": "local_observation",
+            "payload": 0.7,
+            "sequence": 3,
+            "source": "stimulus-left",
+            "timestamp": 0.25
+          },
+          {
+            "destination": "right",
+            "kind": "local_observation",
+            "payload": 1.0,
+            "sequence": 4,
+            "source": "stimulus-right",
+            "timestamp": 0.25
+          },
+          {
+            "destination": "left",
+            "kind": "local_observation",
+            "payload": 0.0,
+            "sequence": 5,
+            "source": "target",
+            "timestamp": 1.25
+          },
+          {
+            "destination": "right",
+            "kind": "local_observation",
+            "payload": 0.0,
+            "sequence": 6,
+            "source": "target",
+            "timestamp": 3.25
+          }
+        ]
+      },
+      "scoring_decay": 0.0,
+      "seed": 0
+    },
+    {
+      "admission": {
+        "candidate_set": [
+          [
+            "left",
+            "target"
+          ],
+          [
+            "right",
+            "target"
+          ]
+        ],
+        "capacity_before": {
+          "edge_capacity": 1,
+          "edge_count": 0,
+          "fan_in_limit": 2,
+          "fan_in_target": 0,
+          "fan_out_by_candidate": {
+            "left": 0,
+            "right": 0
+          },
+          "fan_out_limit": 1,
+          "remaining_slots": 1
+        },
+        "final_edges": [
+          [
+            "left",
+            "target",
+            1.0
+          ]
+        ],
+        "graph_fingerprint": "4f1a25a84db889ee0e33cf1a9c25f887f6c4d5144e019e81301a1789f8fc77f1",
+        "projected_capacity": {
+          "edge_capacity": 1,
+          "edge_count": 1
+        },
+        "rejected_candidates": [
+          {
+            "candidate": [
+              "right",
+              "target"
+            ],
+            "reason": "edge_capacity",
+            "status": "full_capacity"
+          }
+        ],
+        "selected_candidate": "left",
+        "selected_result": {
+          "edge": [
+            "left",
+            "target"
+          ],
+          "reason": null,
+          "status": "grown"
+        },
+        "selected_role": "left",
+        "tie_rule": "score descending, then candidate identifier ascending"
+      },
+      "candidate_scores": [
+        [
+          "left",
+          1.0
+        ],
+        [
+          "right",
+          1.0
+        ]
+      ],
+      "complete": true,
+      "condition": "tie",
+      "crossover": {
+        "equality": "r_left * exp(-mu * dt_left) = r_right * exp(-mu * dt_right)",
+        "equation": "score = abs(local_residual) * exp(-scoring_decay * elapsed)",
+        "interval_delta": 2.0,
+        "left_residual_at_execution_decay": 0.6333861926251716,
+        "right_residual_at_execution_decay": 0.7408182206817179,
+        "scoring_decay_crossover": 0.07833747196936626
+      },
+      "decision_timestamp": 3.25,
+      "execution_decay": 0.1,
+      "fixture_id": "luna-13b-runtime-local-crossover-v1",
+      "future_probe": false,
+      "mirror": false,
+      "ranked_candidates": [
+        "left",
+        "right"
+      ],
+      "records": [
+        {
+          "admission_score": 1.0,
+          "admitted": true,
+          "candidate_id": "left",
+          "candidate_role": "left",
+          "decision_observation_timestamp": 1.25,
+          "decision_timestamp": 1.25,
+          "elapsed_interval": 1.0,
+          "evidence_source": "explicit_exact_tie_control",
+          "execution_decay": 0.1,
+          "followup_observation": {
+            "payload": 0.0,
+            "sequence": 5,
+            "source": "target",
+            "timestamp": 1.25
+          },
+          "local_pre_state": 0.7,
+          "local_residual_state": 0.6333861926251716,
+          "observation_timestamp": 0.25,
+          "originating_observation": {
+            "payload": 0.7,
+            "sequence": 3,
+            "source": "stimulus-left",
+            "timestamp": 0.25
+          },
+          "rank": 1,
+          "score": 1.0,
+          "score_components": {
+            "elapsed_decay_factor": 1.0,
+            "local_residual_magnitude": 0.6333861926251716
+          },
+          "scoring_decay": 0.0
+        },
+        {
+          "admission_score": 1.0,
+          "admitted": false,
+          "candidate_id": "right",
+          "candidate_role": "right",
+          "decision_observation_timestamp": 3.25,
+          "decision_timestamp": 3.25,
+          "elapsed_interval": 3.0,
+          "evidence_source": "explicit_exact_tie_control",
+          "execution_decay": 0.1,
+          "followup_observation": {
+            "payload": 0.0,
+            "sequence": 6,
+            "source": "target",
+            "timestamp": 3.25
+          },
+          "local_pre_state": 1.0,
+          "local_residual_state": 0.7408182206817179,
+          "observation_timestamp": 0.25,
+          "originating_observation": {
+            "payload": 1.0,
+            "sequence": 4,
+            "source": "stimulus-right",
+            "timestamp": 0.25
+          },
+          "rank": 2,
+          "score": 1.0,
+          "score_components": {
+            "elapsed_decay_factor": 1.0,
+            "local_residual_magnitude": 0.7408182206817179
+          },
+          "scoring_decay": 0.0
+        }
+      ],
+      "runtime": {
+        "execution": {
+          "budget_exhausted": false,
+          "completed": true,
+          "configured_event_budget": 12,
+          "peak_queue_occupancy": 4,
+          "pending_event_count": 0,
+          "processed_event_count": 7,
+          "termination_reason": "completed"
+        },
+        "observation_topology": [
+          [
+            "stimulus-left",
+            "left",
+            0.25
+          ],
+          [
+            "stimulus-right",
+            "right",
+            0.25
+          ],
+          [
+            "target",
+            "left",
+            1.25
+          ],
+          [
+            "target",
+            "right",
+            3.25
+          ]
+        ],
+        "trace": [
+          {
+            "kind": "route_seed",
+            "sequence": 0,
+            "source": "stimulus-left",
+            "timestamp": 0.0
+          },
+          {
+            "kind": "route_seed",
+            "sequence": 1,
+            "source": "stimulus-right",
+            "timestamp": 0.0
+          },
+          {
+            "kind": "route_seed",
+            "sequence": 2,
+            "source": "target",
+            "timestamp": 0.0
+          },
+          {
+            "destination": "left",
+            "kind": "local_observation",
+            "payload": 0.7,
+            "sequence": 3,
+            "source": "stimulus-left",
+            "timestamp": 0.25
+          },
+          {
+            "destination": "right",
+            "kind": "local_observation",
+            "payload": 1.0,
+            "sequence": 4,
+            "source": "stimulus-right",
+            "timestamp": 0.25
+          },
+          {
+            "destination": "left",
+            "kind": "local_observation",
+            "payload": 0.0,
+            "sequence": 5,
+            "source": "target",
+            "timestamp": 1.25
+          },
+          {
+            "destination": "right",
+            "kind": "local_observation",
+            "payload": 0.0,
+            "sequence": 6,
+            "source": "target",
+            "timestamp": 3.25
+          }
+        ]
+      },
+      "scoring_decay": 0.0,
+      "seed": 0
+    },
+    {
+      "admission": {
+        "candidate_set": [
+          [
+            "left",
+            "target"
+          ],
+          [
+            "right",
+            "target"
+          ]
+        ],
+        "capacity_before": {
+          "edge_capacity": 1,
+          "edge_count": 0,
+          "fan_in_limit": 2,
+          "fan_in_target": 0,
+          "fan_out_by_candidate": {
+            "left": 0,
+            "right": 0
+          },
+          "fan_out_limit": 1,
+          "remaining_slots": 1
+        },
+        "final_edges": [
+          [
+            "right",
+            "target",
+            1.0
+          ]
+        ],
+        "graph_fingerprint": "d407107716ddd99aa69d21fcb89519ff2f061d391af75489cdd8562bf8835200",
+        "projected_capacity": {
+          "edge_capacity": 1,
+          "edge_count": 1
+        },
+        "rejected_candidates": [
+          {
+            "candidate": [
+              "left",
+              "target"
+            ],
+            "reason": "edge_capacity",
+            "status": "full_capacity"
+          }
+        ],
+        "selected_candidate": "right",
+        "selected_result": {
+          "edge": [
+            "right",
+            "target"
+          ],
+          "reason": null,
+          "status": "grown"
+        },
+        "selected_role": "right",
+        "tie_rule": "score descending, then candidate identifier ascending"
+      },
+      "candidate_scores": [
+        [
+          "left",
+          0.6333861926251716
+        ],
+        [
+          "right",
+          0.7408182206817179
+        ]
+      ],
+      "complete": true,
+      "condition": "decay_low",
+      "crossover": {
+        "equality": "r_left * exp(-mu * dt_left) = r_right * exp(-mu * dt_right)",
+        "equation": "score = abs(local_residual) * exp(-scoring_decay * elapsed)",
+        "interval_delta": 2.0,
+        "left_residual_at_execution_decay": 0.6333861926251716,
+        "right_residual_at_execution_decay": 0.7408182206817179,
+        "scoring_decay_crossover": 0.07833747196936626
+      },
+      "decision_timestamp": 3.25,
+      "execution_decay": 0.1,
+      "fixture_id": "luna-13b-runtime-local-crossover-v1",
+      "future_probe": false,
+      "mirror": false,
+      "ranked_candidates": [
+        "right",
+        "left"
+      ],
+      "records": [
+        {
+          "admission_score": 0.6333861926251716,
+          "admitted": false,
+          "candidate_id": "left",
+          "candidate_role": "left",
+          "decision_observation_timestamp": 1.25,
+          "decision_timestamp": 1.25,
+          "elapsed_interval": 1.0,
+          "evidence_source": "runtime_local_decay_score",
+          "execution_decay": 0.1,
+          "followup_observation": {
+            "payload": 0.0,
+            "sequence": 5,
+            "source": "target",
+            "timestamp": 1.25
+          },
+          "local_pre_state": 0.7,
+          "local_residual_state": 0.6333861926251716,
+          "observation_timestamp": 0.25,
+          "originating_observation": {
+            "payload": 0.7,
+            "sequence": 3,
+            "source": "stimulus-left",
+            "timestamp": 0.25
+          },
+          "rank": 2,
+          "score": 0.6333861926251716,
+          "score_components": {
+            "elapsed_decay_factor": 1.0,
+            "local_residual_magnitude": 0.6333861926251716
+          },
+          "scoring_decay": 0.0
+        },
+        {
+          "admission_score": 0.7408182206817179,
+          "admitted": true,
+          "candidate_id": "right",
+          "candidate_role": "right",
+          "decision_observation_timestamp": 3.25,
+          "decision_timestamp": 3.25,
+          "elapsed_interval": 3.0,
+          "evidence_source": "runtime_local_decay_score",
+          "execution_decay": 0.1,
+          "followup_observation": {
+            "payload": 0.0,
+            "sequence": 6,
+            "source": "target",
+            "timestamp": 3.25
+          },
+          "local_pre_state": 1.0,
+          "local_residual_state": 0.7408182206817179,
+          "observation_timestamp": 0.25,
+          "originating_observation": {
+            "payload": 1.0,
+            "sequence": 4,
+            "source": "stimulus-right",
+            "timestamp": 0.25
+          },
+          "rank": 1,
+          "score": 0.7408182206817179,
+          "score_components": {
+            "elapsed_decay_factor": 1.0,
+            "local_residual_magnitude": 0.7408182206817179
+          },
+          "scoring_decay": 0.0
+        }
+      ],
+      "runtime": {
+        "execution": {
+          "budget_exhausted": false,
+          "completed": true,
+          "configured_event_budget": 12,
+          "peak_queue_occupancy": 4,
+          "pending_event_count": 0,
+          "processed_event_count": 7,
+          "termination_reason": "completed"
+        },
+        "observation_topology": [
+          [
+            "stimulus-left",
+            "left",
+            0.25
+          ],
+          [
+            "stimulus-right",
+            "right",
+            0.25
+          ],
+          [
+            "target",
+            "left",
+            1.25
+          ],
+          [
+            "target",
+            "right",
+            3.25
+          ]
+        ],
+        "trace": [
+          {
+            "kind": "route_seed",
+            "sequence": 0,
+            "source": "stimulus-left",
+            "timestamp": 0.0
+          },
+          {
+            "kind": "route_seed",
+            "sequence": 1,
+            "source": "stimulus-right",
+            "timestamp": 0.0
+          },
+          {
+            "kind": "route_seed",
+            "sequence": 2,
+            "source": "target",
+            "timestamp": 0.0
+          },
+          {
+            "destination": "left",
+            "kind": "local_observation",
+            "payload": 0.7,
+            "sequence": 3,
+            "source": "stimulus-left",
+            "timestamp": 0.25
+          },
+          {
+            "destination": "right",
+            "kind": "local_observation",
+            "payload": 1.0,
+            "sequence": 4,
+            "source": "stimulus-right",
+            "timestamp": 0.25
+          },
+          {
+            "destination": "left",
+            "kind": "local_observation",
+            "payload": 0.0,
+            "sequence": 5,
+            "source": "target",
+            "timestamp": 1.25
+          },
+          {
+            "destination": "right",
+            "kind": "local_observation",
+            "payload": 0.0,
+            "sequence": 6,
+            "source": "target",
+            "timestamp": 3.25
+          }
+        ]
+      },
+      "scoring_decay": 0.0,
+      "seed": 0
+    },
+    {
+      "admission": {
+        "candidate_set": [
+          [
+            "left",
+            "target"
+          ],
+          [
+            "right",
+            "target"
+          ]
+        ],
+        "capacity_before": {
+          "edge_capacity": 1,
+          "edge_count": 0,
+          "fan_in_limit": 2,
+          "fan_in_target": 0,
+          "fan_out_by_candidate": {
+            "left": 0,
+            "right": 0
+          },
+          "fan_out_limit": 1,
+          "remaining_slots": 1
+        },
+        "final_edges": [
+          [
+            "left",
+            "target",
+            1.0
+          ]
+        ],
+        "graph_fingerprint": "4f1a25a84db889ee0e33cf1a9c25f887f6c4d5144e019e81301a1789f8fc77f1",
+        "projected_capacity": {
+          "edge_capacity": 1,
+          "edge_count": 1
+        },
+        "rejected_candidates": [
+          {
+            "candidate": [
+              "right",
+              "target"
+            ],
+            "reason": "edge_capacity",
+            "status": "full_capacity"
+          }
+        ],
+        "selected_candidate": "left",
+        "selected_result": {
+          "edge": [
+            "left",
+            "target"
+          ],
+          "reason": null,
+          "status": "grown"
+        },
+        "selected_role": "right",
+        "tie_rule": "score descending, then candidate identifier ascending"
+      },
+      "candidate_scores": [
+        [
+          "left",
+          0.7408182206817179
+        ],
+        [
+          "right",
+          0.6333861926251716
+        ]
+      ],
+      "complete": true,
+      "condition": "decay_low",
+      "crossover": {
+        "equality": "r_left * exp(-mu * dt_left) = r_right * exp(-mu * dt_right)",
+        "equation": "score = abs(local_residual) * exp(-scoring_decay * elapsed)",
+        "interval_delta": 2.0,
+        "left_residual_at_execution_decay": 0.6333861926251716,
+        "right_residual_at_execution_decay": 0.7408182206817179,
+        "scoring_decay_crossover": 0.07833747196936626
+      },
+      "decision_timestamp": 3.25,
+      "execution_decay": 0.1,
+      "fixture_id": "luna-13b-runtime-local-crossover-v1",
+      "future_probe": false,
+      "mirror": true,
+      "ranked_candidates": [
+        "left",
+        "right"
+      ],
+      "records": [
+        {
+          "admission_score": 0.7408182206817179,
+          "admitted": true,
+          "candidate_id": "left",
+          "candidate_role": "right",
+          "decision_observation_timestamp": 3.25,
+          "decision_timestamp": 3.25,
+          "elapsed_interval": 3.0,
+          "evidence_source": "runtime_local_decay_score",
+          "execution_decay": 0.1,
+          "followup_observation": {
+            "payload": 0.0,
+            "sequence": 5,
+            "source": "target",
+            "timestamp": 3.25
+          },
+          "local_pre_state": 1.0,
+          "local_residual_state": 0.7408182206817179,
+          "observation_timestamp": 0.25,
+          "originating_observation": {
+            "payload": 1.0,
+            "sequence": 3,
+            "source": "stimulus-left",
+            "timestamp": 0.25
+          },
+          "rank": 1,
+          "score": 0.7408182206817179,
+          "score_components": {
+            "elapsed_decay_factor": 1.0,
+            "local_residual_magnitude": 0.7408182206817179
+          },
+          "scoring_decay": 0.0
+        },
+        {
+          "admission_score": 0.6333861926251716,
+          "admitted": false,
+          "candidate_id": "right",
+          "candidate_role": "left",
+          "decision_observation_timestamp": 1.25,
+          "decision_timestamp": 1.25,
+          "elapsed_interval": 1.0,
+          "evidence_source": "runtime_local_decay_score",
+          "execution_decay": 0.1,
+          "followup_observation": {
+            "payload": 0.0,
+            "sequence": 6,
+            "source": "target",
+            "timestamp": 1.25
+          },
+          "local_pre_state": 0.7,
+          "local_residual_state": 0.6333861926251716,
+          "observation_timestamp": 0.25,
+          "originating_observation": {
+            "payload": 0.7,
+            "sequence": 4,
+            "source": "stimulus-right",
+            "timestamp": 0.25
+          },
+          "rank": 2,
+          "score": 0.6333861926251716,
+          "score_components": {
+            "elapsed_decay_factor": 1.0,
+            "local_residual_magnitude": 0.6333861926251716
+          },
+          "scoring_decay": 0.0
+        }
+      ],
+      "runtime": {
+        "execution": {
+          "budget_exhausted": false,
+          "completed": true,
+          "configured_event_budget": 12,
+          "peak_queue_occupancy": 4,
+          "pending_event_count": 0,
+          "processed_event_count": 7,
+          "termination_reason": "completed"
+        },
+        "observation_topology": [
+          [
+            "stimulus-left",
+            "left",
+            0.25
+          ],
+          [
+            "stimulus-right",
+            "right",
+            0.25
+          ],
+          [
+            "target",
+            "left",
+            3.25
+          ],
+          [
+            "target",
+            "right",
+            1.25
+          ]
+        ],
+        "trace": [
+          {
+            "kind": "route_seed",
+            "sequence": 0,
+            "source": "stimulus-left",
+            "timestamp": 0.0
+          },
+          {
+            "kind": "route_seed",
+            "sequence": 1,
+            "source": "stimulus-right",
+            "timestamp": 0.0
+          },
+          {
+            "kind": "route_seed",
+            "sequence": 2,
+            "source": "target",
+            "timestamp": 0.0
+          },
+          {
+            "destination": "left",
+            "kind": "local_observation",
+            "payload": 1.0,
+            "sequence": 3,
+            "source": "stimulus-left",
+            "timestamp": 0.25
+          },
+          {
+            "destination": "right",
+            "kind": "local_observation",
+            "payload": 0.7,
+            "sequence": 4,
+            "source": "stimulus-right",
+            "timestamp": 0.25
+          },
+          {
+            "destination": "right",
+            "kind": "local_observation",
+            "payload": 0.0,
+            "sequence": 6,
+            "source": "target",
+            "timestamp": 1.25
+          },
+          {
+            "destination": "left",
+            "kind": "local_observation",
+            "payload": 0.0,
+            "sequence": 5,
+            "source": "target",
+            "timestamp": 3.25
+          }
+        ]
+      },
+      "scoring_decay": 0.0,
+      "seed": 0
+    }
+  ],
+  "schema_version": "TPCN-LUNA-13B-1",
+  "tree_state_at_execution": "clean before artifact generation"
+}

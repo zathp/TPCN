@@ -1,0 +1,173 @@
+{
+  "decay_high": {
+    "completed": true,
+    "final_edges": [
+      [
+        "left",
+        "target",
+        1.0
+      ]
+    ],
+    "ranked_candidates": [
+      "left",
+      "right"
+    ],
+    "selected_candidate": "left"
+  },
+  "decay_low": {
+    "completed": true,
+    "final_edges": [
+      [
+        "right",
+        "target",
+        1.0
+      ]
+    ],
+    "ranked_candidates": [
+      "right",
+      "left"
+    ],
+    "selected_candidate": "right"
+  },
+  "decay_low_mirror": {
+    "completed": true,
+    "final_edges": [
+      [
+        "left",
+        "target",
+        1.0
+      ]
+    ],
+    "ranked_candidates": [
+      "left",
+      "right"
+    ],
+    "selected_candidate": "left"
+  },
+  "decay_near": {
+    "completed": true,
+    "final_edges": [
+      [
+        "left",
+        "target",
+        1.0
+      ]
+    ],
+    "ranked_candidates": [
+      "left",
+      "right"
+    ],
+    "selected_candidate": "left"
+  },
+  "fixed": {
+    "completed": true,
+    "final_edges": [],
+    "ranked_candidates": [
+      "left",
+      "right"
+    ],
+    "selected_candidate": null
+  },
+  "neutral": {
+    "completed": true,
+    "final_edges": [
+      [
+        "right",
+        "target",
+        1.0
+      ]
+    ],
+    "ranked_candidates": [
+      "right",
+      "left"
+    ],
+    "selected_candidate": "right"
+  },
+  "ordinary": {
+    "completed": true,
+    "final_edges": [
+      [
+        "left",
+        "target",
+        1.0
+      ]
+    ],
+    "ranked_candidates": [
+      "left",
+      "right"
+    ],
+    "selected_candidate": "left"
+  },
+  "random": {
+    "completed": true,
+    "final_edges": [
+      [
+        "right",
+        "target",
+        1.0
+      ]
+    ],
+    "ranked_candidates": [
+      "left",
+      "right"
+    ],
+    "selected_candidate": "right"
+  },
+  "reversed": {
+    "completed": true,
+    "final_edges": [],
+    "ranked_candidates": [],
+    "selected_candidate": null
+  },
+  "score_shuffled": {
+    "completed": true,
+    "final_edges": [
+      [
+        "right",
+        "target",
+        1.0
+      ]
+    ],
+    "ranked_candidates": [
+      "left",
+      "right"
+    ],
+    "selected_candidate": "right"
+  },
+  "shuffled": {
+    "completed": true,
+    "final_edges": [],
+    "ranked_candidates": [],
+    "selected_candidate": null
+  },
+  "tie": {
+    "completed": true,
+    "final_edges": [
+      [
+        "left",
+        "target",
+        1.0
+      ]
+    ],
+    "ranked_candidates": [
+      "left",
+      "right"
+    ],
+    "selected_candidate": "left"
+  },
+  "uniform": {
+    "completed": true,
+    "final_edges": [
+      [
+        "right",
+        "target",
+        1.0
+      ]
+    ],
+    "ranked_candidates": [
+      "right",
+      "left"
+    ],
+    "selected_candidate": "right"
+  }
+}
