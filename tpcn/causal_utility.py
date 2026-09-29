@@ -281,6 +281,29 @@ def run_experiment(
         )
         for condition, (action, base_edges, target_edge) in interventions.items()
     }
+    label_isolation = None
+    if evaluation_targets is None:
+        relabeled = run_experiment(config=config, evaluation_targets=("late", "on_time"))
+        label_isolation = {
+            "mutated_targets": ["late", "on_time"],
+            "structural_state_unchanged": relabeled["structural_learning"] == {
+                "mechanism": "Luna-13B run_condition(decay_low)",
+                "learned_edge": learned_edge,
+                "candidate_records": learned["records"],
+                "training_runtime": learned["runtime"],
+                "training_graph_fingerprint": _fingerprint(learned_only),
+                "frozen_checkpoint_fingerprint": checkpoint,
+                "frozen_graph_edges": frozen_graph,
+                "irrelevant_edge": irrelevant_edge,
+                "positive_control_edge": positive_control_edge,
+            },
+            "pre_output_computation_unchanged": all(
+                results[condition]["trace"] == relabeled["results"][condition]["trace"]
+                and results[condition]["graph_edges"] == relabeled["results"][condition]["graph_edges"]
+                and results[condition]["total_events"] == relabeled["results"][condition]["total_events"]
+                for condition in results
+            ),
+        }
     return {
         "schema_version": "TPCN-LUNA-13C-1",
         "experiment": "Luna-13C useful causal effect of learned temporal structure",
@@ -308,6 +331,7 @@ def run_experiment(
             "positive_control_edge": positive_control_edge,
         },
         "results": results,
+        "label_isolation_attack": label_isolation,
         "controls": {
             "random_seed": config.random_seed,
             "random_selection": "random.Random(seed).choice(source_ids)",
