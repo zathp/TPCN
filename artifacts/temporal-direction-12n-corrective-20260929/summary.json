@@ -33,7 +33,7 @@
     "interpretation": "score/rank sensitivity is distinct from admitted-edge and final-graph change",
     "paired_runs": [
       {
-        "admitted_edge_changed": true,
+        "admitted_edge_changed": false,
         "decay_rate": 0.25,
         "final_graph_changed": false,
         "ranking_changed": true,
@@ -41,7 +41,7 @@
         "seed": 0
       },
       {
-        "admitted_edge_changed": true,
+        "admitted_edge_changed": false,
         "decay_rate": 0.25,
         "final_graph_changed": false,
         "ranking_changed": true,
@@ -49,7 +49,7 @@
         "seed": 1
       },
       {
-        "admitted_edge_changed": true,
+        "admitted_edge_changed": false,
         "decay_rate": 0.25,
         "final_graph_changed": false,
         "ranking_changed": true,
@@ -57,7 +57,7 @@
         "seed": 2
       },
       {
-        "admitted_edge_changed": true,
+        "admitted_edge_changed": false,
         "decay_rate": 0.25,
         "final_graph_changed": false,
         "ranking_changed": true,
@@ -65,7 +65,7 @@
         "seed": 3
       },
       {
-        "admitted_edge_changed": true,
+        "admitted_edge_changed": false,
         "decay_rate": 0.25,
         "final_graph_changed": false,
         "ranking_changed": true,
@@ -73,7 +73,7 @@
         "seed": 4
       },
       {
-        "admitted_edge_changed": true,
+        "admitted_edge_changed": false,
         "decay_rate": 0.5,
         "final_graph_changed": false,
         "ranking_changed": true,
@@ -81,7 +81,7 @@
         "seed": 0
       },
       {
-        "admitted_edge_changed": true,
+        "admitted_edge_changed": false,
         "decay_rate": 0.5,
         "final_graph_changed": false,
         "ranking_changed": true,
@@ -89,7 +89,7 @@
         "seed": 1
       },
       {
-        "admitted_edge_changed": true,
+        "admitted_edge_changed": false,
         "decay_rate": 0.5,
         "final_graph_changed": false,
         "ranking_changed": true,
@@ -97,7 +97,7 @@
         "seed": 2
       },
       {
-        "admitted_edge_changed": true,
+        "admitted_edge_changed": false,
         "decay_rate": 0.5,
         "final_graph_changed": false,
         "ranking_changed": true,
@@ -105,7 +105,7 @@
         "seed": 3
       },
       {
-        "admitted_edge_changed": true,
+        "admitted_edge_changed": false,
         "decay_rate": 0.5,
         "final_graph_changed": false,
         "ranking_changed": true,
@@ -113,7 +113,7 @@
         "seed": 4
       },
       {
-        "admitted_edge_changed": true,
+        "admitted_edge_changed": false,
         "decay_rate": 1.0,
         "final_graph_changed": false,
         "ranking_changed": true,
@@ -121,7 +121,7 @@
         "seed": 0
       },
       {
-        "admitted_edge_changed": true,
+        "admitted_edge_changed": false,
         "decay_rate": 1.0,
         "final_graph_changed": false,
         "ranking_changed": true,
@@ -129,7 +129,7 @@
         "seed": 1
       },
       {
-        "admitted_edge_changed": true,
+        "admitted_edge_changed": false,
         "decay_rate": 1.0,
         "final_graph_changed": false,
         "ranking_changed": true,
@@ -137,7 +137,7 @@
         "seed": 2
       },
       {
-        "admitted_edge_changed": true,
+        "admitted_edge_changed": false,
         "decay_rate": 1.0,
         "final_graph_changed": false,
         "ranking_changed": true,
@@ -145,7 +145,7 @@
         "seed": 3
       },
       {
-        "admitted_edge_changed": true,
+        "admitted_edge_changed": false,
         "decay_rate": 1.0,
         "final_graph_changed": false,
         "ranking_changed": true,
