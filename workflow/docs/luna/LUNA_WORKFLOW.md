@@ -1694,6 +1694,41 @@ it for one independent seed. This is therefore `PASS WITH FOLLOW-UP — CAUSAL
 TASK EFFECT ESTABLISHED, LIMITATIONS REMAIN`; no A01-A15 clause changed and
 Luna-13D remains unauthorized.
 
+### Luna-0 independent corrective re-review - 2026-09-29
+
+The independent re-review synchronized clean `main` at revision
+`09995add7643e63f61c45602922238e319965113`, with `HEAD == origin/main`.
+The corrective artifact identifies source revision
+`685cd721f7ca108278aa2e3044b53d46981e5bbd`, baseline
+`ea60610b7ba637e05ee986ffde2864e529a08f2c`, and clean generation state.
+
+The same-path sham was independently instrumented and passed: it rebuilt the
+bounded graph through the intervention path, preserved the learned edge and
+fingerprint, matched present traces, and scored `2/2`. The learned edge is
+`right -> target, 1.0`; the distinct hand-designed positive control is
+`right -> target, 0.5` and scored `2/2`. Random seeds independently produced
+`right -> target`, `2/2` for seed 0 and `left -> target`, `1/2` for seed 1.
+Label mutation preserved structural evidence, decisions, traces, event
+counts, and completion state. Present/removal/restoration reproduced
+`2/2 -> 1/2 -> 2/2`; only the short case changes, because removing the route
+removes its deadline-meeting target arrivals.
+
+The independent targeted bundle passed `124` tests; the full CPU suite passed
+`256` with `1` skip; compileall, diagnostics, and diff checks passed; and
+temporary artifact regeneration was byte-identical. The named Stage-0 file is
+absent, so that check is not applicable; relevant reward, structural,
+recurrent, classifier, runtime, Luna-12H, Luna-12N, and Luna-13B tests ran.
+The checkpoint remains a metadata fingerprint over fresh reset/rebuild state,
+not a serialized queue/eligibility/random-state clone. The two-case fixture
+does not establish generalization, efficiency, scalability, hardware
+equivalence, or random-growth superiority.
+
+**Decision:** `PASS WITH FOLLOW-UP — CAUSAL EFFECT VERIFIED, BOUNDED
+LIMITATIONS REMAIN`. Luna-13D was not created or executed; it is eligible for
+later contract creation only by explicit project-owner authorization. The next
+scientific boundary is a separately authorized finite-resource utility study
+covering pressure, retention/pruning/replacement, and event/energy tradeoffs.
+
 ## Luna-13 — GPU-Compatible Visualization Path
 
 **Authorization:** Blocked until Luna-12 passes and Luna-0 explicitly authorizes this milestone. The prompt or handoff alone is not authorization.

@@ -127,3 +127,52 @@ and no Luna-13D was created or authorized.
 ## Final status
 
 `PASS WITH FOLLOW-UP — CAUSAL TASK EFFECT ESTABLISHED, LIMITATIONS REMAIN`
+
+## Independent corrective re-review
+
+Reviewed synchronized revision `09995add7643e63f61c45602922238e319965113`;
+the tree was clean and `HEAD == origin/main`. The corrective artifact was
+generated from source revision `685cd721f7ca108278aa2e3044b53d46981e5bbd`
+with baseline `ea60610b7ba637e05ee986ffde2864e529a08f2c` and clean generation
+state. The current Luna-13C handoff, `results.json`, workflow, changelog, and
+this prior review were inspected before the re-review.
+
+| Check | Independent result | Status |
+|---|---|---|
+| Same-path sham | Instrumented sham, removal, and restore each call bounded topology construction twice; sham graph/fingerprint and learned edge remain unchanged; result `2/2` | passed |
+| Distinct positive control | Learned `right -> target, 1.0`; hand-designed control `right -> target, 0.5`; distinct delay identity and result `2/2` | passed |
+| Random growth | Seed 0 selects `right -> target`, `2/2`; seed 1 selects `left -> target`, `1/2` | passed, no superiority claim |
+| Label mutation | Targets changed to `late, on_time`; structure, candidate evidence, decisions, traces, events, and completion stayed unchanged | passed |
+| Causal intervention | Present `2/2`, targeted removal `1/2`, exact restoration `2/2`; present/restored fingerprint `fb044cee...`, removal `758617e1...` | passed |
+| Bounded execution | All primary conditions complete; pending events `0`, termination `completed`, no budget exhaustion; event budget `30` preserves the matrix | passed |
+| Artifact reproduction | Temporary regeneration matches committed `results.json` and `summary.json` byte-for-byte | passed |
+
+Raw cases remain fixture-level counts, not population accuracy. With the
+learned edge, the short case target is `on_time` and output is `on_time` with
+arrivals `(1.0, 2.0)`; the long target is `late` and output is `late` with
+arrivals `(1.0, 4.0)`. Removing the learned edge changes only the short case:
+no target arrivals produce output `late`; the long case remains `late`.
+Targets are fixed from interval metadata and are independent of topology,
+candidate score, route, and model activation.
+
+The four corrective claims pass, but the frozen-state evidence is by fresh
+bounded reconstruction and reset, not a serialized clone of neuron, queue,
+eligibility, reward, and random state. The two-case fixture also cannot show
+generalization, efficiency, scalability, hardware equivalence, or superiority
+over random growth; seed 0 demonstrates random reproduction. No A01-A15
+clause changed and no Luna-13D was created or executed.
+
+Validation: the independent targeted bundle passed `124` tests; the full CPU
+suite passed `256` with `1` skip; compileall passed; diagnostics found no
+errors; and `git diff --check` passed. No dedicated `Luna-13A` Stage-0 test
+file exists, so that named check is not applicable; its relevant reward,
+structural, recurrent, classifier, and runtime tests were included in the
+targeted bundle.
+
+**Independent result:** `PASS WITH FOLLOW-UP — CAUSAL EFFECT VERIFIED,
+BOUNDED LIMITATIONS REMAIN`.
+
+Luna-13D is eligible for later contract creation only after explicit
+project-owner authorization. The next scientific boundary is a separately
+authorized finite-resource utility study covering capacity pressure,
+retention/pruning/replacement, and event/energy tradeoffs.

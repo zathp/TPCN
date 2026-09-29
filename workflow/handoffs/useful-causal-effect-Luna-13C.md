@@ -64,7 +64,7 @@ The final matrix is:
 | irrelevant edge removed | 1.0 | 0.0 | `3962ea30...` | null |
 | fixed useful edge | 1.0 | 0.0 | `3962ea30...` | positive control |
 | fixed topology | 0.5 | -0.5 | `2e38e77b...` | no benefit |
-| equal-budget random growth, seed 0 | 0.5 | -0.5 | `758617e1...` | not expected to reproduce |
+| equal-budget random growth, seed 0 | 1.0 | 0.0 | `3962ea30...` | can reproduce |
 
 Every case completed with no budget exhaustion. The present, restored, sham,
 irrelevant-removal, and fixed-useful conditions processed 8 events across the
@@ -92,12 +92,12 @@ No GPU, FPGA, FPAA, hardware-equivalence, scalability, or A14 claim is made.
 
 | Command or procedure | Revision / environment / seed | Observed result | Evidence |
 |---|---|---|---|
-| `python -m pytest tests/test_luna13c_causal_utility.py -q` | `11cc8d0`, Python 3.10.8, deterministic/default and seed 1 | PASS, 5 tests | focused suite |
-| `python run_temporal_efficacy_13c.py --baseline-revision ea60610... --executed-revision 11cc8d0... --output-dir artifacts/useful-causal-effect-13c` | `main`, CPU, seed 0 | PASS, all 8 conditions completed | `results.json`, `summary.json` |
-| `python -m pytest tests/test_luna13b_temporal_crossover.py tests/test_luna12h_temporal.py tests/test_luna12n_temporal_direction.py -q` | `11cc8d0`, Python 3.10.8 | PASS, 36 passed | temporal regressions |
-| `python -m pytest tests -q` | `11cc8d0`, Python 3.10.8 | PASS, 255 passed, 1 skipped | full CPU suite |
-| `python -m compileall -q tpcn run_temporal_efficacy_13c.py tests/test_luna13c_causal_utility.py` | `11cc8d0`, Python 3.10.8 | PASS | compile check |
-| `get_errors` on changed Python files; `git diff --check` | `11cc8d0` | PASS, no diagnostics and no whitespace errors | repository checks |
+| `python -m pytest tests/test_luna13c_causal_utility.py -q` | `09995ad`, Python 3.10.8 | PASS, 6 tests | focused suite |
+| temporary artifact regeneration and SHA-256 comparison | `09995ad`, source revision `685cd72`, CPU | PASS, both JSON files byte-identical | `results.json`, `summary.json` |
+| targeted corrective and requested regression bundle | `09995ad`, Python 3.10.8 | PASS, 124 tests | 13C, 13B, 12H, 12N, Stage-0-related slices |
+| `python -m pytest tests -q` | `09995ad`, Python 3.10.8 | PASS, 256 passed, 1 skipped | full CPU suite |
+| `python -m compileall -q tpcn run_temporal_efficacy_13c.py tests` | `09995ad` | PASS | compile check |
+| `get_errors`; `git diff --check` | `09995ad` | PASS, no diagnostics and no whitespace errors | repository checks |
 | Dedicated Stage-0 regression | repository has no matching test file | not applicable | no dedicated test exists |
 
 ## Benchmark and resource results
@@ -154,3 +154,40 @@ Focused corrective validation passed `6` tests; the focused temporal
 regression set passed `42` tests. Random growth can reproduce the effect for
 one independent seed, so the result remains qualified and does not establish
 selection superiority or general utility.
+
+## Luna-0 independent corrective re-review
+
+Reviewed corrective implementation revision `09995add7643e63f61c45602922238e319965113`;
+the artifact provenance identifies source revision
+`685cd721f7ca108278aa2e3044b53d46981e5bbd`, baseline
+`ea60610b7ba637e05ee986ffde2864e529a08f2c`, and a clean generation tree.
+The synchronized review tree was clean and `HEAD == origin/main`.
+
+The sham was independently instrumented: sham, targeted removal, and restore
+each called the bounded topology construction twice. Sham returned the exact
+present graph and fingerprint, retained the learned edge, completed `2/2`,
+and matched present traces/events. The learned edge is
+`right -> target, delay 1.0`; the hand-designed positive control is
+`right -> target, delay 0.5`, a distinct edge identity that reaches `2/2`.
+Random replay produced seed 0 `right -> target`, `2/2`, and seed 1
+`left -> target`, `1/2`; this is evidence of possible random reproduction,
+not superiority evidence. Label mutation to `late, on_time` preserved
+structural state, candidate evidence, graph decisions, traces, event counts,
+and completion behavior.
+
+The raw causal cases were: learned present, short target `on_time` with
+output `on_time` and long target `late` with output `late`; targeted removal
+changed only the short case to output `late`. Its target arrivals changed from
+`(1.0, 2.0)` to none, while the long case remained `late`; exact restoration
+returned `2/2`. All primary and 30-event budget runs completed with zero
+pending events and no exhaustion. Fresh topology/neuron/reset construction
+was equivalent across conditions, but the checkpoint remains a compact
+metadata fingerprint rather than a serialized queue/eligibility/random-state
+clone.
+
+**Independent result:** `PASS WITH FOLLOW-UP — CAUSAL EFFECT VERIFIED,
+BOUNDED LIMITATIONS REMAIN`. No A01-A15 clause changed. Luna-13D was not
+created or executed; it is eligible for later contract creation only by
+explicit project-owner authorization. The next scientific boundary is a
+separately authorized finite-resource utility study covering pressure,
+retention/pruning/replacement, and event/energy tradeoffs.

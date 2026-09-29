@@ -447,3 +447,28 @@ ESTABLISHED, LIMITATIONS REMAIN`: one random seed reproduces the task effect,
 so selection superiority and broader usefulness remain unproven. No A01-A15
 clause changed and no Luna-13D was created or authorized.
 
+## Luna-0 independent corrective re-review - 2026-09-29
+
+Luna-0 independently reviewed synchronized revision
+`09995add7643e63f61c45602922238e319965113`. The artifact source revision is
+`685cd721f7ca108278aa2e3044b53d46981e5bbd`, with baseline
+`ea60610b7ba637e05ee986ffde2864e529a08f2c` and clean generation state.
+
+The sham traverses the same bounded topology-rebuild machinery as removal and
+restoration and preserves graph/fingerprint and the `2/2` result. The learned
+edge is `right -> target, 1.0`; the distinct positive control is the
+hand-designed `right -> target, 0.5`, which also scores `2/2`. Genuine seeded
+random replay yields `right -> target`, `2/2` for seed 0 and
+`left -> target`, `1/2` for seed 1. Label mutation leaves structure,
+candidate evidence, decisions, and pre-output traces unchanged. The causal
+intervention remains `2/2 -> 1/2 -> 2/2`, with only the short case changing.
+
+The targeted independent bundle passed `124` tests and the full CPU suite
+passed `256` with `1` skip. Artifact regeneration was byte-identical;
+compileall, diagnostics, and diff checks passed. The result is
+`PASS WITH FOLLOW-UP — CAUSAL EFFECT VERIFIED, BOUNDED LIMITATIONS REMAIN`:
+the checkpoint is not a serialized full computational-state clone, the
+fixture has only two cases, and random growth can reproduce the outcome. No
+A01-A15 clause changed and no Luna-13D was created or executed. Later Luna-13D
+contract creation requires explicit project-owner authorization.
+
