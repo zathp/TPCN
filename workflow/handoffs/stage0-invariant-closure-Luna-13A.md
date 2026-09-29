@@ -10,8 +10,8 @@ tpcn_handoff:
   contract_version: "1.1"
   branch: "main"
   base_revision: "00d00fdfa74aa8dcf7102b8906b153778e475dcd"
-  result_revision: "pending"
-  tree_state: "implementation resumed from pushed Luna-0 review revision; publication pending"
+  result_revision: "fba6e4de5fb93b150f6a7e7e545622d48ae7b3c5"
+  tree_state: "implementation commit published on main; final handoff metadata update pending"
   dependencies: []
   owner: "Luna-0"
   classification:
@@ -74,6 +74,11 @@ tpcn_handoff:
   architecture_change: false
   proposal: null
   files_changed:
+    - "tpcn/eligibility.py"
+    - "tpcn/energy_utility.py"
+    - "tpcn/experiments.py"
+    - "tests/test_eligibility.py"
+    - "tests/test_luna11_adversarial.py"
     - "tpcn/streaming_classifier.py"
     - "tests/test_streaming_classifier.py"
     - "tpcn/structural_plasticity.py"
@@ -91,7 +96,7 @@ tpcn_handoff:
   tests_passing:
     - "python -m pytest -q tests/test_eligibility.py tests/test_luna11_adversarial.py tests/test_energy_utility.py tests/test_joint_integration.py tests/test_experiments.py: 47 passed."
     - "python -m pytest -q tests/test_event_runtime.py tests/test_experiments.py: 26 passed."
-    - "python -m pytest -q: 241 passed, 1 skipped at final implementation validation."
+    - "python -m pytest -q: 242 passed, 1 skipped at implementation revision fba6e4de5fb93b150f6a7e7e545622d48ae7b3c5."
     - "python -m compileall -q tpcn tests: passed."
     - "get_errors on touched Python files: no errors."
     - "git diff --check: passed."
