@@ -20,6 +20,7 @@
       "right"
     ],
     "random_seed": 0,
+    "random_selection": "random.Random(seed).choice(source_ids)",
     "same_event_budget": 12,
     "same_event_payloads": [
       1.0,
@@ -49,7 +50,7 @@
       "platform": "Windows-10-10.0.19045-SP0",
       "python": "3.10.8 (tags/v3.10.8:aaaf517, Oct 11 2022, 16:50:30) [MSC v.1933 64 bit (AMD64)]"
     },
-    "executed_revision": "11cc8d055dcd7d2441687dd8db72f1a3f8c3b689",
+    "executed_revision": "1e3592d6c23b5d6786cfad26d3267d21d51df4be",
     "tree_state_at_generation": "clean"
   },
   "results": {
@@ -99,6 +100,7 @@
       "condition": "fixed_topology",
       "graph_edges": [],
       "graph_fingerprint": "2e38e77b22c314a449e91fafed92a43826ac6aa403ae6a8acb6cf58239fbaf5d",
+      "intervention": "restore_graph",
       "primary_metric": "accuracy",
       "primary_metric_value": 0.5,
       "target_arrival_count": 0,
@@ -158,8 +160,8 @@
           "interval": 1.0,
           "prediction_or_decision": "on_time",
           "target_arrivals": [
-            1.0,
-            2.0
+            0.5,
+            1.5
           ],
           "target_state": -0.09516258196404048
         },
@@ -180,8 +182,8 @@
           "interval": 3.0,
           "prediction_or_decision": "late",
           "target_arrivals": [
-            1.0,
-            4.0
+            0.5,
+            3.5
           ],
           "target_state": -0.2591817793182821
         }
@@ -192,10 +194,11 @@
         [
           "right",
           "target",
-          1.0
+          0.5
         ]
       ],
-      "graph_fingerprint": "3962ea30f82901381d9b998776843ecc25015e75fb47b931e0643549896e9d93",
+      "graph_fingerprint": "5cb6f33088070b4c66e01d61b6712a395e28b8098967f9ff6798863adbfeef02",
+      "intervention": "restore_graph",
       "primary_metric": "accuracy",
       "primary_metric_value": 1.0,
       "target_arrival_count": 4,
@@ -210,6 +213,14 @@
           "timestamp": 0.0
         },
         {
+          "destination": "target",
+          "example_id": "short-held-out",
+          "kind": "target_arrival",
+          "payload": 1.0,
+          "source": "right",
+          "timestamp": 0.5
+        },
+        {
           "destination": "right",
           "example_id": "short-held-out",
           "kind": "source",
@@ -221,17 +232,9 @@
           "destination": "target",
           "example_id": "short-held-out",
           "kind": "target_arrival",
-          "payload": 1.0,
-          "source": "right",
-          "timestamp": 1.0
-        },
-        {
-          "destination": "target",
-          "example_id": "short-held-out",
-          "kind": "target_arrival",
           "payload": -1.0,
           "source": "right",
-          "timestamp": 2.0
+          "timestamp": 1.5
         },
         {
           "destination": "right",
@@ -247,7 +250,7 @@
           "kind": "target_arrival",
           "payload": 1.0,
           "source": "right",
-          "timestamp": 1.0
+          "timestamp": 0.5
         },
         {
           "destination": "right",
@@ -263,7 +266,7 @@
           "kind": "target_arrival",
           "payload": -1.0,
           "source": "right",
-          "timestamp": 4.0
+          "timestamp": 3.5
         }
       ]
     },
@@ -325,6 +328,7 @@
         ]
       ],
       "graph_fingerprint": "3962ea30f82901381d9b998776843ecc25015e75fb47b931e0643549896e9d93",
+      "intervention": "remove_edge",
       "primary_metric": "accuracy",
       "primary_metric_value": 1.0,
       "target_arrival_count": 4,
@@ -459,6 +463,7 @@
         ]
       ],
       "graph_fingerprint": "fb044cee5fdb322331b46a31609ea8572dc677811058eea68b6c246d5de2cb00",
+      "intervention": "restore_graph",
       "primary_metric": "accuracy",
       "primary_metric_value": 1.0,
       "target_arrival_count": 4,
@@ -540,17 +545,20 @@
             "configured_event_budget": 12,
             "peak_queue_occupancy": 2,
             "pending_event_count": 0,
-            "processed_event_count": 2,
+            "processed_event_count": 4,
             "termination_reason": "completed"
           },
-          "correct": false,
-          "events": 2,
+          "correct": true,
+          "events": 4,
           "example_id": "short-held-out",
           "fixed_external_target": "on_time",
           "interval": 1.0,
-          "prediction_or_decision": "late",
-          "target_arrivals": [],
-          "target_state": 0.0
+          "prediction_or_decision": "on_time",
+          "target_arrivals": [
+            1.0,
+            2.0
+          ],
+          "target_state": -0.09516258196404048
         },
         {
           "completion": {
@@ -559,33 +567,37 @@
             "configured_event_budget": 12,
             "peak_queue_occupancy": 2,
             "pending_event_count": 0,
-            "processed_event_count": 2,
+            "processed_event_count": 4,
             "termination_reason": "completed"
           },
           "correct": true,
-          "events": 2,
+          "events": 4,
           "example_id": "long-held-out",
           "fixed_external_target": "late",
           "interval": 3.0,
           "prediction_or_decision": "late",
-          "target_arrivals": [],
-          "target_state": 0.0
+          "target_arrivals": [
+            1.0,
+            4.0
+          ],
+          "target_state": -0.2591817793182821
         }
       ],
       "checkpoint_fingerprint": "db34e6b6ccbc05cd0686dd1dee4eb003fc52a08b0128ca991c2377de42cc3365",
       "condition": "random_growth",
       "graph_edges": [
         [
-          "left",
+          "right",
           "target",
           1.0
         ]
       ],
-      "graph_fingerprint": "758617e1b41c95cf86d6162ec5441cf498c112de648dd1ee2bb7f28e7ff2a1a3",
+      "graph_fingerprint": "3962ea30f82901381d9b998776843ecc25015e75fb47b931e0643549896e9d93",
+      "intervention": "restore_graph",
       "primary_metric": "accuracy",
-      "primary_metric_value": 0.5,
-      "target_arrival_count": 0,
-      "total_events": 4,
+      "primary_metric_value": 1.0,
+      "target_arrival_count": 4,
+      "total_events": 8,
       "trace": [
         {
           "destination": "right",
@@ -604,6 +616,22 @@
           "timestamp": 1.0
         },
         {
+          "destination": "target",
+          "example_id": "short-held-out",
+          "kind": "target_arrival",
+          "payload": 1.0,
+          "source": "right",
+          "timestamp": 1.0
+        },
+        {
+          "destination": "target",
+          "example_id": "short-held-out",
+          "kind": "target_arrival",
+          "payload": -1.0,
+          "source": "right",
+          "timestamp": 2.0
+        },
+        {
           "destination": "right",
           "example_id": "long-held-out",
           "kind": "source",
@@ -612,12 +640,28 @@
           "timestamp": 0.0
         },
         {
+          "destination": "target",
+          "example_id": "long-held-out",
+          "kind": "target_arrival",
+          "payload": 1.0,
+          "source": "right",
+          "timestamp": 1.0
+        },
+        {
           "destination": "right",
           "example_id": "long-held-out",
           "kind": "source",
           "payload": -1.0,
           "source": "right",
           "timestamp": 3.0
+        },
+        {
+          "destination": "target",
+          "example_id": "long-held-out",
+          "kind": "target_arrival",
+          "payload": -1.0,
+          "source": "right",
+          "timestamp": 4.0
         }
       ]
     },
@@ -684,6 +728,7 @@
         ]
       ],
       "graph_fingerprint": "fb044cee5fdb322331b46a31609ea8572dc677811058eea68b6c246d5de2cb00",
+      "intervention": "restore_graph",
       "primary_metric": "accuracy",
       "primary_metric_value": 1.0,
       "target_arrival_count": 4,
@@ -818,6 +863,7 @@
         ]
       ],
       "graph_fingerprint": "fb044cee5fdb322331b46a31609ea8572dc677811058eea68b6c246d5de2cb00",
+      "intervention": "sham_rebuild",
       "primary_metric": "accuracy",
       "primary_metric_value": 1.0,
       "target_arrival_count": 4,
@@ -941,6 +987,7 @@
         ]
       ],
       "graph_fingerprint": "758617e1b41c95cf86d6162ec5441cf498c112de648dd1ee2bb7f28e7ff2a1a3",
+      "intervention": "remove_edge",
       "primary_metric": "accuracy",
       "primary_metric_value": 0.5,
       "target_arrival_count": 0,
@@ -1075,6 +1122,11 @@
       1.0
     ],
     "mechanism": "Luna-13B run_condition(decay_low)",
+    "positive_control_edge": [
+      "right",
+      "target",
+      0.5
+    ],
     "training_graph_fingerprint": "3962ea30f82901381d9b998776843ecc25015e75fb47b931e0643549896e9d93",
     "training_runtime": {
       "execution": {

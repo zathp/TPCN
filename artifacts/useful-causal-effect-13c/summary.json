@@ -7,7 +7,7 @@
   },
   "fixed_useful": {
     "all_completed": true,
-    "graph_fingerprint": "3962ea30f82901381d9b998776843ecc25015e75fb47b931e0643549896e9d93",
+    "graph_fingerprint": "5cb6f33088070b4c66e01d61b6712a395e28b8098967f9ff6798863adbfeef02",
     "primary_metric_value": 1.0,
     "total_events": 8
   },
@@ -25,9 +25,9 @@
   },
   "random_growth": {
     "all_completed": true,
-    "graph_fingerprint": "758617e1b41c95cf86d6162ec5441cf498c112de648dd1ee2bb7f28e7ff2a1a3",
-    "primary_metric_value": 0.5,
-    "total_events": 4
+    "graph_fingerprint": "3962ea30f82901381d9b998776843ecc25015e75fb47b931e0643549896e9d93",
+    "primary_metric_value": 1.0,
+    "total_events": 8
   },
   "restored": {
     "all_completed": true,
