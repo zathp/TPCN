@@ -75,16 +75,18 @@ def test_mirror_and_relabel_follow_evidence_not_identifier_order() -> None:
 
 
 def test_tie_is_explicit_and_replay_is_deterministic() -> None:
-    first = run_condition("decay_near")
-    second = run_condition("decay_near")
+    first = run_condition("tie")
+    second = run_condition("tie")
     assert first == second
     assert first["ranked_candidates"] == ("left", "right")
     assert first["admission"]["tie_rule"] == "score descending, then candidate identifier ascending"
+    near = run_condition("decay_near")
+    assert abs(near["candidate_scores"][0][1] - near["candidate_scores"][1][1]) < 1e-12
 
 
 def test_suite_contains_required_control_categories() -> None:
     results = run_suite()
     assert {result["condition"] for result in results} == {
         "decay_low", "decay_high", "decay_near", "ordinary", "reversed", "shuffled",
-        "random", "score_shuffled", "fixed", "uniform", "neutral",
+        "random", "score_shuffled", "fixed", "uniform", "neutral", "tie",
     }

@@ -28,6 +28,7 @@ Condition = Literal[
     "fixed",
     "uniform",
     "neutral",
+    "tie",
 ]
 
 
@@ -118,6 +119,8 @@ def _observation_topology(config: CrossoverConfig, condition: Condition,
 
 def _score_for_condition(condition: Condition, residual: float, elapsed: float,
                          scoring_decay: float) -> tuple[float, str]:
+    if condition == "tie":
+        return 1.0, "explicit_exact_tie_control"
     if condition == "ordinary":
         return 1.0, "ordinary_temporal_association"
     if condition == "neutral":
@@ -337,6 +340,7 @@ def run_condition(
             "neutral": 0.0, "reversed": config.scoring_decay_high,
             "shuffled": config.scoring_decay_high, "random": config.scoring_decay_high,
             "score_shuffled": config.scoring_decay_high, "fixed": config.scoring_decay_high,
+            "tie": 0.0,
         }[condition]
     records, runtime = _run_observations(
         config, condition, scoring_decay, mirror=mirror, future_probe=future_probe,
@@ -373,9 +377,10 @@ def run_suite(*, config: CrossoverConfig = CrossoverConfig(), seed: int = 0) -> 
         ("ordinary", 0.0), ("reversed", config.scoring_decay_high),
         ("shuffled", config.scoring_decay_high), ("random", config.scoring_decay_high),
         ("score_shuffled", config.scoring_decay_high), ("fixed", config.scoring_decay_high),
-        ("uniform", config.scoring_decay_high), ("neutral", 0.0),
+        ("uniform", config.scoring_decay_high), ("neutral", 0.0), ("tie", 0.0),
     )
-    results = [run_condition(condition, config=config, scoring_decay=decay, seed=seed)
+    results = [run_condition(condition, config=config, scoring_decay=decay,
+                             seed=seed + 1 if condition == "score_shuffled" else seed)
                for condition, decay in conditions]
     results.extend((
         run_condition("decay_low", config=config, scoring_decay=config.scoring_decay_low,
