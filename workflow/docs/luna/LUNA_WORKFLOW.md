@@ -1569,6 +1569,76 @@ status remains a non-gating follow-up. Luna-13C is not authorized. A future
 contract may be proposed for causal usefulness of a learned edge against an
 external task target, subject to a new owner request and Luna-0 review.
 
+## Luna-13C - Useful Causal Effect of Learned Temporal Structure
+
+**Authorization boundary:** The lifecycle is:
+
+```text
+Luna-13B independent PASS
+  -> Luna-0 creates Luna-13C contract
+  -> Luna-13C executes under a separate explicit assignment
+  -> Luna-0 independently reviews Luna-13C
+  -> determine whether any successor is authorized
+```
+
+The independent Luna-13B review is recorded at review revision
+`04f2088725c71eb20b808ae07dbd99a02d4cd459`, reviewing implementation revision
+`816929fa097e049ce7d82a1f7c63fb9cc4e8bd3f`. It established runtime-local
+causal evidence, the predicted decay-sensitive crossover, rank and admitted-
+edge reversal under one-slot competition, final-graph change, controls,
+determinism and bounded execution. It did not establish task usefulness,
+external prediction or classification improvement, resource efficiency,
+scalability or hardware equivalence. Luna-12J's manual replay termination
+status issue remains non-gating.
+
+Luna-13C is a CPU-only `EXPERIMENT` and `VERIFICATION` contract. It reuses the
+verified Luna-13B structural-selection mechanism and asks whether the learned
+edge produces a useful effect on a fixed external task target independent of
+the topology being evaluated. Prefer the smallest bounded temporal-order,
+interval-dependent or delayed-cue task; defer the full A-Z benchmark until
+the simple causal mechanism is established. CUDA, GPU visualization, FPGA and
+FPAA are not required, and an optional CUDA skip is non-gating.
+
+Freeze the task, topology-independent external target, decision rule/loss,
+primary metric, practical effect threshold, interventions, seeds and budgets
+before held-out evaluation. Freeze the learned structural state once, then
+clone or restore that identical state for paired conditions using the same
+inputs, targets, initialization and execution resources. Require:
+
+- learned edge present;
+- targeted removal of only the claimed learned edge;
+- exact restoration of the same source, target, delay, strength and
+  computation-affecting metadata;
+- sham metadata/no-op intervention;
+- irrelevant or unused edge removal;
+- fixed topology with no growth;
+- equal-budget random growth with explicit seeds; and
+- a fixed useful-edge positive control.
+
+The external target must not be generated from edge identity, path length,
+current-topology activation, candidate score or the model's own prediction.
+Measure topology, internal trace and external task outcome separately. The
+causal gate requires present-graph benefit, material targeted-removal loss,
+exact restoration within tolerance, null or smaller sham/irrelevant effects,
+an expected positive-control result, matched inputs/targets/resources and
+completion without silent budget exhaustion. A failed positive control blocks
+interpretation rather than proving learned-edge uselessness. Labels and
+targets remain outside candidate generation, local scoring, structural
+admission and core runtime state.
+
+Every run records configured and processed events, pending events, termination
+status, graph fingerprints, external metrics, target arrival/decision state
+and proxy energy where available. Proxy energy is secondary and need not
+decrease. The required handoff is
+`workflow/handoffs/useful-causal-effect-Luna-13C.md`, using the standard
+template and separating `OBSERVED`, `INFERRED` and `HYPOTHESIZED` evidence.
+Validation covers all interventions and controls, fixed-target and matched-
+input semantics, exact graph restoration, label/future isolation,
+deterministic replay, held-out freeze and completion status, followed by
+Luna-13B, Stage-0, Luna-12H, corrected Luna-12N, full CPU, compile/static,
+diagnostic and `git diff --check` regressions. Results return to Luna-0.
+Luna-13C must not authorize Luna-13D.
+
 ## Luna-13 — GPU-Compatible Visualization Path
 
 **Authorization:** Blocked until Luna-12 passes and Luna-0 explicitly authorizes this milestone. The prompt or handoff alone is not authorization.

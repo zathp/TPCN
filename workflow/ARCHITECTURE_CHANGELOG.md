@@ -370,3 +370,34 @@ Reviewed implementation and artifact revision
 VERIFIED**. Luna-13C remains unauthorized. No A01-A15 clause changed and no
 ACP or architecture promotion is created by this review.
 
+## Luna-13C contract creation - 2026-09-29
+
+Created the CPU-only **Useful Causal Effect of Learned Temporal Structure**
+contract after the independent Luna-0 PASS of Luna-13B at review revision
+`04f2088725c71eb20b808ae07dbd99a02d4cd459`, reviewing implementation revision
+`816929fa097e049ce7d82a1f7c63fb9cc4e8bd3f`.
+
+- Luna-13B's causal structural crossover is independently established:
+	runtime-local evidence, analytic decay-sensitive score crossover,
+	rank/admitted-edge/final-graph reversal, one-slot competition, controls,
+	deterministic replay and bounded execution passed. Task usefulness,
+	external prediction/classification benefit, resource efficiency, scalability
+	and hardware equivalence remain unproven.
+- Luna-13C tests whether the learned edge has a useful causal effect on a
+	fixed external target independent of the evaluated topology. It requires
+	frozen learned state, paired present/remove/exact-restore/sham/irrelevant-
+	edge conditions, fixed topology, equal-budget random growth and a fixed
+	useful-edge positive control.
+- The target, metric, decision rule, practical threshold, interventions,
+	inputs, seeds and budgets freeze before held-out evaluation. Graph
+	fingerprints, internal trace and task outcome are separate evidence;
+	budget exhaustion is not successful evidence; labels remain isolated; and
+	proxy energy is secondary.
+- Luna-13C is CPU-only and preserves A01-A15 without an ACP or architecture
+	promotion. The lifecycle is contract creation, explicit 13C execution,
+	independent Luna-0 review, then a separate successor decision. Luna-13D
+	remains unauthorized.
+
+This is a workflow and experiment-scope update only. No Luna-13C experiment
+was executed, no architecture clause changed, and no ACP was created.
+
