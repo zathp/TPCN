@@ -1,0 +1,25 @@
+{
+  "baseline_revision": "75eaba6deca99b42c8d0921252c4c74dc57983d4",
+  "decay_rates": [
+    0.25,
+    0.5,
+    1.0
+  ],
+  "fixture_id": "luna-12n-competing-candidates-v2",
+  "policies": [
+    "current",
+    "reversed",
+    "decay",
+    "reversed_decay",
+    "random",
+    "fixed"
+  ],
+  "schema": "TPCN-EDGE-2",
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ]
+}

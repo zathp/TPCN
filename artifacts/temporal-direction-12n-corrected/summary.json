@@ -1,0 +1,44 @@
+{
+  "current": {
+    "accepted_mutation_count": 30,
+    "static_shortcut_count": 15,
+    "static_shortcut_yield": 0.5,
+    "used_shortcut_count": 15,
+    "used_shortcut_yield": 0.5
+  },
+  "decay": {
+    "accepted_mutation_count": 30,
+    "static_shortcut_count": 15,
+    "static_shortcut_yield": 0.5,
+    "used_shortcut_count": 15,
+    "used_shortcut_yield": 0.5
+  },
+  "fixed": {
+    "accepted_mutation_count": 0,
+    "static_shortcut_count": 0,
+    "static_shortcut_yield": null,
+    "used_shortcut_count": 0,
+    "used_shortcut_yield": null
+  },
+  "random": {
+    "accepted_mutation_count": 30,
+    "static_shortcut_count": 3,
+    "static_shortcut_yield": 0.1,
+    "used_shortcut_count": 3,
+    "used_shortcut_yield": 0.1
+  },
+  "reversed": {
+    "accepted_mutation_count": 45,
+    "static_shortcut_count": 0,
+    "static_shortcut_yield": 0.0,
+    "used_shortcut_count": 0,
+    "used_shortcut_yield": 0.0
+  },
+  "reversed_decay": {
+    "accepted_mutation_count": 45,
+    "static_shortcut_count": 0,
+    "static_shortcut_yield": 0.0,
+    "used_shortcut_count": 0,
+    "used_shortcut_yield": 0.0
+  }
+}

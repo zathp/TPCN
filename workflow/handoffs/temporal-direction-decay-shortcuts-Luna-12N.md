@@ -204,3 +204,75 @@ No successor is authorized. Recommended Luna-0 action: review the raw
 `TPCN-EDGE-2` records and retain `PASS WITH FOLLOW-UP` because direction is
 reproducibly and causally supported here, while decay adds no gain in this
 small fixture and energy/prediction tradeoffs remain unresolved.
+
+## Corrective rerun after Luna-0 BLOCKED review
+
+The initial execution and its `PASS WITH FOLLOW-UP` result above are retained
+as historical provenance. Luna-0's subsequent evidence review assigned a
+`BLOCKED` gate because the first implementation used one shared `delta_t`,
+compared phase-labelled traces, used a shortcut-only yield denominator,
+converted undefined fixed-topology yields to `0.0` in the summary, and kept
+baseline provenance only in configuration.
+
+**OBSERVED:** The corrective implementation remains bounded and uses the
+existing `TPCN-EDGE-2` observer. Candidate records now contain candidate-local
+source/destination timestamps, the actual neuron-reported `delta_t`, local
+decay rate, residual factor, decay-relative score and deterministic rank. The
+fixture exposes six candidates with distinct intervals `0.25`, `0.35`, `0.4`,
+`0.75`, `1.0` and `1.2`; at decay rate `0.5`, the current policy ranks
+`source -> target` first while the decay-aware policy ranks `n2 -> source`
+first.
+
+**OBSERVED:** Corrected output is at
+`artifacts/temporal-direction-12n-corrected/` with 90 records, policies
+`current`, `reversed`, `decay`, `reversed_decay`, `random`, and `fixed`, seeds
+`0, 1, 2, 3, 4`, and decay rates `0.25`, `0.5`, `1.0`. Every result carries
+baseline revision `75eaba6deca99b42c8d0921252c4c74dc57983d4`.
+
+| policy | accepted mutations | static shortcuts | used shortcuts | static yield | used yield |
+|---|---:|---:|---:|---:|---:|
+| current | 30 | 15 | 15 | 0.500 | 0.500 |
+| reversed | 45 | 0 | 0 | 0.000 | 0.000 |
+| decay | 30 | 15 | 15 | 0.500 | 0.500 |
+| reversed_decay | 45 | 0 | 0 | 0.000 | 0.000 |
+| random | 30 | 3 | 3 | 0.100 | 0.100 |
+| fixed | 0 | 0 | 0 | null | null |
+
+**OBSERVED:** Accepted mutations are recorded individually and all accepted
+mutations are the yield denominator. Current and decay-aware current each
+accept one shortcut and one non-shortcut per record, so their yields are `0.5`
+rather than `1.0`. Fixed topology retains undefined (`null`) yields.
+
+**OBSERVED:** Causal intervention compares normalized computation evidence
+only: route trace, target arrivals, arrival delay, downstream target state and
+prediction/error evidence. Phase labels are excluded. For representative
+current runs, removal changes all independent causal flags and the normalized
+route digest; old-route and new-route traffic remain derived from the observer.
+
+**INFERRED:** The corrected fixture supports a reproducible direction effect
+relative to reversed legal orientation and random growth. It does not show an
+additional used-yield improvement from intrinsic decay preference.
+
+**HYPOTHESIZED:** A larger equal-opportunity workload may distinguish decay
+regimes, but this rerun does not authorize a new Luna, alter pruning, add
+persistent edge state, promote A14, or claim hardware acceptance.
+
+### Corrective validation
+
+- **Passed:** 11 focused Luna-12N tests, including candidate-local timing and
+  ranking, phase-label-only negative control, causal removal, all-mutation
+  denominator, null yields and per-record baseline.
+- **Passed:** corrected artifact cardinality/provenance audit; 90 records and
+  one baseline revision on every result.
+- **Passed:** required 12H through 12M regression slice and relevant 12E,
+  topology, structural-plasticity, event-runtime, temporal-analysis and
+  experiment tests: 88 passed.
+- **Passed:** full repository suite: 215 passed, 1 skipped; compilation,
+  workspace diagnostics and `git diff --check` also passed.
+- **Not applicable:** hardware, real-data and physical-energy acceptance.
+
+**Corrected gate: `PASS WITH FOLLOW-UP`.** The prior `BLOCKED` gate is closed
+for the repaired evidence paths. Direction remains supported in this bounded
+fixture; decay gain, route dominance, replacement attribution, hardware
+equivalence and broader workload generalization remain unresolved. No
+successor is authorized.

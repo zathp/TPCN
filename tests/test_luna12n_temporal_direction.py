@@ -1,11 +1,14 @@
 import pytest
+import json
 
 from tpcn.temporal_direction import (
     CANDIDATE_ENDPOINTS,
+    compare_normalized_replay,
     DECAY_RATES,
     POLICIES,
     run_temporal_direction,
     run_temporal_direction_suite,
+    write_artifacts,
 )
 
 
@@ -77,3 +80,43 @@ def test_labels_and_global_topology_are_not_policy_inputs() -> None:
     assert first.candidate_scores == second.candidate_scores
     assert first.accepted_edges == second.accepted_edges
     assert all("label" not in item for item in first.raw_12m["lifecycle"])
+
+
+def test_decay_records_candidate_local_intervals_and_changes_competing_rank() -> None:
+    current = run_temporal_direction("current", seed=0, decay_rate=0.5)
+    decay = run_temporal_direction("decay", seed=0, decay_rate=0.5)
+    intervals = {record["delta_t"] for record in decay.candidate_records}
+    assert len(intervals) > 2
+    assert all(record["delta_t"] == pytest.approx(
+        record["destination_timestamp"] - record["source_timestamp"]
+    ) for record in decay.candidate_records)
+    current_ranks = {tuple((record["source"], record["destination"])): record["rank"]
+                     for record in current.candidate_records}
+    decay_ranks = {tuple((record["source"], record["destination"])): record["rank"]
+                   for record in decay.candidate_records}
+    assert current_ranks != decay_ranks
+
+
+def test_phase_labels_alone_do_not_count_as_causal_change() -> None:
+    evidence = {"normalized": {"trace": (("source", 0.0),), "target_arrivals": (),
+                                "target_states": (), "prediction_loss": 0.0,
+                                "prediction_errors": 0}}
+    assert compare_normalized_replay(evidence, evidence)["changed"] is False
+
+
+def test_yield_denominator_includes_non_shortcut_mutations() -> None:
+    result = run_temporal_direction("current", seed=0, decay_rate=0.5)
+    assert result.accepted_mutation_count == len(result.accepted_mutations) == 2
+    assert result.static_shortcut_count == 1
+    assert result.static_shortcut_yield == pytest.approx(0.5)
+    assert result.used_shortcut_yield == pytest.approx(0.5)
+    assert any(not mutation["static_shortcut"] for mutation in result.accepted_mutations)
+
+
+def test_zero_acceptance_summary_and_per_record_baseline_are_preserved(tmp_path) -> None:
+    result = run_temporal_direction("fixed", seed=0, decay_rate=0.5, baseline_revision="test-baseline")
+    assert result.baseline_revision == "test-baseline"
+    write_artifacts((result,), str(tmp_path), baseline_revision="test-baseline")
+    summary = json.loads((tmp_path / "summary.json").read_text(encoding="utf-8"))
+    assert summary["fixed"]["static_shortcut_yield"] is None
+    assert summary["fixed"]["used_shortcut_yield"] is None
