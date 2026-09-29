@@ -401,3 +401,33 @@ contract after the independent Luna-0 PASS of Luna-13B at review revision
 This is a workflow and experiment-scope update only. No Luna-13C experiment
 was executed, no architecture clause changed, and no ACP was created.
 
+## Luna-0 independent review of Luna-13C - 2026-09-29
+
+Reviewed implementation/artifact revision
+`575c2407db21786b21d64cb57d640d2a1a940ac0` from a clean synchronized
+`main` tree. The independent review reproduced the default external-task
+matrix: learned edge `2/2`, targeted removal `1/2`, exact restoration `2/2`,
+sham `2/2`, irrelevant removal `2/2`, fixed topology `1/2`, and seed-0 random
+growth `1/2`. Target arrivals and the short-case failure identify the route
+effect; all runs completed without budget exhaustion, and budget 30 replay was
+unchanged.
+
+The review found non-gating evidence limitations: the sham is a literal
+same-graph no-op that bypasses intervention machinery; the fixed useful-edge
+control is the exact learned edge rather than an independently specified
+positive control; seed 1 random growth also selects the useful edge and scores
+`2/2`; and the 13C label test does not mutate labels. The checkpoint
+fingerprint is a metadata hash rather than a complete serialized computational
+state. These limitations prevent the stronger independent-verification status
+but do not negate the reproduced narrow route-level task effect in this
+bounded fixture.
+
+Independent focused validation passed `41` tests; the full CPU suite passed
+`255` with `1` optional skip; compile, diagnostics and `git diff --check`
+passed. No A01-A15 clause changed, no ACP was created, and no Luna-13D was
+created or authorized.
+
+**Decision:** **PASS WITH FOLLOW-UP — CAUSAL TASK EFFECT VERIFIED,
+NON-GATING LIMITATIONS REMAIN**. The next authorization boundary is explicit
+project-owner direction for any follow-up contract and a new Luna-0 review.
+

@@ -1639,6 +1639,45 @@ Luna-13B, Stage-0, Luna-12H, corrected Luna-12N, full CPU, compile/static,
 diagnostic and `git diff --check` regressions. Results return to Luna-0.
 Luna-13C must not authorize Luna-13D.
 
+### Luna-0 independent review of Luna-13C - 2026-09-29
+
+Reviewed implementation and artifact revision
+`575c2407db21786b21d64cb57d640d2a1a940ac0` after synchronizing with
+`origin/main`; the review started from a clean tree with matching `HEAD` and
+`origin/main`. The review handoff is
+`workflow/handoffs/luna-0-review-Luna-13C.md`.
+
+- **External target valid:** the fixed targets are `on_time` for the short
+  interval and `late` for the long interval, independent of topology. The
+  default learned-present result is `2/2`; targeted removal is `1/2`; exact
+  restoration is `2/2`; sham is `2/2`; irrelevant removal is `2/2`; fixed
+  topology is `1/2`; seed-0 random growth is `1/2`.
+- **Causal task effect reproduced:** target arrivals change from `(1.0, 2.0)`
+  to no arrivals for the short case when `right -> target` is removed; exact
+  graph restoration recovers the arrivals and result. All primary runs
+  complete without budget exhaustion, and an event-budget increase to 30 does
+  not change the result.
+- **Follow-up limitations:** sham bypasses intervention machinery; fixed
+  useful control is the exact learned edge rather than an independent edge;
+  seed 1 random growth reproduces `2/2`; and the 13C label test repeats the
+  same run rather than mutating labels. The checkpoint fingerprint is a
+  metadata hash, not a serialized neuron/queue/eligibility checkpoint.
+- **Preservation:** the independent focused slice passed `41` tests and the
+  full CPU suite passed `255` with `1` existing optional skip. Compile,
+  diagnostics and diff checks passed. No dedicated Stage-0 test file exists;
+  this is recorded as not applicable rather than claimed as a separate pass.
+
+**Decision:** **PASS WITH FOLLOW-UP — CAUSAL TASK EFFECT VERIFIED, NON-GATING
+LIMITATIONS REMAIN**. The narrow supported claim is that, in this bounded
+fixture, the edge learned through the verified Luna-13B mechanism causally
+improves the fixed external outcome, with targeted removal reducing the
+short-case result and exact restoration recovering it. This does not establish
+general task utility, random-selection superiority, resource benefit,
+scalability, hardware equivalence or biological equivalence. No A01-A15
+clause changed, no ACP was created, and Luna-13D remains unauthorized. The
+next action is project-owner direction for any follow-up contract, followed by
+Luna-0 review.
+
 ## Luna-13 — GPU-Compatible Visualization Path
 
 **Authorization:** Blocked until Luna-12 passes and Luna-0 explicitly authorizes this milestone. The prompt or handoff alone is not authorization.
