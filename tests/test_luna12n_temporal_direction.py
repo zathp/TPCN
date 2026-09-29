@@ -1,11 +1,15 @@
 import pytest
 import json
+from dataclasses import replace
 
+from tpcn.temporal_capacity import CapacityPressureConfig
+from tpcn.topology import BoundedTopology
 from tpcn.temporal_direction import (
     CANDIDATE_ENDPOINTS,
     compare_normalized_replay,
     DECAY_RATES,
     POLICIES,
+    TemporalDirectionConfig,
     run_temporal_direction,
     run_temporal_direction_suite,
     write_artifacts,
@@ -17,8 +21,12 @@ def test_policy_matrix_and_candidate_exposure_are_bounded_and_matched() -> None:
     assert len(results) == 6 * 2 * len(DECAY_RATES)
     assert {result.policy for result in results} == set(POLICIES)
     assert {result.candidates_exposed for result in results} == {len(CANDIDATE_ENDPOINTS)}
-    assert {result.candidates_considered for result in results} == {15}
-    assert {result.attempts for result in results} == {3}
+    assert {result.configured_candidate_opportunities for result in results} == {len(CANDIDATE_ENDPOINTS)}
+    assert {result.configured_mutation_budget for result in results} == {3}
+    assert {result.candidates_considered for result in results} == {0, 15}
+    assert {result.attempts for result in results} == {0, 3}
+    fixed = [result for result in results if result.policy == "fixed"]
+    assert all(result.mutation_attempts == 0 and result.accepted_mutation_count == 0 for result in fixed)
 
 
 def test_current_matches_existing_temporal_direction_and_reversed_changes_orientation() -> None:
@@ -98,10 +106,62 @@ def test_decay_records_candidate_local_intervals_and_changes_competing_rank() ->
 
 
 def test_phase_labels_alone_do_not_count_as_causal_change() -> None:
-    evidence = {"normalized": {"trace": (("source", 0.0),), "target_arrivals": (),
+    present = {"normalized": {"trace": (("source", 0.0),), "target_arrivals": (),
                                 "target_states": (), "prediction_loss": 0.0,
                                 "prediction_errors": 0}}
-    assert compare_normalized_replay(evidence, evidence)["changed"] is False
+    control = {"normalized": {"trace": (("source", 0.0),), "target_arrivals": (),
+                                "target_states": (), "prediction_loss": 0.0,
+                                "prediction_errors": 0}}
+    assert compare_normalized_replay(present, control)["changed"] is False
+
+
+def test_metadata_negative_control_is_an_independent_replay() -> None:
+    result = run_temporal_direction("current", seed=0, decay_rate=0.5)
+    assert result.metadata_negative_control["normalized_evidence_compared"]
+    assert result.metadata_negative_control["present_phase"] != result.metadata_negative_control["control_phase"]
+    assert result.metadata_negative_control["invariant"]
+
+
+def test_weighted_shortest_delay_is_distinct_from_minimum_hops() -> None:
+    from tpcn.temporal_direction import _shortest
+    topology = BoundedTopology.from_edges(
+        ("source", "fast", "slow", "target"),
+        (("source", "target", 5.0), ("source", "fast", 1.0),
+         ("fast", "slow", 1.0), ("slow", "target", 1.0)),
+        fan_in_limit=2, fan_out_limit=2, edge_capacity=4, routing_capacity=4,
+    )
+    assert _shortest(topology) == (1, 3.0)
+
+
+def test_arrival_latency_is_replayed_and_not_static_path_delay() -> None:
+    result = run_temporal_direction("current", seed=0, decay_rate=0.5)
+    assert result.first_target_arrival["PRE_MUTATION"] == pytest.approx(3.0)
+    assert result.first_target_arrival["POST_MUTATION"] == pytest.approx(0.75)
+    assert result.arrival_time_delta == pytest.approx(2.25)
+    assert result.arrival_time_delta == result.causal_delay_delta
+
+
+@pytest.mark.parametrize("budget", [1, 2, 16])
+def test_replay_reports_budget_and_pending_work(budget: int) -> None:
+    config = replace(TemporalDirectionConfig(), capacity=replace(CapacityPressureConfig(), max_events=budget))
+    result = run_temporal_direction("fixed", config=config)
+    execution = result.execution["PRE_MUTATION"]
+    assert execution["configured_event_budget"] == budget
+    assert execution["processed_event_count"] <= budget
+    assert execution["pending_event_count"] >= 0
+    assert execution["termination_reason"] in {"completed", "budget_exhausted"}
+    if budget < 16:
+        assert execution["termination_reason"] == "budget_exhausted"
+
+
+def test_candidate_provenance_and_graph_intervention_labels_are_explicit() -> None:
+    result = run_temporal_direction("current", seed=0, decay_rate=0.5)
+    assert {record["evidence_source"] for record in result.candidate_records} == {
+        "synthetic_fixture_timing", "fallback_fixture_value",
+    }
+    assert result.graph_states["baseline"] != result.graph_states["post_mutation"]
+    assert result.graph_states["post_mutation"] != result.graph_states["post_removal"]
+    assert result.candidate_comparison["score_changed"]
 
 
 def test_yield_denominator_includes_non_shortcut_mutations() -> None:

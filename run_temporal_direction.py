@@ -10,7 +10,7 @@ from tpcn.temporal_direction import run_temporal_direction_suite, write_artifact
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--output", default="artifacts/temporal-direction-12n-corrected")
+    parser.add_argument("--output", default="artifacts/temporal-direction-12n-corrective-20260929")
     parser.add_argument("--seeds", nargs="+", type=int, default=[0, 1, 2, 3, 4])
     args = parser.parse_args()
     baseline = subprocess.check_output(["git", "rev-parse", "HEAD"], text=True).strip()

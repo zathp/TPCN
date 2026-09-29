@@ -1,0 +1,217 @@
+{
+  "current": {
+    "accepted_mutation_count": 30,
+    "candidate_evaluation_count": 225,
+    "complete_run_count": 15,
+    "configured_candidate_opportunities": 90,
+    "configured_mutation_budget": 45,
+    "mutation_attempt_count": 45,
+    "rejected_mutation_count": 15,
+    "shortcut_incidence_per_run": 1.0,
+    "static_shortcut_count": 15,
+    "static_shortcut_yield": 0.5,
+    "truncated_run_count": 0,
+    "used_shortcut_count": 15,
+    "used_shortcut_yield": 0.5
+  },
+  "decay": {
+    "accepted_mutation_count": 30,
+    "candidate_evaluation_count": 225,
+    "complete_run_count": 15,
+    "configured_candidate_opportunities": 90,
+    "configured_mutation_budget": 45,
+    "mutation_attempt_count": 45,
+    "rejected_mutation_count": 15,
+    "shortcut_incidence_per_run": 1.0,
+    "static_shortcut_count": 15,
+    "static_shortcut_yield": 0.5,
+    "truncated_run_count": 0,
+    "used_shortcut_count": 15,
+    "used_shortcut_yield": 0.5
+  },
+  "decay_comparison": {
+    "interpretation": "score/rank sensitivity is distinct from admitted-edge and final-graph change",
+    "paired_runs": [
+      {
+        "admitted_edge_changed": true,
+        "decay_rate": 0.25,
+        "final_graph_changed": false,
+        "ranking_changed": true,
+        "scores_changed": true,
+        "seed": 0
+      },
+      {
+        "admitted_edge_changed": true,
+        "decay_rate": 0.25,
+        "final_graph_changed": false,
+        "ranking_changed": true,
+        "scores_changed": true,
+        "seed": 1
+      },
+      {
+        "admitted_edge_changed": true,
+        "decay_rate": 0.25,
+        "final_graph_changed": false,
+        "ranking_changed": true,
+        "scores_changed": true,
+        "seed": 2
+      },
+      {
+        "admitted_edge_changed": true,
+        "decay_rate": 0.25,
+        "final_graph_changed": false,
+        "ranking_changed": true,
+        "scores_changed": true,
+        "seed": 3
+      },
+      {
+        "admitted_edge_changed": true,
+        "decay_rate": 0.25,
+        "final_graph_changed": false,
+        "ranking_changed": true,
+        "scores_changed": true,
+        "seed": 4
+      },
+      {
+        "admitted_edge_changed": true,
+        "decay_rate": 0.5,
+        "final_graph_changed": false,
+        "ranking_changed": true,
+        "scores_changed": true,
+        "seed": 0
+      },
+      {
+        "admitted_edge_changed": true,
+        "decay_rate": 0.5,
+        "final_graph_changed": false,
+        "ranking_changed": true,
+        "scores_changed": true,
+        "seed": 1
+      },
+      {
+        "admitted_edge_changed": true,
+        "decay_rate": 0.5,
+        "final_graph_changed": false,
+        "ranking_changed": true,
+        "scores_changed": true,
+        "seed": 2
+      },
+      {
+        "admitted_edge_changed": true,
+        "decay_rate": 0.5,
+        "final_graph_changed": false,
+        "ranking_changed": true,
+        "scores_changed": true,
+        "seed": 3
+      },
+      {
+        "admitted_edge_changed": true,
+        "decay_rate": 0.5,
+        "final_graph_changed": false,
+        "ranking_changed": true,
+        "scores_changed": true,
+        "seed": 4
+      },
+      {
+        "admitted_edge_changed": true,
+        "decay_rate": 1.0,
+        "final_graph_changed": false,
+        "ranking_changed": true,
+        "scores_changed": true,
+        "seed": 0
+      },
+      {
+        "admitted_edge_changed": true,
+        "decay_rate": 1.0,
+        "final_graph_changed": false,
+        "ranking_changed": true,
+        "scores_changed": true,
+        "seed": 1
+      },
+      {
+        "admitted_edge_changed": true,
+        "decay_rate": 1.0,
+        "final_graph_changed": false,
+        "ranking_changed": true,
+        "scores_changed": true,
+        "seed": 2
+      },
+      {
+        "admitted_edge_changed": true,
+        "decay_rate": 1.0,
+        "final_graph_changed": false,
+        "ranking_changed": true,
+        "scores_changed": true,
+        "seed": 3
+      },
+      {
+        "admitted_edge_changed": true,
+        "decay_rate": 1.0,
+        "final_graph_changed": false,
+        "ranking_changed": true,
+        "scores_changed": true,
+        "seed": 4
+      }
+    ]
+  },
+  "fixed": {
+    "accepted_mutation_count": 0,
+    "candidate_evaluation_count": 0,
+    "complete_run_count": 15,
+    "configured_candidate_opportunities": 90,
+    "configured_mutation_budget": 45,
+    "mutation_attempt_count": 0,
+    "rejected_mutation_count": 0,
+    "shortcut_incidence_per_run": 0.0,
+    "static_shortcut_count": 0,
+    "static_shortcut_yield": null,
+    "truncated_run_count": 0,
+    "used_shortcut_count": 0,
+    "used_shortcut_yield": null
+  },
+  "random": {
+    "accepted_mutation_count": 30,
+    "candidate_evaluation_count": 225,
+    "complete_run_count": 15,
+    "configured_candidate_opportunities": 90,
+    "configured_mutation_budget": 45,
+    "mutation_attempt_count": 45,
+    "rejected_mutation_count": 15,
+    "shortcut_incidence_per_run": 0.2,
+    "static_shortcut_count": 3,
+    "static_shortcut_yield": 0.1,
+    "truncated_run_count": 0,
+    "used_shortcut_count": 3,
+    "used_shortcut_yield": 0.1
+  },
+  "reversed": {
+    "accepted_mutation_count": 45,
+    "candidate_evaluation_count": 225,
+    "complete_run_count": 15,
+    "configured_candidate_opportunities": 90,
+    "configured_mutation_budget": 45,
+    "mutation_attempt_count": 45,
+    "rejected_mutation_count": 0,
+    "shortcut_incidence_per_run": 0.0,
+    "static_shortcut_count": 0,
+    "static_shortcut_yield": 0.0,
+    "truncated_run_count": 0,
+    "used_shortcut_count": 0,
+    "used_shortcut_yield": 0.0
+  },
+  "reversed_decay": {
+    "accepted_mutation_count": 45,
+    "candidate_evaluation_count": 225,
+    "complete_run_count": 15,
+    "configured_candidate_opportunities": 90,
+    "configured_mutation_budget": 45,
+    "mutation_attempt_count": 45,
+    "rejected_mutation_count": 0,
+    "shortcut_incidence_per_run": 0.0,
+    "static_shortcut_count": 0,
+    "static_shortcut_yield": 0.0,
+    "truncated_run_count": 0,
+    "used_shortcut_count": 0,
+    "used_shortcut_yield": 0.0
+  }
+}

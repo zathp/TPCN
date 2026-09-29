@@ -3,9 +3,12 @@
 from __future__ import annotations
 
 from dataclasses import asdict, dataclass
+import heapq
 import hashlib
 import json
+import platform
 import random
+import sys
 from typing import Any, Literal
 
 from .canonical_neuron import TPCNNeuron
@@ -55,9 +58,12 @@ class TemporalDirectionResult:
     direction: str
     decay_mode: str
     candidate_set: tuple[tuple[str, str], ...]
+    configured_candidate_opportunities: int
+    configured_mutation_budget: int
     candidates_exposed: int
     candidates_considered: int
     attempts: int
+    mutation_attempts: int
     accepted_mutation_count: int
     accepted_mutations: tuple[dict[str, Any], ...]
     rejected_mutations: int
@@ -67,9 +73,14 @@ class TemporalDirectionResult:
     used_shortcut_count: int
     static_shortcut_yield: float | None
     used_shortcut_yield: float | None
+    used_mutation_count: int
     hop_delta: float
     causal_delay_delta: float
     arrival_time_delta: float
+    minimum_hop_count: tuple[int | None, int | None]
+    minimum_cumulative_delay: tuple[float | None, float | None]
+    first_target_arrival: dict[str, float | None]
+    measured_arrival_latency: dict[str, float | None]
     old_route_traffic: dict[str, int]
     new_route_traffic: dict[str, int]
     prediction_loss: dict[str, float]
@@ -84,6 +95,10 @@ class TemporalDirectionResult:
     candidate_scores: tuple[tuple[tuple[str, str], float], ...]
     candidate_records: tuple[dict[str, Any], ...]
     causal_intervention: dict[str, Any] | None
+    metadata_negative_control: dict[str, Any]
+    execution: dict[str, dict[str, Any]]
+    graph_states: dict[str, tuple[tuple[str, str, float], ...]]
+    candidate_comparison: dict[str, Any]
     taxonomy: tuple[str, ...]
     traces: dict[str, str]
     raw_12m: dict[str, Any]
@@ -174,6 +189,7 @@ def _candidate_records(policy: PolicyName, seed: int, decay_rate: float,
             "residual_factor": float(decay_context["residual_state"]),
             "decay_amount": decay_amount,
             "base_score": base_score, "score": score,
+            "evidence_source": "synthetic_fixture_timing" if endpoint in values else "fallback_fixture_value",
         })
     if policy == "random":
         shuffled = list(range(1, len(CANDIDATE_ENDPOINTS) + 1))
@@ -226,7 +242,10 @@ def _replay(topology: BoundedTopology, observer: EdgeInstrumentation | None,
     target_arrivals: list[tuple[Any, ...]] = []
     target_states: list[tuple[str, float]] = []
     digests: list[str] = []
+    completed_examples = 0
     for example_id, payload in (("positive", 1.0), ("negative", -1.0)):
+        if total_events >= capacity.max_events:
+            break
         for neuron in neurons.values():
             neuron.reset()
         meter = LocalEnergyModel("luna-12n-meter", max_counter=capacity.max_events)
@@ -237,7 +256,7 @@ def _replay(topology: BoundedTopology, observer: EdgeInstrumentation | None,
         queued = queue.push(Event(0.0, "source", "source", "signal", payload))
         paths[queued.sequence] = ("source",)
         processed = 0
-        while queue and processed < capacity.max_events:
+        while queue and total_events < capacity.max_events:
             pending = queue.peek()
             assert pending is not None
             event = queue.pop_ready(pending.timestamp)
@@ -270,6 +289,11 @@ def _replay(topology: BoundedTopology, observer: EdgeInstrumentation | None,
         total_energy += meter.energy
         target_states.append((example_id, neurons[TARGET_NODE].state))
         digests.append(hashlib.sha256(repr(tuple(traces)).encode()).hexdigest())
+        if not queue:
+            completed_examples += 1
+    first_target_arrival = {}
+    for example_id, timestamp, _, _ in target_arrivals:
+        first_target_arrival.setdefault(example_id, timestamp)
     normalized = {
         "trace": tuple(traces), "target_arrivals": tuple(target_arrivals),
         "target_states": tuple(target_states), "prediction_loss": prediction_loss,
@@ -279,7 +303,14 @@ def _replay(topology: BoundedTopology, observer: EdgeInstrumentation | None,
             "energy": total_energy, "prediction_loss": prediction_loss,
             "prediction_errors": prediction_errors, "decay_context": decay_context,
             "trace_digest": hashlib.sha256(repr(normalized).encode()).hexdigest(),
-            "traces": tuple(traces), "normalized": normalized, "phase_digests": tuple(digests)}
+            "traces": tuple(traces), "normalized": normalized, "phase_digests": tuple(digests),
+            "first_target_arrival": first_target_arrival,
+            "execution": {"configured_event_budget": capacity.max_events,
+                           "processed_event_count": total_events,
+                           "pending_event_count": len(queue),
+                               "termination_reason": "completed" if completed_examples == 2 and not queue else "budget_exhausted",
+                               "completed_example_count": completed_examples,
+                           "completed": not bool(queue)}}
 
 
 def compare_normalized_replay(present: dict[str, Any], removed: dict[str, Any]) -> dict[str, bool]:
@@ -303,19 +334,26 @@ def compare_normalized_replay(present: dict[str, Any], removed: dict[str, Any]) 
 
 
 def _shortest(topology: BoundedTopology) -> tuple[int | None, float | None]:
-    frontier = [("source", 0, 0.0)]
-    visited: dict[str, tuple[int, float]] = {}
-    while frontier:
-        node, hops, delay = frontier.pop(0)
-        prior = visited.get(node)
-        if prior is not None and prior <= (hops, delay):
+    hop_frontier = [("source", 0)]
+    hop_counts: dict[str, int] = {}
+    while hop_frontier:
+        node, hops = hop_frontier.pop(0)
+        if node in hop_counts:
             continue
-        visited[node] = (hops, delay)
-        if node == TARGET_NODE:
-            return hops, delay
-        frontier.extend((edge.destination, hops + 1, delay + float(edge.propagation_delay))
-                        for edge in topology.outgoing(node))
-    return None, None
+        hop_counts[node] = hops
+        hop_frontier.extend((edge.destination, hops + 1) for edge in topology.outgoing(node))
+    delays: dict[str, float] = {"source": 0.0}
+    delay_queue: list[tuple[float, str]] = [(0.0, "source")]
+    while delay_queue:
+        delay, node = heapq.heappop(delay_queue)
+        if delay != delays.get(node):
+            continue
+        for edge in topology.outgoing(node):
+            candidate = delay + float(edge.propagation_delay)
+            if candidate < delays.get(edge.destination, float("inf")):
+                delays[edge.destination] = candidate
+                heapq.heappush(delay_queue, (candidate, edge.destination))
+    return hop_counts.get(TARGET_NODE), delays.get(TARGET_NODE)
 
 
 def run_temporal_direction(policy: PolicyName, *, seed: int = 0,
@@ -344,21 +382,26 @@ def run_temporal_direction(policy: PolicyName, *, seed: int = 0,
     statuses: list[str] = []
     rejections: dict[str, int] = {}
     considered = 0
+    mutation_attempts = 0
     for _ in range(config.capacity.max_growth_attempts):
-        considered += len(pending)
         if policy == "fixed" or not pending:
             break
+        considered += len(pending)
         candidate = controller.select(tuple(pending))
         if candidate is None:
             break
         pending.remove(candidate)
         selected.append(candidate)
+        mutation_attempts += 1
         result = controller.grow(candidate)
         statuses.append(result.status)
         if result.status != "grown":
             reason = result.reason or result.status
             rejections[reason] = rejections.get(reason, 0) + 1
     after = _replay(controller.topology, observer, config, decay_rate, "POST_MUTATION")
+    metadata_control = _replay(controller.topology, observer, config, decay_rate, "METADATA_CONTROL")
+    post_mutation_edges = tuple(sorted((edge.source, edge.destination, float(edge.propagation_delay))
+                                       for edge in controller.topology.edges))
     accepted_edges = tuple((candidate.source, candidate.destination)
                            for candidate, status in zip(selected, statuses) if status == "grown")
     old_route = (("source", "n1"), ("n1", "n2"), ("n2", "target"))
@@ -394,30 +437,60 @@ def run_temporal_direction(policy: PolicyName, *, seed: int = 0,
     intervention = None
     if static_count:
         normalized_change = compare_normalized_replay(after, removed)
-        intervention = {"edge": ["source", "target"], **normalized_change,
-                        "metadata_only_control_changed": False,
+        intervention = {"edge": ["source", "target"],
+                "graph_state": "shortcut_present_vs_shortcut_removed",
+                **normalized_change,
                         "present_trace": after["trace_digest"], "removed_trace": removed["trace_digest"],
                         "present_events": after["event_count"], "removed_events": removed["event_count"]}
     snapshot = observer.snapshot()
     accepted_count = len(accepted_mutations)
-    considered_value = considered if policy != "fixed" else sum(
-        range(len(candidates), len(candidates) - config.capacity.max_growth_attempts, -1))
+    metadata_change = compare_normalized_replay(after, metadata_control)
+    metadata_negative_control = {
+        "present_phase": "POST_MUTATION", "control_phase": "METADATA_CONTROL",
+        "normalized_evidence_compared": True,
+        "evidence_fields": ("trace", "target_arrivals", "target_states", "prediction_loss", "prediction_errors"),
+        "changed": metadata_change["changed"], "invariant": not metadata_change["changed"],
+    }
+    first_arrivals = {
+        phase: (data["first_target_arrival"].get("positive") if data["first_target_arrival"] else None)
+        for phase, data in (("PRE_MUTATION", before), ("POST_MUTATION", after),
+                            ("POST_REMOVAL", removed))
+    }
+    configured_budget = config.capacity.max_growth_attempts
+    current_records = _candidate_records("current", seed, decay_rate, config)
+    decay_records = _candidate_records("decay", seed, decay_rate, config)
+    candidate_comparison = {
+        "score_changed": tuple(record["score"] for record in current_records) != tuple(record["score"] for record in decay_records),
+        "rank_changed": tuple(record["rank"] for record in current_records) != tuple(record["rank"] for record in decay_records),
+        "admitted_edge_changed": "requires_paired_policy_records",
+        "final_graph_changed": "requires_paired_policy_records",
+    }
+    def graph_edges(topology: BoundedTopology) -> tuple[tuple[str, str, float], ...]:
+        return tuple(sorted((edge.source, edge.destination, float(edge.propagation_delay))
+                            for edge in topology.edges))
     return TemporalDirectionResult(
         baseline_revision=baseline_revision, fixture_id=config.fixture_id,
         policy=policy, seed=seed, decay_rate=decay_rate,
         direction="reversed" if policy in ("reversed", "reversed_decay") else "current" if policy != "random" else "random",
         decay_mode="intrinsic_decay_relative" if policy in ("decay", "reversed_decay") else "none",
-        candidate_set=CANDIDATE_ENDPOINTS, candidates_exposed=len(candidates),
-        candidates_considered=considered_value, attempts=config.capacity.max_growth_attempts,
+        candidate_set=CANDIDATE_ENDPOINTS,
+        configured_candidate_opportunities=len(candidates), configured_mutation_budget=configured_budget,
+        candidates_exposed=len(candidates), candidates_considered=considered,
+        attempts=mutation_attempts, mutation_attempts=mutation_attempts,
         accepted_mutation_count=accepted_count, accepted_mutations=accepted_mutations,
         rejected_mutations=len(statuses) - accepted_count,
         rejection_reasons=tuple(sorted(rejections.items())), accepted_edges=accepted_edges,
         static_shortcut_count=static_count, used_shortcut_count=used_count,
         static_shortcut_yield=static_count / accepted_count if accepted_count else None,
         used_shortcut_yield=used_count / accepted_count if accepted_count else None,
+        used_mutation_count=used_count,
         hop_delta=float((before_hops or 0) - (after_hops or 0)),
         causal_delay_delta=float((before_delay or 0.0) - (after_delay or 0.0)),
-        arrival_time_delta=float((before_delay or 0.0) - (after_delay or 0.0)),
+        arrival_time_delta=float((first_arrivals["PRE_MUTATION"] or 0.0) - (first_arrivals["POST_MUTATION"] or 0.0)),
+        minimum_hop_count=(before_hops, after_hops),
+        minimum_cumulative_delay=(before_delay, after_delay),
+        first_target_arrival=first_arrivals,
+        measured_arrival_latency=first_arrivals,
         old_route_traffic={"PRE_MUTATION": old_before, "POST_MUTATION": old_after, "POST_REMOVAL": old_removed},
         new_route_traffic={"POST_MUTATION": new_after},
         prediction_loss={phase: data["prediction_loss"] for phase, data in (("PRE_MUTATION", before), ("POST_MUTATION", after), ("POST_REMOVAL", removed))},
@@ -431,6 +504,12 @@ def run_temporal_direction(policy: PolicyName, *, seed: int = 0,
         decay_context=tuple(item for item in snapshot.get("lifecycle", ()) if item.get("kind") == "decay_context"),
         candidate_scores=tuple(zip(CANDIDATE_ENDPOINTS, _local_scores(policy, seed, decay_rate, config))),
         candidate_records=candidate_records, causal_intervention=intervention,
+        metadata_negative_control=metadata_negative_control,
+        execution={phase: data["execution"] for phase, data in (("PRE_MUTATION", before), ("POST_MUTATION", after),
+                                      ("METADATA_CONTROL", metadata_control), ("POST_REMOVAL", removed))},
+        graph_states={"baseline": graph_edges(before_topology), "post_mutation": post_mutation_edges,
+                  "post_removal": graph_edges(controller.topology)},
+        candidate_comparison=candidate_comparison,
         taxonomy=tuple(taxonomy),
         traces={phase: data["trace_digest"] for phase, data in (("PRE_MUTATION", before), ("POST_MUTATION", after), ("POST_REMOVAL", removed))},
         raw_12m=snapshot,
@@ -455,24 +534,81 @@ def write_artifacts(results: tuple[TemporalDirectionResult, ...], output: str,
     import pathlib
     directory = pathlib.Path(output)
     directory.mkdir(parents=True, exist_ok=True)
+    try:
+        executed_revision = __import__("subprocess").check_output(
+            ["git", "rev-parse", "HEAD"], text=True).strip()
+        source_tree_hash = __import__("subprocess").check_output(
+            ["git", "rev-parse", "HEAD^{tree}"], text=True).strip()
+        status = __import__("subprocess").check_output(
+            ["git", "status", "--porcelain"], text=True)
+        dirty = bool(status.strip())
+        diff_hash = hashlib.sha256(__import__("subprocess").check_output(
+            ["git", "diff", "--binary"])).hexdigest() if dirty else None
+    except (OSError, __import__("subprocess").CalledProcessError):
+        executed_revision, source_tree_hash, dirty, diff_hash = None, None, None, None
+    provenance = {
+        "baseline_comparison_revision": baseline_revision,
+        "executed_code_revision": executed_revision,
+        "source_tree_hash": source_tree_hash,
+        "patch_diff_hash": diff_hash,
+        "worktree_dirty": dirty,
+        "python_version": sys.version,
+        "platform": platform.platform(),
+        "configuration": {"policies": POLICIES,
+                           "decay_rates": sorted({r.decay_rate for r in results}),
+                           "fixture_id": results[0].fixture_id if results else None,
+                           "event_budget": results[0].execution["PRE_MUTATION"]["configured_event_budget"] if results else None,
+                           "configured_candidate_opportunities": results[0].configured_candidate_opportunities if results else None,
+                           "configured_mutation_budget": results[0].configured_mutation_budget if results else None},
+        "seeds": sorted({r.seed for r in results}),
+        "candidate_evidence": "synthetic_fixture_timing; not online learned evidence",
+        "prediction_loss": "internally generated prediction-vs-activation error; no common external task target",
+    }
     config = {"baseline_revision": baseline_revision, "seeds": sorted({r.seed for r in results}),
               "policies": POLICIES, "decay_rates": sorted({r.decay_rate for r in results}), "schema": "TPCN-EDGE-2",
-              "fixture_id": results[0].fixture_id if results else TemporalDirectionConfig().fixture_id}
+              "fixture_id": results[0].fixture_id if results else TemporalDirectionConfig().fixture_id,
+              "provenance": provenance}
     (directory / "config.json").write_text(json.dumps(config, indent=2, sort_keys=True), encoding="utf-8")
     (directory / "results.json").write_text(json.dumps([result_dict(r) for r in results], indent=2, sort_keys=True), encoding="utf-8")
     summary = {}
     for policy in POLICIES:
         rows = [r for r in results if r.policy == policy]
+        complete_rows = [r for r in rows if all(item["completed"] for item in r.execution.values())]
         accepted = sum(r.accepted_mutation_count for r in rows)
         static = sum(r.static_shortcut_count for r in rows)
         used = sum(r.used_shortcut_count for r in rows)
         summary[policy] = {
+            "configured_candidate_opportunities": sum(r.configured_candidate_opportunities for r in rows),
+            "configured_mutation_budget": sum(r.configured_mutation_budget for r in rows),
+            "candidate_evaluation_count": sum(r.candidates_considered for r in rows),
+            "mutation_attempt_count": sum(r.mutation_attempts for r in rows),
+            "rejected_mutation_count": sum(r.rejected_mutations for r in rows),
             "accepted_mutation_count": accepted,
             "static_shortcut_count": static,
             "used_shortcut_count": used,
             "static_shortcut_yield": static / accepted if accepted else None,
             "used_shortcut_yield": used / accepted if accepted else None,
+            "shortcut_incidence_per_run": sum(r.used_shortcut_count > 0 for r in rows) / len(rows) if rows else None,
+            "complete_run_count": len(complete_rows),
+            "truncated_run_count": len(rows) - len(complete_rows),
         }
+    paired = []
+    for current in (r for r in results if r.policy == "current"):
+        decay = next((r for r in results if r.policy == "decay" and r.seed == current.seed
+                      and r.decay_rate == current.decay_rate), None)
+        if decay is not None:
+            paired.append({
+                "seed": current.seed, "decay_rate": current.decay_rate,
+                "scores_changed": current.candidate_scores != decay.candidate_scores,
+                "ranking_changed": tuple(record["rank"] for record in current.candidate_records) !=
+                                   tuple(record["rank"] for record in decay.candidate_records),
+                "admitted_edge_changed": current.accepted_edges != decay.accepted_edges,
+                "final_graph_changed": current.graph_states["post_mutation"] != decay.graph_states["post_mutation"],
+            })
+    summary["decay_comparison"] = {
+        "paired_runs": paired,
+        "interpretation": "score/rank sensitivity is distinct from admitted-edge and final-graph change",
+    }
     (directory / "summary.json").write_text(json.dumps(summary, indent=2, sort_keys=True), encoding="utf-8")
 
 
