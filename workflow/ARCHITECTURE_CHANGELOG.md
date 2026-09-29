@@ -263,3 +263,33 @@ from the corrected Luna-12M `PASS WITH FOLLOW-UP` evidence at baseline
 	state, does not create an ACP, and does not make direction or decay gating
 	mandatory. No execution or successor Luna is authorized by this creation.
 
+## Luna-0 independent review of corrected Luna-12N - 2026-09-29
+
+Reviewed pushed revision `bea288aa6f2a7fb54755dc64a703160aaac6c41e` and
+reproduced the corrected artifact under CPU-only execution. The repository was
+clean and synchronized with `origin/main`. The review found and repaired two
+reporting defects during verification: exact event-budget truncation could
+report `completed: true` when only one workload example had finished, and
+current-versus-decay admitted-edge comparison was order-sensitive rather than
+set-sensitive.
+
+- Closed: fixed-topology operation accounting, independent metadata negative
+	control, replay-measured arrivals, weighted delay paths, explicit truncation,
+	candidate evidence provenance, graph-state intervention labels and
+	baseline/executed-revision separation.
+- Reproduced: decay changes score magnitude and rank in all paired seed/rate
+	runs, but admitted edge sets and final graphs do not differ. The fixture is
+	synthetic; prediction loss is topology-dependent internal activation error;
+	resource efficiency and general temporal-learning efficacy remain
+	unestablished.
+- Validation: focused corrective tests, Luna-12H and relevant topology/
+	structural/predictive tests, full CPU regression, compilation and
+	`git diff --check` pass. Existing optional CUDA skips are not Luna-12N
+	failures.
+- Open: the fixture is small and synthetic; no external prediction target,
+	calibrated energy, hardware equivalence or general task benefit is shown.
+- Decision: **PASS WITH FOLLOW-UP — MEASUREMENT CORRECTED, EFFICACY STILL
+	UNESTABLISHED**. Stage 0 / Luna-13A remains deferred. The next authorized
+	action is Luna-0 review of this record; no successor implementation is
+	authorized.
+

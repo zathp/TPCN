@@ -141,7 +141,7 @@ def test_arrival_latency_is_replayed_and_not_static_path_delay() -> None:
     assert result.arrival_time_delta == result.causal_delay_delta
 
 
-@pytest.mark.parametrize("budget", [1, 2, 16])
+@pytest.mark.parametrize("budget", [1, 2, 4, 16])
 def test_replay_reports_budget_and_pending_work(budget: int) -> None:
     config = replace(TemporalDirectionConfig(), capacity=replace(CapacityPressureConfig(), max_events=budget))
     result = run_temporal_direction("fixed", config=config)
@@ -150,6 +150,7 @@ def test_replay_reports_budget_and_pending_work(budget: int) -> None:
     assert execution["processed_event_count"] <= budget
     assert execution["pending_event_count"] >= 0
     assert execution["termination_reason"] in {"completed", "budget_exhausted"}
+    assert execution["completed"] is (execution["termination_reason"] == "completed")
     if budget < 16:
         assert execution["termination_reason"] == "budget_exhausted"
 

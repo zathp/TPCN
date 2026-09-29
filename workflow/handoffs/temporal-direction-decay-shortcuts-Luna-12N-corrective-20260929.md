@@ -6,8 +6,8 @@ This addendum corrects measurement, replay-status, accounting and provenance def
 
 - Starting revision: `5c6a33ef773e6c417cf93e3289877455054e8dc3`
 - Starting committed revision: `5c6a33ef773e6c417cf93e3289877455054e8dc3`.
-- Ending corrective revision: `306732dc0c3abc546168096f7ab83dc4d76b222b`.
-- Starting and ending committed source tree: `acbc3de6544dee2d2793e6dd53d3abc0f4d3cbbc`; corrective source changes are represented by the recorded dirty-worktree patch hash.
+- Ending reviewed revision before this independent review: `bea288aa6f2a7fb54755dc64a703160aaac6c41e`.
+- The independent review found and corrected exact-budget completion reporting and order-sensitive admitted-edge comparison; the final review revision is recorded by the Luna-0 changelog entry.
 - Initial worktree: clean on `main`; corrective edits are the files listed below.
 - Corrected artifact: `artifacts/temporal-direction-12n-corrective-20260929/`
 - Artifact patch hash: recorded as `patch_diff_hash` in `config.json`.
@@ -35,11 +35,11 @@ Graph state labels distinguish `baseline`, `post_mutation`, and `post_removal`. 
 
 - Full corrected suite: 90 records in the versioned artifact.
 - Fixed summary: 90 configured candidate opportunities, 45 configured mutation-budget units, 0 candidate evaluations, 0 mutation attempts, 0 accepted mutations, 0 used mutations; 15 complete runs.
-- Paired current versus decay: scores changed and ranks changed at all 15 seed/rate pairs; admitted edges changed in the paired records, while final post-mutation graph fingerprints did not change.
+- Paired current versus decay: scores changed and ranks changed at all 15 seed/rate pairs; admitted edge sets did not change, although accepted-edge order changed in some records; final post-mutation graph fingerprints did not change.
 - Candidate evidence is synthetic fixture timing/fallback data, not causally observed online learning.
 - Target arrivals are replay-measured event timestamps.
 - Cumulative-delay paths use a positive-weight Dijkstra calculation; minimum hop count is reported separately.
-- Budget exhaustion is explicit and includes pending-event count. Deliberately insufficient budgets are diagnostic and are not silently treated as completed efficacy runs.
+- Budget exhaustion is explicit and includes pending-event count; exact-boundary truncation with an empty queue is also `completed: false`. Deliberately insufficient budgets are diagnostic and are not silently treated as completed efficacy runs.
 - Prediction loss is internal prediction-vs-activation error. Luna-12N has no common topology-independent external prediction target.
 - Proxy energy remains a local activity proxy, not calibrated physical energy.
 
@@ -63,7 +63,7 @@ Graph state labels distinguish `baseline`, `post_mutation`, and `post_removal`. 
 
 1. Decay alters score magnitude: **yes, observed in this fixture**.
 2. Decay alters candidate rank: **yes, observed in this fixture**.
-3. Decay alters admitted edge: **yes in paired records; not a general claim**.
+3. Decay alters admitted edge: **no, not when comparing admitted edge sets**.
 4. Decay alters final graph: **no in the paired records**.
 5. Candidate evidence: **synthetic fixture timing/fallback, not causally observed online evidence**.
 6. Target arrivals: **yes, measured from replayed events**.

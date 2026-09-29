@@ -308,9 +308,9 @@ def _replay(topology: BoundedTopology, observer: EdgeInstrumentation | None,
             "execution": {"configured_event_budget": capacity.max_events,
                            "processed_event_count": total_events,
                            "pending_event_count": len(queue),
-                               "termination_reason": "completed" if completed_examples == 2 and not queue else "budget_exhausted",
-                               "completed_example_count": completed_examples,
-                           "completed": not bool(queue)}}
+                           "termination_reason": "completed" if completed_examples == 2 and not queue else "budget_exhausted",
+                           "completed_example_count": completed_examples,
+                           "completed": completed_examples == 2 and not queue}}
 
 
 def compare_normalized_replay(present: dict[str, Any], removed: dict[str, Any]) -> dict[str, bool]:
@@ -602,7 +602,7 @@ def write_artifacts(results: tuple[TemporalDirectionResult, ...], output: str,
                 "scores_changed": current.candidate_scores != decay.candidate_scores,
                 "ranking_changed": tuple(record["rank"] for record in current.candidate_records) !=
                                    tuple(record["rank"] for record in decay.candidate_records),
-                "admitted_edge_changed": current.accepted_edges != decay.accepted_edges,
+                "admitted_edge_changed": set(current.accepted_edges) != set(decay.accepted_edges),
                 "final_graph_changed": current.graph_states["post_mutation"] != decay.graph_states["post_mutation"],
             })
     summary["decay_comparison"] = {
