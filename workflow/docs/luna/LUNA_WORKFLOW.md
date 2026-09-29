@@ -1364,6 +1364,53 @@ No Luna-13B is authorized by this entry. The likely future controlled
 temporal structural-selection experiment remains contingent on Luna-13A and
 the independent Luna-0 Stage-0 review.
 
+### Luna-0 independent review - 2026-09-29
+
+**Reviewed revision:** `047d2dd59905934a5100dcafb791835e93708b37`, pushed as
+`origin/main`; the source tree was clean at review time. The Luna-13A handoff
+is `workflow/handoffs/stage0-invariant-closure-Luna-13A.md`.
+
+**Independent result:** **BLOCKED — REWARD CONTRACT DECISION REQUIRED**.
+
+- **Classifier:** PASS. An independent probe with START at `0`, activity at
+  `8`, and direct stale finalization at `5` rejected before mutation. Time,
+  active state, scores, result, character index and committed result state
+  were unchanged. Equal-time, future-time and dispatched finalization agreed
+  with direct semantics.
+- **Reward contract:** BLOCKED. Independent delivery of the same
+  `RewardSignal` applied credit twice. `RewardSignal` exposes only `reward`,
+  `trace_id` and `prediction_id`; it has no delivery identity. The Luna-8
+  handoff still claims bounded `message_id` retention, while the production
+  implementation and adversarial test assert repeated application. Luna-0
+  does not select Model A or Model B here.
+- **Structural admission:** PASS. Independent jointly-invalid fan-in and
+  fan-out batches, edge-capacity exhaustion, atomic topology preservation,
+  deterministic public causes, and observer ON/OFF equivalence all passed.
+- **Recurrence budget:** PASS for the canonical `execute_bounded` path.
+  Positive-delay loop probes at budgets `1`, `2`, `8`, and `1` reported the
+  exact processed budget, one pending event, `budget_exhausted`, and
+  `completed=False`; finite work reported `completed=True`. No global neural
+  timestep was introduced. A legacy Luna-12J efficacy replay still uses a
+  manual bounded loop without returning termination status; this is recorded
+  as follow-up evidence and is not silently promoted as canonical execution.
+- **Regression:** The independent temporal/runtime/credit/topology slice
+  passed `109` tests. The complete CPU suite passed `234` tests with `1`
+  optional CUDA/GPU skip, which is not a failure. `compileall` and
+  `git diff --check` passed. Luna-12H and Luna-12N corrective tests passed;
+  Luna-12N is not reinterpreted as decay efficacy evidence.
+- **Architecture conformance:** Core A01/A02/A03/A04/A07/A08/A11/A15
+  behavior checked here remains conformant for the reviewed paths. Reward
+  identity semantics remain unresolved, and Luna-12J's legacy replay status
+  reporting should be normalized before broader reuse.
+
+**Stage-0 gate:** remains open because reward-delivery authority is internally
+inconsistent. No Luna-13B, broad efficacy experiment, or hardware milestone is
+authorized. After Luna-0/project-owner resolves the reward contract and the
+legacy replay-status follow-up, the next bounded scientific target may be only
+the one-slot structural competition in which causally observed local temporal
+evidence produces a predicted decay-dependent admission crossover. Synthetic
+endpoint timing tables must not serve as proof of online learning.
+
 ## Luna-13 — GPU-Compatible Visualization Path
 
 **Authorization:** Blocked until Luna-12 passes and Luna-0 explicitly authorizes this milestone. The prompt or handoff alone is not authorization.

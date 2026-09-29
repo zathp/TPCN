@@ -10,8 +10,8 @@ tpcn_handoff:
   contract_version: "1.1"
   branch: "main"
   base_revision: "00d00fdfa74aa8dcf7102b8906b153778e475dcd"
-  result_revision: "uncommitted"
-  tree_state: "dirty; only listed implementation, focused tests, and this handoff are changed"
+  result_revision: "047d2dd59905934a5100dcafb791835e93708b37"
+  tree_state: "clean; implementation and handoff are pushed on main and origin/main"
   dependencies: []
   owner: "Luna-0"
   classification:
@@ -90,7 +90,7 @@ tpcn_handoff:
   tests_passing:
     - "python -m pytest -q tests/test_streaming_classifier.py tests/test_eligibility.py tests/test_event_runtime.py tests/test_structural_plasticity.py tests/test_luna12h_temporal.py tests/test_luna11_adversarial.py tests/test_luna12m_edge_instrumentation.py tests/test_luna12n_temporal_direction.py: 98 passed."
     - "python -m pytest -q tests/test_event_runtime.py tests/test_experiments.py: 26 passed."
-    - "python -m pytest -q: 234 passed, 1 skipped."
+    - "python -m pytest -q: 234 passed, 1 skipped at result revision 047d2dd59905934a5100dcafb791835e93708b37."
     - "python -m compileall -q tpcn tests: passed."
     - "git diff --check: passed."
   tests_failed: []
@@ -156,7 +156,7 @@ The reward contradiction is the sole release blocker identified by the required 
 
 ## Reproduction and rollback
 
-From the repository root, run the validation commands in the table. The safe restoration point is revision `00d00fdfa74aa8dcf7102b8906b153778e475dcd`; implementation changes are currently uncommitted and can be reviewed or selectively reverted without changing the published Luna-13A contract commit.
+From the repository root, run the validation commands in the table. The safe restoration point for this implementation is revision `047d2dd59905934a5100dcafb791835e93708b37`; the published Luna-13A contract preceded it at `00d00fdfa74aa8dcf7102b8906b153778e475dcd`.
 
 ## Next assignment
 
