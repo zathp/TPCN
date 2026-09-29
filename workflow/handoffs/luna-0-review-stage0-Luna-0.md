@@ -12,7 +12,7 @@ tpcn_handoff:
   contract_version: "1.1"
   branch: "main"
   base_revision: "db459c1e6dff8b90f74288a67e898552c12dc85f"
-  result_revision: "uncommitted"
+  result_revision: "465aa2f299a3525a754943f5497dc10172d5ee29"
   dependencies:
     - "Luna-13A implementation handoff"
     - "A11 bounded retry-idempotent reward contract"
