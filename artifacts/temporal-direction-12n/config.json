@@ -1,0 +1,24 @@
+{
+  "baseline_revision": "0d91207ec5db0ab8011e0fc020cc9e4e20915428",
+  "decay_rates": [
+    0.25,
+    0.5,
+    1.0
+  ],
+  "policies": [
+    "current",
+    "reversed",
+    "decay",
+    "reversed_decay",
+    "random",
+    "fixed"
+  ],
+  "schema": "TPCN-EDGE-2",
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ]
+}

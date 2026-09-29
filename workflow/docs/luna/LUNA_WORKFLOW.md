@@ -1267,6 +1267,49 @@ export may be `PASS WITH FOLLOW-UP`; execution influence, unboundedness or
 ambiguous lifetimes is `BLOCKED`. Results return to Luna-0 and do not create a
 direction/decay-gated shortcut experiment.
 
+## Luna-12N - Temporal Direction and Intrinsic-Decay-Gated Shortcut Verification
+
+**Authorization:** Luna-12N is a creation-only `EXPERIMENT` and
+`VERIFICATION` milestone at baseline `0d91207ec5db0ab8011e0fc020cc9e4e20915428`,
+created after corrected Luna-12M reached `PASS WITH FOLLOW-UP`. Creation does
+not execute the experiment, amend A14, change the architecture contract,
+authorize hardware acceptance or authorize a successor. Execution requires a
+separate explicit assignment and returns to Luna-0.
+
+**Question and hypotheses:** Determine whether locally legal edge direction and
+intrinsic-neuron-decay-relative candidate preference increase genuinely used
+causal shortcut yield under equal opportunity. H1 tests current versus
+reversed orientation, H2 tests local decay-relative separation versus no decay
+preference, and H3 tests their combination. A new correlated edge is not a
+shortcut unless measured route use and causal compression are both present.
+
+**Policy matrix:** Compare current/no-decay, reversed/no-decay,
+current/decay-aware, reversed/decay-aware, random legal growth and fixed
+topology. Preserve the same candidate pair for direction intervention where
+legal; document an equivalent legal comparison when literal reversal is not
+valid. Use seeds `0..4` and a predeclared finite set of decay-relative regimes;
+do not tune global timing thresholds after inspecting outcomes.
+
+**Locality and measurement:** Runtime policy inputs are limited to local event
+timestamps, elapsed time, the neuron's own decay parameter/residual state,
+local candidate evidence and legal local edge state. Global path analysis is
+offline only. Use corrected Luna-12M `TPCN-EDGE-2` phase-scoped traffic,
+endpoint-plus-generation lifecycle, candidate/rejection, pruning and decay
+records. Measure exposure, attempts, admissions, rejection reasons, fan-in/out
+and capacity, old/new route traffic, hop/cumulative-delay/arrival changes,
+prediction/error, proxy energy, events and activations. Report static and used
+shortcut yield separately and run matched present/remove/identical-replay
+causal interventions.
+
+**Boundary:** Do not change pruning, protection, persistent edge strength,
+utility or eligibility, add a permanent threshold, inject labels or global
+topology, add genetic hyperparameters or a micro-network, redesign the
+classifier, modify A14 or claim hardware equivalence. Record premature-removal
+protection and inherited-parameter ideas only as future research notes if
+direct evidence warrants them. The result gates are `PASS`, `PASS WITH
+FOLLOW-UP`, `NOT SUPPORTED`, `INCONCLUSIVE` and `BLOCKED`; all results return
+to Luna-0 and no successor is authorized.
+
 ## Luna-13 — GPU-Compatible Visualization Path
 
 **Authorization:** Blocked until Luna-12 passes and Luna-0 explicitly authorizes this milestone. The prompt or handoff alone is not authorization.

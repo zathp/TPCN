@@ -245,3 +245,21 @@ competing-path summary fields with phase-scoped measured traffic, stop using
 rejection lifecycle records. This is an evidence-quality decision, not an
 A01-A15 change or successor authorization.
 
+## Luna-12N creation - 2026-09-28
+
+Created **Temporal Direction and Intrinsic-Decay-Gated Shortcut Verification**
+from the corrected Luna-12M `PASS WITH FOLLOW-UP` evidence at baseline
+`0d91207ec5db0ab8011e0fc020cc9e4e20915428`.
+
+- Luna-12N is classified `EXPERIMENT` and `VERIFICATION`; it compares current
+	and reversed legal direction, intrinsic-decay-relative variants, random legal
+	growth and fixed topology under equal candidate opportunity.
+- The primary metric is used shortcut yield: accepted mutations that both
+	reduce measured cumulative causal delay and carry measured routed traffic,
+	reported separately from static shortcut yield. Corrected Luna-12M
+	`TPCN-EDGE-2` phase-scoped traffic, lifecycle, candidate/rejection and decay
+	records remain the measurement basis.
+- The experiment preserves A01-A15, does not alter pruning or persistent edge
+	state, does not create an ACP, and does not make direction or decay gating
+	mandatory. No execution or successor Luna is authorized by this creation.
+

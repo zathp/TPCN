@@ -1,0 +1,26 @@
+{
+  "current": {
+    "static_shortcut_yield": 0.5,
+    "used_shortcut_yield": 0.5
+  },
+  "decay": {
+    "static_shortcut_yield": 0.5,
+    "used_shortcut_yield": 0.5
+  },
+  "fixed": {
+    "static_shortcut_yield": 0.0,
+    "used_shortcut_yield": 0.0
+  },
+  "random": {
+    "static_shortcut_yield": 0.2,
+    "used_shortcut_yield": 0.2
+  },
+  "reversed": {
+    "static_shortcut_yield": 0.0,
+    "used_shortcut_yield": 0.0
+  },
+  "reversed_decay": {
+    "static_shortcut_yield": 0.0,
+    "used_shortcut_yield": 0.0
+  }
+}
