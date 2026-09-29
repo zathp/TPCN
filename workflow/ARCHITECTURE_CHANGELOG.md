@@ -342,3 +342,31 @@ after the independently reviewed Stage-0 closure at
 This is a workflow and experiment-scope change only. A01-A15 are unchanged and
 no ACP is created.
 
+## Luna-0 independent review of Luna-13B - 2026-09-29
+
+Reviewed implementation and artifact revision
+`816929fa097e049ce7d82a1f7c63fb9cc4e8bd3f` after synchronization with
+`origin/main`; the review started from a clean tree with matching `HEAD` and
+`origin/main`.
+
+- Independent runtime attacks reproduced the frozen scoring crossover
+	`0.07833747196936626` and the complete causal chain: local runtime evidence,
+	opposite score/rank ordering, different one-slot admitted edges and
+	different final edge sets.
+- Capacity/admission is valid: both candidates were locally valid from zero
+	edges, exactly one edge slot remained, and the loser was rejected with
+	`edge_capacity`.
+- Relabeling, mirroring, exact/near ties, deterministic replay, future-probe
+	exclusion, extended-budget replay and required negative controls passed.
+- Scoring decay and execution decay remain separately configurable; no claim
+	of task efficacy, energy benefit, scalability, hardware equivalence or
+	general superiority follows.
+- Preservation validation passed: review slice `135 passed`; full CPU suite
+	`250 passed, 1 skipped`; compileall, diagnostics and `git diff --check`
+	passed. The Luna-12J manual replay termination-status issue remains a
+	non-gating follow-up.
+
+**Decision:** **PASS — LUNA-13B CAUSAL STRUCTURAL CROSSOVER INDEPENDENTLY
+VERIFIED**. Luna-13C remains unauthorized. No A01-A15 clause changed and no
+ACP or architecture promotion is created by this review.
+

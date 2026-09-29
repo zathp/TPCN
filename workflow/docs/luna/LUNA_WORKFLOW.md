@@ -1519,6 +1519,56 @@ claims. All results return to Luna-0. Scores/ranks without a changed admitted
 edge must be reported as `SCORING/RANK SENSITIVITY CONFIRMED — STRUCTURAL
 CROSSOVER NOT ESTABLISHED`. Luna-13B cannot authorize Luna-13C.
 
+### Luna-0 independent review of Luna-13B - 2026-09-29
+
+Reviewed implementation and published artifact revision
+`816929fa097e049ce7d82a1f7c63fb9cc4e8bd3f` after synchronizing with
+`origin/main`. The review tree was clean and `HEAD == origin/main` at review
+start. The contract is `.github/agents/luna-13b.agent.md`, the execution
+handoff is `workflow/handoffs/causal-local-temporal-crossover-Luna-13B.md`,
+and the artifacts are under
+`artifacts/causal-local-temporal-crossover-13b/`.
+
+**Independent result:**
+**PASS — LUNA-13B CAUSAL STRUCTURAL CROSSOVER INDEPENDENTLY VERIFIED**.
+
+- Runtime-local evidence passed. Candidate residuals and scores were derived
+  from routed finite-delay events and canonical-neuron local state; timestamps,
+  elapsed intervals, source events and decision times were reconstructable.
+- The production equation reproduced the frozen crossover
+  `mu* = 0.07833747196936626`. Low/high scoring decay produced opposite ranks,
+  admitted edges and explicit final edge sets under one remaining slot.
+- One-slot capacity passed: two locally valid candidates competed from zero
+  edges, one edge was grown, and the other was rejected with `edge_capacity`.
+- Relabeling and mirroring followed semantic temporal evidence rather than
+  identifier order. Exact ties used the declared deterministic identifier rule;
+  near-boundary replay was deterministic.
+- Reversed, shuffled, uniform, neutral, random, score-shuffled and fixed
+  controls behaved according to their declared purposes. Score-shuffled
+  preserved raw rank while changing the selected edge, demonstrating why
+  structural choice was separately measured.
+- Scoring decay and execution decay were independently configurable. The
+  primary crossover held execution decay fixed; the review also ran an
+  execution-decay factorial comparison and makes no claim that runtime decay
+  is irrelevant.
+- Primary and control runs completed without budget exhaustion. The review
+  reproduced `7` processed events, `0` pending events and peak queue occupancy
+  `4`; increasing the budget to `30` did not change the result.
+- Stage-0/Luna-12H/Luna-12N preservation passed. The review slice passed `135`
+  tests and the full CPU suite passed `250` with `1` optional CUDA/GPU skip;
+  compileall, diagnostics and `git diff --check` passed.
+
+The result is narrow: Luna-13B establishes a bounded software-reference
+mechanism in which causally observed local temporal evidence can reverse a
+decay-sensitive candidate ranking and change one-slot structural admission and
+the final graph. The controlled intervals are finite runtime fixture delays;
+this review does not establish task usefulness, classification or prediction
+improvement, energy efficiency, scalability, hardware equivalence, biological
+plausibility or general superiority. Luna-12J's manual replay termination
+status remains a non-gating follow-up. Luna-13C is not authorized. A future
+contract may be proposed for causal usefulness of a learned edge against an
+external task target, subject to a new owner request and Luna-0 review.
+
 ## Luna-13 — GPU-Compatible Visualization Path
 
 **Authorization:** Blocked until Luna-12 passes and Luna-0 explicitly authorizes this milestone. The prompt or handoff alone is not authorization.
