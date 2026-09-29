@@ -472,3 +472,28 @@ fixture has only two cases, and random growth can reproduce the outcome. No
 A01-A15 clause changed and no Luna-13D was created or executed. Later Luna-13D
 contract creation requires explicit project-owner authorization.
 
+## Luna-13D contract creation - 2026-09-29
+
+Created the CPU-only **Finite-Resource Utility, Retention, and Capacity-Pressure
+Experiment** contract after the independent corrective Luna-13C review closed
+at `df297c446856d07b2822702202bbb61e81cf38a4`. The reviewed corrective source
+was `685cd721f7ca108278aa2e3044b53d46981e5bbd`, synchronized in tree
+`09995add7643e63f61c45602922238e319965113`.
+
+- Luna-13D tests whether externally useful temporal structure is retained or
+	recoverable under finite capacity while stale, unused or low-value structure
+	is pruned, rejected or left unadmitted under declared rules.
+- It stages structural and runtime pressure, preserves the fixed external
+	Luna-13C target, separates task utility from resource cost, requires useful
+	and low-value edge populations, fixed/random controls, lifecycle/pruning
+	evidence, real seed provenance and bounded completion accounting.
+- Atomic replacement is conditional: only an already documented and tested
+	authorized mechanism may be measured. Otherwise the experiment is limited
+	to admission, coexistence, pruning and later growth after freed capacity;
+	no protected-edge lifetime or replacement mechanism is invented.
+- Execution is CPU-only. Results require a Luna-13D handoff and independent
+	Luna-0 review. Luna-13E is not authorized.
+
+This is a workflow and experiment-scope update only. A01-A15 are unchanged;
+no ACP or architecture promotion is created by this entry.
+

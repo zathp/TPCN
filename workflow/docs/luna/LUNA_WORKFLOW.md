@@ -1729,6 +1729,58 @@ later contract creation only by explicit project-owner authorization. The next
 scientific boundary is a separately authorized finite-resource utility study
 covering pressure, retention/pruning/replacement, and event/energy tradeoffs.
 
+## Luna-13D - Finite-Resource Utility, Retention, and Capacity-Pressure Experiment
+
+**Authorization boundary:**
+
+```text
+Luna-0 creates Luna-13D contract
+  -> Luna-13D executes under a separate explicit assignment
+  -> Luna-0 independently reviews Luna-13D
+  -> determine whether any successor is authorized
+```
+
+The synchronized Luna-13C corrective review closed at final review revision
+`df297c446856d07b2822702202bbb61e81cf38a4`, reviewing corrective source
+`685cd721f7ca108278aa2e3044b53d46981e5bbd` in tree
+`09995add7643e63f61c45602922238e319965113`. Its result was
+`PASS WITH FOLLOW-UP — CAUSAL EFFECT VERIFIED, BOUNDED LIMITATIONS REMAIN`.
+The narrow effect is retained; two task cases, one random reproduction,
+generalization, efficiency, scalability and full-state checkpointing remain
+limited or unproven.
+
+Luna-13D is a CPU-only `EXPERIMENT` and `VERIFICATION` of finite-resource
+utility, useful-edge retention, low-value pruning and capacity pressure. It
+reuses Luna-13C's fixed external task semantics and causal learned-edge
+provenance where practical. It separates task utility from events, queue peak,
+proxy energy, latency and edge/capacity cost, and must not call silence
+efficient when task utility is lost.
+
+The scope is staged pressure over fan-in, fan-out, total edge capacity,
+event/queue capacity and competing useful, distractor, unused and expensive
+paths. Stages cover baseline utility, distractor pressure, below/near/full
+capacity, declared pruning, post-pruning normal growth and an optional bounded
+workload shift. Useful-edge lifecycle, pruning evidence/reasons, graph state,
+capacity failures, queue rejections, budget exhaustion, task outcome, events,
+proxy energy and latency remain observable. Fixed topology and genuine seeded
+random growth are required controls.
+
+Replacement is not automatically authorized. Luna-13D may test an existing
+documented and tested atomic replacement policy only if one is already
+authorized. Otherwise it is restricted to admission, coexistence, pruning and
+later growth after legitimately freed capacity; it must not invent replacement
+or a protected-edge lifetime. Any required architecture change returns as an
+ACP/decision packet to Luna-0/project-owner review.
+
+Every run requires configured/processed/pending events, queue peak where
+available, termination reason and `completed` versus `budget_exhausted`.
+Artifacts preserve revisions, fixture, capacity/pruning configuration, seeds,
+external target, thresholds and resource units. CUDA is optional and
+non-gating. The standard handoff is
+`workflow/handoffs/finite-resource-utility-capacity-pressure-Luna-13D.md`.
+Results return to Luna-0 for independent review. Luna-13D does not authorize
+Luna-13E.
+
 ## Luna-13 — GPU-Compatible Visualization Path
 
 **Authorization:** Blocked until Luna-12 passes and Luna-0 explicitly authorizes this milestone. The prompt or handoff alone is not authorization.
