@@ -84,6 +84,7 @@ from .fpga_visualization import (
     encode_trace_frame,
 )
 from .cpu_visualization import CPUTrainingCapture, ReplaySequence, ReplaySequenceError, run_cpu_training
+from .edge_instrumentation import EdgeIdentity, EdgeInstrumentation, run_competing_path_fixture
 from .viewer_3d import CameraState, EdgeView, NodeView, SnapshotDiff, ViewerFilters, VisualizationScene
 from .temporal_analysis import analyze_replay, compare_replays, summarize_analysis
 from .temporal_association import TemporalAssociationPolicy, TemporalAssociationState
@@ -209,6 +210,9 @@ __all__ = [
     "CPUTrainingCapture",
     "ReplaySequence",
     "ReplaySequenceError",
+    "EdgeIdentity",
+    "EdgeInstrumentation",
+    "run_competing_path_fixture",
     "run_cpu_training",
     "CameraState",
     "EdgeView",

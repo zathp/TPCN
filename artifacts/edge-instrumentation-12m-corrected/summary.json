@@ -1,0 +1,275 @@
+{
+  "competing_paths": {
+    "old_route_after": 1,
+    "old_route_after_removal": 1,
+    "old_route_before": 1,
+    "persistent_edge_strength": "not available in current architecture",
+    "persistent_edge_utility": "not available in current architecture",
+    "shortcut_after": 1,
+    "shortcut_used": true
+  },
+  "decay_context_records": 10,
+  "edges": [
+    {
+      "created_at": null,
+      "created_at_domain": "unavailable",
+      "delay": 1.0,
+      "first_use": 0.0,
+      "identity": {
+        "destination": "mid",
+        "generation": 0,
+        "source": "source"
+      },
+      "last_use": 0.0,
+      "routing_cost": 1,
+      "traffic_by_phase": {
+        "POST_REMOVAL": 1,
+        "POST_SHORTCUT": 1,
+        "PRE_SHORTCUT": 1
+      },
+      "traffic_count": 3
+    },
+    {
+      "created_at": null,
+      "created_at_domain": "unavailable",
+      "delay": 1.0,
+      "first_use": 1.0,
+      "identity": {
+        "destination": "target",
+        "generation": 0,
+        "source": "mid"
+      },
+      "last_use": 1.0,
+      "routing_cost": 1,
+      "traffic_by_phase": {
+        "POST_REMOVAL": 1,
+        "POST_SHORTCUT": 1,
+        "PRE_SHORTCUT": 1
+      },
+      "traffic_count": 3
+    },
+    {
+      "created_at": null,
+      "created_at_domain": "unavailable",
+      "delay": 0.5,
+      "first_use": 0.0,
+      "identity": {
+        "destination": "target",
+        "generation": 0,
+        "source": "source"
+      },
+      "last_use": 0.0,
+      "routing_cost": 1,
+      "traffic_by_phase": {
+        "POST_SHORTCUT": 1
+      },
+      "traffic_count": 1
+    },
+    {
+      "created_at": null,
+      "created_at_domain": "unavailable",
+      "delay": 1.0,
+      "first_use": null,
+      "identity": {
+        "destination": "fan_left",
+        "generation": 0,
+        "source": "fan_source"
+      },
+      "last_use": null,
+      "routing_cost": 1,
+      "traffic_by_phase": {},
+      "traffic_count": 0
+    },
+    {
+      "created_at": null,
+      "created_at_domain": "unavailable",
+      "delay": 1.0,
+      "first_use": null,
+      "identity": {
+        "destination": "fan_target",
+        "generation": 0,
+        "source": "fan_right"
+      },
+      "last_use": null,
+      "routing_cost": 1,
+      "traffic_by_phase": {},
+      "traffic_count": 0
+    },
+    {
+      "created_at": null,
+      "created_at_domain": "unavailable",
+      "delay": 1.0,
+      "first_use": null,
+      "identity": {
+        "destination": "capacity_existing",
+        "generation": 0,
+        "source": "capacity_source"
+      },
+      "last_use": null,
+      "routing_cost": 1,
+      "traffic_by_phase": {},
+      "traffic_count": 0
+    }
+  ],
+  "mutations": {
+    "accepted": "grown",
+    "pruned": "pruned",
+    "rejected": "nonlocal"
+  },
+  "persistent_strength": "not available in current architecture",
+  "persistent_utility": "not available in current architecture",
+  "phases": [
+    "PRE_SHORTCUT",
+    "POST_SHORTCUT",
+    "POST_REMOVAL"
+  ],
+  "rejection_records": [
+    {
+      "delay": 0.5,
+      "destination": "target",
+      "kind": "candidate_rejected",
+      "phase": "PRE_SHORTCUT",
+      "reason": "duplicate",
+      "source": "source",
+      "timestamp": null,
+      "timestamp_domain": "unavailable"
+    },
+    {
+      "delay": 1.0,
+      "destination": "mid",
+      "kind": "candidate_rejected",
+      "phase": "PRE_SHORTCUT",
+      "reason": "nonlocal",
+      "source": "source",
+      "timestamp": null,
+      "timestamp_domain": "unavailable"
+    },
+    {
+      "delay": 1.0,
+      "destination": "fan_right",
+      "kind": "candidate_rejected",
+      "phase": "POST_REMOVAL",
+      "reason": "fan_out_full",
+      "source": "fan_source",
+      "timestamp": null,
+      "timestamp_domain": "unavailable"
+    },
+    {
+      "delay": 1.0,
+      "destination": "fan_target",
+      "kind": "candidate_rejected",
+      "phase": "POST_REMOVAL",
+      "reason": "fan_in_full",
+      "source": "fan_left",
+      "timestamp": null,
+      "timestamp_domain": "unavailable"
+    },
+    {
+      "delay": 1.0,
+      "destination": "capacity_target",
+      "kind": "candidate_rejected",
+      "phase": "POST_REMOVAL",
+      "reason": "edge_capacity",
+      "source": "capacity_source",
+      "timestamp": null,
+      "timestamp_domain": "unavailable"
+    },
+    {
+      "delay": 1.0,
+      "destination": "candidate_right",
+      "kind": "candidate_rejected",
+      "phase": "POST_REMOVAL",
+      "reason": "candidate_capacity",
+      "source": "candidate_source",
+      "timestamp": null,
+      "timestamp_domain": "unavailable"
+    }
+  ],
+  "rejection_results": {
+    "candidate_capacity": "candidate_capacity",
+    "duplicate": "duplicate",
+    "edge_capacity": "edge_capacity",
+    "fan_in_full": "fan_in_full",
+    "fan_out_full": "fan_out_full"
+  },
+  "schema_version": "TPCN-EDGE-2",
+  "traffic": [
+    {
+      "arrival_timestamp": 1.0,
+      "emission_timestamp": 0.0,
+      "event_type": "signal",
+      "identity": {
+        "destination": "mid",
+        "generation": 0,
+        "source": "source"
+      },
+      "phase": "PRE_SHORTCUT"
+    },
+    {
+      "arrival_timestamp": 2.0,
+      "emission_timestamp": 1.0,
+      "event_type": "signal",
+      "identity": {
+        "destination": "target",
+        "generation": 0,
+        "source": "mid"
+      },
+      "phase": "PRE_SHORTCUT"
+    },
+    {
+      "arrival_timestamp": 1.0,
+      "emission_timestamp": 0.0,
+      "event_type": "signal",
+      "identity": {
+        "destination": "mid",
+        "generation": 0,
+        "source": "source"
+      },
+      "phase": "POST_SHORTCUT"
+    },
+    {
+      "arrival_timestamp": 0.5,
+      "emission_timestamp": 0.0,
+      "event_type": "signal",
+      "identity": {
+        "destination": "target",
+        "generation": 0,
+        "source": "source"
+      },
+      "phase": "POST_SHORTCUT"
+    },
+    {
+      "arrival_timestamp": 2.0,
+      "emission_timestamp": 1.0,
+      "event_type": "signal",
+      "identity": {
+        "destination": "target",
+        "generation": 0,
+        "source": "mid"
+      },
+      "phase": "POST_SHORTCUT"
+    },
+    {
+      "arrival_timestamp": 1.0,
+      "emission_timestamp": 0.0,
+      "event_type": "signal",
+      "identity": {
+        "destination": "mid",
+        "generation": 0,
+        "source": "source"
+      },
+      "phase": "POST_REMOVAL"
+    },
+    {
+      "arrival_timestamp": 2.0,
+      "emission_timestamp": 1.0,
+      "event_type": "signal",
+      "identity": {
+        "destination": "target",
+        "generation": 0,
+        "source": "mid"
+      },
+      "phase": "POST_REMOVAL"
+    }
+  ]
+}

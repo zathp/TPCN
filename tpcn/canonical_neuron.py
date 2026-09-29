@@ -11,6 +11,7 @@ from .event_runtime import Event, EventQueue, EventType, LocalClock, Propagation
 
 LocalActivity = tuple[str, float, float]
 LocalActivityHook = Callable[[LocalActivity], None]
+TemporalContextHook = Callable[[dict[str, float | str]], None]
 
 
 def _nonnegative_real(value: Real, name: str) -> float:
@@ -34,6 +35,7 @@ class TPCNNeuron:
         input_gain: float = 1.0,
         initial_state: float = 0.0,
         activity_hook: LocalActivityHook | None = None,
+        temporal_context_hook: TemporalContextHook | None = None,
     ) -> None:
         if not isinstance(neuron_id, str) or not neuron_id:
             raise ValueError("neuron_id must be a non-empty string")
@@ -61,6 +63,7 @@ class TPCNNeuron:
         self.energy_state = 0.0
         self.processed_events = 0
         self._activity_hook = activity_hook
+        self._temporal_context_hook = temporal_context_hook
 
     def _bounded_activation(self, state: float) -> float:
         return max(-1.0, min(1.0, math.tanh(state)))
@@ -93,10 +96,17 @@ class TPCNNeuron:
             raise ValueError("event destination does not address this neuron")
         if isinstance(event.payload, bool) or not isinstance(event.payload, Real):
             raise TypeError("neuron event payload must be a real number")
+        pre_state = self.state
         elapsed = self.clock.advance_to(event.timestamp)
         if elapsed:
             self._set_state(self.state * math.exp(-self.decay_rate * elapsed))
+        residual_state = self.state
         self._set_state(self.state + self.input_gain * float(event.payload))
+        if self._temporal_context_hook is not None:
+            self._temporal_context_hook({"neuron": self.neuron_id, "timestamp": event.timestamp,
+                                         "delta_t": elapsed, "decay_rate": self.decay_rate,
+                                         "pre_state": pre_state, "residual_state": residual_state,
+                                         "post_state": self.state})
         self.processed_events += 1
         self.energy_state += abs(self.activation)
         self.eligibility_state = min(1.0, self.eligibility_state + abs(self.activation))
@@ -127,4 +137,4 @@ class TPCNNeuron:
         )
 
 
-__all__ = ["LocalActivity", "LocalActivityHook", "TPCNNeuron"]
+__all__ = ["LocalActivity", "LocalActivityHook", "TemporalContextHook", "TPCNNeuron"]

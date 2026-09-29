@@ -1244,6 +1244,29 @@ defined in the 12L specification. Any result returns to Luna-0; no A14
 promotion, permanent energy/prediction formula, real-data claim, hardware
 acceptance or successor authorization follows automatically.
 
+## Luna-12M - Edge Lifecycle, Route Utilization, and Competing-Path Instrumentation
+
+**Authorization:** Created and executed by Luna-0 at baseline
+`7f8ea2df5896d3ea7cd7d41a4f1bd8298c0dc015` after the corrected Luna-12L
+direction/decay review. This is an `OBSERVATION`, `VERIFICATION` and
+`IMPLEMENTATION` milestone; it does not change A01-A15 or authorize a
+successor.
+
+**Purpose:** Instrument existing bounded topology and event routing so offline
+analysis can distinguish shortcut creation, first/last use, route coexistence,
+traffic crossover, pruning and replacement where supported. Global paths and
+labels remain offline only.
+
+**Boundary and gate:** The optional observer uses endpoint-plus-generation edge
+identities, bounded ring buffers and saturating counters. It must preserve
+event traces, timestamps, neuron/predictor state, routing, structural choices,
+energy, eligibility and classifier results. `PASS` requires lifecycle and
+traffic attribution, competing-path and decay-context evidence, deterministic
+storage and ON/OFF equality. Missing replacement attribution or hardware
+export may be `PASS WITH FOLLOW-UP`; execution influence, unboundedness or
+ambiguous lifetimes is `BLOCKED`. Results return to Luna-0 and do not create a
+direction/decay-gated shortcut experiment.
+
 ## Luna-13 — GPU-Compatible Visualization Path
 
 **Authorization:** Blocked until Luna-12 passes and Luna-0 explicitly authorizes this milestone. The prompt or handoff alone is not authorization.

@@ -70,6 +70,7 @@ class StructuralPlasticityController:
         max_growth_per_adaptation: int = 1,
         minimum_edge_count: int = 0,
         local_neighbors: Mapping[str, Iterable[str]] | None = None,
+        observer: object | None = None,
     ) -> None:
         if not isinstance(topology, BoundedTopology):
             raise TypeError("topology must be a BoundedTopology")
@@ -87,6 +88,10 @@ class StructuralPlasticityController:
         self.minimum_edge_count = minimum_edge_count
         self._local_neighbors = self._normalize_neighbors(local_neighbors)
         self._candidates: dict[tuple[str, str], CandidateEvidence] = {}
+        self.observer = observer
+        if observer is not None:
+            for edge in topology.edges:
+                observer.register_edge(edge)
 
     @property
     def state(self) -> PlasticityState:
@@ -110,16 +115,28 @@ class StructuralPlasticityController:
     def submit(self, evidence: CandidateEvidence) -> MutationResult:
         """Record one bounded proposal after checking its local provenance."""
         self._validate_evidence(evidence)
+        if self.observer is not None:
+            self.observer.record_candidate_proposed(evidence)
         if not self._is_local(evidence):
+            if self.observer is not None:
+                self.observer.candidate(evidence, status="rejected", reason="nonlocal")
             return MutationResult("rejected", reason="nonlocal")
         key = (evidence.source, evidence.destination)
         if key in self._candidates:
+            if self.observer is not None:
+                self.observer.candidate(evidence, status="rejected", reason="duplicate")
             return MutationResult("duplicate")
         if key in {(edge.source, edge.destination) for edge in self.topology.edges}:
+            if self.observer is not None:
+                self.observer.candidate(evidence, status="rejected", reason="duplicate")
             return MutationResult("duplicate", self.topology.edge(*key))
         if len(self._candidates) >= self.candidate_capacity:
+            if self.observer is not None:
+                self.observer.candidate(evidence, status="rejected", reason="candidate_capacity")
             return MutationResult("full_capacity", reason="candidate_capacity")
         self._candidates[key] = evidence
+        if self.observer is not None:
+            self.observer.candidate(evidence, status="considered")
         return MutationResult("accepted")
 
     def select(self, candidates: Iterable[CandidateEvidence]) -> CandidateEvidence | None:
@@ -139,6 +156,8 @@ class StructuralPlasticityController:
             return result
         result = self._commit_growth((evidence,))
         self._candidates.pop((evidence.source, evidence.destination), None)
+        if self.observer is not None:
+            self.observer.mutation(result, edge=result.edge, reason=result.reason, evidence=evidence)
         return result
 
     def adapt(self, candidates: Iterable[CandidateEvidence]) -> MutationResult:
@@ -174,9 +193,17 @@ class StructuralPlasticityController:
             return ()
         result = self._commit_growth(selected)
         if result.status != "grown":
+            if self.observer is not None:
+                for evidence in selected:
+                    self.observer.mutation(result, reason=result.reason, evidence=evidence)
             return tuple(MutationResult(result.status) for _ in selected)
         selected_keys = {(item.source, item.destination) for item in selected}
-        return tuple(MutationResult("grown", edge) for edge in self.topology.edges if (edge.source, edge.destination) in selected_keys)
+        grown = tuple(MutationResult("grown", edge) for edge in self.topology.edges
+                       if (edge.source, edge.destination) in selected_keys)
+        if self.observer is not None:
+            for mutation in grown:
+                self.observer.mutation(mutation, edge=mutation.edge, reason="growth")
+        return grown
 
     def prune(self, source: str, destination: str) -> MutationResult:
         """Remove an edge while leaving already queued in-flight events untouched."""
@@ -200,6 +227,8 @@ class StructuralPlasticityController:
             routing_capacity=self.topology.routing_capacity,
         )
         self._candidates.pop((source, destination), None)
+        if self.observer is not None:
+            self.observer.mutation(MutationResult("pruned", removed), edge=removed)
         return MutationResult("pruned", removed)
 
     def prune_by_score(
@@ -256,9 +285,9 @@ class StructuralPlasticityController:
     def _commit_growth(self, evidence: tuple[CandidateEvidence, ...]) -> MutationResult:
         existing = {(edge.source, edge.destination) for edge in self.topology.edges}
         if any((item.source, item.destination) in existing for item in evidence):
-            return MutationResult("duplicate")
+            return MutationResult("duplicate", reason="duplicate")
         if len(self.topology) + len(evidence) > self.topology.edge_capacity:
-            return MutationResult("full_capacity")
+            return MutationResult("full_capacity", reason="edge_capacity")
         try:
             replacement = BoundedTopology.from_edges(
                 self.topology.nodes,

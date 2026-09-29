@@ -1,0 +1,60 @@
+{
+  "competing_paths": {
+    "new_route_after": 1,
+    "old_route_after": 1,
+    "old_route_before": 2,
+    "persistent_edge_strength": "not available in current architecture",
+    "persistent_edge_utility": "not available in current architecture",
+    "shortcut_used": true
+  },
+  "decay_context_records": 10,
+  "edges": [
+    {
+      "created_at": 0.0,
+      "delay": 1.0,
+      "first_use": 0.0,
+      "identity": {
+        "destination": "mid",
+        "generation": 0,
+        "source": "source"
+      },
+      "last_use": 0.0,
+      "routing_cost": 1,
+      "traffic_count": 3
+    },
+    {
+      "created_at": 0.0,
+      "delay": 1.0,
+      "first_use": 1.0,
+      "identity": {
+        "destination": "target",
+        "generation": 0,
+        "source": "mid"
+      },
+      "last_use": 1.0,
+      "routing_cost": 1,
+      "traffic_count": 3
+    },
+    {
+      "created_at": 0.0,
+      "delay": 0.5,
+      "first_use": 0.0,
+      "identity": {
+        "destination": "target",
+        "generation": 0,
+        "source": "source"
+      },
+      "last_use": 0.0,
+      "routing_cost": 1,
+      "traffic_count": 1
+    }
+  ],
+  "mutations": {
+    "accepted": "grown",
+    "pruned": "pruned",
+    "rejected": "nonlocal"
+  },
+  "persistent_strength": "not available in current architecture",
+  "persistent_utility": "not available in current architecture",
+  "schema_version": "TPCN-EDGE-1"
+}

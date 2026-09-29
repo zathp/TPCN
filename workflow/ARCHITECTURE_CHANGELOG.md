@@ -217,3 +217,31 @@ Verification** from the Luna-0 review of Luna-12K at current HEAD
 	architecture contract are unchanged; execution requires a separate explicit
 	assignment and all results return to Luna-0. No later Luna is authorized.
 
+## Luna-12M creation and execution - 2026-09-28
+
+Created and executed **Edge Lifecycle, Route Utilization, and Competing-Path
+Instrumentation** from the Luna-0 12L direction/decay review at baseline
+`7f8ea2df5896d3ea7cd7d41a4f1bd8298c0dc015`.
+
+- Luna-12M is `OBSERVATION`, `VERIFICATION` and `IMPLEMENTATION`; it adds a
+	downstream-only bounded observer and deterministic competing-path fixture.
+- Endpoint-plus-generation identities, lifecycle transitions, routed traffic,
+	decay context and candidate/pruning observations are exported separately
+	from TPCV-1 as versioned `TPCN-EDGE-1` JSON.
+- Focused ON/OFF evidence preserves traces, digests and mutation outcomes;
+	persistent edge strength, utility and eligibility remain absent rather than
+	being invented. No A01-A15 clause or pruning/decay policy changed.
+- The evidence gate is `PASS WITH FOLLOW-UP` because replacement attribution
+	and hardware-facing export remain unavailable. Results return to Luna-0 and
+	no successor Luna is authorized by this entry.
+
+## Luna-0 Luna-12M evidence review - 2026-09-28
+
+Reviewed the Luna-12M artifact and focused evidence. The observer’s identity,
+bounds, determinism, decay context and ON/OFF non-interference passed, but the
+milestone is **BLOCKED** pending three bounded repairs: replace hard-coded
+competing-path summary fields with phase-scoped measured traffic, stop using
+`0.0` as an unavailable growth timestamp, and emit capacity/fan-in/fan-out
+rejection lifecycle records. This is an evidence-quality decision, not an
+A01-A15 change or successor authorization.
+

@@ -150,7 +150,7 @@ class BoundedTopology:
         self._edges[(source, destination)] = edge
         return edge
 
-    def route(self, event: Event, queue: EventQueue[Event] ) -> tuple[Event, ...]:
+    def route(self, event: Event, queue: EventQueue[Event], *, observer: object | None = None) -> tuple[Event, ...]:
         """Queue one delayed event per outgoing edge; no destination is mutated inline."""
         self._validate_node(event.source)
         outgoing = tuple(edge for edge in self._edges.values() if edge.source == event.source)
@@ -160,7 +160,10 @@ class BoundedTopology:
             raise QueueCapacityError("event queue capacity cannot admit complete fan-out")
         queued: list[Event] = []
         for edge in outgoing:
-            queued.append(queue.push_propagated(event.timestamp, edge.source, edge.destination, event.event_type, event.payload, edge.propagation_delay))
+            routed = queue.push_propagated(event.timestamp, edge.source, edge.destination, event.event_type, event.payload, edge.propagation_delay)
+            queued.append(routed)
+            if observer is not None:
+                observer.record_route(edge, event, routed)
         return tuple(queued)
 
     def incoming(self, node: str) -> tuple[Edge, ...]:

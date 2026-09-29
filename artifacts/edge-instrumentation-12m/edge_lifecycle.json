@@ -1,0 +1,452 @@
+{
+  "enabled": {
+    "analysis": {
+      "new_route_after": 1,
+      "old_route_after": 1,
+      "old_route_before": 2,
+      "persistent_edge_strength": "not available in current architecture",
+      "persistent_edge_utility": "not available in current architecture",
+      "shortcut_used": true
+    },
+    "audit": {
+      "persistent_edge_eligibility": "not present",
+      "persistent_edge_strength": "not present",
+      "persistent_edge_utility": "not present",
+      "usage_score": "derived diagnostic: traffic_count"
+    },
+    "bounds": {
+      "counter_limit": 31,
+      "max_lifecycle_records": 64,
+      "max_traffic_records": 128,
+      "overflow": "counter saturates; records use bounded ring buffers"
+    },
+    "decay_context": [
+      {
+        "decay_rate": 0.5,
+        "delta_t": 0.0,
+        "neuron": "source",
+        "post_state": 1.0,
+        "pre_state": 0.0,
+        "residual_state": 0.0,
+        "timestamp": 0.0
+      },
+      {
+        "decay_rate": 0.5,
+        "delta_t": 1.0,
+        "neuron": "mid",
+        "post_state": 0.7615941559557649,
+        "pre_state": 0.0,
+        "residual_state": 0.0,
+        "timestamp": 1.0
+      },
+      {
+        "decay_rate": 0.5,
+        "delta_t": 2.0,
+        "neuron": "target",
+        "post_state": 0.6420149920119997,
+        "pre_state": 0.0,
+        "residual_state": 0.0,
+        "timestamp": 2.0
+      },
+      {
+        "decay_rate": 0.5,
+        "delta_t": 0.0,
+        "neuron": "source",
+        "post_state": 1.0,
+        "pre_state": 0.0,
+        "residual_state": 0.0,
+        "timestamp": 0.0
+      },
+      {
+        "decay_rate": 0.5,
+        "delta_t": 0.5,
+        "neuron": "target",
+        "post_state": 0.7615941559557649,
+        "pre_state": 0.0,
+        "residual_state": 0.0,
+        "timestamp": 0.5
+      },
+      {
+        "decay_rate": 0.5,
+        "delta_t": 1.0,
+        "neuron": "mid",
+        "post_state": 0.7615941559557649,
+        "pre_state": 0.0,
+        "residual_state": 0.0,
+        "timestamp": 1.0
+      },
+      {
+        "decay_rate": 0.5,
+        "delta_t": 1.5,
+        "neuron": "target",
+        "post_state": 1.0,
+        "pre_state": 0.7615941559557649,
+        "residual_state": 0.35975160603652734,
+        "timestamp": 2.0
+      },
+      {
+        "decay_rate": 0.5,
+        "delta_t": 0.0,
+        "neuron": "source",
+        "post_state": 1.0,
+        "pre_state": 0.0,
+        "residual_state": 0.0,
+        "timestamp": 0.0
+      },
+      {
+        "decay_rate": 0.5,
+        "delta_t": 1.0,
+        "neuron": "mid",
+        "post_state": 0.7615941559557649,
+        "pre_state": 0.0,
+        "residual_state": 0.0,
+        "timestamp": 1.0
+      },
+      {
+        "decay_rate": 0.5,
+        "delta_t": 2.0,
+        "neuron": "target",
+        "post_state": 0.6420149920119997,
+        "pre_state": 0.0,
+        "residual_state": 0.0,
+        "timestamp": 2.0
+      }
+    ],
+    "digests": {
+      "after": "fd7fcc2c37084944e7c4c1a8c68383fa9f2301374687138fa46fe99ebbf10c56",
+      "before": "5c0f21ed73b24543601d66345ddcf3110b04430baf49a19ccca528c2e4bc168f",
+      "removed": "fd44513c0a4e7e27d98c179b59566dc6f65d30cdf23f3548c38dce953899b818"
+    },
+    "edges": [
+      {
+        "created_at": 0.0,
+        "delay": 1.0,
+        "first_use": 0.0,
+        "identity": {
+          "destination": "mid",
+          "generation": 0,
+          "source": "source"
+        },
+        "last_use": 0.0,
+        "routing_cost": 1,
+        "traffic_count": 3
+      },
+      {
+        "created_at": 0.0,
+        "delay": 1.0,
+        "first_use": 1.0,
+        "identity": {
+          "destination": "target",
+          "generation": 0,
+          "source": "mid"
+        },
+        "last_use": 1.0,
+        "routing_cost": 1,
+        "traffic_count": 3
+      },
+      {
+        "created_at": 0.0,
+        "delay": 0.5,
+        "first_use": 0.0,
+        "identity": {
+          "destination": "target",
+          "generation": 0,
+          "source": "source"
+        },
+        "last_use": 0.0,
+        "routing_cost": 1,
+        "traffic_count": 1
+      }
+    ],
+    "lifecycle": [
+      {
+        "identity": {
+          "destination": "mid",
+          "generation": 0,
+          "source": "source"
+        },
+        "kind": "edge_created",
+        "reason": "existing",
+        "timestamp": 0.0
+      },
+      {
+        "identity": {
+          "destination": "target",
+          "generation": 0,
+          "source": "mid"
+        },
+        "kind": "edge_created",
+        "reason": "existing",
+        "timestamp": 0.0
+      },
+      {
+        "decay_factor": 1.0,
+        "decay_rate": 0.5,
+        "delta_t": 0.0,
+        "kind": "decay_context",
+        "neuron": "source",
+        "post_state": 1.0,
+        "pre_state": 0.0,
+        "residual_state": 0.0,
+        "timestamp": 0.0
+      },
+      {
+        "decay_factor": 0.6065306597126334,
+        "decay_rate": 0.5,
+        "delta_t": 1.0,
+        "kind": "decay_context",
+        "neuron": "mid",
+        "post_state": 0.7615941559557649,
+        "pre_state": 0.0,
+        "residual_state": 0.0,
+        "timestamp": 1.0
+      },
+      {
+        "decay_factor": 0.36787944117144233,
+        "decay_rate": 0.5,
+        "delta_t": 2.0,
+        "kind": "decay_context",
+        "neuron": "target",
+        "post_state": 0.6420149920119997,
+        "pre_state": 0.0,
+        "residual_state": 0.0,
+        "timestamp": 2.0
+      },
+      {
+        "delay": 0.5,
+        "destination": "target",
+        "kind": "candidate_proposed",
+        "reason": null,
+        "source": "source",
+        "timestamp": 0.0
+      },
+      {
+        "delay": 0.5,
+        "destination": "target",
+        "kind": "candidate_considered",
+        "reason": null,
+        "source": "source",
+        "timestamp": 0.0
+      },
+      {
+        "identity": {
+          "destination": "target",
+          "generation": 0,
+          "source": "source"
+        },
+        "kind": "edge_created",
+        "reason": "growth",
+        "timestamp": 0.0
+      },
+      {
+        "delay": 1.0,
+        "destination": "mid",
+        "kind": "candidate_proposed",
+        "reason": null,
+        "source": "source",
+        "timestamp": 0.0
+      },
+      {
+        "delay": 1.0,
+        "destination": "mid",
+        "kind": "candidate_rejected",
+        "reason": "nonlocal",
+        "source": "source",
+        "timestamp": 0.0
+      },
+      {
+        "decay_factor": 1.0,
+        "decay_rate": 0.5,
+        "delta_t": 0.0,
+        "kind": "decay_context",
+        "neuron": "source",
+        "post_state": 1.0,
+        "pre_state": 0.0,
+        "residual_state": 0.0,
+        "timestamp": 0.0
+      },
+      {
+        "decay_factor": 0.7788007830714049,
+        "decay_rate": 0.5,
+        "delta_t": 0.5,
+        "kind": "decay_context",
+        "neuron": "target",
+        "post_state": 0.7615941559557649,
+        "pre_state": 0.0,
+        "residual_state": 0.0,
+        "timestamp": 0.5
+      },
+      {
+        "decay_factor": 0.6065306597126334,
+        "decay_rate": 0.5,
+        "delta_t": 1.0,
+        "kind": "decay_context",
+        "neuron": "mid",
+        "post_state": 0.7615941559557649,
+        "pre_state": 0.0,
+        "residual_state": 0.0,
+        "timestamp": 1.0
+      },
+      {
+        "decay_factor": 0.4723665527410147,
+        "decay_rate": 0.5,
+        "delta_t": 1.5,
+        "kind": "decay_context",
+        "neuron": "target",
+        "post_state": 1.0,
+        "pre_state": 0.7615941559557649,
+        "residual_state": 0.35975160603652734,
+        "timestamp": 2.0
+      },
+      {
+        "identity": {
+          "destination": "target",
+          "generation": 0,
+          "source": "source"
+        },
+        "kind": "edge_pruned",
+        "reason": "pruned",
+        "timestamp": 0.0
+      },
+      {
+        "decay_factor": 1.0,
+        "decay_rate": 0.5,
+        "delta_t": 0.0,
+        "kind": "decay_context",
+        "neuron": "source",
+        "post_state": 1.0,
+        "pre_state": 0.0,
+        "residual_state": 0.0,
+        "timestamp": 0.0
+      },
+      {
+        "decay_factor": 0.6065306597126334,
+        "decay_rate": 0.5,
+        "delta_t": 1.0,
+        "kind": "decay_context",
+        "neuron": "mid",
+        "post_state": 0.7615941559557649,
+        "pre_state": 0.0,
+        "residual_state": 0.0,
+        "timestamp": 1.0
+      },
+      {
+        "decay_factor": 0.36787944117144233,
+        "decay_rate": 0.5,
+        "delta_t": 2.0,
+        "kind": "decay_context",
+        "neuron": "target",
+        "post_state": 0.6420149920119997,
+        "pre_state": 0.0,
+        "residual_state": 0.0,
+        "timestamp": 2.0
+      }
+    ],
+    "mutations": {
+      "accepted": "grown",
+      "pruned": "pruned",
+      "rejected": "nonlocal"
+    },
+    "run": {
+      "instrumentation": true,
+      "seed": 12
+    },
+    "schema_version": "TPCN-EDGE-1",
+    "traces": {
+      "after": [
+        "after:0.0:source>source",
+        "after:0.5:source>target",
+        "after:1.0:source>mid",
+        "after:2.0:mid>target"
+      ],
+      "before": [
+        "before:0.0:source>source",
+        "before:1.0:source>mid",
+        "before:2.0:mid>target"
+      ],
+      "removed": [
+        "removed:0.0:source>source",
+        "removed:1.0:source>mid",
+        "removed:2.0:mid>target"
+      ]
+    },
+    "traffic": [
+      {
+        "arrival_timestamp": 1.0,
+        "emission_timestamp": 0.0,
+        "event_type": "signal",
+        "identity": {
+          "destination": "mid",
+          "generation": 0,
+          "source": "source"
+        }
+      },
+      {
+        "arrival_timestamp": 2.0,
+        "emission_timestamp": 1.0,
+        "event_type": "signal",
+        "identity": {
+          "destination": "target",
+          "generation": 0,
+          "source": "mid"
+        }
+      },
+      {
+        "arrival_timestamp": 1.0,
+        "emission_timestamp": 0.0,
+        "event_type": "signal",
+        "identity": {
+          "destination": "mid",
+          "generation": 0,
+          "source": "source"
+        }
+      },
+      {
+        "arrival_timestamp": 0.5,
+        "emission_timestamp": 0.0,
+        "event_type": "signal",
+        "identity": {
+          "destination": "target",
+          "generation": 0,
+          "source": "source"
+        }
+      },
+      {
+        "arrival_timestamp": 2.0,
+        "emission_timestamp": 1.0,
+        "event_type": "signal",
+        "identity": {
+          "destination": "target",
+          "generation": 0,
+          "source": "mid"
+        }
+      },
+      {
+        "arrival_timestamp": 1.0,
+        "emission_timestamp": 0.0,
+        "event_type": "signal",
+        "identity": {
+          "destination": "mid",
+          "generation": 0,
+          "source": "source"
+        }
+      },
+      {
+        "arrival_timestamp": 2.0,
+        "emission_timestamp": 1.0,
+        "event_type": "signal",
+        "identity": {
+          "destination": "target",
+          "generation": 0,
+          "source": "mid"
+        }
+      }
+    ]
+  },
+  "non_interference": {
+    "digests_equal": true,
+    "mutations_equal": true,
+    "traces_equal": true
+  },
+  "schema_version": "TPCN-EDGE-1"
+}
