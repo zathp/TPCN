@@ -400,7 +400,7 @@ def write_artifacts(results: tuple[dict[str, Any], ...], output_dir: str, *,
                     tree_state: str = "clean before artifact generation") -> None:
     import os
     os.makedirs(output_dir, exist_ok=True)
-    config = results[0]["crossover"]
+    frozen_derivation = results[0]["crossover"]
     artifact = {
         "schema_version": "TPCN-LUNA-13B-1",
         "baseline_revision": baseline_revision,
@@ -410,7 +410,7 @@ def write_artifacts(results: tuple[dict[str, Any], ...], output_dir: str, *,
         "fixture_id": results[0]["fixture_id"],
         "configuration": asdict(config),
         "environment": {"python": sys.version, "platform": platform.platform()},
-        "frozen_crossover": config,
+        "frozen_crossover": frozen_derivation,
         "deterministic_repetitions": True,
         "results": _jsonable(results),
     }
