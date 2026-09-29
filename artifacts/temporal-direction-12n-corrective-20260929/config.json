@@ -1,5 +1,5 @@
 {
-  "baseline_revision": "5c6a33ef773e6c417cf93e3289877455054e8dc3",
+  "baseline_revision": "086bef6c945fe1420ca45a49f7030158ec094e3a",
   "decay_rates": [
     0.25,
     0.5,
@@ -15,7 +15,7 @@
     "fixed"
   ],
   "provenance": {
-    "baseline_comparison_revision": "5c6a33ef773e6c417cf93e3289877455054e8dc3",
+    "baseline_comparison_revision": "086bef6c945fe1420ca45a49f7030158ec094e3a",
     "candidate_evidence": "synthetic_fixture_timing; not online learned evidence",
     "configuration": {
       "configured_candidate_opportunities": 6,
@@ -36,8 +36,8 @@
         "fixed"
       ]
     },
-    "executed_code_revision": "5c6a33ef773e6c417cf93e3289877455054e8dc3",
-    "patch_diff_hash": "db386376f9bb83cd13147c56e9224112d1a839cb40ca25fa28ca25d3630b3759",
+    "executed_code_revision": "086bef6c945fe1420ca45a49f7030158ec094e3a",
+    "patch_diff_hash": null,
     "platform": "Windows-10-10.0.19045-SP0",
     "prediction_loss": "internally generated prediction-vs-activation error; no common external task target",
     "python_version": "3.10.8 (tags/v3.10.8:aaaf517, Oct 11 2022, 16:50:30) [MSC v.1933 64 bit (AMD64)]",
@@ -48,8 +48,8 @@
       3,
       4
     ],
-    "source_tree_hash": "acbc3de6544dee2d2793e6dd53d3abc0f4d3cbbc",
-    "worktree_dirty": true
+    "source_tree_hash": "c67bd8c814455dcf1b4a2df80351d5cafaf7ecd4",
+    "worktree_dirty": false
   },
   "schema": "TPCN-EDGE-2",
   "seeds": [
