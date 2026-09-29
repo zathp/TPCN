@@ -1364,7 +1364,37 @@ No Luna-13B is authorized by this entry. The likely future controlled
 temporal structural-selection experiment remains contingent on Luna-13A and
 the independent Luna-0 Stage-0 review.
 
+### Luna-13A reward-contract resolution - 2026-09-29
+
+The project owner selected **MODEL A — RETRY-IDEMPOTENT LOGICAL REWARD
+DELIVERY**. `RewardSignal.message_id` is the explicit stable logical identity;
+`RewardMessage.message_id` may provide it, and otherwise the existing
+`RewardMessage.credit_id` is used as the stable identity. `EligibilityLedger`
+owns a bounded FIFO retention window of accepted identities, default capacity
+64 and configurable per ledger. Duplicate delivery within that window returns
+`duplicate` without advancing the ledger clock, decaying traces or changing
+credit. Distinct IDs apply independently even when all numeric and attribution
+fields are equal. Reset clears identities and traces; deterministic FIFO
+eviction permits a post-eviction identity to apply again. The guarantee is
+bounded at-most-once credit application within one ledger scope, not permanent
+global exactly-once processing.
+
+Luna-13A implementation status is **PASS WITH FOLLOW-UP — READY FOR LUNA-0
+STAGE-0 REVIEW**. Focused reward tests cover first delivery, immediate and
+many duplicate retries, distinct equal-valued IDs, identical fields with
+different IDs, deterministic replay, reset, bounded retention, FIFO eviction,
+post-eviction behavior and independent eligibility expiry. The prior Luna-11
+duplicate-application assertion is amended as historical evidence and now
+expects retry suppression; intentional repeated reinforcement uses distinct
+message IDs. Luna-13A returns to Luna-0 for independent verification. Luna-13B
+remains unauthorized.
+
 ### Luna-0 independent review - 2026-09-29
+
+This section records the pre-resolution review at revision
+`047d2dd59905934a5100dcafb791835e93708b37`; the reward finding below is
+historical and is superseded by the owner decision and implementation recorded
+in the preceding resolution section.
 
 **Reviewed revision:** `047d2dd59905934a5100dcafb791835e93708b37`, pushed as
 `origin/main`; the source tree was clean at review time. The Luna-13A handoff

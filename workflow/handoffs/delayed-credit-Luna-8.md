@@ -70,12 +70,17 @@ deliver the typed payload through the existing event runtime.
 
 The Luna-5/Luna-8 boundary is now integrated: callers convert a
 `RewardMessage` with `to_reward_signal()`, wrap it in an addressed `Event` at
-the message timestamp, and deliver it to this ledger. `RewardSignal.message_id`
-is retained in a bounded identity set. A repeated identity returns a
-`duplicate` attribution without advancing local time, decaying traces, or
-changing credit. Distinct identities with equal reward values are applied
-independently. The ledger retains ownership of local matching, decay, expiry,
-credit attribution, and duplicate retention.
+the message timestamp, and deliver it to this ledger. `RewardMessage.message_id`
+is optional; when absent, its existing `credit_id` is the stable logical
+identity. `RewardSignal.message_id` is explicit and required. The ledger
+retains accepted IDs in a bounded FIFO identity window (default 64, configured
+per ledger). A repeated identity within that window returns a `duplicate`
+attribution without advancing local time, decaying traces, or changing
+credit. Distinct identities with equal reward values are applied independently.
+Reset clears traces, local time and retained identities; eviction permits a
+previously evicted identity to apply again. This is bounded at-most-once credit
+application within one ledger's retention scope, not permanent global
+exactly-once processing.
 
 ## Architecture evidence
 

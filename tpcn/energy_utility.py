@@ -48,23 +48,31 @@ class EnergySnapshot:
 
 @dataclass(frozen=True, slots=True)
 class RewardMessage:
-    """A causally delivered local reward with an opaque attribution key."""
+    """A causally delivered reward with stable attribution and message IDs."""
 
     credit_id: str
     reward: float
     timestamp: float
+    message_id: str | None = None
 
     def __post_init__(self) -> None:
         if not isinstance(self.credit_id, str) or not self.credit_id:
             raise ValueError("credit_id must be a non-empty string")
+        if self.message_id is not None and (not isinstance(self.message_id, str) or not self.message_id):
+            raise ValueError("message_id must be a non-empty string or None")
         object.__setattr__(self, "reward", _finite(self.reward, "reward"))
         object.__setattr__(self, "timestamp", _nonnegative(self.timestamp, "timestamp"))
+
+    @property
+    def logical_message_id(self) -> str:
+        """Return the stable ID used for retry deduplication."""
+        return self.message_id or self.credit_id
 
     def to_reward_signal(self):
         """Convert this external reward into the local eligibility payload."""
         from .eligibility import RewardSignal
 
-        return RewardSignal(self.reward, prediction_id=self.credit_id)
+        return RewardSignal(self.reward, message_id=self.logical_message_id, prediction_id=self.credit_id)
 
 
 @dataclass(frozen=True, slots=True)

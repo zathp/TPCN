@@ -515,7 +515,8 @@ class ExperimentRunner:
         message = RewardMessage(f"{example.example_id}:result", reward, message_timestamp)
         utility.observe_reward(message)
         attribution = ledger.apply_signal(Event(message.timestamp, "utility", ledger.ledger_id, "reward",
-                            RewardSignal(reward, trace_id=f"{example.example_id}:0")))
+                            RewardSignal(reward, message_id=f"{example.example_id}:reward",
+                                         trace_id=f"{example.example_id}:0")))
         readout_updated = False
         if update and config.learning_enabled:
             if example.label not in self._prototypes and len(self._prototypes) >= config.max_classes:

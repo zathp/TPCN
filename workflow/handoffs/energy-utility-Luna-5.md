@@ -72,9 +72,10 @@ not rewarded as useful efficiency.
   proxy with a declared unit.
 - **A10:** useful high-cost work can be retained while comparable low-reward
   work is suppressed; inactivity is not retained by default.
-- **A11:** `RewardMessage` carries causal timestamp and opaque credit identity
-  for delayed-credit compatibility, but Luna-5 performs no eligibility or
-  attribution.
+- **A11:** `RewardMessage` carries causal timestamp, opaque `credit_id`, and an
+  optional explicit stable `message_id` for delayed-credit compatibility.
+  When omitted, `credit_id` is the logical message identity. Luna-5 performs
+  no eligibility or attribution.
 - **A15:** fixed-schema records, finite state, and abstract proxy units leave
   FPGA popcount and FPAA continuous approximation as documented hardware
   mappings, without claiming equivalence.

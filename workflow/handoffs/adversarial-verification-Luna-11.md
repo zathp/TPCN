@@ -36,7 +36,7 @@ tpcn_handoff:
     - "The exact current worktree is dirty; unrelated user changes must be preserved."
   unresolved:
     - "Luna-7 must repair or explicitly resolve the two timestamp-ordering defects before the gate can pass."
-    - "Duplicate reward delivery remains an ambiguous contract: current signals have no delivery identity and are cumulatively applied."
+    - "Historical finding superseded by the owner-selected Luna-13A Model A implementation: reward identity is now explicit and duplicate delivery is bounded retry-idempotent within each ledger retention window."
   recommended_next_agent:
     - "Luna-11: execute the attack matrix and complete this handoff with evidence."
     - "Luna-0: review the completed Luna-11 handoff and gate later phases only after unresolved findings are cleared."
@@ -60,11 +60,12 @@ or authorize Luna-9, Luna-10, the real dataset benchmark, or hardware work.
   `START_CHARACTER` at timestamp 5.0 is then accepted. This is covered by
   `test_direct_finalization_rejects_earlier_next_character` and remains an
   unresolved local-time ordering failure.
-3. **Ambiguous contract, Luna-0 owner:** duplicate `RewardMessage` delivery
-  cumulatively applies credit because neither `RewardMessage` nor
-  `RewardSignal` carries a delivery/message identity or defines idempotency.
-  The behavior is reproducible and bounded, but the required duplicate-reward
-  policy is undocumented. No production repair was made.
+3. **Historical finding, resolved by Luna-13A:** at this revision duplicate
+  `RewardMessage` delivery cumulatively applied credit because neither message
+  type carried a delivery identity. Luna-13A now adds explicit stable message
+  identity and bounded retry-idempotent retention. The original observation is
+  preserved as historical evidence; its former production behavior is no
+  longer the current contract.
 
 All other focused attacks passed: END_STROKE did not finalize; finalization was
 single-shot; delayed credit retained the old character identity; classifier

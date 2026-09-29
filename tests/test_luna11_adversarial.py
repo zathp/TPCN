@@ -135,16 +135,17 @@ def test_long_workload_keeps_classifier_and_energy_state_bounded() -> None:
     assert len(classifier.evidence().scores) == 26
 
 
-def test_reward_replay_is_not_silently_idempotent_without_a_message_identity() -> None:
+def test_reward_replay_is_idempotent_with_a_message_identity() -> None:
     ledger = EligibilityLedger("ledger", max_traces=1, decay_time_constant=10.0, credit_limit=10.0)
     ledger.record_activity(Event(0.0, "neuron", "ledger", "eligibility_activity",
                                  EligibilityActivity("work", 1.0, "credit")))
-    signal = RewardMessage("credit", 2.0, 1.0).to_reward_signal()
+    signal = RewardMessage("credit", 2.0, 1.0, message_id="message-A").to_reward_signal()
     first = ledger.apply_signal(Event(1.0, "utility", "ledger", "reward", signal))
     second = ledger.apply_signal(Event(2.0, "utility", "ledger", "reward", signal))
 
-    assert first.status == second.status == "matched"
-    assert second.credit > first.credit
+    assert first.status == "matched"
+    assert second.status == "duplicate"
+    assert second.credit == 0.0
 
 
 def test_rejected_classifier_event_can_be_retried_without_poisoning_order() -> None:

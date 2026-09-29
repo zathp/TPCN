@@ -176,6 +176,14 @@ Useful computation may produce reward only after additional events propagate.
 
 Eligibility/credit mechanisms must therefore support delayed reward.
 
+The Stage-0 software reference uses retry-idempotent logical reward delivery:
+each `RewardSignal` carries a stable `message_id`, and each local eligibility
+ledger retains a bounded FIFO window of accepted IDs. A duplicate within that
+window is a computational no-op; distinct IDs remain independent even when
+their reward values and attribution fields are equal. This is bounded
+at-most-once credit application within the declared ledger scope, not
+permanent global exactly-once processing.
+
 ### A12 — Multiple computational pathways are optional
 
 The historical ten gated pathways are now a soft constraint.

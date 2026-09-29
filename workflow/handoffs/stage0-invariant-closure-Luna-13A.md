@@ -5,18 +5,18 @@ tpcn_handoff:
   descriptive_name: "Stage-0 Software Reference Invariant Closure"
   task_id: "stage0-invariant-closure"
   component: "CPU software reference classifier, structural admission, and bounded event execution"
-  status: "blocked"
-  terminal_status: "BLOCKED — REWARD CONTRACT DECISION REQUIRED"
+  status: "partial"
+  terminal_status: "PASS WITH FOLLOW-UP — READY FOR LUNA-0 STAGE-0 REVIEW"
   contract_version: "1.1"
   branch: "main"
   base_revision: "00d00fdfa74aa8dcf7102b8906b153778e475dcd"
-  result_revision: "047d2dd59905934a5100dcafb791835e93708b37"
-  tree_state: "clean; implementation and handoff are pushed on main and origin/main"
+  result_revision: "pending"
+  tree_state: "implementation resumed from pushed Luna-0 review revision; publication pending"
   dependencies: []
   owner: "Luna-0"
   classification:
     - "OBSERVED: implementation and verification work is complete for classifier monotonicity, projected structural capacity, and bounded recurrent execution."
-    - "OBSERVED: reward delivery authority remains contradictory; reward work is blocked at the mandatory architecture decision point."
+    - "OBSERVED: project owner selected retry-idempotent logical reward delivery (Model A); implementation is complete pending final validation."
   hypothesis: "OBSERVED: stale classifier finalization mutates only because finalize_character did not validate timestamp before mutation; projected batch admission must validate aggregate degrees before topology replacement; bounded queue occupancy alone does not bound recurrent lifetime work."
   counter_hypothesis: "A focused test failure, post-validation mutation, individually-valid jointly-invalid admission, or budget-exhausted run reported as completed would falsify the corresponding repair."
   interfaces_relied_on:
@@ -35,7 +35,7 @@ tpcn_handoff:
     - "OBSERVED: experiment network reset remains character-local."
   resource_bounds:
     - "OBSERVED: execute_bounded requires a positive integer finite event budget and reports processed, pending, configured budget, peak occupancy, and termination reason."
-    - "OBSERVED: reward identity tracking was not added because the reward contract is unresolved."
+    - "OBSERVED: reward identities are retained in a bounded FIFO ledger-local window; default capacity is 64 and eviction is deterministic."
   authorized_scope:
     - "Repair four Stage-0 surfaces only: classifier temporal monotonicity, reward-contract decision evidence, projected structural capacity, and bounded recurrent execution."
     - "Add focused tests, this handoff, and relevant documentation."
@@ -63,7 +63,7 @@ tpcn_handoff:
     - "A06 explicit predictive/error event path preserved"
     - "A07 local learning preserved"
     - "A08 bounded state and dynamics"
-    - "A11 delayed credit preserved but reward delivery contract unresolved"
+    - "A11 delayed credit with bounded retry-idempotent reward delivery"
     - "A15 hardware independence"
   preserves:
     - "Positive finite inter-neuron delays"
@@ -87,11 +87,13 @@ tpcn_handoff:
     - "Classifier stale finalization atomicity, equal-time/future ordering, direct/dispatched agreement, and state evidence."
     - "Projected structural-capacity and rejection-reason tests."
     - "Bounded recurrent execution budget/status tests."
+    - "Reward identity schema, duplicate suppression, distinct equal-valued rewards, FIFO eviction, reset, expiry interaction, deterministic replay, and telemetry non-interference tests."
   tests_passing:
-    - "python -m pytest -q tests/test_streaming_classifier.py tests/test_eligibility.py tests/test_event_runtime.py tests/test_structural_plasticity.py tests/test_luna12h_temporal.py tests/test_luna11_adversarial.py tests/test_luna12m_edge_instrumentation.py tests/test_luna12n_temporal_direction.py: 98 passed."
+    - "python -m pytest -q tests/test_eligibility.py tests/test_luna11_adversarial.py tests/test_energy_utility.py tests/test_joint_integration.py tests/test_experiments.py: 47 passed."
     - "python -m pytest -q tests/test_event_runtime.py tests/test_experiments.py: 26 passed."
-    - "python -m pytest -q: 234 passed, 1 skipped at result revision 047d2dd59905934a5100dcafb791835e93708b37."
+    - "python -m pytest -q: 241 passed, 1 skipped at final implementation validation."
     - "python -m compileall -q tpcn tests: passed."
+    - "get_errors on touched Python files: no errors."
     - "git diff --check: passed."
   tests_failed: []
   tests_not_run:
@@ -100,20 +102,28 @@ tpcn_handoff:
     - "INFERRED: the existing classifier timestamp ordering contract is authoritative for stale rejection and equal-time acceptance."
     - "INFERRED: structural batch admission is all-or-none and deterministic reason precedence is duplicate, edge capacity, fan-in, then fan-out, followed by topology capacity fallback."
   unresolved:
-    - "BLOCKER: reward authority is contradictory. Production EligibilityLedger.apply_signal currently repeatedly applies identical numeric RewardSignal values when no message identity exists; test_luna11_adversarial.py explicitly asserts this non-idempotent behavior. Other architecture/documentation claims retain duplicate-suppression or exactly-once language."
-    - "DECISION PACKET: Model A would add bounded logical reward identity tracking with declared reset, retention, and eviction semantics, make same-message replay credit once, and preserve distinct equal-valued messages as independent. Model B would retain repeated application, remove obsolete exactly-once claims, and make replay intentionally non-idempotent."
-    - "CONSEQUENCES: Model A adds bounded state and deterministic replay requirements; Model B avoids identity state but makes duplicate delivery materially affect credit and replay results. Neither may be selected by this agent."
-    - "Affected reward surfaces include tpcn/eligibility.py, tpcn/energy_utility.py, tests/test_eligibility.py, tests/test_luna11_adversarial.py, architecture contracts, and replay/handoff documentation."
+    - "FOLLOW-UP: identity retention is bounded to each ledger and FIFO eviction means an evicted ID may apply again; this is not permanent global exactly-once delivery."
+    - "FOLLOW-UP: legacy Luna-12J replay status reporting remains separate and is not changed by this reward implementation."
   recommended_next_agent:
-    - "Luna-0 independent Stage-0 review is required. Luna-0 must resolve the reward contract contradiction before any reward implementation or promotion decision."
+    - "Luna-0 independent Stage-0 review is required after this owner-directed implementation."
     - "Do not authorize, dispatch, or approve Luna-13B or any successor Luna from this handoff."
 ---
 
 ## Outcome and owned scope
 
-This run closed three Stage-0 implementation surfaces. `StreamingCharacterClassifier.finalize_character` now validates timestamp legality before any mutation and exposes its local timestamp for atomic before/after evidence. Structural batch growth now preflights projected fan-in, fan-out, edge capacity, and duplicates before replacement; rejected batch results retain meaningful deterministic reasons. `execute_bounded` centralizes finite recurrent execution accounting and is integrated into the experiment network and metrics.
+This run completes the fourth Stage-0 implementation surface. `RewardSignal`
+now carries an explicit stable `message_id`; `RewardMessage` preserves its
+existing `credit_id` as the default identity and accepts an explicit message
+identity for distinct intentional rewards. `EligibilityLedger` suppresses
+duplicate IDs as computational no-ops and retains accepted IDs in a bounded
+FIFO window. `StreamingCharacterClassifier.finalize_character` remains atomic,
+structural batch growth remains projected and atomic, and `execute_bounded`
+remains the canonical finite recurrent executor.
 
-The reward surface was inspected but intentionally unchanged. The current production behavior and repository authority disagree about whether repeated delivery of the same logical reward is idempotent. That is an architecture decision, not a test-only repair.
+The owner-selected contract distinguishes duplicate retry from intentional
+repeated reward: the former reuses a message ID and is suppressed within the
+retention window; the latter uses a distinct message ID and applies
+independently.
 
 ## Classifier evidence
 
@@ -131,9 +141,10 @@ The reward surface was inspected but intentionally unchanged. The current produc
 
 ## Reward decision packet
 
-**OBSERVED:** repeated identical numeric rewards currently credit repeatedly when no logical message identity is present; this is asserted by the existing adversarial test. **OBSERVED:** repository documentation/tests also contain exactly-once or duplicate-suppression expectations. **INFERRED:** the authority is contradictory.
-
-**HYPOTHESIZED:** Model A is preferable if replay determinism and logical-message delivery semantics are authoritative, but this is only a recommendation for Luna-0 and is not an implementation decision here. Model B is coherent if every delivered event is intentionally an application. Luna-0 must select and document one model, including reset, bounded retention/eviction, equal-valued distinct rewards, and replay semantics.
+**OBSERVED:** Model A is implemented. Duplicate delivery returns `duplicate`
+without advancing local time or changing credit. Distinct equal-valued IDs both
+apply. The ledger retains at most `max_reward_identities` accepted IDs in FIFO
+order; reset clears them, and eviction allows later reapplication.
 
 ## Validation record
 
@@ -152,11 +163,14 @@ No dataset benchmark, GPU result, hardware result, physical-energy result, or ar
 
 ## Assumptions, limitations and unresolved issues
 
-The reward contradiction is the sole release blocker identified by the required Stage-0 decision point. No reward identity set, eviction policy, or replay contract was invented. Unrelated worktree changes were not reverted.
+The bounded retention limitation is explicit: retry idempotency applies only
+within one ledger's retained identity window. Historical Luna-11 behavior is
+annotated rather than erased. Independent Luna-0 Stage-0 review remains
+required.
 
 ## Reproduction and rollback
 
-From the repository root, run the validation commands in the table. The safe restoration point for this implementation is revision `047d2dd59905934a5100dcafb791835e93708b37`; the published Luna-13A contract preceded it at `00d00fdfa74aa8dcf7102b8906b153778e475dcd`.
+From the repository root, run the validation commands in the table. The safe restoration point for this implementation is the published implementation revision recorded in `result_revision`; the prior Luna-0 review was `047d2dd59905934a5100dcafb791835e93708b37`, and the original Luna-13A contract preceded it at `00d00fdfa74aa8dcf7102b8906b153778e475dcd`.
 
 ## Next assignment
 
