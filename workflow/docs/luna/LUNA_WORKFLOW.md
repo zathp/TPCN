@@ -1310,6 +1310,60 @@ direct evidence warrants them. The result gates are `PASS`, `PASS WITH
 FOLLOW-UP`, `NOT SUPPORTED`, `INCONCLUSIVE` and `BLOCKED`; all results return
 to Luna-0 and no successor is authorized.
 
+## Luna-13A - Stage-0 Software Reference Invariant Closure
+
+**Authorization:** Luna-13A is a CPU-only `IMPLEMENTATION` and `VERIFICATION`
+milestone created from the Luna-0 independent review of the corrected
+Luna-12N work at reviewed checkpoint
+`fdda3b59014109ce5aac6c5b2c9690b02acf85e9`. The reviewed result is
+**PASS WITH FOLLOW-UP — MEASUREMENT CORRECTED, EFFICACY STILL UNESTABLISHED**.
+Luna-12N established corrected configured-versus-actual accounting, independent
+metadata controls, replay-measured arrivals, weighted cumulative-delay paths,
+explicit event-budget status and strengthened provenance. Its synthetic fixture
+showed score/rank changes but no different admitted edge set or final graph;
+external prediction improvement, classification improvement, resource
+efficiency and general temporal-learning superiority remain unestablished.
+
+The sequence is explicit:
+
+```text
+Luna-12N corrective
+  -> Luna-0 review
+  -> Luna-13A Stage-0 invariant closure
+  -> Luna-0 independent Stage-0 review
+  -> determine whether a next Luna is authorized
+```
+
+Luna-13A closes software-reference integration blockers in four bounded areas:
+classifier temporal monotonicity and stale-finalization atomicity, a declared
+reward-delivery contract, projected structural-capacity rejection semantics,
+and bounded recurrent execution. It is not a temporal-policy efficacy
+experiment, dataset benchmark, GPU milestone or FPGA/FPAA equivalence test.
+The assignment explicitly permits execution without a dedicated GPU and does
+not require CUDA, GPU visualization, FPGA hardware or FPAA hardware. Optional
+CUDA skips do not block it.
+
+The reward-delivery behavior is a mandatory pause point. Luna-13A must inspect
+current production behavior, documentation and tests and must not invent the
+contract. It must either establish retry-idempotent logical delivery with
+bounded identity retention or repeated-application delivery with obsolete
+exactly-once claims removed. If repository authority remains contradictory, the
+reward portion stops with **REWARD CONTRACT DECISION REQUIRED** and returns a
+decision packet covering both models, affected files, bounded-state and replay
+consequences. Safe non-reward Stage-0 work may continue, but the assignment
+remains blocked.
+
+The handoff must use
+`workflow/handoffs/stage0-invariant-closure-Luna-13A.md` and include exact
+revision/tree and worktree state, classifier before/after evidence, reward
+disposition, projected-capacity and rejection-reason evidence, recurrent budget
+semantics for budgets `1`, `2`, `8` and `64`, focused and full CPU validation,
+remaining blockers and readiness for Luna-0 independent review. Terminal
+statuses are constrained to the five statuses in the Luna-13A agent contract.
+No Luna-13B is authorized by this entry. The likely future controlled
+temporal structural-selection experiment remains contingent on Luna-13A and
+the independent Luna-0 Stage-0 review.
+
 ## Luna-13 — GPU-Compatible Visualization Path
 
 **Authorization:** Blocked until Luna-12 passes and Luna-0 explicitly authorizes this milestone. The prompt or handoff alone is not authorization.

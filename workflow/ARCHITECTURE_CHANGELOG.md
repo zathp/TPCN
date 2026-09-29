@@ -57,6 +57,33 @@ experiment-scope update, not an architecture change.
 
 For later changes record date, contract version, accepted ACP, decision owner, clauses affected, evidence, compatibility and migration/rollback implications.
 
+## Luna-13A creation - 2026-09-29
+
+Created the formal **Stage-0 Software Reference Invariant Closure** contract
+from the synchronized reviewed checkpoint
+`fdda3b59014109ce5aac6c5b2c9690b02acf85e9` after the independent review of
+the corrected Luna-12N work.
+
+- Luna-12N remains **PASS WITH FOLLOW-UP — MEASUREMENT CORRECTED, EFFICACY
+	STILL UNESTABLISHED**. Its corrected evidence separates configured from
+	actual operations, uses independent metadata controls and replay-measured
+	arrivals, distinguishes weighted delay from hop count, exposes budget
+	exhaustion and provenance, and does not show a decay-caused admitted-edge or
+	final-graph difference.
+- Luna-13A is a CPU-only Stage-0 implementation/verification assignment for
+	classifier temporal monotonicity, reward-delivery contract consistency,
+	projected structural-capacity rejection semantics and bounded recurrent
+	execution. No dedicated GPU, CUDA, GPU visualization, FPGA or FPAA is
+	required.
+- The reward contract is a mandatory pause condition: contradictory repository
+	authority returns `REWARD CONTRACT DECISION REQUIRED` with both model
+	consequences and bounded-state/replay implications. No Luna-13B or other
+	successor is authorized. Luna-0 must independently review the completed
+	Stage-0 handoff before determining the next assignment.
+
+This is a workflow and implementation-scope update only. A01-A15 and the
+architecture contract are unchanged; no ACP is created.
+
 ## Workflow observability track — 2026-09-27
 
 Added a distinct downstream-only visualization and verification track:
