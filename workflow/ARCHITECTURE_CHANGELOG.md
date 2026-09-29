@@ -320,3 +320,25 @@ set-sensitive.
 	action is Luna-0 review of this record; no successor implementation is
 	authorized.
 
+## Luna-13B contract creation - 2026-09-29
+
+Created the CPU-only **Causal Local Temporal Structural Crossover** contract
+after the independently reviewed Stage-0 closure at
+`ecb3f412b55d6978c5551798900cb1bacf76a238`.
+
+- The controlled question is whether actual causally observed local temporal
+	evidence crosses a frozen, analytically predicted decay-dependent scoring
+	boundary and changes the admitted edge when exactly one structural slot is
+	available to competing candidates.
+- The contract separates score, rank, admitted-edge and final-graph outcomes;
+	requires provenance, one-slot pressure, matched opportunity, mirrored and
+	relabeled fixtures, negative controls, deterministic ties/replay and bounded
+	execution status.
+- Stage-0 remains closed with `127 passed` in the review slice and `242 passed,
+	1 skipped` in the full CPU suite. The Luna-12J replay termination-status item
+	remains a non-gating follow-up. Luna-13B execution requires a later explicit
+	assignment and independent Luna-0 review; Luna-13C remains unauthorized.
+
+This is a workflow and experiment-scope change only. A01-A15 are unchanged and
+no ACP is created.
+

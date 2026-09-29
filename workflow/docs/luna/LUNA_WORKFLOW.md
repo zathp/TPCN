@@ -1459,16 +1459,65 @@ clean review baseline `db459c1e6dff8b90f74288a67e898552c12dc85f`.
   application within one ledger retention scope. No ACP is required and no
   permanent global exactly-once claim is made.
 
-The legacy Luna-12J manual replay termination-status follow-up remains open.
-Luna-13B and all successor Lunas remain unauthorized.
+The legacy Luna-12J manual replay termination-status follow-up remains open and
+non-gating. Stage-0 is independently reviewed as ready at the published
+checkpoint `ecb3f412b55d6978c5551798900cb1bacf76a238`: classifier temporal
+monotonicity, bounded reward identity/idempotency, projected structural
+admission and bounded recurrent execution passed; the Stage-0 slice recorded
+`127 passed`, and the full CPU suite recorded `242 passed, 1 skipped`. The
+optional CUDA/GPU skip is non-blocking. Luna-13B creation is now authorized,
+but execution still requires its own explicit assignment and independent
+Luna-0 review.
 
-**Stage-0 gate:** remains open because reward-delivery authority is internally
-inconsistent. No Luna-13B, broad efficacy experiment, or hardware milestone is
-authorized. After Luna-0/project-owner resolves the reward contract and the
-legacy replay-status follow-up, the next bounded scientific target may be only
-the one-slot structural competition in which causally observed local temporal
-evidence produces a predicted decay-dependent admission crossover. Synthetic
-endpoint timing tables must not serve as proof of online learning.
+## Luna-13B - Causal Local Temporal Structural Crossover
+
+**Authorization boundary:** The authoritative sequence is:
+
+```text
+Stage-0 Luna-0 closure
+  -> Luna-0 creates Luna-13B contract
+  -> Luna-13B executes
+  -> Luna-0 independently reviews Luna-13B
+  -> determine whether Luna-13C is authorized
+```
+
+Creating the contract does not execute Luna-13B. Luna-13B is a CPU-only
+`EXPERIMENT` and `VERIFICATION`; CUDA, GPU visualization, FPGA and FPAA are
+not required. Luna-13C remains unauthorized until the independent Luna-0
+review explicitly determines otherwise.
+
+**Scientific question and gate:** Determine whether actual causally observed
+local temporal evidence produces a predicted decay-dependent structural
+admission decision when finite capacity forces competing candidates to contend
+for exactly one available slot. Luna-12N showed score/rank sensitivity but no
+admitted-edge or final-graph difference; Luna-13B tests that missing causal
+structural-selection step.
+
+Candidate evidence must come from runtime observations available to the local
+decision component, with provenance for source, timestamps, elapsed intervals,
+local state/residual, decay, score and decision time. A frozen analytic
+crossover must predict opposite winners before held-out evaluation. At least
+two equally exposed candidates must compete for the one slot, and the final
+graph must reveal the selected edge. Reports must distinguish score, rank,
+admitted-edge and final-graph changes. Labels, future observations, global
+statistics and hand-authored endpoint timing tables are excluded from the
+decision.
+
+Required controls include ordinary and decay-informed association, reversed and
+time-shuffled observations, random/score-shuffled selection, fixed topology,
+uniform intervals, neutral/zero decay where valid, mirrored/relabelled
+fixtures, exact/near ties and deterministic replay. Matched capacity,
+candidate exposure, bounded execution and rejection accounting are mandatory.
+Every run reports budget, processed/pending work, queue peak where available,
+termination reason and `completed` or `budget_exhausted`; exhaustion is not a
+successful observation.
+
+The required handoff is
+`workflow/handoffs/causal-local-temporal-crossover-Luna-13B.md`, using the
+standard template and separating `OBSERVED`, `INFERRED` and `HYPOTHESIZED`
+claims. All results return to Luna-0. Scores/ranks without a changed admitted
+edge must be reported as `SCORING/RANK SENSITIVITY CONFIRMED — STRUCTURAL
+CROSSOVER NOT ESTABLISHED`. Luna-13B cannot authorize Luna-13C.
 
 ## Luna-13 — GPU-Compatible Visualization Path
 
