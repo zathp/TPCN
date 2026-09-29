@@ -1678,6 +1678,22 @@ clause changed, no ACP was created, and Luna-13D remains unauthorized. The
 next action is project-owner direction for any follow-up contract, followed by
 Luna-0 review.
 
+### Luna-13C corrective evidence pass - 2026-09-29
+
+The corrective pass at revision `685cd721f7ca108278aa2e3044b53d46981e5bbd`
+used shared topology-rebuild machinery for sham, a distinct useful edge with
+delay `0.5`, independent seeded random selection, and an actual evaluation
+label-mutation attack. The corrected artifact records sham graph equality,
+positive-control accuracy `2/2`, random seed 0 accuracy `2/2`, random seed 1
+accuracy `1/2`, and unchanged structure/pre-output computation under relabeled
+targets. Focused corrective validation passed `6` tests; the focused temporal
+regression slice passed `42` tests.
+
+The narrow causal task effect remains supported, but random growth reproduces
+it for one independent seed. This is therefore `PASS WITH FOLLOW-UP — CAUSAL
+TASK EFFECT ESTABLISHED, LIMITATIONS REMAIN`; no A01-A15 clause changed and
+Luna-13D remains unauthorized.
+
 ## Luna-13 — GPU-Compatible Visualization Path
 
 **Authorization:** Blocked until Luna-12 passes and Luna-0 explicitly authorizes this milestone. The prompt or handoff alone is not authorization.

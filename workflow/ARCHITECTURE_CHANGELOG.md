@@ -431,3 +431,19 @@ created or authorized.
 NON-GATING LIMITATIONS REMAIN**. The next authorization boundary is explicit
 project-owner direction for any follow-up contract and a new Luna-0 review.
 
+## Luna-13C corrective evidence pass - 2026-09-29
+
+Revision `685cd721f7ca108278aa2e3044b53d46981e5bbd` closes the four evidence
+limitations identified by the independent review: sham now uses the shared
+topology-rebuild path without changing the graph; the useful positive control
+is distinct from the learned edge; random growth uses independent seeded
+`random.Random(seed).choice` selection; and evaluation-label mutation is
+checked against structure and pre-output computation. The artifact records
+positive control `2/2`, random seed 0 `2/2`, random seed 1 `1/2`, and all
+conditions completed without budget exhaustion.
+
+The corrective result remains `PASS WITH FOLLOW-UP — CAUSAL TASK EFFECT
+ESTABLISHED, LIMITATIONS REMAIN`: one random seed reproduces the task effect,
+so selection superiority and broader usefulness remain unproven. No A01-A15
+clause changed and no Luna-13D was created or authorized.
+

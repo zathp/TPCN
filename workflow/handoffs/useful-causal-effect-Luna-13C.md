@@ -11,7 +11,7 @@ tpcn_handoff:
   contract_version: "1.1"
   branch: "main"
   base_revision: "ea60610b7ba637e05ee986ffde2864e529a08f2c"
-  result_revision: "11cc8d055dcd7d2441687dd8db72f1a3f8c3b689"
+  result_revision: "685cd721f7ca108278aa2e3044b53d46981e5bbd"
   dependencies: ["Luna-13B verified local temporal-selection mechanism"]
   owner: "Luna-0 independent review"
   classification: ["CPU-only experiment", "verification", "no A14 promotion"]
@@ -34,7 +34,7 @@ tpcn_handoff:
   proposal: null
   files_changed: ["tpcn/causal_utility.py", "run_temporal_efficacy_13c.py", "tests/test_luna13c_causal_utility.py", "artifacts/useful-causal-effect-13c/", "workflow/handoffs/useful-causal-effect-Luna-13C.md"]
   tests_added: ["required intervention matrix", "paired frozen target/completion checks", "deterministic replay", "future-information exclusion"]
-  tests_passing: ["python -m pytest tests/test_luna13c_causal_utility.py -q: 5 passed"]
+  tests_passing: ["python -m pytest tests/test_luna13c_causal_utility.py -q: 6 passed"]
   tests_failed: []
   tests_not_run: ["dedicated Stage-0 regression file: not applicable; no matching test file exists in this repository"]
   assumptions: ["The two-case fixture is intentionally small; results are per-case and do not establish population generalization."]
@@ -132,6 +132,25 @@ preserved.
 
 ## Terminal status
 
-`PASS — USEFUL CAUSAL EFFECT ESTABLISHED, READY FOR LUNA-0 REVIEW`
+`PASS WITH FOLLOW-UP — CAUSAL TASK EFFECT ESTABLISHED, LIMITATIONS REMAIN`
 
 This status does not authorize Luna-13D or any architecture promotion.
+
+## Corrective evidence pass
+
+The corrective pass used the same bounded topology-rebuild machinery for the
+sham, with computational graph fingerprint unchanged. The fixed useful-edge
+control was distinct from the learned edge: it used `right -> target` with
+delay `0.5`, while the learned edge used delay `1.0`, and it scored `2/2`.
+Random growth used `random.Random(seed).choice(source_ids)` with independent
+seeds: seed 0 selected `right -> target` and scored `2/2`; seed 1 selected
+`left -> target` and scored `1/2`. A real label-mutation attack swapped the
+evaluation targets to `late, on_time`; structure and pre-output computation
+remained unchanged.
+
+The corrected artifact is `artifacts/useful-causal-effect-13c/`, generated
+from a clean tree at revision `685cd721f7ca108278aa2e3044b53d46981e5bbd`.
+Focused corrective validation passed `6` tests; the focused temporal
+regression set passed `42` tests. Random growth can reproduce the effect for
+one independent seed, so the result remains qualified and does not establish
+selection superiority or general utility.

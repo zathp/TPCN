@@ -2,7 +2,7 @@
 
 ## Review status
 
-`PASS WITH FOLLOW-UP — CAUSAL TASK EFFECT VERIFIED, NON-GATING LIMITATIONS REMAIN`
+`PASS WITH FOLLOW-UP — CAUSAL TASK EFFECT ESTABLISHED, LIMITATIONS REMAIN`
 
 This review does not create or authorize Luna-13D.
 
@@ -105,6 +105,25 @@ authorize another implementation. A future experiment may be eligible for a
 new contract only after explicit project-owner direction and a new Luna-0
 review.
 
+## Corrective evidence pass
+
+The project-owner-directed corrective pass was executed from committed
+revision `685cd721f7ca108278aa2e3044b53d46981e5bbd`; the generated artifact
+records a clean tree and the same baseline revision. The sham now exercises
+the shared topology rebuild path while preserving the computational graph.
+The positive control is distinct from the learned edge (`right -> target`,
+delay `0.5` versus learned delay `1.0`) and scores `2/2`. Seeded random growth
+is genuinely stochastic: seed 0 selects `right` and scores `2/2`, while seed 1
+selects `left` and scores `1/2`. The label attack mutates evaluation targets
+to `late, on_time` and shows unchanged structure and pre-output computation.
+
+The focused corrective suite passed `6` tests and the focused temporal
+regression slice passed `42` tests. These controls close the four requested
+evidence gaps, but random growth reproduces the task effect under one seed.
+The narrow causal route effect is therefore established; random-selection
+superiority and broader usefulness remain unproven. No A01-A15 clause changed
+and no Luna-13D was created or authorized.
+
 ## Final status
 
-`PASS WITH FOLLOW-UP — CAUSAL TASK EFFECT VERIFIED, NON-GATING LIMITATIONS REMAIN`
+`PASS WITH FOLLOW-UP — CAUSAL TASK EFFECT ESTABLISHED, LIMITATIONS REMAIN`

@@ -15,6 +15,36 @@
     "target_id": "target"
   },
   "controls": {
+    "independent_random_seed_results": {
+      "0": {
+        "accuracy": 1.0,
+        "all_completed": true,
+        "case_count": 2,
+        "correct_cases": 2,
+        "graph_edges": [
+          [
+            "right",
+            "target",
+            1.0
+          ]
+        ],
+        "graph_fingerprint": "3962ea30f82901381d9b998776843ecc25015e75fb47b931e0643549896e9d93"
+      },
+      "1": {
+        "accuracy": 0.5,
+        "all_completed": true,
+        "case_count": 2,
+        "correct_cases": 1,
+        "graph_edges": [
+          [
+            "left",
+            "target",
+            1.0
+          ]
+        ],
+        "graph_fingerprint": "758617e1b41c95cf86d6162ec5441cf498c112de648dd1ee2bb7f28e7ff2a1a3"
+      }
+    },
     "random_candidate_opportunity": [
       "left",
       "right"
@@ -43,6 +73,14 @@
   },
   "experiment": "Luna-13C useful causal effect of learned temporal structure",
   "fixture_id": "luna-13c-interval-deadline-v1",
+  "label_isolation_attack": {
+    "mutated_targets": [
+      "late",
+      "on_time"
+    ],
+    "pre_output_computation_unchanged": true,
+    "structural_state_unchanged": true
+  },
   "provenance": {
     "baseline_revision": "ea60610b7ba637e05ee986ffde2864e529a08f2c",
     "branch": "main",
@@ -50,7 +88,7 @@
       "platform": "Windows-10-10.0.19045-SP0",
       "python": "3.10.8 (tags/v3.10.8:aaaf517, Oct 11 2022, 16:50:30) [MSC v.1933 64 bit (AMD64)]"
     },
-    "executed_revision": "1e3592d6c23b5d6786cfad26d3267d21d51df4be",
+    "executed_revision": "685cd721f7ca108278aa2e3044b53d46981e5bbd",
     "tree_state_at_generation": "clean"
   },
   "results": {
