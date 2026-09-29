@@ -5,7 +5,8 @@ This addendum corrects measurement, replay-status, accounting and provenance def
 ## Provenance
 
 - Starting revision: `5c6a33ef773e6c417cf93e3289877455054e8dc3`
-- Starting and ending committed revision: `5c6a33ef773e6c417cf93e3289877455054e8dc3`.
+- Starting committed revision: `5c6a33ef773e6c417cf93e3289877455054e8dc3`.
+- Ending corrective revision: `306732dc0c3abc546168096f7ab83dc4d76b222b`.
 - Starting and ending committed source tree: `acbc3de6544dee2d2793e6dd53d3abc0f4d3cbbc`; corrective source changes are represented by the recorded dirty-worktree patch hash.
 - Initial worktree: clean on `main`; corrective edits are the files listed below.
 - Corrected artifact: `artifacts/temporal-direction-12n-corrective-20260929/`
