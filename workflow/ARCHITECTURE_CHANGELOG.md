@@ -265,7 +265,7 @@ from the corrected Luna-12M `PASS WITH FOLLOW-UP` evidence at baseline
 
 ## Luna-0 independent review of corrected Luna-12N - 2026-09-29
 
-Reviewed pushed revision `bea288aa6f2a7fb54755dc64a703160aaac6c41e` and
+Reviewed pushed revision `2d4726a9b9aa3e19afdc458a2f448f8d72a4c3f7` and
 reproduced the corrected artifact under CPU-only execution. The repository was
 clean and synchronized with `origin/main`. The review found and repaired two
 reporting defects during verification: exact event-budget truncation could

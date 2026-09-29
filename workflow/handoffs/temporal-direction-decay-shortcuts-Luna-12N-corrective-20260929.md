@@ -6,8 +6,8 @@ This addendum corrects measurement, replay-status, accounting and provenance def
 
 - Starting revision: `5c6a33ef773e6c417cf93e3289877455054e8dc3`
 - Starting committed revision: `5c6a33ef773e6c417cf93e3289877455054e8dc3`.
-- Ending reviewed revision before this independent review: `bea288aa6f2a7fb54755dc64a703160aaac6c41e`.
-- The independent review found and corrected exact-budget completion reporting and order-sensitive admitted-edge comparison; the final review revision is recorded by the Luna-0 changelog entry.
+- Ending reviewed revision: `2d4726a9b9aa3e19afdc458a2f448f8d72a4c3f7`.
+- Independent review corrected exact-budget completion reporting and order-sensitive admitted-edge comparison.
 - Initial worktree: clean on `main`; corrective edits are the files listed below.
 - Corrected artifact: `artifacts/temporal-direction-12n-corrective-20260929/`
 - Artifact patch hash: recorded as `patch_diff_hash` in `config.json`.
@@ -45,7 +45,8 @@ Graph state labels distinguish `baseline`, `post_mutation`, and `post_removal`. 
 
 ## Validation
 
-- `python -m pytest -q tests/test_luna12n_temporal_direction.py`: 18 passed.
+- `python -m pytest -q tests/test_luna12n_temporal_direction.py`: 19 passed, including exact-boundary budget `4`.
+- Independent review slice (`12N`, `12H`, topology, structural plasticity, predictive coding): 61 passed.
 - `python -m pytest -q`: 222 passed, 1 skipped.
 - `python -m compileall -q tpcn tests run_temporal_direction.py`: passed.
 - `git diff --check`: passed.
