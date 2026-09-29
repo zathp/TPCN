@@ -15,6 +15,7 @@ def test_required_intervention_matrix_has_expected_external_pattern():
     assert results["sham"]["primary_metric_value"] == 1.0
     assert results["irrelevant_removed"]["primary_metric_value"] == 1.0
     assert results["fixed_useful"]["primary_metric_value"] == 1.0
+    assert results["fixed_useful"]["graph_edges"] == (('right', 'target', 0.5),)
     assert results["fixed_topology"]["primary_metric_value"] == 0.5
 
 
@@ -27,6 +28,8 @@ def test_learning_is_luna13b_local_and_restoration_is_exact():
     assert results["learned_present"]["graph_fingerprint"] == results["restored"]["graph_fingerprint"]
     assert results["learned_present"]["graph_edges"] == results["restored"]["graph_edges"]
     assert results["targeted_removed"]["graph_fingerprint"] != results["learned_present"]["graph_fingerprint"]
+    assert results["sham"]["intervention"] == "sham_rebuild"
+    assert results["sham"]["graph_edges"] == results["learned_present"]["graph_edges"]
 
 
 def test_all_conditions_are_paired_and_complete_with_frozen_target():
@@ -48,9 +51,24 @@ def test_all_conditions_are_paired_and_complete_with_frozen_target():
 
 def test_label_relabeling_does_not_change_learning_or_neural_execution():
     first = run_experiment()
-    second = run_experiment()
-    assert first["structural_learning"] == second["structural_learning"]
-    assert first["results"] == second["results"]
+    relabeled = run_experiment(evaluation_targets=("late", "on_time"))
+    assert first["structural_learning"] == relabeled["structural_learning"]
+    for condition in first["results"]:
+        original = first["results"][condition]
+        mutated = relabeled["results"][condition]
+        assert original["graph_edges"] == mutated["graph_edges"]
+        assert original["trace"] == mutated["trace"]
+        assert original["total_events"] == mutated["total_events"]
+        assert original["all_completed"] == mutated["all_completed"]
+    assert [case["fixed_external_target"] for case in first["results"]["learned_present"]["case_results"]] == ["on_time", "late"]
+    assert [case["fixed_external_target"] for case in relabeled["results"]["learned_present"]["case_results"]] == ["late", "on_time"]
+
+
+def test_random_growth_uses_independent_seeded_stochastic_selection():
+    seed_zero = run_experiment(config=UtilityConfig(random_seed=0))
+    seed_one = run_experiment(config=UtilityConfig(random_seed=1))
+    assert seed_zero["controls"]["random_selection"] == "random.Random(seed).choice(source_ids)"
+    assert seed_zero["results"]["random_growth"]["graph_edges"] != seed_one["results"]["random_growth"]["graph_edges"]
 
 
 def test_future_probe_does_not_change_the_learned_edge_or_evidence():
