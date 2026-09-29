@@ -1,0 +1,1186 @@
+{
+  "configuration": {
+    "event_budget": 12,
+    "fixture_id": "luna-13c-interval-deadline-v1",
+    "long_interval": 3.0,
+    "propagation_delay": 1.0,
+    "queue_capacity": 8,
+    "random_seed": 0,
+    "response_deadline": 3.0,
+    "short_interval": 1.0,
+    "source_ids": [
+      "left",
+      "right"
+    ],
+    "target_id": "target"
+  },
+  "controls": {
+    "random_candidate_opportunity": [
+      "left",
+      "right"
+    ],
+    "random_seed": 0,
+    "same_event_budget": 12,
+    "same_event_payloads": [
+      1.0,
+      -1.0
+    ],
+    "same_queue_capacity": 8
+  },
+  "evidence_labels": {
+    "HYPOTHESIZED": [
+      "the narrow causal utility claim pending gate evaluation"
+    ],
+    "INFERRED": [
+      "target arrival through the learned edge mediates the task decision"
+    ],
+    "OBSERVED": [
+      "runtime-local learned edge",
+      "paired target decisions",
+      "completion counters"
+    ]
+  },
+  "experiment": "Luna-13C useful causal effect of learned temporal structure",
+  "fixture_id": "luna-13c-interval-deadline-v1",
+  "provenance": {
+    "baseline_revision": "ea60610b7ba637e05ee986ffde2864e529a08f2c",
+    "branch": "main",
+    "environment": {
+      "platform": "Windows-10-10.0.19045-SP0",
+      "python": "3.10.8 (tags/v3.10.8:aaaf517, Oct 11 2022, 16:50:30) [MSC v.1933 64 bit (AMD64)]"
+    },
+    "executed_revision": "11cc8d055dcd7d2441687dd8db72f1a3f8c3b689",
+    "tree_state_at_generation": "clean"
+  },
+  "results": {
+    "fixed_topology": {
+      "all_completed": true,
+      "case_results": [
+        {
+          "completion": {
+            "budget_exhausted": false,
+            "completed": true,
+            "configured_event_budget": 12,
+            "peak_queue_occupancy": 2,
+            "pending_event_count": 0,
+            "processed_event_count": 2,
+            "termination_reason": "completed"
+          },
+          "correct": false,
+          "events": 2,
+          "example_id": "short-held-out",
+          "fixed_external_target": "on_time",
+          "interval": 1.0,
+          "prediction_or_decision": "late",
+          "target_arrivals": [],
+          "target_state": 0.0
+        },
+        {
+          "completion": {
+            "budget_exhausted": false,
+            "completed": true,
+            "configured_event_budget": 12,
+            "peak_queue_occupancy": 2,
+            "pending_event_count": 0,
+            "processed_event_count": 2,
+            "termination_reason": "completed"
+          },
+          "correct": true,
+          "events": 2,
+          "example_id": "long-held-out",
+          "fixed_external_target": "late",
+          "interval": 3.0,
+          "prediction_or_decision": "late",
+          "target_arrivals": [],
+          "target_state": 0.0
+        }
+      ],
+      "checkpoint_fingerprint": "db34e6b6ccbc05cd0686dd1dee4eb003fc52a08b0128ca991c2377de42cc3365",
+      "condition": "fixed_topology",
+      "graph_edges": [],
+      "graph_fingerprint": "2e38e77b22c314a449e91fafed92a43826ac6aa403ae6a8acb6cf58239fbaf5d",
+      "primary_metric": "accuracy",
+      "primary_metric_value": 0.5,
+      "target_arrival_count": 0,
+      "total_events": 4,
+      "trace": [
+        {
+          "destination": "right",
+          "example_id": "short-held-out",
+          "kind": "source",
+          "payload": 1.0,
+          "source": "right",
+          "timestamp": 0.0
+        },
+        {
+          "destination": "right",
+          "example_id": "short-held-out",
+          "kind": "source",
+          "payload": -1.0,
+          "source": "right",
+          "timestamp": 1.0
+        },
+        {
+          "destination": "right",
+          "example_id": "long-held-out",
+          "kind": "source",
+          "payload": 1.0,
+          "source": "right",
+          "timestamp": 0.0
+        },
+        {
+          "destination": "right",
+          "example_id": "long-held-out",
+          "kind": "source",
+          "payload": -1.0,
+          "source": "right",
+          "timestamp": 3.0
+        }
+      ]
+    },
+    "fixed_useful": {
+      "all_completed": true,
+      "case_results": [
+        {
+          "completion": {
+            "budget_exhausted": false,
+            "completed": true,
+            "configured_event_budget": 12,
+            "peak_queue_occupancy": 2,
+            "pending_event_count": 0,
+            "processed_event_count": 4,
+            "termination_reason": "completed"
+          },
+          "correct": true,
+          "events": 4,
+          "example_id": "short-held-out",
+          "fixed_external_target": "on_time",
+          "interval": 1.0,
+          "prediction_or_decision": "on_time",
+          "target_arrivals": [
+            1.0,
+            2.0
+          ],
+          "target_state": -0.09516258196404048
+        },
+        {
+          "completion": {
+            "budget_exhausted": false,
+            "completed": true,
+            "configured_event_budget": 12,
+            "peak_queue_occupancy": 2,
+            "pending_event_count": 0,
+            "processed_event_count": 4,
+            "termination_reason": "completed"
+          },
+          "correct": true,
+          "events": 4,
+          "example_id": "long-held-out",
+          "fixed_external_target": "late",
+          "interval": 3.0,
+          "prediction_or_decision": "late",
+          "target_arrivals": [
+            1.0,
+            4.0
+          ],
+          "target_state": -0.2591817793182821
+        }
+      ],
+      "checkpoint_fingerprint": "db34e6b6ccbc05cd0686dd1dee4eb003fc52a08b0128ca991c2377de42cc3365",
+      "condition": "fixed_useful",
+      "graph_edges": [
+        [
+          "right",
+          "target",
+          1.0
+        ]
+      ],
+      "graph_fingerprint": "3962ea30f82901381d9b998776843ecc25015e75fb47b931e0643549896e9d93",
+      "primary_metric": "accuracy",
+      "primary_metric_value": 1.0,
+      "target_arrival_count": 4,
+      "total_events": 8,
+      "trace": [
+        {
+          "destination": "right",
+          "example_id": "short-held-out",
+          "kind": "source",
+          "payload": 1.0,
+          "source": "right",
+          "timestamp": 0.0
+        },
+        {
+          "destination": "right",
+          "example_id": "short-held-out",
+          "kind": "source",
+          "payload": -1.0,
+          "source": "right",
+          "timestamp": 1.0
+        },
+        {
+          "destination": "target",
+          "example_id": "short-held-out",
+          "kind": "target_arrival",
+          "payload": 1.0,
+          "source": "right",
+          "timestamp": 1.0
+        },
+        {
+          "destination": "target",
+          "example_id": "short-held-out",
+          "kind": "target_arrival",
+          "payload": -1.0,
+          "source": "right",
+          "timestamp": 2.0
+        },
+        {
+          "destination": "right",
+          "example_id": "long-held-out",
+          "kind": "source",
+          "payload": 1.0,
+          "source": "right",
+          "timestamp": 0.0
+        },
+        {
+          "destination": "target",
+          "example_id": "long-held-out",
+          "kind": "target_arrival",
+          "payload": 1.0,
+          "source": "right",
+          "timestamp": 1.0
+        },
+        {
+          "destination": "right",
+          "example_id": "long-held-out",
+          "kind": "source",
+          "payload": -1.0,
+          "source": "right",
+          "timestamp": 3.0
+        },
+        {
+          "destination": "target",
+          "example_id": "long-held-out",
+          "kind": "target_arrival",
+          "payload": -1.0,
+          "source": "right",
+          "timestamp": 4.0
+        }
+      ]
+    },
+    "irrelevant_removed": {
+      "all_completed": true,
+      "case_results": [
+        {
+          "completion": {
+            "budget_exhausted": false,
+            "completed": true,
+            "configured_event_budget": 12,
+            "peak_queue_occupancy": 2,
+            "pending_event_count": 0,
+            "processed_event_count": 4,
+            "termination_reason": "completed"
+          },
+          "correct": true,
+          "events": 4,
+          "example_id": "short-held-out",
+          "fixed_external_target": "on_time",
+          "interval": 1.0,
+          "prediction_or_decision": "on_time",
+          "target_arrivals": [
+            1.0,
+            2.0
+          ],
+          "target_state": -0.09516258196404048
+        },
+        {
+          "completion": {
+            "budget_exhausted": false,
+            "completed": true,
+            "configured_event_budget": 12,
+            "peak_queue_occupancy": 2,
+            "pending_event_count": 0,
+            "processed_event_count": 4,
+            "termination_reason": "completed"
+          },
+          "correct": true,
+          "events": 4,
+          "example_id": "long-held-out",
+          "fixed_external_target": "late",
+          "interval": 3.0,
+          "prediction_or_decision": "late",
+          "target_arrivals": [
+            1.0,
+            4.0
+          ],
+          "target_state": -0.2591817793182821
+        }
+      ],
+      "checkpoint_fingerprint": "db34e6b6ccbc05cd0686dd1dee4eb003fc52a08b0128ca991c2377de42cc3365",
+      "condition": "irrelevant_removed",
+      "graph_edges": [
+        [
+          "right",
+          "target",
+          1.0
+        ]
+      ],
+      "graph_fingerprint": "3962ea30f82901381d9b998776843ecc25015e75fb47b931e0643549896e9d93",
+      "primary_metric": "accuracy",
+      "primary_metric_value": 1.0,
+      "target_arrival_count": 4,
+      "total_events": 8,
+      "trace": [
+        {
+          "destination": "right",
+          "example_id": "short-held-out",
+          "kind": "source",
+          "payload": 1.0,
+          "source": "right",
+          "timestamp": 0.0
+        },
+        {
+          "destination": "right",
+          "example_id": "short-held-out",
+          "kind": "source",
+          "payload": -1.0,
+          "source": "right",
+          "timestamp": 1.0
+        },
+        {
+          "destination": "target",
+          "example_id": "short-held-out",
+          "kind": "target_arrival",
+          "payload": 1.0,
+          "source": "right",
+          "timestamp": 1.0
+        },
+        {
+          "destination": "target",
+          "example_id": "short-held-out",
+          "kind": "target_arrival",
+          "payload": -1.0,
+          "source": "right",
+          "timestamp": 2.0
+        },
+        {
+          "destination": "right",
+          "example_id": "long-held-out",
+          "kind": "source",
+          "payload": 1.0,
+          "source": "right",
+          "timestamp": 0.0
+        },
+        {
+          "destination": "target",
+          "example_id": "long-held-out",
+          "kind": "target_arrival",
+          "payload": 1.0,
+          "source": "right",
+          "timestamp": 1.0
+        },
+        {
+          "destination": "right",
+          "example_id": "long-held-out",
+          "kind": "source",
+          "payload": -1.0,
+          "source": "right",
+          "timestamp": 3.0
+        },
+        {
+          "destination": "target",
+          "example_id": "long-held-out",
+          "kind": "target_arrival",
+          "payload": -1.0,
+          "source": "right",
+          "timestamp": 4.0
+        }
+      ]
+    },
+    "learned_present": {
+      "all_completed": true,
+      "case_results": [
+        {
+          "completion": {
+            "budget_exhausted": false,
+            "completed": true,
+            "configured_event_budget": 12,
+            "peak_queue_occupancy": 2,
+            "pending_event_count": 0,
+            "processed_event_count": 4,
+            "termination_reason": "completed"
+          },
+          "correct": true,
+          "events": 4,
+          "example_id": "short-held-out",
+          "fixed_external_target": "on_time",
+          "interval": 1.0,
+          "prediction_or_decision": "on_time",
+          "target_arrivals": [
+            1.0,
+            2.0
+          ],
+          "target_state": -0.09516258196404048
+        },
+        {
+          "completion": {
+            "budget_exhausted": false,
+            "completed": true,
+            "configured_event_budget": 12,
+            "peak_queue_occupancy": 2,
+            "pending_event_count": 0,
+            "processed_event_count": 4,
+            "termination_reason": "completed"
+          },
+          "correct": true,
+          "events": 4,
+          "example_id": "long-held-out",
+          "fixed_external_target": "late",
+          "interval": 3.0,
+          "prediction_or_decision": "late",
+          "target_arrivals": [
+            1.0,
+            4.0
+          ],
+          "target_state": -0.2591817793182821
+        }
+      ],
+      "checkpoint_fingerprint": "db34e6b6ccbc05cd0686dd1dee4eb003fc52a08b0128ca991c2377de42cc3365",
+      "condition": "learned_present",
+      "graph_edges": [
+        [
+          "left",
+          "target",
+          1.0
+        ],
+        [
+          "right",
+          "target",
+          1.0
+        ]
+      ],
+      "graph_fingerprint": "fb044cee5fdb322331b46a31609ea8572dc677811058eea68b6c246d5de2cb00",
+      "primary_metric": "accuracy",
+      "primary_metric_value": 1.0,
+      "target_arrival_count": 4,
+      "total_events": 8,
+      "trace": [
+        {
+          "destination": "right",
+          "example_id": "short-held-out",
+          "kind": "source",
+          "payload": 1.0,
+          "source": "right",
+          "timestamp": 0.0
+        },
+        {
+          "destination": "right",
+          "example_id": "short-held-out",
+          "kind": "source",
+          "payload": -1.0,
+          "source": "right",
+          "timestamp": 1.0
+        },
+        {
+          "destination": "target",
+          "example_id": "short-held-out",
+          "kind": "target_arrival",
+          "payload": 1.0,
+          "source": "right",
+          "timestamp": 1.0
+        },
+        {
+          "destination": "target",
+          "example_id": "short-held-out",
+          "kind": "target_arrival",
+          "payload": -1.0,
+          "source": "right",
+          "timestamp": 2.0
+        },
+        {
+          "destination": "right",
+          "example_id": "long-held-out",
+          "kind": "source",
+          "payload": 1.0,
+          "source": "right",
+          "timestamp": 0.0
+        },
+        {
+          "destination": "target",
+          "example_id": "long-held-out",
+          "kind": "target_arrival",
+          "payload": 1.0,
+          "source": "right",
+          "timestamp": 1.0
+        },
+        {
+          "destination": "right",
+          "example_id": "long-held-out",
+          "kind": "source",
+          "payload": -1.0,
+          "source": "right",
+          "timestamp": 3.0
+        },
+        {
+          "destination": "target",
+          "example_id": "long-held-out",
+          "kind": "target_arrival",
+          "payload": -1.0,
+          "source": "right",
+          "timestamp": 4.0
+        }
+      ]
+    },
+    "random_growth": {
+      "all_completed": true,
+      "case_results": [
+        {
+          "completion": {
+            "budget_exhausted": false,
+            "completed": true,
+            "configured_event_budget": 12,
+            "peak_queue_occupancy": 2,
+            "pending_event_count": 0,
+            "processed_event_count": 2,
+            "termination_reason": "completed"
+          },
+          "correct": false,
+          "events": 2,
+          "example_id": "short-held-out",
+          "fixed_external_target": "on_time",
+          "interval": 1.0,
+          "prediction_or_decision": "late",
+          "target_arrivals": [],
+          "target_state": 0.0
+        },
+        {
+          "completion": {
+            "budget_exhausted": false,
+            "completed": true,
+            "configured_event_budget": 12,
+            "peak_queue_occupancy": 2,
+            "pending_event_count": 0,
+            "processed_event_count": 2,
+            "termination_reason": "completed"
+          },
+          "correct": true,
+          "events": 2,
+          "example_id": "long-held-out",
+          "fixed_external_target": "late",
+          "interval": 3.0,
+          "prediction_or_decision": "late",
+          "target_arrivals": [],
+          "target_state": 0.0
+        }
+      ],
+      "checkpoint_fingerprint": "db34e6b6ccbc05cd0686dd1dee4eb003fc52a08b0128ca991c2377de42cc3365",
+      "condition": "random_growth",
+      "graph_edges": [
+        [
+          "left",
+          "target",
+          1.0
+        ]
+      ],
+      "graph_fingerprint": "758617e1b41c95cf86d6162ec5441cf498c112de648dd1ee2bb7f28e7ff2a1a3",
+      "primary_metric": "accuracy",
+      "primary_metric_value": 0.5,
+      "target_arrival_count": 0,
+      "total_events": 4,
+      "trace": [
+        {
+          "destination": "right",
+          "example_id": "short-held-out",
+          "kind": "source",
+          "payload": 1.0,
+          "source": "right",
+          "timestamp": 0.0
+        },
+        {
+          "destination": "right",
+          "example_id": "short-held-out",
+          "kind": "source",
+          "payload": -1.0,
+          "source": "right",
+          "timestamp": 1.0
+        },
+        {
+          "destination": "right",
+          "example_id": "long-held-out",
+          "kind": "source",
+          "payload": 1.0,
+          "source": "right",
+          "timestamp": 0.0
+        },
+        {
+          "destination": "right",
+          "example_id": "long-held-out",
+          "kind": "source",
+          "payload": -1.0,
+          "source": "right",
+          "timestamp": 3.0
+        }
+      ]
+    },
+    "restored": {
+      "all_completed": true,
+      "case_results": [
+        {
+          "completion": {
+            "budget_exhausted": false,
+            "completed": true,
+            "configured_event_budget": 12,
+            "peak_queue_occupancy": 2,
+            "pending_event_count": 0,
+            "processed_event_count": 4,
+            "termination_reason": "completed"
+          },
+          "correct": true,
+          "events": 4,
+          "example_id": "short-held-out",
+          "fixed_external_target": "on_time",
+          "interval": 1.0,
+          "prediction_or_decision": "on_time",
+          "target_arrivals": [
+            1.0,
+            2.0
+          ],
+          "target_state": -0.09516258196404048
+        },
+        {
+          "completion": {
+            "budget_exhausted": false,
+            "completed": true,
+            "configured_event_budget": 12,
+            "peak_queue_occupancy": 2,
+            "pending_event_count": 0,
+            "processed_event_count": 4,
+            "termination_reason": "completed"
+          },
+          "correct": true,
+          "events": 4,
+          "example_id": "long-held-out",
+          "fixed_external_target": "late",
+          "interval": 3.0,
+          "prediction_or_decision": "late",
+          "target_arrivals": [
+            1.0,
+            4.0
+          ],
+          "target_state": -0.2591817793182821
+        }
+      ],
+      "checkpoint_fingerprint": "db34e6b6ccbc05cd0686dd1dee4eb003fc52a08b0128ca991c2377de42cc3365",
+      "condition": "restored",
+      "graph_edges": [
+        [
+          "left",
+          "target",
+          1.0
+        ],
+        [
+          "right",
+          "target",
+          1.0
+        ]
+      ],
+      "graph_fingerprint": "fb044cee5fdb322331b46a31609ea8572dc677811058eea68b6c246d5de2cb00",
+      "primary_metric": "accuracy",
+      "primary_metric_value": 1.0,
+      "target_arrival_count": 4,
+      "total_events": 8,
+      "trace": [
+        {
+          "destination": "right",
+          "example_id": "short-held-out",
+          "kind": "source",
+          "payload": 1.0,
+          "source": "right",
+          "timestamp": 0.0
+        },
+        {
+          "destination": "right",
+          "example_id": "short-held-out",
+          "kind": "source",
+          "payload": -1.0,
+          "source": "right",
+          "timestamp": 1.0
+        },
+        {
+          "destination": "target",
+          "example_id": "short-held-out",
+          "kind": "target_arrival",
+          "payload": 1.0,
+          "source": "right",
+          "timestamp": 1.0
+        },
+        {
+          "destination": "target",
+          "example_id": "short-held-out",
+          "kind": "target_arrival",
+          "payload": -1.0,
+          "source": "right",
+          "timestamp": 2.0
+        },
+        {
+          "destination": "right",
+          "example_id": "long-held-out",
+          "kind": "source",
+          "payload": 1.0,
+          "source": "right",
+          "timestamp": 0.0
+        },
+        {
+          "destination": "target",
+          "example_id": "long-held-out",
+          "kind": "target_arrival",
+          "payload": 1.0,
+          "source": "right",
+          "timestamp": 1.0
+        },
+        {
+          "destination": "right",
+          "example_id": "long-held-out",
+          "kind": "source",
+          "payload": -1.0,
+          "source": "right",
+          "timestamp": 3.0
+        },
+        {
+          "destination": "target",
+          "example_id": "long-held-out",
+          "kind": "target_arrival",
+          "payload": -1.0,
+          "source": "right",
+          "timestamp": 4.0
+        }
+      ]
+    },
+    "sham": {
+      "all_completed": true,
+      "case_results": [
+        {
+          "completion": {
+            "budget_exhausted": false,
+            "completed": true,
+            "configured_event_budget": 12,
+            "peak_queue_occupancy": 2,
+            "pending_event_count": 0,
+            "processed_event_count": 4,
+            "termination_reason": "completed"
+          },
+          "correct": true,
+          "events": 4,
+          "example_id": "short-held-out",
+          "fixed_external_target": "on_time",
+          "interval": 1.0,
+          "prediction_or_decision": "on_time",
+          "target_arrivals": [
+            1.0,
+            2.0
+          ],
+          "target_state": -0.09516258196404048
+        },
+        {
+          "completion": {
+            "budget_exhausted": false,
+            "completed": true,
+            "configured_event_budget": 12,
+            "peak_queue_occupancy": 2,
+            "pending_event_count": 0,
+            "processed_event_count": 4,
+            "termination_reason": "completed"
+          },
+          "correct": true,
+          "events": 4,
+          "example_id": "long-held-out",
+          "fixed_external_target": "late",
+          "interval": 3.0,
+          "prediction_or_decision": "late",
+          "target_arrivals": [
+            1.0,
+            4.0
+          ],
+          "target_state": -0.2591817793182821
+        }
+      ],
+      "checkpoint_fingerprint": "db34e6b6ccbc05cd0686dd1dee4eb003fc52a08b0128ca991c2377de42cc3365",
+      "condition": "sham",
+      "graph_edges": [
+        [
+          "left",
+          "target",
+          1.0
+        ],
+        [
+          "right",
+          "target",
+          1.0
+        ]
+      ],
+      "graph_fingerprint": "fb044cee5fdb322331b46a31609ea8572dc677811058eea68b6c246d5de2cb00",
+      "primary_metric": "accuracy",
+      "primary_metric_value": 1.0,
+      "target_arrival_count": 4,
+      "total_events": 8,
+      "trace": [
+        {
+          "destination": "right",
+          "example_id": "short-held-out",
+          "kind": "source",
+          "payload": 1.0,
+          "source": "right",
+          "timestamp": 0.0
+        },
+        {
+          "destination": "right",
+          "example_id": "short-held-out",
+          "kind": "source",
+          "payload": -1.0,
+          "source": "right",
+          "timestamp": 1.0
+        },
+        {
+          "destination": "target",
+          "example_id": "short-held-out",
+          "kind": "target_arrival",
+          "payload": 1.0,
+          "source": "right",
+          "timestamp": 1.0
+        },
+        {
+          "destination": "target",
+          "example_id": "short-held-out",
+          "kind": "target_arrival",
+          "payload": -1.0,
+          "source": "right",
+          "timestamp": 2.0
+        },
+        {
+          "destination": "right",
+          "example_id": "long-held-out",
+          "kind": "source",
+          "payload": 1.0,
+          "source": "right",
+          "timestamp": 0.0
+        },
+        {
+          "destination": "target",
+          "example_id": "long-held-out",
+          "kind": "target_arrival",
+          "payload": 1.0,
+          "source": "right",
+          "timestamp": 1.0
+        },
+        {
+          "destination": "right",
+          "example_id": "long-held-out",
+          "kind": "source",
+          "payload": -1.0,
+          "source": "right",
+          "timestamp": 3.0
+        },
+        {
+          "destination": "target",
+          "example_id": "long-held-out",
+          "kind": "target_arrival",
+          "payload": -1.0,
+          "source": "right",
+          "timestamp": 4.0
+        }
+      ]
+    },
+    "targeted_removed": {
+      "all_completed": true,
+      "case_results": [
+        {
+          "completion": {
+            "budget_exhausted": false,
+            "completed": true,
+            "configured_event_budget": 12,
+            "peak_queue_occupancy": 2,
+            "pending_event_count": 0,
+            "processed_event_count": 2,
+            "termination_reason": "completed"
+          },
+          "correct": false,
+          "events": 2,
+          "example_id": "short-held-out",
+          "fixed_external_target": "on_time",
+          "interval": 1.0,
+          "prediction_or_decision": "late",
+          "target_arrivals": [],
+          "target_state": 0.0
+        },
+        {
+          "completion": {
+            "budget_exhausted": false,
+            "completed": true,
+            "configured_event_budget": 12,
+            "peak_queue_occupancy": 2,
+            "pending_event_count": 0,
+            "processed_event_count": 2,
+            "termination_reason": "completed"
+          },
+          "correct": true,
+          "events": 2,
+          "example_id": "long-held-out",
+          "fixed_external_target": "late",
+          "interval": 3.0,
+          "prediction_or_decision": "late",
+          "target_arrivals": [],
+          "target_state": 0.0
+        }
+      ],
+      "checkpoint_fingerprint": "db34e6b6ccbc05cd0686dd1dee4eb003fc52a08b0128ca991c2377de42cc3365",
+      "condition": "targeted_removed",
+      "graph_edges": [
+        [
+          "left",
+          "target",
+          1.0
+        ]
+      ],
+      "graph_fingerprint": "758617e1b41c95cf86d6162ec5441cf498c112de648dd1ee2bb7f28e7ff2a1a3",
+      "primary_metric": "accuracy",
+      "primary_metric_value": 0.5,
+      "target_arrival_count": 0,
+      "total_events": 4,
+      "trace": [
+        {
+          "destination": "right",
+          "example_id": "short-held-out",
+          "kind": "source",
+          "payload": 1.0,
+          "source": "right",
+          "timestamp": 0.0
+        },
+        {
+          "destination": "right",
+          "example_id": "short-held-out",
+          "kind": "source",
+          "payload": -1.0,
+          "source": "right",
+          "timestamp": 1.0
+        },
+        {
+          "destination": "right",
+          "example_id": "long-held-out",
+          "kind": "source",
+          "payload": 1.0,
+          "source": "right",
+          "timestamp": 0.0
+        },
+        {
+          "destination": "right",
+          "example_id": "long-held-out",
+          "kind": "source",
+          "payload": -1.0,
+          "source": "right",
+          "timestamp": 3.0
+        }
+      ]
+    }
+  },
+  "schema_version": "TPCN-LUNA-13C-1",
+  "structural_learning": {
+    "candidate_records": [
+      {
+        "admission_score": 0.6333861926251716,
+        "admitted": false,
+        "candidate_id": "left",
+        "candidate_role": "left",
+        "decision_observation_timestamp": 1.25,
+        "decision_timestamp": 1.25,
+        "elapsed_interval": 1.0,
+        "evidence_source": "runtime_local_decay_score",
+        "execution_decay": 0.1,
+        "followup_observation": {
+          "payload": 0.0,
+          "sequence": 5,
+          "source": "target",
+          "timestamp": 1.25
+        },
+        "local_pre_state": 0.7,
+        "local_residual_state": 0.6333861926251716,
+        "observation_timestamp": 0.25,
+        "originating_observation": {
+          "payload": 0.7,
+          "sequence": 3,
+          "source": "stimulus-left",
+          "timestamp": 0.25
+        },
+        "rank": 2,
+        "score": 0.6333861926251716,
+        "score_components": {
+          "elapsed_decay_factor": 1.0,
+          "local_residual_magnitude": 0.6333861926251716
+        },
+        "scoring_decay": 0.0
+      },
+      {
+        "admission_score": 0.7408182206817179,
+        "admitted": true,
+        "candidate_id": "right",
+        "candidate_role": "right",
+        "decision_observation_timestamp": 3.25,
+        "decision_timestamp": 3.25,
+        "elapsed_interval": 3.0,
+        "evidence_source": "runtime_local_decay_score",
+        "execution_decay": 0.1,
+        "followup_observation": {
+          "payload": 0.0,
+          "sequence": 6,
+          "source": "target",
+          "timestamp": 3.25
+        },
+        "local_pre_state": 1.0,
+        "local_residual_state": 0.7408182206817179,
+        "observation_timestamp": 0.25,
+        "originating_observation": {
+          "payload": 1.0,
+          "sequence": 4,
+          "source": "stimulus-right",
+          "timestamp": 0.25
+        },
+        "rank": 1,
+        "score": 0.7408182206817179,
+        "score_components": {
+          "elapsed_decay_factor": 1.0,
+          "local_residual_magnitude": 0.7408182206817179
+        },
+        "scoring_decay": 0.0
+      }
+    ],
+    "frozen_checkpoint_fingerprint": "db34e6b6ccbc05cd0686dd1dee4eb003fc52a08b0128ca991c2377de42cc3365",
+    "frozen_graph_edges": [
+      [
+        "left",
+        "target",
+        1.0
+      ],
+      [
+        "right",
+        "target",
+        1.0
+      ]
+    ],
+    "irrelevant_edge": [
+      "left",
+      "target",
+      1.0
+    ],
+    "learned_edge": [
+      "right",
+      "target",
+      1.0
+    ],
+    "mechanism": "Luna-13B run_condition(decay_low)",
+    "training_graph_fingerprint": "3962ea30f82901381d9b998776843ecc25015e75fb47b931e0643549896e9d93",
+    "training_runtime": {
+      "execution": {
+        "budget_exhausted": false,
+        "completed": true,
+        "configured_event_budget": 12,
+        "peak_queue_occupancy": 4,
+        "pending_event_count": 0,
+        "processed_event_count": 7,
+        "termination_reason": "completed"
+      },
+      "observation_topology": [
+        [
+          "stimulus-left",
+          "left",
+          0.25
+        ],
+        [
+          "stimulus-right",
+          "right",
+          0.25
+        ],
+        [
+          "target",
+          "left",
+          1.25
+        ],
+        [
+          "target",
+          "right",
+          3.25
+        ]
+      ],
+      "trace": [
+        {
+          "kind": "route_seed",
+          "sequence": 0,
+          "source": "stimulus-left",
+          "timestamp": 0.0
+        },
+        {
+          "kind": "route_seed",
+          "sequence": 1,
+          "source": "stimulus-right",
+          "timestamp": 0.0
+        },
+        {
+          "kind": "route_seed",
+          "sequence": 2,
+          "source": "target",
+          "timestamp": 0.0
+        },
+        {
+          "destination": "left",
+          "kind": "local_observation",
+          "payload": 0.7,
+          "sequence": 3,
+          "source": "stimulus-left",
+          "timestamp": 0.25
+        },
+        {
+          "destination": "right",
+          "kind": "local_observation",
+          "payload": 1.0,
+          "sequence": 4,
+          "source": "stimulus-right",
+          "timestamp": 0.25
+        },
+        {
+          "destination": "left",
+          "kind": "local_observation",
+          "payload": 0.0,
+          "sequence": 5,
+          "source": "target",
+          "timestamp": 1.25
+        },
+        {
+          "destination": "right",
+          "kind": "local_observation",
+          "payload": 0.0,
+          "sequence": 6,
+          "source": "target",
+          "timestamp": 3.25
+        }
+      ]
+    }
+  },
+  "task": {
+    "decision_rule": "second target arrival at or before 3.0 is on_time; otherwise late",
+    "definition": "The same cue/probe payloads are sent with short or long elapsed interval.",
+    "examples": [
+      {
+        "example_id": "short-held-out",
+        "interval": 1.0,
+        "target": "on_time"
+      },
+      {
+        "example_id": "long-held-out",
+        "interval": 3.0,
+        "target": "late"
+      }
+    ],
+    "external_target": "on_time for the short interval and late for the long interval",
+    "practical_effect_threshold": 0.5,
+    "primary_metric": "per-case accuracy",
+    "split": "structural training uses the Luna-13B fixture; both task cases are frozen held-out evaluation cases",
+    "target_independent_of_topology": true
+  }
+}

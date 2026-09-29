@@ -1,0 +1,50 @@
+{
+  "fixed_topology": {
+    "all_completed": true,
+    "graph_fingerprint": "2e38e77b22c314a449e91fafed92a43826ac6aa403ae6a8acb6cf58239fbaf5d",
+    "primary_metric_value": 0.5,
+    "total_events": 4
+  },
+  "fixed_useful": {
+    "all_completed": true,
+    "graph_fingerprint": "3962ea30f82901381d9b998776843ecc25015e75fb47b931e0643549896e9d93",
+    "primary_metric_value": 1.0,
+    "total_events": 8
+  },
+  "irrelevant_removed": {
+    "all_completed": true,
+    "graph_fingerprint": "3962ea30f82901381d9b998776843ecc25015e75fb47b931e0643549896e9d93",
+    "primary_metric_value": 1.0,
+    "total_events": 8
+  },
+  "learned_present": {
+    "all_completed": true,
+    "graph_fingerprint": "fb044cee5fdb322331b46a31609ea8572dc677811058eea68b6c246d5de2cb00",
+    "primary_metric_value": 1.0,
+    "total_events": 8
+  },
+  "random_growth": {
+    "all_completed": true,
+    "graph_fingerprint": "758617e1b41c95cf86d6162ec5441cf498c112de648dd1ee2bb7f28e7ff2a1a3",
+    "primary_metric_value": 0.5,
+    "total_events": 4
+  },
+  "restored": {
+    "all_completed": true,
+    "graph_fingerprint": "fb044cee5fdb322331b46a31609ea8572dc677811058eea68b6c246d5de2cb00",
+    "primary_metric_value": 1.0,
+    "total_events": 8
+  },
+  "sham": {
+    "all_completed": true,
+    "graph_fingerprint": "fb044cee5fdb322331b46a31609ea8572dc677811058eea68b6c246d5de2cb00",
+    "primary_metric_value": 1.0,
+    "total_events": 8
+  },
+  "targeted_removed": {
+    "all_completed": true,
+    "graph_fingerprint": "758617e1b41c95cf86d6162ec5441cf498c112de648dd1ee2bb7f28e7ff2a1a3",
+    "primary_metric_value": 0.5,
+    "total_events": 4
+  }
+}
