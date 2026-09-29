@@ -1433,6 +1433,35 @@ is `workflow/handoffs/stage0-invariant-closure-Luna-13A.md`.
   identity semantics remain unresolved, and Luna-12J's legacy replay status
   reporting should be normalized before broader reuse.
 
+### Luna-0 independent Stage-0 review - 2026-09-29 - resolved reward contract
+
+The post-Model-A review was performed independently against published
+implementation revision `fba6e4de5fb93b150f6a7e7e545622d48ae7b3c5` and the
+clean review baseline `db459c1e6dff8b90f74288a67e898552c12dc85f`.
+
+**Independent result:** **PASS WITH FOLLOW-UP - STAGE-0 READY.**
+
+- **Reward identity attack matrix:** PASS. Direct adversarial replay verified
+  duplicate suppression without clock or credit mutation, including a valid
+  stale timestamp; distinct equal-valued identities applied independently;
+  FIFO eviction reopened an evicted identity; reset cleared identity scope;
+  identical IDs were independent across ledgers; fallback and explicit
+  `RewardMessage` identities mapped as documented; deterministic replay
+  matched across fresh ledgers; and 1,000 accepted identities never exceeded
+  a four-entry retention window.
+- **Stage-0 preservation slice:** PASS, `127` passed.
+- **Full CPU regression:** PASS, `242` passed and `1` optional CUDA/GPU test
+  skipped. Compilation and `git diff --check` passed.
+- **Documentation finding:** The Luna-13A handoff had stale pre-Model-A
+  counts and a pending tree-state phrase; these were corrected in the review
+  publication. No production-code defect was found in the identity semantics.
+- **Architecture:** A11 is conformant as bounded at-most-once credit
+  application within one ledger retention scope. No ACP is required and no
+  permanent global exactly-once claim is made.
+
+The legacy Luna-12J manual replay termination-status follow-up remains open.
+Luna-13B and all successor Lunas remain unauthorized.
+
 **Stage-0 gate:** remains open because reward-delivery authority is internally
 inconsistent. No Luna-13B, broad efficacy experiment, or hardware milestone is
 authorized. After Luna-0/project-owner resolves the reward contract and the

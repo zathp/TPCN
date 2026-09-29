@@ -11,12 +11,12 @@ tpcn_handoff:
   branch: "main"
   base_revision: "00d00fdfa74aa8dcf7102b8906b153778e475dcd"
   result_revision: "fba6e4de5fb93b150f6a7e7e545622d48ae7b3c5"
-  tree_state: "implementation commit published on main; final handoff metadata update pending"
+  tree_state: "clean and published on main; independently reviewed by Luna-0"
   dependencies: []
   owner: "Luna-0"
   classification:
     - "OBSERVED: implementation and verification work is complete for classifier monotonicity, projected structural capacity, and bounded recurrent execution."
-    - "OBSERVED: project owner selected retry-idempotent logical reward delivery (Model A); implementation is complete pending final validation."
+    - "OBSERVED: project owner selected retry-idempotent logical reward delivery (Model A); implementation and final validation are complete."
   hypothesis: "OBSERVED: stale classifier finalization mutates only because finalize_character did not validate timestamp before mutation; projected batch admission must validate aggregate degrees before topology replacement; bounded queue occupancy alone does not bound recurrent lifetime work."
   counter_hypothesis: "A focused test failure, post-validation mutation, individually-valid jointly-invalid admission, or budget-exhausted run reported as completed would falsify the corresponding repair."
   interfaces_relied_on:
@@ -47,8 +47,8 @@ tpcn_handoff:
     - "OBSERVED: focused projected fan-in/fan-out, duplicate, simultaneous-failure, atomic rejection, reason, and observer-equivalence tests."
     - "OBSERVED: recurrent positive-delay execution tested at budgets 1, 2, 8, and 64."
   measurements:
-    - "OBSERVED: focused Stage-0/regression selection: 98 passed."
-    - "OBSERVED: full CPU suite: 234 passed, 1 skipped."
+    - "OBSERVED: final Stage-0 preservation slice: 127 passed."
+    - "OBSERVED: full CPU suite: 242 passed, 1 skipped."
     - "OBSERVED: compileall and git diff --check completed without output/errors."
     - "NOT APPLICABLE: GPU/hardware measurements."
   information_boundary_check:
@@ -155,9 +155,9 @@ order; reset clears them, and eviction allows later reapplication.
 
 | Command or procedure | Revision / environment / seed | Observed result | Evidence |
 |---|---|---|---|
-| Focused Stage-0/regression pytest selection | Windows CPU, working tree based on `00d00fd` | 98 passed | pytest output |
+| Focused Stage-0 preservation pytest selection | Windows CPU, published implementation plus review tree | 127 passed | pytest output |
 | Runtime and experiment pytest selection | Windows CPU, working tree based on `00d00fd` | 26 passed | pytest output |
-| Full CPU pytest suite | Windows CPU | 234 passed, 1 skipped | pytest output; skip is optional CUDA/GPU and not applicable |
+| Full CPU pytest suite | Windows CPU | 242 passed, 1 skipped | pytest output; skip is optional CUDA/GPU and not applicable |
 | `python -m compileall -q tpcn tests` | Windows CPU | passed | no output/errors |
 | `git diff --check` | working tree | passed | no output/errors |
 | GPU/CUDA/FPGA/FPAA execution | CPU-only Stage 0 | not applicable/not run | explicitly out of scope |
