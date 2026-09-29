@@ -3,12 +3,14 @@ import random
 import pytest
 
 from tpcn.event_runtime import (
+    BoundedExecutionResult,
     Event,
     EventQueue,
     EventType,
     LateEventError,
     LocalClock,
     QueueCapacityError,
+    execute_bounded,
 )
 
 
@@ -109,3 +111,32 @@ def test_invalid_events_and_delays_are_rejected() -> None:
         Event(0.0, "a", "", EventType.SIGNAL, None)
     with pytest.raises(ValueError):
         EventQueue(capacity=2).push_propagated(0.0, "a", "b", EventType.SIGNAL, None, -0.1)
+
+
+@pytest.mark.parametrize("budget", (1, 2, 8, 64))
+def test_bounded_execution_reports_recurrent_budget_exhaustion(budget: int) -> None:
+    queue = EventQueue[Event](capacity=8)
+    queue.push(Event(0.0, "a", "a", EventType.SIGNAL, 1.0))
+
+    def continue_cycle(event: Event, pending: EventQueue[Event]) -> None:
+        pending.push_propagated(event.timestamp, event.destination, event.source, EventType.SIGNAL, event.payload, 1.0)
+
+    result = execute_bounded(queue, continue_cycle, event_budget=budget)
+
+    assert isinstance(result, BoundedExecutionResult)
+    assert result.configured_event_budget == budget
+    assert result.processed_event_count == budget
+    assert result.pending_event_count == 1
+    assert result.completed is False
+    assert result.budget_exhausted is True
+    assert result.termination_reason == "budget_exhausted"
+    assert result.last_event_timestamp == pytest.approx(float(budget - 1))
+
+
+def test_bounded_execution_reports_completion_without_pending_work() -> None:
+    queue = EventQueue[Event](capacity=4)
+    queue.push(Event(2.0, "a", "b", EventType.SIGNAL, None))
+
+    result = execute_bounded(queue, lambda event, pending: None, event_budget=1)
+
+    assert result == BoundedExecutionResult(True, False, 1, 1, 0, "completed", 2.0, 1)

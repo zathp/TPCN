@@ -16,7 +16,7 @@ from typing import Callable, Literal
 from .canonical_neuron import TPCNNeuron
 from .eligibility import EligibilityActivity, EligibilityLedger, RewardSignal
 from .energy_utility import LocalEnergyModel, RewardAdjustedUtility, RewardMessage
-from .event_runtime import Event, EventQueue
+from .event_runtime import BoundedExecutionResult, Event, EventQueue, execute_bounded
 from .predictive_coding import LocalPredictor, Observation
 from .streaming_classifier import ACTIVITY_EVENT, StreamingCharacterClassifier
 from .stroke_dataset import CharacterBoundary, END_CHARACTER, START_CHARACTER, StrokePoint
@@ -142,6 +142,12 @@ class ExperimentMetrics:
     mean_margin: float = 0.0
     readout_diagnostics: tuple[ReadoutDiagnostic, ...] = ()
     prediction_error_count: int = 0
+    execution_completed: bool = True
+    execution_budget_exhausted: bool = False
+    configured_event_budget: int = 0
+    processed_event_count: int = 0
+    pending_event_count: int = 0
+    termination_reason: str = "completed"
 
 
 @dataclass(frozen=True, slots=True)
@@ -202,20 +208,21 @@ class _ComputationalNetwork:
         for neuron in self.neurons:
             neuron.reset()
 
-    def process(self, source: str, timestamp: float, payload: float, *, max_events: int) -> tuple[tuple[tuple[object, ...], ...], tuple[float, ...]]:
+    def process(
+        self,
+        source: str,
+        timestamp: float,
+        payload: float,
+        *,
+        max_events: int,
+    ) -> tuple[tuple[tuple[object, ...], ...], tuple[float, ...], BoundedExecutionResult]:
         queue: EventQueue[Event] = EventQueue(capacity=self.queue_capacity)
         initial = queue.push(Event(timestamp, source, source, "signal", payload))
         depths = {initial.sequence: 0}
         paths = {initial.sequence: (source,)}
         trace: list[tuple[object, ...]] = []
         activations: list[float] = []
-        processed = 0
-        while queue:
-            if processed >= max_events:
-                break
-            pending = queue.peek()
-            assert pending is not None
-            event = queue.pop_ready(pending.timestamp)
+        def handle(event: Event, pending_queue: EventQueue[Event]) -> None:
             depth = depths.pop(event.sequence)
             path = paths.pop(event.sequence)
             neuron = self._by_id[event.destination]
@@ -224,11 +231,11 @@ class _ComputationalNetwork:
             activations.append(activation)
             if depth < len(self.neurons) and neuron.neuron_id not in path[1:]:
                 emitted = Event(event.timestamp, neuron.neuron_id, neuron.neuron_id, event.event_type, activation)
-                for routed in self.topology.route(emitted, queue):
+                for routed in self.topology.route(emitted, pending_queue):
                     depths[routed.sequence] = depth + 1
                     paths[routed.sequence] = path + (routed.destination,)
-            processed += 1
-        return tuple(trace), tuple(activations)
+        execution = execute_bounded(queue, handle, event_budget=max_events)
+        return tuple(trace), tuple(activations), execution
 
 
 def make_synthetic_workload(*, examples_per_class: int = 2, seed: int = 0,
@@ -288,6 +295,7 @@ class _ExampleRun:
     activations: int
     retained: int
     trace: tuple[tuple[object, ...], ...]
+    execution: BoundedExecutionResult
     reward: float
     latency: float
     utility: float
@@ -470,7 +478,7 @@ class ExperimentRunner:
         prediction_loss = 0.0
         for point_index, point in enumerate(example.points):
             timestamp = point.timestamp if point.timestamp is not None else float(point_index)
-            routed_trace, activations = self._network.process(
+            routed_trace, activations, execution = self._network.process(
                 neuron.neuron_id, timestamp, point.x + point.y, max_events=config.max_points * 8)
             activation = activations[-1]
             for routed_index, item in enumerate(routed_trace):
@@ -520,7 +528,7 @@ class ExperimentRunner:
         routed_events = len(trace)
         representations = self.prototypes
         return _ExampleRun(example.example_id, example.label, classifier_prediction, prediction, network_feature, confidence, prediction_loss,
-                   meter.energy, routed_events, routed_events, retained, tuple(trace), reward,
+               meter.energy, routed_events, routed_events, retained, tuple(trace), execution, reward,
                            message.timestamp - end_timestamp if attribution.status == "matched" else 0.0,
                            utility.evaluate(meter.energy, reward).utility,
                neuron, routed_events - len(example.points), network_feature, readout_updated,
@@ -576,6 +584,12 @@ class ExperimentRunner:
             mean_margin=sum(run.margin for run in runs) / total,
             readout_diagnostics=tuple(diagnostics),
             prediction_error_count=sum(run.loss > 0.0 for run in runs),
+            execution_completed=all(run.execution.completed for run in runs),
+            execution_budget_exhausted=any(run.execution.budget_exhausted for run in runs),
+            configured_event_budget=sum(run.execution.configured_event_budget for run in runs),
+            processed_event_count=sum(run.execution.processed_event_count for run in runs),
+            pending_event_count=sum(run.execution.pending_event_count for run in runs),
+            termination_reason=("budget_exhausted" if any(run.execution.budget_exhausted for run in runs) else "completed"),
         )
         predictions = tuple(run.raw_prediction for run in runs)
         trace = tuple(item for run in runs for item in run.trace)

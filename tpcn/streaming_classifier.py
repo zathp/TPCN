@@ -84,6 +84,10 @@ class StreamingCharacterClassifier:
     def activity_event_count(self) -> int:
         return self._activity_event_count
 
+    @property
+    def local_timestamp(self) -> float:
+        return self._last_timestamp
+
     def reset(self) -> None:
         """Clear character-local state and any prior authoritative result."""
         self._active = False
@@ -161,6 +165,7 @@ class StreamingCharacterClassifier:
             raise ValueError("finalization requires an END_CHARACTER event")
         if not self._active or self._start_event is None:
             raise ValueError("no active character to finalize")
+        self._validate_timestamp(end_event.timestamp)
         character_index = getattr(end_event.payload, "character_index", self._character_index)
         if character_index is None:
             raise ValueError("character boundary must provide character_index")

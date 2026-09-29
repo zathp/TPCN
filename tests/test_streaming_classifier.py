@@ -81,6 +81,66 @@ def test_completed_character_emits_exactly_one_result_with_identity_and_time() -
     assert classifier.authoritative_result == result
 
 
+def test_stale_direct_finalization_is_atomic_and_does_not_poison_time() -> None:
+    classifier = StreamingCharacterClassifier()
+    classifier.ingest_event(boundary(START_CHARACTER, 0.0, 3, 0))
+    classifier.ingest_event(activity(8.0, 1.0, 1))
+    before = (
+        classifier.local_timestamp,
+        classifier.is_active,
+        classifier.evidence().scores,
+        classifier.authoritative_result,
+        classifier.activity_event_count,
+        classifier._character_index,
+        classifier._start_event,
+    )
+
+    with pytest.raises(ValueError, match="nondecreasing"):
+        classifier.finalize_character(boundary(END_CHARACTER, 5.0, 3, 2))
+
+    after = (
+        classifier.local_timestamp,
+        classifier.is_active,
+        classifier.evidence().scores,
+        classifier.authoritative_result,
+        classifier.activity_event_count,
+        classifier._character_index,
+        classifier._start_event,
+    )
+    assert after == before
+
+    with pytest.raises(ValueError, match="nondecreasing"):
+        classifier.ingest_event(boundary(START_CHARACTER, 6.0, 4, 3))
+
+
+def test_equal_time_direct_and_dispatched_finalization_follow_queue_order() -> None:
+    direct = StreamingCharacterClassifier()
+    dispatched = StreamingCharacterClassifier()
+    start = boundary(START_CHARACTER, 0.0, 5, 0)
+    end = boundary(END_CHARACTER, 0.0, 5, 1)
+    direct.ingest_event(start)
+    dispatched.ingest_event(start)
+
+    direct_result = direct.finalize_character(end)
+    dispatched_result = dispatched.ingest_event(end)
+
+    assert dispatched_result == direct_result
+    assert direct.local_timestamp == dispatched.local_timestamp == 0.0
+    assert not direct.is_active and not dispatched.is_active
+
+
+def test_future_direct_finalization_remains_supported() -> None:
+    classifier = StreamingCharacterClassifier()
+    classifier.ingest_event(boundary(START_CHARACTER, 0.0, 6, 0))
+    classifier.ingest_event(activity(8.0, 1.0, 1))
+
+    result = classifier.finalize_character(boundary(END_CHARACTER, 9.0, 6, 2))
+
+    assert result.character_index == 6
+    assert classifier.local_timestamp == 9.0
+    assert classifier.authoritative_result == result
+
+
 def test_multiple_characters_reset_activity_and_do_not_leak_state() -> None:
     classifier = StreamingCharacterClassifier()
     for index, value in enumerate((1.0, -1.0)):

@@ -196,7 +196,7 @@ class StructuralPlasticityController:
             if self.observer is not None:
                 for evidence in selected:
                     self.observer.mutation(result, reason=result.reason, evidence=evidence)
-            return tuple(MutationResult(result.status) for _ in selected)
+            return tuple(MutationResult(result.status, reason=result.reason) for _ in selected)
         selected_keys = {(item.source, item.destination) for item in selected}
         grown = tuple(MutationResult("grown", edge) for edge in self.topology.edges
                        if (edge.source, edge.destination) in selected_keys)
@@ -284,10 +284,20 @@ class StructuralPlasticityController:
 
     def _commit_growth(self, evidence: tuple[CandidateEvidence, ...]) -> MutationResult:
         existing = {(edge.source, edge.destination) for edge in self.topology.edges}
-        if any((item.source, item.destination) in existing for item in evidence):
+        proposed = tuple((item.source, item.destination) for item in evidence)
+        if len(set(proposed)) != len(proposed) or any(item in existing for item in proposed):
             return MutationResult("duplicate", reason="duplicate")
         if len(self.topology) + len(evidence) > self.topology.edge_capacity:
             return MutationResult("full_capacity", reason="edge_capacity")
+        incoming = {node: sum(edge.destination == node for edge in self.topology.edges) for node in self.topology.nodes}
+        outgoing = {node: sum(edge.source == node for edge in self.topology.edges) for node in self.topology.nodes}
+        for item in evidence:
+            incoming[item.destination] += 1
+            outgoing[item.source] += 1
+        if any(count > self.topology.fan_in_limit for count in incoming.values()):
+            return MutationResult("full_capacity", reason="fan_in_full")
+        if any(count > self.topology.fan_out_limit for count in outgoing.values()):
+            return MutationResult("full_capacity", reason="fan_out_full")
         try:
             replacement = BoundedTopology.from_edges(
                 self.topology.nodes,
@@ -301,11 +311,9 @@ class StructuralPlasticityController:
         except TopologyCapacityError:
             if len(self.topology) + len(evidence) > self.topology.edge_capacity:
                 reason = "edge_capacity"
-            elif any(sum(edge.destination == item.destination for edge in self.topology.edges) >= self.topology.fan_in_limit
-                     for item in evidence):
+            elif any(incoming[node] > self.topology.fan_in_limit for node in incoming):
                 reason = "fan_in_full"
-            elif any(sum(edge.source == item.source for edge in self.topology.edges) >= self.topology.fan_out_limit
-                     for item in evidence):
+            elif any(outgoing[node] > self.topology.fan_out_limit for node in outgoing):
                 reason = "fan_out_full"
             else:
                 reason = "capacity"

@@ -89,6 +89,42 @@ def test_batch_growth_is_bounded_and_atomic_on_capacity_failure():
     assert len(controller.topology) == 0
 
 
+def test_batch_growth_rejects_projected_fan_in_before_mutation():
+    topology = BoundedTopology.from_edges(
+        ("a", "b", "c"), (("a", "b", 1.0),), fan_in_limit=1, fan_out_limit=2, edge_capacity=4
+    )
+    controller = StructuralPlasticityController(topology, max_growth_per_adaptation=2)
+
+    results = controller.adapt_many((evidence("b", "c", 1.0), evidence("a", "c", 2.0)))
+
+    assert [result.reason for result in results] == ["fan_in_full", "fan_in_full"]
+    assert tuple(controller.topology.edges) == topology.edges
+
+
+def test_batch_growth_rejects_projected_fan_out_before_mutation():
+    topology = BoundedTopology.from_edges(
+        ("a", "b", "c", "d"), (("a", "b", 1.0),), fan_in_limit=2, fan_out_limit=1, edge_capacity=4
+    )
+    controller = StructuralPlasticityController(topology, max_growth_per_adaptation=2)
+
+    results = controller.adapt_many((evidence("a", "c", 1.0), evidence("a", "d", 2.0)))
+
+    assert [result.reason for result in results] == ["fan_out_full", "fan_out_full"]
+    assert tuple(controller.topology.edges) == topology.edges
+
+
+def test_batch_growth_reports_deterministic_duplicate_precedence():
+    topology = BoundedTopology.from_edges(
+        ("a", "b", "c"), (("a", "b", 1.0),), fan_in_limit=1, fan_out_limit=1, edge_capacity=1
+    )
+    controller = StructuralPlasticityController(topology, max_growth_per_adaptation=2)
+
+    results = controller.adapt_many((evidence("a", "b", 2.0), evidence("b", "c", 1.0)))
+
+    assert [result.reason for result in results] == ["duplicate", "duplicate"]
+    assert tuple(controller.topology.edges) == topology.edges
+
+
 def test_batch_growth_replay_uses_stable_score_and_endpoint_order():
     candidates = (evidence("b", "c", 1.0, "z"), evidence("a", "b", 1.0, "a"), evidence("a", "c", 2.0, "top"))
     left = StructuralPlasticityController(

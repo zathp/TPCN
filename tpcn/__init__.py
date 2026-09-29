@@ -1,4 +1,5 @@
 from .event_runtime import (
+    BoundedExecutionResult,
     Event,
     EventPayload,
     EventQueue,
@@ -8,6 +9,7 @@ from .event_runtime import (
     LocalTimestamp,
     PropagationDelay,
     QueueCapacityError,
+    execute_bounded,
 )
 from .canonical_neuron import TPCNNeuron
 from .topology import BoundedTopology, Edge, TopologyCapacityError, TopologyError
@@ -135,6 +137,7 @@ from .spiral_benchmark import (
 )
 
 __all__ = [
+    "BoundedExecutionResult",
     "Event",
     "EventPayload",
     "EventQueue",
@@ -144,6 +147,7 @@ __all__ = [
     "LocalTimestamp",
     "PropagationDelay",
     "QueueCapacityError",
+    "execute_bounded",
     "TPCNNeuron",
     "BoundedTopology",
     "Edge",

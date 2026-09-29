@@ -19,7 +19,7 @@ from enum import Enum
 import heapq
 import math
 from numbers import Real
-from typing import Any, Generic, Iterable, TypeVar
+from typing import Any, Callable, Generic, Iterable, TypeVar
 
 
 class EventType(str, Enum):
@@ -168,11 +168,61 @@ class EventQueue(Generic[T]):
             yield heapq.heappop(self._pending)[2]
 
 
+@dataclass(frozen=True, slots=True)
+class BoundedExecutionResult:
+    """Bounded execution accounting for one finite event-queue run."""
+
+    completed: bool
+    budget_exhausted: bool
+    configured_event_budget: int
+    processed_event_count: int
+    pending_event_count: int
+    termination_reason: str
+    last_event_timestamp: LocalTimestamp | None
+    peak_queue_occupancy: int
+
+
+def execute_bounded(
+    queue: EventQueue[Event],
+    handler: Callable[[Event, EventQueue[Event]], None],
+    *,
+    event_budget: int,
+) -> BoundedExecutionResult:
+    """Process queued events until completion or an explicit finite budget."""
+    if isinstance(event_budget, bool) or not isinstance(event_budget, int) or event_budget <= 0:
+        raise ValueError("event_budget must be a positive integer")
+    processed = 0
+    peak_queue = len(queue)
+    last_timestamp: LocalTimestamp | None = None
+    while queue and processed < event_budget:
+        next_event = queue.peek()
+        assert next_event is not None
+        event = queue.pop_ready(next_event.timestamp)
+        handler(event, queue)
+        processed += 1
+        last_timestamp = event.timestamp
+        peak_queue = max(peak_queue, len(queue))
+    pending = len(queue)
+    exhausted = pending > 0 and processed >= event_budget
+    return BoundedExecutionResult(
+        completed=not exhausted,
+        budget_exhausted=exhausted,
+        configured_event_budget=event_budget,
+        processed_event_count=processed,
+        pending_event_count=pending,
+        termination_reason="budget_exhausted" if exhausted else "completed",
+        last_event_timestamp=last_timestamp,
+        peak_queue_occupancy=peak_queue,
+    )
+
+
 __all__ = [
     "Event",
     "EventPayload",
     "EventQueue",
     "EventType",
+    "BoundedExecutionResult",
+    "execute_bounded",
     "LateEventError",
     "LocalClock",
     "LocalTimestamp",
