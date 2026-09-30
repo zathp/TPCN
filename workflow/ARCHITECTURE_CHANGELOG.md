@@ -740,3 +740,62 @@ execution remains blocked; ties and negative results remain valid; another
 independent Luna-0 review is mandatory after corrective execution. Luna-13G
 remains unauthorized.
 
+## Luna-0 independent review of corrected Luna-13F - 2026-09-30
+
+Reviewed synchronized corrected revision
+`dcee582fa8fb347f578793c2ef383bd936e83234` with `HEAD == origin/main`.
+
+- Final status: **BLOCKED - FIXTURE/ORACLE EVIDENCE CONTAMINATION**.
+- `_schedule()` no longer reads the utility-role fields, but
+	`_candidate_edges()`, `_base_edges()` and held-out topology construction
+	still map G through `beneficial_role` and H through `harmful_role`. The
+	short-association motif is therefore assigned to the known useful endpoint.
+- The observed 4.0/0.0 values are bounded source-local association counts
+	from `TemporalAssociationPolicy`: four within-window relay associations and
+	zero within-window noise associations. This is not independent utility
+	prediction or autonomous training experience.
+- A true A/B permutation/blinding attack and a valid mirrored-role control
+	were not run. The five audit not-run items are all required but missing:
+	external-label mutation, locality attack, neutral-decay sweep,
+	candidate-saturation/reset/eviction, and valid mirrored roles.
+- Reported utility remains G `2/2`, H `1/2`, no-growth `2/2`; this supports
+	only harmful-growth avoidance. No-growth is 8 events/8.0 proxy units and G
+	is 12 events/12.0 proxy units, so resource benefit is not established.
+- Artifact provenance is inconsistent: the artifact records executed revision
+	`3379403a8b58649a85c2604ba3044e55e4fe99e9` rather than the corrected commit
+	reviewed. Held-out chronology is not independently established because its
+	timestamps are hard-coded while route traces reset at 0.0.
+
+No A01-A15 clause changed and no ACP is required. The existing bounded runtime
+may support a later corrected experiment, but only after explicit
+project-owner authorization and another Luna-0 review. Luna-13G remains
+unauthorized.
+
+## Luna-13F blinded-mapping corrective authorization - 2026-09-30
+
+Luna-0 authorizes one additional corrective Luna-13F pass under the existing
+`.github/agents/luna-13f.agent.md` contract from synchronized revision
+`dcee582fa8fb347f578793c2ef383bd936e83234`.
+
+- Final authorization status: **PASS — LUNA-13F BLINDED-MAPPING CORRECTIVE
+	PASS AUTHORIZED**.
+- This is not a new Luna-13F contract, does not execute the experiment, does
+	not change A01-A15, and does not authorize Luna-13G.
+- The valid partial result is preserved: bounded runtime association evidence
+	exists and reaches the unchanged canonical scorer. The remaining blocker is
+	`beneficial_role -> candidate/topology assignment -> G`.
+- The corrective pass must use neutral candidate identities, remove utility
+	roles from all pre-evaluation construction and scoring paths, freeze a
+	predeclared seeded mapping, run at least two endpoint/motif permutations,
+	and classify utility only after admission and held-out evaluation.
+- It must identify the actual cause of 4.0/0.0 and execute or contractually
+	justify all five outstanding controls: `external_label_mutation`,
+	`locality_attack`, `neutral_decay_runtime_sweep`,
+	`candidate_saturation_reset_eviction` and `valid_mirrored_roles`.
+- The completed pass must regenerate artifacts, run required validation and
+	return to Luna-0. No architecture change is currently required; a need for
+	new runtime semantics is an explicit stop condition.
+
+The independent Luna-0 review remains mandatory after corrective execution.
+Luna-13G remains unauthorized.
+

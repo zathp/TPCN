@@ -2100,6 +2100,76 @@ The next action is Luna-13F corrective execution, followed by another
 independent Luna-0 review. No corrective Luna-13F execution was performed as
 part of this authorization/publication task.
 
+### Luna-13F corrective independent review - 2026-09-30
+
+Luna-0 independently reviewed corrected implementation revision
+`dcee582fa8fb347f578793c2ef383bd936e83234` on synchronized `main` with
+`HEAD == origin/main` and a clean worktree at review start. The committed
+focused output reports 10 passed, the preservation output reports 62 passed,
+and the full CPU output reports 286 passed with 1 skipped. No experiment was
+rerun after the user froze execution.
+
+The terminal status is:
+
+**BLOCKED - FIXTURE/ORACLE EVIDENCE CONTAMINATION**
+
+The schedule body is neutral with respect to the two role fields, but the
+complete dependency chain is not. `_candidate_edges()` maps G to
+`beneficial_role`, `_base_edges()` uses the same role mapping, and held-out
+topology construction reuses those helpers. Therefore the short-association
+motif is still assigned to the endpoint already designated useful by the
+fixture. The reported 4.0/0.0 values are bounded source-local
+`TemporalAssociationPolicy` association counts, not independent utility
+evidence. The required A/B blinding and valid mirrored-role test were not run.
+
+The five audit not-run items are all classified **REQUIRED BUT MISSING**:
+external-label mutation, locality attack, neutral-decay sweep,
+candidate-saturation/reset/eviction, and valid mirrored roles. The audit's
+13 passed, 0 failed, 5 not-run total therefore cannot support a scientific
+PASS, and its role-dependency check inspected only `_schedule`.
+
+The artifact also records executed revision `3379403a8b58649a85c2604ba3044e55e4fe99e9`,
+not the corrected commit under review. The held-out timestamps are hard-coded
+metadata while route traces reset at 0.0, so cross-phase chronology is not
+independently established. No A01-A15 clause changed and no ACP is required.
+The existing runtime may be sufficient for a later corrected experiment, but
+that requires explicit project-owner authorization and another Luna-0 review.
+Luna-13G remains unauthorized.
+
+### Luna-13F blinded-mapping corrective authorization - 2026-09-30
+
+Following the independent review above, Luna-0 authorizes **one additional
+Luna-13F corrective pass under the existing `.github/agents/luna-13f.agent.md`
+contract**. This is an experiment-level authorization only: it does not create
+a new Luna-13F contract, execute the experiment, change A01-A15 or authorize
+Luna-13G.
+
+The current partial result is preserved: ordinary runtime activity generates
+bounded source-local association evidence and the unchanged canonical scorer
+consumes it. The remaining blocker is the pre-evaluation mapping
+`beneficial_role -> candidate/topology assignment -> G`. The corrective pass
+must remove `beneficial_role` and `harmful_role` from every candidate endpoint,
+base topology, neutral schedule, ordering, evidence and scoring path. Those
+fields may remain only in post-hoc utility reporting.
+
+Use neutral candidate identities such as `candidate_A` and `candidate_B`,
+freeze a predeclared seeded mapping before held-out evaluation, and run at
+least two independent endpoint/motif permutations with identical schedule
+generation. Compute runtime evidence, canonical scores and admission before
+assigning task-preserving or task-harming descriptions. Preserve the valid
+runtime-events -> bounded association-state -> canonical-score chain and
+identify whether 4.0/0.0 is caused by count, interval, ordering, decay or
+another canonical state variable.
+
+The five outstanding audit controls remain mandatory unless the existing
+contract independently demonstrates conditional inapplicability:
+`external_label_mutation`, `locality_attack`, `neutral_decay_runtime_sweep`,
+`candidate_saturation_reset_eviction` and `valid_mirrored_roles`. The pass must
+return complete artifacts and validation to Luna-0 for independent review.
+No architecture change is currently required. If the blinded experiment
+requires new runtime semantics, it must stop with the authorized architecture-
+change status and decision packet. Luna-13G remains unauthorized.
+
 ## Luna-13 — GPU-Compatible Visualization Path
 
 **Authorization:** Blocked until Luna-12 passes and Luna-0 explicitly authorizes this milestone. The prompt or handoff alone is not authorization.
