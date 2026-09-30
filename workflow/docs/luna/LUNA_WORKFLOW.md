@@ -2004,6 +2004,36 @@ semantics. CUDA is optional and non-gating.
 Luna-13F returns to Luna-0 for independent review. No A01-A15 clause changes,
 no ACP is created by this workflow entry, and Luna-13G is not authorized.
 
+### Luna-13F execution authorization - 2026-09-30
+
+Luna-0 reviewed the committed Luna-13F contract and prerequisite evidence at
+authorization baseline `4f4129f3d9eda736fe1c2434b79e21d387e2fedc`. The
+repository was synchronized with `origin/main`, on `main`, and clean with
+`HEAD == origin/main`.
+
+The prior Luna-13B causal crossover, Luna-13C bounded external causal effect,
+corrected Luna-13D evidence-based retention/pruning, and Luna-13E harmful-
+growth-avoidance review gates are sufficiently closed for this bounded
+follow-up. Luna-13E's remaining limitation is the use of fixture-controlled
+score-driving observations rather than demonstrated organically runtime-
+generated candidate evidence.
+
+**AUTHORIZED - LUNA-13F EXECUTION PENDING.** Luna-13F may now execute from
+authorization revision `4f4129f3d9eda736fe1c2434b79e21d387e2fedc` or a later
+synchronized revision containing no incompatible architecture or workflow
+changes. The authorized question is whether ordinary event-driven runtime
+activity generates bounded candidate-specific local evidence for the unchanged
+canonical scorer under true one-slot competition.
+
+The primary decision remains prohibited from using fixture-keyed G/H scores,
+candidate-role tables, endpoint-specific tuples, expected-winner metadata,
+labels, held-out outcomes, or experiment-side score injection. The existing
+architecture must be audited first; if it cannot generate sufficient evidence,
+Luna-13F must stop with its architecture-change decision packet and must not
+add production semantics silently. Execution remains CPU-only; optional CUDA
+skips are non-gating. Luna-13F must return to Luna-0 for independent review.
+Luna-13G remains unauthorized.
+
 ## Luna-13 — GPU-Compatible Visualization Path
 
 **Authorization:** Blocked until Luna-12 passes and Luna-0 explicitly authorizes this milestone. The prompt or handoff alone is not authorization.

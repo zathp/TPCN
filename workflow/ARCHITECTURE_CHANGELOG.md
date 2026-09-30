@@ -665,3 +665,27 @@ is `7faf8d3f1c82927304875bb6263219d5954a463d`. Status:
 	`1/2`. A01-A15 and ACP status remain unchanged. Luna-13F is not created,
 	executed or authorized.
 
+## Luna-13F execution authorization - 2026-09-30
+
+Luna-0 authorized execution of the committed CPU-only **Runtime-Generated
+Local Candidate Evidence Experiment** from clean synchronized revision
+`4f4129f3d9eda736fe1c2434b79e21d387e2fedc` (`HEAD == origin/main`). The
+prerequisite chain is sufficiently closed: Luna-13B crossover, Luna-13C
+bounded causal task effect, corrected Luna-13D evidence-based pruning, and
+the Luna-13E bounded harmful-growth-avoidance review are recorded. Luna-13F
+targets Luna-13E's remaining fixture-evidence limitation.
+
+- Status: `AUTHORIZED — LUNA-13F EXECUTION PENDING`.
+- Runtime-generated bounded local evidence and the unchanged canonical scorer
+	are the authorized scientific question under true one-slot competition.
+- Fixture-keyed candidate evidence, labels, future outcomes, endpoint-role
+	tables and experiment-side score injection remain prohibited.
+- The architecture-change stop condition remains mandatory; no new utility
+	memory, probation, rollback, reward channel, oracle, unbounded history or
+	abstention may be added silently.
+- CPU-only execution is valid; optional CUDA is non-gating. Luna-13F must
+	return to Luna-0 for independent review, and Luna-13G remains unauthorized.
+
+This is an experiment authorization boundary only. A01-A15, ACP status and
+the canonical architecture are unchanged.
+
