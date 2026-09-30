@@ -412,7 +412,7 @@ def write_artifacts(artifact: dict[str, Any], output_dir: str, *, baseline_revis
         "fixture_id": payload["fixture_id"],
         "baseline_revision": baseline_revision,
         "executed_revision": executed_revision,
-        "runs": [{"policy": name, "chosen_candidate": stage.get("chosen_candidate"), "task_result": stage.get("evaluation", stage).get("task_result"), "events": stage.get("evaluation", stage).get("total_events"), "proxy_energy": stage.get("evaluation", stage).get("proxy_energy"), "completion": stage.get("evaluation", stage).get("completion_status")} for name, stage in rows],
+        "runs": [{"policy": name, "chosen_candidate": stage.get("chosen_candidate", stage.get("selected_candidate")), "task_result": stage.get("evaluation", stage).get("task_result"), "events": stage.get("evaluation", stage).get("total_events"), "proxy_energy": stage.get("evaluation", stage).get("proxy_energy"), "completion": stage.get("evaluation", stage).get("completion_status")} for name, stage in rows],
     }
     with open(os.path.join(output_dir, "summary.json"), "w", encoding="utf-8") as handle:
         json.dump(summary, handle, indent=2, sort_keys=True)
