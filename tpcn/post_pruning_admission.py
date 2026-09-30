@@ -155,12 +155,20 @@ def _mutation_payload(result: MutationResult) -> dict[str, Any]:
     }
 
 
-def _evaluate(config: AdmissionQualityConfig, edges: tuple[Edge, ...], policy: str) -> dict[str, Any]:
+def _evaluate(
+    config: AdmissionQualityConfig,
+    edges: tuple[Edge, ...],
+    policy: str,
+    *,
+    start_timestamp: float = 0.0,
+    evaluation_targets: tuple[str, str] | None = None,
+) -> dict[str, Any]:
     topology = _topology(config, edges)
     roles = _roles(config)
     source = roles[config.task_source_role]
     target = roles["target"]
-    examples = (("short-held-out", 1.0, "on_time"), ("long-held-out", 3.0, "late"))
+    targets = evaluation_targets or ("on_time", "late")
+    examples = (("short-held-out", 1.0, targets[0]), ("long-held-out", 3.0, targets[1]))
     cases: list[dict[str, Any]] = []
     route_trace: list[dict[str, Any]] = []
     total_events = 0
@@ -169,8 +177,8 @@ def _evaluate(config: AdmissionQualityConfig, edges: tuple[Edge, ...], policy: s
     for example_id, interval, expected in examples:
         neurons = {node: TPCNNeuron(node, decay_rate=0.1, input_gain=1.0) for node in config.node_ids}
         queue: EventQueue[Event] = EventQueue(config.queue_capacity)
-        queue.push(Event(0.0, source, source, "cue", 1.0))
-        queue.push(Event(interval, source, source, "probe", -1.0))
+        queue.push(Event(start_timestamp, source, source, "cue", 1.0))
+        queue.push(Event(start_timestamp + interval, source, source, "probe", -1.0))
         arrivals: list[float] = []
         processed_energy = 0.0
 
@@ -189,7 +197,8 @@ def _evaluate(config: AdmissionQualityConfig, edges: tuple[Edge, ...], policy: s
 
         execution = execute_bounded(queue, handle, event_budget=config.event_budget)
         second_arrival = arrivals[1] if len(arrivals) >= 2 else None
-        decision = "on_time" if second_arrival is not None and second_arrival <= 3.0 else "late"
+        relative_arrival = None if second_arrival is None else second_arrival - start_timestamp
+        decision = "on_time" if relative_arrival is not None and relative_arrival <= 3.0 else "late"
         total_events += execution.processed_event_count
         total_energy += processed_energy
         queue_peak = max(queue_peak, execution.peak_queue_occupancy)

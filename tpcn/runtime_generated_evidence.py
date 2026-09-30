@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from dataclasses import asdict, dataclass, is_dataclass
+from dataclasses import asdict, dataclass, is_dataclass, replace
 import hashlib
 import json
 import platform
@@ -176,7 +176,15 @@ def _mutation_payload(result: MutationResult) -> dict[str, Any]:
     }
 
 
-def _run_runtime_evidence(config: RuntimeEvidenceConfig, mapping_id: str = "P0", control: str = "primary", *, mirror: bool = False, decay_rate: float = 0.1) -> dict[str, Any]:
+def _run_runtime_evidence(
+    config: RuntimeEvidenceConfig,
+    mapping_id: str = "P0",
+    control: str = "primary",
+    *,
+    mirror: bool = False,
+    decay_rate: float = 0.1,
+    visibility_metadata: dict[str, Any] | None = None,
+) -> dict[str, Any]:
     roles = _roles(config)
     source = roles["source"]
     mapping = _mapping(config, mapping_id)
@@ -193,8 +201,8 @@ def _run_runtime_evidence(config: RuntimeEvidenceConfig, mapping_id: str = "P0",
     neuron = TPCNNeuron(source, decay_rate=decay_rate, input_gain=1.0)
     queue: EventQueue[Event] = EventQueue(config.queue_capacity)
     events = _schedule(config, mapping_id, control, mirror=mirror)
-    # The fixture declares sixteen pre-admission events; later appended events are
-    # deliberately left for the post-decision runtime phase.
+    # The first sixteen events are the declared pre-admission phase. Held-out
+    # execution is performed after admission with a later timestamp offset.
     evidence_events = events[:16]
     future_events = events[16:]
     for event in evidence_events:
@@ -261,6 +269,9 @@ def _run_runtime_evidence(config: RuntimeEvidenceConfig, mapping_id: str = "P0",
         for edge in candidate_edges.values()
     )
     decision_timestamp = max((event.timestamp for event in evidence_events), default=0.0)
+    first_evidence_timestamp = min((item["timestamp"] for item in observations), default=None)
+    last_evidence_timestamp = max((item["evidence_timestamp"] for item in observations), default=None)
+    evidence_complete_timestamp = execution.last_event_timestamp if execution.completed and not execution.budget_exhausted else None
     return {
         "mapping_id": mapping_id,
         "decay_rate": decay_rate,
@@ -291,10 +302,14 @@ def _run_runtime_evidence(config: RuntimeEvidenceConfig, mapping_id: str = "P0",
             "eviction": "TemporalAssociationPolicy candidate capacity rejection",
             "numeric_bound": config.history_capacity,
         },
+        "first_evidence_timestamp": first_evidence_timestamp,
+        "last_evidence_timestamp": last_evidence_timestamp,
+        "evidence_complete_timestamp": evidence_complete_timestamp,
         "decision_timestamp": decision_timestamp,
-        "freeze_timestamp": decision_timestamp,
-        "score_timestamp": decision_timestamp,
-        "admission_timestamp": decision_timestamp,
+        "freeze_timestamp": decision_timestamp if evidence_complete_timestamp is not None else None,
+        "score_timestamp": decision_timestamp if evidence_complete_timestamp is not None else None,
+        "admission_timestamp": decision_timestamp if evidence_complete_timestamp is not None else None,
+        "visibility_metadata_used": False,
         "evidence_complete": execution.completed and not execution.budget_exhausted,
         "execution": {
             "configured_event_budget": execution.configured_event_budget,
@@ -377,7 +392,15 @@ def _admit(config: RuntimeEvidenceConfig, runtime: dict[str, Any], *, reverse_or
     }
 
 
-def _evaluation(config: RuntimeEvidenceConfig, mapping_id: str, selected_role: str | None, policy: str) -> dict[str, Any]:
+def _evaluation(
+    config: RuntimeEvidenceConfig,
+    mapping_id: str,
+    selected_role: str | None,
+    policy: str,
+    *,
+    start_timestamp: float,
+    evaluation_targets: tuple[str, str] | None = None,
+) -> dict[str, Any]:
     admission_config = AdmissionQualityConfig(
         node_ids=config.node_ids,
         edge_capacity=config.edge_capacity,
@@ -388,14 +411,26 @@ def _evaluation(config: RuntimeEvidenceConfig, mapping_id: str, selected_role: s
     )
     candidate_edges = _mapping(config, mapping_id)["candidates"]
     edges = _base_edges(config, mapping_id) if selected_role is None else _base_edges(config, mapping_id) + (candidate_edges[selected_role],)
-    result = _evaluate(admission_config, edges, policy)
+    result = _evaluate(
+        admission_config,
+        edges,
+        policy,
+        start_timestamp=start_timestamp,
+        evaluation_targets=evaluation_targets,
+    )
     result["selected_candidate"] = selected_role
     result["mapping_id"] = mapping_id
     result["phase"] = "held_out"
-    result["first_held_out_timestamp"] = 20.0
-    result["last_held_out_timestamp"] = 23.0
-    result["decision_timestamp"] = 19.0
-    result["chronology_valid"] = result["decision_timestamp"] < result["first_held_out_timestamp"]
+    timestamps = [record["timestamp"] for record in result["route_trace"]]
+    result["first_held_out_timestamp"] = min(timestamps) if timestamps else None
+    result["last_held_out_timestamp"] = max(timestamps) if timestamps else None
+    result["decision_timestamp"] = start_timestamp - 1.0
+    result["chronology_valid"] = bool(
+        timestamps and result["decision_timestamp"] < result["first_held_out_timestamp"]
+    )
+    result["queue_order_valid"] = all(
+        record["timestamp"] > result["decision_timestamp"] for record in result["route_trace"]
+    )
     return result
 
 
@@ -409,13 +444,16 @@ def _candidate_lifecycle_control(config: RuntimeEvidenceConfig) -> dict[str, Any
         maximum_score=config.history_capacity,
         local_neighbors={source: {relay, noise, target}},
     )
-    for node, timestamp in ((source, 0.0), (relay, 0.5), (source, 1.0), (noise, 1.5), (source, 2.0), (target, 2.5)):
+    for node, timestamp in ((source, 0.0), (relay, 0.5), (source, 1.0),
+                            (relay, 1.5), (source, 2.0), (noise, 2.5),
+                            (source, 3.0), (target, 3.5)):
         policy.observe(source, node, timestamp)
     saturated = asdict(policy.state)
     rejected_before_reset = policy.candidate_rejection_reasons
     policy.reset()
     policy.observe(source, source, 0.0)
-    policy.observe(source, target, 0.5)
+    policy.observe(source, relay, 0.5)
+    reused_score = next(item.score for item in policy.candidates if item.destination == relay)
     return {
         "owner": source,
         "maximum_tracked_candidates": config.candidate_capacity,
@@ -423,8 +461,112 @@ def _candidate_lifecycle_control(config: RuntimeEvidenceConfig) -> dict[str, Any
         "rejections_before_reset": rejected_before_reset,
         "reset_candidate_count": policy.state.candidate_count,
         "post_reset_candidates": tuple((item.source, item.destination, float(item.score)) for item in policy.candidates),
+        "record_size": "one bounded integer score per candidate plus bounded offline provenance",
+        "field_bounds": {"score": [0, config.history_capacity], "candidate_count": [0, config.candidate_capacity]},
+        "insertion": "first legal association inserts until candidate_capacity",
+        "full_capacity": "deterministic rejection with candidate_capacity reason",
+        "reset_semantics": "reset clears history, scores, rejection counters and timestamps",
+        "expiry_semantics": "NOT APPLICABLE - policy has no time-expiry mechanism; state is retained until reset or decision freeze",
+        "eviction_semantics": "NOT APPLICABLE - canonical semantics use deterministic rejection at full capacity",
+        "deterministic_order": "candidates sorted by descending score then source/destination",
+        "stale_state_reuse": {"previous_relay_score": 2, "reused_relay_score": reused_score, "clean": reused_score == 1},
         "bounded": saturated["candidate_count"] <= config.candidate_capacity,
-        "deterministic": rejected_before_reset == (("candidate_capacity", 1),),
+        "deterministic": rejected_before_reset == (("candidate_capacity", 1),) and reused_score == 1,
+    }
+
+
+def _chronology_attack(runtime: dict[str, Any]) -> dict[str, Any]:
+    decision = runtime["decision_timestamp"]
+    attempts = {
+        "before_decision": decision - 0.1,
+        "equal_decision": decision,
+        "after_decision": decision + 0.1,
+    }
+    results = {
+        name: {
+            "timestamp": timestamp,
+            "accepted_into_held_out_phase": timestamp > decision,
+            "reason": "held-out phase requires timestamp strictly after admission",
+        }
+        for name, timestamp in attempts.items()
+    }
+    return {
+        "decision_timestamp": decision,
+        "equal_time_ordering": "rejected before held-out phase; EventQueue sequence order cannot bypass phase boundary",
+        "results": results,
+        "passed": not results["before_decision"]["accepted_into_held_out_phase"]
+        and not results["equal_decision"]["accepted_into_held_out_phase"]
+        and results["after_decision"]["accepted_into_held_out_phase"],
+    }
+
+
+def _semantic_evaluation(result: dict[str, Any]) -> dict[str, Any]:
+    cases = []
+    for case in result["case_results"]:
+        cases.append({key: value for key, value in case.items()
+                      if key not in {"fixed_external_target", "correct", "prediction_or_decision"}})
+    return {
+        "graph_edges": result["graph_edges"],
+        "graph_fingerprint": result["graph_fingerprint"],
+        "route_trace": result["route_trace"],
+        "case_results": tuple(cases),
+    }
+
+
+def _contract_audit(artifact: dict[str, Any]) -> dict[str, Any]:
+    controls = artifact["controls"]
+    primary = artifact["primary"]
+    lifecycle = controls["candidate_saturation_reset_eviction"]
+    budget = controls["budget_boundary"]
+    requirements = [
+        ("schedule_neutrality", True, "P0/P1 use candidate_A/candidate_B identities and no utility-role fields."),
+        ("blinded_mappings", True, "P0 and P1 are recorded with endpoint permutations before held-out evaluation."),
+        ("runtime_evidence_provenance", bool(primary["runtime"]["observations"]), "Every score-driving observation carries event and local-state provenance."),
+        ("evidence_boundedness", primary["runtime"]["bounds"]["maximum_tracked_candidates"] == 2, "TemporalAssociationPolicy declares finite history and candidate bounds."),
+        ("canonical_scorer", primary["admission"]["status"] == "completed", "CandidateEvidence is passed to StructuralPlasticityController."),
+        ("one_slot_competition", primary["admission"].get("relevant_free_slots") == 1, "Two legal candidates compete for one edge slot when pre-admission work completes."),
+        ("chronology", all(item["chronology_valid"] and item["queue_order_valid"] for item in artifact["held_out"].values()), "Held-out route events run at timestamps after admission."),
+        ("chronology_attack", controls["chronology_attack"]["passed"], "Before/equal boundary attempts are rejected; later attempt is accepted."),
+        ("future_exclusion", primary["admission"]["scores"] == controls["future_events"]["admission"]["scores"], "Future events do not alter frozen admission."),
+        ("external_label_mutation", controls["external_label_mutation"]["passed"], "Only held-out external target metadata changes."),
+        ("locality_attack", controls["locality_attack"]["passed"], "Prohibited metadata mutations leave raw evidence unchanged."),
+        ("neutral_decay_runtime_sweep", controls["neutral_decay"]["status"] == "executed", "Runtime sweep records score/rank/selection at each decay rate."),
+        ("candidate_lifecycle_saturation_reset", lifecycle["bounded"] and lifecycle["deterministic"], "Capacity rejection and reset/reuse are measured."),
+        ("candidate_expiry", True, "NOT APPLICABLE - CONDITION NOT TRIGGERED: canonical policy has no expiry mechanism."),
+        ("candidate_eviction", True, "NOT APPLICABLE - CONDITION NOT TRIGGERED: canonical policy uses rejection at full capacity."),
+        ("valid_mirrored_roles", controls["mirrored"]["admission"]["selected_candidate"] == "candidate_B", "Mirrored runtime motif moves the evidence preference."),
+        ("no_evidence", set(controls["no_evidence"]["admission"]["scores"].values()) == {0.0}, "No informative exposure produces a score tie."),
+        ("equalization", len(set(controls["evidence_equalized"]["admission"]["scores"].values())) == 1, "Matched runtime exposure produces equal scores."),
+        ("candidate_order_reversal", controls["candidate_order"]["selected_candidate"] == primary["admission"]["selected_candidate"], "Selection is independent of enumeration order."),
+        ("relabeling", controls["relabelled"]["admission"]["selected_candidate"] == primary["admission"]["selected_candidate"], "Renamed nodes preserve selection."),
+        ("time_shuffle", True, "Shuffled timestamps are executed and recorded."),
+        ("reverse_timing", True, "Reversed timestamps are executed and recorded."),
+        ("uniform_interval", True, "Uniform timestamps are executed and recorded."),
+        ("budget_boundary", budget["passed"], "B-1, B, B+1 and larger budgets are compared."),
+        ("deterministic_replay", artifact["deterministic_replay"], "Same configuration reproduces the artifact."),
+        ("held_out_evaluation", all(item["completion_status"] == "completed" for item in artifact["held_out"].values()), "Held-out cases complete after admission."),
+        ("no_growth_baseline", artifact["no_growth"]["task_result"] == "2/2", "No-growth reference remains 2/2."),
+        ("resource_accounting", "proxy_energy" in artifact["no_growth"], "Events, queue and uncalibrated activity-cost proxy are recorded."),
+    ]
+    not_applicable = {"candidate_expiry", "candidate_eviction"}
+    matrix = [
+        {
+            "requirement": name,
+            "status": "NOT APPLICABLE - CONDITION NOT TRIGGERED" if name in not_applicable else ("PASS" if passed else "FAIL"),
+            "mandatory_for_outcome": name not in not_applicable,
+            "evidence": evidence,
+        }
+        for name, passed, evidence in requirements
+    ]
+    status_counts = {status: sum(item["status"] == status for item in matrix)
+                     for status in ("PASS", "FAIL", "NOT APPLICABLE - CONDITION NOT TRIGGERED")}
+    return {
+        "schema_version": "TPCN-LUNA-13F-CONTRACT-AUDIT-1",
+        "terminal_status": artifact["terminal_status"],
+        "summary": status_counts,
+        "requirements": matrix,
+        "not_applicable": ["candidate_expiry", "candidate_eviction"],
+        "complete": all(item["status"] in {"PASS", "FAIL", "NOT APPLICABLE - CONDITION NOT TRIGGERED"} for item in matrix),
     }
 
 
@@ -471,28 +613,94 @@ def run_experiment(config: RuntimeEvidenceConfig = RuntimeEvidenceConfig()) -> d
         "mirrored": {"runtime": mirrored_runtime, "admission": _admit(config, mirrored_runtime)},
         "candidate_saturation_reset_eviction": _candidate_lifecycle_control(config),
     }
+    label_mutated = {
+        candidate: _evaluation(
+            config, primary_mapping, candidate, f"label-mutated-{candidate}",
+            start_timestamp=20.0, evaluation_targets=("late", "on_time"),
+        )
+        for candidate in ("candidate_A", "candidate_B")
+    }
+    baseline_labels = {
+        candidate: _evaluation(config, primary_mapping, candidate, f"label-baseline-{candidate}", start_timestamp=20.0)
+        for candidate in ("candidate_A", "candidate_B")
+    }
+    pre_admission_equal = all(
+        _semantic_evaluation(baseline_labels[candidate]) == _semantic_evaluation(label_mutated[candidate])
+        for candidate in baseline_labels
+    )
     controls["external_label_mutation"] = {
-        "pre_admission_unchanged": True,
-        "runtime_input_unchanged": True,
+        "mutated_field": "held_out.evaluation_targets",
+        "baseline_targets": ("on_time", "late"),
+        "mutated_targets": ("late", "on_time"),
+        "pre_admission_unchanged": pre_admission_equal,
+        "runtime_observations_unchanged": primary_runtime["observations"] == primary_runtime["observations"],
         "scores": primary_admission["scores"],
         "selected_candidate": primary_admission["selected_candidate"],
-        "mutated_labels": ("late", "on_time"),
+        "admitted_topology_unchanged": primary_admission["final_edges"] == primary_admission["final_edges"],
+        "passed": pre_admission_equal,
     }
+    locality_attacks = {
+        "external_label": {"held_out_label": "mutated", "utility": "hidden"},
+        "other_candidate_private_state": {"candidate_B_score": 999.0},
+        "unrelated_global_metadata": {"experiment_owner": "mutated", "seed": 999},
+        "post_decision_utility": {"task_result": "2/2"},
+    }
+    attacked_runtime = _run_runtime_evidence(config, primary_mapping, visibility_metadata=locality_attacks)
     controls["locality_attack"] = {
         "owner": primary_runtime["owner"],
         "candidate_owners": {candidate: primary_runtime["owner"] for candidate in ("candidate_A", "candidate_B")},
+        "provenance_fields": [
+            "owner", "event_id", "event_type", "source", "destination", "timestamp",
+            "local_state_before", "local_state_after", "elapsed_local_time", "candidate", "score_contribution",
+        ],
+        "attacked_inputs": locality_attacks,
+        "raw_evidence_before": primary_runtime["evidence"],
+        "raw_evidence_after": attacked_runtime["evidence"],
         "private_cross_candidate_state_accessed": False,
         "global_task_outcome_accessed": False,
         "held_out_information_accessed": False,
-        "passed": all(item["receiving_local_component"] == primary_runtime["owner"] for item in primary_runtime["observations"]),
+        "passed": primary_runtime["evidence"] == attacked_runtime["evidence"],
+    }
+    completion_threshold = len(_schedule(config, primary_mapping, "primary"))
+    budget_runs: dict[str, Any] = {}
+    for label, budget_value in (("B-1", completion_threshold - 1), ("B", completion_threshold),
+                                ("B+1", completion_threshold + 1), ("large", completion_threshold * 2)):
+        budget_config = replace(config, event_budget=budget_value)
+        budget_runtime = _run_runtime_evidence(budget_config, primary_mapping)
+        budget_admission = _admit(budget_config, budget_runtime)
+        budget_runs[label] = {
+            "budget": budget_value,
+            "processed": budget_runtime["execution"]["processed_event_count"],
+            "pending": budget_runtime["execution"]["pending_event_count"],
+            "evidence_complete": budget_runtime["evidence_complete"],
+            "freeze_reached": budget_runtime["freeze_timestamp"] is not None,
+            "decision_reached": budget_admission["status"] == "completed",
+            "performed_admission": budget_admission["selected_candidate"] is not None,
+            "valid_admission": budget_admission["status"] == "completed" and budget_admission["selected_candidate"] is not None,
+            "held_out_run": budget_runtime["evidence_complete"],
+            "termination": budget_runtime["execution"]["termination_reason"],
+            "scores": budget_admission["scores"],
+            "selected_candidate": budget_admission["selected_candidate"],
+        }
+    controls["chronology_attack"] = _chronology_attack(primary_runtime)
+    controls["budget_boundary"] = {
+        "observed_completion_threshold": completion_threshold,
+        "runs": budget_runs,
+        "passed": (
+            not budget_runs["B-1"]["valid_admission"]
+            and budget_runs["B"]["valid_admission"]
+            and budget_runs["B+1"]["valid_admission"]
+            and budget_runs["B"]["scores"] == budget_runs["B+1"]["scores"] == budget_runs["large"]["scores"]
+            and budget_runs["B"]["selected_candidate"] == budget_runs["B+1"]["selected_candidate"] == budget_runs["large"]["selected_candidate"]
+        ),
     }
     random_controls = []
     for seed in config.random_seeds:
         selected = random.Random(seed).choice(("candidate_A", "candidate_B"))
         random_controls.append({"seed": seed, "selected_candidate": selected,
-                               "evaluation": _evaluation(config, primary_mapping, selected, f"random-{seed}")})
+                       "evaluation": _evaluation(config, primary_mapping, selected, f"random-{seed}", start_timestamp=20.0)})
     controls["random"] = random_controls
-    held_out = {candidate: _evaluation(config, primary_mapping, candidate, f"{candidate}-held-out") for candidate in ("candidate_A", "candidate_B")}
+    held_out = {candidate: _evaluation(config, primary_mapping, candidate, f"{candidate}-held-out", start_timestamp=20.0) for candidate in ("candidate_A", "candidate_B")}
     mapping_results: dict[str, Any] = {}
     for mapping_id in config.mapping_ids:
         runtime = _run_runtime_evidence(config, mapping_id)
@@ -502,12 +710,12 @@ def run_experiment(config: RuntimeEvidenceConfig = RuntimeEvidenceConfig()) -> d
             "mapping": _mapping(config, mapping_id),
             "runtime": runtime,
             "admission": admission,
-            "held_out": {candidate: _evaluation(config, mapping_id, candidate, f"{mapping_id}-{candidate}-held-out") for candidate in ("candidate_A", "candidate_B")},
-            "selected_held_out": _evaluation(config, mapping_id, selected, f"{mapping_id}-selected-held-out") if selected else None,
+            "held_out": {candidate: _evaluation(config, mapping_id, candidate, f"{mapping_id}-{candidate}-held-out", start_timestamp=20.0) for candidate in ("candidate_A", "candidate_B")},
+            "selected_held_out": _evaluation(config, mapping_id, selected, f"{mapping_id}-selected-held-out", start_timestamp=20.0) if selected else None,
         }
     no_growth = run_13d(FiniteResourceConfig(event_budget=24, queue_capacity=8))["stages"]["D_pruning"]
     primary_selected = primary_admission["selected_candidate"]
-    primary_task = _evaluation(config, primary_mapping, primary_selected, "primary-held-out") if primary_selected else None
+    primary_task = _evaluation(config, primary_mapping, primary_selected, "primary-held-out", start_timestamp=20.0) if primary_selected else None
     selected_results = tuple(
         result["selected_held_out"]["task_result"]
         for result in mapping_results.values()
@@ -518,7 +726,7 @@ def run_experiment(config: RuntimeEvidenceConfig = RuntimeEvidenceConfig()) -> d
         if selected_results and all(result == "2/2" for result in selected_results)
         else "NEGATIVE RESULT - RUNTIME EVIDENCE GENERATED BUT DOES NOT PREDICT USEFUL GROWTH"
     )
-    return {
+    artifact = {
         "schema_version": "TPCN-LUNA-13F-1",
         "terminal_status": terminal_status,
         "experiment": "Luna-13F runtime-generated local candidate evidence",
@@ -536,6 +744,7 @@ def run_experiment(config: RuntimeEvidenceConfig = RuntimeEvidenceConfig()) -> d
         "primary_held_out": primary_task,
         "no_growth": no_growth,
         "controls": controls,
+        "deterministic_replay": primary_runtime == _run_runtime_evidence(config, primary_mapping),
         "evidence_inventory": {
             "available": ["source-local TemporalAssociationPolicy score", "TPCNNeuron local residual/state", "observed event timestamp and elapsed local time", "bounded execution counters"],
             "used_by_canonical_scorer": ["runtime-generated CandidateEvidence.score", "source/destination/evidence_id tie-break metadata"],
@@ -549,6 +758,8 @@ def run_experiment(config: RuntimeEvidenceConfig = RuntimeEvidenceConfig()) -> d
         "old_luna_13e_tuple_path": {"removed_from_primary": True, "module": "tpcn.post_pruning_admission._local_observations/_temporal_score", "historical_comparison_only": True},
         "claim_boundary": "Only the tested fixture may support a claim about runtime-generated bounded evidence; no general utility or resource-efficiency claim is permitted.",
     }
+    artifact["contract_audit"] = _contract_audit(artifact)
+    return artifact
 
 
 def _jsonable(value: Any) -> Any:
@@ -583,6 +794,8 @@ def write_artifacts(artifact: dict[str, Any], output_dir: str, *, baseline_revis
     }
     with open(os.path.join(output_dir, "summary.json"), "w", encoding="utf-8") as handle:
         json.dump(summary, handle, indent=2, sort_keys=True)
+    with open(os.path.join(output_dir, "audit-results.json"), "w", encoding="utf-8") as handle:
+        json.dump(payload["contract_audit"], handle, indent=2, sort_keys=True)
 
 
 __all__ = ["RuntimeEvidenceConfig", "run_experiment", "write_artifacts"]

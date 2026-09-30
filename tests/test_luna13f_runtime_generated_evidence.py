@@ -97,3 +97,40 @@ def test_score_reconstruction_uses_runtime_observations():
     assert artifact["primary"]["admission"]["scores"] == {
         ("source", endpoint): float(count) for endpoint, count in observed.items()
     }
+
+
+def test_chronology_label_and_locality_controls_are_executed():
+    artifact = run_experiment()
+    controls = artifact["controls"]
+    assert controls["chronology_attack"]["passed"]
+    chronology = controls["chronology_attack"]["results"]
+    assert chronology["before_decision"]["accepted_into_held_out_phase"] is False
+    assert chronology["equal_decision"]["accepted_into_held_out_phase"] is False
+    assert chronology["after_decision"]["accepted_into_held_out_phase"] is True
+    assert controls["external_label_mutation"]["passed"]
+    assert controls["external_label_mutation"]["pre_admission_unchanged"]
+    assert controls["locality_attack"]["passed"]
+    assert controls["locality_attack"]["raw_evidence_before"] == controls["locality_attack"]["raw_evidence_after"]
+
+
+def test_candidate_lifecycle_and_budget_controls_are_bounded():
+    artifact = run_experiment()
+    lifecycle = artifact["controls"]["candidate_saturation_reset_eviction"]
+    budget = artifact["controls"]["budget_boundary"]
+    assert lifecycle["bounded"] and lifecycle["deterministic"]
+    assert "reset clears history" in lifecycle["reset_semantics"]
+    assert lifecycle["stale_state_reuse"]["clean"]
+    assert lifecycle["expiry_semantics"].startswith("NOT APPLICABLE")
+    assert lifecycle["eviction_semantics"].startswith("NOT APPLICABLE")
+    assert budget["passed"]
+    assert not budget["runs"]["B-1"]["valid_admission"]
+    assert budget["runs"]["B"]["valid_admission"]
+    assert budget["runs"]["B"]["scores"] == budget["runs"]["large"]["scores"]
+
+
+def test_contract_audit_has_no_unexplained_missing_controls():
+    audit = run_experiment()["contract_audit"]
+    assert audit["complete"]
+    assert audit["summary"]["FAIL"] == 0
+    assert audit["summary"]["NOT APPLICABLE - CONDITION NOT TRIGGERED"] == 2
+    assert all(item["status"] != "NOT RUN" for item in audit["requirements"])

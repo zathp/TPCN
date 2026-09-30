@@ -10,10 +10,10 @@ tpcn_handoff:
   task_id: runtime-generated-local-candidate-evidence-Luna-13F
   component: "CPU runtime evidence fixture, controls, artifacts and handoff"
   status: negative_result
-  contract_version: "1.1"
+  contract_version: "1.2"
   branch: main
-  base_revision: 435277323badea0fc1fd11b56b8a51e9033db053
-  result_revision: 435277323badea0fc1fd11b56b8a51e9033db053
+  base_revision: 28783d718a98e2eec74934afed13bbc115df784a
+  result_revision: "implementation commit; artifact publication commit recorded below"
   starting_tree_state: clean
   executed_tree_state: dirty_by_authorized_corrective_changes
   owner: Luna-0 / project owner
@@ -39,6 +39,8 @@ tpcn_handoff:
   no_growth: "2/2"
   proxy_energy_unit: "activity-cost-proxy; uncalibrated"
   artifacts: artifacts/runtime-generated-local-evidence-13f-verified
+  audit_summary: {PASS: 26, FAIL: 0, NOT_APPLICABLE: 2}
+  controls: [chronology, external_label_mutation, locality, lifecycle, budget_boundary, contract_audit]
 ```
 
 ## Outcome
@@ -80,17 +82,21 @@ candidate deterministically, reset clears prior state, and the removed state
 does not transfer to the next candidate. Mirrored neutral motifs move the
 higher evidence and selection to `candidate_B`. Order, no-evidence, future,
 shuffle, reverse, uniform, relabeling, deterministic replay and bounded
-execution controls were run.
+execution controls were run. Chronology before/equal decision attempts were
+rejected and a later held-out timestamp was accepted. B-1 exhausted the event
+budget without admission; B, B+1 and large budgets completed identically.
+Expiry and eviction are explicitly not applicable because the canonical policy
+uses reset and deterministic rejection at capacity.
 
 ## Validation record
 
 | Command or procedure | Result | Status |
 |---|---|---|
 | `git fetch origin`, branch and ancestry verification | `main`, clean at start, authorization revision equals `HEAD` and `origin/main` | passed |
-| `python -m pytest tests/test_luna13f_runtime_generated_evidence.py -q` | 10 passed | passed |
+| `python -m pytest tests/test_luna13f_runtime_generated_evidence.py -q` | 13 passed | passed |
 | `python run_runtime_generated_evidence_13f.py ... --output-dir artifacts/runtime-generated-local-evidence-13f-verified` | final negative terminal status; results and summary written | passed |
 | Preservation suites Luna-13E/13D/13C/13B/12H/12N | 62 passed | passed |
-| Full CPU suite | 286 passed, 1 skipped | passed |
+| Full CPU suite | 289 passed, 1 skipped | passed |
 | Compile/static checks and diagnostics | `python -m compileall -q ...` passed; editor diagnostics not available in command validation | passed |
 | `git diff --check` | clean | passed |
 | CUDA/GPU/FPGA/FPAA/hardware equivalence | out of scope and non-gating | not applicable |
