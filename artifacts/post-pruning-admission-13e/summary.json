@@ -1,0 +1,72 @@
+{
+  "baseline_revision": "455386746cbb1b0c46d61f507c3750a7780b9b30",
+  "executed_revision": "f5b84ee67517294ddba377d4933359eacc9688d3",
+  "fixture_id": "luna-13e-post-pruning-admission-v1",
+  "runs": [
+    {
+      "chosen_candidate": "G",
+      "completion": "completed",
+      "events": 12,
+      "policy": "current-policy",
+      "proxy_energy": 12.0,
+      "task_result": "2/2"
+    },
+    {
+      "chosen_candidate": null,
+      "completion": "completed",
+      "events": 4,
+      "policy": "fixed-no-growth",
+      "proxy_energy": 4.0,
+      "task_result": "1/2"
+    },
+    {
+      "chosen_candidate": "H",
+      "completion": "completed",
+      "events": 12,
+      "policy": "evidence-equalized",
+      "proxy_energy": 12.0,
+      "task_result": "1/2"
+    },
+    {
+      "chosen_candidate": "H",
+      "completion": "completed",
+      "events": 12,
+      "policy": "random-0",
+      "proxy_energy": 12.0,
+      "task_result": "1/2"
+    },
+    {
+      "chosen_candidate": "G",
+      "completion": "completed",
+      "events": 12,
+      "policy": "random-1",
+      "proxy_energy": 12.0,
+      "task_result": "2/2"
+    },
+    {
+      "chosen_candidate": "G",
+      "completion": "completed",
+      "events": 12,
+      "policy": "random-2",
+      "proxy_energy": 12.0,
+      "task_result": "2/2"
+    },
+    {
+      "chosen_candidate": "G",
+      "completion": "completed",
+      "events": 12,
+      "policy": "random-3",
+      "proxy_energy": 12.0,
+      "task_result": "2/2"
+    },
+    {
+      "chosen_candidate": "G",
+      "completion": "completed",
+      "events": 12,
+      "policy": "random-4",
+      "proxy_energy": 12.0,
+      "task_result": "2/2"
+    }
+  ],
+  "schema_version": "TPCN-LUNA-13E-1"
+}

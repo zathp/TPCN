@@ -1,0 +1,5290 @@
+{
+  "ablations": {
+    "cost_evidence_removed": {
+      "candidate_evidence": [
+        {
+          "available_time": 2.5,
+          "bounded": true,
+          "candidate": "G",
+          "cost_evidence": {
+            "available_before_decision": true,
+            "predicted_total_path_delay": null,
+            "propagation_delay": 0.5,
+            "used_in_canonical_score": false
+          },
+          "decision_time": 4.0,
+          "endpoint_identity_dependent": false,
+          "field": "temporal_score",
+          "future_dependent": false,
+          "future_records_delivered_after_decision": false,
+          "future_records_used_in_score": false,
+          "label_dependent": false,
+          "local": true,
+          "observation_records": [
+            {
+              "candidate": "G",
+              "elapsed": 0.5,
+              "related_time": 0.5,
+              "source_time": 0.0
+            },
+            {
+              "candidate": "G",
+              "elapsed": 0.5,
+              "related_time": 1.5,
+              "source_time": 1.0
+            },
+            {
+              "candidate": "G",
+              "elapsed": 0.5,
+              "related_time": 2.5,
+              "source_time": 2.0
+            }
+          ],
+          "pre_admission": true,
+          "source_owner": "source-local bounded observation buffer",
+          "used_in_canonical_score": true,
+          "value": 3.0
+        },
+        {
+          "available_time": 3.0,
+          "bounded": true,
+          "candidate": "H",
+          "cost_evidence": {
+            "available_before_decision": true,
+            "predicted_total_path_delay": null,
+            "propagation_delay": 1.0,
+            "used_in_canonical_score": false
+          },
+          "decision_time": 4.0,
+          "endpoint_identity_dependent": false,
+          "field": "temporal_score",
+          "future_dependent": false,
+          "future_records_delivered_after_decision": false,
+          "future_records_used_in_score": false,
+          "label_dependent": false,
+          "local": true,
+          "observation_records": [
+            {
+              "candidate": "H",
+              "elapsed": 3.0,
+              "related_time": 3.0,
+              "source_time": 0.0
+            }
+          ],
+          "pre_admission": true,
+          "source_owner": "source-local bounded observation buffer",
+          "used_in_canonical_score": true,
+          "value": 0.0
+        }
+      ],
+      "candidate_set": [
+        [
+          "source",
+          "relay",
+          0.5
+        ],
+        [
+          "source",
+          "noise",
+          1.0
+        ]
+      ],
+      "capacity_before": 3,
+      "capacity_used_before": 2,
+      "chosen_candidate": "G",
+      "evaluation": {
+        "case_results": [
+          {
+            "completion": {
+              "budget_exhausted": false,
+              "completed": true,
+              "configured_event_budget": 24,
+              "peak_queue_occupancy": 2,
+              "pending_event_count": 0,
+              "processed_event_count": 6,
+              "termination_reason": "completed"
+            },
+            "correct": true,
+            "events": 6,
+            "example_id": "short-held-out",
+            "fixed_external_target": "on_time",
+            "interval": 1.0,
+            "prediction_or_decision": "on_time",
+            "target_arrivals": [
+              1.0,
+              2.0
+            ],
+            "target_latency": 2.0,
+            "target_state": -0.09516258196404048
+          },
+          {
+            "completion": {
+              "budget_exhausted": false,
+              "completed": true,
+              "configured_event_budget": 24,
+              "peak_queue_occupancy": 2,
+              "pending_event_count": 0,
+              "processed_event_count": 6,
+              "termination_reason": "completed"
+            },
+            "correct": true,
+            "events": 6,
+            "example_id": "long-held-out",
+            "fixed_external_target": "late",
+            "interval": 3.0,
+            "prediction_or_decision": "late",
+            "target_arrivals": [
+              1.0,
+              4.0
+            ],
+            "target_latency": 4.0,
+            "target_state": -0.2591817793182821
+          }
+        ],
+        "completion_status": "completed",
+        "graph_edges": [
+          [
+            "relay",
+            "target",
+            0.5
+          ],
+          [
+            "noise",
+            "target",
+            2.0
+          ],
+          [
+            "source",
+            "relay",
+            0.5
+          ]
+        ],
+        "graph_fingerprint": "9136c83c7ef4e818f986385172e86be2ba06a93e3bd82cf9212c29bead114831",
+        "latency": [
+          2.0,
+          4.0
+        ],
+        "policy": "current-policy",
+        "prediction_error_records": [],
+        "proxy_energy": 12.0,
+        "proxy_energy_unit": "activity-cost-proxy; uncalibrated",
+        "queue_peak": 2,
+        "route_trace": [
+          {
+            "example_id": "short-held-out",
+            "kind": "route",
+            "queue_after": 2,
+            "queue_before": 1,
+            "routed_count": 1,
+            "source": "source",
+            "timestamp": 0.0
+          },
+          {
+            "example_id": "short-held-out",
+            "kind": "route",
+            "queue_after": 2,
+            "queue_before": 1,
+            "routed_count": 1,
+            "source": "relay",
+            "timestamp": 0.5
+          },
+          {
+            "example_id": "short-held-out",
+            "kind": "route",
+            "queue_after": 2,
+            "queue_before": 1,
+            "routed_count": 1,
+            "source": "source",
+            "timestamp": 1.0
+          },
+          {
+            "destination": "target",
+            "event_type": "cue",
+            "example_id": "short-held-out",
+            "kind": "target_arrival",
+            "source": "relay",
+            "timestamp": 1.0
+          },
+          {
+            "example_id": "short-held-out",
+            "kind": "route",
+            "queue_after": 1,
+            "queue_before": 0,
+            "routed_count": 1,
+            "source": "relay",
+            "timestamp": 1.5
+          },
+          {
+            "destination": "target",
+            "event_type": "probe",
+            "example_id": "short-held-out",
+            "kind": "target_arrival",
+            "source": "relay",
+            "timestamp": 2.0
+          },
+          {
+            "example_id": "long-held-out",
+            "kind": "route",
+            "queue_after": 2,
+            "queue_before": 1,
+            "routed_count": 1,
+            "source": "source",
+            "timestamp": 0.0
+          },
+          {
+            "example_id": "long-held-out",
+            "kind": "route",
+            "queue_after": 2,
+            "queue_before": 1,
+            "routed_count": 1,
+            "source": "relay",
+            "timestamp": 0.5
+          },
+          {
+            "destination": "target",
+            "event_type": "cue",
+            "example_id": "long-held-out",
+            "kind": "target_arrival",
+            "source": "relay",
+            "timestamp": 1.0
+          },
+          {
+            "example_id": "long-held-out",
+            "kind": "route",
+            "queue_after": 1,
+            "queue_before": 0,
+            "routed_count": 1,
+            "source": "source",
+            "timestamp": 3.0
+          },
+          {
+            "example_id": "long-held-out",
+            "kind": "route",
+            "queue_after": 1,
+            "queue_before": 0,
+            "routed_count": 1,
+            "source": "relay",
+            "timestamp": 3.5
+          },
+          {
+            "destination": "target",
+            "event_type": "probe",
+            "example_id": "long-held-out",
+            "kind": "target_arrival",
+            "source": "relay",
+            "timestamp": 4.0
+          }
+        ],
+        "task_cases_correct": 2,
+        "task_result": "2/2",
+        "total_events": 12
+      },
+      "fan_in_before": {
+        "noise": 0,
+        "relay": 0,
+        "source": 0,
+        "target": 2
+      },
+      "fan_out_before": {
+        "noise": 1,
+        "relay": 1,
+        "source": 0,
+        "target": 0
+      },
+      "final_edges": [
+        [
+          "relay",
+          "target",
+          0.5
+        ],
+        [
+          "noise",
+          "target",
+          2.0
+        ],
+        [
+          "source",
+          "relay",
+          0.5
+        ]
+      ],
+      "final_graph_fingerprint": "9136c83c7ef4e818f986385172e86be2ba06a93e3bd82cf9212c29bead114831",
+      "mutation": {
+        "edge": {
+          "destination": "relay",
+          "propagation_delay": 0.5,
+          "source": "source"
+        },
+        "reason": null,
+        "status": "grown"
+      },
+      "ranks": {
+        "G": 1,
+        "H": 2
+      },
+      "rejected_candidate": "H",
+      "rejection_reason": "lost_one_slot_rank_competition",
+      "relevant_free_slots": 1,
+      "scores": {
+        "G": 3.0,
+        "H": 0.0
+      },
+      "topology_before": [
+        [
+          "relay",
+          "target",
+          0.5
+        ],
+        [
+          "noise",
+          "target",
+          2.0
+        ]
+      ]
+    },
+    "prediction_error_removed": {
+      "available": false,
+      "reason": "no prediction/error term is exposed by current fixture admission"
+    },
+    "residual_state_removed": {
+      "available": false,
+      "reason": "not exposed by current admission interface"
+    },
+    "score_removed": {
+      "candidate_evidence": [
+        {
+          "available_time": 2.5,
+          "bounded": true,
+          "candidate": "G",
+          "cost_evidence": {
+            "available_before_decision": true,
+            "predicted_total_path_delay": null,
+            "propagation_delay": 0.5,
+            "used_in_canonical_score": false
+          },
+          "decision_time": 4.0,
+          "endpoint_identity_dependent": false,
+          "field": "temporal_score",
+          "future_dependent": false,
+          "future_records_delivered_after_decision": false,
+          "future_records_used_in_score": false,
+          "label_dependent": false,
+          "local": true,
+          "observation_records": [
+            {
+              "candidate": "G",
+              "elapsed": 0.5,
+              "related_time": 0.5,
+              "source_time": 0.0
+            },
+            {
+              "candidate": "G",
+              "elapsed": 0.5,
+              "related_time": 1.5,
+              "source_time": 1.0
+            },
+            {
+              "candidate": "G",
+              "elapsed": 0.5,
+              "related_time": 2.5,
+              "source_time": 2.0
+            }
+          ],
+          "pre_admission": true,
+          "source_owner": "source-local bounded observation buffer",
+          "used_in_canonical_score": true,
+          "value": 0.0
+        },
+        {
+          "available_time": 3.0,
+          "bounded": true,
+          "candidate": "H",
+          "cost_evidence": {
+            "available_before_decision": true,
+            "predicted_total_path_delay": null,
+            "propagation_delay": 1.0,
+            "used_in_canonical_score": false
+          },
+          "decision_time": 4.0,
+          "endpoint_identity_dependent": false,
+          "field": "temporal_score",
+          "future_dependent": false,
+          "future_records_delivered_after_decision": false,
+          "future_records_used_in_score": false,
+          "label_dependent": false,
+          "local": true,
+          "observation_records": [
+            {
+              "candidate": "H",
+              "elapsed": 3.0,
+              "related_time": 3.0,
+              "source_time": 0.0
+            }
+          ],
+          "pre_admission": true,
+          "source_owner": "source-local bounded observation buffer",
+          "used_in_canonical_score": true,
+          "value": 0.0
+        }
+      ],
+      "candidate_set": [
+        [
+          "source",
+          "relay",
+          0.5
+        ],
+        [
+          "source",
+          "noise",
+          1.0
+        ]
+      ],
+      "capacity_before": 3,
+      "capacity_used_before": 2,
+      "chosen_candidate": "H",
+      "evaluation": {
+        "case_results": [
+          {
+            "completion": {
+              "budget_exhausted": false,
+              "completed": true,
+              "configured_event_budget": 24,
+              "peak_queue_occupancy": 2,
+              "pending_event_count": 0,
+              "processed_event_count": 6,
+              "termination_reason": "completed"
+            },
+            "correct": false,
+            "events": 6,
+            "example_id": "short-held-out",
+            "fixed_external_target": "on_time",
+            "interval": 1.0,
+            "prediction_or_decision": "late",
+            "target_arrivals": [
+              3.0,
+              4.0
+            ],
+            "target_latency": 4.0,
+            "target_state": -0.09516258196404048
+          },
+          {
+            "completion": {
+              "budget_exhausted": false,
+              "completed": true,
+              "configured_event_budget": 24,
+              "peak_queue_occupancy": 2,
+              "pending_event_count": 0,
+              "processed_event_count": 6,
+              "termination_reason": "completed"
+            },
+            "correct": true,
+            "events": 6,
+            "example_id": "long-held-out",
+            "fixed_external_target": "late",
+            "interval": 3.0,
+            "prediction_or_decision": "late",
+            "target_arrivals": [
+              3.0,
+              6.0
+            ],
+            "target_latency": 6.0,
+            "target_state": -0.2591817793182821
+          }
+        ],
+        "completion_status": "completed",
+        "graph_edges": [
+          [
+            "relay",
+            "target",
+            0.5
+          ],
+          [
+            "noise",
+            "target",
+            2.0
+          ],
+          [
+            "source",
+            "noise",
+            1.0
+          ]
+        ],
+        "graph_fingerprint": "a9c2545ac7caabb9801dc4d7095addfa5491942dc5db064fb3d0ee34d841ed71",
+        "latency": [
+          4.0,
+          6.0
+        ],
+        "policy": "current-policy",
+        "prediction_error_records": [],
+        "proxy_energy": 12.0,
+        "proxy_energy_unit": "activity-cost-proxy; uncalibrated",
+        "queue_peak": 2,
+        "route_trace": [
+          {
+            "example_id": "short-held-out",
+            "kind": "route",
+            "queue_after": 2,
+            "queue_before": 1,
+            "routed_count": 1,
+            "source": "source",
+            "timestamp": 0.0
+          },
+          {
+            "example_id": "short-held-out",
+            "kind": "route",
+            "queue_after": 2,
+            "queue_before": 1,
+            "routed_count": 1,
+            "source": "source",
+            "timestamp": 1.0
+          },
+          {
+            "example_id": "short-held-out",
+            "kind": "route",
+            "queue_after": 2,
+            "queue_before": 1,
+            "routed_count": 1,
+            "source": "noise",
+            "timestamp": 1.0
+          },
+          {
+            "example_id": "short-held-out",
+            "kind": "route",
+            "queue_after": 2,
+            "queue_before": 1,
+            "routed_count": 1,
+            "source": "noise",
+            "timestamp": 2.0
+          },
+          {
+            "destination": "target",
+            "event_type": "cue",
+            "example_id": "short-held-out",
+            "kind": "target_arrival",
+            "source": "noise",
+            "timestamp": 3.0
+          },
+          {
+            "destination": "target",
+            "event_type": "probe",
+            "example_id": "short-held-out",
+            "kind": "target_arrival",
+            "source": "noise",
+            "timestamp": 4.0
+          },
+          {
+            "example_id": "long-held-out",
+            "kind": "route",
+            "queue_after": 2,
+            "queue_before": 1,
+            "routed_count": 1,
+            "source": "source",
+            "timestamp": 0.0
+          },
+          {
+            "example_id": "long-held-out",
+            "kind": "route",
+            "queue_after": 2,
+            "queue_before": 1,
+            "routed_count": 1,
+            "source": "noise",
+            "timestamp": 1.0
+          },
+          {
+            "example_id": "long-held-out",
+            "kind": "route",
+            "queue_after": 2,
+            "queue_before": 1,
+            "routed_count": 1,
+            "source": "source",
+            "timestamp": 3.0
+          },
+          {
+            "destination": "target",
+            "event_type": "cue",
+            "example_id": "long-held-out",
+            "kind": "target_arrival",
+            "source": "noise",
+            "timestamp": 3.0
+          },
+          {
+            "example_id": "long-held-out",
+            "kind": "route",
+            "queue_after": 1,
+            "queue_before": 0,
+            "routed_count": 1,
+            "source": "noise",
+            "timestamp": 4.0
+          },
+          {
+            "destination": "target",
+            "event_type": "probe",
+            "example_id": "long-held-out",
+            "kind": "target_arrival",
+            "source": "noise",
+            "timestamp": 6.0
+          }
+        ],
+        "task_cases_correct": 1,
+        "task_result": "1/2",
+        "total_events": 12
+      },
+      "fan_in_before": {
+        "noise": 0,
+        "relay": 0,
+        "source": 0,
+        "target": 2
+      },
+      "fan_out_before": {
+        "noise": 1,
+        "relay": 1,
+        "source": 0,
+        "target": 0
+      },
+      "final_edges": [
+        [
+          "relay",
+          "target",
+          0.5
+        ],
+        [
+          "noise",
+          "target",
+          2.0
+        ],
+        [
+          "source",
+          "noise",
+          1.0
+        ]
+      ],
+      "final_graph_fingerprint": "a9c2545ac7caabb9801dc4d7095addfa5491942dc5db064fb3d0ee34d841ed71",
+      "mutation": {
+        "edge": {
+          "destination": "noise",
+          "propagation_delay": 1.0,
+          "source": "source"
+        },
+        "reason": null,
+        "status": "grown"
+      },
+      "ranks": {
+        "G": 2,
+        "H": 1
+      },
+      "rejected_candidate": "G",
+      "rejection_reason": "lost_one_slot_rank_competition",
+      "relevant_free_slots": 1,
+      "scores": {
+        "G": 0.0,
+        "H": 0.0
+      },
+      "topology_before": [
+        [
+          "relay",
+          "target",
+          0.5
+        ],
+        [
+          "noise",
+          "target",
+          2.0
+        ]
+      ]
+    },
+    "temporal_evidence_only": {
+      "candidate_evidence": [
+        {
+          "available_time": 2.5,
+          "bounded": true,
+          "candidate": "G",
+          "cost_evidence": {
+            "available_before_decision": true,
+            "predicted_total_path_delay": null,
+            "propagation_delay": 0.5,
+            "used_in_canonical_score": false
+          },
+          "decision_time": 4.0,
+          "endpoint_identity_dependent": false,
+          "field": "temporal_score",
+          "future_dependent": false,
+          "future_records_delivered_after_decision": false,
+          "future_records_used_in_score": false,
+          "label_dependent": false,
+          "local": true,
+          "observation_records": [
+            {
+              "candidate": "G",
+              "elapsed": 0.5,
+              "related_time": 0.5,
+              "source_time": 0.0
+            },
+            {
+              "candidate": "G",
+              "elapsed": 0.5,
+              "related_time": 1.5,
+              "source_time": 1.0
+            },
+            {
+              "candidate": "G",
+              "elapsed": 0.5,
+              "related_time": 2.5,
+              "source_time": 2.0
+            }
+          ],
+          "pre_admission": true,
+          "source_owner": "source-local bounded observation buffer",
+          "used_in_canonical_score": true,
+          "value": 3.0
+        },
+        {
+          "available_time": 3.0,
+          "bounded": true,
+          "candidate": "H",
+          "cost_evidence": {
+            "available_before_decision": true,
+            "predicted_total_path_delay": null,
+            "propagation_delay": 1.0,
+            "used_in_canonical_score": false
+          },
+          "decision_time": 4.0,
+          "endpoint_identity_dependent": false,
+          "field": "temporal_score",
+          "future_dependent": false,
+          "future_records_delivered_after_decision": false,
+          "future_records_used_in_score": false,
+          "label_dependent": false,
+          "local": true,
+          "observation_records": [
+            {
+              "candidate": "H",
+              "elapsed": 3.0,
+              "related_time": 3.0,
+              "source_time": 0.0
+            }
+          ],
+          "pre_admission": true,
+          "source_owner": "source-local bounded observation buffer",
+          "used_in_canonical_score": true,
+          "value": 0.0
+        }
+      ],
+      "candidate_set": [
+        [
+          "source",
+          "relay",
+          0.5
+        ],
+        [
+          "source",
+          "noise",
+          1.0
+        ]
+      ],
+      "capacity_before": 3,
+      "capacity_used_before": 2,
+      "chosen_candidate": "G",
+      "evaluation": {
+        "case_results": [
+          {
+            "completion": {
+              "budget_exhausted": false,
+              "completed": true,
+              "configured_event_budget": 24,
+              "peak_queue_occupancy": 2,
+              "pending_event_count": 0,
+              "processed_event_count": 6,
+              "termination_reason": "completed"
+            },
+            "correct": true,
+            "events": 6,
+            "example_id": "short-held-out",
+            "fixed_external_target": "on_time",
+            "interval": 1.0,
+            "prediction_or_decision": "on_time",
+            "target_arrivals": [
+              1.0,
+              2.0
+            ],
+            "target_latency": 2.0,
+            "target_state": -0.09516258196404048
+          },
+          {
+            "completion": {
+              "budget_exhausted": false,
+              "completed": true,
+              "configured_event_budget": 24,
+              "peak_queue_occupancy": 2,
+              "pending_event_count": 0,
+              "processed_event_count": 6,
+              "termination_reason": "completed"
+            },
+            "correct": true,
+            "events": 6,
+            "example_id": "long-held-out",
+            "fixed_external_target": "late",
+            "interval": 3.0,
+            "prediction_or_decision": "late",
+            "target_arrivals": [
+              1.0,
+              4.0
+            ],
+            "target_latency": 4.0,
+            "target_state": -0.2591817793182821
+          }
+        ],
+        "completion_status": "completed",
+        "graph_edges": [
+          [
+            "relay",
+            "target",
+            0.5
+          ],
+          [
+            "noise",
+            "target",
+            2.0
+          ],
+          [
+            "source",
+            "relay",
+            0.5
+          ]
+        ],
+        "graph_fingerprint": "9136c83c7ef4e818f986385172e86be2ba06a93e3bd82cf9212c29bead114831",
+        "latency": [
+          2.0,
+          4.0
+        ],
+        "policy": "current-policy",
+        "prediction_error_records": [],
+        "proxy_energy": 12.0,
+        "proxy_energy_unit": "activity-cost-proxy; uncalibrated",
+        "queue_peak": 2,
+        "route_trace": [
+          {
+            "example_id": "short-held-out",
+            "kind": "route",
+            "queue_after": 2,
+            "queue_before": 1,
+            "routed_count": 1,
+            "source": "source",
+            "timestamp": 0.0
+          },
+          {
+            "example_id": "short-held-out",
+            "kind": "route",
+            "queue_after": 2,
+            "queue_before": 1,
+            "routed_count": 1,
+            "source": "relay",
+            "timestamp": 0.5
+          },
+          {
+            "example_id": "short-held-out",
+            "kind": "route",
+            "queue_after": 2,
+            "queue_before": 1,
+            "routed_count": 1,
+            "source": "source",
+            "timestamp": 1.0
+          },
+          {
+            "destination": "target",
+            "event_type": "cue",
+            "example_id": "short-held-out",
+            "kind": "target_arrival",
+            "source": "relay",
+            "timestamp": 1.0
+          },
+          {
+            "example_id": "short-held-out",
+            "kind": "route",
+            "queue_after": 1,
+            "queue_before": 0,
+            "routed_count": 1,
+            "source": "relay",
+            "timestamp": 1.5
+          },
+          {
+            "destination": "target",
+            "event_type": "probe",
+            "example_id": "short-held-out",
+            "kind": "target_arrival",
+            "source": "relay",
+            "timestamp": 2.0
+          },
+          {
+            "example_id": "long-held-out",
+            "kind": "route",
+            "queue_after": 2,
+            "queue_before": 1,
+            "routed_count": 1,
+            "source": "source",
+            "timestamp": 0.0
+          },
+          {
+            "example_id": "long-held-out",
+            "kind": "route",
+            "queue_after": 2,
+            "queue_before": 1,
+            "routed_count": 1,
+            "source": "relay",
+            "timestamp": 0.5
+          },
+          {
+            "destination": "target",
+            "event_type": "cue",
+            "example_id": "long-held-out",
+            "kind": "target_arrival",
+            "source": "relay",
+            "timestamp": 1.0
+          },
+          {
+            "example_id": "long-held-out",
+            "kind": "route",
+            "queue_after": 1,
+            "queue_before": 0,
+            "routed_count": 1,
+            "source": "source",
+            "timestamp": 3.0
+          },
+          {
+            "example_id": "long-held-out",
+            "kind": "route",
+            "queue_after": 1,
+            "queue_before": 0,
+            "routed_count": 1,
+            "source": "relay",
+            "timestamp": 3.5
+          },
+          {
+            "destination": "target",
+            "event_type": "probe",
+            "example_id": "long-held-out",
+            "kind": "target_arrival",
+            "source": "relay",
+            "timestamp": 4.0
+          }
+        ],
+        "task_cases_correct": 2,
+        "task_result": "2/2",
+        "total_events": 12
+      },
+      "fan_in_before": {
+        "noise": 0,
+        "relay": 0,
+        "source": 0,
+        "target": 2
+      },
+      "fan_out_before": {
+        "noise": 1,
+        "relay": 1,
+        "source": 0,
+        "target": 0
+      },
+      "final_edges": [
+        [
+          "relay",
+          "target",
+          0.5
+        ],
+        [
+          "noise",
+          "target",
+          2.0
+        ],
+        [
+          "source",
+          "relay",
+          0.5
+        ]
+      ],
+      "final_graph_fingerprint": "9136c83c7ef4e818f986385172e86be2ba06a93e3bd82cf9212c29bead114831",
+      "mutation": {
+        "edge": {
+          "destination": "relay",
+          "propagation_delay": 0.5,
+          "source": "source"
+        },
+        "reason": null,
+        "status": "grown"
+      },
+      "ranks": {
+        "G": 1,
+        "H": 2
+      },
+      "rejected_candidate": "H",
+      "rejection_reason": "lost_one_slot_rank_competition",
+      "relevant_free_slots": 1,
+      "scores": {
+        "G": 3.0,
+        "H": 0.0
+      },
+      "topology_before": [
+        [
+          "relay",
+          "target",
+          0.5
+        ],
+        [
+          "noise",
+          "target",
+          2.0
+        ]
+      ]
+    },
+    "utility_reward_removed": {
+      "available": false,
+      "reason": "no reward/utility term is exposed before admission"
+    }
+  },
+  "candidate_evaluations": {
+    "G": {
+      "case_results": [
+        {
+          "completion": {
+            "budget_exhausted": false,
+            "completed": true,
+            "configured_event_budget": 24,
+            "peak_queue_occupancy": 2,
+            "pending_event_count": 0,
+            "processed_event_count": 6,
+            "termination_reason": "completed"
+          },
+          "correct": true,
+          "events": 6,
+          "example_id": "short-held-out",
+          "fixed_external_target": "on_time",
+          "interval": 1.0,
+          "prediction_or_decision": "on_time",
+          "target_arrivals": [
+            1.0,
+            2.0
+          ],
+          "target_latency": 2.0,
+          "target_state": -0.09516258196404048
+        },
+        {
+          "completion": {
+            "budget_exhausted": false,
+            "completed": true,
+            "configured_event_budget": 24,
+            "peak_queue_occupancy": 2,
+            "pending_event_count": 0,
+            "processed_event_count": 6,
+            "termination_reason": "completed"
+          },
+          "correct": true,
+          "events": 6,
+          "example_id": "long-held-out",
+          "fixed_external_target": "late",
+          "interval": 3.0,
+          "prediction_or_decision": "late",
+          "target_arrivals": [
+            1.0,
+            4.0
+          ],
+          "target_latency": 4.0,
+          "target_state": -0.2591817793182821
+        }
+      ],
+      "completion_status": "completed",
+      "graph_edges": [
+        [
+          "relay",
+          "target",
+          0.5
+        ],
+        [
+          "noise",
+          "target",
+          2.0
+        ],
+        [
+          "source",
+          "relay",
+          0.5
+        ]
+      ],
+      "graph_fingerprint": "9136c83c7ef4e818f986385172e86be2ba06a93e3bd82cf9212c29bead114831",
+      "latency": [
+        2.0,
+        4.0
+      ],
+      "policy": "G-held-out",
+      "prediction_error_records": [],
+      "proxy_energy": 12.0,
+      "proxy_energy_unit": "activity-cost-proxy; uncalibrated",
+      "queue_peak": 2,
+      "route_trace": [
+        {
+          "example_id": "short-held-out",
+          "kind": "route",
+          "queue_after": 2,
+          "queue_before": 1,
+          "routed_count": 1,
+          "source": "source",
+          "timestamp": 0.0
+        },
+        {
+          "example_id": "short-held-out",
+          "kind": "route",
+          "queue_after": 2,
+          "queue_before": 1,
+          "routed_count": 1,
+          "source": "relay",
+          "timestamp": 0.5
+        },
+        {
+          "example_id": "short-held-out",
+          "kind": "route",
+          "queue_after": 2,
+          "queue_before": 1,
+          "routed_count": 1,
+          "source": "source",
+          "timestamp": 1.0
+        },
+        {
+          "destination": "target",
+          "event_type": "cue",
+          "example_id": "short-held-out",
+          "kind": "target_arrival",
+          "source": "relay",
+          "timestamp": 1.0
+        },
+        {
+          "example_id": "short-held-out",
+          "kind": "route",
+          "queue_after": 1,
+          "queue_before": 0,
+          "routed_count": 1,
+          "source": "relay",
+          "timestamp": 1.5
+        },
+        {
+          "destination": "target",
+          "event_type": "probe",
+          "example_id": "short-held-out",
+          "kind": "target_arrival",
+          "source": "relay",
+          "timestamp": 2.0
+        },
+        {
+          "example_id": "long-held-out",
+          "kind": "route",
+          "queue_after": 2,
+          "queue_before": 1,
+          "routed_count": 1,
+          "source": "source",
+          "timestamp": 0.0
+        },
+        {
+          "example_id": "long-held-out",
+          "kind": "route",
+          "queue_after": 2,
+          "queue_before": 1,
+          "routed_count": 1,
+          "source": "relay",
+          "timestamp": 0.5
+        },
+        {
+          "destination": "target",
+          "event_type": "cue",
+          "example_id": "long-held-out",
+          "kind": "target_arrival",
+          "source": "relay",
+          "timestamp": 1.0
+        },
+        {
+          "example_id": "long-held-out",
+          "kind": "route",
+          "queue_after": 1,
+          "queue_before": 0,
+          "routed_count": 1,
+          "source": "source",
+          "timestamp": 3.0
+        },
+        {
+          "example_id": "long-held-out",
+          "kind": "route",
+          "queue_after": 1,
+          "queue_before": 0,
+          "routed_count": 1,
+          "source": "relay",
+          "timestamp": 3.5
+        },
+        {
+          "destination": "target",
+          "event_type": "probe",
+          "example_id": "long-held-out",
+          "kind": "target_arrival",
+          "source": "relay",
+          "timestamp": 4.0
+        }
+      ],
+      "task_cases_correct": 2,
+      "task_result": "2/2",
+      "total_events": 12
+    },
+    "H": {
+      "case_results": [
+        {
+          "completion": {
+            "budget_exhausted": false,
+            "completed": true,
+            "configured_event_budget": 24,
+            "peak_queue_occupancy": 2,
+            "pending_event_count": 0,
+            "processed_event_count": 6,
+            "termination_reason": "completed"
+          },
+          "correct": false,
+          "events": 6,
+          "example_id": "short-held-out",
+          "fixed_external_target": "on_time",
+          "interval": 1.0,
+          "prediction_or_decision": "late",
+          "target_arrivals": [
+            3.0,
+            4.0
+          ],
+          "target_latency": 4.0,
+          "target_state": -0.09516258196404048
+        },
+        {
+          "completion": {
+            "budget_exhausted": false,
+            "completed": true,
+            "configured_event_budget": 24,
+            "peak_queue_occupancy": 2,
+            "pending_event_count": 0,
+            "processed_event_count": 6,
+            "termination_reason": "completed"
+          },
+          "correct": true,
+          "events": 6,
+          "example_id": "long-held-out",
+          "fixed_external_target": "late",
+          "interval": 3.0,
+          "prediction_or_decision": "late",
+          "target_arrivals": [
+            3.0,
+            6.0
+          ],
+          "target_latency": 6.0,
+          "target_state": -0.2591817793182821
+        }
+      ],
+      "completion_status": "completed",
+      "graph_edges": [
+        [
+          "relay",
+          "target",
+          0.5
+        ],
+        [
+          "noise",
+          "target",
+          2.0
+        ],
+        [
+          "source",
+          "noise",
+          1.0
+        ]
+      ],
+      "graph_fingerprint": "a9c2545ac7caabb9801dc4d7095addfa5491942dc5db064fb3d0ee34d841ed71",
+      "latency": [
+        4.0,
+        6.0
+      ],
+      "policy": "H-held-out",
+      "prediction_error_records": [],
+      "proxy_energy": 12.0,
+      "proxy_energy_unit": "activity-cost-proxy; uncalibrated",
+      "queue_peak": 2,
+      "route_trace": [
+        {
+          "example_id": "short-held-out",
+          "kind": "route",
+          "queue_after": 2,
+          "queue_before": 1,
+          "routed_count": 1,
+          "source": "source",
+          "timestamp": 0.0
+        },
+        {
+          "example_id": "short-held-out",
+          "kind": "route",
+          "queue_after": 2,
+          "queue_before": 1,
+          "routed_count": 1,
+          "source": "source",
+          "timestamp": 1.0
+        },
+        {
+          "example_id": "short-held-out",
+          "kind": "route",
+          "queue_after": 2,
+          "queue_before": 1,
+          "routed_count": 1,
+          "source": "noise",
+          "timestamp": 1.0
+        },
+        {
+          "example_id": "short-held-out",
+          "kind": "route",
+          "queue_after": 2,
+          "queue_before": 1,
+          "routed_count": 1,
+          "source": "noise",
+          "timestamp": 2.0
+        },
+        {
+          "destination": "target",
+          "event_type": "cue",
+          "example_id": "short-held-out",
+          "kind": "target_arrival",
+          "source": "noise",
+          "timestamp": 3.0
+        },
+        {
+          "destination": "target",
+          "event_type": "probe",
+          "example_id": "short-held-out",
+          "kind": "target_arrival",
+          "source": "noise",
+          "timestamp": 4.0
+        },
+        {
+          "example_id": "long-held-out",
+          "kind": "route",
+          "queue_after": 2,
+          "queue_before": 1,
+          "routed_count": 1,
+          "source": "source",
+          "timestamp": 0.0
+        },
+        {
+          "example_id": "long-held-out",
+          "kind": "route",
+          "queue_after": 2,
+          "queue_before": 1,
+          "routed_count": 1,
+          "source": "noise",
+          "timestamp": 1.0
+        },
+        {
+          "example_id": "long-held-out",
+          "kind": "route",
+          "queue_after": 2,
+          "queue_before": 1,
+          "routed_count": 1,
+          "source": "source",
+          "timestamp": 3.0
+        },
+        {
+          "destination": "target",
+          "event_type": "cue",
+          "example_id": "long-held-out",
+          "kind": "target_arrival",
+          "source": "noise",
+          "timestamp": 3.0
+        },
+        {
+          "example_id": "long-held-out",
+          "kind": "route",
+          "queue_after": 1,
+          "queue_before": 0,
+          "routed_count": 1,
+          "source": "noise",
+          "timestamp": 4.0
+        },
+        {
+          "destination": "target",
+          "event_type": "probe",
+          "example_id": "long-held-out",
+          "kind": "target_arrival",
+          "source": "noise",
+          "timestamp": 6.0
+        }
+      ],
+      "task_cases_correct": 1,
+      "task_result": "1/2",
+      "total_events": 12
+    }
+  },
+  "claim_boundary": "A score-driven preference follows bounded temporal evidence in this fixture; no general utility prediction is claimed.",
+  "competition": {
+    "candidate_evidence": [
+      {
+        "available_time": 2.5,
+        "bounded": true,
+        "candidate": "G",
+        "cost_evidence": {
+          "available_before_decision": true,
+          "predicted_total_path_delay": null,
+          "propagation_delay": 0.5,
+          "used_in_canonical_score": false
+        },
+        "decision_time": 4.0,
+        "endpoint_identity_dependent": false,
+        "field": "temporal_score",
+        "future_dependent": false,
+        "future_records_delivered_after_decision": false,
+        "future_records_used_in_score": false,
+        "label_dependent": false,
+        "local": true,
+        "observation_records": [
+          {
+            "candidate": "G",
+            "elapsed": 0.5,
+            "related_time": 0.5,
+            "source_time": 0.0
+          },
+          {
+            "candidate": "G",
+            "elapsed": 0.5,
+            "related_time": 1.5,
+            "source_time": 1.0
+          },
+          {
+            "candidate": "G",
+            "elapsed": 0.5,
+            "related_time": 2.5,
+            "source_time": 2.0
+          }
+        ],
+        "pre_admission": true,
+        "source_owner": "source-local bounded observation buffer",
+        "used_in_canonical_score": true,
+        "value": 3.0
+      },
+      {
+        "available_time": 3.0,
+        "bounded": true,
+        "candidate": "H",
+        "cost_evidence": {
+          "available_before_decision": true,
+          "predicted_total_path_delay": null,
+          "propagation_delay": 1.0,
+          "used_in_canonical_score": false
+        },
+        "decision_time": 4.0,
+        "endpoint_identity_dependent": false,
+        "field": "temporal_score",
+        "future_dependent": false,
+        "future_records_delivered_after_decision": false,
+        "future_records_used_in_score": false,
+        "label_dependent": false,
+        "local": true,
+        "observation_records": [
+          {
+            "candidate": "H",
+            "elapsed": 3.0,
+            "related_time": 3.0,
+            "source_time": 0.0
+          }
+        ],
+        "pre_admission": true,
+        "source_owner": "source-local bounded observation buffer",
+        "used_in_canonical_score": true,
+        "value": 0.0
+      }
+    ],
+    "candidate_set": [
+      [
+        "source",
+        "relay",
+        0.5
+      ],
+      [
+        "source",
+        "noise",
+        1.0
+      ]
+    ],
+    "capacity_before": 3,
+    "capacity_used_before": 2,
+    "chosen_candidate": "G",
+    "evaluation": {
+      "case_results": [
+        {
+          "completion": {
+            "budget_exhausted": false,
+            "completed": true,
+            "configured_event_budget": 24,
+            "peak_queue_occupancy": 2,
+            "pending_event_count": 0,
+            "processed_event_count": 6,
+            "termination_reason": "completed"
+          },
+          "correct": true,
+          "events": 6,
+          "example_id": "short-held-out",
+          "fixed_external_target": "on_time",
+          "interval": 1.0,
+          "prediction_or_decision": "on_time",
+          "target_arrivals": [
+            1.0,
+            2.0
+          ],
+          "target_latency": 2.0,
+          "target_state": -0.09516258196404048
+        },
+        {
+          "completion": {
+            "budget_exhausted": false,
+            "completed": true,
+            "configured_event_budget": 24,
+            "peak_queue_occupancy": 2,
+            "pending_event_count": 0,
+            "processed_event_count": 6,
+            "termination_reason": "completed"
+          },
+          "correct": true,
+          "events": 6,
+          "example_id": "long-held-out",
+          "fixed_external_target": "late",
+          "interval": 3.0,
+          "prediction_or_decision": "late",
+          "target_arrivals": [
+            1.0,
+            4.0
+          ],
+          "target_latency": 4.0,
+          "target_state": -0.2591817793182821
+        }
+      ],
+      "completion_status": "completed",
+      "graph_edges": [
+        [
+          "relay",
+          "target",
+          0.5
+        ],
+        [
+          "noise",
+          "target",
+          2.0
+        ],
+        [
+          "source",
+          "relay",
+          0.5
+        ]
+      ],
+      "graph_fingerprint": "9136c83c7ef4e818f986385172e86be2ba06a93e3bd82cf9212c29bead114831",
+      "latency": [
+        2.0,
+        4.0
+      ],
+      "policy": "current-policy",
+      "prediction_error_records": [],
+      "proxy_energy": 12.0,
+      "proxy_energy_unit": "activity-cost-proxy; uncalibrated",
+      "queue_peak": 2,
+      "route_trace": [
+        {
+          "example_id": "short-held-out",
+          "kind": "route",
+          "queue_after": 2,
+          "queue_before": 1,
+          "routed_count": 1,
+          "source": "source",
+          "timestamp": 0.0
+        },
+        {
+          "example_id": "short-held-out",
+          "kind": "route",
+          "queue_after": 2,
+          "queue_before": 1,
+          "routed_count": 1,
+          "source": "relay",
+          "timestamp": 0.5
+        },
+        {
+          "example_id": "short-held-out",
+          "kind": "route",
+          "queue_after": 2,
+          "queue_before": 1,
+          "routed_count": 1,
+          "source": "source",
+          "timestamp": 1.0
+        },
+        {
+          "destination": "target",
+          "event_type": "cue",
+          "example_id": "short-held-out",
+          "kind": "target_arrival",
+          "source": "relay",
+          "timestamp": 1.0
+        },
+        {
+          "example_id": "short-held-out",
+          "kind": "route",
+          "queue_after": 1,
+          "queue_before": 0,
+          "routed_count": 1,
+          "source": "relay",
+          "timestamp": 1.5
+        },
+        {
+          "destination": "target",
+          "event_type": "probe",
+          "example_id": "short-held-out",
+          "kind": "target_arrival",
+          "source": "relay",
+          "timestamp": 2.0
+        },
+        {
+          "example_id": "long-held-out",
+          "kind": "route",
+          "queue_after": 2,
+          "queue_before": 1,
+          "routed_count": 1,
+          "source": "source",
+          "timestamp": 0.0
+        },
+        {
+          "example_id": "long-held-out",
+          "kind": "route",
+          "queue_after": 2,
+          "queue_before": 1,
+          "routed_count": 1,
+          "source": "relay",
+          "timestamp": 0.5
+        },
+        {
+          "destination": "target",
+          "event_type": "cue",
+          "example_id": "long-held-out",
+          "kind": "target_arrival",
+          "source": "relay",
+          "timestamp": 1.0
+        },
+        {
+          "example_id": "long-held-out",
+          "kind": "route",
+          "queue_after": 1,
+          "queue_before": 0,
+          "routed_count": 1,
+          "source": "source",
+          "timestamp": 3.0
+        },
+        {
+          "example_id": "long-held-out",
+          "kind": "route",
+          "queue_after": 1,
+          "queue_before": 0,
+          "routed_count": 1,
+          "source": "relay",
+          "timestamp": 3.5
+        },
+        {
+          "destination": "target",
+          "event_type": "probe",
+          "example_id": "long-held-out",
+          "kind": "target_arrival",
+          "source": "relay",
+          "timestamp": 4.0
+        }
+      ],
+      "task_cases_correct": 2,
+      "task_result": "2/2",
+      "total_events": 12
+    },
+    "fan_in_before": {
+      "noise": 0,
+      "relay": 0,
+      "source": 0,
+      "target": 2
+    },
+    "fan_out_before": {
+      "noise": 1,
+      "relay": 1,
+      "source": 0,
+      "target": 0
+    },
+    "final_edges": [
+      [
+        "relay",
+        "target",
+        0.5
+      ],
+      [
+        "noise",
+        "target",
+        2.0
+      ],
+      [
+        "source",
+        "relay",
+        0.5
+      ]
+    ],
+    "final_graph_fingerprint": "9136c83c7ef4e818f986385172e86be2ba06a93e3bd82cf9212c29bead114831",
+    "mutation": {
+      "edge": {
+        "destination": "relay",
+        "propagation_delay": 0.5,
+        "source": "source"
+      },
+      "reason": null,
+      "status": "grown"
+    },
+    "ranks": {
+      "G": 1,
+      "H": 2
+    },
+    "rejected_candidate": "H",
+    "rejection_reason": "lost_one_slot_rank_competition",
+    "relevant_free_slots": 1,
+    "scores": {
+      "G": 3.0,
+      "H": 0.0
+    },
+    "topology_before": [
+      [
+        "relay",
+        "target",
+        0.5
+      ],
+      [
+        "noise",
+        "target",
+        2.0
+      ]
+    ]
+  },
+  "configuration": {
+    "beneficial_role": "relay",
+    "edge_capacity": 3,
+    "event_budget": 24,
+    "fan_in_limit": 2,
+    "fan_out_limit": 1,
+    "fixture_id": "luna-13e-post-pruning-admission-v1",
+    "harmful_role": "noise",
+    "node_ids": [
+      "source",
+      "relay",
+      "noise",
+      "target"
+    ],
+    "queue_capacity": 8,
+    "random_seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "task_source_role": "source"
+  },
+  "controls": {
+    "evidence_equalized": {
+      "candidate_evidence": [
+        {
+          "available_time": 2.5,
+          "bounded": true,
+          "candidate": "G",
+          "cost_evidence": {
+            "available_before_decision": true,
+            "predicted_total_path_delay": null,
+            "propagation_delay": 0.5,
+            "used_in_canonical_score": false
+          },
+          "decision_time": 4.0,
+          "endpoint_identity_dependent": false,
+          "field": "temporal_score",
+          "future_dependent": false,
+          "future_records_delivered_after_decision": false,
+          "future_records_used_in_score": false,
+          "label_dependent": false,
+          "local": true,
+          "observation_records": [
+            {
+              "candidate": "G",
+              "elapsed": 0.5,
+              "related_time": 0.5,
+              "source_time": 0.0
+            },
+            {
+              "candidate": "G",
+              "elapsed": 0.5,
+              "related_time": 1.5,
+              "source_time": 1.0
+            },
+            {
+              "candidate": "G",
+              "elapsed": 0.5,
+              "related_time": 2.5,
+              "source_time": 2.0
+            }
+          ],
+          "pre_admission": true,
+          "source_owner": "source-local bounded observation buffer",
+          "used_in_canonical_score": true,
+          "value": 1.0
+        },
+        {
+          "available_time": 3.0,
+          "bounded": true,
+          "candidate": "H",
+          "cost_evidence": {
+            "available_before_decision": true,
+            "predicted_total_path_delay": null,
+            "propagation_delay": 1.0,
+            "used_in_canonical_score": false
+          },
+          "decision_time": 4.0,
+          "endpoint_identity_dependent": false,
+          "field": "temporal_score",
+          "future_dependent": false,
+          "future_records_delivered_after_decision": false,
+          "future_records_used_in_score": false,
+          "label_dependent": false,
+          "local": true,
+          "observation_records": [
+            {
+              "candidate": "H",
+              "elapsed": 3.0,
+              "related_time": 3.0,
+              "source_time": 0.0
+            }
+          ],
+          "pre_admission": true,
+          "source_owner": "source-local bounded observation buffer",
+          "used_in_canonical_score": true,
+          "value": 1.0
+        }
+      ],
+      "candidate_set": [
+        [
+          "source",
+          "relay",
+          0.5
+        ],
+        [
+          "source",
+          "noise",
+          1.0
+        ]
+      ],
+      "capacity_before": 3,
+      "capacity_used_before": 2,
+      "chosen_candidate": "H",
+      "evaluation": {
+        "case_results": [
+          {
+            "completion": {
+              "budget_exhausted": false,
+              "completed": true,
+              "configured_event_budget": 24,
+              "peak_queue_occupancy": 2,
+              "pending_event_count": 0,
+              "processed_event_count": 6,
+              "termination_reason": "completed"
+            },
+            "correct": false,
+            "events": 6,
+            "example_id": "short-held-out",
+            "fixed_external_target": "on_time",
+            "interval": 1.0,
+            "prediction_or_decision": "late",
+            "target_arrivals": [
+              3.0,
+              4.0
+            ],
+            "target_latency": 4.0,
+            "target_state": -0.09516258196404048
+          },
+          {
+            "completion": {
+              "budget_exhausted": false,
+              "completed": true,
+              "configured_event_budget": 24,
+              "peak_queue_occupancy": 2,
+              "pending_event_count": 0,
+              "processed_event_count": 6,
+              "termination_reason": "completed"
+            },
+            "correct": true,
+            "events": 6,
+            "example_id": "long-held-out",
+            "fixed_external_target": "late",
+            "interval": 3.0,
+            "prediction_or_decision": "late",
+            "target_arrivals": [
+              3.0,
+              6.0
+            ],
+            "target_latency": 6.0,
+            "target_state": -0.2591817793182821
+          }
+        ],
+        "completion_status": "completed",
+        "graph_edges": [
+          [
+            "relay",
+            "target",
+            0.5
+          ],
+          [
+            "noise",
+            "target",
+            2.0
+          ],
+          [
+            "source",
+            "noise",
+            1.0
+          ]
+        ],
+        "graph_fingerprint": "a9c2545ac7caabb9801dc4d7095addfa5491942dc5db064fb3d0ee34d841ed71",
+        "latency": [
+          4.0,
+          6.0
+        ],
+        "policy": "current-policy",
+        "prediction_error_records": [],
+        "proxy_energy": 12.0,
+        "proxy_energy_unit": "activity-cost-proxy; uncalibrated",
+        "queue_peak": 2,
+        "route_trace": [
+          {
+            "example_id": "short-held-out",
+            "kind": "route",
+            "queue_after": 2,
+            "queue_before": 1,
+            "routed_count": 1,
+            "source": "source",
+            "timestamp": 0.0
+          },
+          {
+            "example_id": "short-held-out",
+            "kind": "route",
+            "queue_after": 2,
+            "queue_before": 1,
+            "routed_count": 1,
+            "source": "source",
+            "timestamp": 1.0
+          },
+          {
+            "example_id": "short-held-out",
+            "kind": "route",
+            "queue_after": 2,
+            "queue_before": 1,
+            "routed_count": 1,
+            "source": "noise",
+            "timestamp": 1.0
+          },
+          {
+            "example_id": "short-held-out",
+            "kind": "route",
+            "queue_after": 2,
+            "queue_before": 1,
+            "routed_count": 1,
+            "source": "noise",
+            "timestamp": 2.0
+          },
+          {
+            "destination": "target",
+            "event_type": "cue",
+            "example_id": "short-held-out",
+            "kind": "target_arrival",
+            "source": "noise",
+            "timestamp": 3.0
+          },
+          {
+            "destination": "target",
+            "event_type": "probe",
+            "example_id": "short-held-out",
+            "kind": "target_arrival",
+            "source": "noise",
+            "timestamp": 4.0
+          },
+          {
+            "example_id": "long-held-out",
+            "kind": "route",
+            "queue_after": 2,
+            "queue_before": 1,
+            "routed_count": 1,
+            "source": "source",
+            "timestamp": 0.0
+          },
+          {
+            "example_id": "long-held-out",
+            "kind": "route",
+            "queue_after": 2,
+            "queue_before": 1,
+            "routed_count": 1,
+            "source": "noise",
+            "timestamp": 1.0
+          },
+          {
+            "example_id": "long-held-out",
+            "kind": "route",
+            "queue_after": 2,
+            "queue_before": 1,
+            "routed_count": 1,
+            "source": "source",
+            "timestamp": 3.0
+          },
+          {
+            "destination": "target",
+            "event_type": "cue",
+            "example_id": "long-held-out",
+            "kind": "target_arrival",
+            "source": "noise",
+            "timestamp": 3.0
+          },
+          {
+            "example_id": "long-held-out",
+            "kind": "route",
+            "queue_after": 1,
+            "queue_before": 0,
+            "routed_count": 1,
+            "source": "noise",
+            "timestamp": 4.0
+          },
+          {
+            "destination": "target",
+            "event_type": "probe",
+            "example_id": "long-held-out",
+            "kind": "target_arrival",
+            "source": "noise",
+            "timestamp": 6.0
+          }
+        ],
+        "task_cases_correct": 1,
+        "task_result": "1/2",
+        "total_events": 12
+      },
+      "fan_in_before": {
+        "noise": 0,
+        "relay": 0,
+        "source": 0,
+        "target": 2
+      },
+      "fan_out_before": {
+        "noise": 1,
+        "relay": 1,
+        "source": 0,
+        "target": 0
+      },
+      "final_edges": [
+        [
+          "relay",
+          "target",
+          0.5
+        ],
+        [
+          "noise",
+          "target",
+          2.0
+        ],
+        [
+          "source",
+          "noise",
+          1.0
+        ]
+      ],
+      "final_graph_fingerprint": "a9c2545ac7caabb9801dc4d7095addfa5491942dc5db064fb3d0ee34d841ed71",
+      "mutation": {
+        "edge": {
+          "destination": "noise",
+          "propagation_delay": 1.0,
+          "source": "source"
+        },
+        "reason": null,
+        "status": "grown"
+      },
+      "ranks": {
+        "G": 2,
+        "H": 1
+      },
+      "rejected_candidate": "G",
+      "rejection_reason": "lost_one_slot_rank_competition",
+      "relevant_free_slots": 1,
+      "scores": {
+        "G": 1.0,
+        "H": 1.0
+      },
+      "topology_before": [
+        [
+          "relay",
+          "target",
+          0.5
+        ],
+        [
+          "noise",
+          "target",
+          2.0
+        ]
+      ]
+    },
+    "fixed_no_growth": {
+      "case_results": [
+        {
+          "completion": {
+            "budget_exhausted": false,
+            "completed": true,
+            "configured_event_budget": 24,
+            "peak_queue_occupancy": 2,
+            "pending_event_count": 0,
+            "processed_event_count": 2,
+            "termination_reason": "completed"
+          },
+          "correct": false,
+          "events": 2,
+          "example_id": "short-held-out",
+          "fixed_external_target": "on_time",
+          "interval": 1.0,
+          "prediction_or_decision": "late",
+          "target_arrivals": [],
+          "target_latency": null,
+          "target_state": 0.0
+        },
+        {
+          "completion": {
+            "budget_exhausted": false,
+            "completed": true,
+            "configured_event_budget": 24,
+            "peak_queue_occupancy": 2,
+            "pending_event_count": 0,
+            "processed_event_count": 2,
+            "termination_reason": "completed"
+          },
+          "correct": true,
+          "events": 2,
+          "example_id": "long-held-out",
+          "fixed_external_target": "late",
+          "interval": 3.0,
+          "prediction_or_decision": "late",
+          "target_arrivals": [],
+          "target_latency": null,
+          "target_state": 0.0
+        }
+      ],
+      "completion_status": "completed",
+      "graph_edges": [
+        [
+          "relay",
+          "target",
+          0.5
+        ],
+        [
+          "noise",
+          "target",
+          2.0
+        ]
+      ],
+      "graph_fingerprint": "b945c9954be6ca1b053c04d1eb30592cbf66a8abeb87d937b2324c590554e88e",
+      "latency": [
+        null,
+        null
+      ],
+      "policy": "fixed-no-growth",
+      "prediction_error_records": [],
+      "proxy_energy": 4.0,
+      "proxy_energy_unit": "activity-cost-proxy; uncalibrated",
+      "queue_peak": 2,
+      "route_trace": [
+        {
+          "example_id": "short-held-out",
+          "kind": "route",
+          "queue_after": 1,
+          "queue_before": 1,
+          "routed_count": 0,
+          "source": "source",
+          "timestamp": 0.0
+        },
+        {
+          "example_id": "short-held-out",
+          "kind": "route",
+          "queue_after": 0,
+          "queue_before": 0,
+          "routed_count": 0,
+          "source": "source",
+          "timestamp": 1.0
+        },
+        {
+          "example_id": "long-held-out",
+          "kind": "route",
+          "queue_after": 1,
+          "queue_before": 1,
+          "routed_count": 0,
+          "source": "source",
+          "timestamp": 0.0
+        },
+        {
+          "example_id": "long-held-out",
+          "kind": "route",
+          "queue_after": 0,
+          "queue_before": 0,
+          "routed_count": 0,
+          "source": "source",
+          "timestamp": 3.0
+        }
+      ],
+      "task_cases_correct": 1,
+      "task_result": "1/2",
+      "total_events": 4
+    },
+    "future_events_after_decision": {
+      "candidate_evidence": [
+        {
+          "available_time": 2.5,
+          "bounded": true,
+          "candidate": "G",
+          "cost_evidence": {
+            "available_before_decision": true,
+            "predicted_total_path_delay": null,
+            "propagation_delay": 0.5,
+            "used_in_canonical_score": false
+          },
+          "decision_time": 4.0,
+          "endpoint_identity_dependent": false,
+          "field": "temporal_score",
+          "future_dependent": false,
+          "future_records_delivered_after_decision": true,
+          "future_records_used_in_score": false,
+          "label_dependent": false,
+          "local": true,
+          "observation_records": [
+            {
+              "candidate": "G",
+              "elapsed": 0.5,
+              "related_time": 0.5,
+              "source_time": 0.0
+            },
+            {
+              "candidate": "G",
+              "elapsed": 0.5,
+              "related_time": 1.5,
+              "source_time": 1.0
+            },
+            {
+              "candidate": "G",
+              "elapsed": 0.5,
+              "related_time": 2.5,
+              "source_time": 2.0
+            },
+            {
+              "candidate": "G",
+              "elapsed": 0.5,
+              "future": true,
+              "related_time": 10.5,
+              "source_time": 10.0
+            }
+          ],
+          "pre_admission": true,
+          "source_owner": "source-local bounded observation buffer",
+          "used_in_canonical_score": true,
+          "value": 3.0
+        },
+        {
+          "available_time": 3.0,
+          "bounded": true,
+          "candidate": "H",
+          "cost_evidence": {
+            "available_before_decision": true,
+            "predicted_total_path_delay": null,
+            "propagation_delay": 1.0,
+            "used_in_canonical_score": false
+          },
+          "decision_time": 4.0,
+          "endpoint_identity_dependent": false,
+          "field": "temporal_score",
+          "future_dependent": false,
+          "future_records_delivered_after_decision": true,
+          "future_records_used_in_score": false,
+          "label_dependent": false,
+          "local": true,
+          "observation_records": [
+            {
+              "candidate": "H",
+              "elapsed": 3.0,
+              "related_time": 3.0,
+              "source_time": 0.0
+            },
+            {
+              "candidate": "H",
+              "elapsed": 0.5,
+              "future": true,
+              "related_time": 10.5,
+              "source_time": 10.0
+            }
+          ],
+          "pre_admission": true,
+          "source_owner": "source-local bounded observation buffer",
+          "used_in_canonical_score": true,
+          "value": 0.0
+        }
+      ],
+      "candidate_set": [
+        [
+          "source",
+          "relay",
+          0.5
+        ],
+        [
+          "source",
+          "noise",
+          1.0
+        ]
+      ],
+      "capacity_before": 3,
+      "capacity_used_before": 2,
+      "chosen_candidate": "G",
+      "evaluation": {
+        "case_results": [
+          {
+            "completion": {
+              "budget_exhausted": false,
+              "completed": true,
+              "configured_event_budget": 24,
+              "peak_queue_occupancy": 2,
+              "pending_event_count": 0,
+              "processed_event_count": 6,
+              "termination_reason": "completed"
+            },
+            "correct": true,
+            "events": 6,
+            "example_id": "short-held-out",
+            "fixed_external_target": "on_time",
+            "interval": 1.0,
+            "prediction_or_decision": "on_time",
+            "target_arrivals": [
+              1.0,
+              2.0
+            ],
+            "target_latency": 2.0,
+            "target_state": -0.09516258196404048
+          },
+          {
+            "completion": {
+              "budget_exhausted": false,
+              "completed": true,
+              "configured_event_budget": 24,
+              "peak_queue_occupancy": 2,
+              "pending_event_count": 0,
+              "processed_event_count": 6,
+              "termination_reason": "completed"
+            },
+            "correct": true,
+            "events": 6,
+            "example_id": "long-held-out",
+            "fixed_external_target": "late",
+            "interval": 3.0,
+            "prediction_or_decision": "late",
+            "target_arrivals": [
+              1.0,
+              4.0
+            ],
+            "target_latency": 4.0,
+            "target_state": -0.2591817793182821
+          }
+        ],
+        "completion_status": "completed",
+        "graph_edges": [
+          [
+            "relay",
+            "target",
+            0.5
+          ],
+          [
+            "noise",
+            "target",
+            2.0
+          ],
+          [
+            "source",
+            "relay",
+            0.5
+          ]
+        ],
+        "graph_fingerprint": "9136c83c7ef4e818f986385172e86be2ba06a93e3bd82cf9212c29bead114831",
+        "latency": [
+          2.0,
+          4.0
+        ],
+        "policy": "current-policy",
+        "prediction_error_records": [],
+        "proxy_energy": 12.0,
+        "proxy_energy_unit": "activity-cost-proxy; uncalibrated",
+        "queue_peak": 2,
+        "route_trace": [
+          {
+            "example_id": "short-held-out",
+            "kind": "route",
+            "queue_after": 2,
+            "queue_before": 1,
+            "routed_count": 1,
+            "source": "source",
+            "timestamp": 0.0
+          },
+          {
+            "example_id": "short-held-out",
+            "kind": "route",
+            "queue_after": 2,
+            "queue_before": 1,
+            "routed_count": 1,
+            "source": "relay",
+            "timestamp": 0.5
+          },
+          {
+            "example_id": "short-held-out",
+            "kind": "route",
+            "queue_after": 2,
+            "queue_before": 1,
+            "routed_count": 1,
+            "source": "source",
+            "timestamp": 1.0
+          },
+          {
+            "destination": "target",
+            "event_type": "cue",
+            "example_id": "short-held-out",
+            "kind": "target_arrival",
+            "source": "relay",
+            "timestamp": 1.0
+          },
+          {
+            "example_id": "short-held-out",
+            "kind": "route",
+            "queue_after": 1,
+            "queue_before": 0,
+            "routed_count": 1,
+            "source": "relay",
+            "timestamp": 1.5
+          },
+          {
+            "destination": "target",
+            "event_type": "probe",
+            "example_id": "short-held-out",
+            "kind": "target_arrival",
+            "source": "relay",
+            "timestamp": 2.0
+          },
+          {
+            "example_id": "long-held-out",
+            "kind": "route",
+            "queue_after": 2,
+            "queue_before": 1,
+            "routed_count": 1,
+            "source": "source",
+            "timestamp": 0.0
+          },
+          {
+            "example_id": "long-held-out",
+            "kind": "route",
+            "queue_after": 2,
+            "queue_before": 1,
+            "routed_count": 1,
+            "source": "relay",
+            "timestamp": 0.5
+          },
+          {
+            "destination": "target",
+            "event_type": "cue",
+            "example_id": "long-held-out",
+            "kind": "target_arrival",
+            "source": "relay",
+            "timestamp": 1.0
+          },
+          {
+            "example_id": "long-held-out",
+            "kind": "route",
+            "queue_after": 1,
+            "queue_before": 0,
+            "routed_count": 1,
+            "source": "source",
+            "timestamp": 3.0
+          },
+          {
+            "example_id": "long-held-out",
+            "kind": "route",
+            "queue_after": 1,
+            "queue_before": 0,
+            "routed_count": 1,
+            "source": "relay",
+            "timestamp": 3.5
+          },
+          {
+            "destination": "target",
+            "event_type": "probe",
+            "example_id": "long-held-out",
+            "kind": "target_arrival",
+            "source": "relay",
+            "timestamp": 4.0
+          }
+        ],
+        "task_cases_correct": 2,
+        "task_result": "2/2",
+        "total_events": 12
+      },
+      "fan_in_before": {
+        "noise": 0,
+        "relay": 0,
+        "source": 0,
+        "target": 2
+      },
+      "fan_out_before": {
+        "noise": 1,
+        "relay": 1,
+        "source": 0,
+        "target": 0
+      },
+      "final_edges": [
+        [
+          "relay",
+          "target",
+          0.5
+        ],
+        [
+          "noise",
+          "target",
+          2.0
+        ],
+        [
+          "source",
+          "relay",
+          0.5
+        ]
+      ],
+      "final_graph_fingerprint": "9136c83c7ef4e818f986385172e86be2ba06a93e3bd82cf9212c29bead114831",
+      "mutation": {
+        "edge": {
+          "destination": "relay",
+          "propagation_delay": 0.5,
+          "source": "source"
+        },
+        "reason": null,
+        "status": "grown"
+      },
+      "ranks": {
+        "G": 1,
+        "H": 2
+      },
+      "rejected_candidate": "H",
+      "rejection_reason": "lost_one_slot_rank_competition",
+      "relevant_free_slots": 1,
+      "scores": {
+        "G": 3.0,
+        "H": 0.0
+      },
+      "topology_before": [
+        [
+          "relay",
+          "target",
+          0.5
+        ],
+        [
+          "noise",
+          "target",
+          2.0
+        ]
+      ]
+    },
+    "label_mutated": {
+      "candidate_evidence": [
+        {
+          "available_time": 2.5,
+          "bounded": true,
+          "candidate": "G",
+          "cost_evidence": {
+            "available_before_decision": true,
+            "predicted_total_path_delay": null,
+            "propagation_delay": 0.5,
+            "used_in_canonical_score": false
+          },
+          "decision_time": 4.0,
+          "endpoint_identity_dependent": false,
+          "field": "temporal_score",
+          "future_dependent": false,
+          "future_records_delivered_after_decision": false,
+          "future_records_used_in_score": false,
+          "label_dependent": false,
+          "local": true,
+          "observation_records": [
+            {
+              "candidate": "G",
+              "elapsed": 0.5,
+              "related_time": 0.5,
+              "source_time": 0.0
+            },
+            {
+              "candidate": "G",
+              "elapsed": 0.5,
+              "related_time": 1.5,
+              "source_time": 1.0
+            },
+            {
+              "candidate": "G",
+              "elapsed": 0.5,
+              "related_time": 2.5,
+              "source_time": 2.0
+            }
+          ],
+          "pre_admission": true,
+          "source_owner": "source-local bounded observation buffer",
+          "used_in_canonical_score": true,
+          "value": 3.0
+        },
+        {
+          "available_time": 3.0,
+          "bounded": true,
+          "candidate": "H",
+          "cost_evidence": {
+            "available_before_decision": true,
+            "predicted_total_path_delay": null,
+            "propagation_delay": 1.0,
+            "used_in_canonical_score": false
+          },
+          "decision_time": 4.0,
+          "endpoint_identity_dependent": false,
+          "field": "temporal_score",
+          "future_dependent": false,
+          "future_records_delivered_after_decision": false,
+          "future_records_used_in_score": false,
+          "label_dependent": false,
+          "local": true,
+          "observation_records": [
+            {
+              "candidate": "H",
+              "elapsed": 3.0,
+              "related_time": 3.0,
+              "source_time": 0.0
+            }
+          ],
+          "pre_admission": true,
+          "source_owner": "source-local bounded observation buffer",
+          "used_in_canonical_score": true,
+          "value": 0.0
+        }
+      ],
+      "candidate_set": [
+        [
+          "source",
+          "relay",
+          0.5
+        ],
+        [
+          "source",
+          "noise",
+          1.0
+        ]
+      ],
+      "capacity_before": 3,
+      "capacity_used_before": 2,
+      "chosen_candidate": "G",
+      "evaluation": {
+        "case_results": [
+          {
+            "completion": {
+              "budget_exhausted": false,
+              "completed": true,
+              "configured_event_budget": 24,
+              "peak_queue_occupancy": 2,
+              "pending_event_count": 0,
+              "processed_event_count": 6,
+              "termination_reason": "completed"
+            },
+            "correct": true,
+            "events": 6,
+            "example_id": "short-held-out",
+            "fixed_external_target": "late",
+            "interval": 1.0,
+            "prediction_or_decision": "on_time",
+            "target_arrivals": [
+              1.0,
+              2.0
+            ],
+            "target_latency": 2.0,
+            "target_state": -0.09516258196404048
+          },
+          {
+            "completion": {
+              "budget_exhausted": false,
+              "completed": true,
+              "configured_event_budget": 24,
+              "peak_queue_occupancy": 2,
+              "pending_event_count": 0,
+              "processed_event_count": 6,
+              "termination_reason": "completed"
+            },
+            "correct": true,
+            "events": 6,
+            "example_id": "long-held-out",
+            "fixed_external_target": "on_time",
+            "interval": 3.0,
+            "prediction_or_decision": "late",
+            "target_arrivals": [
+              1.0,
+              4.0
+            ],
+            "target_latency": 4.0,
+            "target_state": -0.2591817793182821
+          }
+        ],
+        "completion_status": "completed",
+        "graph_edges": [
+          [
+            "relay",
+            "target",
+            0.5
+          ],
+          [
+            "noise",
+            "target",
+            2.0
+          ],
+          [
+            "source",
+            "relay",
+            0.5
+          ]
+        ],
+        "graph_fingerprint": "9136c83c7ef4e818f986385172e86be2ba06a93e3bd82cf9212c29bead114831",
+        "latency": [
+          2.0,
+          4.0
+        ],
+        "policy": "current-policy",
+        "prediction_error_records": [],
+        "proxy_energy": 12.0,
+        "proxy_energy_unit": "activity-cost-proxy; uncalibrated",
+        "queue_peak": 2,
+        "route_trace": [
+          {
+            "example_id": "short-held-out",
+            "kind": "route",
+            "queue_after": 2,
+            "queue_before": 1,
+            "routed_count": 1,
+            "source": "source",
+            "timestamp": 0.0
+          },
+          {
+            "example_id": "short-held-out",
+            "kind": "route",
+            "queue_after": 2,
+            "queue_before": 1,
+            "routed_count": 1,
+            "source": "relay",
+            "timestamp": 0.5
+          },
+          {
+            "example_id": "short-held-out",
+            "kind": "route",
+            "queue_after": 2,
+            "queue_before": 1,
+            "routed_count": 1,
+            "source": "source",
+            "timestamp": 1.0
+          },
+          {
+            "destination": "target",
+            "event_type": "cue",
+            "example_id": "short-held-out",
+            "kind": "target_arrival",
+            "source": "relay",
+            "timestamp": 1.0
+          },
+          {
+            "example_id": "short-held-out",
+            "kind": "route",
+            "queue_after": 1,
+            "queue_before": 0,
+            "routed_count": 1,
+            "source": "relay",
+            "timestamp": 1.5
+          },
+          {
+            "destination": "target",
+            "event_type": "probe",
+            "example_id": "short-held-out",
+            "kind": "target_arrival",
+            "source": "relay",
+            "timestamp": 2.0
+          },
+          {
+            "example_id": "long-held-out",
+            "kind": "route",
+            "queue_after": 2,
+            "queue_before": 1,
+            "routed_count": 1,
+            "source": "source",
+            "timestamp": 0.0
+          },
+          {
+            "example_id": "long-held-out",
+            "kind": "route",
+            "queue_after": 2,
+            "queue_before": 1,
+            "routed_count": 1,
+            "source": "relay",
+            "timestamp": 0.5
+          },
+          {
+            "destination": "target",
+            "event_type": "cue",
+            "example_id": "long-held-out",
+            "kind": "target_arrival",
+            "source": "relay",
+            "timestamp": 1.0
+          },
+          {
+            "example_id": "long-held-out",
+            "kind": "route",
+            "queue_after": 1,
+            "queue_before": 0,
+            "routed_count": 1,
+            "source": "source",
+            "timestamp": 3.0
+          },
+          {
+            "example_id": "long-held-out",
+            "kind": "route",
+            "queue_after": 1,
+            "queue_before": 0,
+            "routed_count": 1,
+            "source": "relay",
+            "timestamp": 3.5
+          },
+          {
+            "destination": "target",
+            "event_type": "probe",
+            "example_id": "long-held-out",
+            "kind": "target_arrival",
+            "source": "relay",
+            "timestamp": 4.0
+          }
+        ],
+        "task_cases_correct": 2,
+        "task_result": "2/2",
+        "total_events": 12
+      },
+      "fan_in_before": {
+        "noise": 0,
+        "relay": 0,
+        "source": 0,
+        "target": 2
+      },
+      "fan_out_before": {
+        "noise": 1,
+        "relay": 1,
+        "source": 0,
+        "target": 0
+      },
+      "final_edges": [
+        [
+          "relay",
+          "target",
+          0.5
+        ],
+        [
+          "noise",
+          "target",
+          2.0
+        ],
+        [
+          "source",
+          "relay",
+          0.5
+        ]
+      ],
+      "final_graph_fingerprint": "9136c83c7ef4e818f986385172e86be2ba06a93e3bd82cf9212c29bead114831",
+      "mutated_external_targets": [
+        "late",
+        "on_time"
+      ],
+      "mutation": {
+        "edge": {
+          "destination": "relay",
+          "propagation_delay": 0.5,
+          "source": "source"
+        },
+        "reason": null,
+        "status": "grown"
+      },
+      "ranks": {
+        "G": 1,
+        "H": 2
+      },
+      "rejected_candidate": "H",
+      "rejection_reason": "lost_one_slot_rank_competition",
+      "relevant_free_slots": 1,
+      "runtime_input_unchanged": true,
+      "scores": {
+        "G": 3.0,
+        "H": 0.0
+      },
+      "topology_before": [
+        [
+          "relay",
+          "target",
+          0.5
+        ],
+        [
+          "noise",
+          "target",
+          2.0
+        ]
+      ]
+    },
+    "mirrored": {
+      "candidate_evidence": [
+        {
+          "available_time": 2.5,
+          "bounded": true,
+          "candidate": "G",
+          "cost_evidence": {
+            "available_before_decision": true,
+            "predicted_total_path_delay": null,
+            "propagation_delay": 0.5,
+            "used_in_canonical_score": false
+          },
+          "decision_time": 4.0,
+          "endpoint_identity_dependent": false,
+          "field": "temporal_score",
+          "future_dependent": false,
+          "future_records_delivered_after_decision": false,
+          "future_records_used_in_score": false,
+          "label_dependent": false,
+          "local": true,
+          "observation_records": [
+            {
+              "candidate": "G",
+              "elapsed": 0.5,
+              "related_time": 0.5,
+              "source_time": 0.0
+            },
+            {
+              "candidate": "G",
+              "elapsed": 0.5,
+              "related_time": 1.5,
+              "source_time": 1.0
+            },
+            {
+              "candidate": "G",
+              "elapsed": 0.5,
+              "related_time": 2.5,
+              "source_time": 2.0
+            }
+          ],
+          "pre_admission": true,
+          "source_owner": "source-local bounded observation buffer",
+          "used_in_canonical_score": true,
+          "value": 3.0
+        },
+        {
+          "available_time": 3.0,
+          "bounded": true,
+          "candidate": "H",
+          "cost_evidence": {
+            "available_before_decision": true,
+            "predicted_total_path_delay": null,
+            "propagation_delay": 1.0,
+            "used_in_canonical_score": false
+          },
+          "decision_time": 4.0,
+          "endpoint_identity_dependent": false,
+          "field": "temporal_score",
+          "future_dependent": false,
+          "future_records_delivered_after_decision": false,
+          "future_records_used_in_score": false,
+          "label_dependent": false,
+          "local": true,
+          "observation_records": [
+            {
+              "candidate": "H",
+              "elapsed": 3.0,
+              "related_time": 3.0,
+              "source_time": 0.0
+            }
+          ],
+          "pre_admission": true,
+          "source_owner": "source-local bounded observation buffer",
+          "used_in_canonical_score": true,
+          "value": 0.0
+        }
+      ],
+      "candidate_set": [
+        [
+          "source-z",
+          "relay-y",
+          0.5
+        ],
+        [
+          "source-z",
+          "noise-a",
+          1.0
+        ]
+      ],
+      "capacity_before": 3,
+      "capacity_used_before": 2,
+      "chosen_candidate": "G",
+      "evaluation": {
+        "case_results": [
+          {
+            "completion": {
+              "budget_exhausted": false,
+              "completed": true,
+              "configured_event_budget": 24,
+              "peak_queue_occupancy": 2,
+              "pending_event_count": 0,
+              "processed_event_count": 6,
+              "termination_reason": "completed"
+            },
+            "correct": true,
+            "events": 6,
+            "example_id": "short-held-out",
+            "fixed_external_target": "on_time",
+            "interval": 1.0,
+            "prediction_or_decision": "on_time",
+            "target_arrivals": [
+              1.0,
+              2.0
+            ],
+            "target_latency": 2.0,
+            "target_state": -0.09516258196404048
+          },
+          {
+            "completion": {
+              "budget_exhausted": false,
+              "completed": true,
+              "configured_event_budget": 24,
+              "peak_queue_occupancy": 2,
+              "pending_event_count": 0,
+              "processed_event_count": 6,
+              "termination_reason": "completed"
+            },
+            "correct": true,
+            "events": 6,
+            "example_id": "long-held-out",
+            "fixed_external_target": "late",
+            "interval": 3.0,
+            "prediction_or_decision": "late",
+            "target_arrivals": [
+              1.0,
+              4.0
+            ],
+            "target_latency": 4.0,
+            "target_state": -0.2591817793182821
+          }
+        ],
+        "completion_status": "completed",
+        "graph_edges": [
+          [
+            "relay-y",
+            "target-x",
+            0.5
+          ],
+          [
+            "noise-a",
+            "target-x",
+            2.0
+          ],
+          [
+            "source-z",
+            "relay-y",
+            0.5
+          ]
+        ],
+        "graph_fingerprint": "c6e8c46a624c9e5628a9a6e5f08b0ad6931560b0356badc11c504913e6a7a1e5",
+        "latency": [
+          2.0,
+          4.0
+        ],
+        "policy": "current-policy",
+        "prediction_error_records": [],
+        "proxy_energy": 12.0,
+        "proxy_energy_unit": "activity-cost-proxy; uncalibrated",
+        "queue_peak": 2,
+        "route_trace": [
+          {
+            "example_id": "short-held-out",
+            "kind": "route",
+            "queue_after": 2,
+            "queue_before": 1,
+            "routed_count": 1,
+            "source": "source-z",
+            "timestamp": 0.0
+          },
+          {
+            "example_id": "short-held-out",
+            "kind": "route",
+            "queue_after": 2,
+            "queue_before": 1,
+            "routed_count": 1,
+            "source": "relay-y",
+            "timestamp": 0.5
+          },
+          {
+            "example_id": "short-held-out",
+            "kind": "route",
+            "queue_after": 2,
+            "queue_before": 1,
+            "routed_count": 1,
+            "source": "source-z",
+            "timestamp": 1.0
+          },
+          {
+            "destination": "target-x",
+            "event_type": "cue",
+            "example_id": "short-held-out",
+            "kind": "target_arrival",
+            "source": "relay-y",
+            "timestamp": 1.0
+          },
+          {
+            "example_id": "short-held-out",
+            "kind": "route",
+            "queue_after": 1,
+            "queue_before": 0,
+            "routed_count": 1,
+            "source": "relay-y",
+            "timestamp": 1.5
+          },
+          {
+            "destination": "target-x",
+            "event_type": "probe",
+            "example_id": "short-held-out",
+            "kind": "target_arrival",
+            "source": "relay-y",
+            "timestamp": 2.0
+          },
+          {
+            "example_id": "long-held-out",
+            "kind": "route",
+            "queue_after": 2,
+            "queue_before": 1,
+            "routed_count": 1,
+            "source": "source-z",
+            "timestamp": 0.0
+          },
+          {
+            "example_id": "long-held-out",
+            "kind": "route",
+            "queue_after": 2,
+            "queue_before": 1,
+            "routed_count": 1,
+            "source": "relay-y",
+            "timestamp": 0.5
+          },
+          {
+            "destination": "target-x",
+            "event_type": "cue",
+            "example_id": "long-held-out",
+            "kind": "target_arrival",
+            "source": "relay-y",
+            "timestamp": 1.0
+          },
+          {
+            "example_id": "long-held-out",
+            "kind": "route",
+            "queue_after": 1,
+            "queue_before": 0,
+            "routed_count": 1,
+            "source": "source-z",
+            "timestamp": 3.0
+          },
+          {
+            "example_id": "long-held-out",
+            "kind": "route",
+            "queue_after": 1,
+            "queue_before": 0,
+            "routed_count": 1,
+            "source": "relay-y",
+            "timestamp": 3.5
+          },
+          {
+            "destination": "target-x",
+            "event_type": "probe",
+            "example_id": "long-held-out",
+            "kind": "target_arrival",
+            "source": "relay-y",
+            "timestamp": 4.0
+          }
+        ],
+        "task_cases_correct": 2,
+        "task_result": "2/2",
+        "total_events": 12
+      },
+      "fan_in_before": {
+        "noise-a": 0,
+        "relay-y": 0,
+        "source-z": 0,
+        "target-x": 2
+      },
+      "fan_out_before": {
+        "noise-a": 1,
+        "relay-y": 1,
+        "source-z": 0,
+        "target-x": 0
+      },
+      "final_edges": [
+        [
+          "relay-y",
+          "target-x",
+          0.5
+        ],
+        [
+          "noise-a",
+          "target-x",
+          2.0
+        ],
+        [
+          "source-z",
+          "relay-y",
+          0.5
+        ]
+      ],
+      "final_graph_fingerprint": "c6e8c46a624c9e5628a9a6e5f08b0ad6931560b0356badc11c504913e6a7a1e5",
+      "mutation": {
+        "edge": {
+          "destination": "relay-y",
+          "propagation_delay": 0.5,
+          "source": "source-z"
+        },
+        "reason": null,
+        "status": "grown"
+      },
+      "ranks": {
+        "G": 1,
+        "H": 2
+      },
+      "rejected_candidate": "H",
+      "rejection_reason": "lost_one_slot_rank_competition",
+      "relevant_free_slots": 1,
+      "scores": {
+        "G": 3.0,
+        "H": 0.0
+      },
+      "topology_before": [
+        [
+          "relay-y",
+          "target-x",
+          0.5
+        ],
+        [
+          "noise-a",
+          "target-x",
+          2.0
+        ]
+      ]
+    },
+    "random": [
+      {
+        "evaluation": {
+          "case_results": [
+            {
+              "completion": {
+                "budget_exhausted": false,
+                "completed": true,
+                "configured_event_budget": 24,
+                "peak_queue_occupancy": 2,
+                "pending_event_count": 0,
+                "processed_event_count": 6,
+                "termination_reason": "completed"
+              },
+              "correct": false,
+              "events": 6,
+              "example_id": "short-held-out",
+              "fixed_external_target": "on_time",
+              "interval": 1.0,
+              "prediction_or_decision": "late",
+              "target_arrivals": [
+                3.0,
+                4.0
+              ],
+              "target_latency": 4.0,
+              "target_state": -0.09516258196404048
+            },
+            {
+              "completion": {
+                "budget_exhausted": false,
+                "completed": true,
+                "configured_event_budget": 24,
+                "peak_queue_occupancy": 2,
+                "pending_event_count": 0,
+                "processed_event_count": 6,
+                "termination_reason": "completed"
+              },
+              "correct": true,
+              "events": 6,
+              "example_id": "long-held-out",
+              "fixed_external_target": "late",
+              "interval": 3.0,
+              "prediction_or_decision": "late",
+              "target_arrivals": [
+                3.0,
+                6.0
+              ],
+              "target_latency": 6.0,
+              "target_state": -0.2591817793182821
+            }
+          ],
+          "completion_status": "completed",
+          "graph_edges": [
+            [
+              "relay",
+              "target",
+              0.5
+            ],
+            [
+              "noise",
+              "target",
+              2.0
+            ],
+            [
+              "source",
+              "noise",
+              1.0
+            ]
+          ],
+          "graph_fingerprint": "a9c2545ac7caabb9801dc4d7095addfa5491942dc5db064fb3d0ee34d841ed71",
+          "latency": [
+            4.0,
+            6.0
+          ],
+          "policy": "random-seed-0",
+          "prediction_error_records": [],
+          "proxy_energy": 12.0,
+          "proxy_energy_unit": "activity-cost-proxy; uncalibrated",
+          "queue_peak": 2,
+          "route_trace": [
+            {
+              "example_id": "short-held-out",
+              "kind": "route",
+              "queue_after": 2,
+              "queue_before": 1,
+              "routed_count": 1,
+              "source": "source",
+              "timestamp": 0.0
+            },
+            {
+              "example_id": "short-held-out",
+              "kind": "route",
+              "queue_after": 2,
+              "queue_before": 1,
+              "routed_count": 1,
+              "source": "source",
+              "timestamp": 1.0
+            },
+            {
+              "example_id": "short-held-out",
+              "kind": "route",
+              "queue_after": 2,
+              "queue_before": 1,
+              "routed_count": 1,
+              "source": "noise",
+              "timestamp": 1.0
+            },
+            {
+              "example_id": "short-held-out",
+              "kind": "route",
+              "queue_after": 2,
+              "queue_before": 1,
+              "routed_count": 1,
+              "source": "noise",
+              "timestamp": 2.0
+            },
+            {
+              "destination": "target",
+              "event_type": "cue",
+              "example_id": "short-held-out",
+              "kind": "target_arrival",
+              "source": "noise",
+              "timestamp": 3.0
+            },
+            {
+              "destination": "target",
+              "event_type": "probe",
+              "example_id": "short-held-out",
+              "kind": "target_arrival",
+              "source": "noise",
+              "timestamp": 4.0
+            },
+            {
+              "example_id": "long-held-out",
+              "kind": "route",
+              "queue_after": 2,
+              "queue_before": 1,
+              "routed_count": 1,
+              "source": "source",
+              "timestamp": 0.0
+            },
+            {
+              "example_id": "long-held-out",
+              "kind": "route",
+              "queue_after": 2,
+              "queue_before": 1,
+              "routed_count": 1,
+              "source": "noise",
+              "timestamp": 1.0
+            },
+            {
+              "example_id": "long-held-out",
+              "kind": "route",
+              "queue_after": 2,
+              "queue_before": 1,
+              "routed_count": 1,
+              "source": "source",
+              "timestamp": 3.0
+            },
+            {
+              "destination": "target",
+              "event_type": "cue",
+              "example_id": "long-held-out",
+              "kind": "target_arrival",
+              "source": "noise",
+              "timestamp": 3.0
+            },
+            {
+              "example_id": "long-held-out",
+              "kind": "route",
+              "queue_after": 1,
+              "queue_before": 0,
+              "routed_count": 1,
+              "source": "noise",
+              "timestamp": 4.0
+            },
+            {
+              "destination": "target",
+              "event_type": "probe",
+              "example_id": "long-held-out",
+              "kind": "target_arrival",
+              "source": "noise",
+              "timestamp": 6.0
+            }
+          ],
+          "task_cases_correct": 1,
+          "task_result": "1/2",
+          "total_events": 12
+        },
+        "graph": [
+          [
+            "relay",
+            "target",
+            0.5
+          ],
+          [
+            "noise",
+            "target",
+            2.0
+          ],
+          [
+            "source",
+            "noise",
+            1.0
+          ]
+        ],
+        "seed": 0,
+        "selected_candidate": "H"
+      },
+      {
+        "evaluation": {
+          "case_results": [
+            {
+              "completion": {
+                "budget_exhausted": false,
+                "completed": true,
+                "configured_event_budget": 24,
+                "peak_queue_occupancy": 2,
+                "pending_event_count": 0,
+                "processed_event_count": 6,
+                "termination_reason": "completed"
+              },
+              "correct": true,
+              "events": 6,
+              "example_id": "short-held-out",
+              "fixed_external_target": "on_time",
+              "interval": 1.0,
+              "prediction_or_decision": "on_time",
+              "target_arrivals": [
+                1.0,
+                2.0
+              ],
+              "target_latency": 2.0,
+              "target_state": -0.09516258196404048
+            },
+            {
+              "completion": {
+                "budget_exhausted": false,
+                "completed": true,
+                "configured_event_budget": 24,
+                "peak_queue_occupancy": 2,
+                "pending_event_count": 0,
+                "processed_event_count": 6,
+                "termination_reason": "completed"
+              },
+              "correct": true,
+              "events": 6,
+              "example_id": "long-held-out",
+              "fixed_external_target": "late",
+              "interval": 3.0,
+              "prediction_or_decision": "late",
+              "target_arrivals": [
+                1.0,
+                4.0
+              ],
+              "target_latency": 4.0,
+              "target_state": -0.2591817793182821
+            }
+          ],
+          "completion_status": "completed",
+          "graph_edges": [
+            [
+              "relay",
+              "target",
+              0.5
+            ],
+            [
+              "noise",
+              "target",
+              2.0
+            ],
+            [
+              "source",
+              "relay",
+              0.5
+            ]
+          ],
+          "graph_fingerprint": "9136c83c7ef4e818f986385172e86be2ba06a93e3bd82cf9212c29bead114831",
+          "latency": [
+            2.0,
+            4.0
+          ],
+          "policy": "random-seed-1",
+          "prediction_error_records": [],
+          "proxy_energy": 12.0,
+          "proxy_energy_unit": "activity-cost-proxy; uncalibrated",
+          "queue_peak": 2,
+          "route_trace": [
+            {
+              "example_id": "short-held-out",
+              "kind": "route",
+              "queue_after": 2,
+              "queue_before": 1,
+              "routed_count": 1,
+              "source": "source",
+              "timestamp": 0.0
+            },
+            {
+              "example_id": "short-held-out",
+              "kind": "route",
+              "queue_after": 2,
+              "queue_before": 1,
+              "routed_count": 1,
+              "source": "relay",
+              "timestamp": 0.5
+            },
+            {
+              "example_id": "short-held-out",
+              "kind": "route",
+              "queue_after": 2,
+              "queue_before": 1,
+              "routed_count": 1,
+              "source": "source",
+              "timestamp": 1.0
+            },
+            {
+              "destination": "target",
+              "event_type": "cue",
+              "example_id": "short-held-out",
+              "kind": "target_arrival",
+              "source": "relay",
+              "timestamp": 1.0
+            },
+            {
+              "example_id": "short-held-out",
+              "kind": "route",
+              "queue_after": 1,
+              "queue_before": 0,
+              "routed_count": 1,
+              "source": "relay",
+              "timestamp": 1.5
+            },
+            {
+              "destination": "target",
+              "event_type": "probe",
+              "example_id": "short-held-out",
+              "kind": "target_arrival",
+              "source": "relay",
+              "timestamp": 2.0
+            },
+            {
+              "example_id": "long-held-out",
+              "kind": "route",
+              "queue_after": 2,
+              "queue_before": 1,
+              "routed_count": 1,
+              "source": "source",
+              "timestamp": 0.0
+            },
+            {
+              "example_id": "long-held-out",
+              "kind": "route",
+              "queue_after": 2,
+              "queue_before": 1,
+              "routed_count": 1,
+              "source": "relay",
+              "timestamp": 0.5
+            },
+            {
+              "destination": "target",
+              "event_type": "cue",
+              "example_id": "long-held-out",
+              "kind": "target_arrival",
+              "source": "relay",
+              "timestamp": 1.0
+            },
+            {
+              "example_id": "long-held-out",
+              "kind": "route",
+              "queue_after": 1,
+              "queue_before": 0,
+              "routed_count": 1,
+              "source": "source",
+              "timestamp": 3.0
+            },
+            {
+              "example_id": "long-held-out",
+              "kind": "route",
+              "queue_after": 1,
+              "queue_before": 0,
+              "routed_count": 1,
+              "source": "relay",
+              "timestamp": 3.5
+            },
+            {
+              "destination": "target",
+              "event_type": "probe",
+              "example_id": "long-held-out",
+              "kind": "target_arrival",
+              "source": "relay",
+              "timestamp": 4.0
+            }
+          ],
+          "task_cases_correct": 2,
+          "task_result": "2/2",
+          "total_events": 12
+        },
+        "graph": [
+          [
+            "relay",
+            "target",
+            0.5
+          ],
+          [
+            "noise",
+            "target",
+            2.0
+          ],
+          [
+            "source",
+            "relay",
+            0.5
+          ]
+        ],
+        "seed": 1,
+        "selected_candidate": "G"
+      },
+      {
+        "evaluation": {
+          "case_results": [
+            {
+              "completion": {
+                "budget_exhausted": false,
+                "completed": true,
+                "configured_event_budget": 24,
+                "peak_queue_occupancy": 2,
+                "pending_event_count": 0,
+                "processed_event_count": 6,
+                "termination_reason": "completed"
+              },
+              "correct": true,
+              "events": 6,
+              "example_id": "short-held-out",
+              "fixed_external_target": "on_time",
+              "interval": 1.0,
+              "prediction_or_decision": "on_time",
+              "target_arrivals": [
+                1.0,
+                2.0
+              ],
+              "target_latency": 2.0,
+              "target_state": -0.09516258196404048
+            },
+            {
+              "completion": {
+                "budget_exhausted": false,
+                "completed": true,
+                "configured_event_budget": 24,
+                "peak_queue_occupancy": 2,
+                "pending_event_count": 0,
+                "processed_event_count": 6,
+                "termination_reason": "completed"
+              },
+              "correct": true,
+              "events": 6,
+              "example_id": "long-held-out",
+              "fixed_external_target": "late",
+              "interval": 3.0,
+              "prediction_or_decision": "late",
+              "target_arrivals": [
+                1.0,
+                4.0
+              ],
+              "target_latency": 4.0,
+              "target_state": -0.2591817793182821
+            }
+          ],
+          "completion_status": "completed",
+          "graph_edges": [
+            [
+              "relay",
+              "target",
+              0.5
+            ],
+            [
+              "noise",
+              "target",
+              2.0
+            ],
+            [
+              "source",
+              "relay",
+              0.5
+            ]
+          ],
+          "graph_fingerprint": "9136c83c7ef4e818f986385172e86be2ba06a93e3bd82cf9212c29bead114831",
+          "latency": [
+            2.0,
+            4.0
+          ],
+          "policy": "random-seed-2",
+          "prediction_error_records": [],
+          "proxy_energy": 12.0,
+          "proxy_energy_unit": "activity-cost-proxy; uncalibrated",
+          "queue_peak": 2,
+          "route_trace": [
+            {
+              "example_id": "short-held-out",
+              "kind": "route",
+              "queue_after": 2,
+              "queue_before": 1,
+              "routed_count": 1,
+              "source": "source",
+              "timestamp": 0.0
+            },
+            {
+              "example_id": "short-held-out",
+              "kind": "route",
+              "queue_after": 2,
+              "queue_before": 1,
+              "routed_count": 1,
+              "source": "relay",
+              "timestamp": 0.5
+            },
+            {
+              "example_id": "short-held-out",
+              "kind": "route",
+              "queue_after": 2,
+              "queue_before": 1,
+              "routed_count": 1,
+              "source": "source",
+              "timestamp": 1.0
+            },
+            {
+              "destination": "target",
+              "event_type": "cue",
+              "example_id": "short-held-out",
+              "kind": "target_arrival",
+              "source": "relay",
+              "timestamp": 1.0
+            },
+            {
+              "example_id": "short-held-out",
+              "kind": "route",
+              "queue_after": 1,
+              "queue_before": 0,
+              "routed_count": 1,
+              "source": "relay",
+              "timestamp": 1.5
+            },
+            {
+              "destination": "target",
+              "event_type": "probe",
+              "example_id": "short-held-out",
+              "kind": "target_arrival",
+              "source": "relay",
+              "timestamp": 2.0
+            },
+            {
+              "example_id": "long-held-out",
+              "kind": "route",
+              "queue_after": 2,
+              "queue_before": 1,
+              "routed_count": 1,
+              "source": "source",
+              "timestamp": 0.0
+            },
+            {
+              "example_id": "long-held-out",
+              "kind": "route",
+              "queue_after": 2,
+              "queue_before": 1,
+              "routed_count": 1,
+              "source": "relay",
+              "timestamp": 0.5
+            },
+            {
+              "destination": "target",
+              "event_type": "cue",
+              "example_id": "long-held-out",
+              "kind": "target_arrival",
+              "source": "relay",
+              "timestamp": 1.0
+            },
+            {
+              "example_id": "long-held-out",
+              "kind": "route",
+              "queue_after": 1,
+              "queue_before": 0,
+              "routed_count": 1,
+              "source": "source",
+              "timestamp": 3.0
+            },
+            {
+              "example_id": "long-held-out",
+              "kind": "route",
+              "queue_after": 1,
+              "queue_before": 0,
+              "routed_count": 1,
+              "source": "relay",
+              "timestamp": 3.5
+            },
+            {
+              "destination": "target",
+              "event_type": "probe",
+              "example_id": "long-held-out",
+              "kind": "target_arrival",
+              "source": "relay",
+              "timestamp": 4.0
+            }
+          ],
+          "task_cases_correct": 2,
+          "task_result": "2/2",
+          "total_events": 12
+        },
+        "graph": [
+          [
+            "relay",
+            "target",
+            0.5
+          ],
+          [
+            "noise",
+            "target",
+            2.0
+          ],
+          [
+            "source",
+            "relay",
+            0.5
+          ]
+        ],
+        "seed": 2,
+        "selected_candidate": "G"
+      },
+      {
+        "evaluation": {
+          "case_results": [
+            {
+              "completion": {
+                "budget_exhausted": false,
+                "completed": true,
+                "configured_event_budget": 24,
+                "peak_queue_occupancy": 2,
+                "pending_event_count": 0,
+                "processed_event_count": 6,
+                "termination_reason": "completed"
+              },
+              "correct": true,
+              "events": 6,
+              "example_id": "short-held-out",
+              "fixed_external_target": "on_time",
+              "interval": 1.0,
+              "prediction_or_decision": "on_time",
+              "target_arrivals": [
+                1.0,
+                2.0
+              ],
+              "target_latency": 2.0,
+              "target_state": -0.09516258196404048
+            },
+            {
+              "completion": {
+                "budget_exhausted": false,
+                "completed": true,
+                "configured_event_budget": 24,
+                "peak_queue_occupancy": 2,
+                "pending_event_count": 0,
+                "processed_event_count": 6,
+                "termination_reason": "completed"
+              },
+              "correct": true,
+              "events": 6,
+              "example_id": "long-held-out",
+              "fixed_external_target": "late",
+              "interval": 3.0,
+              "prediction_or_decision": "late",
+              "target_arrivals": [
+                1.0,
+                4.0
+              ],
+              "target_latency": 4.0,
+              "target_state": -0.2591817793182821
+            }
+          ],
+          "completion_status": "completed",
+          "graph_edges": [
+            [
+              "relay",
+              "target",
+              0.5
+            ],
+            [
+              "noise",
+              "target",
+              2.0
+            ],
+            [
+              "source",
+              "relay",
+              0.5
+            ]
+          ],
+          "graph_fingerprint": "9136c83c7ef4e818f986385172e86be2ba06a93e3bd82cf9212c29bead114831",
+          "latency": [
+            2.0,
+            4.0
+          ],
+          "policy": "random-seed-3",
+          "prediction_error_records": [],
+          "proxy_energy": 12.0,
+          "proxy_energy_unit": "activity-cost-proxy; uncalibrated",
+          "queue_peak": 2,
+          "route_trace": [
+            {
+              "example_id": "short-held-out",
+              "kind": "route",
+              "queue_after": 2,
+              "queue_before": 1,
+              "routed_count": 1,
+              "source": "source",
+              "timestamp": 0.0
+            },
+            {
+              "example_id": "short-held-out",
+              "kind": "route",
+              "queue_after": 2,
+              "queue_before": 1,
+              "routed_count": 1,
+              "source": "relay",
+              "timestamp": 0.5
+            },
+            {
+              "example_id": "short-held-out",
+              "kind": "route",
+              "queue_after": 2,
+              "queue_before": 1,
+              "routed_count": 1,
+              "source": "source",
+              "timestamp": 1.0
+            },
+            {
+              "destination": "target",
+              "event_type": "cue",
+              "example_id": "short-held-out",
+              "kind": "target_arrival",
+              "source": "relay",
+              "timestamp": 1.0
+            },
+            {
+              "example_id": "short-held-out",
+              "kind": "route",
+              "queue_after": 1,
+              "queue_before": 0,
+              "routed_count": 1,
+              "source": "relay",
+              "timestamp": 1.5
+            },
+            {
+              "destination": "target",
+              "event_type": "probe",
+              "example_id": "short-held-out",
+              "kind": "target_arrival",
+              "source": "relay",
+              "timestamp": 2.0
+            },
+            {
+              "example_id": "long-held-out",
+              "kind": "route",
+              "queue_after": 2,
+              "queue_before": 1,
+              "routed_count": 1,
+              "source": "source",
+              "timestamp": 0.0
+            },
+            {
+              "example_id": "long-held-out",
+              "kind": "route",
+              "queue_after": 2,
+              "queue_before": 1,
+              "routed_count": 1,
+              "source": "relay",
+              "timestamp": 0.5
+            },
+            {
+              "destination": "target",
+              "event_type": "cue",
+              "example_id": "long-held-out",
+              "kind": "target_arrival",
+              "source": "relay",
+              "timestamp": 1.0
+            },
+            {
+              "example_id": "long-held-out",
+              "kind": "route",
+              "queue_after": 1,
+              "queue_before": 0,
+              "routed_count": 1,
+              "source": "source",
+              "timestamp": 3.0
+            },
+            {
+              "example_id": "long-held-out",
+              "kind": "route",
+              "queue_after": 1,
+              "queue_before": 0,
+              "routed_count": 1,
+              "source": "relay",
+              "timestamp": 3.5
+            },
+            {
+              "destination": "target",
+              "event_type": "probe",
+              "example_id": "long-held-out",
+              "kind": "target_arrival",
+              "source": "relay",
+              "timestamp": 4.0
+            }
+          ],
+          "task_cases_correct": 2,
+          "task_result": "2/2",
+          "total_events": 12
+        },
+        "graph": [
+          [
+            "relay",
+            "target",
+            0.5
+          ],
+          [
+            "noise",
+            "target",
+            2.0
+          ],
+          [
+            "source",
+            "relay",
+            0.5
+          ]
+        ],
+        "seed": 3,
+        "selected_candidate": "G"
+      },
+      {
+        "evaluation": {
+          "case_results": [
+            {
+              "completion": {
+                "budget_exhausted": false,
+                "completed": true,
+                "configured_event_budget": 24,
+                "peak_queue_occupancy": 2,
+                "pending_event_count": 0,
+                "processed_event_count": 6,
+                "termination_reason": "completed"
+              },
+              "correct": true,
+              "events": 6,
+              "example_id": "short-held-out",
+              "fixed_external_target": "on_time",
+              "interval": 1.0,
+              "prediction_or_decision": "on_time",
+              "target_arrivals": [
+                1.0,
+                2.0
+              ],
+              "target_latency": 2.0,
+              "target_state": -0.09516258196404048
+            },
+            {
+              "completion": {
+                "budget_exhausted": false,
+                "completed": true,
+                "configured_event_budget": 24,
+                "peak_queue_occupancy": 2,
+                "pending_event_count": 0,
+                "processed_event_count": 6,
+                "termination_reason": "completed"
+              },
+              "correct": true,
+              "events": 6,
+              "example_id": "long-held-out",
+              "fixed_external_target": "late",
+              "interval": 3.0,
+              "prediction_or_decision": "late",
+              "target_arrivals": [
+                1.0,
+                4.0
+              ],
+              "target_latency": 4.0,
+              "target_state": -0.2591817793182821
+            }
+          ],
+          "completion_status": "completed",
+          "graph_edges": [
+            [
+              "relay",
+              "target",
+              0.5
+            ],
+            [
+              "noise",
+              "target",
+              2.0
+            ],
+            [
+              "source",
+              "relay",
+              0.5
+            ]
+          ],
+          "graph_fingerprint": "9136c83c7ef4e818f986385172e86be2ba06a93e3bd82cf9212c29bead114831",
+          "latency": [
+            2.0,
+            4.0
+          ],
+          "policy": "random-seed-4",
+          "prediction_error_records": [],
+          "proxy_energy": 12.0,
+          "proxy_energy_unit": "activity-cost-proxy; uncalibrated",
+          "queue_peak": 2,
+          "route_trace": [
+            {
+              "example_id": "short-held-out",
+              "kind": "route",
+              "queue_after": 2,
+              "queue_before": 1,
+              "routed_count": 1,
+              "source": "source",
+              "timestamp": 0.0
+            },
+            {
+              "example_id": "short-held-out",
+              "kind": "route",
+              "queue_after": 2,
+              "queue_before": 1,
+              "routed_count": 1,
+              "source": "relay",
+              "timestamp": 0.5
+            },
+            {
+              "example_id": "short-held-out",
+              "kind": "route",
+              "queue_after": 2,
+              "queue_before": 1,
+              "routed_count": 1,
+              "source": "source",
+              "timestamp": 1.0
+            },
+            {
+              "destination": "target",
+              "event_type": "cue",
+              "example_id": "short-held-out",
+              "kind": "target_arrival",
+              "source": "relay",
+              "timestamp": 1.0
+            },
+            {
+              "example_id": "short-held-out",
+              "kind": "route",
+              "queue_after": 1,
+              "queue_before": 0,
+              "routed_count": 1,
+              "source": "relay",
+              "timestamp": 1.5
+            },
+            {
+              "destination": "target",
+              "event_type": "probe",
+              "example_id": "short-held-out",
+              "kind": "target_arrival",
+              "source": "relay",
+              "timestamp": 2.0
+            },
+            {
+              "example_id": "long-held-out",
+              "kind": "route",
+              "queue_after": 2,
+              "queue_before": 1,
+              "routed_count": 1,
+              "source": "source",
+              "timestamp": 0.0
+            },
+            {
+              "example_id": "long-held-out",
+              "kind": "route",
+              "queue_after": 2,
+              "queue_before": 1,
+              "routed_count": 1,
+              "source": "relay",
+              "timestamp": 0.5
+            },
+            {
+              "destination": "target",
+              "event_type": "cue",
+              "example_id": "long-held-out",
+              "kind": "target_arrival",
+              "source": "relay",
+              "timestamp": 1.0
+            },
+            {
+              "example_id": "long-held-out",
+              "kind": "route",
+              "queue_after": 1,
+              "queue_before": 0,
+              "routed_count": 1,
+              "source": "source",
+              "timestamp": 3.0
+            },
+            {
+              "example_id": "long-held-out",
+              "kind": "route",
+              "queue_after": 1,
+              "queue_before": 0,
+              "routed_count": 1,
+              "source": "relay",
+              "timestamp": 3.5
+            },
+            {
+              "destination": "target",
+              "event_type": "probe",
+              "example_id": "long-held-out",
+              "kind": "target_arrival",
+              "source": "relay",
+              "timestamp": 4.0
+            }
+          ],
+          "task_cases_correct": 2,
+          "task_result": "2/2",
+          "total_events": 12
+        },
+        "graph": [
+          [
+            "relay",
+            "target",
+            0.5
+          ],
+          [
+            "noise",
+            "target",
+            2.0
+          ],
+          [
+            "source",
+            "relay",
+            0.5
+          ]
+        ],
+        "seed": 4,
+        "selected_candidate": "G"
+      }
+    ],
+    "relabelled": {
+      "candidate_evidence": [
+        {
+          "available_time": 2.5,
+          "bounded": true,
+          "candidate": "G",
+          "cost_evidence": {
+            "available_before_decision": true,
+            "predicted_total_path_delay": null,
+            "propagation_delay": 0.5,
+            "used_in_canonical_score": false
+          },
+          "decision_time": 4.0,
+          "endpoint_identity_dependent": false,
+          "field": "temporal_score",
+          "future_dependent": false,
+          "future_records_delivered_after_decision": false,
+          "future_records_used_in_score": false,
+          "label_dependent": false,
+          "local": true,
+          "observation_records": [
+            {
+              "candidate": "G",
+              "elapsed": 0.5,
+              "related_time": 0.5,
+              "source_time": 0.0
+            },
+            {
+              "candidate": "G",
+              "elapsed": 0.5,
+              "related_time": 1.5,
+              "source_time": 1.0
+            },
+            {
+              "candidate": "G",
+              "elapsed": 0.5,
+              "related_time": 2.5,
+              "source_time": 2.0
+            }
+          ],
+          "pre_admission": true,
+          "source_owner": "source-local bounded observation buffer",
+          "used_in_canonical_score": true,
+          "value": 3.0
+        },
+        {
+          "available_time": 3.0,
+          "bounded": true,
+          "candidate": "H",
+          "cost_evidence": {
+            "available_before_decision": true,
+            "predicted_total_path_delay": null,
+            "propagation_delay": 1.0,
+            "used_in_canonical_score": false
+          },
+          "decision_time": 4.0,
+          "endpoint_identity_dependent": false,
+          "field": "temporal_score",
+          "future_dependent": false,
+          "future_records_delivered_after_decision": false,
+          "future_records_used_in_score": false,
+          "label_dependent": false,
+          "local": true,
+          "observation_records": [
+            {
+              "candidate": "H",
+              "elapsed": 3.0,
+              "related_time": 3.0,
+              "source_time": 0.0
+            }
+          ],
+          "pre_admission": true,
+          "source_owner": "source-local bounded observation buffer",
+          "used_in_canonical_score": true,
+          "value": 0.0
+        }
+      ],
+      "candidate_set": [
+        [
+          "node-z",
+          "relay-a",
+          0.5
+        ],
+        [
+          "node-z",
+          "noise-y",
+          1.0
+        ]
+      ],
+      "capacity_before": 3,
+      "capacity_used_before": 2,
+      "chosen_candidate": "G",
+      "evaluation": {
+        "case_results": [
+          {
+            "completion": {
+              "budget_exhausted": false,
+              "completed": true,
+              "configured_event_budget": 24,
+              "peak_queue_occupancy": 2,
+              "pending_event_count": 0,
+              "processed_event_count": 6,
+              "termination_reason": "completed"
+            },
+            "correct": true,
+            "events": 6,
+            "example_id": "short-held-out",
+            "fixed_external_target": "on_time",
+            "interval": 1.0,
+            "prediction_or_decision": "on_time",
+            "target_arrivals": [
+              1.0,
+              2.0
+            ],
+            "target_latency": 2.0,
+            "target_state": -0.09516258196404048
+          },
+          {
+            "completion": {
+              "budget_exhausted": false,
+              "completed": true,
+              "configured_event_budget": 24,
+              "peak_queue_occupancy": 2,
+              "pending_event_count": 0,
+              "processed_event_count": 6,
+              "termination_reason": "completed"
+            },
+            "correct": true,
+            "events": 6,
+            "example_id": "long-held-out",
+            "fixed_external_target": "late",
+            "interval": 3.0,
+            "prediction_or_decision": "late",
+            "target_arrivals": [
+              1.0,
+              4.0
+            ],
+            "target_latency": 4.0,
+            "target_state": -0.2591817793182821
+          }
+        ],
+        "completion_status": "completed",
+        "graph_edges": [
+          [
+            "relay-a",
+            "target-x",
+            0.5
+          ],
+          [
+            "noise-y",
+            "target-x",
+            2.0
+          ],
+          [
+            "node-z",
+            "relay-a",
+            0.5
+          ]
+        ],
+        "graph_fingerprint": "2e0958d8ef79844ce47f6571a09dbb141d5e4538da52d9249127009b0473178e",
+        "latency": [
+          2.0,
+          4.0
+        ],
+        "policy": "current-policy",
+        "prediction_error_records": [],
+        "proxy_energy": 12.0,
+        "proxy_energy_unit": "activity-cost-proxy; uncalibrated",
+        "queue_peak": 2,
+        "route_trace": [
+          {
+            "example_id": "short-held-out",
+            "kind": "route",
+            "queue_after": 2,
+            "queue_before": 1,
+            "routed_count": 1,
+            "source": "node-z",
+            "timestamp": 0.0
+          },
+          {
+            "example_id": "short-held-out",
+            "kind": "route",
+            "queue_after": 2,
+            "queue_before": 1,
+            "routed_count": 1,
+            "source": "relay-a",
+            "timestamp": 0.5
+          },
+          {
+            "example_id": "short-held-out",
+            "kind": "route",
+            "queue_after": 2,
+            "queue_before": 1,
+            "routed_count": 1,
+            "source": "node-z",
+            "timestamp": 1.0
+          },
+          {
+            "destination": "target-x",
+            "event_type": "cue",
+            "example_id": "short-held-out",
+            "kind": "target_arrival",
+            "source": "relay-a",
+            "timestamp": 1.0
+          },
+          {
+            "example_id": "short-held-out",
+            "kind": "route",
+            "queue_after": 1,
+            "queue_before": 0,
+            "routed_count": 1,
+            "source": "relay-a",
+            "timestamp": 1.5
+          },
+          {
+            "destination": "target-x",
+            "event_type": "probe",
+            "example_id": "short-held-out",
+            "kind": "target_arrival",
+            "source": "relay-a",
+            "timestamp": 2.0
+          },
+          {
+            "example_id": "long-held-out",
+            "kind": "route",
+            "queue_after": 2,
+            "queue_before": 1,
+            "routed_count": 1,
+            "source": "node-z",
+            "timestamp": 0.0
+          },
+          {
+            "example_id": "long-held-out",
+            "kind": "route",
+            "queue_after": 2,
+            "queue_before": 1,
+            "routed_count": 1,
+            "source": "relay-a",
+            "timestamp": 0.5
+          },
+          {
+            "destination": "target-x",
+            "event_type": "cue",
+            "example_id": "long-held-out",
+            "kind": "target_arrival",
+            "source": "relay-a",
+            "timestamp": 1.0
+          },
+          {
+            "example_id": "long-held-out",
+            "kind": "route",
+            "queue_after": 1,
+            "queue_before": 0,
+            "routed_count": 1,
+            "source": "node-z",
+            "timestamp": 3.0
+          },
+          {
+            "example_id": "long-held-out",
+            "kind": "route",
+            "queue_after": 1,
+            "queue_before": 0,
+            "routed_count": 1,
+            "source": "relay-a",
+            "timestamp": 3.5
+          },
+          {
+            "destination": "target-x",
+            "event_type": "probe",
+            "example_id": "long-held-out",
+            "kind": "target_arrival",
+            "source": "relay-a",
+            "timestamp": 4.0
+          }
+        ],
+        "task_cases_correct": 2,
+        "task_result": "2/2",
+        "total_events": 12
+      },
+      "fan_in_before": {
+        "node-z": 0,
+        "noise-y": 0,
+        "relay-a": 0,
+        "target-x": 2
+      },
+      "fan_out_before": {
+        "node-z": 0,
+        "noise-y": 1,
+        "relay-a": 1,
+        "target-x": 0
+      },
+      "final_edges": [
+        [
+          "relay-a",
+          "target-x",
+          0.5
+        ],
+        [
+          "noise-y",
+          "target-x",
+          2.0
+        ],
+        [
+          "node-z",
+          "relay-a",
+          0.5
+        ]
+      ],
+      "final_graph_fingerprint": "2e0958d8ef79844ce47f6571a09dbb141d5e4538da52d9249127009b0473178e",
+      "mutation": {
+        "edge": {
+          "destination": "relay-a",
+          "propagation_delay": 0.5,
+          "source": "node-z"
+        },
+        "reason": null,
+        "status": "grown"
+      },
+      "ranks": {
+        "G": 1,
+        "H": 2
+      },
+      "rejected_candidate": "H",
+      "rejection_reason": "lost_one_slot_rank_competition",
+      "relevant_free_slots": 1,
+      "scores": {
+        "G": 3.0,
+        "H": 0.0
+      },
+      "topology_before": [
+        [
+          "relay-a",
+          "target-x",
+          0.5
+        ],
+        [
+          "noise-y",
+          "target-x",
+          2.0
+        ]
+      ]
+    }
+  },
+  "evidence_inventory": {
+    "available": [
+      "CandidateEvidence.score",
+      "observer/source locality",
+      "propagation_delay",
+      "candidate endpoint metadata",
+      "evidence_id tie-break metadata"
+    ],
+    "available_but_not_used": [
+      "propagation_delay; no predicted total path cost"
+    ],
+    "unavailable_before_admission": [
+      "task result",
+      "held-out label",
+      "post-admission traffic",
+      "candidate utility memory",
+      "predicted total path cost",
+      "prediction/error state",
+      "prior reward/eligibility in this fixture"
+    ],
+    "used_by_canonical_scorer": [
+      "score",
+      "source",
+      "destination",
+      "evidence_id only for deterministic tie-break"
+    ]
+  },
+  "evidence_labels": {
+    "HYPOTHESIZED": [
+      "richer authorized pre-admission evidence may be needed outside this fixture"
+    ],
+    "INFERRED": [
+      "duplicate direct/relay arrivals cause the Luna-13D long-case regression"
+    ],
+    "OBSERVED": [
+      "controller score/rank/admission",
+      "held-out task outcomes",
+      "route traces",
+      "bounded execution metrics"
+    ]
+  },
+  "experiment": "Luna-13E post-pruning admission quality and harmful-growth discrimination",
+  "fixture_id": "luna-13e-post-pruning-admission-v1",
+  "frozen_ground_truth": {
+    "G": "source -> beneficial-role intermediate at 0.5, then 0.5 to target; expected held-out task 2/2",
+    "H": "source -> harmful-role intermediate at 1.0, then 2.0 to target; expected held-out task 0/2",
+    "external_only": true,
+    "frozen_before_policy_comparison": true,
+    "task": "Luna-13C interval-deadline task: short interval target on_time, long interval target late"
+  },
+  "provenance": {
+    "baseline_revision": "455386746cbb1b0c46d61f507c3750a7780b9b30",
+    "branch": "main",
+    "environment": {
+      "platform": "Windows-10-10.0.19045-SP0",
+      "python": "3.10.8 (tags/v3.10.8:aaaf517, Oct 11 2022, 16:50:30) [MSC v.1933 64 bit (AMD64)]"
+    },
+    "executed_revision": "f5b84ee67517294ddba377d4933359eacc9688d3",
+    "tree_state_at_generation": "?? artifacts/post-pruning-admission-13e/\n?? workflow/handoffs/post-pruning-admission-quality-Luna-13E.md"
+  },
+  "schema_version": "TPCN-LUNA-13E-1",
+  "stage_A_harmful_growth_reproduction": {
+    "baseline_post_pruning": {
+      "capacity": 6,
+      "capacity_freed": 2,
+      "capacity_policy": "declared-pruning",
+      "capacity_used": 1,
+      "case_results": [
+        {
+          "completion": {
+            "budget_exhausted": false,
+            "completed": true,
+            "configured_event_budget": 24,
+            "last_event_timestamp": 2.0,
+            "peak_queue_occupancy": 2,
+            "pending_event_count": 0,
+            "processed_event_count": 4,
+            "termination_reason": "completed"
+          },
+          "correct": true,
+          "edge_timestamps": {
+            "('right', 'target', 1.0)": [
+              0.0,
+              1.0
+            ]
+          },
+          "events": 4,
+          "example_id": "short-held-out",
+          "fixed_external_target": "on_time",
+          "interval": 1.0,
+          "prediction_or_decision": "on_time",
+          "target_arrivals": [
+            1.0,
+            2.0
+          ],
+          "target_latency": 2.0,
+          "target_state": -0.09516258196404048
+        },
+        {
+          "completion": {
+            "budget_exhausted": false,
+            "completed": true,
+            "configured_event_budget": 24,
+            "last_event_timestamp": 4.0,
+            "peak_queue_occupancy": 2,
+            "pending_event_count": 0,
+            "processed_event_count": 4,
+            "termination_reason": "completed"
+          },
+          "correct": true,
+          "edge_timestamps": {
+            "('right', 'target', 1.0)": [
+              0.0,
+              3.0
+            ]
+          },
+          "events": 4,
+          "example_id": "long-held-out",
+          "fixed_external_target": "late",
+          "interval": 3.0,
+          "prediction_or_decision": "late",
+          "target_arrivals": [
+            1.0,
+            4.0
+          ],
+          "target_latency": 4.0,
+          "target_state": -0.2591817793182821
+        }
+      ],
+      "completion_status": "completed",
+      "edge_evidence": [
+        {
+          "creation_time": 0.0,
+          "edge": [
+            "right",
+            "target",
+            1.0
+          ],
+          "inactivity_age": 1.0,
+          "last_use_timestamp": 3.0,
+          "observed_cost": 4.0,
+          "observed_utility": 4.0,
+          "pruning_score": 4.0,
+          "use_count": 4
+        }
+      ],
+      "edge_traffic": {
+        "('right', 'target', 1.0)": 4
+      },
+      "failure_categories": {
+        "budget_exhaustion": false,
+        "capacity_failure": false,
+        "pruning_related_failure": false,
+        "queue_rejection": false,
+        "task_failure": false
+      },
+      "graph_before": [
+        [
+          "right",
+          "target",
+          1.0
+        ],
+        [
+          "left",
+          "noise",
+          4.0
+        ],
+        [
+          "noise",
+          "target",
+          4.0
+        ]
+      ],
+      "graph_edges": [
+        [
+          "right",
+          "target",
+          1.0
+        ]
+      ],
+      "graph_fingerprint": "3962ea30f82901381d9b998776843ecc25015e75fb47b931e0643549896e9d93",
+      "latency": [
+        2.0,
+        4.0
+      ],
+      "mutations": [
+        {
+          "edge": {
+            "destination": "noise",
+            "propagation_delay": 4.0,
+            "source": "left"
+          },
+          "reason": "inactivity_and_utility",
+          "status": "pruned"
+        },
+        {
+          "edge": {
+            "destination": "target",
+            "propagation_delay": 4.0,
+            "source": "noise"
+          },
+          "reason": "inactivity_and_utility",
+          "status": "pruned"
+        }
+      ],
+      "proxy_energy": 8.0,
+      "proxy_energy_unit": "activity-cost-proxy; uncalibrated",
+      "pruning_evidence": [
+        {
+          "creation_time": 0.0,
+          "edge": [
+            "right",
+            "target",
+            1.0
+          ],
+          "eligibility_reason": "retained",
+          "eligible": false,
+          "inactivity_age": 1.0,
+          "last_use_timestamp": 3.0,
+          "observed_cost": 4.0,
+          "observed_utility": 4.0,
+          "pruning_score": 4.0,
+          "use_count": 4
+        },
+        {
+          "creation_time": 0.0,
+          "edge": [
+            "left",
+            "noise",
+            4.0
+          ],
+          "eligibility_reason": "inactivity_and_utility",
+          "eligible": true,
+          "inactivity_age": 4.0,
+          "last_use_timestamp": null,
+          "observed_cost": 0.0,
+          "observed_utility": 0.0,
+          "pruning_score": 0.0,
+          "use_count": 0
+        },
+        {
+          "creation_time": 0.0,
+          "edge": [
+            "noise",
+            "target",
+            4.0
+          ],
+          "eligibility_reason": "inactivity_and_utility",
+          "eligible": true,
+          "inactivity_age": 4.0,
+          "last_use_timestamp": null,
+          "observed_cost": 0.0,
+          "observed_utility": 0.0,
+          "pruning_score": 0.0,
+          "use_count": 0
+        }
+      ],
+      "queue_peak": 2,
+      "remaining_slots": 5,
+      "task_cases_correct": 2,
+      "task_result": "2/2",
+      "total_events": 8,
+      "useful_edge_present": true
+    },
+    "diagnostic_trace": {
+      "baseline_post_pruning": [
+        {
+          "completion": {
+            "budget_exhausted": false,
+            "completed": true,
+            "configured_event_budget": 24,
+            "last_event_timestamp": 2.0,
+            "peak_queue_occupancy": 2,
+            "pending_event_count": 0,
+            "processed_event_count": 4,
+            "termination_reason": "completed"
+          },
+          "correct": true,
+          "edge_timestamps": {
+            "('right', 'target', 1.0)": [
+              0.0,
+              1.0
+            ]
+          },
+          "events": 4,
+          "example_id": "short-held-out",
+          "fixed_external_target": "on_time",
+          "interval": 1.0,
+          "prediction_or_decision": "on_time",
+          "target_arrivals": [
+            1.0,
+            2.0
+          ],
+          "target_latency": 2.0,
+          "target_state": -0.09516258196404048
+        },
+        {
+          "completion": {
+            "budget_exhausted": false,
+            "completed": true,
+            "configured_event_budget": 24,
+            "last_event_timestamp": 4.0,
+            "peak_queue_occupancy": 2,
+            "pending_event_count": 0,
+            "processed_event_count": 4,
+            "termination_reason": "completed"
+          },
+          "correct": true,
+          "edge_timestamps": {
+            "('right', 'target', 1.0)": [
+              0.0,
+              3.0
+            ]
+          },
+          "events": 4,
+          "example_id": "long-held-out",
+          "fixed_external_target": "late",
+          "interval": 3.0,
+          "prediction_or_decision": "late",
+          "target_arrivals": [
+            1.0,
+            4.0
+          ],
+          "target_latency": 4.0,
+          "target_state": -0.2591817793182821
+        }
+      ],
+      "harmful_post_growth": [
+        {
+          "completion": {
+            "budget_exhausted": false,
+            "completed": true,
+            "configured_event_budget": 24,
+            "last_event_timestamp": 2.0,
+            "peak_queue_occupancy": 4,
+            "pending_event_count": 0,
+            "processed_event_count": 8,
+            "termination_reason": "completed"
+          },
+          "correct": true,
+          "edge_timestamps": {
+            "('relay', 'target', 0.5)": [
+              0.5,
+              1.5
+            ],
+            "('right', 'relay', 0.5)": [
+              0.0,
+              1.0
+            ],
+            "('right', 'target', 1.0)": [
+              0.0,
+              1.0
+            ]
+          },
+          "events": 8,
+          "example_id": "short-held-out",
+          "fixed_external_target": "on_time",
+          "interval": 1.0,
+          "prediction_or_decision": "on_time",
+          "target_arrivals": [
+            1.0,
+            1.0,
+            2.0,
+            2.0
+          ],
+          "target_latency": 1.0,
+          "target_state": -1.0
+        },
+        {
+          "completion": {
+            "budget_exhausted": false,
+            "completed": true,
+            "configured_event_budget": 24,
+            "last_event_timestamp": 4.0,
+            "peak_queue_occupancy": 3,
+            "pending_event_count": 0,
+            "processed_event_count": 8,
+            "termination_reason": "completed"
+          },
+          "correct": false,
+          "edge_timestamps": {
+            "('relay', 'target', 0.5)": [
+              0.5,
+              3.5
+            ],
+            "('right', 'relay', 0.5)": [
+              0.0,
+              3.0
+            ],
+            "('right', 'target', 1.0)": [
+              0.0,
+              3.0
+            ]
+          },
+          "events": 8,
+          "example_id": "long-held-out",
+          "fixed_external_target": "late",
+          "interval": 3.0,
+          "prediction_or_decision": "on_time",
+          "target_arrivals": [
+            1.0,
+            1.0,
+            4.0,
+            4.0
+          ],
+          "target_latency": 1.0,
+          "target_state": -1.0
+        }
+      ],
+      "prediction_error_records": []
+    },
+    "fixture_id": "luna-13d-interval-deadline-capacity-v1",
+    "harmful_post_growth": {
+      "capacity": 6,
+      "capacity_freed_before_growth": 2,
+      "capacity_policy": "post-pruning-growth",
+      "capacity_used": 3,
+      "case_results": [
+        {
+          "completion": {
+            "budget_exhausted": false,
+            "completed": true,
+            "configured_event_budget": 24,
+            "last_event_timestamp": 2.0,
+            "peak_queue_occupancy": 4,
+            "pending_event_count": 0,
+            "processed_event_count": 8,
+            "termination_reason": "completed"
+          },
+          "correct": true,
+          "edge_timestamps": {
+            "('relay', 'target', 0.5)": [
+              0.5,
+              1.5
+            ],
+            "('right', 'relay', 0.5)": [
+              0.0,
+              1.0
+            ],
+            "('right', 'target', 1.0)": [
+              0.0,
+              1.0
+            ]
+          },
+          "events": 8,
+          "example_id": "short-held-out",
+          "fixed_external_target": "on_time",
+          "interval": 1.0,
+          "prediction_or_decision": "on_time",
+          "target_arrivals": [
+            1.0,
+            1.0,
+            2.0,
+            2.0
+          ],
+          "target_latency": 1.0,
+          "target_state": -1.0
+        },
+        {
+          "completion": {
+            "budget_exhausted": false,
+            "completed": true,
+            "configured_event_budget": 24,
+            "last_event_timestamp": 4.0,
+            "peak_queue_occupancy": 3,
+            "pending_event_count": 0,
+            "processed_event_count": 8,
+            "termination_reason": "completed"
+          },
+          "correct": false,
+          "edge_timestamps": {
+            "('relay', 'target', 0.5)": [
+              0.5,
+              3.5
+            ],
+            "('right', 'relay', 0.5)": [
+              0.0,
+              3.0
+            ],
+            "('right', 'target', 1.0)": [
+              0.0,
+              3.0
+            ]
+          },
+          "events": 8,
+          "example_id": "long-held-out",
+          "fixed_external_target": "late",
+          "interval": 3.0,
+          "prediction_or_decision": "on_time",
+          "target_arrivals": [
+            1.0,
+            1.0,
+            4.0,
+            4.0
+          ],
+          "target_latency": 1.0,
+          "target_state": -1.0
+        }
+      ],
+      "completion_status": "completed",
+      "edge_evidence": [
+        {
+          "creation_time": 0.0,
+          "edge": [
+            "right",
+            "target",
+            1.0
+          ],
+          "inactivity_age": 1.0,
+          "last_use_timestamp": 3.0,
+          "observed_cost": 4.0,
+          "observed_utility": 4.0,
+          "pruning_score": 4.0,
+          "use_count": 4
+        },
+        {
+          "creation_time": 0.0,
+          "edge": [
+            "right",
+            "relay",
+            0.5
+          ],
+          "inactivity_age": 1.0,
+          "last_use_timestamp": 3.0,
+          "observed_cost": 2.0,
+          "observed_utility": 4.0,
+          "pruning_score": 4.0,
+          "use_count": 4
+        },
+        {
+          "creation_time": 0.0,
+          "edge": [
+            "relay",
+            "target",
+            0.5
+          ],
+          "inactivity_age": 0.5,
+          "last_use_timestamp": 3.5,
+          "observed_cost": 2.0,
+          "observed_utility": 4.0,
+          "pruning_score": 4.0,
+          "use_count": 4
+        }
+      ],
+      "edge_traffic": {
+        "('relay', 'target', 0.5)": 4,
+        "('right', 'relay', 0.5)": 4,
+        "('right', 'target', 1.0)": 4
+      },
+      "failure_categories": {
+        "budget_exhaustion": false,
+        "capacity_failure": false,
+        "pruning_related_failure": false,
+        "queue_rejection": false,
+        "task_failure": true
+      },
+      "graph_edges": [
+        [
+          "right",
+          "target",
+          1.0
+        ],
+        [
+          "right",
+          "relay",
+          0.5
+        ],
+        [
+          "relay",
+          "target",
+          0.5
+        ]
+      ],
+      "graph_fingerprint": "6cdcd7ed3ec7df93875d7a0b94e1daecc291effdb7c8757b44907fba54cf2469",
+      "latency": [
+        1.0,
+        1.0
+      ],
+      "mutations": [
+        {
+          "edge": {
+            "destination": "relay",
+            "propagation_delay": 0.5,
+            "source": "right"
+          },
+          "reason": null,
+          "status": "grown"
+        },
+        {
+          "edge": {
+            "destination": "target",
+            "propagation_delay": 0.5,
+            "source": "relay"
+          },
+          "reason": null,
+          "status": "grown"
+        }
+      ],
+      "proxy_energy": 16.0,
+      "proxy_energy_unit": "activity-cost-proxy; uncalibrated",
+      "queue_peak": 4,
+      "remaining_slots": 3,
+      "task_cases_correct": 1,
+      "task_result": "1/2",
+      "total_events": 16,
+      "useful_edge_present": true
+    },
+    "mechanism": "duplicate direct/relay target arrivals make the long case on_time; the fixed target is late"
+  },
+  "threshold_and_abstention": {
+    "abstention_supported": false,
+    "confidence_threshold": null,
+    "forced_growth_when_selected": true,
+    "negative_score_growth": {
+      "edge": {
+        "destination": "noise",
+        "propagation_delay": 1.0,
+        "source": "source"
+      },
+      "reason": null,
+      "status": "grown"
+    },
+    "score_threshold": null
+  }
+}
