@@ -166,6 +166,7 @@ def _evaluate(config: FiniteResourceConfig, edges: tuple[EdgeTuple, ...], capaci
             "prediction_or_decision": decision,
             "correct": decision == expected_target,
             "target_arrivals": tuple(arrivals),
+            "target_state": neurons[target].state,
             "target_latency": second_arrival,
             "events": execution.processed_event_count,
             "completion": asdict(execution),
