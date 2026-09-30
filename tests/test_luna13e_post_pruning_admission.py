@@ -18,6 +18,7 @@ def test_harmful_growth_reference_and_candidate_ground_truth_are_frozen() -> Non
     assert reference["harmful_post_growth"]["task_result"] == "1/2"
     assert reference["harmful_post_growth"]["total_events"] == 16
     assert reference["harmful_post_growth"]["proxy_energy"] == 16.0
+    assert "expected held-out task 1/2" in artifact["frozen_ground_truth"]["H"]
     assert reference["diagnostic_trace"]["harmful_post_growth"][1]["target_state"] is not None
     assert reference["diagnostic_trace"]["harmful_post_growth"][1]["target_arrivals"] == (1.0, 1.0, 4.0, 4.0)
     assert artifact["frozen_ground_truth"]["external_only"]

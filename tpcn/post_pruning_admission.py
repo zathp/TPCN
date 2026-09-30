@@ -355,7 +355,7 @@ def run_experiment(config: AdmissionQualityConfig = AdmissionQualityConfig()) ->
         },
         "frozen_ground_truth": {
             "G": "source -> beneficial-role intermediate at 0.5, then 0.5 to target; expected held-out task 2/2",
-            "H": "source -> harmful-role intermediate at 1.0, then 2.0 to target; expected held-out task 0/2",
+            "H": "source -> harmful-role intermediate at 1.0, then 2.0 to target; expected held-out task 1/2",
             "external_only": True,
             "frozen_before_policy_comparison": True,
             "task": "Luna-13C interval-deadline task: short interval target on_time, long interval target late",
