@@ -11,7 +11,7 @@ tpcn_handoff:
   contract_version: "1.1"
   branch: "main"
   base_revision: "0ba668ebe6cccd52fb0953638e1159090a79221e"
-  result_revision: "995285c5aedbe6bacdf5d9a617e63024cce2060a"
+  result_revision: "published review package; final revision reported by publication verification"
   dependencies: ["Luna-13B", "Luna-13C", "corrected Luna-13D", "independently reviewed Luna-13E"]
   owner: "Luna-0 / project owner"
   classification: ["VERIFICATION", "EXPERIMENT", "ARCHITECTURE-REVIEW", "CPU-only"]
