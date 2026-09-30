@@ -1876,6 +1876,9 @@ corrected artifact regeneration is byte-identical. Final review status:
 ESTABLISHED`. The next question may examine harmful post-pruning admission;
 Luna-13E is not created or authorized.
 
+The final Luna-0 review publication revision is
+`becf38952fe5c1cf738dd875246b672f82836093`.
+
 ## Luna-13 — GPU-Compatible Visualization Path
 
 **Authorization:** Blocked until Luna-12 passes and Luna-0 explicitly authorizes this milestone. The prompt or handoff alone is not authorization.

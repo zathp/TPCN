@@ -11,6 +11,7 @@ post-pruning adaptation or resource efficiency.
 ## Provenance
 
 - Review starting revision: `206a3b8463ef857db5e5d5b8d2679d7e877f3bab`
+- Final Luna-0 review publication revision: `becf38952fe5c1cf738dd875246b672f82836093`
 - Corrective implementation reviewed:
   `9ae2fb6574a4a45fa6a47c18e9aa7270bd4d3080`
 - Corrective starting revision:

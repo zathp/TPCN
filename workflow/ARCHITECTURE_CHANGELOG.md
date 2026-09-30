@@ -583,3 +583,6 @@ Final review status:
 ESTABLISHED`. Luna-13E is not created or authorized. No A01-A15 clause or ACP
 status changed.
 
+The final Luna-0 review publication revision is
+`becf38952fe5c1cf738dd875246b672f82836093`.
+
