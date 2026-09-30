@@ -13,7 +13,8 @@ tpcn_handoff:
   contract_version: "1.2"
   branch: main
   base_revision: 28783d718a98e2eec74934afed13bbc115df784a
-  result_revision: "implementation commit; artifact publication commit recorded below"
+  result_revision: 72b6201c8c06ecda23d67d547955c956dd747a80
+  artifact_publication_revision: b5815f90522c1704731037c5d5fd1bface264565
   starting_tree_state: clean
   executed_tree_state: dirty_by_authorized_corrective_changes
   owner: Luna-0 / project owner
