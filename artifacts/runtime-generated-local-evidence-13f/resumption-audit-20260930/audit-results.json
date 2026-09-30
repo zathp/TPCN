@@ -1,0 +1,376 @@
+{
+  "architecture_conclusion": {
+    "HYPOTHESIZED": "An architecture-compatible ordinary-runtime fixture may exist; impossibility is not established.",
+    "INFERRED": "This prototype cannot substantiate runtime-generated useful discrimination.",
+    "OBSERVED": "Existing policy accumulates bounded counts; role-keyed schedule manufactures their informativeness.",
+    "architecture_change_implemented": false,
+    "architecture_change_required": "not established"
+  },
+  "checks": [
+    {
+      "check": "matched_candidate_exposure",
+      "evidence_label": "OBSERVED",
+      "observed": {
+        "noise": 1,
+        "relay": 3
+      },
+      "status": "failed"
+    },
+    {
+      "check": "fixture_role_free_evidence_generation",
+      "evidence_label": "OBSERVED",
+      "observed": {
+        "primary_schedule": [
+          {
+            "destination": "source",
+            "event_type": "local_anchor",
+            "payload": 1.0,
+            "source": "source",
+            "timestamp": 0.0
+          },
+          {
+            "destination": "source",
+            "event_type": "candidate_observation",
+            "payload": 0.5,
+            "source": "relay",
+            "timestamp": 0.5
+          },
+          {
+            "destination": "source",
+            "event_type": "local_anchor",
+            "payload": 1.0,
+            "source": "source",
+            "timestamp": 1.0
+          },
+          {
+            "destination": "source",
+            "event_type": "candidate_observation",
+            "payload": 0.5,
+            "source": "relay",
+            "timestamp": 1.5
+          },
+          {
+            "destination": "source",
+            "event_type": "local_anchor",
+            "payload": 1.0,
+            "source": "source",
+            "timestamp": 2.0
+          },
+          {
+            "destination": "source",
+            "event_type": "candidate_observation",
+            "payload": 0.5,
+            "source": "relay",
+            "timestamp": 2.5
+          },
+          {
+            "destination": "source",
+            "event_type": "local_anchor",
+            "payload": 1.0,
+            "source": "source",
+            "timestamp": 3.0
+          },
+          {
+            "destination": "source",
+            "event_type": "candidate_observation",
+            "payload": 0.5,
+            "source": "noise",
+            "timestamp": 6.0
+          }
+        ],
+        "schedule_role_dependency": true,
+        "source_lines": [
+          98,
+          141
+        ]
+      },
+      "status": "failed"
+    },
+    {
+      "check": "post_decision_events_cannot_change_frozen_decision",
+      "evidence_label": "OBSERVED",
+      "observed": {
+        "all_appended_after_original_decision": true,
+        "appended_timestamps": [
+          7.0,
+          7.5,
+          9.0,
+          9.5,
+          11.0,
+          11.5,
+          13.0,
+          13.5
+        ],
+        "baseline": {
+          "decision_timestamp": 6.0,
+          "execution": {
+            "budget_exhausted": false,
+            "completed": true,
+            "configured_event_budget": 32,
+            "peak_queue_occupancy": 8,
+            "pending_event_count": 0,
+            "processed_event_count": 8,
+            "termination_reason": "completed"
+          },
+          "scores": {
+            "('source', 'noise')": 0.0,
+            "('source', 'relay')": 3.0
+          },
+          "selected_candidate": "G",
+          "selected_result": {
+            "edge": {
+              "destination": "relay",
+              "propagation_delay": 0.5,
+              "source": "source"
+            },
+            "reason": null,
+            "status": "grown"
+          }
+        },
+        "future_only_mutation": {
+          "decision_timestamp": 13.5,
+          "execution": {
+            "budget_exhausted": false,
+            "completed": true,
+            "configured_event_budget": 32,
+            "peak_queue_occupancy": 16,
+            "pending_event_count": 0,
+            "processed_event_count": 16,
+            "termination_reason": "completed"
+          },
+          "scores": {
+            "('source', 'noise')": 4.0,
+            "('source', 'relay')": 3.0
+          },
+          "selected_candidate": "H",
+          "selected_result": {
+            "edge": {
+              "destination": "noise",
+              "propagation_delay": 1.0,
+              "source": "source"
+            },
+            "reason": null,
+            "status": "grown"
+          }
+        }
+      },
+      "status": "failed"
+    },
+    {
+      "check": "incomplete_evidence_run_does_not_admit_growth",
+      "evidence_label": "OBSERVED",
+      "observed": {
+        "decision_timestamp": 0.5,
+        "execution": {
+          "budget_exhausted": true,
+          "completed": false,
+          "configured_event_budget": 2,
+          "peak_queue_occupancy": 8,
+          "pending_event_count": 6,
+          "processed_event_count": 2,
+          "termination_reason": "budget_exhausted"
+        },
+        "scores": {
+          "('source', 'noise')": 0.0,
+          "('source', 'relay')": 1.0
+        },
+        "selected_candidate": "G",
+        "selected_result": {
+          "edge": {
+            "destination": "relay",
+            "propagation_delay": 0.5,
+            "source": "source"
+          },
+          "reason": null,
+          "status": "grown"
+        }
+      },
+      "status": "failed"
+    },
+    {
+      "check": "evidence_equalization_produces_actual_tie",
+      "evidence_label": "OBSERVED",
+      "observed": {
+        "('source', 'noise')": 1.0,
+        "('source', 'relay')": 2.0
+      },
+      "status": "failed"
+    },
+    {
+      "check": "no_evidence_preserves_candidate_opportunity",
+      "evidence_label": "OBSERVED",
+      "observed": {
+        "candidate_set": [],
+        "selected_candidate": null
+      },
+      "status": "failed"
+    },
+    {
+      "check": "canonical_zero_score_tie_is_explicit",
+      "evidence_label": "OBSERVED",
+      "observed": {
+        "interpretation": "Diagnostic only: canonical scorer has no abstention threshold.",
+        "scores": {
+          "('source', 'noise')": 0.0,
+          "('source', 'relay')": 0.0
+        },
+        "selected_candidate": "H"
+      },
+      "status": "passed"
+    },
+    {
+      "check": "held_out_timestamps_later_than_decision",
+      "evidence_label": "OBSERVED",
+      "observed": {
+        "decision_timestamp": 6.0,
+        "held_out_min_timestamp": 0.0
+      },
+      "status": "failed"
+    },
+    {
+      "check": "reported_updates_are_actual_score_deltas",
+      "evidence_label": "OBSERVED",
+      "observed": {
+        "actual_count_deltas": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "reported_updates": [
+          1.0,
+          2.0,
+          3.0
+        ]
+      },
+      "status": "failed"
+    },
+    {
+      "check": "two_legal_candidates_one_free_slot",
+      "evidence_label": "OBSERVED",
+      "observed": {
+        "final_edges": [
+          [
+            "relay",
+            "target",
+            0.5
+          ],
+          [
+            "noise",
+            "target",
+            2.0
+          ],
+          [
+            "source",
+            "relay",
+            0.5
+          ]
+        ],
+        "free_slots": 1,
+        "legal_candidates": {
+          "G": true,
+          "H": true
+        }
+      },
+      "status": "passed"
+    },
+    {
+      "check": "deterministic_replay",
+      "evidence_label": "OBSERVED",
+      "observed": {},
+      "status": "passed"
+    },
+    {
+      "check": "three_original_sources_compile_in_memory",
+      "evidence_label": "OBSERVED",
+      "observed": [
+        "tpcn/runtime_generated_evidence.py",
+        "run_runtime_generated_evidence_13f.py",
+        "tests/test_luna13f_runtime_generated_evidence.py"
+      ],
+      "status": "passed"
+    },
+    {
+      "check": "original_five_files_preserved_and_backup_exact",
+      "evidence_label": "OBSERVED",
+      "observed": {
+        "backup_sha256": {
+          "artifacts/runtime-generated-local-evidence-13f/results.json": "20535bb2e5945272286060e7bcb1b4553dca5937760d63ccf62273830f5555c4",
+          "artifacts/runtime-generated-local-evidence-13f/summary.json": "009c2c61ae2b81a61948972ed04b6a2a708aa1dfc73edbf4c091ba294d5efcb7",
+          "run_runtime_generated_evidence_13f.py": "ea14917c94f3571968b86238ca34341e79bc8277dd0326b85c662cab07928aab",
+          "tests/test_luna13f_runtime_generated_evidence.py": "43f6c411cc3470a9239c7765267b88e7b6486e8f1f79fffc63b7866fd9bddd4f",
+          "tpcn/runtime_generated_evidence.py": "1ee2f154c7ca637d653ad05fe5c74aa2cd7fdf33a5ad866a911119cbfed14c80"
+        },
+        "current_sha256": {
+          "artifacts/runtime-generated-local-evidence-13f/results.json": "20535bb2e5945272286060e7bcb1b4553dca5937760d63ccf62273830f5555c4",
+          "artifacts/runtime-generated-local-evidence-13f/summary.json": "009c2c61ae2b81a61948972ed04b6a2a708aa1dfc73edbf4c091ba294d5efcb7",
+          "run_runtime_generated_evidence_13f.py": "4174115c887c60f682a5f223a59788f7972dd28c15f8e3e317dead692c973831",
+          "tests/test_luna13f_runtime_generated_evidence.py": "4cddd367b9fe7b032efa6d8a0c1f86413345c8a016bf0e4805bc6cb6039263ff",
+          "tpcn/runtime_generated_evidence.py": "52751632a21814424a24e14eb3a4837da59bd508cf97858a5463c8aaaf287468"
+        },
+        "original_sha256": {
+          "artifacts/runtime-generated-local-evidence-13f/results.json": "20535bb2e5945272286060e7bcb1b4553dca5937760d63ccf62273830f5555c4",
+          "artifacts/runtime-generated-local-evidence-13f/summary.json": "009c2c61ae2b81a61948972ed04b6a2a708aa1dfc73edbf4c091ba294d5efcb7",
+          "run_runtime_generated_evidence_13f.py": "ea14917c94f3571968b86238ca34341e79bc8277dd0326b85c662cab07928aab",
+          "tests/test_luna13f_runtime_generated_evidence.py": "43f6c411cc3470a9239c7765267b88e7b6486e8f1f79fffc63b7866fd9bddd4f",
+          "tpcn/runtime_generated_evidence.py": "1ee2f154c7ca637d653ad05fe5c74aa2cd7fdf33a5ad866a911119cbfed14c80"
+        }
+      },
+      "status": "passed"
+    },
+    {
+      "check": "external_label_mutation",
+      "reason": "Not established by preserved prototype; contamination blocks success.",
+      "status": "not_run"
+    },
+    {
+      "check": "locality_attack",
+      "reason": "Not established by preserved prototype; contamination blocks success.",
+      "status": "not_run"
+    },
+    {
+      "check": "neutral_decay_runtime_sweep",
+      "reason": "Not established by preserved prototype; contamination blocks success.",
+      "status": "not_run"
+    },
+    {
+      "check": "candidate_saturation_reset_eviction",
+      "reason": "Not established by preserved prototype; contamination blocks success.",
+      "status": "not_run"
+    },
+    {
+      "check": "valid_mirrored_roles",
+      "reason": "Not established by preserved prototype; contamination blocks success.",
+      "status": "not_run"
+    }
+  ],
+  "next_execution_state": "Luna-0 independent review of blocked Luna-13F and corrective fixture scope; Luna-13G unauthorized.",
+  "parent_verified_baseline_checks": {
+    "command": "python -B -m pytest -q -p no:cacheprovider",
+    "focused": "8 passed",
+    "full_cpu": "284 passed, 1 skipped in 9.27s",
+    "other": "Saved artifact semantic replay and whitespace checks passed; no editor diagnostic provider invoked.",
+    "source": "Parent agent live Desktop Commander baseline audit, unchanged original files"
+  },
+  "provenance": {
+    "audit_script_sha256": "69d7d5c7737e42be130f33b22a9865422a0c3a8148fd40c5c91a826a2c180bcc",
+    "backup_directory": "C:\\Users\\zathp\\Documents\\programming\\TPCN-Luna-13F-backup-20260930-143250",
+    "branch": "main",
+    "committed_tree": "f49d4c46d751abce52944b11fa005312c122974a",
+    "executed_committed_revision": "f0821bd5eb0441ea892c463cbbcf173c80d09be6",
+    "executed_source_note": "Current source is identified by SHA-256; the original backup manifest is retained separately.",
+    "generation_status": "?? artifacts/runtime-generated-local-evidence-13f-verified/results.json\n?? artifacts/runtime-generated-local-evidence-13f-verified/summary.json\n?? artifacts/runtime-generated-local-evidence-13f/results.json\n?? artifacts/runtime-generated-local-evidence-13f/resumption-audit-20260930/audit-results.json\n?? artifacts/runtime-generated-local-evidence-13f/resumption-audit-20260930/audit_luna13f.py\n?? artifacts/runtime-generated-local-evidence-13f/summary.json\n?? run_runtime_generated_evidence_13f.py\n?? tests/test_luna13f_runtime_generated_evidence.py\n?? tpcn/runtime_generated_evidence.py\n?? workflow/handoffs/runtime-generated-local-candidate-evidence-Luna-13F.md",
+    "original_sha256": {
+      "artifacts/runtime-generated-local-evidence-13f/results.json": "20535bb2e5945272286060e7bcb1b4553dca5937760d63ccf62273830f5555c4",
+      "artifacts/runtime-generated-local-evidence-13f/summary.json": "009c2c61ae2b81a61948972ed04b6a2a708aa1dfc73edbf4c091ba294d5efcb7",
+      "run_runtime_generated_evidence_13f.py": "4174115c887c60f682a5f223a59788f7972dd28c15f8e3e317dead692c973831",
+      "tests/test_luna13f_runtime_generated_evidence.py": "4cddd367b9fe7b032efa6d8a0c1f86413345c8a016bf0e4805bc6cb6039263ff",
+      "tpcn/runtime_generated_evidence.py": "52751632a21814424a24e14eb3a4837da59bd508cf97858a5463c8aaaf287468"
+    },
+    "platform": "Windows-10-10.0.19045-SP0",
+    "python": "3.10.8 (tags/v3.10.8:aaaf517, Oct 11 2022, 16:50:30) [MSC v.1933 64 bit (AMD64)]",
+    "source_manifest_sha256": "8ba2220dc4fd9997acea0472a1181c69f98f45c1da17826ee6c03773b2ff39dc",
+    "starting_revision": "f0821bd5eb0441ea892c463cbbcf173c80d09be6"
+  },
+  "schema_version": "TPCN-LUNA-13F-RESUMPTION-AUDIT-1",
+  "terminal_status": "BLOCKED - FIXTURE/ORACLE EVIDENCE CONTAMINATION"
+}

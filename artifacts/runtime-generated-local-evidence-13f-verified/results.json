@@ -1,0 +1,5174 @@
+{
+  "analytic_expectation": {
+    "expected_order": "beneficial-role endpoint before harmful-role endpoint in the primary schedule",
+    "expected_primary_scores": "three bounded short associations versus zero long association",
+    "held_out_evaluation_not_used": true,
+    "mechanism": "TemporalAssociationPolicy increments a source-local candidate score for each observed source anchor followed within the association window by a candidate event."
+  },
+  "claim_boundary": "Only the tested fixture may support a claim about runtime-generated bounded evidence; no general utility or resource-efficiency claim is permitted.",
+  "configuration": {
+    "association_window": 2.0,
+    "beneficial_role": "relay",
+    "candidate_capacity": 2,
+    "edge_capacity": 3,
+    "event_budget": 32,
+    "fan_in_limit": 2,
+    "fan_out_limit": 1,
+    "fixture_id": "luna-13f-runtime-generated-local-evidence-v1",
+    "harmful_role": "noise",
+    "history_capacity": 8,
+    "node_ids": [
+      "source",
+      "relay",
+      "noise",
+      "target"
+    ],
+    "queue_capacity": 16,
+    "random_seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ]
+  },
+  "controls": {
+    "candidate_order": {
+      "candidate_order_reversed": true,
+      "candidate_set": [
+        [
+          "source",
+          "relay",
+          0.5
+        ],
+        [
+          "source",
+          "noise",
+          1.0
+        ]
+      ],
+      "edge_capacity": 3,
+      "edge_count_before": 2,
+      "fan_in_before": {
+        "noise": 0,
+        "relay": 0,
+        "source": 0,
+        "target": 2
+      },
+      "fan_out_before": {
+        "noise": 1,
+        "relay": 1,
+        "source": 0,
+        "target": 0
+      },
+      "final_edges": [
+        [
+          "relay",
+          "target",
+          0.5
+        ],
+        [
+          "noise",
+          "target",
+          2.0
+        ],
+        [
+          "source",
+          "relay",
+          0.5
+        ]
+      ],
+      "final_graph_fingerprint": "9136c83c7ef4e818f986385172e86be2ba06a93e3bd82cf9212c29bead114831",
+      "legal_candidates": {
+        "G": true,
+        "H": true
+      },
+      "ranked_candidates": [
+        [
+          "source",
+          "relay"
+        ],
+        [
+          "source",
+          "noise"
+        ]
+      ],
+      "rejected_candidates": [
+        {
+          "candidate": [
+            "source",
+            "noise"
+          ],
+          "reason": "edge_capacity",
+          "status": "full_capacity"
+        }
+      ],
+      "relevant_free_slots": 1,
+      "scores": {
+        "('source', 'noise')": 0.0,
+        "('source', 'relay')": 3.0
+      },
+      "selected_candidate": "G",
+      "selected_edge": [
+        "source",
+        "relay",
+        0.5
+      ],
+      "selected_result": {
+        "edge": {
+          "destination": "relay",
+          "propagation_delay": 0.5,
+          "source": "source"
+        },
+        "reason": null,
+        "status": "grown"
+      },
+      "tie_rule": "score descending, then source, destination, evidence_id ascending",
+      "topology_before": [
+        [
+          "relay",
+          "target",
+          0.5
+        ],
+        [
+          "noise",
+          "target",
+          2.0
+        ]
+      ]
+    },
+    "evidence_equalized": {
+      "admission": {
+        "candidate_order_reversed": false,
+        "candidate_set": [
+          [
+            "source",
+            "relay",
+            0.5
+          ],
+          [
+            "source",
+            "noise",
+            1.0
+          ]
+        ],
+        "edge_capacity": 3,
+        "edge_count_before": 2,
+        "fan_in_before": {
+          "noise": 0,
+          "relay": 0,
+          "source": 0,
+          "target": 2
+        },
+        "fan_out_before": {
+          "noise": 1,
+          "relay": 1,
+          "source": 0,
+          "target": 0
+        },
+        "final_edges": [
+          [
+            "relay",
+            "target",
+            0.5
+          ],
+          [
+            "noise",
+            "target",
+            2.0
+          ],
+          [
+            "source",
+            "relay",
+            0.5
+          ]
+        ],
+        "final_graph_fingerprint": "9136c83c7ef4e818f986385172e86be2ba06a93e3bd82cf9212c29bead114831",
+        "legal_candidates": {
+          "G": true,
+          "H": true
+        },
+        "ranked_candidates": [
+          [
+            "source",
+            "relay"
+          ],
+          [
+            "source",
+            "noise"
+          ]
+        ],
+        "rejected_candidates": [
+          {
+            "candidate": [
+              "source",
+              "noise"
+            ],
+            "reason": "edge_capacity",
+            "status": "full_capacity"
+          }
+        ],
+        "relevant_free_slots": 1,
+        "scores": {
+          "('source', 'noise')": 1.0,
+          "('source', 'relay')": 2.0
+        },
+        "selected_candidate": "G",
+        "selected_edge": [
+          "source",
+          "relay",
+          0.5
+        ],
+        "selected_result": {
+          "edge": {
+            "destination": "relay",
+            "propagation_delay": 0.5,
+            "source": "source"
+          },
+          "reason": null,
+          "status": "grown"
+        },
+        "tie_rule": "score descending, then source, destination, evidence_id ascending",
+        "topology_before": [
+          [
+            "relay",
+            "target",
+            0.5
+          ],
+          [
+            "noise",
+            "target",
+            2.0
+          ]
+        ]
+      },
+      "runtime": {
+        "bounds": {
+          "eviction": "TemporalAssociationPolicy candidate capacity rejection",
+          "expiry": "decision freeze; future events excluded",
+          "history_capacity": 8,
+          "maximum_tracked_candidates": 2,
+          "numeric_bound": 8,
+          "per_candidate_state": "one bounded integer score plus bounded offline provenance",
+          "reset": "new run/sequence",
+          "retention": "until decision freeze"
+        },
+        "control": "equalized",
+        "decision_timestamp": 5.0,
+        "evidence": [
+          {
+            "destination": "relay",
+            "evidence_id": "runtime-source-relay",
+            "observer": "source",
+            "propagation_delay": 0.5,
+            "score": 2.0,
+            "source": "source"
+          },
+          {
+            "destination": "noise",
+            "evidence_id": "runtime-source-noise",
+            "observer": "source",
+            "propagation_delay": 1.0,
+            "score": 1.0,
+            "source": "source"
+          }
+        ],
+        "execution": {
+          "budget_exhausted": false,
+          "completed": true,
+          "configured_event_budget": 32,
+          "peak_queue_occupancy": 6,
+          "pending_event_count": 0,
+          "processed_event_count": 6,
+          "termination_reason": "completed"
+        },
+        "local_neuron": {
+          "activation": 0.7615941559557649,
+          "eligibility_state": 1.0,
+          "processed_events": 6,
+          "state": 1.0
+        },
+        "mirror": false,
+        "observations": [
+          {
+            "candidate": "relay",
+            "destination": "source",
+            "elapsed_local_time": 1.0,
+            "event_id": 1,
+            "event_type": "candidate_observation",
+            "evidence_timestamp": 1.0,
+            "evidence_update": 1.0,
+            "local_residual": 0.9048374180359595,
+            "local_state_after": 1.0,
+            "local_state_before": 1.0,
+            "policy_state_after": {
+              "candidate_capacity": 2,
+              "candidate_count": 1,
+              "candidate_rejection_reasons": [],
+              "candidate_rejections": 0,
+              "history_capacity": 8,
+              "history_count": 2,
+              "maximum_score": 8,
+              "observation_count": 2
+            },
+            "policy_state_before": {
+              "candidate_capacity": 2,
+              "candidate_count": 0,
+              "candidate_rejection_reasons": [],
+              "candidate_rejections": 0,
+              "history_capacity": 8,
+              "history_count": 1,
+              "maximum_score": 8,
+              "observation_count": 1
+            },
+            "receiving_local_component": "source",
+            "source": "relay",
+            "timestamp": 1.0
+          },
+          {
+            "candidate": "relay",
+            "destination": "source",
+            "elapsed_local_time": 1.0,
+            "event_id": 3,
+            "event_type": "candidate_observation",
+            "evidence_timestamp": 3.0,
+            "evidence_update": 2.0,
+            "local_residual": 0.9048374180359595,
+            "local_state_after": 1.0,
+            "local_state_before": 1.0,
+            "policy_state_after": {
+              "candidate_capacity": 2,
+              "candidate_count": 1,
+              "candidate_rejection_reasons": [],
+              "candidate_rejections": 0,
+              "history_capacity": 8,
+              "history_count": 4,
+              "maximum_score": 8,
+              "observation_count": 4
+            },
+            "policy_state_before": {
+              "candidate_capacity": 2,
+              "candidate_count": 1,
+              "candidate_rejection_reasons": [],
+              "candidate_rejections": 0,
+              "history_capacity": 8,
+              "history_count": 3,
+              "maximum_score": 8,
+              "observation_count": 3
+            },
+            "receiving_local_component": "source",
+            "source": "relay",
+            "timestamp": 3.0
+          },
+          {
+            "candidate": "noise",
+            "destination": "source",
+            "elapsed_local_time": 1.0,
+            "event_id": 5,
+            "event_type": "candidate_observation",
+            "evidence_timestamp": 5.0,
+            "evidence_update": 1.0,
+            "local_residual": 0.9048374180359595,
+            "local_state_after": 1.0,
+            "local_state_before": 1.0,
+            "policy_state_after": {
+              "candidate_capacity": 2,
+              "candidate_count": 2,
+              "candidate_rejection_reasons": [],
+              "candidate_rejections": 0,
+              "history_capacity": 8,
+              "history_count": 6,
+              "maximum_score": 8,
+              "observation_count": 6
+            },
+            "policy_state_before": {
+              "candidate_capacity": 2,
+              "candidate_count": 1,
+              "candidate_rejection_reasons": [],
+              "candidate_rejections": 0,
+              "history_capacity": 8,
+              "history_count": 5,
+              "maximum_score": 8,
+              "observation_count": 5
+            },
+            "receiving_local_component": "source",
+            "source": "noise",
+            "timestamp": 5.0
+          }
+        ],
+        "owner": "source",
+        "schedule": [
+          {
+            "destination": "source",
+            "event_type": "local_anchor",
+            "payload": 1.0,
+            "source": "source",
+            "timestamp": 0.0
+          },
+          {
+            "destination": "source",
+            "event_type": "candidate_observation",
+            "payload": 0.5,
+            "source": "relay",
+            "timestamp": 1.0
+          },
+          {
+            "destination": "source",
+            "event_type": "local_anchor",
+            "payload": 1.0,
+            "source": "source",
+            "timestamp": 2.0
+          },
+          {
+            "destination": "source",
+            "event_type": "candidate_observation",
+            "payload": 0.5,
+            "source": "relay",
+            "timestamp": 3.0
+          },
+          {
+            "destination": "source",
+            "event_type": "local_anchor",
+            "payload": 1.0,
+            "source": "source",
+            "timestamp": 4.0
+          },
+          {
+            "destination": "source",
+            "event_type": "candidate_observation",
+            "payload": 0.5,
+            "source": "noise",
+            "timestamp": 5.0
+          }
+        ],
+        "trace": [
+          {
+            "destination": "source",
+            "event_id": 0,
+            "event_type": "local_anchor",
+            "source": "source",
+            "timestamp": 0.0
+          },
+          {
+            "destination": "source",
+            "event_id": 1,
+            "event_type": "candidate_observation",
+            "source": "relay",
+            "timestamp": 1.0
+          },
+          {
+            "destination": "source",
+            "event_id": 2,
+            "event_type": "local_anchor",
+            "source": "source",
+            "timestamp": 2.0
+          },
+          {
+            "destination": "source",
+            "event_id": 3,
+            "event_type": "candidate_observation",
+            "source": "relay",
+            "timestamp": 3.0
+          },
+          {
+            "destination": "source",
+            "event_id": 4,
+            "event_type": "local_anchor",
+            "source": "source",
+            "timestamp": 4.0
+          },
+          {
+            "destination": "source",
+            "event_id": 5,
+            "event_type": "candidate_observation",
+            "source": "noise",
+            "timestamp": 5.0
+          }
+        ]
+      }
+    },
+    "future_events": {
+      "admission": {
+        "candidate_order_reversed": false,
+        "candidate_set": [
+          [
+            "source",
+            "relay",
+            0.5
+          ],
+          [
+            "source",
+            "noise",
+            1.0
+          ]
+        ],
+        "edge_capacity": 3,
+        "edge_count_before": 2,
+        "fan_in_before": {
+          "noise": 0,
+          "relay": 0,
+          "source": 0,
+          "target": 2
+        },
+        "fan_out_before": {
+          "noise": 1,
+          "relay": 1,
+          "source": 0,
+          "target": 0
+        },
+        "final_edges": [
+          [
+            "relay",
+            "target",
+            0.5
+          ],
+          [
+            "noise",
+            "target",
+            2.0
+          ],
+          [
+            "source",
+            "relay",
+            0.5
+          ]
+        ],
+        "final_graph_fingerprint": "9136c83c7ef4e818f986385172e86be2ba06a93e3bd82cf9212c29bead114831",
+        "legal_candidates": {
+          "G": true,
+          "H": true
+        },
+        "ranked_candidates": [
+          [
+            "source",
+            "relay"
+          ],
+          [
+            "source",
+            "noise"
+          ]
+        ],
+        "rejected_candidates": [
+          {
+            "candidate": [
+              "source",
+              "noise"
+            ],
+            "reason": "edge_capacity",
+            "status": "full_capacity"
+          }
+        ],
+        "relevant_free_slots": 1,
+        "scores": {
+          "('source', 'noise')": 0.0,
+          "('source', 'relay')": 3.0
+        },
+        "selected_candidate": "G",
+        "selected_edge": [
+          "source",
+          "relay",
+          0.5
+        ],
+        "selected_result": {
+          "edge": {
+            "destination": "relay",
+            "propagation_delay": 0.5,
+            "source": "source"
+          },
+          "reason": null,
+          "status": "grown"
+        },
+        "tie_rule": "score descending, then source, destination, evidence_id ascending",
+        "topology_before": [
+          [
+            "relay",
+            "target",
+            0.5
+          ],
+          [
+            "noise",
+            "target",
+            2.0
+          ]
+        ]
+      },
+      "runtime": {
+        "bounds": {
+          "eviction": "TemporalAssociationPolicy candidate capacity rejection",
+          "expiry": "decision freeze; future events excluded",
+          "history_capacity": 8,
+          "maximum_tracked_candidates": 2,
+          "numeric_bound": 8,
+          "per_candidate_state": "one bounded integer score plus bounded offline provenance",
+          "reset": "new run/sequence",
+          "retention": "until decision freeze"
+        },
+        "control": "future",
+        "decision_timestamp": 10.0,
+        "evidence": [
+          {
+            "destination": "relay",
+            "evidence_id": "runtime-source-relay",
+            "observer": "source",
+            "propagation_delay": 0.5,
+            "score": 3.0,
+            "source": "source"
+          },
+          {
+            "destination": "noise",
+            "evidence_id": "runtime-source-noise",
+            "observer": "source",
+            "propagation_delay": 1.0,
+            "score": 0.0,
+            "source": "source"
+          }
+        ],
+        "execution": {
+          "budget_exhausted": false,
+          "completed": true,
+          "configured_event_budget": 32,
+          "peak_queue_occupancy": 9,
+          "pending_event_count": 0,
+          "processed_event_count": 9,
+          "termination_reason": "completed"
+        },
+        "local_neuron": {
+          "activation": 0.7615941559557649,
+          "eligibility_state": 1.0,
+          "processed_events": 9,
+          "state": 1.0
+        },
+        "mirror": false,
+        "observations": [
+          {
+            "candidate": "relay",
+            "destination": "source",
+            "elapsed_local_time": 0.5,
+            "event_id": 1,
+            "event_type": "candidate_observation",
+            "evidence_timestamp": 0.5,
+            "evidence_update": 1.0,
+            "local_residual": 0.951229424500714,
+            "local_state_after": 1.0,
+            "local_state_before": 1.0,
+            "policy_state_after": {
+              "candidate_capacity": 2,
+              "candidate_count": 1,
+              "candidate_rejection_reasons": [],
+              "candidate_rejections": 0,
+              "history_capacity": 8,
+              "history_count": 2,
+              "maximum_score": 8,
+              "observation_count": 2
+            },
+            "policy_state_before": {
+              "candidate_capacity": 2,
+              "candidate_count": 0,
+              "candidate_rejection_reasons": [],
+              "candidate_rejections": 0,
+              "history_capacity": 8,
+              "history_count": 1,
+              "maximum_score": 8,
+              "observation_count": 1
+            },
+            "receiving_local_component": "source",
+            "source": "relay",
+            "timestamp": 0.5
+          },
+          {
+            "candidate": "relay",
+            "destination": "source",
+            "elapsed_local_time": 0.5,
+            "event_id": 3,
+            "event_type": "candidate_observation",
+            "evidence_timestamp": 1.5,
+            "evidence_update": 2.0,
+            "local_residual": 0.951229424500714,
+            "local_state_after": 1.0,
+            "local_state_before": 1.0,
+            "policy_state_after": {
+              "candidate_capacity": 2,
+              "candidate_count": 1,
+              "candidate_rejection_reasons": [],
+              "candidate_rejections": 0,
+              "history_capacity": 8,
+              "history_count": 4,
+              "maximum_score": 8,
+              "observation_count": 4
+            },
+            "policy_state_before": {
+              "candidate_capacity": 2,
+              "candidate_count": 1,
+              "candidate_rejection_reasons": [],
+              "candidate_rejections": 0,
+              "history_capacity": 8,
+              "history_count": 3,
+              "maximum_score": 8,
+              "observation_count": 3
+            },
+            "receiving_local_component": "source",
+            "source": "relay",
+            "timestamp": 1.5
+          },
+          {
+            "candidate": "relay",
+            "destination": "source",
+            "elapsed_local_time": 0.5,
+            "event_id": 5,
+            "event_type": "candidate_observation",
+            "evidence_timestamp": 2.5,
+            "evidence_update": 3.0,
+            "local_residual": 0.951229424500714,
+            "local_state_after": 1.0,
+            "local_state_before": 1.0,
+            "policy_state_after": {
+              "candidate_capacity": 2,
+              "candidate_count": 1,
+              "candidate_rejection_reasons": [],
+              "candidate_rejections": 0,
+              "history_capacity": 8,
+              "history_count": 6,
+              "maximum_score": 8,
+              "observation_count": 6
+            },
+            "policy_state_before": {
+              "candidate_capacity": 2,
+              "candidate_count": 1,
+              "candidate_rejection_reasons": [],
+              "candidate_rejections": 0,
+              "history_capacity": 8,
+              "history_count": 5,
+              "maximum_score": 8,
+              "observation_count": 5
+            },
+            "receiving_local_component": "source",
+            "source": "relay",
+            "timestamp": 2.5
+          },
+          {
+            "candidate": "noise",
+            "destination": "source",
+            "elapsed_local_time": 3.0,
+            "event_id": 7,
+            "event_type": "candidate_observation",
+            "evidence_timestamp": 6.0,
+            "evidence_update": 0.0,
+            "local_residual": 0.7408182206817179,
+            "local_state_after": 1.0,
+            "local_state_before": 1.0,
+            "policy_state_after": {
+              "candidate_capacity": 2,
+              "candidate_count": 1,
+              "candidate_rejection_reasons": [],
+              "candidate_rejections": 0,
+              "history_capacity": 8,
+              "history_count": 8,
+              "maximum_score": 8,
+              "observation_count": 8
+            },
+            "policy_state_before": {
+              "candidate_capacity": 2,
+              "candidate_count": 1,
+              "candidate_rejection_reasons": [],
+              "candidate_rejections": 0,
+              "history_capacity": 8,
+              "history_count": 7,
+              "maximum_score": 8,
+              "observation_count": 7
+            },
+            "receiving_local_component": "source",
+            "source": "noise",
+            "timestamp": 6.0
+          },
+          {
+            "candidate": "relay",
+            "destination": "source",
+            "elapsed_local_time": 4.0,
+            "event_id": 8,
+            "event_type": "future_candidate_observation",
+            "evidence_timestamp": 10.0,
+            "evidence_update": 3.0,
+            "local_residual": 0.6703200460356393,
+            "local_state_after": 1.0,
+            "local_state_before": 1.0,
+            "policy_state_after": {
+              "candidate_capacity": 2,
+              "candidate_count": 1,
+              "candidate_rejection_reasons": [],
+              "candidate_rejections": 0,
+              "history_capacity": 8,
+              "history_count": 8,
+              "maximum_score": 8,
+              "observation_count": 9
+            },
+            "policy_state_before": {
+              "candidate_capacity": 2,
+              "candidate_count": 1,
+              "candidate_rejection_reasons": [],
+              "candidate_rejections": 0,
+              "history_capacity": 8,
+              "history_count": 8,
+              "maximum_score": 8,
+              "observation_count": 8
+            },
+            "receiving_local_component": "source",
+            "source": "relay",
+            "timestamp": 10.0
+          }
+        ],
+        "owner": "source",
+        "schedule": [
+          {
+            "destination": "source",
+            "event_type": "local_anchor",
+            "payload": 1.0,
+            "source": "source",
+            "timestamp": 0.0
+          },
+          {
+            "destination": "source",
+            "event_type": "candidate_observation",
+            "payload": 0.5,
+            "source": "relay",
+            "timestamp": 0.5
+          },
+          {
+            "destination": "source",
+            "event_type": "local_anchor",
+            "payload": 1.0,
+            "source": "source",
+            "timestamp": 1.0
+          },
+          {
+            "destination": "source",
+            "event_type": "candidate_observation",
+            "payload": 0.5,
+            "source": "relay",
+            "timestamp": 1.5
+          },
+          {
+            "destination": "source",
+            "event_type": "local_anchor",
+            "payload": 1.0,
+            "source": "source",
+            "timestamp": 2.0
+          },
+          {
+            "destination": "source",
+            "event_type": "candidate_observation",
+            "payload": 0.5,
+            "source": "relay",
+            "timestamp": 2.5
+          },
+          {
+            "destination": "source",
+            "event_type": "local_anchor",
+            "payload": 1.0,
+            "source": "source",
+            "timestamp": 3.0
+          },
+          {
+            "destination": "source",
+            "event_type": "candidate_observation",
+            "payload": 0.5,
+            "source": "noise",
+            "timestamp": 6.0
+          },
+          {
+            "destination": "source",
+            "event_type": "future_candidate_observation",
+            "payload": 0.5,
+            "source": "relay",
+            "timestamp": 10.0
+          }
+        ],
+        "trace": [
+          {
+            "destination": "source",
+            "event_id": 0,
+            "event_type": "local_anchor",
+            "source": "source",
+            "timestamp": 0.0
+          },
+          {
+            "destination": "source",
+            "event_id": 1,
+            "event_type": "candidate_observation",
+            "source": "relay",
+            "timestamp": 0.5
+          },
+          {
+            "destination": "source",
+            "event_id": 2,
+            "event_type": "local_anchor",
+            "source": "source",
+            "timestamp": 1.0
+          },
+          {
+            "destination": "source",
+            "event_id": 3,
+            "event_type": "candidate_observation",
+            "source": "relay",
+            "timestamp": 1.5
+          },
+          {
+            "destination": "source",
+            "event_id": 4,
+            "event_type": "local_anchor",
+            "source": "source",
+            "timestamp": 2.0
+          },
+          {
+            "destination": "source",
+            "event_id": 5,
+            "event_type": "candidate_observation",
+            "source": "relay",
+            "timestamp": 2.5
+          },
+          {
+            "destination": "source",
+            "event_id": 6,
+            "event_type": "local_anchor",
+            "source": "source",
+            "timestamp": 3.0
+          },
+          {
+            "destination": "source",
+            "event_id": 7,
+            "event_type": "candidate_observation",
+            "source": "noise",
+            "timestamp": 6.0
+          },
+          {
+            "destination": "source",
+            "event_id": 8,
+            "event_type": "future_candidate_observation",
+            "source": "relay",
+            "timestamp": 10.0
+          }
+        ]
+      }
+    },
+    "mirrored": {
+      "admission": {
+        "candidate_order_reversed": false,
+        "candidate_set": [
+          [
+            "source",
+            "relay",
+            0.5
+          ],
+          [
+            "source",
+            "noise",
+            1.0
+          ]
+        ],
+        "edge_capacity": 3,
+        "edge_count_before": 2,
+        "fan_in_before": {
+          "noise": 0,
+          "relay": 0,
+          "source": 0,
+          "target": 2
+        },
+        "fan_out_before": {
+          "noise": 1,
+          "relay": 1,
+          "source": 0,
+          "target": 0
+        },
+        "final_edges": [
+          [
+            "relay",
+            "target",
+            0.5
+          ],
+          [
+            "noise",
+            "target",
+            2.0
+          ],
+          [
+            "source",
+            "noise",
+            1.0
+          ]
+        ],
+        "final_graph_fingerprint": "a9c2545ac7caabb9801dc4d7095addfa5491942dc5db064fb3d0ee34d841ed71",
+        "legal_candidates": {
+          "G": true,
+          "H": true
+        },
+        "ranked_candidates": [
+          [
+            "source",
+            "noise"
+          ],
+          [
+            "source",
+            "relay"
+          ]
+        ],
+        "rejected_candidates": [
+          {
+            "candidate": [
+              "source",
+              "relay"
+            ],
+            "reason": "edge_capacity",
+            "status": "full_capacity"
+          }
+        ],
+        "relevant_free_slots": 1,
+        "scores": {
+          "('source', 'noise')": 3.0,
+          "('source', 'relay')": 0.0
+        },
+        "selected_candidate": "H",
+        "selected_edge": [
+          "source",
+          "noise",
+          1.0
+        ],
+        "selected_result": {
+          "edge": {
+            "destination": "noise",
+            "propagation_delay": 1.0,
+            "source": "source"
+          },
+          "reason": null,
+          "status": "grown"
+        },
+        "tie_rule": "score descending, then source, destination, evidence_id ascending",
+        "topology_before": [
+          [
+            "relay",
+            "target",
+            0.5
+          ],
+          [
+            "noise",
+            "target",
+            2.0
+          ]
+        ]
+      },
+      "runtime": {
+        "bounds": {
+          "eviction": "TemporalAssociationPolicy candidate capacity rejection",
+          "expiry": "decision freeze; future events excluded",
+          "history_capacity": 8,
+          "maximum_tracked_candidates": 2,
+          "numeric_bound": 8,
+          "per_candidate_state": "one bounded integer score plus bounded offline provenance",
+          "reset": "new run/sequence",
+          "retention": "until decision freeze"
+        },
+        "control": "primary",
+        "decision_timestamp": 6.0,
+        "evidence": [
+          {
+            "destination": "relay",
+            "evidence_id": "runtime-source-relay",
+            "observer": "source",
+            "propagation_delay": 0.5,
+            "score": 0.0,
+            "source": "source"
+          },
+          {
+            "destination": "noise",
+            "evidence_id": "runtime-source-noise",
+            "observer": "source",
+            "propagation_delay": 1.0,
+            "score": 3.0,
+            "source": "source"
+          }
+        ],
+        "execution": {
+          "budget_exhausted": false,
+          "completed": true,
+          "configured_event_budget": 32,
+          "peak_queue_occupancy": 8,
+          "pending_event_count": 0,
+          "processed_event_count": 8,
+          "termination_reason": "completed"
+        },
+        "local_neuron": {
+          "activation": 0.7615941559557649,
+          "eligibility_state": 1.0,
+          "processed_events": 8,
+          "state": 1.0
+        },
+        "mirror": true,
+        "observations": [
+          {
+            "candidate": "noise",
+            "destination": "source",
+            "elapsed_local_time": 0.5,
+            "event_id": 1,
+            "event_type": "candidate_observation",
+            "evidence_timestamp": 0.5,
+            "evidence_update": 1.0,
+            "local_residual": 0.951229424500714,
+            "local_state_after": 1.0,
+            "local_state_before": 1.0,
+            "policy_state_after": {
+              "candidate_capacity": 2,
+              "candidate_count": 1,
+              "candidate_rejection_reasons": [],
+              "candidate_rejections": 0,
+              "history_capacity": 8,
+              "history_count": 2,
+              "maximum_score": 8,
+              "observation_count": 2
+            },
+            "policy_state_before": {
+              "candidate_capacity": 2,
+              "candidate_count": 0,
+              "candidate_rejection_reasons": [],
+              "candidate_rejections": 0,
+              "history_capacity": 8,
+              "history_count": 1,
+              "maximum_score": 8,
+              "observation_count": 1
+            },
+            "receiving_local_component": "source",
+            "source": "noise",
+            "timestamp": 0.5
+          },
+          {
+            "candidate": "noise",
+            "destination": "source",
+            "elapsed_local_time": 0.5,
+            "event_id": 3,
+            "event_type": "candidate_observation",
+            "evidence_timestamp": 1.5,
+            "evidence_update": 2.0,
+            "local_residual": 0.951229424500714,
+            "local_state_after": 1.0,
+            "local_state_before": 1.0,
+            "policy_state_after": {
+              "candidate_capacity": 2,
+              "candidate_count": 1,
+              "candidate_rejection_reasons": [],
+              "candidate_rejections": 0,
+              "history_capacity": 8,
+              "history_count": 4,
+              "maximum_score": 8,
+              "observation_count": 4
+            },
+            "policy_state_before": {
+              "candidate_capacity": 2,
+              "candidate_count": 1,
+              "candidate_rejection_reasons": [],
+              "candidate_rejections": 0,
+              "history_capacity": 8,
+              "history_count": 3,
+              "maximum_score": 8,
+              "observation_count": 3
+            },
+            "receiving_local_component": "source",
+            "source": "noise",
+            "timestamp": 1.5
+          },
+          {
+            "candidate": "noise",
+            "destination": "source",
+            "elapsed_local_time": 0.5,
+            "event_id": 5,
+            "event_type": "candidate_observation",
+            "evidence_timestamp": 2.5,
+            "evidence_update": 3.0,
+            "local_residual": 0.951229424500714,
+            "local_state_after": 1.0,
+            "local_state_before": 1.0,
+            "policy_state_after": {
+              "candidate_capacity": 2,
+              "candidate_count": 1,
+              "candidate_rejection_reasons": [],
+              "candidate_rejections": 0,
+              "history_capacity": 8,
+              "history_count": 6,
+              "maximum_score": 8,
+              "observation_count": 6
+            },
+            "policy_state_before": {
+              "candidate_capacity": 2,
+              "candidate_count": 1,
+              "candidate_rejection_reasons": [],
+              "candidate_rejections": 0,
+              "history_capacity": 8,
+              "history_count": 5,
+              "maximum_score": 8,
+              "observation_count": 5
+            },
+            "receiving_local_component": "source",
+            "source": "noise",
+            "timestamp": 2.5
+          },
+          {
+            "candidate": "relay",
+            "destination": "source",
+            "elapsed_local_time": 3.0,
+            "event_id": 7,
+            "event_type": "candidate_observation",
+            "evidence_timestamp": 6.0,
+            "evidence_update": 0.0,
+            "local_residual": 0.7408182206817179,
+            "local_state_after": 1.0,
+            "local_state_before": 1.0,
+            "policy_state_after": {
+              "candidate_capacity": 2,
+              "candidate_count": 1,
+              "candidate_rejection_reasons": [],
+              "candidate_rejections": 0,
+              "history_capacity": 8,
+              "history_count": 8,
+              "maximum_score": 8,
+              "observation_count": 8
+            },
+            "policy_state_before": {
+              "candidate_capacity": 2,
+              "candidate_count": 1,
+              "candidate_rejection_reasons": [],
+              "candidate_rejections": 0,
+              "history_capacity": 8,
+              "history_count": 7,
+              "maximum_score": 8,
+              "observation_count": 7
+            },
+            "receiving_local_component": "source",
+            "source": "relay",
+            "timestamp": 6.0
+          }
+        ],
+        "owner": "source",
+        "schedule": [
+          {
+            "destination": "source",
+            "event_type": "local_anchor",
+            "payload": 1.0,
+            "source": "source",
+            "timestamp": 0.0
+          },
+          {
+            "destination": "source",
+            "event_type": "candidate_observation",
+            "payload": 0.5,
+            "source": "noise",
+            "timestamp": 0.5
+          },
+          {
+            "destination": "source",
+            "event_type": "local_anchor",
+            "payload": 1.0,
+            "source": "source",
+            "timestamp": 1.0
+          },
+          {
+            "destination": "source",
+            "event_type": "candidate_observation",
+            "payload": 0.5,
+            "source": "noise",
+            "timestamp": 1.5
+          },
+          {
+            "destination": "source",
+            "event_type": "local_anchor",
+            "payload": 1.0,
+            "source": "source",
+            "timestamp": 2.0
+          },
+          {
+            "destination": "source",
+            "event_type": "candidate_observation",
+            "payload": 0.5,
+            "source": "noise",
+            "timestamp": 2.5
+          },
+          {
+            "destination": "source",
+            "event_type": "local_anchor",
+            "payload": 1.0,
+            "source": "source",
+            "timestamp": 3.0
+          },
+          {
+            "destination": "source",
+            "event_type": "candidate_observation",
+            "payload": 0.5,
+            "source": "relay",
+            "timestamp": 6.0
+          }
+        ],
+        "trace": [
+          {
+            "destination": "source",
+            "event_id": 0,
+            "event_type": "local_anchor",
+            "source": "source",
+            "timestamp": 0.0
+          },
+          {
+            "destination": "source",
+            "event_id": 1,
+            "event_type": "candidate_observation",
+            "source": "noise",
+            "timestamp": 0.5
+          },
+          {
+            "destination": "source",
+            "event_id": 2,
+            "event_type": "local_anchor",
+            "source": "source",
+            "timestamp": 1.0
+          },
+          {
+            "destination": "source",
+            "event_id": 3,
+            "event_type": "candidate_observation",
+            "source": "noise",
+            "timestamp": 1.5
+          },
+          {
+            "destination": "source",
+            "event_id": 4,
+            "event_type": "local_anchor",
+            "source": "source",
+            "timestamp": 2.0
+          },
+          {
+            "destination": "source",
+            "event_id": 5,
+            "event_type": "candidate_observation",
+            "source": "noise",
+            "timestamp": 2.5
+          },
+          {
+            "destination": "source",
+            "event_id": 6,
+            "event_type": "local_anchor",
+            "source": "source",
+            "timestamp": 3.0
+          },
+          {
+            "destination": "source",
+            "event_id": 7,
+            "event_type": "candidate_observation",
+            "source": "relay",
+            "timestamp": 6.0
+          }
+        ]
+      }
+    },
+    "neutral_decay": {
+      "reason": "canonical TemporalAssociationPolicy uses bounded counts, not a decay parameter",
+      "status": "not_applicable"
+    },
+    "no_evidence": {
+      "admission": {
+        "candidate_order_reversed": false,
+        "candidate_set": [],
+        "edge_capacity": 3,
+        "edge_count_before": 2,
+        "fan_in_before": {
+          "noise": 0,
+          "relay": 0,
+          "source": 0,
+          "target": 2
+        },
+        "fan_out_before": {
+          "noise": 1,
+          "relay": 1,
+          "source": 0,
+          "target": 0
+        },
+        "final_edges": [
+          [
+            "relay",
+            "target",
+            0.5
+          ],
+          [
+            "noise",
+            "target",
+            2.0
+          ]
+        ],
+        "final_graph_fingerprint": "b945c9954be6ca1b053c04d1eb30592cbf66a8abeb87d937b2324c590554e88e",
+        "legal_candidates": {
+          "G": true,
+          "H": true
+        },
+        "ranked_candidates": [],
+        "rejected_candidates": [],
+        "relevant_free_slots": 1,
+        "scores": {},
+        "selected_candidate": null,
+        "selected_edge": null,
+        "selected_result": {
+          "edge": null,
+          "reason": "no_valid_candidate",
+          "status": "rejected"
+        },
+        "tie_rule": "score descending, then source, destination, evidence_id ascending",
+        "topology_before": [
+          [
+            "relay",
+            "target",
+            0.5
+          ],
+          [
+            "noise",
+            "target",
+            2.0
+          ]
+        ]
+      },
+      "runtime": {
+        "bounds": {
+          "eviction": "TemporalAssociationPolicy candidate capacity rejection",
+          "expiry": "decision freeze; future events excluded",
+          "history_capacity": 8,
+          "maximum_tracked_candidates": 2,
+          "numeric_bound": 8,
+          "per_candidate_state": "one bounded integer score plus bounded offline provenance",
+          "reset": "new run/sequence",
+          "retention": "until decision freeze"
+        },
+        "control": "no_evidence",
+        "decision_timestamp": 0.0,
+        "evidence": [],
+        "execution": {
+          "budget_exhausted": false,
+          "completed": true,
+          "configured_event_budget": 32,
+          "peak_queue_occupancy": 4,
+          "pending_event_count": 0,
+          "processed_event_count": 4,
+          "termination_reason": "completed"
+        },
+        "local_neuron": {
+          "activation": 0.7615941559557649,
+          "eligibility_state": 1.0,
+          "processed_events": 4,
+          "state": 1.0
+        },
+        "mirror": false,
+        "observations": [],
+        "owner": "source",
+        "schedule": [
+          {
+            "destination": "source",
+            "event_type": "local_anchor",
+            "payload": 1.0,
+            "source": "source",
+            "timestamp": 0.0
+          },
+          {
+            "destination": "source",
+            "event_type": "local_anchor",
+            "payload": 1.0,
+            "source": "source",
+            "timestamp": 1.0
+          },
+          {
+            "destination": "source",
+            "event_type": "local_anchor",
+            "payload": 1.0,
+            "source": "source",
+            "timestamp": 2.0
+          },
+          {
+            "destination": "source",
+            "event_type": "local_anchor",
+            "payload": 1.0,
+            "source": "source",
+            "timestamp": 3.0
+          }
+        ],
+        "trace": [
+          {
+            "destination": "source",
+            "event_id": 0,
+            "event_type": "local_anchor",
+            "source": "source",
+            "timestamp": 0.0
+          },
+          {
+            "destination": "source",
+            "event_id": 1,
+            "event_type": "local_anchor",
+            "source": "source",
+            "timestamp": 1.0
+          },
+          {
+            "destination": "source",
+            "event_id": 2,
+            "event_type": "local_anchor",
+            "source": "source",
+            "timestamp": 2.0
+          },
+          {
+            "destination": "source",
+            "event_id": 3,
+            "event_type": "local_anchor",
+            "source": "source",
+            "timestamp": 3.0
+          }
+        ]
+      }
+    },
+    "random": [
+      {
+        "evaluation": {
+          "case_results": [
+            {
+              "completion": {
+                "budget_exhausted": false,
+                "completed": true,
+                "configured_event_budget": 24,
+                "peak_queue_occupancy": 2,
+                "pending_event_count": 0,
+                "processed_event_count": 6,
+                "termination_reason": "completed"
+              },
+              "correct": false,
+              "events": 6,
+              "example_id": "short-held-out",
+              "fixed_external_target": "on_time",
+              "interval": 1.0,
+              "prediction_or_decision": "late",
+              "target_arrivals": [
+                3.0,
+                4.0
+              ],
+              "target_latency": 4.0,
+              "target_state": -0.09516258196404048
+            },
+            {
+              "completion": {
+                "budget_exhausted": false,
+                "completed": true,
+                "configured_event_budget": 24,
+                "peak_queue_occupancy": 2,
+                "pending_event_count": 0,
+                "processed_event_count": 6,
+                "termination_reason": "completed"
+              },
+              "correct": true,
+              "events": 6,
+              "example_id": "long-held-out",
+              "fixed_external_target": "late",
+              "interval": 3.0,
+              "prediction_or_decision": "late",
+              "target_arrivals": [
+                3.0,
+                6.0
+              ],
+              "target_latency": 6.0,
+              "target_state": -0.2591817793182821
+            }
+          ],
+          "completion_status": "completed",
+          "graph_edges": [
+            [
+              "relay",
+              "target",
+              0.5
+            ],
+            [
+              "noise",
+              "target",
+              2.0
+            ],
+            [
+              "source",
+              "noise",
+              1.0
+            ]
+          ],
+          "graph_fingerprint": "a9c2545ac7caabb9801dc4d7095addfa5491942dc5db064fb3d0ee34d841ed71",
+          "latency": [
+            4.0,
+            6.0
+          ],
+          "policy": "random-0",
+          "prediction_error_records": [],
+          "proxy_energy": 12.0,
+          "proxy_energy_unit": "activity-cost-proxy; uncalibrated",
+          "queue_peak": 2,
+          "route_trace": [
+            {
+              "example_id": "short-held-out",
+              "kind": "route",
+              "queue_after": 2,
+              "queue_before": 1,
+              "routed_count": 1,
+              "source": "source",
+              "timestamp": 0.0
+            },
+            {
+              "example_id": "short-held-out",
+              "kind": "route",
+              "queue_after": 2,
+              "queue_before": 1,
+              "routed_count": 1,
+              "source": "source",
+              "timestamp": 1.0
+            },
+            {
+              "example_id": "short-held-out",
+              "kind": "route",
+              "queue_after": 2,
+              "queue_before": 1,
+              "routed_count": 1,
+              "source": "noise",
+              "timestamp": 1.0
+            },
+            {
+              "example_id": "short-held-out",
+              "kind": "route",
+              "queue_after": 2,
+              "queue_before": 1,
+              "routed_count": 1,
+              "source": "noise",
+              "timestamp": 2.0
+            },
+            {
+              "destination": "target",
+              "event_type": "cue",
+              "example_id": "short-held-out",
+              "kind": "target_arrival",
+              "source": "noise",
+              "timestamp": 3.0
+            },
+            {
+              "destination": "target",
+              "event_type": "probe",
+              "example_id": "short-held-out",
+              "kind": "target_arrival",
+              "source": "noise",
+              "timestamp": 4.0
+            },
+            {
+              "example_id": "long-held-out",
+              "kind": "route",
+              "queue_after": 2,
+              "queue_before": 1,
+              "routed_count": 1,
+              "source": "source",
+              "timestamp": 0.0
+            },
+            {
+              "example_id": "long-held-out",
+              "kind": "route",
+              "queue_after": 2,
+              "queue_before": 1,
+              "routed_count": 1,
+              "source": "noise",
+              "timestamp": 1.0
+            },
+            {
+              "example_id": "long-held-out",
+              "kind": "route",
+              "queue_after": 2,
+              "queue_before": 1,
+              "routed_count": 1,
+              "source": "source",
+              "timestamp": 3.0
+            },
+            {
+              "destination": "target",
+              "event_type": "cue",
+              "example_id": "long-held-out",
+              "kind": "target_arrival",
+              "source": "noise",
+              "timestamp": 3.0
+            },
+            {
+              "example_id": "long-held-out",
+              "kind": "route",
+              "queue_after": 1,
+              "queue_before": 0,
+              "routed_count": 1,
+              "source": "noise",
+              "timestamp": 4.0
+            },
+            {
+              "destination": "target",
+              "event_type": "probe",
+              "example_id": "long-held-out",
+              "kind": "target_arrival",
+              "source": "noise",
+              "timestamp": 6.0
+            }
+          ],
+          "selected_candidate": "H",
+          "task_cases_correct": 1,
+          "task_result": "1/2",
+          "total_events": 12
+        },
+        "seed": 0,
+        "selected_candidate": "H"
+      },
+      {
+        "evaluation": {
+          "case_results": [
+            {
+              "completion": {
+                "budget_exhausted": false,
+                "completed": true,
+                "configured_event_budget": 24,
+                "peak_queue_occupancy": 2,
+                "pending_event_count": 0,
+                "processed_event_count": 6,
+                "termination_reason": "completed"
+              },
+              "correct": true,
+              "events": 6,
+              "example_id": "short-held-out",
+              "fixed_external_target": "on_time",
+              "interval": 1.0,
+              "prediction_or_decision": "on_time",
+              "target_arrivals": [
+                1.0,
+                2.0
+              ],
+              "target_latency": 2.0,
+              "target_state": -0.09516258196404048
+            },
+            {
+              "completion": {
+                "budget_exhausted": false,
+                "completed": true,
+                "configured_event_budget": 24,
+                "peak_queue_occupancy": 2,
+                "pending_event_count": 0,
+                "processed_event_count": 6,
+                "termination_reason": "completed"
+              },
+              "correct": true,
+              "events": 6,
+              "example_id": "long-held-out",
+              "fixed_external_target": "late",
+              "interval": 3.0,
+              "prediction_or_decision": "late",
+              "target_arrivals": [
+                1.0,
+                4.0
+              ],
+              "target_latency": 4.0,
+              "target_state": -0.2591817793182821
+            }
+          ],
+          "completion_status": "completed",
+          "graph_edges": [
+            [
+              "relay",
+              "target",
+              0.5
+            ],
+            [
+              "noise",
+              "target",
+              2.0
+            ],
+            [
+              "source",
+              "relay",
+              0.5
+            ]
+          ],
+          "graph_fingerprint": "9136c83c7ef4e818f986385172e86be2ba06a93e3bd82cf9212c29bead114831",
+          "latency": [
+            2.0,
+            4.0
+          ],
+          "policy": "random-1",
+          "prediction_error_records": [],
+          "proxy_energy": 12.0,
+          "proxy_energy_unit": "activity-cost-proxy; uncalibrated",
+          "queue_peak": 2,
+          "route_trace": [
+            {
+              "example_id": "short-held-out",
+              "kind": "route",
+              "queue_after": 2,
+              "queue_before": 1,
+              "routed_count": 1,
+              "source": "source",
+              "timestamp": 0.0
+            },
+            {
+              "example_id": "short-held-out",
+              "kind": "route",
+              "queue_after": 2,
+              "queue_before": 1,
+              "routed_count": 1,
+              "source": "relay",
+              "timestamp": 0.5
+            },
+            {
+              "example_id": "short-held-out",
+              "kind": "route",
+              "queue_after": 2,
+              "queue_before": 1,
+              "routed_count": 1,
+              "source": "source",
+              "timestamp": 1.0
+            },
+            {
+              "destination": "target",
+              "event_type": "cue",
+              "example_id": "short-held-out",
+              "kind": "target_arrival",
+              "source": "relay",
+              "timestamp": 1.0
+            },
+            {
+              "example_id": "short-held-out",
+              "kind": "route",
+              "queue_after": 1,
+              "queue_before": 0,
+              "routed_count": 1,
+              "source": "relay",
+              "timestamp": 1.5
+            },
+            {
+              "destination": "target",
+              "event_type": "probe",
+              "example_id": "short-held-out",
+              "kind": "target_arrival",
+              "source": "relay",
+              "timestamp": 2.0
+            },
+            {
+              "example_id": "long-held-out",
+              "kind": "route",
+              "queue_after": 2,
+              "queue_before": 1,
+              "routed_count": 1,
+              "source": "source",
+              "timestamp": 0.0
+            },
+            {
+              "example_id": "long-held-out",
+              "kind": "route",
+              "queue_after": 2,
+              "queue_before": 1,
+              "routed_count": 1,
+              "source": "relay",
+              "timestamp": 0.5
+            },
+            {
+              "destination": "target",
+              "event_type": "cue",
+              "example_id": "long-held-out",
+              "kind": "target_arrival",
+              "source": "relay",
+              "timestamp": 1.0
+            },
+            {
+              "example_id": "long-held-out",
+              "kind": "route",
+              "queue_after": 1,
+              "queue_before": 0,
+              "routed_count": 1,
+              "source": "source",
+              "timestamp": 3.0
+            },
+            {
+              "example_id": "long-held-out",
+              "kind": "route",
+              "queue_after": 1,
+              "queue_before": 0,
+              "routed_count": 1,
+              "source": "relay",
+              "timestamp": 3.5
+            },
+            {
+              "destination": "target",
+              "event_type": "probe",
+              "example_id": "long-held-out",
+              "kind": "target_arrival",
+              "source": "relay",
+              "timestamp": 4.0
+            }
+          ],
+          "selected_candidate": "G",
+          "task_cases_correct": 2,
+          "task_result": "2/2",
+          "total_events": 12
+        },
+        "seed": 1,
+        "selected_candidate": "G"
+      },
+      {
+        "evaluation": {
+          "case_results": [
+            {
+              "completion": {
+                "budget_exhausted": false,
+                "completed": true,
+                "configured_event_budget": 24,
+                "peak_queue_occupancy": 2,
+                "pending_event_count": 0,
+                "processed_event_count": 6,
+                "termination_reason": "completed"
+              },
+              "correct": true,
+              "events": 6,
+              "example_id": "short-held-out",
+              "fixed_external_target": "on_time",
+              "interval": 1.0,
+              "prediction_or_decision": "on_time",
+              "target_arrivals": [
+                1.0,
+                2.0
+              ],
+              "target_latency": 2.0,
+              "target_state": -0.09516258196404048
+            },
+            {
+              "completion": {
+                "budget_exhausted": false,
+                "completed": true,
+                "configured_event_budget": 24,
+                "peak_queue_occupancy": 2,
+                "pending_event_count": 0,
+                "processed_event_count": 6,
+                "termination_reason": "completed"
+              },
+              "correct": true,
+              "events": 6,
+              "example_id": "long-held-out",
+              "fixed_external_target": "late",
+              "interval": 3.0,
+              "prediction_or_decision": "late",
+              "target_arrivals": [
+                1.0,
+                4.0
+              ],
+              "target_latency": 4.0,
+              "target_state": -0.2591817793182821
+            }
+          ],
+          "completion_status": "completed",
+          "graph_edges": [
+            [
+              "relay",
+              "target",
+              0.5
+            ],
+            [
+              "noise",
+              "target",
+              2.0
+            ],
+            [
+              "source",
+              "relay",
+              0.5
+            ]
+          ],
+          "graph_fingerprint": "9136c83c7ef4e818f986385172e86be2ba06a93e3bd82cf9212c29bead114831",
+          "latency": [
+            2.0,
+            4.0
+          ],
+          "policy": "random-2",
+          "prediction_error_records": [],
+          "proxy_energy": 12.0,
+          "proxy_energy_unit": "activity-cost-proxy; uncalibrated",
+          "queue_peak": 2,
+          "route_trace": [
+            {
+              "example_id": "short-held-out",
+              "kind": "route",
+              "queue_after": 2,
+              "queue_before": 1,
+              "routed_count": 1,
+              "source": "source",
+              "timestamp": 0.0
+            },
+            {
+              "example_id": "short-held-out",
+              "kind": "route",
+              "queue_after": 2,
+              "queue_before": 1,
+              "routed_count": 1,
+              "source": "relay",
+              "timestamp": 0.5
+            },
+            {
+              "example_id": "short-held-out",
+              "kind": "route",
+              "queue_after": 2,
+              "queue_before": 1,
+              "routed_count": 1,
+              "source": "source",
+              "timestamp": 1.0
+            },
+            {
+              "destination": "target",
+              "event_type": "cue",
+              "example_id": "short-held-out",
+              "kind": "target_arrival",
+              "source": "relay",
+              "timestamp": 1.0
+            },
+            {
+              "example_id": "short-held-out",
+              "kind": "route",
+              "queue_after": 1,
+              "queue_before": 0,
+              "routed_count": 1,
+              "source": "relay",
+              "timestamp": 1.5
+            },
+            {
+              "destination": "target",
+              "event_type": "probe",
+              "example_id": "short-held-out",
+              "kind": "target_arrival",
+              "source": "relay",
+              "timestamp": 2.0
+            },
+            {
+              "example_id": "long-held-out",
+              "kind": "route",
+              "queue_after": 2,
+              "queue_before": 1,
+              "routed_count": 1,
+              "source": "source",
+              "timestamp": 0.0
+            },
+            {
+              "example_id": "long-held-out",
+              "kind": "route",
+              "queue_after": 2,
+              "queue_before": 1,
+              "routed_count": 1,
+              "source": "relay",
+              "timestamp": 0.5
+            },
+            {
+              "destination": "target",
+              "event_type": "cue",
+              "example_id": "long-held-out",
+              "kind": "target_arrival",
+              "source": "relay",
+              "timestamp": 1.0
+            },
+            {
+              "example_id": "long-held-out",
+              "kind": "route",
+              "queue_after": 1,
+              "queue_before": 0,
+              "routed_count": 1,
+              "source": "source",
+              "timestamp": 3.0
+            },
+            {
+              "example_id": "long-held-out",
+              "kind": "route",
+              "queue_after": 1,
+              "queue_before": 0,
+              "routed_count": 1,
+              "source": "relay",
+              "timestamp": 3.5
+            },
+            {
+              "destination": "target",
+              "event_type": "probe",
+              "example_id": "long-held-out",
+              "kind": "target_arrival",
+              "source": "relay",
+              "timestamp": 4.0
+            }
+          ],
+          "selected_candidate": "G",
+          "task_cases_correct": 2,
+          "task_result": "2/2",
+          "total_events": 12
+        },
+        "seed": 2,
+        "selected_candidate": "G"
+      },
+      {
+        "evaluation": {
+          "case_results": [
+            {
+              "completion": {
+                "budget_exhausted": false,
+                "completed": true,
+                "configured_event_budget": 24,
+                "peak_queue_occupancy": 2,
+                "pending_event_count": 0,
+                "processed_event_count": 6,
+                "termination_reason": "completed"
+              },
+              "correct": true,
+              "events": 6,
+              "example_id": "short-held-out",
+              "fixed_external_target": "on_time",
+              "interval": 1.0,
+              "prediction_or_decision": "on_time",
+              "target_arrivals": [
+                1.0,
+                2.0
+              ],
+              "target_latency": 2.0,
+              "target_state": -0.09516258196404048
+            },
+            {
+              "completion": {
+                "budget_exhausted": false,
+                "completed": true,
+                "configured_event_budget": 24,
+                "peak_queue_occupancy": 2,
+                "pending_event_count": 0,
+                "processed_event_count": 6,
+                "termination_reason": "completed"
+              },
+              "correct": true,
+              "events": 6,
+              "example_id": "long-held-out",
+              "fixed_external_target": "late",
+              "interval": 3.0,
+              "prediction_or_decision": "late",
+              "target_arrivals": [
+                1.0,
+                4.0
+              ],
+              "target_latency": 4.0,
+              "target_state": -0.2591817793182821
+            }
+          ],
+          "completion_status": "completed",
+          "graph_edges": [
+            [
+              "relay",
+              "target",
+              0.5
+            ],
+            [
+              "noise",
+              "target",
+              2.0
+            ],
+            [
+              "source",
+              "relay",
+              0.5
+            ]
+          ],
+          "graph_fingerprint": "9136c83c7ef4e818f986385172e86be2ba06a93e3bd82cf9212c29bead114831",
+          "latency": [
+            2.0,
+            4.0
+          ],
+          "policy": "random-3",
+          "prediction_error_records": [],
+          "proxy_energy": 12.0,
+          "proxy_energy_unit": "activity-cost-proxy; uncalibrated",
+          "queue_peak": 2,
+          "route_trace": [
+            {
+              "example_id": "short-held-out",
+              "kind": "route",
+              "queue_after": 2,
+              "queue_before": 1,
+              "routed_count": 1,
+              "source": "source",
+              "timestamp": 0.0
+            },
+            {
+              "example_id": "short-held-out",
+              "kind": "route",
+              "queue_after": 2,
+              "queue_before": 1,
+              "routed_count": 1,
+              "source": "relay",
+              "timestamp": 0.5
+            },
+            {
+              "example_id": "short-held-out",
+              "kind": "route",
+              "queue_after": 2,
+              "queue_before": 1,
+              "routed_count": 1,
+              "source": "source",
+              "timestamp": 1.0
+            },
+            {
+              "destination": "target",
+              "event_type": "cue",
+              "example_id": "short-held-out",
+              "kind": "target_arrival",
+              "source": "relay",
+              "timestamp": 1.0
+            },
+            {
+              "example_id": "short-held-out",
+              "kind": "route",
+              "queue_after": 1,
+              "queue_before": 0,
+              "routed_count": 1,
+              "source": "relay",
+              "timestamp": 1.5
+            },
+            {
+              "destination": "target",
+              "event_type": "probe",
+              "example_id": "short-held-out",
+              "kind": "target_arrival",
+              "source": "relay",
+              "timestamp": 2.0
+            },
+            {
+              "example_id": "long-held-out",
+              "kind": "route",
+              "queue_after": 2,
+              "queue_before": 1,
+              "routed_count": 1,
+              "source": "source",
+              "timestamp": 0.0
+            },
+            {
+              "example_id": "long-held-out",
+              "kind": "route",
+              "queue_after": 2,
+              "queue_before": 1,
+              "routed_count": 1,
+              "source": "relay",
+              "timestamp": 0.5
+            },
+            {
+              "destination": "target",
+              "event_type": "cue",
+              "example_id": "long-held-out",
+              "kind": "target_arrival",
+              "source": "relay",
+              "timestamp": 1.0
+            },
+            {
+              "example_id": "long-held-out",
+              "kind": "route",
+              "queue_after": 1,
+              "queue_before": 0,
+              "routed_count": 1,
+              "source": "source",
+              "timestamp": 3.0
+            },
+            {
+              "example_id": "long-held-out",
+              "kind": "route",
+              "queue_after": 1,
+              "queue_before": 0,
+              "routed_count": 1,
+              "source": "relay",
+              "timestamp": 3.5
+            },
+            {
+              "destination": "target",
+              "event_type": "probe",
+              "example_id": "long-held-out",
+              "kind": "target_arrival",
+              "source": "relay",
+              "timestamp": 4.0
+            }
+          ],
+          "selected_candidate": "G",
+          "task_cases_correct": 2,
+          "task_result": "2/2",
+          "total_events": 12
+        },
+        "seed": 3,
+        "selected_candidate": "G"
+      },
+      {
+        "evaluation": {
+          "case_results": [
+            {
+              "completion": {
+                "budget_exhausted": false,
+                "completed": true,
+                "configured_event_budget": 24,
+                "peak_queue_occupancy": 2,
+                "pending_event_count": 0,
+                "processed_event_count": 6,
+                "termination_reason": "completed"
+              },
+              "correct": true,
+              "events": 6,
+              "example_id": "short-held-out",
+              "fixed_external_target": "on_time",
+              "interval": 1.0,
+              "prediction_or_decision": "on_time",
+              "target_arrivals": [
+                1.0,
+                2.0
+              ],
+              "target_latency": 2.0,
+              "target_state": -0.09516258196404048
+            },
+            {
+              "completion": {
+                "budget_exhausted": false,
+                "completed": true,
+                "configured_event_budget": 24,
+                "peak_queue_occupancy": 2,
+                "pending_event_count": 0,
+                "processed_event_count": 6,
+                "termination_reason": "completed"
+              },
+              "correct": true,
+              "events": 6,
+              "example_id": "long-held-out",
+              "fixed_external_target": "late",
+              "interval": 3.0,
+              "prediction_or_decision": "late",
+              "target_arrivals": [
+                1.0,
+                4.0
+              ],
+              "target_latency": 4.0,
+              "target_state": -0.2591817793182821
+            }
+          ],
+          "completion_status": "completed",
+          "graph_edges": [
+            [
+              "relay",
+              "target",
+              0.5
+            ],
+            [
+              "noise",
+              "target",
+              2.0
+            ],
+            [
+              "source",
+              "relay",
+              0.5
+            ]
+          ],
+          "graph_fingerprint": "9136c83c7ef4e818f986385172e86be2ba06a93e3bd82cf9212c29bead114831",
+          "latency": [
+            2.0,
+            4.0
+          ],
+          "policy": "random-4",
+          "prediction_error_records": [],
+          "proxy_energy": 12.0,
+          "proxy_energy_unit": "activity-cost-proxy; uncalibrated",
+          "queue_peak": 2,
+          "route_trace": [
+            {
+              "example_id": "short-held-out",
+              "kind": "route",
+              "queue_after": 2,
+              "queue_before": 1,
+              "routed_count": 1,
+              "source": "source",
+              "timestamp": 0.0
+            },
+            {
+              "example_id": "short-held-out",
+              "kind": "route",
+              "queue_after": 2,
+              "queue_before": 1,
+              "routed_count": 1,
+              "source": "relay",
+              "timestamp": 0.5
+            },
+            {
+              "example_id": "short-held-out",
+              "kind": "route",
+              "queue_after": 2,
+              "queue_before": 1,
+              "routed_count": 1,
+              "source": "source",
+              "timestamp": 1.0
+            },
+            {
+              "destination": "target",
+              "event_type": "cue",
+              "example_id": "short-held-out",
+              "kind": "target_arrival",
+              "source": "relay",
+              "timestamp": 1.0
+            },
+            {
+              "example_id": "short-held-out",
+              "kind": "route",
+              "queue_after": 1,
+              "queue_before": 0,
+              "routed_count": 1,
+              "source": "relay",
+              "timestamp": 1.5
+            },
+            {
+              "destination": "target",
+              "event_type": "probe",
+              "example_id": "short-held-out",
+              "kind": "target_arrival",
+              "source": "relay",
+              "timestamp": 2.0
+            },
+            {
+              "example_id": "long-held-out",
+              "kind": "route",
+              "queue_after": 2,
+              "queue_before": 1,
+              "routed_count": 1,
+              "source": "source",
+              "timestamp": 0.0
+            },
+            {
+              "example_id": "long-held-out",
+              "kind": "route",
+              "queue_after": 2,
+              "queue_before": 1,
+              "routed_count": 1,
+              "source": "relay",
+              "timestamp": 0.5
+            },
+            {
+              "destination": "target",
+              "event_type": "cue",
+              "example_id": "long-held-out",
+              "kind": "target_arrival",
+              "source": "relay",
+              "timestamp": 1.0
+            },
+            {
+              "example_id": "long-held-out",
+              "kind": "route",
+              "queue_after": 1,
+              "queue_before": 0,
+              "routed_count": 1,
+              "source": "source",
+              "timestamp": 3.0
+            },
+            {
+              "example_id": "long-held-out",
+              "kind": "route",
+              "queue_after": 1,
+              "queue_before": 0,
+              "routed_count": 1,
+              "source": "relay",
+              "timestamp": 3.5
+            },
+            {
+              "destination": "target",
+              "event_type": "probe",
+              "example_id": "long-held-out",
+              "kind": "target_arrival",
+              "source": "relay",
+              "timestamp": 4.0
+            }
+          ],
+          "selected_candidate": "G",
+          "task_cases_correct": 2,
+          "task_result": "2/2",
+          "total_events": 12
+        },
+        "seed": 4,
+        "selected_candidate": "G"
+      }
+    ],
+    "relabelled": {
+      "admission": {
+        "candidate_order_reversed": false,
+        "candidate_set": [
+          [
+            "node-z",
+            "relay-a",
+            0.5
+          ],
+          [
+            "node-z",
+            "noise-y",
+            1.0
+          ]
+        ],
+        "edge_capacity": 3,
+        "edge_count_before": 2,
+        "fan_in_before": {
+          "node-z": 0,
+          "noise-y": 0,
+          "relay-a": 0,
+          "target-x": 2
+        },
+        "fan_out_before": {
+          "node-z": 0,
+          "noise-y": 1,
+          "relay-a": 1,
+          "target-x": 0
+        },
+        "final_edges": [
+          [
+            "relay-a",
+            "target-x",
+            0.5
+          ],
+          [
+            "noise-y",
+            "target-x",
+            2.0
+          ],
+          [
+            "node-z",
+            "relay-a",
+            0.5
+          ]
+        ],
+        "final_graph_fingerprint": "2e0958d8ef79844ce47f6571a09dbb141d5e4538da52d9249127009b0473178e",
+        "legal_candidates": {
+          "G": true,
+          "H": true
+        },
+        "ranked_candidates": [
+          [
+            "node-z",
+            "relay-a"
+          ],
+          [
+            "node-z",
+            "noise-y"
+          ]
+        ],
+        "rejected_candidates": [
+          {
+            "candidate": [
+              "node-z",
+              "noise-y"
+            ],
+            "reason": "edge_capacity",
+            "status": "full_capacity"
+          }
+        ],
+        "relevant_free_slots": 1,
+        "scores": {
+          "('node-z', 'noise-y')": 0.0,
+          "('node-z', 'relay-a')": 3.0
+        },
+        "selected_candidate": "G",
+        "selected_edge": [
+          "node-z",
+          "relay-a",
+          0.5
+        ],
+        "selected_result": {
+          "edge": {
+            "destination": "relay-a",
+            "propagation_delay": 0.5,
+            "source": "node-z"
+          },
+          "reason": null,
+          "status": "grown"
+        },
+        "tie_rule": "score descending, then source, destination, evidence_id ascending",
+        "topology_before": [
+          [
+            "relay-a",
+            "target-x",
+            0.5
+          ],
+          [
+            "noise-y",
+            "target-x",
+            2.0
+          ]
+        ]
+      },
+      "runtime": {
+        "bounds": {
+          "eviction": "TemporalAssociationPolicy candidate capacity rejection",
+          "expiry": "decision freeze; future events excluded",
+          "history_capacity": 8,
+          "maximum_tracked_candidates": 2,
+          "numeric_bound": 8,
+          "per_candidate_state": "one bounded integer score plus bounded offline provenance",
+          "reset": "new run/sequence",
+          "retention": "until decision freeze"
+        },
+        "control": "primary",
+        "decision_timestamp": 6.0,
+        "evidence": [
+          {
+            "destination": "relay-a",
+            "evidence_id": "runtime-node-z-relay-a",
+            "observer": "node-z",
+            "propagation_delay": 0.5,
+            "score": 3.0,
+            "source": "node-z"
+          },
+          {
+            "destination": "noise-y",
+            "evidence_id": "runtime-node-z-noise-y",
+            "observer": "node-z",
+            "propagation_delay": 1.0,
+            "score": 0.0,
+            "source": "node-z"
+          }
+        ],
+        "execution": {
+          "budget_exhausted": false,
+          "completed": true,
+          "configured_event_budget": 32,
+          "peak_queue_occupancy": 8,
+          "pending_event_count": 0,
+          "processed_event_count": 8,
+          "termination_reason": "completed"
+        },
+        "local_neuron": {
+          "activation": 0.7615941559557649,
+          "eligibility_state": 1.0,
+          "processed_events": 8,
+          "state": 1.0
+        },
+        "mirror": false,
+        "observations": [
+          {
+            "candidate": "relay-a",
+            "destination": "node-z",
+            "elapsed_local_time": 0.5,
+            "event_id": 1,
+            "event_type": "candidate_observation",
+            "evidence_timestamp": 0.5,
+            "evidence_update": 1.0,
+            "local_residual": 0.951229424500714,
+            "local_state_after": 1.0,
+            "local_state_before": 1.0,
+            "policy_state_after": {
+              "candidate_capacity": 2,
+              "candidate_count": 1,
+              "candidate_rejection_reasons": [],
+              "candidate_rejections": 0,
+              "history_capacity": 8,
+              "history_count": 2,
+              "maximum_score": 8,
+              "observation_count": 2
+            },
+            "policy_state_before": {
+              "candidate_capacity": 2,
+              "candidate_count": 0,
+              "candidate_rejection_reasons": [],
+              "candidate_rejections": 0,
+              "history_capacity": 8,
+              "history_count": 1,
+              "maximum_score": 8,
+              "observation_count": 1
+            },
+            "receiving_local_component": "node-z",
+            "source": "relay-a",
+            "timestamp": 0.5
+          },
+          {
+            "candidate": "relay-a",
+            "destination": "node-z",
+            "elapsed_local_time": 0.5,
+            "event_id": 3,
+            "event_type": "candidate_observation",
+            "evidence_timestamp": 1.5,
+            "evidence_update": 2.0,
+            "local_residual": 0.951229424500714,
+            "local_state_after": 1.0,
+            "local_state_before": 1.0,
+            "policy_state_after": {
+              "candidate_capacity": 2,
+              "candidate_count": 1,
+              "candidate_rejection_reasons": [],
+              "candidate_rejections": 0,
+              "history_capacity": 8,
+              "history_count": 4,
+              "maximum_score": 8,
+              "observation_count": 4
+            },
+            "policy_state_before": {
+              "candidate_capacity": 2,
+              "candidate_count": 1,
+              "candidate_rejection_reasons": [],
+              "candidate_rejections": 0,
+              "history_capacity": 8,
+              "history_count": 3,
+              "maximum_score": 8,
+              "observation_count": 3
+            },
+            "receiving_local_component": "node-z",
+            "source": "relay-a",
+            "timestamp": 1.5
+          },
+          {
+            "candidate": "relay-a",
+            "destination": "node-z",
+            "elapsed_local_time": 0.5,
+            "event_id": 5,
+            "event_type": "candidate_observation",
+            "evidence_timestamp": 2.5,
+            "evidence_update": 3.0,
+            "local_residual": 0.951229424500714,
+            "local_state_after": 1.0,
+            "local_state_before": 1.0,
+            "policy_state_after": {
+              "candidate_capacity": 2,
+              "candidate_count": 1,
+              "candidate_rejection_reasons": [],
+              "candidate_rejections": 0,
+              "history_capacity": 8,
+              "history_count": 6,
+              "maximum_score": 8,
+              "observation_count": 6
+            },
+            "policy_state_before": {
+              "candidate_capacity": 2,
+              "candidate_count": 1,
+              "candidate_rejection_reasons": [],
+              "candidate_rejections": 0,
+              "history_capacity": 8,
+              "history_count": 5,
+              "maximum_score": 8,
+              "observation_count": 5
+            },
+            "receiving_local_component": "node-z",
+            "source": "relay-a",
+            "timestamp": 2.5
+          },
+          {
+            "candidate": "noise-y",
+            "destination": "node-z",
+            "elapsed_local_time": 3.0,
+            "event_id": 7,
+            "event_type": "candidate_observation",
+            "evidence_timestamp": 6.0,
+            "evidence_update": 0.0,
+            "local_residual": 0.7408182206817179,
+            "local_state_after": 1.0,
+            "local_state_before": 1.0,
+            "policy_state_after": {
+              "candidate_capacity": 2,
+              "candidate_count": 1,
+              "candidate_rejection_reasons": [],
+              "candidate_rejections": 0,
+              "history_capacity": 8,
+              "history_count": 8,
+              "maximum_score": 8,
+              "observation_count": 8
+            },
+            "policy_state_before": {
+              "candidate_capacity": 2,
+              "candidate_count": 1,
+              "candidate_rejection_reasons": [],
+              "candidate_rejections": 0,
+              "history_capacity": 8,
+              "history_count": 7,
+              "maximum_score": 8,
+              "observation_count": 7
+            },
+            "receiving_local_component": "node-z",
+            "source": "noise-y",
+            "timestamp": 6.0
+          }
+        ],
+        "owner": "node-z",
+        "schedule": [
+          {
+            "destination": "node-z",
+            "event_type": "local_anchor",
+            "payload": 1.0,
+            "source": "node-z",
+            "timestamp": 0.0
+          },
+          {
+            "destination": "node-z",
+            "event_type": "candidate_observation",
+            "payload": 0.5,
+            "source": "relay-a",
+            "timestamp": 0.5
+          },
+          {
+            "destination": "node-z",
+            "event_type": "local_anchor",
+            "payload": 1.0,
+            "source": "node-z",
+            "timestamp": 1.0
+          },
+          {
+            "destination": "node-z",
+            "event_type": "candidate_observation",
+            "payload": 0.5,
+            "source": "relay-a",
+            "timestamp": 1.5
+          },
+          {
+            "destination": "node-z",
+            "event_type": "local_anchor",
+            "payload": 1.0,
+            "source": "node-z",
+            "timestamp": 2.0
+          },
+          {
+            "destination": "node-z",
+            "event_type": "candidate_observation",
+            "payload": 0.5,
+            "source": "relay-a",
+            "timestamp": 2.5
+          },
+          {
+            "destination": "node-z",
+            "event_type": "local_anchor",
+            "payload": 1.0,
+            "source": "node-z",
+            "timestamp": 3.0
+          },
+          {
+            "destination": "node-z",
+            "event_type": "candidate_observation",
+            "payload": 0.5,
+            "source": "noise-y",
+            "timestamp": 6.0
+          }
+        ],
+        "trace": [
+          {
+            "destination": "node-z",
+            "event_id": 0,
+            "event_type": "local_anchor",
+            "source": "node-z",
+            "timestamp": 0.0
+          },
+          {
+            "destination": "node-z",
+            "event_id": 1,
+            "event_type": "candidate_observation",
+            "source": "relay-a",
+            "timestamp": 0.5
+          },
+          {
+            "destination": "node-z",
+            "event_id": 2,
+            "event_type": "local_anchor",
+            "source": "node-z",
+            "timestamp": 1.0
+          },
+          {
+            "destination": "node-z",
+            "event_id": 3,
+            "event_type": "candidate_observation",
+            "source": "relay-a",
+            "timestamp": 1.5
+          },
+          {
+            "destination": "node-z",
+            "event_id": 4,
+            "event_type": "local_anchor",
+            "source": "node-z",
+            "timestamp": 2.0
+          },
+          {
+            "destination": "node-z",
+            "event_id": 5,
+            "event_type": "candidate_observation",
+            "source": "relay-a",
+            "timestamp": 2.5
+          },
+          {
+            "destination": "node-z",
+            "event_id": 6,
+            "event_type": "local_anchor",
+            "source": "node-z",
+            "timestamp": 3.0
+          },
+          {
+            "destination": "node-z",
+            "event_id": 7,
+            "event_type": "candidate_observation",
+            "source": "noise-y",
+            "timestamp": 6.0
+          }
+        ]
+      }
+    },
+    "reversed": {
+      "admission": {
+        "candidate_order_reversed": false,
+        "candidate_set": [
+          [
+            "source",
+            "relay",
+            0.5
+          ],
+          [
+            "source",
+            "noise",
+            1.0
+          ]
+        ],
+        "edge_capacity": 3,
+        "edge_count_before": 2,
+        "fan_in_before": {
+          "noise": 0,
+          "relay": 0,
+          "source": 0,
+          "target": 2
+        },
+        "fan_out_before": {
+          "noise": 1,
+          "relay": 1,
+          "source": 0,
+          "target": 0
+        },
+        "final_edges": [
+          [
+            "relay",
+            "target",
+            0.5
+          ],
+          [
+            "noise",
+            "target",
+            2.0
+          ],
+          [
+            "source",
+            "relay",
+            0.5
+          ]
+        ],
+        "final_graph_fingerprint": "9136c83c7ef4e818f986385172e86be2ba06a93e3bd82cf9212c29bead114831",
+        "legal_candidates": {
+          "G": true,
+          "H": true
+        },
+        "ranked_candidates": [
+          [
+            "source",
+            "relay"
+          ],
+          [
+            "source",
+            "noise"
+          ]
+        ],
+        "rejected_candidates": [
+          {
+            "candidate": [
+              "source",
+              "noise"
+            ],
+            "reason": "edge_capacity",
+            "status": "full_capacity"
+          }
+        ],
+        "relevant_free_slots": 1,
+        "scores": {
+          "('source', 'noise')": 0.0,
+          "('source', 'relay')": 3.0
+        },
+        "selected_candidate": "G",
+        "selected_edge": [
+          "source",
+          "relay",
+          0.5
+        ],
+        "selected_result": {
+          "edge": {
+            "destination": "relay",
+            "propagation_delay": 0.5,
+            "source": "source"
+          },
+          "reason": null,
+          "status": "grown"
+        },
+        "tie_rule": "score descending, then source, destination, evidence_id ascending",
+        "topology_before": [
+          [
+            "relay",
+            "target",
+            0.5
+          ],
+          [
+            "noise",
+            "target",
+            2.0
+          ]
+        ]
+      },
+      "runtime": {
+        "bounds": {
+          "eviction": "TemporalAssociationPolicy candidate capacity rejection",
+          "expiry": "decision freeze; future events excluded",
+          "history_capacity": 8,
+          "maximum_tracked_candidates": 2,
+          "numeric_bound": 8,
+          "per_candidate_state": "one bounded integer score plus bounded offline provenance",
+          "reset": "new run/sequence",
+          "retention": "until decision freeze"
+        },
+        "control": "reverse",
+        "decision_timestamp": 6.0,
+        "evidence": [
+          {
+            "destination": "relay",
+            "evidence_id": "runtime-source-relay",
+            "observer": "source",
+            "propagation_delay": 0.5,
+            "score": 3.0,
+            "source": "source"
+          },
+          {
+            "destination": "noise",
+            "evidence_id": "runtime-source-noise",
+            "observer": "source",
+            "propagation_delay": 1.0,
+            "score": 0.0,
+            "source": "source"
+          }
+        ],
+        "execution": {
+          "budget_exhausted": false,
+          "completed": true,
+          "configured_event_budget": 32,
+          "peak_queue_occupancy": 8,
+          "pending_event_count": 0,
+          "processed_event_count": 8,
+          "termination_reason": "completed"
+        },
+        "local_neuron": {
+          "activation": 0.7615941559557649,
+          "eligibility_state": 1.0,
+          "processed_events": 8,
+          "state": 1.0
+        },
+        "mirror": false,
+        "observations": [
+          {
+            "candidate": "noise",
+            "destination": "source",
+            "elapsed_local_time": 0.0,
+            "event_id": 7,
+            "event_type": "candidate_observation",
+            "evidence_timestamp": 0.0,
+            "evidence_update": 0.0,
+            "local_residual": 0.0,
+            "local_state_after": 0.5,
+            "local_state_before": 0.0,
+            "policy_state_after": {
+              "candidate_capacity": 2,
+              "candidate_count": 0,
+              "candidate_rejection_reasons": [],
+              "candidate_rejections": 0,
+              "history_capacity": 8,
+              "history_count": 0,
+              "maximum_score": 8,
+              "observation_count": 0
+            },
+            "policy_state_before": {
+              "candidate_capacity": 2,
+              "candidate_count": 0,
+              "candidate_rejection_reasons": [],
+              "candidate_rejections": 0,
+              "history_capacity": 8,
+              "history_count": 0,
+              "maximum_score": 8,
+              "observation_count": 0
+            },
+            "receiving_local_component": "source",
+            "source": "noise",
+            "timestamp": 0.0
+          },
+          {
+            "candidate": "relay",
+            "destination": "source",
+            "elapsed_local_time": 1.0,
+            "event_id": 5,
+            "event_type": "candidate_observation",
+            "evidence_timestamp": 2.0,
+            "evidence_update": 1.0,
+            "local_residual": 0.9048374180359595,
+            "local_state_after": 1.0,
+            "local_state_before": 1.0,
+            "policy_state_after": {
+              "candidate_capacity": 2,
+              "candidate_count": 1,
+              "candidate_rejection_reasons": [],
+              "candidate_rejections": 0,
+              "history_capacity": 8,
+              "history_count": 2,
+              "maximum_score": 8,
+              "observation_count": 2
+            },
+            "policy_state_before": {
+              "candidate_capacity": 2,
+              "candidate_count": 0,
+              "candidate_rejection_reasons": [],
+              "candidate_rejections": 0,
+              "history_capacity": 8,
+              "history_count": 1,
+              "maximum_score": 8,
+              "observation_count": 1
+            },
+            "receiving_local_component": "source",
+            "source": "relay",
+            "timestamp": 2.0
+          },
+          {
+            "candidate": "relay",
+            "destination": "source",
+            "elapsed_local_time": 1.0,
+            "event_id": 3,
+            "event_type": "candidate_observation",
+            "evidence_timestamp": 4.0,
+            "evidence_update": 2.0,
+            "local_residual": 0.9048374180359595,
+            "local_state_after": 1.0,
+            "local_state_before": 1.0,
+            "policy_state_after": {
+              "candidate_capacity": 2,
+              "candidate_count": 1,
+              "candidate_rejection_reasons": [],
+              "candidate_rejections": 0,
+              "history_capacity": 8,
+              "history_count": 4,
+              "maximum_score": 8,
+              "observation_count": 4
+            },
+            "policy_state_before": {
+              "candidate_capacity": 2,
+              "candidate_count": 1,
+              "candidate_rejection_reasons": [],
+              "candidate_rejections": 0,
+              "history_capacity": 8,
+              "history_count": 3,
+              "maximum_score": 8,
+              "observation_count": 3
+            },
+            "receiving_local_component": "source",
+            "source": "relay",
+            "timestamp": 4.0
+          },
+          {
+            "candidate": "relay",
+            "destination": "source",
+            "elapsed_local_time": 1.0,
+            "event_id": 1,
+            "event_type": "candidate_observation",
+            "evidence_timestamp": 6.0,
+            "evidence_update": 3.0,
+            "local_residual": 0.9048374180359595,
+            "local_state_after": 1.0,
+            "local_state_before": 1.0,
+            "policy_state_after": {
+              "candidate_capacity": 2,
+              "candidate_count": 1,
+              "candidate_rejection_reasons": [],
+              "candidate_rejections": 0,
+              "history_capacity": 8,
+              "history_count": 6,
+              "maximum_score": 8,
+              "observation_count": 6
+            },
+            "policy_state_before": {
+              "candidate_capacity": 2,
+              "candidate_count": 1,
+              "candidate_rejection_reasons": [],
+              "candidate_rejections": 0,
+              "history_capacity": 8,
+              "history_count": 5,
+              "maximum_score": 8,
+              "observation_count": 5
+            },
+            "receiving_local_component": "source",
+            "source": "relay",
+            "timestamp": 6.0
+          }
+        ],
+        "owner": "source",
+        "schedule": [
+          {
+            "destination": "source",
+            "event_type": "local_anchor",
+            "payload": 1.0,
+            "source": "source",
+            "timestamp": 7.0
+          },
+          {
+            "destination": "source",
+            "event_type": "candidate_observation",
+            "payload": 0.5,
+            "source": "relay",
+            "timestamp": 6.0
+          },
+          {
+            "destination": "source",
+            "event_type": "local_anchor",
+            "payload": 1.0,
+            "source": "source",
+            "timestamp": 5.0
+          },
+          {
+            "destination": "source",
+            "event_type": "candidate_observation",
+            "payload": 0.5,
+            "source": "relay",
+            "timestamp": 4.0
+          },
+          {
+            "destination": "source",
+            "event_type": "local_anchor",
+            "payload": 1.0,
+            "source": "source",
+            "timestamp": 3.0
+          },
+          {
+            "destination": "source",
+            "event_type": "candidate_observation",
+            "payload": 0.5,
+            "source": "relay",
+            "timestamp": 2.0
+          },
+          {
+            "destination": "source",
+            "event_type": "local_anchor",
+            "payload": 1.0,
+            "source": "source",
+            "timestamp": 1.0
+          },
+          {
+            "destination": "source",
+            "event_type": "candidate_observation",
+            "payload": 0.5,
+            "source": "noise",
+            "timestamp": 0.0
+          }
+        ],
+        "trace": [
+          {
+            "destination": "source",
+            "event_id": 7,
+            "event_type": "candidate_observation",
+            "source": "noise",
+            "timestamp": 0.0
+          },
+          {
+            "destination": "source",
+            "event_id": 6,
+            "event_type": "local_anchor",
+            "source": "source",
+            "timestamp": 1.0
+          },
+          {
+            "destination": "source",
+            "event_id": 5,
+            "event_type": "candidate_observation",
+            "source": "relay",
+            "timestamp": 2.0
+          },
+          {
+            "destination": "source",
+            "event_id": 4,
+            "event_type": "local_anchor",
+            "source": "source",
+            "timestamp": 3.0
+          },
+          {
+            "destination": "source",
+            "event_id": 3,
+            "event_type": "candidate_observation",
+            "source": "relay",
+            "timestamp": 4.0
+          },
+          {
+            "destination": "source",
+            "event_id": 2,
+            "event_type": "local_anchor",
+            "source": "source",
+            "timestamp": 5.0
+          },
+          {
+            "destination": "source",
+            "event_id": 1,
+            "event_type": "candidate_observation",
+            "source": "relay",
+            "timestamp": 6.0
+          },
+          {
+            "destination": "source",
+            "event_id": 0,
+            "event_type": "local_anchor",
+            "source": "source",
+            "timestamp": 7.0
+          }
+        ]
+      }
+    },
+    "time_shuffle": {
+      "admission": {
+        "candidate_order_reversed": false,
+        "candidate_set": [
+          [
+            "source",
+            "relay",
+            0.5
+          ],
+          [
+            "source",
+            "noise",
+            1.0
+          ]
+        ],
+        "edge_capacity": 3,
+        "edge_count_before": 2,
+        "fan_in_before": {
+          "noise": 0,
+          "relay": 0,
+          "source": 0,
+          "target": 2
+        },
+        "fan_out_before": {
+          "noise": 1,
+          "relay": 1,
+          "source": 0,
+          "target": 0
+        },
+        "final_edges": [
+          [
+            "relay",
+            "target",
+            0.5
+          ],
+          [
+            "noise",
+            "target",
+            2.0
+          ],
+          [
+            "source",
+            "noise",
+            1.0
+          ]
+        ],
+        "final_graph_fingerprint": "a9c2545ac7caabb9801dc4d7095addfa5491942dc5db064fb3d0ee34d841ed71",
+        "legal_candidates": {
+          "G": true,
+          "H": true
+        },
+        "ranked_candidates": [
+          [
+            "source",
+            "noise"
+          ],
+          [
+            "source",
+            "relay"
+          ]
+        ],
+        "rejected_candidates": [
+          {
+            "candidate": [
+              "source",
+              "relay"
+            ],
+            "reason": "edge_capacity",
+            "status": "full_capacity"
+          }
+        ],
+        "relevant_free_slots": 1,
+        "scores": {
+          "('source', 'noise')": 1.0,
+          "('source', 'relay')": 1.0
+        },
+        "selected_candidate": "H",
+        "selected_edge": [
+          "source",
+          "noise",
+          1.0
+        ],
+        "selected_result": {
+          "edge": {
+            "destination": "noise",
+            "propagation_delay": 1.0,
+            "source": "source"
+          },
+          "reason": null,
+          "status": "grown"
+        },
+        "tie_rule": "score descending, then source, destination, evidence_id ascending",
+        "topology_before": [
+          [
+            "relay",
+            "target",
+            0.5
+          ],
+          [
+            "noise",
+            "target",
+            2.0
+          ]
+        ]
+      },
+      "runtime": {
+        "bounds": {
+          "eviction": "TemporalAssociationPolicy candidate capacity rejection",
+          "expiry": "decision freeze; future events excluded",
+          "history_capacity": 8,
+          "maximum_tracked_candidates": 2,
+          "numeric_bound": 8,
+          "per_candidate_state": "one bounded integer score plus bounded offline provenance",
+          "reset": "new run/sequence",
+          "retention": "until decision freeze"
+        },
+        "control": "shuffle",
+        "decision_timestamp": 7.0,
+        "evidence": [
+          {
+            "destination": "relay",
+            "evidence_id": "runtime-source-relay",
+            "observer": "source",
+            "propagation_delay": 0.5,
+            "score": 1.0,
+            "source": "source"
+          },
+          {
+            "destination": "noise",
+            "evidence_id": "runtime-source-noise",
+            "observer": "source",
+            "propagation_delay": 1.0,
+            "score": 1.0,
+            "source": "source"
+          }
+        ],
+        "execution": {
+          "budget_exhausted": false,
+          "completed": true,
+          "configured_event_budget": 32,
+          "peak_queue_occupancy": 8,
+          "pending_event_count": 0,
+          "processed_event_count": 8,
+          "termination_reason": "completed"
+        },
+        "local_neuron": {
+          "activation": 0.7615941559557649,
+          "eligibility_state": 1.0,
+          "processed_events": 8,
+          "state": 1.0
+        },
+        "mirror": false,
+        "observations": [
+          {
+            "candidate": "noise",
+            "destination": "source",
+            "elapsed_local_time": 1.0,
+            "event_id": 7,
+            "event_type": "candidate_observation",
+            "evidence_timestamp": 4.0,
+            "evidence_update": 1.0,
+            "local_residual": 0.9048374180359595,
+            "local_state_after": 1.0,
+            "local_state_before": 1.0,
+            "policy_state_after": {
+              "candidate_capacity": 2,
+              "candidate_count": 1,
+              "candidate_rejection_reasons": [],
+              "candidate_rejections": 0,
+              "history_capacity": 8,
+              "history_count": 5,
+              "maximum_score": 8,
+              "observation_count": 5
+            },
+            "policy_state_before": {
+              "candidate_capacity": 2,
+              "candidate_count": 0,
+              "candidate_rejection_reasons": [],
+              "candidate_rejections": 0,
+              "history_capacity": 8,
+              "history_count": 4,
+              "maximum_score": 8,
+              "observation_count": 4
+            },
+            "receiving_local_component": "source",
+            "source": "noise",
+            "timestamp": 4.0
+          },
+          {
+            "candidate": "relay",
+            "destination": "source",
+            "elapsed_local_time": 1.0,
+            "event_id": 5,
+            "event_type": "candidate_observation",
+            "evidence_timestamp": 5.0,
+            "evidence_update": 1.0,
+            "local_residual": 0.9048374180359595,
+            "local_state_after": 1.0,
+            "local_state_before": 1.0,
+            "policy_state_after": {
+              "candidate_capacity": 2,
+              "candidate_count": 2,
+              "candidate_rejection_reasons": [],
+              "candidate_rejections": 0,
+              "history_capacity": 8,
+              "history_count": 6,
+              "maximum_score": 8,
+              "observation_count": 6
+            },
+            "policy_state_before": {
+              "candidate_capacity": 2,
+              "candidate_count": 1,
+              "candidate_rejection_reasons": [],
+              "candidate_rejections": 0,
+              "history_capacity": 8,
+              "history_count": 5,
+              "maximum_score": 8,
+              "observation_count": 5
+            },
+            "receiving_local_component": "source",
+            "source": "relay",
+            "timestamp": 5.0
+          },
+          {
+            "candidate": "relay",
+            "destination": "source",
+            "elapsed_local_time": 1.0,
+            "event_id": 1,
+            "event_type": "candidate_observation",
+            "evidence_timestamp": 6.0,
+            "evidence_update": 1.0,
+            "local_residual": 0.9048374180359595,
+            "local_state_after": 1.0,
+            "local_state_before": 1.0,
+            "policy_state_after": {
+              "candidate_capacity": 2,
+              "candidate_count": 2,
+              "candidate_rejection_reasons": [],
+              "candidate_rejections": 0,
+              "history_capacity": 8,
+              "history_count": 7,
+              "maximum_score": 8,
+              "observation_count": 7
+            },
+            "policy_state_before": {
+              "candidate_capacity": 2,
+              "candidate_count": 2,
+              "candidate_rejection_reasons": [],
+              "candidate_rejections": 0,
+              "history_capacity": 8,
+              "history_count": 6,
+              "maximum_score": 8,
+              "observation_count": 6
+            },
+            "receiving_local_component": "source",
+            "source": "relay",
+            "timestamp": 6.0
+          },
+          {
+            "candidate": "relay",
+            "destination": "source",
+            "elapsed_local_time": 1.0,
+            "event_id": 3,
+            "event_type": "candidate_observation",
+            "evidence_timestamp": 7.0,
+            "evidence_update": 1.0,
+            "local_residual": 0.9048374180359595,
+            "local_state_after": 1.0,
+            "local_state_before": 1.0,
+            "policy_state_after": {
+              "candidate_capacity": 2,
+              "candidate_count": 2,
+              "candidate_rejection_reasons": [],
+              "candidate_rejections": 0,
+              "history_capacity": 8,
+              "history_count": 8,
+              "maximum_score": 8,
+              "observation_count": 8
+            },
+            "policy_state_before": {
+              "candidate_capacity": 2,
+              "candidate_count": 2,
+              "candidate_rejection_reasons": [],
+              "candidate_rejections": 0,
+              "history_capacity": 8,
+              "history_count": 7,
+              "maximum_score": 8,
+              "observation_count": 7
+            },
+            "receiving_local_component": "source",
+            "source": "relay",
+            "timestamp": 7.0
+          }
+        ],
+        "owner": "source",
+        "schedule": [
+          {
+            "destination": "source",
+            "event_type": "local_anchor",
+            "payload": 1.0,
+            "source": "source",
+            "timestamp": 3.0
+          },
+          {
+            "destination": "source",
+            "event_type": "candidate_observation",
+            "payload": 0.5,
+            "source": "relay",
+            "timestamp": 6.0
+          },
+          {
+            "destination": "source",
+            "event_type": "local_anchor",
+            "payload": 1.0,
+            "source": "source",
+            "timestamp": 0.0
+          },
+          {
+            "destination": "source",
+            "event_type": "candidate_observation",
+            "payload": 0.5,
+            "source": "relay",
+            "timestamp": 7.0
+          },
+          {
+            "destination": "source",
+            "event_type": "local_anchor",
+            "payload": 1.0,
+            "source": "source",
+            "timestamp": 2.0
+          },
+          {
+            "destination": "source",
+            "event_type": "candidate_observation",
+            "payload": 0.5,
+            "source": "relay",
+            "timestamp": 5.0
+          },
+          {
+            "destination": "source",
+            "event_type": "local_anchor",
+            "payload": 1.0,
+            "source": "source",
+            "timestamp": 1.0
+          },
+          {
+            "destination": "source",
+            "event_type": "candidate_observation",
+            "payload": 0.5,
+            "source": "noise",
+            "timestamp": 4.0
+          }
+        ],
+        "trace": [
+          {
+            "destination": "source",
+            "event_id": 2,
+            "event_type": "local_anchor",
+            "source": "source",
+            "timestamp": 0.0
+          },
+          {
+            "destination": "source",
+            "event_id": 6,
+            "event_type": "local_anchor",
+            "source": "source",
+            "timestamp": 1.0
+          },
+          {
+            "destination": "source",
+            "event_id": 4,
+            "event_type": "local_anchor",
+            "source": "source",
+            "timestamp": 2.0
+          },
+          {
+            "destination": "source",
+            "event_id": 0,
+            "event_type": "local_anchor",
+            "source": "source",
+            "timestamp": 3.0
+          },
+          {
+            "destination": "source",
+            "event_id": 7,
+            "event_type": "candidate_observation",
+            "source": "noise",
+            "timestamp": 4.0
+          },
+          {
+            "destination": "source",
+            "event_id": 5,
+            "event_type": "candidate_observation",
+            "source": "relay",
+            "timestamp": 5.0
+          },
+          {
+            "destination": "source",
+            "event_id": 1,
+            "event_type": "candidate_observation",
+            "source": "relay",
+            "timestamp": 6.0
+          },
+          {
+            "destination": "source",
+            "event_id": 3,
+            "event_type": "candidate_observation",
+            "source": "relay",
+            "timestamp": 7.0
+          }
+        ]
+      }
+    },
+    "uniform": {
+      "admission": {
+        "candidate_order_reversed": false,
+        "candidate_set": [
+          [
+            "source",
+            "relay",
+            0.5
+          ],
+          [
+            "source",
+            "noise",
+            1.0
+          ]
+        ],
+        "edge_capacity": 3,
+        "edge_count_before": 2,
+        "fan_in_before": {
+          "noise": 0,
+          "relay": 0,
+          "source": 0,
+          "target": 2
+        },
+        "fan_out_before": {
+          "noise": 1,
+          "relay": 1,
+          "source": 0,
+          "target": 0
+        },
+        "final_edges": [
+          [
+            "relay",
+            "target",
+            0.5
+          ],
+          [
+            "noise",
+            "target",
+            2.0
+          ],
+          [
+            "source",
+            "relay",
+            0.5
+          ]
+        ],
+        "final_graph_fingerprint": "9136c83c7ef4e818f986385172e86be2ba06a93e3bd82cf9212c29bead114831",
+        "legal_candidates": {
+          "G": true,
+          "H": true
+        },
+        "ranked_candidates": [
+          [
+            "source",
+            "relay"
+          ],
+          [
+            "source",
+            "noise"
+          ]
+        ],
+        "rejected_candidates": [
+          {
+            "candidate": [
+              "source",
+              "noise"
+            ],
+            "reason": "edge_capacity",
+            "status": "full_capacity"
+          }
+        ],
+        "relevant_free_slots": 1,
+        "scores": {
+          "('source', 'noise')": 1.0,
+          "('source', 'relay')": 3.0
+        },
+        "selected_candidate": "G",
+        "selected_edge": [
+          "source",
+          "relay",
+          0.5
+        ],
+        "selected_result": {
+          "edge": {
+            "destination": "relay",
+            "propagation_delay": 0.5,
+            "source": "source"
+          },
+          "reason": null,
+          "status": "grown"
+        },
+        "tie_rule": "score descending, then source, destination, evidence_id ascending",
+        "topology_before": [
+          [
+            "relay",
+            "target",
+            0.5
+          ],
+          [
+            "noise",
+            "target",
+            2.0
+          ]
+        ]
+      },
+      "runtime": {
+        "bounds": {
+          "eviction": "TemporalAssociationPolicy candidate capacity rejection",
+          "expiry": "decision freeze; future events excluded",
+          "history_capacity": 8,
+          "maximum_tracked_candidates": 2,
+          "numeric_bound": 8,
+          "per_candidate_state": "one bounded integer score plus bounded offline provenance",
+          "reset": "new run/sequence",
+          "retention": "until decision freeze"
+        },
+        "control": "uniform",
+        "decision_timestamp": 7.0,
+        "evidence": [
+          {
+            "destination": "relay",
+            "evidence_id": "runtime-source-relay",
+            "observer": "source",
+            "propagation_delay": 0.5,
+            "score": 3.0,
+            "source": "source"
+          },
+          {
+            "destination": "noise",
+            "evidence_id": "runtime-source-noise",
+            "observer": "source",
+            "propagation_delay": 1.0,
+            "score": 1.0,
+            "source": "source"
+          }
+        ],
+        "execution": {
+          "budget_exhausted": false,
+          "completed": true,
+          "configured_event_budget": 32,
+          "peak_queue_occupancy": 8,
+          "pending_event_count": 0,
+          "processed_event_count": 8,
+          "termination_reason": "completed"
+        },
+        "local_neuron": {
+          "activation": 0.7615941559557649,
+          "eligibility_state": 1.0,
+          "processed_events": 8,
+          "state": 1.0
+        },
+        "mirror": false,
+        "observations": [
+          {
+            "candidate": "relay",
+            "destination": "source",
+            "elapsed_local_time": 1.0,
+            "event_id": 1,
+            "event_type": "candidate_observation",
+            "evidence_timestamp": 1.0,
+            "evidence_update": 1.0,
+            "local_residual": 0.9048374180359595,
+            "local_state_after": 1.0,
+            "local_state_before": 1.0,
+            "policy_state_after": {
+              "candidate_capacity": 2,
+              "candidate_count": 1,
+              "candidate_rejection_reasons": [],
+              "candidate_rejections": 0,
+              "history_capacity": 8,
+              "history_count": 2,
+              "maximum_score": 8,
+              "observation_count": 2
+            },
+            "policy_state_before": {
+              "candidate_capacity": 2,
+              "candidate_count": 0,
+              "candidate_rejection_reasons": [],
+              "candidate_rejections": 0,
+              "history_capacity": 8,
+              "history_count": 1,
+              "maximum_score": 8,
+              "observation_count": 1
+            },
+            "receiving_local_component": "source",
+            "source": "relay",
+            "timestamp": 1.0
+          },
+          {
+            "candidate": "relay",
+            "destination": "source",
+            "elapsed_local_time": 1.0,
+            "event_id": 3,
+            "event_type": "candidate_observation",
+            "evidence_timestamp": 3.0,
+            "evidence_update": 2.0,
+            "local_residual": 0.9048374180359595,
+            "local_state_after": 1.0,
+            "local_state_before": 1.0,
+            "policy_state_after": {
+              "candidate_capacity": 2,
+              "candidate_count": 1,
+              "candidate_rejection_reasons": [],
+              "candidate_rejections": 0,
+              "history_capacity": 8,
+              "history_count": 4,
+              "maximum_score": 8,
+              "observation_count": 4
+            },
+            "policy_state_before": {
+              "candidate_capacity": 2,
+              "candidate_count": 1,
+              "candidate_rejection_reasons": [],
+              "candidate_rejections": 0,
+              "history_capacity": 8,
+              "history_count": 3,
+              "maximum_score": 8,
+              "observation_count": 3
+            },
+            "receiving_local_component": "source",
+            "source": "relay",
+            "timestamp": 3.0
+          },
+          {
+            "candidate": "relay",
+            "destination": "source",
+            "elapsed_local_time": 1.0,
+            "event_id": 5,
+            "event_type": "candidate_observation",
+            "evidence_timestamp": 5.0,
+            "evidence_update": 3.0,
+            "local_residual": 0.9048374180359595,
+            "local_state_after": 1.0,
+            "local_state_before": 1.0,
+            "policy_state_after": {
+              "candidate_capacity": 2,
+              "candidate_count": 1,
+              "candidate_rejection_reasons": [],
+              "candidate_rejections": 0,
+              "history_capacity": 8,
+              "history_count": 6,
+              "maximum_score": 8,
+              "observation_count": 6
+            },
+            "policy_state_before": {
+              "candidate_capacity": 2,
+              "candidate_count": 1,
+              "candidate_rejection_reasons": [],
+              "candidate_rejections": 0,
+              "history_capacity": 8,
+              "history_count": 5,
+              "maximum_score": 8,
+              "observation_count": 5
+            },
+            "receiving_local_component": "source",
+            "source": "relay",
+            "timestamp": 5.0
+          },
+          {
+            "candidate": "noise",
+            "destination": "source",
+            "elapsed_local_time": 1.0,
+            "event_id": 7,
+            "event_type": "candidate_observation",
+            "evidence_timestamp": 7.0,
+            "evidence_update": 1.0,
+            "local_residual": 0.9048374180359595,
+            "local_state_after": 1.0,
+            "local_state_before": 1.0,
+            "policy_state_after": {
+              "candidate_capacity": 2,
+              "candidate_count": 2,
+              "candidate_rejection_reasons": [],
+              "candidate_rejections": 0,
+              "history_capacity": 8,
+              "history_count": 8,
+              "maximum_score": 8,
+              "observation_count": 8
+            },
+            "policy_state_before": {
+              "candidate_capacity": 2,
+              "candidate_count": 1,
+              "candidate_rejection_reasons": [],
+              "candidate_rejections": 0,
+              "history_capacity": 8,
+              "history_count": 7,
+              "maximum_score": 8,
+              "observation_count": 7
+            },
+            "receiving_local_component": "source",
+            "source": "noise",
+            "timestamp": 7.0
+          }
+        ],
+        "owner": "source",
+        "schedule": [
+          {
+            "destination": "source",
+            "event_type": "local_anchor",
+            "payload": 1.0,
+            "source": "source",
+            "timestamp": 0.0
+          },
+          {
+            "destination": "source",
+            "event_type": "candidate_observation",
+            "payload": 0.5,
+            "source": "relay",
+            "timestamp": 1.0
+          },
+          {
+            "destination": "source",
+            "event_type": "local_anchor",
+            "payload": 1.0,
+            "source": "source",
+            "timestamp": 2.0
+          },
+          {
+            "destination": "source",
+            "event_type": "candidate_observation",
+            "payload": 0.5,
+            "source": "relay",
+            "timestamp": 3.0
+          },
+          {
+            "destination": "source",
+            "event_type": "local_anchor",
+            "payload": 1.0,
+            "source": "source",
+            "timestamp": 4.0
+          },
+          {
+            "destination": "source",
+            "event_type": "candidate_observation",
+            "payload": 0.5,
+            "source": "relay",
+            "timestamp": 5.0
+          },
+          {
+            "destination": "source",
+            "event_type": "local_anchor",
+            "payload": 1.0,
+            "source": "source",
+            "timestamp": 6.0
+          },
+          {
+            "destination": "source",
+            "event_type": "candidate_observation",
+            "payload": 0.5,
+            "source": "noise",
+            "timestamp": 7.0
+          }
+        ],
+        "trace": [
+          {
+            "destination": "source",
+            "event_id": 0,
+            "event_type": "local_anchor",
+            "source": "source",
+            "timestamp": 0.0
+          },
+          {
+            "destination": "source",
+            "event_id": 1,
+            "event_type": "candidate_observation",
+            "source": "relay",
+            "timestamp": 1.0
+          },
+          {
+            "destination": "source",
+            "event_id": 2,
+            "event_type": "local_anchor",
+            "source": "source",
+            "timestamp": 2.0
+          },
+          {
+            "destination": "source",
+            "event_id": 3,
+            "event_type": "candidate_observation",
+            "source": "relay",
+            "timestamp": 3.0
+          },
+          {
+            "destination": "source",
+            "event_id": 4,
+            "event_type": "local_anchor",
+            "source": "source",
+            "timestamp": 4.0
+          },
+          {
+            "destination": "source",
+            "event_id": 5,
+            "event_type": "candidate_observation",
+            "source": "relay",
+            "timestamp": 5.0
+          },
+          {
+            "destination": "source",
+            "event_id": 6,
+            "event_type": "local_anchor",
+            "source": "source",
+            "timestamp": 6.0
+          },
+          {
+            "destination": "source",
+            "event_id": 7,
+            "event_type": "candidate_observation",
+            "source": "noise",
+            "timestamp": 7.0
+          }
+        ]
+      }
+    }
+  },
+  "evidence_inventory": {
+    "available": [
+      "source-local TemporalAssociationPolicy score",
+      "TPCNNeuron local residual/state",
+      "observed event timestamp and elapsed local time",
+      "bounded execution counters"
+    ],
+    "available_but_not_used": [
+      "eligibility state",
+      "propagation delay as cost metadata",
+      "prediction_error",
+      "reward"
+    ],
+    "unavailable_before_admission": [
+      "held-out task result",
+      "held-out labels",
+      "post-admission route traffic",
+      "future event observations"
+    ],
+    "used_by_canonical_scorer": [
+      "runtime-generated CandidateEvidence.score",
+      "source/destination/evidence_id tie-break metadata"
+    ]
+  },
+  "experiment": "Luna-13F runtime-generated local candidate evidence",
+  "fixture_id": "luna-13f-runtime-generated-local-evidence-v1",
+  "held_out": {
+    "G": {
+      "case_results": [
+        {
+          "completion": {
+            "budget_exhausted": false,
+            "completed": true,
+            "configured_event_budget": 24,
+            "peak_queue_occupancy": 2,
+            "pending_event_count": 0,
+            "processed_event_count": 6,
+            "termination_reason": "completed"
+          },
+          "correct": true,
+          "events": 6,
+          "example_id": "short-held-out",
+          "fixed_external_target": "on_time",
+          "interval": 1.0,
+          "prediction_or_decision": "on_time",
+          "target_arrivals": [
+            1.0,
+            2.0
+          ],
+          "target_latency": 2.0,
+          "target_state": -0.09516258196404048
+        },
+        {
+          "completion": {
+            "budget_exhausted": false,
+            "completed": true,
+            "configured_event_budget": 24,
+            "peak_queue_occupancy": 2,
+            "pending_event_count": 0,
+            "processed_event_count": 6,
+            "termination_reason": "completed"
+          },
+          "correct": true,
+          "events": 6,
+          "example_id": "long-held-out",
+          "fixed_external_target": "late",
+          "interval": 3.0,
+          "prediction_or_decision": "late",
+          "target_arrivals": [
+            1.0,
+            4.0
+          ],
+          "target_latency": 4.0,
+          "target_state": -0.2591817793182821
+        }
+      ],
+      "completion_status": "completed",
+      "graph_edges": [
+        [
+          "relay",
+          "target",
+          0.5
+        ],
+        [
+          "noise",
+          "target",
+          2.0
+        ],
+        [
+          "source",
+          "relay",
+          0.5
+        ]
+      ],
+      "graph_fingerprint": "9136c83c7ef4e818f986385172e86be2ba06a93e3bd82cf9212c29bead114831",
+      "latency": [
+        2.0,
+        4.0
+      ],
+      "policy": "G-held-out",
+      "prediction_error_records": [],
+      "proxy_energy": 12.0,
+      "proxy_energy_unit": "activity-cost-proxy; uncalibrated",
+      "queue_peak": 2,
+      "route_trace": [
+        {
+          "example_id": "short-held-out",
+          "kind": "route",
+          "queue_after": 2,
+          "queue_before": 1,
+          "routed_count": 1,
+          "source": "source",
+          "timestamp": 0.0
+        },
+        {
+          "example_id": "short-held-out",
+          "kind": "route",
+          "queue_after": 2,
+          "queue_before": 1,
+          "routed_count": 1,
+          "source": "relay",
+          "timestamp": 0.5
+        },
+        {
+          "example_id": "short-held-out",
+          "kind": "route",
+          "queue_after": 2,
+          "queue_before": 1,
+          "routed_count": 1,
+          "source": "source",
+          "timestamp": 1.0
+        },
+        {
+          "destination": "target",
+          "event_type": "cue",
+          "example_id": "short-held-out",
+          "kind": "target_arrival",
+          "source": "relay",
+          "timestamp": 1.0
+        },
+        {
+          "example_id": "short-held-out",
+          "kind": "route",
+          "queue_after": 1,
+          "queue_before": 0,
+          "routed_count": 1,
+          "source": "relay",
+          "timestamp": 1.5
+        },
+        {
+          "destination": "target",
+          "event_type": "probe",
+          "example_id": "short-held-out",
+          "kind": "target_arrival",
+          "source": "relay",
+          "timestamp": 2.0
+        },
+        {
+          "example_id": "long-held-out",
+          "kind": "route",
+          "queue_after": 2,
+          "queue_before": 1,
+          "routed_count": 1,
+          "source": "source",
+          "timestamp": 0.0
+        },
+        {
+          "example_id": "long-held-out",
+          "kind": "route",
+          "queue_after": 2,
+          "queue_before": 1,
+          "routed_count": 1,
+          "source": "relay",
+          "timestamp": 0.5
+        },
+        {
+          "destination": "target",
+          "event_type": "cue",
+          "example_id": "long-held-out",
+          "kind": "target_arrival",
+          "source": "relay",
+          "timestamp": 1.0
+        },
+        {
+          "example_id": "long-held-out",
+          "kind": "route",
+          "queue_after": 1,
+          "queue_before": 0,
+          "routed_count": 1,
+          "source": "source",
+          "timestamp": 3.0
+        },
+        {
+          "example_id": "long-held-out",
+          "kind": "route",
+          "queue_after": 1,
+          "queue_before": 0,
+          "routed_count": 1,
+          "source": "relay",
+          "timestamp": 3.5
+        },
+        {
+          "destination": "target",
+          "event_type": "probe",
+          "example_id": "long-held-out",
+          "kind": "target_arrival",
+          "source": "relay",
+          "timestamp": 4.0
+        }
+      ],
+      "selected_candidate": "G",
+      "task_cases_correct": 2,
+      "task_result": "2/2",
+      "total_events": 12
+    },
+    "H": {
+      "case_results": [
+        {
+          "completion": {
+            "budget_exhausted": false,
+            "completed": true,
+            "configured_event_budget": 24,
+            "peak_queue_occupancy": 2,
+            "pending_event_count": 0,
+            "processed_event_count": 6,
+            "termination_reason": "completed"
+          },
+          "correct": false,
+          "events": 6,
+          "example_id": "short-held-out",
+          "fixed_external_target": "on_time",
+          "interval": 1.0,
+          "prediction_or_decision": "late",
+          "target_arrivals": [
+            3.0,
+            4.0
+          ],
+          "target_latency": 4.0,
+          "target_state": -0.09516258196404048
+        },
+        {
+          "completion": {
+            "budget_exhausted": false,
+            "completed": true,
+            "configured_event_budget": 24,
+            "peak_queue_occupancy": 2,
+            "pending_event_count": 0,
+            "processed_event_count": 6,
+            "termination_reason": "completed"
+          },
+          "correct": true,
+          "events": 6,
+          "example_id": "long-held-out",
+          "fixed_external_target": "late",
+          "interval": 3.0,
+          "prediction_or_decision": "late",
+          "target_arrivals": [
+            3.0,
+            6.0
+          ],
+          "target_latency": 6.0,
+          "target_state": -0.2591817793182821
+        }
+      ],
+      "completion_status": "completed",
+      "graph_edges": [
+        [
+          "relay",
+          "target",
+          0.5
+        ],
+        [
+          "noise",
+          "target",
+          2.0
+        ],
+        [
+          "source",
+          "noise",
+          1.0
+        ]
+      ],
+      "graph_fingerprint": "a9c2545ac7caabb9801dc4d7095addfa5491942dc5db064fb3d0ee34d841ed71",
+      "latency": [
+        4.0,
+        6.0
+      ],
+      "policy": "H-held-out",
+      "prediction_error_records": [],
+      "proxy_energy": 12.0,
+      "proxy_energy_unit": "activity-cost-proxy; uncalibrated",
+      "queue_peak": 2,
+      "route_trace": [
+        {
+          "example_id": "short-held-out",
+          "kind": "route",
+          "queue_after": 2,
+          "queue_before": 1,
+          "routed_count": 1,
+          "source": "source",
+          "timestamp": 0.0
+        },
+        {
+          "example_id": "short-held-out",
+          "kind": "route",
+          "queue_after": 2,
+          "queue_before": 1,
+          "routed_count": 1,
+          "source": "source",
+          "timestamp": 1.0
+        },
+        {
+          "example_id": "short-held-out",
+          "kind": "route",
+          "queue_after": 2,
+          "queue_before": 1,
+          "routed_count": 1,
+          "source": "noise",
+          "timestamp": 1.0
+        },
+        {
+          "example_id": "short-held-out",
+          "kind": "route",
+          "queue_after": 2,
+          "queue_before": 1,
+          "routed_count": 1,
+          "source": "noise",
+          "timestamp": 2.0
+        },
+        {
+          "destination": "target",
+          "event_type": "cue",
+          "example_id": "short-held-out",
+          "kind": "target_arrival",
+          "source": "noise",
+          "timestamp": 3.0
+        },
+        {
+          "destination": "target",
+          "event_type": "probe",
+          "example_id": "short-held-out",
+          "kind": "target_arrival",
+          "source": "noise",
+          "timestamp": 4.0
+        },
+        {
+          "example_id": "long-held-out",
+          "kind": "route",
+          "queue_after": 2,
+          "queue_before": 1,
+          "routed_count": 1,
+          "source": "source",
+          "timestamp": 0.0
+        },
+        {
+          "example_id": "long-held-out",
+          "kind": "route",
+          "queue_after": 2,
+          "queue_before": 1,
+          "routed_count": 1,
+          "source": "noise",
+          "timestamp": 1.0
+        },
+        {
+          "example_id": "long-held-out",
+          "kind": "route",
+          "queue_after": 2,
+          "queue_before": 1,
+          "routed_count": 1,
+          "source": "source",
+          "timestamp": 3.0
+        },
+        {
+          "destination": "target",
+          "event_type": "cue",
+          "example_id": "long-held-out",
+          "kind": "target_arrival",
+          "source": "noise",
+          "timestamp": 3.0
+        },
+        {
+          "example_id": "long-held-out",
+          "kind": "route",
+          "queue_after": 1,
+          "queue_before": 0,
+          "routed_count": 1,
+          "source": "noise",
+          "timestamp": 4.0
+        },
+        {
+          "destination": "target",
+          "event_type": "probe",
+          "example_id": "long-held-out",
+          "kind": "target_arrival",
+          "source": "noise",
+          "timestamp": 6.0
+        }
+      ],
+      "selected_candidate": "H",
+      "task_cases_correct": 1,
+      "task_result": "1/2",
+      "total_events": 12
+    }
+  },
+  "no_growth": {
+    "capacity": 6,
+    "capacity_freed": 2,
+    "capacity_policy": "declared-pruning",
+    "capacity_used": 1,
+    "case_results": [
+      {
+        "completion": {
+          "budget_exhausted": false,
+          "completed": true,
+          "configured_event_budget": 24,
+          "last_event_timestamp": 2.0,
+          "peak_queue_occupancy": 2,
+          "pending_event_count": 0,
+          "processed_event_count": 4,
+          "termination_reason": "completed"
+        },
+        "correct": true,
+        "edge_timestamps": {
+          "('right', 'target', 1.0)": [
+            0.0,
+            1.0
+          ]
+        },
+        "events": 4,
+        "example_id": "short-held-out",
+        "fixed_external_target": "on_time",
+        "interval": 1.0,
+        "prediction_or_decision": "on_time",
+        "target_arrivals": [
+          1.0,
+          2.0
+        ],
+        "target_latency": 2.0,
+        "target_state": -0.09516258196404048
+      },
+      {
+        "completion": {
+          "budget_exhausted": false,
+          "completed": true,
+          "configured_event_budget": 24,
+          "last_event_timestamp": 4.0,
+          "peak_queue_occupancy": 2,
+          "pending_event_count": 0,
+          "processed_event_count": 4,
+          "termination_reason": "completed"
+        },
+        "correct": true,
+        "edge_timestamps": {
+          "('right', 'target', 1.0)": [
+            0.0,
+            3.0
+          ]
+        },
+        "events": 4,
+        "example_id": "long-held-out",
+        "fixed_external_target": "late",
+        "interval": 3.0,
+        "prediction_or_decision": "late",
+        "target_arrivals": [
+          1.0,
+          4.0
+        ],
+        "target_latency": 4.0,
+        "target_state": -0.2591817793182821
+      }
+    ],
+    "completion_status": "completed",
+    "edge_evidence": [
+      {
+        "creation_time": 0.0,
+        "edge": [
+          "right",
+          "target",
+          1.0
+        ],
+        "inactivity_age": 1.0,
+        "last_use_timestamp": 3.0,
+        "observed_cost": 4.0,
+        "observed_utility": 4.0,
+        "pruning_score": 4.0,
+        "use_count": 4
+      }
+    ],
+    "edge_traffic": {
+      "('right', 'target', 1.0)": 4
+    },
+    "failure_categories": {
+      "budget_exhaustion": false,
+      "capacity_failure": false,
+      "pruning_related_failure": false,
+      "queue_rejection": false,
+      "task_failure": false
+    },
+    "graph_before": [
+      [
+        "right",
+        "target",
+        1.0
+      ],
+      [
+        "left",
+        "noise",
+        4.0
+      ],
+      [
+        "noise",
+        "target",
+        4.0
+      ]
+    ],
+    "graph_edges": [
+      [
+        "right",
+        "target",
+        1.0
+      ]
+    ],
+    "graph_fingerprint": "3962ea30f82901381d9b998776843ecc25015e75fb47b931e0643549896e9d93",
+    "latency": [
+      2.0,
+      4.0
+    ],
+    "mutations": [
+      {
+        "edge": {
+          "destination": "noise",
+          "propagation_delay": 4.0,
+          "source": "left"
+        },
+        "reason": "inactivity_and_utility",
+        "status": "pruned"
+      },
+      {
+        "edge": {
+          "destination": "target",
+          "propagation_delay": 4.0,
+          "source": "noise"
+        },
+        "reason": "inactivity_and_utility",
+        "status": "pruned"
+      }
+    ],
+    "proxy_energy": 8.0,
+    "proxy_energy_unit": "activity-cost-proxy; uncalibrated",
+    "pruning_evidence": [
+      {
+        "creation_time": 0.0,
+        "edge": [
+          "right",
+          "target",
+          1.0
+        ],
+        "eligibility_reason": "retained",
+        "eligible": false,
+        "inactivity_age": 1.0,
+        "last_use_timestamp": 3.0,
+        "observed_cost": 4.0,
+        "observed_utility": 4.0,
+        "pruning_score": 4.0,
+        "use_count": 4
+      },
+      {
+        "creation_time": 0.0,
+        "edge": [
+          "left",
+          "noise",
+          4.0
+        ],
+        "eligibility_reason": "inactivity_and_utility",
+        "eligible": true,
+        "inactivity_age": 4.0,
+        "last_use_timestamp": null,
+        "observed_cost": 0.0,
+        "observed_utility": 0.0,
+        "pruning_score": 0.0,
+        "use_count": 0
+      },
+      {
+        "creation_time": 0.0,
+        "edge": [
+          "noise",
+          "target",
+          4.0
+        ],
+        "eligibility_reason": "inactivity_and_utility",
+        "eligible": true,
+        "inactivity_age": 4.0,
+        "last_use_timestamp": null,
+        "observed_cost": 0.0,
+        "observed_utility": 0.0,
+        "pruning_score": 0.0,
+        "use_count": 0
+      }
+    ],
+    "queue_peak": 2,
+    "remaining_slots": 5,
+    "task_cases_correct": 2,
+    "task_result": "2/2",
+    "total_events": 8,
+    "useful_edge_present": true
+  },
+  "old_luna_13e_tuple_path": {
+    "historical_comparison_only": true,
+    "module": "tpcn.post_pruning_admission._local_observations/_temporal_score",
+    "removed_from_primary": true
+  },
+  "primary": {
+    "admission": {
+      "candidate_order_reversed": false,
+      "candidate_set": [
+        [
+          "source",
+          "relay",
+          0.5
+        ],
+        [
+          "source",
+          "noise",
+          1.0
+        ]
+      ],
+      "edge_capacity": 3,
+      "edge_count_before": 2,
+      "fan_in_before": {
+        "noise": 0,
+        "relay": 0,
+        "source": 0,
+        "target": 2
+      },
+      "fan_out_before": {
+        "noise": 1,
+        "relay": 1,
+        "source": 0,
+        "target": 0
+      },
+      "final_edges": [
+        [
+          "relay",
+          "target",
+          0.5
+        ],
+        [
+          "noise",
+          "target",
+          2.0
+        ],
+        [
+          "source",
+          "relay",
+          0.5
+        ]
+      ],
+      "final_graph_fingerprint": "9136c83c7ef4e818f986385172e86be2ba06a93e3bd82cf9212c29bead114831",
+      "legal_candidates": {
+        "G": true,
+        "H": true
+      },
+      "ranked_candidates": [
+        [
+          "source",
+          "relay"
+        ],
+        [
+          "source",
+          "noise"
+        ]
+      ],
+      "rejected_candidates": [
+        {
+          "candidate": [
+            "source",
+            "noise"
+          ],
+          "reason": "edge_capacity",
+          "status": "full_capacity"
+        }
+      ],
+      "relevant_free_slots": 1,
+      "scores": {
+        "('source', 'noise')": 0.0,
+        "('source', 'relay')": 3.0
+      },
+      "selected_candidate": "G",
+      "selected_edge": [
+        "source",
+        "relay",
+        0.5
+      ],
+      "selected_result": {
+        "edge": {
+          "destination": "relay",
+          "propagation_delay": 0.5,
+          "source": "source"
+        },
+        "reason": null,
+        "status": "grown"
+      },
+      "tie_rule": "score descending, then source, destination, evidence_id ascending",
+      "topology_before": [
+        [
+          "relay",
+          "target",
+          0.5
+        ],
+        [
+          "noise",
+          "target",
+          2.0
+        ]
+      ]
+    },
+    "runtime": {
+      "bounds": {
+        "eviction": "TemporalAssociationPolicy candidate capacity rejection",
+        "expiry": "decision freeze; future events excluded",
+        "history_capacity": 8,
+        "maximum_tracked_candidates": 2,
+        "numeric_bound": 8,
+        "per_candidate_state": "one bounded integer score plus bounded offline provenance",
+        "reset": "new run/sequence",
+        "retention": "until decision freeze"
+      },
+      "control": "primary",
+      "decision_timestamp": 6.0,
+      "evidence": [
+        {
+          "destination": "relay",
+          "evidence_id": "runtime-source-relay",
+          "observer": "source",
+          "propagation_delay": 0.5,
+          "score": 3.0,
+          "source": "source"
+        },
+        {
+          "destination": "noise",
+          "evidence_id": "runtime-source-noise",
+          "observer": "source",
+          "propagation_delay": 1.0,
+          "score": 0.0,
+          "source": "source"
+        }
+      ],
+      "execution": {
+        "budget_exhausted": false,
+        "completed": true,
+        "configured_event_budget": 32,
+        "peak_queue_occupancy": 8,
+        "pending_event_count": 0,
+        "processed_event_count": 8,
+        "termination_reason": "completed"
+      },
+      "local_neuron": {
+        "activation": 0.7615941559557649,
+        "eligibility_state": 1.0,
+        "processed_events": 8,
+        "state": 1.0
+      },
+      "mirror": false,
+      "observations": [
+        {
+          "candidate": "relay",
+          "destination": "source",
+          "elapsed_local_time": 0.5,
+          "event_id": 1,
+          "event_type": "candidate_observation",
+          "evidence_timestamp": 0.5,
+          "evidence_update": 1.0,
+          "local_residual": 0.951229424500714,
+          "local_state_after": 1.0,
+          "local_state_before": 1.0,
+          "policy_state_after": {
+            "candidate_capacity": 2,
+            "candidate_count": 1,
+            "candidate_rejection_reasons": [],
+            "candidate_rejections": 0,
+            "history_capacity": 8,
+            "history_count": 2,
+            "maximum_score": 8,
+            "observation_count": 2
+          },
+          "policy_state_before": {
+            "candidate_capacity": 2,
+            "candidate_count": 0,
+            "candidate_rejection_reasons": [],
+            "candidate_rejections": 0,
+            "history_capacity": 8,
+            "history_count": 1,
+            "maximum_score": 8,
+            "observation_count": 1
+          },
+          "receiving_local_component": "source",
+          "source": "relay",
+          "timestamp": 0.5
+        },
+        {
+          "candidate": "relay",
+          "destination": "source",
+          "elapsed_local_time": 0.5,
+          "event_id": 3,
+          "event_type": "candidate_observation",
+          "evidence_timestamp": 1.5,
+          "evidence_update": 2.0,
+          "local_residual": 0.951229424500714,
+          "local_state_after": 1.0,
+          "local_state_before": 1.0,
+          "policy_state_after": {
+            "candidate_capacity": 2,
+            "candidate_count": 1,
+            "candidate_rejection_reasons": [],
+            "candidate_rejections": 0,
+            "history_capacity": 8,
+            "history_count": 4,
+            "maximum_score": 8,
+            "observation_count": 4
+          },
+          "policy_state_before": {
+            "candidate_capacity": 2,
+            "candidate_count": 1,
+            "candidate_rejection_reasons": [],
+            "candidate_rejections": 0,
+            "history_capacity": 8,
+            "history_count": 3,
+            "maximum_score": 8,
+            "observation_count": 3
+          },
+          "receiving_local_component": "source",
+          "source": "relay",
+          "timestamp": 1.5
+        },
+        {
+          "candidate": "relay",
+          "destination": "source",
+          "elapsed_local_time": 0.5,
+          "event_id": 5,
+          "event_type": "candidate_observation",
+          "evidence_timestamp": 2.5,
+          "evidence_update": 3.0,
+          "local_residual": 0.951229424500714,
+          "local_state_after": 1.0,
+          "local_state_before": 1.0,
+          "policy_state_after": {
+            "candidate_capacity": 2,
+            "candidate_count": 1,
+            "candidate_rejection_reasons": [],
+            "candidate_rejections": 0,
+            "history_capacity": 8,
+            "history_count": 6,
+            "maximum_score": 8,
+            "observation_count": 6
+          },
+          "policy_state_before": {
+            "candidate_capacity": 2,
+            "candidate_count": 1,
+            "candidate_rejection_reasons": [],
+            "candidate_rejections": 0,
+            "history_capacity": 8,
+            "history_count": 5,
+            "maximum_score": 8,
+            "observation_count": 5
+          },
+          "receiving_local_component": "source",
+          "source": "relay",
+          "timestamp": 2.5
+        },
+        {
+          "candidate": "noise",
+          "destination": "source",
+          "elapsed_local_time": 3.0,
+          "event_id": 7,
+          "event_type": "candidate_observation",
+          "evidence_timestamp": 6.0,
+          "evidence_update": 0.0,
+          "local_residual": 0.7408182206817179,
+          "local_state_after": 1.0,
+          "local_state_before": 1.0,
+          "policy_state_after": {
+            "candidate_capacity": 2,
+            "candidate_count": 1,
+            "candidate_rejection_reasons": [],
+            "candidate_rejections": 0,
+            "history_capacity": 8,
+            "history_count": 8,
+            "maximum_score": 8,
+            "observation_count": 8
+          },
+          "policy_state_before": {
+            "candidate_capacity": 2,
+            "candidate_count": 1,
+            "candidate_rejection_reasons": [],
+            "candidate_rejections": 0,
+            "history_capacity": 8,
+            "history_count": 7,
+            "maximum_score": 8,
+            "observation_count": 7
+          },
+          "receiving_local_component": "source",
+          "source": "noise",
+          "timestamp": 6.0
+        }
+      ],
+      "owner": "source",
+      "schedule": [
+        {
+          "destination": "source",
+          "event_type": "local_anchor",
+          "payload": 1.0,
+          "source": "source",
+          "timestamp": 0.0
+        },
+        {
+          "destination": "source",
+          "event_type": "candidate_observation",
+          "payload": 0.5,
+          "source": "relay",
+          "timestamp": 0.5
+        },
+        {
+          "destination": "source",
+          "event_type": "local_anchor",
+          "payload": 1.0,
+          "source": "source",
+          "timestamp": 1.0
+        },
+        {
+          "destination": "source",
+          "event_type": "candidate_observation",
+          "payload": 0.5,
+          "source": "relay",
+          "timestamp": 1.5
+        },
+        {
+          "destination": "source",
+          "event_type": "local_anchor",
+          "payload": 1.0,
+          "source": "source",
+          "timestamp": 2.0
+        },
+        {
+          "destination": "source",
+          "event_type": "candidate_observation",
+          "payload": 0.5,
+          "source": "relay",
+          "timestamp": 2.5
+        },
+        {
+          "destination": "source",
+          "event_type": "local_anchor",
+          "payload": 1.0,
+          "source": "source",
+          "timestamp": 3.0
+        },
+        {
+          "destination": "source",
+          "event_type": "candidate_observation",
+          "payload": 0.5,
+          "source": "noise",
+          "timestamp": 6.0
+        }
+      ],
+      "trace": [
+        {
+          "destination": "source",
+          "event_id": 0,
+          "event_type": "local_anchor",
+          "source": "source",
+          "timestamp": 0.0
+        },
+        {
+          "destination": "source",
+          "event_id": 1,
+          "event_type": "candidate_observation",
+          "source": "relay",
+          "timestamp": 0.5
+        },
+        {
+          "destination": "source",
+          "event_id": 2,
+          "event_type": "local_anchor",
+          "source": "source",
+          "timestamp": 1.0
+        },
+        {
+          "destination": "source",
+          "event_id": 3,
+          "event_type": "candidate_observation",
+          "source": "relay",
+          "timestamp": 1.5
+        },
+        {
+          "destination": "source",
+          "event_id": 4,
+          "event_type": "local_anchor",
+          "source": "source",
+          "timestamp": 2.0
+        },
+        {
+          "destination": "source",
+          "event_id": 5,
+          "event_type": "candidate_observation",
+          "source": "relay",
+          "timestamp": 2.5
+        },
+        {
+          "destination": "source",
+          "event_id": 6,
+          "event_type": "local_anchor",
+          "source": "source",
+          "timestamp": 3.0
+        },
+        {
+          "destination": "source",
+          "event_id": 7,
+          "event_type": "candidate_observation",
+          "source": "noise",
+          "timestamp": 6.0
+        }
+      ]
+    }
+  },
+  "provenance": {
+    "baseline_revision": "f0821bd5eb0441ea892c463cbbcf173c80d09be6",
+    "branch": "main",
+    "environment": {
+      "platform": "Windows-10-10.0.19045-SP0",
+      "python": "3.10.8 (tags/v3.10.8:aaaf517, Oct 11 2022, 16:50:30) [MSC v.1933 64 bit (AMD64)]"
+    },
+    "executed_revision": "f0821bd5eb0441ea892c463cbbcf173c80d09be6",
+    "tree_state_at_generation": "?? artifacts/runtime-generated-local-evidence-13f/\n?? run_runtime_generated_evidence_13f.py\n?? tests/test_luna13f_runtime_generated_evidence.py\n?? tpcn/runtime_generated_evidence.py\n?? workflow/handoffs/runtime-generated-local-candidate-evidence-Luna-13F.md"
+  },
+  "schema_version": "TPCN-LUNA-13F-1",
+  "terminal_status": "BLOCKED - FIXTURE/ORACLE EVIDENCE CONTAMINATION"
+}
