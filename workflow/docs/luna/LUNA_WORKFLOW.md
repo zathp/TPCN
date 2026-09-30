@@ -2197,6 +2197,72 @@ change is authorized, and Luna-13G remains unauthorized. A separately
 authorized evidence-control repair is required before closure; do not add a
 utility predictor or issue Luna-13G from this review.
 
+### Luna-13F contract-control completion authorization - 2026-09-30
+
+Luna-0 published the independent blinded-experiment review at revision
+`c05015527063053ee789d0fc19ae21a02627f319`. The review independently
+reproduced the central negative result: evidence-driven `candidate_A` was
+selected in both mappings, with held-out results P0 `2/2` and P1 `1/2`.
+The scientific observation remains valid but is not yet contract-closed.
+
+The terminal review status is:
+
+**BLOCKED - REQUIRED CONTRACT CONTROLS NOT EXECUTED**
+
+Luna-0 authorizes exactly one narrowly scoped Luna-13F contract-control
+completion pass under the existing `.github/agents/luna-13f.agent.md`
+contract. This authorization covers only testing, experiment orchestration,
+instrumentation and truthful artifact accounting. It does not create a new
+Luna-13F contract, execute Luna-13F, change A01-A15, require an ACP, or
+authorize Luna-13G.
+
+The corrective pass must execute and independently evidence:
+
+1. Continuous chronology for pre-admission evidence, evidence completion,
+  freeze, score, decision, admission and held-out events, including queue
+  state and an adversarial event-at/before-boundary chronology attack.
+2. External-label mutation using otherwise identical executions, with exact
+  mutated metadata and equality of all pre-held-out computational fields.
+3. Per-field evidence provenance and an adversarial locality attack proving
+  prohibited private state, labels, held-out metadata and unrelated global
+  metadata cannot change raw local evidence.
+4. The actual bounded candidate-state container, declared capacity and
+  lifecycle semantics, plus saturation and reset/expiry/eviction-or-rejection
+  tests and stale-state reuse.
+5. Budget-boundary runs at `B-1`, `B`, `B+1` and a substantially larger budget,
+  with incomplete runs barred from valid admission and completed decisions
+  stable at larger budgets.
+6. A complete machine-readable and human-readable contract audit. Every
+  requirement must be `PASS`, `FAIL`, or
+  `NOT APPLICABLE - CONTRACT CONDITION NOT TRIGGERED`, with an exact reason
+  for conditional inapplicability and no unexplained mandatory `NOT RUN`.
+
+The pass must retain final evidence for neutral decay, valid mirrored roles,
+no-evidence, equalization, candidate-order reversal, future exclusion,
+relabeling and deterministic replay. It must regenerate `results.json`,
+`summary.json`, `audit-results.json` and the Luna-13F handoff so all mappings,
+scores, selections, outcomes, chronology, isolation results, bounds, budget
+status and terminal status agree. It must run the focused controls, the
+Luna-13F preservation matrix, Luna-13E, corrected Luna-13D, Luna-13C,
+Luna-13B, Stage-0, relevant Luna-12H/Luna-12N checks, the full CPU suite,
+compile/static checks, diagnostics and `git diff --check`, recording exact
+counts. This task performs none of those experiment executions.
+
+The P0/P1 mapping, runtime evidence semantics and canonical scorer remain
+unchanged unless a genuine contract defect requires correction. Any change
+capable of changing the central result requires re-execution of both mappings
+and disclosure of the prior result. No utility memory, probation, rollback,
+speculative edge, reward channel, global utility state, oracle predictor or
+new persistent learning subsystem is authorized. If a control requires one,
+stop with **BLOCKED - ARCHITECTURE CHANGE REQUIRED** and return a decision
+packet to Luna-0 and the project owner.
+
+After execution, Luna-13F must return to Luna-0 for final independent closure
+review. A negative result remains an acceptable successful scientific outcome;
+the expected terminal interpretation, if controls pass and P0/P1 remain
+`2/2` and `1/2`, is **NEGATIVE RESULT - RUNTIME EVIDENCE GENERATED BUT DOES
+NOT PREDICT USEFUL GROWTH**. Luna-13G remains unauthorized.
+
 ## Luna-13 — GPU-Compatible Visualization Path
 
 **Authorization:** Blocked until Luna-12 passes and Luna-0 explicitly authorizes this milestone. The prompt or handoff alone is not authorization.

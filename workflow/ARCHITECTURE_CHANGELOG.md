@@ -822,3 +822,27 @@ negative result remains an experiment observation, not an independently
 verified Luna-13F closure. No A01-A15 clause changed, no ACP was created, no
 architecture change was authorized, and Luna-13G remains unauthorized.
 
+## Luna-13F contract-control completion authorization - 2026-09-30
+
+Luna-0 published the independent review at
+`c05015527063053ee789d0fc19ae21a02627f319` with status **BLOCKED - REQUIRED
+CONTRACT CONTROLS NOT EXECUTED**. The review independently reproduced the
+blinded negative result: P0 selected `candidate_A` with held-out `2/2`, and
+P1 selected `candidate_A` with held-out `1/2`.
+
+One narrowly scoped Luna-13F contract-control completion pass is authorized
+under the existing `.github/agents/luna-13f.agent.md` contract. The scope is
+limited to chronology and queue-boundary proof, external-label mutation,
+locality attacks and provenance, bounded candidate saturation/reset/expiry/
+eviction-or-rejection semantics with stale-state reuse, budget-boundary and
+larger-budget stability, complete requirement-level audit accounting, and
+truthful artifact regeneration. Required preservation suites and static,
+diagnostic and diff checks remain part of execution. The P0/P1 mapping,
+runtime evidence semantics and canonical scorer are preserved; any genuine
+contract defect that changes the scientific result requires rerunning both
+mappings and disclosing the prior result.
+
+This is a workflow authorization only. No A01-A15 clause changed, no ACP is
+required, Luna-13F was not executed by this publication, and Luna-13G remains
+unauthorized. Final Luna-0 closure review is required after execution.
+
