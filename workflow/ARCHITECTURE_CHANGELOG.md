@@ -586,3 +586,31 @@ status changed.
 The final Luna-0 review publication revision is
 `becf38952fe5c1cf738dd875246b672f82836093`.
 
+## Luna-13E contract creation - 2026-09-30
+
+Created the formal **Post-Pruning Admission Quality and Harmful-Growth
+Discrimination Experiment** contract after the independently reviewed
+corrected Luna-13D state. The final reviewed published repository state is
+`b7e3bdc6028381a5fa6912c0212aff79528beae1`; the corrected implementation
+revision was `9ae2fb6574a4a45fa6a47c18e9aa7270bd4d3080`.
+
+- Luna-13D status is `PASS WITH FOLLOW-UP — RETENTION/PRUNING VERIFIED,
+	USEFUL ADAPTATION NOT ESTABLISHED`.
+- Evidence-based retention/pruning and capacity release are established;
+	useful post-pruning adaptation and resource efficiency are not established.
+- Luna-13E tests whether existing local causal pre-admission evidence can
+	distinguish beneficial from harmful growth under exactly one competing free
+	slot, after reproducing the harmful Luna-13D post-growth result.
+- Beneficial/harmful ground truth is external evaluation only. Field-level
+	provenance, no-oracle/future-information enforcement, endpoint-independent
+	scoring, label isolation, fixed/no-growth and seeded random controls are
+	mandatory.
+- If reliable admission requires unauthorized utility-aware state or another
+	architecture change, execution must stop with a decision packet; no
+	production mechanism may be added by stealth.
+- The scope is CPU-only, with optional non-gating CUDA checks, and requires
+	Luna-0 independent review afterward. Luna-13F remains unauthorized.
+
+This is a workflow and experiment-scope update only. A01-A15 are unchanged,
+no ACP is created, and no Luna-13E execution is authorized by this entry.
+

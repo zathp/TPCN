@@ -1879,6 +1879,51 @@ Luna-13E is not created or authorized.
 The final Luna-0 review publication revision is
 `becf38952fe5c1cf738dd875246b672f82836093`.
 
+### Luna-13E creation - 2026-09-30
+
+The corrected Luna-13D state was independently reviewed with final published
+repository state `b7e3bdc6028381a5fa6912c0212aff79528beae1`. The review status
+is `PASS WITH FOLLOW-UP — RETENTION/PRUNING VERIFIED, USEFUL ADAPTATION NOT
+ESTABLISHED`:
+
+- evidence-based retention/pruning is established, including measured route
+  evidence, inclusive inactivity eligibility, strict utility comparison,
+  relabeling and mirrored-role preservation;
+- useful post-pruning adaptation is not established and resource efficiency is
+  not established;
+- normal bounded post-pruning growth can degrade the fixed task from `2/2`, 8
+  events and energy `8.0` to `1/2`, 16 events and energy `16.0`.
+
+Luna-0 creates Luna-13E, **Post-Pruning Admission Quality and Harmful-Growth
+Discrimination Experiment**:
+
+```text
+Luna-0 creates Luna-13E contract
+  -> Luna-13E executes under a separate explicit assignment
+  -> Luna-0 independently reviews Luna-13E
+  -> only then determine whether Luna-13F is eligible
+```
+
+Luna-13E is a CPU-only experiment and verification of whether existing local,
+causal, bounded evidence available before mutation can distinguish a beneficial
+candidate from a harmful candidate under true one-slot competition. It must
+reproduce the corrected Luna-13D harmful-growth baseline first, freeze
+beneficial/harmful ground truth for external evaluation only, and record
+field-level pre-admission evidence provenance. Endpoint identity, labels,
+future events, future task outcomes and post-hoc oracle information may not
+drive admission. Fixed/no-growth and seeded random controls are required.
+
+If current architecture cannot make the distinction without new utility-aware
+admission state or another architecture change, Luna-13E must stop and return
+an architecture-change decision packet. It must not add a hidden mechanism,
+alter pruning, invent probation/rollback or claim utility prediction. CUDA is
+optional and non-gating. All applicable boundedness, locality, label-isolation,
+determinism and regression checks remain required.
+
+Luna-13E returns to Luna-0 for independent review. It does not authorize,
+create or dispatch Luna-13F. No A01-A15 clause or ACP status changes by this
+workflow entry.
+
 ## Luna-13 — GPU-Compatible Visualization Path
 
 **Authorization:** Blocked until Luna-12 passes and Luna-0 explicitly authorizes this milestone. The prompt or handoff alone is not authorization.
