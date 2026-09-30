@@ -617,8 +617,8 @@ no ACP is created, and no Luna-13E execution is authorized by this entry.
 ## Luna-13E independent review - 2026-09-30
 
 Luna-0 independently reviewed the synchronized Luna-13E implementation at
-`0a53b01b398d461eac3a962431b9ffcdae459e55`; the final review package is
-recorded by the review handoff and its commit. Status:
+`0a53b01b398d461eac3a962431b9ffcdae459e55`; the final review package revision
+is `7faf8d3f1c82927304875bb6263219d5954a463d`. Status:
 
 **PASS WITH FOLLOW-UP — HARMFUL GROWTH AVOIDED, GENERALITY NOT ESTABLISHED**
 

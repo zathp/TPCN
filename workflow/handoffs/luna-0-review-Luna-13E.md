@@ -11,7 +11,7 @@ tpcn_handoff:
   contract_version: "1.1"
   branch: "main"
   base_revision: "dd241ec9ee7af7456ae70bae2192d4237dab5d21"
-  result_revision: "pending final review package commit"
+  result_revision: "7faf8d3f1c82927304875bb6263219d5954a463d"
   dependencies: ["Luna-13B", "Luna-13C", "corrected Luna-13D"]
   owner: "Luna-0 / project owner"
   classification: ["VERIFICATION", "EXPERIMENT", "ARCHITECTURE-REVIEW"]

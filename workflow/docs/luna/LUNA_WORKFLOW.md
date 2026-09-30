@@ -1929,7 +1929,8 @@ workflow entry.
 Luna-0 independently reviewed Luna-13E at implementation revision
 `0a53b01b398d461eac3a962431b9ffcdae459e55`, based on synchronized published
 revision `dd241ec9ee7af7456ae70bae2192d4237dab5d21` and the corrected artifact
-metadata committed during review. The review status is:
+  metadata committed during review. The review package revision is
+  `7faf8d3f1c82927304875bb6263219d5954a463d`. The review status is:
 
 **PASS WITH FOLLOW-UP — HARMFUL GROWTH AVOIDED, GENERALITY NOT ESTABLISHED**
 
