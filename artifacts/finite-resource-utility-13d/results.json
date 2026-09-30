@@ -908,7 +908,7 @@
       "python": "3.10.8 (tags/v3.10.8:aaaf517, Oct 11 2022, 16:50:30) [MSC v.1933 64 bit (AMD64)]"
     },
     "executed_revision": "9ae2fb6574a4a45fa6a47c18e9aa7270bd4d3080",
-    "tree_state_at_generation": "M artifacts/finite-resource-utility-13d/results.json\n M artifacts/finite-resource-utility-13d/summary.json"
+    "tree_state_at_generation": "clean"
   },
   "pruning_semantics": {
     "eligibility": "prune when inactivity_age >= inactivity_threshold OR observed_utility < utility_threshold",
