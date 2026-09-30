@@ -846,3 +846,57 @@ This is a workflow authorization only. No A01-A15 clause changed, no ACP is
 required, Luna-13F was not executed by this publication, and Luna-13G remains
 unauthorized. Final Luna-0 closure review is required after execution.
 
+## Luna-13F final independent closure review - 2026-09-30
+
+Luna-0 independently reproduced the blinded negative observation from
+implementation revision `72b6201d6a2793b0bab099df7418aa66904501a` and artifact
+generation revision `b5815f90522c1704731037c5d5fd1bface264565` at synchronized
+review revision `2b2432dabd49ecacceef525e8e3e68b909ee09c3`.
+
+- P0: `candidate_A` selected, held-out `2/2`.
+- P1: `candidate_A` selected, held-out `1/2`.
+- Proposition 1 (bounded local runtime evidence): observed in the tested
+	fixture; Proposition 2 (canonical admission affected): observed in the
+	tested fixture; Proposition 3 (evidence predicts useful growth): not
+	supported.
+- The evidence mechanism is primarily source-local observation-count/
+	association-window accumulation, not a decay-sensitive score.
+- The raw result retains no-growth `2/2 @ 8 events / 8.0 proxy` versus selected
+	P0 growth `2/2 @ 12 events / 12.0 proxy`; there is no task or resource
+	improvement claim, and P1 demonstrates harmful growth remains possible.
+
+The final review does not close Luna-13F because the future-event, chronology
+and locality controls reported as PASS are not independently executed in the
+implementation. The generated audit is consequently **BLOCKED - CONTRACT
+AUDIT INVALID** despite its `26/0/2` aggregate. `candidate_expiry` and
+`candidate_eviction` are both **VALID NOT APPLICABLE**: the canonical policy
+has no expiry path and uses explicit rejection rather than eviction at full
+capacity. A01-A15 and ACP status are unchanged. No successor or architecture
+mechanism is authorized; Luna-13G remains unauthorized.
+
+## Luna-13F runtime-attack corrective authorization - 2026-09-30
+
+After the final independent review remained **BLOCKED - CONTRACT AUDIT
+INVALID**, Luna-0 authorizes one narrowly scoped corrective pass under the
+existing Luna-13F contract. This is an authorization and workflow update only;
+Luna-13F is not executed here.
+
+The authorized work repairs exactly three controls:
+
+- future-event exclusion through a causally continuous post-admission runtime
+	continuation that processes a score-changing future observation while
+	preserving the immutable historical admission record;
+- chronology through actual queued before-decision, equal-timestamp and
+	strictly-after-decision held-out injections with recorded processing order;
+- locality through mutation of genuinely accessible prohibited runtime state,
+	including a cross-candidate private-state attack where available.
+
+The P0/P1 fixture and scientific interpretation remain protected: P0
+`candidate_A -> 2/2`, P1 `candidate_A -> 1/2`, with bounded source-local
+temporal association counts rather than decay-sensitive scoring. The two valid
+N/A classifications remain unchanged. No A01-A15 change, ACP, new runtime
+semantics, utility memory, reward path, probation, rollback, speculative edge,
+global utility state or new candidate-state behavior is authorized. If a real
+architecture change is required, execution must stop and return
+**BLOCKED - ARCHITECTURE CHANGE REQUIRED**. Luna-13G remains unauthorized.
+

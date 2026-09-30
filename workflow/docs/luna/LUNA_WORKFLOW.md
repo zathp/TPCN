@@ -2263,6 +2263,58 @@ the expected terminal interpretation, if controls pass and P0/P1 remain
 `2/2` and `1/2`, is **NEGATIVE RESULT - RUNTIME EVIDENCE GENERATED BUT DOES
 NOT PREDICT USEFUL GROWTH**. Luna-13G remains unauthorized.
 
+## Luna-13F final independent closure review - 2026-09-30
+
+Luna-0 independently reviewed the synchronized implementation at
+`2b2432dabd49ecacceef525e8e3e68b909ee09c3`, the generated artifacts, the
+contract audit, the execution handoff and the runtime control code. The raw
+blinded result reproduces: P0 selects `candidate_A` and obtains `2/2`; P1
+selects `candidate_A` and obtains `1/2`. The score is a bounded source-local
+temporal-association count (`4.0` versus `0.0`), and neutral decay changes
+local neuron state without changing score or rank. No-growth remains `2/2`
+with 8 events and `8.0` uncalibrated activity-cost-proxy units; selected P0
+growth remains `2/2` with 12 events and `12.0` units.
+
+The negative observation is scientifically informative, but closure is blocked.
+The declared future-event control appends an event and then removes it before
+runtime execution (`events[:16]`); the chronology attack is a timestamp
+predicate rather than an injected runtime event; and the locality attack passes
+metadata that the runtime path does not read. Consequently the audit's three
+corresponding PASS claims are not executed evidence. The aggregate `26 PASS,
+0 FAIL, 2 NOT APPLICABLE` is therefore invalid as a closure audit.
+
+Final status: **BLOCKED - CONTRACT AUDIT INVALID**. The two N/A entries are
+valid only as conditional lifecycle cases: candidate expiry is not a mechanism
+of the canonical policy, and eviction is not triggered because full capacity
+uses explicit rejection. No A01-A15 clause changed, no ACP was created, and no
+architecture mechanism or successor was authorized. Luna-13G remains
+unauthorized. A future assignment would require a separately authorized
+control repair and another independent Luna-0 review.
+
+## Luna-13F runtime-attack corrective authorization - 2026-09-30
+
+Following the final independent review at implementation/review baseline
+`2b2432dabd49ecacceef525e8e3e68b909ee09c3`, Luna-0 authorizes exactly one
+narrow corrective pass under the existing `.github/agents/luna-13f.agent.md`.
+The authorization repairs only the invalid runtime controls: live future-event
+injection after admission, queued chronology-boundary attacks, and a locality
+attack that mutates genuinely accessible prohibited state. It does not execute
+Luna-13F during this publication task.
+
+The P0/P1 fixture, bounded source-local association-count mechanism and
+canonical scorer remain unchanged unless a genuine runtime defect is found. The
+corrective run must preserve or disclose any changed P0/P1 result, regenerate
+all artifacts and the audit, and return to Luna-0. The two prior N/A cases
+(unsupported expiry and deterministic full-capacity rejection rather than
+eviction) remain valid; no expiry or eviction implementation is authorized.
+
+The corrective pass may not add utility memory, reward pathways, probation,
+rollback, speculative edges, global utility state, new candidate semantics,
+architecture changes or an ACP. If valid future exclusion requires new
+production architecture semantics, stop with **BLOCKED - ARCHITECTURE CHANGE
+REQUIRED**. Luna-13G remains unauthorized, and a final Luna-0 closure review is
+mandatory after the corrective artifacts.
+
 ## Luna-13 — GPU-Compatible Visualization Path
 
 **Authorization:** Blocked until Luna-12 passes and Luna-0 explicitly authorizes this milestone. The prompt or handoff alone is not authorization.
