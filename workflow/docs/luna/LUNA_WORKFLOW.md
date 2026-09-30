@@ -2034,6 +2034,72 @@ add production semantics silently. Execution remains CPU-only; optional CUDA
 skips are non-gating. Luna-13F must return to Luna-0 for independent review.
 Luna-13G remains unauthorized.
 
+### Luna-13F independent review - 2026-09-30
+
+Luna-0 independently reviewed the completed Luna-13F implementation at
+`0ba668ebe6cccd52fb0953638e1159090a79221e` after refreshing `origin/main`.
+The review was performed on `main`; `HEAD` was one commit ahead of
+`origin/main` (`f0821bd5eb0441ea892c463cbbcf173c80d09be6`), and the worktree
+was clean before review edits.
+
+The terminal status is:
+
+**BLOCKED - FIXTURE/ORACLE EVIDENCE CONTAMINATION CONFIRMED**
+
+The earliest invalid dependency is the Luna-13F `_schedule` path: it uses
+`beneficial_role` and `harmful_role` to assign three short candidate events to
+G and one long event to H. The runtime neuron and bounded temporal policy are
+real, and the unchanged canonical scorer is called, but the informative value
+is assigned by the experiment fixture before runtime processing. The review
+also confirmed that post-decision events change the accumulated score and
+admission, held-out route timestamps begin before the decision, and an
+event-budget-exhausted run can still admit G with pending events.
+
+The existing architecture is **partially sufficient**: bounded local policy
+state, neuron state and the canonical scorer already exist. No architecture
+change or ACP is required by this review. The implementation may receive a
+separately authorized corrective pass under the existing contract:
+
+**LUNA-13F CORRECTIVE PASS ELIGIBLE UNDER EXISTING CONTRACT**
+
+This eligibility does not authorize execution. The corrective scope must use
+matched non-role-authored exposure, freeze pre-admission evidence, place
+held-out execution strictly later, reject incomplete runs for scientific
+admission, and complete the required controls. The original unqualified 13F
+artifact pair lacks a terminal-status field; the verified artifact pair and
+resumption audit truthfully report the blocked status. A01-A15 and ACP status
+remain unchanged. No corrective work was executed by this review, and
+Luna-13G remains unauthorized.
+
+### Luna-13F corrective execution authorization - 2026-09-30
+
+Following the independent review above, Luna-0 explicitly authorizes a
+corrective Luna-13F pass under the existing `.github/agents/luna-13f.agent.md`
+contract. This is a corrective execution boundary, not a new Luna contract,
+architecture promotion or successor authorization.
+
+The authorized corrective scope is limited to the identified experiment
+violations: remove beneficial/harmful-role knowledge from evidence scheduling;
+freeze evidence before the structural decision; place held-out events after
+the decision in actual timestamps; reject incomplete-budget admissions;
+construct a genuine runtime-generated evidence-equalization control; and run
+the required missing or invalid controls. Controlled event schedules remain
+allowed when they do not encode later held-out usefulness.
+
+The corrective pass must not add utility memory, probation, rollback,
+speculative edges, a reward channel, global task utility, an oracle cost
+predictor, global candidate history, protected candidate classes or new
+architecture semantics. If an existing mechanism is insufficient, Luna-13F
+must stop and return **BLOCKED - ARCHITECTURE CHANGE REQUIRED FOR RUNTIME
+EVIDENCE**. A positive result is not required; ties, non-predictive evidence
+and negative results are valid outcomes. The first Luna-13F execution remains
+blocked, the architecture remains unchanged, and Luna-13G remains
+unauthorized.
+
+The next action is Luna-13F corrective execution, followed by another
+independent Luna-0 review. No corrective Luna-13F execution was performed as
+part of this authorization/publication task.
+
 ## Luna-13 — GPU-Compatible Visualization Path
 
 **Authorization:** Blocked until Luna-12 passes and Luna-0 explicitly authorizes this milestone. The prompt or handoff alone is not authorization.

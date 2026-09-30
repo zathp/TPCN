@@ -355,10 +355,10 @@
     "audit_script_sha256": "69d7d5c7737e42be130f33b22a9865422a0c3a8148fd40c5c91a826a2c180bcc",
     "backup_directory": "C:\\Users\\zathp\\Documents\\programming\\TPCN-Luna-13F-backup-20260930-143250",
     "branch": "main",
-    "committed_tree": "f49d4c46d751abce52944b11fa005312c122974a",
-    "executed_committed_revision": "f0821bd5eb0441ea892c463cbbcf173c80d09be6",
+    "committed_tree": "d21027a8efdd2c5318d5f0bd84efbfcc8032cca3",
+    "executed_committed_revision": "0ba668ebe6cccd52fb0953638e1159090a79221e",
     "executed_source_note": "Current source is identified by SHA-256; the original backup manifest is retained separately.",
-    "generation_status": "?? artifacts/runtime-generated-local-evidence-13f-verified/results.json\n?? artifacts/runtime-generated-local-evidence-13f-verified/summary.json\n?? artifacts/runtime-generated-local-evidence-13f/results.json\n?? artifacts/runtime-generated-local-evidence-13f/resumption-audit-20260930/audit-results.json\n?? artifacts/runtime-generated-local-evidence-13f/resumption-audit-20260930/audit_luna13f.py\n?? artifacts/runtime-generated-local-evidence-13f/summary.json\n?? run_runtime_generated_evidence_13f.py\n?? tests/test_luna13f_runtime_generated_evidence.py\n?? tpcn/runtime_generated_evidence.py\n?? workflow/handoffs/runtime-generated-local-candidate-evidence-Luna-13F.md",
+    "generation_status": "",
     "original_sha256": {
       "artifacts/runtime-generated-local-evidence-13f/results.json": "20535bb2e5945272286060e7bcb1b4553dca5937760d63ccf62273830f5555c4",
       "artifacts/runtime-generated-local-evidence-13f/summary.json": "009c2c61ae2b81a61948972ed04b6a2a708aa1dfc73edbf4c091ba294d5efcb7",
@@ -369,7 +369,7 @@
     "platform": "Windows-10-10.0.19045-SP0",
     "python": "3.10.8 (tags/v3.10.8:aaaf517, Oct 11 2022, 16:50:30) [MSC v.1933 64 bit (AMD64)]",
     "source_manifest_sha256": "8ba2220dc4fd9997acea0472a1181c69f98f45c1da17826ee6c03773b2ff39dc",
-    "starting_revision": "f0821bd5eb0441ea892c463cbbcf173c80d09be6"
+    "starting_revision": "0ba668ebe6cccd52fb0953638e1159090a79221e"
   },
   "schema_version": "TPCN-LUNA-13F-RESUMPTION-AUDIT-1",
   "terminal_status": "BLOCKED - FIXTURE/ORACLE EVIDENCE CONTAMINATION"

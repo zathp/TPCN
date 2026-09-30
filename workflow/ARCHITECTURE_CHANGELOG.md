@@ -689,3 +689,54 @@ targets Luna-13E's remaining fixture-evidence limitation.
 This is an experiment authorization boundary only. A01-A15, ACP status and
 the canonical architecture are unchanged.
 
+## Luna-13F independent review - 2026-09-30
+
+Luna-0 reviewed the completed Luna-13F implementation revision
+`0ba668ebe6cccd52fb0953638e1159090a79221e` after refreshing `origin/main`.
+The review confirms:
+
+- Terminal status: **BLOCKED - FIXTURE/ORACLE EVIDENCE CONTAMINATION
+	CONFIRMED**.
+- The earliest invalid dependency is the fixture schedule assigning the
+	beneficial role three short observations and the harmful role one long
+	observation. Runtime neuron/policy state and the unchanged canonical scorer
+	exist, but the informative evidence is role-authored before runtime.
+- Post-decision mutation changes evidence and admission; held-out timestamps
+	begin before the structural decision; and incomplete-budget execution still
+	admits with pending events.
+- The architecture is partially sufficient. No A01-A15 clause changed, no
+	ACP is required, and the missing work is a corrective experiment/validation
+	repair rather than a new architecture mechanism.
+- The required preservation matrix passed 123 tests; the full CPU suite passed
+	284 with 1 skipped; the contract audit reproduced 5 passed, 8 failed and 5
+	not run. Editor diagnostics and hardware checks were not run and are outside
+	the CPU-only gate.
+- The original artifact pair has no terminal-status field; the verified pair
+	and audit report the blocked status. This is recorded as an artifact
+	truthfulness defect, not a positive result.
+
+**LUNA-13F CORRECTIVE PASS ELIGIBLE UNDER EXISTING CONTRACT.** This is not an
+execution authorization. A separately bounded corrective 13F assignment and
+another Luna-0 review are required. Luna-13G remains unauthorized. A01-A15
+and ACP status remain unchanged.
+
+## Luna-13F corrective execution authorization - 2026-09-30
+
+Following the independent Luna-0 review, corrective Luna-13F execution is
+explicitly authorized under the existing `.github/agents/luna-13f.agent.md`
+contract. No new Luna contract, ACP or architecture promotion is created.
+
+The bounded corrective scope covers only removal of role/oracle knowledge from
+the evidence schedule, explicit pre-admission evidence freeze, actual held-out
+chronology, incomplete-budget admission rejection, genuine runtime evidence
+equalization and the required invalid/not-run controls. It may not add utility
+memory, probation, rollback, speculative edges, a new reward channel, global
+task utility, an oracle cost predictor, global candidate history, protected
+candidate classes or new architecture semantics.
+
+If existing mechanisms prove insufficient, Luna-13F must stop with
+`BLOCKED - ARCHITECTURE CHANGE REQUIRED FOR RUNTIME EVIDENCE`. The first 13F
+execution remains blocked; ties and negative results remain valid; another
+independent Luna-0 review is mandatory after corrective execution. Luna-13G
+remains unauthorized.
+
