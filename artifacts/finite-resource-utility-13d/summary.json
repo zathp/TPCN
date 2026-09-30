@@ -1,6 +1,6 @@
 {
-  "baseline_revision": "0fa71bcf4614c765c47f07ecdcbd85105edda7f5",
-  "executed_revision": "c35f10e",
+  "baseline_revision": "89de90b183cd54f1ae24f433b6161f1b14c23c0e",
+  "executed_revision": "9ae2fb6574a4a45fa6a47c18e9aa7270bd4d3080",
   "fixture_id": "luna-13d-interval-deadline-capacity-v1",
   "runs": [
     {

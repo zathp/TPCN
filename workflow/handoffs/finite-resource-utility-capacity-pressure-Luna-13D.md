@@ -201,7 +201,8 @@ unproven.
 
 The corrective pass started from the final Luna-0 review state
 `89de90b183cd54f1ae24f433b6161f1b14c23c0e` with a clean synchronized tree.
-The corrective implementation revision is `9ae2fb6`; corrected artifacts were
+The corrective implementation revision is
+`9ae2fb6574a4a45fa6a47c18e9aa7270bd4d3080`; corrected artifacts were
 generated from that revision with clean generation state.
 
 ### Corrective answers

@@ -9,8 +9,15 @@
     "fan_in_limit": 2,
     "fan_out_limit": 2,
     "fixture_id": "luna-13d-interval-deadline-capacity-v1",
+    "node_ids": [
+      "left",
+      "right",
+      "target",
+      "relay",
+      "noise"
+    ],
     "non_inferiority_cases": 2,
-    "pruning_inactivity_threshold": 1,
+    "pruning_inactivity_threshold": 2,
     "pruning_utility_threshold": 0.1,
     "queue_capacity": 8,
     "random_seeds": [
@@ -20,7 +27,8 @@
       3,
       4
     ],
-    "resource_reduction_threshold": 0.1
+    "resource_reduction_threshold": 0.1,
+    "task_source_role": "right"
   },
   "controls": {
     "fixed_topology": {
@@ -40,6 +48,12 @@
             "termination_reason": "completed"
           },
           "correct": true,
+          "edge_timestamps": {
+            "('right', 'target', 1.0)": [
+              0.0,
+              1.0
+            ]
+          },
           "events": 4,
           "example_id": "short-held-out",
           "fixed_external_target": "on_time",
@@ -63,6 +77,12 @@
             "termination_reason": "completed"
           },
           "correct": true,
+          "edge_timestamps": {
+            "('right', 'target', 1.0)": [
+              0.0,
+              3.0
+            ]
+          },
           "events": 4,
           "example_id": "long-held-out",
           "fixed_external_target": "late",
@@ -76,6 +96,22 @@
         }
       ],
       "completion_status": "completed",
+      "edge_evidence": [
+        {
+          "creation_time": 0.0,
+          "edge": [
+            "right",
+            "target",
+            1.0
+          ],
+          "inactivity_age": 1.0,
+          "last_use_timestamp": 3.0,
+          "observed_cost": 4.0,
+          "observed_utility": 4.0,
+          "pruning_score": 4.0,
+          "use_count": 4
+        }
+      ],
       "edge_traffic": {
         "('right', 'target', 1.0)": 4
       },
@@ -125,6 +161,12 @@
               "termination_reason": "completed"
             },
             "correct": true,
+            "edge_timestamps": {
+              "('right', 'target', 1.0)": [
+                0.0,
+                1.0
+              ]
+            },
             "events": 4,
             "example_id": "short-held-out",
             "fixed_external_target": "on_time",
@@ -148,6 +190,12 @@
               "termination_reason": "completed"
             },
             "correct": true,
+            "edge_timestamps": {
+              "('right', 'target', 1.0)": [
+                0.0,
+                3.0
+              ]
+            },
             "events": 4,
             "example_id": "long-held-out",
             "fixed_external_target": "late",
@@ -161,6 +209,22 @@
           }
         ],
         "completion_status": "completed",
+        "edge_evidence": [
+          {
+            "creation_time": 0.0,
+            "edge": [
+              "right",
+              "target",
+              1.0
+            ],
+            "inactivity_age": 1.0,
+            "last_use_timestamp": 3.0,
+            "observed_cost": 4.0,
+            "observed_utility": 4.0,
+            "pruning_score": 4.0,
+            "use_count": 4
+          }
+        ],
         "edge_traffic": {
           "('right', 'target', 1.0)": 4
         },
@@ -216,6 +280,7 @@
               "termination_reason": "completed"
             },
             "correct": false,
+            "edge_timestamps": {},
             "events": 2,
             "example_id": "short-held-out",
             "fixed_external_target": "on_time",
@@ -236,6 +301,7 @@
               "termination_reason": "completed"
             },
             "correct": true,
+            "edge_timestamps": {},
             "events": 2,
             "example_id": "long-held-out",
             "fixed_external_target": "late",
@@ -246,6 +312,22 @@
           }
         ],
         "completion_status": "completed",
+        "edge_evidence": [
+          {
+            "creation_time": 0.0,
+            "edge": [
+              "left",
+              "target",
+              1.0
+            ],
+            "inactivity_age": 4.0,
+            "last_use_timestamp": null,
+            "observed_cost": 0.0,
+            "observed_utility": 0.0,
+            "pruning_score": 0.0,
+            "use_count": 0
+          }
+        ],
         "edge_traffic": {},
         "failure_categories": {
           "budget_exhaustion": false,
@@ -299,6 +381,7 @@
               "termination_reason": "completed"
             },
             "correct": false,
+            "edge_timestamps": {},
             "events": 2,
             "example_id": "short-held-out",
             "fixed_external_target": "on_time",
@@ -319,6 +402,7 @@
               "termination_reason": "completed"
             },
             "correct": true,
+            "edge_timestamps": {},
             "events": 2,
             "example_id": "long-held-out",
             "fixed_external_target": "late",
@@ -329,6 +413,22 @@
           }
         ],
         "completion_status": "completed",
+        "edge_evidence": [
+          {
+            "creation_time": 0.0,
+            "edge": [
+              "left",
+              "target",
+              1.0
+            ],
+            "inactivity_age": 4.0,
+            "last_use_timestamp": null,
+            "observed_cost": 0.0,
+            "observed_utility": 0.0,
+            "pruning_score": 0.0,
+            "use_count": 0
+          }
+        ],
         "edge_traffic": {},
         "failure_categories": {
           "budget_exhaustion": false,
@@ -382,6 +482,7 @@
               "termination_reason": "completed"
             },
             "correct": false,
+            "edge_timestamps": {},
             "events": 2,
             "example_id": "short-held-out",
             "fixed_external_target": "on_time",
@@ -402,6 +503,7 @@
               "termination_reason": "completed"
             },
             "correct": true,
+            "edge_timestamps": {},
             "events": 2,
             "example_id": "long-held-out",
             "fixed_external_target": "late",
@@ -412,6 +514,22 @@
           }
         ],
         "completion_status": "completed",
+        "edge_evidence": [
+          {
+            "creation_time": 0.0,
+            "edge": [
+              "left",
+              "target",
+              1.0
+            ],
+            "inactivity_age": 4.0,
+            "last_use_timestamp": null,
+            "observed_cost": 0.0,
+            "observed_utility": 0.0,
+            "pruning_score": 0.0,
+            "use_count": 0
+          }
+        ],
         "edge_traffic": {},
         "failure_categories": {
           "budget_exhaustion": false,
@@ -465,6 +583,7 @@
               "termination_reason": "completed"
             },
             "correct": false,
+            "edge_timestamps": {},
             "events": 2,
             "example_id": "short-held-out",
             "fixed_external_target": "on_time",
@@ -485,6 +604,7 @@
               "termination_reason": "completed"
             },
             "correct": true,
+            "edge_timestamps": {},
             "events": 2,
             "example_id": "long-held-out",
             "fixed_external_target": "late",
@@ -495,6 +615,22 @@
           }
         ],
         "completion_status": "completed",
+        "edge_evidence": [
+          {
+            "creation_time": 0.0,
+            "edge": [
+              "left",
+              "target",
+              1.0
+            ],
+            "inactivity_age": 4.0,
+            "last_use_timestamp": null,
+            "observed_cost": 0.0,
+            "observed_utility": 0.0,
+            "pruning_score": 0.0,
+            "use_count": 0
+          }
+        ],
         "edge_traffic": {},
         "failure_categories": {
           "budget_exhaustion": false,
@@ -559,7 +695,7 @@
       "edge_role": "expensive useful",
       "pruned": false,
       "reason": "retained or not eligible under declared score",
-      "reward_utility_evidence": "baseline route contributes target arrivals",
+      "reward_utility_evidence": "isolated path task result",
       "uses": 0
     },
     {
@@ -573,7 +709,7 @@
       "edge_role": "expensive useless",
       "pruned": true,
       "reason": "lowest declared utility score",
-      "reward_utility_evidence": "no right-source traffic or external contribution",
+      "reward_utility_evidence": "no route traffic",
       "uses": 0
     }
   ],
@@ -593,20 +729,201 @@
   },
   "experiment": "Luna-13D finite-resource utility, retention, and capacity pressure",
   "fixture_id": "luna-13d-interval-deadline-capacity-v1",
+  "identity_controls": {
+    "mirrored": {
+      "capacity_freed": 2,
+      "node_ids": [
+        "m-left",
+        "m-right",
+        "m-target",
+        "m-relay",
+        "m-noise"
+      ],
+      "pruned_edges": [
+        {
+          "edge": {
+            "destination": "m-target",
+            "propagation_delay": 4.0,
+            "source": "m-noise"
+          },
+          "reason": "inactivity_and_utility",
+          "status": "pruned"
+        },
+        {
+          "edge": {
+            "destination": "m-noise",
+            "propagation_delay": 4.0,
+            "source": "m-right"
+          },
+          "reason": "inactivity_and_utility",
+          "status": "pruned"
+        }
+      ],
+      "pruning_evidence": [
+        {
+          "creation_time": 0.0,
+          "edge": [
+            "m-left",
+            "m-target",
+            1.0
+          ],
+          "eligibility_reason": "retained",
+          "eligible": false,
+          "inactivity_age": 1.0,
+          "last_use_timestamp": 3.0,
+          "observed_cost": 4.0,
+          "observed_utility": 4.0,
+          "pruning_score": 4.0,
+          "use_count": 4
+        },
+        {
+          "creation_time": 0.0,
+          "edge": [
+            "m-right",
+            "m-noise",
+            4.0
+          ],
+          "eligibility_reason": "inactivity_and_utility",
+          "eligible": true,
+          "inactivity_age": 4.0,
+          "last_use_timestamp": null,
+          "observed_cost": 0.0,
+          "observed_utility": 0.0,
+          "pruning_score": 0.0,
+          "use_count": 0
+        },
+        {
+          "creation_time": 0.0,
+          "edge": [
+            "m-noise",
+            "m-target",
+            4.0
+          ],
+          "eligibility_reason": "inactivity_and_utility",
+          "eligible": true,
+          "inactivity_age": 4.0,
+          "last_use_timestamp": null,
+          "observed_cost": 0.0,
+          "observed_utility": 0.0,
+          "pruning_score": 0.0,
+          "use_count": 0
+        }
+      ],
+      "task_result": "2/2",
+      "task_source_role": "left"
+    },
+    "relabeled": {
+      "capacity_freed": 2,
+      "node_ids": [
+        "u-left",
+        "u-right",
+        "u-target",
+        "u-relay",
+        "u-noise"
+      ],
+      "pruned_edges": [
+        {
+          "edge": {
+            "destination": "u-noise",
+            "propagation_delay": 4.0,
+            "source": "u-left"
+          },
+          "reason": "inactivity_and_utility",
+          "status": "pruned"
+        },
+        {
+          "edge": {
+            "destination": "u-target",
+            "propagation_delay": 4.0,
+            "source": "u-noise"
+          },
+          "reason": "inactivity_and_utility",
+          "status": "pruned"
+        }
+      ],
+      "pruning_evidence": [
+        {
+          "creation_time": 0.0,
+          "edge": [
+            "u-right",
+            "u-target",
+            1.0
+          ],
+          "eligibility_reason": "retained",
+          "eligible": false,
+          "inactivity_age": 1.0,
+          "last_use_timestamp": 3.0,
+          "observed_cost": 4.0,
+          "observed_utility": 4.0,
+          "pruning_score": 4.0,
+          "use_count": 4
+        },
+        {
+          "creation_time": 0.0,
+          "edge": [
+            "u-left",
+            "u-noise",
+            4.0
+          ],
+          "eligibility_reason": "inactivity_and_utility",
+          "eligible": true,
+          "inactivity_age": 4.0,
+          "last_use_timestamp": null,
+          "observed_cost": 0.0,
+          "observed_utility": 0.0,
+          "pruning_score": 0.0,
+          "use_count": 0
+        },
+        {
+          "creation_time": 0.0,
+          "edge": [
+            "u-noise",
+            "u-target",
+            4.0
+          ],
+          "eligibility_reason": "inactivity_and_utility",
+          "eligible": true,
+          "inactivity_age": 4.0,
+          "last_use_timestamp": null,
+          "observed_cost": 0.0,
+          "observed_utility": 0.0,
+          "pruning_score": 0.0,
+          "use_count": 0
+        }
+      ],
+      "task_result": "2/2",
+      "task_source_role": "right"
+    }
+  },
   "interpretation": {
     "note": "Resource comparisons remain Pareto-style; lower events with lower task utility are not efficiency evidence.",
     "replacement_authorized": false,
     "resource_efficiency_claim": false
   },
   "provenance": {
-    "baseline_revision": "0fa71bcf4614c765c47f07ecdcbd85105edda7f5",
+    "baseline_revision": "89de90b183cd54f1ae24f433b6161f1b14c23c0e",
     "branch": "main",
     "environment": {
       "platform": "Windows-10-10.0.19045-SP0",
       "python": "3.10.8 (tags/v3.10.8:aaaf517, Oct 11 2022, 16:50:30) [MSC v.1933 64 bit (AMD64)]"
     },
-    "executed_revision": "c35f10e",
-    "tree_state_at_generation": "clean"
+    "executed_revision": "9ae2fb6574a4a45fa6a47c18e9aa7270bd4d3080",
+    "tree_state_at_generation": "M artifacts/finite-resource-utility-13d/results.json\n M artifacts/finite-resource-utility-13d/summary.json"
+  },
+  "pruning_semantics": {
+    "eligibility": "prune when inactivity_age >= inactivity_threshold OR observed_utility < utility_threshold",
+    "equality": "inactivity equality prunes; utility equality is retained",
+    "evidence_fields": [
+      "use_count",
+      "last_use_timestamp",
+      "inactivity_age",
+      "observed_utility",
+      "observed_cost",
+      "pruning_score"
+    ],
+    "labels_or_endpoint_identity_used": false,
+    "score": "observed_utility = route use count",
+    "selection": "among eligible edges, lowest observed pruning_score first, bounded maximum 2"
   },
   "schema_version": "TPCN-LUNA-13D-1",
   "stages": {
@@ -628,6 +945,16 @@
               "termination_reason": "completed"
             },
             "correct": true,
+            "edge_timestamps": {
+              "('relay', 'target', 0.5)": [
+                0.5,
+                1.5
+              ],
+              "('right', 'relay', 0.5)": [
+                0.0,
+                1.0
+              ]
+            },
             "events": 6,
             "example_id": "short-held-out",
             "fixed_external_target": "on_time",
@@ -651,6 +978,16 @@
               "termination_reason": "completed"
             },
             "correct": true,
+            "edge_timestamps": {
+              "('relay', 'target', 0.5)": [
+                0.5,
+                3.5
+              ],
+              "('right', 'relay', 0.5)": [
+                0.0,
+                3.0
+              ]
+            },
             "events": 6,
             "example_id": "long-held-out",
             "fixed_external_target": "late",
@@ -664,6 +1001,36 @@
           }
         ],
         "completion_status": "completed",
+        "edge_evidence": [
+          {
+            "creation_time": 0.0,
+            "edge": [
+              "right",
+              "relay",
+              0.5
+            ],
+            "inactivity_age": 1.0,
+            "last_use_timestamp": 3.0,
+            "observed_cost": 2.0,
+            "observed_utility": 4.0,
+            "pruning_score": 4.0,
+            "use_count": 4
+          },
+          {
+            "creation_time": 0.0,
+            "edge": [
+              "relay",
+              "target",
+              0.5
+            ],
+            "inactivity_age": 0.5,
+            "last_use_timestamp": 3.5,
+            "observed_cost": 2.0,
+            "observed_utility": 4.0,
+            "pruning_score": 4.0,
+            "use_count": 4
+          }
+        ],
         "edge_traffic": {
           "('relay', 'target', 0.5)": 4,
           "('right', 'relay', 0.5)": 4
@@ -718,6 +1085,12 @@
               "termination_reason": "completed"
             },
             "correct": true,
+            "edge_timestamps": {
+              "('right', 'target', 1.0)": [
+                0.0,
+                1.0
+              ]
+            },
             "events": 4,
             "example_id": "short-held-out",
             "fixed_external_target": "on_time",
@@ -741,6 +1114,12 @@
               "termination_reason": "completed"
             },
             "correct": true,
+            "edge_timestamps": {
+              "('right', 'target', 1.0)": [
+                0.0,
+                3.0
+              ]
+            },
             "events": 4,
             "example_id": "long-held-out",
             "fixed_external_target": "late",
@@ -754,6 +1133,22 @@
           }
         ],
         "completion_status": "completed",
+        "edge_evidence": [
+          {
+            "creation_time": 0.0,
+            "edge": [
+              "right",
+              "target",
+              1.0
+            ],
+            "inactivity_age": 1.0,
+            "last_use_timestamp": 3.0,
+            "observed_cost": 4.0,
+            "observed_utility": 4.0,
+            "pruning_score": 4.0,
+            "use_count": 4
+          }
+        ],
         "edge_traffic": {
           "('right', 'target', 1.0)": 4
         },
@@ -803,6 +1198,12 @@
             "termination_reason": "completed"
           },
           "correct": true,
+          "edge_timestamps": {
+            "('right', 'target', 1.0)": [
+              0.0,
+              1.0
+            ]
+          },
           "events": 4,
           "example_id": "short-held-out",
           "fixed_external_target": "on_time",
@@ -826,6 +1227,12 @@
             "termination_reason": "completed"
           },
           "correct": true,
+          "edge_timestamps": {
+            "('right', 'target', 1.0)": [
+              0.0,
+              3.0
+            ]
+          },
           "events": 4,
           "example_id": "long-held-out",
           "fixed_external_target": "late",
@@ -839,6 +1246,50 @@
         }
       ],
       "completion_status": "completed",
+      "edge_evidence": [
+        {
+          "creation_time": 0.0,
+          "edge": [
+            "right",
+            "target",
+            1.0
+          ],
+          "inactivity_age": 1.0,
+          "last_use_timestamp": 3.0,
+          "observed_cost": 4.0,
+          "observed_utility": 4.0,
+          "pruning_score": 4.0,
+          "use_count": 4
+        },
+        {
+          "creation_time": 0.0,
+          "edge": [
+            "left",
+            "noise",
+            4.0
+          ],
+          "inactivity_age": 4.0,
+          "last_use_timestamp": null,
+          "observed_cost": 0.0,
+          "observed_utility": 0.0,
+          "pruning_score": 0.0,
+          "use_count": 0
+        },
+        {
+          "creation_time": 0.0,
+          "edge": [
+            "noise",
+            "target",
+            4.0
+          ],
+          "inactivity_age": 4.0,
+          "last_use_timestamp": null,
+          "observed_cost": 0.0,
+          "observed_utility": 0.0,
+          "pruning_score": 0.0,
+          "use_count": 0
+        }
+      ],
       "edge_traffic": {
         "('right', 'target', 1.0)": 4
       },
@@ -918,6 +1369,16 @@
               "termination_reason": "completed"
             },
             "correct": true,
+            "edge_timestamps": {
+              "('right', 'relay', 0.5)": [
+                0.0,
+                1.0
+              ],
+              "('right', 'target', 1.0)": [
+                0.0,
+                1.0
+              ]
+            },
             "events": 6,
             "example_id": "short-held-out",
             "fixed_external_target": "on_time",
@@ -941,6 +1402,16 @@
               "termination_reason": "completed"
             },
             "correct": true,
+            "edge_timestamps": {
+              "('right', 'relay', 0.5)": [
+                0.0,
+                3.0
+              ],
+              "('right', 'target', 1.0)": [
+                0.0,
+                3.0
+              ]
+            },
             "events": 6,
             "example_id": "long-held-out",
             "fixed_external_target": "late",
@@ -954,6 +1425,64 @@
           }
         ],
         "completion_status": "completed",
+        "edge_evidence": [
+          {
+            "creation_time": 0.0,
+            "edge": [
+              "right",
+              "target",
+              1.0
+            ],
+            "inactivity_age": 1.0,
+            "last_use_timestamp": 3.0,
+            "observed_cost": 4.0,
+            "observed_utility": 4.0,
+            "pruning_score": 4.0,
+            "use_count": 4
+          },
+          {
+            "creation_time": 0.0,
+            "edge": [
+              "left",
+              "noise",
+              4.0
+            ],
+            "inactivity_age": 4.0,
+            "last_use_timestamp": null,
+            "observed_cost": 0.0,
+            "observed_utility": 0.0,
+            "pruning_score": 0.0,
+            "use_count": 0
+          },
+          {
+            "creation_time": 0.0,
+            "edge": [
+              "noise",
+              "target",
+              4.0
+            ],
+            "inactivity_age": 4.0,
+            "last_use_timestamp": null,
+            "observed_cost": 0.0,
+            "observed_utility": 0.0,
+            "pruning_score": 0.0,
+            "use_count": 0
+          },
+          {
+            "creation_time": 0.0,
+            "edge": [
+              "right",
+              "relay",
+              0.5
+            ],
+            "inactivity_age": 1.0,
+            "last_use_timestamp": 3.0,
+            "observed_cost": 2.0,
+            "observed_utility": 4.0,
+            "pruning_score": 4.0,
+            "use_count": 4
+          }
+        ],
         "edge_traffic": {
           "('right', 'relay', 0.5)": 4,
           "('right', 'target', 1.0)": 4
@@ -1052,6 +1581,16 @@
               "termination_reason": "completed"
             },
             "correct": true,
+            "edge_timestamps": {
+              "('right', 'relay', 0.5)": [
+                0.0,
+                1.0
+              ],
+              "('right', 'target', 1.0)": [
+                0.0,
+                1.0
+              ]
+            },
             "events": 6,
             "example_id": "short-held-out",
             "fixed_external_target": "on_time",
@@ -1075,6 +1614,16 @@
               "termination_reason": "completed"
             },
             "correct": true,
+            "edge_timestamps": {
+              "('right', 'relay', 0.5)": [
+                0.0,
+                3.0
+              ],
+              "('right', 'target', 1.0)": [
+                0.0,
+                3.0
+              ]
+            },
             "events": 6,
             "example_id": "long-held-out",
             "fixed_external_target": "late",
@@ -1088,6 +1637,64 @@
           }
         ],
         "completion_status": "completed",
+        "edge_evidence": [
+          {
+            "creation_time": 0.0,
+            "edge": [
+              "right",
+              "target",
+              1.0
+            ],
+            "inactivity_age": 1.0,
+            "last_use_timestamp": 3.0,
+            "observed_cost": 4.0,
+            "observed_utility": 4.0,
+            "pruning_score": 4.0,
+            "use_count": 4
+          },
+          {
+            "creation_time": 0.0,
+            "edge": [
+              "left",
+              "noise",
+              4.0
+            ],
+            "inactivity_age": 4.0,
+            "last_use_timestamp": null,
+            "observed_cost": 0.0,
+            "observed_utility": 0.0,
+            "pruning_score": 0.0,
+            "use_count": 0
+          },
+          {
+            "creation_time": 0.0,
+            "edge": [
+              "noise",
+              "target",
+              4.0
+            ],
+            "inactivity_age": 4.0,
+            "last_use_timestamp": null,
+            "observed_cost": 0.0,
+            "observed_utility": 0.0,
+            "pruning_score": 0.0,
+            "use_count": 0
+          },
+          {
+            "creation_time": 0.0,
+            "edge": [
+              "right",
+              "relay",
+              0.5
+            ],
+            "inactivity_age": 1.0,
+            "last_use_timestamp": 3.0,
+            "observed_cost": 2.0,
+            "observed_utility": 4.0,
+            "pruning_score": 4.0,
+            "use_count": 4
+          }
+        ],
         "edge_traffic": {
           "('right', 'relay', 0.5)": 4,
           "('right', 'target', 1.0)": 4
@@ -1186,6 +1793,16 @@
               "termination_reason": "completed"
             },
             "correct": true,
+            "edge_timestamps": {
+              "('right', 'relay', 0.5)": [
+                0.0,
+                1.0
+              ],
+              "('right', 'target', 1.0)": [
+                0.0,
+                1.0
+              ]
+            },
             "events": 6,
             "example_id": "short-held-out",
             "fixed_external_target": "on_time",
@@ -1209,6 +1826,16 @@
               "termination_reason": "completed"
             },
             "correct": true,
+            "edge_timestamps": {
+              "('right', 'relay', 0.5)": [
+                0.0,
+                3.0
+              ],
+              "('right', 'target', 1.0)": [
+                0.0,
+                3.0
+              ]
+            },
             "events": 6,
             "example_id": "long-held-out",
             "fixed_external_target": "late",
@@ -1222,6 +1849,64 @@
           }
         ],
         "completion_status": "completed",
+        "edge_evidence": [
+          {
+            "creation_time": 0.0,
+            "edge": [
+              "right",
+              "target",
+              1.0
+            ],
+            "inactivity_age": 1.0,
+            "last_use_timestamp": 3.0,
+            "observed_cost": 4.0,
+            "observed_utility": 4.0,
+            "pruning_score": 4.0,
+            "use_count": 4
+          },
+          {
+            "creation_time": 0.0,
+            "edge": [
+              "left",
+              "noise",
+              4.0
+            ],
+            "inactivity_age": 4.0,
+            "last_use_timestamp": null,
+            "observed_cost": 0.0,
+            "observed_utility": 0.0,
+            "pruning_score": 0.0,
+            "use_count": 0
+          },
+          {
+            "creation_time": 0.0,
+            "edge": [
+              "noise",
+              "target",
+              4.0
+            ],
+            "inactivity_age": 4.0,
+            "last_use_timestamp": null,
+            "observed_cost": 0.0,
+            "observed_utility": 0.0,
+            "pruning_score": 0.0,
+            "use_count": 0
+          },
+          {
+            "creation_time": 0.0,
+            "edge": [
+              "right",
+              "relay",
+              0.5
+            ],
+            "inactivity_age": 1.0,
+            "last_use_timestamp": 3.0,
+            "observed_cost": 2.0,
+            "observed_utility": 4.0,
+            "pruning_score": 4.0,
+            "use_count": 4
+          }
+        ],
         "edge_traffic": {
           "('right', 'relay', 0.5)": 4,
           "('right', 'target', 1.0)": 4
@@ -1322,6 +2007,12 @@
             "termination_reason": "completed"
           },
           "correct": true,
+          "edge_timestamps": {
+            "('right', 'target', 1.0)": [
+              0.0,
+              1.0
+            ]
+          },
           "events": 4,
           "example_id": "short-held-out",
           "fixed_external_target": "on_time",
@@ -1345,6 +2036,12 @@
             "termination_reason": "completed"
           },
           "correct": true,
+          "edge_timestamps": {
+            "('right', 'target', 1.0)": [
+              0.0,
+              3.0
+            ]
+          },
           "events": 4,
           "example_id": "long-held-out",
           "fixed_external_target": "late",
@@ -1358,6 +2055,22 @@
         }
       ],
       "completion_status": "completed",
+      "edge_evidence": [
+        {
+          "creation_time": 0.0,
+          "edge": [
+            "right",
+            "target",
+            1.0
+          ],
+          "inactivity_age": 1.0,
+          "last_use_timestamp": 3.0,
+          "observed_cost": 4.0,
+          "observed_utility": 4.0,
+          "pruning_score": 4.0,
+          "use_count": 4
+        }
+      ],
       "edge_traffic": {
         "('right', 'target', 1.0)": 4
       },
@@ -1404,7 +2117,7 @@
             "propagation_delay": 4.0,
             "source": "left"
           },
-          "reason": null,
+          "reason": "inactivity_and_utility",
           "status": "pruned"
         },
         {
@@ -1413,12 +2126,62 @@
             "propagation_delay": 4.0,
             "source": "noise"
           },
-          "reason": null,
+          "reason": "inactivity_and_utility",
           "status": "pruned"
         }
       ],
       "proxy_energy": 8.0,
       "proxy_energy_unit": "activity-cost-proxy; uncalibrated",
+      "pruning_evidence": [
+        {
+          "creation_time": 0.0,
+          "edge": [
+            "right",
+            "target",
+            1.0
+          ],
+          "eligibility_reason": "retained",
+          "eligible": false,
+          "inactivity_age": 1.0,
+          "last_use_timestamp": 3.0,
+          "observed_cost": 4.0,
+          "observed_utility": 4.0,
+          "pruning_score": 4.0,
+          "use_count": 4
+        },
+        {
+          "creation_time": 0.0,
+          "edge": [
+            "left",
+            "noise",
+            4.0
+          ],
+          "eligibility_reason": "inactivity_and_utility",
+          "eligible": true,
+          "inactivity_age": 4.0,
+          "last_use_timestamp": null,
+          "observed_cost": 0.0,
+          "observed_utility": 0.0,
+          "pruning_score": 0.0,
+          "use_count": 0
+        },
+        {
+          "creation_time": 0.0,
+          "edge": [
+            "noise",
+            "target",
+            4.0
+          ],
+          "eligibility_reason": "inactivity_and_utility",
+          "eligible": true,
+          "inactivity_age": 4.0,
+          "last_use_timestamp": null,
+          "observed_cost": 0.0,
+          "observed_utility": 0.0,
+          "pruning_score": 0.0,
+          "use_count": 0
+        }
+      ],
       "queue_peak": 2,
       "remaining_slots": 5,
       "task_cases_correct": 2,
@@ -1444,6 +2207,20 @@
             "termination_reason": "completed"
           },
           "correct": true,
+          "edge_timestamps": {
+            "('relay', 'target', 0.5)": [
+              0.5,
+              1.5
+            ],
+            "('right', 'relay', 0.5)": [
+              0.0,
+              1.0
+            ],
+            "('right', 'target', 1.0)": [
+              0.0,
+              1.0
+            ]
+          },
           "events": 8,
           "example_id": "short-held-out",
           "fixed_external_target": "on_time",
@@ -1469,6 +2246,20 @@
             "termination_reason": "completed"
           },
           "correct": false,
+          "edge_timestamps": {
+            "('relay', 'target', 0.5)": [
+              0.5,
+              3.5
+            ],
+            "('right', 'relay', 0.5)": [
+              0.0,
+              3.0
+            ],
+            "('right', 'target', 1.0)": [
+              0.0,
+              3.0
+            ]
+          },
           "events": 8,
           "example_id": "long-held-out",
           "fixed_external_target": "late",
@@ -1484,6 +2275,50 @@
         }
       ],
       "completion_status": "completed",
+      "edge_evidence": [
+        {
+          "creation_time": 0.0,
+          "edge": [
+            "right",
+            "target",
+            1.0
+          ],
+          "inactivity_age": 1.0,
+          "last_use_timestamp": 3.0,
+          "observed_cost": 4.0,
+          "observed_utility": 4.0,
+          "pruning_score": 4.0,
+          "use_count": 4
+        },
+        {
+          "creation_time": 0.0,
+          "edge": [
+            "right",
+            "relay",
+            0.5
+          ],
+          "inactivity_age": 1.0,
+          "last_use_timestamp": 3.0,
+          "observed_cost": 2.0,
+          "observed_utility": 4.0,
+          "pruning_score": 4.0,
+          "use_count": 4
+        },
+        {
+          "creation_time": 0.0,
+          "edge": [
+            "relay",
+            "target",
+            0.5
+          ],
+          "inactivity_age": 0.5,
+          "last_use_timestamp": 3.5,
+          "observed_cost": 2.0,
+          "observed_utility": 4.0,
+          "pruning_score": 4.0,
+          "use_count": 4
+        }
+      ],
       "edge_traffic": {
         "('relay', 'target', 0.5)": 4,
         "('right', 'relay', 0.5)": 4,
@@ -1632,8 +2467,65 @@
     "source": "Luna-13C fixed external interval-deadline task",
     "target_independent_of_topology": true
   },
+  "threshold_validation": [
+    {
+      "actual_eligible": false,
+      "expected_eligible": false,
+      "metric": "inactivity",
+      "observed_evidence": {
+        "inactivity_age": 1.0,
+        "observed_utility": 1.0
+      },
+      "reason": "retained",
+      "threshold": 2
+    },
+    {
+      "actual_eligible": true,
+      "expected_eligible": true,
+      "metric": "inactivity",
+      "observed_evidence": {
+        "inactivity_age": 2.0,
+        "observed_utility": 1.0
+      },
+      "reason": "inactivity",
+      "threshold": 2
+    },
+    {
+      "actual_eligible": true,
+      "expected_eligible": true,
+      "metric": "inactivity",
+      "observed_evidence": {
+        "inactivity_age": 3.0,
+        "observed_utility": 1.0
+      },
+      "reason": "inactivity",
+      "threshold": 2
+    },
+    {
+      "actual_eligible": false,
+      "expected_eligible": false,
+      "metric": "utility",
+      "observed_evidence": {
+        "inactivity_age": 0.0,
+        "observed_utility": 0.0
+      },
+      "reason": "retained",
+      "threshold": 0.0
+    },
+    {
+      "actual_eligible": true,
+      "expected_eligible": true,
+      "metric": "utility",
+      "observed_evidence": {
+        "inactivity_age": 0.0,
+        "observed_utility": 0.0
+      },
+      "reason": "utility",
+      "threshold": 0.1
+    }
+  ],
   "thresholds_frozen_before_evaluation": {
-    "inactivity": 1,
+    "inactivity": 2,
     "matched_utility_cases": 2,
     "resource_reduction": 0.1,
     "utility": 0.1
