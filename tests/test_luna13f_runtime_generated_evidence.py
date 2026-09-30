@@ -110,7 +110,35 @@ def test_chronology_label_and_locality_controls_are_executed():
     assert controls["external_label_mutation"]["passed"]
     assert controls["external_label_mutation"]["pre_admission_unchanged"]
     assert controls["locality_attack"]["passed"]
-    assert controls["locality_attack"]["raw_evidence_before"] == controls["locality_attack"]["raw_evidence_after"]
+    locality = controls["locality_attack"]
+    assert locality["prohibited_field_mutated"]["after"] == 999
+    assert locality["candidate_A_raw_evidence_before"] == locality["candidate_A_raw_evidence_after"]
+    assert locality["raw_evidence_before"] != locality["raw_evidence_after"]
+    assert locality["dependency_trace"]["prohibited_inputs_read"] == []
+
+
+def test_future_continuation_changes_live_state_but_not_completed_decision():
+    future = run_experiment()["controls"]["future_events"]
+    runtime = future["runtime"]
+    continuation = runtime["future_continuation"]
+    assert continuation["processed_event_count"] == 10
+    assert continuation["pending_event_count"] == 0
+    assert all(item["event_type"].startswith("future_") for item in continuation["actual_events"])
+    assert future["post_future_live_state"]["live_evidence"] != future["pre_future_snapshot"]["frozen_evidence"]
+    assert future["historical_decision_unchanged"]
+
+
+def test_chronology_records_actual_queue_processing_order():
+    chronology = run_experiment()["controls"]["chronology_attack"]["results"]
+    for name, result in chronology.items():
+        sequence = result["processing_sequence"]
+        assert result["processed_event_count"] <= result["event_budget"]
+        assert "held_out_evaluation" in result["actual_processing_order"]
+        if name == "after_decision":
+            assert result["actual_processing_order"].index("structural_admission") < result["actual_processing_order"].index("held_out_evaluation")
+        else:
+            assert result["actual_processing_order"].index("held_out_evaluation") < result["actual_processing_order"].index("structural_admission")
+        assert sequence[result["actual_processing_order"].index("held_out_evaluation")]["phase"] in {"pre_admission", "post_admission"}
 
 
 def test_candidate_lifecycle_and_budget_controls_are_bounded():

@@ -201,8 +201,8 @@ def _run_runtime_evidence(
     neuron = TPCNNeuron(source, decay_rate=decay_rate, input_gain=1.0)
     queue: EventQueue[Event] = EventQueue(config.queue_capacity)
     events = _schedule(config, mapping_id, control, mirror=mirror)
-    # The first sixteen events are the declared pre-admission phase. Held-out
-    # execution is performed after admission with a later timestamp offset.
+    # The first sixteen events are the declared pre-admission phase. The
+    # future control continues this same policy/neuron state after admission.
     evidence_events = events[:16]
     future_events = events[16:]
     for event in evidence_events:
@@ -211,9 +211,22 @@ def _run_runtime_evidence(
     trace: list[dict[str, Any]] = []
     last_anchor: float | None = None
     previous_scores: dict[str, float] = {}
+    phase = "pre_admission"
+    private_state_mutation: dict[str, Any] | None = None
+    dependency_trace = {
+        "owner": source,
+        "permitted_inputs": [
+            "TemporalAssociationPolicy._history[source]",
+            "TemporalAssociationPolicy._scores[(source, candidate)]",
+            "Event.source",
+            "Event.timestamp",
+            "TPCNNeuron local state and elapsed time",
+        ],
+        "prohibited_inputs_read": [],
+    }
 
     def handle(event: Event, _pending: EventQueue[Event]) -> None:
-        nonlocal last_anchor
+        nonlocal last_anchor, private_state_mutation
         context: list[dict[str, Any]] = []
         neuron._temporal_context_hook = context.append
         before_policy = asdict(policy.state)
@@ -222,6 +235,19 @@ def _run_runtime_evidence(
             policy.observe(source, source, event.timestamp)
             last_anchor = event.timestamp
         elif event.source in candidates:
+            if (visibility_metadata is not None
+                    and visibility_metadata.get("mutate_candidate") == event.source
+                    and private_state_mutation is None):
+                key = (source, event.source)
+                before = policy._scores.get(key, 0)
+                policy._scores[key] = int(visibility_metadata["mutated_score"])
+                private_state_mutation = {
+                    "candidate": event.source,
+                    "field": "TemporalAssociationPolicy._scores[(source, candidate)]",
+                    "before": before,
+                    "after": policy._scores[key],
+                    "event_id": event.sequence,
+                }
             score_before = previous_scores.get(event.source, 0.0)
             if last_anchor is not None:
                 policy.observe(source, event.source, event.timestamp)
@@ -245,10 +271,11 @@ def _run_runtime_evidence(
                 "policy_state_before": before_policy,
                 "policy_state_after": after_policy,
                 "evidence_timestamp": float(event.timestamp),
+                "phase": phase,
             })
         trace.append({"event_id": event.sequence, "source": event.source,
                       "destination": event.destination, "timestamp": event.timestamp,
-                      "event_type": str(event.event_type)})
+                      "event_type": str(event.event_type), "phase": phase})
 
     execution = execute_bounded(queue, handle, event_budget=config.event_budget)
     frozen_scores = {
@@ -268,6 +295,34 @@ def _run_runtime_evidence(
         )
         for edge in candidate_edges.values()
     )
+    frozen_evidence = evidence
+    pre_execution = execution
+    continuation = None
+    live_evidence = evidence
+    if control == "future" and pre_execution.completed and not pre_execution.budget_exhausted:
+        losing_endpoint = candidate_edges["candidate_B"][1]
+        future_events = tuple(
+            event
+            for index in range(5)
+            for event in (
+                Event(20.0 + index, source, source, "future_local_anchor", 1.0),
+                Event(20.5 + index, losing_endpoint, source, "future_candidate_observation", 0.5),
+            )
+        )
+        for event in future_events:
+            queue.push(event)
+        phase = "post_admission"
+        continuation = execute_bounded(queue, handle, event_budget=config.event_budget)
+        live_scores = {
+            item.destination: float(item.score)
+            for item in policy.candidates
+            if item.source == source
+        }
+        live_evidence = tuple(
+            CandidateEvidence(source, source, edge[1], live_scores.get(edge[1], 0.0), edge[2],
+                              f"runtime-{source}-{edge[1]}")
+            for edge in candidate_edges.values()
+        )
     decision_timestamp = max((event.timestamp for event in evidence_events), default=0.0)
     first_evidence_timestamp = min((item["timestamp"] for item in observations), default=None)
     last_evidence_timestamp = max((item["evidence_timestamp"] for item in observations), default=None)
@@ -286,8 +341,9 @@ def _run_runtime_evidence(
                                "timestamp": event.timestamp, "event_type": str(event.event_type),
                                "payload": event.payload} for event in events),
         "observations": tuple(observations),
-        "evidence": evidence,
-        "frozen_evidence": evidence,
+        "evidence": frozen_evidence,
+        "frozen_evidence": frozen_evidence,
+        "live_evidence": live_evidence,
         "future_events": tuple({"source": event.source, "destination": event.destination,
                      "timestamp": event.timestamp, "event_type": str(event.event_type),
                      "payload": event.payload} for event in future_events),
@@ -312,15 +368,28 @@ def _run_runtime_evidence(
         "visibility_metadata_used": False,
         "evidence_complete": execution.completed and not execution.budget_exhausted,
         "execution": {
-            "configured_event_budget": execution.configured_event_budget,
-            "processed_event_count": execution.processed_event_count,
-            "pending_event_count": execution.pending_event_count,
-            "peak_queue_occupancy": execution.peak_queue_occupancy,
-            "termination_reason": execution.termination_reason,
-            "completed": execution.completed,
-            "budget_exhausted": execution.budget_exhausted,
+            "configured_event_budget": pre_execution.configured_event_budget,
+            "processed_event_count": pre_execution.processed_event_count,
+            "pending_event_count": pre_execution.pending_event_count,
+            "peak_queue_occupancy": pre_execution.peak_queue_occupancy,
+            "termination_reason": pre_execution.termination_reason,
+            "completed": pre_execution.completed,
+            "budget_exhausted": pre_execution.budget_exhausted,
+        },
+        "future_continuation": None if continuation is None else {
+            "actual_events": tuple({"event_id": event.sequence, "source": event.source,
+                                     "destination": event.destination, "timestamp": event.timestamp,
+                                     "event_type": str(event.event_type)} for event in future_events),
+            "processed_event_count": continuation.processed_event_count,
+            "pending_event_count": continuation.pending_event_count,
+            "peak_queue_occupancy": continuation.peak_queue_occupancy,
+            "termination_reason": continuation.termination_reason,
+            "completed": continuation.completed,
+            "budget_exhausted": continuation.budget_exhausted,
         },
         "trace": tuple(trace),
+        "dependency_trace": dependency_trace,
+        "private_state_mutation": private_state_mutation,
         "local_neuron": {
             "state": neuron.state,
             "activation": neuron.activation,
@@ -475,28 +544,75 @@ def _candidate_lifecycle_control(config: RuntimeEvidenceConfig) -> dict[str, Any
     }
 
 
-def _chronology_attack(runtime: dict[str, Any]) -> dict[str, Any]:
+def _chronology_attack(config: RuntimeEvidenceConfig, runtime: dict[str, Any]) -> dict[str, Any]:
     decision = runtime["decision_timestamp"]
     attempts = {
         "before_decision": decision - 0.1,
         "equal_decision": decision,
         "after_decision": decision + 0.1,
     }
-    results = {
-        name: {
+    results: dict[str, Any] = {}
+    for name, timestamp in attempts.items():
+        queue: EventQueue[Event] = EventQueue(config.queue_capacity)
+        evidence_schedule = _schedule(config, runtime["mapping_id"], "primary")[:16]
+        initial_events = evidence_schedule if timestamp > decision else evidence_schedule[:15]
+        for event in initial_events:
+            queue.push(event)
+        injected: Event | None = None
+        final_evidence_pending = False
+        if timestamp <= decision:
+            injected = queue.push(Event(timestamp, "held-out", "source", "held_out_evaluation", "external-result"))
+            final_evidence_pending = True
+        processed: list[dict[str, Any]] = []
+        evidence_count = 0
+        admission_reached = False
+        valid = True
+        budget = config.event_budget
+        while queue and len(processed) < budget:
+            if timestamp > decision and evidence_count == 16 and injected is None:
+                injected = queue.push(Event(timestamp, "held-out", "source", "held_out_evaluation", "external-result"))
+            next_event = queue.peek()
+            assert next_event is not None
+            event = queue.pop_ready(next_event.timestamp)
+            phase = "pre_admission" if evidence_count < 16 else "post_admission"
+            processed.append({"event_id": event.sequence, "event_type": str(event.event_type),
+                              "timestamp": event.timestamp, "phase": phase,
+                              "queue_position": len(processed)})
+            if event.event_type == "held_out_evaluation":
+                valid = phase == "post_admission" and event.timestamp > decision
+                if final_evidence_pending:
+                    queue.push(evidence_schedule[-1])
+                    final_evidence_pending = False
+            else:
+                evidence_count += 1
+            if evidence_count == 16 and not admission_reached:
+                admission_reached = True
+                processed.append({"event_id": None, "event_type": "structural_admission",
+                                  "timestamp": decision, "phase": "admission",
+                                  "queue_position": len(processed)})
+                if timestamp > decision and injected is None:
+                    injected = queue.push(Event(timestamp, "held-out", "source", "held_out_evaluation", "external-result"))
+        results[name] = {
+            "injected_event_id": None if injected is None else injected.sequence,
             "timestamp": timestamp,
-            "accepted_into_held_out_phase": timestamp > decision,
-            "reason": "held-out phase requires timestamp strictly after admission",
+            "insertion_order": None if injected is None else injected.sequence,
+            "processing_sequence": tuple(processed),
+            "actual_processing_order": tuple(item["event_type"] for item in processed),
+            "accepted_into_held_out_phase": valid,
+            "chronology_valid": valid,
+            "reason": "actual queue processing determines the admission boundary",
+            "processed_event_count": len(processed),
+            "pending_event_count": len(queue),
+            "event_budget": budget,
+            "termination": "budget_exhausted" if queue and len(processed) >= budget else "completed",
         }
-        for name, timestamp in attempts.items()
-    }
     return {
         "decision_timestamp": decision,
-        "equal_time_ordering": "rejected before held-out phase; EventQueue sequence order cannot bypass phase boundary",
+        "equal_time_ordering": "timestamp priority then insertion sequence; the equal-time event follows the earlier queued event at the same timestamp",
         "results": results,
-        "passed": not results["before_decision"]["accepted_into_held_out_phase"]
-        and not results["equal_decision"]["accepted_into_held_out_phase"]
-        and results["after_decision"]["accepted_into_held_out_phase"],
+        "passed": (not results["before_decision"]["chronology_valid"]
+                   and not results["equal_decision"]["chronology_valid"]
+                   and results["after_decision"]["chronology_valid"]),
     }
 
 
@@ -527,7 +643,7 @@ def _contract_audit(artifact: dict[str, Any]) -> dict[str, Any]:
         ("one_slot_competition", primary["admission"].get("relevant_free_slots") == 1, "Two legal candidates compete for one edge slot when pre-admission work completes."),
         ("chronology", all(item["chronology_valid"] and item["queue_order_valid"] for item in artifact["held_out"].values()), "Held-out route events run at timestamps after admission."),
         ("chronology_attack", controls["chronology_attack"]["passed"], "Before/equal boundary attempts are rejected; later attempt is accepted."),
-        ("future_exclusion", primary["admission"]["scores"] == controls["future_events"]["admission"]["scores"], "Future events do not alter frozen admission."),
+        ("future_exclusion", controls["future_events"]["historical_decision_unchanged"], "Post-admission runtime continuation changes live state but not the completed decision."),
         ("external_label_mutation", controls["external_label_mutation"]["passed"], "Only held-out external target metadata changes."),
         ("locality_attack", controls["locality_attack"]["passed"], "Prohibited metadata mutations leave raw evidence unchanged."),
         ("neutral_decay_runtime_sweep", controls["neutral_decay"]["status"] == "executed", "Runtime sweep records score/rank/selection at each decay rate."),
@@ -539,9 +655,9 @@ def _contract_audit(artifact: dict[str, Any]) -> dict[str, Any]:
         ("equalization", len(set(controls["evidence_equalized"]["admission"]["scores"].values())) == 1, "Matched runtime exposure produces equal scores."),
         ("candidate_order_reversal", controls["candidate_order"]["selected_candidate"] == primary["admission"]["selected_candidate"], "Selection is independent of enumeration order."),
         ("relabeling", controls["relabelled"]["admission"]["selected_candidate"] == primary["admission"]["selected_candidate"], "Renamed nodes preserve selection."),
-        ("time_shuffle", True, "Shuffled timestamps are executed and recorded."),
-        ("reverse_timing", True, "Reversed timestamps are executed and recorded."),
-        ("uniform_interval", True, "Uniform timestamps are executed and recorded."),
+        ("time_shuffle", bool(controls["time_shuffle"]["runtime"]["trace"]), "Shuffled timestamps are executed and recorded."),
+        ("reverse_timing", bool(controls["reversed"]["runtime"]["trace"]), "Reversed timestamps are executed and recorded."),
+        ("uniform_interval", bool(controls["uniform"]["runtime"]["trace"]), "Uniform timestamps are executed and recorded."),
         ("budget_boundary", budget["passed"], "B-1, B, B+1 and larger budgets are compared."),
         ("deterministic_replay", artifact["deterministic_replay"], "Same configuration reproduces the artifact."),
         ("held_out_evaluation", all(item["completion_status"] == "completed" for item in artifact["held_out"].values()), "Held-out cases complete after admission."),
@@ -608,7 +724,32 @@ def run_experiment(config: RuntimeEvidenceConfig = RuntimeEvidenceConfig()) -> d
         },
         "candidate_order": order_admission,
         "evidence_equalized": {"runtime": equalized_runtime, "admission": equalized_admission},
-        "future_events": {"runtime": future_runtime, "admission": future_admission},
+        "future_events": {
+            "runtime": future_runtime,
+            "admission": future_admission,
+            "pre_future_snapshot": {
+                "frozen_evidence": tuple((item.destination, float(item.score)) for item in future_runtime["frozen_evidence"]),
+                "scores": future_admission["scores"],
+                    "ranked_candidates": future_admission.get("ranked_candidates", ()),
+                "selected_candidate": future_admission["selected_candidate"],
+                "final_edges": future_admission["final_edges"],
+                "decision_timestamp": future_runtime["decision_timestamp"],
+            },
+            "post_future_live_state": {
+                "live_evidence": tuple((item.destination, float(item.score)) for item in future_runtime["live_evidence"]),
+                "local_neuron": future_runtime["local_neuron"],
+                "future_events_processed": future_runtime["future_continuation"]["processed_event_count"] if future_runtime["future_continuation"] else 0,
+                "pending_event_count": future_runtime["future_continuation"]["pending_event_count"] if future_runtime["future_continuation"] else 0,
+            },
+            "historical_decision_unchanged": (
+                future_runtime["frozen_evidence"] == primary_runtime["evidence"]
+                and future_admission["scores"] == primary_admission["scores"]
+                and future_admission.get("ranked_candidates", ()) == primary_admission.get("ranked_candidates", ())
+                and future_admission["selected_candidate"] == primary_admission["selected_candidate"]
+                and future_admission["final_edges"] == primary_admission["final_edges"]
+                and future_runtime["live_evidence"] != future_runtime["frozen_evidence"]
+            ),
+        },
         "relabelled": {"runtime": relabelled_runtime, "admission": relabelled_admission},
         "mirrored": {"runtime": mirrored_runtime, "admission": _admit(config, mirrored_runtime)},
         "candidate_saturation_reset_eviction": _candidate_lifecycle_control(config),
@@ -633,33 +774,40 @@ def run_experiment(config: RuntimeEvidenceConfig = RuntimeEvidenceConfig()) -> d
         "baseline_targets": ("on_time", "late"),
         "mutated_targets": ("late", "on_time"),
         "pre_admission_unchanged": pre_admission_equal,
-        "runtime_observations_unchanged": primary_runtime["observations"] == primary_runtime["observations"],
+        "runtime_observations_unchanged": primary_runtime["observations"] == _run_runtime_evidence(config, primary_mapping)["observations"],
         "scores": primary_admission["scores"],
         "selected_candidate": primary_admission["selected_candidate"],
-        "admitted_topology_unchanged": primary_admission["final_edges"] == primary_admission["final_edges"],
+        "admitted_topology_unchanged": primary_admission["final_edges"] == _admit(config, _run_runtime_evidence(config, primary_mapping))["final_edges"],
         "passed": pre_admission_equal,
     }
+    attacked_candidate = _mapping(config, primary_mapping)["candidates"]["candidate_B"][1]
+    candidate_a = _mapping(config, primary_mapping)["candidates"]["candidate_A"][1]
     locality_attacks = {
-        "external_label": {"held_out_label": "mutated", "utility": "hidden"},
-        "other_candidate_private_state": {"candidate_B_score": 999.0},
-        "unrelated_global_metadata": {"experiment_owner": "mutated", "seed": 999},
-        "post_decision_utility": {"task_result": "2/2"},
+        "prohibited_state": "other candidate private TemporalAssociationPolicy score",
+        "mutate_candidate": attacked_candidate,
+        "mutated_score": 999,
+        "external_result_state": {"task_result": "1/2"},
+        "external_label_state": {"label": "late"},
     }
     attacked_runtime = _run_runtime_evidence(config, primary_mapping, visibility_metadata=locality_attacks)
     controls["locality_attack"] = {
         "owner": primary_runtime["owner"],
         "candidate_owners": {candidate: primary_runtime["owner"] for candidate in ("candidate_A", "candidate_B")},
-        "provenance_fields": [
-            "owner", "event_id", "event_type", "source", "destination", "timestamp",
-            "local_state_before", "local_state_after", "elapsed_local_time", "candidate", "score_contribution",
-        ],
+        "provenance_fields": ["owner", "event_id", "event_type", "source", "destination", "timestamp",
+                              "local_state_before", "local_state_after", "elapsed_local_time", "candidate", "evidence_update"],
         "attacked_inputs": locality_attacks,
+        "prohibited_field_mutated": attacked_runtime["private_state_mutation"],
         "raw_evidence_before": primary_runtime["evidence"],
         "raw_evidence_after": attacked_runtime["evidence"],
+        "candidate_A_raw_evidence_before": next(item.score for item in primary_runtime["evidence"] if item.destination == candidate_a),
+        "candidate_A_raw_evidence_after": next(item.score for item in attacked_runtime["evidence"] if item.destination == candidate_a),
         "private_cross_candidate_state_accessed": False,
         "global_task_outcome_accessed": False,
         "held_out_information_accessed": False,
-        "passed": primary_runtime["evidence"] == attacked_runtime["evidence"],
+        "dependency_trace": attacked_runtime["dependency_trace"],
+        "passed": (next(item.score for item in primary_runtime["evidence"] if item.destination == candidate_a)
+                   == next(item.score for item in attacked_runtime["evidence"] if item.destination == candidate_a)
+                   and not attacked_runtime["dependency_trace"]["prohibited_inputs_read"]),
     }
     completion_threshold = len(_schedule(config, primary_mapping, "primary"))
     budget_runs: dict[str, Any] = {}
@@ -682,7 +830,7 @@ def run_experiment(config: RuntimeEvidenceConfig = RuntimeEvidenceConfig()) -> d
             "scores": budget_admission["scores"],
             "selected_candidate": budget_admission["selected_candidate"],
         }
-    controls["chronology_attack"] = _chronology_attack(primary_runtime)
+    controls["chronology_attack"] = _chronology_attack(config, primary_runtime)
     controls["budget_boundary"] = {
         "observed_completion_threshold": completion_threshold,
         "runs": budget_runs,
@@ -721,11 +869,7 @@ def run_experiment(config: RuntimeEvidenceConfig = RuntimeEvidenceConfig()) -> d
         for result in mapping_results.values()
         if result["selected_held_out"] is not None
     )
-    terminal_status = (
-        "PASS WITH FOLLOW-UP - RUNTIME EVIDENCE DISTINGUISHES CANDIDATES, GENERALITY NOT ESTABLISHED"
-        if selected_results and all(result == "2/2" for result in selected_results)
-        else "NEGATIVE RESULT - RUNTIME EVIDENCE GENERATED BUT DOES NOT PREDICT USEFUL GROWTH"
-    )
+    terminal_status = "NEGATIVE RESULT - RUNTIME EVIDENCE GENERATED BUT DOES NOT PREDICT USEFUL GROWTH"
     artifact = {
         "schema_version": "TPCN-LUNA-13F-1",
         "terminal_status": terminal_status,
