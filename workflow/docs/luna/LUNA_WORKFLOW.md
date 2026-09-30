@@ -1781,6 +1781,44 @@ non-gating. The standard handoff is
 Results return to Luna-0 for independent review. Luna-13D does not authorize
 Luna-13E.
 
+### Luna-0 independent review of Luna-13D - 2026-09-29
+
+Reviewed implementation revision
+`f11a44f24fa9ad84e111435ed0ae8390b41c49a6` from a clean synchronized tree
+with `HEAD == origin/main`. The contract, implementation, tests, handoff and
+both artifacts were present. Independent reproduction confirmed the fixed
+external task, baseline/pruning/post-growth metrics, capacity reasons,
+budget stability, random seeds, Luna-13C causal matrix, and byte-identical
+artifact regeneration.
+
+The review separates the findings. The useful `right -> target, 1.0` edge is
+task-relevant and remains in the graph after pruning. The graph has three
+edges before pruning and one afterward, releasing two actual edge-capacity
+slots. `right -> relay` and `relay -> target` are admitted through ordinary
+bounded growth without replacement. Baseline and immediate post-pruning both
+remain `2/2` at 8 events and proxy energy `8.0`. Post-growth produces duplicate
+target arrivals, changes the result to `1/2`, and uses 16 events and proxy
+energy `16.0`; this is a utility regression, not an efficiency result.
+
+Capacity accounting is valid: capacity 4 reaches `edge_capacity`, while
+capacities 5 and 6 reject the final relay exit for `fan_in_full`. Budgets 24
+and 48 reproduce the result. Random seed 0 selects the useful edge and scores
+`2/2`; seeds 1-4 select the non-useful edge and score `1/2`. The Luna-13C,
+13B, temporal and Stage-0-related regressions remain passing.
+
+The pruning/retention mechanism evidence is invalid. The implementation
+passes an endpoint-keyed literal score map to `prune_by_score`; declared
+`pruning_utility_threshold` and `pruning_inactivity_threshold` do not control
+eligibility. Changing the utility threshold from `0.0` to `100.0` leaves the
+same edges pruned, and the fixed node tuple prevents a relabeling attack.
+The removals and capacity release are observed, but useful-versus-low-value
+local evidence did not cause the decision. The review status is therefore
+`BLOCKED — PRUNING/RETENTION EVIDENCE INVALID`.
+
+The next eligible boundary is a separately reviewed correction or experiment
+with evidence-derived pruning, meaningful frozen thresholds and identity-
+independent checks. Luna-13E is not created or authorized.
+
 ## Luna-13 — GPU-Compatible Visualization Path
 
 **Authorization:** Blocked until Luna-12 passes and Luna-0 explicitly authorizes this milestone. The prompt or handoff alone is not authorization.

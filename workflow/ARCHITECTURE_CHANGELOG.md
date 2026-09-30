@@ -497,3 +497,29 @@ was `685cd721f7ca108278aa2e3044b53d46981e5bbd`, synchronized in tree
 This is a workflow and experiment-scope update only. A01-A15 are unchanged;
 no ACP or architecture promotion is created by this entry.
 
+## Luna-0 independent review of Luna-13D - 2026-09-29
+
+Reviewed implementation revision
+`f11a44f24fa9ad84e111435ed0ae8390b41c49a6` from synchronized clean `main`
+with `HEAD == origin/main` at review start.
+
+- Independently confirmed the useful `right -> target, 1.0` edge, fixed task
+	result, capacity 4/5/6 rejection semantics, two genuinely freed slots,
+	normal post-pruning relay admission, random seeds, budget stability, Luna-
+	13C/13B preservation and byte-identical artifact regeneration.
+- Baseline and immediate post-pruning both remain `2/2`, 8 events and proxy
+	energy `8.0`. Post-growth becomes `1/2`, 16 events and proxy energy `16.0`
+	because duplicate direct/relay arrivals alter the fixed decision. No
+	resource-efficiency claim is accepted.
+- Pruning/retention evidence is invalid: the runner uses an endpoint-keyed
+	literal score map, configured utility/inactivity thresholds are inert, and
+	the fixed node tuple prevents identity-independent relabeling. The edge
+	removals and capacity release are observed topology facts, not evidence of
+	local utility-derived pruning.
+- Final status: `BLOCKED — PRUNING/RETENTION EVIDENCE INVALID`.
+
+The implementation revision is not promoted or reverted by this review. A
+separately reviewed evidence-derived pruning correction may be eligible later;
+Luna-13E is not created or authorized. No A01-A15 clause changed and no ACP
+was created.
+
