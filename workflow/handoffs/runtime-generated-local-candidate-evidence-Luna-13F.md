@@ -14,7 +14,7 @@ tpcn_handoff:
   branch: main
   base_revision: a7f0b425f701758239ff2840abcd1b76feaa9bb9
   result_revision: 05619930cf1f2b9946626438ec3eed5e9fbd87b8
-  artifact_publication_revision: pending
+  artifact_publication_revision: d1a898a47434131cb72267df918f850a46d288dc
   starting_tree_state: clean
   executed_tree_state: clean_at_artifact_generation
   owner: Luna-0 / project owner
