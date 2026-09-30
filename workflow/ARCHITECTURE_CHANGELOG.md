@@ -614,6 +614,33 @@ revision was `9ae2fb6574a4a45fa6a47c18e9aa7270bd4d3080`.
 This is a workflow and experiment-scope update only. A01-A15 are unchanged,
 no ACP is created, and no Luna-13E execution is authorized by this entry.
 
+## Luna-13F creation - 2026-09-30
+
+Created the formal **Runtime-Generated Local Candidate Evidence Experiment**
+contract after the independent Luna-13E review returned **PASS WITH FOLLOW-UP
+- HARMFUL GROWTH AVOIDED, GENERALITY NOT ESTABLISHED**.
+
+- Synchronized reviewed state: `8c41267e47bc0543ff9f05e994dc7ea086b23e36`.
+- Luna-13E review package: `7faf8d3f1c82927304875bb6263219d5954a463d`;
+	corrected implementation reviewed there:
+	`0a53b01b398d461eac3a962431b9ffcdae459e55`.
+- Fixture-controlled evidence established only harmful-growth avoidance:
+	no-growth `2/2 @ 8`, G `2/2 @ 12`, and H `1/2 @ 12`; G and H used proxy
+	energy `12.0`, while no-growth used `8.0`.
+- Luna-13F is CPU-only and tests runtime-generated bounded local candidate
+	evidence under true one-slot competition using the unchanged canonical
+	scorer first. Fixture-keyed evidence, oracle/endpoint roles, future
+	outcomes and labels are prohibited.
+- If current authorized mechanisms cannot generate the evidence, execution
+	stops for an architecture-change decision packet; no learning subsystem may
+	be added silently. Luna-13F returns to Luna-0 for independent review.
+- Lifecycle: Luna-0 creates 13F -> 13F executes -> Luna-0 independently
+	reviews 13F -> only then determine Luna-13G eligibility. Luna-13G is not
+	authorized by this entry.
+
+This is a workflow and experiment-scope update only. A01-A15 are unchanged;
+no ACP is created.
+
 ## Luna-13E independent review - 2026-09-30
 
 Luna-0 independently reviewed the synchronized Luna-13E implementation at

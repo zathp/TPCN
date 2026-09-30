@@ -1957,6 +1957,53 @@ revision `dd241ec9ee7af7456ae70bae2192d4237dab5d21` and the corrected artifact
   Luna-13F remains unauthorized. A successor may be considered only after a
   separate project-owner authorization.
 
+### Luna-13F creation - 2026-09-30
+
+The final synchronized reviewed state is
+`8c41267e47bc0543ff9f05e994dc7ea086b23e36`. Luna-13E's independent review
+package is `7faf8d3f1c82927304875bb6263219d5954a463d`, reviewing corrected
+implementation `0a53b01b398d461eac3a962431b9ffcdae459e55`. The review status
+is **PASS WITH FOLLOW-UP - HARMFUL GROWTH AVOIDED, GENERALITY NOT
+ESTABLISHED**.
+
+The review established only that fixture-controlled bounded observations
+selected G over H in the tested one-slot fixture. No-growth remains `2/2` at
+8 events and energy `8.0`; G remains `2/2` at 12 events and energy `12.0`; H
+remains `1/2` at 12 events and energy `12.0`. G therefore avoids harmful
+growth but provides neither task improvement nor resource benefit over
+no-growth. Runtime-generated candidate evidence remains unestablished.
+
+Luna-0 creates Luna-13F, **Runtime-Generated Local Candidate Evidence
+Experiment**:
+
+```text
+Luna-0 creates Luna-13F contract
+  -> Luna-13F executes under a separate explicit assignment
+  -> Luna-0 independently reviews Luna-13F
+  -> only then determine whether Luna-13G is eligible
+```
+
+Luna-13F is CPU-only and asks whether ordinary runtime neuron/event activity
+generates bounded, candidate-specific local evidence before admission. The
+primary chain is runtime events -> local state -> accumulated evidence -> the
+unchanged canonical scorer -> true one-slot decision -> held-out outcome.
+Fixture-keyed score tuples, G/H lookup tables, candidate-role flags,
+experiment-side timing or score injection, labels, future outcomes and
+endpoint-oracle evidence are prohibited. Candidate identifiers may index
+bounded state but may not determine evidence values.
+
+The contract requires runtime provenance, evidence timestamps no later than
+the decision, bounded state and reset/eviction semantics, matched G/H
+exposure, temporal controls, relabeling, mirrored roles, future/label
+isolation, candidate-order independence and no-growth reporting. The current
+architecture must be audited first. If existing mechanisms cannot generate
+the evidence, Luna-13F must stop and return an architecture-change decision
+packet; it may not silently add a learning subsystem or new candidate
+semantics. CUDA is optional and non-gating.
+
+Luna-13F returns to Luna-0 for independent review. No A01-A15 clause changes,
+no ACP is created by this workflow entry, and Luna-13G is not authorized.
+
 ## Luna-13 — GPU-Compatible Visualization Path
 
 **Authorization:** Blocked until Luna-12 passes and Luna-0 explicitly authorizes this milestone. The prompt or handoff alone is not authorization.
