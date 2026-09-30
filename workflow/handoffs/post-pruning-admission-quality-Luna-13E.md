@@ -9,7 +9,7 @@ This is a CPU-only experiment result for the declared fixture. It does not gener
 ## Provenance
 
 - Starting/baseline revision: `455386746cbb1b0c46d61f507c3750a7780b9b30`
-- Executed implementation revision: `f5b84ee67517294ddba377d4933359eacc9688d3`
+- Executed implementation revision: `0a53b01b398d461eac3a962431b9ffcdae459e55`
 - Branch: `main`
 - Worktree at artifact generation: dirty only because the newly generated artifact directory was untracked; unrelated changes were preserved.
 - Environment: Windows 10, Python 3.10.8

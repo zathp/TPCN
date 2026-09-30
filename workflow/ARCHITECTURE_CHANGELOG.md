@@ -614,3 +614,27 @@ revision was `9ae2fb6574a4a45fa6a47c18e9aa7270bd4d3080`.
 This is a workflow and experiment-scope update only. A01-A15 are unchanged,
 no ACP is created, and no Luna-13E execution is authorized by this entry.
 
+## Luna-13E independent review - 2026-09-30
+
+Luna-0 independently reviewed the synchronized Luna-13E implementation at
+`0a53b01b398d461eac3a962431b9ffcdae459e55`; the final review package is
+recorded by the review handoff and its commit. Status:
+
+**PASS WITH FOLLOW-UP — HARMFUL GROWTH AVOIDED, GENERALITY NOT ESTABLISHED**
+
+- G/H legality and exactly one relevant free slot were independently verified.
+- The canonical current policy selected G from pre-admission scores `3.0`
+	versus `0.0`; presentation-order, relabel, mirror and future/label controls
+	did not change the evidence-following result. Equalized evidence was
+	explicitly classified as deterministic tie-breaking.
+- The fixed external matrix was independently reconstructed as no-growth
+	`2/2` (8 events, energy 8.0), G `2/2` (12 events, energy 12.0), and H
+	`1/2` (12 events, energy 12.0). This supports avoiding harmful growth while
+	preserving utility, not improving utility over no-growth or reducing cost.
+- Reward, prediction/error and predicted total-cost evidence were unavailable;
+	the controlled temporal observations were bounded fixture evidence. No
+	general utility or resource-efficiency claim is promoted.
+- The review corrected stale H frozen-ground-truth metadata from `0/2` to
+	`1/2`. A01-A15 and ACP status remain unchanged. Luna-13F is not created,
+	executed or authorized.
+

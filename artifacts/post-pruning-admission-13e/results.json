@@ -4708,7 +4708,7 @@
   "fixture_id": "luna-13e-post-pruning-admission-v1",
   "frozen_ground_truth": {
     "G": "source -> beneficial-role intermediate at 0.5, then 0.5 to target; expected held-out task 2/2",
-    "H": "source -> harmful-role intermediate at 1.0, then 2.0 to target; expected held-out task 0/2",
+    "H": "source -> harmful-role intermediate at 1.0, then 2.0 to target; expected held-out task 1/2",
     "external_only": true,
     "frozen_before_policy_comparison": true,
     "task": "Luna-13C interval-deadline task: short interval target on_time, long interval target late"
@@ -4720,8 +4720,8 @@
       "platform": "Windows-10-10.0.19045-SP0",
       "python": "3.10.8 (tags/v3.10.8:aaaf517, Oct 11 2022, 16:50:30) [MSC v.1933 64 bit (AMD64)]"
     },
-    "executed_revision": "f5b84ee67517294ddba377d4933359eacc9688d3",
-    "tree_state_at_generation": "?? artifacts/post-pruning-admission-13e/\n?? workflow/handoffs/post-pruning-admission-quality-Luna-13E.md"
+    "executed_revision": "0a53b01b398d461eac3a962431b9ffcdae459e55",
+    "tree_state_at_generation": "M artifacts/post-pruning-admission-13e/results.json\n M artifacts/post-pruning-admission-13e/summary.json"
   },
   "schema_version": "TPCN-LUNA-13E-1",
   "stage_A_harmful_growth_reproduction": {

@@ -1924,6 +1924,38 @@ Luna-13E returns to Luna-0 for independent review. It does not authorize,
 create or dispatch Luna-13F. No A01-A15 clause or ACP status changes by this
 workflow entry.
 
+### Luna-13E independent review - 2026-09-30
+
+Luna-0 independently reviewed Luna-13E at implementation revision
+`0a53b01b398d461eac3a962431b9ffcdae459e55`, based on synchronized published
+revision `dd241ec9ee7af7456ae70bae2192d4237dab5d21` and the corrected artifact
+metadata committed during review. The review status is:
+
+**PASS WITH FOLLOW-UP — HARMFUL GROWTH AVOIDED, GENERALITY NOT ESTABLISHED**
+
+- G and H were individually legal at the same decision point with exactly one
+  relevant free edge slot. The canonical scorer used local `CandidateEvidence`
+  scores `3.0` and `0.0`, selected G, and remained independent of candidate
+  presentation order, relabeling and mirrored endpoint roles.
+- Independent held-out replay measured no-growth `2/2` with 8 events and
+  proxy energy `8.0`, G `2/2` with 12 events and proxy energy `12.0`, and H
+  `1/2` with 12 events and proxy energy `12.0`. G therefore preserved task
+  utility while avoiding the harmful candidate; it did not improve the task
+  over no-growth and was not resource-efficient relative to no-growth.
+- Equalized evidence selected by deterministic tie-breaking only. Future-event
+  and external-label mutation controls preserved the admission decision.
+  Reward, prediction/error and predicted total-cost evidence were unavailable;
+  propagation delay was available but not used in the score.
+- The score-driving observations are a bounded controlled fixture, not a
+  demonstrated general runtime predictor. General utility prediction,
+  workload-shift robustness, resource efficiency and hardware equivalence
+  remain unestablished. Current admission still has no abstention threshold;
+  no utility-aware production mechanism was added.
+- The stale frozen H metadata (`0/2`) was corrected to the observed `1/2` in
+  the review revision. No A01-A15 clause changed, no ACP was required, and
+  Luna-13F remains unauthorized. A successor may be considered only after a
+  separate project-owner authorization.
+
 ## Luna-13 — GPU-Compatible Visualization Path
 
 **Authorization:** Blocked until Luna-12 passes and Luna-0 explicitly authorizes this milestone. The prompt or handoff alone is not authorization.
