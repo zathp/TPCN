@@ -39,7 +39,265 @@
       4
     ]
   },
+  "contract_audit": {
+    "complete": true,
+    "not_applicable": [
+      "candidate_expiry",
+      "candidate_eviction"
+    ],
+    "requirements": [
+      {
+        "evidence": "P0/P1 use candidate_A/candidate_B identities and no utility-role fields.",
+        "mandatory_for_outcome": true,
+        "requirement": "schedule_neutrality",
+        "status": "PASS"
+      },
+      {
+        "evidence": "P0 and P1 are recorded with endpoint permutations before held-out evaluation.",
+        "mandatory_for_outcome": true,
+        "requirement": "blinded_mappings",
+        "status": "PASS"
+      },
+      {
+        "evidence": "Every score-driving observation carries event and local-state provenance.",
+        "mandatory_for_outcome": true,
+        "requirement": "runtime_evidence_provenance",
+        "status": "PASS"
+      },
+      {
+        "evidence": "TemporalAssociationPolicy declares finite history and candidate bounds.",
+        "mandatory_for_outcome": true,
+        "requirement": "evidence_boundedness",
+        "status": "PASS"
+      },
+      {
+        "evidence": "CandidateEvidence is passed to StructuralPlasticityController.",
+        "mandatory_for_outcome": true,
+        "requirement": "canonical_scorer",
+        "status": "PASS"
+      },
+      {
+        "evidence": "Two legal candidates compete for one edge slot when pre-admission work completes.",
+        "mandatory_for_outcome": true,
+        "requirement": "one_slot_competition",
+        "status": "PASS"
+      },
+      {
+        "evidence": "Held-out route events run at timestamps after admission.",
+        "mandatory_for_outcome": true,
+        "requirement": "chronology",
+        "status": "PASS"
+      },
+      {
+        "evidence": "Before/equal boundary attempts are rejected; later attempt is accepted.",
+        "mandatory_for_outcome": true,
+        "requirement": "chronology_attack",
+        "status": "PASS"
+      },
+      {
+        "evidence": "Future events do not alter frozen admission.",
+        "mandatory_for_outcome": true,
+        "requirement": "future_exclusion",
+        "status": "PASS"
+      },
+      {
+        "evidence": "Only held-out external target metadata changes.",
+        "mandatory_for_outcome": true,
+        "requirement": "external_label_mutation",
+        "status": "PASS"
+      },
+      {
+        "evidence": "Prohibited metadata mutations leave raw evidence unchanged.",
+        "mandatory_for_outcome": true,
+        "requirement": "locality_attack",
+        "status": "PASS"
+      },
+      {
+        "evidence": "Runtime sweep records score/rank/selection at each decay rate.",
+        "mandatory_for_outcome": true,
+        "requirement": "neutral_decay_runtime_sweep",
+        "status": "PASS"
+      },
+      {
+        "evidence": "Capacity rejection and reset/reuse are measured.",
+        "mandatory_for_outcome": true,
+        "requirement": "candidate_lifecycle_saturation_reset",
+        "status": "PASS"
+      },
+      {
+        "evidence": "NOT APPLICABLE - CONDITION NOT TRIGGERED: canonical policy has no expiry mechanism.",
+        "mandatory_for_outcome": false,
+        "requirement": "candidate_expiry",
+        "status": "NOT APPLICABLE - CONDITION NOT TRIGGERED"
+      },
+      {
+        "evidence": "NOT APPLICABLE - CONDITION NOT TRIGGERED: canonical policy uses rejection at full capacity.",
+        "mandatory_for_outcome": false,
+        "requirement": "candidate_eviction",
+        "status": "NOT APPLICABLE - CONDITION NOT TRIGGERED"
+      },
+      {
+        "evidence": "Mirrored runtime motif moves the evidence preference.",
+        "mandatory_for_outcome": true,
+        "requirement": "valid_mirrored_roles",
+        "status": "PASS"
+      },
+      {
+        "evidence": "No informative exposure produces a score tie.",
+        "mandatory_for_outcome": true,
+        "requirement": "no_evidence",
+        "status": "PASS"
+      },
+      {
+        "evidence": "Matched runtime exposure produces equal scores.",
+        "mandatory_for_outcome": true,
+        "requirement": "equalization",
+        "status": "PASS"
+      },
+      {
+        "evidence": "Selection is independent of enumeration order.",
+        "mandatory_for_outcome": true,
+        "requirement": "candidate_order_reversal",
+        "status": "PASS"
+      },
+      {
+        "evidence": "Renamed nodes preserve selection.",
+        "mandatory_for_outcome": true,
+        "requirement": "relabeling",
+        "status": "PASS"
+      },
+      {
+        "evidence": "Shuffled timestamps are executed and recorded.",
+        "mandatory_for_outcome": true,
+        "requirement": "time_shuffle",
+        "status": "PASS"
+      },
+      {
+        "evidence": "Reversed timestamps are executed and recorded.",
+        "mandatory_for_outcome": true,
+        "requirement": "reverse_timing",
+        "status": "PASS"
+      },
+      {
+        "evidence": "Uniform timestamps are executed and recorded.",
+        "mandatory_for_outcome": true,
+        "requirement": "uniform_interval",
+        "status": "PASS"
+      },
+      {
+        "evidence": "B-1, B, B+1 and larger budgets are compared.",
+        "mandatory_for_outcome": true,
+        "requirement": "budget_boundary",
+        "status": "PASS"
+      },
+      {
+        "evidence": "Same configuration reproduces the artifact.",
+        "mandatory_for_outcome": true,
+        "requirement": "deterministic_replay",
+        "status": "PASS"
+      },
+      {
+        "evidence": "Held-out cases complete after admission.",
+        "mandatory_for_outcome": true,
+        "requirement": "held_out_evaluation",
+        "status": "PASS"
+      },
+      {
+        "evidence": "No-growth reference remains 2/2.",
+        "mandatory_for_outcome": true,
+        "requirement": "no_growth_baseline",
+        "status": "PASS"
+      },
+      {
+        "evidence": "Events, queue and uncalibrated activity-cost proxy are recorded.",
+        "mandatory_for_outcome": true,
+        "requirement": "resource_accounting",
+        "status": "PASS"
+      }
+    ],
+    "schema_version": "TPCN-LUNA-13F-CONTRACT-AUDIT-1",
+    "summary": {
+      "FAIL": 0,
+      "NOT APPLICABLE - CONDITION NOT TRIGGERED": 2,
+      "PASS": 26
+    },
+    "terminal_status": "NEGATIVE RESULT - RUNTIME EVIDENCE GENERATED BUT DOES NOT PREDICT USEFUL GROWTH"
+  },
   "controls": {
+    "budget_boundary": {
+      "observed_completion_threshold": 16,
+      "passed": true,
+      "runs": {
+        "B": {
+          "budget": 16,
+          "decision_reached": true,
+          "evidence_complete": true,
+          "freeze_reached": true,
+          "held_out_run": true,
+          "pending": 0,
+          "performed_admission": true,
+          "processed": 16,
+          "scores": {
+            "('source', 'noise')": 0.0,
+            "('source', 'relay')": 4.0
+          },
+          "selected_candidate": "candidate_A",
+          "termination": "completed",
+          "valid_admission": true
+        },
+        "B+1": {
+          "budget": 17,
+          "decision_reached": true,
+          "evidence_complete": true,
+          "freeze_reached": true,
+          "held_out_run": true,
+          "pending": 0,
+          "performed_admission": true,
+          "processed": 16,
+          "scores": {
+            "('source', 'noise')": 0.0,
+            "('source', 'relay')": 4.0
+          },
+          "selected_candidate": "candidate_A",
+          "termination": "completed",
+          "valid_admission": true
+        },
+        "B-1": {
+          "budget": 15,
+          "decision_reached": false,
+          "evidence_complete": false,
+          "freeze_reached": false,
+          "held_out_run": false,
+          "pending": 1,
+          "performed_admission": false,
+          "processed": 15,
+          "scores": {
+            "('source', 'noise')": 0.0,
+            "('source', 'relay')": 4.0
+          },
+          "selected_candidate": null,
+          "termination": "budget_exhausted",
+          "valid_admission": false
+        },
+        "large": {
+          "budget": 32,
+          "decision_reached": true,
+          "evidence_complete": true,
+          "freeze_reached": true,
+          "held_out_run": true,
+          "pending": 0,
+          "performed_admission": true,
+          "processed": 16,
+          "scores": {
+            "('source', 'noise')": 0.0,
+            "('source', 'relay')": 4.0
+          },
+          "selected_candidate": "candidate_A",
+          "termination": "completed",
+          "valid_admission": true
+        }
+      }
+    },
     "candidate_order": {
       "candidate_order_reversed": true,
       "candidate_set": [
@@ -158,27 +416,71 @@
         ],
         "candidate_rejections": 1,
         "history_capacity": 8,
-        "history_count": 6,
+        "history_count": 8,
         "maximum_score": 8,
-        "observation_count": 6
+        "observation_count": 8
       },
       "deterministic": true,
+      "deterministic_order": "candidates sorted by descending score then source/destination",
+      "eviction_semantics": "NOT APPLICABLE - canonical semantics use deterministic rejection at full capacity",
+      "expiry_semantics": "NOT APPLICABLE - policy has no time-expiry mechanism; state is retained until reset or decision freeze",
+      "field_bounds": {
+        "candidate_count": [
+          0,
+          2
+        ],
+        "score": [
+          0,
+          8
+        ]
+      },
+      "full_capacity": "deterministic rejection with candidate_capacity reason",
+      "insertion": "first legal association inserts until candidate_capacity",
       "maximum_tracked_candidates": 2,
       "owner": "source",
       "post_reset_candidates": [
         [
           "source",
-          "target",
+          "relay",
           1.0
         ]
       ],
+      "record_size": "one bounded integer score per candidate plus bounded offline provenance",
       "rejections_before_reset": [
         [
           "candidate_capacity",
           1
         ]
       ],
-      "reset_candidate_count": 1
+      "reset_candidate_count": 1,
+      "reset_semantics": "reset clears history, scores, rejection counters and timestamps",
+      "stale_state_reuse": {
+        "clean": true,
+        "previous_relay_score": 2,
+        "reused_relay_score": 1
+      }
+    },
+    "chronology_attack": {
+      "decision_timestamp": 19.0,
+      "equal_time_ordering": "rejected before held-out phase; EventQueue sequence order cannot bypass phase boundary",
+      "passed": true,
+      "results": {
+        "after_decision": {
+          "accepted_into_held_out_phase": true,
+          "reason": "held-out phase requires timestamp strictly after admission",
+          "timestamp": 19.1
+        },
+        "before_decision": {
+          "accepted_into_held_out_phase": false,
+          "reason": "held-out phase requires timestamp strictly after admission",
+          "timestamp": 18.9
+        },
+        "equal_decision": {
+          "accepted_into_held_out_phase": false,
+          "reason": "held-out phase requires timestamp strictly after admission",
+          "timestamp": 19.0
+        }
+      }
     },
     "evidence_equalized": {
       "admission": {
@@ -324,6 +626,7 @@
           }
         ],
         "evidence_complete": true,
+        "evidence_complete_timestamp": 7.0,
         "execution": {
           "budget_exhausted": false,
           "completed": true,
@@ -333,6 +636,7 @@
           "processed_event_count": 8,
           "termination_reason": "completed"
         },
+        "first_evidence_timestamp": 1.0,
         "freeze_timestamp": 7.0,
         "frozen_evidence": [
           {
@@ -353,6 +657,7 @@
           }
         ],
         "future_events": [],
+        "last_evidence_timestamp": 7.0,
         "local_neuron": {
           "activation": 0.7615941559557649,
           "eligibility_state": 1.0,
@@ -620,16 +925,24 @@
             "source": "noise",
             "timestamp": 7.0
           }
-        ]
+        ],
+        "visibility_metadata_used": false
       }
     },
     "external_label_mutation": {
-      "mutated_labels": [
+      "admitted_topology_unchanged": true,
+      "baseline_targets": [
+        "on_time",
+        "late"
+      ],
+      "mutated_field": "held_out.evaluation_targets",
+      "mutated_targets": [
         "late",
         "on_time"
       ],
+      "passed": true,
       "pre_admission_unchanged": true,
-      "runtime_input_unchanged": true,
+      "runtime_observations_unchanged": true,
       "scores": {
         "('source', 'noise')": 0.0,
         "('source', 'relay')": 4.0
@@ -780,6 +1093,7 @@
           }
         ],
         "evidence_complete": true,
+        "evidence_complete_timestamp": 19.0,
         "execution": {
           "budget_exhausted": false,
           "completed": true,
@@ -789,6 +1103,7 @@
           "processed_event_count": 16,
           "termination_reason": "completed"
         },
+        "first_evidence_timestamp": 0.5,
         "freeze_timestamp": 19.0,
         "frozen_evidence": [
           {
@@ -817,6 +1132,7 @@
             "timestamp": 10.0
           }
         ],
+        "last_evidence_timestamp": 19.0,
         "local_neuron": {
           "activation": 0.7615941559557649,
           "eligibility_state": 1.0,
@@ -1343,10 +1659,27 @@
             "source": "noise",
             "timestamp": 19.0
           }
-        ]
+        ],
+        "visibility_metadata_used": false
       }
     },
     "locality_attack": {
+      "attacked_inputs": {
+        "external_label": {
+          "held_out_label": "mutated",
+          "utility": "hidden"
+        },
+        "other_candidate_private_state": {
+          "candidate_B_score": 999.0
+        },
+        "post_decision_utility": {
+          "task_result": "2/2"
+        },
+        "unrelated_global_metadata": {
+          "experiment_owner": "mutated",
+          "seed": 999
+        }
+      },
       "candidate_owners": {
         "candidate_A": "source",
         "candidate_B": "source"
@@ -1355,7 +1688,56 @@
       "held_out_information_accessed": false,
       "owner": "source",
       "passed": true,
-      "private_cross_candidate_state_accessed": false
+      "private_cross_candidate_state_accessed": false,
+      "provenance_fields": [
+        "owner",
+        "event_id",
+        "event_type",
+        "source",
+        "destination",
+        "timestamp",
+        "local_state_before",
+        "local_state_after",
+        "elapsed_local_time",
+        "candidate",
+        "score_contribution"
+      ],
+      "raw_evidence_after": [
+        {
+          "destination": "relay",
+          "evidence_id": "runtime-source-relay",
+          "observer": "source",
+          "propagation_delay": 0.5,
+          "score": 4.0,
+          "source": "source"
+        },
+        {
+          "destination": "noise",
+          "evidence_id": "runtime-source-noise",
+          "observer": "source",
+          "propagation_delay": 1.0,
+          "score": 0.0,
+          "source": "source"
+        }
+      ],
+      "raw_evidence_before": [
+        {
+          "destination": "relay",
+          "evidence_id": "runtime-source-relay",
+          "observer": "source",
+          "propagation_delay": 0.5,
+          "score": 4.0,
+          "source": "source"
+        },
+        {
+          "destination": "noise",
+          "evidence_id": "runtime-source-noise",
+          "observer": "source",
+          "propagation_delay": 1.0,
+          "score": 0.0,
+          "source": "source"
+        }
+      ]
     },
     "mirrored": {
       "admission": {
@@ -1501,6 +1883,7 @@
           }
         ],
         "evidence_complete": true,
+        "evidence_complete_timestamp": 19.0,
         "execution": {
           "budget_exhausted": false,
           "completed": true,
@@ -1510,6 +1893,7 @@
           "processed_event_count": 16,
           "termination_reason": "completed"
         },
+        "first_evidence_timestamp": 0.5,
         "freeze_timestamp": 19.0,
         "frozen_evidence": [
           {
@@ -1530,6 +1914,7 @@
           }
         ],
         "future_events": [],
+        "last_evidence_timestamp": 19.0,
         "local_neuron": {
           "activation": 0.7615941559557649,
           "eligibility_state": 1.0,
@@ -2049,7 +2434,8 @@
             "source": "relay",
             "timestamp": 19.0
           }
-        ]
+        ],
+        "visibility_metadata_used": false
       }
     },
     "neutral_decay": {
@@ -2094,6 +2480,7 @@
               }
             ],
             "evidence_complete": true,
+            "evidence_complete_timestamp": 19.0,
             "execution": {
               "budget_exhausted": false,
               "completed": true,
@@ -2103,6 +2490,7 @@
               "processed_event_count": 16,
               "termination_reason": "completed"
             },
+            "first_evidence_timestamp": 0.5,
             "freeze_timestamp": 19.0,
             "frozen_evidence": [
               {
@@ -2123,6 +2511,7 @@
               }
             ],
             "future_events": [],
+            "last_evidence_timestamp": 19.0,
             "local_neuron": {
               "activation": 0.7615941559557649,
               "eligibility_state": 1.0,
@@ -2642,7 +3031,8 @@
                 "source": "noise",
                 "timestamp": 19.0
               }
-            ]
+            ],
+            "visibility_metadata_used": false
           },
           "scores": {
             "('source', 'noise')": 0.0,
@@ -2688,6 +3078,7 @@
               }
             ],
             "evidence_complete": true,
+            "evidence_complete_timestamp": 19.0,
             "execution": {
               "budget_exhausted": false,
               "completed": true,
@@ -2697,6 +3088,7 @@
               "processed_event_count": 16,
               "termination_reason": "completed"
             },
+            "first_evidence_timestamp": 0.5,
             "freeze_timestamp": 19.0,
             "frozen_evidence": [
               {
@@ -2717,6 +3109,7 @@
               }
             ],
             "future_events": [],
+            "last_evidence_timestamp": 19.0,
             "local_neuron": {
               "activation": 0.7615941559557649,
               "eligibility_state": 1.0,
@@ -3236,7 +3629,8 @@
                 "source": "noise",
                 "timestamp": 19.0
               }
-            ]
+            ],
+            "visibility_metadata_used": false
           },
           "scores": {
             "('source', 'noise')": 0.0,
@@ -3282,6 +3676,7 @@
               }
             ],
             "evidence_complete": true,
+            "evidence_complete_timestamp": 19.0,
             "execution": {
               "budget_exhausted": false,
               "completed": true,
@@ -3291,6 +3686,7 @@
               "processed_event_count": 16,
               "termination_reason": "completed"
             },
+            "first_evidence_timestamp": 0.5,
             "freeze_timestamp": 19.0,
             "frozen_evidence": [
               {
@@ -3311,6 +3707,7 @@
               }
             ],
             "future_events": [],
+            "last_evidence_timestamp": 19.0,
             "local_neuron": {
               "activation": 0.5003606062854409,
               "eligibility_state": 1.0,
@@ -3830,7 +4227,8 @@
                 "source": "noise",
                 "timestamp": 19.0
               }
-            ]
+            ],
+            "visibility_metadata_used": false
           },
           "scores": {
             "('source', 'noise')": 0.0,
@@ -3984,6 +4382,7 @@
           }
         ],
         "evidence_complete": true,
+        "evidence_complete_timestamp": 16.0,
         "execution": {
           "budget_exhausted": false,
           "completed": true,
@@ -3993,6 +4392,7 @@
           "processed_event_count": 8,
           "termination_reason": "completed"
         },
+        "first_evidence_timestamp": null,
         "freeze_timestamp": 16.0,
         "frozen_evidence": [
           {
@@ -4013,6 +4413,7 @@
           }
         ],
         "future_events": [],
+        "last_evidence_timestamp": null,
         "local_neuron": {
           "activation": 0.7615941559557649,
           "eligibility_state": 1.0,
@@ -4139,7 +4540,8 @@
             "source": "source",
             "timestamp": 16.0
           }
-        ]
+        ],
+        "visibility_metadata_used": false
       }
     },
     "random": [
@@ -4163,10 +4565,10 @@
               "interval": 1.0,
               "prediction_or_decision": "late",
               "target_arrivals": [
-                3.0,
-                4.0
+                23.0,
+                24.0
               ],
-              "target_latency": 4.0,
+              "target_latency": 24.0,
               "target_state": -0.09516258196404048
             },
             {
@@ -4186,10 +4588,10 @@
               "interval": 3.0,
               "prediction_or_decision": "late",
               "target_arrivals": [
-                3.0,
-                6.0
+                23.0,
+                26.0
               ],
-              "target_latency": 6.0,
+              "target_latency": 26.0,
               "target_state": -0.2591817793182821
             }
           ],
@@ -4215,10 +4617,10 @@
             ]
           ],
           "graph_fingerprint": "a9c2545ac7caabb9801dc4d7095addfa5491942dc5db064fb3d0ee34d841ed71",
-          "last_held_out_timestamp": 23.0,
+          "last_held_out_timestamp": 26.0,
           "latency": [
-            4.0,
-            6.0
+            24.0,
+            26.0
           ],
           "mapping_id": "P0",
           "phase": "held_out",
@@ -4226,6 +4628,7 @@
           "prediction_error_records": [],
           "proxy_energy": 12.0,
           "proxy_energy_unit": "activity-cost-proxy; uncalibrated",
+          "queue_order_valid": true,
           "queue_peak": 2,
           "route_trace": [
             {
@@ -4235,7 +4638,7 @@
               "queue_before": 1,
               "routed_count": 1,
               "source": "source",
-              "timestamp": 0.0
+              "timestamp": 20.0
             },
             {
               "example_id": "short-held-out",
@@ -4244,7 +4647,7 @@
               "queue_before": 1,
               "routed_count": 1,
               "source": "source",
-              "timestamp": 1.0
+              "timestamp": 21.0
             },
             {
               "example_id": "short-held-out",
@@ -4253,7 +4656,7 @@
               "queue_before": 1,
               "routed_count": 1,
               "source": "noise",
-              "timestamp": 1.0
+              "timestamp": 21.0
             },
             {
               "example_id": "short-held-out",
@@ -4262,7 +4665,7 @@
               "queue_before": 1,
               "routed_count": 1,
               "source": "noise",
-              "timestamp": 2.0
+              "timestamp": 22.0
             },
             {
               "destination": "target",
@@ -4270,7 +4673,7 @@
               "example_id": "short-held-out",
               "kind": "target_arrival",
               "source": "noise",
-              "timestamp": 3.0
+              "timestamp": 23.0
             },
             {
               "destination": "target",
@@ -4278,7 +4681,7 @@
               "example_id": "short-held-out",
               "kind": "target_arrival",
               "source": "noise",
-              "timestamp": 4.0
+              "timestamp": 24.0
             },
             {
               "example_id": "long-held-out",
@@ -4287,7 +4690,7 @@
               "queue_before": 1,
               "routed_count": 1,
               "source": "source",
-              "timestamp": 0.0
+              "timestamp": 20.0
             },
             {
               "example_id": "long-held-out",
@@ -4296,7 +4699,7 @@
               "queue_before": 1,
               "routed_count": 1,
               "source": "noise",
-              "timestamp": 1.0
+              "timestamp": 21.0
             },
             {
               "example_id": "long-held-out",
@@ -4305,7 +4708,7 @@
               "queue_before": 1,
               "routed_count": 1,
               "source": "source",
-              "timestamp": 3.0
+              "timestamp": 23.0
             },
             {
               "destination": "target",
@@ -4313,7 +4716,7 @@
               "example_id": "long-held-out",
               "kind": "target_arrival",
               "source": "noise",
-              "timestamp": 3.0
+              "timestamp": 23.0
             },
             {
               "example_id": "long-held-out",
@@ -4322,7 +4725,7 @@
               "queue_before": 0,
               "routed_count": 1,
               "source": "noise",
-              "timestamp": 4.0
+              "timestamp": 24.0
             },
             {
               "destination": "target",
@@ -4330,7 +4733,7 @@
               "example_id": "long-held-out",
               "kind": "target_arrival",
               "source": "noise",
-              "timestamp": 6.0
+              "timestamp": 26.0
             }
           ],
           "selected_candidate": "candidate_B",
@@ -4361,10 +4764,10 @@
               "interval": 1.0,
               "prediction_or_decision": "on_time",
               "target_arrivals": [
-                1.0,
-                2.0
+                21.0,
+                22.0
               ],
-              "target_latency": 2.0,
+              "target_latency": 22.0,
               "target_state": -0.09516258196404048
             },
             {
@@ -4384,10 +4787,10 @@
               "interval": 3.0,
               "prediction_or_decision": "late",
               "target_arrivals": [
-                1.0,
-                4.0
+                21.0,
+                24.0
               ],
-              "target_latency": 4.0,
+              "target_latency": 24.0,
               "target_state": -0.2591817793182821
             }
           ],
@@ -4413,10 +4816,10 @@
             ]
           ],
           "graph_fingerprint": "9136c83c7ef4e818f986385172e86be2ba06a93e3bd82cf9212c29bead114831",
-          "last_held_out_timestamp": 23.0,
+          "last_held_out_timestamp": 24.0,
           "latency": [
-            2.0,
-            4.0
+            22.0,
+            24.0
           ],
           "mapping_id": "P0",
           "phase": "held_out",
@@ -4424,6 +4827,7 @@
           "prediction_error_records": [],
           "proxy_energy": 12.0,
           "proxy_energy_unit": "activity-cost-proxy; uncalibrated",
+          "queue_order_valid": true,
           "queue_peak": 2,
           "route_trace": [
             {
@@ -4433,7 +4837,7 @@
               "queue_before": 1,
               "routed_count": 1,
               "source": "source",
-              "timestamp": 0.0
+              "timestamp": 20.0
             },
             {
               "example_id": "short-held-out",
@@ -4442,7 +4846,7 @@
               "queue_before": 1,
               "routed_count": 1,
               "source": "relay",
-              "timestamp": 0.5
+              "timestamp": 20.5
             },
             {
               "example_id": "short-held-out",
@@ -4451,7 +4855,7 @@
               "queue_before": 1,
               "routed_count": 1,
               "source": "source",
-              "timestamp": 1.0
+              "timestamp": 21.0
             },
             {
               "destination": "target",
@@ -4459,7 +4863,7 @@
               "example_id": "short-held-out",
               "kind": "target_arrival",
               "source": "relay",
-              "timestamp": 1.0
+              "timestamp": 21.0
             },
             {
               "example_id": "short-held-out",
@@ -4468,7 +4872,7 @@
               "queue_before": 0,
               "routed_count": 1,
               "source": "relay",
-              "timestamp": 1.5
+              "timestamp": 21.5
             },
             {
               "destination": "target",
@@ -4476,7 +4880,7 @@
               "example_id": "short-held-out",
               "kind": "target_arrival",
               "source": "relay",
-              "timestamp": 2.0
+              "timestamp": 22.0
             },
             {
               "example_id": "long-held-out",
@@ -4485,7 +4889,7 @@
               "queue_before": 1,
               "routed_count": 1,
               "source": "source",
-              "timestamp": 0.0
+              "timestamp": 20.0
             },
             {
               "example_id": "long-held-out",
@@ -4494,7 +4898,7 @@
               "queue_before": 1,
               "routed_count": 1,
               "source": "relay",
-              "timestamp": 0.5
+              "timestamp": 20.5
             },
             {
               "destination": "target",
@@ -4502,7 +4906,7 @@
               "example_id": "long-held-out",
               "kind": "target_arrival",
               "source": "relay",
-              "timestamp": 1.0
+              "timestamp": 21.0
             },
             {
               "example_id": "long-held-out",
@@ -4511,7 +4915,7 @@
               "queue_before": 0,
               "routed_count": 1,
               "source": "source",
-              "timestamp": 3.0
+              "timestamp": 23.0
             },
             {
               "example_id": "long-held-out",
@@ -4520,7 +4924,7 @@
               "queue_before": 0,
               "routed_count": 1,
               "source": "relay",
-              "timestamp": 3.5
+              "timestamp": 23.5
             },
             {
               "destination": "target",
@@ -4528,7 +4932,7 @@
               "example_id": "long-held-out",
               "kind": "target_arrival",
               "source": "relay",
-              "timestamp": 4.0
+              "timestamp": 24.0
             }
           ],
           "selected_candidate": "candidate_A",
@@ -4559,10 +4963,10 @@
               "interval": 1.0,
               "prediction_or_decision": "on_time",
               "target_arrivals": [
-                1.0,
-                2.0
+                21.0,
+                22.0
               ],
-              "target_latency": 2.0,
+              "target_latency": 22.0,
               "target_state": -0.09516258196404048
             },
             {
@@ -4582,10 +4986,10 @@
               "interval": 3.0,
               "prediction_or_decision": "late",
               "target_arrivals": [
-                1.0,
-                4.0
+                21.0,
+                24.0
               ],
-              "target_latency": 4.0,
+              "target_latency": 24.0,
               "target_state": -0.2591817793182821
             }
           ],
@@ -4611,10 +5015,10 @@
             ]
           ],
           "graph_fingerprint": "9136c83c7ef4e818f986385172e86be2ba06a93e3bd82cf9212c29bead114831",
-          "last_held_out_timestamp": 23.0,
+          "last_held_out_timestamp": 24.0,
           "latency": [
-            2.0,
-            4.0
+            22.0,
+            24.0
           ],
           "mapping_id": "P0",
           "phase": "held_out",
@@ -4622,6 +5026,7 @@
           "prediction_error_records": [],
           "proxy_energy": 12.0,
           "proxy_energy_unit": "activity-cost-proxy; uncalibrated",
+          "queue_order_valid": true,
           "queue_peak": 2,
           "route_trace": [
             {
@@ -4631,7 +5036,7 @@
               "queue_before": 1,
               "routed_count": 1,
               "source": "source",
-              "timestamp": 0.0
+              "timestamp": 20.0
             },
             {
               "example_id": "short-held-out",
@@ -4640,7 +5045,7 @@
               "queue_before": 1,
               "routed_count": 1,
               "source": "relay",
-              "timestamp": 0.5
+              "timestamp": 20.5
             },
             {
               "example_id": "short-held-out",
@@ -4649,7 +5054,7 @@
               "queue_before": 1,
               "routed_count": 1,
               "source": "source",
-              "timestamp": 1.0
+              "timestamp": 21.0
             },
             {
               "destination": "target",
@@ -4657,7 +5062,7 @@
               "example_id": "short-held-out",
               "kind": "target_arrival",
               "source": "relay",
-              "timestamp": 1.0
+              "timestamp": 21.0
             },
             {
               "example_id": "short-held-out",
@@ -4666,7 +5071,7 @@
               "queue_before": 0,
               "routed_count": 1,
               "source": "relay",
-              "timestamp": 1.5
+              "timestamp": 21.5
             },
             {
               "destination": "target",
@@ -4674,7 +5079,7 @@
               "example_id": "short-held-out",
               "kind": "target_arrival",
               "source": "relay",
-              "timestamp": 2.0
+              "timestamp": 22.0
             },
             {
               "example_id": "long-held-out",
@@ -4683,7 +5088,7 @@
               "queue_before": 1,
               "routed_count": 1,
               "source": "source",
-              "timestamp": 0.0
+              "timestamp": 20.0
             },
             {
               "example_id": "long-held-out",
@@ -4692,7 +5097,7 @@
               "queue_before": 1,
               "routed_count": 1,
               "source": "relay",
-              "timestamp": 0.5
+              "timestamp": 20.5
             },
             {
               "destination": "target",
@@ -4700,7 +5105,7 @@
               "example_id": "long-held-out",
               "kind": "target_arrival",
               "source": "relay",
-              "timestamp": 1.0
+              "timestamp": 21.0
             },
             {
               "example_id": "long-held-out",
@@ -4709,7 +5114,7 @@
               "queue_before": 0,
               "routed_count": 1,
               "source": "source",
-              "timestamp": 3.0
+              "timestamp": 23.0
             },
             {
               "example_id": "long-held-out",
@@ -4718,7 +5123,7 @@
               "queue_before": 0,
               "routed_count": 1,
               "source": "relay",
-              "timestamp": 3.5
+              "timestamp": 23.5
             },
             {
               "destination": "target",
@@ -4726,7 +5131,7 @@
               "example_id": "long-held-out",
               "kind": "target_arrival",
               "source": "relay",
-              "timestamp": 4.0
+              "timestamp": 24.0
             }
           ],
           "selected_candidate": "candidate_A",
@@ -4757,10 +5162,10 @@
               "interval": 1.0,
               "prediction_or_decision": "on_time",
               "target_arrivals": [
-                1.0,
-                2.0
+                21.0,
+                22.0
               ],
-              "target_latency": 2.0,
+              "target_latency": 22.0,
               "target_state": -0.09516258196404048
             },
             {
@@ -4780,10 +5185,10 @@
               "interval": 3.0,
               "prediction_or_decision": "late",
               "target_arrivals": [
-                1.0,
-                4.0
+                21.0,
+                24.0
               ],
-              "target_latency": 4.0,
+              "target_latency": 24.0,
               "target_state": -0.2591817793182821
             }
           ],
@@ -4809,10 +5214,10 @@
             ]
           ],
           "graph_fingerprint": "9136c83c7ef4e818f986385172e86be2ba06a93e3bd82cf9212c29bead114831",
-          "last_held_out_timestamp": 23.0,
+          "last_held_out_timestamp": 24.0,
           "latency": [
-            2.0,
-            4.0
+            22.0,
+            24.0
           ],
           "mapping_id": "P0",
           "phase": "held_out",
@@ -4820,6 +5225,7 @@
           "prediction_error_records": [],
           "proxy_energy": 12.0,
           "proxy_energy_unit": "activity-cost-proxy; uncalibrated",
+          "queue_order_valid": true,
           "queue_peak": 2,
           "route_trace": [
             {
@@ -4829,7 +5235,7 @@
               "queue_before": 1,
               "routed_count": 1,
               "source": "source",
-              "timestamp": 0.0
+              "timestamp": 20.0
             },
             {
               "example_id": "short-held-out",
@@ -4838,7 +5244,7 @@
               "queue_before": 1,
               "routed_count": 1,
               "source": "relay",
-              "timestamp": 0.5
+              "timestamp": 20.5
             },
             {
               "example_id": "short-held-out",
@@ -4847,7 +5253,7 @@
               "queue_before": 1,
               "routed_count": 1,
               "source": "source",
-              "timestamp": 1.0
+              "timestamp": 21.0
             },
             {
               "destination": "target",
@@ -4855,7 +5261,7 @@
               "example_id": "short-held-out",
               "kind": "target_arrival",
               "source": "relay",
-              "timestamp": 1.0
+              "timestamp": 21.0
             },
             {
               "example_id": "short-held-out",
@@ -4864,7 +5270,7 @@
               "queue_before": 0,
               "routed_count": 1,
               "source": "relay",
-              "timestamp": 1.5
+              "timestamp": 21.5
             },
             {
               "destination": "target",
@@ -4872,7 +5278,7 @@
               "example_id": "short-held-out",
               "kind": "target_arrival",
               "source": "relay",
-              "timestamp": 2.0
+              "timestamp": 22.0
             },
             {
               "example_id": "long-held-out",
@@ -4881,7 +5287,7 @@
               "queue_before": 1,
               "routed_count": 1,
               "source": "source",
-              "timestamp": 0.0
+              "timestamp": 20.0
             },
             {
               "example_id": "long-held-out",
@@ -4890,7 +5296,7 @@
               "queue_before": 1,
               "routed_count": 1,
               "source": "relay",
-              "timestamp": 0.5
+              "timestamp": 20.5
             },
             {
               "destination": "target",
@@ -4898,7 +5304,7 @@
               "example_id": "long-held-out",
               "kind": "target_arrival",
               "source": "relay",
-              "timestamp": 1.0
+              "timestamp": 21.0
             },
             {
               "example_id": "long-held-out",
@@ -4907,7 +5313,7 @@
               "queue_before": 0,
               "routed_count": 1,
               "source": "source",
-              "timestamp": 3.0
+              "timestamp": 23.0
             },
             {
               "example_id": "long-held-out",
@@ -4916,7 +5322,7 @@
               "queue_before": 0,
               "routed_count": 1,
               "source": "relay",
-              "timestamp": 3.5
+              "timestamp": 23.5
             },
             {
               "destination": "target",
@@ -4924,7 +5330,7 @@
               "example_id": "long-held-out",
               "kind": "target_arrival",
               "source": "relay",
-              "timestamp": 4.0
+              "timestamp": 24.0
             }
           ],
           "selected_candidate": "candidate_A",
@@ -4955,10 +5361,10 @@
               "interval": 1.0,
               "prediction_or_decision": "on_time",
               "target_arrivals": [
-                1.0,
-                2.0
+                21.0,
+                22.0
               ],
-              "target_latency": 2.0,
+              "target_latency": 22.0,
               "target_state": -0.09516258196404048
             },
             {
@@ -4978,10 +5384,10 @@
               "interval": 3.0,
               "prediction_or_decision": "late",
               "target_arrivals": [
-                1.0,
-                4.0
+                21.0,
+                24.0
               ],
-              "target_latency": 4.0,
+              "target_latency": 24.0,
               "target_state": -0.2591817793182821
             }
           ],
@@ -5007,10 +5413,10 @@
             ]
           ],
           "graph_fingerprint": "9136c83c7ef4e818f986385172e86be2ba06a93e3bd82cf9212c29bead114831",
-          "last_held_out_timestamp": 23.0,
+          "last_held_out_timestamp": 24.0,
           "latency": [
-            2.0,
-            4.0
+            22.0,
+            24.0
           ],
           "mapping_id": "P0",
           "phase": "held_out",
@@ -5018,6 +5424,7 @@
           "prediction_error_records": [],
           "proxy_energy": 12.0,
           "proxy_energy_unit": "activity-cost-proxy; uncalibrated",
+          "queue_order_valid": true,
           "queue_peak": 2,
           "route_trace": [
             {
@@ -5027,7 +5434,7 @@
               "queue_before": 1,
               "routed_count": 1,
               "source": "source",
-              "timestamp": 0.0
+              "timestamp": 20.0
             },
             {
               "example_id": "short-held-out",
@@ -5036,7 +5443,7 @@
               "queue_before": 1,
               "routed_count": 1,
               "source": "relay",
-              "timestamp": 0.5
+              "timestamp": 20.5
             },
             {
               "example_id": "short-held-out",
@@ -5045,7 +5452,7 @@
               "queue_before": 1,
               "routed_count": 1,
               "source": "source",
-              "timestamp": 1.0
+              "timestamp": 21.0
             },
             {
               "destination": "target",
@@ -5053,7 +5460,7 @@
               "example_id": "short-held-out",
               "kind": "target_arrival",
               "source": "relay",
-              "timestamp": 1.0
+              "timestamp": 21.0
             },
             {
               "example_id": "short-held-out",
@@ -5062,7 +5469,7 @@
               "queue_before": 0,
               "routed_count": 1,
               "source": "relay",
-              "timestamp": 1.5
+              "timestamp": 21.5
             },
             {
               "destination": "target",
@@ -5070,7 +5477,7 @@
               "example_id": "short-held-out",
               "kind": "target_arrival",
               "source": "relay",
-              "timestamp": 2.0
+              "timestamp": 22.0
             },
             {
               "example_id": "long-held-out",
@@ -5079,7 +5486,7 @@
               "queue_before": 1,
               "routed_count": 1,
               "source": "source",
-              "timestamp": 0.0
+              "timestamp": 20.0
             },
             {
               "example_id": "long-held-out",
@@ -5088,7 +5495,7 @@
               "queue_before": 1,
               "routed_count": 1,
               "source": "relay",
-              "timestamp": 0.5
+              "timestamp": 20.5
             },
             {
               "destination": "target",
@@ -5096,7 +5503,7 @@
               "example_id": "long-held-out",
               "kind": "target_arrival",
               "source": "relay",
-              "timestamp": 1.0
+              "timestamp": 21.0
             },
             {
               "example_id": "long-held-out",
@@ -5105,7 +5512,7 @@
               "queue_before": 0,
               "routed_count": 1,
               "source": "source",
-              "timestamp": 3.0
+              "timestamp": 23.0
             },
             {
               "example_id": "long-held-out",
@@ -5114,7 +5521,7 @@
               "queue_before": 0,
               "routed_count": 1,
               "source": "relay",
-              "timestamp": 3.5
+              "timestamp": 23.5
             },
             {
               "destination": "target",
@@ -5122,7 +5529,7 @@
               "example_id": "long-held-out",
               "kind": "target_arrival",
               "source": "relay",
-              "timestamp": 4.0
+              "timestamp": 24.0
             }
           ],
           "selected_candidate": "candidate_A",
@@ -5278,6 +5685,7 @@
           }
         ],
         "evidence_complete": true,
+        "evidence_complete_timestamp": 19.0,
         "execution": {
           "budget_exhausted": false,
           "completed": true,
@@ -5287,6 +5695,7 @@
           "processed_event_count": 16,
           "termination_reason": "completed"
         },
+        "first_evidence_timestamp": 0.5,
         "freeze_timestamp": 19.0,
         "frozen_evidence": [
           {
@@ -5307,6 +5716,7 @@
           }
         ],
         "future_events": [],
+        "last_evidence_timestamp": 19.0,
         "local_neuron": {
           "activation": 0.7615941559557649,
           "eligibility_state": 1.0,
@@ -5826,7 +6236,8 @@
             "source": "noise-y",
             "timestamp": 19.0
           }
-        ]
+        ],
+        "visibility_metadata_used": false
       }
     },
     "reversed": {
@@ -5973,6 +6384,7 @@
           }
         ],
         "evidence_complete": true,
+        "evidence_complete_timestamp": 15.0,
         "execution": {
           "budget_exhausted": false,
           "completed": true,
@@ -5982,6 +6394,7 @@
           "processed_event_count": 16,
           "termination_reason": "completed"
         },
+        "first_evidence_timestamp": 0.0,
         "freeze_timestamp": 15.0,
         "frozen_evidence": [
           {
@@ -6002,6 +6415,7 @@
           }
         ],
         "future_events": [],
+        "last_evidence_timestamp": 14.0,
         "local_neuron": {
           "activation": 0.7615941559557649,
           "eligibility_state": 1.0,
@@ -6521,7 +6935,8 @@
             "source": "source",
             "timestamp": 15.0
           }
-        ]
+        ],
+        "visibility_metadata_used": false
       }
     },
     "time_shuffle": {
@@ -6668,6 +7083,7 @@
           }
         ],
         "evidence_complete": true,
+        "evidence_complete_timestamp": 15.0,
         "execution": {
           "budget_exhausted": false,
           "completed": true,
@@ -6677,6 +7093,7 @@
           "processed_event_count": 16,
           "termination_reason": "completed"
         },
+        "first_evidence_timestamp": 4.0,
         "freeze_timestamp": 15.0,
         "frozen_evidence": [
           {
@@ -6697,6 +7114,7 @@
           }
         ],
         "future_events": [],
+        "last_evidence_timestamp": 15.0,
         "local_neuron": {
           "activation": 0.7615941559557649,
           "eligibility_state": 1.0,
@@ -7216,7 +7634,8 @@
             "source": "noise",
             "timestamp": 15.0
           }
-        ]
+        ],
+        "visibility_metadata_used": false
       }
     },
     "uniform": {
@@ -7363,6 +7782,7 @@
           }
         ],
         "evidence_complete": true,
+        "evidence_complete_timestamp": 15.0,
         "execution": {
           "budget_exhausted": false,
           "completed": true,
@@ -7372,6 +7792,7 @@
           "processed_event_count": 16,
           "termination_reason": "completed"
         },
+        "first_evidence_timestamp": 1.0,
         "freeze_timestamp": 15.0,
         "frozen_evidence": [
           {
@@ -7392,6 +7813,7 @@
           }
         ],
         "future_events": [],
+        "last_evidence_timestamp": 15.0,
         "local_neuron": {
           "activation": 0.7615941559557649,
           "eligibility_state": 1.0,
@@ -7911,10 +8333,12 @@
             "source": "noise",
             "timestamp": 15.0
           }
-        ]
+        ],
+        "visibility_metadata_used": false
       }
     }
   },
+  "deterministic_replay": true,
   "evidence_inventory": {
     "available": [
       "source-local TemporalAssociationPolicy score",
@@ -7961,10 +8385,10 @@
           "interval": 1.0,
           "prediction_or_decision": "on_time",
           "target_arrivals": [
-            1.0,
-            2.0
+            21.0,
+            22.0
           ],
-          "target_latency": 2.0,
+          "target_latency": 22.0,
           "target_state": -0.09516258196404048
         },
         {
@@ -7984,10 +8408,10 @@
           "interval": 3.0,
           "prediction_or_decision": "late",
           "target_arrivals": [
-            1.0,
-            4.0
+            21.0,
+            24.0
           ],
-          "target_latency": 4.0,
+          "target_latency": 24.0,
           "target_state": -0.2591817793182821
         }
       ],
@@ -8013,10 +8437,10 @@
         ]
       ],
       "graph_fingerprint": "9136c83c7ef4e818f986385172e86be2ba06a93e3bd82cf9212c29bead114831",
-      "last_held_out_timestamp": 23.0,
+      "last_held_out_timestamp": 24.0,
       "latency": [
-        2.0,
-        4.0
+        22.0,
+        24.0
       ],
       "mapping_id": "P0",
       "phase": "held_out",
@@ -8024,6 +8448,7 @@
       "prediction_error_records": [],
       "proxy_energy": 12.0,
       "proxy_energy_unit": "activity-cost-proxy; uncalibrated",
+      "queue_order_valid": true,
       "queue_peak": 2,
       "route_trace": [
         {
@@ -8033,7 +8458,7 @@
           "queue_before": 1,
           "routed_count": 1,
           "source": "source",
-          "timestamp": 0.0
+          "timestamp": 20.0
         },
         {
           "example_id": "short-held-out",
@@ -8042,7 +8467,7 @@
           "queue_before": 1,
           "routed_count": 1,
           "source": "relay",
-          "timestamp": 0.5
+          "timestamp": 20.5
         },
         {
           "example_id": "short-held-out",
@@ -8051,7 +8476,7 @@
           "queue_before": 1,
           "routed_count": 1,
           "source": "source",
-          "timestamp": 1.0
+          "timestamp": 21.0
         },
         {
           "destination": "target",
@@ -8059,7 +8484,7 @@
           "example_id": "short-held-out",
           "kind": "target_arrival",
           "source": "relay",
-          "timestamp": 1.0
+          "timestamp": 21.0
         },
         {
           "example_id": "short-held-out",
@@ -8068,7 +8493,7 @@
           "queue_before": 0,
           "routed_count": 1,
           "source": "relay",
-          "timestamp": 1.5
+          "timestamp": 21.5
         },
         {
           "destination": "target",
@@ -8076,7 +8501,7 @@
           "example_id": "short-held-out",
           "kind": "target_arrival",
           "source": "relay",
-          "timestamp": 2.0
+          "timestamp": 22.0
         },
         {
           "example_id": "long-held-out",
@@ -8085,7 +8510,7 @@
           "queue_before": 1,
           "routed_count": 1,
           "source": "source",
-          "timestamp": 0.0
+          "timestamp": 20.0
         },
         {
           "example_id": "long-held-out",
@@ -8094,7 +8519,7 @@
           "queue_before": 1,
           "routed_count": 1,
           "source": "relay",
-          "timestamp": 0.5
+          "timestamp": 20.5
         },
         {
           "destination": "target",
@@ -8102,7 +8527,7 @@
           "example_id": "long-held-out",
           "kind": "target_arrival",
           "source": "relay",
-          "timestamp": 1.0
+          "timestamp": 21.0
         },
         {
           "example_id": "long-held-out",
@@ -8111,7 +8536,7 @@
           "queue_before": 0,
           "routed_count": 1,
           "source": "source",
-          "timestamp": 3.0
+          "timestamp": 23.0
         },
         {
           "example_id": "long-held-out",
@@ -8120,7 +8545,7 @@
           "queue_before": 0,
           "routed_count": 1,
           "source": "relay",
-          "timestamp": 3.5
+          "timestamp": 23.5
         },
         {
           "destination": "target",
@@ -8128,7 +8553,7 @@
           "example_id": "long-held-out",
           "kind": "target_arrival",
           "source": "relay",
-          "timestamp": 4.0
+          "timestamp": 24.0
         }
       ],
       "selected_candidate": "candidate_A",
@@ -8155,10 +8580,10 @@
           "interval": 1.0,
           "prediction_or_decision": "late",
           "target_arrivals": [
-            3.0,
-            4.0
+            23.0,
+            24.0
           ],
-          "target_latency": 4.0,
+          "target_latency": 24.0,
           "target_state": -0.09516258196404048
         },
         {
@@ -8178,10 +8603,10 @@
           "interval": 3.0,
           "prediction_or_decision": "late",
           "target_arrivals": [
-            3.0,
-            6.0
+            23.0,
+            26.0
           ],
-          "target_latency": 6.0,
+          "target_latency": 26.0,
           "target_state": -0.2591817793182821
         }
       ],
@@ -8207,10 +8632,10 @@
         ]
       ],
       "graph_fingerprint": "a9c2545ac7caabb9801dc4d7095addfa5491942dc5db064fb3d0ee34d841ed71",
-      "last_held_out_timestamp": 23.0,
+      "last_held_out_timestamp": 26.0,
       "latency": [
-        4.0,
-        6.0
+        24.0,
+        26.0
       ],
       "mapping_id": "P0",
       "phase": "held_out",
@@ -8218,6 +8643,7 @@
       "prediction_error_records": [],
       "proxy_energy": 12.0,
       "proxy_energy_unit": "activity-cost-proxy; uncalibrated",
+      "queue_order_valid": true,
       "queue_peak": 2,
       "route_trace": [
         {
@@ -8227,7 +8653,7 @@
           "queue_before": 1,
           "routed_count": 1,
           "source": "source",
-          "timestamp": 0.0
+          "timestamp": 20.0
         },
         {
           "example_id": "short-held-out",
@@ -8236,7 +8662,7 @@
           "queue_before": 1,
           "routed_count": 1,
           "source": "source",
-          "timestamp": 1.0
+          "timestamp": 21.0
         },
         {
           "example_id": "short-held-out",
@@ -8245,7 +8671,7 @@
           "queue_before": 1,
           "routed_count": 1,
           "source": "noise",
-          "timestamp": 1.0
+          "timestamp": 21.0
         },
         {
           "example_id": "short-held-out",
@@ -8254,7 +8680,7 @@
           "queue_before": 1,
           "routed_count": 1,
           "source": "noise",
-          "timestamp": 2.0
+          "timestamp": 22.0
         },
         {
           "destination": "target",
@@ -8262,7 +8688,7 @@
           "example_id": "short-held-out",
           "kind": "target_arrival",
           "source": "noise",
-          "timestamp": 3.0
+          "timestamp": 23.0
         },
         {
           "destination": "target",
@@ -8270,7 +8696,7 @@
           "example_id": "short-held-out",
           "kind": "target_arrival",
           "source": "noise",
-          "timestamp": 4.0
+          "timestamp": 24.0
         },
         {
           "example_id": "long-held-out",
@@ -8279,7 +8705,7 @@
           "queue_before": 1,
           "routed_count": 1,
           "source": "source",
-          "timestamp": 0.0
+          "timestamp": 20.0
         },
         {
           "example_id": "long-held-out",
@@ -8288,7 +8714,7 @@
           "queue_before": 1,
           "routed_count": 1,
           "source": "noise",
-          "timestamp": 1.0
+          "timestamp": 21.0
         },
         {
           "example_id": "long-held-out",
@@ -8297,7 +8723,7 @@
           "queue_before": 1,
           "routed_count": 1,
           "source": "source",
-          "timestamp": 3.0
+          "timestamp": 23.0
         },
         {
           "destination": "target",
@@ -8305,7 +8731,7 @@
           "example_id": "long-held-out",
           "kind": "target_arrival",
           "source": "noise",
-          "timestamp": 3.0
+          "timestamp": 23.0
         },
         {
           "example_id": "long-held-out",
@@ -8314,7 +8740,7 @@
           "queue_before": 0,
           "routed_count": 1,
           "source": "noise",
-          "timestamp": 4.0
+          "timestamp": 24.0
         },
         {
           "destination": "target",
@@ -8322,7 +8748,7 @@
           "example_id": "long-held-out",
           "kind": "target_arrival",
           "source": "noise",
-          "timestamp": 6.0
+          "timestamp": 26.0
         }
       ],
       "selected_candidate": "candidate_B",
@@ -8458,10 +8884,10 @@
               "interval": 1.0,
               "prediction_or_decision": "on_time",
               "target_arrivals": [
-                1.0,
-                2.0
+                21.0,
+                22.0
               ],
-              "target_latency": 2.0,
+              "target_latency": 22.0,
               "target_state": -0.09516258196404048
             },
             {
@@ -8481,10 +8907,10 @@
               "interval": 3.0,
               "prediction_or_decision": "late",
               "target_arrivals": [
-                1.0,
-                4.0
+                21.0,
+                24.0
               ],
-              "target_latency": 4.0,
+              "target_latency": 24.0,
               "target_state": -0.2591817793182821
             }
           ],
@@ -8510,10 +8936,10 @@
             ]
           ],
           "graph_fingerprint": "9136c83c7ef4e818f986385172e86be2ba06a93e3bd82cf9212c29bead114831",
-          "last_held_out_timestamp": 23.0,
+          "last_held_out_timestamp": 24.0,
           "latency": [
-            2.0,
-            4.0
+            22.0,
+            24.0
           ],
           "mapping_id": "P0",
           "phase": "held_out",
@@ -8521,6 +8947,7 @@
           "prediction_error_records": [],
           "proxy_energy": 12.0,
           "proxy_energy_unit": "activity-cost-proxy; uncalibrated",
+          "queue_order_valid": true,
           "queue_peak": 2,
           "route_trace": [
             {
@@ -8530,7 +8957,7 @@
               "queue_before": 1,
               "routed_count": 1,
               "source": "source",
-              "timestamp": 0.0
+              "timestamp": 20.0
             },
             {
               "example_id": "short-held-out",
@@ -8539,7 +8966,7 @@
               "queue_before": 1,
               "routed_count": 1,
               "source": "relay",
-              "timestamp": 0.5
+              "timestamp": 20.5
             },
             {
               "example_id": "short-held-out",
@@ -8548,7 +8975,7 @@
               "queue_before": 1,
               "routed_count": 1,
               "source": "source",
-              "timestamp": 1.0
+              "timestamp": 21.0
             },
             {
               "destination": "target",
@@ -8556,7 +8983,7 @@
               "example_id": "short-held-out",
               "kind": "target_arrival",
               "source": "relay",
-              "timestamp": 1.0
+              "timestamp": 21.0
             },
             {
               "example_id": "short-held-out",
@@ -8565,7 +8992,7 @@
               "queue_before": 0,
               "routed_count": 1,
               "source": "relay",
-              "timestamp": 1.5
+              "timestamp": 21.5
             },
             {
               "destination": "target",
@@ -8573,7 +9000,7 @@
               "example_id": "short-held-out",
               "kind": "target_arrival",
               "source": "relay",
-              "timestamp": 2.0
+              "timestamp": 22.0
             },
             {
               "example_id": "long-held-out",
@@ -8582,7 +9009,7 @@
               "queue_before": 1,
               "routed_count": 1,
               "source": "source",
-              "timestamp": 0.0
+              "timestamp": 20.0
             },
             {
               "example_id": "long-held-out",
@@ -8591,7 +9018,7 @@
               "queue_before": 1,
               "routed_count": 1,
               "source": "relay",
-              "timestamp": 0.5
+              "timestamp": 20.5
             },
             {
               "destination": "target",
@@ -8599,7 +9026,7 @@
               "example_id": "long-held-out",
               "kind": "target_arrival",
               "source": "relay",
-              "timestamp": 1.0
+              "timestamp": 21.0
             },
             {
               "example_id": "long-held-out",
@@ -8608,7 +9035,7 @@
               "queue_before": 0,
               "routed_count": 1,
               "source": "source",
-              "timestamp": 3.0
+              "timestamp": 23.0
             },
             {
               "example_id": "long-held-out",
@@ -8617,7 +9044,7 @@
               "queue_before": 0,
               "routed_count": 1,
               "source": "relay",
-              "timestamp": 3.5
+              "timestamp": 23.5
             },
             {
               "destination": "target",
@@ -8625,7 +9052,7 @@
               "example_id": "long-held-out",
               "kind": "target_arrival",
               "source": "relay",
-              "timestamp": 4.0
+              "timestamp": 24.0
             }
           ],
           "selected_candidate": "candidate_A",
@@ -8652,10 +9079,10 @@
               "interval": 1.0,
               "prediction_or_decision": "late",
               "target_arrivals": [
-                3.0,
-                4.0
+                23.0,
+                24.0
               ],
-              "target_latency": 4.0,
+              "target_latency": 24.0,
               "target_state": -0.09516258196404048
             },
             {
@@ -8675,10 +9102,10 @@
               "interval": 3.0,
               "prediction_or_decision": "late",
               "target_arrivals": [
-                3.0,
-                6.0
+                23.0,
+                26.0
               ],
-              "target_latency": 6.0,
+              "target_latency": 26.0,
               "target_state": -0.2591817793182821
             }
           ],
@@ -8704,10 +9131,10 @@
             ]
           ],
           "graph_fingerprint": "a9c2545ac7caabb9801dc4d7095addfa5491942dc5db064fb3d0ee34d841ed71",
-          "last_held_out_timestamp": 23.0,
+          "last_held_out_timestamp": 26.0,
           "latency": [
-            4.0,
-            6.0
+            24.0,
+            26.0
           ],
           "mapping_id": "P0",
           "phase": "held_out",
@@ -8715,6 +9142,7 @@
           "prediction_error_records": [],
           "proxy_energy": 12.0,
           "proxy_energy_unit": "activity-cost-proxy; uncalibrated",
+          "queue_order_valid": true,
           "queue_peak": 2,
           "route_trace": [
             {
@@ -8724,7 +9152,7 @@
               "queue_before": 1,
               "routed_count": 1,
               "source": "source",
-              "timestamp": 0.0
+              "timestamp": 20.0
             },
             {
               "example_id": "short-held-out",
@@ -8733,7 +9161,7 @@
               "queue_before": 1,
               "routed_count": 1,
               "source": "source",
-              "timestamp": 1.0
+              "timestamp": 21.0
             },
             {
               "example_id": "short-held-out",
@@ -8742,7 +9170,7 @@
               "queue_before": 1,
               "routed_count": 1,
               "source": "noise",
-              "timestamp": 1.0
+              "timestamp": 21.0
             },
             {
               "example_id": "short-held-out",
@@ -8751,7 +9179,7 @@
               "queue_before": 1,
               "routed_count": 1,
               "source": "noise",
-              "timestamp": 2.0
+              "timestamp": 22.0
             },
             {
               "destination": "target",
@@ -8759,7 +9187,7 @@
               "example_id": "short-held-out",
               "kind": "target_arrival",
               "source": "noise",
-              "timestamp": 3.0
+              "timestamp": 23.0
             },
             {
               "destination": "target",
@@ -8767,7 +9195,7 @@
               "example_id": "short-held-out",
               "kind": "target_arrival",
               "source": "noise",
-              "timestamp": 4.0
+              "timestamp": 24.0
             },
             {
               "example_id": "long-held-out",
@@ -8776,7 +9204,7 @@
               "queue_before": 1,
               "routed_count": 1,
               "source": "source",
-              "timestamp": 0.0
+              "timestamp": 20.0
             },
             {
               "example_id": "long-held-out",
@@ -8785,7 +9213,7 @@
               "queue_before": 1,
               "routed_count": 1,
               "source": "noise",
-              "timestamp": 1.0
+              "timestamp": 21.0
             },
             {
               "example_id": "long-held-out",
@@ -8794,7 +9222,7 @@
               "queue_before": 1,
               "routed_count": 1,
               "source": "source",
-              "timestamp": 3.0
+              "timestamp": 23.0
             },
             {
               "destination": "target",
@@ -8802,7 +9230,7 @@
               "example_id": "long-held-out",
               "kind": "target_arrival",
               "source": "noise",
-              "timestamp": 3.0
+              "timestamp": 23.0
             },
             {
               "example_id": "long-held-out",
@@ -8811,7 +9239,7 @@
               "queue_before": 0,
               "routed_count": 1,
               "source": "noise",
-              "timestamp": 4.0
+              "timestamp": 24.0
             },
             {
               "destination": "target",
@@ -8819,7 +9247,7 @@
               "example_id": "long-held-out",
               "kind": "target_arrival",
               "source": "noise",
-              "timestamp": 6.0
+              "timestamp": 26.0
             }
           ],
           "selected_candidate": "candidate_B",
@@ -8885,6 +9313,7 @@
           }
         ],
         "evidence_complete": true,
+        "evidence_complete_timestamp": 19.0,
         "execution": {
           "budget_exhausted": false,
           "completed": true,
@@ -8894,6 +9323,7 @@
           "processed_event_count": 16,
           "termination_reason": "completed"
         },
+        "first_evidence_timestamp": 0.5,
         "freeze_timestamp": 19.0,
         "frozen_evidence": [
           {
@@ -8914,6 +9344,7 @@
           }
         ],
         "future_events": [],
+        "last_evidence_timestamp": 19.0,
         "local_neuron": {
           "activation": 0.7615941559557649,
           "eligibility_state": 1.0,
@@ -9433,7 +9864,8 @@
             "source": "noise",
             "timestamp": 19.0
           }
-        ]
+        ],
+        "visibility_metadata_used": false
       },
       "selected_held_out": {
         "case_results": [
@@ -9454,10 +9886,10 @@
             "interval": 1.0,
             "prediction_or_decision": "on_time",
             "target_arrivals": [
-              1.0,
-              2.0
+              21.0,
+              22.0
             ],
-            "target_latency": 2.0,
+            "target_latency": 22.0,
             "target_state": -0.09516258196404048
           },
           {
@@ -9477,10 +9909,10 @@
             "interval": 3.0,
             "prediction_or_decision": "late",
             "target_arrivals": [
-              1.0,
-              4.0
+              21.0,
+              24.0
             ],
-            "target_latency": 4.0,
+            "target_latency": 24.0,
             "target_state": -0.2591817793182821
           }
         ],
@@ -9506,10 +9938,10 @@
           ]
         ],
         "graph_fingerprint": "9136c83c7ef4e818f986385172e86be2ba06a93e3bd82cf9212c29bead114831",
-        "last_held_out_timestamp": 23.0,
+        "last_held_out_timestamp": 24.0,
         "latency": [
-          2.0,
-          4.0
+          22.0,
+          24.0
         ],
         "mapping_id": "P0",
         "phase": "held_out",
@@ -9517,6 +9949,7 @@
         "prediction_error_records": [],
         "proxy_energy": 12.0,
         "proxy_energy_unit": "activity-cost-proxy; uncalibrated",
+        "queue_order_valid": true,
         "queue_peak": 2,
         "route_trace": [
           {
@@ -9526,7 +9959,7 @@
             "queue_before": 1,
             "routed_count": 1,
             "source": "source",
-            "timestamp": 0.0
+            "timestamp": 20.0
           },
           {
             "example_id": "short-held-out",
@@ -9535,7 +9968,7 @@
             "queue_before": 1,
             "routed_count": 1,
             "source": "relay",
-            "timestamp": 0.5
+            "timestamp": 20.5
           },
           {
             "example_id": "short-held-out",
@@ -9544,7 +9977,7 @@
             "queue_before": 1,
             "routed_count": 1,
             "source": "source",
-            "timestamp": 1.0
+            "timestamp": 21.0
           },
           {
             "destination": "target",
@@ -9552,7 +9985,7 @@
             "example_id": "short-held-out",
             "kind": "target_arrival",
             "source": "relay",
-            "timestamp": 1.0
+            "timestamp": 21.0
           },
           {
             "example_id": "short-held-out",
@@ -9561,7 +9994,7 @@
             "queue_before": 0,
             "routed_count": 1,
             "source": "relay",
-            "timestamp": 1.5
+            "timestamp": 21.5
           },
           {
             "destination": "target",
@@ -9569,7 +10002,7 @@
             "example_id": "short-held-out",
             "kind": "target_arrival",
             "source": "relay",
-            "timestamp": 2.0
+            "timestamp": 22.0
           },
           {
             "example_id": "long-held-out",
@@ -9578,7 +10011,7 @@
             "queue_before": 1,
             "routed_count": 1,
             "source": "source",
-            "timestamp": 0.0
+            "timestamp": 20.0
           },
           {
             "example_id": "long-held-out",
@@ -9587,7 +10020,7 @@
             "queue_before": 1,
             "routed_count": 1,
             "source": "relay",
-            "timestamp": 0.5
+            "timestamp": 20.5
           },
           {
             "destination": "target",
@@ -9595,7 +10028,7 @@
             "example_id": "long-held-out",
             "kind": "target_arrival",
             "source": "relay",
-            "timestamp": 1.0
+            "timestamp": 21.0
           },
           {
             "example_id": "long-held-out",
@@ -9604,7 +10037,7 @@
             "queue_before": 0,
             "routed_count": 1,
             "source": "source",
-            "timestamp": 3.0
+            "timestamp": 23.0
           },
           {
             "example_id": "long-held-out",
@@ -9613,7 +10046,7 @@
             "queue_before": 0,
             "routed_count": 1,
             "source": "relay",
-            "timestamp": 3.5
+            "timestamp": 23.5
           },
           {
             "destination": "target",
@@ -9621,7 +10054,7 @@
             "example_id": "long-held-out",
             "kind": "target_arrival",
             "source": "relay",
-            "timestamp": 4.0
+            "timestamp": 24.0
           }
         ],
         "selected_candidate": "candidate_A",
@@ -9756,10 +10189,10 @@
               "interval": 1.0,
               "prediction_or_decision": "late",
               "target_arrivals": [
-                2.5,
-                3.5
+                22.5,
+                23.5
               ],
-              "target_latency": 3.5,
+              "target_latency": 23.5,
               "target_state": -0.09516258196404048
             },
             {
@@ -9779,10 +10212,10 @@
               "interval": 3.0,
               "prediction_or_decision": "late",
               "target_arrivals": [
-                2.5,
-                5.5
+                22.5,
+                25.5
               ],
-              "target_latency": 5.5,
+              "target_latency": 25.5,
               "target_state": -0.2591817793182821
             }
           ],
@@ -9808,10 +10241,10 @@
             ]
           ],
           "graph_fingerprint": "e29b946a89ffb761a8ebd8c05f0b93b92ff28ad086afe53a06bfc192582d8860",
-          "last_held_out_timestamp": 23.0,
+          "last_held_out_timestamp": 25.5,
           "latency": [
-            3.5,
-            5.5
+            23.5,
+            25.5
           ],
           "mapping_id": "P1",
           "phase": "held_out",
@@ -9819,6 +10252,7 @@
           "prediction_error_records": [],
           "proxy_energy": 12.0,
           "proxy_energy_unit": "activity-cost-proxy; uncalibrated",
+          "queue_order_valid": true,
           "queue_peak": 2,
           "route_trace": [
             {
@@ -9828,7 +10262,7 @@
               "queue_before": 1,
               "routed_count": 1,
               "source": "source",
-              "timestamp": 0.0
+              "timestamp": 20.0
             },
             {
               "example_id": "short-held-out",
@@ -9837,7 +10271,7 @@
               "queue_before": 1,
               "routed_count": 1,
               "source": "noise",
-              "timestamp": 0.5
+              "timestamp": 20.5
             },
             {
               "example_id": "short-held-out",
@@ -9846,7 +10280,7 @@
               "queue_before": 1,
               "routed_count": 1,
               "source": "source",
-              "timestamp": 1.0
+              "timestamp": 21.0
             },
             {
               "example_id": "short-held-out",
@@ -9855,7 +10289,7 @@
               "queue_before": 1,
               "routed_count": 1,
               "source": "noise",
-              "timestamp": 1.5
+              "timestamp": 21.5
             },
             {
               "destination": "target",
@@ -9863,7 +10297,7 @@
               "example_id": "short-held-out",
               "kind": "target_arrival",
               "source": "noise",
-              "timestamp": 2.5
+              "timestamp": 22.5
             },
             {
               "destination": "target",
@@ -9871,7 +10305,7 @@
               "example_id": "short-held-out",
               "kind": "target_arrival",
               "source": "noise",
-              "timestamp": 3.5
+              "timestamp": 23.5
             },
             {
               "example_id": "long-held-out",
@@ -9880,7 +10314,7 @@
               "queue_before": 1,
               "routed_count": 1,
               "source": "source",
-              "timestamp": 0.0
+              "timestamp": 20.0
             },
             {
               "example_id": "long-held-out",
@@ -9889,7 +10323,7 @@
               "queue_before": 1,
               "routed_count": 1,
               "source": "noise",
-              "timestamp": 0.5
+              "timestamp": 20.5
             },
             {
               "destination": "target",
@@ -9897,7 +10331,7 @@
               "example_id": "long-held-out",
               "kind": "target_arrival",
               "source": "noise",
-              "timestamp": 2.5
+              "timestamp": 22.5
             },
             {
               "example_id": "long-held-out",
@@ -9906,7 +10340,7 @@
               "queue_before": 0,
               "routed_count": 1,
               "source": "source",
-              "timestamp": 3.0
+              "timestamp": 23.0
             },
             {
               "example_id": "long-held-out",
@@ -9915,7 +10349,7 @@
               "queue_before": 0,
               "routed_count": 1,
               "source": "noise",
-              "timestamp": 3.5
+              "timestamp": 23.5
             },
             {
               "destination": "target",
@@ -9923,7 +10357,7 @@
               "example_id": "long-held-out",
               "kind": "target_arrival",
               "source": "noise",
-              "timestamp": 5.5
+              "timestamp": 25.5
             }
           ],
           "selected_candidate": "candidate_A",
@@ -9950,10 +10384,10 @@
               "interval": 1.0,
               "prediction_or_decision": "on_time",
               "target_arrivals": [
-                1.5,
-                2.5
+                21.5,
+                22.5
               ],
-              "target_latency": 2.5,
+              "target_latency": 22.5,
               "target_state": -0.09516258196404048
             },
             {
@@ -9973,10 +10407,10 @@
               "interval": 3.0,
               "prediction_or_decision": "late",
               "target_arrivals": [
-                1.5,
-                4.5
+                21.5,
+                24.5
               ],
-              "target_latency": 4.5,
+              "target_latency": 24.5,
               "target_state": -0.2591817793182821
             }
           ],
@@ -10002,10 +10436,10 @@
             ]
           ],
           "graph_fingerprint": "0499bc74ace8b5cbf6008d5dbf1ed5c004e1a96be62eab0257f73fa3e9689a46",
-          "last_held_out_timestamp": 23.0,
+          "last_held_out_timestamp": 24.5,
           "latency": [
-            2.5,
-            4.5
+            22.5,
+            24.5
           ],
           "mapping_id": "P1",
           "phase": "held_out",
@@ -10013,6 +10447,7 @@
           "prediction_error_records": [],
           "proxy_energy": 12.0,
           "proxy_energy_unit": "activity-cost-proxy; uncalibrated",
+          "queue_order_valid": true,
           "queue_peak": 2,
           "route_trace": [
             {
@@ -10022,7 +10457,7 @@
               "queue_before": 1,
               "routed_count": 1,
               "source": "source",
-              "timestamp": 0.0
+              "timestamp": 20.0
             },
             {
               "example_id": "short-held-out",
@@ -10031,7 +10466,7 @@
               "queue_before": 1,
               "routed_count": 1,
               "source": "source",
-              "timestamp": 1.0
+              "timestamp": 21.0
             },
             {
               "example_id": "short-held-out",
@@ -10040,7 +10475,7 @@
               "queue_before": 1,
               "routed_count": 1,
               "source": "relay",
-              "timestamp": 1.0
+              "timestamp": 21.0
             },
             {
               "destination": "target",
@@ -10048,7 +10483,7 @@
               "example_id": "short-held-out",
               "kind": "target_arrival",
               "source": "relay",
-              "timestamp": 1.5
+              "timestamp": 21.5
             },
             {
               "example_id": "short-held-out",
@@ -10057,7 +10492,7 @@
               "queue_before": 0,
               "routed_count": 1,
               "source": "relay",
-              "timestamp": 2.0
+              "timestamp": 22.0
             },
             {
               "destination": "target",
@@ -10065,7 +10500,7 @@
               "example_id": "short-held-out",
               "kind": "target_arrival",
               "source": "relay",
-              "timestamp": 2.5
+              "timestamp": 22.5
             },
             {
               "example_id": "long-held-out",
@@ -10074,7 +10509,7 @@
               "queue_before": 1,
               "routed_count": 1,
               "source": "source",
-              "timestamp": 0.0
+              "timestamp": 20.0
             },
             {
               "example_id": "long-held-out",
@@ -10083,7 +10518,7 @@
               "queue_before": 1,
               "routed_count": 1,
               "source": "relay",
-              "timestamp": 1.0
+              "timestamp": 21.0
             },
             {
               "destination": "target",
@@ -10091,7 +10526,7 @@
               "example_id": "long-held-out",
               "kind": "target_arrival",
               "source": "relay",
-              "timestamp": 1.5
+              "timestamp": 21.5
             },
             {
               "example_id": "long-held-out",
@@ -10100,7 +10535,7 @@
               "queue_before": 0,
               "routed_count": 1,
               "source": "source",
-              "timestamp": 3.0
+              "timestamp": 23.0
             },
             {
               "example_id": "long-held-out",
@@ -10109,7 +10544,7 @@
               "queue_before": 0,
               "routed_count": 1,
               "source": "relay",
-              "timestamp": 4.0
+              "timestamp": 24.0
             },
             {
               "destination": "target",
@@ -10117,7 +10552,7 @@
               "example_id": "long-held-out",
               "kind": "target_arrival",
               "source": "relay",
-              "timestamp": 4.5
+              "timestamp": 24.5
             }
           ],
           "selected_candidate": "candidate_B",
@@ -10183,6 +10618,7 @@
           }
         ],
         "evidence_complete": true,
+        "evidence_complete_timestamp": 19.0,
         "execution": {
           "budget_exhausted": false,
           "completed": true,
@@ -10192,6 +10628,7 @@
           "processed_event_count": 16,
           "termination_reason": "completed"
         },
+        "first_evidence_timestamp": 0.5,
         "freeze_timestamp": 19.0,
         "frozen_evidence": [
           {
@@ -10212,6 +10649,7 @@
           }
         ],
         "future_events": [],
+        "last_evidence_timestamp": 19.0,
         "local_neuron": {
           "activation": 0.7615941559557649,
           "eligibility_state": 1.0,
@@ -10731,7 +11169,8 @@
             "source": "relay",
             "timestamp": 19.0
           }
-        ]
+        ],
+        "visibility_metadata_used": false
       },
       "selected_held_out": {
         "case_results": [
@@ -10752,10 +11191,10 @@
             "interval": 1.0,
             "prediction_or_decision": "late",
             "target_arrivals": [
-              2.5,
-              3.5
+              22.5,
+              23.5
             ],
-            "target_latency": 3.5,
+            "target_latency": 23.5,
             "target_state": -0.09516258196404048
           },
           {
@@ -10775,10 +11214,10 @@
             "interval": 3.0,
             "prediction_or_decision": "late",
             "target_arrivals": [
-              2.5,
-              5.5
+              22.5,
+              25.5
             ],
-            "target_latency": 5.5,
+            "target_latency": 25.5,
             "target_state": -0.2591817793182821
           }
         ],
@@ -10804,10 +11243,10 @@
           ]
         ],
         "graph_fingerprint": "e29b946a89ffb761a8ebd8c05f0b93b92ff28ad086afe53a06bfc192582d8860",
-        "last_held_out_timestamp": 23.0,
+        "last_held_out_timestamp": 25.5,
         "latency": [
-          3.5,
-          5.5
+          23.5,
+          25.5
         ],
         "mapping_id": "P1",
         "phase": "held_out",
@@ -10815,6 +11254,7 @@
         "prediction_error_records": [],
         "proxy_energy": 12.0,
         "proxy_energy_unit": "activity-cost-proxy; uncalibrated",
+        "queue_order_valid": true,
         "queue_peak": 2,
         "route_trace": [
           {
@@ -10824,7 +11264,7 @@
             "queue_before": 1,
             "routed_count": 1,
             "source": "source",
-            "timestamp": 0.0
+            "timestamp": 20.0
           },
           {
             "example_id": "short-held-out",
@@ -10833,7 +11273,7 @@
             "queue_before": 1,
             "routed_count": 1,
             "source": "noise",
-            "timestamp": 0.5
+            "timestamp": 20.5
           },
           {
             "example_id": "short-held-out",
@@ -10842,7 +11282,7 @@
             "queue_before": 1,
             "routed_count": 1,
             "source": "source",
-            "timestamp": 1.0
+            "timestamp": 21.0
           },
           {
             "example_id": "short-held-out",
@@ -10851,7 +11291,7 @@
             "queue_before": 1,
             "routed_count": 1,
             "source": "noise",
-            "timestamp": 1.5
+            "timestamp": 21.5
           },
           {
             "destination": "target",
@@ -10859,7 +11299,7 @@
             "example_id": "short-held-out",
             "kind": "target_arrival",
             "source": "noise",
-            "timestamp": 2.5
+            "timestamp": 22.5
           },
           {
             "destination": "target",
@@ -10867,7 +11307,7 @@
             "example_id": "short-held-out",
             "kind": "target_arrival",
             "source": "noise",
-            "timestamp": 3.5
+            "timestamp": 23.5
           },
           {
             "example_id": "long-held-out",
@@ -10876,7 +11316,7 @@
             "queue_before": 1,
             "routed_count": 1,
             "source": "source",
-            "timestamp": 0.0
+            "timestamp": 20.0
           },
           {
             "example_id": "long-held-out",
@@ -10885,7 +11325,7 @@
             "queue_before": 1,
             "routed_count": 1,
             "source": "noise",
-            "timestamp": 0.5
+            "timestamp": 20.5
           },
           {
             "destination": "target",
@@ -10893,7 +11333,7 @@
             "example_id": "long-held-out",
             "kind": "target_arrival",
             "source": "noise",
-            "timestamp": 2.5
+            "timestamp": 22.5
           },
           {
             "example_id": "long-held-out",
@@ -10902,7 +11342,7 @@
             "queue_before": 0,
             "routed_count": 1,
             "source": "source",
-            "timestamp": 3.0
+            "timestamp": 23.0
           },
           {
             "example_id": "long-held-out",
@@ -10911,7 +11351,7 @@
             "queue_before": 0,
             "routed_count": 1,
             "source": "noise",
-            "timestamp": 3.5
+            "timestamp": 23.5
           },
           {
             "destination": "target",
@@ -10919,7 +11359,7 @@
             "example_id": "long-held-out",
             "kind": "target_arrival",
             "source": "noise",
-            "timestamp": 5.5
+            "timestamp": 25.5
           }
         ],
         "selected_candidate": "candidate_A",
@@ -11280,6 +11720,7 @@
         }
       ],
       "evidence_complete": true,
+      "evidence_complete_timestamp": 19.0,
       "execution": {
         "budget_exhausted": false,
         "completed": true,
@@ -11289,6 +11730,7 @@
         "processed_event_count": 16,
         "termination_reason": "completed"
       },
+      "first_evidence_timestamp": 0.5,
       "freeze_timestamp": 19.0,
       "frozen_evidence": [
         {
@@ -11309,6 +11751,7 @@
         }
       ],
       "future_events": [],
+      "last_evidence_timestamp": 19.0,
       "local_neuron": {
         "activation": 0.7615941559557649,
         "eligibility_state": 1.0,
@@ -11828,7 +12271,8 @@
           "source": "noise",
           "timestamp": 19.0
         }
-      ]
+      ],
+      "visibility_metadata_used": false
     }
   },
   "primary_held_out": {
@@ -11850,10 +12294,10 @@
         "interval": 1.0,
         "prediction_or_decision": "on_time",
         "target_arrivals": [
-          1.0,
-          2.0
+          21.0,
+          22.0
         ],
-        "target_latency": 2.0,
+        "target_latency": 22.0,
         "target_state": -0.09516258196404048
       },
       {
@@ -11873,10 +12317,10 @@
         "interval": 3.0,
         "prediction_or_decision": "late",
         "target_arrivals": [
-          1.0,
-          4.0
+          21.0,
+          24.0
         ],
-        "target_latency": 4.0,
+        "target_latency": 24.0,
         "target_state": -0.2591817793182821
       }
     ],
@@ -11902,10 +12346,10 @@
       ]
     ],
     "graph_fingerprint": "9136c83c7ef4e818f986385172e86be2ba06a93e3bd82cf9212c29bead114831",
-    "last_held_out_timestamp": 23.0,
+    "last_held_out_timestamp": 24.0,
     "latency": [
-      2.0,
-      4.0
+      22.0,
+      24.0
     ],
     "mapping_id": "P0",
     "phase": "held_out",
@@ -11913,6 +12357,7 @@
     "prediction_error_records": [],
     "proxy_energy": 12.0,
     "proxy_energy_unit": "activity-cost-proxy; uncalibrated",
+    "queue_order_valid": true,
     "queue_peak": 2,
     "route_trace": [
       {
@@ -11922,7 +12367,7 @@
         "queue_before": 1,
         "routed_count": 1,
         "source": "source",
-        "timestamp": 0.0
+        "timestamp": 20.0
       },
       {
         "example_id": "short-held-out",
@@ -11931,7 +12376,7 @@
         "queue_before": 1,
         "routed_count": 1,
         "source": "relay",
-        "timestamp": 0.5
+        "timestamp": 20.5
       },
       {
         "example_id": "short-held-out",
@@ -11940,7 +12385,7 @@
         "queue_before": 1,
         "routed_count": 1,
         "source": "source",
-        "timestamp": 1.0
+        "timestamp": 21.0
       },
       {
         "destination": "target",
@@ -11948,7 +12393,7 @@
         "example_id": "short-held-out",
         "kind": "target_arrival",
         "source": "relay",
-        "timestamp": 1.0
+        "timestamp": 21.0
       },
       {
         "example_id": "short-held-out",
@@ -11957,7 +12402,7 @@
         "queue_before": 0,
         "routed_count": 1,
         "source": "relay",
-        "timestamp": 1.5
+        "timestamp": 21.5
       },
       {
         "destination": "target",
@@ -11965,7 +12410,7 @@
         "example_id": "short-held-out",
         "kind": "target_arrival",
         "source": "relay",
-        "timestamp": 2.0
+        "timestamp": 22.0
       },
       {
         "example_id": "long-held-out",
@@ -11974,7 +12419,7 @@
         "queue_before": 1,
         "routed_count": 1,
         "source": "source",
-        "timestamp": 0.0
+        "timestamp": 20.0
       },
       {
         "example_id": "long-held-out",
@@ -11983,7 +12428,7 @@
         "queue_before": 1,
         "routed_count": 1,
         "source": "relay",
-        "timestamp": 0.5
+        "timestamp": 20.5
       },
       {
         "destination": "target",
@@ -11991,7 +12436,7 @@
         "example_id": "long-held-out",
         "kind": "target_arrival",
         "source": "relay",
-        "timestamp": 1.0
+        "timestamp": 21.0
       },
       {
         "example_id": "long-held-out",
@@ -12000,7 +12445,7 @@
         "queue_before": 0,
         "routed_count": 1,
         "source": "source",
-        "timestamp": 3.0
+        "timestamp": 23.0
       },
       {
         "example_id": "long-held-out",
@@ -12009,7 +12454,7 @@
         "queue_before": 0,
         "routed_count": 1,
         "source": "relay",
-        "timestamp": 3.5
+        "timestamp": 23.5
       },
       {
         "destination": "target",
@@ -12017,7 +12462,7 @@
         "example_id": "long-held-out",
         "kind": "target_arrival",
         "source": "relay",
-        "timestamp": 4.0
+        "timestamp": 24.0
       }
     ],
     "selected_candidate": "candidate_A",
@@ -12026,14 +12471,14 @@
     "total_events": 12
   },
   "provenance": {
-    "baseline_revision": "435277323badea0fc1fd11b56b8a51e9033db053",
+    "baseline_revision": "28783d718a98e2eec74934afed13bbc115df784a",
     "branch": "main",
     "environment": {
       "platform": "Windows-10-10.0.19045-SP0",
       "python": "3.10.8 (tags/v3.10.8:aaaf517, Oct 11 2022, 16:50:30) [MSC v.1933 64 bit (AMD64)]"
     },
-    "executed_revision": "435277323badea0fc1fd11b56b8a51e9033db053",
-    "tree_state_at_generation": "M artifacts/runtime-generated-local-evidence-13f-verified/results.json\n M artifacts/runtime-generated-local-evidence-13f-verified/summary.json\n M run_runtime_generated_evidence_13f.py\n M tests/test_luna13f_runtime_generated_evidence.py\n M tpcn/runtime_generated_evidence.py"
+    "executed_revision": "72b6201",
+    "tree_state_at_generation": "M artifacts/runtime-generated-local-evidence-13f-verified/results.json\n M artifacts/runtime-generated-local-evidence-13f-verified/summary.json\n?? artifacts/runtime-generated-local-evidence-13f-verified/audit-results.json"
   },
   "schema_version": "TPCN-LUNA-13F-1",
   "terminal_status": "NEGATIVE RESULT - RUNTIME EVIDENCE GENERATED BUT DOES NOT PREDICT USEFUL GROWTH"

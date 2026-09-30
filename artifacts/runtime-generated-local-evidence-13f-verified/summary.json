@@ -1,6 +1,6 @@
 {
-  "baseline_revision": "435277323badea0fc1fd11b56b8a51e9033db053",
-  "executed_revision": "435277323badea0fc1fd11b56b8a51e9033db053",
+  "baseline_revision": "28783d718a98e2eec74934afed13bbc115df784a",
+  "executed_revision": "72b6201",
   "execution": {
     "budget_exhausted": false,
     "completed": true,
@@ -31,10 +31,10 @@
           "interval": 1.0,
           "prediction_or_decision": "on_time",
           "target_arrivals": [
-            1.0,
-            2.0
+            21.0,
+            22.0
           ],
-          "target_latency": 2.0,
+          "target_latency": 22.0,
           "target_state": -0.09516258196404048
         },
         {
@@ -54,10 +54,10 @@
           "interval": 3.0,
           "prediction_or_decision": "late",
           "target_arrivals": [
-            1.0,
-            4.0
+            21.0,
+            24.0
           ],
-          "target_latency": 4.0,
+          "target_latency": 24.0,
           "target_state": -0.2591817793182821
         }
       ],
@@ -83,10 +83,10 @@
         ]
       ],
       "graph_fingerprint": "9136c83c7ef4e818f986385172e86be2ba06a93e3bd82cf9212c29bead114831",
-      "last_held_out_timestamp": 23.0,
+      "last_held_out_timestamp": 24.0,
       "latency": [
-        2.0,
-        4.0
+        22.0,
+        24.0
       ],
       "mapping_id": "P0",
       "phase": "held_out",
@@ -94,6 +94,7 @@
       "prediction_error_records": [],
       "proxy_energy": 12.0,
       "proxy_energy_unit": "activity-cost-proxy; uncalibrated",
+      "queue_order_valid": true,
       "queue_peak": 2,
       "route_trace": [
         {
@@ -103,7 +104,7 @@
           "queue_before": 1,
           "routed_count": 1,
           "source": "source",
-          "timestamp": 0.0
+          "timestamp": 20.0
         },
         {
           "example_id": "short-held-out",
@@ -112,7 +113,7 @@
           "queue_before": 1,
           "routed_count": 1,
           "source": "relay",
-          "timestamp": 0.5
+          "timestamp": 20.5
         },
         {
           "example_id": "short-held-out",
@@ -121,7 +122,7 @@
           "queue_before": 1,
           "routed_count": 1,
           "source": "source",
-          "timestamp": 1.0
+          "timestamp": 21.0
         },
         {
           "destination": "target",
@@ -129,7 +130,7 @@
           "example_id": "short-held-out",
           "kind": "target_arrival",
           "source": "relay",
-          "timestamp": 1.0
+          "timestamp": 21.0
         },
         {
           "example_id": "short-held-out",
@@ -138,7 +139,7 @@
           "queue_before": 0,
           "routed_count": 1,
           "source": "relay",
-          "timestamp": 1.5
+          "timestamp": 21.5
         },
         {
           "destination": "target",
@@ -146,7 +147,7 @@
           "example_id": "short-held-out",
           "kind": "target_arrival",
           "source": "relay",
-          "timestamp": 2.0
+          "timestamp": 22.0
         },
         {
           "example_id": "long-held-out",
@@ -155,7 +156,7 @@
           "queue_before": 1,
           "routed_count": 1,
           "source": "source",
-          "timestamp": 0.0
+          "timestamp": 20.0
         },
         {
           "example_id": "long-held-out",
@@ -164,7 +165,7 @@
           "queue_before": 1,
           "routed_count": 1,
           "source": "relay",
-          "timestamp": 0.5
+          "timestamp": 20.5
         },
         {
           "destination": "target",
@@ -172,7 +173,7 @@
           "example_id": "long-held-out",
           "kind": "target_arrival",
           "source": "relay",
-          "timestamp": 1.0
+          "timestamp": 21.0
         },
         {
           "example_id": "long-held-out",
@@ -181,7 +182,7 @@
           "queue_before": 0,
           "routed_count": 1,
           "source": "source",
-          "timestamp": 3.0
+          "timestamp": 23.0
         },
         {
           "example_id": "long-held-out",
@@ -190,7 +191,7 @@
           "queue_before": 0,
           "routed_count": 1,
           "source": "relay",
-          "timestamp": 3.5
+          "timestamp": 23.5
         },
         {
           "destination": "target",
@@ -198,7 +199,7 @@
           "example_id": "long-held-out",
           "kind": "target_arrival",
           "source": "relay",
-          "timestamp": 4.0
+          "timestamp": 24.0
         }
       ],
       "selected_candidate": "candidate_A",
@@ -225,10 +226,10 @@
           "interval": 1.0,
           "prediction_or_decision": "late",
           "target_arrivals": [
-            3.0,
-            4.0
+            23.0,
+            24.0
           ],
-          "target_latency": 4.0,
+          "target_latency": 24.0,
           "target_state": -0.09516258196404048
         },
         {
@@ -248,10 +249,10 @@
           "interval": 3.0,
           "prediction_or_decision": "late",
           "target_arrivals": [
-            3.0,
-            6.0
+            23.0,
+            26.0
           ],
-          "target_latency": 6.0,
+          "target_latency": 26.0,
           "target_state": -0.2591817793182821
         }
       ],
@@ -277,10 +278,10 @@
         ]
       ],
       "graph_fingerprint": "a9c2545ac7caabb9801dc4d7095addfa5491942dc5db064fb3d0ee34d841ed71",
-      "last_held_out_timestamp": 23.0,
+      "last_held_out_timestamp": 26.0,
       "latency": [
-        4.0,
-        6.0
+        24.0,
+        26.0
       ],
       "mapping_id": "P0",
       "phase": "held_out",
@@ -288,6 +289,7 @@
       "prediction_error_records": [],
       "proxy_energy": 12.0,
       "proxy_energy_unit": "activity-cost-proxy; uncalibrated",
+      "queue_order_valid": true,
       "queue_peak": 2,
       "route_trace": [
         {
@@ -297,7 +299,7 @@
           "queue_before": 1,
           "routed_count": 1,
           "source": "source",
-          "timestamp": 0.0
+          "timestamp": 20.0
         },
         {
           "example_id": "short-held-out",
@@ -306,7 +308,7 @@
           "queue_before": 1,
           "routed_count": 1,
           "source": "source",
-          "timestamp": 1.0
+          "timestamp": 21.0
         },
         {
           "example_id": "short-held-out",
@@ -315,7 +317,7 @@
           "queue_before": 1,
           "routed_count": 1,
           "source": "noise",
-          "timestamp": 1.0
+          "timestamp": 21.0
         },
         {
           "example_id": "short-held-out",
@@ -324,7 +326,7 @@
           "queue_before": 1,
           "routed_count": 1,
           "source": "noise",
-          "timestamp": 2.0
+          "timestamp": 22.0
         },
         {
           "destination": "target",
@@ -332,7 +334,7 @@
           "example_id": "short-held-out",
           "kind": "target_arrival",
           "source": "noise",
-          "timestamp": 3.0
+          "timestamp": 23.0
         },
         {
           "destination": "target",
@@ -340,7 +342,7 @@
           "example_id": "short-held-out",
           "kind": "target_arrival",
           "source": "noise",
-          "timestamp": 4.0
+          "timestamp": 24.0
         },
         {
           "example_id": "long-held-out",
@@ -349,7 +351,7 @@
           "queue_before": 1,
           "routed_count": 1,
           "source": "source",
-          "timestamp": 0.0
+          "timestamp": 20.0
         },
         {
           "example_id": "long-held-out",
@@ -358,7 +360,7 @@
           "queue_before": 1,
           "routed_count": 1,
           "source": "noise",
-          "timestamp": 1.0
+          "timestamp": 21.0
         },
         {
           "example_id": "long-held-out",
@@ -367,7 +369,7 @@
           "queue_before": 1,
           "routed_count": 1,
           "source": "source",
-          "timestamp": 3.0
+          "timestamp": 23.0
         },
         {
           "destination": "target",
@@ -375,7 +377,7 @@
           "example_id": "long-held-out",
           "kind": "target_arrival",
           "source": "noise",
-          "timestamp": 3.0
+          "timestamp": 23.0
         },
         {
           "example_id": "long-held-out",
@@ -384,7 +386,7 @@
           "queue_before": 0,
           "routed_count": 1,
           "source": "noise",
-          "timestamp": 4.0
+          "timestamp": 24.0
         },
         {
           "destination": "target",
@@ -392,7 +394,7 @@
           "example_id": "long-held-out",
           "kind": "target_arrival",
           "source": "noise",
-          "timestamp": 6.0
+          "timestamp": 26.0
         }
       ],
       "selected_candidate": "candidate_B",
