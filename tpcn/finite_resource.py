@@ -2,14 +2,14 @@
 
 from __future__ import annotations
 
-from dataclasses import asdict, dataclass
+from dataclasses import asdict, dataclass, replace
 import hashlib
 import json
 import platform
 import random
 import subprocess
 import sys
-from typing import Any
+from typing import Any, Iterable
 
 from .causal_utility import UtilityConfig, _learn
 from .canonical_neuron import TPCNNeuron
@@ -20,16 +20,7 @@ from .topology import BoundedTopology
 
 
 EdgeTuple = tuple[str, str, float]
-NODES = ("left", "right", "target", "relay", "noise")
-USEFUL_EDGE: EdgeTuple = ("right", "target", 1.0)
-EXPENSIVE_USEFUL_PATH: tuple[EdgeTuple, EdgeTuple] = (
-    ("right", "relay", 0.5),
-    ("relay", "target", 0.5),
-)
-EXPENSIVE_USELESS_PATH: tuple[EdgeTuple, EdgeTuple] = (
-    ("left", "noise", 4.0),
-    ("noise", "target", 4.0),
-)
+OBSERVATION_HORIZON = 4.0
 
 
 @dataclass(frozen=True, slots=True)
@@ -40,11 +31,13 @@ class FiniteResourceConfig:
     fan_in_limit: int = 2
     fan_out_limit: int = 2
     edge_capacity: int = 6
-    pruning_inactivity_threshold: int = 1
+    pruning_inactivity_threshold: int = 2
     pruning_utility_threshold: float = 0.1
     non_inferiority_cases: int = 2
     resource_reduction_threshold: float = 0.1
     random_seeds: tuple[int, ...] = (0, 1, 2, 3, 4)
+    node_ids: tuple[str, str, str, str, str] = ("left", "right", "target", "relay", "noise")
+    task_source_role: str = "right"
 
     def __post_init__(self) -> None:
         for value, name in (
@@ -61,15 +54,52 @@ class FiniteResourceConfig:
             raise ValueError("thresholds must be nonnegative")
         if not self.random_seeds:
             raise ValueError("random_seeds must not be empty")
+        if len(self.node_ids) != 5 or len(set(self.node_ids)) != 5 or any(not node for node in self.node_ids):
+            raise ValueError("node_ids must contain five distinct non-empty IDs")
+        if self.task_source_role not in {"left", "right"}:
+            raise ValueError("task_source_role must be left or right")
+
+
+def _roles(config: FiniteResourceConfig) -> dict[str, str]:
+    left, right, target, relay, noise = config.node_ids
+    return {"left": left, "right": right, "target": target, "relay": relay, "noise": noise}
+
+
+def _nodes(config: FiniteResourceConfig) -> tuple[str, ...]:
+    return config.node_ids
+
+
+def _useful_edge(config: FiniteResourceConfig) -> EdgeTuple:
+    roles = _roles(config)
+    return (roles[config.task_source_role], roles["target"], 1.0)
+
+
+def _expensive_useful_path(config: FiniteResourceConfig) -> tuple[EdgeTuple, EdgeTuple]:
+    roles = _roles(config)
+    return (
+        (roles[config.task_source_role], roles["relay"], 0.5),
+        (roles["relay"], roles["target"], 0.5),
+    )
+
+
+def _expensive_useless_path(config: FiniteResourceConfig) -> tuple[EdgeTuple, EdgeTuple]:
+    roles = _roles(config)
+    unused_role = "left" if config.task_source_role == "right" else "right"
+    return (
+        (roles[unused_role], roles["noise"], 4.0),
+        (roles["noise"], roles["target"], 4.0),
+    )
 
 
 class _TrafficObserver:
     def __init__(self) -> None:
         self.traffic: dict[EdgeTuple, int] = {}
+        self.timestamps: dict[EdgeTuple, list[float]] = {}
 
     def record_route(self, edge: Any, _event: Event, _routed: Event) -> None:
         key = (edge.source, edge.destination, float(edge.propagation_delay))
         self.traffic[key] = self.traffic.get(key, 0) + 1
+        self.timestamps.setdefault(key, []).append(float(_event.timestamp))
 
 
 def _fingerprint(edges: tuple[EdgeTuple, ...]) -> str:
@@ -78,7 +108,7 @@ def _fingerprint(edges: tuple[EdgeTuple, ...]) -> str:
 
 def _topology(config: FiniteResourceConfig, edges: tuple[EdgeTuple, ...], *, edge_capacity: int | None = None) -> BoundedTopology:
     return BoundedTopology.from_edges(
-        NODES,
+        _nodes(config),
         edges,
         fan_in_limit=config.fan_in_limit,
         fan_out_limit=config.fan_out_limit,
@@ -89,17 +119,21 @@ def _topology(config: FiniteResourceConfig, edges: tuple[EdgeTuple, ...], *, edg
 
 def _evaluate(config: FiniteResourceConfig, edges: tuple[EdgeTuple, ...], capacity_policy: str) -> dict[str, Any]:
     topology = _topology(config, edges)
+    roles = _roles(config)
+    task_source = roles[config.task_source_role]
+    target = roles["target"]
     examples = (("short-held-out", 1.0, "on_time"), ("long-held-out", 3.0, "late"))
     case_results: list[dict[str, Any]] = []
     traffic_total: dict[EdgeTuple, int] = {}
+    timestamp_total: dict[EdgeTuple, list[float]] = {}
     total_energy = 0.0
     failed_execution = False
 
-    for example_id, interval, target in examples:
-        neurons = {node: TPCNNeuron(node, decay_rate=0.1, input_gain=1.0) for node in NODES}
+    for example_id, interval, expected_target in examples:
+        neurons = {node: TPCNNeuron(node, decay_rate=0.1, input_gain=1.0) for node in _nodes(config)}
         queue: EventQueue[Event] = EventQueue(config.queue_capacity)
-        queue.push(Event(0.0, "right", "right", "cue", 1.0))
-        queue.push(Event(interval, "right", "right", "probe", -1.0))
+        queue.push(Event(0.0, task_source, task_source, "cue", 1.0))
+        queue.push(Event(interval, task_source, task_source, "probe", -1.0))
         observer = _TrafficObserver()
         meter = LocalEnergyModel(f"luna-13d-{example_id}", max_counter=config.event_budget * 4)
         arrivals: list[float] = []
@@ -108,7 +142,7 @@ def _evaluate(config: FiniteResourceConfig, edges: tuple[EdgeTuple, ...], capaci
             meter.observe_event(event)
             neuron = neurons[event.destination]
             neuron.receive_event(event)
-            if event.destination == "target":
+            if event.destination == target:
                 arrivals.append(float(event.timestamp))
             else:
                 forwarded = Event(
@@ -128,16 +162,40 @@ def _evaluate(config: FiniteResourceConfig, edges: tuple[EdgeTuple, ...], capaci
         case_results.append({
             "example_id": example_id,
             "interval": interval,
-            "fixed_external_target": target,
+            "fixed_external_target": expected_target,
             "prediction_or_decision": decision,
-            "correct": decision == target,
+            "correct": decision == expected_target,
             "target_arrivals": tuple(arrivals),
             "target_latency": second_arrival,
             "events": execution.processed_event_count,
             "completion": asdict(execution),
+            "edge_timestamps": {str(edge): tuple(times) for edge, times in observer.timestamps.items()},
         })
         for edge, count in observer.traffic.items():
             traffic_total[edge] = traffic_total.get(edge, 0) + count
+        for edge, times in observer.timestamps.items():
+            timestamp_total.setdefault(edge, []).extend(times)
+
+    edge_evidence = []
+    observation_horizon = OBSERVATION_HORIZON
+    for edge in topology.edges:
+        key = (edge.source, edge.destination, float(edge.propagation_delay))
+        use_count = traffic_total.get(key, 0)
+        edge_timestamps = timestamp_total.get(key, [])
+        last_use = None
+        if edge_timestamps:
+            last_use = max(edge_timestamps)
+        age = observation_horizon if last_use is None else observation_horizon - last_use
+        edge_evidence.append({
+            "edge": key,
+            "creation_time": 0.0,
+            "use_count": use_count,
+            "last_use_timestamp": last_use,
+            "inactivity_age": age,
+            "observed_utility": float(use_count),
+            "observed_cost": float(use_count) * float(edge.propagation_delay),
+            "pruning_score": float(use_count),
+        })
 
     accuracy = sum(int(case["correct"]) for case in case_results)
     completion = "budget_exhausted" if failed_execution else "completed"
@@ -148,7 +206,7 @@ def _evaluate(config: FiniteResourceConfig, edges: tuple[EdgeTuple, ...], capaci
         "remaining_slots": config.edge_capacity - len(edges),
         "graph_edges": edges,
         "graph_fingerprint": _fingerprint(edges),
-        "useful_edge_present": USEFUL_EDGE in edges,
+        "useful_edge_present": _useful_edge(config) in edges,
         "task_result": f"{accuracy}/2",
         "task_cases_correct": accuracy,
         "total_events": sum(case["events"] for case in case_results),
@@ -157,6 +215,7 @@ def _evaluate(config: FiniteResourceConfig, edges: tuple[EdgeTuple, ...], capaci
         "latency": tuple(case["target_latency"] for case in case_results),
         "queue_peak": max(case["completion"]["peak_queue_occupancy"] for case in case_results),
         "edge_traffic": {str(edge): count for edge, count in sorted(traffic_total.items())},
+        "edge_evidence": tuple(edge_evidence),
         "case_results": tuple(case_results),
         "completion_status": completion,
         "failure_categories": {
@@ -183,7 +242,7 @@ def _mutation_payload(result: MutationResult) -> dict[str, Any]:
 
 def _controller(config: FiniteResourceConfig, edges: tuple[EdgeTuple, ...], *, edge_capacity: int | None = None) -> StructuralPlasticityController:
     topology = _topology(config, edges, edge_capacity=edge_capacity)
-    neighbors = {source: set(NODES) - {source} for source in NODES}
+    neighbors = {source: set(_nodes(config)) - {source} for source in _nodes(config)}
     return StructuralPlasticityController(
         topology,
         candidate_capacity=8,
@@ -198,14 +257,16 @@ def _candidate(source: str, destination: str, score: float, delay: float, eviden
 
 
 def _pressure_result(config: FiniteResourceConfig, capacity: int) -> dict[str, Any]:
-    base = (USEFUL_EDGE,)
+    roles = _roles(config)
+    unused_role = "left" if config.task_source_role == "right" else "right"
+    base = (_useful_edge(config),)
     controller = _controller(config, base, edge_capacity=capacity)
     mutations = []
     for evidence in (
-        _candidate("left", "noise", 0.1, 4.0, "distractor-left-noise"),
-        _candidate("noise", "target", 0.1, 4.0, "distractor-noise-target"),
-        _candidate("right", "relay", 1.0, 0.5, "useful-relay-entry"),
-        _candidate("relay", "target", 1.0, 0.5, "useful-relay-exit"),
+        _candidate(roles[unused_role], roles["noise"], 0.1, 4.0, "distractor-unused-noise"),
+        _candidate(roles["noise"], roles["target"], 0.1, 4.0, "distractor-noise-target"),
+        _candidate(roles[config.task_source_role], roles["relay"], 1.0, 0.5, "useful-relay-entry"),
+        _candidate(roles["relay"], roles["target"], 1.0, 0.5, "useful-relay-exit"),
     ):
         result = controller.grow(evidence)
         mutations.append(_mutation_payload(result))
@@ -219,21 +280,36 @@ def _pressure_result(config: FiniteResourceConfig, capacity: int) -> dict[str, A
     return evaluation
 
 
-def run_experiment(config: FiniteResourceConfig = FiniteResourceConfig()) -> dict[str, Any]:
+def _pruning_eligibility(evidence: dict[str, Any], config: FiniteResourceConfig) -> tuple[bool, str]:
+    inactive = float(evidence["inactivity_age"]) >= float(config.pruning_inactivity_threshold)
+    low_utility = float(evidence["observed_utility"]) < float(config.pruning_utility_threshold)
+    if inactive and low_utility:
+        return True, "inactivity_and_utility"
+    if inactive:
+        return True, "inactivity"
+    if low_utility:
+        return True, "utility"
+    return False, "retained"
+
+
+def run_experiment(config: FiniteResourceConfig = FiniteResourceConfig(), *, _include_identity_controls: bool = True) -> dict[str, Any]:
+    roles = _roles(config)
+    unused_role = "left" if config.task_source_role == "right" else "right"
     learning_config = UtilityConfig(event_budget=max(config.event_budget, 12), queue_capacity=config.queue_capacity)
     learned = _learn(learning_config)
     learned_edge = tuple(learned["admission"]["final_edges"][0])
-    if learned_edge != USEFUL_EDGE:
+    if learned_edge != ("right", "target", 1.0):
         raise RuntimeError(f"unexpected Luna-13B learned edge: {learned_edge!r}")
+    useful_edge = _useful_edge(config)
 
-    baseline_edges = (USEFUL_EDGE,)
+    baseline_edges = (useful_edge,)
     baseline = _evaluate(config, baseline_edges, "comfortable")
-    expensive_useful = _evaluate(config, EXPENSIVE_USEFUL_PATH, "comfortable-expensive-useful")
+    expensive_useful = _evaluate(config, _expensive_useful_path(config), "comfortable-expensive-useful")
     distractor_controller = _controller(config, baseline_edges)
     distractor_mutations = []
     for evidence in (
-        _candidate("left", "noise", 0.1, 4.0, "unused-distractor"),
-        _candidate("noise", "target", 0.1, 4.0, "expensive-useless"),
+        _candidate(roles[unused_role], roles["noise"], 0.1, 4.0, "unused-distractor"),
+        _candidate(roles["noise"], roles["target"], 0.1, 4.0, "expensive-useless"),
     ):
         distractor_mutations.append(_mutation_payload(distractor_controller.grow(evidence)))
     distractor_edges = tuple((edge.source, edge.destination, float(edge.propagation_delay)) for edge in distractor_controller.topology.edges)
@@ -244,23 +320,37 @@ def run_experiment(config: FiniteResourceConfig = FiniteResourceConfig()) -> dic
 
     pruning_controller = _controller(config, distractor_edges)
     before_pruning = tuple((edge.source, edge.destination, float(edge.propagation_delay)) for edge in pruning_controller.topology.edges)
-    scores = {
-        (USEFUL_EDGE[0], USEFUL_EDGE[1]): 1.0,
-        ("left", "noise"): 0.0,
-        ("noise", "target"): 0.0,
-    }
-    pruned = tuple(_mutation_payload(result) for result in pruning_controller.prune_by_score(scores, maximum=2))
+    pruning_observation = _evaluate(config, distractor_edges, "pruning-observation")
+    observed_by_edge = {tuple(item["edge"]): item for item in pruning_observation["edge_evidence"]}
+    eligible: dict[EdgeTuple, str] = {}
+    scores: dict[tuple[str, str], float] = {}
+    for edge, evidence in observed_by_edge.items():
+        is_eligible, reason = _pruning_eligibility(evidence, config)
+        evidence["eligible"] = is_eligible
+        evidence["eligibility_reason"] = reason
+        if is_eligible:
+            eligible[edge] = reason
+            scores[(edge[0], edge[1])] = evidence["pruning_score"]
+    pruned_results = pruning_controller.prune_by_score(scores, maximum=2)
+    pruned = []
+    for result in pruned_results:
+        payload = _mutation_payload(result)
+        edge_key = (payload["edge"]["source"], payload["edge"]["destination"], payload["edge"]["propagation_delay"])
+        payload["reason"] = eligible.get(edge_key, "eligible")
+        pruned.append(payload)
+    pruned = tuple(pruned)
     after_pruning = tuple((edge.source, edge.destination, float(edge.propagation_delay)) for edge in pruning_controller.topology.edges)
     pruning = _evaluate(config, after_pruning, "declared-pruning")
     pruning["mutations"] = pruned
     pruning["graph_before"] = before_pruning
     pruning["capacity_freed"] = len(before_pruning) - len(after_pruning)
+    pruning["pruning_evidence"] = tuple(observed_by_edge.values())
     pruning["failure_categories"]["pruning_related_failure"] = pruning["task_cases_correct"] < baseline["task_cases_correct"]
 
     later_controller = _controller(config, after_pruning)
     later_mutations = [
-        later_controller.grow(_candidate("right", "relay", 1.0, 0.5, "later-useful-relay-entry")),
-        later_controller.grow(_candidate("relay", "target", 1.0, 0.5, "later-useful-relay-exit")),
+        later_controller.grow(_candidate(roles[config.task_source_role], roles["relay"], 1.0, 0.5, "later-useful-relay-entry")),
+        later_controller.grow(_candidate(roles["relay"], roles["target"], 1.0, 0.5, "later-useful-relay-exit")),
     ]
     later_edges = tuple((edge.source, edge.destination, float(edge.propagation_delay)) for edge in later_controller.topology.edges)
     post_pruning = _evaluate(config, later_edges, "post-pruning-growth")
@@ -270,8 +360,8 @@ def run_experiment(config: FiniteResourceConfig = FiniteResourceConfig()) -> dic
     fixed_edges = _evaluate(config, baseline_edges, "fixed-topology")
     random_controls = []
     for seed in config.random_seeds:
-        source = random.Random(seed).choice(("left", "right"))
-        edge = (source, "target", 1.0)
+        source_role = random.Random(seed).choice(("left", "right"))
+        edge = (roles[source_role], roles["target"], 1.0)
         result = _evaluate(config, (edge,), f"random-seed-{seed}")
         result["seed"] = seed
         result["policy"] = "equal-budget-random-growth"
@@ -280,9 +370,9 @@ def run_experiment(config: FiniteResourceConfig = FiniteResourceConfig()) -> dic
 
     edge_records = []
     for role, edge, utility, cost, age in (
-        ("externally useful", USEFUL_EDGE, "2/2 present; 1/2 targeted removal in Luna-13C", 1.0, 0),
-        ("expensive useful", EXPENSIVE_USEFUL_PATH[0], "baseline route contributes target arrivals", 2.0, 0),
-        ("expensive useless", EXPENSIVE_USELESS_PATH[0], "no right-source traffic or external contribution", 4.0, 1),
+        ("externally useful", useful_edge, "2/2 present; 1/2 targeted removal in Luna-13C", 1.0, 0),
+        ("expensive useful", _expensive_useful_path(config)[0], "isolated path task result", 2.0, 0),
+        ("expensive useless", _expensive_useless_path(config)[0], "no route traffic", 4.0, 1),
     ):
         edge_records.append({
             "edge_role": role,
@@ -294,6 +384,32 @@ def run_experiment(config: FiniteResourceConfig = FiniteResourceConfig()) -> dic
             "pruned": any(item.get("edge", {}).get("source") == edge[0] and item.get("edge", {}).get("destination") == edge[1] for item in pruned if item.get("edge")),
             "reason": "lowest declared utility score" if role == "expensive useless" else "retained or not eligible under declared score",
         })
+
+    threshold_validation = []
+    for age, expected in ((1.0, False), (2.0, True), (3.0, True)):
+        evidence = {"inactivity_age": age, "observed_utility": 1.0}
+        actual, reason = _pruning_eligibility(evidence, replace(config, pruning_inactivity_threshold=2, pruning_utility_threshold=0.0))
+        threshold_validation.append({"metric": "inactivity", "observed_evidence": evidence, "threshold": 2, "expected_eligible": expected, "actual_eligible": actual, "reason": reason})
+    for threshold, expected in ((0.0, False), (0.1, True)):
+        evidence = {"inactivity_age": 0.0, "observed_utility": 0.0}
+        actual, reason = _pruning_eligibility(evidence, replace(config, pruning_inactivity_threshold=10, pruning_utility_threshold=threshold))
+        threshold_validation.append({"metric": "utility", "observed_evidence": evidence, "threshold": threshold, "expected_eligible": expected, "actual_eligible": actual, "reason": reason})
+
+    identity_controls = {}
+    if _include_identity_controls:
+        for label, identity_config in (
+            ("relabeled", replace(config, node_ids=("u-left", "u-right", "u-target", "u-relay", "u-noise"))),
+            ("mirrored", replace(config, node_ids=("m-left", "m-right", "m-target", "m-relay", "m-noise"), task_source_role="left")),
+        ):
+            identity_artifact = run_experiment(identity_config, _include_identity_controls=False)
+            identity_controls[label] = {
+                "node_ids": identity_config.node_ids,
+                "task_source_role": identity_config.task_source_role,
+                "pruning_evidence": identity_artifact["stages"]["D_pruning"]["pruning_evidence"],
+                "pruned_edges": identity_artifact["stages"]["D_pruning"]["mutations"],
+                "capacity_freed": identity_artifact["stages"]["D_pruning"]["capacity_freed"],
+                "task_result": identity_artifact["stages"]["D_pruning"]["task_result"],
+            }
 
     return {
         "schema_version": "TPCN-LUNA-13D-1",
@@ -323,6 +439,16 @@ def run_experiment(config: FiniteResourceConfig = FiniteResourceConfig()) -> dic
             "matched_utility_cases": config.non_inferiority_cases,
             "resource_reduction": config.resource_reduction_threshold,
         },
+        "pruning_semantics": {
+            "evidence_fields": ["use_count", "last_use_timestamp", "inactivity_age", "observed_utility", "observed_cost", "pruning_score"],
+            "score": "observed_utility = route use count",
+            "eligibility": "prune when inactivity_age >= inactivity_threshold OR observed_utility < utility_threshold",
+            "equality": "inactivity equality prunes; utility equality is retained",
+            "selection": "among eligible edges, lowest observed pruning_score first, bounded maximum 2",
+            "labels_or_endpoint_identity_used": False,
+        },
+        "threshold_validation": threshold_validation,
+        "identity_controls": identity_controls,
         "stages": {
             "A_baseline": {"reference": baseline, "expensive_useful_path": expensive_useful},
             "B_distractor": distractor,
