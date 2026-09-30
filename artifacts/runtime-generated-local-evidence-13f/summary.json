@@ -1,13 +1,13 @@
 {
-  "baseline_revision": "f0821bd5eb0441ea892c463cbbcf173c80d09be6",
-  "executed_revision": "f0821bd5eb0441ea892c463cbbcf173c80d09be6",
+  "baseline_revision": "3379403a8b58649a85c2604ba3044e55e4fe99e9",
+  "executed_revision": "3379403a8b58649a85c2604ba3044e55e4fe99e9",
   "execution": {
     "budget_exhausted": false,
     "completed": true,
     "configured_event_budget": 32,
-    "peak_queue_occupancy": 8,
+    "peak_queue_occupancy": 16,
     "pending_event_count": 0,
-    "processed_event_count": 8,
+    "processed_event_count": 16,
     "termination_reason": "completed"
   },
   "fixture_id": "luna-13f-runtime-generated-local-evidence-v1",
@@ -61,7 +61,10 @@
           "target_state": -0.2591817793182821
         }
       ],
+      "chronology_valid": true,
       "completion_status": "completed",
+      "decision_timestamp": 19.0,
+      "first_held_out_timestamp": 20.0,
       "graph_edges": [
         [
           "relay",
@@ -80,10 +83,12 @@
         ]
       ],
       "graph_fingerprint": "9136c83c7ef4e818f986385172e86be2ba06a93e3bd82cf9212c29bead114831",
+      "last_held_out_timestamp": 23.0,
       "latency": [
         2.0,
         4.0
       ],
+      "phase": "held_out",
       "policy": "G-held-out",
       "prediction_error_records": [],
       "proxy_energy": 12.0,
@@ -249,7 +254,10 @@
           "target_state": -0.2591817793182821
         }
       ],
+      "chronology_valid": true,
       "completion_status": "completed",
+      "decision_timestamp": 19.0,
+      "first_held_out_timestamp": 20.0,
       "graph_edges": [
         [
           "relay",
@@ -268,10 +276,12 @@
         ]
       ],
       "graph_fingerprint": "a9c2545ac7caabb9801dc4d7095addfa5491942dc5db064fb3d0ee34d841ed71",
+      "last_held_out_timestamp": 23.0,
       "latency": [
         4.0,
         6.0
       ],
+      "phase": "held_out",
       "policy": "H-held-out",
       "prediction_error_records": [],
       "proxy_energy": 12.0,
@@ -593,8 +603,9 @@
   },
   "primary_scores": {
     "('source', 'noise')": 0.0,
-    "('source', 'relay')": 3.0
+    "('source', 'relay')": 4.0
   },
   "primary_selected_candidate": "G",
-  "schema_version": "TPCN-LUNA-13F-1"
+  "schema_version": "TPCN-LUNA-13F-1",
+  "terminal_status": "PASS WITH FOLLOW-UP - RUNTIME EVIDENCE DISTINGUISHES CANDIDATES, GENERALITY NOT ESTABLISHED"
 }

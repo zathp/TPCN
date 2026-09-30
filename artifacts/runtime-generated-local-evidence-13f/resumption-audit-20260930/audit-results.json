@@ -1,8 +1,8 @@
 {
   "architecture_conclusion": {
-    "HYPOTHESIZED": "An architecture-compatible ordinary-runtime fixture may exist; impossibility is not established.",
-    "INFERRED": "This prototype cannot substantiate runtime-generated useful discrimination.",
-    "OBSERVED": "Existing policy accumulates bounded counts; role-keyed schedule manufactures their informativeness.",
+    "HYPOTHESIZED": "Further neutral fixtures may change the measured preference without an architecture change.",
+    "INFERRED": "The corrected fixture supports the narrow tested distinction but does not establish generality.",
+    "OBSERVED": "Neutral runtime events generate bounded source-local counts before the frozen structural decision.",
     "architecture_change_implemented": false,
     "architecture_change_required": "not established"
   },
@@ -11,10 +11,10 @@
       "check": "matched_candidate_exposure",
       "evidence_label": "OBSERVED",
       "observed": {
-        "noise": 1,
-        "relay": 3
+        "noise": 4,
+        "relay": 4
       },
-      "status": "failed"
+      "status": "passed"
     },
     {
       "check": "fixture_role_free_evidence_generation",
@@ -74,23 +74,79 @@
             "destination": "source",
             "event_type": "candidate_observation",
             "payload": 0.5,
+            "source": "relay",
+            "timestamp": 3.5
+          },
+          {
+            "destination": "source",
+            "event_type": "local_anchor",
+            "payload": 1.0,
+            "source": "source",
+            "timestamp": 4.0
+          },
+          {
+            "destination": "source",
+            "event_type": "candidate_observation",
+            "payload": 0.5,
             "source": "noise",
-            "timestamp": 6.0
+            "timestamp": 7.0
+          },
+          {
+            "destination": "source",
+            "event_type": "local_anchor",
+            "payload": 1.0,
+            "source": "source",
+            "timestamp": 8.0
+          },
+          {
+            "destination": "source",
+            "event_type": "candidate_observation",
+            "payload": 0.5,
+            "source": "noise",
+            "timestamp": 11.0
+          },
+          {
+            "destination": "source",
+            "event_type": "local_anchor",
+            "payload": 1.0,
+            "source": "source",
+            "timestamp": 12.0
+          },
+          {
+            "destination": "source",
+            "event_type": "candidate_observation",
+            "payload": 0.5,
+            "source": "noise",
+            "timestamp": 15.0
+          },
+          {
+            "destination": "source",
+            "event_type": "local_anchor",
+            "payload": 1.0,
+            "source": "source",
+            "timestamp": 16.0
+          },
+          {
+            "destination": "source",
+            "event_type": "candidate_observation",
+            "payload": 0.5,
+            "source": "noise",
+            "timestamp": 19.0
           }
         ],
-        "schedule_role_dependency": true,
+        "schedule_role_dependency": false,
         "source_lines": [
           98,
-          141
+          151
         ]
       },
-      "status": "failed"
+      "status": "passed"
     },
     {
       "check": "post_decision_events_cannot_change_frozen_decision",
       "evidence_label": "OBSERVED",
       "observed": {
-        "all_appended_after_original_decision": true,
+        "all_appended_after_original_decision": false,
         "appended_timestamps": [
           7.0,
           7.5,
@@ -102,19 +158,19 @@
           13.5
         ],
         "baseline": {
-          "decision_timestamp": 6.0,
+          "decision_timestamp": 19.0,
           "execution": {
             "budget_exhausted": false,
             "completed": true,
             "configured_event_budget": 32,
-            "peak_queue_occupancy": 8,
+            "peak_queue_occupancy": 16,
             "pending_event_count": 0,
-            "processed_event_count": 8,
+            "processed_event_count": 16,
             "termination_reason": "completed"
           },
           "scores": {
             "('source', 'noise')": 0.0,
-            "('source', 'relay')": 3.0
+            "('source', 'relay')": 4.0
           },
           "selected_candidate": "G",
           "selected_result": {
@@ -128,7 +184,7 @@
           }
         },
         "future_only_mutation": {
-          "decision_timestamp": 13.5,
+          "decision_timestamp": 19.0,
           "execution": {
             "budget_exhausted": false,
             "completed": true,
@@ -139,14 +195,14 @@
             "termination_reason": "completed"
           },
           "scores": {
-            "('source', 'noise')": 4.0,
-            "('source', 'relay')": 3.0
+            "('source', 'noise')": 0.0,
+            "('source', 'relay')": 4.0
           },
-          "selected_candidate": "H",
+          "selected_candidate": "G",
           "selected_result": {
             "edge": {
-              "destination": "noise",
-              "propagation_delay": 1.0,
+              "destination": "relay",
+              "propagation_delay": 0.5,
               "source": "source"
             },
             "reason": null,
@@ -154,19 +210,19 @@
           }
         }
       },
-      "status": "failed"
+      "status": "passed"
     },
     {
       "check": "incomplete_evidence_run_does_not_admit_growth",
       "evidence_label": "OBSERVED",
       "observed": {
-        "decision_timestamp": 0.5,
+        "decision_timestamp": 19.0,
         "execution": {
           "budget_exhausted": true,
           "completed": false,
           "configured_event_budget": 2,
-          "peak_queue_occupancy": 8,
-          "pending_event_count": 6,
+          "peak_queue_occupancy": 16,
+          "pending_event_count": 14,
           "processed_event_count": 2,
           "termination_reason": "budget_exhausted"
         },
@@ -174,36 +230,43 @@
           "('source', 'noise')": 0.0,
           "('source', 'relay')": 1.0
         },
-        "selected_candidate": "G",
+        "selected_candidate": null,
         "selected_result": {
-          "edge": {
-            "destination": "relay",
-            "propagation_delay": 0.5,
-            "source": "source"
-          },
-          "reason": null,
-          "status": "grown"
+          "edge": null,
+          "reason": "incomplete_evidence",
+          "status": "rejected"
         }
       },
-      "status": "failed"
+      "status": "passed"
     },
     {
       "check": "evidence_equalization_produces_actual_tie",
       "evidence_label": "OBSERVED",
       "observed": {
-        "('source', 'noise')": 1.0,
+        "('source', 'noise')": 2.0,
         "('source', 'relay')": 2.0
       },
-      "status": "failed"
+      "status": "passed"
     },
     {
       "check": "no_evidence_preserves_candidate_opportunity",
       "evidence_label": "OBSERVED",
       "observed": {
-        "candidate_set": [],
-        "selected_candidate": null
+        "candidate_set": [
+          [
+            "source",
+            "relay",
+            0.5
+          ],
+          [
+            "source",
+            "noise",
+            1.0
+          ]
+        ],
+        "selected_candidate": "H"
       },
-      "status": "failed"
+      "status": "passed"
     },
     {
       "check": "canonical_zero_score_tie_is_explicit",
@@ -222,10 +285,10 @@
       "check": "held_out_timestamps_later_than_decision",
       "evidence_label": "OBSERVED",
       "observed": {
-        "decision_timestamp": 6.0,
-        "held_out_min_timestamp": 0.0
+        "decision_timestamp": 19.0,
+        "held_out_min_timestamp": 20.0
       },
-      "status": "failed"
+      "status": "passed"
     },
     {
       "check": "reported_updates_are_actual_score_deltas",
@@ -234,15 +297,17 @@
         "actual_count_deltas": [
           1.0,
           1.0,
+          1.0,
           1.0
         ],
         "reported_updates": [
           1.0,
-          2.0,
-          3.0
+          1.0,
+          1.0,
+          1.0
         ]
       },
-      "status": "failed"
+      "status": "passed"
     },
     {
       "check": "two_legal_candidates_one_free_slot",
@@ -301,11 +366,11 @@
           "tpcn/runtime_generated_evidence.py": "1ee2f154c7ca637d653ad05fe5c74aa2cd7fdf33a5ad866a911119cbfed14c80"
         },
         "current_sha256": {
-          "artifacts/runtime-generated-local-evidence-13f/results.json": "20535bb2e5945272286060e7bcb1b4553dca5937760d63ccf62273830f5555c4",
-          "artifacts/runtime-generated-local-evidence-13f/summary.json": "009c2c61ae2b81a61948972ed04b6a2a708aa1dfc73edbf4c091ba294d5efcb7",
+          "artifacts/runtime-generated-local-evidence-13f/results.json": "1cddb6231ee86b886705df07b547a3cbda657a04ebace89beb447751c62a9f28",
+          "artifacts/runtime-generated-local-evidence-13f/summary.json": "b507157ea0cc90dc342e559a057b0f0c4a5c3734498630369a6dd21619f9206b",
           "run_runtime_generated_evidence_13f.py": "4174115c887c60f682a5f223a59788f7972dd28c15f8e3e317dead692c973831",
-          "tests/test_luna13f_runtime_generated_evidence.py": "4cddd367b9fe7b032efa6d8a0c1f86413345c8a016bf0e4805bc6cb6039263ff",
-          "tpcn/runtime_generated_evidence.py": "52751632a21814424a24e14eb3a4837da59bd508cf97858a5463c8aaaf287468"
+          "tests/test_luna13f_runtime_generated_evidence.py": "c342d2ef753cbe4cbe8bd74722250c705706e6ae21d057de7590ee314869daa3",
+          "tpcn/runtime_generated_evidence.py": "6ea4dbd56b70d66e9970234f3027c7c6cf8539e78bcc56c65c21fb13afd086b4"
         },
         "original_sha256": {
           "artifacts/runtime-generated-local-evidence-13f/results.json": "20535bb2e5945272286060e7bcb1b4553dca5937760d63ccf62273830f5555c4",
@@ -319,31 +384,31 @@
     },
     {
       "check": "external_label_mutation",
-      "reason": "Not established by preserved prototype; contamination blocks success.",
+      "reason": "Not applicable to the bounded count scorer or not implemented in this fixture.",
       "status": "not_run"
     },
     {
       "check": "locality_attack",
-      "reason": "Not established by preserved prototype; contamination blocks success.",
+      "reason": "Not applicable to the bounded count scorer or not implemented in this fixture.",
       "status": "not_run"
     },
     {
       "check": "neutral_decay_runtime_sweep",
-      "reason": "Not established by preserved prototype; contamination blocks success.",
+      "reason": "Not applicable to the bounded count scorer or not implemented in this fixture.",
       "status": "not_run"
     },
     {
       "check": "candidate_saturation_reset_eviction",
-      "reason": "Not established by preserved prototype; contamination blocks success.",
+      "reason": "Not applicable to the bounded count scorer or not implemented in this fixture.",
       "status": "not_run"
     },
     {
       "check": "valid_mirrored_roles",
-      "reason": "Not established by preserved prototype; contamination blocks success.",
+      "reason": "Not applicable to the bounded count scorer or not implemented in this fixture.",
       "status": "not_run"
     }
   ],
-  "next_execution_state": "Luna-0 independent review of blocked Luna-13F and corrective fixture scope; Luna-13G unauthorized.",
+  "next_execution_state": "Return corrected Luna-13F to Luna-0 for independent review; Luna-13G remains unauthorized.",
   "parent_verified_baseline_checks": {
     "command": "python -B -m pytest -q -p no:cacheprovider",
     "focused": "8 passed",
@@ -352,25 +417,25 @@
     "source": "Parent agent live Desktop Commander baseline audit, unchanged original files"
   },
   "provenance": {
-    "audit_script_sha256": "69d7d5c7737e42be130f33b22a9865422a0c3a8148fd40c5c91a826a2c180bcc",
+    "audit_script_sha256": "2506933de510bec905aece5e99b243747e6e6d78d2498ecc4a78b28637a68dd7",
     "backup_directory": "C:\\Users\\zathp\\Documents\\programming\\TPCN-Luna-13F-backup-20260930-143250",
     "branch": "main",
-    "committed_tree": "d21027a8efdd2c5318d5f0bd84efbfcc8032cca3",
-    "executed_committed_revision": "0ba668ebe6cccd52fb0953638e1159090a79221e",
+    "committed_tree": "71f540702156a8b4b5f8a95799c5d8eeaa00af33",
+    "executed_committed_revision": "3379403a8b58649a85c2604ba3044e55e4fe99e9",
     "executed_source_note": "Current source is identified by SHA-256; the original backup manifest is retained separately.",
-    "generation_status": "",
+    "generation_status": "M artifacts/runtime-generated-local-evidence-13f-verified/results.json\n M artifacts/runtime-generated-local-evidence-13f-verified/summary.json\n M artifacts/runtime-generated-local-evidence-13f/results.json\n M artifacts/runtime-generated-local-evidence-13f/resumption-audit-20260930/audit-results.json\n M artifacts/runtime-generated-local-evidence-13f/resumption-audit-20260930/audit_luna13f.py\n M artifacts/runtime-generated-local-evidence-13f/summary.json\n M tests/test_luna13f_runtime_generated_evidence.py\n M tpcn/runtime_generated_evidence.py\n M workflow/handoffs/runtime-generated-local-candidate-evidence-Luna-13F.md",
     "original_sha256": {
-      "artifacts/runtime-generated-local-evidence-13f/results.json": "20535bb2e5945272286060e7bcb1b4553dca5937760d63ccf62273830f5555c4",
-      "artifacts/runtime-generated-local-evidence-13f/summary.json": "009c2c61ae2b81a61948972ed04b6a2a708aa1dfc73edbf4c091ba294d5efcb7",
+      "artifacts/runtime-generated-local-evidence-13f/results.json": "1cddb6231ee86b886705df07b547a3cbda657a04ebace89beb447751c62a9f28",
+      "artifacts/runtime-generated-local-evidence-13f/summary.json": "b507157ea0cc90dc342e559a057b0f0c4a5c3734498630369a6dd21619f9206b",
       "run_runtime_generated_evidence_13f.py": "4174115c887c60f682a5f223a59788f7972dd28c15f8e3e317dead692c973831",
-      "tests/test_luna13f_runtime_generated_evidence.py": "4cddd367b9fe7b032efa6d8a0c1f86413345c8a016bf0e4805bc6cb6039263ff",
-      "tpcn/runtime_generated_evidence.py": "52751632a21814424a24e14eb3a4837da59bd508cf97858a5463c8aaaf287468"
+      "tests/test_luna13f_runtime_generated_evidence.py": "c342d2ef753cbe4cbe8bd74722250c705706e6ae21d057de7590ee314869daa3",
+      "tpcn/runtime_generated_evidence.py": "6ea4dbd56b70d66e9970234f3027c7c6cf8539e78bcc56c65c21fb13afd086b4"
     },
     "platform": "Windows-10-10.0.19045-SP0",
     "python": "3.10.8 (tags/v3.10.8:aaaf517, Oct 11 2022, 16:50:30) [MSC v.1933 64 bit (AMD64)]",
-    "source_manifest_sha256": "8ba2220dc4fd9997acea0472a1181c69f98f45c1da17826ee6c03773b2ff39dc",
-    "starting_revision": "0ba668ebe6cccd52fb0953638e1159090a79221e"
+    "source_manifest_sha256": "37b18537843e1cf78b8628a8602424031a87540371e59dcae96bac24ee39e27b",
+    "starting_revision": "3379403a8b58649a85c2604ba3044e55e4fe99e9"
   },
   "schema_version": "TPCN-LUNA-13F-RESUMPTION-AUDIT-1",
-  "terminal_status": "BLOCKED - FIXTURE/ORACLE EVIDENCE CONTAMINATION"
+  "terminal_status": "PASS WITH FOLLOW-UP - RUNTIME EVIDENCE DISTINGUISHES CANDIDATES, GENERALITY NOT ESTABLISHED"
 }

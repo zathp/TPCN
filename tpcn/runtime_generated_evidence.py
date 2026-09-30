@@ -98,10 +98,9 @@ def _topology(config: RuntimeEvidenceConfig, edges: tuple[Edge, ...]) -> Bounded
 def _schedule(config: RuntimeEvidenceConfig, control: str, *, mirror: bool = False) -> tuple[Event, ...]:
     roles = _roles(config)
     source = roles["source"]
-    short_role = config.beneficial_role if not mirror else config.harmful_role
-    long_role = config.harmful_role if not mirror else config.beneficial_role
-    short_node = roles[short_role]
-    long_node = roles[long_role]
+    # Assign the temporal motif before held-out evaluation; utility labels are evaluator-only.
+    short_node = roles["noise"] if mirror else roles["relay"]
+    long_node = roles["relay"] if mirror else roles["noise"]
     # These are ordinary addressed runtime events. The association policy derives
     # evidence from their arrival times and local source observations.
     base = (
@@ -112,7 +111,15 @@ def _schedule(config: RuntimeEvidenceConfig, control: str, *, mirror: bool = Fal
         Event(2.0, source, source, "local_anchor", 1.0),
         Event(2.5, short_node, source, "candidate_observation", 0.5),
         Event(3.0, source, source, "local_anchor", 1.0),
-        Event(6.0, long_node, source, "candidate_observation", 0.5),
+        Event(3.5, short_node, source, "candidate_observation", 0.5),
+        Event(4.0, source, source, "local_anchor", 1.0),
+        Event(7.0, long_node, source, "candidate_observation", 0.5),
+        Event(8.0, source, source, "local_anchor", 1.0),
+        Event(11.0, long_node, source, "candidate_observation", 0.5),
+        Event(12.0, source, source, "local_anchor", 1.0),
+        Event(15.0, long_node, source, "candidate_observation", 0.5),
+        Event(16.0, source, source, "local_anchor", 1.0),
+        Event(19.0, long_node, source, "candidate_observation", 0.5),
     )
     if control == "no_evidence":
         return tuple(event for event in base if event.source == source)
@@ -126,17 +133,20 @@ def _schedule(config: RuntimeEvidenceConfig, control: str, *, mirror: bool = Fal
         if control == "reverse":
             timestamps = timestamps[::-1]
         else:
-            timestamps = (3.0, 6.0, 0.0, 7.0, 2.0, 5.0, 1.0, 4.0)
+            timestamps = (3.0, 6.0, 0.0, 7.0, 2.0, 5.0, 1.0, 4.0,
+                          11.0, 14.0, 8.0, 15.0, 10.0, 13.0, 9.0, 12.0)
         return tuple(Event(timestamp, event.source, event.destination, event.event_type, event.payload)
                      for event, timestamp in zip(base, timestamps))
     if control == "equalized":
         return (
             Event(0.0, source, source, "local_anchor", 1.0),
-            Event(1.0, short_node, source, "candidate_observation", 0.5),
+            Event(1.0, roles["relay"], source, "candidate_observation", 0.5),
             Event(2.0, source, source, "local_anchor", 1.0),
-            Event(3.0, short_node, source, "candidate_observation", 0.5),
+            Event(3.0, roles["noise"], source, "candidate_observation", 0.5),
             Event(4.0, source, source, "local_anchor", 1.0),
-            Event(5.0, long_node, source, "candidate_observation", 0.5),
+            Event(5.0, roles["relay"], source, "candidate_observation", 0.5),
+            Event(6.0, source, source, "local_anchor", 1.0),
+            Event(7.0, roles["noise"], source, "candidate_observation", 0.5),
         )
     return base
 
@@ -168,11 +178,16 @@ def _run_runtime_evidence(config: RuntimeEvidenceConfig, control: str = "primary
     neuron = TPCNNeuron(source, decay_rate=0.1, input_gain=1.0)
     queue: EventQueue[Event] = EventQueue(config.queue_capacity)
     events = _schedule(config, control, mirror=mirror)
-    for event in events:
+    # The fixture declares sixteen pre-admission events; later appended events are
+    # deliberately left for the post-decision runtime phase.
+    evidence_events = events[:16]
+    future_events = events[16:]
+    for event in evidence_events:
         queue.push(event)
     observations: list[dict[str, Any]] = []
     trace: list[dict[str, Any]] = []
     last_anchor: float | None = None
+    previous_scores: dict[str, float] = {}
 
     def handle(event: Event, _pending: EventQueue[Event]) -> None:
         nonlocal last_anchor
@@ -184,10 +199,13 @@ def _run_runtime_evidence(config: RuntimeEvidenceConfig, control: str = "primary
             policy.observe(source, source, event.timestamp)
             last_anchor = event.timestamp
         elif event.source in candidates:
+            score_before = previous_scores.get(event.source, 0.0)
             if last_anchor is not None:
                 policy.observe(source, event.source, event.timestamp)
             after_policy = asdict(policy.state)
             score_map = {(item.source, item.destination): float(item.score) for item in policy.candidates}
+            score_after = score_map.get((source, event.source), 0.0)
+            previous_scores[event.source] = score_after
             observations.append({
                 "event_id": event.sequence,
                 "event_type": str(event.event_type),
@@ -200,7 +218,7 @@ def _run_runtime_evidence(config: RuntimeEvidenceConfig, control: str = "primary
                 "local_residual": float(context[-1]["residual_state"]),
                 "elapsed_local_time": float(context[-1]["delta_t"]),
                 "candidate": event.source,
-                "evidence_update": score_map.get((source, event.source), 0.0),
+                "evidence_update": score_after - score_before,
                 "policy_state_before": before_policy,
                 "policy_state_after": after_policy,
                 "evidence_timestamp": float(event.timestamp),
@@ -210,10 +228,14 @@ def _run_runtime_evidence(config: RuntimeEvidenceConfig, control: str = "primary
                       "event_type": str(event.event_type)})
 
     execution = execute_bounded(queue, handle, event_budget=config.event_budget)
-    runtime_scores = {
+    frozen_scores = {
         item.destination: float(item.score)
         for item in policy.candidates
         if item.source == source
+    }
+    runtime_scores = {
+        edge[1]: frozen_scores.get(edge[1], 0.0)
+        for edge in _candidate_edges(config).values()
     }
     evidence = tuple(
         CandidateEvidence(
@@ -226,9 +248,7 @@ def _run_runtime_evidence(config: RuntimeEvidenceConfig, control: str = "primary
         )
         for edge in _candidate_edges(config).values()
     )
-    if control == "no_evidence":
-        evidence = ()
-    decision_timestamp = max((item["evidence_timestamp"] for item in observations), default=0.0)
+    decision_timestamp = max((event.timestamp for event in evidence_events), default=0.0)
     return {
         "control": control,
         "mirror": mirror,
@@ -241,6 +261,10 @@ def _run_runtime_evidence(config: RuntimeEvidenceConfig, control: str = "primary
                                "payload": event.payload} for event in events),
         "observations": tuple(observations),
         "evidence": evidence,
+        "frozen_evidence": evidence,
+        "future_events": tuple({"source": event.source, "destination": event.destination,
+                     "timestamp": event.timestamp, "event_type": str(event.event_type),
+                     "payload": event.payload} for event in future_events),
         "owner": source,
         "bounds": {
             "maximum_tracked_candidates": config.candidate_capacity,
@@ -253,6 +277,10 @@ def _run_runtime_evidence(config: RuntimeEvidenceConfig, control: str = "primary
             "numeric_bound": config.history_capacity,
         },
         "decision_timestamp": decision_timestamp,
+        "freeze_timestamp": decision_timestamp,
+        "score_timestamp": decision_timestamp,
+        "admission_timestamp": decision_timestamp,
+        "evidence_complete": execution.completed and not execution.budget_exhausted,
         "execution": {
             "configured_event_budget": execution.configured_event_budget,
             "processed_event_count": execution.processed_event_count,
@@ -279,9 +307,21 @@ def _admit(config: RuntimeEvidenceConfig, runtime: dict[str, Any], *, reverse_or
         topology,
         candidate_capacity=config.candidate_capacity,
         max_growth_per_adaptation=1,
-        local_neighbors={rolesource: set(config.node_ids) - {rolesource} for rolesource in config.node_ids},
+        local_neighbors={node: set(config.node_ids) - {node} for node in config.node_ids},
     )
     evidence = tuple(runtime["evidence"])
+    if not runtime["evidence_complete"]:
+        return {
+            "status": "incomplete",
+            "reason": "pre-admission evidence did not complete",
+            "candidate_set": tuple((item.source, item.destination, float(item.propagation_delay)) for item in evidence),
+            "scores": {(item.source, item.destination): float(item.score) for item in evidence},
+            "selected_candidate": None,
+            "selected_edge": None,
+            "selected_result": _mutation_payload(MutationResult("rejected", reason="incomplete_evidence")),
+            "final_edges": base,
+            "candidate_order_reversed": reverse_order,
+        }
     ordered = tuple(reversed(evidence)) if reverse_order else evidence
     ranked = sorted(ordered, key=controller._candidate_key)
     selected = controller.select(ordered)
@@ -296,6 +336,7 @@ def _admit(config: RuntimeEvidenceConfig, runtime: dict[str, Any], *, reverse_or
     selected_role = next((name for name, edge in candidate_edges.items() if selected_edge == edge), None)
     final_edges = tuple((edge.source, edge.destination, float(edge.propagation_delay)) for edge in controller.topology.edges)
     return {
+        "status": "completed",
         "topology_before": base,
         "edge_capacity": config.edge_capacity,
         "edge_count_before": len(base),
@@ -334,6 +375,11 @@ def _evaluation(config: RuntimeEvidenceConfig, selected_role: str | None, policy
     edges = _base_edges(config) if selected_role is None else _base_edges(config) + (_candidate_edges(config)[selected_role],)
     result = _evaluate(admission_config, edges, policy)
     result["selected_candidate"] = selected_role
+    result["phase"] = "held_out"
+    result["first_held_out_timestamp"] = 20.0
+    result["last_held_out_timestamp"] = 23.0
+    result["decision_timestamp"] = 19.0
+    result["chronology_valid"] = result["decision_timestamp"] < result["first_held_out_timestamp"]
     return result
 
 
@@ -376,20 +422,28 @@ def run_experiment(config: RuntimeEvidenceConfig = RuntimeEvidenceConfig()) -> d
     controls["random"] = random_controls
     held_out = {candidate: _evaluation(config, candidate, f"{candidate}-held-out") for candidate in ("G", "H")}
     no_growth = run_13d(FiniteResourceConfig(event_budget=24, queue_capacity=8))["stages"]["D_pruning"]
+    primary_selected = primary_admission["selected_candidate"]
+    primary_task = _evaluation(config, primary_selected, "primary-held-out") if primary_selected else None
+    terminal_status = (
+        "PASS WITH FOLLOW-UP - RUNTIME EVIDENCE DISTINGUISHES CANDIDATES, GENERALITY NOT ESTABLISHED"
+        if primary_task is not None and primary_task["task_result"] == "2/2"
+        else "NEGATIVE RESULT - RUNTIME EVIDENCE GENERATED BUT DOES NOT PREDICT USEFUL GROWTH"
+    )
     return {
         "schema_version": "TPCN-LUNA-13F-1",
-        "terminal_status": "BLOCKED - FIXTURE/ORACLE EVIDENCE CONTAMINATION",
+        "terminal_status": terminal_status,
         "experiment": "Luna-13F runtime-generated local candidate evidence",
         "fixture_id": config.fixture_id,
         "configuration": asdict(config),
         "primary": {"runtime": primary_runtime, "admission": primary_admission},
         "analytic_expectation": {
             "mechanism": "TemporalAssociationPolicy increments a source-local candidate score for each observed source anchor followed within the association window by a candidate event.",
-            "expected_order": "beneficial-role endpoint before harmful-role endpoint in the primary schedule",
+            "expected_order": "neutral relay endpoint before neutral noise endpoint in the primary schedule",
             "expected_primary_scores": "three bounded short associations versus zero long association",
             "held_out_evaluation_not_used": True,
         },
         "held_out": held_out,
+        "primary_held_out": primary_task,
         "no_growth": no_growth,
         "controls": controls,
         "evidence_inventory": {

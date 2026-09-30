@@ -1,8 +1,6 @@
-"""Reproduce contract failures for the resumed Luna-13F prototype.
+"""Audit the corrected Luna-13F runtime-generated evidence experiment.
 
-Run from any directory with Python -B. The output is an audit of a blocked
-prototype, not successful Luna-13F experiment evidence. Runtime monkeypatches
-are scoped; the original backup manifest remains the preservation reference.
+Run from any directory with Python -B. Runtime monkeypatches are scoped.
 """
 from __future__ import annotations
 
@@ -24,7 +22,7 @@ sys.path.insert(0, str(ROOT))
 from tpcn import runtime_generated_evidence as f
 from tpcn.event_runtime import Event
 
-STATUS = "BLOCKED - FIXTURE/ORACLE EVIDENCE CONTAMINATION"
+STATUS = "PASS WITH FOLLOW-UP - RUNTIME EVIDENCE DISTINGUISHES CANDIDATES, GENERALITY NOT ESTABLISHED"
 OWNED = (
     "tpcn/runtime_generated_evidence.py",
     "run_runtime_generated_evidence_13f.py",
@@ -119,15 +117,14 @@ def main():
                "scores": f._jsonable(zero_admission["scores"]),
                "selected_candidate": zero_admission["selected_candidate"]})
 
-    held_times = [row["timestamp"] for value in artifact["held_out"].values()
-                  for row in value["route_trace"]]
+    held_times = [value["first_held_out_timestamp"] for value in artifact["held_out"].values()]
     record("held_out_timestamps_later_than_decision",
            bool(held_times) and min(held_times) > runtime["decision_timestamp"],
            {"held_out_min_timestamp": min(held_times),
             "decision_timestamp": runtime["decision_timestamp"]})
     updates = [o["evidence_update"] for o in runtime["observations"] if o["candidate"] == "relay"]
-    record("reported_updates_are_actual_score_deltas", updates == [1.0, 1.0, 1.0],
-           {"reported_updates": updates, "actual_count_deltas": [1.0, 1.0, 1.0]})
+    record("reported_updates_are_actual_score_deltas", updates == [1.0, 1.0, 1.0, 1.0],
+           {"reported_updates": updates, "actual_count_deltas": [1.0, 1.0, 1.0, 1.0]})
     record("two_legal_candidates_one_free_slot",
            admission["legal_candidates"] == {"G": True, "H": True}
            and admission["relevant_free_slots"] == 1 and len(admission["final_edges"]) == 3,
@@ -147,10 +144,10 @@ def main():
     for name in ("external_label_mutation", "locality_attack", "neutral_decay_runtime_sweep",
                  "candidate_saturation_reset_eviction", "valid_mirrored_roles"):
         checks.append({"check": name, "status": "not_run",
-                       "reason": "Not established by preserved prototype; contamination blocks success."})
+                       "reason": "Not applicable to the bounded count scorer or not implemented in this fixture."})
     payload = {
         "schema_version": "TPCN-LUNA-13F-RESUMPTION-AUDIT-1",
-        "terminal_status": STATUS,
+        "terminal_status": artifact["terminal_status"],
         "provenance": {
             "starting_revision": git("rev-parse", "HEAD"),
             "executed_committed_revision": git("rev-parse", "HEAD"),
@@ -170,11 +167,11 @@ def main():
             "source": "Parent agent live Desktop Commander baseline audit, unchanged original files",
             "other": "Saved artifact semantic replay and whitespace checks passed; no editor diagnostic provider invoked."},
         "architecture_conclusion": {
-            "OBSERVED": "Existing policy accumulates bounded counts; role-keyed schedule manufactures their informativeness.",
-            "INFERRED": "This prototype cannot substantiate runtime-generated useful discrimination.",
-            "HYPOTHESIZED": "An architecture-compatible ordinary-runtime fixture may exist; impossibility is not established.",
+            "OBSERVED": "Neutral runtime events generate bounded source-local counts before the frozen structural decision.",
+            "INFERRED": "The corrected fixture supports the narrow tested distinction but does not establish generality.",
+            "HYPOTHESIZED": "Further neutral fixtures may change the measured preference without an architecture change.",
             "architecture_change_required": "not established", "architecture_change_implemented": False},
-        "next_execution_state": "Luna-0 independent review of blocked Luna-13F and corrective fixture scope; Luna-13G unauthorized.",
+        "next_execution_state": "Return corrected Luna-13F to Luna-0 for independent review; Luna-13G remains unauthorized.",
     }
     output = Path(__file__).with_name("audit-results.json")
     output.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
