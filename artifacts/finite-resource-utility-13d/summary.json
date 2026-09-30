@@ -1,0 +1,190 @@
+{
+  "baseline_revision": "0fa71bcf4614c765c47f07ecdcbd85105edda7f5",
+  "executed_revision": "c35f10e",
+  "fixture_id": "luna-13d-interval-deadline-capacity-v1",
+  "runs": [
+    {
+      "capacity_policy": "comfortable",
+      "completion": "completed",
+      "events": 8,
+      "latency": [
+        2.0,
+        4.0
+      ],
+      "proxy_energy": 8.0,
+      "run": "A_baseline",
+      "task_result": "2/2",
+      "useful_edge_present": true
+    },
+    {
+      "capacity_policy": "comfortable-expensive-useful",
+      "completion": "completed",
+      "events": 12,
+      "latency": [
+        2.0,
+        4.0
+      ],
+      "proxy_energy": 12.0,
+      "run": "A_expensive_useful",
+      "task_result": "2/2",
+      "useful_edge_present": false
+    },
+    {
+      "capacity_policy": "distractor-pressure",
+      "completion": "completed",
+      "events": 8,
+      "latency": [
+        2.0,
+        4.0
+      ],
+      "proxy_energy": 8.0,
+      "run": "B_distractor",
+      "task_result": "2/2",
+      "useful_edge_present": true
+    },
+    {
+      "capacity_policy": "capacity-4",
+      "completion": "completed",
+      "events": 12,
+      "latency": [
+        2.0,
+        4.0
+      ],
+      "proxy_energy": 12.0,
+      "run": "C_capacity_4",
+      "task_result": "2/2",
+      "useful_edge_present": true
+    },
+    {
+      "capacity_policy": "capacity-5",
+      "completion": "completed",
+      "events": 12,
+      "latency": [
+        2.0,
+        4.0
+      ],
+      "proxy_energy": 12.0,
+      "run": "C_capacity_5",
+      "task_result": "2/2",
+      "useful_edge_present": true
+    },
+    {
+      "capacity_policy": "capacity-6",
+      "completion": "completed",
+      "events": 12,
+      "latency": [
+        2.0,
+        4.0
+      ],
+      "proxy_energy": 12.0,
+      "run": "C_capacity_6",
+      "task_result": "2/2",
+      "useful_edge_present": true
+    },
+    {
+      "capacity_policy": "declared-pruning",
+      "completion": "completed",
+      "events": 8,
+      "latency": [
+        2.0,
+        4.0
+      ],
+      "proxy_energy": 8.0,
+      "run": "D_pruning",
+      "task_result": "2/2",
+      "useful_edge_present": true
+    },
+    {
+      "capacity_policy": "post-pruning-growth",
+      "completion": "completed",
+      "events": 16,
+      "latency": [
+        1.0,
+        1.0
+      ],
+      "proxy_energy": 16.0,
+      "run": "E_post_pruning_growth",
+      "task_result": "1/2",
+      "useful_edge_present": true
+    },
+    {
+      "capacity_policy": "fixed-topology",
+      "completion": "completed",
+      "events": 8,
+      "latency": [
+        2.0,
+        4.0
+      ],
+      "proxy_energy": 8.0,
+      "run": "fixed_topology",
+      "task_result": "2/2",
+      "useful_edge_present": true
+    },
+    {
+      "capacity_policy": "random-seed-0",
+      "completion": "completed",
+      "events": 8,
+      "latency": [
+        2.0,
+        4.0
+      ],
+      "proxy_energy": 8.0,
+      "run": "random_seed_0",
+      "task_result": "2/2",
+      "useful_edge_present": true
+    },
+    {
+      "capacity_policy": "random-seed-1",
+      "completion": "completed",
+      "events": 4,
+      "latency": [
+        null,
+        null
+      ],
+      "proxy_energy": 4.0,
+      "run": "random_seed_1",
+      "task_result": "1/2",
+      "useful_edge_present": false
+    },
+    {
+      "capacity_policy": "random-seed-2",
+      "completion": "completed",
+      "events": 4,
+      "latency": [
+        null,
+        null
+      ],
+      "proxy_energy": 4.0,
+      "run": "random_seed_2",
+      "task_result": "1/2",
+      "useful_edge_present": false
+    },
+    {
+      "capacity_policy": "random-seed-3",
+      "completion": "completed",
+      "events": 4,
+      "latency": [
+        null,
+        null
+      ],
+      "proxy_energy": 4.0,
+      "run": "random_seed_3",
+      "task_result": "1/2",
+      "useful_edge_present": false
+    },
+    {
+      "capacity_policy": "random-seed-4",
+      "completion": "completed",
+      "events": 4,
+      "latency": [
+        null,
+        null
+      ],
+      "proxy_energy": 4.0,
+      "run": "random_seed_4",
+      "task_result": "1/2",
+      "useful_edge_present": false
+    }
+  ],
+  "schema_version": "TPCN-LUNA-13D-1"
+}

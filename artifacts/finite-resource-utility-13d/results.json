@@ -1,0 +1,1641 @@
+{
+  "checkpoint": {
+    "implemented": false,
+    "limitation": "Uses bounded deterministic rebuild/reset; no serialized neuron/queue/eligibility/random-state clone was added."
+  },
+  "configuration": {
+    "edge_capacity": 6,
+    "event_budget": 24,
+    "fan_in_limit": 2,
+    "fan_out_limit": 2,
+    "fixture_id": "luna-13d-interval-deadline-capacity-v1",
+    "non_inferiority_cases": 2,
+    "pruning_inactivity_threshold": 1,
+    "pruning_utility_threshold": 0.1,
+    "queue_capacity": 8,
+    "random_seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "resource_reduction_threshold": 0.1
+  },
+  "controls": {
+    "fixed_topology": {
+      "capacity": 6,
+      "capacity_policy": "fixed-topology",
+      "capacity_used": 1,
+      "case_results": [
+        {
+          "completion": {
+            "budget_exhausted": false,
+            "completed": true,
+            "configured_event_budget": 24,
+            "last_event_timestamp": 2.0,
+            "peak_queue_occupancy": 2,
+            "pending_event_count": 0,
+            "processed_event_count": 4,
+            "termination_reason": "completed"
+          },
+          "correct": true,
+          "events": 4,
+          "example_id": "short-held-out",
+          "fixed_external_target": "on_time",
+          "interval": 1.0,
+          "prediction_or_decision": "on_time",
+          "target_arrivals": [
+            1.0,
+            2.0
+          ],
+          "target_latency": 2.0
+        },
+        {
+          "completion": {
+            "budget_exhausted": false,
+            "completed": true,
+            "configured_event_budget": 24,
+            "last_event_timestamp": 4.0,
+            "peak_queue_occupancy": 2,
+            "pending_event_count": 0,
+            "processed_event_count": 4,
+            "termination_reason": "completed"
+          },
+          "correct": true,
+          "events": 4,
+          "example_id": "long-held-out",
+          "fixed_external_target": "late",
+          "interval": 3.0,
+          "prediction_or_decision": "late",
+          "target_arrivals": [
+            1.0,
+            4.0
+          ],
+          "target_latency": 4.0
+        }
+      ],
+      "completion_status": "completed",
+      "edge_traffic": {
+        "('right', 'target', 1.0)": 4
+      },
+      "failure_categories": {
+        "budget_exhaustion": false,
+        "capacity_failure": false,
+        "pruning_related_failure": false,
+        "queue_rejection": false,
+        "task_failure": false
+      },
+      "graph_edges": [
+        [
+          "right",
+          "target",
+          1.0
+        ]
+      ],
+      "graph_fingerprint": "3962ea30f82901381d9b998776843ecc25015e75fb47b931e0643549896e9d93",
+      "latency": [
+        2.0,
+        4.0
+      ],
+      "proxy_energy": 8.0,
+      "proxy_energy_unit": "activity-cost-proxy; uncalibrated",
+      "queue_peak": 2,
+      "remaining_slots": 5,
+      "task_cases_correct": 2,
+      "task_result": "2/2",
+      "total_events": 8,
+      "useful_edge_present": true
+    },
+    "random_growth": [
+      {
+        "capacity": 6,
+        "capacity_policy": "random-seed-0",
+        "capacity_used": 1,
+        "case_results": [
+          {
+            "completion": {
+              "budget_exhausted": false,
+              "completed": true,
+              "configured_event_budget": 24,
+              "last_event_timestamp": 2.0,
+              "peak_queue_occupancy": 2,
+              "pending_event_count": 0,
+              "processed_event_count": 4,
+              "termination_reason": "completed"
+            },
+            "correct": true,
+            "events": 4,
+            "example_id": "short-held-out",
+            "fixed_external_target": "on_time",
+            "interval": 1.0,
+            "prediction_or_decision": "on_time",
+            "target_arrivals": [
+              1.0,
+              2.0
+            ],
+            "target_latency": 2.0
+          },
+          {
+            "completion": {
+              "budget_exhausted": false,
+              "completed": true,
+              "configured_event_budget": 24,
+              "last_event_timestamp": 4.0,
+              "peak_queue_occupancy": 2,
+              "pending_event_count": 0,
+              "processed_event_count": 4,
+              "termination_reason": "completed"
+            },
+            "correct": true,
+            "events": 4,
+            "example_id": "long-held-out",
+            "fixed_external_target": "late",
+            "interval": 3.0,
+            "prediction_or_decision": "late",
+            "target_arrivals": [
+              1.0,
+              4.0
+            ],
+            "target_latency": 4.0
+          }
+        ],
+        "completion_status": "completed",
+        "edge_traffic": {
+          "('right', 'target', 1.0)": 4
+        },
+        "failure_categories": {
+          "budget_exhaustion": false,
+          "capacity_failure": false,
+          "pruning_related_failure": false,
+          "queue_rejection": false,
+          "task_failure": false
+        },
+        "graph_edges": [
+          [
+            "right",
+            "target",
+            1.0
+          ]
+        ],
+        "graph_fingerprint": "3962ea30f82901381d9b998776843ecc25015e75fb47b931e0643549896e9d93",
+        "latency": [
+          2.0,
+          4.0
+        ],
+        "policy": "equal-budget-random-growth",
+        "proxy_energy": 8.0,
+        "proxy_energy_unit": "activity-cost-proxy; uncalibrated",
+        "queue_peak": 2,
+        "remaining_slots": 5,
+        "seed": 0,
+        "selected_edge": [
+          "right",
+          "target",
+          1.0
+        ],
+        "task_cases_correct": 2,
+        "task_result": "2/2",
+        "total_events": 8,
+        "useful_edge_present": true
+      },
+      {
+        "capacity": 6,
+        "capacity_policy": "random-seed-1",
+        "capacity_used": 1,
+        "case_results": [
+          {
+            "completion": {
+              "budget_exhausted": false,
+              "completed": true,
+              "configured_event_budget": 24,
+              "last_event_timestamp": 1.0,
+              "peak_queue_occupancy": 2,
+              "pending_event_count": 0,
+              "processed_event_count": 2,
+              "termination_reason": "completed"
+            },
+            "correct": false,
+            "events": 2,
+            "example_id": "short-held-out",
+            "fixed_external_target": "on_time",
+            "interval": 1.0,
+            "prediction_or_decision": "late",
+            "target_arrivals": [],
+            "target_latency": null
+          },
+          {
+            "completion": {
+              "budget_exhausted": false,
+              "completed": true,
+              "configured_event_budget": 24,
+              "last_event_timestamp": 3.0,
+              "peak_queue_occupancy": 2,
+              "pending_event_count": 0,
+              "processed_event_count": 2,
+              "termination_reason": "completed"
+            },
+            "correct": true,
+            "events": 2,
+            "example_id": "long-held-out",
+            "fixed_external_target": "late",
+            "interval": 3.0,
+            "prediction_or_decision": "late",
+            "target_arrivals": [],
+            "target_latency": null
+          }
+        ],
+        "completion_status": "completed",
+        "edge_traffic": {},
+        "failure_categories": {
+          "budget_exhaustion": false,
+          "capacity_failure": false,
+          "pruning_related_failure": false,
+          "queue_rejection": false,
+          "task_failure": true
+        },
+        "graph_edges": [
+          [
+            "left",
+            "target",
+            1.0
+          ]
+        ],
+        "graph_fingerprint": "758617e1b41c95cf86d6162ec5441cf498c112de648dd1ee2bb7f28e7ff2a1a3",
+        "latency": [
+          null,
+          null
+        ],
+        "policy": "equal-budget-random-growth",
+        "proxy_energy": 4.0,
+        "proxy_energy_unit": "activity-cost-proxy; uncalibrated",
+        "queue_peak": 2,
+        "remaining_slots": 5,
+        "seed": 1,
+        "selected_edge": [
+          "left",
+          "target",
+          1.0
+        ],
+        "task_cases_correct": 1,
+        "task_result": "1/2",
+        "total_events": 4,
+        "useful_edge_present": false
+      },
+      {
+        "capacity": 6,
+        "capacity_policy": "random-seed-2",
+        "capacity_used": 1,
+        "case_results": [
+          {
+            "completion": {
+              "budget_exhausted": false,
+              "completed": true,
+              "configured_event_budget": 24,
+              "last_event_timestamp": 1.0,
+              "peak_queue_occupancy": 2,
+              "pending_event_count": 0,
+              "processed_event_count": 2,
+              "termination_reason": "completed"
+            },
+            "correct": false,
+            "events": 2,
+            "example_id": "short-held-out",
+            "fixed_external_target": "on_time",
+            "interval": 1.0,
+            "prediction_or_decision": "late",
+            "target_arrivals": [],
+            "target_latency": null
+          },
+          {
+            "completion": {
+              "budget_exhausted": false,
+              "completed": true,
+              "configured_event_budget": 24,
+              "last_event_timestamp": 3.0,
+              "peak_queue_occupancy": 2,
+              "pending_event_count": 0,
+              "processed_event_count": 2,
+              "termination_reason": "completed"
+            },
+            "correct": true,
+            "events": 2,
+            "example_id": "long-held-out",
+            "fixed_external_target": "late",
+            "interval": 3.0,
+            "prediction_or_decision": "late",
+            "target_arrivals": [],
+            "target_latency": null
+          }
+        ],
+        "completion_status": "completed",
+        "edge_traffic": {},
+        "failure_categories": {
+          "budget_exhaustion": false,
+          "capacity_failure": false,
+          "pruning_related_failure": false,
+          "queue_rejection": false,
+          "task_failure": true
+        },
+        "graph_edges": [
+          [
+            "left",
+            "target",
+            1.0
+          ]
+        ],
+        "graph_fingerprint": "758617e1b41c95cf86d6162ec5441cf498c112de648dd1ee2bb7f28e7ff2a1a3",
+        "latency": [
+          null,
+          null
+        ],
+        "policy": "equal-budget-random-growth",
+        "proxy_energy": 4.0,
+        "proxy_energy_unit": "activity-cost-proxy; uncalibrated",
+        "queue_peak": 2,
+        "remaining_slots": 5,
+        "seed": 2,
+        "selected_edge": [
+          "left",
+          "target",
+          1.0
+        ],
+        "task_cases_correct": 1,
+        "task_result": "1/2",
+        "total_events": 4,
+        "useful_edge_present": false
+      },
+      {
+        "capacity": 6,
+        "capacity_policy": "random-seed-3",
+        "capacity_used": 1,
+        "case_results": [
+          {
+            "completion": {
+              "budget_exhausted": false,
+              "completed": true,
+              "configured_event_budget": 24,
+              "last_event_timestamp": 1.0,
+              "peak_queue_occupancy": 2,
+              "pending_event_count": 0,
+              "processed_event_count": 2,
+              "termination_reason": "completed"
+            },
+            "correct": false,
+            "events": 2,
+            "example_id": "short-held-out",
+            "fixed_external_target": "on_time",
+            "interval": 1.0,
+            "prediction_or_decision": "late",
+            "target_arrivals": [],
+            "target_latency": null
+          },
+          {
+            "completion": {
+              "budget_exhausted": false,
+              "completed": true,
+              "configured_event_budget": 24,
+              "last_event_timestamp": 3.0,
+              "peak_queue_occupancy": 2,
+              "pending_event_count": 0,
+              "processed_event_count": 2,
+              "termination_reason": "completed"
+            },
+            "correct": true,
+            "events": 2,
+            "example_id": "long-held-out",
+            "fixed_external_target": "late",
+            "interval": 3.0,
+            "prediction_or_decision": "late",
+            "target_arrivals": [],
+            "target_latency": null
+          }
+        ],
+        "completion_status": "completed",
+        "edge_traffic": {},
+        "failure_categories": {
+          "budget_exhaustion": false,
+          "capacity_failure": false,
+          "pruning_related_failure": false,
+          "queue_rejection": false,
+          "task_failure": true
+        },
+        "graph_edges": [
+          [
+            "left",
+            "target",
+            1.0
+          ]
+        ],
+        "graph_fingerprint": "758617e1b41c95cf86d6162ec5441cf498c112de648dd1ee2bb7f28e7ff2a1a3",
+        "latency": [
+          null,
+          null
+        ],
+        "policy": "equal-budget-random-growth",
+        "proxy_energy": 4.0,
+        "proxy_energy_unit": "activity-cost-proxy; uncalibrated",
+        "queue_peak": 2,
+        "remaining_slots": 5,
+        "seed": 3,
+        "selected_edge": [
+          "left",
+          "target",
+          1.0
+        ],
+        "task_cases_correct": 1,
+        "task_result": "1/2",
+        "total_events": 4,
+        "useful_edge_present": false
+      },
+      {
+        "capacity": 6,
+        "capacity_policy": "random-seed-4",
+        "capacity_used": 1,
+        "case_results": [
+          {
+            "completion": {
+              "budget_exhausted": false,
+              "completed": true,
+              "configured_event_budget": 24,
+              "last_event_timestamp": 1.0,
+              "peak_queue_occupancy": 2,
+              "pending_event_count": 0,
+              "processed_event_count": 2,
+              "termination_reason": "completed"
+            },
+            "correct": false,
+            "events": 2,
+            "example_id": "short-held-out",
+            "fixed_external_target": "on_time",
+            "interval": 1.0,
+            "prediction_or_decision": "late",
+            "target_arrivals": [],
+            "target_latency": null
+          },
+          {
+            "completion": {
+              "budget_exhausted": false,
+              "completed": true,
+              "configured_event_budget": 24,
+              "last_event_timestamp": 3.0,
+              "peak_queue_occupancy": 2,
+              "pending_event_count": 0,
+              "processed_event_count": 2,
+              "termination_reason": "completed"
+            },
+            "correct": true,
+            "events": 2,
+            "example_id": "long-held-out",
+            "fixed_external_target": "late",
+            "interval": 3.0,
+            "prediction_or_decision": "late",
+            "target_arrivals": [],
+            "target_latency": null
+          }
+        ],
+        "completion_status": "completed",
+        "edge_traffic": {},
+        "failure_categories": {
+          "budget_exhaustion": false,
+          "capacity_failure": false,
+          "pruning_related_failure": false,
+          "queue_rejection": false,
+          "task_failure": true
+        },
+        "graph_edges": [
+          [
+            "left",
+            "target",
+            1.0
+          ]
+        ],
+        "graph_fingerprint": "758617e1b41c95cf86d6162ec5441cf498c112de648dd1ee2bb7f28e7ff2a1a3",
+        "latency": [
+          null,
+          null
+        ],
+        "policy": "equal-budget-random-growth",
+        "proxy_energy": 4.0,
+        "proxy_energy_unit": "activity-cost-proxy; uncalibrated",
+        "queue_peak": 2,
+        "remaining_slots": 5,
+        "seed": 4,
+        "selected_edge": [
+          "left",
+          "target",
+          1.0
+        ],
+        "task_cases_correct": 1,
+        "task_result": "1/2",
+        "total_events": 4,
+        "useful_edge_present": false
+      }
+    ]
+  },
+  "edge_records": [
+    {
+      "age": 0,
+      "cost": 1.0,
+      "edge": [
+        "right",
+        "target",
+        1.0
+      ],
+      "edge_role": "externally useful",
+      "pruned": false,
+      "reason": "retained or not eligible under declared score",
+      "reward_utility_evidence": "2/2 present; 1/2 targeted removal in Luna-13C",
+      "uses": 4
+    },
+    {
+      "age": 0,
+      "cost": 2.0,
+      "edge": [
+        "right",
+        "relay",
+        0.5
+      ],
+      "edge_role": "expensive useful",
+      "pruned": false,
+      "reason": "retained or not eligible under declared score",
+      "reward_utility_evidence": "baseline route contributes target arrivals",
+      "uses": 0
+    },
+    {
+      "age": 1,
+      "cost": 4.0,
+      "edge": [
+        "left",
+        "noise",
+        4.0
+      ],
+      "edge_role": "expensive useless",
+      "pruned": true,
+      "reason": "lowest declared utility score",
+      "reward_utility_evidence": "no right-source traffic or external contribution",
+      "uses": 0
+    }
+  ],
+  "evidence_labels": {
+    "HYPOTHESIZED": [
+      "declared utility score should distinguish useful and low-value edges under pressure"
+    ],
+    "INFERRED": [
+      "direct right-to-target traffic mediates the fixed task result"
+    ],
+    "OBSERVED": [
+      "learned edge provenance",
+      "task/resource matrices",
+      "mutation statuses",
+      "traffic and completion counters"
+    ]
+  },
+  "experiment": "Luna-13D finite-resource utility, retention, and capacity pressure",
+  "fixture_id": "luna-13d-interval-deadline-capacity-v1",
+  "interpretation": {
+    "note": "Resource comparisons remain Pareto-style; lower events with lower task utility are not efficiency evidence.",
+    "replacement_authorized": false,
+    "resource_efficiency_claim": false
+  },
+  "provenance": {
+    "baseline_revision": "0fa71bcf4614c765c47f07ecdcbd85105edda7f5",
+    "branch": "main",
+    "environment": {
+      "platform": "Windows-10-10.0.19045-SP0",
+      "python": "3.10.8 (tags/v3.10.8:aaaf517, Oct 11 2022, 16:50:30) [MSC v.1933 64 bit (AMD64)]"
+    },
+    "executed_revision": "c35f10e",
+    "tree_state_at_generation": "clean"
+  },
+  "schema_version": "TPCN-LUNA-13D-1",
+  "stages": {
+    "A_baseline": {
+      "expensive_useful_path": {
+        "capacity": 6,
+        "capacity_policy": "comfortable-expensive-useful",
+        "capacity_used": 2,
+        "case_results": [
+          {
+            "completion": {
+              "budget_exhausted": false,
+              "completed": true,
+              "configured_event_budget": 24,
+              "last_event_timestamp": 2.0,
+              "peak_queue_occupancy": 2,
+              "pending_event_count": 0,
+              "processed_event_count": 6,
+              "termination_reason": "completed"
+            },
+            "correct": true,
+            "events": 6,
+            "example_id": "short-held-out",
+            "fixed_external_target": "on_time",
+            "interval": 1.0,
+            "prediction_or_decision": "on_time",
+            "target_arrivals": [
+              1.0,
+              2.0
+            ],
+            "target_latency": 2.0
+          },
+          {
+            "completion": {
+              "budget_exhausted": false,
+              "completed": true,
+              "configured_event_budget": 24,
+              "last_event_timestamp": 4.0,
+              "peak_queue_occupancy": 2,
+              "pending_event_count": 0,
+              "processed_event_count": 6,
+              "termination_reason": "completed"
+            },
+            "correct": true,
+            "events": 6,
+            "example_id": "long-held-out",
+            "fixed_external_target": "late",
+            "interval": 3.0,
+            "prediction_or_decision": "late",
+            "target_arrivals": [
+              1.0,
+              4.0
+            ],
+            "target_latency": 4.0
+          }
+        ],
+        "completion_status": "completed",
+        "edge_traffic": {
+          "('relay', 'target', 0.5)": 4,
+          "('right', 'relay', 0.5)": 4
+        },
+        "failure_categories": {
+          "budget_exhaustion": false,
+          "capacity_failure": false,
+          "pruning_related_failure": false,
+          "queue_rejection": false,
+          "task_failure": false
+        },
+        "graph_edges": [
+          [
+            "right",
+            "relay",
+            0.5
+          ],
+          [
+            "relay",
+            "target",
+            0.5
+          ]
+        ],
+        "graph_fingerprint": "195be9a343585caf7df15bf9b135c24875165dbbb899c55eb6a255f1abe22584",
+        "latency": [
+          2.0,
+          4.0
+        ],
+        "proxy_energy": 12.0,
+        "proxy_energy_unit": "activity-cost-proxy; uncalibrated",
+        "queue_peak": 2,
+        "remaining_slots": 4,
+        "task_cases_correct": 2,
+        "task_result": "2/2",
+        "total_events": 12,
+        "useful_edge_present": false
+      },
+      "reference": {
+        "capacity": 6,
+        "capacity_policy": "comfortable",
+        "capacity_used": 1,
+        "case_results": [
+          {
+            "completion": {
+              "budget_exhausted": false,
+              "completed": true,
+              "configured_event_budget": 24,
+              "last_event_timestamp": 2.0,
+              "peak_queue_occupancy": 2,
+              "pending_event_count": 0,
+              "processed_event_count": 4,
+              "termination_reason": "completed"
+            },
+            "correct": true,
+            "events": 4,
+            "example_id": "short-held-out",
+            "fixed_external_target": "on_time",
+            "interval": 1.0,
+            "prediction_or_decision": "on_time",
+            "target_arrivals": [
+              1.0,
+              2.0
+            ],
+            "target_latency": 2.0
+          },
+          {
+            "completion": {
+              "budget_exhausted": false,
+              "completed": true,
+              "configured_event_budget": 24,
+              "last_event_timestamp": 4.0,
+              "peak_queue_occupancy": 2,
+              "pending_event_count": 0,
+              "processed_event_count": 4,
+              "termination_reason": "completed"
+            },
+            "correct": true,
+            "events": 4,
+            "example_id": "long-held-out",
+            "fixed_external_target": "late",
+            "interval": 3.0,
+            "prediction_or_decision": "late",
+            "target_arrivals": [
+              1.0,
+              4.0
+            ],
+            "target_latency": 4.0
+          }
+        ],
+        "completion_status": "completed",
+        "edge_traffic": {
+          "('right', 'target', 1.0)": 4
+        },
+        "failure_categories": {
+          "budget_exhaustion": false,
+          "capacity_failure": false,
+          "pruning_related_failure": false,
+          "queue_rejection": false,
+          "task_failure": false
+        },
+        "graph_edges": [
+          [
+            "right",
+            "target",
+            1.0
+          ]
+        ],
+        "graph_fingerprint": "3962ea30f82901381d9b998776843ecc25015e75fb47b931e0643549896e9d93",
+        "latency": [
+          2.0,
+          4.0
+        ],
+        "proxy_energy": 8.0,
+        "proxy_energy_unit": "activity-cost-proxy; uncalibrated",
+        "queue_peak": 2,
+        "remaining_slots": 5,
+        "task_cases_correct": 2,
+        "task_result": "2/2",
+        "total_events": 8,
+        "useful_edge_present": true
+      }
+    },
+    "B_distractor": {
+      "capacity": 6,
+      "capacity_policy": "distractor-pressure",
+      "capacity_used": 3,
+      "case_results": [
+        {
+          "completion": {
+            "budget_exhausted": false,
+            "completed": true,
+            "configured_event_budget": 24,
+            "last_event_timestamp": 2.0,
+            "peak_queue_occupancy": 2,
+            "pending_event_count": 0,
+            "processed_event_count": 4,
+            "termination_reason": "completed"
+          },
+          "correct": true,
+          "events": 4,
+          "example_id": "short-held-out",
+          "fixed_external_target": "on_time",
+          "interval": 1.0,
+          "prediction_or_decision": "on_time",
+          "target_arrivals": [
+            1.0,
+            2.0
+          ],
+          "target_latency": 2.0
+        },
+        {
+          "completion": {
+            "budget_exhausted": false,
+            "completed": true,
+            "configured_event_budget": 24,
+            "last_event_timestamp": 4.0,
+            "peak_queue_occupancy": 2,
+            "pending_event_count": 0,
+            "processed_event_count": 4,
+            "termination_reason": "completed"
+          },
+          "correct": true,
+          "events": 4,
+          "example_id": "long-held-out",
+          "fixed_external_target": "late",
+          "interval": 3.0,
+          "prediction_or_decision": "late",
+          "target_arrivals": [
+            1.0,
+            4.0
+          ],
+          "target_latency": 4.0
+        }
+      ],
+      "completion_status": "completed",
+      "edge_traffic": {
+        "('right', 'target', 1.0)": 4
+      },
+      "failure_categories": {
+        "budget_exhaustion": false,
+        "capacity_failure": false,
+        "pruning_related_failure": false,
+        "queue_rejection": false,
+        "task_failure": false
+      },
+      "graph_edges": [
+        [
+          "right",
+          "target",
+          1.0
+        ],
+        [
+          "left",
+          "noise",
+          4.0
+        ],
+        [
+          "noise",
+          "target",
+          4.0
+        ]
+      ],
+      "graph_fingerprint": "70b5ef1db1346a8830e65a07038ae4249c3f980b9cb7e20ee04ae127fa840d40",
+      "latency": [
+        2.0,
+        4.0
+      ],
+      "mutations": [
+        {
+          "edge": {
+            "destination": "noise",
+            "propagation_delay": 4.0,
+            "source": "left"
+          },
+          "reason": null,
+          "status": "grown"
+        },
+        {
+          "edge": {
+            "destination": "target",
+            "propagation_delay": 4.0,
+            "source": "noise"
+          },
+          "reason": null,
+          "status": "grown"
+        }
+      ],
+      "proxy_energy": 8.0,
+      "proxy_energy_unit": "activity-cost-proxy; uncalibrated",
+      "queue_peak": 2,
+      "remaining_slots": 3,
+      "task_cases_correct": 2,
+      "task_result": "2/2",
+      "total_events": 8,
+      "useful_edge_present": true
+    },
+    "C_capacity_pressure": [
+      {
+        "capacity": 4,
+        "capacity_policy": "capacity-4",
+        "capacity_used": 4,
+        "case_results": [
+          {
+            "completion": {
+              "budget_exhausted": false,
+              "completed": true,
+              "configured_event_budget": 24,
+              "last_event_timestamp": 2.0,
+              "peak_queue_occupancy": 3,
+              "pending_event_count": 0,
+              "processed_event_count": 6,
+              "termination_reason": "completed"
+            },
+            "correct": true,
+            "events": 6,
+            "example_id": "short-held-out",
+            "fixed_external_target": "on_time",
+            "interval": 1.0,
+            "prediction_or_decision": "on_time",
+            "target_arrivals": [
+              1.0,
+              2.0
+            ],
+            "target_latency": 2.0
+          },
+          {
+            "completion": {
+              "budget_exhausted": false,
+              "completed": true,
+              "configured_event_budget": 24,
+              "last_event_timestamp": 4.0,
+              "peak_queue_occupancy": 3,
+              "pending_event_count": 0,
+              "processed_event_count": 6,
+              "termination_reason": "completed"
+            },
+            "correct": true,
+            "events": 6,
+            "example_id": "long-held-out",
+            "fixed_external_target": "late",
+            "interval": 3.0,
+            "prediction_or_decision": "late",
+            "target_arrivals": [
+              1.0,
+              4.0
+            ],
+            "target_latency": 4.0
+          }
+        ],
+        "completion_status": "completed",
+        "edge_traffic": {
+          "('right', 'relay', 0.5)": 4,
+          "('right', 'target', 1.0)": 4
+        },
+        "failure_categories": {
+          "budget_exhaustion": false,
+          "capacity_failure": true,
+          "pruning_related_failure": false,
+          "queue_rejection": false,
+          "task_failure": false
+        },
+        "graph_edges": [
+          [
+            "right",
+            "target",
+            1.0
+          ],
+          [
+            "left",
+            "noise",
+            4.0
+          ],
+          [
+            "noise",
+            "target",
+            4.0
+          ],
+          [
+            "right",
+            "relay",
+            0.5
+          ]
+        ],
+        "graph_fingerprint": "d6cf92910511f40bc829f361263c4764125f4cf5bfb5dc5ccb2d41a47f84c235",
+        "latency": [
+          2.0,
+          4.0
+        ],
+        "mutations": [
+          {
+            "edge": {
+              "destination": "noise",
+              "propagation_delay": 4.0,
+              "source": "left"
+            },
+            "reason": null,
+            "status": "grown"
+          },
+          {
+            "edge": {
+              "destination": "target",
+              "propagation_delay": 4.0,
+              "source": "noise"
+            },
+            "reason": null,
+            "status": "grown"
+          },
+          {
+            "edge": {
+              "destination": "relay",
+              "propagation_delay": 0.5,
+              "source": "right"
+            },
+            "reason": null,
+            "status": "grown"
+          },
+          {
+            "edge": null,
+            "reason": "edge_capacity",
+            "status": "full_capacity"
+          }
+        ],
+        "proxy_energy": 12.0,
+        "proxy_energy_unit": "activity-cost-proxy; uncalibrated",
+        "queue_peak": 3,
+        "remaining_slots": 0,
+        "task_cases_correct": 2,
+        "task_result": "2/2",
+        "total_events": 12,
+        "useful_edge_present": true
+      },
+      {
+        "capacity": 5,
+        "capacity_policy": "capacity-5",
+        "capacity_used": 4,
+        "case_results": [
+          {
+            "completion": {
+              "budget_exhausted": false,
+              "completed": true,
+              "configured_event_budget": 24,
+              "last_event_timestamp": 2.0,
+              "peak_queue_occupancy": 3,
+              "pending_event_count": 0,
+              "processed_event_count": 6,
+              "termination_reason": "completed"
+            },
+            "correct": true,
+            "events": 6,
+            "example_id": "short-held-out",
+            "fixed_external_target": "on_time",
+            "interval": 1.0,
+            "prediction_or_decision": "on_time",
+            "target_arrivals": [
+              1.0,
+              2.0
+            ],
+            "target_latency": 2.0
+          },
+          {
+            "completion": {
+              "budget_exhausted": false,
+              "completed": true,
+              "configured_event_budget": 24,
+              "last_event_timestamp": 4.0,
+              "peak_queue_occupancy": 3,
+              "pending_event_count": 0,
+              "processed_event_count": 6,
+              "termination_reason": "completed"
+            },
+            "correct": true,
+            "events": 6,
+            "example_id": "long-held-out",
+            "fixed_external_target": "late",
+            "interval": 3.0,
+            "prediction_or_decision": "late",
+            "target_arrivals": [
+              1.0,
+              4.0
+            ],
+            "target_latency": 4.0
+          }
+        ],
+        "completion_status": "completed",
+        "edge_traffic": {
+          "('right', 'relay', 0.5)": 4,
+          "('right', 'target', 1.0)": 4
+        },
+        "failure_categories": {
+          "budget_exhaustion": false,
+          "capacity_failure": true,
+          "pruning_related_failure": false,
+          "queue_rejection": false,
+          "task_failure": false
+        },
+        "graph_edges": [
+          [
+            "right",
+            "target",
+            1.0
+          ],
+          [
+            "left",
+            "noise",
+            4.0
+          ],
+          [
+            "noise",
+            "target",
+            4.0
+          ],
+          [
+            "right",
+            "relay",
+            0.5
+          ]
+        ],
+        "graph_fingerprint": "d6cf92910511f40bc829f361263c4764125f4cf5bfb5dc5ccb2d41a47f84c235",
+        "latency": [
+          2.0,
+          4.0
+        ],
+        "mutations": [
+          {
+            "edge": {
+              "destination": "noise",
+              "propagation_delay": 4.0,
+              "source": "left"
+            },
+            "reason": null,
+            "status": "grown"
+          },
+          {
+            "edge": {
+              "destination": "target",
+              "propagation_delay": 4.0,
+              "source": "noise"
+            },
+            "reason": null,
+            "status": "grown"
+          },
+          {
+            "edge": {
+              "destination": "relay",
+              "propagation_delay": 0.5,
+              "source": "right"
+            },
+            "reason": null,
+            "status": "grown"
+          },
+          {
+            "edge": null,
+            "reason": "fan_in_full",
+            "status": "full_capacity"
+          }
+        ],
+        "proxy_energy": 12.0,
+        "proxy_energy_unit": "activity-cost-proxy; uncalibrated",
+        "queue_peak": 3,
+        "remaining_slots": 1,
+        "task_cases_correct": 2,
+        "task_result": "2/2",
+        "total_events": 12,
+        "useful_edge_present": true
+      },
+      {
+        "capacity": 6,
+        "capacity_policy": "capacity-6",
+        "capacity_used": 4,
+        "case_results": [
+          {
+            "completion": {
+              "budget_exhausted": false,
+              "completed": true,
+              "configured_event_budget": 24,
+              "last_event_timestamp": 2.0,
+              "peak_queue_occupancy": 3,
+              "pending_event_count": 0,
+              "processed_event_count": 6,
+              "termination_reason": "completed"
+            },
+            "correct": true,
+            "events": 6,
+            "example_id": "short-held-out",
+            "fixed_external_target": "on_time",
+            "interval": 1.0,
+            "prediction_or_decision": "on_time",
+            "target_arrivals": [
+              1.0,
+              2.0
+            ],
+            "target_latency": 2.0
+          },
+          {
+            "completion": {
+              "budget_exhausted": false,
+              "completed": true,
+              "configured_event_budget": 24,
+              "last_event_timestamp": 4.0,
+              "peak_queue_occupancy": 3,
+              "pending_event_count": 0,
+              "processed_event_count": 6,
+              "termination_reason": "completed"
+            },
+            "correct": true,
+            "events": 6,
+            "example_id": "long-held-out",
+            "fixed_external_target": "late",
+            "interval": 3.0,
+            "prediction_or_decision": "late",
+            "target_arrivals": [
+              1.0,
+              4.0
+            ],
+            "target_latency": 4.0
+          }
+        ],
+        "completion_status": "completed",
+        "edge_traffic": {
+          "('right', 'relay', 0.5)": 4,
+          "('right', 'target', 1.0)": 4
+        },
+        "failure_categories": {
+          "budget_exhaustion": false,
+          "capacity_failure": true,
+          "pruning_related_failure": false,
+          "queue_rejection": false,
+          "task_failure": false
+        },
+        "graph_edges": [
+          [
+            "right",
+            "target",
+            1.0
+          ],
+          [
+            "left",
+            "noise",
+            4.0
+          ],
+          [
+            "noise",
+            "target",
+            4.0
+          ],
+          [
+            "right",
+            "relay",
+            0.5
+          ]
+        ],
+        "graph_fingerprint": "d6cf92910511f40bc829f361263c4764125f4cf5bfb5dc5ccb2d41a47f84c235",
+        "latency": [
+          2.0,
+          4.0
+        ],
+        "mutations": [
+          {
+            "edge": {
+              "destination": "noise",
+              "propagation_delay": 4.0,
+              "source": "left"
+            },
+            "reason": null,
+            "status": "grown"
+          },
+          {
+            "edge": {
+              "destination": "target",
+              "propagation_delay": 4.0,
+              "source": "noise"
+            },
+            "reason": null,
+            "status": "grown"
+          },
+          {
+            "edge": {
+              "destination": "relay",
+              "propagation_delay": 0.5,
+              "source": "right"
+            },
+            "reason": null,
+            "status": "grown"
+          },
+          {
+            "edge": null,
+            "reason": "fan_in_full",
+            "status": "full_capacity"
+          }
+        ],
+        "proxy_energy": 12.0,
+        "proxy_energy_unit": "activity-cost-proxy; uncalibrated",
+        "queue_peak": 3,
+        "remaining_slots": 2,
+        "task_cases_correct": 2,
+        "task_result": "2/2",
+        "total_events": 12,
+        "useful_edge_present": true
+      }
+    ],
+    "D_pruning": {
+      "capacity": 6,
+      "capacity_freed": 2,
+      "capacity_policy": "declared-pruning",
+      "capacity_used": 1,
+      "case_results": [
+        {
+          "completion": {
+            "budget_exhausted": false,
+            "completed": true,
+            "configured_event_budget": 24,
+            "last_event_timestamp": 2.0,
+            "peak_queue_occupancy": 2,
+            "pending_event_count": 0,
+            "processed_event_count": 4,
+            "termination_reason": "completed"
+          },
+          "correct": true,
+          "events": 4,
+          "example_id": "short-held-out",
+          "fixed_external_target": "on_time",
+          "interval": 1.0,
+          "prediction_or_decision": "on_time",
+          "target_arrivals": [
+            1.0,
+            2.0
+          ],
+          "target_latency": 2.0
+        },
+        {
+          "completion": {
+            "budget_exhausted": false,
+            "completed": true,
+            "configured_event_budget": 24,
+            "last_event_timestamp": 4.0,
+            "peak_queue_occupancy": 2,
+            "pending_event_count": 0,
+            "processed_event_count": 4,
+            "termination_reason": "completed"
+          },
+          "correct": true,
+          "events": 4,
+          "example_id": "long-held-out",
+          "fixed_external_target": "late",
+          "interval": 3.0,
+          "prediction_or_decision": "late",
+          "target_arrivals": [
+            1.0,
+            4.0
+          ],
+          "target_latency": 4.0
+        }
+      ],
+      "completion_status": "completed",
+      "edge_traffic": {
+        "('right', 'target', 1.0)": 4
+      },
+      "failure_categories": {
+        "budget_exhaustion": false,
+        "capacity_failure": false,
+        "pruning_related_failure": false,
+        "queue_rejection": false,
+        "task_failure": false
+      },
+      "graph_before": [
+        [
+          "right",
+          "target",
+          1.0
+        ],
+        [
+          "left",
+          "noise",
+          4.0
+        ],
+        [
+          "noise",
+          "target",
+          4.0
+        ]
+      ],
+      "graph_edges": [
+        [
+          "right",
+          "target",
+          1.0
+        ]
+      ],
+      "graph_fingerprint": "3962ea30f82901381d9b998776843ecc25015e75fb47b931e0643549896e9d93",
+      "latency": [
+        2.0,
+        4.0
+      ],
+      "mutations": [
+        {
+          "edge": {
+            "destination": "noise",
+            "propagation_delay": 4.0,
+            "source": "left"
+          },
+          "reason": null,
+          "status": "pruned"
+        },
+        {
+          "edge": {
+            "destination": "target",
+            "propagation_delay": 4.0,
+            "source": "noise"
+          },
+          "reason": null,
+          "status": "pruned"
+        }
+      ],
+      "proxy_energy": 8.0,
+      "proxy_energy_unit": "activity-cost-proxy; uncalibrated",
+      "queue_peak": 2,
+      "remaining_slots": 5,
+      "task_cases_correct": 2,
+      "task_result": "2/2",
+      "total_events": 8,
+      "useful_edge_present": true
+    },
+    "E_post_pruning_growth": {
+      "capacity": 6,
+      "capacity_freed_before_growth": 2,
+      "capacity_policy": "post-pruning-growth",
+      "capacity_used": 3,
+      "case_results": [
+        {
+          "completion": {
+            "budget_exhausted": false,
+            "completed": true,
+            "configured_event_budget": 24,
+            "last_event_timestamp": 2.0,
+            "peak_queue_occupancy": 4,
+            "pending_event_count": 0,
+            "processed_event_count": 8,
+            "termination_reason": "completed"
+          },
+          "correct": true,
+          "events": 8,
+          "example_id": "short-held-out",
+          "fixed_external_target": "on_time",
+          "interval": 1.0,
+          "prediction_or_decision": "on_time",
+          "target_arrivals": [
+            1.0,
+            1.0,
+            2.0,
+            2.0
+          ],
+          "target_latency": 1.0
+        },
+        {
+          "completion": {
+            "budget_exhausted": false,
+            "completed": true,
+            "configured_event_budget": 24,
+            "last_event_timestamp": 4.0,
+            "peak_queue_occupancy": 3,
+            "pending_event_count": 0,
+            "processed_event_count": 8,
+            "termination_reason": "completed"
+          },
+          "correct": false,
+          "events": 8,
+          "example_id": "long-held-out",
+          "fixed_external_target": "late",
+          "interval": 3.0,
+          "prediction_or_decision": "on_time",
+          "target_arrivals": [
+            1.0,
+            1.0,
+            4.0,
+            4.0
+          ],
+          "target_latency": 1.0
+        }
+      ],
+      "completion_status": "completed",
+      "edge_traffic": {
+        "('relay', 'target', 0.5)": 4,
+        "('right', 'relay', 0.5)": 4,
+        "('right', 'target', 1.0)": 4
+      },
+      "failure_categories": {
+        "budget_exhaustion": false,
+        "capacity_failure": false,
+        "pruning_related_failure": false,
+        "queue_rejection": false,
+        "task_failure": true
+      },
+      "graph_edges": [
+        [
+          "right",
+          "target",
+          1.0
+        ],
+        [
+          "right",
+          "relay",
+          0.5
+        ],
+        [
+          "relay",
+          "target",
+          0.5
+        ]
+      ],
+      "graph_fingerprint": "6cdcd7ed3ec7df93875d7a0b94e1daecc291effdb7c8757b44907fba54cf2469",
+      "latency": [
+        1.0,
+        1.0
+      ],
+      "mutations": [
+        {
+          "edge": {
+            "destination": "relay",
+            "propagation_delay": 0.5,
+            "source": "right"
+          },
+          "reason": null,
+          "status": "grown"
+        },
+        {
+          "edge": {
+            "destination": "target",
+            "propagation_delay": 0.5,
+            "source": "relay"
+          },
+          "reason": null,
+          "status": "grown"
+        }
+      ],
+      "proxy_energy": 16.0,
+      "proxy_energy_unit": "activity-cost-proxy; uncalibrated",
+      "queue_peak": 4,
+      "remaining_slots": 3,
+      "task_cases_correct": 1,
+      "task_result": "1/2",
+      "total_events": 16,
+      "useful_edge_present": true
+    }
+  },
+  "structural_learning": {
+    "candidate_records": [
+      {
+        "admission_score": 0.6333861926251716,
+        "admitted": false,
+        "candidate_id": "left",
+        "candidate_role": "left",
+        "decision_observation_timestamp": 1.25,
+        "decision_timestamp": 1.25,
+        "elapsed_interval": 1.0,
+        "evidence_source": "runtime_local_decay_score",
+        "execution_decay": 0.1,
+        "followup_observation": {
+          "payload": 0.0,
+          "sequence": 5,
+          "source": "target",
+          "timestamp": 1.25
+        },
+        "local_pre_state": 0.7,
+        "local_residual_state": 0.6333861926251716,
+        "observation_timestamp": 0.25,
+        "originating_observation": {
+          "payload": 0.7,
+          "sequence": 3,
+          "source": "stimulus-left",
+          "timestamp": 0.25
+        },
+        "rank": 2,
+        "score": 0.6333861926251716,
+        "score_components": {
+          "elapsed_decay_factor": 1.0,
+          "local_residual_magnitude": 0.6333861926251716
+        },
+        "scoring_decay": 0.0
+      },
+      {
+        "admission_score": 0.7408182206817179,
+        "admitted": true,
+        "candidate_id": "right",
+        "candidate_role": "right",
+        "decision_observation_timestamp": 3.25,
+        "decision_timestamp": 3.25,
+        "elapsed_interval": 3.0,
+        "evidence_source": "runtime_local_decay_score",
+        "execution_decay": 0.1,
+        "followup_observation": {
+          "payload": 0.0,
+          "sequence": 6,
+          "source": "target",
+          "timestamp": 3.25
+        },
+        "local_pre_state": 1.0,
+        "local_residual_state": 0.7408182206817179,
+        "observation_timestamp": 0.25,
+        "originating_observation": {
+          "payload": 1.0,
+          "sequence": 4,
+          "source": "stimulus-right",
+          "timestamp": 0.25
+        },
+        "rank": 1,
+        "score": 0.7408182206817179,
+        "score_components": {
+          "elapsed_decay_factor": 1.0,
+          "local_residual_magnitude": 0.7408182206817179
+        },
+        "scoring_decay": 0.0
+      }
+    ],
+    "learned_edge": [
+      "right",
+      "target",
+      1.0
+    ],
+    "mechanism": "Luna-13B run_condition(decay_low)",
+    "useful_edge_provenance": "Luna-13C corrective external effect, present 2/2 and targeted removal 1/2"
+  },
+  "task": {
+    "decision_rule": "second target arrival at or before 3.0 is on_time; otherwise late",
+    "external_target": "on_time for short interval and late for long interval",
+    "label_boundary": "labels affect evaluation only; no labels enter events, routing, evidence, utility or pruning",
+    "source": "Luna-13C fixed external interval-deadline task",
+    "target_independent_of_topology": true
+  },
+  "thresholds_frozen_before_evaluation": {
+    "inactivity": 1,
+    "matched_utility_cases": 2,
+    "resource_reduction": 0.1,
+    "utility": 0.1
+  }
+}
