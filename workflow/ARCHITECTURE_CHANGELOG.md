@@ -553,3 +553,33 @@ ESTABLISHED`. The corrected handoff returns to Luna-0 for independent review.
 Luna-13E is not created or authorized. No A01-A15 clause changed and no ACP
 was created.
 
+## Luna-0 independent review of corrected Luna-13D - 2026-09-29
+
+Reviewed corrected implementation
+`9ae2fb6574a4a45fa6a47c18e9aa7270bd4d3080` from synchronized published tree
+`206a3b8463ef857db5e5d5b8d2679d7e877f3bab`; the worktree was clean and
+`HEAD == origin/main`.
+
+- The prior pruning blockers are closed for the tested fixture. Runtime route
+	use count, last-use timestamp, inactivity age, observed utility and cost now
+	drive bounded pruning evidence; endpoint identity is not a primary decision
+	input.
+- The frozen rule is `inactivity_age >= threshold OR observed_utility <
+	threshold`, with inclusive inactivity equality and strict utility inequality.
+	Four OR combinations, threshold boundaries, arbitrary relabeling and
+	mirrored task-source roles independently pass.
+- The useful edge is retained from four observed uses; two zero-use stale edges
+	are pruned and two actual topology slots are released. Later relay growth is
+	ordinary bounded admission without replacement.
+- Baseline/post-pruning remain `2/2`, 8 events, energy `8.0`; post-growth is
+	`1/2`, 16 events, energy `16.0`. Resource efficiency and useful adaptation
+	remain unestablished.
+- Corrected validation: focused `10` passed, preservation `100` passed, full
+	CPU `266` passed with `1` skip, compile/diagnostics/diff passed, and artifact
+	regeneration is byte-identical.
+
+Final review status:
+`PASS WITH FOLLOW-UP — RETENTION/PRUNING VERIFIED, USEFUL ADAPTATION NOT
+ESTABLISHED`. Luna-13E is not created or authorized. No A01-A15 clause or ACP
+status changed.
+

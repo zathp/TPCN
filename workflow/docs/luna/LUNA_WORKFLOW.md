@@ -1846,6 +1846,36 @@ ESTABLISHED`. Resource efficiency remains unproven and relay growth still
 degrades the fixed task. The corrected handoff and artifacts return to Luna-0
 for independent review. Luna-13E is not created or authorized.
 
+### Luna-0 independent review of corrected Luna-13D - 2026-09-29
+
+Reviewed corrected implementation
+`9ae2fb6574a4a45fa6a47c18e9aa7270bd4d3080` from synchronized published tree
+`206a3b8463ef857db5e5d5b8d2679d7e877f3bab`. The worktree was clean and
+`HEAD == origin/main`; the contract, corrected handoff, implementation, tests
+and artifacts were present.
+
+The prior blockers are closed for the tested fixture. Pruning eligibility uses
+runtime route use count, last-use timestamp, inactivity age, observed utility
+and observed cost; endpoint identity is not an input to the primary Boolean
+decision. The declared rule is
+`inactivity_age >= threshold OR observed_utility < threshold`, with inclusive
+inactivity equality and strict utility inequality. All four OR combinations,
+threshold boundaries, arbitrary relabeling and mirrored task-source roles were
+independently reproduced. The useful edge is retained from four observed uses;
+two zero-use stale edges are pruned and two real slots are released.
+
+The valid prior resource/task distinction remains: baseline and immediate
+post-pruning are `2/2`, 8 events and proxy energy `8.0`; relay growth is normal
+bounded admission but changes the result to `1/2` at 16 events and energy
+`16.0`. Resource efficiency and useful adaptation are not established.
+
+Validation passed: corrected focused `10`, preservation bundle `100`, full CPU
+suite `266` with `1` optional skip, compileall, diagnostics and diff checks;
+corrected artifact regeneration is byte-identical. Final review status:
+`PASS WITH FOLLOW-UP — RETENTION/PRUNING VERIFIED, USEFUL ADAPTATION NOT
+ESTABLISHED`. The next question may examine harmful post-pruning admission;
+Luna-13E is not created or authorized.
+
 ## Luna-13 — GPU-Compatible Visualization Path
 
 **Authorization:** Blocked until Luna-12 passes and Luna-0 explicitly authorizes this milestone. The prompt or handoff alone is not authorization.
