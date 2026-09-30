@@ -1,18 +1,23 @@
-# Luna-13F Corrective Execution Handoff
+# Luna-13F Blinded Corrective Execution Handoff
 
-**PASS WITH FOLLOW-UP - RUNTIME EVIDENCE DISTINGUISHES CANDIDATES, GENERALITY NOT ESTABLISHED**
+**NEGATIVE RESULT - RUNTIME EVIDENCE GENERATED BUT DOES NOT PREDICT USEFUL GROWTH**
 
 ```yaml
 tpcn_handoff:
   agent: Luna-13F
+  luna_identifier: "Luna-13F blinded-mapping corrective execution"
+  descriptive_name: "Runtime-generated local candidate evidence under neutral mappings"
   task_id: runtime-generated-local-candidate-evidence-Luna-13F
-  status: pass_with_follow_up
-  classification: [EXPERIMENT, VERIFICATION, CPU-only]
-  starting_revision: 3379403a8b58649a85c2604ba3044e55e4fe99e9
-  executed_revision: 3379403a8b58649a85c2604ba3044e55e4fe99e9
+  component: "CPU runtime evidence fixture, controls, artifacts and handoff"
+  status: negative_result
+  contract_version: "1.1"
   branch: main
+  base_revision: 435277323badea0fc1fd11b56b8a51e9033db053
+  result_revision: 435277323badea0fc1fd11b56b8a51e9033db053
   starting_tree_state: clean
-  execution_tree_state: dirty_by_corrective_changes
+  executed_tree_state: dirty_by_authorized_corrective_changes
+  owner: Luna-0 / project owner
+  classification: [EXPERIMENT, VERIFICATION, CPU-only]
   architecture_change_required: false
   luna_13g: unauthorized
   fixture_id: luna-13f-runtime-generated-local-evidence-v1
@@ -21,65 +26,92 @@ tpcn_handoff:
   candidate_capacity: 2
   edge_capacity: 3
   one_slot_competition: true
-  neutral_schedule: "relay receives four short associations; noise receives four long intervals; assignment is independent of utility labels"
+  neutral_candidates: [candidate_A, candidate_B]
+  mappings: [P0, P1]
   evidence_owner: source-local TemporalAssociationPolicy at source
   evidence_bounds: "history 8, maximum score 8, maximum two candidate records, reset per run, frozen at decision"
-  decision_timestamp: 19.0
-  freeze_timestamp: 19.0
-  admission_timestamp: 19.0
-  first_held_out_timestamp: 20.0
-  primary_evidence: {relay: 4.0, noise: 0.0}
-  canonical_scores: {relay: 4.0, noise: 0.0}
-  selected_candidate: G
-  held_out: {G: "2/2", H: "1/2"}
+  primary_evidence: {relay_endpoint: 4.0, noise_endpoint: 0.0}
+  primary_selected_candidate: candidate_A
+  primary_held_out: {candidate_A: "2/2", candidate_B: "1/2"}
+  mapping_results:
+    P0: {candidate_A_endpoint: relay, candidate_B_endpoint: noise, selected: candidate_A, selected_task: "2/2"}
+    P1: {candidate_A_endpoint: noise, candidate_B_endpoint: relay, selected: candidate_A, selected_task: "1/2"}
   no_growth: "2/2"
-  no_growth_events: 8
-  selected_candidate_events: 12
-  no_growth_proxy_energy: 8.0
-  selected_candidate_proxy_energy: 12.0
   proxy_energy_unit: "activity-cost-proxy; uncalibrated"
-  contract_audit: {passed: 13, failed: 0, not_run: 5}
-  focused_tests: "10 passed"
-  preservation_tests: "62 passed"
-  full_cpu_suite: "286 passed, 1 skipped"
-  next_action: independent Luna-0 review
+  artifacts: artifacts/runtime-generated-local-evidence-13f-verified
 ```
 
-## Corrective answers
+## Outcome
 
-**OBSERVED:** `_schedule` now uses neutral endpoint order (`relay`, `noise`) and
-never reads `beneficial_role` or `harmful_role`. Swapping those external
-designations leaves the pre-admission schedule unchanged. Both candidates get
-four observations. Relay observations follow source anchors within the local
-association window; noise observations are three time units apart and do not
-form associations.
+**OBSERVED:** The previous fixture-controlled `G/H` construction was removed
+from the primary path. `beneficial_role` and `harmful_role` are absent from
+`RuntimeEvidenceConfig`; pre-admission construction uses neutral candidates and
+a frozen mapping identifier only.
 
-**OBSERVED:** `TemporalAssociationPolicy` generates bounded source-local counts
-from ordinary runtime events. Provenance records event ID/type,
-source/destination, timestamp, receiving component, neuron state before/after,
-elapsed local time, score delta, policy state and evidence timestamp. The
-unchanged `StructuralPlasticityController` scores the frozen evidence directly.
+**OBSERVED:** P0 and P1 are independent deterministic endpoint permutations.
+The same runtime motif rule gives `candidate_A` four short source-local
+associations and `candidate_B` zero long-interval associations in both
+mappings. The unchanged canonical scorer receives the resulting frozen
+`CandidateEvidence` directly and admits only one candidate from one relevant
+free slot. Both candidates are individually legal.
 
-**OBSERVED:** Evidence freezes at `19.0` before admission. Later events do not
-change historical score, rank or selected edge. Budget-exhausted evidence is
-marked incomplete and performs no scientific admission. Held-out evaluation
-starts at `20.0`, strictly after admission.
+**OBSERVED:** Runtime provenance records event ID/type, source, destination,
+timestamp, source-local owner, local neuron state before/after, elapsed local
+time, policy state before/after, score increment and evidence timestamp. All
+score-driving timestamps precede the decision. Held-out evaluation is created
+after admission.
 
-**OBSERVED:** Primary evidence and scores are relay `4.0`, noise `0.0`; `G` is
-selected under the default external mapping. Equalization produces runtime
-equality (`2.0`, `2.0`). No-evidence produces two legal zero-score candidates;
-any selection is recorded as deterministic tie-breaking, not utility evidence.
-Matched exposure, order reversal, relabeling, mirroring, shuffle, reversal,
-uniform interval, replay and bounded execution are recorded as passed in the
-audit. Five controls remain explicitly not run.
+**OBSERVED:** The higher runtime evidence is not utility-consistent across
+mappings. P0 selects `candidate_A` mapped to the relay endpoint and obtains
+`2/2`; P1 selects the same neutral candidate mapped to the noise endpoint and
+obtains `1/2`. This is a negative utility-prediction result, not evidence of
+harmful-growth avoidance.
 
-**OBSERVED:** Selected `G` preserves the held-out task at `2/2`, equal to
-no-growth `2/2`, but uses 12 events and `12.0` activity-cost-proxy units versus
-8 events and `8.0` units for no-growth. This is not a task or resource
-improvement claim. General utility prediction, scalability and generalization
-remain unproven.
+**OBSERVED:** The `4.0 / 0.0` distinction is count-based association evidence.
+The neutral decay sweep leaves canonical scores and ranking unchanged while
+changing only the local neuron state, so the result is not established as a
+decay-sensitive score.
 
-**INFERRED:** No architecture change is required by this corrective execution;
-the existing bounded local policy and canonical admission path suffice for this
-fixture. Return to Luna-0 for independent review. Luna-13F does not create,
-authorize or dispatch Luna-13G.
+**OBSERVED:** External-label mutation leaves runtime input, scores and
+selection unchanged. Locality attack diagnostics show source ownership for
+both candidate records and no cross-candidate private-state, held-out, or task
+outcome access. Candidate saturation reaches capacity, rejects the third
+candidate deterministically, reset clears prior state, and the removed state
+does not transfer to the next candidate. Mirrored neutral motifs move the
+higher evidence and selection to `candidate_B`. Order, no-evidence, future,
+shuffle, reverse, uniform, relabeling, deterministic replay and bounded
+execution controls were run.
+
+## Validation record
+
+| Command or procedure | Result | Status |
+|---|---|---|
+| `git fetch origin`, branch and ancestry verification | `main`, clean at start, authorization revision equals `HEAD` and `origin/main` | passed |
+| `python -m pytest tests/test_luna13f_runtime_generated_evidence.py -q` | 10 passed | passed |
+| `python run_runtime_generated_evidence_13f.py ... --output-dir artifacts/runtime-generated-local-evidence-13f-verified` | final negative terminal status; results and summary written | passed |
+| Preservation suites Luna-13E/13D/13C/13B/12H/12N | 62 passed | passed |
+| Full CPU suite | 286 passed, 1 skipped | passed |
+| Compile/static checks and diagnostics | `python -m compileall -q ...` passed; editor diagnostics not available in command validation | passed |
+| `git diff --check` | clean | passed |
+| CUDA/GPU/FPGA/FPAA/hardware equivalence | out of scope and non-gating | not applicable |
+
+## Interpretation
+
+**INFERRED:** Existing runtime-generated bounded local association evidence is
+real and discriminative for the tested temporal motif, but it does not predict
+which neutral endpoint will preserve the external task under independent
+mapping permutations.
+
+**HYPOTHESIZED:** Broader useful structural prediction would require evidence
+features or a fixture with stronger causal relation to held-out utility; this
+pass does not authorize adding such a mechanism.
+
+No architecture change is required by this experiment. A14 is not promoted.
+No utility memory, oracle, reward channel, threshold, probation, rollback,
+abstention, global timestep or production redesign was added. Luna-13G remains
+unauthorized.
+
+## Return
+
+Return to Luna-0 for independent review of the blinded negative result and the
+machine-readable artifacts. Do not create, authorize or dispatch Luna-13G.

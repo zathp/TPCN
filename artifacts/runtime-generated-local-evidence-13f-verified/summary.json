@@ -1,6 +1,6 @@
 {
-  "baseline_revision": "3379403a8b58649a85c2604ba3044e55e4fe99e9",
-  "executed_revision": "3379403a8b58649a85c2604ba3044e55e4fe99e9",
+  "baseline_revision": "435277323badea0fc1fd11b56b8a51e9033db053",
+  "executed_revision": "435277323badea0fc1fd11b56b8a51e9033db053",
   "execution": {
     "budget_exhausted": false,
     "completed": true,
@@ -12,7 +12,7 @@
   },
   "fixture_id": "luna-13f-runtime-generated-local-evidence-v1",
   "held_out": {
-    "G": {
+    "candidate_A": {
       "case_results": [
         {
           "completion": {
@@ -88,8 +88,9 @@
         2.0,
         4.0
       ],
+      "mapping_id": "P0",
       "phase": "held_out",
-      "policy": "G-held-out",
+      "policy": "candidate_A-held-out",
       "prediction_error_records": [],
       "proxy_energy": 12.0,
       "proxy_energy_unit": "activity-cost-proxy; uncalibrated",
@@ -200,12 +201,12 @@
           "timestamp": 4.0
         }
       ],
-      "selected_candidate": "G",
+      "selected_candidate": "candidate_A",
       "task_cases_correct": 2,
       "task_result": "2/2",
       "total_events": 12
     },
-    "H": {
+    "candidate_B": {
       "case_results": [
         {
           "completion": {
@@ -281,8 +282,9 @@
         4.0,
         6.0
       ],
+      "mapping_id": "P0",
       "phase": "held_out",
-      "policy": "H-held-out",
+      "policy": "candidate_B-held-out",
       "prediction_error_records": [],
       "proxy_energy": 12.0,
       "proxy_energy_unit": "activity-cost-proxy; uncalibrated",
@@ -393,7 +395,7 @@
           "timestamp": 6.0
         }
       ],
-      "selected_candidate": "H",
+      "selected_candidate": "candidate_B",
       "task_cases_correct": 1,
       "task_result": "1/2",
       "total_events": 12
@@ -605,7 +607,7 @@
     "('source', 'noise')": 0.0,
     "('source', 'relay')": 4.0
   },
-  "primary_selected_candidate": "G",
+  "primary_selected_candidate": "candidate_A",
   "schema_version": "TPCN-LUNA-13F-1",
-  "terminal_status": "PASS WITH FOLLOW-UP - RUNTIME EVIDENCE DISTINGUISHES CANDIDATES, GENERALITY NOT ESTABLISHED"
+  "terminal_status": "NEGATIVE RESULT - RUNTIME EVIDENCE GENERATED BUT DOES NOT PREDICT USEFUL GROWTH"
 }

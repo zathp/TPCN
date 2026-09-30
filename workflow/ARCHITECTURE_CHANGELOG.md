@@ -799,3 +799,26 @@ Luna-0 authorizes one additional corrective Luna-13F pass under the existing
 The independent Luna-0 review remains mandatory after corrective execution.
 Luna-13G remains unauthorized.
 
+## Luna-0 independent review of blinded-mapping corrective Luna-13F - 2026-09-30
+
+The independent review reproduced the raw blinded experiment but did not close
+Luna-13F. P0 maps `candidate_A` to `relay`, selects it from runtime evidence
+`4.0` versus `0.0`, and obtains `2/2`; P1 maps the same neutral candidate to
+`noise`, selects it again, and obtains `1/2`. The no-growth reference remains
+`2/2` with 8 events and `8.0` uncalibrated activity-cost-proxy units; the
+selected P0 growth case uses 12 events and `12.0` units.
+
+The source-local bounded association count and unchanged canonical scorer are
+independently reproducible, and the decay sweep confirms the score is count-
+based rather than decay-sensitive. However, the required controls are not all
+validly executed: external-label mutation and locality are declarative fields,
+future events are removed before runtime execution, held-out timestamps are
+hard-coded over a reset evaluator, no complete contract-audit artifact exists,
+and saturation/reset does not exercise eviction or the full budget boundary
+matrix.
+
+Final status: **BLOCKED - REQUIRED CONTRACT CONTROLS NOT EXECUTED**. The raw
+negative result remains an experiment observation, not an independently
+verified Luna-13F closure. No A01-A15 clause changed, no ACP was created, no
+architecture change was authorized, and Luna-13G remains unauthorized.
+

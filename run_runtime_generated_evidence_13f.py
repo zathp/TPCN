@@ -27,7 +27,7 @@ def main() -> None:
     primary = artifact["primary"]
     print("primary-selected", primary["admission"]["selected_candidate"])
     print("primary-scores", primary["admission"]["scores"])
-    print("held-out", artifact["held_out"]["G"]["task_result"], artifact["held_out"]["H"]["task_result"])
+    print("held-out", artifact["held_out"]["candidate_A"]["task_result"], artifact["held_out"]["candidate_B"]["task_result"])
     print("terminal-status", artifact["terminal_status"])
 
 

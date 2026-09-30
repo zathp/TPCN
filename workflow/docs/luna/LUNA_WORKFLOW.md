@@ -2170,6 +2170,33 @@ No architecture change is currently required. If the blinded experiment
 requires new runtime semantics, it must stop with the authorized architecture-
 change status and decision packet. Luna-13G remains unauthorized.
 
+### Luna-0 independent review of blinded-mapping corrective Luna-13F - 2026-09-30
+
+Luna-0 independently reproduced the reported P0/P1 decisions and held-out
+outcomes from the dirty corrective worktree. The focused suite passed 10 tests
+and the preservation slice passed 62 tests, but the review found that the
+required information-boundary controls are not independently executed.
+
+- P0 maps `candidate_A` to `relay` and selects it with runtime evidence
+  `4.0` versus `0.0`; its held-out result is `2/2`.
+- P1 maps `candidate_A` to `noise` and applies the same short/long motif rule;
+  it selects the same neutral candidate and its held-out result is `1/2`.
+- The runtime association count and canonical scorer chain are reproduced, but
+  `external_label_mutation` and `locality_attack` are declarative artifact
+  fields rather than mutation attacks. Future events are sliced out before
+  execution, and held-out timestamps are hard-coded metadata over a fresh
+  time-zero evaluator rather than one continuous runtime chronology.
+- No complete contract-audit artifact exists for the corrected run. The
+  saturation control demonstrates bounded rejection/reset, but not eviction;
+  the budget tests cover an incomplete run, not the required boundary matrix.
+
+Final review status: **BLOCKED - REQUIRED CONTRACT CONTROLS NOT EXECUTED**.
+The raw execution remains a negative utility-prediction result, not a verified
+Luna-13F closure. No A01-A15 clause or ACP status changed, no architecture
+change is authorized, and Luna-13G remains unauthorized. A separately
+authorized evidence-control repair is required before closure; do not add a
+utility predictor or issue Luna-13G from this review.
+
 ## Luna-13 — GPU-Compatible Visualization Path
 
 **Authorization:** Blocked until Luna-12 passes and Luna-0 explicitly authorizes this milestone. The prompt or handoff alone is not authorization.

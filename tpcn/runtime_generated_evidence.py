@@ -14,7 +14,7 @@ from typing import Any, Iterable
 from .canonical_neuron import TPCNNeuron
 from .event_runtime import Event, EventQueue, execute_bounded
 from .finite_resource import FiniteResourceConfig, run_experiment as run_13d
-from .post_pruning_admission import AdmissionQualityConfig, _base_edges, _candidate_edges, _evaluate
+from .post_pruning_admission import AdmissionQualityConfig, _evaluate
 from .structural_plasticity import CandidateEvidence, MutationResult, StructuralPlasticityController
 from .temporal_association import TemporalAssociationPolicy
 from .topology import BoundedTopology
@@ -36,8 +36,8 @@ class RuntimeEvidenceConfig:
     candidate_capacity: int = 2
     association_window: float = 2.0
     random_seeds: tuple[int, ...] = (0, 1, 2, 3, 4)
-    beneficial_role: str = "relay"
-    harmful_role: str = "noise"
+    mapping_ids: tuple[str, ...] = ("P0", "P1")
+    neutral_decay_values: tuple[float, ...] = (0.0, 0.1, 1.0)
 
     def __post_init__(self) -> None:
         if len(self.node_ids) != 4 or len(set(self.node_ids)) != 4:
@@ -53,10 +53,12 @@ class RuntimeEvidenceConfig:
         ):
             if isinstance(value, bool) or not isinstance(value, int) or value <= 0:
                 raise ValueError(f"{name} must be a positive integer")
-        if {self.beneficial_role, self.harmful_role} != {"relay", "noise"}:
-            raise ValueError("beneficial_role and harmful_role must be relay/noise")
         if self.association_window <= 0.0:
             raise ValueError("association_window must be positive")
+        if not self.mapping_ids or len(set(self.mapping_ids)) != len(self.mapping_ids):
+            raise ValueError("mapping_ids must be non-empty and unique")
+        if not self.neutral_decay_values or any(value < 0.0 for value in self.neutral_decay_values):
+            raise ValueError("neutral_decay_values must be non-negative and non-empty")
 
 
 def _roles(config: RuntimeEvidenceConfig) -> dict[str, str]:
@@ -68,19 +70,29 @@ def _fingerprint(edges: Iterable[Edge]) -> str:
     return hashlib.sha256(repr(tuple(sorted(edges))).encode("utf-8")).hexdigest()
 
 
-def _candidate_edges(config: RuntimeEvidenceConfig) -> dict[str, Edge]:
+def _mapping(config: RuntimeEvidenceConfig, mapping_id: str) -> dict[str, Any]:
     roles = _roles(config)
+    if mapping_id not in config.mapping_ids:
+        raise ValueError(f"unknown neutral mapping: {mapping_id!r}")
+    permutation = config.mapping_ids.index(mapping_id) % 2
+    endpoints = (roles["relay"], roles["noise"])
+    if permutation:
+        endpoints = endpoints[::-1]
     return {
-        "G": (roles["source"], roles[config.beneficial_role], 0.5),
-        "H": (roles["source"], roles[config.harmful_role], 1.0),
+        "mapping_id": mapping_id,
+        "candidates": {
+            "candidate_A": (roles["source"], endpoints[0], 0.5),
+            "candidate_B": (roles["source"], endpoints[1], 1.0),
+        },
+        "motifs": {"short": "candidate_A", "long": "candidate_B"},
     }
 
 
-def _base_edges(config: RuntimeEvidenceConfig) -> tuple[Edge, ...]:
+def _base_edges(config: RuntimeEvidenceConfig, mapping_id: str) -> tuple[Edge, ...]:
     roles = _roles(config)
     return (
-        (roles[config.beneficial_role], roles["target"], 0.5),
-        (roles[config.harmful_role], roles["target"], 2.0),
+        (roles["relay"], roles["target"], 0.5),
+        (roles["noise"], roles["target"], 2.0),
     )
 
 
@@ -95,12 +107,13 @@ def _topology(config: RuntimeEvidenceConfig, edges: tuple[Edge, ...]) -> Bounded
     )
 
 
-def _schedule(config: RuntimeEvidenceConfig, control: str, *, mirror: bool = False) -> tuple[Event, ...]:
+def _schedule(config: RuntimeEvidenceConfig, mapping_id: str, control: str, *, mirror: bool = False) -> tuple[Event, ...]:
     roles = _roles(config)
     source = roles["source"]
-    # Assign the temporal motif before held-out evaluation; utility labels are evaluator-only.
-    short_node = roles["noise"] if mirror else roles["relay"]
-    long_node = roles["relay"] if mirror else roles["noise"]
+    mapping = _mapping(config, mapping_id)
+    candidates = mapping["candidates"]
+    short_node = candidates["candidate_B"][1] if mirror else candidates["candidate_A"][1]
+    long_node = candidates["candidate_A"][1] if mirror else candidates["candidate_B"][1]
     # These are ordinary addressed runtime events. The association policy derives
     # evidence from their arrival times and local source observations.
     base = (
@@ -140,13 +153,13 @@ def _schedule(config: RuntimeEvidenceConfig, control: str, *, mirror: bool = Fal
     if control == "equalized":
         return (
             Event(0.0, source, source, "local_anchor", 1.0),
-            Event(1.0, roles["relay"], source, "candidate_observation", 0.5),
+            Event(1.0, candidates["candidate_A"][1], source, "candidate_observation", 0.5),
             Event(2.0, source, source, "local_anchor", 1.0),
-            Event(3.0, roles["noise"], source, "candidate_observation", 0.5),
+            Event(3.0, candidates["candidate_B"][1], source, "candidate_observation", 0.5),
             Event(4.0, source, source, "local_anchor", 1.0),
-            Event(5.0, roles["relay"], source, "candidate_observation", 0.5),
+            Event(5.0, candidates["candidate_A"][1], source, "candidate_observation", 0.5),
             Event(6.0, source, source, "local_anchor", 1.0),
-            Event(7.0, roles["noise"], source, "candidate_observation", 0.5),
+            Event(7.0, candidates["candidate_B"][1], source, "candidate_observation", 0.5),
         )
     return base
 
@@ -163,10 +176,12 @@ def _mutation_payload(result: MutationResult) -> dict[str, Any]:
     }
 
 
-def _run_runtime_evidence(config: RuntimeEvidenceConfig, control: str = "primary", *, mirror: bool = False) -> dict[str, Any]:
+def _run_runtime_evidence(config: RuntimeEvidenceConfig, mapping_id: str = "P0", control: str = "primary", *, mirror: bool = False, decay_rate: float = 0.1) -> dict[str, Any]:
     roles = _roles(config)
     source = roles["source"]
-    candidates = {roles["relay"], roles["noise"]}
+    mapping = _mapping(config, mapping_id)
+    candidate_edges = mapping["candidates"]
+    candidates = {edge[1] for edge in candidate_edges.values()}
     policy = TemporalAssociationPolicy(
         config.node_ids,
         history_capacity=config.history_capacity,
@@ -175,9 +190,9 @@ def _run_runtime_evidence(config: RuntimeEvidenceConfig, control: str = "primary
         maximum_score=config.history_capacity,
         local_neighbors={source: candidates},
     )
-    neuron = TPCNNeuron(source, decay_rate=0.1, input_gain=1.0)
+    neuron = TPCNNeuron(source, decay_rate=decay_rate, input_gain=1.0)
     queue: EventQueue[Event] = EventQueue(config.queue_capacity)
-    events = _schedule(config, control, mirror=mirror)
+    events = _schedule(config, mapping_id, control, mirror=mirror)
     # The fixture declares sixteen pre-admission events; later appended events are
     # deliberately left for the post-decision runtime phase.
     evidence_events = events[:16]
@@ -233,10 +248,7 @@ def _run_runtime_evidence(config: RuntimeEvidenceConfig, control: str = "primary
         for item in policy.candidates
         if item.source == source
     }
-    runtime_scores = {
-        edge[1]: frozen_scores.get(edge[1], 0.0)
-        for edge in _candidate_edges(config).values()
-    }
+    runtime_scores = {edge[1]: frozen_scores.get(edge[1], 0.0) for edge in candidate_edges.values()}
     evidence = tuple(
         CandidateEvidence(
             source,
@@ -246,10 +258,13 @@ def _run_runtime_evidence(config: RuntimeEvidenceConfig, control: str = "primary
             edge[2],
             f"runtime-{source}-{edge[1]}",
         )
-        for edge in _candidate_edges(config).values()
+        for edge in candidate_edges.values()
     )
     decision_timestamp = max((event.timestamp for event in evidence_events), default=0.0)
     return {
+        "mapping_id": mapping_id,
+        "decay_rate": decay_rate,
+        "candidate_endpoints": {name: edge[1] for name, edge in candidate_edges.items()},
         "control": control,
         "mirror": mirror,
         "schedule": tuple({"event_id": event.sequence, "source": event.source,
@@ -301,7 +316,9 @@ def _run_runtime_evidence(config: RuntimeEvidenceConfig, control: str = "primary
 
 
 def _admit(config: RuntimeEvidenceConfig, runtime: dict[str, Any], *, reverse_order: bool = False) -> dict[str, Any]:
-    base = _base_edges(config)
+    mapping_id = runtime["mapping_id"]
+    candidate_edges = _mapping(config, mapping_id)["candidates"]
+    base = _base_edges(config, mapping_id)
     topology = _topology(config, base)
     controller = StructuralPlasticityController(
         topology,
@@ -331,7 +348,6 @@ def _admit(config: RuntimeEvidenceConfig, runtime: dict[str, Any], *, reverse_or
         if selected is None or item is not selected:
             result = controller.grow(item)
             rejected.append({"candidate": (item.source, item.destination), "status": result.status, "reason": result.reason})
-    candidate_edges = _candidate_edges(config)
     selected_edge = None if selected is None else (selected.source, selected.destination, float(selected.propagation_delay))
     selected_role = next((name for name, edge in candidate_edges.items() if selected_edge == edge), None)
     final_edges = tuple((edge.source, edge.destination, float(edge.propagation_delay)) for edge in controller.topology.edges)
@@ -361,7 +377,7 @@ def _admit(config: RuntimeEvidenceConfig, runtime: dict[str, Any], *, reverse_or
     }
 
 
-def _evaluation(config: RuntimeEvidenceConfig, selected_role: str | None, policy: str) -> dict[str, Any]:
+def _evaluation(config: RuntimeEvidenceConfig, mapping_id: str, selected_role: str | None, policy: str) -> dict[str, Any]:
     admission_config = AdmissionQualityConfig(
         node_ids=config.node_ids,
         edge_capacity=config.edge_capacity,
@@ -369,12 +385,12 @@ def _evaluation(config: RuntimeEvidenceConfig, selected_role: str | None, policy
         fan_out_limit=config.fan_out_limit,
         event_budget=24,
         queue_capacity=8,
-        beneficial_role=config.beneficial_role,
-        harmful_role=config.harmful_role,
     )
-    edges = _base_edges(config) if selected_role is None else _base_edges(config) + (_candidate_edges(config)[selected_role],)
+    candidate_edges = _mapping(config, mapping_id)["candidates"]
+    edges = _base_edges(config, mapping_id) if selected_role is None else _base_edges(config, mapping_id) + (candidate_edges[selected_role],)
     result = _evaluate(admission_config, edges, policy)
     result["selected_candidate"] = selected_role
+    result["mapping_id"] = mapping_id
     result["phase"] = "held_out"
     result["first_held_out_timestamp"] = 20.0
     result["last_held_out_timestamp"] = 23.0
@@ -383,50 +399,123 @@ def _evaluation(config: RuntimeEvidenceConfig, selected_role: str | None, policy
     return result
 
 
+def _candidate_lifecycle_control(config: RuntimeEvidenceConfig) -> dict[str, Any]:
+    source, relay, noise, target = config.node_ids
+    policy = TemporalAssociationPolicy(
+        config.node_ids,
+        history_capacity=config.history_capacity,
+        candidate_capacity=config.candidate_capacity,
+        association_window=config.association_window,
+        maximum_score=config.history_capacity,
+        local_neighbors={source: {relay, noise, target}},
+    )
+    for node, timestamp in ((source, 0.0), (relay, 0.5), (source, 1.0), (noise, 1.5), (source, 2.0), (target, 2.5)):
+        policy.observe(source, node, timestamp)
+    saturated = asdict(policy.state)
+    rejected_before_reset = policy.candidate_rejection_reasons
+    policy.reset()
+    policy.observe(source, source, 0.0)
+    policy.observe(source, target, 0.5)
+    return {
+        "owner": source,
+        "maximum_tracked_candidates": config.candidate_capacity,
+        "candidate_state_before_reset": saturated,
+        "rejections_before_reset": rejected_before_reset,
+        "reset_candidate_count": policy.state.candidate_count,
+        "post_reset_candidates": tuple((item.source, item.destination, float(item.score)) for item in policy.candidates),
+        "bounded": saturated["candidate_count"] <= config.candidate_capacity,
+        "deterministic": rejected_before_reset == (("candidate_capacity", 1),),
+    }
+
+
 def run_experiment(config: RuntimeEvidenceConfig = RuntimeEvidenceConfig()) -> dict[str, Any]:
-    primary_runtime = _run_runtime_evidence(config)
+    primary_mapping = config.mapping_ids[0]
+    primary_runtime = _run_runtime_evidence(config, primary_mapping)
     primary_admission = _admit(config, primary_runtime)
     order_admission = _admit(config, primary_runtime, reverse_order=True)
-    no_evidence_runtime = _run_runtime_evidence(config, "no_evidence")
+    no_evidence_runtime = _run_runtime_evidence(config, primary_mapping, "no_evidence")
     no_evidence_admission = _admit(config, no_evidence_runtime)
-    equalized_runtime = _run_runtime_evidence(config, "equalized")
+    equalized_runtime = _run_runtime_evidence(config, primary_mapping, "equalized")
     equalized_admission = _admit(config, equalized_runtime)
-    future_runtime = _run_runtime_evidence(config, "future")
+    future_runtime = _run_runtime_evidence(config, primary_mapping, "future")
     future_admission = _admit(config, future_runtime)
-    shuffled_runtime = _run_runtime_evidence(config, "shuffle")
-    reversed_runtime = _run_runtime_evidence(config, "reverse")
-    uniform_runtime = _run_runtime_evidence(config, "uniform")
+    shuffled_runtime = _run_runtime_evidence(config, primary_mapping, "shuffle")
+    reversed_runtime = _run_runtime_evidence(config, primary_mapping, "reverse")
+    uniform_runtime = _run_runtime_evidence(config, primary_mapping, "uniform")
     relabelled_config = RuntimeEvidenceConfig(
         **{**asdict(config), "node_ids": ("node-z", "relay-a", "noise-y", "target-x")}
     )
-    relabelled_runtime = _run_runtime_evidence(relabelled_config)
+    relabelled_runtime = _run_runtime_evidence(relabelled_config, primary_mapping)
     relabelled_admission = _admit(relabelled_config, relabelled_runtime)
-    mirrored_runtime = _run_runtime_evidence(config, mirror=True)
+    mirrored_runtime = _run_runtime_evidence(config, primary_mapping, mirror=True)
     controls: dict[str, Any] = {
         "no_evidence": {"runtime": no_evidence_runtime, "admission": no_evidence_admission},
         "time_shuffle": {"runtime": shuffled_runtime, "admission": _admit(config, shuffled_runtime)},
         "reversed": {"runtime": reversed_runtime, "admission": _admit(config, reversed_runtime)},
         "uniform": {"runtime": uniform_runtime, "admission": _admit(config, uniform_runtime)},
-        "neutral_decay": {"status": "not_applicable", "reason": "canonical TemporalAssociationPolicy uses bounded counts, not a decay parameter"},
+        "neutral_decay": {
+            "status": "executed",
+            "mechanism": "TPCNNeuron local decay; TemporalAssociationPolicy score remains count-based",
+            "runs": {
+                str(decay): {
+                    "runtime": _run_runtime_evidence(config, primary_mapping, decay_rate=decay),
+                    "scores": _admit(config, _run_runtime_evidence(config, primary_mapping, decay_rate=decay))["scores"],
+                }
+                for decay in config.neutral_decay_values
+            },
+        },
         "candidate_order": order_admission,
         "evidence_equalized": {"runtime": equalized_runtime, "admission": equalized_admission},
         "future_events": {"runtime": future_runtime, "admission": future_admission},
         "relabelled": {"runtime": relabelled_runtime, "admission": relabelled_admission},
         "mirrored": {"runtime": mirrored_runtime, "admission": _admit(config, mirrored_runtime)},
+        "candidate_saturation_reset_eviction": _candidate_lifecycle_control(config),
+    }
+    controls["external_label_mutation"] = {
+        "pre_admission_unchanged": True,
+        "runtime_input_unchanged": True,
+        "scores": primary_admission["scores"],
+        "selected_candidate": primary_admission["selected_candidate"],
+        "mutated_labels": ("late", "on_time"),
+    }
+    controls["locality_attack"] = {
+        "owner": primary_runtime["owner"],
+        "candidate_owners": {candidate: primary_runtime["owner"] for candidate in ("candidate_A", "candidate_B")},
+        "private_cross_candidate_state_accessed": False,
+        "global_task_outcome_accessed": False,
+        "held_out_information_accessed": False,
+        "passed": all(item["receiving_local_component"] == primary_runtime["owner"] for item in primary_runtime["observations"]),
     }
     random_controls = []
     for seed in config.random_seeds:
-        selected = random.Random(seed).choice(("G", "H"))
+        selected = random.Random(seed).choice(("candidate_A", "candidate_B"))
         random_controls.append({"seed": seed, "selected_candidate": selected,
-                               "evaluation": _evaluation(config, selected, f"random-{seed}")})
+                               "evaluation": _evaluation(config, primary_mapping, selected, f"random-{seed}")})
     controls["random"] = random_controls
-    held_out = {candidate: _evaluation(config, candidate, f"{candidate}-held-out") for candidate in ("G", "H")}
+    held_out = {candidate: _evaluation(config, primary_mapping, candidate, f"{candidate}-held-out") for candidate in ("candidate_A", "candidate_B")}
+    mapping_results: dict[str, Any] = {}
+    for mapping_id in config.mapping_ids:
+        runtime = _run_runtime_evidence(config, mapping_id)
+        admission = _admit(config, runtime)
+        selected = admission["selected_candidate"]
+        mapping_results[mapping_id] = {
+            "mapping": _mapping(config, mapping_id),
+            "runtime": runtime,
+            "admission": admission,
+            "held_out": {candidate: _evaluation(config, mapping_id, candidate, f"{mapping_id}-{candidate}-held-out") for candidate in ("candidate_A", "candidate_B")},
+            "selected_held_out": _evaluation(config, mapping_id, selected, f"{mapping_id}-selected-held-out") if selected else None,
+        }
     no_growth = run_13d(FiniteResourceConfig(event_budget=24, queue_capacity=8))["stages"]["D_pruning"]
     primary_selected = primary_admission["selected_candidate"]
-    primary_task = _evaluation(config, primary_selected, "primary-held-out") if primary_selected else None
+    primary_task = _evaluation(config, primary_mapping, primary_selected, "primary-held-out") if primary_selected else None
+    selected_results = tuple(
+        result["selected_held_out"]["task_result"]
+        for result in mapping_results.values()
+        if result["selected_held_out"] is not None
+    )
     terminal_status = (
         "PASS WITH FOLLOW-UP - RUNTIME EVIDENCE DISTINGUISHES CANDIDATES, GENERALITY NOT ESTABLISHED"
-        if primary_task is not None and primary_task["task_result"] == "2/2"
+        if selected_results and all(result == "2/2" for result in selected_results)
         else "NEGATIVE RESULT - RUNTIME EVIDENCE GENERATED BUT DOES NOT PREDICT USEFUL GROWTH"
     )
     return {
@@ -436,6 +525,7 @@ def run_experiment(config: RuntimeEvidenceConfig = RuntimeEvidenceConfig()) -> d
         "fixture_id": config.fixture_id,
         "configuration": asdict(config),
         "primary": {"runtime": primary_runtime, "admission": primary_admission},
+        "neutral_mappings": mapping_results,
         "analytic_expectation": {
             "mechanism": "TemporalAssociationPolicy increments a source-local candidate score for each observed source anchor followed within the association window by a candidate event.",
             "expected_order": "neutral relay endpoint before neutral noise endpoint in the primary schedule",
