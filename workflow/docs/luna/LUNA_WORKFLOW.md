@@ -1821,6 +1821,31 @@ The next eligible boundary is a separately reviewed correction or experiment
 with evidence-derived pruning, meaningful frozen thresholds and identity-
 independent checks. Luna-13E is not created or authorized.
 
+### Luna-13D corrective pass - 2026-09-29
+
+The corrective pass started from Luna-0 review publication state
+`89de90b183cd54f1ae24f433b6161f1b14c23c0e` and produced implementation
+revision `9ae2fb6`. It preserves the independently valid prior findings:
+the fixed Luna-13C task, real capacity release, normal post-pruning admission,
+capacity rejection reasons, random seed behavior, and post-growth regression
+from `2/2` at 8 events to `1/2` at 16 events.
+
+The endpoint-keyed pruning score map was removed. Pruning now records bounded
+runtime edge use count, last-use timestamp, inactivity age, observed utility,
+observed cost and pruning score. Frozen semantics are:
+`inactivity_age >= inactivity_threshold OR observed_utility < utility_threshold`;
+inactivity equality is eligible and utility equality is retained. Eligible
+edges are selected by lowest observed score, with a bounded maximum of two.
+Threshold sweeps, relabeled IDs and mirrored task-source roles show decisions
+follow measured evidence rather than endpoint names. The useful edge remains
+retained; two zero-use stale edges are pruned and release two slots.
+
+The corrected result is
+`PASS WITH FOLLOW-UP — RETENTION/PRUNING ESTABLISHED, USEFUL ADAPTATION NOT
+ESTABLISHED`. Resource efficiency remains unproven and relay growth still
+degrades the fixed task. The corrected handoff and artifacts return to Luna-0
+for independent review. Luna-13E is not created or authorized.
+
 ## Luna-13 — GPU-Compatible Visualization Path
 
 **Authorization:** Blocked until Luna-12 passes and Luna-0 explicitly authorizes this milestone. The prompt or handoff alone is not authorization.

@@ -196,3 +196,79 @@ Return this handoff and both artifacts to Luna-0 for independent review.
 Luna-13E is not authorized. Broader efficiency, generalization, workload
 adaptation, serialized checkpoint equivalence, and hardware claims remain
 unproven.
+
+## Corrective pass - 2026-09-29
+
+The corrective pass started from the final Luna-0 review state
+`89de90b183cd54f1ae24f433b6161f1b14c23c0e` with a clean synchronized tree.
+The corrective implementation revision is `9ae2fb6`; corrected artifacts were
+generated from that revision with clean generation state.
+
+### Corrective answers
+
+1. **Hard-coded endpoint score map:** Removed from the primary pruning
+  decision. No endpoint, role label, task label or expected-answer lookup is
+  used to calculate pruning score.
+2. **Runtime evidence:** Each edge records use count, last-use timestamp,
+  inactivity age, observed utility, observed cost and pruning score. The
+  score is the measured route use count, an activity-local proxy.
+3. **Inactivity threshold:** Operational with equality defined as pruning:
+  `inactivity_age >= inactivity_threshold`. The validation sweep at ages
+  `1.0`, `2.0`, `3.0` with threshold `2` yields `False`, `True`, `True`.
+4. **Utility threshold:** Operational with equality retained:
+  `observed_utility < utility_threshold`. With recent zero-use evidence,
+  thresholds `0.0` and `0.1` yield `False` and `True`.
+5. **Combination semantics:** Eligibility is deterministic OR. Reasons are
+  `inactivity`, `utility`, `inactivity_and_utility`, or `retained`; eligible
+  edges are selected by lowest observed score, maximum two.
+6. **Relabeling:** Relabeled IDs `u-left/u-right/u-target/u-relay/u-noise`
+  preserve the evidence-role decisions and release two slots.
+7. **Mirroring:** With the task source mirrored to `m-left`, the useful edge
+  is `m-left -> m-target`; measured unused paths from `m-right`/`m-noise`
+  are pruned. Decisions follow evidence rather than the original names.
+8. **Useful retention:** The original useful edge has four observed uses,
+  utility `4.0`, last use `3.0`, age `1.0`, and remains retained under the
+  frozen threshold `2`.
+9. **Low-value pruning:** `left -> noise` and `noise -> target` have zero
+  observed uses, utility `0.0`, age `4.0`, and are pruned for
+  `inactivity_and_utility`.
+10. **Capacity:** Three edges before pruning and one after pruning under
+   capacity six release two actual slots; topology state confirms the count.
+11. **Later admission:** `right -> relay` and `relay -> target` are admitted
+   through normal bounded growth. No replacement mechanism is used.
+12. **Post-growth utility:** The prior result remains: baseline and immediate
+   post-pruning are `2/2`; post-growth is `1/2`.
+13. **Resources:** Baseline/post-pruning use 8 events and proxy energy `8.0`;
+   post-growth uses 16 events and proxy energy `16.0`, with target latencies
+   `(1.0, 1.0)` caused by duplicate direct/relay arrivals.
+14. **Random controls:** Seed 0 selects the useful edge and reaches `2/2`;
+   seeds 1-4 select the non-useful edge and reach `1/2`.
+15. **Remaining unproven:** No resource-efficiency benefit, useful adaptation
+   after relay growth, generalization, scalability, full serialized
+   checkpoint equivalence, or hardware equivalence is established.
+
+### Corrective artifact and validation record
+
+The corrected `results.json` contains `pruning_semantics`, runtime
+`edge_evidence`, `threshold_validation`, and `identity_controls` sections.
+The corrected `summary.json` retains the task/resource run table. Temporary
+regeneration is semantically equivalent; the only difference is the expected
+`tree_state_at_generation` value because the replay runs beside the committed
+artifact directory.
+
+| Check | Result |
+|---|---|
+| Corrected Luna-13D focused suite | 10 passed |
+| Corrected preservation bundle | 100 passed |
+| Luna-13C dedicated tests | 6 passed |
+| Full CPU suite | 262 passed, 1 skipped |
+| Compileall, diagnostics, `git diff --check` | passed |
+| Corrected artifact replay | semantically equivalent; summary byte-identical |
+
+The corrected mechanism status is:
+
+`PASS WITH FOLLOW-UP — RETENTION/PRUNING ESTABLISHED, USEFUL ADAPTATION NOT ESTABLISHED`
+
+This corrective status supersedes the prior execution status for the pruning
+claim. It does not claim resource efficiency. The next action is Luna-0
+independent review; Luna-13E remains unauthorized.

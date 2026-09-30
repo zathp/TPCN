@@ -524,3 +524,32 @@ separately reviewed evidence-derived pruning correction may be eligible later;
 Luna-13E is not created or authorized. No A01-A15 clause changed and no ACP
 was created.
 
+## Luna-13D corrective pass - 2026-09-29
+
+The corrective pass started from Luna-0 review publication state
+`89de90b183cd54f1ae24f433b6161f1b14c23c0e` and produced implementation
+revision `9ae2fb6`.
+
+- The endpoint-keyed pruning score map was removed. Bounded runtime evidence
+	now includes use count, last use, inactivity age, observed utility, cost and
+	pruning score.
+- Frozen semantics are `inactivity_age >= inactivity_threshold OR
+	observed_utility < utility_threshold`; inactivity equality is eligible and
+	utility equality is retained. Threshold sweeps are recorded, and relabeled
+	and mirrored fixtures follow evidence roles rather than endpoint names.
+- The useful edge is retained from four observed uses while two zero-use stale
+	edges are pruned, releasing two actual slots. Later relay growth remains
+	ordinary bounded admission without replacement.
+- The fixed task remains `2/2` after pruning and falls to `1/2` after relay
+	growth at 16 events versus 8 baseline events. Resource efficiency and useful
+	adaptation are not established.
+- Corrective validation passed `10` focused tests, `100` preservation tests,
+	and `266` full CPU tests with `1` optional skip; compile, diagnostics and
+	diff checks passed.
+
+Final corrective status:
+`PASS WITH FOLLOW-UP — RETENTION/PRUNING ESTABLISHED, USEFUL ADAPTATION NOT
+ESTABLISHED`. The corrected handoff returns to Luna-0 for independent review.
+Luna-13E is not created or authorized. No A01-A15 clause changed and no ACP
+was created.
+
