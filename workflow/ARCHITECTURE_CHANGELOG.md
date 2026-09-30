@@ -502,6 +502,7 @@ no ACP or architecture promotion is created by this entry.
 Reviewed implementation revision
 `f11a44f24fa9ad84e111435ed0ae8390b41c49a6` from synchronized clean `main`
 with `HEAD == origin/main` at review start.
+The Luna-0 review publication revision is `8449562`.
 
 - Independently confirmed the useful `right -> target, 1.0` edge, fixed task
 	result, capacity 4/5/6 rejection semantics, two genuinely freed slots,

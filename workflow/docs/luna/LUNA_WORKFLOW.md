@@ -1791,6 +1791,8 @@ external task, baseline/pruning/post-growth metrics, capacity reasons,
 budget stability, random seeds, Luna-13C causal matrix, and byte-identical
 artifact regeneration.
 
+The Luna-0 review publication revision is `8449562`.
+
 The review separates the findings. The useful `right -> target, 1.0` edge is
 task-relevant and remains in the graph after pruning. The graph has three
 edges before pruning and one afterward, releasing two actual edge-capacity

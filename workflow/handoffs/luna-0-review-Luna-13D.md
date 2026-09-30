@@ -13,6 +13,7 @@ versus low-value pruning is not independently established.
 
 - Starting/reviewed implementation revision:
   `f11a44f24fa9ad84e111435ed0ae8390b41c49a6`
+- Luna-0 review publication revision: `8449562`
 - Implementation parent: `c35f10e`
 - Contract publication: `0fa71bcf4614c765c47f07ecdcbd85105edda7f5`
 - Branch: `main`
