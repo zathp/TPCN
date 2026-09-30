@@ -1,0 +1,184 @@
+{
+  "complete": true,
+  "not_applicable": [
+    "candidate_expiry",
+    "candidate_eviction"
+  ],
+  "requirements": [
+    {
+      "evidence": "P0/P1 use candidate_A/candidate_B identities and no utility-role fields.",
+      "mandatory_for_outcome": true,
+      "requirement": "schedule_neutrality",
+      "status": "PASS"
+    },
+    {
+      "evidence": "P0 and P1 are recorded with endpoint permutations before held-out evaluation.",
+      "mandatory_for_outcome": true,
+      "requirement": "blinded_mappings",
+      "status": "PASS"
+    },
+    {
+      "evidence": "Every score-driving observation carries event and local-state provenance.",
+      "mandatory_for_outcome": true,
+      "requirement": "runtime_evidence_provenance",
+      "status": "PASS"
+    },
+    {
+      "evidence": "TemporalAssociationPolicy declares finite history and candidate bounds.",
+      "mandatory_for_outcome": true,
+      "requirement": "evidence_boundedness",
+      "status": "PASS"
+    },
+    {
+      "evidence": "CandidateEvidence is passed to StructuralPlasticityController.",
+      "mandatory_for_outcome": true,
+      "requirement": "canonical_scorer",
+      "status": "PASS"
+    },
+    {
+      "evidence": "Two legal candidates compete for one edge slot when pre-admission work completes.",
+      "mandatory_for_outcome": true,
+      "requirement": "one_slot_competition",
+      "status": "PASS"
+    },
+    {
+      "evidence": "Held-out route events run at timestamps after admission.",
+      "mandatory_for_outcome": true,
+      "requirement": "chronology",
+      "status": "PASS"
+    },
+    {
+      "evidence": "Before/equal boundary attempts are rejected; later attempt is accepted.",
+      "mandatory_for_outcome": true,
+      "requirement": "chronology_attack",
+      "status": "PASS"
+    },
+    {
+      "evidence": "Post-admission runtime continuation changes live state but not the completed decision.",
+      "mandatory_for_outcome": true,
+      "requirement": "future_exclusion",
+      "status": "PASS"
+    },
+    {
+      "evidence": "Only held-out external target metadata changes.",
+      "mandatory_for_outcome": true,
+      "requirement": "external_label_mutation",
+      "status": "PASS"
+    },
+    {
+      "evidence": "Prohibited metadata mutations leave raw evidence unchanged.",
+      "mandatory_for_outcome": true,
+      "requirement": "locality_attack",
+      "status": "PASS"
+    },
+    {
+      "evidence": "Runtime sweep records score/rank/selection at each decay rate.",
+      "mandatory_for_outcome": true,
+      "requirement": "neutral_decay_runtime_sweep",
+      "status": "PASS"
+    },
+    {
+      "evidence": "Capacity rejection and reset/reuse are measured.",
+      "mandatory_for_outcome": true,
+      "requirement": "candidate_lifecycle_saturation_reset",
+      "status": "PASS"
+    },
+    {
+      "evidence": "NOT APPLICABLE - CONDITION NOT TRIGGERED: canonical policy has no expiry mechanism.",
+      "mandatory_for_outcome": false,
+      "requirement": "candidate_expiry",
+      "status": "NOT APPLICABLE - CONDITION NOT TRIGGERED"
+    },
+    {
+      "evidence": "NOT APPLICABLE - CONDITION NOT TRIGGERED: canonical policy uses rejection at full capacity.",
+      "mandatory_for_outcome": false,
+      "requirement": "candidate_eviction",
+      "status": "NOT APPLICABLE - CONDITION NOT TRIGGERED"
+    },
+    {
+      "evidence": "Mirrored runtime motif moves the evidence preference.",
+      "mandatory_for_outcome": true,
+      "requirement": "valid_mirrored_roles",
+      "status": "PASS"
+    },
+    {
+      "evidence": "No informative exposure produces a score tie.",
+      "mandatory_for_outcome": true,
+      "requirement": "no_evidence",
+      "status": "PASS"
+    },
+    {
+      "evidence": "Matched runtime exposure produces equal scores.",
+      "mandatory_for_outcome": true,
+      "requirement": "equalization",
+      "status": "PASS"
+    },
+    {
+      "evidence": "Selection is independent of enumeration order.",
+      "mandatory_for_outcome": true,
+      "requirement": "candidate_order_reversal",
+      "status": "PASS"
+    },
+    {
+      "evidence": "Renamed nodes preserve selection.",
+      "mandatory_for_outcome": true,
+      "requirement": "relabeling",
+      "status": "PASS"
+    },
+    {
+      "evidence": "Shuffled timestamps are executed and recorded.",
+      "mandatory_for_outcome": true,
+      "requirement": "time_shuffle",
+      "status": "PASS"
+    },
+    {
+      "evidence": "Reversed timestamps are executed and recorded.",
+      "mandatory_for_outcome": true,
+      "requirement": "reverse_timing",
+      "status": "PASS"
+    },
+    {
+      "evidence": "Uniform timestamps are executed and recorded.",
+      "mandatory_for_outcome": true,
+      "requirement": "uniform_interval",
+      "status": "PASS"
+    },
+    {
+      "evidence": "B-1, B, B+1 and larger budgets are compared.",
+      "mandatory_for_outcome": true,
+      "requirement": "budget_boundary",
+      "status": "PASS"
+    },
+    {
+      "evidence": "Same configuration reproduces the artifact.",
+      "mandatory_for_outcome": true,
+      "requirement": "deterministic_replay",
+      "status": "PASS"
+    },
+    {
+      "evidence": "Held-out cases complete after admission.",
+      "mandatory_for_outcome": true,
+      "requirement": "held_out_evaluation",
+      "status": "PASS"
+    },
+    {
+      "evidence": "No-growth reference remains 2/2.",
+      "mandatory_for_outcome": true,
+      "requirement": "no_growth_baseline",
+      "status": "PASS"
+    },
+    {
+      "evidence": "Events, queue and uncalibrated activity-cost proxy are recorded.",
+      "mandatory_for_outcome": true,
+      "requirement": "resource_accounting",
+      "status": "PASS"
+    }
+  ],
+  "schema_version": "TPCN-LUNA-13F-CONTRACT-AUDIT-1",
+  "summary": {
+    "FAIL": 0,
+    "NOT APPLICABLE - CONDITION NOT TRIGGERED": 2,
+    "PASS": 26
+  },
+  "terminal_status": "NEGATIVE RESULT - RUNTIME EVIDENCE GENERATED BUT DOES NOT PREDICT USEFUL GROWTH"
+}
