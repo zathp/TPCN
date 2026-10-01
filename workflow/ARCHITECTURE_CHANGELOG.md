@@ -38,6 +38,36 @@ Evidence and exact commands are recorded in
 for staged implementation, N2 remains unauthorized, A01-A15 remain unchanged,
 Luna-13F remains closed and Luna-13G remains unauthorized.
 
+## Luna-16 ACP-0002 Stage N2 authorization - 2026-09-30
+
+Following publication and independent verification of N1, Luna-0 selected
+**CONTROLLED CANONICAL CUTOVER**. N1 is the final representation-compatible
+legacy-execution version. Luna-16 is authorized to activate the accepted
+Model-B static transfer as the new canonical execution revision:
+
+`z_ij = tanh(w_ij * a_i)` and
+`v_ij = d_ij * z_ij + (1 - d_ij) * r_ij`.
+
+The contribution is delayed by the existing positive finite `tau_ij` and then
+uses the existing destination local-time decay, bounded integration, neuron
+gain and fixed nonlinearity. The N1 defaults `w=1,d=1,r=0` intentionally yield
+`tanh(a)`, not raw `a`; no legacy-equivalence claim is made. Historical
+committed results retain their original architecture context, and future
+experiments must identify the N2 revision. No permanent per-edge legacy flag
+is introduced.
+
+This authorization is static only. Edge learning, edge maturation,
+probationary edges, new utility/pruning policy, temporal mini-networks,
+hardware-specific voltage semantics and later ACP-0002 stages remain
+unauthorized. Luna-16 must establish analytic transfer and deterministic
+Model-B baseline evidence while preserving A01-A15, causality, bounded
+topology/dynamics, label/future isolation and observer non-interference.
+TPCV-1 remains an explicit observational boundary; any versioning dependency
+must be returned to Luna-0 rather than silently losing active edge state.
+
+The authorization contract is `.github/agents/luna-16.agent.md` and the
+governance handoff is `workflow/handoffs/luna-16-n2-authorization-Luna-0.md`.
+
 ## 1.0 — 2026-09-26
 
 Established the documented candidate contract from the source conversation and current owner request.

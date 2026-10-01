@@ -2870,3 +2870,44 @@ N1 is complete. ACP-0002 remains accepted for staged implementation; N2 is
 not authorized. A01-A15 remain unchanged, Luna-13F remains closed and
 Luna-13G remains unauthorized.
 
+### Luna-16 ACP-0002 Stage N2 authorization - 2026-09-30
+
+After N1 publication and independent review, Luna-0 selected **CONTROLLED
+CANONICAL CUTOVER**. N1 is the final representation-compatible version of
+legacy raw-payload execution. N2 intentionally activates the accepted ACP-
+0002 Model-B transfer as the new canonical execution equation; the N1 defaults
+`w=1`, `d=1`, `r=0` produce `tanh(a)`, not raw `a`, and must not be described
+as signal identity.
+
+Historical closed experiment revisions remain reproducible from their
+committed code and are not reinterpreted as Model-B results. New N2-and-later
+experiments must identify the new architecture revision. No permanent
+per-edge legacy/model-B flag is part of the canonical architecture.
+
+Luna-16 is authorized for **static execution only**:
+
+```text
+z_ij = tanh(w_ij * a_i)
+v_ij = d_ij * z_ij + (1 - d_ij) * r_ij
+```
+
+The contribution `v_ij` is scheduled after the existing positive finite edge
+delay and then follows the existing local-time decay, bounded integration,
+neuron gain and fixed-neuron-nonlinearity path. No global neural timestep is
+introduced. Edge parameters are immutable during N2 execution.
+
+Luna-16 must establish a new Model-B analytic/replay baseline. It must keep
+causality, deterministic ordering, finite delays, queue and structural bounds,
+label/future isolation, reward identity, observer non-interference and bounded
+recurrence invariant. Numeric payload/state/activation and downstream metrics
+may change and are not legacy regressions by themselves. TPCV-1 remains an
+explicit observational version-1 boundary; any computationally active field
+serialization/version change requires an explicit governance result.
+
+Luna-16 must not implement edge learning, probationary or maturing edges,
+new structural utility prediction, new pruning, reward-driven edge updates,
+temporal mini-networks or hardware-specific voltage behavior. It must return
+to Luna-0 after implementation. Luna-13F remains closed, Luna-13G remains
+unauthorized, ACP-0002 remains accepted for staged implementation, and
+A01-A15 remain unchanged.
+
