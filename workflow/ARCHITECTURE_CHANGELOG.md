@@ -38,6 +38,29 @@ Evidence and exact commands are recorded in
 for staged implementation, N2 remains unauthorized, A01-A15 remain unchanged,
 Luna-13F remains closed and Luna-13G remains unauthorized.
 
+## Luna-16 ACP-0002 Stage N2 - 2026-09-30
+
+Implemented static Model-B edge transfer under the controlled canonical
+cutover. For numeric neural `signal` events, routing computes
+`z=tanh(w*a)` and `v=d*z+(1-d)*r`, then schedules `v` after the existing
+positive finite delay. Control and metadata payloads remain opaque. Existing
+destination local-time decay, bounded integration, neuron gain and fixed
+activation remain unchanged.
+
+Implementation revision: `9cf9feed2a7436b321d2c9d7a960e8e393fd21c7`.
+The N2 baseline is `artifacts/acp-0002-n2-model-b-baseline/baseline.json`.
+Focused N2 tests: 264 passed. Full CPU suite: 545 passed, 1 skipped.
+Compilation and `git diff --check` passed. Causality, timestamps, positive
+delays, deterministic ordering, bounded queue/state/execution, structural
+defaults and reconstruction, label/future isolation, reward boundaries and
+observer behavior remain invariant; numeric payload/state traces are expected
+to change at the N2 boundary.
+
+TPCV-1 remains valid only as its limited downstream observational format and
+does not claim active transfer-state equivalence. No A01-A15 text changed.
+Luna-13F remains closed; Luna-13G and N3/later ACP-0002 stages remain
+unauthorized.
+
 ## Luna-16 ACP-0002 Stage N2 authorization - 2026-09-30
 
 Following publication and independent verification of N1, Luna-0 selected

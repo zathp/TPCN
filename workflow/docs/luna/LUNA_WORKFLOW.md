@@ -2911,3 +2911,34 @@ to Luna-0 after implementation. Luna-13F remains closed, Luna-13G remains
 unauthorized, ACP-0002 remains accepted for staged implementation, and
 A01-A15 remain unchanged.
 
+### Luna-16 N2 implementation result - 2026-09-30
+
+**OBSERVED:** Static Model-B transfer is active for numeric neural signal
+routing at implementation revision `9cf9feed2a7436b321d2c9d7a960e8e393fd21c7`:
+`z=tanh(w*a)` and `v=d*z+(1-d)*r`. Numeric signal payloads are delayed by the
+existing edge delay; control and metadata payloads are not transformed.
+
+**OBSERVED:** The focused N2 suite passed 264 tests and the full CPU suite
+passed 545 tests with 1 skipped. Compile, deterministic replay, observer
+ON/OFF, fan-out, equal-time fan-in, unequal delays, bounded recurrence,
+structural defaults/reconstruction and control-payload boundary checks passed.
+
+**INFERRED:** N2 preserves event causality, local temporal state, finite
+propagation, bounded topology/dynamics, label/future isolation, reward
+identity and observer non-interference. Numeric payload/state/activation and
+downstream metrics are expected to differ from pre-N2 execution.
+
+**TPCV GOVERNANCE RESULT:** `TPCV-1 REMAINS VALID FOR ITS LIMITED DECLARED
+PURPOSE`. TPCV-1 is downstream-only and does not serialize active `w`, `d` or
+`r`; no silent format expansion was made. Computationally equivalent transfer
+state replay would require a separately governed format decision.
+
+**HYPOTHESIZED:** The new bounded edge transform provides the authorized
+Model-B computational substrate without establishing task improvement. The
+analytic/replay baseline is recorded at
+`artifacts/acp-0002-n2-model-b-baseline/baseline.json`.
+
+N2 returns to Luna-0 for independent review. It does not authorize N3 or any
+later ACP-0002 stage, probationary/maturing edges, temporal mini-networks or
+Luna-13G. Luna-13F remains closed.
+
