@@ -11,7 +11,7 @@ tpcn_handoff:
   contract_version: "1.1"
   branch: "main"
   base_revision: "b000756babe901617012f4191636692041877ba4"
-  result_revision: "authorization publication revision"
+  result_revision: "25aa15e72f3783ad50be13fac22ccf0c91dc10a3"
   dependencies:
     - "ACP-0002 accepted for staged implementation"
     - "Luna-15 N1 implementation and Luna-0 independent review published"
