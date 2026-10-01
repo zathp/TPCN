@@ -994,3 +994,32 @@ every `r`.
 A01-A15 and contract version 1.1 remain unchanged. Luna-13F remains closed
 with its negative result; Luna-13G remains unauthorized.
 
+## Luna-15 ACP-0002 Stage N1 contract creation and authorization - 2026-09-30
+
+Starting from revision `a24773eac26151c02b953158df9eb19766184c60`, Luna-0
+created and authorized `.github/agents/luna-15.agent.md`, **Luna-15 -
+ACP-0002 Edge/Neuron Data Model and Compatibility**.
+
+- ACP-0002 remains **Accepted for staged implementation**.
+- The only authorized scope is **N1 - edge/neuron data model and compatibility
+	representation**.
+- N1 must represent edge-owned `edge_weight/w_ij` in `[-2,2]`,
+	`divider_strength/d_ij` in `[0,1]`, `reference/r_ij` in `[-1,1]`, the
+	existing positive finite propagation delay, and neuron-owned
+	`neuron_gain/g_j` in `[0,2]`.
+- N1 must preserve legacy constructors, structural-plasticity interfaces,
+	deterministic representation/replay, observer/instrumentation behavior and
+	routed payload semantics, with analytic and regression tests proving those
+	compatibility requirements.
+- The accepted future Model-B equation remains deferred. N1 must not activate
+	transfer execution or change routed payload semantics.
+- N2 propagation, adaptive edge learning, temporary/probationary connections,
+	maturation, local time-series mini-NNs, new utility-learning mechanisms,
+	hardware work and all A01-A15 changes are prohibited.
+- N1 completion does not authorize N2. Luna-15 must return to Luna-0 for
+	independent review.
+
+Luna-13F remains **CLOSED**, Luna-13G remains unauthorized, and A01-A15 and
+contract version 1.1 remain unchanged. The creation handoff is
+`workflow/handoffs/luna-15-n1-contract-creation-Luna-0.md`.
+

@@ -2378,6 +2378,38 @@ N1 must preserve bounded `w`, `d`, `r` and `neuron_gain`, provide explicit
 legacy identity compatibility, and add no production transfer execution or
 learning. N1 returns to Luna-0 for verification before any later stage.
 
+### Luna-15 ACP-0002 Stage N1 contract creation - 2026-09-30
+
+Luna-0 creates and authorizes `.github/agents/luna-15.agent.md`, **Luna-15 -
+ACP-0002 Edge/Neuron Data Model and Compatibility**, at the published
+authorization revision recorded in its creation handoff. ACP-0002 remains
+**Accepted for staged implementation**.
+
+Luna-15 is authorized for exactly **N1 - edge/neuron data model and
+compatibility representation**:
+
+- edge-owned `edge_weight` / `w_ij` in `[-2,2]`;
+- edge-owned `divider_strength` / `d_ij` in `[0,1]`;
+- edge-owned `reference` / `r_ij` in `[-1,1]`;
+- existing positive finite propagation delay;
+- neuron-owned `neuron_gain` / `g_j` in `[0,2]`;
+- legacy constructor, structural-plasticity, deterministic replay and
+  observer/instrumentation compatibility;
+- analytic and regression tests proving representation compatibility.
+
+The future accepted Model-B equation is documented by ACP-0002 but **must not
+be activated in N1**. N1 must not change routed payload semantics, event
+identity, timestamps, sequence ordering or delay behavior. N1 completion does
+not automatically authorize N2; Luna-15 must return to Luna-0 for independent
+review before any later stage is considered.
+
+Luna-15 is explicitly prohibited from N2 propagation changes, adaptive edge
+learning, temporary/probationary connections, edge maturation, local
+time-series mini-NNs, new utility-learning mechanisms, A01-A15 changes,
+hardware implementation, reopening Luna-13F or authorizing Luna-13G. Luna-13F
+remains **CLOSED**, Luna-13G remains unauthorized, and A01-A15 remain
+unchanged.
+
 ## Luna-13 — GPU-Compatible Visualization Path
 
 **Authorization:** Blocked until Luna-12 passes and Luna-0 explicitly authorizes this milestone. The prompt or handoff alone is not authorization.
