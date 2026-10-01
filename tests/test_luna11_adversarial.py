@@ -81,7 +81,7 @@ def test_fanout_rejection_is_atomic_and_finite() -> None:
         fan_in_limit=2, fan_out_limit=2,
     )
     queue = EventQueue(capacity=1)
-    event = Event(0.0, "a", "ignored", "signal", None)
+    event = Event(0.0, "a", "ignored", "signal", 0.5)
 
     with pytest.raises(QueueCapacityError):
         topology.route(event, queue)
@@ -95,7 +95,7 @@ def test_batch_and_eventwise_delivery_have_identical_order() -> None:
             fan_in_limit=2, fan_out_limit=2,
         )
         queue = EventQueue(capacity=4)
-        topology.route(Event(0.0, "a", "ignored", "signal", None), queue)
+        topology.route(Event(0.0, "a", "ignored", "signal", 0.5), queue)
         result: list[tuple[str, float]] = []
         while queue:
             ready = queue.pop_ready_batch(1.0) if batch else [queue.pop_ready(1.0)]
@@ -110,7 +110,7 @@ def test_propagation_is_queued_until_positive_arrival_time() -> None:
         ("a", "b"), (("a", "b", 2.0),), fan_in_limit=1, fan_out_limit=1,
     )
     queue = EventQueue(capacity=1)
-    topology.route(Event(3.0, "a", "ignored", "signal", None), queue)
+    topology.route(Event(3.0, "a", "ignored", "signal", 0.5), queue)
 
     with pytest.raises(IndexError):
         queue.pop_ready(4.99)

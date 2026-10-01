@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+import math
 import random
 from numbers import Real
 from typing import Iterable, Mapping
@@ -50,12 +51,7 @@ def _routing_cost(value: int) -> int:
 
 @dataclass(frozen=True, slots=True)
 class Edge:
-    """A directed connection with validated N1 state.
-
-    ``legacy_identity`` is an explicit N1 compatibility marker. Routing does
-    not inspect or apply any transfer parameters until a later authorized
-    stage.
-    """
+    """A directed connection with bounded static Model-B transfer state."""
 
     source: str
     destination: str
@@ -206,7 +202,11 @@ class BoundedTopology:
         return edge
 
     def route(self, event: Event, queue: EventQueue[Event], *, observer: object | None = None) -> tuple[Event, ...]:
-        """Queue one delayed event per outgoing edge; no destination is mutated inline."""
+        """Queue delayed Model-B signal events without mutating destinations inline.
+
+        Control and metadata payloads remain opaque; only numeric ``signal``
+        events are edge-transformed.
+        """
         self._validate_node(event.source)
         outgoing = tuple(edge for edge in self._edges.values() if edge.source == event.source)
         if len(outgoing) > self.routing_capacity:
@@ -215,7 +215,13 @@ class BoundedTopology:
             raise QueueCapacityError("event queue capacity cannot admit complete fan-out")
         queued: list[Event] = []
         for edge in outgoing:
-            routed = queue.push_propagated(event.timestamp, edge.source, edge.destination, event.event_type, event.payload, edge.propagation_delay)
+            payload = event.payload
+            if event.event_type == "signal":
+                if isinstance(payload, bool) or not isinstance(payload, Real):
+                    raise TypeError("signal event payload must be a real number")
+                transformed = math.tanh(edge.edge_weight * float(payload))
+                payload = edge.divider_strength * transformed + (1.0 - edge.divider_strength) * edge.reference
+            routed = queue.push_propagated(event.timestamp, edge.source, edge.destination, event.event_type, payload, edge.propagation_delay)
             queued.append(routed)
             if observer is not None:
                 observer.record_route(edge, event, routed)

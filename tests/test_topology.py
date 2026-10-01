@@ -1,3 +1,4 @@
+import math
 from pathlib import Path
 
 import pytest
@@ -37,14 +38,14 @@ def test_route_preserves_edge_delay_and_uses_luna_one_queue() -> None:
     topology = make_topology()
     topology.connect("a", "b", 1.25)
     queue = EventQueue(capacity=4)
-    emitted = Event(3.0, "a", "ignored", EventType.SIGNAL, {"value": 7})
+    emitted = Event(3.0, "a", "ignored", EventType.SIGNAL, 0.5)
     queued = topology.route(emitted, queue)
 
     assert queued[0].destination == "b"
     assert queued[0].timestamp == pytest.approx(4.25)
     with pytest.raises(IndexError):
         queue.pop_ready(4.24)
-    assert queue.pop_ready(4.25).payload == {"value": 7}
+    assert queue.pop_ready(4.25).payload == pytest.approx(math.tanh(0.5))
 
 
 def test_successful_route_admits_complete_fan_out() -> None:
@@ -53,7 +54,7 @@ def test_successful_route_admits_complete_fan_out() -> None:
     )
     queue = EventQueue(capacity=2)
 
-    queued = topology.route(Event(0.0, "a", "ignored", EventType.SIGNAL, None), queue)
+    queued = topology.route(Event(0.0, "a", "ignored", EventType.SIGNAL, 0.5), queue)
 
     assert [event.destination for event in queued] == ["b", "c"]
     assert len(queue) == 2
@@ -66,7 +67,7 @@ def test_rejected_fan_out_is_atomic_and_retryable_without_duplicates() -> None:
     queue = EventQueue(capacity=2)
     existing = Event(0.0, "existing", "b", EventType.SIGNAL, None)
     queue.push(existing)
-    event = Event(0.0, "a", "ignored", EventType.SIGNAL, None)
+    event = Event(0.0, "a", "ignored", EventType.SIGNAL, 0.5)
 
     with pytest.raises(QueueCapacityError):
         topology.route(event, queue)
@@ -100,7 +101,7 @@ def test_route_is_compatible_with_serial_and_batched_queue_processing() -> None:
 
     def run(batch: bool) -> list[tuple[str, float]]:
         queue = EventQueue(capacity=8)
-        topology.route(Event(0.0, "a", "ignored", EventType.SIGNAL, None), queue)
+        topology.route(Event(0.0, "a", "ignored", EventType.SIGNAL, 0.5), queue)
         result = []
         while queue:
             ready = queue.pop_ready_batch(queue.peek().timestamp) if batch else [queue.pop_ready(queue.peek().timestamp)]
@@ -117,7 +118,7 @@ def test_routing_respects_finite_pending_queue_capacity() -> None:
     queue = EventQueue(capacity=1)
 
     with pytest.raises(QueueCapacityError):
-        topology.route(Event(0.0, "a", "ignored", EventType.SIGNAL, None), queue)
+        topology.route(Event(0.0, "a", "ignored", EventType.SIGNAL, 0.5), queue)
     assert len(queue) == 0
 
 

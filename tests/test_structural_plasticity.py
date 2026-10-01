@@ -57,12 +57,12 @@ def test_pruning_preserves_in_flight_event_and_removes_future_route():
     controller = make_controller()
     controller.grow(evidence("a", "b", 1.0))
     queue = EventQueue[Event](capacity=4)
-    queued = controller.topology.route(Event(1.0, "a", "a", "signal", "payload"), queue)
+    queued = controller.topology.route(Event(1.0, "a", "a", "signal", 0.5), queue)
     assert len(queued) == 1
     assert controller.prune("a", "b").status == "pruned"
     assert len(controller.topology) == 0
     assert queue.pop_ready(3.0).destination == "b"
-    assert controller.topology.route(Event(4.0, "a", "a", "signal", "payload"), queue) == ()
+    assert controller.topology.route(Event(4.0, "a", "a", "signal", 0.5), queue) == ()
 
 
 def test_replay_produces_identical_bounded_state_and_routing():

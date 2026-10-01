@@ -98,7 +98,7 @@ def test_structural_growth_uses_defaults_and_never_copies_candidate_score():
     assert result.edge.edge_weight != 99.0
 
 
-def test_observer_exposes_n1_edge_parameters_without_affecting_route():
+def test_observer_exposes_edge_parameters_without_affecting_model_b_route():
     edge = Edge("a", "b", 1.5, routing_cost=2, edge_weight=-1.5,
                 divider_strength=0.25, reference=0.75)
     topology = BoundedTopology.from_edges(
@@ -106,11 +106,12 @@ def test_observer_exposes_n1_edge_parameters_without_affecting_route():
     )
     observer = EdgeInstrumentation()
     queue = EventQueue[Event](capacity=2)
-    payload = {"raw": 7}
+    payload = 0.5
     emitted = topology.route(Event(2.0, "a", "ignored", "signal", payload), queue, observer=observer)[0]
     record = observer.snapshot()["edges"][0]
 
-    assert emitted.payload is payload
+    expected = 0.25 * math.tanh(-1.5 * payload) + 0.75 * 0.75
+    assert emitted.payload == pytest.approx(expected)
     assert emitted.timestamp == 3.5
     assert record["edge_weight"] == -1.5
     assert record["divider_strength"] == 0.25
@@ -119,7 +120,7 @@ def test_observer_exposes_n1_edge_parameters_without_affecting_route():
     assert record["routing_cost"] == 2
 
 
-def test_n1_route_preserves_payload_identity_and_event_order():
+def test_n2_route_preserves_event_order_and_applies_model_b_transfer():
     edge = Edge("a", "b", 1.0, edge_weight=2.0, divider_strength=0.0, reference=-1.0)
     topology = BoundedTopology.from_edges(
         ("a", "b"), (edge,), fan_in_limit=1, fan_out_limit=1, edge_capacity=1,
@@ -129,11 +130,12 @@ def test_n1_route_preserves_payload_identity_and_event_order():
     first = topology.route(Event(4.0, "a", "ignored", "signal", payload), queue)[0]
     second = topology.route(Event(4.0, "a", "ignored", "signal", payload), queue)[0]
 
-    assert first.payload == payload
-    assert second.payload == payload
+    expected = -1.0
+    assert first.payload == pytest.approx(expected)
+    assert second.payload == pytest.approx(expected)
     assert (first.timestamp, first.source, first.destination, first.sequence) == (5.0, "a", "b", 0)
     assert second.sequence == 1
-    assert first.payload != pytest.approx(math.tanh(2.0 * payload))
+    assert first.payload == pytest.approx(math.tanh(2.0 * payload) * 0.0 - 1.0)
 
 
 def test_explicit_edge_records_replay_deterministically():
