@@ -902,8 +902,9 @@ architecture change is required, execution must stop and return
 
 ## Luna-13F closure - 2026-09-30
 
-Luna-0 independently reviewed and closed Luna-13F at implementation and
-artifact revision `83266f92d750939ef0b9904073e9f75badc35fbb`.
+Luna-0 independently reviewed and closed Luna-13F at review publication
+revision `e595a9f`, from implementation and artifact revision
+`83266f92d750939ef0b9904073e9f75badc35fbb`.
 
 - P0 selects `candidate_A` for held-out `2/2`; P1 selects `candidate_A` for
 	held-out `1/2`.

@@ -13,7 +13,7 @@ tpcn_handoff:
   contract_version: "1.1"
   branch: main
   base_revision: 83266f92d750939ef0b9904073e9f75badc35fbb
-  result_revision: "pending publication"
+  result_revision: e595a9f
   implementation_revision_reviewed: 83266f92d750939ef0b9904073e9f75badc35fbb
   artifact_generating_revision: 83266f92d750939ef0b9904073e9f75badc35fbb
   worktree_at_review_start: clean

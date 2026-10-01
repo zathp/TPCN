@@ -2317,8 +2317,8 @@ mandatory after the corrective artifacts.
 
 ## Luna-13F final independent closure - 2026-09-30
 
-Luna-0 independently closed Luna-13F from implementation and artifact
-revision `83266f92d750939ef0b9904073e9f75badc35fbb`, with `HEAD ==
+Luna-0 independently closed Luna-13F at review publication revision `e595a9f`
+from implementation and artifact revision `83266f92d750939ef0b9904073e9f75badc35fbb`, with `HEAD ==
 origin/main` and a clean synchronized review start. The corrected runtime
 controls were reproduced rather than accepted from aggregate totals.
 
