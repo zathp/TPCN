@@ -23,6 +23,13 @@ def _nonnegative_real(value: Real, name: str) -> float:
     return result
 
 
+def _neuron_gain(value: Real) -> float:
+    result = _nonnegative_real(value, "neuron_gain")
+    if result > 2.0:
+        raise ValueError("neuron_gain must be finite and within [0.0, 2.0]")
+    return result
+
+
 class TPCNNeuron:
     """A bounded, hardware-neutral neuron driven only by addressed events."""
 
@@ -32,7 +39,8 @@ class TPCNNeuron:
         *,
         state_limit: float = 1.0,
         decay_rate: float = 1.0,
-        input_gain: float = 1.0,
+        input_gain: float | None = None,
+        neuron_gain: float | None = None,
         initial_state: float = 0.0,
         activity_hook: LocalActivityHook | None = None,
         temporal_context_hook: TemporalContextHook | None = None,
@@ -43,7 +51,18 @@ class TPCNNeuron:
         if state_limit == 0.0:
             raise ValueError("state_limit must be positive")
         decay_rate = _nonnegative_real(decay_rate, "decay_rate")
-        input_gain = _nonnegative_real(input_gain, "input_gain")
+        if input_gain is None and neuron_gain is None:
+            resolved_gain = 1.0
+        elif input_gain is None:
+            resolved_gain = _neuron_gain(neuron_gain)
+        elif neuron_gain is None:
+            resolved_gain = _neuron_gain(input_gain)
+        else:
+            legacy_gain = _neuron_gain(input_gain)
+            canonical_gain = _neuron_gain(neuron_gain)
+            if legacy_gain != canonical_gain:
+                raise ValueError("input_gain and neuron_gain must agree when both are supplied")
+            resolved_gain = canonical_gain
         if isinstance(initial_state, bool) or not isinstance(initial_state, Real):
             raise TypeError("initial_state must be a real number")
         initial_state = float(initial_state)
@@ -53,7 +72,7 @@ class TPCNNeuron:
         self.neuron_id = neuron_id
         self.state_limit = state_limit
         self.decay_rate = decay_rate
-        self.input_gain = input_gain
+        self.neuron_gain = resolved_gain
         self.clock = LocalClock()
         self.state = initial_state
         self.activation = self._bounded_activation(self.state)
@@ -64,6 +83,11 @@ class TPCNNeuron:
         self.processed_events = 0
         self._activity_hook = activity_hook
         self._temporal_context_hook = temporal_context_hook
+
+    @property
+    def input_gain(self) -> float:
+        """Legacy read-only alias for the canonical neuron-owned gain."""
+        return self.neuron_gain
 
     def _bounded_activation(self, state: float) -> float:
         return max(-1.0, min(1.0, math.tanh(state)))
@@ -101,7 +125,7 @@ class TPCNNeuron:
         if elapsed:
             self._set_state(self.state * math.exp(-self.decay_rate * elapsed))
         residual_state = self.state
-        self._set_state(self.state + self.input_gain * float(event.payload))
+        self._set_state(self.state + self.neuron_gain * float(event.payload))
         if self._temporal_context_hook is not None:
             self._temporal_context_hook({"neuron": self.neuron_id, "timestamp": event.timestamp,
                                          "delta_t": elapsed, "decay_rate": self.decay_rate,

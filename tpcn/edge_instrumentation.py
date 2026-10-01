@@ -54,6 +54,8 @@ class EdgeInstrumentation:
         self._stats.setdefault(identity, {
             "identity": self._identity(identity), "delay": float(edge.propagation_delay),
             "routing_cost": int(edge.routing_cost), "created_at": None if timestamp is None else float(timestamp),
+            "edge_weight": float(edge.edge_weight), "divider_strength": float(edge.divider_strength),
+            "reference": float(edge.reference), "legacy_identity": bool(edge.legacy_identity),
             "created_at_domain": "unavailable" if timestamp is None else "event_timestamp",
             "first_use": None, "last_use": None, "traffic_count": 0,
             "traffic_by_phase": {},

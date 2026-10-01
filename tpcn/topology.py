@@ -33,14 +33,51 @@ def _delay(value: Real) -> float:
     return result
 
 
+def _bounded_real(value: Real, name: str, lower: float, upper: float) -> float:
+    if isinstance(value, bool) or not isinstance(value, Real):
+        raise TypeError(f"{name} must be a real number")
+    result = float(value)
+    if result != result or result in (float("inf"), float("-inf")) or not lower <= result <= upper:
+        raise ValueError(f"{name} must be finite and within [{lower}, {upper}]")
+    return result
+
+
+def _routing_cost(value: int) -> int:
+    if isinstance(value, bool) or not isinstance(value, int) or value <= 0:
+        raise ValueError("routing_cost must be a positive integer")
+    return value
+
+
 @dataclass(frozen=True, slots=True)
 class Edge:
-    """A directed connection and its hardware-facing propagation metadata."""
+    """A directed connection with validated N1 state.
+
+    ``legacy_identity`` is an explicit N1 compatibility marker. Routing does
+    not inspect or apply any transfer parameters until a later authorized
+    stage.
+    """
 
     source: str
     destination: str
     propagation_delay: PropagationDelay
     routing_cost: int = 1
+    edge_weight: float = 1.0
+    divider_strength: float = 1.0
+    reference: float = 0.0
+    legacy_identity: bool = True
+
+    def __post_init__(self) -> None:
+        if not isinstance(self.source, str) or not self.source:
+            raise ValueError("source must be a non-empty string")
+        if not isinstance(self.destination, str) or not self.destination:
+            raise ValueError("destination must be a non-empty string")
+        object.__setattr__(self, "propagation_delay", _delay(self.propagation_delay))
+        object.__setattr__(self, "routing_cost", _routing_cost(self.routing_cost))
+        object.__setattr__(self, "edge_weight", _bounded_real(self.edge_weight, "edge_weight", -2.0, 2.0))
+        object.__setattr__(self, "divider_strength", _bounded_real(self.divider_strength, "divider_strength", 0.0, 1.0))
+        object.__setattr__(self, "reference", _bounded_real(self.reference, "reference", -1.0, 1.0))
+        if not isinstance(self.legacy_identity, bool):
+            raise TypeError("legacy_identity must be a boolean")
 
 
 class BoundedTopology:
@@ -73,7 +110,7 @@ class BoundedTopology:
     def from_edges(
         cls,
         nodes: Iterable[str],
-        edges: Iterable[tuple[str, str, PropagationDelay]],
+        edges: Iterable[Edge | tuple[str, str, PropagationDelay]],
         *,
         fan_in_limit: int,
         fan_out_limit: int,
@@ -87,8 +124,12 @@ class BoundedTopology:
             edge_capacity=edge_capacity,
             routing_capacity=routing_capacity,
         )
-        for source, destination, delay in edges:
-            topology.connect(source, destination, delay)
+        for edge_spec in edges:
+            if isinstance(edge_spec, Edge):
+                topology._connect_edge(edge_spec)
+            else:
+                source, destination, delay = edge_spec
+                topology.connect(source, destination, delay)
         return topology
 
     @classmethod
@@ -146,8 +187,22 @@ class BoundedTopology:
             raise TopologyCapacityError("destination fan-in limit reached")
         if outgoing >= self.fan_out_limit:
             raise TopologyCapacityError("source fan-out limit reached")
-        edge = Edge(source, destination, _delay(propagation_delay))
-        self._edges[(source, destination)] = edge
+        return self._connect_edge(Edge(source, destination, _delay(propagation_delay)))
+
+    def _connect_edge(self, edge: Edge) -> Edge:
+        self._validate_node(edge.source)
+        self._validate_node(edge.destination)
+        if (edge.source, edge.destination) in self._edges:
+            raise TopologyError("edge already exists")
+        if len(self) >= self.edge_capacity:
+            raise TopologyCapacityError("edge capacity reached")
+        incoming = sum(existing.destination == edge.destination for existing in self._edges.values())
+        outgoing = sum(existing.source == edge.source for existing in self._edges.values())
+        if incoming >= self.fan_in_limit:
+            raise TopologyCapacityError("destination fan-in limit reached")
+        if outgoing >= self.fan_out_limit:
+            raise TopologyCapacityError("source fan-out limit reached")
+        self._edges[(edge.source, edge.destination)] = edge
         return edge
 
     def route(self, event: Event, queue: EventQueue[Event], *, observer: object | None = None) -> tuple[Event, ...]:

@@ -1,5 +1,17 @@
 # Architecture Changelog
 
+## Luna-15 ACP-0002 Stage N1 - 2026-09-30
+
+Implemented the accepted-for-staged-implementation ACP-0002 N1 data-model
+boundary. Edges now represent bounded efficacy, divider strength and reference
+state, and neurons expose bounded `neuron_gain` with a compatibility
+`input_gain` alias. Legacy topology construction, deterministic rebuilds,
+observer inspection and raw payload routing remain compatible.
+
+This entry does not activate the Model-B transfer equation, add edge learning,
+change structural admission/pruning semantics or authorize N2. A01-A15 remain
+unchanged; Luna-13F remains closed and Luna-13G remains unauthorized.
+
 ## 1.0 — 2026-09-26
 
 Established the documented candidate contract from the source conversation and current owner request.

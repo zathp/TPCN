@@ -214,7 +214,7 @@ class StructuralPlasticityController:
         except TopologyError:
             return MutationResult("rejected")
         remaining = tuple(
-            (edge.source, edge.destination, edge.propagation_delay)
+            edge
             for edge in self.topology.edges
             if (edge.source, edge.destination) != (source, destination)
         )
@@ -301,7 +301,7 @@ class StructuralPlasticityController:
         try:
             replacement = BoundedTopology.from_edges(
                 self.topology.nodes,
-                tuple((edge.source, edge.destination, edge.propagation_delay) for edge in self.topology.edges)
+                tuple(edge for edge in self.topology.edges)
                 + tuple((item.source, item.destination, item.propagation_delay) for item in evidence),
                 fan_in_limit=self.topology.fan_in_limit,
                 fan_out_limit=self.topology.fan_out_limit,
