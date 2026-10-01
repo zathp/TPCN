@@ -2315,6 +2315,42 @@ production architecture semantics, stop with **BLOCKED - ARCHITECTURE CHANGE
 REQUIRED**. Luna-13G remains unauthorized, and a final Luna-0 closure review is
 mandatory after the corrective artifacts.
 
+## Luna-13F final independent closure - 2026-09-30
+
+Luna-0 independently closed Luna-13F from implementation and artifact
+revision `83266f92d750939ef0b9904073e9f75badc35fbb`, with `HEAD ==
+origin/main` and a clean synchronized review start. The corrected runtime
+controls were reproduced rather than accepted from aggregate totals.
+
+- P0 selects neutral `candidate_A` and obtains `2/2`; P1 selects neutral
+  `candidate_A` and obtains `1/2`.
+- Runtime evidence is a bounded source-local temporal-association count
+  (`4.0` versus `0.0`). Neutral decay changes local state but not score,
+  rank or selection.
+- The same runtime processes the future continuation; live losing-candidate
+  evidence changes `0.0 -> 5.0`, while frozen historical admission and
+  topology remain unchanged.
+- Actual queued before-decision and equal-time held-out events invalidate
+  chronology; the strictly later event is accepted. Mutating real
+  candidate-B private score state leaves candidate-A evidence unchanged.
+- Candidate bounds, reset/stale-state reuse, budget threshold, label
+  isolation, mirroring, equalization, no-evidence and deterministic replay
+  pass. Expiry and eviction remain valid conditional N/A cases because the
+  policy has no expiry path and deterministically rejects at full capacity.
+- The complete audit is `26 PASS / 0 FAIL / 2 valid N/A`. Focused validation
+  is `15 passed`, preservation is `72 passed`, and full CPU validation is
+  `291 passed, 1 skipped`.
+
+The terminal scientific result is **NEGATIVE RESULT - LUNA-13F RUNTIME
+EVIDENCE DOES NOT PREDICT USEFUL GROWTH, INDEPENDENTLY VERIFIED AND CLOSED**.
+Proposition 1 (bounded runtime evidence) and Proposition 2 (canonical
+admission effect) are supported in the tested fixture; Proposition 3
+(prediction of held-out useful growth) is not supported. No-growth remains
+`2/2 @ 8` events and proxy `8.0`; selected P0 growth is also `2/2` at 12
+events and proxy `12.0`, so no resource benefit is established. No A01-A15
+change or ACP is required. **LUNA-13F CLOSED - SUCCESSOR NOT AUTHORIZED**;
+Luna-13G remains unauthorized.
+
 ## Luna-13 — GPU-Compatible Visualization Path
 
 **Authorization:** Blocked until Luna-12 passes and Luna-0 explicitly authorizes this milestone. The prompt or handoff alone is not authorization.

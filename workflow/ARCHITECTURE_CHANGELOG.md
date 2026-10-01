@@ -900,3 +900,40 @@ global utility state or new candidate-state behavior is authorized. If a real
 architecture change is required, execution must stop and return
 **BLOCKED - ARCHITECTURE CHANGE REQUIRED**. Luna-13G remains unauthorized.
 
+## Luna-13F closure - 2026-09-30
+
+Luna-0 independently reviewed and closed Luna-13F at implementation and
+artifact revision `83266f92d750939ef0b9904073e9f75badc35fbb`.
+
+- P0 selects `candidate_A` for held-out `2/2`; P1 selects `candidate_A` for
+	held-out `1/2`.
+- The evidence mechanism is bounded source-local temporal-association counts,
+	not decay-sensitive structural utility prediction. The unchanged canonical
+	scorer admits one candidate from a genuine one-slot competition.
+- The future continuation was processed through the same runtime and changed
+	live losing-candidate evidence `0.0 -> 5.0` without changing the frozen
+	historical decision. Actual queued before/equal chronology attacks were
+	invalidated and the strictly-after attack was valid. The real cross-candidate
+	locality mutation left candidate-A evidence unchanged.
+- Bounded lifecycle, reset/stale reuse, budget boundary, label isolation,
+	mirroring, equalization, no-evidence and deterministic replay were verified.
+	Expiry and eviction are valid N/A cases: expiry is unsupported by policy and
+	full capacity deterministically rejects rather than evicts.
+- The complete audit is `26 PASS / 0 FAIL / 2 valid N/A`. Focused validation is
+	`15 passed`; preservation is `72 passed`; full CPU validation is `291 passed,
+	1 skipped`.
+- No-growth remains `2/2` at 8 events and proxy `8.0`; selected P0 growth is
+	also `2/2` at 12 events and proxy `12.0`. No task or resource improvement is
+	established, and P1 demonstrates that higher evidence can select harmful
+	growth.
+
+Proposition 1 (bounded runtime evidence) and Proposition 2 (canonical
+admission effect) are **SUPPORTED IN TESTED FIXTURE**. Proposition 3 (greater
+evidence predicts held-out useful growth) is **NOT SUPPORTED**. The final
+status is **NEGATIVE RESULT - LUNA-13F RUNTIME EVIDENCE DOES NOT PREDICT
+USEFUL GROWTH, INDEPENDENTLY VERIFIED AND CLOSED**.
+
+**NO A01-A15 CHANGE REQUIRED. NO ACP REQUIRED. LUNA-13F CLOSED - SUCCESSOR
+NOT AUTHORIZED.** Luna-13G remains unauthorized. The final closure handoff is
+`workflow/handoffs/luna-0-final-closure-review-Luna-13F-closed.md`.
+
