@@ -3,7 +3,7 @@
   "implementation_revision": "ed8aaff2d0d0d031c2c1f84b311251f530282479",
   "migration_strategy": "CONTROLLED CANONICAL CUTOVER",
   "edge_equation": "z=tanh(w*a); v=d*z+(1-d)*r",
-  "neuron_equation": "s=clip(decay(s,dt)+gain*v); activation=tanh(gain*s)",
+  "neuron_equation": "s=clip(decay(s,dt)+v); activation=tanh(gain*s)",
   "single_edge": {
     "a": 0.5,
     "w": 1.0,

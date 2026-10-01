@@ -61,6 +61,41 @@ does not claim active transfer-state equivalence. No A01-A15 text changed.
 Luna-13F remains closed; Luna-13G and N3/later ACP-0002 stages remain
 unauthorized.
 
+## Luna-0 independent review of ACP-0002 Stage N2 - 2026-09-30
+
+Reviewed publication revision `7652e6fc33b690766b49f29b07894e395d3756d7`
+after synchronization with `origin/main`; the worktree was clean and
+`HEAD == origin/main`. The implementation revision was
+`ed8aaff2d0d0d031c2c1f84b311251f530282479` and the tree was
+`dcc226ae9ad4da0b40f893a42b2883b056d9d679`.
+
+**PASS - ACP-0002 N2 STATIC MODEL-B TRANSFER INDEPENDENTLY VERIFIED AND CLOSED**
+
+- Direct analytic probes verified `z=tanh(w*a)` and
+	`v=d*z+(1-d)*r`, including divider endpoints, weight zero, signed values,
+	independent parameter effects, finite extremes and distinct fan-out payloads.
+- Destination processing is `clip(decay(s,dt)+v)` followed once by
+	`tanh(neuron_gain*s)`; the baseline equation string was corrected to match
+	this executed path.
+- Equal-time arrivals remain deterministic and sequential by queue order.
+	A destination may emit downstream work after the first arrival and before
+	the second; this is canonical event-driven semantics, not synchronous sum.
+	Unequal delays decay over actual elapsed local time, and bounded recurrence
+	stops only at the explicit execution budget.
+- Structural defaults, non-default reconstruction, observer ON/OFF equality,
+	control-payload opacity, reward/eligibility boundaries, predictive coding,
+	label isolation and TPCV-1 limited-purpose governance remain preserved.
+- The inherited `legacy_identity` field was probed and has no routing effect;
+	no hidden legacy bypass exists. It remains a non-computational N1 residue,
+	not an active N2 mode.
+
+Independent validation selected 103 focused invariant tests, the full CPU
+suite (`549 passed, 1 skipped`), compilation, direct analytic/runtime probes,
+baseline parsing and test-change audit. A01-A15 remain unchanged. ACP-0002
+N2 is closed; N3 and later stages remain unauthorized, Luna-13F remains
+closed and Luna-13G remains unauthorized. Evidence is recorded in
+`workflow/handoffs/luna-0-review-ACP-0002-N2.md`.
+
 ## Luna-16 ACP-0002 Stage N2 authorization - 2026-09-30
 
 Following publication and independent verification of N1, Luna-0 selected
