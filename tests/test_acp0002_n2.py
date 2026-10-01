@@ -169,3 +169,11 @@ def test_observer_on_off_and_replay_have_identical_computation():
     first = run()
     assert first == run(EdgeInstrumentation())
     assert first == run()
+
+
+@pytest.mark.parametrize("gain", [0.0, 1.0, 2.0])
+def test_neuron_gain_is_applied_once_after_state_integration(gain):
+    neuron = TPCNNeuron("target", neuron_gain=gain, state_limit=1.0)
+    neuron.receive_event(Event(0.0, "source", "target", "signal", 0.5))
+    assert neuron.state == pytest.approx(0.5)
+    assert neuron.activation == pytest.approx(math.tanh(gain * 0.5))

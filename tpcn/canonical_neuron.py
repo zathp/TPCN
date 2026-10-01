@@ -90,7 +90,7 @@ class TPCNNeuron:
         return self.neuron_gain
 
     def _bounded_activation(self, state: float) -> float:
-        return max(-1.0, min(1.0, math.tanh(state)))
+        return max(-1.0, min(1.0, math.tanh(self.neuron_gain * state)))
 
     def _set_state(self, state: float) -> None:
         self.state = max(-self.state_limit, min(self.state_limit, state))
@@ -125,7 +125,7 @@ class TPCNNeuron:
         if elapsed:
             self._set_state(self.state * math.exp(-self.decay_rate * elapsed))
         residual_state = self.state
-        self._set_state(self.state + self.neuron_gain * float(event.payload))
+        self._set_state(self.state + float(event.payload))
         if self._temporal_context_hook is not None:
             self._temporal_context_hook({"neuron": self.neuron_id, "timestamp": event.timestamp,
                                          "delta_t": elapsed, "decay_rate": self.decay_rate,
