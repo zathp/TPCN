@@ -938,3 +938,59 @@ USEFUL GROWTH, INDEPENDENTLY VERIFIED AND CLOSED**.
 NOT AUTHORIZED.** Luna-13G remains unauthorized. The final closure handoff is
 `workflow/handoffs/luna-0-final-closure-review-Luna-13F-closed.md`.
 
+## ACP-0002 creation - 2026-09-30
+
+Created **Independent Edge Signal Transformation and Neuron Gain Separation**
+from the project-owner architecture request at synchronized revision
+`25aa7697d523c13f0fdcf56c84170ceb553cc229`.
+
+- ACP-0002 was initially recorded as **Under review**. It proposed bounded
+	signed edge efficacy, independent divider strength and logical reference, a
+	fixed edge `tanh` transfer, and explicit separation of edge state from
+	destination-neuron gain.
+- The initial subtraction candidate
+	`e_ij = d_ij * (tanh(w_ij * a_i) - r_ij)` was later rejected in the focused
+	mathematical review because `d=0` erased the independent reference. The
+	destination retains event-driven elapsed-time decay, clipping and fixed
+	neuron `tanh` activation.
+- A01-A15 remain unchanged. This is a material canonical signal-path and
+	ownership proposal, so an ACP is required even though no implementation is
+	authorized. The contract remains version 1.1.
+- The closed Luna-13F negative result is preserved unchanged. Luna-13G remains
+	unauthorized. No production code, edge learning, temporary maturation or
+	local time-series predictor is authorized by this entry.
+- At creation, implementation was blocked pending acceptance and the staged
+	analytic/regression evidence specified in ACP-0002; the later acceptance and
+	N1-only authorization are recorded below.
+
+The proposal and Luna-0 handoff are
+`workflow/docs/architecture_proposals/ACP-0002.md` and
+`workflow/handoffs/luna-0-architecture-review-ACP-0002.md`.
+
+## ACP-0002 mathematical review and staged acceptance - 2026-09-30
+
+Luna-0 performed the requested focused mathematical review before changing
+ACP-0002 status. The original subtraction form
+`d * (tanh(w * a) - r)` was rejected for the project-owner's independently
+buffered per-edge reference intent because `d=0` forces the output to zero for
+every `r`.
+
+- The selected canonical equation is Model B:
+	`v_ij = d_ij * tanh(w_ij * a_i) + (1 - d_ij) * r_ij`.
+- `w` remains signed bounded efficacy, `d` remains signal/reference divider
+	weight, and `r` remains an independent bounded edge reference. `w` and `d`
+	are not redundant: `w` changes nonlinear signed efficacy and saturation,
+	while `d` interpolates between the transformed signal and reference.
+- The delivered value is the absolute normalized edge signal `v_ij`; no
+	destination-neuron reference is added. `v` is bounded in `[-1,1]` and the
+	existing destination state clip bounds recurrence.
+- The analytic grid, endpoint checks, positive/negative source checks and
+	boundedness review passed. No production code or runtime semantics changed.
+- ACP-0002 is now **Accepted for staged implementation**. Only **N1 -
+	edge/neuron data model and compatibility representation** is authorized.
+	N2 transfer execution, edge learning, temporary/probationary maturation,
+	local time-series predictors and Luna-13G remain unauthorized.
+
+A01-A15 and contract version 1.1 remain unchanged. Luna-13F remains closed
+with its negative result; Luna-13G remains unauthorized.
+

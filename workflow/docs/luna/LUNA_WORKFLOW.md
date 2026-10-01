@@ -2351,6 +2351,33 @@ events and proxy `12.0`, so no resource benefit is established. No A01-A15
 change or ACP is required. **LUNA-13F CLOSED - SUCCESSOR NOT AUTHORIZED**;
 Luna-13G remains unauthorized.
 
+### ACP-0002 architecture review - 2026-09-30
+
+The project owner requested an architecture reorganization beginning at the
+neuron/edge signal path after Luna-13F closed with a negative result. Luna-13F
+remains closed and its result is not being repaired or reinterpreted.
+
+Luna-0 created ACP-0002, **Independent Edge Signal Transformation and Neuron
+Gain Separation**, at synchronized revision
+`25aa7697d523c13f0fdcf56c84170ceb553cc229`. The proposal was initially **Under
+review**: it defined a bounded edge efficacy `w`, divider strength `d`,
+independent logical reference `r`, fixed edge transfer `tanh`, positive edge
+delay and a separate destination-neuron gain. It preserves A01-A15 and does
+not define an edge learning rule, probation/maturation mechanism or local
+time-series predictor.
+
+This is a material canonical signal-path and ownership proposal, therefore an
+ACP is required. Following the focused mathematical review, the subtraction
+form was rejected because `d=0` erased the independent reference. ACP-0002 now
+selects the Model B interpolation `v=d*tanh(w*a)+(1-d)*r` and is **Accepted for
+staged implementation**. Only N1, edge/neuron data model and compatibility
+representation, is authorized; N2 transfer execution and all adaptive or
+temporary-edge mechanisms remain unauthorized. Luna-13G remains unauthorized.
+
+N1 must preserve bounded `w`, `d`, `r` and `neuron_gain`, provide explicit
+legacy identity compatibility, and add no production transfer execution or
+learning. N1 returns to Luna-0 for verification before any later stage.
+
 ## Luna-13 — GPU-Compatible Visualization Path
 
 **Authorization:** Blocked until Luna-12 passes and Luna-0 explicitly authorizes this milestone. The prompt or handoff alone is not authorization.
