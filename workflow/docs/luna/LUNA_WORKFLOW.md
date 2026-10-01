@@ -2919,7 +2919,7 @@ routing at implementation revision `9cf9feed2a7436b321d2c9d7a960e8e393fd21c7`:
 existing edge delay; control and metadata payloads are not transformed.
 
 **OBSERVED:** The focused N2 suite passed 264 tests and the full CPU suite
-passed 545 tests with 1 skipped. Compile, deterministic replay, observer
+passed 546 tests with 1 skipped. Compile, deterministic replay, observer
 ON/OFF, fan-out, equal-time fan-in, unequal delays, bounded recurrence,
 structural defaults/reconstruction and control-payload boundary checks passed.
 

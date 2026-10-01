@@ -49,7 +49,7 @@ activation remain unchanged.
 
 Implementation revision: `9cf9feed2a7436b321d2c9d7a960e8e393fd21c7`.
 The N2 baseline is `artifacts/acp-0002-n2-model-b-baseline/baseline.json`.
-Focused N2 tests: 264 passed. Full CPU suite: 545 passed, 1 skipped.
+Focused N2 tests: 264 passed. Full CPU suite: 546 passed, 1 skipped.
 Compilation and `git diff --check` passed. Causality, timestamps, positive
 delays, deterministic ordering, bounded queue/state/execution, structural
 defaults and reconstruction, label/future isolation, reward boundaries and

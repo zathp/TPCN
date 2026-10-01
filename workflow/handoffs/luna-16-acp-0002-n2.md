@@ -34,7 +34,7 @@ tpcn_handoff:
   proposal: "ACP-0002 staged N2 authorization"
   files_changed: ["tpcn/topology.py", "tests/test_acp0002_n1.py", "tests/test_acp0002_n2.py", "tests/test_topology.py", "tests/test_luna11_adversarial.py", "tests/test_structural_plasticity.py", "workflow/docs/architecture_proposals/ACP-0002.md", "workflow/docs/luna/LUNA_WORKFLOW.md", "workflow/ARCHITECTURE_CHANGELOG.md", "workflow/handoffs/luna-16-acp-0002-n2.md", "artifacts/acp-0002-n2-model-b-baseline/baseline.json"]
   tests_added: ["tests/test_acp0002_n2.py"]
-  tests_passing: ["Focused N2: 264 passed", "Full CPU suite: 545 passed, 1 skipped", "compileall", "git diff --check"]
+  tests_passing: ["Focused N2: 264 passed", "Full CPU suite: 546 passed, 1 skipped", "compileall", "git diff --check"]
   tests_failed: []
   tests_not_run: ["Independent Luna-0 N2 review", "hardware/CUDA acceptance", "TPCV version update"]
   assumptions: ["TPCV-1 remains an observational format and does not claim active transfer-state equivalence."]
