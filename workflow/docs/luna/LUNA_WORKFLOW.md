@@ -2848,3 +2848,25 @@ Experimental gating and plasticity begin after the first integrated software mil
 
 See [acceptance criteria](../architecture/ACCEPTANCE_CRITERIA.md) and [proposal process](../architecture_proposals/README.md).
 
+### Luna-0 independent review of ACP-0002 Stage N1 - 2026-09-30
+
+At reviewed revision `7ddf00b6c7a8f01ad4ebe3483bc553c83dbe26d3`, synchronized
+with `origin/main` on a clean `main` worktree, Luna-0 independently verified
+ACP-0002 N1 as:
+
+**PASS - ACP-0002 N1 DATA MODEL AND COMPATIBILITY INDEPENDENTLY VERIFIED**
+
+The bounded edge schema, compatibility defaults, neuron-gain migration,
+legacy payload routing, topology reconstruction, structural-growth defaults,
+observer non-interference and deterministic representation passed direct and
+automated checks. The existing TPCV-1 format intentionally remains a
+version-1 observability boundary that omits future connection transfer fields;
+this is now documented and does not claim complete N1 edge-state fidelity.
+
+Validation recorded in the Luna-0 handoff includes 18 focused N1 tests, 83
+selected topology/neuron/structural/replay/regression tests, 309 full CPU
+tests with 1 skipped, direct adversarial probes, compileall and diff checks.
+N1 is complete. ACP-0002 remains accepted for staged implementation; N2 is
+not authorized. A01-A15 remain unchanged, Luna-13F remains closed and
+Luna-13G remains unauthorized.
+

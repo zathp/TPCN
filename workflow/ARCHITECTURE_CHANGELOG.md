@@ -12,6 +12,32 @@ This entry does not activate the Model-B transfer equation, add edge learning,
 change structural admission/pruning semantics or authorize N2. A01-A15 remain
 unchanged; Luna-13F remains closed and Luna-13G remains unauthorized.
 
+## Luna-0 independent review of ACP-0002 Stage N1 - 2026-09-30
+
+Reviewed implementation revision
+`7ddf00b6c7a8f01ad4ebe3483bc553c83dbe26d3` after synchronization with
+`origin/main`; the worktree was clean and `HEAD == origin/main`.
+
+**PASS - ACP-0002 N1 DATA MODEL AND COMPATIBILITY INDEPENDENTLY VERIFIED**
+
+- Edge bounds, defaults, equality, direct construction and public topology
+	paths were independently checked.
+- Extreme valid transfer fields remained dormant: routing preserved the exact
+	legacy payload, event metadata, delay and sequence ordering.
+- Neuron `input_gain` and `neuron_gain` were equivalent with one stored value;
+	conflicting aliases were rejected.
+- Explicit edge state survived pruning/rebuild; candidate scores were not
+	copied into new edge parameters; bounded admission/pruning behavior was
+	unchanged.
+- TPCV-1 remains a documented version-1 observability boundary that omits
+	transfer fields until a future format version; canonical edge equality,
+	topology replay and edge instrumentation retain them.
+
+Evidence and exact commands are recorded in
+`workflow/handoffs/luna-0-review-ACP-0002-N1.md`. ACP-0002 remains accepted
+for staged implementation, N2 remains unauthorized, A01-A15 remain unchanged,
+Luna-13F remains closed and Luna-13G remains unauthorized.
+
 ## 1.0 — 2026-09-26
 
 Established the documented candidate contract from the source conversation and current owner request.
