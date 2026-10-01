@@ -1,6 +1,6 @@
 {
   "architecture_revision": "ACP-0002-N2",
-  "implementation_revision": "9cf9feed2a7436b321d2c9d7a960e8e393fd21c7",
+  "implementation_revision": "ed8aaff2d0d0d031c2c1f84b311251f530282479",
   "migration_strategy": "CONTROLLED CANONICAL CUTOVER",
   "edge_equation": "z=tanh(w*a); v=d*z+(1-d)*r",
   "neuron_equation": "s=clip(decay(s,dt)+gain*v); activation=tanh(gain*s)",

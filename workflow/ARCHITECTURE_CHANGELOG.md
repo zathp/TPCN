@@ -47,9 +47,9 @@ positive finite delay. Control and metadata payloads remain opaque. Existing
 destination local-time decay, bounded integration, neuron gain and fixed
 activation remain unchanged.
 
-Implementation revision: `9cf9feed2a7436b321d2c9d7a960e8e393fd21c7`.
+Implementation revision: `ed8aaff2d0d0d031c2c1f84b311251f530282479`.
 The N2 baseline is `artifacts/acp-0002-n2-model-b-baseline/baseline.json`.
-Focused N2 tests: 264 passed. Full CPU suite: 546 passed, 1 skipped.
+Focused N2 tests: 267 passed. Full CPU suite: 549 passed, 1 skipped.
 Compilation and `git diff --check` passed. Causality, timestamps, positive
 delays, deterministic ordering, bounded queue/state/execution, structural
 defaults and reconstruction, label/future isolation, reward boundaries and

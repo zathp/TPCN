@@ -2914,12 +2914,12 @@ A01-A15 remain unchanged.
 ### Luna-16 N2 implementation result - 2026-09-30
 
 **OBSERVED:** Static Model-B transfer is active for numeric neural signal
-routing at implementation revision `9cf9feed2a7436b321d2c9d7a960e8e393fd21c7`:
+routing at implementation revision `ed8aaff2d0d0d031c2c1f84b311251f530282479`:
 `z=tanh(w*a)` and `v=d*z+(1-d)*r`. Numeric signal payloads are delayed by the
 existing edge delay; control and metadata payloads are not transformed.
 
-**OBSERVED:** The focused N2 suite passed 264 tests and the full CPU suite
-passed 546 tests with 1 skipped. Compile, deterministic replay, observer
+**OBSERVED:** The focused N2 suite passed 267 tests and the full CPU suite
+passed 549 tests with 1 skipped. Compile, deterministic replay, observer
 ON/OFF, fan-out, equal-time fan-in, unequal delays, bounded recurrence,
 structural defaults/reconstruction and control-payload boundary checks passed.
 
