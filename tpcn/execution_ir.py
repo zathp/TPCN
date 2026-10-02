@@ -2,7 +2,11 @@
 
 This module is deliberately an adapter boundary.  Canonical reference
 objects remain authoritative for execution; this IR only represents their
-portable logical state and bounded configuration.
+portable logical state and bounded configuration.  ``TPCN-IR-1`` is a
+canonical network configuration plus transferable initial execution-state
+representation sufficient for the supported reference reconstruction path.
+It is not a full live-runtime checkpoint or arbitrary mid-execution migration
+format.
 """
 
 from __future__ import annotations
@@ -20,12 +24,35 @@ from .topology import BoundedTopology, Edge
 
 IR_VERSION = "TPCN-IR-1"
 ACTIVATION_MODEL = "tanh"
+SUPPORTED_ACTIVATION_MODELS = frozenset({ACTIVATION_MODEL})
+IR_SCOPE_DESCRIPTION = (
+    "TPCN-IR-1 is a canonical network configuration plus transferable initial "
+    "execution-state representation sufficient for the supported reference "
+    "reconstruction path. It is not a full live-runtime checkpoint or "
+    "arbitrary mid-execution migration format."
+)
+IR_EXCLUDED_RUNTIME_STATE = (
+    "outstanding predictions",
+    "prediction-observation matching state",
+    "eligibility state",
+    "reward duplicate/idempotency state",
+    "energy/accounting state",
+    "already-processed-event bookkeeping",
+    "runtime queues and state not represented by the IR",
+)
 
 
 def _text(value: object, name: str) -> str:
     if not isinstance(value, str) or not value:
         raise ValueError(f"{name} must be a non-empty string")
     return value
+
+
+def _activation_model(value: object) -> str:
+    model = _text(value, "activation_model")
+    if model not in SUPPORTED_ACTIVATION_MODELS:
+        raise ValueError(f"unsupported activation_model: {model!r}")
+    return model
 
 
 def _finite(value: Real, name: str) -> float:
@@ -114,7 +141,7 @@ class IRNeuron:
             raise ValueError("neuron_gain must be within [0.0, 2.0]")
         if abs(state) > limit:
             raise ValueError("state must be within state_limit")
-        _text(self.activation_model, "activation_model")
+        _activation_model(self.activation_model)
         object.__setattr__(self, "decay_rate", decay)
         object.__setattr__(self, "state_limit", limit)
         object.__setattr__(self, "neuron_gain", gain)
@@ -183,6 +210,9 @@ class ExecutionIR:
             _positive_int(self.event_budget, "event_budget")
         if len(self.edges) > self.edge_capacity or len(self.events) > self.event_queue_capacity:
             raise ValueError("IR records exceed declared finite capacity")
+        sequences = [event.sequence for event in self.events if event.sequence >= 0]
+        if len(sequences) != len(set(sequences)):
+            raise ValueError("events must have unique sequence identities")
 
     def to_dict(self) -> dict[str, Any]:
         return {
@@ -233,6 +263,13 @@ class ExecutionIR:
 
 @dataclass(frozen=True, slots=True)
 class ReferenceExecutionState:
+    """Reference objects reconstructed from the supported IR-1 state scope.
+
+    This is not a complete live-runtime checkpoint.  Prediction matching,
+    eligibility, reward idempotency, energy/accounting and processed-event
+    state are intentionally not reconstructed by H1.
+    """
+
     topology: BoundedTopology
     neurons: dict[str, TPCNNeuron]
     events: tuple[Event, ...]
@@ -285,18 +322,25 @@ def reference_from_ir(ir: ExecutionIR) -> ReferenceExecutionState:
     )
     neurons = {}
     for record in ir.neurons:
+        _activation_model(record.activation_model)
         neuron = TPCNNeuron(record.neuron_id, state_limit=record.state_limit,
                             decay_rate=record.decay_rate, neuron_gain=record.neuron_gain,
                             initial_state=record.state)
         neuron.clock.advance_to(record.local_timestamp)
         neurons[record.neuron_id] = neuron
+    ordered_events = sorted(
+        ir.events,
+        key=lambda event: (event.timestamp, event.sequence if event.sequence >= 0 else math.inf),
+    )
     events = tuple(Event(e.timestamp, e.source, e.destination, e.event_type, e.payload, e.sequence)
-                   for e in ir.events)
+                   for e in ordered_events)
     return ReferenceExecutionState(topology, neurons, events, ir.event_queue_capacity)
 
 
 __all__ = [
-    "ACTIVATION_MODEL", "IR_VERSION", "ExecutionIR", "IREdge", "IREvent", "IRNeuron",
+    "ACTIVATION_MODEL", "SUPPORTED_ACTIVATION_MODELS", "IR_VERSION",
+    "IR_SCOPE_DESCRIPTION", "IR_EXCLUDED_RUNTIME_STATE",
+    "ExecutionIR", "IREdge", "IREvent", "IRNeuron",
     "ReferenceExecutionState", "edge_to_ir", "event_to_ir", "neuron_to_ir",
     "reference_from_ir", "topology_to_ir",
 ]

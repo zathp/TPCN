@@ -8,6 +8,9 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from enum import Enum
+import math
+from numbers import Real
+
 from .execution_ir import IR_VERSION
 
 
@@ -32,6 +35,22 @@ class EqualTimePolicy(str, Enum):
     COINCIDENT_WINDOW = "coincident_window"
 
 
+class StatisticalRequirement(str, Enum):
+    NONE = "none"
+    REQUIRED = "required"
+
+
+def _optional_tolerance(value: Real | None, name: str) -> float | None:
+    if value is None:
+        return None
+    if isinstance(value, bool) or not isinstance(value, Real):
+        raise TypeError(f"{name} must be a real number or None")
+    result = float(value)
+    if not math.isfinite(result) or result < 0.0:
+        raise ValueError(f"{name} must be finite and nonnegative, or None")
+    return result
+
+
 @dataclass(frozen=True, slots=True)
 class BackendCapabilities:
     identity: BackendIdentity
@@ -53,6 +72,37 @@ class ApproximationContract:
     equivalence_levels: frozenset[EquivalenceLevel]
     equal_time_policy: EqualTimePolicy
     notes: str = ""
+    supported_ir_version: str = IR_VERSION
+    numeric_tolerance: float | None = None
+    timing_tolerance: float | None = None
+    statistical_requirement: StatisticalRequirement = StatisticalRequirement.NONE
+    approximation_boundary: frozenset[str] = frozenset()
+
+    def __post_init__(self) -> None:
+        if self.supported_ir_version != IR_VERSION:
+            raise ValueError("approximation contract must name the supported canonical IR version")
+        if not isinstance(self.notes, str):
+            raise TypeError("notes must be a string")
+        levels = frozenset(self.equivalence_levels)
+        if not all(isinstance(level, EquivalenceLevel) for level in levels):
+            raise TypeError("equivalence_levels must contain EquivalenceLevel values")
+        object.__setattr__(self, "equivalence_levels", levels)
+        if not isinstance(self.equal_time_policy, EqualTimePolicy):
+            raise TypeError("equal_time_policy must be an EqualTimePolicy")
+        if not isinstance(self.statistical_requirement, StatisticalRequirement):
+            raise TypeError("statistical_requirement must be a StatisticalRequirement")
+        object.__setattr__(
+            self, "numeric_tolerance", _optional_tolerance(self.numeric_tolerance, "numeric_tolerance")
+        )
+        object.__setattr__(
+            self, "timing_tolerance", _optional_tolerance(self.timing_tolerance, "timing_tolerance")
+        )
+        boundary = frozenset(self.approximation_boundary)
+        if len(boundary) > 16:
+            raise ValueError("approximation_boundary cannot contain more than 16 declarations")
+        if any(not isinstance(item, str) or not item for item in boundary):
+            raise ValueError("approximation_boundary must contain non-empty strings")
+        object.__setattr__(self, "approximation_boundary", boundary)
 
 
 @dataclass(frozen=True, slots=True)
@@ -89,4 +139,5 @@ __all__ = [
     "ApproximationContract", "BackendCapabilities", "BackendDiagnostic",
     "BackendIdentity", "BackendMappingResult", "BackendRealizationState",
     "CalibrationState", "EqualTimePolicy", "EquivalenceLevel",
+    "StatisticalRequirement",
 ]

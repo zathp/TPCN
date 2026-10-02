@@ -15,7 +15,10 @@ from .canonical_neuron import TPCNNeuron
 from .topology import BoundedTopology, Edge, TopologyCapacityError, TopologyError
 from .execution_ir import (
     ACTIVATION_MODEL,
+    SUPPORTED_ACTIVATION_MODELS,
     IR_VERSION,
+    IR_SCOPE_DESCRIPTION,
+    IR_EXCLUDED_RUNTIME_STATE,
     ExecutionIR,
     IREdge,
     IREvent,
@@ -37,6 +40,7 @@ from .backend import (
     CalibrationState,
     EqualTimePolicy,
     EquivalenceLevel,
+    StatisticalRequirement,
 )
 from .predictive_coding import (
     LocalPredictor,
@@ -179,7 +183,10 @@ __all__ = [
     "TopologyCapacityError",
     "TopologyError",
     "ACTIVATION_MODEL",
+    "SUPPORTED_ACTIVATION_MODELS",
     "IR_VERSION",
+    "IR_SCOPE_DESCRIPTION",
+    "IR_EXCLUDED_RUNTIME_STATE",
     "ExecutionIR",
     "IREdge",
     "IREvent",
@@ -199,6 +206,7 @@ __all__ = [
     "CalibrationState",
     "EqualTimePolicy",
     "EquivalenceLevel",
+    "StatisticalRequirement",
     "LocalPredictor",
     "Observation",
     "PREDICTION_EVENT",
