@@ -1271,3 +1271,24 @@ Draft pending project-owner decision.
 
 Evidence: `workflow/docs/architecture_proposals/ACP-0004.md` and
 `workflow/handoffs/luna-0-architecture-update-ACP-0004.md`.
+# Luna-0 independent review of ACP-0004 - 2026-10-02
+
+Reviewed committed proposal `c18757739f4055bbb5721520a14382701e177d64`.
+**ACP-0004 remains Draft and is not accepted for staged implementation.**
+
+The proposal's backend-neutral excursion direction is compatible with A01-A15,
+but implementation authorization is blocked by unresolved canonical decisions:
+exact one-excursion/one-digital-event cardinality, persistent versus
+bookkeeping state ownership, S re-arm and M entry rules, fixed amplitude map,
+no-crossing discharge and finite-return proof, explicit autonomous internal
+event timing, polarity point, bounded provenance overflow, post-migration
+Model-B `a_i` meaning, and a required versioned `TPCN-IR-2` decision.
+
+ACP-0003 future-neuron terminology now uses canonical excursion and explicitly
+maps GPU/software and FPGA digital events separately from FPAA physical
+spikes/analog excursions. This is terminology clarification only; ACP-0003 H2,
+ACP-0002 N3, all backends, edge learning, Luna-13G and Luna-19 remain
+unauthorized.
+
+Evidence: `workflow/docs/architecture_proposals/ACP-0004.md` and
+`workflow/handoffs/luna-0-independent-review-ACP-0004.md`.
