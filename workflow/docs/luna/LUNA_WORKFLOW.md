@@ -1,5 +1,16 @@
 # TPCN Luna Multi-Agent Workflow — Event-Driven Architecture
 
+## ACP-0003 heterogeneous execution review
+
+ACP-0003 is under review as an architecture-governance proposal for separating
+canonical TPCN semantics from GPU, FPGA and FPAA realization contracts. The
+proposed order is canonical/reference behavior, a hardware-neutral execution
+IR, GPU native reference, GPU FPGA approximation, GPU FPAA approximation, and
+only then device-specific implementation. No implementation agent is
+authorized by the proposal. ACP-0002 N2 remains closed and authoritative;
+ACP-0002 N3 and later stages remain unauthorized, Luna-13F remains closed and
+Luna-13G remains unauthorized.
+
 ## Mission
 
 Evolve TPCN into a hardware-realizable, event-driven predictive-coding network while preserving its core principles.

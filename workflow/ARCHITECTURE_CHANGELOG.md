@@ -1,5 +1,29 @@
 # Architecture Changelog
 
+## Luna-0 ACP-0003 heterogeneous execution architecture update - 2026-10-02
+
+Created **ACP-0003 — Heterogeneous Execution and Backend Separation** from
+the project-owner request at baseline revision
+`434a000029ebf52d87d15ece6d3681eafdfd23f1`.
+
+- Status: **UNDER REVIEW**; project-owner acceptance is still required.
+- Establishes the proposed boundary
+	`canonical semantics -> device approximation contract -> device implementation`.
+- Defines a conceptual hardware-neutral TPCN Execution IR, portable logical
+	state, separate backend realization/calibration state, equivalence classes,
+	staged comparison levels and logical-versus-physical resource accounting.
+- Reviews GPU native, GPU FPGA approximation, FPGA native, GPU FPAA
+	approximation, FPAA native and a possible FPGA+FPAA hybrid.
+- Equal-time fan-in remains ACP-0002 N2's deterministic sequential semantic;
+	simultaneous FPAA summation is explicitly unresolved/approximate unless a
+	later contract declares serialization or tolerance.
+- A01-A15 remain unchanged. No production backend, IR implementation,
+	calibration, edge learning, ACP-0002 N3, Luna-13F reopening or Luna-13G
+	authorization follows from this entry.
+
+Evidence and the bounded next assignment are recorded in
+`workflow/handoffs/luna-0-architecture-update-ACP-0003.md`.
+
 ## Luna-15 ACP-0002 Stage N1 - 2026-09-30
 
 Implemented the accepted-for-staged-implementation ACP-0002 N1 data-model

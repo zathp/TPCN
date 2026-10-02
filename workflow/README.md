@@ -1,5 +1,13 @@
 # TPCN Luna Workflow
 
+## Current architecture review
+
+ACP-0003, **Heterogeneous Execution and Backend Separation**, is under review.
+It proposes a canonical execution IR and explicit GPU/FPGA/FPAA approximation
+contracts without changing A01-A15. It does not authorize production backend
+code or hardware validation. See [ACP-0003](docs/architecture_proposals/ACP-0003.md)
+and the [Luna-0 handoff](handoffs/luna-0-architecture-update-ACP-0003.md).
+
 Documentation package for the event-driven TPCN candidate architecture, based on the project conversation “Create TPCN Workflow” (6ab8027c-d158-83ea-a527-d72af7052855) and the owner's current decisions. Prepared 2026-09-26.
 
 ## Read in this order
