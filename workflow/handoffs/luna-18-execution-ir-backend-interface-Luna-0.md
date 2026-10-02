@@ -11,7 +11,9 @@ tpcn_handoff:
   contract_version: "1.1"
   branch: "main"
   base_revision: "663d45ec408dfa1251559f5ca912fd84abff3b99"
-  result_revision: "uncommitted"
+  result_revision: "352c323c107cfbc1d670c7cd802bf67378b2715e"
+  publication_revision: "b69fd923d05231e3f890b3902a8cfd391a9a46c9"
+  published_tree: "47b6fc2b0f4d39c8d9cbe8d8138cc256f11a1032"
   dependencies:
     - "ACP-0003 accepted for staged implementation"
     - "ACP-0002 N2 closed"
@@ -73,6 +75,8 @@ tpcn_handoff:
     - "tests/test_execution_ir.py"
   tests_passing:
     - "python -m pytest -q tests/test_execution_ir.py tests/test_acp0002_n1.py tests/test_acp0002_n2.py tests/test_event_runtime.py (277 passed)"
+    - "python -m pytest -q (554 passed, 1 skipped)"
+    - "python -m compileall -q tpcn tests (pass)"
   tests_failed: []
   tests_not_run:
     - "All GPU, FPGA, FPAA, hybrid, approximation, calibration and hardware tests until later stages."
@@ -106,6 +110,8 @@ No physical coincidence-window value is represented.
 | Command or procedure | Revision / environment / seed | Observed result | Evidence |
 |---|---|---|---|
 | Focused pytest selection | Python 3.11.5, repository working tree | PASS — 277 tests | terminal run |
+| Full pytest suite | Python 3.11.5, repository working tree | PASS — 554 passed, 1 skipped | terminal run |
+| Python compilation | Python 3.11.5, repository working tree | PASS | terminal run |
 | Static diagnostics | current working tree | PASS — no problems in touched Python files | Problems tool |
 | `git diff --check` | current working tree | PASS | terminal run |
 | GPU/FPGA/FPAA execution, approximation, calibration and hardware tests | N/A | not run; unauthorized/not applicable | scope boundary |
@@ -118,7 +124,11 @@ No physical coincidence-window value is represented.
   downstream-only semantics were not changed.
 - A01-A15 remain unchanged; ACP-0002 N3, Luna-13F reopening and Luna-13G remain
   unauthorized.
-- No commit was created, so the result revision is uncommitted.
+- H1 implementation commit: `352c323c107cfbc1d670c7cd802bf67378b2715e`.
+- Publication is present on `origin/main`; the current tip also contains the
+  separately authored governance commit `b69fd923d05231e3f890b3902a8cfd391a9a46c9`.
+- Unrelated local workflow changes were preserved and were not included in the
+  H1 implementation commit.
 
 ## Dispatch boundary
 
