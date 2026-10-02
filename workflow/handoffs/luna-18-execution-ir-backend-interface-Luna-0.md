@@ -13,8 +13,8 @@ tpcn_handoff:
   base_revision: "a829afbe2e55c95da1f044fbfe7c6624ef0a691f"
   prior_h1_implementation_revision: "352c323c107cfbc1d670c7cd802bf67378b2715e"
   result_revision: "414491edc3d9ff0e8e8f751f534e5e93ab88b6d0"
-  publication_revision: "da4fbf6c912769b2fddc84a9e01378b2d5c1dc84"
-  published_tree: "05141e771f5625d9546090428508e1debaa9c4fc"
+  publication_revision: "5d06a274a2128cff9eb2a838aa5b2dd3901ded9c"
+  published_tree: "40a78b1648685cd2d22a4ca7b55e0eb24f6c81d5"
   dependencies:
     - "ACP-0003 accepted for staged implementation"
     - "ACP-0002 N2 closed"
