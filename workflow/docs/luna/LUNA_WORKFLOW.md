@@ -2,12 +2,15 @@
 
 ## ACP-0003 heterogeneous execution review
 
-ACP-0003 is under review as an architecture-governance proposal for separating
-canonical TPCN semantics from GPU, FPGA and FPAA realization contracts. The
-proposed order is canonical/reference behavior, a hardware-neutral execution
-IR, GPU native reference, GPU FPGA approximation, GPU FPAA approximation, and
-only then device-specific implementation. No implementation agent is
-authorized by the proposal. ACP-0002 N2 remains closed and authoritative;
+ACP-0003 is accepted for staged implementation as an architecture-governance
+proposal for separating canonical TPCN semantics from GPU, FPGA and FPAA
+realization contracts. The selected equal-time policy is Model C: strict
+serialized mode is a validation path, while coincident FPAA integration is a
+declared approximation under Model B semantics. Luna-18 is authorized only for
+the H1 hardware-neutral execution IR/backend interface skeleton. The proposed
+order is canonical/reference behavior, H1 IR, GPU native reference, GPU FPGA
+approximation, GPU FPAA approximation, and only then device-specific
+implementation. ACP-0002 N2 remains closed and authoritative;
 ACP-0002 N3 and later stages remain unauthorized, Luna-13F remains closed and
 Luna-13G remains unauthorized.
 
@@ -2451,7 +2454,41 @@ unchanged.
 
 ---
 
-# 18. Luna-15 — FPGA/VHDL Branch
+## Current numbering reconciliation and Luna-18 H1
+
+The current role assignments supersede older planning reservations while
+preserving those records below as historical context:
+
+| Luna | Current role | Status |
+|---|---|---|
+| Luna-15 | ACP-0002 N1 edge/neuron data model and compatibility | completed historical implementation |
+| Luna-16 | ACP-0002 N2 static Model-B edge transfer | CLOSED |
+| Luna-17 | hardware-equivalence / cross-backend hardware acceptance | RESERVED / NOT AUTHORIZED / NO ACTIVE CONTRACT |
+| Luna-18 | ACP-0003 H1 Execution IR and backend interface skeleton | AUTHORIZED / NOT STARTED |
+
+The former Luna-15 FPGA/VHDL and Luna-16 FPAA assignments remain historical
+workflow planning records and are superseded as current assignments by the
+actual ACP-0002 contracts. Future FPGA-native and FPAA-native roles receive new
+identifiers when separately authorized. Luna-17 is not created or executed by
+H1.
+
+Luna-18 H1 is limited to a versioned hardware-neutral Execution IR, minimal
+backend identity/capability/equivalence/policy interfaces, canonical conversion
+and safe reference reconstruction, and focused validation. It must preserve
+Model-B parameters, timing, deterministic ordering, bounded state,
+prediction/error behavior, reward/idempotency and structural decisions. H1 does
+not authorize production backends, approximations, calibration, attractor
+neurons, edge learning, ACP-0002 N3, Luna-13F reopening, Luna-13G or A01-A15
+changes. H1 has not been executed and must return to Luna-0 for review.
+
+---
+
+# Historical hardware-role reservations (superseded)
+
+The following sections are retained to preserve the original numbering and
+planning history; they are not current assignments.
+
+## Historical Luna-15 — FPGA/VHDL Branch
 
 Begin only after software event semantics stabilize.
 

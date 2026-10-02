@@ -1,5 +1,29 @@
 # Architecture Changelog
 
+## Luna-0 Luna-18 creation and numbering reconciliation - 2026-10-02
+
+Created and authorized `.github/agents/luna-18.agent.md` for ACP-0003 H1,
+**Execution IR and Backend Interface Skeleton**, at publication baseline
+`a757fe510c5b3545da2161b27a53deaae01676bf`.
+
+- Luna-15 current role is ACP-0002 N1, edge/neuron data model and compatibility.
+- Luna-16 current role is ACP-0002 N2, static Model-B edge transfer; N2 is
+	closed.
+- The older Luna-15 FPGA/VHDL and Luna-16 FPAA reservations are preserved as
+	historical planning records but superseded as current assignments.
+- Luna-17 remains `RESERVED / NOT AUTHORIZED / NO ACTIVE CONTRACT` for
+	hardware-equivalence / cross-backend hardware acceptance. No Luna-17 contract
+	is created here.
+- Luna-18 is `AUTHORIZED / NOT STARTED`; H1 uses `TPCN-IR-1`, declares
+	`SEQUENTIAL_DETERMINISTIC` and future `COINCIDENT_WINDOW` policies, and does
+	not authorize H2, production
+	backends, approximation, calibration, attractor neurons or hardware work.
+- ACP-0002 N3 remains unauthorized, Luna-13F remains closed, Luna-13G remains
+	unauthorized and A01-A15 remain unchanged.
+
+The creation/authorization handoff is
+`workflow/handoffs/luna-18-h1-creation-authorization-Luna-0.md`.
+
 ## Luna-0 ACP-0003 heterogeneous execution architecture update - 2026-10-02
 
 Created **ACP-0003 — Heterogeneous Execution and Backend Separation** from
@@ -23,6 +47,27 @@ the project-owner request at baseline revision
 
 Evidence and the bounded next assignment are recorded in
 `workflow/handoffs/luna-0-architecture-update-ACP-0003.md`.
+
+## Luna-0 ACP-0003 staged-implementation decision - 2026-10-02
+
+ACP-0003 is **ACCEPTED FOR STAGED IMPLEMENTATION** with one bounded first
+stage. Equal-time FPAA fan-in uses Model C through canonical Model B semantics:
+strict serialization is a validation/reference mode, while coincident analog
+integration is a backend approximation governed by a calibrated backend
+coincidence window, never canonical network state.
+
+- Equivalence levels are E0 semantic, E1 numerical, E2 event, E3 functional
+	and E4 statistical, with requirements varying by backend and mode.
+- The canonical workload/resource boundary and architecture/calibration failure
+	taxonomy are now explicit, including hardware-limit failure.
+- Luna-18 is authorized for H1, the Execution IR/backend interface skeleton
+	only. No numerical approximation, production backend, hardware calibration,
+	attractor neuron, edge learning, ACP-0002 N3, Luna-13F reopening or Luna-13G
+	authorization follows.
+
+The updated decision and dispatch are recorded in
+`workflow/handoffs/luna-0-architecture-update-ACP-0003.md` and
+`workflow/handoffs/luna-18-execution-ir-backend-interface-Luna-0.md`.
 
 ## Luna-15 ACP-0002 Stage N1 - 2026-09-30
 

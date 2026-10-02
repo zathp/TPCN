@@ -50,13 +50,33 @@ Use the workflow's role definitions rather than having every worker rediscover t
 4. Luna-5 handles local energy, Luna-6 streaming stroke data and Luna-8 delayed credit. Agree on energy/eligibility/reward interfaces before integration.
 5. Luna-7 integrates the classification interface; Luna-11 independently verifies the integrated milestone when execution resources permit.
 6. After the first milestone, Luna-9 compares gating choices and Luna-10 develops constrained structural plasticity.
-7. After Luna-11 passes, Luna-12 defines the downstream-only visualization contract and CPU reference exporter. Luna-13 depends on Luna-12 for GPU parity; Luna-14 depends on Luna-12 for the ModelSim/FPGA bridge and DE1-SoC foundation. The former FPGA/VHDL, FPAA, and hardware-equivalence contracts are preserved as post-observability Luna-15, Luna-16, and Luna-17.
+7. After Luna-11 passes, Luna-12 defines the downstream-only visualization contract and CPU reference exporter. Luna-13 depends on Luna-12 for GPU parity; Luna-14 depends on Luna-12 for the ModelSim/FPGA bridge and DE1-SoC foundation. Historical FPGA/VHDL and FPAA reservations are preserved as history; the current Luna-15 and Luna-16 contracts are ACP-0002 N1/N2, Luna-17 is reserved for hardware equivalence, and Luna-18 is the ACP-0003 H1 dispatch.
 
 Delegate only when authorized by the active task and supported by the available runtime. These role names do not mean their agent profiles already exist. If delegation is unavailable, supply executable task briefs or perform authorized work sequentially; never claim another agent ran. Allocate roles on demand rather than launching all roles at once.
 
 Each task brief must specify the role, objective, baseline revision, authoritative inputs, affected clauses, owned files, interface contract, dependencies, acceptance checks and handoff destination. Parallel work requires stable shared interfaces and non-overlapping file ownership. Route interface conflicts through Luna-0. Keep implementation and verification responsibilities distinct where possible.
 
 Use the workflow's proposed integration, feature, experiment, hardware and legacy branch boundaries within the user's authorized scope. Preserve the legacy baseline. Never promote an experimental architecture departure into core without the proposal process.
+
+## Review architecture changes
+## Current numbering and ACP-0003 H1 dispatch
+
+The current role assignments take precedence over older planning reservations:
+
+- Luna-15 is ACP-0002 N1, edge/neuron data model and compatibility.
+- Luna-16 is ACP-0002 N2, static Model-B edge transfer; N2 is CLOSED.
+- Luna-17 remains RESERVED / NOT AUTHORIZED / NO ACTIVE CONTRACT for
+	hardware-equivalence and cross-backend hardware acceptance.
+- Luna-18 is authorized only for ACP-0003 H1, the Execution IR and minimal
+	backend interface skeleton, under `.github/agents/luna-18.agent.md`.
+
+The historical Luna-15 FPGA/VHDL and Luna-16 FPAA reservations remain
+historical records and are superseded by the actual ACP-0002 assignments. Do
+not rewrite those records to hide the numbering history. Future FPGA-native and
+FPAA-native implementation roles receive new Luna identifiers when separately
+authorized. H1 has not been executed; H1 completion does not authorize H2,
+approximation, production backends, calibration, attractor neurons, edge
+learning, ACP-0002 N3, Luna-13F reopening or Luna-13G.
 
 ## Review architecture changes
 
