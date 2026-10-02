@@ -11,7 +11,7 @@ tpcn_handoff:
   contract_version: "1.1"
   branch: "main"
   base_revision: "434a000029ebf52d87d15ece6d3681eafdfd23f1"
-  result_revision: "uncommitted architecture documentation"
+  result_revision: "uncommitted ACP-0003 staged-implementation decision"
   dependencies:
     - "ACP-0002 N2 closed"
     - "ACP-0002 Model-B edge and canonical neuron semantics"
@@ -48,7 +48,7 @@ tpcn_handoff:
     - "GPU batching versus logical event ordering"
     - "Fixed-point and analog approximation error classes"
     - "Serialization/state portability versus backend realization state"
-    - "Equal-time FPAA simultaneous integration as an explicit open issue"
+    - "Model C: strict serialized validation mode plus Model B coincident analog approximation"
   measurements:
     - "Repository governance and baseline revision inspected"
     - "No production execution or hardware validation performed"
@@ -58,7 +58,7 @@ tpcn_handoff:
   hardware_mapping:
     - "GPU native is the high-precision reference."
     - "GPU FPGA and GPU FPAA are approximation/emulation modes, not hardware."
-    - "FPGA and FPAA native responsibilities are separated but not yet accepted as a physical partition."
+    - "FPGA and FPAA native responsibilities remain a research mapping; no final physical partition is accepted."
   architecture_invariants_touched: ["A01", "A02", "A03", "A04", "A05", "A06", "A07", "A08", "A09", "A10", "A11", "A12", "A13", "A14", "A15"]
   preserves:
     - "A01-A15 text and meaning"
@@ -66,13 +66,14 @@ tpcn_handoff:
     - "TPCV-1 limited downstream-only purpose"
     - "Luna-13F closed and Luna-13G unauthorized"
   architecture_change: true
-  proposal: "ACP-0003 Under review; owner acceptance required"
+  proposal: "ACP-0003 accepted for staged implementation; H1 only"
   files_changed:
     - "workflow/docs/architecture_proposals/ACP-0003.md"
     - "workflow/ARCHITECTURE_CHANGELOG.md"
     - "workflow/docs/luna/LUNA_WORKFLOW.md"
     - "workflow/README.md"
     - "workflow/handoffs/luna-0-architecture-update-ACP-0003.md"
+    - "workflow/handoffs/luna-18-execution-ir-backend-interface-Luna-0.md"
   tests_added: []
   tests_passing: []
   tests_failed: []
@@ -82,16 +83,16 @@ tpcn_handoff:
     - "The project-owner request starts ACP review but is not an explicit acceptance decision."
     - "The local repository's workflow directory is the equivalent of the requested tpcn-luna-workflow path."
   unresolved:
-    - "IR schema/versioning, quantizers, analog model/calibration, equal-time analog mapping, hybrid partition and backend tolerances require later decisions."
+    - "IR schema details, quantizers, analog model/calibration, hybrid partition and backend tolerances remain later implementation decisions."
   recommended_next_agent:
-    - "Luna-0/project owner: decide ACP-0003 status."
-    - "After acceptance only: bounded IR/interface implementation assignment."
+    - "Luna-18: H1 Execution IR/backend interface skeleton only; return to Luna-0."
+    - "Later: GPU approximation and physical backend assignments after H1 evidence."
 ```
 
 ## Outcome and owned scope
 
 **OBSERVED:** ACP-0003 was created as the next unused proposal identifier and
-is `UNDER REVIEW`. The proposal separates canonical TPCN semantics from device
+is accepted for staged implementation. The proposal separates canonical TPCN semantics from device
 approximation contracts and device mappings for GPU native, GPU FPGA
 approximation, FPGA native, GPU FPAA approximation, FPAA native and a possible
 FPGA+FPAA hybrid.
@@ -101,14 +102,18 @@ state, event identity, local time, finite delays and bounds are portable while
 quantization, calibration, clocks, physical channels and layout remain mapping
 state.
 
+**INFERRED:** Model C resolves the equal-time fan-in governance issue without
+changing canonical N2 semantics: strict serialization is the validation mode,
+while coincident analog integration is an explicit backend approximation.
+
 **HYPOTHESIZED:** Staged equivalence tests can identify architecture,
-approximation, backend implementation and calibration failures separately.
-No result is measured yet.
+approximation, backend implementation, calibration and hardware-limit failures
+separately. No implementation result is measured yet.
 
 ## Decision summary
 
 - ACP identifier: ACP-0003.
-- Status: `ACP-0003 UNDER REVIEW`.
+- Status: `ACP-0003 ACCEPTED FOR STAGED IMPLEMENTATION`.
 - Central rule: canonical TPCN semantics -> device approximation contract -> device implementation.
 - IR boundary: portable logical topology, Model-B parameters, bounded neuron state and event records; no CUDA, RTL, physical channel or PCB details.
 - GPU native: high-precision reference and research implementation.
@@ -117,12 +122,15 @@ No result is measured yet.
 - GPU FPAA approximation: declared continuous/noisy dynamical emulation, not reduced precision alone.
 - FPAA: eventual physical dynamical realization with calibration and interface limits declared.
 - FPGA+FPAA: hardware research hypothesis, not an approved mapping.
-- Equal-time fan-in: canonical sequential semantics remain; simultaneous FPAA summation is not exact by default and requires serialization or explicit approximation tolerance.
+- Equal-time FPAA model: Model C through Model B semantics; strict serialization is required for validation, while coincident analog fan-in is an explicit approximation.
+- Strict serialization: validation/reference mode, not a permanent physical requirement.
+- Coincidence window: backend contract/calibration state, never canonical network state.
+- Equivalence: E0 semantic, E1 numeric, E2 event, E3 functional, E4 statistical; requirements vary by backend and mode.
 - State portability: one canonical logical state plus separate backend realization/calibration state.
 - Calibration: permitted as a mapping layer that cannot redefine logical parameters.
 - Equivalence hierarchy: analytic -> GPU native -> GPU FPGA -> FPGA; analytic/reference -> GPU FPAA -> physical FPAA; hybrid separately.
 - Accounting: logical event/activity proxies remain separate from hardware resource and measured-power estimates.
-- Attractor neuron: IR-compatible future extension only; no implementation authorized.
+- Attractor neuron: future extension only; cheap per-arrival decay/accumulation/test and expensive transition work are recorded, but implementation requires a future neuron ACP.
 - A01-A15: reviewed and preserved; no contract text change.
 - ACP-0002: N2 closed and authoritative; N3 and later stages unauthorized.
 - Luna-13F: closed. Luna-13G: unauthorized.
@@ -137,13 +145,12 @@ No result is measured yet.
 
 ## Integration readiness
 
-Not ready for implementation. ACP-0003 requires project-owner acceptance and
-later concrete decisions for IR versioning, fixed-point policies, analog
-models/calibration, equal-time analog behavior and equivalence tolerances.
+ACP-0003 is ready for the bounded H1 implementation only. Production backend,
+approximation, analog calibration and attractor-neuron work remain blocked on
+later evidence and contracts.
 
 ## Next assignment
 
-Project owner/Luna-0 must decide whether to accept ACP-0003 for staged
-implementation. If accepted, the next bounded assignment is an IR/backend
-interface foundation only, with no production hardware backend, edge learning,
-ACP-0002 N3, Luna-13F reopening or Luna-13G authorization.
+Luna-18 is authorized for the H1 Execution IR/backend interface skeleton. It
+must return to Luna-0 with schema, round-trip, bounds and malformed-input
+evidence before any GPU-FPGA, GPU-FPAA, FPGA, FPAA, hybrid or attractor work.

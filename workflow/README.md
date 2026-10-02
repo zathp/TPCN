@@ -2,11 +2,14 @@
 
 ## Current architecture review
 
-ACP-0003, **Heterogeneous Execution and Backend Separation**, is under review.
-It proposes a canonical execution IR and explicit GPU/FPGA/FPAA approximation
-contracts without changing A01-A15. It does not authorize production backend
-code or hardware validation. See [ACP-0003](docs/architecture_proposals/ACP-0003.md)
-and the [Luna-0 handoff](handoffs/luna-0-architecture-update-ACP-0003.md).
+ACP-0003, **Heterogeneous Execution and Backend Separation**, is accepted for
+staged implementation. Model C governs equal-time FPAA fan-in: strict
+serialization is a validation mode and coincident analog integration is an
+explicit approximation. Luna-18 is authorized only for the H1 canonical
+execution IR/backend interface skeleton; production backends and hardware
+validation remain gated. See [ACP-0003](docs/architecture_proposals/ACP-0003.md),
+the [Luna-0 handoff](handoffs/luna-0-architecture-update-ACP-0003.md), and the
+[Luna-18 dispatch](handoffs/luna-18-execution-ir-backend-interface-Luna-0.md).
 
 Documentation package for the event-driven TPCN candidate architecture, based on the project conversation “Create TPCN Workflow” (6ab8027c-d158-83ea-a527-d72af7052855) and the owner's current decisions. Prepared 2026-09-26.
 
