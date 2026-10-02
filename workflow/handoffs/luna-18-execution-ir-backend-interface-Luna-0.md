@@ -1,4 +1,4 @@
-# Luna-18 H1 Dispatch: Execution IR and Backend Interface Skeleton
+# Luna-18 H1 Dispatch and Corrective Pass: Execution IR and Backend Interface Skeleton
 
 ```yaml
 tpcn_handoff:
@@ -7,13 +7,14 @@ tpcn_handoff:
   descriptive_name: "H1 Execution IR and backend interface skeleton"
   task_id: "luna-18-h1-execution-ir-backend-interface"
   component: "Hardware-neutral logical IR and backend contract interfaces"
-  status: "complete"
+  status: "implemented-pending-independent-re-review"
   contract_version: "1.1"
   branch: "main"
-  base_revision: "663d45ec408dfa1251559f5ca912fd84abff3b99"
-  result_revision: "352c323c107cfbc1d670c7cd802bf67378b2715e"
-  publication_revision: "b69fd923d05231e3f890b3902a8cfd391a9a46c9"
-  published_tree: "47b6fc2b0f4d39c8d9cbe8d8138cc256f11a1032"
+  base_revision: "a829afbe2e55c95da1f044fbfe7c6624ef0a691f"
+  prior_h1_implementation_revision: "352c323c107cfbc1d670c7cd802bf67378b2715e"
+  result_revision: "414491edc3d9ff0e8e8f751f534e5e93ab88b6d0"
+  publication_revision: "pending documentation publication"
+  published_tree: "pending documentation publication"
   dependencies:
     - "ACP-0003 accepted for staged implementation"
     - "ACP-0002 N2 closed"
@@ -74,8 +75,8 @@ tpcn_handoff:
   tests_added:
     - "tests/test_execution_ir.py"
   tests_passing:
-    - "python -m pytest -q tests/test_execution_ir.py tests/test_acp0002_n1.py tests/test_acp0002_n2.py tests/test_event_runtime.py (277 passed)"
-    - "python -m pytest -q (554 passed, 1 skipped)"
+    - "python -m pytest -q tests/test_execution_ir.py (18 passed)"
+    - "python -m pytest -q (567 passed, 1 skipped)"
     - "python -m compileall -q tpcn tests (pass)"
   tests_failed: []
   tests_not_run:
@@ -87,6 +88,42 @@ tpcn_handoff:
   recommended_next_agent:
     - "Luna-0 for independent H1 review; H2 and all backend implementation remain unauthorized."
 ```
+
+## Corrective H1 pass
+
+**OBSERVED:** The independent Luna-0 review blocked the original H1 for four
+issues: arbitrary activation identifiers could be reconstructed as `tanh`,
+duplicate event sequence identities were accepted, `ApproximationContract`
+could not declare the required IR/tolerance/statistical/boundary fields, and
+the IR scope did not explicitly exclude a full live-runtime checkpoint.
+
+**OBSERVED:** Corrective implementation revision
+`414491edc3d9ff0e8e8f751f534e5e93ab88b6d0` now accepts only the discoverable
+canonical activation set `{"tanh"}` and defends the same rule during
+reconstruction.  Sequence identities are unique across the represented
+pending-event set, including events at different timestamps; `-1` remains
+the unassigned sentinel.  Reconstruction orders assigned events by canonical
+timestamp/sequence priority.
+
+**OBSERVED:** `ApproximationContract` now declares the supported
+`TPCN-IR-1` version, optional nonnegative finite numerical and logical timing
+tolerances (`None` remains undeclared and `0` remains valid), an explicit
+statistical requirement, and a bounded approximation-boundary declaration.
+These are declarative fields only; no backend, approximation, tolerance
+verification or hardware claim is made.
+
+**OBSERVED:** The explicit IR-1 scope is a canonical network configuration plus
+transferable initial execution-state representation sufficient for the
+supported reference reconstruction path.  It is not a full live-runtime
+checkpoint or arbitrary mid-execution migration format.  IR-1 does not claim
+to preserve outstanding predictions, prediction-observation matching,
+eligibility, reward duplicate/idempotency state, energy/accounting state,
+already-processed-event bookkeeping, or other unrepresented runtime queues or
+state.  A future full checkpoint requires a broader IR version, a distinct
+checkpoint schema, or another architecture decision.
+
+**OBSERVED:** `TPCV-1` remains downstream-only and distinct from `TPCN-IR-1`.
+Canonical execution code and runtime semantics were not changed.
 
 ## Outcome
 
@@ -109,8 +146,8 @@ No physical coincidence-window value is represented.
 
 | Command or procedure | Revision / environment / seed | Observed result | Evidence |
 |---|---|---|---|
-| Focused pytest selection | Python 3.11.5, repository working tree | PASS — 277 tests | terminal run |
-| Full pytest suite | Python 3.11.5, repository working tree | PASS — 554 passed, 1 skipped | terminal run |
+| Corrective H1 pytest selection | Python 3.11.5, revision `414491e` | PASS — 18 tests | terminal run |
+| Full pytest suite | Python 3.11.5, revision `414491e` | PASS — 567 passed, 1 skipped | terminal run |
 | Python compilation | Python 3.11.5, repository working tree | PASS | terminal run |
 | Static diagnostics | current working tree | PASS — no problems in touched Python files | Problems tool |
 | `git diff --check` | current working tree | PASS | terminal run |
@@ -124,7 +161,8 @@ No physical coincidence-window value is represented.
   downstream-only semantics were not changed.
 - A01-A15 remain unchanged; ACP-0002 N3, Luna-13F reopening and Luna-13G remain
   unauthorized.
-- H1 implementation commit: `352c323c107cfbc1d670c7cd802bf67378b2715e`.
+- Original H1 implementation commit: `352c323c107cfbc1d670c7cd802bf67378b2715e`.
+- Corrective H1 implementation commit: `414491edc3d9ff0e8e8f751f534e5e93ab88b6d0`.
 - Publication is present on `origin/main`; the current tip also contains the
   separately authored governance commit `b69fd923d05231e3f890b3902a8cfd391a9a46c9`.
 - Unrelated local workflow changes were preserved and were not included in the
@@ -133,6 +171,8 @@ No physical coincidence-window value is represented.
 ## Dispatch boundary
 
 Luna-18 is authorized to implement only H1, the canonical IR and backend
-interface skeleton. It must return to Luna-0 before any numerical approximation,
-GPU execution adapter, FPGA/FPAA implementation, attractor-neuron work or
-hardware mapping begins. This dispatch does not authorize production backends.
+interface skeleton. H1 is implemented pending independent re-review. It must
+return to Luna-0 before any numerical approximation, GPU execution adapter,
+FPGA/FPAA implementation, attractor-neuron work or hardware mapping begins.
+This pass does not authorize production backends, H2, ACP-0002 N3 or Luna-13G;
+Luna-13F remains closed.
