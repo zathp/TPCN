@@ -2464,7 +2464,7 @@ preserving those records below as historical context:
 | Luna-15 | ACP-0002 N1 edge/neuron data model and compatibility | completed historical implementation |
 | Luna-16 | ACP-0002 N2 static Model-B edge transfer | CLOSED |
 | Luna-17 | hardware-equivalence / cross-backend hardware acceptance | RESERVED / NOT AUTHORIZED / NO ACTIVE CONTRACT |
-| Luna-18 | ACP-0003 H1 Execution IR and backend interface skeleton | AUTHORIZED / NOT STARTED |
+| Luna-18 | ACP-0003 H1 Execution IR and backend interface skeleton | CLOSED / independently verified |
 
 The former Luna-15 FPGA/VHDL and Luna-16 FPAA assignments remain historical
 workflow planning records and are superseded as current assignments by the
@@ -2472,14 +2472,18 @@ actual ACP-0002 contracts. Future FPGA-native and FPAA-native roles receive new
 identifiers when separately authorized. Luna-17 is not created or executed by
 H1.
 
-Luna-18 H1 is limited to a versioned hardware-neutral Execution IR, minimal
+Luna-18 H1 was limited to a versioned hardware-neutral Execution IR, minimal
 backend identity/capability/equivalence/policy interfaces, canonical conversion
-and safe reference reconstruction, and focused validation. It must preserve
-Model-B parameters, timing, deterministic ordering, bounded state,
-prediction/error behavior, reward/idempotency and structural decisions. H1 does
-not authorize production backends, approximations, calibration, attractor
-neurons, edge learning, ACP-0002 N3, Luna-13F reopening, Luna-13G or A01-A15
-changes. H1 has not been executed and must return to Luna-0 for review.
+and safe reference reconstruction. Luna-0 independently verified and closed H1
+at reviewed revision `4aee46829807072e9af0f08842d561026555006d`; the evidence is
+in `workflow/handoffs/luna-0-independent-corrective-review-ACP-0003-H1.md`.
+The IR-1 scope is canonical network configuration plus transferable initial
+execution state for the supported reference reconstruction path, not a full
+live-runtime checkpoint. H1 preserves Model-B parameters, timing,
+deterministic ordering, bounded state, prediction/error behavior,
+reward/idempotency and structural decisions. H1 does not authorize H2,
+production backends, approximations, calibration, attractor neurons, edge
+learning, ACP-0002 N3, Luna-13F reopening, Luna-13G or A01-A15 changes.
 
 ---
 
@@ -2989,4 +2993,3 @@ analytic/replay baseline is recorded at
 N2 returns to Luna-0 for independent review. It does not authorize N3 or any
 later ACP-0002 stage, probationary/maturing edges, temporal mini-networks or
 Luna-13G. Luna-13F remains closed.
-

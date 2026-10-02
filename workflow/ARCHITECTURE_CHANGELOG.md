@@ -1,5 +1,38 @@
 # Architecture Changelog
 
+## Luna-0 independent closure of ACP-0003 H1 - 2026-10-02
+
+Independently reviewed the Luna-18 corrective H1 implementation at
+`4aee46829807072e9af0f08842d561026555006d`, following the original blocked
+review and corrective implementation `414491edc3d9ff0e8e8f751f534e5e93ab88b6d0`.
+
+**PASS — ACP-0003 H1 EXECUTION IR/BACKEND INTERFACE INDEPENDENTLY VERIFIED AND
+CLOSED**
+
+- Blocker 1 CLOSED: only the explicitly discoverable `tanh` activation is
+  supported, and reconstruction rejects unsupported semantics.
+- Blocker 2 CLOSED: sequence identities are unique within `ExecutionIR`,
+  including across timestamps; equal-time ordering survives reconstruction.
+- Blocker 3 CLOSED: `ApproximationContract` now declares the supported IR
+  version, optional numeric/timing tolerances, statistical requirement,
+  bounded approximation boundary, E0-E4 claims and equal-time policy.
+- Blocker 4 CLOSED: IR-1 is explicitly a configuration plus transferable
+  initial/reference-state representation, not a full live-runtime checkpoint.
+- Independent focused bundle: `381 passed, 1 skipped`; full CPU suite:
+  `567 passed, 1 skipped`; compilation, diagnostics, direct probes and
+  `git diff --check` passed.
+- A01-A15 remain unchanged. TPCV-1 remains downstream-only and distinct from
+  TPCN-IR-1. No backend, approximation, calibration, attractor or edge-learning
+  implementation was added.
+
+H2 remains unauthorized. ACP-0002 N3 remains unauthorized, Luna-13F remains
+closed and Luna-13G remains unauthorized. The next dependency is a separately
+authorized attractor/event-compression neuron architecture contract before H2
+approximation work; the current IR version boundary is compatible with such a
+future extension but does not implement it.
+
+Evidence: `workflow/handoffs/luna-0-independent-corrective-review-ACP-0003-H1.md`.
+
 ## Luna-0 Luna-18 creation and numbering reconciliation - 2026-10-02
 
 Created and authorized `.github/agents/luna-18.agent.md` for ACP-0003 H1,
@@ -1217,4 +1250,3 @@ ACP-0002 Edge/Neuron Data Model and Compatibility**.
 Luna-13F remains **CLOSED**, Luna-13G remains unauthorized, and A01-A15 and
 contract version 1.1 remain unchanged. The creation handoff is
 `workflow/handoffs/luna-15-n1-contract-creation-Luna-0.md`.
-

@@ -7,7 +7,7 @@ tpcn_handoff:
   descriptive_name: "H1 Execution IR and backend interface skeleton"
   task_id: "luna-18-h1-execution-ir-backend-interface"
   component: "Hardware-neutral logical IR and backend contract interfaces"
-  status: "implemented-pending-independent-re-review"
+  status: "complete"
   contract_version: "1.1"
   branch: "main"
   base_revision: "a829afbe2e55c95da1f044fbfe7c6624ef0a691f"
@@ -15,6 +15,8 @@ tpcn_handoff:
   result_revision: "414491edc3d9ff0e8e8f751f534e5e93ab88b6d0"
   publication_revision: "5d06a274a2128cff9eb2a838aa5b2dd3901ded9c"
   published_tree: "40a78b1648685cd2d22a4ca7b55e0eb24f6c81d5"
+  independent_review_revision: "4aee46829807072e9af0f08842d561026555006d"
+  independent_review_status: "PASS — ACP-0003 H1 independently verified and closed"
   dependencies:
     - "ACP-0003 accepted for staged implementation"
     - "ACP-0002 N2 closed"
@@ -86,7 +88,7 @@ tpcn_handoff:
   unresolved:
     - "Backend-specific quantizers, analog equations, calibration and coincidence tolerances remain later assignments."
   recommended_next_agent:
-    - "Luna-0 for independent H1 review; H2 and all backend implementation remain unauthorized."
+    - "Project owner/Luna-0 for a separate attractor/event-compression neuron architecture contract; H2 and all backend implementation remain unauthorized."
 ```
 
 ## Corrective H1 pass
@@ -170,9 +172,9 @@ No physical coincidence-window value is represented.
 
 ## Dispatch boundary
 
-Luna-18 is authorized to implement only H1, the canonical IR and backend
-interface skeleton. H1 is implemented pending independent re-review. It must
-return to Luna-0 before any numerical approximation, GPU execution adapter,
-FPGA/FPAA implementation, attractor-neuron work or hardware mapping begins.
-This pass does not authorize production backends, H2, ACP-0002 N3 or Luna-13G;
-Luna-13F remains closed.
+Luna-18 was authorized only for H1, the canonical IR and backend interface
+skeleton. Luna-0 independently verified and closed H1 at
+`4aee46829807072e9af0f08842d561026555006d`. This closure does not authorize
+production backends, H2, numerical approximation, GPU execution adapters,
+FPGA/FPAA implementation, attractor-neuron work, hardware mapping, ACP-0002
+N3 or Luna-13G; Luna-13F remains closed.
