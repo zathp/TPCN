@@ -1250,3 +1250,24 @@ ACP-0002 Edge/Neuron Data Model and Compatibility**.
 Luna-13F remains **CLOSED**, Luna-13G remains unauthorized, and A01-A15 and
 contract version 1.1 remain unchanged. The creation handoff is
 `workflow/handoffs/luna-15-n1-contract-creation-Luna-0.md`.
+# Luna-0 ACP-0004 attractor excursion architecture draft - 2026-10-02
+
+Created the next repository-valid proposal, **ACP-0004 — Attractor Excursion
+and Event-Compression Neuron**, from the expected baseline revision
+`c1c7a4948b7e96908da8d2334687d238d6949379`.
+
+The draft separates the backend-neutral canonical **excursion** from its
+realizations: software/ GPU TPCN events, FPGA digital event/pulse records and
+FPAA analog spikes or excursions. It proposes a bounded leaky accumulator with
+single-excursion and explicitly entered multi-excursion returns, signed
+behavior, deterministic logical emission timing, bounded causal provenance,
+compression metrics and mandatory finite-return fixtures.
+
+A01-A15, ACP-0002 N2, ACP-0003 H1 closure, ACP-0003 H2 unauthorized status,
+ACP-0002 N3 unauthorized status, Luna-17 reservation, Luna-13F closure and
+Luna-13G unauthorized status are unchanged. No production neuron, learning
+rule, backend, edge learning or Luna-19 contract was created. ACP-0004 remains
+Draft pending project-owner decision.
+
+Evidence: `workflow/docs/architecture_proposals/ACP-0004.md` and
+`workflow/handoffs/luna-0-architecture-update-ACP-0004.md`.
