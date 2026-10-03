@@ -1,5 +1,52 @@
 # Architecture Changelog
 
+# Luna-0 excursion integration contract proposal - 2026-10-03
+
+**ACP-0006 CREATED / UNDER REVIEW; OWNER ACCEPTANCE REQUIRED. NO INTEGRATION
+IMPLEMENTATION OR SUCCESSOR LUNA IS AUTHORIZED.**
+
+The review synchronized to published `main` revision
+`813186f87e7074415b550cf051ad2435c028d52a`, subject
+`Reconcile Luna-21 status and integration readiness`; `HEAD == origin/main`,
+branch `main`, and the pre-review worktree was clean.
+
+**OBSERVED:** The normal experiment network constructs continuous
+`TPCNNeuron` instances, makes an inference/routing decision on every scalar
+activation, and uses the scalar path for prediction, eligibility, energy and
+readout. The E1/E2 runtime instead emits zero or more canonical
+`ExcursionEmission` records as bounded state changes and future internal
+events are processed. The per-point experiment queue drains future events
+without an external-input watermark. ACP-0004 fixes the post-migration
+Model-B source as `p_exc` but does not specify this integrated queue, model
+selection, predictor, error, credit, readout, settling, reset and startup
+composition. ACP-0005 excludes complete live-network scheduler, predictor,
+ledger and classifier state from IR-2.
+
+**DECISION / RECOMMENDATION:** Choice C is recommended: a separate
+integration/migration ACP, not an amendment to ACP-0004's neuron state machine
+and not an implementation-only Luna task. ACP-0001 through ACP-0005 exist;
+ACP-0006 is the next unused proposal number. The proposal gives candidate
+decisions for all 17 requested integration boundaries, the mandatory
+`t0 < t1 < t2` causal fixture, matched legacy/excursion controls and future
+acceptance tests. It proposes the first normal integrated path as network-wide
+E2-capable `EXCURSION_V1`, keeps `TANH_LEGACY` explicit, uses fixed topology,
+and restricts IR-2 startup to quiescent clean state.
+
+The architecture proposal lifecycle requires acceptance by the project owner
+or an explicitly delegated architecture decision-maker. The available
+governance record identifies the project owner as decision owner and contains
+no explicit acceptance for ACP-0006. Accordingly it remains **Under review**;
+no contract promotion, production code, successor Luna agent contract, Luna
+number assignment or implementation authorization was created. A01-A15,
+ACP-0002 N2, ACP-0004 E1/E2 and ACP-0005 remain unchanged.
+
+**Remaining project-owner choices:** accept ACP-0006 as written; request
+specific revisions; or reject it. No tests or runtime experiments were run;
+this was a governance/documentation-only proposal. `git diff --check` passed.
+The complete decisions, source evidence, future acceptance contract and
+handoff are in `workflow/docs/architecture_proposals/ACP-0006.md` and
+`workflow/handoffs/luna-0-architecture-decision-ACP-0006-20261003.md`.
+
 # Luna-0 post-E2 integration dependency review - 2026-10-03
 
 **LUNA-21 STATUS RECONCILED; E1/E2-TO-PREDICTIVE-CODING INTEGRATION IS NOT

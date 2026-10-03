@@ -2517,9 +2517,20 @@ not define the concrete network migration/model-selection boundary or the
 prediction, error, eligibility and readout interfaces across that boundary.
 The acceptance criteria require these mechanisms on a real sequential
 classification path. Therefore integration is **not ready**, and no successor
-Luna contract or architecture proposal is authorized by this review. The
-project owner / Luna-0 must resolve and record the migration boundary before a
-bounded integration assignment is dispatched. See
+Luna contract or implementation is authorized. The subsequent architecture
+review recommends a separate integration/migration ACP because the missing
+contract composes the accepted Model-B, execution, excursion and IR-2
+boundaries without changing the neuron state machine. ACP-0006, **Excursion
+Runtime Integration and Migration Contract**, has been created **Under
+review**. Its candidate decisions cover network-wide E2-capable
+`EXCURSION_V1`, explicit `TANH_LEGACY` control, incremental causal scheduling,
+prediction/error/eligibility/readout, settling/reset and quiescent IR-2
+startup. Owner acceptance is required before any proposal promotion or
+successor Luna contract; no integration implementation is authorized.
+Detailed evidence is in
+`workflow/handoffs/luna-0-architecture-decision-ACP-0006-20261003.md` and
+`workflow/docs/architecture_proposals/ACP-0006.md`. The preceding dependency
+review remains at
 `workflow/handoffs/luna-0-post-e2-integration-dependency-review-20261003.md`.
 
 The former Luna-15 FPGA/VHDL and Luna-16 FPAA assignments remain historical
