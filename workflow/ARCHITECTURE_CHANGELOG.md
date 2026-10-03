@@ -1,5 +1,29 @@
 # Architecture Changelog
 
+## Luna-0 ACP-0005 TPCN-IR-2 schema decision - 2026-10-03
+
+**PASS — TPCN-IR-2 SCHEMA ACCEPTED FOR IMPLEMENTATION; LUNA-20 AUTHORIZED
+BUT NOT EXECUTED.**
+
+At starting revision `439e419a7e949d51fa487cac1acef0634c83215f`, accepted
+ACP-0004 E1 was closed and ACP-0003 H1/IR-1 was closed. ACP-0005 defines the
+explicit `TPCN-IR-2` version boundary and `TANH_LEGACY` /
+`EXCURSION_V1` dynamics discriminator.
+
+The schema contract preserves E1 modes, local time and decay configuration,
+one valid pending internal event, destination-local external-before-internal
+ordering, bounded provenance/truncation, episode/lineage/event/generation
+identity continuity, Model-B edge fields and explicit reset-versus-transfer
+semantics. It represents future M fields while requiring an explicit
+unsupported-runtime error until E2 is separately authorized and implemented.
+
+IR-1 remains frozen and cannot accept excursion records. TPCV-1, backend
+realization state and calibration remain separate. A01-A15 are unchanged.
+ACP-0003 H2, ACP-0002 N3, E2/M, backends, hardware, Luna-13F reopening and
+Luna-13G remain unauthorized. Evidence and the implementation boundary are in
+`workflow/docs/architecture_proposals/ACP-0005.md` and
+`workflow/handoffs/luna-0-architecture-decision-IR-2.md`.
+
 ## Luna-0 independent closure of ACP-0004 E1 - 2026-10-02
 
 **PASS — ACP-0004 E1 CANONICAL SINGLE-EXCURSION REFERENCE INDEPENDENTLY

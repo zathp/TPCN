@@ -19,6 +19,12 @@ only for E1, the static leaky accumulator and single-excursion reference;
 multi-excursion M, learning, IR-2, backends, approximation, calibration and
 H2 remain outside its scope.
 
+ACP-0005, **TPCN-IR-2 Excursion-Neuron Execution Schema**, is accepted for
+implementation. Luna-20 is authorized only for the hardware-neutral schema,
+E1 conversion/reconstruction and validation fixtures; it is not executed by
+this decision. E2/M, backends, learning, H2, N3 and hardware remain
+unauthorized.
+
 Documentation package for the event-driven TPCN candidate architecture, based on the project conversation “Create TPCN Workflow” (6ab8027c-d158-83ea-a527-d72af7052855) and the owner's current decisions. Prepared 2026-09-26.
 
 ## Read in this order
