@@ -2506,7 +2506,7 @@ preserving those records below as historical context:
 | Luna-21 | ACP-0004 E2 multi-excursion return runtime | CLOSED / independently verified |
 | Luna-22 | ACP-0006 first CPU software-reference excursion integration | IMPLEMENTED / SECOND INDEPENDENT REVIEW BLOCKED |
 | Luna-23 | ACP-0004 E2 positive-delay logical-time representability correction | CLOSED / INDEPENDENTLY VERIFIED |
-| Luna-24 | ACP-0006 integrated IR-2 residual-provenance boundary correction | AUTHORIZED / NOT EXECUTED |
+| Luna-24 | ACP-0006 integrated IR-2 residual-provenance boundary correction | CLOSED / INDEPENDENTLY VERIFIED |
 
 Luna-19, Luna-20 and Luna-21 are closed component implementations; this does
 not itself establish experiment-path integration. **OBSERVED:** the ordinary
@@ -2547,18 +2547,24 @@ cause. The review and evidence are in
 `workflow/handoffs/luna-0-independent-review-luna-23-e2-time-representability-20261003.md`.
 This does not close Luna-22.
 
-Luna-24 remains **AUTHORIZED / NOT EXECUTED** to reject residual assigned
-provenance and sticky provenance truncation at integrated IR-2 startup under
-ACP-0006, using `.github/agents/luna-24.agent.md` and the existing dispatch
-handoff at
-`workflow/handoffs/luna-0-authorization-luna-24-ir2-provenance-20261003.md`.
-The Luna-23 and Luna-24 implementation file ownership remains disjoint.
-Neither correction changes A01-A15, ACP-0004, ACP-0006 or IR-2 schema revision
-1, and neither authorizes visualization, structural-plasticity, dataset or
-benchmark-consumer migrations. Luna-22 remains **BLOCKED / NOT CLOSED** until
-the Luna-24 startup boundary, repository-reproducible dataset/split/per-class
-evidence, and separately authorized downstream compatibility decisions are
-resolved and Luna-0 performs a fresh integration review.
+Luna-24 rejected assigned residual provenance and sticky truncation only at
+the ACP-0006 integrated IR-2 startup boundary. Luna-0 independently verified
+the published implementation, standalone E2/IR-2 preservation, schema
+revision 1, clean startup, identity continuity, and the complete applicable
+regression set. Luna-24 is **CLOSED / INDEPENDENTLY VERIFIED**; its evidence is
+in
+`workflow/handoffs/luna-0-independent-review-luna-24-ir2-provenance-20261003.md`.
+Luna-23 remains **CLOSED / INDEPENDENTLY VERIFIED**. Neither correction
+changes A01-A15, ACP-0004, ACP-0006 or IR-2 schema revision 1, and neither
+authorizes visualization, structural-plasticity, dataset or benchmark-consumer
+migrations.
+
+Luna-22 remains **BLOCKED / NOT CLOSED**. The repository-reproducible
+sequential-dataset/split/per-class evidence gate remains unresolved, as do
+consumer-specific compatibility decisions for the 24 existing downstream
+failures. These are separate kinds of work; no broad test-green or downstream
+migration task is authorized by Luna-24's closure. Luna-0 must perform a fresh
+integration review after the evidence and separately governed consumer work.
 
 The original acceptance and dispatch decision is in
 `workflow/handoffs/luna-0-acp-0006-acceptance-luna-22-authorization-20261003.md`;

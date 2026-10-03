@@ -1,5 +1,52 @@
 # Architecture Changelog
 
+# Luna-0 independent review of Luna-24 - 2026-10-03
+
+**PASS — LUNA-24 ACP-0006 IR-2 QUIESCENT PROVENANCE BOUNDARY
+INDEPENDENTLY VERIFIED / CLOSED.** Review began at the exact published
+Luna-24 handoff tip `e59e8933bfa98cd607ca424250a051499b519b5a` on clean
+`main == origin/main`. The verified lineage is baseline
+`6c012f9feeff6481a44bd6d40414b4749b21db17`, implementation
+`8e184e1bdceeb2873b2ea7479da953760b58ffbf`, then handoff publication
+`e59e8933bfa98cd607ca424250a051499b519b5a`. Luna-23 closure commit
+`c0e3e6905e329e5c268d6c63cbb3bd8d89345136` remains in the ancestry.
+
+The implementation delta contains only `tpcn/experiment_excursion_runtime.py`
+and `tests/test_excursion_integration.py`. The startup boundary now rejects
+assigned provenance entries and sticky provenance truncation, alongside the
+pre-existing exact residual-x and unassigned-provenance checks, before
+reconstruction. Independent inspection of the exact parent showed both
+assigned-provenance cases passed the old guard and were copied by the
+unchanged standalone E2 converter. Valid revision-1 provenance remains
+representable and reconstructable through standalone E2 adapters; this is
+not a global schema rule.
+
+Validation: focused integration **43 passed**; standalone IR-2/E2 references
+**203 passed**; Luna-22 focused controls **55 passed**; prescribed regression
+set **334 passed**; full CPU suite **789 passed, 24 failed, 1 skipped**;
+collection **814**. The one skip is CUDA unavailable. The 24 failures match
+the already classified visualization, structural/default-model,
+legacy-observable, benchmark, temporal-analysis and viewer groups. No
+Luna-24-attributable failure was found. `compileall`, Pylance diagnostics and
+diff checks passed.
+
+The field audit found no over-rejection or hidden startup ambiguity.
+High-water identity counters survive character start; local event counters,
+generation, `m_peak` and local timestamp are reset at the explicit
+`START_CHARACTER` boundary before integrated event processing. Mode-N active
+episode/pending combinations are schema-owned invalidity. Empty `TPCNIR2(())`
+is schema-permitted but cannot create an integrated runtime: bounded-topology
+construction rejects the empty node set. No adapter/schema duplication is
+needed.
+
+No A01-A15, ACP or schema revision changed. Luna-24 is **CLOSED /
+INDEPENDENTLY VERIFIED** and Luna-23 remains closed. Luna-22 remains
+**BLOCKED / NOT CLOSED**: the retained loader/split/per-class dataset evidence
+is still absent, and downstream compatibility decisions remain separately
+unresolved. No dataset benchmark or downstream migration was performed in
+this review. Full evidence is in
+`workflow/handoffs/luna-0-independent-review-luna-24-ir2-provenance-20261003.md`.
+
 # Luna-0 independent review of Luna-23 - 2026-10-03
 
 **PASS — LUNA-23 E2 LOGICAL-TIME REPRESENTABILITY CORRECTION INDEPENDENTLY
