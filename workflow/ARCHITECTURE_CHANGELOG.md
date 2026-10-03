@@ -1,5 +1,51 @@
 # Architecture Changelog
 
+# Luna-0 second independent review of ACP-0006 / Luna-22 - 2026-10-03
+
+**VERDICT: BLOCKED / LUNA-22 NOT CLOSED.** Review started from the published
+implementation revision
+`a206f2e8fec8f0c72d9196b2bcca9d2e734c7974` on clean `main`, synchronized with
+`origin/main`. The exact five-file implementation delta is recorded in
+`workflow/handoffs/luna-0-second-independent-review-ACP-0006-Luna-22-20261003.md`.
+
+The focused Luna-22 tests passed (41), and the prescribed component/integration
+regression set passed (318). The independently rerun full suite had 27
+failures, 770 passes and one CUDA-unavailable skip. The review independently
+confirmed causal `t0/t1/t2` admission, same-time ordering, generation-guarded
+stale-event no-op, emission-only routing, synthetic prediction/error and
+delayed-credit mechanics, finite settling and reset.
+
+Two corrective defects block closure:
+
+1. E2 can calculate a mathematically positive rearm delay that rounds to the
+   current floating-point timestamp, then raise instead of scheduling
+   representable strictly future work.
+2. Integrated IR-2 startup accepts a non-empty assigned provenance tuple and
+   `provenance_truncated=True`, despite the accepted quiescent boundary
+   requiring no residual provenance.
+
+The reported UCI Character Trajectories subset is not repository-reproducible:
+the ad-hoc loader/split procedure and per-class results were not retained.
+The report shows low accuracy and zero matched test predictions; no numerical
+accuracy threshold is inferred.
+
+**NUMBERING / AUTHORIZATION:** Luna-23 is authorized / not executed for the
+bounded ACP-0004 E2 logical-time representability correction in
+`.github/agents/luna-23.agent.md`, dispatched in
+`workflow/handoffs/luna-0-authorization-luna-23-e2-time-representability-20261003.md`.
+Luna-24 is authorized / not executed for the bounded ACP-0006 integrated IR-2
+residual-provenance correction in `.github/agents/luna-24.agent.md`, dispatched
+in `workflow/handoffs/luna-0-authorization-luna-24-ir2-provenance-20261003.md`.
+Their implementation file ownership is disjoint. Downstream visualization,
+structural/research and benchmark consumer migration is not authorized by
+this review. ACP-0006 remains accepted and unchanged; A01-A15 and IR-2 schema
+revision 1 are unchanged.
+
+The first pushed review-publication commit is the commit that adds this entry
+and the review handoff; its exact revision is reported in the session result.
+This review does not claim integration readiness, dataset reproducibility,
+predictive efficacy or hardware equivalence.
+
 # Project-owner acceptance of ACP-0006 and Luna-22 dispatch - 2026-10-03
 
 **ACP-0006 ACCEPTED AS WRITTEN; LUNA-22 AUTHORIZED / NOT EXECUTED.**

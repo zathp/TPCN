@@ -2504,7 +2504,9 @@ preserving those records below as historical context:
 | Luna-19 | ACP-0004 E1 canonical single-excursion neuron | CLOSED / independently verified |
 | Luna-20 | ACP-0005 TPCN-IR-2 excursion execution schema | CLOSED / independently verified |
 | Luna-21 | ACP-0004 E2 multi-excursion return runtime | CLOSED / independently verified |
-| Luna-22 | ACP-0006 first CPU software-reference excursion integration | AUTHORIZED / NOT EXECUTED |
+| Luna-22 | ACP-0006 first CPU software-reference excursion integration | IMPLEMENTED / SECOND INDEPENDENT REVIEW BLOCKED |
+| Luna-23 | ACP-0004 E2 positive-delay logical-time representability correction | AUTHORIZED / NOT EXECUTED |
+| Luna-24 | ACP-0006 integrated IR-2 residual-provenance boundary correction | AUTHORIZED / NOT EXECUTED |
 
 Luna-19, Luna-20 and Luna-21 are closed component implementations; this does
 not itself establish experiment-path integration. **OBSERVED:** the ordinary
@@ -2525,19 +2527,37 @@ startup are all implementable using explicit configuration and existing
 interfaces. Dataset selection remains an implementation/reporting choice
 under the existing open sequential-dataset protocol, not a new core semantic.
 
-Luna-22 is created and **AUTHORIZED / NOT EXECUTED** for the first CPU
-software-reference integration only. It must use a network-wide
-`EXCURSION_V1`/E2 normal path, explicit `TANH_LEGACY` control, one bounded
-character queue and the incremental causal input watermark; the accepted
-prediction/error/eligibility/readout/settling/reset/IR-2 rules remain
-normative. It owns only the experiment integration surface and focused tests.
-It does not authorize component redesign, structural plasticity, N3, H2,
-IR-3, backends, hardware, calibration or changes to A01-A15. Implementation
-has not been executed and integration readiness is not claimed. The complete
-acceptance and dispatch decision is in
+Luna-22 implemented and published the first CPU software-reference
+integration at `a206f2e8fec8f0c72d9196b2bcca9d2e734c7974`. Luna-0's second
+independent review is **BLOCKED / NOT CLOSED**: it reproduced an E2
+positive-delay representability failure in valid temporal workloads and found
+that integrated IR-2 startup still accepts assigned residual provenance and
+sticky provenance truncation. The reported UCI Character Trajectories subset
+also lacks a retained loader/split script and per-class results. The exact
+review evidence is in
+`workflow/handoffs/luna-0-second-independent-review-ACP-0006-Luna-22-20261003.md`.
+No downstream visualization or research consumer migration is authorized.
+
+Luna-23 is authorized only to correct the E2 strict-future timestamp
+representability defect under ACP-0004, using `.github/agents/luna-23.agent.md`.
+Luna-24 is authorized only to reject residual assigned provenance and sticky
+provenance truncation at integrated IR-2 startup under ACP-0006, using
+`.github/agents/luna-24.agent.md`. Their dispatch handoffs are
+`workflow/handoffs/luna-0-authorization-luna-23-e2-time-representability-20261003.md`
+and `workflow/handoffs/luna-0-authorization-luna-24-ir2-provenance-20261003.md`.
+Both are **AUTHORIZED / NOT EXECUTED**; they have disjoint implementation
+file ownership and must stop if a
+contract-compatible correction is not possible. These authorizations do not
+change A01-A15, ACP-0004, ACP-0006 or IR-2 schema revision 1, and do not
+authorize visualization, structural-plasticity, dataset or benchmark-consumer
+migrations. After both corrections, Luna-0 must independently re-run the
+applicable gates and resolve the real-data evidence gap before deciding
+whether Luna-22 can close.
+
+The original acceptance and dispatch decision is in
 `workflow/handoffs/luna-0-acp-0006-acceptance-luna-22-authorization-20261003.md`;
-the creation contract is `.github/agents/luna-22.agent.md`. The preceding
-dependency and under-review proposal records remain historical.
+the implementation contract is `.github/agents/luna-22.agent.md`. The
+preceding dependency and under-review proposal records remain historical.
 
 The former Luna-15 FPGA/VHDL and Luna-16 FPAA assignments remain historical
 workflow planning records and are superseded as current assignments by the
