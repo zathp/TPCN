@@ -2505,7 +2505,7 @@ preserving those records below as historical context:
 | Luna-20 | ACP-0005 TPCN-IR-2 excursion execution schema | CLOSED / independently verified |
 | Luna-21 | ACP-0004 E2 multi-excursion return runtime | CLOSED / independently verified |
 | Luna-22 | ACP-0006 first CPU software-reference excursion integration | IMPLEMENTED / SECOND INDEPENDENT REVIEW BLOCKED |
-| Luna-23 | ACP-0004 E2 positive-delay logical-time representability correction | AUTHORIZED / NOT EXECUTED |
+| Luna-23 | ACP-0004 E2 positive-delay logical-time representability correction | CLOSED / INDEPENDENTLY VERIFIED |
 | Luna-24 | ACP-0006 integrated IR-2 residual-provenance boundary correction | AUTHORIZED / NOT EXECUTED |
 
 Luna-19, Luna-20 and Luna-21 are closed component implementations; this does
@@ -2538,21 +2538,27 @@ review evidence is in
 `workflow/handoffs/luna-0-second-independent-review-ACP-0006-Luna-22-20261003.md`.
 No downstream visualization or research consumer migration is authorized.
 
-Luna-23 is authorized only to correct the E2 strict-future timestamp
-representability defect under ACP-0004, using `.github/agents/luna-23.agent.md`.
-Luna-24 is authorized only to reject residual assigned provenance and sticky
-provenance truncation at integrated IR-2 startup under ACP-0006, using
-`.github/agents/luna-24.agent.md`. Their dispatch handoffs are
-`workflow/handoffs/luna-0-authorization-luna-23-e2-time-representability-20261003.md`
-and `workflow/handoffs/luna-0-authorization-luna-24-ir2-provenance-20261003.md`.
-Both are **AUTHORIZED / NOT EXECUTED**; they have disjoint implementation
-file ownership and must stop if a
-contract-compatible correction is not possible. These authorizations do not
-change A01-A15, ACP-0004, ACP-0006 or IR-2 schema revision 1, and do not
-authorize visualization, structural-plasticity, dataset or benchmark-consumer
-migrations. After both corrections, Luna-0 must independently re-run the
-applicable gates and resolve the real-data evidence gap before deciding
-whether Luna-22 can close.
+Luna-23's bounded E2 strict-future representability correction is
+**CLOSED / INDEPENDENTLY VERIFIED** under ACP-0004. The independent review
+confirmed both polarities, finite strictly increasing local timestamps,
+preserved configured-delay rejection, unchanged E1 and IR-2 behavior, and
+removal of all seven E2 representability exceptions as their original failure
+cause. The review and evidence are in
+`workflow/handoffs/luna-0-independent-review-luna-23-e2-time-representability-20261003.md`.
+This does not close Luna-22.
+
+Luna-24 remains **AUTHORIZED / NOT EXECUTED** to reject residual assigned
+provenance and sticky provenance truncation at integrated IR-2 startup under
+ACP-0006, using `.github/agents/luna-24.agent.md` and the existing dispatch
+handoff at
+`workflow/handoffs/luna-0-authorization-luna-24-ir2-provenance-20261003.md`.
+The Luna-23 and Luna-24 implementation file ownership remains disjoint.
+Neither correction changes A01-A15, ACP-0004, ACP-0006 or IR-2 schema revision
+1, and neither authorizes visualization, structural-plasticity, dataset or
+benchmark-consumer migrations. Luna-22 remains **BLOCKED / NOT CLOSED** until
+the Luna-24 startup boundary, repository-reproducible dataset/split/per-class
+evidence, and separately authorized downstream compatibility decisions are
+resolved and Luna-0 performs a fresh integration review.
 
 The original acceptance and dispatch decision is in
 `workflow/handoffs/luna-0-acp-0006-acceptance-luna-22-authorization-20261003.md`;

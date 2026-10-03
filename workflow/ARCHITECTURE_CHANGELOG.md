@@ -1,5 +1,58 @@
 # Architecture Changelog
 
+# Luna-0 independent review of Luna-23 - 2026-10-03
+
+**PASS — LUNA-23 E2 LOGICAL-TIME REPRESENTABILITY CORRECTION INDEPENDENTLY
+VERIFIED / CLOSED.** Review started at `10687cf4a21d75eb5a0552635282f889df1e4005`
+with `main == origin/main` and a clean worktree. The implementation commit
+`4c1efd6c31aed86748dcacf596401579c2b94bc8` has parent
+`3ec3c4a7991c28f59e1419c9f3656267efed2875`; the first handoff publication
+`7ce73cb194128f6ecd4a5068f4bbdd72d42b5eea` and finalized handoff
+`10687cf4a21d75eb5a0552635282f889df1e4005` are descendants. The exact
+implementation delta contains only `tpcn/excursion_neuron.py` and
+`tests/test_e2_multi_excursion.py`.
+
+Independent execution reproduced the negative and positive states at logical
+time `45.27906122689938`; each analytic rearm delay was finite and positive
+(`1.110223024625156e-15`), while adding it rounded to the current float. E2
+stored `45.27906122689939`, the next representable future timestamp. Actual
+pending-event processing yielded the strictly increasing trace
+`[45.27906122689938, 45.27906122689939]`, then returned to `N` in two
+processed events without emissions or a pending event. At the largest finite
+timestamp, the next-float overflow was rejected before queue insertion.
+Configured `M_EMIT`/`M_REARM` non-advancing delays, NaN and past times remain
+rejected. The configured-delay regression passed.
+
+Validation: focused E2 **42 passed**; E1/E2/IR-2 references **203 passed**;
+the Luna-22 prescribed regression set **320 passed**; full CPU suite **24
+failed, 775 passed, 1 skipped** (CUDA unavailable); current collection **800
+tests**. The three former representability failures that now pass are the
+four-class label-invariance test, fixed-policy classifier test, and requested
+scale test. The other four former E2 exceptions proceed beyond representability
+but still fail later at existing structural/default-model boundaries; they
+are not counted as passing. Remaining failures match the pre-existing
+visualization scalar assumptions (3), structural/default-model consumers
+(13, counting Luna-12B, Luna-12L and the spiral control), Luna-12E legacy
+observables (2), temporal-analysis consumers (3), and 3D viewer consumers (3).
+No downstream consumer was changed.
+
+The `_schedule()` fallback accepts a deliberately malformed direct private
+same-time `S_REARM` call when the current state itself has an unrepresentable
+analytic delay. Source inspection found that every E2 production call site
+uses the analytic rearm calculation; the malformed request is therefore a
+private-call misuse, not an externally reachable production path. This scope
+is recorded in the independent handoff. E1's base scheduler/reset, E2 identity
+and stale-event validation, and standalone TPCN-IR-2 schema revision 1 remain
+unchanged. `math.nextafter()` is a software-reference representation detail,
+not a canonical hardware timing rule. No ACP or A01-A15 change is made.
+
+**GOVERNANCE:** Luna-23 is **CLOSED / INDEPENDENTLY VERIFIED**. Luna-22 remains
+**BLOCKED / NOT CLOSED**; its IR-2 residual-provenance, dataset reproducibility
+and downstream compatibility blockers remain. Luna-24 remains
+**AUTHORIZED / NOT EXECUTED**. No consumer migration or dataset work is
+authorized here. Full evidence is in
+`workflow/handoffs/luna-0-independent-review-luna-23-e2-time-representability-20261003.md`.
+
 # Luna-0 second independent review of ACP-0006 / Luna-22 - 2026-10-03
 
 **VERDICT: BLOCKED / LUNA-22 NOT CLOSED.** Review started from the published
