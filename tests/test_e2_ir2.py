@@ -37,18 +37,6 @@ def round_trip(neuron: MultiExcursionNeuron) -> MultiExcursionNeuron:
     return neuron_from_ir2_e2(parsed.neurons[0])
 
 
-def drain(neuron: MultiExcursionNeuron, queue: EventQueue[Event]) -> list:
-    outputs = []
-    while queue:
-        next_event = queue.peek()
-        assert next_event is not None
-        event = queue.pop_ready(next_event.timestamp)
-        emission = neuron.receive_event(event, queue)
-        if emission is not None:
-            outputs.append(emission)
-    return outputs
-
-
 def test_armed_round_trip_restores_one_pending_m_emit_without_duplicate() -> None:
     neuron = MultiExcursionNeuron("n", config=config())
     queue: EventQueue[Event] = EventQueue(64)
@@ -84,6 +72,7 @@ def _continue_pending(neuron: MultiExcursionNeuron) -> tuple[list, list, tuple]:
             emissions.append(
                 (
                     emission.event_id,
+                    emission.sequence,
                     emission.timestamp,
                     emission.payload,
                     emission.episode_id,
@@ -208,6 +197,10 @@ def test_e2_reconstruction_restores_counters_and_continues_with_unique_ids() -> 
     assert restored._lineage_identity == neuron._lineage_identity
     assert restored._input_identity == neuron._input_identity
 
-    outputs = drain(restored, EventQueue(64))
-    assert all(item.event_id != prior.event_id for item in outputs)
-    assert all(item.sequence > prior.sequence for item in outputs)
+    outputs, transitions, final_state = _continue_pending(restored)
+    assert outputs
+    assert transitions
+    assert all(item[0] != prior.event_id for item in outputs)
+    assert all(item[1] > prior.sequence for item in outputs)
+    assert final_state[0] == E1Mode.N
+    assert final_state[3] is None

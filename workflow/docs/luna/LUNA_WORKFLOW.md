@@ -30,14 +30,25 @@ The final Luna-0 E2/M dispatch review clarified final residual identity and
 provenance ownership, reset semantics during M, and the separate E2-capable
 IR-2 reconstruction boundary. Luna-21 implementation was published at
 `bfc866be053f9692382d1be5e048f5b4d280e5f6`, with its completion handoff at
-`5d0171f46b90664b1a6aca5709cc2f07f19b7f4e`. Independent review is
-**BLOCKED — IR-2 RECONSTRUCTION DEFECT**: validated S-state records can have
-identity high-water counters behind active IDs or counters beyond the event
-budget, allowing a reconstructed transition to reuse an episode identity.
-The bounded correction gate is recorded in
+`5d0171f46b90664b1a6aca5709cc2f07f19b7f4e`. The initial independent review
+at `a9077997740ccdc374c7ad89deef122112967369` was
+**BLOCKED — IR-2 RECONSTRUCTION DEFECT**: validated S-state records could
+have identity high-water counters behind active IDs or counters beyond the
+event budget, allowing episode identity reuse. Its bounded correction gate
+and evidence remain in
 `workflow/handoffs/luna-0-independent-review-ACP-0004-E2-Luna-21-20261003.md`.
-Luna-21 is implemented but not independently closed. ACP-0003 H2, ACP-0002 N3,
-backends, calibration and hardware remain separately gated.
+The authorized correction was implemented at
+`ac2e822e5c7656d649c6e77f62024c6d6e4cf72f`; its handoff was published at
+`3fb6d8c5128277bc8ecc5b2beea7288c214b772d`.
+Luna-21's bounded IR-2 correction was independently reviewed and closed at
+the review publication recorded in
+`workflow/handoffs/luna-0-independent-corrective-review-ACP-0004-E2-Luna-21-20261003.md`.
+The review independently reproduced the prior blockers on the pre-correction
+revision, verified corrected validation and continuation, and repaired the
+remaining vacuous unique-ID test oracle without changing production runtime
+code. ACP-0004 remains staged; this closure is not architecture promotion or
+integration readiness. ACP-0003 H2, ACP-0002 N3, backends, calibration and
+hardware remain separately gated.
 
 ## Mission
 

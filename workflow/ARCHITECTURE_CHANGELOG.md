@@ -1,5 +1,82 @@
 # Architecture Changelog
 
+# Luna-0 independent corrective review of Luna-21 ACP-0004 E2 - 2026-10-03
+
+**PASS — LUNA-21 ACP-0004 E2 IMPLEMENTATION AND IR-2 CORRECTION
+INDEPENDENTLY VERIFIED AND CLOSED.**
+
+Review synchronized at published `main` revision
+`3fb6d8c5128277bc8ecc5b2beea7288c214b772d`; `HEAD == origin/main`, branch
+`main`, and the pre-review worktree was clean. The prior blocking review
+`a9077997740ccdc374c7ad89deef122112967369`, corrective implementation
+`ac2e822e5c7656d649c6e77f62024c6d6e4cf72f`, and corrective-handoff
+publication `3fb6d8c5128277bc8ecc5b2beea7288c214b772d` are in the published
+ancestry. The review handoff records the exact publication lineage and
+evidence.
+
+**OBSERVED:** An isolated detached checkout of the prior blocking revision
+reproduced all three original defects: an ordinary active identity behind its
+high-water counter was accepted and reused on promotion to M; an ordinary
+`N` record with `next_event_identity = 2` and `event_budget = 1` survived a
+JSON round trip; and an equal-time `S_EMIT` with absent optional M settings
+was reconstructed and executed at local time zero.
+
+**OBSERVED:** The correction rejects each malformed identity/high-water pair
+in `S_PENDING`, `S_RETURN`, and `M_ACTIVE`; accepts active-ID/high-water
+equality; and enforces the seven execution-counter bounds in every supported
+mode. Independent boundary probes accepted `event_budget - 1` and
+`event_budget`, and rejected `event_budget + 1`. E2 reconstruction rejects
+pending work at or before local time even when optional M settings are
+absent. The historical E1 adapter still executes a valid equal-time ordinary
+pending record, and it still rejects `M_ACTIVE`.
+
+The review identified the remaining empty-queue assertions in
+`test_e2_reconstruction_restores_counters_and_continues_with_unique_ids` as
+a **FIXTURE / ORACLE DEFECT**. Luna-0 made a test-only correction: the test
+now executes bounded pending continuation and requires nonempty output and
+transition traces, output IDs different from the prior emission, strictly
+increasing output sequences, and final `N` with no pending event. Independent
+execution produced 13 subsequent outputs, beginning at sequence 2 after
+prior sequence 1, and reached `N`.
+
+The shared counter check also applies to `TANH_LEGACY`, consistent with
+bounded transferable counters; the explicit IR-1 upgrade path remains valid
+and emits schema revision 1. IR-2 reconstruction preserves state, local
+time, configuration, pending tuple, counters, provenance, truncation and
+unassigned-provenance metadata without reset or automatic duplicate
+scheduling. Exact-capacity and overflow provenance round trips preserved
+causal identity, timestamp, signed contribution, ownership, order and sticky
+truncation.
+
+Active zero-valued lineage (and the no-pending `S_RETURN` zero-ID boundary)
+is admitted by IR-2's nonnegative identifier domain. ACP-0004/ACP-0005 do not
+require one-based IDs; subsequent allocation remains above the serialized
+high-water mark. A pending generation of zero is rejected, matching the
+runtime scheduler's positive generation allocation. No architecture
+ambiguity or serialization defect was established by these probes.
+
+**OBSERVED:** The corrective production diff from `a907799...` to
+`ac2e822...` remains limited to `tpcn/ir2.py`, `tests/test_ir2.py`, and
+`tests/test_e2_ir2.py`. `tpcn/excursion_neuron.py`, event runtime, topology,
+Model-B routing, public exports, E1, N2 and schema revision were not changed.
+No production code was changed during this independent review.
+
+**Validation:** focused E2/E2-IR-2, 45 passed; E1/IR-2, 156 passed;
+N2/event runtime, 254 passed; topology, 9 passed; final IR-2/E2-IR-2, 116
+passed; full CPU, 768 passed and 1 skipped; `compileall` and diff checks
+passed. The sole skip is `tests/test_gpu_visualization.py::test_cuda_records_have_cpu_semantics`
+because CUDA is unavailable; it is unrelated to the software-reference
+closure and no backend/hardware checks were run.
+
+A01-A15, ACP-0004 staged status, ACP-0005/TPCN-IR-2 revision 1, ACP-0002 N2,
+closed E1, and all prohibitions remain unchanged. This closes only Luna-21's
+implementation review; it does not claim hardware equivalence, integration
+readiness, or authorize a successor. No successor Luna is assigned here.
+Detailed evidence: `workflow/handoffs/luna-0-independent-corrective-review-ACP-0004-E2-Luna-21-20261003.md`.
+
+The following blocking review is retained as historical evidence. Its verdict
+was superseded by the independent corrective review above.
+
 # Luna-0 independent review of Luna-21 ACP-0004 E2 - 2026-10-03
 
 **BLOCKED — IR-2 RECONSTRUCTION DEFECT. LUNA-21 IS IMPLEMENTED BUT NOT
