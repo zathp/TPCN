@@ -1250,3 +1250,45 @@ ACP-0002 Edge/Neuron Data Model and Compatibility**.
 Luna-13F remains **CLOSED**, Luna-13G remains unauthorized, and A01-A15 and
 contract version 1.1 remain unchanged. The creation handoff is
 `workflow/handoffs/luna-15-n1-contract-creation-Luna-0.md`.
+# Luna-0 ACP-0004 attractor excursion architecture draft - 2026-10-02
+
+Created the next repository-valid proposal, **ACP-0004 — Attractor Excursion
+and Event-Compression Neuron**, from the expected baseline revision
+`c1c7a4948b7e96908da8d2334687d238d6949379`.
+
+The draft separates the backend-neutral canonical **excursion** from its
+realizations: software/ GPU TPCN events, FPGA digital event/pulse records and
+FPAA analog spikes or excursions. It proposes a bounded leaky accumulator with
+single-excursion and explicitly entered multi-excursion returns, signed
+behavior, deterministic logical emission timing, bounded causal provenance,
+compression metrics and mandatory finite-return fixtures.
+
+A01-A15, ACP-0002 N2, ACP-0003 H1 closure, ACP-0003 H2 unauthorized status,
+ACP-0002 N3 unauthorized status, Luna-17 reservation, Luna-13F closure and
+Luna-13G unauthorized status are unchanged. No production neuron, learning
+rule, backend, edge learning or Luna-19 contract was created. ACP-0004 remains
+Draft pending project-owner decision.
+
+Evidence: `workflow/docs/architecture_proposals/ACP-0004.md` and
+`workflow/handoffs/luna-0-architecture-update-ACP-0004.md`.
+# Luna-0 independent review of ACP-0004 - 2026-10-02
+
+Reviewed committed proposal `c18757739f4055bbb5721520a14382701e177d64`.
+**ACP-0004 remains Draft and is not accepted for staged implementation.**
+
+The proposal's backend-neutral excursion direction is compatible with A01-A15,
+but implementation authorization is blocked by unresolved canonical decisions:
+exact one-excursion/one-digital-event cardinality, persistent versus
+bookkeeping state ownership, S re-arm and M entry rules, fixed amplitude map,
+no-crossing discharge and finite-return proof, explicit autonomous internal
+event timing, polarity point, bounded provenance overflow, post-migration
+Model-B `a_i` meaning, and a required versioned `TPCN-IR-2` decision.
+
+ACP-0003 future-neuron terminology now uses canonical excursion and explicitly
+maps GPU/software and FPGA digital events separately from FPAA physical
+spikes/analog excursions. This is terminology clarification only; ACP-0003 H2,
+ACP-0002 N3, all backends, edge learning, Luna-13G and Luna-19 remain
+unauthorized.
+
+Evidence: `workflow/docs/architecture_proposals/ACP-0004.md` and
+`workflow/handoffs/luna-0-independent-review-ACP-0004.md`.
