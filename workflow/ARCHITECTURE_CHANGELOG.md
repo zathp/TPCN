@@ -1,5 +1,26 @@
 # Architecture Changelog
 
+## Luna-0 independent closure of ACP-0005 - 2026-10-03
+
+**PASS — TPCN-IR-2 EXCURSION EXECUTION SCHEMA INDEPENDENTLY VERIFIED AND
+CLOSED.**
+
+Reviewed published revision `630af038dafd91903e3b03c26059989585b3760c` and
+applied surgical schema corrections in the corrective review revision:
+
+- preserved pre-admission provenance count and truncation state;
+- preserved TANH legacy neuron gain, represented IR-1 events and all finite
+  network resource limits during explicit IR-1 upgrade;
+- rejected undeclared endpoints and duplicate directed edges;
+- validated M episode ownership and ARMED/REFRACTORY pending-event pairing;
+- stopped E1 conversion from fabricating M timing and residual parameters;
+- added explicit IR-2 events, limits and adversarial fixtures.
+
+Focused validation passed 73 tests. The full CPU suite, compilation and clean
+publication status are recorded in the independent closure handoff.
+E2/M runtime, H2, N3, backends, hardware, calibration, Luna-13F reopening and
+Luna-13G remain unauthorized.
+
 ## Luna-0 ACP-0005 TPCN-IR-2 schema decision - 2026-10-03
 
 **PASS — TPCN-IR-2 SCHEMA ACCEPTED FOR IMPLEMENTATION; LUNA-20 AUTHORIZED

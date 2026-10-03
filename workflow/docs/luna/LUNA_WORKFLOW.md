@@ -25,9 +25,9 @@ Luna-13F reopening and Luna-13G remain unauthorized.
 
 ACP-0005 authorizes the next schema dependency: TPCN-IR-2 may represent
 excursion-aware transferable E1 state and future M state, but does not execute
-M. Luna-20 is authorized for schema implementation and verification only and
-has not been executed. E2/M, ACP-0003 H2, ACP-0002 N3, backends, calibration
-and hardware remain separately gated.
+M. Luna-20 implementation and the independent Luna-0 closure are complete.
+E2/M, ACP-0003 H2, ACP-0002 N3, backends, calibration and hardware remain
+separately gated.
 
 ## Mission
 
@@ -2480,7 +2480,7 @@ preserving those records below as historical context:
 | Luna-16 | ACP-0002 N2 static Model-B edge transfer | CLOSED |
 | Luna-17 | hardware-equivalence / cross-backend hardware acceptance | RESERVED / NOT AUTHORIZED / NO ACTIVE CONTRACT |
 | Luna-18 | ACP-0003 H1 Execution IR and backend interface skeleton | CLOSED / independently verified |
-| Luna-20 | ACP-0005 TPCN-IR-2 excursion execution schema | AUTHORIZED / NOT EXECUTED |
+| Luna-20 | ACP-0005 TPCN-IR-2 excursion execution schema | CLOSED / independently verified |
 
 The former Luna-15 FPGA/VHDL and Luna-16 FPAA assignments remain historical
 workflow planning records and are superseded as current assignments by the

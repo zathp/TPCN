@@ -22,7 +22,7 @@ from .excursion_neuron import (
     ProvenanceEntry,
     SingleExcursionNeuron,
 )
-from .execution_ir import ExecutionIR
+from .execution_ir import ExecutionIR, IREvent
 
 
 IR2_VERSION = "TPCN-IR-2"
@@ -123,6 +123,8 @@ class IR2Edge:
         object.__setattr__(self, "r", r)
         object.__setattr__(self, "propagation_delay", delay)
         if self.routing_metadata is not None:
+            if not isinstance(self.routing_metadata, Mapping):
+                raise TypeError("routing_metadata must be a mapping")
             json.dumps(self.routing_metadata, sort_keys=True, allow_nan=False)
 
 
@@ -167,6 +169,26 @@ class IR2PendingInternal:
 
 
 @dataclass(frozen=True, slots=True)
+class IR2Event:
+    timestamp: float
+    source: str
+    destination: str
+    event_type: str
+    payload: Any
+    sequence: int = -1
+
+    def __post_init__(self) -> None:
+        if _finite(self.timestamp, "timestamp") < 0.0:
+            raise ValueError("timestamp must be nonnegative")
+        _text(self.source, "source")
+        _text(self.destination, "destination")
+        _text(self.event_type, "event_type")
+        json.dumps(self.payload, allow_nan=False)
+        if self.sequence < -1 or (self.sequence != -1 and _id(self.sequence, "sequence") is None):
+            raise ValueError("sequence must be -1 or nonnegative")
+
+
+@dataclass(frozen=True, slots=True)
 class IR2Neuron:
     neuron_id: str
     dynamics_model: str = EXCURSION_V1
@@ -180,9 +202,9 @@ class IR2Neuron:
     theta_hold: float = 1.5
     theta_m: float = 4.0
     delta_t_e: float = 0.5
-    delta_t_m_emit: float = 1.0
-    delta_t_m_rearm: float = 1.0
-    delta_x_e: float = 1.0
+    delta_t_m_emit: float | None = 1.0
+    delta_t_m_rearm: float | None = 1.0
+    delta_x_e: float | None = 1.0
     a_min: float = 0.25
     a_max: float = 1.0
     provenance_capacity: int = 16
@@ -203,6 +225,9 @@ class IR2Neuron:
     next_input_identity: int = 0
     processed_event_count: int = 0
     input_contribution_count: int = 0
+    neuron_gain: float = 1.0
+    unassigned_provenance_count: int = 0
+    unassigned_provenance_truncated: bool = False
 
     def __post_init__(self) -> None:
         _text(self.neuron_id, "neuron_id")
@@ -217,8 +242,12 @@ class IR2Neuron:
             raise ValueError("local_last_update_time must be nonnegative")
         values = {name: _finite(getattr(self, name), name) for name in (
             "decay_rate", "x_max", "theta_r", "theta_e", "theta_hold", "theta_m",
-            "delta_t_e", "delta_t_m_emit", "delta_t_m_rearm", "delta_x_e", "a_min", "a_max",
+            "delta_t_e", "a_min", "a_max", "neuron_gain",
         )}
+        optional_values = {}
+        for name in ("delta_t_m_emit", "delta_t_m_rearm", "delta_x_e"):
+            value = getattr(self, name)
+            optional_values[name] = None if value is None else _finite(value, name)
         if values["decay_rate"] < 0 or values["x_max"] <= 0:
             raise ValueError("decay_rate must be nonnegative and x_max positive")
         if self.dynamics_model == EXCURSION_V1 and values["decay_rate"] == 0:
@@ -228,15 +257,25 @@ class IR2Neuron:
             < values["theta_m"] <= values["x_max"]
         ):
             raise ValueError("invalid threshold ordering")
-        if self.dynamics_model == EXCURSION_V1 and any(
-            values[name] <= 0 for name in ("delta_t_e", "delta_t_m_emit", "delta_t_m_rearm")
-        ):
+        if self.dynamics_model == EXCURSION_V1 and values["delta_t_e"] <= 0:
             raise ValueError("all delays must be positive")
         if self.dynamics_model == EXCURSION_V1 and (
-            not 0 < values["delta_x_e"] <= values["x_max"]
+            optional_values["delta_x_e"] is not None
+            and not 0 < optional_values["delta_x_e"] <= values["x_max"]
             or not 0 < values["a_min"] <= values["a_max"]
         ):
             raise ValueError("invalid excursion bounds")
+        if self.dynamics_model == EXCURSION_V1 and not 0.0 <= values["neuron_gain"] <= 2.0:
+            raise ValueError("neuron_gain must be within [0, 2]")
+        if self.mode == IR2Mode.M_ACTIVE and (
+            optional_values["delta_t_m_emit"] is None
+            or optional_values["delta_t_m_rearm"] is None
+            or optional_values["delta_x_e"] is None
+            or optional_values["delta_t_m_emit"] <= 0
+            or optional_values["delta_t_m_rearm"] <= 0
+            or optional_values["delta_x_e"] <= 0
+        ):
+            raise ValueError("M_ACTIVE requires positive M configuration")
         if abs(x) > values["x_max"]:
             raise ValueError("x exceeds x_max")
         if not 1 <= self.provenance_capacity <= 64 or not isinstance(self.provenance_capacity, int):
@@ -251,6 +290,9 @@ class IR2Neuron:
                      "next_lineage_identity", "next_input_identity", "processed_event_count",
                      "input_contribution_count"):
             _id(getattr(self, name), name)
+        _id(self.unassigned_provenance_count, "unassigned_provenance_count")
+        if not isinstance(self.unassigned_provenance_truncated, bool):
+            raise TypeError("unassigned_provenance_truncated must be boolean")
         if len(self.provenance) > self.provenance_capacity:
             raise ValueError("provenance exceeds capacity")
         if not isinstance(self.provenance_truncated, bool):
@@ -258,6 +300,8 @@ class IR2Neuron:
         object.__setattr__(self, "x", x)
         object.__setattr__(self, "local_last_update_time", timestamp)
         for name, value in values.items():
+            object.__setattr__(self, name, value)
+        for name, value in optional_values.items():
             object.__setattr__(self, name, value)
         self._validate_cross_fields()
 
@@ -284,9 +328,16 @@ class IR2Neuron:
                 raise ValueError("M_ACTIVE requires phase and multi_episode_id")
             if pending is None or pending.kind not in (IR2PendingKind.M_EMIT, IR2PendingKind.M_REARM):
                 raise ValueError("M_ACTIVE requires a valid M pending event")
+            if (self.m_phase, pending.kind) not in (
+                (MPhase.ARMED, IR2PendingKind.M_EMIT),
+                (MPhase.REFRACTORY, IR2PendingKind.M_REARM),
+            ):
+                raise ValueError("M phase and pending event kind are inconsistent")
         if pending is not None:
             if pending.neuron_id != self.neuron_id or pending.timestamp < self.local_last_update_time:
                 raise ValueError("pending internal event has wrong owner or timestamp")
+            if mode == IR2Mode.M_ACTIVE and pending.episode_id != self.multi_episode_id:
+                raise ValueError("M pending event has wrong episode ownership")
             if pending.episode_id != self.ordinary_episode_id and mode != IR2Mode.M_ACTIVE:
                 raise ValueError("pending event has wrong episode ownership")
             if pending.generation != self.generation_token:
@@ -295,7 +346,9 @@ class IR2Neuron:
         if len(ids) != len(set(ids)):
             raise ValueError("provenance causal identities must be unique")
         for entry in self.provenance:
-            if mode != IR2Mode.N and (entry.episode_id, entry.lineage_id) != (self.ordinary_episode_id, self.lineage_id):
+            if mode == IR2Mode.M_ACTIVE and entry.episode_id != self.multi_episode_id:
+                raise ValueError("M provenance ownership does not match active episode")
+            if mode not in (IR2Mode.N, IR2Mode.M_ACTIVE) and (entry.episode_id, entry.lineage_id) != (self.ordinary_episode_id, self.lineage_id):
                 raise ValueError("provenance ownership does not match active episode")
 
     def to_dict(self) -> dict[str, Any]:
@@ -318,10 +371,17 @@ class IR2Neuron:
 class TPCNIR2:
     neurons: tuple[IR2Neuron, ...]
     edges: tuple[IR2Edge, ...] = ()
+    events: tuple[IR2Event, ...] = ()
     execution_order_policy: str = EXECUTION_ORDER_POLICY
     ir_version: str = IR2_VERSION
     schema_revision: int = IR2_SCHEMA_REVISION
     nodes: tuple[str, ...] = ()
+    fan_in_limit: int = 1
+    fan_out_limit: int = 1
+    edge_capacity: int = 1
+    routing_capacity: int = 1
+    event_queue_capacity: int = 1
+    event_budget: int | None = None
 
     def __post_init__(self) -> None:
         if self.ir_version != IR2_VERSION or self.schema_revision != IR2_SCHEMA_REVISION:
@@ -330,11 +390,29 @@ class TPCNIR2:
             raise ValueError("unsupported execution_order_policy")
         if len({neuron.neuron_id for neuron in self.neurons}) != len(self.neurons):
             raise ValueError("neurons must have unique identifiers")
+        explicit_nodes = bool(self.nodes)
         nodes = set(self.nodes) or {n.neuron_id for n in self.neurons}
+        if explicit_nodes and (
+            any(neuron.neuron_id not in nodes for neuron in self.neurons)
+            or any(edge.source not in nodes or edge.destination not in nodes for edge in self.edges)
+        ):
+            raise ValueError("edge endpoints must be declared nodes")
         nodes.update(edge.source for edge in self.edges)
         nodes.update(edge.destination for edge in self.edges)
         if any(not isinstance(node, str) or not node for node in nodes):
             raise ValueError("nodes must be non-empty strings")
+        endpoints = [(edge.source, edge.destination) for edge in self.edges]
+        if len(endpoints) != len(set(endpoints)):
+            raise ValueError("duplicate directed edges are not supported")
+        for name in ("fan_in_limit", "fan_out_limit", "edge_capacity", "routing_capacity", "event_queue_capacity"):
+            _positive_int(getattr(self, name), name)
+        if self.event_budget is not None:
+            _positive_int(self.event_budget, "event_budget")
+        if len(self.edges) > self.edge_capacity or len(self.events) > self.event_queue_capacity:
+            raise ValueError("IR-2 records exceed declared finite capacity")
+        sequences = [event.sequence for event in self.events if event.sequence >= 0]
+        if len(sequences) != len(set(sequences)):
+            raise ValueError("events must have unique sequence identities")
         object.__setattr__(self, "nodes", tuple(sorted(nodes)))
 
     def to_dict(self) -> dict[str, Any]:
@@ -344,7 +422,16 @@ class TPCNIR2:
             "execution_order_policy": self.execution_order_policy,
             "nodes": list(self.nodes),
             "edges": [_encode(edge) for edge in self.edges],
+            "events": [_encode(event) for event in self.events],
             "neurons": [neuron.to_dict() for neuron in self.neurons],
+            "limits": {
+                "fan_in": self.fan_in_limit,
+                "fan_out": self.fan_out_limit,
+                "edge_capacity": self.edge_capacity,
+                "routing_capacity": self.routing_capacity,
+                "event_queue_capacity": self.event_queue_capacity,
+                "event_budget": self.event_budget,
+            },
         }
 
     def to_json(self) -> str:
@@ -357,12 +444,23 @@ class TPCNIR2:
         if data.get("ir_version") != IR2_VERSION or data.get("schema_revision") != IR2_SCHEMA_REVISION:
             raise ValueError("unsupported TPCN-IR-2 version or schema revision")
         edges = tuple(IR2Edge(**edge) for edge in data.get("edges", ()))
+        events = tuple(IR2Event(**event) for event in data.get("events", ()))
         neurons = tuple(IR2Neuron.from_dict(neuron) for neuron in data.get("neurons", ()))
+        limits = data.get("limits")
+        if not isinstance(limits, Mapping):
+            raise ValueError("IR-2 limits are required")
         return cls(
             neurons,
             edges,
+            events=events,
             execution_order_policy=data.get("execution_order_policy", ""),
             nodes=tuple(data.get("nodes", ())),
+            fan_in_limit=limits["fan_in"],
+            fan_out_limit=limits["fan_out"],
+            edge_capacity=limits["edge_capacity"],
+            routing_capacity=limits["routing_capacity"],
+            event_queue_capacity=limits["event_queue_capacity"],
+            event_budget=limits.get("event_budget"),
         )
 
     @classmethod
@@ -398,18 +496,44 @@ def neuron_to_ir2(neuron: SingleExcursionNeuron) -> IR2Neuron:
         pending.episode_id, pending.generation, pending.queue_sequence,
     )
     return IR2Neuron(
-        neuron.neuron_id, EXCURSION_V1, neuron.x, neuron.last_update_timestamp,
-        IR2Mode(neuron.mode.value), config.decay_rate, config.x_max, config.theta_r,
-        config.theta_e, config.theta_hold, config.theta_m, config.emission_delay,
-        config.emission_delay, config.emission_delay, config.a_max - config.a_min,
-        config.a_min, config.a_max, config.provenance_capacity, config.event_budget,
-        neuron.ordinary_episode_id, neuron.lineage_id, neuron.captured_polarity,
-        neuron.m_peak, None, None, pending_ir,
-        tuple(IR2Provenance(e.event_id, e.timestamp, e.contribution, e.episode_id, e.lineage_id)
-              for e in neuron.provenance),
-        neuron.provenance_truncated, neuron.generation_token, neuron._event_identity,
-        neuron._episode_identity, neuron._lineage_identity, neuron._input_identity,
-        neuron.processed_event_count, neuron.input_contribution_count,
+        neuron_id=neuron.neuron_id,
+        dynamics_model=EXCURSION_V1,
+        x=neuron.x,
+        local_last_update_time=neuron.last_update_timestamp,
+        mode=IR2Mode(neuron.mode.value),
+        decay_rate=config.decay_rate,
+        x_max=config.x_max,
+        theta_r=config.theta_r,
+        theta_e=config.theta_e,
+        theta_hold=config.theta_hold,
+        theta_m=config.theta_m,
+        delta_t_e=config.emission_delay,
+        delta_t_m_emit=None,
+        delta_t_m_rearm=None,
+        delta_x_e=None,
+        a_min=config.a_min,
+        a_max=config.a_max,
+        provenance_capacity=config.provenance_capacity,
+        event_budget=config.event_budget,
+        ordinary_episode_id=neuron.ordinary_episode_id,
+        lineage_id=neuron.lineage_id,
+        captured_polarity=neuron.captured_polarity,
+        m_peak=neuron.m_peak,
+        pending_internal_event=pending_ir,
+        provenance=tuple(
+            IR2Provenance(e.event_id, e.timestamp, e.contribution, e.episode_id, e.lineage_id)
+            for e in neuron.provenance
+        ),
+        provenance_truncated=neuron.provenance_truncated,
+        generation_token=neuron.generation_token,
+        next_event_identity=neuron._event_identity,
+        next_episode_identity=neuron._episode_identity,
+        next_lineage_identity=neuron._lineage_identity,
+        next_input_identity=neuron._input_identity,
+        processed_event_count=neuron.processed_event_count,
+        input_contribution_count=neuron.input_contribution_count,
+        unassigned_provenance_count=neuron._unassigned_provenance_count,
+        unassigned_provenance_truncated=neuron._unassigned_provenance_truncated,
     )
 
 
@@ -443,6 +567,8 @@ def neuron_from_ir2(record: IR2Neuron) -> SingleExcursionNeuron:
         entry.causal_event_id, entry.timestamp, entry.signed_contribution,
         entry.episode_id, entry.lineage_id) for entry in record.provenance)
     neuron.provenance_truncated = record.provenance_truncated
+    neuron._unassigned_provenance_count = record.unassigned_provenance_count
+    neuron._unassigned_provenance_truncated = record.unassigned_provenance_truncated
     if record.pending_internal_event is not None:
         pending = record.pending_internal_event
         neuron.pending_internal_event = PendingInternalEvent(
@@ -455,16 +581,32 @@ def neuron_from_ir2(record: IR2Neuron) -> SingleExcursionNeuron:
 
 def ir2_from_ir1(ir: ExecutionIR) -> TPCNIR2:
     """Perform the deliberate, lossless IR-1 TANH upgrade."""
+    if any(n.activation_model != "tanh" for n in ir.neurons):
+        raise ValueError("IR-1 upgrade supports only tanh legacy neurons")
     neurons = tuple(IR2Neuron(
-        n.neuron_id, TANH_LEGACY, n.state, n.local_timestamp,
-        IR2Mode.N,         n.decay_rate, n.state_limit, 0.25, 1.0, 1.5, 4.0,
-        1.0, 1.0, 1.0, n.state_limit, 0.25, 1.0, 16, ir.event_budget or 4096,
+        neuron_id=n.neuron_id,
+        dynamics_model=TANH_LEGACY,
+        x=n.state,
+        local_last_update_time=n.local_timestamp,
+        mode=IR2Mode.N,
+        decay_rate=n.decay_rate,
+        x_max=n.state_limit,
+        neuron_gain=n.neuron_gain,
+        provenance_capacity=16,
+        event_budget=ir.event_budget or 4096,
     ) for n in ir.neurons)
     edges = tuple(IR2Edge(e.source, e.destination, e.edge_weight, e.divider_strength,
                           e.reference, e.propagation_delay,
                           routing_cost=e.routing_cost, legacy_identity=e.legacy_identity)
                    for e in ir.edges)
-    return TPCNIR2(neurons, edges, nodes=ir.nodes)
+    events = tuple(IR2Event(e.timestamp, e.source, e.destination, e.event_type, e.payload, e.sequence)
+                   for e in ir.events)
+    return TPCNIR2(
+        neurons, edges, events=events, nodes=ir.nodes,
+        fan_in_limit=ir.fan_in_limit, fan_out_limit=ir.fan_out_limit,
+        edge_capacity=ir.edge_capacity, routing_capacity=ir.routing_capacity,
+        event_queue_capacity=ir.event_queue_capacity, event_budget=ir.event_budget,
+    )
 
 
 def downgrade_ir2_to_ir1(ir: TPCNIR2) -> ExecutionIR:
@@ -478,7 +620,7 @@ __all__ = [
     "SUPPORTED_DYNAMICS_MODELS", "EXECUTION_ORDER_POLICY", "IR2_TPCV_SEPARATION",
     "IR2UnsupportedRuntimeError", "IR2DowngradeError", "IR2Mode", "MPhase",
     "IR2PendingKind", "IR2Edge", "IR2Provenance", "IR2PendingInternal",
-    "IR2Neuron", "TPCNIR2", "neuron_to_ir2", "neuron_from_ir2",
+    "IR2Event", "IR2Neuron", "TPCNIR2", "neuron_to_ir2", "neuron_from_ir2",
     "ir2_from_ir1", "downgrade_ir2_to_ir1",
 ]
 

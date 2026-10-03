@@ -9,7 +9,7 @@ tpcn_handoff:
   contract_version: "1.1"
   branch: "main"
   base_revision: "e55f0d96eb7e0ace3a2bf495f29a3bf99e48d2bb"
-  result_revision: "uncommitted"
+  result_revision: "corrective review revision pending publication"
   dependencies: ["ACP-0005", "ACP-0004 E1", "ACP-0003 H1/TPCN-IR-1"]
   owner: "Project owner / Luna-0 Architecture Guardian"
   classification: ["IMPLEMENTATION", "VERIFICATION"]
@@ -36,7 +36,7 @@ tpcn_handoff:
     - "tests/test_ir2.py"
     - "workflow/handoffs/tpcn-ir-2-excursion-schema-Luna-20.md"
   tests_added: ["tests/test_ir2.py"]
-  tests_passing: ["70 focused IR-2/E1/IR-1 tests", "619 full CPU tests"]
+  tests_passing: ["73 focused IR-2/E1/IR-1 tests", "full CPU suite pending corrective rerun"]
   tests_failed: []
   tests_not_run: ["GPU/FPGA/FPAA, M/E2 runtime, H2, N3, calibration and hardware equivalence (unauthorized)"]
   assumptions: ["The current publication revision e55f0d9 is the effective workspace baseline."]
