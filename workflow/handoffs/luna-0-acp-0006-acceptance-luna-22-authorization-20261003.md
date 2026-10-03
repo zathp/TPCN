@@ -11,7 +11,7 @@ tpcn_handoff:
   contract_version: "1.1"
   branch: "main"
   base_revision: "7eb997ebcb78f5a64074cd27a7a6181dbf693fa3"
-  result_revision: "acceptance publication commit; exact SHA recorded after commit"
+  result_revision: "5b26809b3a65db78d17dfd6a5f44fd2e968b0441"
   dependencies:
     - "ACP-0002 N2 static Model-B edge transfer, closed"
     - "ACP-0003 H1 Execution IR/backend interface, closed"
@@ -123,7 +123,7 @@ tpcn_handoff:
     - "Fetched origin/main; branch main; HEAD == origin/main == accepted starting revision; worktree was clean before edits."
     - "Repository numbering inventory found no Luna-22 contract or active parallel assignment; see numbering evidence."
     - "Focused source/governance review found no dispatch-blocking contradiction; see readiness analysis."
-    - "`git diff --check`: PASS."
+    - "`git diff --cached --check`: PASS."
   tests_failed: []
   tests_not_run:
     - "All runtime tests and integration tests; Luna-22 has not executed."
@@ -142,6 +142,10 @@ tpcn_handoff:
 ```
 
 ## Synchronization and explicit owner decision
+
+**Acceptance and dispatch publication revision:**
+`5b26809b3a65db78d17dfd6a5f44fd2e968b0441`
+(`Accept ACP-0006 and authorize Luna-22`).
 
 **OBSERVED:** `git fetch origin` completed. The current task started on branch
 `main` with a clean worktree and
