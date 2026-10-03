@@ -2501,37 +2501,43 @@ preserving those records below as historical context:
 | Luna-16 | ACP-0002 N2 static Model-B edge transfer | CLOSED |
 | Luna-17 | hardware-equivalence / cross-backend hardware acceptance | RESERVED / NOT AUTHORIZED / NO ACTIVE CONTRACT |
 | Luna-18 | ACP-0003 H1 Execution IR and backend interface skeleton | CLOSED / independently verified |
+| Luna-19 | ACP-0004 E1 canonical single-excursion neuron | CLOSED / independently verified |
 | Luna-20 | ACP-0005 TPCN-IR-2 excursion execution schema | CLOSED / independently verified |
 | Luna-21 | ACP-0004 E2 multi-excursion return runtime | CLOSED / independently verified |
+| Luna-22 | ACP-0006 first CPU software-reference excursion integration | AUTHORIZED / NOT EXECUTED |
 
-Luna-21's implementation and bounded IR-2 correction are closed; this is
-component-level closure, not end-to-end integration readiness. **OBSERVED:**
-the ordinary experiment network still constructs `TPCNNeuron` instances and
-uses their scalar activations for routed computation, prediction and readout.
-E1/E2 excursion runtimes and IR-2 reconstruction remain separately exposed
-reference components; no production network consumer or migration/model
-selection path connects them to that experiment network. ACP-0004 specifies
-post-migration Model-B source activity as `a_i := p_exc` and limits the legacy
-continuous output to an explicitly labelled compatibility mode, but it does
-not define the concrete network migration/model-selection boundary or the
-prediction, error, eligibility and readout interfaces across that boundary.
-The acceptance criteria require these mechanisms on a real sequential
-classification path. Therefore integration is **not ready**, and no successor
-Luna contract or implementation is authorized. The subsequent architecture
-review recommends a separate integration/migration ACP because the missing
-contract composes the accepted Model-B, execution, excursion and IR-2
-boundaries without changing the neuron state machine. ACP-0006, **Excursion
-Runtime Integration and Migration Contract**, has been created **Under
-review**. Its candidate decisions cover network-wide E2-capable
-`EXCURSION_V1`, explicit `TANH_LEGACY` control, incremental causal scheduling,
-prediction/error/eligibility/readout, settling/reset and quiescent IR-2
-startup. Owner acceptance is required before any proposal promotion or
-successor Luna contract; no integration implementation is authorized.
-Detailed evidence is in
-`workflow/handoffs/luna-0-architecture-decision-ACP-0006-20261003.md` and
-`workflow/docs/architecture_proposals/ACP-0006.md`. The preceding dependency
-review remains at
-`workflow/handoffs/luna-0-post-e2-integration-dependency-review-20261003.md`.
+Luna-19, Luna-20 and Luna-21 are closed component implementations; this does
+not itself establish experiment-path integration. **OBSERVED:** the ordinary
+experiment path at the ACP-0006 baseline constructs `TPCNNeuron` instances
+and uses scalar activations for routing, prediction and readout, while E1/E2
+excursion runtimes and IR-2 remain separate reference components.
+
+The project owner accepted ACP-0006, **Excursion Runtime Integration and
+Migration Contract**, as written at published proposal revision
+`7eb997ebcb78f5a64074cd27a7a6181dbf693fa3` on 2026-10-03. The architecture
+decision and final dispatch-readiness review found no internal contradiction
+requiring new canonical behavior: prediction matching retains bounded FIFO
+semantics; prediction errors remain opaque routed metadata; eligibility and
+reward identify bounded traces; the classifier consumes actual emissions
+while the existing outer prototype path uses its bounded signed-payload mean;
+settling, sidecar/provenance bounds, proxy-energy counters and quiescent IR-2
+startup are all implementable using explicit configuration and existing
+interfaces. Dataset selection remains an implementation/reporting choice
+under the existing open sequential-dataset protocol, not a new core semantic.
+
+Luna-22 is created and **AUTHORIZED / NOT EXECUTED** for the first CPU
+software-reference integration only. It must use a network-wide
+`EXCURSION_V1`/E2 normal path, explicit `TANH_LEGACY` control, one bounded
+character queue and the incremental causal input watermark; the accepted
+prediction/error/eligibility/readout/settling/reset/IR-2 rules remain
+normative. It owns only the experiment integration surface and focused tests.
+It does not authorize component redesign, structural plasticity, N3, H2,
+IR-3, backends, hardware, calibration or changes to A01-A15. Implementation
+has not been executed and integration readiness is not claimed. The complete
+acceptance and dispatch decision is in
+`workflow/handoffs/luna-0-acp-0006-acceptance-luna-22-authorization-20261003.md`;
+the creation contract is `.github/agents/luna-22.agent.md`. The preceding
+dependency and under-review proposal records remain historical.
 
 The former Luna-15 FPGA/VHDL and Luna-16 FPAA assignments remain historical
 workflow planning records and are superseded as current assignments by the

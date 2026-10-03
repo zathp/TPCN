@@ -1,5 +1,53 @@
 # Architecture Changelog
 
+# Project-owner acceptance of ACP-0006 and Luna-22 dispatch - 2026-10-03
+
+**ACP-0006 ACCEPTED AS WRITTEN; LUNA-22 AUTHORIZED / NOT EXECUTED.**
+
+The project owner explicitly accepted ACP-0006 as written in the owner
+direction received 2026-10-03. Accepted proposal revision:
+`7eb997ebcb78f5a64074cd27a7a6181dbf693fa3` (`Propose ACP-0006 excursion
+integration contract`). The acceptance and dispatch review started from that
+revision after fetching `origin/main`; branch `main` was clean and
+`HEAD == origin/main`. The acceptance publication revision is recorded in
+`workflow/handoffs/luna-0-acp-0006-acceptance-luna-22-authorization-20261003.md`.
+
+**DISPATCH REVIEW:** ACP-0006 is implementable as a bounded experiment-path
+composition using the existing E2-capable neuron, finite `EventQueue`,
+Model-B topology, predictor, eligibility ledger, streaming classifier,
+activity-cost proxy and IR-2 adapters. The numbered rules identify the
+external-input watermark and same-time ordering, queue/sidecar bounds and
+causal ancestry, emission-only routing, causal prediction/error handling,
+eligibility/reward attribution, two distinct existing readout surfaces,
+bounded settling/reset, and quiescent IR-2 startup. The scheduler can hold
+future internal events while admitting later-but-earlier external points;
+the mandatory `t0 < t1 < t2` test remains a hard gate. The classifier consumes
+actual readout emissions; the existing outer prototype learner consumes the
+bounded signed-payload mean. No contradiction requiring new canonical
+semantics was found. Dataset choice remains open in the existing sequential
+dataset protocol and is a documented benchmark selection/reporting duty,
+not a new architecture choice.
+
+**NUMBERING:** Repository inspection found existing contracts through
+Luna-21, with Luna-17 still reserved and unauthorized and Luna-19 through
+Luna-21 already assigned/closed as recorded. No Luna-22 agent contract,
+creation handoff, or active parallel Luna-22 assignment existed. Luna-22 is
+the next legitimate unused identifier; it is authorized only for the first
+CPU software-reference integration described in
+`.github/agents/luna-22.agent.md`. That contract limits file ownership to
+the experiment integration surface and focused tests, requires legacy and
+excursion controls, all focused/adversarial tests and existing regressions,
+and mandates an actual sequential-classification dataset/split report.
+
+The authorization is creation-only in this task: **Luna-22 has not executed**.
+No runtime test, dataset run or production implementation was performed here.
+A01-A15 remain unchanged; ACP-0002 N2, ACP-0003 H1, ACP-0004 E1/E2,
+ACP-0005/IR-2 revision 1, and Luna-21 remain closed and were not reopened.
+N3, H2, IR-3, structural/edge learning, backends, hardware equivalence and
+calibration remain unauthorized. Full decision evidence and next handoff
+requirements are in
+`workflow/handoffs/luna-0-acp-0006-acceptance-luna-22-authorization-20261003.md`.
+
 # Luna-0 excursion integration contract proposal - 2026-10-03
 
 **ACP-0006 CREATED / UNDER REVIEW; OWNER ACCEPTANCE REQUIRED. NO INTEGRATION
