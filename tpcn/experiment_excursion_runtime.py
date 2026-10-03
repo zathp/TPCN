@@ -198,11 +198,13 @@ class ExcursionCharacterRuntime:
                 )
             if (
                 record.x != 0.0
+                or record.provenance
+                or record.provenance_truncated
                 or record.unassigned_provenance_count > 0
                 or record.unassigned_provenance_truncated
             ):
                 raise IR2UnsupportedRuntimeError(
-                    "integrated IR-2 startup rejects residual state or unassigned provenance"
+                    "integrated IR-2 startup rejects residual state or provenance"
                 )
         nodes = tuple(record.neuron_id for record in ir.neurons)
         edges = tuple(

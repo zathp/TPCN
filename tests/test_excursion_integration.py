@@ -5,12 +5,15 @@ import math
 import pytest
 
 from tpcn.canonical_neuron import TPCNNeuron
-from tpcn.event_runtime import EventType, QueueCapacityError
+from tpcn.event_runtime import EventQueue, EventType, QueueCapacityError
 from tpcn.excursion_neuron import E1Config, MultiExcursionNeuron
 from tpcn.experiment_excursion_runtime import ExcursionCharacterRuntime
 from tpcn.experiments import ExperimentConfig, ExperimentRunner, make_synthetic_workload
 from tpcn.ir2 import (
     IR2Edge,
+    IR2Event,
+    IR2Mode,
+    IR2Provenance,
     IR2UnsupportedRuntimeError,
     IR2Neuron,
     TPCNIR2,
@@ -284,18 +287,35 @@ def test_ir2_quiescent_reconstruction_is_deterministic() -> None:
     "record_kwargs",
     (
         {"x": 0.25},
+        {"x": -0.25},
+        {"x": math.nextafter(0.0, 1.0)},
+        {"x": math.nextafter(0.0, -1.0)},
         {"unassigned_provenance_count": 1},
         {"unassigned_provenance_truncated": True},
+        {"provenance": (IR2Provenance("input:0", 0.0, 0.5, None, None),)},
+        {"provenance_truncated": True},
+        {
+            "provenance": (IR2Provenance("input:0", 0.0, 0.5, None, None),),
+            "provenance_truncated": True,
+        },
+        {
+            "provenance": (IR2Provenance("input:0", 0.0, 0.5, None, None),),
+            "unassigned_provenance_count": 1,
+        },
+        {
+            "x": math.nextafter(0.0, 1.0),
+            "provenance": (IR2Provenance("input:0", 0.0, 0.5, None, None),),
+        },
     ),
 )
-def test_ir2_quiescent_startup_rejects_residual_or_unassigned_provenance(
+def test_ir2_quiescent_startup_rejects_residual_state_or_provenance(
     record_kwargs: dict[str, object],
 ) -> None:
     document = TPCNIR2((IR2Neuron("n0", **record_kwargs),), nodes=("n0",))
 
     with pytest.raises(
         IR2UnsupportedRuntimeError,
-        match="residual state or unassigned provenance",
+        match="residual state or provenance",
     ):
         ExcursionCharacterRuntime.from_quiescent_ir2(
             document,
@@ -306,6 +326,88 @@ def test_ir2_quiescent_startup_rejects_residual_or_unassigned_provenance(
             prediction_expiry=1.0,
             max_activity_events=16,
             namespace="nonquiescent",
+        )
+
+
+@pytest.mark.parametrize("x", (0.0, -0.0))
+def test_ir2_quiescent_startup_accepts_signed_zero(x: float) -> None:
+    document = TPCNIR2((IR2Neuron("n0", x=x),), nodes=("n0",))
+    restored = TPCNIR2.from_json(document.to_json())
+
+    runtime = ExcursionCharacterRuntime.from_quiescent_ir2(
+        restored,
+        queue_capacity=8,
+        event_budget=16,
+        settling_horizon=2.0,
+        prediction_capacity=4,
+        prediction_expiry=1.0,
+        max_activity_events=16,
+        namespace="signed-zero",
+    )
+
+    assert math.copysign(1.0, restored.neurons[0].x) == math.copysign(1.0, x)
+    assert runtime.neurons[0].x == 0.0
+
+
+def test_ir2_quiescent_startup_preserves_identity_high_water_counters() -> None:
+    high_water = {
+        "next_event_identity": 7,
+        "next_episode_identity": 5,
+        "next_lineage_identity": 6,
+        "next_input_identity": 8,
+    }
+    document = TPCNIR2((IR2Neuron("n0", **high_water),), nodes=("n0",))
+    runtime = ExcursionCharacterRuntime.from_quiescent_ir2(
+        document,
+        queue_capacity=8,
+        event_budget=16,
+        settling_horizon=2.0,
+        prediction_capacity=4,
+        prediction_expiry=1.0,
+        max_activity_events=16,
+        namespace="high-water",
+    )
+    neuron = runtime.neurons[0]
+
+    assert neuron._event_identity == high_water["next_event_identity"]
+    assert neuron._episode_identity == high_water["next_episode_identity"]
+    assert neuron._lineage_identity == high_water["next_lineage_identity"]
+    assert neuron._input_identity == high_water["next_input_identity"]
+
+    _start(runtime)
+    runtime.admit_external_batch(((0.0, 1.2),))
+    result = _end(runtime)
+
+    assert result.emission_count == 1
+    emission = next(row for row in result.trace if row[3] == "excursion_emission")
+    assert emission[5] == f"n0:excursion:{high_water['next_event_identity'] + 1}"
+    assert emission[6] == high_water["next_event_identity"] + 1
+    assert emission[7] > high_water["next_episode_identity"]
+    assert emission[8] > high_water["next_lineage_identity"]
+    assert neuron._event_identity > high_water["next_event_identity"]
+    assert neuron._episode_identity > high_water["next_episode_identity"]
+    assert neuron._lineage_identity > high_water["next_lineage_identity"]
+    assert neuron._input_identity == high_water["next_input_identity"]
+
+
+def test_ir2_quiescent_startup_rejects_shared_queued_work() -> None:
+    document = TPCNIR2(
+        (IR2Neuron("n0"),),
+        events=(IR2Event(0.5, "n0", "n0", "signal", {"value": 1.0}),),
+        nodes=("n0",),
+        event_queue_capacity=2,
+    )
+
+    with pytest.raises(IR2UnsupportedRuntimeError, match="empty shared event queue"):
+        ExcursionCharacterRuntime.from_quiescent_ir2(
+            document,
+            queue_capacity=8,
+            event_budget=16,
+            settling_horizon=2.0,
+            prediction_capacity=4,
+            prediction_expiry=1.0,
+            max_activity_events=16,
+            namespace="queued-work",
         )
 
 
@@ -434,12 +536,31 @@ def test_excursion_experiment_keeps_topology_fixed() -> None:
         ExperimentConfig(neuron_model="EXCURSION_V1", structural_plasticity=True)
 
 
-def test_ir2_live_network_resume_is_rejected() -> None:
-    live = MultiExcursionNeuron("n0", config=E1Config(emission_delay=1.0))
-    from tpcn.event_runtime import EventQueue
-
-    live.receive_contribution(0.0, 1.2, queue=EventQueue(8))
-    document = TPCNIR2((neuron_to_ir2_e2(live),), nodes=("n0",))
+@pytest.mark.parametrize(
+    ("payload", "process_pending", "expected_mode"),
+    (
+        (1.2, False, IR2Mode.S_PENDING),
+        (1.2, True, IR2Mode.S_RETURN),
+        (8.0, False, IR2Mode.M_ACTIVE),
+    ),
+)
+def test_ir2_active_modes_are_rejected(
+    payload: float,
+    process_pending: bool,
+    expected_mode: IR2Mode,
+) -> None:
+    live = MultiExcursionNeuron(
+        "n0",
+        config=E1Config(emission_delay=0.5, m_emit_delay=1.0),
+    )
+    queue = EventQueue(8)
+    live.receive_contribution(0.0, payload, queue=queue)
+    if process_pending:
+        live.receive_event(queue.pop_ready(0.5), queue)
+    record = neuron_to_ir2_e2(live)
+    assert record.mode is expected_mode
+    assert record.pending_internal_event is not None
+    document = TPCNIR2((record,), nodes=("n0",))
 
     with pytest.raises(IR2UnsupportedRuntimeError, match="live-network resume"):
         ExcursionCharacterRuntime.from_quiescent_ir2(
