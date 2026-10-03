@@ -17,6 +17,8 @@ from .canonical_neuron import TPCNNeuron
 from .eligibility import EligibilityActivity, EligibilityLedger, RewardSignal
 from .energy_utility import LocalEnergyModel, RewardAdjustedUtility, RewardMessage
 from .event_runtime import BoundedExecutionResult, Event, EventQueue, execute_bounded
+from .excursion_neuron import E1Config, MultiExcursionNeuron
+from .experiment_excursion_runtime import ExcursionCharacterRuntime
 from .predictive_coding import LocalPredictor, Observation
 from .streaming_classifier import ACTIVITY_EVENT, StreamingCharacterClassifier
 from .stroke_dataset import CharacterBoundary, END_CHARACTER, START_CHARACTER, StrokePoint
@@ -26,6 +28,7 @@ from .topology import BoundedTopology
 ActivationMode = Literal["event_only", "utility"]
 RewardMode = Literal["dense", "sparse", "neutral"]
 StructuralPolicy = Literal["fixed", "baseline", "random", "temporal", "reversed"]
+NeuronModel = Literal["EXCURSION_V1", "TANH_LEGACY"]
 
 
 @dataclass(frozen=True, slots=True)
@@ -60,9 +63,15 @@ class ExperimentConfig:
     mutation_history_limit: int = 32
     candidate_capacity: int = 16
     max_growth_per_epoch: int = 1
+    neuron_model: NeuronModel = "EXCURSION_V1"
+    queue_capacity: int = 128
+    event_budget: int = 4096
+    settling_horizon: float = 4.0
+    prediction_expiry: float = 4.0
 
     def __post_init__(self) -> None:
-        for name in ("epochs", "history_limit", "max_points", "prediction_capacity", "max_classes"):
+        for name in ("epochs", "history_limit", "max_points", "prediction_capacity", "max_classes",
+                     "queue_capacity", "event_budget"):
             value = getattr(self, name)
             if isinstance(value, bool) or not isinstance(value, int) or value <= 0:
                 raise ValueError(f"{name} must be a positive integer")
@@ -85,14 +94,19 @@ class ExperimentConfig:
             raise TypeError("seed must be an integer")
         if not isinstance(self.learning_enabled, bool):
             raise TypeError("learning_enabled must be a boolean")
-        for name in ("energy_weight", "reward_delay", "correct_reward", "incorrect_reward"):
+        if self.neuron_model not in ("EXCURSION_V1", "TANH_LEGACY"):
+            raise ValueError("neuron_model must be 'EXCURSION_V1' or 'TANH_LEGACY'")
+        if self.neuron_model == "EXCURSION_V1" and self.structural_plasticity:
+            raise ValueError("structural plasticity is unavailable in the excursion integration")
+        for name in ("energy_weight", "reward_delay", "correct_reward", "incorrect_reward",
+                     "settling_horizon", "prediction_expiry"):
             value = getattr(self, name)
             if isinstance(value, bool) or not isinstance(value, (int, float)):
                 raise TypeError(f"{name} must be a real number")
             if not math.isfinite(float(value)):
                 raise ValueError(f"{name} must be finite")
-        if self.energy_weight < 0.0 or self.reward_delay < 0.0:
-            raise ValueError("energy_weight and reward_delay must be nonnegative")
+        if min(self.energy_weight, self.reward_delay, self.settling_horizon, self.prediction_expiry) < 0.0:
+            raise ValueError("energy, delay, settling horizon and prediction expiry must be nonnegative")
         if self.topology_node_count is not None and (
             isinstance(self.topology_node_count, bool)
             or not isinstance(self.topology_node_count, int)
@@ -148,6 +162,22 @@ class ExperimentMetrics:
     processed_event_count: int = 0
     pending_event_count: int = 0
     termination_reason: str = "completed"
+    peak_queue_occupancy: int = 0
+    beyond_deadline_event_count: int = 0
+    incomplete_settling_count: int = 0
+    excursion_count: int = 0
+    silent_event_count: int = 0
+    matched_prediction_count: int = 0
+    unmatched_prediction_count: int = 0
+    expired_prediction_count: int = 0
+    matched_credit_count: int = 0
+    unmatched_credit_count: int = 0
+    event_processing_proxy: float = 0.0
+    emitted_amplitude_proxy: float = 0.0
+    edge_transfer_proxy: float = 0.0
+    prediction_error_proxy: float = 0.0
+    maximum_route_depth: int = 0
+    provenance_truncated_count: int = 0
 
 
 @dataclass(frozen=True, slots=True)
@@ -189,14 +219,28 @@ class TrainingResult:
     after: EvaluationResult | None = None
 
 
-TrainingObserver = Callable[[int, tuple[TPCNNeuron, ...], ExperimentMetrics], None]
+TrainingObserver = Callable[[int, tuple[TPCNNeuron | MultiExcursionNeuron, ...], ExperimentMetrics], None]
 
 
 class _ComputationalNetwork:
     """Persistent neurons and bounded causal routing for one experiment."""
 
-    def __init__(self, nodes: tuple[str, ...], topology: BoundedTopology, queue_capacity: int) -> None:
-        self.neurons = tuple(TPCNNeuron(node, input_gain=0.5) for node in nodes)
+    def __init__(
+        self,
+        nodes: tuple[str, ...],
+        topology: BoundedTopology,
+        queue_capacity: int,
+        neuron_model: NeuronModel,
+    ) -> None:
+        if neuron_model == "TANH_LEGACY":
+            self.neurons: tuple[TPCNNeuron | MultiExcursionNeuron, ...] = tuple(
+                TPCNNeuron(node, input_gain=0.5) for node in nodes
+            )
+        else:
+            self.neurons = tuple(
+                MultiExcursionNeuron(node, config=E1Config(event_budget=queue_capacity * 16))
+                for node in nodes
+            )
         self._by_id = {neuron.neuron_id: neuron for neuron in self.neurons}
         self.topology = topology
         self.queue_capacity = queue_capacity
@@ -299,7 +343,7 @@ class _ExampleRun:
     reward: float
     latency: float
     utility: float
-    neuron: TPCNNeuron
+    neuron: TPCNNeuron | MultiExcursionNeuron
     routed_events: int
     propagated_activity: float
     readout_updated: bool
@@ -309,6 +353,22 @@ class _ExampleRun:
     winning_distance: float
     runner_up_distance: float
     margin: float
+    excursion_count: int = 0
+    silent_event_count: int = 0
+    peak_queue_occupancy: int = 0
+    beyond_deadline_event_count: int = 0
+    incomplete_settling: bool = False
+    matched_prediction_count: int = 0
+    unmatched_prediction_count: int = 0
+    expired_prediction_count: int = 0
+    matched_credit_count: int = 0
+    unmatched_credit_count: int = 0
+    energy_components: tuple[tuple[str, float], ...] = ()
+    maximum_route_depth: int = 0
+    provenance_truncated: bool = False
+    active_network_neuron_count: int = 0
+    receiving_network_neuron_count: int = 0
+    emitting_network_neuron_count: int = 0
 
 
 class ExperimentRunner:
@@ -323,7 +383,7 @@ class ExperimentRunner:
         self._updates = 0
         self._cumulative_reward = 0.0
         self._history: list[ExperimentMetrics] = []
-        self._last_neurons: tuple[TPCNNeuron, ...] = ()
+        self._last_neurons: tuple[TPCNNeuron | MultiExcursionNeuron, ...] = ()
         self._topology: BoundedTopology | None = None
         self._plasticity: StructuralPlasticityController | None = None
         self._mutation_history: list[tuple[str, str, str, str]] = []
@@ -345,7 +405,7 @@ class ExperimentRunner:
         return tuple((label, value, count) for label, (value, count) in sorted(self._prototypes.items()))
 
     @property
-    def last_neurons(self) -> tuple[TPCNNeuron, ...]:
+    def last_neurons(self) -> tuple[TPCNNeuron | MultiExcursionNeuron, ...]:
         """Publicly observable neurons from the most recent workload pass."""
         return self._last_neurons
 
@@ -380,7 +440,12 @@ class ExperimentRunner:
             self._topology, candidate_capacity=self.config.candidate_capacity,
             max_growth_per_adaptation=self.config.max_growth_per_epoch,
             minimum_edge_count=0, local_neighbors=neighbors)
-        self._network = _ComputationalNetwork(nodes, self._topology, self.config.max_points * 8)
+        self._network = _ComputationalNetwork(
+            nodes,
+            self._topology,
+            self.config.queue_capacity,
+            self.config.neuron_model,
+        )
         self._mutation_history = []
         self._mutation_rejection_reasons = {}
         self._last_mutation_rejection_reasons = {}
@@ -463,6 +528,11 @@ class ExperimentRunner:
         return ordered[0][0], 1.0 / (1.0 + winning), distances, winning, runner_up, runner_up - winning
 
     def _run_example(self, example: SyntheticExample, index: int, *, update: bool) -> _ExampleRun:
+        if self.config.neuron_model == "TANH_LEGACY":
+            return self._run_legacy_example(example, index, update=update)
+        return self._run_excursion_example(example, index, update=update)
+
+    def _run_legacy_example(self, example: SyntheticExample, index: int, *, update: bool) -> _ExampleRun:
         config = self.config
         assert self._network is not None
         self._network.reset_character()
@@ -535,6 +605,157 @@ class ExperimentRunner:
                neuron, routed_events - len(example.points), network_feature, readout_updated,
                representations, distances, learned_prediction, winning_distance, runner_up_distance, margin)
 
+    def _run_excursion_example(self, example: SyntheticExample, index: int, *, update: bool) -> _ExampleRun:
+        config = self.config
+        assert self._network is not None
+        neurons = self._network.neurons
+        if not all(isinstance(neuron, MultiExcursionNeuron) for neuron in neurons):
+            raise RuntimeError("EXCURSION_V1 network contains a non-E2 neuron")
+        self._network.reset_character()
+        input_neuron = neurons[index % len(neurons)]
+        assert isinstance(input_neuron, MultiExcursionNeuron)
+        runtime = ExcursionCharacterRuntime(
+            neurons,
+            self._topology,
+            queue_capacity=config.queue_capacity,
+            event_budget=config.event_budget,
+            settling_horizon=config.settling_horizon,
+            prediction_capacity=config.prediction_capacity,
+            prediction_expiry=config.prediction_expiry,
+            max_activity_events=config.event_budget,
+            namespace=f"experiment-{config.seed}",
+        )
+        first_timestamp = (
+            example.points[0].timestamp
+            if example.points[0].timestamp is not None
+            else 0.0
+        )
+        runtime.start_character(
+            example.example_id,
+            index,
+            timestamp=first_timestamp,
+            predictor_source=input_neuron.neuron_id,
+            readout_sources=(neuron.neuron_id for neuron in neurons),
+            input_destination=input_neuron.neuron_id,
+        )
+        point_index = 0
+        while point_index < len(example.points):
+            point = example.points[point_index]
+            timestamp = point.timestamp if point.timestamp is not None else float(point_index)
+            batch: list[tuple[float, float]] = []
+            while point_index < len(example.points):
+                current = example.points[point_index]
+                current_timestamp = (
+                    current.timestamp if current.timestamp is not None else float(point_index)
+                )
+                if current_timestamp != timestamp:
+                    break
+                batch.append((timestamp, current.x + current.y))
+                point_index += 1
+            runtime.admit_external_batch(batch)
+        last_point = example.points[-1]
+        last_timestamp = (
+            last_point.timestamp
+            if last_point.timestamp is not None
+            else float(len(example.points) - 1)
+        )
+        selected: dict[str, object] = {}
+
+        def resolve_reward(result: object, feature: float) -> float:
+            label_free = result
+            raw_prediction = getattr(label_free, "label")
+            classifier_prediction = raw_prediction
+            learned_prediction, learned_confidence, distances, winning, runner_up, margin = (
+                self._readout_evidence(feature, raw_prediction)
+            )
+            prediction = learned_prediction if self._prototypes else raw_prediction
+            confidence = learned_confidence if self._prototypes else getattr(label_free, "confidence")
+            reward = (
+                0.0
+                if config.reward_mode == "neutral"
+                else (config.correct_reward if prediction == example.label else config.incorrect_reward)
+            )
+            if config.reward_mode == "sparse" and prediction != example.label:
+                reward = 0.0
+            selected.update(
+                classifier_prediction=classifier_prediction,
+                raw_prediction=prediction,
+                confidence=confidence,
+                learned_prediction=learned_prediction,
+                distances=distances,
+                winning=winning,
+                runner_up=runner_up,
+                margin=margin,
+            )
+            return reward
+
+        result = runtime.end_character(
+            last_external_timestamp=last_timestamp,
+            reward=resolve_reward,
+            reward_delay=config.reward_delay,
+            reward_message_id=f"{example.example_id}:reward",
+        )
+        network_feature = result.feature
+        prediction = str(selected["raw_prediction"])
+        raw_classifier_prediction = str(selected["classifier_prediction"])
+        confidence = float(selected["confidence"])
+        readout_updated = False
+        if update and config.learning_enabled:
+            if example.label not in self._prototypes and len(self._prototypes) >= config.max_classes:
+                raise BufferError("readout max_classes capacity reached")
+            old_value, old_count = self._prototypes.get(example.label, (0.0, 0))
+            self._prototypes[example.label] = (old_value + network_feature, old_count + 1)
+            self._updates += 1
+            readout_updated = True
+        utility = result.utility
+        retained = 1 if config.activation_mode == "event_only" or utility > 0.0 else 0
+        distances = selected["distances"]
+        representations = self.prototypes
+        return _ExampleRun(
+            example_id=example.example_id,
+            external_label=example.label,
+            classifier_prediction=raw_classifier_prediction,
+            raw_prediction=prediction,
+            feature=network_feature,
+            confidence=confidence,
+            loss=result.prediction_loss,
+            energy=result.energy,
+            events=result.execution.processed_event_count,
+            activations=result.emission_count,
+            retained=retained,
+            trace=result.trace,
+            execution=result.execution,
+            reward=result.reward,
+            latency=result.reward_update_latency,
+            utility=utility,
+            neuron=input_neuron,
+            routed_events=result.execution.processed_event_count,
+            propagated_activity=network_feature,
+            readout_updated=readout_updated,
+            class_representations=representations,
+            class_distances=distances,
+            nearest_class=str(selected["learned_prediction"]),
+            winning_distance=float(selected["winning"]),
+            runner_up_distance=float(selected["runner_up"]),
+            margin=float(selected["margin"]),
+            excursion_count=result.emission_count,
+            silent_event_count=result.silent_event_count,
+            peak_queue_occupancy=result.peak_queue_occupancy,
+            beyond_deadline_event_count=result.beyond_deadline_event_count,
+            incomplete_settling=result.incomplete_settling,
+            matched_prediction_count=result.matched_predictions,
+            unmatched_prediction_count=result.unmatched_predictions,
+            expired_prediction_count=result.expired_predictions,
+            matched_credit_count=result.matched_credit,
+            unmatched_credit_count=result.unmatched_credit,
+            energy_components=result.energy_components,
+            maximum_route_depth=result.max_route_depth,
+            provenance_truncated=result.provenance_truncated,
+            active_network_neuron_count=result.active_neuron_count,
+            receiving_network_neuron_count=result.receiving_neuron_count,
+            emitting_network_neuron_count=result.emitting_neuron_count,
+        )
+
     def _execute(self, workload: tuple[SyntheticExample, ...], epoch: int, *, update: bool) -> EvaluationResult:
         runs = [self._run_example(example, index, update=update) for index, example in enumerate(workload)]
         self._last_neurons = tuple(run.neuron for run in runs)
@@ -569,10 +790,30 @@ class ExperimentRunner:
             tuple(sorted(counts.items())), tuple((key[0], key[1], value) for key, value in sorted(confusion.items())),
             sum(run.confidence for run in runs) / total, sum(run.latency for run in runs) / total,
             sum(run.utility for run in runs),
-            sum(run.neuron.activation != 0.0 for run in runs),
-            sum(run.neuron.processed_events > 0 for run in runs),
-            sum(run.neuron.activation != 0.0 for run in runs),
-            sum(run.neuron.activation == 0.0 for run in runs) / total,
+            sum(
+                run.active_network_neuron_count
+                if isinstance(run.neuron, MultiExcursionNeuron)
+                else int(run.neuron.activation != 0.0)
+                for run in runs
+            ),
+            sum(
+                run.receiving_network_neuron_count
+                if isinstance(run.neuron, MultiExcursionNeuron)
+                else int(run.neuron.processed_events > 0)
+                for run in runs
+            ),
+            sum(
+                run.emitting_network_neuron_count
+                if isinstance(run.neuron, MultiExcursionNeuron)
+                else int(run.neuron.activation != 0.0)
+                for run in runs
+            ),
+            sum(
+                1.0 - run.emitting_network_neuron_count / max(1, len(self._last_neurons))
+                if isinstance(run.neuron, MultiExcursionNeuron)
+                else float(run.neuron.activation == 0.0)
+                for run in runs
+            ) / total,
             **self._topology_metrics(mutations),
             per_class_accuracy=tuple(
                 (label, per_class_correct.get(label, 0) / count)
@@ -584,13 +825,37 @@ class ExperimentRunner:
             starvation_count=sum(label not in represented for label in declared),
             mean_margin=sum(run.margin for run in runs) / total,
             readout_diagnostics=tuple(diagnostics),
-            prediction_error_count=sum(run.loss > 0.0 for run in runs),
+            prediction_error_count=sum(run.matched_prediction_count for run in runs),
             execution_completed=all(run.execution.completed for run in runs),
             execution_budget_exhausted=any(run.execution.budget_exhausted for run in runs),
             configured_event_budget=sum(run.execution.configured_event_budget for run in runs),
             processed_event_count=sum(run.execution.processed_event_count for run in runs),
             pending_event_count=sum(run.execution.pending_event_count for run in runs),
             termination_reason=("budget_exhausted" if any(run.execution.budget_exhausted for run in runs) else "completed"),
+            peak_queue_occupancy=max((run.peak_queue_occupancy for run in runs), default=0),
+            beyond_deadline_event_count=sum(run.beyond_deadline_event_count for run in runs),
+            incomplete_settling_count=sum(run.incomplete_settling for run in runs),
+            excursion_count=sum(run.excursion_count for run in runs),
+            silent_event_count=sum(run.silent_event_count for run in runs),
+            matched_prediction_count=sum(run.matched_prediction_count for run in runs),
+            unmatched_prediction_count=sum(run.unmatched_prediction_count for run in runs),
+            expired_prediction_count=sum(run.expired_prediction_count for run in runs),
+            matched_credit_count=sum(run.matched_credit_count for run in runs),
+            unmatched_credit_count=sum(run.unmatched_credit_count for run in runs),
+            event_processing_proxy=sum(
+                dict(run.energy_components).get("event_processing", 0.0) for run in runs
+            ),
+            emitted_amplitude_proxy=sum(
+                dict(run.energy_components).get("emitted_amplitude", 0.0) for run in runs
+            ),
+            edge_transfer_proxy=sum(
+                dict(run.energy_components).get("edge_transfer", 0.0) for run in runs
+            ),
+            prediction_error_proxy=sum(
+                dict(run.energy_components).get("prediction_error", 0.0) for run in runs
+            ),
+            maximum_route_depth=max((run.maximum_route_depth for run in runs), default=0),
+            provenance_truncated_count=sum(run.provenance_truncated for run in runs),
         )
         predictions = tuple(run.raw_prediction for run in runs)
         trace = tuple(item for run in runs for item in run.trace)

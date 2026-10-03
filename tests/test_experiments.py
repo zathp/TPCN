@@ -23,7 +23,9 @@ def test_evaluation_uses_canonical_events_and_reports_prediction_and_resource_me
     assert isinstance(result, EvaluationResult)
     assert result.metrics.accuracy == 1.0
     assert result.metrics.prediction_loss >= 0.0
-    assert result.metrics.event_count == result.metrics.activation_count == len(result.event_trace)
+    assert result.metrics.event_count == result.metrics.processed_event_count
+    assert result.metrics.activation_count == result.metrics.excursion_count
+    assert result.metrics.event_count < len(result.event_trace)
     assert result.metrics.event_count >= 12
     assert result.metrics.energy > 0.0
 
@@ -53,7 +55,7 @@ def test_training_can_change_outer_readout_but_labels_stay_out_of_events() -> No
     after = runner.evaluate(workload)
 
     assert trained.parameter_updates > 0
-    assert after.event_trace == before.event_trace
+    assert _trace_behavior(after.event_trace) == _trace_behavior(before.event_trace)
     assert after.metrics.event_count == before.metrics.event_count
     assert runner.history == trained.history
 
@@ -115,7 +117,12 @@ def test_external_labels_do_not_change_neural_trace_or_topology() -> None:
     workload = make_synthetic_workload(examples_per_class=2, seed=11)
     relabeled = tuple(type(example)(example.example_id, example.points, "Z" if example.label == "A" else "A")
                       for example in workload)
-    config = ExperimentConfig(epochs=2, seed=11, structural_plasticity=True)
+    config = ExperimentConfig(
+        epochs=2,
+        seed=11,
+        structural_plasticity=True,
+        neuron_model="TANH_LEGACY",
+    )
 
     first = ExperimentRunner(config)
     second = ExperimentRunner(config)
@@ -138,6 +145,7 @@ def test_independent_runner_instances_and_reset_do_not_cross_contaminate() -> No
     first.train(workload)
     untouched = second.evaluate(workload)
     first.reset()
+    second.reset()
 
     assert untouched == second.evaluate(workload)
     assert first.evaluate(workload) == untouched
@@ -162,4 +170,20 @@ def test_utility_ablation_is_supported_without_claiming_explicit_gates() -> None
     utility = evaluate(workload, config=ExperimentConfig(activation_mode="utility"))
 
     assert event_only.predictions == utility.predictions
+    assert event_only.event_trace == utility.event_trace
+    assert event_only.metrics.energy == utility.metrics.energy
     assert utility.metrics.retained_count <= event_only.metrics.retained_count
+
+
+def _trace_behavior(trace: tuple[tuple[object, ...], ...]) -> tuple[tuple[object, ...], ...]:
+    """Compare causal stream behavior without character-local high-water IDs."""
+    return tuple(
+        (
+            row[0],
+            row[1],
+            row[2],
+            row[3],
+            row[4] if isinstance(row[4], (int, float, str)) else type(row[4]).__name__,
+        )
+        for row in trace
+    )
