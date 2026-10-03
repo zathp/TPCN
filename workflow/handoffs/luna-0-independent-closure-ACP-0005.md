@@ -11,7 +11,7 @@ tpcn_handoff:
   contract_version: "1.1"
   branch: "main"
   base_revision: "630af038dafd91903e3b03c26059989585b3760c"
-  result_revision: "corrective review revision pending publication"
+  result_revision: "80f3f26f37a742f2c9e13b7b4b9c6fdc01cd3771"
   dependencies: ["ACP-0004 E1 closed", "ACP-0003 H1/IR-1 closed"]
   owner: "Project owner / Luna-0 Architecture Guardian"
   classification: ["VERIFICATION", "IMPLEMENTATION"]
@@ -29,7 +29,7 @@ tpcn_handoff:
   architecture_change: false
   proposal: "ACP-0005"
   tests_added: ["adversarial IR-2 migration, M consistency and resource fixtures"]
-  tests_passing: ["73 focused IR-2/E1/IR-1 tests", "full CPU suite pending corrective rerun"]
+  tests_passing: ["73 focused IR-2/E1/IR-1 tests", "622 full CPU tests", "1 existing skip"]
   tests_failed: []
   tests_not_run: ["GPU/FPGA/FPAA, E2/M runtime, H2, N3 and hardware equivalence"]
   assumptions: ["Generation reset remains E1-compatible because episode identity prevents stale cross-episode validation."]
@@ -52,9 +52,10 @@ records. No E2/M execution or architecture change was introduced.
 
 ## Closure gate
 
-The corrective revision is **PASS — TPCN-IR-2 EXCURSION EXECUTION SCHEMA
-INDEPENDENTLY VERIFIED AND CLOSED**, conditional only on final publication
-verification. Focused review tests pass 73 cases. A01-A15 remain unchanged.
+Revision `80f3f26f37a742f2c9e13b7b4b9c6fdc01cd3771` is **PASS — TPCN-IR-2
+EXCURSION EXECUTION SCHEMA INDEPENDENTLY VERIFIED AND CLOSED**. Focused
+review tests pass 73 cases and the full CPU suite passes 622 tests with one
+existing skip. A01-A15 remain unchanged.
 
 E2/M, ACP-0003 H2, ACP-0002 N3, backends, hardware, calibration, Luna-13F
 reopening and Luna-13G remain unauthorized.
