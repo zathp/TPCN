@@ -1,0 +1,3453 @@
+{
+  "test": {
+    "class_order": [
+      "a",
+      "b",
+      "c",
+      "d",
+      "e",
+      "g",
+      "h",
+      "l",
+      "m",
+      "n",
+      "o",
+      "p",
+      "q",
+      "r",
+      "s",
+      "u",
+      "v",
+      "w",
+      "y",
+      "z"
+    ],
+    "classes": [
+      {
+        "accuracy": 1.0,
+        "class": "a",
+        "correct": 2,
+        "count": 2,
+        "predictions": [
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[1457]",
+            "predicted_label": "a",
+            "raw_classifier_prediction": "Z",
+            "reward": 1.0
+          },
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[1506]",
+            "predicted_label": "a",
+            "raw_classifier_prediction": "Z",
+            "reward": 1.0
+          }
+        ]
+      },
+      {
+        "accuracy": 0.0,
+        "class": "b",
+        "correct": 0,
+        "count": 2,
+        "predictions": [
+          {
+            "confidence": 0.725384292818218,
+            "example_id": "mixoutALL_shifted.mat:mixout[1517]",
+            "predicted_label": "p",
+            "raw_classifier_prediction": "A",
+            "reward": -1.0
+          },
+          {
+            "confidence": 0.9380162464344138,
+            "example_id": "mixoutALL_shifted.mat:mixout[0106]",
+            "predicted_label": "p",
+            "raw_classifier_prediction": "A",
+            "reward": -1.0
+          }
+        ]
+      },
+      {
+        "accuracy": 0.0,
+        "class": "c",
+        "correct": 0,
+        "count": 2,
+        "predictions": [
+          {
+            "confidence": 0.9380162464344138,
+            "example_id": "mixoutALL_shifted.mat:mixout[0211]",
+            "predicted_label": "p",
+            "raw_classifier_prediction": "A",
+            "reward": -1.0
+          },
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[1654]",
+            "predicted_label": "a",
+            "raw_classifier_prediction": "Z",
+            "reward": -1.0
+          }
+        ]
+      },
+      {
+        "accuracy": 1.0,
+        "class": "d",
+        "correct": 2,
+        "count": 2,
+        "predictions": [
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[0289]",
+            "predicted_label": "d",
+            "raw_classifier_prediction": "Z",
+            "reward": 1.0
+          },
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[1712]",
+            "predicted_label": "d",
+            "raw_classifier_prediction": "Z",
+            "reward": 1.0
+          }
+        ]
+      },
+      {
+        "accuracy": 0.0,
+        "class": "e",
+        "correct": 0,
+        "count": 2,
+        "predictions": [
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[0310]",
+            "predicted_label": "a",
+            "raw_classifier_prediction": "Z",
+            "reward": -1.0
+          },
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[0319]",
+            "predicted_label": "a",
+            "raw_classifier_prediction": "Z",
+            "reward": -1.0
+          }
+        ]
+      },
+      {
+        "accuracy": 0.0,
+        "class": "g",
+        "correct": 0,
+        "count": 2,
+        "predictions": [
+          {
+            "confidence": 0.947049309464643,
+            "example_id": "mixoutALL_shifted.mat:mixout[0435]",
+            "predicted_label": "p",
+            "raw_classifier_prediction": "A",
+            "reward": -1.0
+          },
+          {
+            "confidence": 0.9380162464344138,
+            "example_id": "mixoutALL_shifted.mat:mixout[0450]",
+            "predicted_label": "p",
+            "raw_classifier_prediction": "A",
+            "reward": -1.0
+          }
+        ]
+      },
+      {
+        "accuracy": 0.0,
+        "class": "h",
+        "correct": 0,
+        "count": 2,
+        "predictions": [
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[1944]",
+            "predicted_label": "a",
+            "raw_classifier_prediction": "Z",
+            "reward": -1.0
+          },
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[1942]",
+            "predicted_label": "a",
+            "raw_classifier_prediction": "Z",
+            "reward": -1.0
+          }
+        ]
+      },
+      {
+        "accuracy": 0.0,
+        "class": "l",
+        "correct": 0,
+        "count": 2,
+        "predictions": [
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[2034]",
+            "predicted_label": "d",
+            "raw_classifier_prediction": "Z",
+            "reward": -1.0
+          },
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[1971]",
+            "predicted_label": "d",
+            "raw_classifier_prediction": "Z",
+            "reward": -1.0
+          }
+        ]
+      },
+      {
+        "accuracy": 0.0,
+        "class": "m",
+        "correct": 0,
+        "count": 2,
+        "predictions": [
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[0666]",
+            "predicted_label": "a",
+            "raw_classifier_prediction": "Z",
+            "reward": -1.0
+          },
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[0631]",
+            "predicted_label": "a",
+            "raw_classifier_prediction": "Z",
+            "reward": -1.0
+          }
+        ]
+      },
+      {
+        "accuracy": 0.0,
+        "class": "n",
+        "correct": 0,
+        "count": 2,
+        "predictions": [
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[2107]",
+            "predicted_label": "a",
+            "raw_classifier_prediction": "Z",
+            "reward": -1.0
+          },
+          {
+            "confidence": 0.9853479985535645,
+            "example_id": "mixoutALL_shifted.mat:mixout[0730]",
+            "predicted_label": "z",
+            "raw_classifier_prediction": "Z",
+            "reward": -1.0
+          }
+        ]
+      },
+      {
+        "accuracy": 0.0,
+        "class": "o",
+        "correct": 0,
+        "count": 2,
+        "predictions": [
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[0800]",
+            "predicted_label": "a",
+            "raw_classifier_prediction": "Z",
+            "reward": -1.0
+          },
+          {
+            "confidence": 0.7961698210230292,
+            "example_id": "mixoutALL_shifted.mat:mixout[2204]",
+            "predicted_label": "p",
+            "raw_classifier_prediction": "A",
+            "reward": -1.0
+          }
+        ]
+      },
+      {
+        "accuracy": 0.5,
+        "class": "p",
+        "correct": 1,
+        "count": 2,
+        "predictions": [
+          {
+            "confidence": 0.9856757956505303,
+            "example_id": "mixoutALL_shifted.mat:mixout[0840]",
+            "predicted_label": "s",
+            "raw_classifier_prediction": "A",
+            "reward": -1.0
+          },
+          {
+            "confidence": 0.9380162464344138,
+            "example_id": "mixoutALL_shifted.mat:mixout[2304]",
+            "predicted_label": "p",
+            "raw_classifier_prediction": "A",
+            "reward": 1.0
+          }
+        ]
+      },
+      {
+        "accuracy": 0.0,
+        "class": "q",
+        "correct": 0,
+        "count": 2,
+        "predictions": [
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[2321]",
+            "predicted_label": "a",
+            "raw_classifier_prediction": "Z",
+            "reward": -1.0
+          },
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[0910]",
+            "predicted_label": "a",
+            "raw_classifier_prediction": "Z",
+            "reward": -1.0
+          }
+        ]
+      },
+      {
+        "accuracy": 0.0,
+        "class": "r",
+        "correct": 0,
+        "count": 2,
+        "predictions": [
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[2416]",
+            "predicted_label": "a",
+            "raw_classifier_prediction": "Z",
+            "reward": -1.0
+          },
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[0956]",
+            "predicted_label": "d",
+            "raw_classifier_prediction": "Z",
+            "reward": -1.0
+          }
+        ]
+      },
+      {
+        "accuracy": 0.5,
+        "class": "s",
+        "correct": 1,
+        "count": 2,
+        "predictions": [
+          {
+            "confidence": 0.9648219382356017,
+            "example_id": "mixoutALL_shifted.mat:mixout[1029]",
+            "predicted_label": "p",
+            "raw_classifier_prediction": "A",
+            "reward": -1.0
+          },
+          {
+            "confidence": 0.9967543997209157,
+            "example_id": "mixoutALL_shifted.mat:mixout[2484]",
+            "predicted_label": "s",
+            "raw_classifier_prediction": "A",
+            "reward": 1.0
+          }
+        ]
+      },
+      {
+        "accuracy": 0.0,
+        "class": "u",
+        "correct": 0,
+        "count": 2,
+        "predictions": [
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[1082]",
+            "predicted_label": "a",
+            "raw_classifier_prediction": "Z",
+            "reward": -1.0
+          },
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[1105]",
+            "predicted_label": "d",
+            "raw_classifier_prediction": "Z",
+            "reward": -1.0
+          }
+        ]
+      },
+      {
+        "accuracy": 0.5,
+        "class": "v",
+        "correct": 1,
+        "count": 2,
+        "predictions": [
+          {
+            "confidence": 0.9380162464344138,
+            "example_id": "mixoutALL_shifted.mat:mixout[2563]",
+            "predicted_label": "p",
+            "raw_classifier_prediction": "A",
+            "reward": -1.0
+          },
+          {
+            "confidence": 0.7996551613473704,
+            "example_id": "mixoutALL_shifted.mat:mixout[2605]",
+            "predicted_label": "v",
+            "raw_classifier_prediction": "A",
+            "reward": 1.0
+          }
+        ]
+      },
+      {
+        "accuracy": 0.0,
+        "class": "w",
+        "correct": 0,
+        "count": 2,
+        "predictions": [
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[2669]",
+            "predicted_label": "a",
+            "raw_classifier_prediction": "Z",
+            "reward": -1.0
+          },
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[2664]",
+            "predicted_label": "a",
+            "raw_classifier_prediction": "Z",
+            "reward": -1.0
+          }
+        ]
+      },
+      {
+        "accuracy": 0.0,
+        "class": "y",
+        "correct": 0,
+        "count": 2,
+        "predictions": [
+          {
+            "confidence": 0.9380162464344138,
+            "example_id": "mixoutALL_shifted.mat:mixout[1312]",
+            "predicted_label": "p",
+            "raw_classifier_prediction": "A",
+            "reward": -1.0
+          },
+          {
+            "confidence": 0.9916824689648878,
+            "example_id": "mixoutALL_shifted.mat:mixout[1324]",
+            "predicted_label": "g",
+            "raw_classifier_prediction": "A",
+            "reward": -1.0
+          }
+        ]
+      },
+      {
+        "accuracy": 0.0,
+        "class": "z",
+        "correct": 0,
+        "count": 2,
+        "predictions": [
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[2825]",
+            "predicted_label": "a",
+            "raw_classifier_prediction": "Z",
+            "reward": -1.0
+          },
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[1393]",
+            "predicted_label": "d",
+            "raw_classifier_prediction": "Z",
+            "reward": -1.0
+          }
+        ]
+      }
+    ],
+    "classification": {
+      "accuracy": 0.175,
+      "confusion_matrix": {
+        "a": {
+          "a": 2,
+          "b": 0,
+          "c": 0,
+          "d": 0,
+          "e": 0,
+          "g": 0,
+          "h": 0,
+          "l": 0,
+          "m": 0,
+          "n": 0,
+          "o": 0,
+          "p": 0,
+          "q": 0,
+          "r": 0,
+          "s": 0,
+          "u": 0,
+          "v": 0,
+          "w": 0,
+          "y": 0,
+          "z": 0
+        },
+        "b": {
+          "a": 0,
+          "b": 0,
+          "c": 0,
+          "d": 0,
+          "e": 0,
+          "g": 0,
+          "h": 0,
+          "l": 0,
+          "m": 0,
+          "n": 0,
+          "o": 0,
+          "p": 2,
+          "q": 0,
+          "r": 0,
+          "s": 0,
+          "u": 0,
+          "v": 0,
+          "w": 0,
+          "y": 0,
+          "z": 0
+        },
+        "c": {
+          "a": 1,
+          "b": 0,
+          "c": 0,
+          "d": 0,
+          "e": 0,
+          "g": 0,
+          "h": 0,
+          "l": 0,
+          "m": 0,
+          "n": 0,
+          "o": 0,
+          "p": 1,
+          "q": 0,
+          "r": 0,
+          "s": 0,
+          "u": 0,
+          "v": 0,
+          "w": 0,
+          "y": 0,
+          "z": 0
+        },
+        "d": {
+          "a": 0,
+          "b": 0,
+          "c": 0,
+          "d": 2,
+          "e": 0,
+          "g": 0,
+          "h": 0,
+          "l": 0,
+          "m": 0,
+          "n": 0,
+          "o": 0,
+          "p": 0,
+          "q": 0,
+          "r": 0,
+          "s": 0,
+          "u": 0,
+          "v": 0,
+          "w": 0,
+          "y": 0,
+          "z": 0
+        },
+        "e": {
+          "a": 2,
+          "b": 0,
+          "c": 0,
+          "d": 0,
+          "e": 0,
+          "g": 0,
+          "h": 0,
+          "l": 0,
+          "m": 0,
+          "n": 0,
+          "o": 0,
+          "p": 0,
+          "q": 0,
+          "r": 0,
+          "s": 0,
+          "u": 0,
+          "v": 0,
+          "w": 0,
+          "y": 0,
+          "z": 0
+        },
+        "g": {
+          "a": 0,
+          "b": 0,
+          "c": 0,
+          "d": 0,
+          "e": 0,
+          "g": 0,
+          "h": 0,
+          "l": 0,
+          "m": 0,
+          "n": 0,
+          "o": 0,
+          "p": 2,
+          "q": 0,
+          "r": 0,
+          "s": 0,
+          "u": 0,
+          "v": 0,
+          "w": 0,
+          "y": 0,
+          "z": 0
+        },
+        "h": {
+          "a": 2,
+          "b": 0,
+          "c": 0,
+          "d": 0,
+          "e": 0,
+          "g": 0,
+          "h": 0,
+          "l": 0,
+          "m": 0,
+          "n": 0,
+          "o": 0,
+          "p": 0,
+          "q": 0,
+          "r": 0,
+          "s": 0,
+          "u": 0,
+          "v": 0,
+          "w": 0,
+          "y": 0,
+          "z": 0
+        },
+        "l": {
+          "a": 0,
+          "b": 0,
+          "c": 0,
+          "d": 2,
+          "e": 0,
+          "g": 0,
+          "h": 0,
+          "l": 0,
+          "m": 0,
+          "n": 0,
+          "o": 0,
+          "p": 0,
+          "q": 0,
+          "r": 0,
+          "s": 0,
+          "u": 0,
+          "v": 0,
+          "w": 0,
+          "y": 0,
+          "z": 0
+        },
+        "m": {
+          "a": 2,
+          "b": 0,
+          "c": 0,
+          "d": 0,
+          "e": 0,
+          "g": 0,
+          "h": 0,
+          "l": 0,
+          "m": 0,
+          "n": 0,
+          "o": 0,
+          "p": 0,
+          "q": 0,
+          "r": 0,
+          "s": 0,
+          "u": 0,
+          "v": 0,
+          "w": 0,
+          "y": 0,
+          "z": 0
+        },
+        "n": {
+          "a": 1,
+          "b": 0,
+          "c": 0,
+          "d": 0,
+          "e": 0,
+          "g": 0,
+          "h": 0,
+          "l": 0,
+          "m": 0,
+          "n": 0,
+          "o": 0,
+          "p": 0,
+          "q": 0,
+          "r": 0,
+          "s": 0,
+          "u": 0,
+          "v": 0,
+          "w": 0,
+          "y": 0,
+          "z": 1
+        },
+        "o": {
+          "a": 1,
+          "b": 0,
+          "c": 0,
+          "d": 0,
+          "e": 0,
+          "g": 0,
+          "h": 0,
+          "l": 0,
+          "m": 0,
+          "n": 0,
+          "o": 0,
+          "p": 1,
+          "q": 0,
+          "r": 0,
+          "s": 0,
+          "u": 0,
+          "v": 0,
+          "w": 0,
+          "y": 0,
+          "z": 0
+        },
+        "p": {
+          "a": 0,
+          "b": 0,
+          "c": 0,
+          "d": 0,
+          "e": 0,
+          "g": 0,
+          "h": 0,
+          "l": 0,
+          "m": 0,
+          "n": 0,
+          "o": 0,
+          "p": 1,
+          "q": 0,
+          "r": 0,
+          "s": 1,
+          "u": 0,
+          "v": 0,
+          "w": 0,
+          "y": 0,
+          "z": 0
+        },
+        "q": {
+          "a": 2,
+          "b": 0,
+          "c": 0,
+          "d": 0,
+          "e": 0,
+          "g": 0,
+          "h": 0,
+          "l": 0,
+          "m": 0,
+          "n": 0,
+          "o": 0,
+          "p": 0,
+          "q": 0,
+          "r": 0,
+          "s": 0,
+          "u": 0,
+          "v": 0,
+          "w": 0,
+          "y": 0,
+          "z": 0
+        },
+        "r": {
+          "a": 1,
+          "b": 0,
+          "c": 0,
+          "d": 1,
+          "e": 0,
+          "g": 0,
+          "h": 0,
+          "l": 0,
+          "m": 0,
+          "n": 0,
+          "o": 0,
+          "p": 0,
+          "q": 0,
+          "r": 0,
+          "s": 0,
+          "u": 0,
+          "v": 0,
+          "w": 0,
+          "y": 0,
+          "z": 0
+        },
+        "s": {
+          "a": 0,
+          "b": 0,
+          "c": 0,
+          "d": 0,
+          "e": 0,
+          "g": 0,
+          "h": 0,
+          "l": 0,
+          "m": 0,
+          "n": 0,
+          "o": 0,
+          "p": 1,
+          "q": 0,
+          "r": 0,
+          "s": 1,
+          "u": 0,
+          "v": 0,
+          "w": 0,
+          "y": 0,
+          "z": 0
+        },
+        "u": {
+          "a": 1,
+          "b": 0,
+          "c": 0,
+          "d": 1,
+          "e": 0,
+          "g": 0,
+          "h": 0,
+          "l": 0,
+          "m": 0,
+          "n": 0,
+          "o": 0,
+          "p": 0,
+          "q": 0,
+          "r": 0,
+          "s": 0,
+          "u": 0,
+          "v": 0,
+          "w": 0,
+          "y": 0,
+          "z": 0
+        },
+        "v": {
+          "a": 0,
+          "b": 0,
+          "c": 0,
+          "d": 0,
+          "e": 0,
+          "g": 0,
+          "h": 0,
+          "l": 0,
+          "m": 0,
+          "n": 0,
+          "o": 0,
+          "p": 1,
+          "q": 0,
+          "r": 0,
+          "s": 0,
+          "u": 0,
+          "v": 1,
+          "w": 0,
+          "y": 0,
+          "z": 0
+        },
+        "w": {
+          "a": 2,
+          "b": 0,
+          "c": 0,
+          "d": 0,
+          "e": 0,
+          "g": 0,
+          "h": 0,
+          "l": 0,
+          "m": 0,
+          "n": 0,
+          "o": 0,
+          "p": 0,
+          "q": 0,
+          "r": 0,
+          "s": 0,
+          "u": 0,
+          "v": 0,
+          "w": 0,
+          "y": 0,
+          "z": 0
+        },
+        "y": {
+          "a": 0,
+          "b": 0,
+          "c": 0,
+          "d": 0,
+          "e": 0,
+          "g": 1,
+          "h": 0,
+          "l": 0,
+          "m": 0,
+          "n": 0,
+          "o": 0,
+          "p": 1,
+          "q": 0,
+          "r": 0,
+          "s": 0,
+          "u": 0,
+          "v": 0,
+          "w": 0,
+          "y": 0,
+          "z": 0
+        },
+        "z": {
+          "a": 1,
+          "b": 0,
+          "c": 0,
+          "d": 1,
+          "e": 0,
+          "g": 0,
+          "h": 0,
+          "l": 0,
+          "m": 0,
+          "n": 0,
+          "o": 0,
+          "p": 0,
+          "q": 0,
+          "r": 0,
+          "s": 0,
+          "u": 0,
+          "v": 0,
+          "w": 0,
+          "y": 0,
+          "z": 0
+        }
+      },
+      "count": 40,
+      "macro_f1": 0.09888888888888889,
+      "macro_precision": 0.09984126984126984,
+      "macro_recall": 0.175,
+      "per_class": [
+        {
+          "class": "a",
+          "f1": 0.19999999999999998,
+          "precision": 0.1111111111111111,
+          "recall": 1.0,
+          "support": 2
+        },
+        {
+          "class": "b",
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 2
+        },
+        {
+          "class": "c",
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 2
+        },
+        {
+          "class": "d",
+          "f1": 0.4444444444444445,
+          "precision": 0.2857142857142857,
+          "recall": 1.0,
+          "support": 2
+        },
+        {
+          "class": "e",
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 2
+        },
+        {
+          "class": "g",
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 2
+        },
+        {
+          "class": "h",
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 2
+        },
+        {
+          "class": "l",
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 2
+        },
+        {
+          "class": "m",
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 2
+        },
+        {
+          "class": "n",
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 2
+        },
+        {
+          "class": "o",
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 2
+        },
+        {
+          "class": "p",
+          "f1": 0.16666666666666669,
+          "precision": 0.1,
+          "recall": 0.5,
+          "support": 2
+        },
+        {
+          "class": "q",
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 2
+        },
+        {
+          "class": "r",
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 2
+        },
+        {
+          "class": "s",
+          "f1": 0.5,
+          "precision": 0.5,
+          "recall": 0.5,
+          "support": 2
+        },
+        {
+          "class": "u",
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 2
+        },
+        {
+          "class": "v",
+          "f1": 0.6666666666666666,
+          "precision": 1.0,
+          "recall": 0.5,
+          "support": 2
+        },
+        {
+          "class": "w",
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 2
+        },
+        {
+          "class": "y",
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 2
+        },
+        {
+          "class": "z",
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 2
+        }
+      ]
+    }
+  },
+  "train": {
+    "class_order": [
+      "a",
+      "b",
+      "c",
+      "d",
+      "e",
+      "g",
+      "h",
+      "l",
+      "m",
+      "n",
+      "o",
+      "p",
+      "q",
+      "r",
+      "s",
+      "u",
+      "v",
+      "w",
+      "y",
+      "z"
+    ],
+    "classes": [
+      {
+        "accuracy": 1.0,
+        "class": "a",
+        "correct": 4,
+        "count": 4,
+        "predictions": [
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[0091]",
+            "predicted_label": "a",
+            "raw_classifier_prediction": "Z",
+            "reward": 1.0
+          },
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[0058]",
+            "predicted_label": "a",
+            "raw_classifier_prediction": "Z",
+            "reward": 1.0
+          },
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[1500]",
+            "predicted_label": "a",
+            "raw_classifier_prediction": "Z",
+            "reward": 1.0
+          },
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[1487]",
+            "predicted_label": "a",
+            "raw_classifier_prediction": "Z",
+            "reward": 1.0
+          }
+        ]
+      },
+      {
+        "accuracy": 0.0,
+        "class": "b",
+        "correct": 0,
+        "count": 4,
+        "predictions": [
+          {
+            "confidence": 0.9787316493918808,
+            "example_id": "mixoutALL_shifted.mat:mixout[0166]",
+            "predicted_label": "o",
+            "raw_classifier_prediction": "A",
+            "reward": -1.0
+          },
+          {
+            "confidence": 0.9380162464344138,
+            "example_id": "mixoutALL_shifted.mat:mixout[0108]",
+            "predicted_label": "p",
+            "raw_classifier_prediction": "A",
+            "reward": -1.0
+          },
+          {
+            "confidence": 0.9929258645646828,
+            "example_id": "mixoutALL_shifted.mat:mixout[1527]",
+            "predicted_label": "g",
+            "raw_classifier_prediction": "A",
+            "reward": -1.0
+          },
+          {
+            "confidence": 0.9380162464344138,
+            "example_id": "mixoutALL_shifted.mat:mixout[1567]",
+            "predicted_label": "p",
+            "raw_classifier_prediction": "A",
+            "reward": -1.0
+          }
+        ]
+      },
+      {
+        "accuracy": 0.0,
+        "class": "c",
+        "correct": 0,
+        "count": 4,
+        "predictions": [
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[1580]",
+            "predicted_label": "a",
+            "raw_classifier_prediction": "Z",
+            "reward": -1.0
+          },
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[1593]",
+            "predicted_label": "a",
+            "raw_classifier_prediction": "Z",
+            "reward": -1.0
+          },
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[1657]",
+            "predicted_label": "a",
+            "raw_classifier_prediction": "Z",
+            "reward": -1.0
+          },
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[0223]",
+            "predicted_label": "a",
+            "raw_classifier_prediction": "Z",
+            "reward": -1.0
+          }
+        ]
+      },
+      {
+        "accuracy": 1.0,
+        "class": "d",
+        "correct": 4,
+        "count": 4,
+        "predictions": [
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[1708]",
+            "predicted_label": "d",
+            "raw_classifier_prediction": "Z",
+            "reward": 1.0
+          },
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[1734]",
+            "predicted_label": "d",
+            "raw_classifier_prediction": "Z",
+            "reward": 1.0
+          },
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[1731]",
+            "predicted_label": "d",
+            "raw_classifier_prediction": "Z",
+            "reward": 1.0
+          },
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[1732]",
+            "predicted_label": "d",
+            "raw_classifier_prediction": "Z",
+            "reward": 1.0
+          }
+        ]
+      },
+      {
+        "accuracy": 0.0,
+        "class": "e",
+        "correct": 0,
+        "count": 4,
+        "predictions": [
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[1794]",
+            "predicted_label": "a",
+            "raw_classifier_prediction": "Z",
+            "reward": -1.0
+          },
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[1800]",
+            "predicted_label": "a",
+            "raw_classifier_prediction": "Z",
+            "reward": -1.0
+          },
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[1795]",
+            "predicted_label": "a",
+            "raw_classifier_prediction": "Z",
+            "reward": -1.0
+          },
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[1790]",
+            "predicted_label": "a",
+            "raw_classifier_prediction": "Z",
+            "reward": -1.0
+          }
+        ]
+      },
+      {
+        "accuracy": 0.0,
+        "class": "g",
+        "correct": 0,
+        "count": 4,
+        "predictions": [
+          {
+            "confidence": 0.9380162464344138,
+            "example_id": "mixoutALL_shifted.mat:mixout[1841]",
+            "predicted_label": "p",
+            "raw_classifier_prediction": "A",
+            "reward": -1.0
+          },
+          {
+            "confidence": 0.9380162464344138,
+            "example_id": "mixoutALL_shifted.mat:mixout[1810]",
+            "predicted_label": "p",
+            "raw_classifier_prediction": "A",
+            "reward": -1.0
+          },
+          {
+            "confidence": 0.9380162464344138,
+            "example_id": "mixoutALL_shifted.mat:mixout[0463]",
+            "predicted_label": "p",
+            "raw_classifier_prediction": "A",
+            "reward": -1.0
+          },
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[1819]",
+            "predicted_label": "a",
+            "raw_classifier_prediction": "Z",
+            "reward": -1.0
+          }
+        ]
+      },
+      {
+        "accuracy": 0.0,
+        "class": "h",
+        "correct": 0,
+        "count": 4,
+        "predictions": [
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[0490]",
+            "predicted_label": "a",
+            "raw_classifier_prediction": "Z",
+            "reward": -1.0
+          },
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[0541]",
+            "predicted_label": "a",
+            "raw_classifier_prediction": "Z",
+            "reward": -1.0
+          },
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[0498]",
+            "predicted_label": "a",
+            "raw_classifier_prediction": "Z",
+            "reward": -1.0
+          },
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[0496]",
+            "predicted_label": "a",
+            "raw_classifier_prediction": "Z",
+            "reward": -1.0
+          }
+        ]
+      },
+      {
+        "accuracy": 0.0,
+        "class": "l",
+        "correct": 0,
+        "count": 4,
+        "predictions": [
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[2003]",
+            "predicted_label": "d",
+            "raw_classifier_prediction": "Z",
+            "reward": -1.0
+          },
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[0587]",
+            "predicted_label": "a",
+            "raw_classifier_prediction": "Z",
+            "reward": -1.0
+          },
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[2024]",
+            "predicted_label": "a",
+            "raw_classifier_prediction": "Z",
+            "reward": -1.0
+          },
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[0622]",
+            "predicted_label": "a",
+            "raw_classifier_prediction": "Z",
+            "reward": -1.0
+          }
+        ]
+      },
+      {
+        "accuracy": 0.0,
+        "class": "m",
+        "correct": 0,
+        "count": 4,
+        "predictions": [
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[2101]",
+            "predicted_label": "a",
+            "raw_classifier_prediction": "Z",
+            "reward": -1.0
+          },
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[2095]",
+            "predicted_label": "a",
+            "raw_classifier_prediction": "Z",
+            "reward": -1.0
+          },
+          {
+            "confidence": 0.725384292818218,
+            "example_id": "mixoutALL_shifted.mat:mixout[0665]",
+            "predicted_label": "p",
+            "raw_classifier_prediction": "A",
+            "reward": -1.0
+          },
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[0681]",
+            "predicted_label": "a",
+            "raw_classifier_prediction": "Z",
+            "reward": -1.0
+          }
+        ]
+      },
+      {
+        "accuracy": 0.0,
+        "class": "n",
+        "correct": 0,
+        "count": 4,
+        "predictions": [
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[2135]",
+            "predicted_label": "a",
+            "raw_classifier_prediction": "Z",
+            "reward": -1.0
+          },
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[2149]",
+            "predicted_label": "a",
+            "raw_classifier_prediction": "Z",
+            "reward": -1.0
+          },
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[2126]",
+            "predicted_label": "a",
+            "raw_classifier_prediction": "Z",
+            "reward": -1.0
+          },
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[2158]",
+            "predicted_label": "a",
+            "raw_classifier_prediction": "Z",
+            "reward": -1.0
+          }
+        ]
+      },
+      {
+        "accuracy": 0.0,
+        "class": "o",
+        "correct": 0,
+        "count": 4,
+        "predictions": [
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[0773]",
+            "predicted_label": "a",
+            "raw_classifier_prediction": "Z",
+            "reward": -1.0
+          },
+          {
+            "confidence": 0.9380162464344138,
+            "example_id": "mixoutALL_shifted.mat:mixout[2181]",
+            "predicted_label": "p",
+            "raw_classifier_prediction": "A",
+            "reward": -1.0
+          },
+          {
+            "confidence": 0.9380162464344138,
+            "example_id": "mixoutALL_shifted.mat:mixout[2225]",
+            "predicted_label": "p",
+            "raw_classifier_prediction": "A",
+            "reward": -1.0
+          },
+          {
+            "confidence": 0.725384292818218,
+            "example_id": "mixoutALL_shifted.mat:mixout[0799]",
+            "predicted_label": "p",
+            "raw_classifier_prediction": "A",
+            "reward": -1.0
+          }
+        ]
+      },
+      {
+        "accuracy": 0.75,
+        "class": "p",
+        "correct": 3,
+        "count": 4,
+        "predictions": [
+          {
+            "confidence": 0.9380162464344138,
+            "example_id": "mixoutALL_shifted.mat:mixout[2290]",
+            "predicted_label": "p",
+            "raw_classifier_prediction": "A",
+            "reward": 1.0
+          },
+          {
+            "confidence": 0.9986951696571779,
+            "example_id": "mixoutALL_shifted.mat:mixout[2250]",
+            "predicted_label": "o",
+            "raw_classifier_prediction": "A",
+            "reward": -1.0
+          },
+          {
+            "confidence": 0.9380162464344138,
+            "example_id": "mixoutALL_shifted.mat:mixout[0873]",
+            "predicted_label": "p",
+            "raw_classifier_prediction": "A",
+            "reward": 1.0
+          },
+          {
+            "confidence": 0.9380162464344138,
+            "example_id": "mixoutALL_shifted.mat:mixout[2286]",
+            "predicted_label": "p",
+            "raw_classifier_prediction": "A",
+            "reward": 1.0
+          }
+        ]
+      },
+      {
+        "accuracy": 0.25,
+        "class": "q",
+        "correct": 1,
+        "count": 4,
+        "predictions": [
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[0926]",
+            "predicted_label": "a",
+            "raw_classifier_prediction": "Z",
+            "reward": -1.0
+          },
+          {
+            "confidence": 0.9613854326063346,
+            "example_id": "mixoutALL_shifted.mat:mixout[0921]",
+            "predicted_label": "q",
+            "raw_classifier_prediction": "Z",
+            "reward": 1.0
+          },
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[2336]",
+            "predicted_label": "a",
+            "raw_classifier_prediction": "Z",
+            "reward": -1.0
+          },
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[2349]",
+            "predicted_label": "a",
+            "raw_classifier_prediction": "Z",
+            "reward": -1.0
+          }
+        ]
+      },
+      {
+        "accuracy": 0.0,
+        "class": "r",
+        "correct": 0,
+        "count": 4,
+        "predictions": [
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[1010]",
+            "predicted_label": "a",
+            "raw_classifier_prediction": "Z",
+            "reward": -1.0
+          },
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[0989]",
+            "predicted_label": "a",
+            "raw_classifier_prediction": "Z",
+            "reward": -1.0
+          },
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[2397]",
+            "predicted_label": "d",
+            "raw_classifier_prediction": "Z",
+            "reward": -1.0
+          },
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[2371]",
+            "predicted_label": "a",
+            "raw_classifier_prediction": "Z",
+            "reward": -1.0
+          }
+        ]
+      },
+      {
+        "accuracy": 0.0,
+        "class": "s",
+        "correct": 0,
+        "count": 4,
+        "predictions": [
+          {
+            "confidence": 0.9380162464344138,
+            "example_id": "mixoutALL_shifted.mat:mixout[1072]",
+            "predicted_label": "p",
+            "raw_classifier_prediction": "A",
+            "reward": -1.0
+          },
+          {
+            "confidence": 0.9945069948742524,
+            "example_id": "mixoutALL_shifted.mat:mixout[2459]",
+            "predicted_label": "g",
+            "raw_classifier_prediction": "A",
+            "reward": -1.0
+          },
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[2436]",
+            "predicted_label": "a",
+            "raw_classifier_prediction": "Z",
+            "reward": -1.0
+          },
+          {
+            "confidence": 0.8082633625464295,
+            "example_id": "mixoutALL_shifted.mat:mixout[2439]",
+            "predicted_label": "p",
+            "raw_classifier_prediction": "A",
+            "reward": -1.0
+          }
+        ]
+      },
+      {
+        "accuracy": 0.0,
+        "class": "u",
+        "correct": 0,
+        "count": 4,
+        "predictions": [
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[2557]",
+            "predicted_label": "a",
+            "raw_classifier_prediction": "Z",
+            "reward": -1.0
+          },
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[2554]",
+            "predicted_label": "a",
+            "raw_classifier_prediction": "Z",
+            "reward": -1.0
+          },
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[1084]",
+            "predicted_label": "a",
+            "raw_classifier_prediction": "Z",
+            "reward": -1.0
+          },
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[2513]",
+            "predicted_label": "d",
+            "raw_classifier_prediction": "Z",
+            "reward": -1.0
+          }
+        ]
+      },
+      {
+        "accuracy": 0.0,
+        "class": "v",
+        "correct": 0,
+        "count": 4,
+        "predictions": [
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[2583]",
+            "predicted_label": "d",
+            "raw_classifier_prediction": "Z",
+            "reward": -1.0
+          },
+          {
+            "confidence": 0.9380162464344138,
+            "example_id": "mixoutALL_shifted.mat:mixout[2639]",
+            "predicted_label": "p",
+            "raw_classifier_prediction": "A",
+            "reward": -1.0
+          },
+          {
+            "confidence": 0.9778333902571589,
+            "example_id": "mixoutALL_shifted.mat:mixout[1201]",
+            "predicted_label": "z",
+            "raw_classifier_prediction": "Z",
+            "reward": -1.0
+          },
+          {
+            "confidence": 0.9945529831246749,
+            "example_id": "mixoutALL_shifted.mat:mixout[1163]",
+            "predicted_label": "z",
+            "raw_classifier_prediction": "Z",
+            "reward": -1.0
+          }
+        ]
+      },
+      {
+        "accuracy": 0.0,
+        "class": "w",
+        "correct": 0,
+        "count": 4,
+        "predictions": [
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[2683]",
+            "predicted_label": "a",
+            "raw_classifier_prediction": "Z",
+            "reward": -1.0
+          },
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[1260]",
+            "predicted_label": "a",
+            "raw_classifier_prediction": "Z",
+            "reward": -1.0
+          },
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[1264]",
+            "predicted_label": "a",
+            "raw_classifier_prediction": "Z",
+            "reward": -1.0
+          },
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[2695]",
+            "predicted_label": "a",
+            "raw_classifier_prediction": "Z",
+            "reward": -1.0
+          }
+        ]
+      },
+      {
+        "accuracy": 0.0,
+        "class": "y",
+        "correct": 0,
+        "count": 4,
+        "predictions": [
+          {
+            "confidence": 0.9380162464344138,
+            "example_id": "mixoutALL_shifted.mat:mixout[1344]",
+            "predicted_label": "p",
+            "raw_classifier_prediction": "A",
+            "reward": -1.0
+          },
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[2716]",
+            "predicted_label": "a",
+            "raw_classifier_prediction": "Z",
+            "reward": -1.0
+          },
+          {
+            "confidence": 0.9380162464344138,
+            "example_id": "mixoutALL_shifted.mat:mixout[2719]",
+            "predicted_label": "p",
+            "raw_classifier_prediction": "A",
+            "reward": -1.0
+          },
+          {
+            "confidence": 0.9380162464344138,
+            "example_id": "mixoutALL_shifted.mat:mixout[2707]",
+            "predicted_label": "p",
+            "raw_classifier_prediction": "A",
+            "reward": -1.0
+          }
+        ]
+      },
+      {
+        "accuracy": 0.0,
+        "class": "z",
+        "correct": 0,
+        "count": 4,
+        "predictions": [
+          {
+            "confidence": 0.9796914174696358,
+            "example_id": "mixoutALL_shifted.mat:mixout[1411]",
+            "predicted_label": "g",
+            "raw_classifier_prediction": "A",
+            "reward": -1.0
+          },
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[2855]",
+            "predicted_label": "d",
+            "raw_classifier_prediction": "Z",
+            "reward": -1.0
+          },
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[1389]",
+            "predicted_label": "a",
+            "raw_classifier_prediction": "Z",
+            "reward": -1.0
+          },
+          {
+            "confidence": 0.7996551613473704,
+            "example_id": "mixoutALL_shifted.mat:mixout[2812]",
+            "predicted_label": "v",
+            "raw_classifier_prediction": "A",
+            "reward": -1.0
+          }
+        ]
+      }
+    ],
+    "classification": {
+      "accuracy": 0.15,
+      "confusion_matrix": {
+        "a": {
+          "a": 4,
+          "b": 0,
+          "c": 0,
+          "d": 0,
+          "e": 0,
+          "g": 0,
+          "h": 0,
+          "l": 0,
+          "m": 0,
+          "n": 0,
+          "o": 0,
+          "p": 0,
+          "q": 0,
+          "r": 0,
+          "s": 0,
+          "u": 0,
+          "v": 0,
+          "w": 0,
+          "y": 0,
+          "z": 0
+        },
+        "b": {
+          "a": 0,
+          "b": 0,
+          "c": 0,
+          "d": 0,
+          "e": 0,
+          "g": 1,
+          "h": 0,
+          "l": 0,
+          "m": 0,
+          "n": 0,
+          "o": 1,
+          "p": 2,
+          "q": 0,
+          "r": 0,
+          "s": 0,
+          "u": 0,
+          "v": 0,
+          "w": 0,
+          "y": 0,
+          "z": 0
+        },
+        "c": {
+          "a": 4,
+          "b": 0,
+          "c": 0,
+          "d": 0,
+          "e": 0,
+          "g": 0,
+          "h": 0,
+          "l": 0,
+          "m": 0,
+          "n": 0,
+          "o": 0,
+          "p": 0,
+          "q": 0,
+          "r": 0,
+          "s": 0,
+          "u": 0,
+          "v": 0,
+          "w": 0,
+          "y": 0,
+          "z": 0
+        },
+        "d": {
+          "a": 0,
+          "b": 0,
+          "c": 0,
+          "d": 4,
+          "e": 0,
+          "g": 0,
+          "h": 0,
+          "l": 0,
+          "m": 0,
+          "n": 0,
+          "o": 0,
+          "p": 0,
+          "q": 0,
+          "r": 0,
+          "s": 0,
+          "u": 0,
+          "v": 0,
+          "w": 0,
+          "y": 0,
+          "z": 0
+        },
+        "e": {
+          "a": 4,
+          "b": 0,
+          "c": 0,
+          "d": 0,
+          "e": 0,
+          "g": 0,
+          "h": 0,
+          "l": 0,
+          "m": 0,
+          "n": 0,
+          "o": 0,
+          "p": 0,
+          "q": 0,
+          "r": 0,
+          "s": 0,
+          "u": 0,
+          "v": 0,
+          "w": 0,
+          "y": 0,
+          "z": 0
+        },
+        "g": {
+          "a": 1,
+          "b": 0,
+          "c": 0,
+          "d": 0,
+          "e": 0,
+          "g": 0,
+          "h": 0,
+          "l": 0,
+          "m": 0,
+          "n": 0,
+          "o": 0,
+          "p": 3,
+          "q": 0,
+          "r": 0,
+          "s": 0,
+          "u": 0,
+          "v": 0,
+          "w": 0,
+          "y": 0,
+          "z": 0
+        },
+        "h": {
+          "a": 4,
+          "b": 0,
+          "c": 0,
+          "d": 0,
+          "e": 0,
+          "g": 0,
+          "h": 0,
+          "l": 0,
+          "m": 0,
+          "n": 0,
+          "o": 0,
+          "p": 0,
+          "q": 0,
+          "r": 0,
+          "s": 0,
+          "u": 0,
+          "v": 0,
+          "w": 0,
+          "y": 0,
+          "z": 0
+        },
+        "l": {
+          "a": 3,
+          "b": 0,
+          "c": 0,
+          "d": 1,
+          "e": 0,
+          "g": 0,
+          "h": 0,
+          "l": 0,
+          "m": 0,
+          "n": 0,
+          "o": 0,
+          "p": 0,
+          "q": 0,
+          "r": 0,
+          "s": 0,
+          "u": 0,
+          "v": 0,
+          "w": 0,
+          "y": 0,
+          "z": 0
+        },
+        "m": {
+          "a": 3,
+          "b": 0,
+          "c": 0,
+          "d": 0,
+          "e": 0,
+          "g": 0,
+          "h": 0,
+          "l": 0,
+          "m": 0,
+          "n": 0,
+          "o": 0,
+          "p": 1,
+          "q": 0,
+          "r": 0,
+          "s": 0,
+          "u": 0,
+          "v": 0,
+          "w": 0,
+          "y": 0,
+          "z": 0
+        },
+        "n": {
+          "a": 4,
+          "b": 0,
+          "c": 0,
+          "d": 0,
+          "e": 0,
+          "g": 0,
+          "h": 0,
+          "l": 0,
+          "m": 0,
+          "n": 0,
+          "o": 0,
+          "p": 0,
+          "q": 0,
+          "r": 0,
+          "s": 0,
+          "u": 0,
+          "v": 0,
+          "w": 0,
+          "y": 0,
+          "z": 0
+        },
+        "o": {
+          "a": 1,
+          "b": 0,
+          "c": 0,
+          "d": 0,
+          "e": 0,
+          "g": 0,
+          "h": 0,
+          "l": 0,
+          "m": 0,
+          "n": 0,
+          "o": 0,
+          "p": 3,
+          "q": 0,
+          "r": 0,
+          "s": 0,
+          "u": 0,
+          "v": 0,
+          "w": 0,
+          "y": 0,
+          "z": 0
+        },
+        "p": {
+          "a": 0,
+          "b": 0,
+          "c": 0,
+          "d": 0,
+          "e": 0,
+          "g": 0,
+          "h": 0,
+          "l": 0,
+          "m": 0,
+          "n": 0,
+          "o": 1,
+          "p": 3,
+          "q": 0,
+          "r": 0,
+          "s": 0,
+          "u": 0,
+          "v": 0,
+          "w": 0,
+          "y": 0,
+          "z": 0
+        },
+        "q": {
+          "a": 3,
+          "b": 0,
+          "c": 0,
+          "d": 0,
+          "e": 0,
+          "g": 0,
+          "h": 0,
+          "l": 0,
+          "m": 0,
+          "n": 0,
+          "o": 0,
+          "p": 0,
+          "q": 1,
+          "r": 0,
+          "s": 0,
+          "u": 0,
+          "v": 0,
+          "w": 0,
+          "y": 0,
+          "z": 0
+        },
+        "r": {
+          "a": 3,
+          "b": 0,
+          "c": 0,
+          "d": 1,
+          "e": 0,
+          "g": 0,
+          "h": 0,
+          "l": 0,
+          "m": 0,
+          "n": 0,
+          "o": 0,
+          "p": 0,
+          "q": 0,
+          "r": 0,
+          "s": 0,
+          "u": 0,
+          "v": 0,
+          "w": 0,
+          "y": 0,
+          "z": 0
+        },
+        "s": {
+          "a": 1,
+          "b": 0,
+          "c": 0,
+          "d": 0,
+          "e": 0,
+          "g": 1,
+          "h": 0,
+          "l": 0,
+          "m": 0,
+          "n": 0,
+          "o": 0,
+          "p": 2,
+          "q": 0,
+          "r": 0,
+          "s": 0,
+          "u": 0,
+          "v": 0,
+          "w": 0,
+          "y": 0,
+          "z": 0
+        },
+        "u": {
+          "a": 3,
+          "b": 0,
+          "c": 0,
+          "d": 1,
+          "e": 0,
+          "g": 0,
+          "h": 0,
+          "l": 0,
+          "m": 0,
+          "n": 0,
+          "o": 0,
+          "p": 0,
+          "q": 0,
+          "r": 0,
+          "s": 0,
+          "u": 0,
+          "v": 0,
+          "w": 0,
+          "y": 0,
+          "z": 0
+        },
+        "v": {
+          "a": 0,
+          "b": 0,
+          "c": 0,
+          "d": 1,
+          "e": 0,
+          "g": 0,
+          "h": 0,
+          "l": 0,
+          "m": 0,
+          "n": 0,
+          "o": 0,
+          "p": 1,
+          "q": 0,
+          "r": 0,
+          "s": 0,
+          "u": 0,
+          "v": 0,
+          "w": 0,
+          "y": 0,
+          "z": 2
+        },
+        "w": {
+          "a": 4,
+          "b": 0,
+          "c": 0,
+          "d": 0,
+          "e": 0,
+          "g": 0,
+          "h": 0,
+          "l": 0,
+          "m": 0,
+          "n": 0,
+          "o": 0,
+          "p": 0,
+          "q": 0,
+          "r": 0,
+          "s": 0,
+          "u": 0,
+          "v": 0,
+          "w": 0,
+          "y": 0,
+          "z": 0
+        },
+        "y": {
+          "a": 1,
+          "b": 0,
+          "c": 0,
+          "d": 0,
+          "e": 0,
+          "g": 0,
+          "h": 0,
+          "l": 0,
+          "m": 0,
+          "n": 0,
+          "o": 0,
+          "p": 3,
+          "q": 0,
+          "r": 0,
+          "s": 0,
+          "u": 0,
+          "v": 0,
+          "w": 0,
+          "y": 0,
+          "z": 0
+        },
+        "z": {
+          "a": 1,
+          "b": 0,
+          "c": 0,
+          "d": 1,
+          "e": 0,
+          "g": 1,
+          "h": 0,
+          "l": 0,
+          "m": 0,
+          "n": 0,
+          "o": 0,
+          "p": 0,
+          "q": 0,
+          "r": 0,
+          "s": 0,
+          "u": 0,
+          "v": 1,
+          "w": 0,
+          "y": 0,
+          "z": 0
+        }
+      },
+      "count": 80,
+      "macro_f1": 0.07273892773892773,
+      "macro_precision": 0.0851010101010101,
+      "macro_recall": 0.15,
+      "per_class": [
+        {
+          "class": "a",
+          "f1": 0.16666666666666669,
+          "precision": 0.09090909090909091,
+          "recall": 1.0,
+          "support": 4
+        },
+        {
+          "class": "b",
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 4
+        },
+        {
+          "class": "c",
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 4
+        },
+        {
+          "class": "d",
+          "f1": 0.6153846153846153,
+          "precision": 0.4444444444444444,
+          "recall": 1.0,
+          "support": 4
+        },
+        {
+          "class": "e",
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 4
+        },
+        {
+          "class": "g",
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 4
+        },
+        {
+          "class": "h",
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 4
+        },
+        {
+          "class": "l",
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 4
+        },
+        {
+          "class": "m",
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 4
+        },
+        {
+          "class": "n",
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 4
+        },
+        {
+          "class": "o",
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 4
+        },
+        {
+          "class": "p",
+          "f1": 0.27272727272727276,
+          "precision": 0.16666666666666666,
+          "recall": 0.75,
+          "support": 4
+        },
+        {
+          "class": "q",
+          "f1": 0.4,
+          "precision": 1.0,
+          "recall": 0.25,
+          "support": 4
+        },
+        {
+          "class": "r",
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 4
+        },
+        {
+          "class": "s",
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 4
+        },
+        {
+          "class": "u",
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 4
+        },
+        {
+          "class": "v",
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 4
+        },
+        {
+          "class": "w",
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 4
+        },
+        {
+          "class": "y",
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 4
+        },
+        {
+          "class": "z",
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 4
+        }
+      ]
+    }
+  },
+  "validation": {
+    "class_order": [
+      "a",
+      "b",
+      "c",
+      "d",
+      "e",
+      "g",
+      "h",
+      "l",
+      "m",
+      "n",
+      "o",
+      "p",
+      "q",
+      "r",
+      "s",
+      "u",
+      "v",
+      "w",
+      "y",
+      "z"
+    ],
+    "classes": [
+      {
+        "accuracy": 1.0,
+        "class": "a",
+        "correct": 2,
+        "count": 2,
+        "predictions": [
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[1463]",
+            "predicted_label": "a",
+            "raw_classifier_prediction": "Z",
+            "reward": 1.0
+          },
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[0046]",
+            "predicted_label": "a",
+            "raw_classifier_prediction": "Z",
+            "reward": 1.0
+          }
+        ]
+      },
+      {
+        "accuracy": 0.0,
+        "class": "b",
+        "correct": 0,
+        "count": 2,
+        "predictions": [
+          {
+            "confidence": 0.725384292818218,
+            "example_id": "mixoutALL_shifted.mat:mixout[1519]",
+            "predicted_label": "p",
+            "raw_classifier_prediction": "A",
+            "reward": -1.0
+          },
+          {
+            "confidence": 0.9380162464344138,
+            "example_id": "mixoutALL_shifted.mat:mixout[0131]",
+            "predicted_label": "p",
+            "raw_classifier_prediction": "A",
+            "reward": -1.0
+          }
+        ]
+      },
+      {
+        "accuracy": 0.0,
+        "class": "c",
+        "correct": 0,
+        "count": 2,
+        "predictions": [
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[1586]",
+            "predicted_label": "a",
+            "raw_classifier_prediction": "Z",
+            "reward": -1.0
+          },
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[1649]",
+            "predicted_label": "a",
+            "raw_classifier_prediction": "Z",
+            "reward": -1.0
+          }
+        ]
+      },
+      {
+        "accuracy": 1.0,
+        "class": "d",
+        "correct": 2,
+        "count": 2,
+        "predictions": [
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[1710]",
+            "predicted_label": "d",
+            "raw_classifier_prediction": "Z",
+            "reward": 1.0
+          },
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[1674]",
+            "predicted_label": "d",
+            "raw_classifier_prediction": "Z",
+            "reward": 1.0
+          }
+        ]
+      },
+      {
+        "accuracy": 0.0,
+        "class": "e",
+        "correct": 0,
+        "count": 2,
+        "predictions": [
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[0347]",
+            "predicted_label": "a",
+            "raw_classifier_prediction": "Z",
+            "reward": -1.0
+          },
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[1781]",
+            "predicted_label": "a",
+            "raw_classifier_prediction": "Z",
+            "reward": -1.0
+          }
+        ]
+      },
+      {
+        "accuracy": 0.0,
+        "class": "g",
+        "correct": 0,
+        "count": 2,
+        "predictions": [
+          {
+            "confidence": 0.9380162464344138,
+            "example_id": "mixoutALL_shifted.mat:mixout[0469]",
+            "predicted_label": "p",
+            "raw_classifier_prediction": "A",
+            "reward": -1.0
+          },
+          {
+            "confidence": 0.9380162464344138,
+            "example_id": "mixoutALL_shifted.mat:mixout[0442]",
+            "predicted_label": "p",
+            "raw_classifier_prediction": "A",
+            "reward": -1.0
+          }
+        ]
+      },
+      {
+        "accuracy": 0.0,
+        "class": "h",
+        "correct": 0,
+        "count": 2,
+        "predictions": [
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[0514]",
+            "predicted_label": "a",
+            "raw_classifier_prediction": "Z",
+            "reward": -1.0
+          },
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[0489]",
+            "predicted_label": "a",
+            "raw_classifier_prediction": "Z",
+            "reward": -1.0
+          }
+        ]
+      },
+      {
+        "accuracy": 0.0,
+        "class": "l",
+        "correct": 0,
+        "count": 2,
+        "predictions": [
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[1966]",
+            "predicted_label": "d",
+            "raw_classifier_prediction": "Z",
+            "reward": -1.0
+          },
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[1952]",
+            "predicted_label": "a",
+            "raw_classifier_prediction": "Z",
+            "reward": -1.0
+          }
+        ]
+      },
+      {
+        "accuracy": 0.0,
+        "class": "m",
+        "correct": 0,
+        "count": 2,
+        "predictions": [
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[2087]",
+            "predicted_label": "a",
+            "raw_classifier_prediction": "Z",
+            "reward": -1.0
+          },
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[2062]",
+            "predicted_label": "a",
+            "raw_classifier_prediction": "Z",
+            "reward": -1.0
+          }
+        ]
+      },
+      {
+        "accuracy": 0.0,
+        "class": "n",
+        "correct": 0,
+        "count": 2,
+        "predictions": [
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[2106]",
+            "predicted_label": "a",
+            "raw_classifier_prediction": "Z",
+            "reward": -1.0
+          },
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[0707]",
+            "predicted_label": "a",
+            "raw_classifier_prediction": "Z",
+            "reward": -1.0
+          }
+        ]
+      },
+      {
+        "accuracy": 0.0,
+        "class": "o",
+        "correct": 0,
+        "count": 2,
+        "predictions": [
+          {
+            "confidence": 0.8173506060247729,
+            "example_id": "mixoutALL_shifted.mat:mixout[2220]",
+            "predicted_label": "p",
+            "raw_classifier_prediction": "A",
+            "reward": -1.0
+          },
+          {
+            "confidence": 0.9380162464344138,
+            "example_id": "mixoutALL_shifted.mat:mixout[0751]",
+            "predicted_label": "p",
+            "raw_classifier_prediction": "A",
+            "reward": -1.0
+          }
+        ]
+      },
+      {
+        "accuracy": 0.5,
+        "class": "p",
+        "correct": 1,
+        "count": 2,
+        "predictions": [
+          {
+            "confidence": 0.9810562695505715,
+            "example_id": "mixoutALL_shifted.mat:mixout[0841]",
+            "predicted_label": "g",
+            "raw_classifier_prediction": "A",
+            "reward": -1.0
+          },
+          {
+            "confidence": 0.9380162464344138,
+            "example_id": "mixoutALL_shifted.mat:mixout[2305]",
+            "predicted_label": "p",
+            "raw_classifier_prediction": "A",
+            "reward": 1.0
+          }
+        ]
+      },
+      {
+        "accuracy": 0.0,
+        "class": "q",
+        "correct": 0,
+        "count": 2,
+        "predictions": [
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[2317]",
+            "predicted_label": "a",
+            "raw_classifier_prediction": "Z",
+            "reward": -1.0
+          },
+          {
+            "confidence": 0.7996551613473704,
+            "example_id": "mixoutALL_shifted.mat:mixout[0892]",
+            "predicted_label": "v",
+            "raw_classifier_prediction": "A",
+            "reward": -1.0
+          }
+        ]
+      },
+      {
+        "accuracy": 0.0,
+        "class": "r",
+        "correct": 0,
+        "count": 2,
+        "predictions": [
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[2391]",
+            "predicted_label": "a",
+            "raw_classifier_prediction": "Z",
+            "reward": -1.0
+          },
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[0974]",
+            "predicted_label": "a",
+            "raw_classifier_prediction": "Z",
+            "reward": -1.0
+          }
+        ]
+      },
+      {
+        "accuracy": 0.0,
+        "class": "s",
+        "correct": 0,
+        "count": 2,
+        "predictions": [
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[2456]",
+            "predicted_label": "a",
+            "raw_classifier_prediction": "Z",
+            "reward": -1.0
+          },
+          {
+            "confidence": 0.9957378614528104,
+            "example_id": "mixoutALL_shifted.mat:mixout[2464]",
+            "predicted_label": "g",
+            "raw_classifier_prediction": "A",
+            "reward": -1.0
+          }
+        ]
+      },
+      {
+        "accuracy": 0.0,
+        "class": "u",
+        "correct": 0,
+        "count": 2,
+        "predictions": [
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[1113]",
+            "predicted_label": "a",
+            "raw_classifier_prediction": "Z",
+            "reward": -1.0
+          },
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[1100]",
+            "predicted_label": "d",
+            "raw_classifier_prediction": "Z",
+            "reward": -1.0
+          }
+        ]
+      },
+      {
+        "accuracy": 0.0,
+        "class": "v",
+        "correct": 0,
+        "count": 2,
+        "predictions": [
+          {
+            "confidence": 0.9946010764820903,
+            "example_id": "mixoutALL_shifted.mat:mixout[2592]",
+            "predicted_label": "z",
+            "raw_classifier_prediction": "Z",
+            "reward": -1.0
+          },
+          {
+            "confidence": 0.9380162464344138,
+            "example_id": "mixoutALL_shifted.mat:mixout[2609]",
+            "predicted_label": "p",
+            "raw_classifier_prediction": "A",
+            "reward": -1.0
+          }
+        ]
+      },
+      {
+        "accuracy": 0.0,
+        "class": "w",
+        "correct": 0,
+        "count": 2,
+        "predictions": [
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[1219]",
+            "predicted_label": "a",
+            "raw_classifier_prediction": "Z",
+            "reward": -1.0
+          },
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[2691]",
+            "predicted_label": "a",
+            "raw_classifier_prediction": "Z",
+            "reward": -1.0
+          }
+        ]
+      },
+      {
+        "accuracy": 0.0,
+        "class": "y",
+        "correct": 0,
+        "count": 2,
+        "predictions": [
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[2773]",
+            "predicted_label": "a",
+            "raw_classifier_prediction": "Z",
+            "reward": -1.0
+          },
+          {
+            "confidence": 0.9380162464344138,
+            "example_id": "mixoutALL_shifted.mat:mixout[1322]",
+            "predicted_label": "p",
+            "raw_classifier_prediction": "A",
+            "reward": -1.0
+          }
+        ]
+      },
+      {
+        "accuracy": 0.0,
+        "class": "z",
+        "correct": 0,
+        "count": 2,
+        "predictions": [
+          {
+            "confidence": 0.9086050407924918,
+            "example_id": "mixoutALL_shifted.mat:mixout[1383]",
+            "predicted_label": "d",
+            "raw_classifier_prediction": "Z",
+            "reward": -1.0
+          },
+          {
+            "confidence": 1.0,
+            "example_id": "mixoutALL_shifted.mat:mixout[2813]",
+            "predicted_label": "d",
+            "raw_classifier_prediction": "Z",
+            "reward": -1.0
+          }
+        ]
+      }
+    ],
+    "classification": {
+      "accuracy": 0.125,
+      "confusion_matrix": {
+        "a": {
+          "a": 2,
+          "b": 0,
+          "c": 0,
+          "d": 0,
+          "e": 0,
+          "g": 0,
+          "h": 0,
+          "l": 0,
+          "m": 0,
+          "n": 0,
+          "o": 0,
+          "p": 0,
+          "q": 0,
+          "r": 0,
+          "s": 0,
+          "u": 0,
+          "v": 0,
+          "w": 0,
+          "y": 0,
+          "z": 0
+        },
+        "b": {
+          "a": 0,
+          "b": 0,
+          "c": 0,
+          "d": 0,
+          "e": 0,
+          "g": 0,
+          "h": 0,
+          "l": 0,
+          "m": 0,
+          "n": 0,
+          "o": 0,
+          "p": 2,
+          "q": 0,
+          "r": 0,
+          "s": 0,
+          "u": 0,
+          "v": 0,
+          "w": 0,
+          "y": 0,
+          "z": 0
+        },
+        "c": {
+          "a": 2,
+          "b": 0,
+          "c": 0,
+          "d": 0,
+          "e": 0,
+          "g": 0,
+          "h": 0,
+          "l": 0,
+          "m": 0,
+          "n": 0,
+          "o": 0,
+          "p": 0,
+          "q": 0,
+          "r": 0,
+          "s": 0,
+          "u": 0,
+          "v": 0,
+          "w": 0,
+          "y": 0,
+          "z": 0
+        },
+        "d": {
+          "a": 0,
+          "b": 0,
+          "c": 0,
+          "d": 2,
+          "e": 0,
+          "g": 0,
+          "h": 0,
+          "l": 0,
+          "m": 0,
+          "n": 0,
+          "o": 0,
+          "p": 0,
+          "q": 0,
+          "r": 0,
+          "s": 0,
+          "u": 0,
+          "v": 0,
+          "w": 0,
+          "y": 0,
+          "z": 0
+        },
+        "e": {
+          "a": 2,
+          "b": 0,
+          "c": 0,
+          "d": 0,
+          "e": 0,
+          "g": 0,
+          "h": 0,
+          "l": 0,
+          "m": 0,
+          "n": 0,
+          "o": 0,
+          "p": 0,
+          "q": 0,
+          "r": 0,
+          "s": 0,
+          "u": 0,
+          "v": 0,
+          "w": 0,
+          "y": 0,
+          "z": 0
+        },
+        "g": {
+          "a": 0,
+          "b": 0,
+          "c": 0,
+          "d": 0,
+          "e": 0,
+          "g": 0,
+          "h": 0,
+          "l": 0,
+          "m": 0,
+          "n": 0,
+          "o": 0,
+          "p": 2,
+          "q": 0,
+          "r": 0,
+          "s": 0,
+          "u": 0,
+          "v": 0,
+          "w": 0,
+          "y": 0,
+          "z": 0
+        },
+        "h": {
+          "a": 2,
+          "b": 0,
+          "c": 0,
+          "d": 0,
+          "e": 0,
+          "g": 0,
+          "h": 0,
+          "l": 0,
+          "m": 0,
+          "n": 0,
+          "o": 0,
+          "p": 0,
+          "q": 0,
+          "r": 0,
+          "s": 0,
+          "u": 0,
+          "v": 0,
+          "w": 0,
+          "y": 0,
+          "z": 0
+        },
+        "l": {
+          "a": 1,
+          "b": 0,
+          "c": 0,
+          "d": 1,
+          "e": 0,
+          "g": 0,
+          "h": 0,
+          "l": 0,
+          "m": 0,
+          "n": 0,
+          "o": 0,
+          "p": 0,
+          "q": 0,
+          "r": 0,
+          "s": 0,
+          "u": 0,
+          "v": 0,
+          "w": 0,
+          "y": 0,
+          "z": 0
+        },
+        "m": {
+          "a": 2,
+          "b": 0,
+          "c": 0,
+          "d": 0,
+          "e": 0,
+          "g": 0,
+          "h": 0,
+          "l": 0,
+          "m": 0,
+          "n": 0,
+          "o": 0,
+          "p": 0,
+          "q": 0,
+          "r": 0,
+          "s": 0,
+          "u": 0,
+          "v": 0,
+          "w": 0,
+          "y": 0,
+          "z": 0
+        },
+        "n": {
+          "a": 2,
+          "b": 0,
+          "c": 0,
+          "d": 0,
+          "e": 0,
+          "g": 0,
+          "h": 0,
+          "l": 0,
+          "m": 0,
+          "n": 0,
+          "o": 0,
+          "p": 0,
+          "q": 0,
+          "r": 0,
+          "s": 0,
+          "u": 0,
+          "v": 0,
+          "w": 0,
+          "y": 0,
+          "z": 0
+        },
+        "o": {
+          "a": 0,
+          "b": 0,
+          "c": 0,
+          "d": 0,
+          "e": 0,
+          "g": 0,
+          "h": 0,
+          "l": 0,
+          "m": 0,
+          "n": 0,
+          "o": 0,
+          "p": 2,
+          "q": 0,
+          "r": 0,
+          "s": 0,
+          "u": 0,
+          "v": 0,
+          "w": 0,
+          "y": 0,
+          "z": 0
+        },
+        "p": {
+          "a": 0,
+          "b": 0,
+          "c": 0,
+          "d": 0,
+          "e": 0,
+          "g": 1,
+          "h": 0,
+          "l": 0,
+          "m": 0,
+          "n": 0,
+          "o": 0,
+          "p": 1,
+          "q": 0,
+          "r": 0,
+          "s": 0,
+          "u": 0,
+          "v": 0,
+          "w": 0,
+          "y": 0,
+          "z": 0
+        },
+        "q": {
+          "a": 1,
+          "b": 0,
+          "c": 0,
+          "d": 0,
+          "e": 0,
+          "g": 0,
+          "h": 0,
+          "l": 0,
+          "m": 0,
+          "n": 0,
+          "o": 0,
+          "p": 0,
+          "q": 0,
+          "r": 0,
+          "s": 0,
+          "u": 0,
+          "v": 1,
+          "w": 0,
+          "y": 0,
+          "z": 0
+        },
+        "r": {
+          "a": 2,
+          "b": 0,
+          "c": 0,
+          "d": 0,
+          "e": 0,
+          "g": 0,
+          "h": 0,
+          "l": 0,
+          "m": 0,
+          "n": 0,
+          "o": 0,
+          "p": 0,
+          "q": 0,
+          "r": 0,
+          "s": 0,
+          "u": 0,
+          "v": 0,
+          "w": 0,
+          "y": 0,
+          "z": 0
+        },
+        "s": {
+          "a": 1,
+          "b": 0,
+          "c": 0,
+          "d": 0,
+          "e": 0,
+          "g": 1,
+          "h": 0,
+          "l": 0,
+          "m": 0,
+          "n": 0,
+          "o": 0,
+          "p": 0,
+          "q": 0,
+          "r": 0,
+          "s": 0,
+          "u": 0,
+          "v": 0,
+          "w": 0,
+          "y": 0,
+          "z": 0
+        },
+        "u": {
+          "a": 1,
+          "b": 0,
+          "c": 0,
+          "d": 1,
+          "e": 0,
+          "g": 0,
+          "h": 0,
+          "l": 0,
+          "m": 0,
+          "n": 0,
+          "o": 0,
+          "p": 0,
+          "q": 0,
+          "r": 0,
+          "s": 0,
+          "u": 0,
+          "v": 0,
+          "w": 0,
+          "y": 0,
+          "z": 0
+        },
+        "v": {
+          "a": 0,
+          "b": 0,
+          "c": 0,
+          "d": 0,
+          "e": 0,
+          "g": 0,
+          "h": 0,
+          "l": 0,
+          "m": 0,
+          "n": 0,
+          "o": 0,
+          "p": 1,
+          "q": 0,
+          "r": 0,
+          "s": 0,
+          "u": 0,
+          "v": 0,
+          "w": 0,
+          "y": 0,
+          "z": 1
+        },
+        "w": {
+          "a": 2,
+          "b": 0,
+          "c": 0,
+          "d": 0,
+          "e": 0,
+          "g": 0,
+          "h": 0,
+          "l": 0,
+          "m": 0,
+          "n": 0,
+          "o": 0,
+          "p": 0,
+          "q": 0,
+          "r": 0,
+          "s": 0,
+          "u": 0,
+          "v": 0,
+          "w": 0,
+          "y": 0,
+          "z": 0
+        },
+        "y": {
+          "a": 1,
+          "b": 0,
+          "c": 0,
+          "d": 0,
+          "e": 0,
+          "g": 0,
+          "h": 0,
+          "l": 0,
+          "m": 0,
+          "n": 0,
+          "o": 0,
+          "p": 1,
+          "q": 0,
+          "r": 0,
+          "s": 0,
+          "u": 0,
+          "v": 0,
+          "w": 0,
+          "y": 0,
+          "z": 0
+        },
+        "z": {
+          "a": 0,
+          "b": 0,
+          "c": 0,
+          "d": 2,
+          "e": 0,
+          "g": 0,
+          "h": 0,
+          "l": 0,
+          "m": 0,
+          "n": 0,
+          "o": 0,
+          "p": 0,
+          "q": 0,
+          "r": 0,
+          "s": 0,
+          "u": 0,
+          "v": 0,
+          "w": 0,
+          "y": 0,
+          "z": 0
+        }
+      },
+      "count": 40,
+      "macro_f1": 0.04278656126482213,
+      "macro_precision": 0.026984126984126982,
+      "macro_recall": 0.125,
+      "per_class": [
+        {
+          "class": "a",
+          "f1": 0.17391304347826084,
+          "precision": 0.09523809523809523,
+          "recall": 1.0,
+          "support": 2
+        },
+        {
+          "class": "b",
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 2
+        },
+        {
+          "class": "c",
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 2
+        },
+        {
+          "class": "d",
+          "f1": 0.5,
+          "precision": 0.3333333333333333,
+          "recall": 1.0,
+          "support": 2
+        },
+        {
+          "class": "e",
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 2
+        },
+        {
+          "class": "g",
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 2
+        },
+        {
+          "class": "h",
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 2
+        },
+        {
+          "class": "l",
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 2
+        },
+        {
+          "class": "m",
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 2
+        },
+        {
+          "class": "n",
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 2
+        },
+        {
+          "class": "o",
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 2
+        },
+        {
+          "class": "p",
+          "f1": 0.1818181818181818,
+          "precision": 0.1111111111111111,
+          "recall": 0.5,
+          "support": 2
+        },
+        {
+          "class": "q",
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 2
+        },
+        {
+          "class": "r",
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 2
+        },
+        {
+          "class": "s",
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 2
+        },
+        {
+          "class": "u",
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 2
+        },
+        {
+          "class": "v",
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 2
+        },
+        {
+          "class": "w",
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 2
+        },
+        {
+          "class": "y",
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 2
+        },
+        {
+          "class": "z",
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 2
+        }
+      ]
+    }
+  }
+}
