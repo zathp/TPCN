@@ -2502,7 +2502,25 @@ preserving those records below as historical context:
 | Luna-17 | hardware-equivalence / cross-backend hardware acceptance | RESERVED / NOT AUTHORIZED / NO ACTIVE CONTRACT |
 | Luna-18 | ACP-0003 H1 Execution IR and backend interface skeleton | CLOSED / independently verified |
 | Luna-20 | ACP-0005 TPCN-IR-2 excursion execution schema | CLOSED / independently verified |
-| Luna-21 | ACP-0004 E2 multi-excursion return runtime | IMPLEMENTED / BLOCKED — IR-2 reconstruction validation correction required |
+| Luna-21 | ACP-0004 E2 multi-excursion return runtime | CLOSED / independently verified |
+
+Luna-21's implementation and bounded IR-2 correction are closed; this is
+component-level closure, not end-to-end integration readiness. **OBSERVED:**
+the ordinary experiment network still constructs `TPCNNeuron` instances and
+uses their scalar activations for routed computation, prediction and readout.
+E1/E2 excursion runtimes and IR-2 reconstruction remain separately exposed
+reference components; no production network consumer or migration/model
+selection path connects them to that experiment network. ACP-0004 specifies
+post-migration Model-B source activity as `a_i := p_exc` and limits the legacy
+continuous output to an explicitly labelled compatibility mode, but it does
+not define the concrete network migration/model-selection boundary or the
+prediction, error, eligibility and readout interfaces across that boundary.
+The acceptance criteria require these mechanisms on a real sequential
+classification path. Therefore integration is **not ready**, and no successor
+Luna contract or architecture proposal is authorized by this review. The
+project owner / Luna-0 must resolve and record the migration boundary before a
+bounded integration assignment is dispatched. See
+`workflow/handoffs/luna-0-post-e2-integration-dependency-review-20261003.md`.
 
 The former Luna-15 FPGA/VHDL and Luna-16 FPAA assignments remain historical
 workflow planning records and are superseded as current assignments by the

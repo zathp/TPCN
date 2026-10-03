@@ -1,5 +1,51 @@
 # Architecture Changelog
 
+# Luna-0 post-E2 integration dependency review - 2026-10-03
+
+**LUNA-21 STATUS RECONCILED; E1/E2-TO-PREDICTIVE-CODING INTEGRATION IS NOT
+READY OR AUTHORIZED.** Review baseline was published `main` revision
+`c872dc8fbf74bf1a4e836619f1e02a96271c8633`, with a clean worktree.
+
+**OBSERVED:** Luna-21's bounded IR-2 correction was already independently
+verified and closed. The Luna-21 status table in `LUNA_WORKFLOW.md` still
+reported the superseded blocker; that current-state row is corrected to
+`CLOSED / independently verified`. The prior blocked review remains historical
+evidence and is not removed.
+
+**OBSERVED:** The ordinary `ExperimentRunner` network constructs
+`TPCNNeuron` objects, routes the scalar activations they return, and supplies
+those values to the prediction, eligibility and readout path. The
+`LocalPredictor` neuron adapter is specifically typed for `TPCNNeuron`.
+`SingleExcursionNeuron` / `MultiExcursionNeuron` are exported reference
+components and are used by their own runtime and IR-2 serializers/reconstructors;
+the production experiment network does not consume them. Existing excursion
+and E2 IR-2 tests exercise the components and reconstruction, not integration
+into that network.
+
+**OBSERVED:** ACP-0004 specifies the post-migration Model-B source value
+`a_i := p_exc`, and that the legacy continuous output is only an explicitly
+labelled compatibility mode. It does not define a concrete network-level
+migration/model-selection interface or the end-to-end prediction, error,
+eligibility and readout wiring when an excursion runtime replaces the current
+continuous neuron. ACP-0005/IR-2 defines transferable excursion state, not a
+complete live-network checkpoint or an integration selector. The existing
+acceptance criteria require predictive coding and delayed credit on the actual
+streaming classification path.
+
+**DECISION:** Treat component closure and computational-path integration as
+separate gates. Integration is **not ready**. The available evidence does not
+justify dispatching a successor Luna contract: the owner / Luna-0 must first
+decide and record the migration/model-selection boundary and required
+excursion-to-prediction/error/eligibility/readout interface. No production code,
+ACP, Luna contract, or architecture promotion was created. This review does
+not change ACP-0004's staged status, ACP-0005, A01-A15, or any hardware and
+backend gates.
+
+Validation was documentation-only: source/document inspection and
+`git diff --check`; no tests or runtime experiments were run. Detailed evidence
+and the next bounded decision are in
+`workflow/handoffs/luna-0-post-e2-integration-dependency-review-20261003.md`.
+
 # Luna-0 independent corrective review of Luna-21 ACP-0004 E2 - 2026-10-03
 
 **PASS — LUNA-21 ACP-0004 E2 IMPLEMENTATION AND IR-2 CORRECTION
