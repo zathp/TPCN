@@ -41,8 +41,9 @@ structural/research and benchmark consumer migration is not authorized by
 this review. ACP-0006 remains accepted and unchanged; A01-A15 and IR-2 schema
 revision 1 are unchanged.
 
-The first pushed review-publication commit is the commit that adds this entry
-and the review handoff; its exact revision is reported in the session result.
+The first pushed review-publication commit is
+`baec12a66b6caee98cae903438a51eaa33ce007b`; it adds this entry, the review
+handoff, both authorization handoffs and both bounded Luna agent contracts.
 This review does not claim integration readiness, dataset reproducibility,
 predictive efficacy or hardware equivalence.
 

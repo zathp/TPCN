@@ -10,7 +10,7 @@ tpcn_handoff:
   status: "authorized; not executed"
   contract_version: "1.1"
   branch: "main"
-  base_revision: "a206f2e8fec8f0c72d9196b2bcca9d2e734c7974"
+  base_revision: "baec12a66b6caee98cae903438a51eaa33ce007b"
   result_revision: "not executed"
   dependencies:
     - "Accepted ACP-0006 and Luna-22 published implementation"
