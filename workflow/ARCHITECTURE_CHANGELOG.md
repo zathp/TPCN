@@ -1,5 +1,38 @@
 # Architecture Changelog
 
+## Luna-0 ACP-0004 acceptance and E1 authorization - 2026-10-02
+
+**PASS — ACP-0004 ACCEPTED FOR STAGED IMPLEMENTATION.**
+
+Revised ACP-0004 from the `80b7989ec5b7f5913362e812eddcc3d845b826c4`
+baseline and closed the remaining canonical blockers without changing A01-A15
+or implementing runtime code.
+
+- The explicit bounded mode machine is `N`, `S_PENDING`, `S_RETURN` and
+  `M_ACTIVE`, with `M_ACTIVE` phases `ARMED` and `REFRACTORY`.
+- Ordinary admission, one-event emission, analytic finite re-arm, M
+  promotion, M discharge, final residual S behavior and sign handling are
+  defined exactly.
+- Internal events use positive finite delays, deterministic external-before-
+  internal equal-time ordering, bounded generation cancellation and one valid
+  pending event per neuron.
+- The amplitude map, M payload, saturating discharge, finite-return bound,
+  provenance capacity/overflow, identity/lineage and Model-B `a_i` semantics
+  are canonical.
+- `TPCN-IR-2` is required for a future excursion schema; IR-1 remains closed
+  and no IR-2 implementation is included.
+- E1 is authorized for Luna-19: static leaky accumulation and
+  single-excursion reference only. M, learning, backends, approximation,
+  calibration, H2 and IR-2 remain excluded.
+
+Created `.github/agents/luna-19.agent.md` as an implementation contract;
+Luna-19 is authorized but not executed by this review. ACP-0002 N3 remains
+unauthorized, Luna-13F remains CLOSED, Luna-13G remains unauthorized and
+Luna-17 remains reserved.
+
+Evidence: `workflow/docs/architecture_proposals/ACP-0004.md` and
+`workflow/handoffs/luna-0-architecture-acceptance-ACP-0004.md`.
+
 ## Luna-0 independent review of ACP-0004 - 2026-10-02
 
 **ACP-0004 REMAINS DRAFT — NOT ACCEPTED FOR STAGED IMPLEMENTATION.**
