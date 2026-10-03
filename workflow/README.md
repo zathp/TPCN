@@ -11,6 +11,13 @@ validation remain gated. See [ACP-0003](docs/architecture_proposals/ACP-0003.md)
 the [Luna-0 handoff](handoffs/luna-0-architecture-update-ACP-0003.md), and the
 [Luna-18 dispatch](handoffs/luna-18-execution-ir-backend-interface-Luna-0.md).
 
+ACP-0004, **Attractor Excursion and Event-Compression Neuron**, remains Draft
+after review. Canonical terminology is excursion, with exactly one digital
+event per excursion for GPU/software/FPGA reference semantics and physical
+spike/analog excursion as an FPAA realization. Return scheduling, bounded
+provenance, multi-excursion transitions and IR versioning remain acceptance
+blockers; no Luna-19 dispatch follows.
+
 Documentation package for the event-driven TPCN candidate architecture, based on the project conversation “Create TPCN Workflow” (6ab8027c-d158-83ea-a527-d72af7052855) and the owner's current decisions. Prepared 2026-09-26.
 
 ## Read in this order
@@ -73,4 +80,3 @@ Structural plasticity remains deferred for this CPU smoke example, and no
 real-dataset benchmark is implied.
 
 Open decisions include the exact dataset/version and split, event tie handling and time units, credit attribution, utility formula, resource capacities beyond the initial examples, and hardware tolerances. Record these before their dependent implementation or experiments.
-

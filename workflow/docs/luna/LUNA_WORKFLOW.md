@@ -14,6 +14,14 @@ implementation. ACP-0002 N2 remains closed and authoritative;
 ACP-0002 N3 and later stages remain unauthorized, Luna-13F remains closed and
 Luna-13G remains unauthorized.
 
+ACP-0004, **Attractor Excursion and Event-Compression Neuron**, remains Draft
+after Luna-0 review. The canonical output term is **excursion**: GPU/software
+and FPGA reference semantics use exactly one digital event per excursion,
+while FPAA may provide a physical spike/analog excursion under a later
+approximation contract. Exact return scheduling, multi-excursion transitions,
+bounded provenance and IR versioning remain acceptance blockers. No Luna-19
+dispatch or ACP-0003 H2 work follows from the draft.
+
 ## Mission
 
 Evolve TPCN into a hardware-realizable, event-driven predictive-coding network while preserving its core principles.

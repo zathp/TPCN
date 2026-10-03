@@ -1,5 +1,40 @@
 # Architecture Changelog
 
+## Luna-0 independent review of ACP-0004 - 2026-10-02
+
+**ACP-0004 REMAINS DRAFT — NOT ACCEPTED FOR STAGED IMPLEMENTATION.**
+
+Reviewed the committed proposal `c18757739f4055bbb5721520a14382701e177d64`
+against the A01-A15 contract, ACP-0002 N2, and the closed ACP-0003 H1
+boundary. The proposal is directionally compatible with event-driven,
+bounded, hardware-neutral computation, but its canonical state machine is not
+yet implementable without backend-specific interpretation.
+
+- Canonical terminology is **excursion**. GPU/software and FPGA reference
+  semantics require exactly one digital event per excursion; FPAA physical
+  spikes/analog excursions remain realizations.
+- Compression is
+  `C_E = N_input_contributions / N_output_excursions`; multi-excursion
+  encoding is a separate behavior.
+- The required persistent state boundary is signed bounded `x` plus a local
+  timestamp, with bounded mode/phase, lineage, provenance, payload and
+  pending-event bookkeeping. A persistent `y` is not accepted as redundant
+  state without evidence.
+- Blockers are exact autonomous-event timestamps and cancellation, complete
+  ordinary and multi-excursion transition rules, input-during-return behavior,
+  finite provenance/overflow semantics, amplitude/sign rules, and versioned
+  excursion IR migration (expected `TPCN-IR-2`).
+- The draft's cross-domain comparison `h_L >= theta_hold` is rejected;
+  oscillator hysteresis and accumulated-state hold thresholds must have
+  separate domains.
+- ACP-0003 future-neuron wording was clarified to use canonical excursion and
+  one-event digital realization without authorizing H2 or an IR extension.
+
+No production neuron, backend, IR-2 implementation, Luna-19 contract, H2,
+ACP-0002 N3, Luna-13F reopening or Luna-13G authorization follows. Evidence
+and the complete 35-item review record are in
+`workflow/handoffs/luna-0-architecture-review-ACP-0004.md`.
+
 ## Luna-0 independent closure of ACP-0003 H1 - 2026-10-02
 
 Independently reviewed the Luna-18 corrective H1 implementation at
