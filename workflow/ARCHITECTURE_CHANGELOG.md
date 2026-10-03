@@ -1,5 +1,23 @@
 # Architecture Changelog
 
+# Luna-0 final ACP-0004 E2/M dispatch review - 2026-10-03
+
+**E2/M DISPATCH BLOCKED — CANONICAL IDENTITY, RESET, AND IR-2
+RECONSTRUCTION BOUNDARIES REQUIRE EXPLICIT CLARIFICATION.**
+
+Verified starting revision `8136c0e298a8fc8a72722eca349fd047b01f9aa0`.
+ACP-0004 and the independently closed ACP-0005 define the bounded M state
+machine, thresholds, positive event delays, promotion/cancellation,
+discharge, finite-return bound, provenance capacity, identity uniqueness,
+Model-B transfer and schema-level M representation. They do not unambiguously
+define the final residual ordinary episode/provenance ownership, reset state
+while M is active, or the named E2-capable IR-2 reconstruction boundary.
+
+This review added an explicit clarification gate to ACP-0004. No E2 runtime
+code, schema revision, Luna-21 contract, or implementation authorization was
+created. E1, IR-2, A01-A15, ACP-0003 H2, ACP-0002 N3, backend/hardware
+boundaries and Luna-13F/Luna-13G statuses remain unchanged.
+
 ## Luna-0 independent closure of ACP-0005 - 2026-10-03
 
 **PASS — TPCN-IR-2 EXCURSION EXECUTION SCHEMA INDEPENDENTLY VERIFIED AND
