@@ -11,7 +11,7 @@ tpcn_handoff:
   contract_version: "1.1"
   branch: "main"
   base_revision: "03302de7121f0dfe340cfd2d87d351ff8d7380a6"
-  result_revision: "uncommitted working tree after validation"
+  result_revision: "Luna-0 review publication commit"
   dependencies:
     - "ACP-0004 accepted for staged implementation"
     - "Luna-1 event runtime"
@@ -30,7 +30,7 @@ tpcn_handoff:
   timing_assumptions:
     - "Nonnegative logical timestamps and monotonic local time."
     - "Internal E1 delays are finite and positive."
-    - "Equal-time external events precede internal events, then queue sequence orders ties."
+    - "At equal timestamps, an external event precedes an internal event for the same destination; queue sequence remains authoritative across unrelated destinations."
   reset_boundaries:
     - "reset() clears character-local state, pending work, provenance, emissions, and boundary reports while retaining monotonic identity counters."
   resource_bounds:
@@ -76,8 +76,8 @@ tpcn_handoff:
   tests_added:
     - "tests/test_excursion_neuron.py"
   tests_passing:
-    - "python -m pytest -q tests/test_excursion_neuron.py tests/test_event_runtime.py tests/test_canonical_event_neuron.py tests/test_topology.py: 54 passed"
-    - "python -m pytest -q: 589 passed, 1 skipped"
+    - "python -m pytest -q tests/test_excursion_neuron.py tests/test_event_runtime.py: 59 passed after independent review fixes"
+    - "python -m pytest -q: 612 passed, 1 skipped after independent review fixes"
     - "python -m compileall -q tpcn tests: passed"
     - "git diff --check: passed"
   tests_failed: []
@@ -113,8 +113,9 @@ allocates one ordinary episode. A valid `S_EMIT` creates exactly one digital
 monotone, saturating map. `S_RETURN` schedules one finite analytic re-arm and
 does not admit a second ordinary excursion before returning to `N`.
 
-**OBSERVED:** `EventQueue` now orders external events before internal events at
-equal timestamps, preserving sequence order within each priority. Internal
+**OBSERVED:** `EventQueue` selects an external event before an internal event
+at an equal timestamp only when they address the same destination, preserving
+the prior timestamp/sequence ordering for unrelated destinations. Internal
 records carry episode, generation, kind, timestamp, and queue identity checks.
 Cancellation invalidates the generation; stale queued records are no-ops.
 `EventType.EXCURSION` is routed by the existing Model-B edge transfer without
@@ -148,10 +149,10 @@ implementation, and only E1 was implemented.
 
 | Command or procedure | Revision / environment / seed | Observed result | Evidence |
 |---|---|---|---|
-| `python -m pytest -q tests/test_excursion_neuron.py tests/test_event_runtime.py tests/test_canonical_event_neuron.py tests/test_topology.py` | Windows, Python environment, deterministic queue order | **PASS — 54 passed** | focused E1 and affected runtime/topology controls |
+| `python -m pytest -q tests/test_excursion_neuron.py tests/test_event_runtime.py` | Windows, Python environment, deterministic queue order | **PASS — 59 passed** | focused E1 and runtime adversarial controls |
 | `python -m compileall -q tpcn tests` | Windows, Python environment | **PASS** | package/test compilation |
 | `git diff --check` | starting revision `03302de7121f0dfe340cfd2d87d351ff8d7380a6` | **PASS** | changed-file whitespace check |
-| `python -m pytest -q` | starting revision and final working tree | **PASS — 589 passed, 1 skipped** | full CPU suite; no hardware or backend claims |
+| `python -m pytest -q` | starting revision and final working tree | **PASS — 612 passed, 1 skipped** | full CPU suite; no hardware or backend claims |
 
 ## Benchmark and resource results
 
@@ -168,12 +169,23 @@ continuous-activation reference. E1 does not add a second unlabeled stream to
 that class. E1 does not implement M behavior, IR-2, learning, prediction,
 reward, structural adaptation, or hardware execution.
 
+The independent review found that the original publication retained
+neuron-local provenance across completed episodes without ownership metadata.
+E1 now tags retained entries with episode/lineage and filters completed
+episode entries when a new episode is admitted. It also separates current
+pre-admission truncation from prior-episode truncation.
+
+The independent review also found that a global non-INTERNAL queue priority
+would reorder unrelated same-time destinations. The queue now implements the
+accepted destination-local external-before-internal rule.
+
 ## Reproduction and rollback
 
 From the repository root, run the validation commands in the table above and
-the full CPU suite. The work is currently uncommitted on `main` at the
-recorded baseline. Removing only the six files listed under `files_changed`
-restores the pre-Luna-19 state while preserving unrelated work.
+the full CPU suite. The Luna-19 implementation was published at
+`f0a5977db1a56ac559262e52413f31ebf15092f5`; the independent review fixes are
+published separately. Removing only the E1 implementation, test, and handoff
+changes restores the pre-Luna-19 state while preserving unrelated work.
 
 ## Next assignment
 

@@ -132,6 +132,8 @@ class ProvenanceEntry:
     event_id: str | int
     timestamp: float
     contribution: float
+    episode_id: int | None = None
+    lineage_id: int | None = None
 
 
 @dataclass(frozen=True, slots=True)
@@ -225,6 +227,8 @@ class SingleExcursionNeuron:
         self.m_peak = 0.0
         self._provenance: Deque[ProvenanceEntry] = deque(maxlen=self.config.provenance_capacity)
         self.provenance_truncated = False
+        self._unassigned_provenance_count = 0
+        self._unassigned_provenance_truncated = False
         self.boundary_reports: Deque[BoundaryReport] = deque(maxlen=self.config.event_budget)
         self.emissions: Deque[ExcursionEmission] = deque(maxlen=self.config.event_budget)
         self.input_contribution_count = 0
@@ -269,6 +273,8 @@ class SingleExcursionNeuron:
         self.m_peak = 0.0
         self._provenance.clear()
         self.provenance_truncated = False
+        self._unassigned_provenance_count = 0
+        self._unassigned_provenance_truncated = False
         self.boundary_reports.clear()
         self.emissions.clear()
         self.out_of_scope = False
@@ -395,6 +401,21 @@ class SingleExcursionNeuron:
         self._lineage_identity += 1
         self.ordinary_episode_id = self._episode_identity
         self.lineage_id = self._lineage_identity
+        pending_provenance = tuple(
+            entry for entry in self._provenance if entry.episode_id is None
+        )
+        self._provenance.clear()
+        self.provenance_truncated = self._unassigned_provenance_truncated
+        self._unassigned_provenance_count = 0
+        self._unassigned_provenance_truncated = False
+        self._provenance.extend(
+            replace(
+                entry,
+                episode_id=self.ordinary_episode_id,
+                lineage_id=self.lineage_id,
+            )
+            for entry in pending_provenance
+        )
         self.captured_polarity = 1 if self.x > 0.0 else -1
         self.m_peak = abs(self.x)
         self.mode = E1Mode.S_PENDING
@@ -438,6 +459,10 @@ class SingleExcursionNeuron:
     def _finish_rearm(self, queue: EventQueue[Event] | None) -> None:
         magnitude = abs(self.x)
         if magnitude <= self.config.theta_r:
+            self._close_episode()
+            return None
+        if magnitude - self.config.theta_r <= math.ulp(self.config.theta_r):
+            self.x = math.copysign(self.config.theta_r, self.x)
             self._close_episode()
             return None
         self._schedule(
@@ -505,9 +530,23 @@ class SingleExcursionNeuron:
         else:
             event_id = f"{event.source}:input:{self._input_identity}"
             self._input_identity += 1
+        active_episode = self.ordinary_episode_id if self.mode != E1Mode.N else None
+        active_lineage = self.lineage_id if self.mode != E1Mode.N else None
+        if active_episode is None:
+            self._unassigned_provenance_count += 1
+            if self._unassigned_provenance_count > self.config.provenance_capacity:
+                self._unassigned_provenance_truncated = True
         if len(self._provenance) == self._provenance.maxlen:
             self.provenance_truncated = True
-        self._provenance.append(ProvenanceEntry(event_id, event.timestamp, contribution))
+        self._provenance.append(
+            ProvenanceEntry(
+                event_id,
+                event.timestamp,
+                contribution,
+                active_episode,
+                active_lineage,
+            )
+        )
 
     def _report_boundary(self) -> None:
         self.boundary_reports.append(
@@ -528,6 +567,8 @@ class SingleExcursionNeuron:
         self.lineage_id = None
         self.captured_polarity = None
         self.m_peak = 0.0
+        self._unassigned_provenance_count = 0
+        self._unassigned_provenance_truncated = False
 
     def _rearm_delay(self, magnitude: float) -> float:
         return math.log(magnitude / self.config.theta_r) / self.config.decay_rate

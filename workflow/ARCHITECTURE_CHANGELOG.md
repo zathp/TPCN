@@ -1,5 +1,33 @@
 # Architecture Changelog
 
+## Luna-0 independent closure of ACP-0004 E1 - 2026-10-02
+
+**PASS — ACP-0004 E1 CANONICAL SINGLE-EXCURSION REFERENCE INDEPENDENTLY
+VERIFIED AND CLOSED.**
+
+Reviewed the published Luna-19 implementation at
+`f0a5977db1a56ac559262e52413f31ebf15092f5` and applied only directly required
+closure fixes:
+
+- episode/lineage ownership and isolation for bounded provenance;
+- destination-local external-before-internal equal-time ordering, preserving
+  prior sequence ordering for unrelated destinations;
+- ULP-scale numeric termination handling at a valid analytic re-arm boundary;
+- adversarial tests for configuration bounds, reset stale-event isolation,
+  stale re-arm cancellation, non-default Model-B fan-out and identity
+  preservation.
+
+Focused E1/runtime validation passed 59 tests. The broader review regression
+bundle passed 429 tests, and the full CPU suite passed 612 tests with one
+existing skip. Compile and diff validation are recorded in
+`workflow/handoffs/luna-0-independent-closure-ACP-0004-E1.md`.
+
+A01-A15 remain unchanged. M/multi-excursion execution, TPCN-IR-2,
+ACP-0003 H2, ACP-0002 N3, backends, hardware equivalence, learning changes,
+Luna-13F reopening and Luna-13G remain unauthorized. The next recommended
+dependency is a separately reviewed TPCN-IR-2 schema before any E2/M work;
+this entry does not authorize it.
+
 ## Luna-0 ACP-0004 acceptance and E1 authorization - 2026-10-02
 
 **PASS — ACP-0004 ACCEPTED FOR STAGED IMPLEMENTATION.**

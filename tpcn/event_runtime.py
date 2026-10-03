@@ -1,8 +1,9 @@
 """Deterministic, bounded event-driven runtime primitives.
 
 Time is represented as nonnegative floating-point units. An event is ordered by
-arrival timestamp, external-before-internal priority, and then its
-monotonically increasing sequence identifier. The sequence identifier is
+arrival timestamp and its monotonically increasing sequence identifier, except
+that an external event for a destination is selected before an internal event
+for that same destination at the same timestamp. The sequence identifier is
 assigned by the queue, so equal-time behavior does not depend on host thread
 scheduling.
 
@@ -119,7 +120,7 @@ class EventQueue(Generic[T]):
         if isinstance(capacity, bool) or not isinstance(capacity, int) or capacity <= 0:
             raise ValueError("capacity must be a positive integer")
         self.capacity = capacity
-        self._pending: list[tuple[float, int, int, Event]] = []
+        self._pending: list[tuple[float, int, Event]] = []
         self._next_sequence = 0
 
     def __len__(self) -> int:
@@ -143,16 +144,40 @@ class EventQueue(Generic[T]):
             event.lineage_id,
         )
         self._next_sequence += 1
-        heapq.heappush(
-            self._pending,
-            (queued.timestamp, self._priority(queued), queued.sequence, queued),
-        )
+        heapq.heappush(self._pending, (queued.timestamp, queued.sequence, queued))
         return queued
 
-    @staticmethod
-    def _priority(event: Event) -> int:
-        """Process external events before local internal events at equal time."""
-        return 1 if event.event_type == EventType.INTERNAL else 0
+    def _next_ready_index(self) -> int | None:
+        if not self._pending:
+            return None
+        timestamp = self._pending[0][0]
+        same_time = [
+            (index, item[2])
+            for index, item in enumerate(self._pending)
+            if item[0] == timestamp
+        ]
+        external_destinations = {
+            event.destination
+            for _, event in same_time
+            if event.event_type != EventType.INTERNAL
+        }
+        eligible = [
+            (index, event)
+            for index, event in same_time
+            if event.event_type != EventType.INTERNAL
+            or event.destination not in external_destinations
+        ]
+        return min(eligible, key=lambda item: item[1].sequence)[0]
+
+    def _pop_next_ready(self) -> Event:
+        index = self._next_ready_index()
+        if index is None:
+            raise IndexError("no event is ready")
+        _, _, event = self._pending[index]
+        self._pending[index] = self._pending[-1]
+        self._pending.pop()
+        heapq.heapify(self._pending)
+        return event
 
     def push_propagated(
         self,
@@ -181,27 +206,29 @@ class EventQueue(Generic[T]):
         )
 
     def peek(self) -> Event | None:
-        return self._pending[0][3] if self._pending else None
+        index = self._next_ready_index()
+        return None if index is None else self._pending[index][2]
 
     def pop_ready(self, through: LocalTimestamp) -> Event:
         limit = _time(through, "through")
         if not self._pending or self._pending[0][0] > limit:
             raise IndexError("no event is ready")
-        return heapq.heappop(self._pending)[3]
+        return self._pop_next_ready()
 
     def pop_ready_batch(self, through: LocalTimestamp, limit: int | None = None) -> list[Event]:
         if limit is not None and (isinstance(limit, bool) or not isinstance(limit, int) or limit <= 0):
             raise ValueError("limit must be a positive integer")
         events: list[Event] = []
-        while self._pending and self._pending[0][0] <= _time(through, "through"):
+        through_limit = _time(through, "through")
+        while self._pending and self._pending[0][0] <= through_limit:
             if limit is not None and len(events) >= limit:
                 break
-            events.append(heapq.heappop(self._pending)[3])
+            events.append(self._pop_next_ready())
         return events
 
     def drain(self) -> Iterable[Event]:
         while self._pending:
-            yield heapq.heappop(self._pending)[3]
+            yield self._pop_next_ready()
 
 
 @dataclass(frozen=True, slots=True)
