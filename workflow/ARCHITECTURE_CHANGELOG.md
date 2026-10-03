@@ -47,6 +47,24 @@ unresolved. No dataset benchmark or downstream migration was performed in
 this review. Full evidence is in
 `workflow/handoffs/luna-0-independent-review-luna-24-ir2-provenance-20261003.md`.
 
+# Luna-0 authorization of Luna-25 dataset evidence - 2026-10-03
+
+Following Luna-24's independent closure, Luna-0 authorized Luna-25 from
+`1642b991f82403140d0f29b5a2ff10b3d2628cda` for the separate, bounded
+ACP-0006 UCI Character Trajectories evidence gate. Luna-25 owns a standalone
+deterministic loader/split/report, focused tests and a completion handoff;
+it may not alter reusable core/runtime semantics or downstream consumers.
+It must distinguish an exact reconstruction of the previously reported split
+from a newly versioned deterministic split, and it may not claim the latter
+reproduces the former. Dataset execution and evidence are **NOT RUN** at this
+authorization. The dataset gate remains open until Luna-0 independently
+reviews the resulting evidence.
+
+No downstream migration is included. The remaining visualization,
+structural/default-model, legacy-observable, spiral, temporal-analysis and
+viewer failures have different intended contracts and require later
+consumer-specific governance rather than a broad test-green task.
+
 # Luna-0 independent review of Luna-23 - 2026-10-03
 
 **PASS — LUNA-23 E2 LOGICAL-TIME REPRESENTABILITY CORRECTION INDEPENDENTLY

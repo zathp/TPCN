@@ -2507,6 +2507,7 @@ preserving those records below as historical context:
 | Luna-22 | ACP-0006 first CPU software-reference excursion integration | IMPLEMENTED / SECOND INDEPENDENT REVIEW BLOCKED |
 | Luna-23 | ACP-0004 E2 positive-delay logical-time representability correction | CLOSED / INDEPENDENTLY VERIFIED |
 | Luna-24 | ACP-0006 integrated IR-2 residual-provenance boundary correction | CLOSED / INDEPENDENTLY VERIFIED |
+| Luna-25 | ACP-0006 sequential dataset evidence reproducibility | AUTHORIZED / NOT EXECUTED |
 
 Luna-19, Luna-20 and Luna-21 are closed component implementations; this does
 not itself establish experiment-path integration. **OBSERVED:** the ordinary
@@ -2565,6 +2566,21 @@ consumer-specific compatibility decisions for the 24 existing downstream
 failures. These are separate kinds of work; no broad test-green or downstream
 migration task is authorized by Luna-24's closure. Luna-0 must perform a fresh
 integration review after the evidence and separately governed consumer work.
+
+Luna-25 is **AUTHORIZED / NOT EXECUTED** for a retained, deterministic UCI
+Character Trajectories loader/split/report under the unchanged ACP-0006
+`EXCURSION_V1` path. Its contract is
+`.github/agents/luna-25.agent.md`; the authorization handoff is
+`workflow/handoffs/luna-0-authorization-luna-25-dataset-evidence-20261003.md`.
+It must establish whether the previously reported split can be reconstructed;
+any replacement split is separately versioned and must not be called a
+reproduction of the old run. This authorization does not resolve the dataset
+gate until evidence is run and independently reviewed.
+
+The 24 downstream failures remain a separate governance track. No blanket
+consumer migration is authorized; visualization, structural experiments,
+legacy observables, temporal/spiral analysis and the 3D viewer require
+consumer-specific intent and scoped review before implementation.
 
 The original acceptance and dispatch decision is in
 `workflow/handoffs/luna-0-acp-0006-acceptance-luna-22-authorization-20261003.md`;
