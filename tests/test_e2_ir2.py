@@ -73,6 +73,73 @@ def test_armed_round_trip_restores_one_pending_m_emit_without_duplicate() -> Non
         neuron_from_ir2(record)
 
 
+def _continue_pending(neuron: MultiExcursionNeuron) -> tuple[list, list, tuple]:
+    emissions = []
+    transitions = []
+    for _ in range(neuron.config.event_budget):
+        if neuron.pending_event is None:
+            break
+        emission = neuron.process_pending()
+        if emission is not None:
+            emissions.append(
+                (
+                    emission.event_id,
+                    emission.timestamp,
+                    emission.payload,
+                    emission.episode_id,
+                    emission.lineage_id,
+                )
+            )
+        pending = neuron.pending_event
+        transitions.append(
+            (
+                neuron.clock.timestamp,
+                neuron.x,
+                neuron.mode,
+                neuron.m_phase,
+                None
+                if pending is None
+                else (
+                    pending.kind,
+                    pending.timestamp,
+                    pending.episode_id,
+                    pending.generation,
+                    pending.queue_sequence,
+                ),
+                neuron.ordinary_episode_id,
+                neuron.multi_episode_id,
+                neuron.lineage_id,
+                neuron.generation_token,
+                neuron._event_identity,
+                neuron._episode_identity,
+                neuron._lineage_identity,
+                neuron._input_identity,
+                neuron.processed_event_count,
+                neuron.input_contribution_count,
+                tuple(neuron.provenance),
+                neuron.provenance_truncated,
+            )
+        )
+    else:
+        pytest.fail("pending E2 continuation exceeded the finite event budget")
+    final_state = (
+        neuron.mode,
+        neuron.x,
+        neuron.clock.timestamp,
+        neuron.pending_event,
+        neuron._event_identity,
+        neuron._episode_identity,
+        neuron._lineage_identity,
+        neuron._input_identity,
+        neuron.generation_token,
+        neuron.processed_event_count,
+        neuron.input_contribution_count,
+        tuple(neuron.provenance),
+        neuron.provenance_truncated,
+    )
+    return emissions, transitions, final_state
+
+
 def test_refractory_round_trip_continues_after_a_prior_m_emission() -> None:
     original = MultiExcursionNeuron("n", config=config())
     queue: EventQueue[Event] = EventQueue(64)
@@ -85,19 +152,37 @@ def test_refractory_round_trip_continues_after_a_prior_m_emission() -> None:
     assert restored.pending_event == original.pending_event
     assert restored.multi_episode_id == prior.episode_id
     assert restored.lineage_id == prior.lineage_id
-    restored_queue: EventQueue[Event] = EventQueue(64)
-    original_queue: EventQueue[Event] = EventQueue(64)
-    actual = drain(restored, restored_queue)
-    expected = drain(original, original_queue)
+    assert restored.pending_event.kind.value == "M_REARM"
 
-    assert [
-        (item.event_id, item.timestamp, item.payload, item.episode_id, item.lineage_id)
-        for item in actual
-    ] == [
-        (item.event_id, item.timestamp, item.payload, item.episode_id, item.lineage_id)
-        for item in expected
-    ]
-    assert len({item.event_id for item in actual}) == len(actual)
+    actual = _continue_pending(restored)
+    expected = _continue_pending(original)
+
+    assert actual == expected
+    assert actual[0]
+    assert actual[1]
+    assert actual[2][0] == E1Mode.N
+    assert actual[2][3] is None
+
+
+def test_e2_round_trip_preserves_provenance_ownership_and_truncation() -> None:
+    configured = E1Config(
+        decay_rate=0.001,
+        emission_delay=0.01,
+        m_emit_delay=0.01,
+        m_rearm_delay=0.01,
+        delta_x_e=0.5,
+        provenance_capacity=2,
+    )
+    neuron = MultiExcursionNeuron("n", config=configured)
+    for index in range(4):
+        neuron.receive_contribution(0.0, 1.0, event_id=f"input-{index}")
+
+    assert neuron.mode == E1Mode.M_ACTIVE
+    assert neuron.provenance_truncated
+    restored = round_trip(neuron)
+
+    assert restored.provenance == neuron.provenance
+    assert restored.provenance_truncated is neuron.provenance_truncated
 
 
 def test_e2_adapter_reconstructs_ordinary_state_with_e2_defaults() -> None:

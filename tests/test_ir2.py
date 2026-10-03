@@ -19,6 +19,7 @@ from tpcn import (
     downgrade_ir2_to_ir1,
     ir2_from_ir1,
     neuron_from_ir2,
+    neuron_from_ir2_e2,
     neuron_to_ir2,
 )
 from tpcn.execution_ir import ExecutionIR, IREdge, IREvent, IRNeuron
@@ -122,6 +123,8 @@ def test_pending_internal_event_must_be_strictly_future_for_e2_configuration() -
             ordinary_episode_id=1,
             lineage_id=1,
             captured_polarity=1,
+            next_episode_identity=1,
+            next_lineage_identity=1,
             generation_token=1,
             pending_internal_event=IR2PendingInternal(
                 "n", IR2PendingKind.S_EMIT, 0.5, 1, 1
@@ -155,6 +158,163 @@ def test_m_active_identity_high_water_and_counter_budget_are_validated() -> None
             generation_token=1,
             event_budget=1,
         )
+
+
+def _valid_ir2_mode_record(
+    mode: IR2Mode,
+    *,
+    event_budget: int = 5,
+) -> IR2Neuron:
+    generation = 1
+    pending_kind = {
+        IR2Mode.S_PENDING: IR2PendingKind.S_EMIT,
+        IR2Mode.S_RETURN: None,
+        IR2Mode.M_ACTIVE: IR2PendingKind.M_EMIT,
+        IR2Mode.N: None,
+    }[mode]
+    pending = (
+        None
+        if pending_kind is None
+        else IR2PendingInternal("n", pending_kind, 1.0, 1, generation)
+    )
+    return IR2Neuron(
+        neuron_id="n",
+        mode=mode,
+        x=1.0,
+        ordinary_episode_id=1 if mode in (IR2Mode.S_PENDING, IR2Mode.S_RETURN) else None,
+        lineage_id=1 if mode != IR2Mode.N else None,
+        captured_polarity=1 if mode == IR2Mode.S_PENDING else None,
+        m_phase=MPhase.ARMED if mode == IR2Mode.M_ACTIVE else None,
+        multi_episode_id=1 if mode == IR2Mode.M_ACTIVE else None,
+        pending_internal_event=pending,
+        event_budget=event_budget,
+        generation_token=generation,
+        next_episode_identity=1 if mode != IR2Mode.N else 0,
+        next_lineage_identity=1 if mode != IR2Mode.N else 0,
+    )
+
+
+@pytest.mark.parametrize(
+    ("mode", "identity_field", "counter_field"),
+    (
+        (IR2Mode.S_PENDING, "ordinary_episode_id", "next_episode_identity"),
+        (IR2Mode.S_PENDING, "lineage_id", "next_lineage_identity"),
+        (IR2Mode.S_RETURN, "ordinary_episode_id", "next_episode_identity"),
+        (IR2Mode.S_RETURN, "lineage_id", "next_lineage_identity"),
+        (IR2Mode.M_ACTIVE, "multi_episode_id", "next_episode_identity"),
+        (IR2Mode.M_ACTIVE, "lineage_id", "next_lineage_identity"),
+    ),
+)
+def test_active_identity_ahead_of_high_water_is_rejected(
+    mode: IR2Mode,
+    identity_field: str,
+    counter_field: str,
+) -> None:
+    record = _valid_ir2_mode_record(mode)
+    values = record.to_dict()
+    values[identity_field] = 2
+    values[counter_field] = 1
+
+    with pytest.raises(ValueError, match="high-water"):
+        IR2Neuron.from_dict(values)
+
+
+@pytest.mark.parametrize("mode", tuple(IR2Mode))
+def test_active_identity_equal_to_high_water_is_valid(mode: IR2Mode) -> None:
+    record = _valid_ir2_mode_record(mode)
+    assert IR2Neuron.from_dict(record.to_dict()) == record
+
+
+def test_valid_s_pending_high_water_allocates_new_m_identity() -> None:
+    record = _valid_ir2_mode_record(IR2Mode.S_PENDING)
+    restored = neuron_from_ir2_e2(record)
+    prior_ordinary_id = restored.ordinary_episode_id
+    prior_lineage_id = restored.lineage_id
+
+    restored.receive_contribution(0.01, 3.1)
+
+    assert prior_ordinary_id == record.next_episode_identity
+    assert restored.multi_episode_id is not None
+    assert restored.multi_episode_id > prior_ordinary_id
+    assert restored._episode_identity == restored.multi_episode_id
+    assert restored.lineage_id == prior_lineage_id
+    assert restored._lineage_identity == record.next_lineage_identity
+
+
+@pytest.mark.parametrize("mode", tuple(IR2Mode))
+@pytest.mark.parametrize(
+    "counter_name",
+    (
+        "generation_token",
+        "next_event_identity",
+        "next_episode_identity",
+        "next_lineage_identity",
+        "next_input_identity",
+        "processed_event_count",
+        "input_contribution_count",
+    ),
+)
+@pytest.mark.parametrize(("offset", "valid"), ((-1, True), (0, True), (1, False)))
+def test_every_mode_validates_all_execution_counters_against_budget(
+    mode: IR2Mode,
+    counter_name: str,
+    offset: int,
+    valid: bool,
+) -> None:
+    values = _valid_ir2_mode_record(mode, event_budget=5).to_dict()
+    values[counter_name] = 5 + offset
+    if counter_name == "generation_token" and values["pending_internal_event"] is not None:
+        values["pending_internal_event"]["generation"] = 5 + offset
+
+    if valid:
+        record = IR2Neuron.from_dict(values)
+        assert record.event_budget == 5
+    else:
+        with pytest.raises(ValueError, match="event budget"):
+            IR2Neuron.from_dict(values)
+
+
+@pytest.mark.parametrize(
+    ("pending_time", "e2_valid"),
+    ((-0.1, False), (0.0, False), (0.1, True)),
+)
+def test_e2_reconstruction_requires_strictly_future_ordinary_pending_event(
+    pending_time: float,
+    e2_valid: bool,
+) -> None:
+    values = _valid_ir2_mode_record(IR2Mode.S_PENDING, event_budget=5).to_dict()
+    values["local_last_update_time"] = 0.0
+    values["delta_t_m_emit"] = None
+    values["delta_t_m_rearm"] = None
+    values["delta_x_e"] = None
+    values["pending_internal_event"]["timestamp"] = pending_time
+
+    if pending_time < 0.0:
+        with pytest.raises(ValueError, match="wrong owner or timestamp"):
+            IR2Neuron.from_dict(values)
+        return
+
+    record = IR2Neuron.from_dict(values)
+    if e2_valid:
+        assert neuron_from_ir2_e2(record).pending_event.timestamp == pending_time
+    else:
+        with pytest.raises(ValueError, match="strictly after local time"):
+            neuron_from_ir2_e2(record)
+
+
+def test_equal_time_pending_remains_supported_by_historical_e1_adapter() -> None:
+    values = _valid_ir2_mode_record(IR2Mode.S_PENDING).to_dict()
+    values["pending_internal_event"]["timestamp"] = 0.0
+    values["delta_t_m_emit"] = None
+    values["delta_t_m_rearm"] = None
+    values["delta_x_e"] = None
+    record = IR2Neuron.from_dict(values)
+
+    restored = neuron_from_ir2(record)
+
+    assert restored.process_pending() is not None
+    assert restored.last_emission is not None
+    assert restored.last_emission.timestamp == record.local_last_update_time
 
 
 def test_ir1_upgrade_is_explicit_and_excursion_downgrade_is_rejected() -> None:

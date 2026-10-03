@@ -319,6 +319,17 @@ class IR2Neuron:
             object.__setattr__(self, name, value)
         for name, value in optional_values.items():
             object.__setattr__(self, name, value)
+        counters = (
+            "generation_token",
+            "next_event_identity",
+            "next_episode_identity",
+            "next_lineage_identity",
+            "next_input_identity",
+            "processed_event_count",
+            "input_contribution_count",
+        )
+        if any(getattr(self, name) > self.event_budget for name in counters):
+            raise ValueError("IR-2 counters exceed the declared event budget")
         self._validate_cross_fields()
 
     def _validate_cross_fields(self) -> None:
@@ -341,6 +352,11 @@ class IR2Neuron:
                 raise ValueError("S_PENDING cannot own an M episode")
             if self.ordinary_episode_id is None or self.lineage_id is None or self.captured_polarity is None:
                 raise ValueError("S_PENDING requires episode, lineage, and polarity")
+            if (
+                self.ordinary_episode_id > self.next_episode_identity
+                or self.lineage_id > self.next_lineage_identity
+            ):
+                raise ValueError("S_PENDING identity high-water marks are behind active identities")
             if pending is None or pending.kind is not IR2PendingKind.S_EMIT:
                 raise ValueError("S_PENDING requires exactly one S_EMIT")
         elif mode == IR2Mode.S_RETURN:
@@ -348,6 +364,11 @@ class IR2Neuron:
                 raise ValueError("S_RETURN cannot own an M episode")
             if self.ordinary_episode_id is None or self.lineage_id is None:
                 raise ValueError("S_RETURN requires episode and lineage")
+            if (
+                self.ordinary_episode_id > self.next_episode_identity
+                or self.lineage_id > self.next_lineage_identity
+            ):
+                raise ValueError("S_RETURN identity high-water marks are behind active identities")
             if pending is not None and pending.kind is not IR2PendingKind.S_REARM:
                 raise ValueError("S_RETURN permits only S_REARM")
         else:
@@ -364,16 +385,6 @@ class IR2Neuron:
                 or self.next_lineage_identity < self.lineage_id
             ):
                 raise ValueError("M_ACTIVE identity high-water marks are behind active identities")
-            if any(value > self.event_budget for value in (
-                self.generation_token,
-                self.next_event_identity,
-                self.next_episode_identity,
-                self.next_lineage_identity,
-                self.next_input_identity,
-                self.processed_event_count,
-                self.input_contribution_count,
-            )):
-                raise ValueError("M_ACTIVE counters exceed the declared event budget")
             if pending is None or pending.kind not in (IR2PendingKind.M_EMIT, IR2PendingKind.M_REARM):
                 raise ValueError("M_ACTIVE requires a valid M pending event")
             if (self.m_phase, pending.kind) not in (
@@ -665,6 +676,13 @@ def neuron_from_ir2_e2(record: IR2Neuron) -> MultiExcursionNeuron:
     if record.dynamics_model != EXCURSION_V1:
         raise IR2UnsupportedRuntimeError(
             "TPCN-IR-2 E2 reconstruction requires EXCURSION_V1"
+        )
+    if (
+        record.pending_internal_event is not None
+        and record.pending_internal_event.timestamp <= record.local_last_update_time
+    ):
+        raise ValueError(
+            "E2 reconstruction requires pending internal events strictly after local time"
         )
     defaults = E1Config()
     config = E1Config(
