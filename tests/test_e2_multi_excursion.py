@@ -69,7 +69,7 @@ def test_exact_m_threshold_admits_and_just_below_remains_ordinary() -> None:
     assert below.pending_event.kind == E1InternalEventKind.S_EMIT
 
 
-@pytest.mark.parametrize("initial", (4.0, -4.0, 8.0, -8.0))
+@pytest.mark.parametrize("initial", (4.0, -4.0, 6.0, -6.0, 8.0, -8.0))
 def test_positive_and_negative_finite_return_bound(initial: float) -> None:
     neuron = make_neuron(delta_x_e=1.0, delay=0.01)
     queue: EventQueue[Event] = EventQueue(512)
@@ -158,6 +158,19 @@ def test_direct_m_to_n_does_not_allocate_empty_ordinary_episode() -> None:
     assert [entry.event_id for entry in neuron.provenance] == ["new-lineage"]
 
 
+def test_provenance_capacity_boundary_sets_sticky_truncation() -> None:
+    neuron = make_neuron(capacity=2)
+    for index in range(2):
+        neuron.receive_contribution(0.0, 0.1, event_id=f"input-{index}")
+    assert not neuron.provenance_truncated
+    assert [entry.event_id for entry in neuron.provenance] == ["input-0", "input-1"]
+
+    neuron.receive_contribution(0.0, 0.1, event_id="input-2")
+
+    assert neuron.provenance_truncated
+    assert [entry.event_id for entry in neuron.provenance] == ["input-1", "input-2"]
+
+
 def test_s_return_promotes_to_m_without_breaking_its_lineage() -> None:
     neuron = make_neuron()
     queue: EventQueue[Event] = EventQueue(64)
@@ -241,8 +254,10 @@ def test_external_input_during_armed_phase_reverses_later_m_payload() -> None:
     neuron.receive_contribution(0.0, 5.0, queue=queue)
     original = neuron.pending_event
     assert original is not None and original.kind == E1InternalEventKind.M_EMIT
+    before_magnitude = abs(neuron.x)
     neuron.receive_contribution(0.05, -8.0, queue=queue)
     assert neuron.mode == E1Mode.M_ACTIVE
+    assert neuron.x < 0.0 and abs(neuron.x) < before_magnitude
     assert neuron.m_phase is not None and neuron.m_phase.value == "ARMED"
     assert neuron.pending_event is not None
     assert neuron.pending_event.generation > original.generation
@@ -261,9 +276,11 @@ def test_external_input_during_refractory_phase_can_reverse_later_m_payload() ->
     assert neuron.m_phase is not None and neuron.m_phase.value == "REFRACTORY"
     original = neuron.pending_event
     assert original is not None and original.kind == E1InternalEventKind.M_REARM
+    before_magnitude = abs(neuron.x)
 
     neuron.receive_contribution(0.02, -10.0, queue=queue)
     assert neuron.mode == E1Mode.M_ACTIVE
+    assert neuron.x < 0.0 and abs(neuron.x) < before_magnitude
     assert neuron.pending_event is not None
     assert neuron.pending_event.kind == E1InternalEventKind.M_REARM
     assert neuron.pending_event.generation > original.generation
