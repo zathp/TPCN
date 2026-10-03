@@ -1,5 +1,30 @@
 # Architecture Changelog
 
+# Luna-0 ACP-0004 E2/M clarification and Luna-21 authorization - 2026-10-03
+
+**PASS — ACP-0004 E2/M IMPLEMENTATION BOUNDARY CLARIFIED; LUNA-21
+AUTHORIZED BUT NOT EXECUTED.**
+
+Starting from published revision
+`40b453784b015552738f202c9a765a2f0587f533`, the four prior dispatch blockers
+were resolved without changing A01-A15 or reopening closed E1/IR-2 behavior:
+
+- ordinary and M episode IDs share one monotonic episode high-water counter;
+- final residual S receives a new ordinary episode ID and preserves lineage;
+- active provenance is re-owned to final S with sticky truncation;
+- direct M-to-N creates no empty S episode;
+- M reset clearing, stale queued-event behavior, retained counters and
+  generation semantics are explicit;
+- `neuron_from_ir2` remains E1-only while
+  `neuron_to_ir2_e2`/`neuron_from_ir2_e2` form the separate E2 capability
+  boundary;
+- TPCN-IR-2 `schema_revision: 1` remains unchanged.
+
+Luna-21 is authorized only for bounded E2 runtime and E2-capable IR-2
+reconstruction implementation plus focused verification. It was not
+executed by this governance task. ACP-0003 H2, ACP-0002 N3, backends,
+hardware, calibration, Luna-13F reopening and Luna-13G remain unauthorized.
+
 # Luna-0 final ACP-0004 E2/M dispatch review - 2026-10-03
 
 **E2/M DISPATCH BLOCKED — CANONICAL IDENTITY, RESET, AND IR-2

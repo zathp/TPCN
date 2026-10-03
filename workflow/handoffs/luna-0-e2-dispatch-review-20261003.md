@@ -11,7 +11,7 @@ tpcn_handoff:
   contract_version: "1.1"
   branch: "main"
   base_revision: "8136c0e298a8fc8a72722eca349fd047b01f9aa0"
-  result_revision: "uncommitted clarification gate"
+  result_revision: "40b453784b015552738f202c9a765a2f0587f533"
   dependencies:
     - "ACP-0004 E1 independently closed"
     - "ACP-0005 TPCN-IR-2 independently closed"
