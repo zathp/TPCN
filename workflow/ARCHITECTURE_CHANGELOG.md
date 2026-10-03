@@ -42,7 +42,7 @@ this review. ACP-0006 remains accepted and unchanged; A01-A15 and IR-2 schema
 revision 1 are unchanged.
 
 The first pushed review-publication commit is
-`baec12a66b6caee98cae903438a51eaa33ce007b`; it adds this entry, the review
+`baec12ad368239d959ca747d5a4e28c96746dd6e`; it adds this entry, the review
 handoff, both authorization handoffs and both bounded Luna agent contracts.
 This review does not claim integration readiness, dataset reproducibility,
 predictive efficacy or hardware equivalence.
