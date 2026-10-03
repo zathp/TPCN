@@ -1,9 +1,10 @@
 """Deterministic, bounded event-driven runtime primitives.
 
 Time is represented as nonnegative floating-point units. An event is ordered by
-arrival timestamp and then by its monotonically increasing sequence identifier.
-The sequence identifier is assigned by the queue, so equal-time behavior does
-not depend on host thread scheduling.
+arrival timestamp, external-before-internal priority, and then its
+monotonically increasing sequence identifier. The sequence identifier is
+assigned by the queue, so equal-time behavior does not depend on host thread
+scheduling.
 
 Propagation uses ``arrival = emission + delay`` with ``delay >= 0``. A zero
 delay event is still queued and cannot mutate its destination inline; its
@@ -27,6 +28,8 @@ class EventType(str, Enum):
 
     INPUT = "input"
     SIGNAL = "signal"
+    EXCURSION = "excursion"
+    INTERNAL = "internal"
     CONTROL = "control"
 
 
@@ -62,6 +65,8 @@ class Event:
     event_type: EventType | str
     payload: EventPayload
     sequence: int = field(default=-1, compare=False)
+    event_id: str | int | None = field(default=None, compare=False)
+    lineage_id: str | int | None = field(default=None, compare=False)
 
     def __post_init__(self) -> None:
         object.__setattr__(self, "timestamp", _time(self.timestamp, "timestamp"))
@@ -73,6 +78,14 @@ class Event:
             raise ValueError("event_type must be a non-empty string or EventType")
         if not isinstance(self.sequence, int) or self.sequence < -1:
             raise ValueError("sequence must be a nonnegative integer or -1")
+        if self.event_id is not None and (
+            isinstance(self.event_id, bool) or not isinstance(self.event_id, (str, int))
+        ):
+            raise TypeError("event_id must be a string, integer, or None")
+        if self.lineage_id is not None and (
+            isinstance(self.lineage_id, bool) or not isinstance(self.lineage_id, (str, int))
+        ):
+            raise TypeError("lineage_id must be a string, integer, or None")
 
 
 class LocalClock:
@@ -106,7 +119,7 @@ class EventQueue(Generic[T]):
         if isinstance(capacity, bool) or not isinstance(capacity, int) or capacity <= 0:
             raise ValueError("capacity must be a positive integer")
         self.capacity = capacity
-        self._pending: list[tuple[float, int, Event]] = []
+        self._pending: list[tuple[float, int, int, Event]] = []
         self._next_sequence = 0
 
     def __len__(self) -> int:
@@ -126,10 +139,20 @@ class EventQueue(Generic[T]):
             event.event_type,
             event.payload,
             self._next_sequence,
+            event.event_id,
+            event.lineage_id,
         )
         self._next_sequence += 1
-        heapq.heappush(self._pending, (queued.timestamp, queued.sequence, queued))
+        heapq.heappush(
+            self._pending,
+            (queued.timestamp, self._priority(queued), queued.sequence, queued),
+        )
         return queued
+
+    @staticmethod
+    def _priority(event: Event) -> int:
+        """Process external events before local internal events at equal time."""
+        return 1 if event.event_type == EventType.INTERNAL else 0
 
     def push_propagated(
         self,
@@ -139,19 +162,32 @@ class EventQueue(Generic[T]):
         event_type: EventType | str,
         payload: EventPayload,
         delay: PropagationDelay,
+        *,
+        event_id: str | int | None = None,
+        lineage_id: str | int | None = None,
     ) -> Event:
         emission = _time(emission_time, "emission_time")
         propagation = _time(delay, "delay")
-        return self.push(Event(emission + propagation, source, destination, event_type, payload))
+        return self.push(
+            Event(
+                emission + propagation,
+                source,
+                destination,
+                event_type,
+                payload,
+                event_id=event_id,
+                lineage_id=lineage_id,
+            )
+        )
 
     def peek(self) -> Event | None:
-        return self._pending[0][2] if self._pending else None
+        return self._pending[0][3] if self._pending else None
 
     def pop_ready(self, through: LocalTimestamp) -> Event:
         limit = _time(through, "through")
         if not self._pending or self._pending[0][0] > limit:
             raise IndexError("no event is ready")
-        return heapq.heappop(self._pending)[2]
+        return heapq.heappop(self._pending)[3]
 
     def pop_ready_batch(self, through: LocalTimestamp, limit: int | None = None) -> list[Event]:
         if limit is not None and (isinstance(limit, bool) or not isinstance(limit, int) or limit <= 0):
@@ -160,12 +196,12 @@ class EventQueue(Generic[T]):
         while self._pending and self._pending[0][0] <= _time(through, "through"):
             if limit is not None and len(events) >= limit:
                 break
-            events.append(heapq.heappop(self._pending)[2])
+            events.append(heapq.heappop(self._pending)[3])
         return events
 
     def drain(self) -> Iterable[Event]:
         while self._pending:
-            yield heapq.heappop(self._pending)[2]
+            yield heapq.heappop(self._pending)[3]
 
 
 @dataclass(frozen=True, slots=True)

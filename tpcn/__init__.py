@@ -12,6 +12,20 @@ from .event_runtime import (
     execute_bounded,
 )
 from .canonical_neuron import TPCNNeuron
+from .excursion_neuron import (
+    BoundaryReport,
+    CanonicalExcursionNeuron,
+    E1Config,
+    E1EventBudgetExceeded,
+    E1InternalEventKind,
+    E1Mode,
+    E1Neuron,
+    E1OutOfScopeBoundary,
+    ExcursionEmission,
+    PendingInternalEvent,
+    ProvenanceEntry,
+    SingleExcursionNeuron,
+)
 from .topology import BoundedTopology, Edge, TopologyCapacityError, TopologyError
 from .execution_ir import (
     ACTIVATION_MODEL,
@@ -178,6 +192,18 @@ __all__ = [
     "QueueCapacityError",
     "execute_bounded",
     "TPCNNeuron",
+    "E1Config",
+    "E1Mode",
+    "E1InternalEventKind",
+    "E1OutOfScopeBoundary",
+    "E1EventBudgetExceeded",
+    "ProvenanceEntry",
+    "PendingInternalEvent",
+    "BoundaryReport",
+    "ExcursionEmission",
+    "SingleExcursionNeuron",
+    "E1Neuron",
+    "CanonicalExcursionNeuron",
     "BoundedTopology",
     "Edge",
     "TopologyCapacityError",

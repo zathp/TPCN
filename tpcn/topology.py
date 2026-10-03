@@ -216,12 +216,21 @@ class BoundedTopology:
         queued: list[Event] = []
         for edge in outgoing:
             payload = event.payload
-            if event.event_type == "signal":
+            if event.event_type in ("signal", "excursion"):
                 if isinstance(payload, bool) or not isinstance(payload, Real):
                     raise TypeError("signal event payload must be a real number")
                 transformed = math.tanh(edge.edge_weight * float(payload))
                 payload = edge.divider_strength * transformed + (1.0 - edge.divider_strength) * edge.reference
-            routed = queue.push_propagated(event.timestamp, edge.source, edge.destination, event.event_type, payload, edge.propagation_delay)
+            routed = queue.push_propagated(
+                event.timestamp,
+                edge.source,
+                edge.destination,
+                event.event_type,
+                payload,
+                edge.propagation_delay,
+                event_id=event.event_id,
+                lineage_id=event.lineage_id,
+            )
             queued.append(routed)
             if observer is not None:
                 observer.record_route(edge, event, routed)
