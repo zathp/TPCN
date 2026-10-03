@@ -27,11 +27,13 @@ def make_neuron(
     capacity: int = 16,
     delta_x_e: float = 0.5,
     delay: float = 0.01,
+    decay_rate: float = 0.001,
+    initial_timestamp: float = 0.0,
 ) -> MultiExcursionNeuron:
     return MultiExcursionNeuron(
         "n",
         config=E1Config(
-            decay_rate=0.001,
+            decay_rate=decay_rate,
             emission_delay=0.01,
             m_emit_delay=delay,
             m_rearm_delay=delay,
@@ -40,6 +42,7 @@ def make_neuron(
             provenance_capacity=capacity,
         ),
         initial_state=state,
+        initial_timestamp=initial_timestamp,
     )
 
 
@@ -86,6 +89,73 @@ def test_positive_and_negative_finite_return_bound(initial: float) -> None:
     assert all(emission.payload == math.copysign(neuron.config.a_max, initial) for emission in m_emissions)
     assert neuron.mode == E1Mode.N
     assert len({emission.event_id for emission in m_emissions}) == len(m_emissions)
+
+
+@pytest.mark.parametrize("state", (-0.2500000000000003, 0.2500000000000003))
+def test_analytic_rearm_rounding_uses_earliest_future_timestamp(state: float) -> None:
+    clock = 45.27906122689938
+    previous_timestamp = math.nextafter(clock, -math.inf)
+    elapsed = clock - previous_timestamp
+
+    def continue_return() -> tuple[MultiExcursionNeuron, list[float], float]:
+        neuron = make_neuron(
+            state=state * math.exp(elapsed),
+            budget=8,
+            decay_rate=1.0,
+            initial_timestamp=previous_timestamp,
+        )
+        neuron.mode = E1Mode.S_RETURN
+        neuron.ordinary_episode_id = 1
+        neuron.lineage_id = 1
+        neuron.generation_token = 1
+        neuron.pending_internal_event = PendingInternalEvent(
+            neuron.neuron_id,
+            1,
+            1,
+            E1InternalEventKind.S_REARM,
+            clock,
+        )
+        decayed_state = neuron._clip(neuron.x * math.exp(-neuron.config.decay_rate * elapsed))
+        analytic_delay = neuron._rearm_delay(abs(decayed_state))
+        assert math.isfinite(analytic_delay) and analytic_delay > 0.0
+        assert clock + analytic_delay == clock
+
+        queue: EventQueue[Event] = EventQueue(8)
+        neuron.process_pending(queue=queue)
+        assert neuron.clock.timestamp == clock
+        assert neuron.x == state
+        pending = neuron.pending_event
+        queued = queue.peek()
+        assert pending is not None and queued is not None
+        assert pending.kind == E1InternalEventKind.S_REARM
+        assert pending.timestamp == math.nextafter(clock, math.inf)
+        assert math.isfinite(pending.timestamp) and pending.timestamp > clock
+        assert queued.timestamp == pending.timestamp
+        assert isinstance(queued.payload, PendingInternalEvent)
+        assert queued.payload.timestamp == pending.timestamp
+
+        event_times = [clock]
+        while queue:
+            next_event = queue.peek()
+            assert next_event is not None
+            event = queue.pop_ready(next_event.timestamp)
+            event_times.append(event.timestamp)
+            neuron.receive_event(event, queue)
+
+        assert all(later > earlier for earlier, later in zip(event_times, event_times[1:]))
+        assert len(event_times) <= neuron.config.event_budget
+        assert neuron.processed_event_count <= neuron.config.event_budget
+        assert neuron.mode == E1Mode.N
+        assert neuron.pending_event is None
+        return neuron, event_times, analytic_delay
+
+    first, first_times, first_delay = continue_return()
+    second, second_times, second_delay = continue_return()
+
+    assert first_delay == second_delay
+    assert first_times == second_times == [clock, math.nextafter(clock, math.inf)]
+    assert first.mode == second.mode == E1Mode.N
+    assert first.processed_event_count == second.processed_event_count == 2
 
 
 def test_multiple_m_excursions_have_distinct_ids_and_strictly_positive_spacing() -> None:

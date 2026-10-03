@@ -738,7 +738,20 @@ class MultiExcursionNeuron(SingleExcursionNeuron):
     ) -> None:
         due_time = _finite_real(timestamp, "internal event timestamp")
         if due_time <= self.clock.timestamp:
-            raise ValueError("E2 internal events require a finite positive logical delay")
+            if (
+                due_time == self.clock.timestamp
+                and kind == E1InternalEventKind.S_REARM
+                and abs(self.x) > self.config.theta_r
+            ):
+                analytic_delay = self._rearm_delay(abs(self.x))
+                if (
+                    math.isfinite(analytic_delay)
+                    and analytic_delay > 0.0
+                    and self.clock.timestamp + analytic_delay == due_time
+                ):
+                    due_time = math.nextafter(self.clock.timestamp, math.inf)
+            if not math.isfinite(due_time) or due_time <= self.clock.timestamp:
+                raise ValueError("E2 internal events require a finite positive logical delay")
         super()._schedule(kind, due_time, queue)
 
     def _record_provenance(self, event: Event, contribution: float) -> None:
