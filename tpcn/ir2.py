@@ -18,6 +18,8 @@ from .excursion_neuron import (
     E1Config,
     E1InternalEventKind,
     E1Mode,
+    MPhase as E2MPhase,
+    MultiExcursionNeuron,
     PendingInternalEvent,
     ProvenanceEntry,
     SingleExcursionNeuron,
@@ -248,6 +250,20 @@ class IR2Neuron:
         for name in ("delta_t_m_emit", "delta_t_m_rearm", "delta_x_e"):
             value = getattr(self, name)
             optional_values[name] = None if value is None else _finite(value, name)
+        has_m_configuration = any(value is not None for value in optional_values.values())
+        if has_m_configuration and not all(
+            value is not None for value in optional_values.values()
+        ):
+            raise ValueError("M timing and discharge configuration must be complete")
+        if has_m_configuration and any(
+            value <= 0.0 for value in optional_values.values() if value is not None
+        ):
+            raise ValueError("M timing and discharge configuration must be positive")
+        if (
+            optional_values["delta_x_e"] is not None
+            and optional_values["delta_x_e"] > values["x_max"]
+        ):
+            raise ValueError("delta_x_e must not exceed x_max")
         if values["decay_rate"] < 0 or values["x_max"] <= 0:
             raise ValueError("decay_rate must be nonnegative and x_max positive")
         if self.dynamics_model == EXCURSION_V1 and values["decay_rate"] == 0:
@@ -308,24 +324,56 @@ class IR2Neuron:
     def _validate_cross_fields(self) -> None:
         pending = self.pending_internal_event
         mode = self.mode
+        has_m_configuration = any(
+            getattr(self, name) is not None
+            for name in ("delta_t_m_emit", "delta_t_m_rearm", "delta_x_e")
+        )
         if mode == IR2Mode.N:
-            if any(getattr(self, name) is not None for name in ("ordinary_episode_id", "lineage_id", "captured_polarity")):
+            if any(getattr(self, name) is not None for name in (
+                "ordinary_episode_id", "lineage_id", "captured_polarity",
+                "m_phase", "multi_episode_id",
+            )):
                 raise ValueError("N cannot own an ordinary episode")
             if pending is not None:
                 raise ValueError("N cannot have a pending internal event")
         elif mode == IR2Mode.S_PENDING:
+            if self.m_phase is not None or self.multi_episode_id is not None:
+                raise ValueError("S_PENDING cannot own an M episode")
             if self.ordinary_episode_id is None or self.lineage_id is None or self.captured_polarity is None:
                 raise ValueError("S_PENDING requires episode, lineage, and polarity")
             if pending is None or pending.kind is not IR2PendingKind.S_EMIT:
                 raise ValueError("S_PENDING requires exactly one S_EMIT")
         elif mode == IR2Mode.S_RETURN:
+            if self.m_phase is not None or self.multi_episode_id is not None:
+                raise ValueError("S_RETURN cannot own an M episode")
             if self.ordinary_episode_id is None or self.lineage_id is None:
                 raise ValueError("S_RETURN requires episode and lineage")
             if pending is not None and pending.kind is not IR2PendingKind.S_REARM:
                 raise ValueError("S_RETURN permits only S_REARM")
         else:
-            if self.m_phase is None or self.multi_episode_id is None:
-                raise ValueError("M_ACTIVE requires phase and multi_episode_id")
+            if (
+                self.m_phase is None
+                or self.multi_episode_id is None
+                or self.lineage_id is None
+            ):
+                raise ValueError("M_ACTIVE requires phase, multi_episode_id, and lineage")
+            if self.ordinary_episode_id is not None or self.captured_polarity is not None:
+                raise ValueError("M_ACTIVE cannot own ordinary episode state")
+            if (
+                self.next_episode_identity < self.multi_episode_id
+                or self.next_lineage_identity < self.lineage_id
+            ):
+                raise ValueError("M_ACTIVE identity high-water marks are behind active identities")
+            if any(value > self.event_budget for value in (
+                self.generation_token,
+                self.next_event_identity,
+                self.next_episode_identity,
+                self.next_lineage_identity,
+                self.next_input_identity,
+                self.processed_event_count,
+                self.input_contribution_count,
+            )):
+                raise ValueError("M_ACTIVE counters exceed the declared event budget")
             if pending is None or pending.kind not in (IR2PendingKind.M_EMIT, IR2PendingKind.M_REARM):
                 raise ValueError("M_ACTIVE requires a valid M pending event")
             if (self.m_phase, pending.kind) not in (
@@ -334,8 +382,13 @@ class IR2Neuron:
             ):
                 raise ValueError("M phase and pending event kind are inconsistent")
         if pending is not None:
-            if pending.neuron_id != self.neuron_id or pending.timestamp < self.local_last_update_time:
+            if (
+                pending.neuron_id != self.neuron_id
+                or pending.timestamp < self.local_last_update_time
+            ):
                 raise ValueError("pending internal event has wrong owner or timestamp")
+            if has_m_configuration and pending.timestamp <= self.local_last_update_time:
+                raise ValueError("E2 pending internal event must be strictly future")
             if mode == IR2Mode.M_ACTIVE and pending.episode_id != self.multi_episode_id:
                 raise ValueError("M pending event has wrong episode ownership")
             if pending.episode_id != self.ordinary_episode_id and mode != IR2Mode.M_ACTIVE:
@@ -346,7 +399,10 @@ class IR2Neuron:
         if len(ids) != len(set(ids)):
             raise ValueError("provenance causal identities must be unique")
         for entry in self.provenance:
-            if mode == IR2Mode.M_ACTIVE and entry.episode_id != self.multi_episode_id:
+            if mode == IR2Mode.M_ACTIVE and (
+                entry.episode_id != self.multi_episode_id
+                or entry.lineage_id != self.lineage_id
+            ):
                 raise ValueError("M provenance ownership does not match active episode")
             if mode not in (IR2Mode.N, IR2Mode.M_ACTIVE) and (entry.episode_id, entry.lineage_id) != (self.ordinary_episode_id, self.lineage_id):
                 raise ValueError("provenance ownership does not match active episode")
@@ -489,6 +545,22 @@ def _encode(value: Any) -> Any:
 def neuron_to_ir2(neuron: SingleExcursionNeuron) -> IR2Neuron:
     if not isinstance(neuron, SingleExcursionNeuron):
         raise TypeError("neuron_to_ir2 requires a SingleExcursionNeuron")
+    if isinstance(neuron, MultiExcursionNeuron):
+        raise TypeError("use neuron_to_ir2_e2 for a MultiExcursionNeuron")
+    return _neuron_to_ir2(neuron, e2_capable=False)
+
+
+def neuron_to_ir2_e2(neuron: MultiExcursionNeuron) -> IR2Neuron:
+    if not isinstance(neuron, MultiExcursionNeuron):
+        raise TypeError("neuron_to_ir2_e2 requires a MultiExcursionNeuron")
+    return _neuron_to_ir2(neuron, e2_capable=True)
+
+
+def _neuron_to_ir2(
+    neuron: SingleExcursionNeuron,
+    *,
+    e2_capable: bool,
+) -> IR2Neuron:
     config = neuron.config
     pending = neuron.pending_internal_event
     pending_ir = None if pending is None else IR2PendingInternal(
@@ -508,9 +580,9 @@ def neuron_to_ir2(neuron: SingleExcursionNeuron) -> IR2Neuron:
         theta_hold=config.theta_hold,
         theta_m=config.theta_m,
         delta_t_e=config.emission_delay,
-        delta_t_m_emit=None,
-        delta_t_m_rearm=None,
-        delta_x_e=None,
+        delta_t_m_emit=config.m_emit_delay if e2_capable else None,
+        delta_t_m_rearm=config.m_rearm_delay if e2_capable else None,
+        delta_x_e=config.delta_x_e if e2_capable else None,
         a_min=config.a_min,
         a_max=config.a_max,
         provenance_capacity=config.provenance_capacity,
@@ -534,6 +606,14 @@ def neuron_to_ir2(neuron: SingleExcursionNeuron) -> IR2Neuron:
         input_contribution_count=neuron.input_contribution_count,
         unassigned_provenance_count=neuron._unassigned_provenance_count,
         unassigned_provenance_truncated=neuron._unassigned_provenance_truncated,
+        m_phase=(
+            MPhase(neuron.m_phase.value)
+            if e2_capable and neuron.m_phase is not None
+            else None
+        ),
+        multi_episode_id=(
+            neuron.multi_episode_id if e2_capable else None
+        ),
     )
 
 
@@ -574,6 +654,92 @@ def neuron_from_ir2(record: IR2Neuron) -> SingleExcursionNeuron:
         neuron.pending_internal_event = PendingInternalEvent(
             pending.neuron_id, pending.episode_id, pending.generation,
             E1InternalEventKind(pending.kind.value), pending.timestamp,
+            pending.queue_sequence,
+        )
+    return neuron
+
+
+def neuron_from_ir2_e2(record: IR2Neuron) -> MultiExcursionNeuron:
+    if not isinstance(record, IR2Neuron):
+        raise TypeError("neuron_from_ir2_e2 requires a validated IR2Neuron")
+    if record.dynamics_model != EXCURSION_V1:
+        raise IR2UnsupportedRuntimeError(
+            "TPCN-IR-2 E2 reconstruction requires EXCURSION_V1"
+        )
+    defaults = E1Config()
+    config = E1Config(
+        decay_rate=record.decay_rate,
+        x_max=record.x_max,
+        theta_r=record.theta_r,
+        theta_e=record.theta_e,
+        theta_hold=record.theta_hold,
+        theta_m=record.theta_m,
+        emission_delay=record.delta_t_e,
+        m_emit_delay=(
+            defaults.m_emit_delay
+            if record.delta_t_m_emit is None
+            else record.delta_t_m_emit
+        ),
+        m_rearm_delay=(
+            defaults.m_rearm_delay
+            if record.delta_t_m_rearm is None
+            else record.delta_t_m_rearm
+        ),
+        delta_x_e=(
+            defaults.delta_x_e
+            if record.delta_x_e is None
+            else record.delta_x_e
+        ),
+        a_min=record.a_min,
+        a_max=record.a_max,
+        provenance_capacity=record.provenance_capacity,
+        event_budget=record.event_budget,
+    )
+    neuron = MultiExcursionNeuron(
+        record.neuron_id,
+        config=config,
+        initial_state=record.x,
+        initial_timestamp=record.local_last_update_time,
+    )
+    neuron.mode = E1Mode(record.mode.value)
+    neuron.ordinary_episode_id = record.ordinary_episode_id
+    neuron.lineage_id = record.lineage_id
+    neuron.captured_polarity = record.captured_polarity
+    neuron.m_peak = record.m_peak
+    neuron.m_phase = (
+        E2MPhase(record.m_phase.value) if record.m_phase is not None else None
+    )
+    neuron.multi_episode_id = record.multi_episode_id
+    neuron.generation_token = record.generation_token
+    neuron._event_identity = record.next_event_identity
+    neuron._episode_identity = record.next_episode_identity
+    neuron._lineage_identity = record.next_lineage_identity
+    neuron._input_identity = record.next_input_identity
+    neuron.processed_event_count = record.processed_event_count
+    neuron.input_contribution_count = record.input_contribution_count
+    neuron._provenance.extend(
+        ProvenanceEntry(
+            entry.causal_event_id,
+            entry.timestamp,
+            entry.signed_contribution,
+            entry.episode_id,
+            entry.lineage_id,
+        )
+        for entry in record.provenance
+    )
+    neuron.provenance_truncated = record.provenance_truncated
+    neuron._unassigned_provenance_count = record.unassigned_provenance_count
+    neuron._unassigned_provenance_truncated = (
+        record.unassigned_provenance_truncated
+    )
+    if record.pending_internal_event is not None:
+        pending = record.pending_internal_event
+        neuron.pending_internal_event = PendingInternalEvent(
+            pending.neuron_id,
+            pending.episode_id,
+            pending.generation,
+            E1InternalEventKind(pending.kind.value),
+            pending.timestamp,
             pending.queue_sequence,
         )
     return neuron
@@ -621,6 +787,7 @@ __all__ = [
     "IR2UnsupportedRuntimeError", "IR2DowngradeError", "IR2Mode", "MPhase",
     "IR2PendingKind", "IR2Edge", "IR2Provenance", "IR2PendingInternal",
     "IR2Event", "IR2Neuron", "TPCNIR2", "neuron_to_ir2", "neuron_from_ir2",
+    "neuron_to_ir2_e2", "neuron_from_ir2_e2",
     "ir2_from_ir1", "downgrade_ir2_to_ir1",
 ]
 

@@ -35,11 +35,19 @@ class E1Mode(str, Enum):
     N = "N"
     S_PENDING = "S_PENDING"
     S_RETURN = "S_RETURN"
+    M_ACTIVE = "M_ACTIVE"
 
 
 class E1InternalEventKind(str, Enum):
     S_EMIT = "S_EMIT"
     S_REARM = "S_REARM"
+    M_EMIT = "M_EMIT"
+    M_REARM = "M_REARM"
+
+
+class MPhase(str, Enum):
+    ARMED = "ARMED"
+    REFRACTORY = "REFRACTORY"
 
 
 class E1OutOfScopeBoundary(RuntimeError):
@@ -52,7 +60,7 @@ class E1EventBudgetExceeded(RuntimeError):
 
 @dataclass(frozen=True, slots=True)
 class E1Config:
-    """Validated finite parameters for the ACP-0004 E1 reference."""
+    """Validated E1 parameters and bounded M settings consumed by E2 only."""
 
     decay_rate: float = 1.0
     x_max: float = 8.0
@@ -61,6 +69,9 @@ class E1Config:
     theta_hold: float = 1.5
     theta_m: float = 4.0
     emission_delay: float = 0.5
+    m_emit_delay: float = 1.0
+    m_rearm_delay: float = 1.0
+    delta_x_e: float = 1.0
     a_min: float = 0.25
     a_max: float = 1.0
     provenance_capacity: int = 16
@@ -74,10 +85,15 @@ class E1Config:
         theta_hold = _positive(self.theta_hold, "theta_hold")
         theta_m = _positive(self.theta_m, "theta_m")
         emission_delay = _positive(self.emission_delay, "emission_delay")
+        m_emit_delay = _positive(self.m_emit_delay, "m_emit_delay")
+        m_rearm_delay = _positive(self.m_rearm_delay, "m_rearm_delay")
+        delta_x_e = _positive(self.delta_x_e, "delta_x_e")
         a_min = _positive(self.a_min, "a_min")
         a_max = _positive(self.a_max, "a_max")
         if not theta_r < theta_e <= theta_hold < theta_m <= x_max:
             raise ValueError("thresholds must satisfy theta_r < theta_e <= theta_hold < theta_m <= x_max")
+        if delta_x_e > x_max:
+            raise ValueError("delta_x_e must not exceed x_max")
         if a_min > a_max:
             raise ValueError("a_min must not exceed a_max")
         if (
@@ -99,6 +115,9 @@ class E1Config:
         object.__setattr__(self, "theta_hold", theta_hold)
         object.__setattr__(self, "theta_m", theta_m)
         object.__setattr__(self, "emission_delay", emission_delay)
+        object.__setattr__(self, "m_emit_delay", m_emit_delay)
+        object.__setattr__(self, "m_rearm_delay", m_rearm_delay)
+        object.__setattr__(self, "delta_x_e", delta_x_e)
         object.__setattr__(self, "a_min", a_min)
         object.__setattr__(self, "a_max", a_max)
 
@@ -256,6 +275,10 @@ class SingleExcursionNeuron:
         return self.pending_internal_event
 
     @property
+    def _active_episode_identity(self) -> int | None:
+        return self.ordinary_episode_id
+
+    @property
     def last_emission(self) -> ExcursionEmission | None:
         return self.emissions[-1] if self.emissions else None
 
@@ -356,16 +379,22 @@ class SingleExcursionNeuron:
         if (
             pending is None
             or self.out_of_scope
+            or event.source != self.neuron_id
             or payload.neuron_id != self.neuron_id
+            or payload.episode_id != self._active_episode_identity
             or payload.episode_id != pending.episode_id
             or payload.generation != pending.generation
             or payload.kind != pending.kind
             or payload.timestamp != pending.timestamp
             or event.timestamp != pending.timestamp
+            or event.sequence != pending.queue_sequence
             or (
-                pending.queue_sequence >= 0
-                and event.sequence >= 0
-                and event.sequence != pending.queue_sequence
+                payload.kind == E1InternalEventKind.M_EMIT
+                and getattr(self, "m_phase", None) != MPhase.ARMED
+            )
+            or (
+                payload.kind == E1InternalEventKind.M_REARM
+                and getattr(self, "m_phase", None) != MPhase.REFRACTORY
             )
         ):
             return None
@@ -373,7 +402,21 @@ class SingleExcursionNeuron:
         self._advance_to(event.timestamp)
         if payload.kind == E1InternalEventKind.S_EMIT:
             return self._emit_ordinary(queue)
-        return self._finish_rearm(queue)
+        if payload.kind == E1InternalEventKind.S_REARM:
+            return self._finish_rearm(queue)
+        return self._handle_m_internal(payload.kind, queue)
+
+    def _handle_m_internal(
+        self,
+        kind: E1InternalEventKind,
+        queue: EventQueue[Event] | None,
+    ) -> ExcursionEmission | None:
+        del queue
+        if self.mode == E1Mode.M_ACTIVE:
+            raise E1OutOfScopeBoundary(
+                f"{kind.value} requires the E2 MultiExcursionNeuron runtime"
+            )
+        return None
 
     def _update_after_external(self, queue: EventQueue[Event] | None) -> None:
         magnitude = abs(self.x)
@@ -478,12 +521,13 @@ class SingleExcursionNeuron:
         timestamp: float,
         queue: EventQueue[Event] | None,
     ) -> None:
-        if self.ordinary_episode_id is None:
-            raise RuntimeError("cannot schedule an E1 event without an ordinary episode")
+        episode_id = self._active_episode_identity
+        if episode_id is None:
+            raise RuntimeError("cannot schedule an internal event without an active episode")
         self._advance_generation()
         candidate = PendingInternalEvent(
             self.neuron_id,
-            self.ordinary_episode_id,
+            episode_id,
             self.generation_token,
             kind,
             timestamp,
@@ -530,7 +574,7 @@ class SingleExcursionNeuron:
         else:
             event_id = f"{event.source}:input:{self._input_identity}"
             self._input_identity += 1
-        active_episode = self.ordinary_episode_id if self.mode != E1Mode.N else None
+        active_episode = self._active_episode_identity if self.mode != E1Mode.N else None
         active_lineage = self.lineage_id if self.mode != E1Mode.N else None
         if active_episode is None:
             self._unassigned_provenance_count += 1
@@ -581,11 +625,281 @@ E1Neuron = SingleExcursionNeuron
 CanonicalExcursionNeuron = SingleExcursionNeuron
 
 
+class MultiExcursionNeuron(SingleExcursionNeuron):
+    """ACP-0004 E2 reference with bounded, event-driven M excursions."""
+
+    def __init__(
+        self,
+        neuron_id: str,
+        *,
+        config: E1Config | None = None,
+        initial_state: Real = 0.0,
+        initial_timestamp: Real = 0.0,
+    ) -> None:
+        super().__init__(
+            neuron_id,
+            config=config,
+            initial_state=initial_state,
+            initial_timestamp=initial_timestamp,
+        )
+        self.m_phase: MPhase | None = None
+        self.multi_episode_id: int | None = None
+
+    @property
+    def _active_episode_identity(self) -> int | None:
+        if self.mode == E1Mode.M_ACTIVE:
+            return self.multi_episode_id
+        return self.ordinary_episode_id
+
+    def reset(self, *, timestamp: Real = 0.0) -> None:
+        super().reset(timestamp=timestamp)
+        self.m_phase = None
+        self.multi_episode_id = None
+
+    def receive_contribution(
+        self,
+        timestamp: Real,
+        contribution: Real,
+        *,
+        source: str = "external",
+        event_id: str | int | None = None,
+        queue: EventQueue[Event] | None = None,
+    ) -> ExcursionEmission | None:
+        if event_id is None:
+            self._require_identity_capacity(self._input_identity, "input")
+        return super().receive_contribution(
+            timestamp,
+            contribution,
+            source=source,
+            event_id=event_id,
+            queue=queue,
+        )
+
+    def _require_identity_capacity(self, current: int, name: str) -> None:
+        if current >= self.config.event_budget:
+            raise E1EventBudgetExceeded(f"E2 {name} identity budget exhausted")
+
+    def _update_after_external(self, queue: EventQueue[Event] | None) -> None:
+        magnitude = abs(self.x)
+        if self.mode == E1Mode.N:
+            if magnitude >= self.config.theta_m:
+                self._admit_multi(queue, preserve_lineage=False)
+            elif magnitude >= self.config.theta_e:
+                self._admit_ordinary(queue)
+            return
+        if self.mode == E1Mode.S_PENDING:
+            self.m_peak = max(self.m_peak, magnitude)
+            if magnitude >= self.config.theta_m:
+                self._cancel_pending()
+                self._admit_multi(queue, preserve_lineage=True)
+            return
+        if self.mode == E1Mode.S_RETURN:
+            self._cancel_pending()
+            if magnitude >= self.config.theta_m:
+                self._admit_multi(queue, preserve_lineage=True)
+            elif magnitude <= self.config.theta_r:
+                self._close_episode()
+            else:
+                self._schedule(
+                    E1InternalEventKind.S_REARM,
+                    self.clock.timestamp + self._rearm_delay(magnitude),
+                    queue,
+                )
+            return
+
+        if self.mode != E1Mode.M_ACTIVE:
+            raise RuntimeError(f"unsupported E2 mode: {self.mode!r}")
+        if self.m_phase not in (MPhase.ARMED, MPhase.REFRACTORY):
+            raise RuntimeError("M_ACTIVE requires a valid M phase")
+        self._cancel_pending()
+        if magnitude <= self.config.theta_hold:
+            if magnitude >= self.config.theta_e:
+                self._finish_m_to_ordinary(queue)
+            else:
+                self._close_episode()
+        else:
+            kind = (
+                E1InternalEventKind.M_EMIT
+                if self.m_phase == MPhase.ARMED
+                else E1InternalEventKind.M_REARM
+            )
+            delay = (
+                self.config.m_emit_delay
+                if kind == E1InternalEventKind.M_EMIT
+                else self.config.m_rearm_delay
+            )
+            self._schedule(kind, self.clock.timestamp + delay, queue)
+
+    def _schedule(
+        self,
+        kind: E1InternalEventKind,
+        timestamp: float,
+        queue: EventQueue[Event] | None,
+    ) -> None:
+        due_time = _finite_real(timestamp, "internal event timestamp")
+        if due_time <= self.clock.timestamp:
+            raise ValueError("E2 internal events require a finite positive logical delay")
+        super()._schedule(kind, due_time, queue)
+
+    def _record_provenance(self, event: Event, contribution: float) -> None:
+        if event.event_id is None and event.sequence < 0:
+            self._require_identity_capacity(self._input_identity, "input")
+        super()._record_provenance(event, contribution)
+
+    def _admit_ordinary(self, queue: EventQueue[Event] | None) -> None:
+        self._require_identity_capacity(self._episode_identity, "episode")
+        self._require_identity_capacity(self._lineage_identity, "lineage")
+        super()._admit_ordinary(queue)
+
+    def _admit_multi(
+        self,
+        queue: EventQueue[Event] | None,
+        *,
+        preserve_lineage: bool,
+    ) -> None:
+        needs_lineage = not preserve_lineage or self.lineage_id is None
+        if needs_lineage:
+            self._require_identity_capacity(self._lineage_identity, "lineage")
+        self._require_identity_capacity(self._episode_identity, "episode")
+        if self.pending_internal_event is not None:
+            self._cancel_pending()
+        if needs_lineage:
+            self._lineage_identity += 1
+            self.lineage_id = self._lineage_identity
+        self._episode_identity += 1
+        self.multi_episode_id = self._episode_identity
+        self.ordinary_episode_id = None
+        self.captured_polarity = None
+        self.m_peak = max(self.m_peak, abs(self.x))
+        if not preserve_lineage:
+            unassigned = tuple(
+                entry for entry in self._provenance if entry.episode_id is None
+            )
+            self._provenance.clear()
+            self._provenance.extend(unassigned)
+            self.provenance_truncated = self._unassigned_provenance_truncated
+        else:
+            self.provenance_truncated = (
+                self.provenance_truncated or self._unassigned_provenance_truncated
+            )
+        self._unassigned_provenance_count = 0
+        self._unassigned_provenance_truncated = False
+        self._reown_provenance(self.multi_episode_id)
+        self.mode = E1Mode.M_ACTIVE
+        self.m_phase = MPhase.ARMED
+        self._schedule(
+            E1InternalEventKind.M_EMIT,
+            self.clock.timestamp + self.config.m_emit_delay,
+            queue,
+        )
+
+    def _handle_m_internal(
+        self,
+        kind: E1InternalEventKind,
+        queue: EventQueue[Event] | None,
+    ) -> ExcursionEmission | None:
+        if self.mode != E1Mode.M_ACTIVE or self.multi_episode_id is None:
+            return None
+        magnitude = abs(self.x)
+        if kind == E1InternalEventKind.M_REARM:
+            if magnitude > self.config.theta_hold:
+                self.m_phase = MPhase.ARMED
+                self._schedule(
+                    E1InternalEventKind.M_EMIT,
+                    self.clock.timestamp + self.config.m_emit_delay,
+                    queue,
+                )
+            elif magnitude >= self.config.theta_e:
+                self._finish_m_to_ordinary(queue)
+            else:
+                self._close_episode()
+            return None
+        if kind != E1InternalEventKind.M_EMIT:
+            return None
+        if magnitude <= self.config.theta_hold:
+            if magnitude >= self.config.theta_e:
+                self._finish_m_to_ordinary(queue)
+            else:
+                self._close_episode()
+            return None
+
+        if self.lineage_id is None:
+            raise RuntimeError("M episode has no causal lineage")
+        self._require_identity_capacity(self._event_identity, "output-event")
+        self._event_identity += 1
+        emission = ExcursionEmission(
+            event_id=f"{self.neuron_id}:excursion:{self._event_identity}",
+            sequence=self._event_identity,
+            source=self.neuron_id,
+            timestamp=self.clock.timestamp,
+            payload=math.copysign(self.config.a_max, self.x),
+            lineage_id=self.lineage_id,
+            episode_id=self.multi_episode_id,
+        )
+        self.emissions.append(emission)
+        remaining = max(self.config.theta_hold, magnitude - self.config.delta_x_e)
+        self.x = math.copysign(remaining, self.x)
+        if remaining <= self.config.theta_hold:
+            self._finish_m_to_ordinary(queue)
+        else:
+            self.m_phase = MPhase.REFRACTORY
+            self._schedule(
+                E1InternalEventKind.M_REARM,
+                self.clock.timestamp + self.config.m_rearm_delay,
+                queue,
+            )
+        return emission
+
+    def _finish_m_to_ordinary(self, queue: EventQueue[Event] | None) -> None:
+        if self.lineage_id is None:
+            raise RuntimeError("M episode has no causal lineage")
+        self._require_identity_capacity(self._episode_identity, "episode")
+        if self.pending_internal_event is not None:
+            self._cancel_pending()
+        self._episode_identity += 1
+        self.ordinary_episode_id = self._episode_identity
+        self.multi_episode_id = None
+        self.m_phase = None
+        self.captured_polarity = 1 if self.x > 0.0 else -1
+        self.m_peak = abs(self.x)
+        self._reown_provenance(self.ordinary_episode_id)
+        self.mode = E1Mode.S_PENDING
+        self._schedule(
+            E1InternalEventKind.S_EMIT,
+            self.clock.timestamp + self.config.emission_delay,
+            queue,
+        )
+
+    def _reown_provenance(self, episode_id: int) -> None:
+        if self.lineage_id is None:
+            raise RuntimeError("cannot assign provenance without a lineage")
+        retained = tuple(
+            replace(entry, episode_id=episode_id, lineage_id=self.lineage_id)
+            for entry in self._provenance
+        )
+        self._provenance.clear()
+        self._provenance.extend(retained)
+
+    def _emit_ordinary(self, queue: EventQueue[Event] | None) -> ExcursionEmission | None:
+        self._require_identity_capacity(self._event_identity, "output-event")
+        return super()._emit_ordinary(queue)
+
+    def _close_episode(self) -> None:
+        was_multi = self.mode == E1Mode.M_ACTIVE
+        super()._close_episode()
+        self.multi_episode_id = None
+        self.m_phase = None
+        if was_multi:
+            self._provenance.clear()
+            self.provenance_truncated = False
+
+
 __all__ = [
     "P_MAX",
     "E1Config",
     "E1Mode",
     "E1InternalEventKind",
+    "MPhase",
     "E1OutOfScopeBoundary",
     "E1EventBudgetExceeded",
     "ProvenanceEntry",
@@ -595,4 +909,5 @@ __all__ = [
     "SingleExcursionNeuron",
     "E1Neuron",
     "CanonicalExcursionNeuron",
+    "MultiExcursionNeuron",
 ]

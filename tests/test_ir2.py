@@ -79,6 +79,7 @@ def test_m_is_schema_valid_but_not_supported_by_e1_runtime() -> None:
     pending = IR2PendingInternal("n", IR2PendingKind.M_EMIT, 1.0, 1, 1)
     record = IR2Neuron(
         "n", mode=IR2Mode.M_ACTIVE, m_phase=MPhase.ARMED, multi_episode_id=1,
+        lineage_id=1, next_episode_identity=1, next_lineage_identity=1,
         pending_internal_event=pending, generation_token=1,
     )
     encoded = TPCNIR2((record,)).to_json()
@@ -95,6 +96,7 @@ def test_m_phase_and_pending_kind_must_agree(phase: MPhase, kind: IR2PendingKind
     with pytest.raises(ValueError, match="inconsistent"):
         IR2Neuron(
             "n", mode=IR2Mode.M_ACTIVE, m_phase=phase, multi_episode_id=1,
+            lineage_id=1, next_episode_identity=1, next_lineage_identity=1,
             generation_token=1,
             pending_internal_event=IR2PendingInternal("n", kind, 1.0, 1, 1),
         )
@@ -104,8 +106,54 @@ def test_m_pending_episode_must_match_multi_episode() -> None:
     with pytest.raises(ValueError, match="ownership"):
         IR2Neuron(
             "n", mode=IR2Mode.M_ACTIVE, m_phase=MPhase.ARMED, multi_episode_id=2,
+            lineage_id=1, next_episode_identity=2, next_lineage_identity=1,
             generation_token=1,
             pending_internal_event=IR2PendingInternal("n", IR2PendingKind.M_EMIT, 1.0, 1, 1),
+        )
+
+
+def test_pending_internal_event_must_be_strictly_future_for_e2_configuration() -> None:
+    with pytest.raises(ValueError, match="strictly future"):
+        IR2Neuron(
+            "n",
+            x=1.0,
+            local_last_update_time=0.5,
+            mode=IR2Mode.S_PENDING,
+            ordinary_episode_id=1,
+            lineage_id=1,
+            captured_polarity=1,
+            generation_token=1,
+            pending_internal_event=IR2PendingInternal(
+                "n", IR2PendingKind.S_EMIT, 0.5, 1, 1
+            ),
+        )
+
+
+def test_m_active_identity_high_water_and_counter_budget_are_validated() -> None:
+    pending = IR2PendingInternal("n", IR2PendingKind.M_EMIT, 1.0, 1, 1)
+    with pytest.raises(ValueError, match="high-water"):
+        IR2Neuron(
+            "n",
+            mode=IR2Mode.M_ACTIVE,
+            m_phase=MPhase.ARMED,
+            multi_episode_id=1,
+            lineage_id=1,
+            pending_internal_event=pending,
+            generation_token=1,
+        )
+    with pytest.raises(ValueError, match="event budget"):
+        IR2Neuron(
+            "n",
+            mode=IR2Mode.M_ACTIVE,
+            m_phase=MPhase.ARMED,
+            multi_episode_id=1,
+            lineage_id=1,
+            next_episode_identity=1,
+            next_lineage_identity=1,
+            next_event_identity=2,
+            pending_internal_event=pending,
+            generation_token=1,
+            event_budget=1,
         )
 
 
