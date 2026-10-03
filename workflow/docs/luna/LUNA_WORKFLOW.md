@@ -28,8 +28,15 @@ excursion-aware transferable E1 state and future M state, but does not execute
 M. Luna-20 implementation and the independent Luna-0 closure are complete.
 The final Luna-0 E2/M dispatch review clarified final residual identity and
 provenance ownership, reset semantics during M, and the separate E2-capable
-IR-2 reconstruction boundary. Luna-21 is authorized for E2 implementation and
-verification but is not executed by this task. ACP-0003 H2, ACP-0002 N3,
+IR-2 reconstruction boundary. Luna-21 implementation was published at
+`bfc866be053f9692382d1be5e048f5b4d280e5f6`, with its completion handoff at
+`5d0171f46b90664b1a6aca5709cc2f07f19b7f4e`. Independent review is
+**BLOCKED — IR-2 RECONSTRUCTION DEFECT**: validated S-state records can have
+identity high-water counters behind active IDs or counters beyond the event
+budget, allowing a reconstructed transition to reuse an episode identity.
+The bounded correction gate is recorded in
+`workflow/handoffs/luna-0-independent-review-ACP-0004-E2-Luna-21-20261003.md`.
+Luna-21 is implemented but not independently closed. ACP-0003 H2, ACP-0002 N3,
 backends, calibration and hardware remain separately gated.
 
 ## Mission
@@ -2484,7 +2491,7 @@ preserving those records below as historical context:
 | Luna-17 | hardware-equivalence / cross-backend hardware acceptance | RESERVED / NOT AUTHORIZED / NO ACTIVE CONTRACT |
 | Luna-18 | ACP-0003 H1 Execution IR and backend interface skeleton | CLOSED / independently verified |
 | Luna-20 | ACP-0005 TPCN-IR-2 excursion execution schema | CLOSED / independently verified |
-| Luna-21 | ACP-0004 E2 multi-excursion return runtime | AUTHORIZED / NOT EXECUTED |
+| Luna-21 | ACP-0004 E2 multi-excursion return runtime | IMPLEMENTED / BLOCKED — IR-2 reconstruction validation correction required |
 
 The former Luna-15 FPGA/VHDL and Luna-16 FPAA assignments remain historical
 workflow planning records and are superseded as current assignments by the

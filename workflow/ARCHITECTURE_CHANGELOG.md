@@ -1,5 +1,53 @@
 # Architecture Changelog
 
+# Luna-0 independent review of Luna-21 ACP-0004 E2 - 2026-10-03
+
+**BLOCKED — IR-2 RECONSTRUCTION DEFECT. LUNA-21 IS IMPLEMENTED BUT NOT
+INDEPENDENTLY CLOSED.**
+
+Review synchronized at `5d0171f46b90664b1a6aca5709cc2f07f19b7f4e` after
+fetching `origin/main`; `HEAD == origin/main`, branch `main`, and the
+pre-review worktree was clean. The authorized start
+`0d26c3d6bd253ce3be1a3877ec5f2fcb0cf62868`, implementation
+`bfc866be053f9692382d1be5e048f5b4d280e5f6`, and completion handoff
+`5d0171f46b90664b1a6aca5709cc2f07f19b7f4e` exist in the stated ancestry.
+
+The runtime review and requested regression commands passed. Independent
+round-trip probes nevertheless showed that an `S_PENDING` IR-2 record with
+`ordinary_episode_id = lineage_id = 2`, `next_episode_identity =
+next_lineage_identity = 1` is accepted and reconstructed; promotion to M then
+allocates `multi_episode_id = 2`, reusing the prior S episode identity. An
+ordinary-mode record with identity counters greater than `event_budget` is
+also accepted; the current counter-budget check is restricted to
+`M_ACTIVE`. An E1-compatible pending record with optional M configuration
+absent and `pending.timestamp == local_last_update_time` also passes schema
+construction and can execute at that same timestamp through the E2 adapter.
+See the independent-review handoff for exact reproductions and test results.
+
+The checked-in REFRACTORY round-trip fixture also drains newly empty queues for
+both runs, so its comparison can be empty-vs-empty and does not prove pending
+M_REARM continuation. Independent direct execution of both restored and
+original pending work matched 13 subsequent outputs, 26 state transitions,
+identity counters, provenance, and final N state; this supports runtime
+continuation but does not cure the fixture/oracle defect.
+
+**Bounded corrective gate:** before closure, update the shared IR-2
+cross-field validation and E2 reconstruction boundary so all execution
+counters are within budget in every supported mode; ordinary active episode
+and lineage identities are covered by their serialized high-water marks;
+and an E2 reconstruction cannot execute a pending internal event at or
+before local time. Preserve valid E1-only `neuron_from_ir2` behavior,
+TPCN-IR-2 schema revision 1, and the explicitly named E2 capability. Replace
+the empty-queue continuation fixture with a bounded regression that actually
+executes reconstructed pending work and compares its trace and final state.
+Re-run focused E2/IR-2, closed E1/IR-2, N2/event-runtime, topology, full CPU,
+compileall, and diff checks. No production correction was made by this review.
+
+A01-A15, ACP-0004 staged status, E1 closure, ACP-0005/TPCN-IR-2 revision 1,
+ACP-0002 N2 closure, Luna-17's reservation, Luna-13F closure, and all
+prohibitions remain unchanged. No successor Luna or architecture expansion is
+authorized. Detailed evidence: `workflow/handoffs/luna-0-independent-review-ACP-0004-E2-Luna-21-20261003.md`.
+
 # Luna-0 ACP-0004 E2/M clarification and Luna-21 authorization - 2026-10-03
 
 **PASS — ACP-0004 E2/M IMPLEMENTATION BOUNDARY CLARIFIED; LUNA-21
