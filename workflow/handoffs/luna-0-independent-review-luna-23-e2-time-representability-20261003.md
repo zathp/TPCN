@@ -11,7 +11,7 @@ tpcn_handoff:
   contract_version: "1.1"
   branch: "main"
   base_revision: "10687cf4a21d75eb5a0552635282f889df1e4005"
-  result_revision: "pending publication"
+  result_revision: "c0e3e6905e329e5c268d6c63cbb3bd8d89345136"
   dependencies:
     - "Luna-23 implementation and completion handoff"
     - "Accepted ACP-0004 E2 semantics and unchanged A01-A15"
@@ -95,6 +95,9 @@ identifier. The valid pre-implementation revision recorded in Luna-23's
 handoff and confirmed as the implementation parent is
 `3ec3c4a7991c28f59e1419c9f3656267efed2875`; the corrected Luna-0 review
 publication is present in its ancestry.
+
+This independent review and governance outcome were first published in
+`c0e3e6905e329e5c268d6c63cbb3bd8d89345136`.
 
 The complete implementation delta from `3ec3c4a` to `4c1efd6` contains only:
 
