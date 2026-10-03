@@ -12,7 +12,7 @@ tpcn_handoff:
   branch: "main"
   starting_revision: "3ec3c4a7991c28f59e1419c9f3656267efed2875"
   implementation_revision: "4c1efd6c31aed86748dcacf596401579c2b94bc8"
-  handoff_publication_revision: "pending; this value will be finalized after initial publication"
+  handoff_publication_revision: "7ce73cb194128f6ecd4a5068f4bbdd72d42b5eea"
   dependencies:
     - "Accepted ACP-0004 E2 / Luna-21"
     - "Luna-0 second independent review of Luna-22"
@@ -36,8 +36,10 @@ tpcn_handoff:
   `F9h8mimKAXJ74YAEM4NsrHja2pxrrFaJyX29rnc7RyLb`, and publication
   reconciliation `188e00bb`; current `main` is the corrected reference commit.
 - Implementation is commit `4c1efd6c31aed86748dcacf596401579c2b94bc8`.
-- Handoff publication revision will be recorded in the final handoff metadata
-  update. The implementation and handoff are intended for Luna-0 verification.
+- The handoff was first published in commit
+  `7ce73cb194128f6ecd4a5068f4bbdd72d42b5eea`; this metadata finalization is
+  published in a subsequent commit. The implementation and handoff are
+  intended for Luna-0 verification.
 
 ## Reproduced values and correction
 
