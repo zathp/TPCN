@@ -160,8 +160,11 @@ Additional scope verdicts:
 - Authorization publication revision: `4013bfb15fe01acf9df6d7de7c0a2e7f50847d8b`.
 - Initial implementation revision: `6fdc363e788c11f9738ffb7dd02f0bc51749aeaa`.
 - Corrective implementation revision: `9b9d97326c8c822dc2608a8237e64fe852296f84`.
-- Handoff publication revision: to be recorded after the separate handoff commit.
-- Final `origin/main`: to be verified and reported after publication.
+- Handoff publication revision: `7ec041fcadaa2015dd2bebf7b7f23ed48e5b745a`
+  (initial separate publication of this corrected evidence; this provenance
+  addendum is committed immediately afterward).
+- Final `origin/main`: verified after the final push; exact tip is included in
+  the terminal publication result.
 
 Corrective-pass final diff audit found only `tpcn/temporal_analysis.py` and
 `tests/test_temporal_analysis.py` changed. The required terminal push check
