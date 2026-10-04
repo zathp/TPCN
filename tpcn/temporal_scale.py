@@ -1,4 +1,8 @@
-"""Luna-12L four-class scale and energy/prediction evidence collector."""
+"""Luna-12L four-class scale and energy/prediction evidence collector.
+
+HISTORICAL COMPATIBILITY EXPERIMENT; NOT CURRENT EXCURSION_V1 / ACP-0007
+EFFICACY EVIDENCE.
+"""
 
 from __future__ import annotations
 
@@ -101,6 +105,7 @@ def _classification_metrics(policy: Policy, seed: int, scale: ScaleConfig) -> di
         prediction_capacity=max_points,
         max_classes=4,
         seed=seed,
+        neuron_model="TANH_LEGACY",
         structural_plasticity=policy != "fixed",
         structural_policy=policy,
         topology_edge_capacity=scale.edge_capacity,

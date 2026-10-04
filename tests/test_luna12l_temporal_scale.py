@@ -1,9 +1,18 @@
+"""HISTORICAL COMPATIBILITY EXPERIMENT; NOT CURRENT EXCURSION_V1 / ACP-0007 EFFICACY EVIDENCE."""
+
 from dataclasses import asdict, replace
+from typing import Literal
 
 import pytest
 
 from tpcn.experiments import ExperimentConfig, evaluate
-from tpcn.spiral_benchmark import generate_traversal_pair, make_spiral_dataset
+from tpcn.spiral_benchmark import (
+    ControlResult,
+    generate_traversal_pair,
+    make_spiral_dataset,
+    run_policy_control,
+)
+import tpcn.spiral_benchmark as spiral_benchmark
 import tpcn.temporal_scale as temporal_scale
 from tpcn.temporal_scale import CLASS_LABELS, POLICIES, SCALES, run_luna12l_condition, run_luna12l_suite
 
@@ -46,11 +55,32 @@ def test_scale_runner_retains_all_policies_and_causal_evidence() -> None:
 
 
 @pytest.mark.parametrize("policy", POLICIES)
-def test_requested_policy_is_executed_by_classifier(policy: str) -> None:
+def test_requested_policy_is_executed_by_classifier(
+    policy: str, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    configs: list[ExperimentConfig] = []
+
+    def record_config(
+        dataset: spiral_benchmark.SpiralDataset,
+        *,
+        policy: str,
+        config: ExperimentConfig,
+        order_transform: Literal["ordered", "reverse"] = "ordered",
+    ) -> ControlResult:
+        configs.append(config)
+        return run_policy_control(
+            dataset, policy=policy, config=config, order_transform=order_transform
+        )
+
+    monkeypatch.setattr(temporal_scale, "run_policy_control", record_config)
     result = run_luna12l_condition(policy, seed=0, scale=SCALES[0])
     assert result.requested_policy == policy
     assert result.executed_policy == policy
     assert result.classifier_config_digest
+    assert len(configs) == 2
+    assert all(config.neuron_model == "TANH_LEGACY" for config in configs)
+    assert all(config.structural_policy == policy for config in configs)
+    assert all(config.structural_plasticity is (policy != "fixed") for config in configs)
 
 
 def test_policy_changes_classifier_execution_state() -> None:

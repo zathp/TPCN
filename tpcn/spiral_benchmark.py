@@ -3,6 +3,9 @@
 The generator owns only external workload data. Labels and generator metadata
 never enter the canonical event stream; callers pass ``points`` to the
 existing experiment runner and use ``label`` only for readout supervision.
+
+The historical ``run_controls`` family is a HISTORICAL COMPATIBILITY
+EXPERIMENT, NOT CURRENT EXCURSION_V1 / ACP-0007 EFFICACY EVIDENCE.
 """
 
 from __future__ import annotations
@@ -326,7 +329,7 @@ def _control(name: str, examples: tuple[SpiralExample, ...], config: ExperimentC
 def run_controls(dataset: SpiralDataset, *, epochs: int = 20, max_points: int | None = None) -> tuple[ControlResult, ...]:
     point_limit = max_points or max(len(item.points) for item in dataset.train + dataset.evaluation)
     base = dict(epochs=epochs, max_points=point_limit, prediction_capacity=point_limit,
-                max_classes=4, seed=17)
+                max_classes=4, seed=17, neuron_model="TANH_LEGACY")
     no_learning = _control("no-learning", dataset.evaluation, ExperimentConfig(**base, learning_enabled=False))
     fixed = _control("fixed-topology", dataset.evaluation, ExperimentConfig(**base), train=dataset.train)
     plastic = _control("structural-plasticity", dataset.evaluation,

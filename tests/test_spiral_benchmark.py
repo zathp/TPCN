@@ -1,8 +1,15 @@
-from dataclasses import replace
+"""HISTORICAL COMPATIBILITY EXPERIMENT; NOT CURRENT EXCURSION_V1 / ACP-0007 EFFICACY EVIDENCE."""
 
+from dataclasses import replace
+from typing import Literal
+
+import pytest
 from tpcn.experiments import ExperimentConfig, evaluate
+import tpcn.spiral_benchmark as spiral_benchmark
 from tpcn.spiral_benchmark import (
+    ControlResult,
     SpiralConfig,
+    SpiralExample,
     generate_matched_pair,
     generate_spiral,
     make_spiral_dataset,
@@ -76,10 +83,29 @@ def test_labels_do_not_change_neural_trace_for_identical_spiral_streams() -> Non
     assert first.metrics.prediction_loss == second.metrics.prediction_loss
 
 
-def test_control_results_are_deterministic_and_include_required_order_controls() -> None:
+def test_control_results_are_deterministic_and_include_required_order_controls(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
     config = SpiralConfig(min_points=6, max_points=6, min_duration=60.0, max_duration=60.0)
     dataset = make_spiral_dataset(examples_per_class=2, train_seed=300, evaluation_seed=400, config=config)
 
+    captured: list[tuple[str, ExperimentConfig]] = []
+    original_control = spiral_benchmark._control
+
+    def record_config(
+        name: str,
+        examples: tuple[SpiralExample, ...],
+        experiment_config: ExperimentConfig,
+        *,
+        train: tuple[SpiralExample, ...] = (),
+        transform: Literal["ordered", "shuffle", "reverse"] = "ordered",
+    ) -> ControlResult:
+        captured.append((name, experiment_config))
+        return original_control(
+            name, examples, experiment_config, train=train, transform=transform
+        )
+
+    monkeypatch.setattr(spiral_benchmark, "_control", record_config)
     first = run_controls(dataset, epochs=1)
     second = run_controls(dataset, epochs=1)
 
@@ -91,3 +117,10 @@ def test_control_results_are_deterministic_and_include_required_order_controls()
         "same-class-nuisance-pair", "opposite-handed-matched-pair",
     }
     assert all(0.0 <= result.accuracy <= 1.0 for result in first)
+    assert len(captured) == 2 * len(first)
+    assert all(config.neuron_model == "TANH_LEGACY" for _, config in captured)
+    assert {name for name, _ in captured[:len(first)]} == {result.name.split(" (")[0] for result in first}
+    assert all(
+        first_config == second_config
+        for (_, first_config), (_, second_config) in zip(captured[:len(first)], captured[len(first):])
+    )
