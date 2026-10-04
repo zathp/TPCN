@@ -658,7 +658,16 @@ class ExcursionCharacterRuntime:
         elif attribution.status in ("unmatched", "expired"):
             self._unmatched_credit += 1
         self._meter_observe_error(payload, event.timestamp)
-        forwarded = self.topology.route(event, self._queue())
+        forwarding_event = Event(
+            event.timestamp,
+            event.destination,
+            event.destination,
+            event.event_type,
+            payload,
+            event_id=event.event_id,
+            lineage_id=event.lineage_id,
+        )
+        forwarded = self.topology.route(forwarding_event, self._queue())
         for routed in forwarded:
             self._attach(
                 routed,

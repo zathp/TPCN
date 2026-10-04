@@ -5,9 +5,12 @@ import math
 import pytest
 
 from tpcn.canonical_neuron import TPCNNeuron
-from tpcn.event_runtime import EventQueue, EventType, QueueCapacityError
+from tpcn.event_runtime import Event, EventQueue, EventType, QueueCapacityError
 from tpcn.excursion_neuron import E1Config, MultiExcursionNeuron
-from tpcn.experiment_excursion_runtime import ExcursionCharacterRuntime
+from tpcn.experiment_excursion_runtime import (
+    ExcursionCharacterResult,
+    ExcursionCharacterRuntime,
+)
 from tpcn.experiments import ExperimentConfig, ExperimentRunner, make_synthetic_workload
 from tpcn.ir2 import (
     IR2Edge,
@@ -19,7 +22,12 @@ from tpcn.ir2 import (
     TPCNIR2,
     neuron_to_ir2_e2,
 )
-from tpcn.topology import BoundedTopology
+from tpcn.predictive_coding import (
+    PREDICTION_ERROR_EVENT,
+    Prediction,
+    PredictionError,
+)
+from tpcn.topology import BoundedTopology, Edge
 
 
 def _runtime(
@@ -29,16 +37,16 @@ def _runtime(
     queue_capacity: int = 16,
     event_budget: int = 64,
     settling_horizon: float = 4.0,
-    edges: tuple[tuple[str, str, float], ...] = (),
+    nodes: tuple[str, ...] = ("n0", "n1"),
+    edges: tuple[Edge | tuple[str, str, float], ...] = (),
 ) -> ExcursionCharacterRuntime:
-    nodes = ("n0", "n1")
     topology = BoundedTopology.from_edges(
         nodes,
         edges,
         fan_in_limit=2,
         fan_out_limit=2,
-        edge_capacity=4,
-        routing_capacity=4,
+        edge_capacity=max(4, len(edges)),
+        routing_capacity=max(4, len(edges)),
     )
     neurons = tuple(
         MultiExcursionNeuron(
@@ -177,6 +185,288 @@ def test_integrated_delayed_prediction_error() -> None:
     assert result.prediction_loss > 0.0
     assert len(errors) == 1
     assert errors[0].observation_timestamp == 1.0
+
+
+def _run_matched_error(
+    monkeypatch: pytest.MonkeyPatch,
+    *,
+    nodes: tuple[str, ...],
+    edges: tuple[Edge | tuple[str, str, float], ...],
+    queue_capacity: int = 16,
+) -> tuple[
+    ExcursionCharacterRuntime,
+    ExcursionCharacterResult,
+    list[Prediction],
+    dict[str, list[Event]],
+    list[tuple[str, Event]],
+]:
+    runtime = _runtime(
+        nodes=nodes,
+        edges=edges,
+        queue_capacity=queue_capacity,
+        event_budget=128,
+    )
+    _start(runtime)
+    assert runtime._predictor is not None
+    predictions: list[Prediction] = []
+    create_prediction = runtime._predictor.create_prediction
+
+    def record_prediction(
+        target_key: str,
+        predicted_value: float,
+        *,
+        timestamp: float | None = None,
+        expected_resolution_at: float | None = None,
+        expires_at: float | None = None,
+    ) -> Prediction:
+        prediction = create_prediction(
+            target_key,
+            predicted_value,
+            timestamp=timestamp,
+            expected_resolution_at=expected_resolution_at,
+            expires_at=expires_at,
+        )
+        predictions.append(prediction)
+        return prediction
+
+    monkeypatch.setattr(runtime._predictor, "create_prediction", record_prediction)
+    applied_errors: dict[str, list[Event]] = {node: [] for node in nodes}
+    for node, ledger in runtime._ledgers.items():
+        apply_signal = ledger.apply_signal
+
+        def record_error(event, *, node=node, apply_signal=apply_signal):
+            if isinstance(event.payload, PredictionError):
+                applied_errors[node].append(event)
+            return apply_signal(event)
+
+        monkeypatch.setattr(ledger, "apply_signal", record_error)
+
+    neuron_errors: list[tuple[str, Event]] = []
+    for neuron in runtime.neurons:
+        receive_event = neuron.receive_event
+
+        def record_neuron_event(event, queue, *, node=neuron.neuron_id, receive_event=receive_event):
+            if event.event_type == PREDICTION_ERROR_EVENT:
+                neuron_errors.append((node, event))
+            return receive_event(event, queue)
+
+        monkeypatch.setattr(neuron, "receive_event", record_neuron_event)
+
+    runtime.admit_external_batch(((0.0, 1.2),))
+    runtime.admit_external_batch(((1.0, 0.4),))
+    result = _end(runtime, last_timestamp=1.0)
+    return runtime, result, predictions, applied_errors, neuron_errors
+
+
+def _prediction_error_rows(result):
+    return [row for row in result.trace if row[3] == PREDICTION_ERROR_EVENT]
+
+
+def test_integrated_prediction_error_routes_one_hop_without_reverse_delivery(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    _, result, predictions, applied, neuron_errors = _run_matched_error(
+        monkeypatch,
+        nodes=("n0", "n1", "n2"),
+        edges=(
+            Edge("n0", "n1", 0.25, edge_weight=1.7, divider_strength=0.2, reference=0.9),
+            Edge("n2", "n1", 0.1),
+        ),
+    )
+
+    rows = _prediction_error_rows(result)
+    assert len(predictions) == 1
+    assert predictions[0].predicted_value == pytest.approx(0.3)
+    assert predictions[0].created_at == pytest.approx(0.5)
+    assert [(row[1], row[2], row[0]) for row in rows] == [
+        ("n0", "n0", 1.0),
+        ("n0", "n1", 1.25),
+    ]
+    assert [len(applied[node]) for node in ("n0", "n1", "n2")] == [1, 1, 0]
+    assert not neuron_errors
+
+    local_error = rows[0][4]
+    assert isinstance(local_error, PredictionError)
+    assert local_error.error == pytest.approx(0.1)
+    assert local_error.predicted_value == predictions[0].predicted_value
+    assert local_error.observed_value == 0.4
+    assert local_error.prediction_timestamp == predictions[0].created_at
+    assert local_error.observation_timestamp == 1.0
+    for row in rows:
+        assert row[4] == local_error
+        assert row[6] == predictions[0].prediction_id == local_error.prediction_id
+        assert row[7] == rows[0][7]
+        assert row[5] >= 0
+    assert rows[0][5] != rows[1][5]
+    assert rows[0][8] == rows[1][8]
+    assert rows[0][11] is rows[1][11] is False
+
+
+def test_integrated_prediction_error_routes_two_hops_with_cumulative_delay(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    _, result, predictions, applied, neuron_errors = _run_matched_error(
+        monkeypatch,
+        nodes=("n0", "n1", "n2", "n3"),
+        edges=(
+            Edge("n0", "n1", 0.25, edge_weight=-1.5, divider_strength=0.1, reference=-0.8),
+            Edge("n1", "n2", 0.4, edge_weight=2.0, divider_strength=0.7, reference=0.6),
+            Edge("n3", "n1", 0.1),
+        ),
+    )
+
+    rows = _prediction_error_rows(result)
+    assert len(predictions) == 1
+    assert [(row[1], row[2], row[0]) for row in rows] == [
+        ("n0", "n0", 1.0),
+        ("n0", "n1", 1.25),
+        ("n1", "n2", 1.65),
+    ]
+    assert [row[9] for row in rows] == [0, 1, 2]
+    assert [row[10] for row in rows] == [
+        ("n0",),
+        ("n0", "n1"),
+        ("n0", "n1", "n2"),
+    ]
+    assert [len(applied[node]) for node in ("n0", "n1", "n2", "n3")] == [1, 1, 1, 0]
+    assert not neuron_errors
+
+    local_error = rows[0][4]
+    assert isinstance(local_error, PredictionError)
+    assert local_error.prediction_id == predictions[0].prediction_id
+    assert local_error.error == pytest.approx(0.1)
+    assert local_error.predicted_value == pytest.approx(0.3)
+    assert local_error.observed_value == 0.4
+    assert local_error.prediction_timestamp == 0.5
+    assert local_error.observation_timestamp == 1.0
+    assert local_error.observation_source == "char"
+    assert all(row[4] == local_error for row in rows)
+    assert all(row[6] == local_error.prediction_id for row in rows)
+    assert all(row[7] == rows[0][7] for row in rows)
+    assert all(row[8] == rows[0][8] for row in rows)
+    assert [event.payload for node in ("n0", "n1", "n2") for event in applied[node]] == [
+        local_error,
+        local_error,
+        local_error,
+    ]
+
+
+def test_integrated_prediction_error_convergent_paths_apply_and_forward_once(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    def run_once():
+        return _run_matched_error(
+            monkeypatch,
+            nodes=("n0", "n1", "n2", "n3", "n4", "n5"),
+            edges=(
+                ("n0", "n1", 0.25),
+                ("n0", "n2", 0.25),
+                ("n1", "n3", 0.4),
+                ("n2", "n3", 0.4),
+                ("n3", "n4", 0.3),
+                ("n5", "n1", 0.2),
+            ),
+        )
+
+    first_runtime, first_result, _, first_applied, first_neuron_errors = run_once()
+    second_runtime, second_result, _, second_applied, second_neuron_errors = run_once()
+    first_rows = _prediction_error_rows(first_result)
+    second_rows = _prediction_error_rows(second_result)
+    transcript = lambda rows: [
+        (row[0], row[1], row[2], row[5], row[6], row[7], row[9], row[10])
+        for row in rows
+    ]
+
+    assert transcript(first_rows) == transcript(second_rows)
+    assert [
+        (row[1], row[2], row[0], row[10])
+        for row in first_rows
+    ] == [
+        ("n0", "n0", 1.0, ("n0",)),
+        ("n0", "n1", 1.25, ("n0", "n1")),
+        ("n0", "n2", 1.25, ("n0", "n2")),
+        ("n1", "n3", 1.65, ("n0", "n1", "n3")),
+        ("n2", "n3", 1.65, ("n0", "n2", "n3")),
+        ("n3", "n4", 1.95, ("n0", "n1", "n3", "n4")),
+    ]
+    assert [len(first_applied[node]) for node in first_runtime.by_id] == [1, 1, 1, 1, 1, 0]
+    assert [len(second_applied[node]) for node in second_runtime.by_id] == [1, 1, 1, 1, 1, 0]
+    assert not first_neuron_errors
+    assert not second_neuron_errors
+    assert sum(row[2] == "n3" for row in first_rows) == 2
+    assert sum(row[2] == "n4" for row in first_rows) == 1
+    assert first_rows[3][10] == ("n0", "n1", "n3")
+    assert first_runtime._delivered_errors == second_runtime._delivered_errors == set()
+
+
+def test_integrated_prediction_error_cycle_terminates_at_duplicate_destination(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    _, result, _, applied, neuron_errors = _run_matched_error(
+        monkeypatch,
+        nodes=("n0", "n1"),
+        edges=(("n0", "n1", 0.25), ("n1", "n0", 0.4)),
+    )
+
+    rows = _prediction_error_rows(result)
+    assert [(row[1], row[2]) for row in rows] == [
+        ("n0", "n0"),
+        ("n0", "n1"),
+        ("n1", "n0"),
+    ]
+    assert [len(applied[node]) for node in ("n0", "n1")] == [1, 1]
+    assert not neuron_errors
+    assert len(rows) == 3
+
+
+def test_integrated_prediction_error_delivery_guard_resets_between_characters(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    runtime, first_result, first_predictions, _, _ = _run_matched_error(
+        monkeypatch,
+        nodes=("n0", "n1"),
+        edges=(("n0", "n1", 0.25),),
+    )
+    first_error = _prediction_error_rows(first_result)[0][4]
+    assert isinstance(first_error, PredictionError)
+    assert first_predictions[0].prediction_id == first_error.prediction_id
+    assert runtime._delivered_errors == set()
+
+    _start(runtime, "char")
+    runtime.admit_external_batch(((0.0, 1.2),))
+    runtime.admit_external_batch(((1.0, 0.4),))
+    second_result = _end(runtime, last_timestamp=1.0)
+    second_rows = _prediction_error_rows(second_result)
+
+    assert [(row[1], row[2]) for row in second_rows] == [("n0", "n0"), ("n0", "n1")]
+    assert second_rows[0][4] == first_error
+    assert second_rows[1][4] == first_error
+    assert runtime._delivered_errors == set()
+
+
+def test_integrated_prediction_error_fanout_capacity_failure_is_atomic(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    runtime = _runtime(
+        nodes=("n0", "n1", "n2"),
+        edges=(("n0", "n1", 0.25), ("n0", "n2", 0.4)),
+        queue_capacity=2,
+        event_budget=128,
+    )
+    _start(runtime)
+    runtime.admit_external_batch(((0.0, 1.2),))
+
+    with pytest.raises(QueueCapacityError, match="complete fan-out"):
+        runtime.admit_external_batch(((1.0, 0.4),))
+
+    assert runtime.queue is not None
+    assert len(runtime.queue) == 1
+    assert runtime.queue.peek() is not None
+    assert runtime.queue.peek().destination == "n0"
+    assert not any(
+        row[3] == PREDICTION_ERROR_EVENT and row[1] != "n0"
+        for row in runtime._trace
+    )
 
 
 def test_integrated_delayed_credit() -> None:
