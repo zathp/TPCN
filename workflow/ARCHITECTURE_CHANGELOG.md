@@ -1,5 +1,55 @@
 # Architecture Changelog
 
+# Luna-0 independent review of Luna-25 dataset evidence - 2026-10-03
+
+**PASS — LUNA-25 `luna25-v1` DATASET/SPLIT/RESULT REPRODUCIBILITY EVIDENCE
+INDEPENDENTLY VERIFIED / CLOSED.** Review began at published revision
+`425180bfb2b02691cf64f392f071795cc812cd72`, clean `main == origin/main`.
+The verified lineage is authorization/publication
+`7e174de664bc116db77aad89c8bed08ca750bcd3`, implementation/evidence
+`5cb17d9bb79c848c27805cb79484d9ab3cd0f5b8`, and separate Luna-25 handoff
+publication `425180bfb2b02691cf64f392f071795cc812cd72`.
+
+An independent UCI retrieval reproduced the archive/source SHA-256 values,
+2,858-record/20-class MATLAB schema and exact published `luna25-v1` split
+membership/ranks. Two fresh benchmark runs matched the published stable
+output digest `236835bf31c001ff520ef9389674e969435c63fb7038fd6f0797292cdefa69cc`
+and training replay digest
+`441184878990df3a61fba67b72ea996b917650e19166cd2d0360e1c909ca39b6`.
+Independent confusion, per-class and macro metric recomputation matched the
+reports. Instrumented prediction creations matched reported emissions and
+expiry for train post-training evaluation, validation and test (138, 67 and
+63 respectively); all matched counts and prediction errors were zero. Source
+point, event, settling, queue/topology and energy-proxy arithmetic reconciled.
+Counterfactual-label and differing-future-suffix probes found no pre-readout
+label or unadmitted-future effect. Labels do select post-readout
+reward/utility accounting; validation/test use `update=False` and do not
+update prototypes.
+
+The original Luna-22 subset remains unreconstructable; aggregate accuracy
+equality does not establish the old membership or preprocessing. The retrieved
+MAT metadata contains no writer/subject identity, so writer-disjointness is
+not claimed. Luna-25 closes reproducibility for the new baseline only; zero
+matched predictions/errors and zero matched credit do not establish
+predictive efficacy or useful delayed-credit learning.
+
+Validation: Luna-25 focused **7 passed**; prescribed ACP-0006 regression
+**334 passed**; full CPU suite **24 failed, 796 passed, 1 skipped**;
+collection **821**. All 24 failures remain in the previously classified
+downstream visualization, structural/default-model, legacy-observable,
+temporal-analysis and viewer groups; no Luna-25 test failed. No consumer
+migration was performed. The consumer-specific decision matrix and detailed
+evidence are in
+`workflow/handoffs/luna-0-independent-review-luna-25-dataset-evidence-20261003.md`.
+
+**GOVERNANCE:** Luna-25 is **CLOSED / INDEPENDENTLY VERIFIED** for
+`luna25-v1` evidence. Luna-22 remains **BLOCKED / NOT CLOSED**: historical
+split reconstruction is not possible, downstream compatibility remains
+unresolved, and predictive/error/delayed-credit integration efficacy is not
+demonstrated. Luna-23 and Luna-24 remain closed. No A01-A15, ACP-0006 or
+hardware contract changed. No successor consumer implementation is assigned
+until the project owner/Luna-0 chooses a specific compatibility contract.
+
 # Luna-0 independent review of Luna-24 - 2026-10-03
 
 **PASS — LUNA-24 ACP-0006 IR-2 QUIESCENT PROVENANCE BOUNDARY

@@ -2507,7 +2507,7 @@ preserving those records below as historical context:
 | Luna-22 | ACP-0006 first CPU software-reference excursion integration | IMPLEMENTED / SECOND INDEPENDENT REVIEW BLOCKED |
 | Luna-23 | ACP-0004 E2 positive-delay logical-time representability correction | CLOSED / INDEPENDENTLY VERIFIED |
 | Luna-24 | ACP-0006 integrated IR-2 residual-provenance boundary correction | CLOSED / INDEPENDENTLY VERIFIED |
-| Luna-25 | ACP-0006 sequential dataset evidence reproducibility | AUTHORIZED / NOT EXECUTED |
+| Luna-25 | ACP-0006 sequential dataset evidence reproducibility | CLOSED / INDEPENDENTLY VERIFIED (`luna25-v1` only) |
 
 Luna-19, Luna-20 and Luna-21 are closed component implementations; this does
 not itself establish experiment-path integration. **OBSERVED:** the ordinary
@@ -2560,27 +2560,39 @@ changes A01-A15, ACP-0004, ACP-0006 or IR-2 schema revision 1, and neither
 authorizes visualization, structural-plasticity, dataset or benchmark-consumer
 migrations.
 
-Luna-22 remains **BLOCKED / NOT CLOSED**. The repository-reproducible
-sequential-dataset/split/per-class evidence gate remains unresolved, as do
-consumer-specific compatibility decisions for the 24 existing downstream
-failures. These are separate kinds of work; no broad test-green or downstream
-migration task is authorized by Luna-24's closure. Luna-0 must perform a fresh
-integration review after the evidence and separately governed consumer work.
+Luna-22 remains **BLOCKED / NOT CLOSED**. Luna-25 has closed the
+repository-reproducible sequential dataset/split/per-class evidence gate for
+the new `luna25-v1` baseline; it did not reconstruct the historical Luna-22
+split. Consumer-specific compatibility decisions for the 24 downstream
+failures remain unresolved. In addition, Luna-25 observed zero matched
+predictions, prediction errors and matched delayed-credit outcomes, so it does
+not establish predictive efficacy or complete the broader ACP-0006 integration
+criteria. These are separate kinds of work; no broad test-green or downstream
+migration task is authorized by Luna-24 or Luna-25 closure. Luna-0 must perform
+a fresh integration review after separately governed consumer work and the
+remaining applicable acceptance evidence.
 
-Luna-25 is **AUTHORIZED / NOT EXECUTED** for a retained, deterministic UCI
+The original Luna-25 authorization was for a retained, deterministic UCI
 Character Trajectories loader/split/report under the unchanged ACP-0006
-`EXCURSION_V1` path. Its contract is
+`EXCURSION_V1` path. Its contract was
 `.github/agents/luna-25.agent.md`; the authorization handoff is
 `workflow/handoffs/luna-0-authorization-luna-25-dataset-evidence-20261003.md`.
-It must establish whether the previously reported split can be reconstructed;
-any replacement split is separately versioned and must not be called a
-reproduction of the old run. This authorization does not resolve the dataset
-gate until evidence is run and independently reviewed.
+The published implementation/evidence and completion handoff are
+`5cb17d9bb79c848c27805cb79484d9ab3cd0f5b8` and
+`425180bfb2b02691cf64f392f071795cc812cd72`. The subsequent independent review
+closed the dataset evidence gate specifically for `luna25-v1`; it found that
+the old split is not reconstructable and did not call the new split a
+reproduction. The review is recorded in
+`workflow/handoffs/luna-0-independent-review-luna-25-dataset-evidence-20261003.md`.
 
-The 24 downstream failures remain a separate governance track. No blanket
-consumer migration is authorized; visualization, structural experiments,
-legacy observables, temporal/spiral analysis and the 3D viewer require
-consumer-specific intent and scoped review before implementation.
+The 24 downstream failures remain a separate governance track. The independent
+review reran the full suite with 24 failures, 796 passes, one CUDA-unavailable
+skip and 821 collected tests; all failures remain in previously classified
+consumer groups. No blanket consumer migration is authorized; visualization,
+structural experiments, legacy observables, temporal/spiral analysis and the
+3D viewer require consumer-specific intent and scoped review before
+implementation. The Luna-25 review assigns no successor implementation because
+these groups require distinct decisions.
 
 The original acceptance and dispatch decision is in
 `workflow/handoffs/luna-0-acp-0006-acceptance-luna-22-authorization-20261003.md`;
