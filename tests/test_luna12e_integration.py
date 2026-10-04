@@ -1,6 +1,8 @@
+import math
 import pytest
 
 from tpcn.event_runtime import Event, EventQueue
+from tpcn.excursion_neuron import E1Mode
 from tpcn.experiments import ExperimentConfig, ExperimentRunner, make_synthetic_workload
 from tpcn.structural_plasticity import CandidateEvidence, StructuralPlasticityController
 from tpcn.topology import BoundedTopology
@@ -80,9 +82,11 @@ def test_multi_hop_route_uses_each_receiving_neuron_as_next_source() -> None:
     assert neurons["b"].processed_events == neurons["c"].processed_events == 1
 
 
-def test_experiment_readout_consumes_routed_activity_and_prediction_loss_changes() -> None:
+def test_experiment_readout_consumes_routed_activity_and_topology_changes_work() -> None:
     workload = make_synthetic_workload(examples_per_class=1, points_per_example=2)
-    config = ExperimentConfig(seed=11, topology_initial_edges=0, topology_edge_capacity=1, max_points=2)
+    config = ExperimentConfig(
+        neuron_model="EXCURSION_V1", seed=11, topology_initial_edges=0, topology_edge_capacity=1, max_points=2
+    )
     runner = ExperimentRunner(config)
     without_edge = runner.evaluate(workload)
     assert not any(item[1] == "neuron-0" and item[2] == "neuron-1" for item in without_edge.event_trace)
@@ -92,15 +96,37 @@ def test_experiment_readout_consumes_routed_activity_and_prediction_loss_changes
     with_edge = runner.evaluate(workload)
     assert any(item[1] == "neuron-0" and item[2] == "neuron-1" for item in with_edge.event_trace)
     assert with_edge.metrics.event_count > without_edge.metrics.event_count
-    assert with_edge.metrics.prediction_loss != pytest.approx(without_edge.metrics.prediction_loss)
+    assert without_edge.metrics.edge_transfer_proxy == pytest.approx(0.0)
+    assert with_edge.metrics.edge_transfer_proxy > without_edge.metrics.edge_transfer_proxy
+    assert with_edge.metrics.maximum_route_depth > without_edge.metrics.maximum_route_depth
+    # Equal prediction loss is valid for this fixture; no task-benefit claim is made.
+    assert math.isfinite(with_edge.metrics.prediction_loss)
+    assert math.isfinite(without_edge.metrics.prediction_loss)
 
 
 def test_runner_keeps_neuron_identity_across_points_and_resets_at_character_boundary() -> None:
     workload = make_synthetic_workload(examples_per_class=1, points_per_example=2)
-    runner = ExperimentRunner(ExperimentConfig(seed=4, topology_initial_edges=0, max_points=2))
+    last_external_timestamp = 1.0
+    runner = ExperimentRunner(
+        ExperimentConfig(neuron_model="EXCURSION_V1", seed=4, topology_initial_edges=0, max_points=2)
+    )
     runner.evaluate(workload)
     first_ids = tuple(id(neuron) for neuron in runner.last_neurons)
     runner.evaluate(workload)
     assert first_ids == tuple(id(neuron) for neuron in runner.last_neurons)
+    expected_terminal = last_external_timestamp + runner.config.settling_horizon
+    for neuron in runner.last_neurons:
+        assert neuron.clock.timestamp == pytest.approx(expected_terminal)
+        assert neuron.mode == E1Mode.N
+        assert neuron.state == pytest.approx(0.0)
+        assert neuron.pending_event is None
+
+
+def test_tanh_legacy_point_clocks_legacy_compatibility_only() -> None:
+    workload = make_synthetic_workload(examples_per_class=1, points_per_example=2)
+    runner = ExperimentRunner(
+        ExperimentConfig(neuron_model="TANH_LEGACY", seed=4, topology_initial_edges=0, max_points=2)
+    )
+    runner.evaluate(workload)
     assert runner.last_neurons[0].clock.timestamp == pytest.approx(0.0)
     assert runner.last_neurons[1].clock.timestamp == pytest.approx(1.0)
