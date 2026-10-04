@@ -11,7 +11,7 @@ tpcn_handoff:
   contract_version: "TPCV-1 preserved; TPCV-2 CPU instantaneous observation"
   branch: "main"
   base_revision: "50230a30e9d1372891d9665f9b4a0d09ccd5d817"
-  result_revision: "Exact publication revision will be pinned by the immediate follow-up governance commit."
+  result_revision: "c20445e7d9c893eb77d4652a4b26afd393fc8c05"
   dependencies:
     - "Luna-27 authorization at 10b9bfa09c949576099a220c2f507d939c01c337"
     - "Luna-27 implementation at 3bb8edc9346f7c2ec80112058d6e97b64f75bd11"
@@ -98,7 +98,7 @@ no ACP and no A01-A15 text change are required.
 | Authorization revision | `10b9bfa09c949576099a220c2f507d939c01c337` | Luna-27 authorization baseline |
 | Implementation revision | `3bb8edc9346f7c2ec80112058d6e97b64f75bd11` | `feat: add TPCV-2 excursion snapshot support` |
 | Completion-handoff publication revision | `50230a30e9d1372891d9665f9b4a0d09ccd5d817` | `docs: record Luna-27 TPCV-2 verification` |
-| Review publication revision | Initial review handoff publication commit; exact revision will be pinned by the immediate follow-up governance commit. | Independent closure publication |
+| Review publication revision | `c20445e7d9c893eb77d4652a4b26afd393fc8c05` | Initial independent closure publication; this exact revision is pinned by a documentation-only follow-up |
 
 **Exact six-file scope verified** for the implementation delta from
 `10b9bfa09c949576099a220c2f507d939c01c337` through
