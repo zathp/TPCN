@@ -132,13 +132,13 @@ readiness after the correction.
 
 ## Luna-0 corrective authorization — route-path no-revisit
 
-The independent review published at
+The first independent review published at
 `workflow/handoffs/luna-0-independent-review-luna-26-prediction-error-routing-20261003.md`
 found that the cycle `n0 -> n1 -> n0` enqueues a route context containing
 `("n0", "n1", "n0")`. ACP-0006 rule 3 explicitly prohibits this, even though
-the separate destination guard later suppresses duplicate credit. Luna-26 is
-**BLOCKED** pending the following same-identifier corrective pass; do not
-create Luna-27.
+the separate destination guard later suppresses duplicate credit. This
+triggered the following same-identifier corrective pass; do not create
+Luna-27.
 
 The corrective authorization at
 `workflow/handoffs/luna-0-authorization-luna-26-corrective-route-path-20261003.md`
@@ -164,5 +164,15 @@ a path guard and may not be removed.
 No ACP/A01-A15, edge equation, delay, event/neuron, predictor, error,
 eligibility, reward, readout, dataset, downstream-consumer or hardware
 semantics may change. If this narrow scope proves insufficient, stop and
-return evidence to Luna-0. Luna-22 remains **BLOCKED / NOT CLOSED** until
-the corrective implementation passes an independent review.
+return evidence to Luna-0.
+
+**Final review result:** Luna-0 independently verified corrective commit
+`8a14681fe6a770e75136227c5059bc9c76ae5d46`. Repeated destinations are
+filtered before queue admission; a cycle back-edge is excluded while other
+legal fan-out proceeds; convergence dedupe, metadata, bounds and regressions
+pass. Luna-26 is **CLOSED / INDEPENDENTLY VERIFIED** for this bounded
+correction. Luna-22 is **CLOSED / INDEPENDENTLY VERIFIED** only for the
+accepted first fixed-topology `EXCURSION_V1` CPU integration, as recorded in
+the Luna-0 review handoff. This closure does not establish task efficacy,
+useful delayed-credit learning, downstream migration, or hardware
+equivalence.

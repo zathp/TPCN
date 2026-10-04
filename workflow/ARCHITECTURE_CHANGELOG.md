@@ -1,5 +1,55 @@
 # Architecture Changelog
 
+# Luna-0 independent corrective review — Luna-26 closed; Luna-22 closed - 2026-10-03
+
+**PASS — LUNA-26 ACP-0006 MULTI-HOP PREDICTION-ERROR ROUTING
+INDEPENDENTLY VERIFIED / CLOSED. PASS — LUNA-22 ACP-0006 FIRST CPU
+SOFTWARE-REFERENCE INTEGRATION INDEPENDENTLY VERIFIED / CLOSED**, limited to
+the accepted fixed-topology `EXCURSION_V1` integration semantics. Review of
+the corrective implementation began at `8a14681fe6a770e75136227c5059bc9c76ae5d46`
+on clean `main == origin/main`.
+
+The corrective API adds optional per-call destination exclusions to
+`BoundedTopology.route()`; existing callers with the default empty exclusion
+retain the old behavior. The integrated error adapter supplies its current
+`RouteContext.route_path`, filtering only back-edges to a node already on
+that path before queue preflight and admission. The independent runtime test
+produced only `n0 -> n0 @ 1.00`, `n0 -> n1 @ 1.25`, and legal sibling
+`n1 -> n2 @ 1.85`; the prohibited `n1 -> n0` return is not enqueued, receives
+no sequence or sidecar, incurs no processed-event or edge cost, and has no
+repeated path. An equal-time diamond still preserves distinct sibling paths,
+applies local error once at convergence, and forwards downstream once.
+Atomic capacity handling, opaque metadata/identity, local ledger ownership,
+neuron isolation, causal input, character reset, and delayed-credit
+idempotency remain verified. The earlier actual emission-to-prediction-to-
+nonzero-error chain and unequal-delay two-hop route remain valid.
+
+Independent validation on the corrective publication: topology plus focused
+integration **60 passed**; prescribed ACP-0006 regression plus focused
+integration **342 passed**; full CPU suite **24 failed, 804 passed, 1
+CUDA-unavailable skip**; collection **829**; compileall, diagnostics and
+diff checks passed. All 24 failures remain the known downstream
+visualization, structural, legacy-observable, temporal-scale, benchmark,
+analysis and viewer groups; their ownership/cause is unchanged and they are
+not Luna-22 core correctness failures under this bounded contract.
+
+**GOVERNANCE:** Luna-26 is **CLOSED / INDEPENDENTLY VERIFIED** for the
+authorized adapter/topology route-path correction. Luna-22 is **CLOSED /
+INDEPENDENTLY VERIFIED** only for the accepted first fixed-topology
+`EXCURSION_V1` CPU software-reference integration; the previously identified
+error-routing blocker is resolved and the prior Luna-0 closure-readiness
+review had found no other owned core correctness blocker. This closure does
+not demonstrate predictive efficacy, useful delayed-credit learning,
+downstream migration, structural plasticity integration, reconstruction of
+the historical Luna-22 split, writer-disjointness, hardware equivalence,
+physical-energy calibration or repository-wide architecture completion.
+Luna-23, Luna-24 and Luna-25 remain closed within their exact prior scopes.
+ACP-0006 and A01-A15 are unchanged. The full evidence and exclusions are in
+`workflow/handoffs/luna-0-independent-review-luna-26-prediction-error-routing-20261003.md`.
+The next governance action, if any, is selection of one bounded downstream
+compatibility semantic unit; no consumer migration is automatically
+authorized.
+
 # Luna-0 independent review of Luna-26 route-path behavior - 2026-10-03
 
 **BLOCKED — LUNA-26 VIOLATES ACP-0006 RULE 3 ROUTE-PATH NO-REVISIT.

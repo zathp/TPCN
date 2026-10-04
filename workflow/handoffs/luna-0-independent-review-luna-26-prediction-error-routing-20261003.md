@@ -7,12 +7,14 @@ tpcn_handoff:
   descriptive_name: "Adversarial verification of Luna-26 error routing and reconsideration of Luna-22 closure"
   task_id: "luna-0-independent-review-luna-26-prediction-error-routing-20261003"
   component: "ACP-0006 prediction-error routing and Luna-22 closure readiness"
-  status: "BLOCKED — Luna-26 violates ACP-0006 rule 3 no-revisit route-path invariant; Luna-22 remains blocked"
+  status: "PASS — Luna-26 corrective routing independently verified; Luna-26 and bounded Luna-22 integration closed"
   contract_version: "ACP-0006 1.1"
   branch: "main"
-  base_revision: "c7fc9b7477e8419af2282969b936db3a242e751b"
+  base_revision: "c7fc9b7477e8419af2282969b936db3a242e751b (initial adversarial review)"
   implementation_revision: "9f2e5d98e9abfd3702eb55a4af76c41009872abc"
-  handoff_publication_revision: "ba2c67a808ab4c2210010feb960fff037bb1ff17"
+  corrective_starting_revision: "f63e59552bf1f18b8cf1137abdf331f3aa8056f4"
+  corrective_implementation_revision: "8a14681fe6a770e75136227c5059bc9c76ae5d46"
+  result_revision: "review publication commit recorded in final commit metadata"
   owner: "Project owner / Luna-0 Architecture Guardian"
   classification: ["INDEPENDENT VERIFICATION", "ADVERSARIAL ROUTING REVIEW", "INTEGRATION DECISION"]
   hypothesis: "The hop-local adapter correction fixes multi-hop delivery while satisfying every ACP-0006 path, identity, timing and boundedness invariant."
@@ -26,37 +28,60 @@ tpcn_handoff:
     - ".github/agents/luna-26.agent.md"
     - "workflow/docs/luna/LUNA_WORKFLOW.md"
     - "workflow/ARCHITECTURE_CHANGELOG.md"
-  production_behavior_changed: false
-  luna26_verdict: "BLOCKED — ACP-0006 ROUTE-PATH NO-REVISIT INVARIANT"
-  luna22_verdict: "IMPLEMENTED / BLOCKED / NOT CLOSED"
-  recommended_next_agent: ["Luna-26 under the published corrective authorization"]
+  review_production_behavior_changed: false
+  luna26_verdict: "PASS — corrective route-path behavior independently verified / closed"
+  luna22_verdict: "PASS — bounded ACP-0006 first CPU software-reference integration independently verified / closed"
+  recommended_next_agent: ["Project owner / Luna-0 to select one bounded downstream compatibility task"]
 ```
 
-## Review outcome
+## Final corrective review outcome
 
-**BLOCKED — LUNA-26 VIOLATES ACP-0006 ROUTE-PATH NO-REVISIT INVARIANT.**
-Luna-22 remains **IMPLEMENTED / BLOCKED / NOT CLOSED**. No Luna-22 closure is
-declared.
+**PASS — LUNA-26 ACP-0006 MULTI-HOP PREDICTION-ERROR ROUTING
+INDEPENDENTLY VERIFIED / CLOSED.**
 
-**OBSERVED:** Hop-local forwarding fixes the previously identified repeated
-original-source defect and reaches the second node on a directed path.
-However, on a directed two-node cycle the runtime queues and processes a
-return arrival at the root with route path `("n0", "n1", "n0")`.
+**PASS — LUNA-22 ACP-0006 FIRST CPU SOFTWARE-REFERENCE INTEGRATION
+INDEPENDENTLY VERIFIED / CLOSED**, limited to the accepted first fixed-topology
+`EXCURSION_V1` integration semantics. This does not establish predictive
+efficacy, useful delayed-credit learning, downstream migration, structural
+plasticity integration, dataset writer-disjointness, hardware equivalence or
+physical-energy calibration.
 
-**OBSERVED:** The event is eventually suppressed by the separate
-`(prediction_id, destination)` delivery guard. That guard is not a substitute
-for ACP-0006 rule 3: “Within one routed-event path, a node may not be visited
-twice.” The prohibited destination was already enqueued, assigned a sidecar,
-processed and charged event-processing cost before deduplication returns.
+The prior section below records the initial independent finding at
+`c7fc9b7`: the first Luna-26 implementation allowed a repeated-node error
+path. The same Luna-26 assignment was corrected under the explicit
+same-identifier authorization, and the corrective commit
+`8a14681fe6a770e75136227c5059bc9c76ae5d46` was independently reviewed here.
+The current implementation rejects an edge whose destination is already in
+that error event's route path before route-capacity/queue preflight and before
+queueing. The actual cycle has no return arrival; a separate legal outgoing
+edge from the same node remains routed. No global visited set is used.
 
-**INFERRED:** This is a bounded implementation defect, not an ACP ambiguity.
-Rule 3 is explicit. A same-Luna corrective pass is authorized; no Luna-27 or
-ACP amendment is needed. Luna-22 cannot close until that correction receives
-another independent Luna-0 review.
+**OBSERVED:** In the corrective mixed cycle/fan-out test, the actual
+runtime-generated error takes `n0 -> n0 @ 1.00`, `n0 -> n1 @ 1.25`, then the
+legal `n1 -> n2 @ 1.85`; `n1 -> n0` is not queued. Each observed route path
+contains unique nodes and depth remains below the network-node count.
 
-The review itself changed no production code, tests, topology behavior or
-architecture contract. Governance-only records below publish the finding and
-corrective authorization.
+**OBSERVED:** The independent diamond retains distinct legal path contexts
+to `n3`; the first equal-time arrival applies error once and only one
+post-convergence `n3 -> n4` continuation is queued. Per-destination
+deduplication remains intact.
+
+**OBSERVED:** The optional `exclude_destinations` API parameter defaults to
+the existing complete outgoing routing behavior. Filtering is per call,
+preserves edge insertion order, and occurs before fan-out capacity checks,
+queue pushes, observer callbacks, sequence allocation, sidecar attachment,
+event processing and edge-cost accounting. The post-filter legal fan-out
+retains atomic queue-capacity preflight.
+
+**INFERRED:** The corrected integration now satisfies ACP-0006 rules 3 and 6
+for the tested directed routes without changing default topology behavior,
+Model-B transfer, error payload semantics, or the convergence guard. This is
+a software-reference integration closure only; it is not an architecture
+promotion.
+
+The initial review phase changed no production behavior. This final review
+phase also changed no production behavior or tests; only review/governance
+records are being updated.
 
 ## Revisions and publication lineage
 
@@ -96,6 +121,19 @@ The implementation delta from `e5d3123` to `9f2e5d9` contains exactly
 The publication delta from `9f2e5d9` to `c7fc9b7` contains only that
 completion handoff. No topology, predictor, eligibility, neuron, schema,
 benchmark or downstream-consumer implementation was changed.
+
+Corrective-pass lineage:
+
+```text
+f63e59552bf1f18b8cf1137abdf331f3aa8056f4
+    exact corrective-authorization baseline
+-> 8a14681fe6a770e75136227c5059bc9c76ae5d46
+    Luna-26 corrective implementation and completion handoff
+```
+
+The corrective implementation changed exactly the four authorized
+production/test files and its completion handoff, as listed above. The
+independent-review publication records the verification and closure decision.
 
 ## Accepted contract and critical route-path finding
 
@@ -281,7 +319,7 @@ correctness gates.
 | `git diff --check` | **PASS** |
 | Hardware equivalence / physical-energy calibration | **NOT RUN / NOT AUTHORIZED** |
 
-## Clause verdicts
+## Initial clause verdicts at `c7fc9b7` (superseded by final table below)
 
 | Clause | Verdict | Evidence |
 |---|---|---|
@@ -294,7 +332,7 @@ correctness gates.
 | A11 | **PASS for existing delayed-credit controls** | Positive-delay reward matches and duplicate reward identity is idempotent; no learning-efficacy claim. |
 | A15 | **PASS as software-reference-only scope** | CPU reference only; no backend/hardware equivalence claim. |
 
-## Verdict and corrective authorization
+## Initial verdict and corrective authorization (superseded below)
 
 **Luna-26 verdict:** `BLOCKED — LUNA-26 VIOLATES ACP-0006 ROUTE-PATH
 NO-REVISIT INVARIANT`.
@@ -318,3 +356,84 @@ per-destination guard remains required for convergent duplicate arrivals.
 Luna-0 must independently review the corrective implementation before
 reconsidering Luna-22 closure. Downstream compatibility work remains
 separately scoped; efficacy and hardware equivalence remain unestablished.
+
+## Supplemental independent review of corrective revision `8a14681`
+
+Review of the corrective pass began at clean `main` / `origin/main`
+`8a14681fe6a770e75136227c5059bc9c76ae5d46`, exactly the implementation
+revision identified by the Luna-26 corrective handoff. The implementation
+delta from authorization base `f63e59552bf1f18b8cf1137abdf331f3aa8056f4`
+contains only:
+
+- `tpcn/topology.py`
+- `tpcn/experiment_excursion_runtime.py`
+- `tests/test_topology.py`
+- `tests/test_excursion_integration.py`
+- `workflow/handoffs/luna-26-corrective-route-path-20261003.md`
+
+No ACP/A01-A15 text, predictor, ledger, neuron, dataset, or downstream
+consumer behavior changed.
+
+**OBSERVED:** In the real-error cycle-plus-legal-fan-out control, the queued
+error arrivals are only `n0 -> n0 @ 1.00`, `n0 -> n1 @ 1.25`, and
+`n1 -> n2 @ 1.85`. No `n1 -> n0` return event exists. Their route paths are
+`("n0",)`, `("n0", "n1")`, and `("n0", "n1", "n2")`, respectively; each path
+contains unique nodes and route depth is less than the three-node network
+size. The test observes sidecar attachment only for these queued errors,
+unchanged error identity/payload and causal roots, no neuron delivery, and
+edge/error cost equal to actual routed edges and accepted local consumers.
+
+**OBSERVED:** The API test confirms the optional exclusions remove only
+visited destinations, preserve deterministic edge insertion order for legal
+fan-out, do not call the route observer for excluded edges, and do not
+consume queue sequence numbers when all edges are excluded. Capacity failure
+of the post-filter legal fan-out remains atomic. The default empty exclusion
+preserves existing route behavior.
+
+**OBSERVED:** Independent reruns on `8a14681`:
+
+| Command / procedure | Result |
+|---|---|
+| Topology and focused integration suites | **60 passed** |
+| Prescribed ACP-0006 regression modules plus focused integration | **342 passed** |
+| Corrective cycle, diamond, and topology exclusion/capacity controls | **4 passed** |
+| Full CPU suite | **24 failed, 804 passed, 1 skipped**; failure identities match the seven pre-classified downstream groups |
+| Full test collection | **829 collected** |
+| `compileall`, diagnostics for all four changed code/test files, `git diff --check` | **Passed; no diagnostics errors** |
+
+The one skip remains CUDA unavailable. The 24 failures are unchanged
+downstream visualization (3), Luna-12B structural integration (4), Luna-12E
+legacy observables (2), Luna-12L temporal scale (8), spiral benchmark (1),
+temporal analysis (3), and 3D viewer (3). They are not Luna-22 core
+correctness blockers under the reviewed contract. Luna-25's zero dataset
+prediction matches/errors/credit remain task-efficacy observations;
+predictive efficacy and useful delayed-credit learning remain
+**NOT ESTABLISHED**. Hardware equivalence and energy calibration remain
+not run/not authorized.
+
+### Final architecture and closure verdicts
+
+| Scope / clause | Final verdict | Basis |
+|---|---|---|
+| Luna-26 corrective route | **PASS / INDEPENDENTLY VERIFIED / CLOSED** | Hop-local forwarding reaches directed multi-hop targets; revisits are filtered before routing preflight and queue admission; legal path-local fan-out and convergence are retained. |
+| A01 | **PASS** | No global tick, polling timestep, or wall-clock neural time was introduced. |
+| A03 | **PASS for tested routes** | Positive finite per-edge delays, causal event order, no repeated node per error path, and finite route-depth bound. |
+| A04 / A08 | **PASS for this correction** | Finite topology, filtered atomic fan-out, bounded queue/event/sidecar/delivery state, deterministic convergence and cycle handling. |
+| A06 | **PASS for ACP-0006 correctness** | Actual emission -> prediction -> later admitted observation -> nonzero error; one-hop, unequal-delay multi-hop, directed reachability, opaque forwarding and no-neuron-delivery controls pass. This is not an efficacy claim. |
+| A07 | **PASS in applicable controls** | Label isolation and incremental admission remain unchanged and pass; no future input enters routing. |
+| A09 | **PASS for proxy accounting** | Processed-event, actual-edge and unique accepted local-error costs are consistently accounted; proxy units are not joules. |
+| A11 | **PASS for delayed-credit mechanics** | Positive-delay reward attribution and duplicate reward idempotency pass; useful learning remains unestablished. |
+| A15 | **PASS as CPU software-reference scope** | No backend or hardware equivalence claim. |
+| Luna-22 | **PASS / INDEPENDENTLY VERIFIED / CLOSED** | The last identified core blocker (ACP-0006 error forwarding) is corrected; prior Luna-0 closure-readiness review classified other owned correctness gates as passed. This is bounded to the accepted first fixed-topology `EXCURSION_V1` CPU integration. |
+
+Luna-22 closure does **not** establish task efficacy, useful delayed-credit
+learning, downstream consumer migration, E2 structural plasticity,
+reconstruction of the historical Luna-22 split, writer-disjointness,
+hardware equivalence, calibrated physical energy, or repository-wide
+architecture completion. Luna-23, Luna-24 and Luna-25 remain independently
+closed in their previously stated bounded scopes. ACP-0006 and A01-A15 are
+unchanged.
+
+The next governance action is not an implementation authorization: the
+project owner / Luna-0 may select one bounded downstream compatibility
+semantic unit. The 24 downstream test failures remain a separate backlog.

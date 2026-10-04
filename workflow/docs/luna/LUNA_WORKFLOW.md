@@ -2504,10 +2504,14 @@ preserving those records below as historical context:
 | Luna-19 | ACP-0004 E1 canonical single-excursion neuron | CLOSED / independently verified |
 | Luna-20 | ACP-0005 TPCN-IR-2 excursion execution schema | CLOSED / independently verified |
 | Luna-21 | ACP-0004 E2 multi-excursion return runtime | CLOSED / independently verified |
-| Luna-22 | ACP-0006 first CPU software-reference excursion integration | IMPLEMENTED / SECOND INDEPENDENT REVIEW BLOCKED |
+| Luna-22 | ACP-0006 first CPU software-reference excursion integration | CLOSED / INDEPENDENTLY VERIFIED (bounded fixed-topology EXCURSION_V1 CPU integration) |
 | Luna-23 | ACP-0004 E2 positive-delay logical-time representability correction | CLOSED / INDEPENDENTLY VERIFIED |
 | Luna-24 | ACP-0006 integrated IR-2 residual-provenance boundary correction | CLOSED / INDEPENDENTLY VERIFIED |
 | Luna-25 | ACP-0006 sequential dataset evidence reproducibility | CLOSED / INDEPENDENTLY VERIFIED (`luna25-v1` only) |
+
+The following review records preserve the chronology of previously published
+gate findings. Later corrections and the final current Luna-22 closure
+decision are recorded after those historical findings below.
 
 Luna-19, Luna-20 and Luna-21 are closed component implementations; this does
 not itself establish experiment-path integration. **OBSERVED:** the ordinary
@@ -2622,14 +2626,38 @@ A01-A15, Model-B equation, delay, credit, dataset or downstream-consumer
 change is authorized. Luna-0 must independently review this corrective pass
 before any Luna-22 closure decision.
 
+The authorized same-Luna correction added optional, backward-compatible
+destination exclusions to `BoundedTopology.route()` and uses only the
+current prediction-error route path to omit revisits before queue admission.
+Independent Luna-0 review confirmed that the cycle return is never queued,
+legal outgoing fan-out remains available, and convergent duplicate suppression
+is preserved. Luna-26 is **CLOSED / INDEPENDENTLY VERIFIED** for this bounded
+correction. Luna-22 is now **CLOSED / INDEPENDENTLY VERIFIED** for the
+accepted first fixed-topology `EXCURSION_V1` CPU software-reference
+integration only. The final closure evidence and exact validation appear in
+`workflow/handoffs/luna-0-independent-review-luna-26-prediction-error-routing-20261003.md`.
+
 The independent Luna-26 review reran the focused integration suite (**49
 passed**), prescribed ACP-0006 regression plus focused suite (**340
 passed**), full CPU suite (**24 failed, 802 passed, 1 skipped**), and test
 collection (**827**). Failure identities remain in the previously classified
 downstream compatibility groups. The additional cycle invariant is an
-owned core blocker; it is not one of those downstream failures. Luna-25's
-zero dataset prediction/error/credit matches and low accuracy remain
-task-efficacy observations, not this routing defect.
+owned blocker resolved by the reviewed corrective pass; it was not one of
+those downstream failures. The corrective review recorded topology plus
+integration **60 passed**, the prescribed ACP-0006 regression set **342
+passed**, full CPU suite **24 failed, 804 passed, 1 skipped**, and **829
+collected**. The 24 downstream compatibility failures remain a separate
+backlog and do not undo this bounded core closure. Luna-25's zero dataset
+prediction/error/credit matches and low accuracy remain task-efficacy
+observations, not routing defects.
+
+Closure does not establish predictive efficacy, useful delayed-credit
+learning, downstream consumer migration, integrated structural plasticity,
+historical Luna-22 split reconstruction, writer-disjointness,
+hardware/backend equivalence, calibrated physical energy, or repository-wide
+architecture completion. No consumer migration was authorized. The next
+governance action is for the project owner / Luna-0 to select one bounded
+downstream compatibility semantic unit, if desired.
 
 The original Luna-25 authorization was for a retained, deterministic UCI
 Character Trajectories loader/split/report under the unchanged ACP-0006

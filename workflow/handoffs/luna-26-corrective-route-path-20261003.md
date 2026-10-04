@@ -7,12 +7,13 @@ tpcn_handoff:
   descriptive_name: "ACP-0006 prediction-error route-path no-revisit correction"
   task_id: "luna-26-corrective-route-path-20261003"
   component: "BoundedTopology destination exclusion for opaque prediction-error forwarding"
-  status: "IMPLEMENTED / VERIFIED; awaiting independent Luna-0 review"
+  status: "PASS — IMPLEMENTED / INDEPENDENTLY VERIFIED / CLOSED"
   contract_version: "ACP-0006 1.1 (unchanged)"
   branch: "main"
   starting_revision: "f63e59552bf1f18b8cf1137abdf331f3aa8056f4"
   starting_origin_main: "f63e59552bf1f18b8cf1137abdf331f3aa8056f4"
   starting_worktree: "clean"
+  implementation_revision: "8a14681fe6a770e75136227c5059bc9c76ae5d46"
   authorization: "workflow/handoffs/luna-0-authorization-luna-26-corrective-route-path-20261003.md"
   independent_review: "workflow/handoffs/luna-0-independent-review-luna-26-prediction-error-routing-20261003.md"
   files_changed:
@@ -23,8 +24,8 @@ tpcn_handoff:
     - "workflow/handoffs/luna-26-corrective-route-path-20261003.md"
   architecture_change: false
   acp_or_a01_a15_changed: false
-  luna22_status: "BLOCKED / NOT CLOSED"
-  independent_review_pending: true
+  luna22_status: "PASS — bounded ACP-0006 first CPU software-reference integration independently verified / closed"
+  independent_review_pending: false
 ```
 
 ## Authorization and implementation boundary
@@ -147,19 +148,23 @@ repaired or treated as routing regressions.
   calibration; none is authorized by this correction.
 - A new dataset benchmark, efficacy study, or full UCI re-evaluation; none is
   in scope.
-- Independent Luna-0 closure review; it must evaluate this handoff separately.
 
 ### Not applicable
 
 - ACP/A01-A15 amendment, predictor/error/eligibility/reward redesign,
-  downstream-consumer migration, topology redesign, or Luna-22 closure.
+  downstream-consumer migration, or broader topology redesign.
 - The 1 skipped full-suite test is `tests/test_gpu_visualization.py:61`
   (`CUDA is unavailable`); GPU validation is not applicable to this CPU
   software-reference correction.
 
-## Stop and return
+## Independent review and closure
 
 The optional per-call exclusion was sufficient within the authorized topology
-API and integration boundary. No scope expansion was required. The change is
-returned to Luna-0 for independent review. **Luna-26 does not claim
-independent closure, and Luna-22 remains BLOCKED / NOT CLOSED.**
+API and integration boundary. No scope expansion was required. Luna-0
+independently reviewed this corrective implementation and closed Luna-26 for
+the bounded route-path correction. Luna-22 is also closed only for the
+accepted first fixed-topology `EXCURSION_V1` CPU software-reference
+integration. This does not establish task efficacy, useful delayed-credit
+learning, downstream migration, or hardware equivalence. See
+`workflow/handoffs/luna-0-independent-review-luna-26-prediction-error-routing-20261003.md`
+for the complete review and explicitly bounded closure decision.
