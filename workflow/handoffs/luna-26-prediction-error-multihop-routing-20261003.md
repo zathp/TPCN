@@ -11,7 +11,7 @@ tpcn_handoff:
   contract_version: "ACP-0006 1.1"
   branch: "main"
   base_revision: "e5d31236432ca5301ca5ca4ba8eb699006a55b09"
-  result_revision: "implementation and handoff are the pending publication changes based on the exact authorized baseline"
+  implementation_revision: "9f2e5d98e9abfd3702eb55a4af76c41009872abc"
   dependencies:
     - "Luna-0 closure-readiness review and Luna-26 authorization"
     - "Accepted ACP-0006 rule 6"
