@@ -1,5 +1,35 @@
 # Architecture Changelog
 
+# Luna-0 independent review — Luna-29 closed - 2026-10-04
+
+**PASS — LUNA-29 CPU-HELPER COMPATIBILITY INDEPENDENTLY VERIFIED AND CLOSED
+FOR ITS AUTHORIZED SCOPE.** Review began at clean synchronized `main`,
+`HEAD == origin/main == 6e1387967de2d1170d5743a38927afe08b9ddab8`.
+Implementation `252fa15073e983a793a06b0ba3c79c84ced84637` was verified
+against the authorization and completion handoffs. The explicit
+`ExperimentConfig` pass-through, preserved scalar convenience route,
+conflict rejection, deterministic bounded E2 growth fixture, downstream-only
+capture, label isolation, TPCV-2 edge addition, E2 no-pruning behavior, and
+TANH_LEGACY/generic replay controls passed. The helper is supported for
+configuration pass-through only; its fixed synthetic workload is not
+required by the Luna-29 contract to generate E2 growth.
+
+Independent focused runs passed: Luna-12B 13, Luna-28 44, CPU/TPCV 32,
+combined 89, and experiment regression 12. The full suite reported 880
+passed, 17 failed, and 1 CUDA-unavailable skip (898 collected). The 17
+failures comprise 2 previously documented Luna-12E legacy-observable
+assertions and 15 downstream tests that still construct structural-plasticity
+configurations without the ACP-0007 observation settings (8 Luna-12L, 1
+spiral, 3 temporal-analysis, 3 3D viewer). Those consumers are outside the
+Luna-29 delta and were not repaired; the full suite is not green.
+
+The complete evidence and A01-A15 matrix are in
+`workflow/handoffs/luna-0-independent-review-luna-29-acp0007-cpu-structural-replay-compatibility-20261004.md`.
+Architecture Contract 1.2, A01-A15, and accepted ACP-0007 are unchanged.
+This closes only Luna-29's authorized compatibility scope; it establishes no
+downstream readiness, efficacy/resource benefit, or hardware equivalence and
+authorizes no successor.
+
 # Luna-29 execution-lineage clarification - 2026-10-04
 
 This governance correction distinguishes the verified decision revision

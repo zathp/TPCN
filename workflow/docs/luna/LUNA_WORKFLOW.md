@@ -3398,3 +3398,37 @@ any intervening commits are governance-only clarifications/pinning for this
 authorization. The supplied `F9h8mimKAXJ74YAEM4NsrHja2pxrrFaJyX29rnc7RyLb`
 token is not a Git object and is not repository provenance. Status remains
 **AUTHORIZED / NOT EXECUTED**.
+
+## Luna-0 independent review — Luna-29 closed - 2026-10-04
+
+**PASS — LUNA-29 CPU-HELPER COMPATIBILITY INDEPENDENTLY VERIFIED AND CLOSED
+FOR ITS AUTHORIZED SCOPE.** Review began at clean synchronized `main`,
+`HEAD == origin/main == 6e1387967de2d1170d5743a38927afe08b9ddab8`.
+Implementation `252fa15073e983a793a06b0ba3c79c84ced84637` was verified
+against the authorization and completion handoffs. The config-taking helper,
+legacy no-config behavior, conflict handling, capture non-interference,
+bounded deterministic growth-only fixture, label isolation, TPCV-2 admitted
+edge replay, metric semantics, E2 no-pruning behavior, generic removed-edge
+replay, and separate TANH_LEGACY regression passed independent review.
+
+The public helper is **SUPPORTED FOR CONFIGURATION PASS-THROUGH ONLY**.
+Luna-29's contract does **NOT REQUIRE** the helper's fixed synthetic workload
+to produce an admitted E2 edge. Real growth and TPCV-2 replay were verified
+in the explicit bounded `ExperimentRunner` fixture; no claim is made that the
+default helper workload grows.
+
+Focused runs passed: Luna-12B 13, Luna-28 44, CPU/TPCV 32, combined 89, and
+experiment regressions 12. The independent full suite reported 880 passed,
+17 failed, and 1 CUDA-unavailable skip (898 collected). The 17 failures are
+outside Luna-29's changed paths: 2 known Luna-12E legacy-observable
+assertions, plus 15 downstream callers still using pre-ACP-0007 structural
+configurations (8 Luna-12L, 1 spiral, 3 temporal-analysis, 3 3D viewer).
+No unrelated repair was made; all Luna-12B focused tests pass.
+
+The review handoff,
+`workflow/handoffs/luna-0-independent-review-luna-29-acp0007-cpu-structural-replay-compatibility-20261004.md`,
+contains the clause matrix and complete validation record. Contract 1.2,
+A01-A15, and accepted ACP-0007 are unchanged. This closes only Luna-29's
+authorized adapter scope; it does not establish downstream migration,
+task/resource efficacy, integration readiness, or hardware equivalence.
+No successor is authorized.
