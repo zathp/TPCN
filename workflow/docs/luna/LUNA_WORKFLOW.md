@@ -2522,6 +2522,7 @@ preserving those records below as historical context:
 | Luna-23 | ACP-0004 E2 positive-delay logical-time representability correction | CLOSED / INDEPENDENTLY VERIFIED |
 | Luna-24 | ACP-0006 integrated IR-2 residual-provenance boundary correction | CLOSED / INDEPENDENTLY VERIFIED |
 | Luna-25 | ACP-0006 sequential dataset evidence reproducibility | CLOSED / INDEPENDENTLY VERIFIED (`luna25-v1` only) |
+| Luna-30 | TPCV-2 detached replay consumer compatibility correction | CLOSED / INDEPENDENTLY VERIFIED (downstream compatibility only) |
 
 The following review records preserve the chronology of previously published
 gate findings. Later corrections and the final current Luna-22 closure
@@ -3471,3 +3472,40 @@ Luna-0.
 ACP required: **NO**. Architecture Contract 1.2 and A01-A15 remain unchanged.
 E2 pruning and N3 remain unauthorized. Mandatory sequence:
 `Luna-0 -> Luna-30 -> Luna-0`; Luna-30 is **AUTHORIZED / NOT EXECUTED**.
+
+## Luna-0 independent review — Luna-30 closed - 2026-10-04
+
+**PASS — LUNA-30 TPCV-2 REPLAY CONSUMER COMPATIBILITY CORRECTION
+INDEPENDENTLY VERIFIED / CLOSED** for the authorized downstream replay
+consumer scope. Review began at clean synchronized `main`,
+`HEAD == origin/main == 188dfd49fddc6702e86c56210f26455e6513050f`.
+
+The independent source, replay, provenance, and test audits verified that
+canonical TPCV-2 `ExcursionNeuronRecord` intentionally has no scalar
+activation. The viewer returns `None` for that field in both node projection
+and inspection, including an active nontrivial-state adversarial record; it
+preserves the exact TPCV-1 activation float and filters TPCV-2 activity from
+the canonical `active` field. No TPCV-2 scalar is synthesized.
+
+The initial Luna-30 implementation's bounded temporal-accounting scope defect
+was corrected before review. Accepted additions are counted only through
+`accepted_additions`; rejection reason keys do not become accepted growth.
+The version-neutral limitation continues to state that topology existence
+does not prove per-edge routed-event use. Generic detached snapshot removal
+remains visualization evidence only, not an E2 pruning event.
+
+Independent tests: focused consumer suite **19 passed**; combined
+consumer/prerequisite suite **108 passed**; full suite **896 passed, 11
+failed, 1 skipped**; collection **908 tests**. The 11 remaining failures
+reconcile to 2 Luna-12E, 8 Luna-12L, and 1 spiral historical failures; there
+are zero temporal-analysis or 3D-viewer failures. Compileall, diagnostics for
+all four reviewed Python/test files, and `git diff --check` passed. Full
+evidence is recorded in
+`workflow/handoffs/luna-0-independent-review-luna-30-tpcv2-replay-consumer-compatibility-20261004.md`.
+
+Architecture Contract 1.2, A01-A15, and accepted ACP-0007 are unchanged.
+No ACP, schema change, or architecture change was required. E2 pruning and
+N3 remain unauthorized. Task efficacy, resource benefit, and hardware
+equivalence are not established. Luna-30 closure does not authorize Luna-31
+or any successor; the remaining Luna-12E, Luna-12L, and spiral work requires
+separate governance decisions.

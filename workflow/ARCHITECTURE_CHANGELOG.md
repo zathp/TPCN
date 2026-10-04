@@ -1,5 +1,29 @@
 # Architecture Changelog
 
+# Luna-0 independent review — Luna-30 TPCV-2 replay consumer compatibility correction closed - 2026-10-04
+
+**PASS — LUNA-30 TPCV-2 REPLAY CONSUMER COMPATIBILITY CORRECTION
+INDEPENDENTLY VERIFIED / CLOSED** for its exact downstream replay-consumer
+scope. The review began at clean synchronized `main`,
+`HEAD == origin/main == 188dfd49fddc6702e86c56210f26455e6513050f`; full
+independent evidence is recorded in
+`workflow/handoffs/luna-0-independent-review-luna-30-tpcv2-replay-consumer-compatibility-20261004.md`.
+
+TPCV-2 viewer compatibility: **INDEPENDENTLY VERIFIED**. TPCV-2 scalar
+activation remains **ABSENT / None**, and TPCV-1 scalar activation is
+**PRESERVED**. Temporal-analysis accepted/rejection accounting is
+**RESTORED / VERIFIED**: `accepted` counts only `accepted_additions`.
+TPCV schema: **UNCHANGED**. ACP-0007: **UNCHANGED / ACCEPTED**. E2 pruning
+and ACP-0002 N3 remain **NOT AUTHORIZED**. Task efficacy, resource benefit,
+and hardware equivalence are **NOT ESTABLISHED**.
+
+Independent validation: focused consumers **19 passed**, combined
+consumer/prerequisite suite **108 passed**, full suite **896 passed, 11
+failed, 1 skipped**, and **908 collected**. The remaining failures are
+outside scope: 2 Luna-12E, 8 Luna-12L, and 1 spiral; temporal-analysis and
+3D-viewer failures: **0**. No production or test files were changed by this
+review. No successor Luna is authorized.
+
 # Luna-0 authorization — Luna-30 TPCV-2 replay consumer compatibility correction - 2026-10-04
 
 **AUTHORIZED — LUNA-30 TPCV-2 REPLAY CONSUMER COMPATIBILITY CORRECTION;
