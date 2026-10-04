@@ -129,3 +129,40 @@ consumer migration, topology API change, global clock, label/future-input
 change, A01-A15 amendment, backend, hardware equivalence or calibration.
 Luna-26 does not close Luna-22; only Luna-0 may independently review closure
 readiness after the correction.
+
+## Luna-0 corrective authorization — route-path no-revisit
+
+The independent review published at
+`workflow/handoffs/luna-0-independent-review-luna-26-prediction-error-routing-20261003.md`
+found that the cycle `n0 -> n1 -> n0` enqueues a route context containing
+`("n0", "n1", "n0")`. ACP-0006 rule 3 explicitly prohibits this, even though
+the separate destination guard later suppresses duplicate credit. Luna-26 is
+**BLOCKED** pending the following same-identifier corrective pass; do not
+create Luna-27.
+
+The corrective authorization at
+`workflow/handoffs/luna-0-authorization-luna-26-corrective-route-path-20261003.md`
+supersedes only the original topology-API exclusion and owned-file list for
+this correction. It authorizes:
+
+- a backward-compatible optional destination-exclusion argument to
+  `BoundedTopology.route()` in `tpcn/topology.py`;
+- use of the arriving error's per-event `RouteContext.route_path` as the
+  exclusion set in `tpcn/experiment_excursion_runtime.py`;
+- focused route/API and integrated-path coverage in
+  `tests/test_topology.py` and `tests/test_excursion_integration.py`; and
+- a corrective Luna-26 completion handoff.
+
+The route API must exclude only outgoing edges whose destination already
+appears in this path, before its existing queue-capacity preflight and pushes.
+It must retain every non-repeating outgoing edge in deterministic order and
+admit the remaining fan-out atomically. The default argument preserves all
+existing caller behavior. The current per-`(prediction_id, destination)`
+delivery guard remains required for convergent duplicate arrivals; it is not
+a path guard and may not be removed.
+
+No ACP/A01-A15, edge equation, delay, event/neuron, predictor, error,
+eligibility, reward, readout, dataset, downstream-consumer or hardware
+semantics may change. If this narrow scope proves insufficient, stop and
+return evidence to Luna-0. Luna-22 remains **BLOCKED / NOT CLOSED** until
+the corrective implementation passes an independent review.

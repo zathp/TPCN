@@ -2598,6 +2598,39 @@ independently review its completion before reconsidering closure.
 This fresh classification supersedes earlier wording that treated dataset
 efficacy or all 24 downstream compatibility failures as Luna-22 core gates.
 
+The independent Luna-0 review of the published Luna-26 correction found a
+separate ACP-0006 rule-3 violation. On `n0 -> n1 -> n0`, the error return
+event is queued and processed with route path `("n0", "n1", "n0")`; the
+destination guard suppresses it only after the prohibited revisit has
+occurred. Luna-26 is therefore **BLOCKED — ROUTE-PATH NO-REVISIT INVARIANT**,
+and Luna-22 remains **IMPLEMENTED / BLOCKED / NOT CLOSED**. The independent
+review and exact trace are recorded in
+`workflow/handoffs/luna-0-independent-review-luna-26-prediction-error-routing-20261003.md`.
+
+Luna-0 has authorized a bounded corrective pass under the existing Luna-26
+identifier. The current topology API can route only the complete outgoing
+fan-out, so it cannot omit a path-revisiting edge while retaining other legal
+outgoing edges and atomic queue-capacity preflight. The corrective pass may
+add one optional, default-preserving destination-exclusion argument to
+`BoundedTopology.route()` and apply the current error event's `route_path`
+only to that event's route. This must not become a global visited set; the
+existing per-destination guard remains necessary for convergent paths.
+The new authorization is
+`workflow/handoffs/luna-0-authorization-luna-26-corrective-route-path-20261003.md`,
+and the Luna-26 agent contract records its exact narrow override. No ACP,
+A01-A15, Model-B equation, delay, credit, dataset or downstream-consumer
+change is authorized. Luna-0 must independently review this corrective pass
+before any Luna-22 closure decision.
+
+The independent Luna-26 review reran the focused integration suite (**49
+passed**), prescribed ACP-0006 regression plus focused suite (**340
+passed**), full CPU suite (**24 failed, 802 passed, 1 skipped**), and test
+collection (**827**). Failure identities remain in the previously classified
+downstream compatibility groups. The additional cycle invariant is an
+owned core blocker; it is not one of those downstream failures. Luna-25's
+zero dataset prediction/error/credit matches and low accuracy remain
+task-efficacy observations, not this routing defect.
+
 The original Luna-25 authorization was for a retained, deterministic UCI
 Character Trajectories loader/split/report under the unchanged ACP-0006
 `EXCURSION_V1` path. Its contract was

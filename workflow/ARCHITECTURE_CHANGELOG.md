@@ -1,5 +1,57 @@
 # Architecture Changelog
 
+# Luna-0 independent review of Luna-26 route-path behavior - 2026-10-03
+
+**BLOCKED — LUNA-26 VIOLATES ACP-0006 RULE 3 ROUTE-PATH NO-REVISIT.
+LUNA-22 REMAINS IMPLEMENTED / BLOCKED / NOT CLOSED.** Review began on clean
+`main == origin/main == c7fc9b7477e8419af2282969b936db3a242e751b`,
+`docs: record Luna-26 implementation revision`. The supplied expected token
+`F9h8mimKAXJ74YAEM4NsrHja2pxrrFaJyX29rnc7RyLb` is not a resolvable Git
+object; the valid actual publication SHA is recorded here and in the review
+handoff.
+
+The implementation lineage is authorized baseline
+`e5d31236432ca5301ca5ca4ba8eb699006a55b09`, implementation
+`9f2e5d98e9abfd3702eb55a4af76c41009872abc`, then completion-handoff
+publication `c7fc9b7477e8419af2282969b936db3a242e751b`. The independent
+review reproduced the original source-forwarding defect on the exact
+authorization baseline using a real E2 emission, prediction, later admitted
+input and nonzero error. The Luna-26 fix now reaches `n0 -> n1 -> n2` at
+`1.00`, `1.25`, and `1.65` with unequal edge delays, opaque metadata intact.
+
+Adversarial cycle execution found the distinct current defect: on
+`n0 -> n1 -> n0`, the actual return event is enqueued and processed at `1.65`
+with route path `("n0", "n1", "n0")`. The delivery guard terminates forwarding
+only after this prohibited revisit. ACP-0006 rule 3 explicitly forbids node
+repetition within one routed-event path, so this is an implementation
+violation, not a contract ambiguity. Numeric route depth `2` is within the
+two-node cap, but does not cure the repeated-node path.
+
+Validation on the reviewed publication: focused integration **49 passed**;
+prescribed ACP-0006 regression plus focus **340 passed**; full CPU suite
+**24 failed, 802 passed, 1 skipped**; collection **827**; compileall,
+diagnostics and diff checks passed. The full-suite failures match the
+previously classified downstream compatibility groups. The diamond,
+metadata, no-neuron, causal-input, delayed-credit, queue-capacity, sidecar,
+reset and accounting controls remain supported; none waives rule 3.
+
+**GOVERNANCE:** Luna-26 is **BLOCKED — ROUTE-PATH NO-REVISIT INVARIANT**.
+Luna-22 remains **IMPLEMENTED / BLOCKED / NOT CLOSED**. Luna-0 authorizes a
+same-identifier Luna-26 corrective pass. Because the existing topology API
+cannot filter a path-revisiting edge while preserving other legal outgoing
+edges and atomic queue preflight, the correction may add one optional,
+default-preserving destination-exclusion argument to `BoundedTopology.route()`.
+The adapter must pass only the current event's route path; no global visited
+set is permitted, and the convergent destination guard remains required.
+The exact authorization is
+`workflow/handoffs/luna-0-authorization-luna-26-corrective-route-path-20261003.md`.
+No ACP or A01-A15 amendment is made. Independent review evidence is in
+`workflow/handoffs/luna-0-independent-review-luna-26-prediction-error-routing-20261003.md`.
+Downstream compatibility failures remain separate. Luna-25's zero prediction
+matches/errors/credit remain efficacy observations; predictive efficacy and
+useful delayed-credit learning are not established. Luna-0 must review the
+corrective handoff before reconsidering Luna-22 closure.
+
 # Luna-0 ACP-0006 / Luna-22 closure-readiness review - 2026-10-03
 
 **SCENARIO C — LUNA-22 REMAINS BLOCKED BY ONE VERIFIED MULTI-HOP
