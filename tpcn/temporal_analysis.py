@@ -131,7 +131,7 @@ def _rejections(metrics: Iterable[Mapping[str, object]]) -> dict[str, int | str]
                 if isinstance(item, (list, tuple)) and item and item[0] == "duplicate":
                     counts["duplicate"] += 1
     result = {key: counts.get(key, 0) for key in _REJECTION_KEYS}
-    accepted_count = counts.get("accepted", 0) + sum(int(metric.get("accepted_additions", 0)) for metric in metrics)
+    accepted_count = sum(int(metric.get("accepted_additions", 0)) for metric in metrics)
     result["growth_attempts"] = sum(result[key] for key in _REJECTION_KEYS) + accepted_count
     result["accepted"] = accepted_count
     result["evidence"] = "recorded" if observed else "partial: older TPCV metrics do not preserve all rejection reasons"

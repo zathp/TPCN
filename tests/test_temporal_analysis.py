@@ -45,12 +45,18 @@ def test_temporal_analysis_classifies_explicit_supplied_metric_trend() -> None:
 def test_temporal_analysis_aggregates_explicit_rejection_reasons() -> None:
     replay = ReplaySequence(
         (snapshot(1, {0}, (("n0", "n1"),)),),
-        ({"epoch": 1, "accuracy": 0.8, "mutation_rejection_reasons": {"duplicate": 2, "fan_in_full": 1, "accepted": 1}},),
+        ({
+            "epoch": 1,
+            "accuracy": 0.8,
+            "accepted_additions": 1,
+            "mutation_rejection_reasons": {"duplicate": 2, "fan_in_full": 1},
+        },),
     )
     analysis = analyze_replay(replay)
     assert analysis["mutation_rejections"]["duplicate"] == 2
     assert analysis["mutation_rejections"]["fan_in_full"] == 1
     assert analysis["mutation_rejections"]["accepted"] == 1
+    assert analysis["mutation_rejections"]["growth_attempts"] == 4
 
 
 def test_compare_replays_reports_raw_deltas_without_causal_claim() -> None:
