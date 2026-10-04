@@ -60,6 +60,75 @@ def test_successful_route_admits_complete_fan_out() -> None:
     assert len(queue) == 2
 
 
+def test_route_excludes_only_visited_destinations_before_atomic_admission() -> None:
+    topology = BoundedTopology.from_edges(
+        ("a", "b", "c", "d"),
+        (("a", "b", 1.0), ("a", "c", 2.0), ("a", "d", 3.0)),
+        fan_in_limit=2,
+        fan_out_limit=3,
+    )
+    queue = EventQueue(capacity=3)
+    event = Event(0.0, "a", "ignored", EventType.CONTROL, {"opaque": True}, event_id="e", lineage_id="l")
+
+    class RecordingObserver:
+        def __init__(self) -> None:
+            self.edges = []
+
+        def record_route(self, edge, original, routed) -> None:
+            self.edges.append((edge, original, routed))
+
+    observed = RecordingObserver()
+
+    queued = topology.route(event, queue, exclude_destinations=("b",), observer=observed)
+
+    assert [item.destination for item in queued] == ["c", "d"]
+    assert [item.sequence for item in queued] == [0, 1]
+    assert [edge.destination for edge, _, _ in observed.edges] == ["c", "d"]
+    assert all(item.payload is event.payload for item in queued)
+    assert [(item.event_id, item.lineage_id) for item in queued] == [("e", "l"), ("e", "l")]
+
+    next_event = topology.route(
+        Event(1.0, "a", "ignored", EventType.CONTROL, None),
+        queue,
+        exclude_destinations=("b", "c", "d"),
+    )
+    assert next_event == ()
+    assert len(queue) == 2
+
+    excluded_queue = EventQueue(capacity=3)
+    assert topology.route(
+        Event(0.0, "a", "ignored", EventType.CONTROL, None),
+        excluded_queue,
+        exclude_destinations=("b", "c", "d"),
+    ) == ()
+    legal = topology.route(Event(0.0, "a", "ignored", EventType.CONTROL, None), excluded_queue)
+    assert legal[0].sequence == 0
+
+
+def test_excluded_destination_does_not_consume_sequence_or_break_capacity_atomicity() -> None:
+    topology = BoundedTopology.from_edges(
+        ("a", "b", "c", "d"),
+        (("a", "b", 1.0), ("a", "c", 2.0), ("a", "d", 3.0)),
+        fan_in_limit=2,
+        fan_out_limit=3,
+    )
+    queue = EventQueue(capacity=2)
+    event = Event(0.0, "a", "ignored", EventType.CONTROL, None)
+
+    queued = topology.route(event, queue, exclude_destinations=("b",))
+    assert [item.destination for item in queued] == ["c", "d"]
+    assert [item.sequence for item in queued] == [0, 1]
+
+    full_queue = EventQueue(capacity=2)
+    existing = full_queue.push(Event(0.0, "existing", "a", EventType.CONTROL, None))
+    before_sequence = full_queue._next_sequence
+    with pytest.raises(QueueCapacityError, match="complete fan-out"):
+        topology.route(event, full_queue, exclude_destinations=("b",))
+    assert len(full_queue) == 1
+    assert full_queue.peek() == existing
+    assert full_queue._next_sequence == before_sequence
+
+
 def test_rejected_fan_out_is_atomic_and_retryable_without_duplicates() -> None:
     topology = BoundedTopology.from_edges(
         ("a", "b", "c"), (("a", "b", 1.0), ("a", "c", 2.0)), fan_in_limit=2, fan_out_limit=2

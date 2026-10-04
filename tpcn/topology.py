@@ -201,14 +201,27 @@ class BoundedTopology:
         self._edges[(edge.source, edge.destination)] = edge
         return edge
 
-    def route(self, event: Event, queue: EventQueue[Event], *, observer: object | None = None) -> tuple[Event, ...]:
+    def route(
+        self,
+        event: Event,
+        queue: EventQueue[Event],
+        *,
+        observer: object | None = None,
+        exclude_destinations: Iterable[str] = (),
+    ) -> tuple[Event, ...]:
         """Queue delayed Model-B signal events without mutating destinations inline.
 
         Control and metadata payloads remain opaque; only numeric ``signal``
-        events are edge-transformed.
+        events are edge-transformed. Optionally omit edges whose destinations
+        are present in this per-call exclusion collection.
         """
         self._validate_node(event.source)
-        outgoing = tuple(edge for edge in self._edges.values() if edge.source == event.source)
+        excluded = frozenset(exclude_destinations)
+        outgoing = tuple(
+            edge
+            for edge in self._edges.values()
+            if edge.source == event.source and edge.destination not in excluded
+        )
         if len(outgoing) > self.routing_capacity:
             raise TopologyCapacityError("routing capacity exceeded")
         if len(queue) + len(outgoing) > queue.capacity:

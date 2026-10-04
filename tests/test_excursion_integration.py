@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import math
+from numbers import Real
 
 import pytest
 
@@ -395,28 +396,78 @@ def test_integrated_prediction_error_convergent_paths_apply_and_forward_once(
     assert not second_neuron_errors
     assert sum(row[2] == "n3" for row in first_rows) == 2
     assert sum(row[2] == "n4" for row in first_rows) == 1
+    assert all(len(set(row[10])) == len(row[10]) for row in first_rows)
+    assert all(row[9] < len(first_runtime.by_id) for row in first_rows)
     assert first_rows[3][10] == ("n0", "n1", "n3")
     assert first_runtime._delivered_errors == second_runtime._delivered_errors == set()
 
 
-def test_integrated_prediction_error_cycle_terminates_at_duplicate_destination(
+def test_integrated_prediction_error_excludes_cycle_return_and_keeps_legal_fanout(
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
-    _, result, _, applied, neuron_errors = _run_matched_error(
+    attached_error_contexts = []
+    original_attach = ExcursionCharacterRuntime._attach
+
+    def record_error_attachment(runtime, event, context) -> None:
+        if event.event_type == PREDICTION_ERROR_EVENT:
+            attached_error_contexts.append((event.destination, context.route_path, event.sequence))
+        original_attach(runtime, event, context)
+
+    monkeypatch.setattr(ExcursionCharacterRuntime, "_attach", record_error_attachment)
+    runtime, result, predictions, applied, neuron_errors = _run_matched_error(
         monkeypatch,
-        nodes=("n0", "n1"),
-        edges=(("n0", "n1", 0.25), ("n1", "n0", 0.4)),
+        nodes=("n0", "n1", "n2"),
+        edges=(
+            ("n0", "n1", 0.25),
+            ("n1", "n0", 0.4),
+            Edge("n1", "n2", 0.6, edge_weight=-1.7, divider_strength=0.15, reference=0.8),
+        ),
     )
 
     rows = _prediction_error_rows(result)
-    assert [(row[1], row[2]) for row in rows] == [
-        ("n0", "n0"),
-        ("n0", "n1"),
-        ("n1", "n0"),
+    assert len(predictions) == 1
+    assert [(row[1], row[2], row[0]) for row in rows] == [
+        ("n0", "n0", 1.0),
+        ("n0", "n1", 1.25),
+        ("n1", "n2", 1.85),
     ]
-    assert [len(applied[node]) for node in ("n0", "n1")] == [1, 1]
+    assert [row[9] for row in rows] == [0, 1, 2]
+    assert [row[10] for row in rows] == [
+        ("n0",),
+        ("n0", "n1"),
+        ("n0", "n1", "n2"),
+    ]
+    assert [(destination, path) for destination, path, _ in attached_error_contexts] == [
+        ("n0", ("n0",)),
+        ("n1", ("n0", "n1")),
+        ("n2", ("n0", "n1", "n2")),
+    ]
+    assert all(len(set(row[10])) == len(row[10]) for row in rows)
+    assert [len(applied[node]) for node in ("n0", "n1", "n2")] == [1, 1, 1]
     assert not neuron_errors
-    assert len(rows) == 3
+    assert all(row[4] == rows[0][4] for row in rows)
+    assert all(row[6] == predictions[0].prediction_id for row in rows)
+    assert all(row[7] == rows[0][7] for row in rows)
+    assert all(row[9] < len(runtime.by_id) for row in rows)
+    assert runtime._delivered_errors == set()
+    components = dict(result.energy_components)
+    routed_edge_rows = [
+        row
+        for row in result.trace
+        if row[1] != row[2] and row[3] in (EventType.EXCURSION, PREDICTION_ERROR_EVENT)
+    ]
+    expected_edge_cost = sum(
+        abs(row[4]) if isinstance(row[4], Real) else 1.0
+        for row in routed_edge_rows
+    )
+    assert components["edge_transfer"] == pytest.approx(expected_edge_cost)
+    expected_error_cost = sum(
+        1.0 + abs(event.payload.error)
+        for events in applied.values()
+        for event in events
+        if isinstance(event.payload, PredictionError)
+    )
+    assert components["prediction_error"] == pytest.approx(expected_error_cost)
 
 
 def test_integrated_prediction_error_delivery_guard_resets_between_characters(

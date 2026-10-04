@@ -667,7 +667,11 @@ class ExcursionCharacterRuntime:
             event_id=event.event_id,
             lineage_id=event.lineage_id,
         )
-        forwarded = self.topology.route(forwarding_event, self._queue())
+        forwarded = self.topology.route(
+            forwarding_event,
+            self._queue(),
+            exclude_destinations=context.route_path,
+        )
         for routed in forwarded:
             self._attach(
                 routed,
