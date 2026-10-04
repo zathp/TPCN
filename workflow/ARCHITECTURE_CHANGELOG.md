@@ -1,5 +1,51 @@
 # Architecture Changelog
 
+# Luna-0 ACP-0006 / Luna-22 closure-readiness review - 2026-10-03
+
+**SCENARIO C — LUNA-22 REMAINS BLOCKED BY ONE VERIFIED MULTI-HOP
+PREDICTION-ERROR FORWARDING DEFECT.** Review began on clean
+`main == origin/main == 42026a9fc3ccc1b1fdc83e0344c79312f2d76b14`.
+The request's token `F9h8mimKAXJ74YAEM4NsrHja2pxrrFaJyX29rnc7RyLb` is not a
+resolvable Git object. The actual implementation/review/correction lineage
+was verified from the repository's commit graph and is documented in the
+closure-readiness handoff.
+
+Focused Luna-22 integration passed **43 tests** and the prescribed ACP-0006
+regression passed **334 tests**. Real local prediction matching produced a
+nonzero error from a later admitted target; real positive-delay reward
+modified the corresponding emitted-excursion eligibility trace, and replaying
+the reward ID was a no-op. Neither observation establishes dataset efficacy.
+An independent three-node path probe reproduced a matched error at `n0`, its
+finite-delay arrival at `n1`, then a repeated route from `n0` to `n1` instead
+of the reachable `n2`. The runtime adapter passes the original event source
+to `BoundedTopology.route()` at each hop. This violates already accepted
+ACP-0006 rule 6; no ACP or A01-A15 change is required.
+
+Luna-25's reproducibility gate remains closed for `luna25-v1`; the historical
+Luna-22 sample is not reconstructable. Its zero matches/errors/credit and
+classification result are task-efficacy/configuration observations, not
+additional correctness gates. The rerun full suite reported **24 failed,
+796 passed, 1 skipped, 821 collected**. Every failure is individually
+classified as downstream consumer compatibility under fixed EXCURSION_V1
+topology/model boundaries; none is a Luna-22 core blocker by itself. No
+consumer fix was made or authorized here.
+
+**GOVERNANCE:** Luna-22 is **IMPLEMENTED / BLOCKED / NOT CLOSED** solely for
+the multi-hop error-forwarding defect among reviewed core items. Luna-23,
+Luna-24 and Luna-25 remain closed in their exact scopes. Luna-26 is
+**AUTHORIZED / NOT EXECUTED** to correct and verify adapter-only hop-local
+forwarding, with actual matched-error path, identity/payload/delay,
+reachability, convergence/deduplication and bounds coverage. It may not
+change topology APIs, neuron/predictor/ledger behavior, ACP-0006, architecture
+or downstream consumers. Full evidence and the exact bounded assignment are
+in `workflow/handoffs/luna-0-acp-0006-luna-22-closure-readiness-20261003.md`,
+`.github/agents/luna-26.agent.md` and
+`workflow/handoffs/luna-0-authorization-luna-26-prediction-error-multihop-routing-20261003.md`.
+Luna-0 must independently review Luna-26 before reconsidering Luna-22
+closure. This fresh classification supersedes the earlier Luna-25 changelog
+wording that grouped dataset efficacy and downstream compatibility among
+Luna-22 blockers. ACP-0006 and A01-A15 are unchanged.
+
 # Luna-0 independent review of Luna-25 dataset evidence - 2026-10-03
 
 **PASS — LUNA-25 `luna25-v1` DATASET/SPLIT/RESULT REPRODUCIBILITY EVIDENCE

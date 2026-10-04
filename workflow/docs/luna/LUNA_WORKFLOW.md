@@ -2560,17 +2560,43 @@ changes A01-A15, ACP-0004, ACP-0006 or IR-2 schema revision 1, and neither
 authorizes visualization, structural-plasticity, dataset or benchmark-consumer
 migrations.
 
-Luna-22 remains **BLOCKED / NOT CLOSED**. Luna-25 has closed the
-repository-reproducible sequential dataset/split/per-class evidence gate for
-the new `luna25-v1` baseline; it did not reconstruct the historical Luna-22
-split. Consumer-specific compatibility decisions for the 24 downstream
-failures remain unresolved. In addition, Luna-25 observed zero matched
-predictions, prediction errors and matched delayed-credit outcomes, so it does
-not establish predictive efficacy or complete the broader ACP-0006 integration
-criteria. These are separate kinds of work; no broad test-green or downstream
-migration task is authorized by Luna-24 or Luna-25 closure. Luna-0 must perform
-a fresh integration review after separately governed consumer work and the
-remaining applicable acceptance evidence.
+Luna-22 remains **IMPLEMENTED / BLOCKED / NOT CLOSED**. A fresh
+closure-readiness review verified a concrete remaining core defect: an actual
+matched `PredictionError` reaches the first downstream node but is re-routed
+from the original source and never reaches a reachable second hop, contrary
+to ACP-0006 rule 6. This is the sole identified Luna-22 core correctness
+blocker; the review does not close Luna-22.
+
+Luna-23 and Luna-24 remain **CLOSED / INDEPENDENTLY VERIFIED**. Luna-25
+remains **CLOSED / INDEPENDENTLY VERIFIED** for reproducibility of the new
+`luna25-v1` dataset/split/results only; it did not reconstruct the historical
+Luna-22 split. Focused evidence confirms local causal prediction/error
+matching and positive-delay delayed-credit attribution work. Luna-25's zero
+matched predictions/errors/credit, low classification accuracy and the
+unreconstructable old split are respectively task-efficacy and
+historical-evidence observations, not further integration correctness gates.
+No accuracy threshold or efficacy requirement is added.
+
+The full CPU suite was rerun: 24 failures, 796 passes, one CUDA-unavailable
+skip, 821 collected. All 24 failures were individually inspected and
+classified as downstream visualization, structural-experiment,
+legacy-observable, temporal/spiral analysis or viewer compatibility
+assumptions. They do not block Luna-22 under the fixed-topology EXCURSION_V1
+contract and the existing requirement to run/report (not blanket-repair) the
+full suite. No downstream migration is authorized by this review.
+
+Luna-26 is **AUTHORIZED / NOT EXECUTED** solely to correct and test hop-local
+opaque prediction-error forwarding in the Luna-22 integration adapter. Its
+contract is `.github/agents/luna-26.agent.md`; its authorization record is
+`workflow/handoffs/luna-0-authorization-luna-26-prediction-error-multihop-routing-20261003.md`.
+The full closure-readiness evidence, including exact suite-failure matrix and
+A01-A15 assessment, is
+`workflow/handoffs/luna-0-acp-0006-luna-22-closure-readiness-20261003.md`.
+Luna-26 must not change topology APIs, ACP-0006, canonical behavior or
+downstream consumers, and does not itself close Luna-22. Luna-0 must
+independently review its completion before reconsidering closure.
+This fresh classification supersedes earlier wording that treated dataset
+efficacy or all 24 downstream compatibility failures as Luna-22 core gates.
 
 The original Luna-25 authorization was for a retained, deterministic UCI
 Character Trajectories loader/split/report under the unchanged ACP-0006
