@@ -3300,3 +3300,23 @@ does not authorize GPU/FPGA support, downstream migrations, or a successor
 Luna. The implementation full-suite evidence remains 821 passed, 21 failed,
 1 skipped; the independent reviewer did not rerun the full suite. The 21
 previously classified downstream failures remain separate and unresolved.
+
+## Luna-0 EXCURSION_V1 structural re-entry readiness - 2026-10-04
+
+At baseline `d9abe5e3a5b9b3c6d6049ac4c64647463c33ba2d`, Luna-0 classified
+the 19 Luna-12B/Luna-12L/spiral/temporal-analysis/3D-viewer failures as
+terminating at the intentional EXCURSION_V1 structural-mode guard. This is
+the immediate test dependency, not proof that all assertions pass after the
+guard. The historical ExperimentRunner's index/policy endpoints,
+`abs(run.feature) + run.loss` score, and feature-derived pruning score do not
+establish source-local E2 evidence.
+
+Luna-13F's runtime temporal-association mechanism remains an experimental
+fixture result: evidence generation and canonical admission were supported
+there, useful-growth prediction was not supported, and resource benefit was
+not established. Its use in normal E2 training would be a promotion requiring
+a project-owner architecture decision. Draft ACP-0007 records the unresolved
+E2-local observation feed, evidence/score provenance, chronology and reset,
+and pruning questions. It is not accepted. The current guard remains;
+growth/pruning and Luna-28 are not authorized or executed. See
+`workflow/handoffs/luna-0-excursion-structural-reentry-readiness-20261004.md`.

@@ -1,5 +1,32 @@
 # Architecture Changelog
 
+# Luna-0 EXCURSION_V1 structural re-entry readiness - 2026-10-04
+
+**BLOCKED — EXCURSION_V1 STRUCTURAL RE-ENTRY REQUIRES ARCHITECTURE
+DECISION.** At clean `main`, baseline
+`d9abe5e3a5b9b3c6d6049ac4c64647463c33ba2d`, Luna-0 reran the five known
+structurally dependent test groups: `19 failed, 12 passed`; all 19 failed at
+the intentional `EXCURSION_V1 + structural_plasticity` configuration guard.
+The focused structural controller/evidence regression slice passed
+(`69 passed`). These results locate the immediate dependency root but do not
+prove post-guard downstream assertions pass.
+
+The historical `_adapt_topology()` score `abs(run.feature) + run.loss`,
+index/policy-based endpoints, and feature-based pruning are not accepted
+source-local E2 evidence. Luna-13F's bounded temporal-association mechanism
+remains supported only in its tested experimental fixture; useful-growth
+prediction was **NOT SUPPORTED**, resource benefit **NOT ESTABLISHED**, and
+production reuse is not authorized. E2-local observation mapping, evidence
+score/delay provenance, chronology/freeze/reset, incomplete-settling behavior,
+and local pruning evidence remain unresolved.
+
+Draft `workflow/docs/architecture_proposals/ACP-0007.md` is submitted for
+project-owner architecture review. It is not accepted and changes neither
+A01-A15 nor ACP-0006. Growth and pruning are not authorized; the E2 guard
+remains; Luna-28 is not created or executed. The complete readiness matrix,
+test details, downstream dispositions and next decision are in
+`workflow/handoffs/luna-0-excursion-structural-reentry-readiness-20261004.md`.
+
 # Luna-0 classification — Luna-12E downstream failures - 2026-10-04
 
 **CLASSIFIED — TWO LEGACY-OBSERVABLE ASSERTIONS; NO LUNA-28
