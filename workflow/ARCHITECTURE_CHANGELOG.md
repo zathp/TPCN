@@ -1,5 +1,43 @@
 # Architecture Changelog
 
+# Luna-0 acceptance — ACP-0007 and Luna-28 authorization - 2026-10-04
+
+**ACCEPTED — BOUNDED EXCURSION_V1 STRUCTURAL GROWTH EXPERIMENT; LUNA-28
+AUTHORIZED, NOT EXECUTED.** The project owner accepted ACP-0007 with the
+complete local structural-observation contract. Architecture contract version
+is 1.2. No A01-A15 clause text or scope is changed; ACP-0006 §17 is clarified
+only for this separately authorized, opt-in, growth-only experiment. Fixed
+topology remains the EXCURSION_V1 default.
+
+The accepted E2 evidence source is only an actual canonical emission's
+identity and timestamp, observed over an explicit bounded static local
+neighborhood independent of mutable neural connectivity. Temporal-association
+scores use only strictly ordered, bounded local emission counts. Evidence is
+character-local, frozen after successful settling, consumed after at most one
+post-character admission attempt, and cannot mutate topology while runtime
+work is active. The configured finite positive delay is fixed, the growth
+attempt budget is finite, and the same bounded topology serves later E2
+routing. Pruning is not authorized.
+
+Luna-28 is authorized for implementation and verification only under
+`.github/agents/luna-28.agent.md` and
+`workflow/handoffs/luna-0-authorization-luna-28-excursion-local-temporal-growth-20261004.md`.
+The owner decision and terms are recorded in
+`workflow/handoffs/luna-0-owner-decision-acp0007-excursion-structural-growth-20261004.md`.
+No Luna-28 implementation or tests have been run. The previous readiness
+result remains historically valid: 19 downstream failures stopped at the
+guard, 12 passed, and the 69 structural/evidence regressions passed. Those
+results do not establish post-guard downstream behavior. The separately
+classified Luna-12E failures still distinguish real routed-topology effects
+from unchanged legacy aggregate `prediction_loss` and post-evaluation clock
+expectations.
+
+No Luna-13F useful-growth claim, A14 promotion, N3 edge-parameter learning,
+pruning, downstream migration, hardware work, or hardware-equivalence claim
+follows from this authorization. The fixed-topology ACP-0006 §17 path remains
+the rollback/default; acceptance of mechanism tests will not imply task or
+resource efficacy.
+
 # Luna-0 EXCURSION_V1 structural re-entry readiness - 2026-10-04
 
 **BLOCKED — EXCURSION_V1 STRUCTURAL RE-ENTRY REQUIRES ARCHITECTURE

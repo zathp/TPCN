@@ -3314,9 +3314,34 @@ establish source-local E2 evidence.
 Luna-13F's runtime temporal-association mechanism remains an experimental
 fixture result: evidence generation and canonical admission were supported
 there, useful-growth prediction was not supported, and resource benefit was
-not established. Its use in normal E2 training would be a promotion requiring
-a project-owner architecture decision. Draft ACP-0007 records the unresolved
-E2-local observation feed, evidence/score provenance, chronology and reset,
-and pruning questions. It is not accepted. The current guard remains;
-growth/pruning and Luna-28 are not authorized or executed. See
-`workflow/handoffs/luna-0-excursion-structural-reentry-readiness-20261004.md`.
+not established. Its use in ordinary E2 training required an explicit
+project-owner decision. At the time of this readiness finding, ACP-0007 was
+draft and growth/pruning and Luna-28 were not authorized. See
+`workflow/handoffs/luna-0-excursion-structural-reentry-readiness-20261004.md`
+for the historical result and
+`workflow/handoffs/luna-0-owner-decision-acp0007-excursion-structural-growth-20261004.md`
+for the superseding decision.
+
+## Luna-0 owner decision — ACP-0007 accepted - 2026-10-04
+
+**ACCEPTED WITH OWNER-SPECIFIED LOCAL OBSERVATION CONTRACT.** The project
+owner accepted ACP-0007 as an optional, explicitly selected EXCURSION_V1
+growth-only experiment. Architecture contract version 1.2 records this
+interpretation without changing the substantive text or scope of A01-A15.
+Fixed topology remains the default. Acceptance does not establish useful
+growth, accuracy/prediction/reward/energy improvement, resource benefit,
+pruning, A14 promotion, or hardware equivalence. ACP-0002 N3 and all
+downstream consumer migrations remain unauthorized.
+
+## Luna-0 authorization — Luna-28 local temporal growth - 2026-10-04
+
+**AUTHORIZED — IMPLEMENTATION + VERIFICATION ONLY; NOT STARTED.** Luna-28 may
+implement the bounded CPU E2 observation and post-character growth path under
+accepted ACP-0007. Its exact file ownership, interfaces, required tests,
+regressions, exclusions, and stop conditions are in
+`.github/agents/luna-28.agent.md` and the authorization handoff at
+`workflow/handoffs/luna-0-authorization-luna-28-excursion-local-temporal-growth-20261004.md`.
+The mandatory sequence is `Luna-0 owner decision -> Luna-0 authorization ->
+Luna-28 implementation/verification -> Luna-0 independent review`. Do not
+create or run a downstream migration from this authorization. Luna-28 has not
+been executed.

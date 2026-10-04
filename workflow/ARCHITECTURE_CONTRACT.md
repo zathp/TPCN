@@ -250,9 +250,20 @@ Software conveniences that fundamentally prevent hardware implementation should 
 
 ## Authority and interpretation
 
-Version: 1.1 — 2026-09-28. This is the authoritative contract for the candidate event-driven TPCN architecture. It governs new core work; it does not claim that the existing implementation already conforms.
+Version: 1.2 — 2026-10-04. This is the authoritative contract for the candidate event-driven TPCN architecture. It governs new core work; it does not claim that the existing implementation already conforms.
 
 Current project-owner decisions take precedence. This contract takes precedence over workflow examples, legacy documentation and experimental results. Accepted changes require an [Architecture Change Proposal](docs/architecture_proposals/ACP-TEMPLATE.md), a contract revision and a changelog entry. Experiments may depart from named clauses on isolated branches, but must identify the departure and cannot silently become the core.
+
+Accepted [ACP-0007](docs/architecture_proposals/ACP-0007.md) clarifies
+ACP-0006 §17 by authorizing only the separately dispatched, opt-in,
+growth-only EXCURSION_V1 experiment specified there. It does not change the
+substantive text or scope of A01-A15, make structural plasticity a default,
+or establish task/resource efficacy. Fixed-topology EXCURSION_V1 remains the
+default. The accepted experiment's local observation, bounded evidence,
+quiescent mutation, reset, exclusion, and verification requirements are
+normative for that experiment only. Luna-28 is authorized to implement and
+verify that scope; its execution and all downstream migrations remain
+separately gated.
 
 A10 means **minimize unrewarded energy expenditure, not energy itself**. Reward attribution, utility formulas and tuning coefficients remain research choices. Evaluate both high-cost/high-reward retention and high-cost/low-reward suppression. An inactive network is not evidence of useful efficiency.
 
@@ -283,4 +294,3 @@ The initial candidate has 256 neurons, 26 A–Z outputs, fan-in/out limits of 8,
 - Exactly ten pathways or explicit learned gates as mandatory core behavior.
 
 See [acceptance criteria](docs/architecture/ACCEPTANCE_CRITERIA.md) for evidence required before integration.
-
