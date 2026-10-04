@@ -11,6 +11,10 @@ tpcn_handoff:
   contract_version: "1.2"
   branch: "main"
   base_revision: "c654ffe9c8d4a6d179781696d9ba5cd239e12795"
+  authorization_source_revision: "F9h8mimKAXJ74YAEM4NsrHja2pxrrFaJyX29rnc7RyLb (opaque source token; not a Git object)"
+  verified_review_revision: "c654ffe9c8d4a6d179781696d9ba5cd239e12795"
+  authorization_publication_revision: "aad4b0db09773ebca9314d188c3b24297ad17c44"
+  execution_lineage_floor: "aad4b0db09773ebca9314d188c3b24297ad17c44"
   result_revision: "not started"
   dependencies:
     - "Accepted ACP-0007"
@@ -97,10 +101,21 @@ STARTED.** Luna-29 may adapt the CPU training helper to accept an explicit
 growth-only E2 semantics under
 `.github/agents/luna-29.agent.md`.
 
-The pasted starting identifier did not resolve as a Git object. The repository
-was verified on clean `main` at
-`HEAD == origin/main == c654ffe9c8d4a6d179781696d9ba5cd239e12795`, subject
-`docs: close independent Luna-28 review`. This is the authorization baseline.
+The supplied source token
+`F9h8mimKAXJ74YAEM4NsrHja2pxrrFaJyX29rnc7RyLb` is not a Git object and must
+not be used as repository provenance or an execution baseline. Luna-0's
+verified review revision was clean `main` at
+`c654ffe9c8d4a6d179781696d9ba5cd239e12795`, subject
+`docs: close independent Luna-28 review`.
+
+The executable Luna-29 authorization package was first published at
+`aad4b0db09773ebca9314d188c3b24297ad17c44`
+(`docs: authorize Luna-29 CPU replay compatibility`). That revision is the
+authorization publication revision and execution-lineage floor. Luna-29 must
+run from clean, synchronized `main` descending from that floor, allowing only
+governance-only clarifications/pinning for this authorization between the
+floor and execution. A later production, test, ACP, contract, or architecture
+semantics change requires stopping and returning to Luna-0.
 
 ## Contract reconciliation
 
@@ -143,3 +158,9 @@ or downstream migration is authorized by completing Luna-29.
 This authorization does not execute the assignment and does not establish
 task efficacy, resource benefit, downstream integration readiness, or
 hardware equivalence.
+
+Luna-29 may execute from clean synchronized `main` descending from
+`aad4b0db09773ebca9314d188c3b24297ad17c44`; the governance-only correction
+and any other governance-only clarification/pinning for this authorization
+are allowed descendants. Any intervening production, test, ACP, contract, or
+architecture-semantics change requires stopping and returning to Luna-0.

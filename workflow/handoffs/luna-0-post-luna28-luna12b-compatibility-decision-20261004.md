@@ -11,7 +11,11 @@ tpcn_handoff:
   contract_version: "1.2"
   branch: "main"
   base_revision: "c654ffe9c8d4a6d179781696d9ba5cd239e12795"
-  result_revision: "governance publication pending"
+  authorization_source_revision: "F9h8mimKAXJ74YAEM4NsrHja2pxrrFaJyX29rnc7RyLb (opaque source token; not a Git object)"
+  verified_review_revision: "c654ffe9c8d4a6d179781696d9ba5cd239e12795"
+  authorization_publication_revision: "aad4b0db09773ebca9314d188c3b24297ad17c44"
+  execution_lineage_floor: "aad4b0db09773ebca9314d188c3b24297ad17c44"
+  result_revision: "aad4b0db09773ebca9314d188c3b24297ad17c44 (authorization package publication)"
   dependencies:
     - "Accepted ACP-0007"
     - "Luna-28 independent closure"
@@ -70,7 +74,7 @@ tpcn_handoff:
   tests_not_run:
     - "Full suite; not needed for this bounded governance review."
   assumptions:
-    - "Expected publication subject confirms baseline although pasted Git identifier is malformed."
+    - "The F9h... dispatch token is non-Git and not repository provenance; c654ffe... is the verified decision revision and aad4b0d... is the authorization publication/execution-lineage floor."
   unresolved:
     - "CLI old boolean and downstream consumers are outside Luna-29."
     - "17 other known repository failures remain separate."
@@ -80,10 +84,15 @@ tpcn_handoff:
 
 ## Starting revision and Luna-28 state
 
-The review began on `main`, clean, with
-`HEAD == origin/main == c654ffe9c8d4a6d179781696d9ba5cd239e12795`,
-subject `docs: close independent Luna-28 review`. The identifier in the
-dispatch text did not resolve as a Git commit and is not used as provenance.
+The compatibility decision was made against the verified `main` revision
+`c654ffe9c8d4a6d179781696d9ba5cd239e12795`, subject
+`docs: close independent Luna-28 review`. The supplied token
+`F9h8mimKAXJ74YAEM4NsrHja2pxrrFaJyX29rnc7RyLb` is retained only as the
+non-Git source identifier present in the dispatch text; it is not repository
+provenance. The authorization package was first published at
+`aad4b0db09773ebca9314d188c3b24297ad17c44`, which is the execution-lineage
+floor because that is the first revision containing the executable Luna-29
+authorization contract.
 
 Luna-28 remains **CLOSED / INDEPENDENTLY VERIFIED** under accepted ACP-0007
 and architecture contract 1.2. The implementation established the tested

@@ -5,23 +5,43 @@ description: Migrate the Luna-12B CPU helper and tests to explicit ACP-0007 grow
 
 # Luna-29 — ACP-0007 CPU Structural Replay Compatibility
 
-## Authorization and baseline
+## Authorization and revision provenance
 
 Luna-29 is authorized for downstream CPU-helper compatibility implementation
 and focused verification only. ACP-0007 is accepted, architecture contract
 version 1.2 is unchanged, and Luna-28 is closed and independently verified.
-The authorization baseline is clean `main` at
-`c654ffe9c8d4a6d179781696d9ba5cd239e12795` (the publication subject is
-`docs: close independent Luna-28 review`). The identifier supplied as the
-baseline in the dispatch text is not a Git object; use the verified Git SHA
-above.
 
-Before editing, verify `HEAD == origin/main`, branch `main`, clean worktree,
-and read ACP-0007, the architecture contract, Luna-28 implementation and
-independent-review handoffs, this contract, the authorization handoff, the
-Luna-12B tests/handoff, CPU helper, replay implementation, and visualization
-contract. Stop if the starting revision differs or new architecture decisions
-change this authorization.
+The compatibility review's verified repository revision was
+`c654ffe9c8d4a6d179781696d9ba5cd239e12795` (`docs: close independent
+Luna-28 review`). The separate token
+`F9h8mimKAXJ74YAEM4NsrHja2pxrrFaJyX29rnc7RyLb` appeared in pasted status
+text; it is not a Git object and is not repository-verifiable provenance.
+
+The authorization package was first published at
+`aad4b0db09773ebca9314d188c3b24297ad17c44`
+(`docs: authorize Luna-29 CPU replay compatibility`). This is the
+`authorization_publication_revision` and `execution_lineage_floor`: the
+package containing this executable contract does not exist at c654ffe.
+
+Before editing, verify this pre-edit gate:
+
+1. The current branch is `main`.
+2. `HEAD == origin/main`.
+3. The worktree is clean.
+4. `aad4b0db09773ebca9314d188c3b24297ad17c44` is an ancestor of `HEAD`.
+5. Any commits after that publication revision are governance-only
+   clarification or pinning for this Luna-29 authorization.
+6. No production code, tests, ACP-0007, Architecture Contract, A01-A15,
+   Luna-28 implementation, TPCV semantics, or other architecture semantics
+   changed after that publication revision.
+
+The governance-only clarification that repairs this gate is an allowed
+descendant; do not require `HEAD` to equal c654ffe or aad4b0d. If any gate
+condition fails, or a later production, test, or architecture change appears,
+stop and return to Luna-0. Read ACP-0007, the architecture contract, Luna-28
+implementation and independent-review handoffs, this contract, the
+authorization handoff, the Luna-12B tests/handoff, CPU helper, replay
+implementation, and visualization contract before editing.
 
 Mandatory sequence: `Luna-0 authorization -> Luna-29 -> Luna-0 independent
 review`. Return a completed evidence handoff to Luna-0. Do not authorize or

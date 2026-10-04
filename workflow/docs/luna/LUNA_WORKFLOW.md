@@ -3389,3 +3389,12 @@ remain separate. Luna-29 does not include the CLI, temporal-analysis,
 `Luna-0 -> Luna-29 -> Luna-0`. This authorization does not execute Luna-29
 or establish task efficacy, resource benefit, downstream readiness, or
 hardware equivalence.
+
+The verified decision revision was
+`c654ffe9c8d4a6d179781696d9ba5cd239e12795`; the authorization package was
+published at `aad4b0db09773ebca9314d188c3b24297ad17c44`. Luna-29 may execute
+from clean synchronized `main` descending from the publication revision when
+any intervening commits are governance-only clarifications/pinning for this
+authorization. The supplied `F9h8mimKAXJ74YAEM4NsrHja2pxrrFaJyX29rnc7RyLb`
+token is not a Git object and is not repository provenance. Status remains
+**AUTHORIZED / NOT EXECUTED**.

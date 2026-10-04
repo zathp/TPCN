@@ -1,5 +1,16 @@
 # Architecture Changelog
 
+# Luna-29 execution-lineage clarification - 2026-10-04
+
+This governance correction distinguishes the verified decision revision
+`c654ffe9c8d4a6d179781696d9ba5cd239e12795` from the authorization-package
+publication and execution-lineage floor
+`aad4b0db09773ebca9314d188c3b24297ad17c44`. The dispatch token
+`F9h8mimKAXJ74YAEM4NsrHja2pxrrFaJyX29rnc7RyLb` is not a Git object and is
+ignored as repository provenance. This does not change architecture, ACP-0007,
+or Luna-29's substantive scope, and does not enable pruning; it only clarifies
+decision baseline versus publication/execution lineage.
+
 # Luna-0 authorization — Luna-29 CPU structural replay compatibility - 2026-10-04
 
 **AUTHORIZED — LUNA-29 DOWNSTREAM CPU-HELPER COMPATIBILITY + FOCUSED
