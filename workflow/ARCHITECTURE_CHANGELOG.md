@@ -1,5 +1,32 @@
 # Architecture Changelog
 
+# Luna-0 authorization — Luna-30 TPCV-2 replay consumer compatibility correction - 2026-10-04
+
+**AUTHORIZED — LUNA-30 TPCV-2 REPLAY CONSUMER COMPATIBILITY CORRECTION;
+NOT EXECUTED.** At clean synchronized `main`,
+`HEAD == origin/main == 727a00aed08a4ba2c7194a70cde603f60ab35065`,
+Luna-0 authorized the bounded downstream correction in
+`.github/agents/luna-30.agent.md` and
+`workflow/handoffs/luna-0-authorization-luna-30-tpcv2-replay-consumer-compatibility-20261004.md`.
+The prior blocked review identified valid TPCV-2 `ExcursionNeuronRecord`
+values reaching `VisualizationScene.nodes()` and `inspect()` and raising
+`AttributeError` because scalar activation is not defined for EXCURSION_V1.
+
+Authorized projection: retain TPCV-1's exact activation float; represent
+TPCV-2 activation as absent (`None`) and continue to use canonical `active`
+for activity filtering. Also authorized are version-neutral temporal-analysis
+capability-limit wording and migration of only the assigned temporal-analysis
+and viewer tests to deterministic detached TPCV-2 replay with explicit
+metrics. Generic snapshot-difference removal highlighting is visualization
+behavior, not E2 pruning evidence.
+
+Architecture change: **NO**. ACP required: **NO**. TPCV schema change: **NO**.
+Viewer compatibility correction: **AUTHORIZED**. Consumer fixture migration:
+**AUTHORIZED**. E2 pruning and N3: **NOT AUTHORIZED**. Architecture Contract
+1.2, A01-A15, and accepted ACP-0007 remain unchanged. Luna-30 is
+**AUTHORIZED / NOT EXECUTED**; mandatory sequence is
+`Luna-0 -> Luna-30 -> Luna-0`.
+
 # Luna-0 independent review — Luna-29 closed - 2026-10-04
 
 **PASS — LUNA-29 CPU-HELPER COMPATIBILITY INDEPENDENTLY VERIFIED AND CLOSED

@@ -3432,3 +3432,42 @@ A01-A15, and accepted ACP-0007 are unchanged. This closes only Luna-29's
 authorized adapter scope; it does not establish downstream migration,
 task/resource efficacy, integration readiness, or hardware equivalence.
 No successor is authorized.
+
+## Luna-0 authorization — Luna-30 TPCV-2 replay consumer compatibility correction - 2026-10-04
+
+**AUTHORIZED — LUNA-30 TPCV-2 REPLAY CONSUMER COMPATIBILITY CORRECTION;
+NOT EXECUTED.** Authorization starts at clean synchronized `main`,
+`HEAD == origin/main == 727a00aed08a4ba2c7194a70cde603f60ab35065`
+(`docs: classify replay consumer compatibility blockers`). The preceding
+Luna-0 review remains **BLOCKED — CURRENT DOWNSTREAM REPLAY CONSUMER
+DEFECT** pending implementation and independent review.
+
+The confirmed bounded defect is `VisualizationScene.nodes()` and
+`VisualizationScene.inspect()` accessing scalar `activation` on canonical
+TPCV-2 `ExcursionNeuronRecord`, which intentionally has no activation field.
+Luna-30 may project activation as `float | None` (TPCV-1 preserves its exact
+float; TPCV-2 returns `None`) without synthesizing a value, while continuing
+to filter TPCV-2 activity using `active`. Luna-30 may also make
+TPCV-1-specific temporal-analysis capability-limit wording version-neutral;
+per-edge use remains unavailable without event-path evidence.
+
+The six failing consumer fixtures are stale bare structural-plasticity helper
+calls stopped by the ACP-0007 observation guard. Migrate these downstream
+tests to deterministic detached TPCV-2 replay with explicit metrics.
+Synthetic edge disappearance is visualization-only snapshot-difference
+evidence, not E2 pruning. Luna-29 already verified a real E2-added edge in
+TPCV-2; Luna-30 need not rerun structural learning.
+
+Exact ownership, prohibited files, tests, and completion checks are in
+`.github/agents/luna-30.agent.md` and
+`workflow/handoffs/luna-0-authorization-luna-30-tpcv2-replay-consumer-compatibility-20261004.md`.
+Only `tpcn/viewer_3d.py`, limited `tpcn/temporal_analysis.py` wording,
+`tests/test_viewer_3d.py`, `tests/test_temporal_analysis.py`, and the Luna-30
+completion handoff are owned. No TPCV schema/codec, CPU helper, experiment,
+topology, structural-learning, CLI, hardware, Luna-12L, spiral, or Luna-12E
+files are authorized. If any prohibited file is required, stop and return to
+Luna-0.
+
+ACP required: **NO**. Architecture Contract 1.2 and A01-A15 remain unchanged.
+E2 pruning and N3 remain unauthorized. Mandatory sequence:
+`Luna-0 -> Luna-30 -> Luna-0`; Luna-30 is **AUTHORIZED / NOT EXECUTED**.
