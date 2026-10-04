@@ -3551,3 +3551,7 @@ A01-A15, and accepted ACP-0007 are unchanged. Sequence:
 ### Luna-31 closure - 2026-10-04
 
 Luna-31 = **CLOSED / INDEPENDENTLY VERIFIED** within the exact Luna-12E EXCURSION_V1 test-observable compatibility scope (commit 9efc5f1; review: workflow/handoffs/luna-0-independent-review-luna-31-luna12e-e2-observable-compatibility-20261004.md). Production code, Architecture Contract 1.2 and ACP-0007 unchanged. Remaining failures: 8 Luna-12L, 1 spiral. Successor: NOT AUTHORIZED. E2 pruning and N3 remain unauthorized.
+
+### Luna-32 authorization - 2026-10-04
+
+Luna-32 (Historical Luna-12L / Spiral Model-Explicit Compatibility) is **AUTHORIZED / NOT EXECUTED**. Contract: .github/agents/luna-32.agent.md; decision: workflow/handoffs/luna-0-post-luna31-luna12l-spiral-policy-compatibility-decision-20261004.md. Scope is **historical experiment compatibility** only: make TANH_LEGACY explicit for all five Luna-12L classifier policies and all ten spiral run_controls, preserving real legacy policy execution and provenance guards. It is **not** current E2 scientific validation: no legacy-to-e2_local_temporal aliasing, no core/ACP change, and the corrected Luna-12L NOT SUPPORTED result and artifacts remain frozen (an explicit-TANH rerun is not the same experiment). A current ACP-0007 four-class experiment would need a new contract. Sequence: Luna-0 -> Luna-32 -> Luna-0. Luna-33 NOT AUTHORIZED.

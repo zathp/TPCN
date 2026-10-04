@@ -1,5 +1,9 @@
 # Architecture Changelog
 
+# Luna-0 decision — Luna-12L / spiral historical model compatibility (Luna-32) - 2026-10-04
+
+**AUTHORIZED — LUNA-32 HISTORICAL MODEL-EXPLICIT COMPATIBILITY; NOT EXECUTED.** At 392ce25, the nine remaining failures (8 Luna-12L, 1 spiral) were reproduced and traced to the implicit model default moving to EXCURSION_V1; legacy policies baseline/random/temporal/reversed have no E2 equivalent. Luna-32 may make TANH_LEGACY explicit for all conditions (no cross-model mix) in temporal_scale.py, spiral_benchmark.py and their tests only. Explicit-TANH probes are not the same experiment as the retained corrected Luna-12L result (energy/replay digests differ), which stays NOT SUPPORTED and frozen. A current ACP-0007 four-class experiment requires a new contract. No architecture promotion; Contract 1.2 and ACP-0007 unchanged; E2 pruning and N3 unauthorized; successor not authorized.
+
 # Luna-0 closure — Luna-31 Luna-12E EXCURSION_V1 observable compatibility - 2026-10-04
 
 **PASS — LUNA-31 INDEPENDENTLY VERIFIED / CLOSED** (implementation 9efc5f1, test-only). Luna-12E E2 observable compatibility: CLOSED / VERIFIED. Causal routing: DIRECTLY VERIFIED. Prediction-loss delta: NOT REQUIRED FOR THIS FIXTURE. E2 terminal reset oracle: VERIFIED. TANH legacy timing: PRESERVED AS MODEL-SPECIFIC REGRESSION. Production code, Architecture Contract and ACP-0007: UNCHANGED. Task efficacy, resource benefit, hardware equivalence: NOT ESTABLISHED. Successor not authorized; E2 pruning and N3 remain unauthorized.
