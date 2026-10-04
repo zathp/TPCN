@@ -1,5 +1,9 @@
 # Architecture Changelog
 
+# Luna-0 closure — Luna-31 Luna-12E EXCURSION_V1 observable compatibility - 2026-10-04
+
+**PASS — LUNA-31 INDEPENDENTLY VERIFIED / CLOSED** (implementation 9efc5f1, test-only). Luna-12E E2 observable compatibility: CLOSED / VERIFIED. Causal routing: DIRECTLY VERIFIED. Prediction-loss delta: NOT REQUIRED FOR THIS FIXTURE. E2 terminal reset oracle: VERIFIED. TANH legacy timing: PRESERVED AS MODEL-SPECIFIC REGRESSION. Production code, Architecture Contract and ACP-0007: UNCHANGED. Task efficacy, resource benefit, hardware equivalence: NOT ESTABLISHED. Successor not authorized; E2 pruning and N3 remain unauthorized.
+
 # Luna-0 authorization — Luna-12E EXCURSION_V1 observable compatibility correction (Luna-31) - 2026-10-04
 
 **AUTHORIZED — LUNA-31 TEST-ONLY COMPATIBILITY CORRECTION; NOT EXECUTED.**

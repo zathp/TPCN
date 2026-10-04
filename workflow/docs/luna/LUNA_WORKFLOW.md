@@ -3547,3 +3547,7 @@ are Luna-12L (8) and spiral (1); do not hard-code an aggregate pass count.
 Architecture change: **NO**. ACP required: **NO**. Architecture Contract 1.2,
 A01-A15, and accepted ACP-0007 are unchanged. Sequence:
 `Luna-0 -> Luna-31 -> Luna-0`; Luna-31 is **AUTHORIZED / NOT EXECUTED**.
+
+### Luna-31 closure - 2026-10-04
+
+Luna-31 = **CLOSED / INDEPENDENTLY VERIFIED** within the exact Luna-12E EXCURSION_V1 test-observable compatibility scope (commit 9efc5f1; review: workflow/handoffs/luna-0-independent-review-luna-31-luna12e-e2-observable-compatibility-20261004.md). Production code, Architecture Contract 1.2 and ACP-0007 unchanged. Remaining failures: 8 Luna-12L, 1 spiral. Successor: NOT AUTHORIZED. E2 pruning and N3 remain unauthorized.
