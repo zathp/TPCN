@@ -3367,3 +3367,25 @@ efficacy, resource benefit, downstream integration readiness, or hardware
 equivalence. ACP-0007 remains accepted and unchanged; contract version 1.2
 and A01-A15 are unchanged. No downstream migration or successor is
 authorized.
+
+## Luna-0 authorization — Luna-29 CPU structural replay compatibility - 2026-10-04
+
+**AUTHORIZED — DOWNSTREAM CPU-HELPER COMPATIBILITY + FOCUSED VERIFICATION
+ONLY; NOT STARTED.** Luna-29 may adapt `run_cpu_training()` to accept an
+explicit existing `ExperimentConfig` and migrate the Luna-12B CPU replay
+tests to the accepted ACP-0007 growth-only E2 behavior. The config must
+carry the explicit bounded structural neighborhood and all required finite
+settings; `structural_plasticity=True` alone remains invalid for E2 and must
+not synthesize hidden defaults. E2 pruning remains unauthorized. The exact
+contract and file ownership are in `.github/agents/luna-29.agent.md` and
+`workflow/handoffs/luna-0-authorization-luna-29-acp0007-cpu-structural-replay-compatibility-20261004.md`.
+
+The four Luna-12B tests reproduce at the intentional missing-observation
+guard. TPCV-2 connection records and existing adjacent-snapshot replay
+adequately represent added edges; no codec change or ACP is required.
+Explicit TANH_LEGACY regression behavior and generic edge-removal replay
+remain separate. Luna-29 does not include the CLI, temporal-analysis,
+3D-viewer, Luna-12L, spiral, or Luna-12E consumers. Mandatory sequence:
+`Luna-0 -> Luna-29 -> Luna-0`. This authorization does not execute Luna-29
+or establish task efficacy, resource benefit, downstream readiness, or
+hardware equivalence.

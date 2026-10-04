@@ -1,5 +1,27 @@
 # Architecture Changelog
 
+# Luna-0 authorization — Luna-29 CPU structural replay compatibility - 2026-10-04
+
+**AUTHORIZED — LUNA-29 DOWNSTREAM CPU-HELPER COMPATIBILITY + FOCUSED
+VERIFICATION ONLY; NOT STARTED.** At clean `main`,
+`HEAD == origin/main == c654ffe9c8d4a6d179781696d9ba5cd239e12795`
+(`docs: close independent Luna-28 review`), Luna-0 classified the four
+Luna-12B failures as pre-ACP-0007 callers rejected by the intentional E2
+missing-observation guard. Luna-29 may expose an explicit existing
+`ExperimentConfig` through the CPU helper and migrate only the Luna-12B
+integration and CPU capture tests to accepted growth-only E2 semantics.
+
+No ACP is required: this adapts a downstream wrapper to accepted ACP-0007.
+The boolean-only E2 request must remain invalid; no implicit neighborhoods
+or profile are allowed. E2 pruning, N3, TPCV codec changes, the CPU CLI and
+other downstream migrations remain unauthorized. TPCV-2 already captures
+actual bounded topology edges and its adjacent-snapshot timeline can represent
+additions. The exact scope and acceptance gate are in
+`.github/agents/luna-29.agent.md` and
+`workflow/handoffs/luna-0-authorization-luna-29-acp0007-cpu-structural-replay-compatibility-20261004.md`.
+This dispatch changes neither ACP-0007 nor A01-A15 and makes no efficacy,
+resource-benefit, downstream-readiness or hardware claim.
+
 # Luna-0 independent review — Luna-28 closed - 2026-10-04
 
 **PASS — LUNA-28 IMPLEMENTATION INDEPENDENTLY VERIFIED / CLOSED FOR ITS
