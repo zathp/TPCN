@@ -25,7 +25,7 @@ class NodeView:
     position: tuple[float, float, float]
     active: bool
     state: float
-    activation: float
+    activation: float | None
     processed_events: int
     selected: bool = False
 
@@ -231,7 +231,8 @@ class VisualizationScene:
     def nodes(self) -> tuple[NodeView, ...]:
         allowed = self.neighborhood() if self.filters.mode == "neighborhood" else None
         return tuple(NodeView(item.neuron_id, self.positions[item.neuron_id], item.active, item.state,
-                              item.activation, item.processed_events, item.neuron_id == self.selected_neuron)
+                              getattr(item, "activation", None), item.processed_events,
+                              item.neuron_id == self.selected_neuron)
                      for item in self.snapshot.neurons
                      if (allowed is None or item.neuron_id in allowed) and (not self.filters.active_only or item.active)
                      and (not self.filters.changed_only or item.neuron_id in self.diff.changed_neurons))
@@ -269,8 +270,9 @@ class VisualizationScene:
         incoming = tuple(sorted(edge.source for edge in self.snapshot.connections if edge.destination == identifier))
         outgoing = tuple(sorted(edge.destination for edge in self.snapshot.connections if edge.source == identifier))
         return {"neuron_id": identifier, "position": self.positions[identifier], "state": neuron.state,
-                "activation": neuron.activation, "active": neuron.active, "processed_events": neuron.processed_events,
-                "fan_in": len(incoming), "fan_out": len(outgoing), "incoming": incoming, "outgoing": outgoing,
+                "activation": getattr(neuron, "activation", None), "active": neuron.active,
+                "processed_events": neuron.processed_events, "fan_in": len(incoming), "fan_out": len(outgoing),
+                "incoming": incoming, "outgoing": outgoing,
                 "topology_changes": tuple(sorted(key for key in self.diff.added_edges | self.diff.removed_edges
                                                   if identifier in key))}
 

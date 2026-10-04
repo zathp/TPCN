@@ -9,7 +9,7 @@ from typing import Iterable, Mapping
 from .cpu_visualization import ReplaySequence, ReplaySequenceError
 
 
-USAGE_UNAVAILABLE = "unavailable: TPCV-1 records topology existence, not per-edge event paths"
+USAGE_UNAVAILABLE = "unavailable: replay snapshots do not encode routed per-edge event identity; topology existence alone cannot prove edge use"
 _METRICS = ("accuracy", "prediction_loss", "reward", "utility", "energy")
 _REJECTION_KEYS = (
     "duplicate", "fan_in_full", "fan_out_full", "edge_capacity", "nonlocal",
@@ -131,8 +131,9 @@ def _rejections(metrics: Iterable[Mapping[str, object]]) -> dict[str, int | str]
                 if isinstance(item, (list, tuple)) and item and item[0] == "duplicate":
                     counts["duplicate"] += 1
     result = {key: counts.get(key, 0) for key in _REJECTION_KEYS}
-    result["growth_attempts"] = sum(result[key] for key in _REJECTION_KEYS) + sum(int(metric.get("accepted_additions", 0)) for metric in metrics)
-    result["accepted"] = sum(int(metric.get("accepted_additions", 0)) for metric in metrics)
+    accepted_count = counts.get("accepted", 0) + sum(int(metric.get("accepted_additions", 0)) for metric in metrics)
+    result["growth_attempts"] = sum(result[key] for key in _REJECTION_KEYS) + accepted_count
+    result["accepted"] = accepted_count
     result["evidence"] = "recorded" if observed else "partial: older TPCV metrics do not preserve all rejection reasons"
     return result
 
@@ -201,7 +202,7 @@ def analyze_replay(sequence: ReplaySequence) -> dict[str, object]:
         "functional_metric_response_observed": not functional_flat,
         "topology_changes_with_flat_functional_metrics": bool((edge_summary["total_additions"] or edge_summary["total_removals"]) and functional_flat),
         "classification": _classification(edge_summary, flat, timeline),
-        "limitations": [USAGE_UNAVAILABLE, "TPCV-1 does not encode per-neuron emitted-event identity or mutation candidates rejected before metric capture."],
+        "limitations": [USAGE_UNAVAILABLE, "Replay snapshots do not encode emitted-event identity or mutation candidates rejected before metric capture."],
     }
     return result
 

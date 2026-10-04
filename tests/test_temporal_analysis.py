@@ -1,6 +1,6 @@
 import pytest
 
-from tpcn.cpu_visualization import ReplaySequence, ReplaySequenceError, run_cpu_training
+from tpcn.cpu_visualization import ReplaySequence, ReplaySequenceError
 from tpcn.temporal_analysis import analyze_replay, compare_replays, summarize_analysis
 from tpcn.visualization import ConnectionRecord, NeuronRecord, VisualizationSnapshot, export_snapshot
 
@@ -28,43 +28,46 @@ def test_node_and_edge_lifetimes_are_deterministic():
     assert result["edge_summary"]["churn_rate"] == pytest.approx(3 / 2)
 
 
-def test_flat_metrics_and_changing_topology_are_reported():
-    _, capture = run_cpu_training(epochs=4, seed=7, examples_per_class=1,
-                                  snapshot_every=1, structural_plasticity=True)
-    result = analyze_replay(ReplaySequence(capture.snapshots, capture.metrics))
-    assert result["flat_metrics"]["prediction_loss"]["flat"] is False
-    assert result["topology_changes_with_flat_functional_metrics"] is False
-    assert result["classification"] == "changing topology / improving behavior"
-    assert "metric_deltas" in result["snapshot_metrics"][0]
+def test_temporal_analysis_classifies_explicit_supplied_metric_trend() -> None:
+    replay = ReplaySequence(
+        (
+            snapshot(1, {0}, (("n0", "n1"),)),
+            snapshot(2, {0, 1}, (("n0", "n1"), ("n1", "n2"))),
+            snapshot(3, {0, 1}, (("n0", "n1"), ("n1", "n2"))),
+        ),
+        ({"epoch": 1, "accuracy": 0.4}, {"epoch": 2, "accuracy": 0.6}, {"epoch": 3, "accuracy": 0.7}),
+    )
+    analysis = analyze_replay(replay)
+    assert analysis["classification"] == "changing topology / improving behavior"
+    assert analysis["snapshot_metrics"][0]["metric_deltas"] == {}
 
 
-def test_rejection_reason_aggregation_preserves_observed_reasons():
-    _, capture = run_cpu_training(epochs=4, seed=7, examples_per_class=1,
-                                  snapshot_every=1, structural_plasticity=True)
-    reasons = analyze_replay(ReplaySequence(capture.snapshots, capture.metrics))["mutation_rejections"]
-    assert reasons["duplicate"] >= 1
-    assert reasons["accepted"] >= 1
-    assert reasons["growth_attempts"] >= reasons["accepted"]
+def test_temporal_analysis_aggregates_explicit_rejection_reasons() -> None:
+    replay = ReplaySequence(
+        (snapshot(1, {0}, (("n0", "n1"),)),),
+        ({"epoch": 1, "accuracy": 0.8, "mutation_rejection_reasons": {"duplicate": 2, "fan_in_full": 1, "accepted": 1}},),
+    )
+    analysis = analyze_replay(replay)
+    assert analysis["mutation_rejections"]["duplicate"] == 2
+    assert analysis["mutation_rejections"]["fan_in_full"] == 1
+    assert analysis["mutation_rejections"]["accepted"] == 1
 
 
-def test_edge_use_is_not_inferred_from_existence_and_summary_is_concise():
-    result = analyze_replay(ReplaySequence((snapshot(1, {0}, (("n0", "n1"),)),),
-                                            ({"epoch": 1, "accuracy": 1.0},)))
+def test_compare_replays_reports_raw_deltas_without_causal_claim() -> None:
+    left = ReplaySequence((snapshot(1, {0}, (("n0", "n1"),)),), ({"epoch": 1, "accuracy": 0.5, "energy": 1.0},))
+    right = ReplaySequence((snapshot(1, {0, 1}, (("n0", "n1"), ("n1", "n2"))),), ({"epoch": 1, "accuracy": 0.7, "energy": 0.8},))
+    comparison = compare_replays(left, right)
+    assert comparison["metrics"]["accuracy"]["left"] == pytest.approx(0.5)
+    assert comparison["metrics"]["accuracy"]["right"] == pytest.approx(0.7)
+    assert comparison["metrics"]["accuracy"]["delta_right_minus_left"] == pytest.approx(0.2)
+    assert comparison["left_digest"] != comparison["right_digest"]
+
+
+def test_edge_usage_remains_unavailable_without_event_path_evidence() -> None:
+    result = analyze_replay(ReplaySequence((snapshot(1, {0}, (("n0", "n1"),)),), ({"epoch": 1, "accuracy": 1.0},)))
     assert result["edge_statistics"][0]["used_recently"] is None
     assert result["edge_summary"]["edge_use_evidence"] == "unavailable"
     assert "edge-use evidence: unavailable" in summarize_analysis(result)
-
-
-def test_compare_runs_reports_raw_metric_deltas_without_claiming_causation():
-    left, left_capture = run_cpu_training(epochs=2, seed=3, examples_per_class=1,
-                                          snapshot_every=1, structural_plasticity=False)
-    right, right_capture = run_cpu_training(epochs=2, seed=3, examples_per_class=1,
-                                            snapshot_every=1, structural_plasticity=True)
-    comparison = compare_replays(ReplaySequence(left_capture.snapshots, left_capture.metrics),
-                                 ReplaySequence(right_capture.snapshots, right_capture.metrics))
-    assert comparison["metrics"]["accuracy"]["left"] is not None
-    assert "delta_right_minus_left" in comparison["metrics"]["energy"]
-    assert comparison["left_digest"] != ""
 
 
 def test_malformed_replay_is_rejected_before_analysis():
