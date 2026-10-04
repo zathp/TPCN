@@ -14,6 +14,7 @@ tpcn_handoff:
   starting_origin_main: "f63e59552bf1f18b8cf1137abdf331f3aa8056f4"
   starting_worktree: "clean"
   implementation_revision: "8a14681fe6a770e75136227c5059bc9c76ae5d46"
+  independent_review_result_revision: "307111ca66571aaffb02b55d19a18310a14486a7"
   authorization: "workflow/handoffs/luna-0-authorization-luna-26-corrective-route-path-20261003.md"
   independent_review: "workflow/handoffs/luna-0-independent-review-luna-26-prediction-error-routing-20261003.md"
   files_changed:

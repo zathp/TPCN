@@ -14,7 +14,7 @@ tpcn_handoff:
   implementation_revision: "9f2e5d98e9abfd3702eb55a4af76c41009872abc"
   corrective_starting_revision: "f63e59552bf1f18b8cf1137abdf331f3aa8056f4"
   corrective_implementation_revision: "8a14681fe6a770e75136227c5059bc9c76ae5d46"
-  result_revision: "review publication commit recorded in final commit metadata"
+  result_revision: "307111ca66571aaffb02b55d19a18310a14486a7"
   owner: "Project owner / Luna-0 Architecture Guardian"
   classification: ["INDEPENDENT VERIFICATION", "ADVERSARIAL ROUTING REVIEW", "INTEGRATION DECISION"]
   hypothesis: "The hop-local adapter correction fixes multi-hop delivery while satisfying every ACP-0006 path, identity, timing and boundedness invariant."
