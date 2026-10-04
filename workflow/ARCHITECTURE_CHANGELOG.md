@@ -1,5 +1,36 @@
 # Architecture Changelog
 
+# Luna-0 independent review — Luna-28 closed - 2026-10-04
+
+**PASS — LUNA-28 IMPLEMENTATION INDEPENDENTLY VERIFIED / CLOSED FOR ITS
+AUTHORIZED MECHANISM SCOPE.** Review began at clean `main`,
+`HEAD == origin/main == 028b5793917efb2c1af279691d1611427de3a86c`.
+The implementation is `ac321abba6f4772f18fa459d4442e8f4ef4867e4`; its
+parent-to-implementation delta is exactly the four authorized implementation
+and test files. The handoff and revision pin are separate commits
+`512b7cab73446ba036cb5e9189afe49e4b9c2393` and
+`028b5793917efb2c1af279691d1611427de3a86c`. A separate identifier supplied
+in the review brief did not resolve as a Git commit and was not used.
+
+The independent audit confirmed bounded emission-only local observations,
+character-local evidence freeze/discard, quiescent post-character mutation,
+finite aggregate candidate and topology capacity, deterministic admission,
+preserved fixed-topology defaults and TANH_LEGACY compatibility, and a real
+later E2 route at `4.4 = 4.0 + 0.4`. Focused Luna-28 tests passed (44), closed
+component regressions passed (168), compilation and Pylance checks passed.
+The independent full suite reported 865 passed, 21 failures and 1 existing
+CUDA-unavailable skip (887 collected). All 21 match the documented downstream
+opt-in-guard failures (19) and stale Luna-12E assertions (2); no Luna-28
+regression was found. Full details and the A01-A15 review matrix are in
+`workflow/handoffs/luna-0-independent-review-luna-28-excursion-local-temporal-growth-20261004.md`.
+
+This is a governance-only closure of the accepted ACP-0007 implementation
+review. Contract version 1.2 and A01-A15 are unchanged. Mechanism validity is
+established for the tested path; task efficacy, resource benefit, downstream
+integration readiness, pruning, N3 learning, A14 promotion, and hardware
+equivalence are not established or authorized. No downstream migration or
+successor assignment follows from this review.
+
 # Luna-0 acceptance — ACP-0007 and Luna-28 authorization - 2026-10-04
 
 **ACCEPTED — BOUNDED EXCURSION_V1 STRUCTURAL GROWTH EXPERIMENT; LUNA-28
@@ -24,9 +55,10 @@ Luna-28 is authorized for implementation and verification only under
 `workflow/handoffs/luna-0-authorization-luna-28-excursion-local-temporal-growth-20261004.md`.
 The owner decision and terms are recorded in
 `workflow/handoffs/luna-0-owner-decision-acp0007-excursion-structural-growth-20261004.md`.
-No Luna-28 implementation or tests have been run. The previous readiness
-result remains historically valid: 19 downstream failures stopped at the
-guard, 12 passed, and the 69 structural/evidence regressions passed. Those
+At acceptance-publication time, no Luna-28 implementation or tests had been
+run. The previous readiness result remains historically valid: 19 downstream
+failures stopped at the guard, 12 passed, and the 69 structural/evidence
+regressions passed. Those
 results do not establish post-guard downstream behavior. The separately
 classified Luna-12E failures still distinguish real routed-topology effects
 from unchanged legacy aggregate `prediction_loss` and post-evaluation clock

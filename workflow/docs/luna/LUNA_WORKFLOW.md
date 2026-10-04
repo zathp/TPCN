@@ -3344,4 +3344,26 @@ regressions, exclusions, and stop conditions are in
 The mandatory sequence is `Luna-0 owner decision -> Luna-0 authorization ->
 Luna-28 implementation/verification -> Luna-0 independent review`. Do not
 create or run a downstream migration from this authorization. Luna-28 has not
-been executed.
+yet been executed at this authorization point.
+
+## Luna-0 independent review — Luna-28 closed - 2026-10-04
+
+**PASS — AUTHORIZED LUNA-28 MECHANISM SCOPE INDEPENDENTLY VERIFIED.** The
+review began at clean `main`, `HEAD == origin/main ==
+028b5793917efb2c1af279691d1611427de3a86c`. Boundedness, locality,
+character lifecycle, deterministic growth, fixed-topology and TANH_LEGACY
+compatibility, and later real causal routing passed review. Focused tests
+(44), closed-component regressions (168), compilation, and Pylance checks
+passed. The independent full suite remains at 865 passed, 21 known failures,
+and 1 existing CUDA-unavailable skip: 19 downstream compatibility failures
+at the intentional opt-in guard and 2 stale Luna-12E assertions. No
+Luna-28 regression was identified.
+
+The full independent evidence, failure reconciliation, and A01-A15 matrix
+are recorded in
+`workflow/handoffs/luna-0-independent-review-luna-28-excursion-local-temporal-growth-20261004.md`.
+This closes the implementation review only; it does not establish task
+efficacy, resource benefit, downstream integration readiness, or hardware
+equivalence. ACP-0007 remains accepted and unchanged; contract version 1.2
+and A01-A15 are unchanged. No downstream migration or successor is
+authorized.
