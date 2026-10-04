@@ -829,6 +829,20 @@ effects; prediction/error and functional metrics derive from propagated
 activity; matched controls rule out observational confounds; and applicable
 core/non-interference checks pass.
 
+**Luna-0 downstream-failure classification (2026-10-04):** the two known
+Luna-12E failures are legacy-observable assertions retained across the later
+EXCURSION_V1 default switch. The routed-edge intervention still produces
+delayed delivered activity and increases processed events; the test's
+additional unconditional `prediction_loss`-must-change assertion is not
+supported by its one-way source-to-sink topology. The second test's neuron
+identity assertion passes, but its final-clock expectations compare settled
+E2 local clocks against pre-E2 per-point values; it does not demonstrate
+missing character-state reset. See
+`workflow/handoffs/luna-0-classification-luna-12e-failures-20261004.md`.
+These tests remain unresolved downstream compatibility failures. This
+classification authorizes no code/test change and no Luna-28 creation or
+execution; a separate governance decision is required before follow-on work.
+
 ## Luna-12F - Readout Learning and Class-Separation Verification
 
 **Authorization:** Luna-12E is complete and accepted by Luna-0 for the

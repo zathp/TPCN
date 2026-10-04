@@ -1,5 +1,36 @@
 # Architecture Changelog
 
+# Luna-0 classification — Luna-12E downstream failures - 2026-10-04
+
+**CLASSIFIED — TWO LEGACY-OBSERVABLE ASSERTIONS; NO LUNA-28
+AUTHORIZED.** Luna-0 reproduced only the two known failing tests in
+`tests/test_luna12e_integration.py`. The edge-intervention test still shows
+causal topology routing: the reachable `neuron-0 -> neuron-1` edge adds
+delayed `EXCURSION` and routed prediction-error deliveries, increases
+processed events from 12 to 14, and raises edge-transfer proxy from 0 to
+`1.358357398350786`. Its only failing assertion requires aggregate
+`prediction_loss` to change; measured loss is exactly
+`1.1724999999999999` in both conditions. A downstream one-way edge can
+causally change routed activity without changing the source-local prediction
+loss.
+
+The exact-clock test's stable-neuron-identity assertion passes. Its expected
+final clocks `0.0` and `1.0` conflict with the current E2 lifecycle: points
+at 0 and 1 settle through timestamp 5 (last input plus the 4-second
+settling horizon), after which character destruction resets neurons at that
+horizon. Character startup resets them at the next character's start
+timestamp. The test observes post-evaluation clocks, not neutral state at the
+next character boundary. This is classified as a legacy-clock oracle, not
+evidence of a reset defect.
+
+Both assertions predate the default-model switch: the tests were written for
+the `TPCNNeuron` path and were unchanged when Luna-22 made `EXCURSION_V1`
+the default. The two failures remain part of the 21 known downstream failures
+until a separate compatibility decision. No production/test edit, A01-A15
+change, ACP, remediation assignment, or Luna-28 creation/execution is made.
+Details and exact focused-run evidence:
+`workflow/handoffs/luna-0-classification-luna-12e-failures-20261004.md`.
+
 # Luna-0 independent review — Luna-27 closed - 2026-10-04
 
 **PASS — LUNA-27 TPCV-2 EXCURSION_V1 SNAPSHOT VISUALIZATION
