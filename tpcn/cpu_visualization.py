@@ -26,6 +26,13 @@ MANIFEST_NAME = "manifest.json"
 MAX_METRIC_BYTES = 1_048_576
 
 
+class _NotProvided:
+    __slots__ = ()
+
+
+_NOT_PROVIDED = _NotProvided()
+
+
 class ReplaySequenceError(ValueError):
     """Raised when a saved CPU replay sequence is missing or invalid."""
 
@@ -193,17 +200,42 @@ class ReplaySequence:
 
 def run_cpu_training(
     *,
-    epochs: int = 3,
-    seed: int = 0,
+    config: ExperimentConfig | None = None,
+    epochs: int | _NotProvided = _NOT_PROVIDED,
+    seed: int | _NotProvided = _NOT_PROVIDED,
     examples_per_class: int = 2,
     snapshot_every: int = 0,
     max_snapshots: int = 64,
-    structural_plasticity: bool = False,
-    learning_enabled: bool = True,
+    structural_plasticity: bool | _NotProvided = _NOT_PROVIDED,
+    learning_enabled: bool | _NotProvided = _NOT_PROVIDED,
 ) -> tuple[TrainingResult, CPUTrainingCapture]:
-    config = ExperimentConfig(epochs=epochs, seed=seed, structural_plasticity=structural_plasticity,
-                              learning_enabled=learning_enabled)
-    workload = make_synthetic_workload(examples_per_class=examples_per_class, seed=seed)
+    """Run deterministic CPU training with downstream-only capture.
+
+    A supplied ``config`` is the sole source of runner settings and its seed
+    drives the synthetic workload; scalar runner options must then be omitted
+    or equal to it. Without ``config`` the legacy scalar convenience route
+    applies (epochs=3, seed=0, no structural plasticity, learning enabled).
+    """
+    scalars = {
+        "epochs": epochs,
+        "seed": seed,
+        "structural_plasticity": structural_plasticity,
+        "learning_enabled": learning_enabled,
+    }
+    if config is None:
+        config = ExperimentConfig(
+            epochs=3 if epochs is _NOT_PROVIDED else epochs,
+            seed=0 if seed is _NOT_PROVIDED else seed,
+            structural_plasticity=False if structural_plasticity is _NOT_PROVIDED else structural_plasticity,
+            learning_enabled=True if learning_enabled is _NOT_PROVIDED else learning_enabled,
+        )
+    else:
+        if not isinstance(config, ExperimentConfig):
+            raise TypeError("config must be an ExperimentConfig")
+        for name, value in scalars.items():
+            if value is not _NOT_PROVIDED and value != getattr(config, name):
+                raise ValueError(f"{name} conflicts with the supplied ExperimentConfig")
+    workload = make_synthetic_workload(examples_per_class=examples_per_class, seed=config.seed)
     capture = CPUTrainingCapture(snapshot_every=snapshot_every, max_snapshots=max_snapshots)
     runner = ExperimentRunner(config)
     result = runner.train(workload, observer=lambda epoch, neurons, metrics: capture.observe(

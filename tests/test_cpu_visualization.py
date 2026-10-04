@@ -8,7 +8,9 @@ from tpcn.cpu_visualization import (
     ReplaySequenceError,
     run_cpu_training,
 )
+from tpcn.experiments import ExperimentConfig
 from tpcn.visualization import (
+    ConnectionRecord,
     EXCURSION_FORMAT_VERSION,
     MAX_EXPORT_BYTES,
     NeuronRecord,
@@ -90,3 +92,29 @@ def test_replay_rejects_mixed_versions_and_oversized_files(tmp_path) -> None:
     (tmp_path / "manifest.json").write_bytes(b"x" * (MAX_METRIC_BYTES + 1))
     with pytest.raises(ReplaySequenceError, match="manifest exceeds the bounded limit"):
         ReplaySequence.load(tmp_path)
+
+def test_helper_config_route_matches_scalar_route_and_rejects_conflicts() -> None:
+    scalar, scalar_capture = run_cpu_training(epochs=2, seed=4, examples_per_class=1, snapshot_every=1)
+    explicit, explicit_capture = run_cpu_training(
+        config=ExperimentConfig(epochs=2, seed=4), examples_per_class=1, snapshot_every=1
+    )
+
+    assert scalar == explicit
+    assert scalar_capture.snapshots == explicit_capture.snapshots
+    with pytest.raises(ValueError, match="conflicts"):
+        run_cpu_training(config=ExperimentConfig(epochs=2, seed=4), epochs=3)
+    with pytest.raises(ValueError, match="conflicts"):
+        run_cpu_training(config=ExperimentConfig(epochs=2, seed=4), seed=5)
+    with pytest.raises(ValueError, match="conflicts"):
+        run_cpu_training(config=ExperimentConfig(epochs=2, seed=4), seed=None)  # type: ignore[arg-type]
+
+
+def test_generic_replay_represents_removed_edges_without_e2_pruning() -> None:
+    neuron = NeuronRecord("n0", False, 0.0, 0.0, 0)
+    first = VisualizationSnapshot(0.0, 0, (neuron,), (ConnectionRecord("n0", "n1", 1.0),))
+    second = VisualizationSnapshot(1.0, 1, (neuron,), ())
+    sequence = ReplaySequence((export_snapshot(first), export_snapshot(second)))
+
+    item = sequence.connection_timeline()[0]
+    assert item["recently_pruned_connections"] == (("n0", "n1"),)
+    assert item["added_connections"] == ()
