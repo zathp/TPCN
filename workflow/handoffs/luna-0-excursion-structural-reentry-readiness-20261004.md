@@ -14,7 +14,7 @@ tpcn_handoff:
   contract_version: "1.1"
   branch: main
   base_revision: d9abe5e3a5b9b3c6d6049ac4c64647463c33ba2d
-  result_revision: "governance publication; see changelog entry"
+  result_revision: 5679cb9189418cadfd4e4c8df790896509f3ee54
   dependencies: ["accepted ACP-0006", "closed Luna-27", "classified Luna-12E failures"]
   owner: "Luna-0 / project owner"
   classification: ["GOVERNANCE", "ARCHITECTURE-READINESS REVIEW", "VERIFICATION"]

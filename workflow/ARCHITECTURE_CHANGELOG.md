@@ -26,6 +26,7 @@ A01-A15 nor ACP-0006. Growth and pruning are not authorized; the E2 guard
 remains; Luna-28 is not created or executed. The complete readiness matrix,
 test details, downstream dispositions and next decision are in
 `workflow/handoffs/luna-0-excursion-structural-reentry-readiness-20261004.md`.
+Initial governance publication: `5679cb9189418cadfd4e4c8df790896509f3ee54`.
 
 # Luna-0 classification — Luna-12E downstream failures - 2026-10-04
 
