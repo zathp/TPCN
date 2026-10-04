@@ -1,5 +1,41 @@
 # Architecture Changelog
 
+# Luna-0 post-Luna-22 TPCV / EXCURSION_V1 compatibility review - 2026-10-03
+
+**DECISION C — VERSIONED EXCURSION VISUALIZATION FORMAT REQUIRED;
+LUNA-27 AUTHORIZED.**
+Review began on clean branch `main`, with `HEAD == origin/main ==
+622a62c78df2af696920c4c5d1d85c10ecc15baf`, subject `docs: pin independent
+closure revision`. Luna-22 and Luna-26 remain closed only within the bounded
+fixed-topology `EXCURSION_V1` CPU integration and corrective routing scopes
+recorded above; no broader efficacy or downstream-migration claim is made.
+
+The three CPU visualization failures were reproduced independently. All fail
+in `NeuronRecord.from_neuron()` because the current `MultiExcursionNeuron`
+does not expose `activation`; the adapter otherwise reads its valid `state`
+alias (`x`) and expects the differently named `processed_events` counter.
+TPCV-1 and its existing CPU/GPU/replay consumers do not identify the dynamics
+model. The existing Luna-12C governance requires snapshot-level activity and
+forbids synthesized event pulses or timing, but it does not define an honest
+excursion meaning for TPCV-1 `activation` or `active`.
+
+No mapping into TPCV-1 is accepted: the scalar and activity meanings cannot be
+inferred from `x`, mode, pending work, or an old emission without changing or
+inventing field semantics. Under the requested pragmatic fallback, TPCV-2 is
+selected for instantaneous EXCURSION_V1 snapshots: `state=x`, `active=(mode !=
+N)` meaning a currently admitted non-neutral mode, explicit bounded mode and
+pending-work flags, and no scalar activation, last emission, or interval
+history. TPCV-1 remains byte- and meaning-compatible. The full matrix and
+contract are in
+`workflow/handoffs/luna-0-post-acp0006-tpcv-excursion-compatibility-decision-20261003.md`.
+
+No ACP or A01-A15 change is proposed. Luna-27 is authorized but not executed;
+its exact contract is `.github/agents/luna-27.agent.md`, and the authorization
+is published in
+`workflow/handoffs/luna-0-authorization-luna-27-tpcv2-excursion-snapshot-20261003.md`.
+The other 21 classified full-suite downstream failures remain outside this
+authorization.
+
 # Luna-0 independent corrective review — Luna-26 closed; Luna-22 closed - 2026-10-03
 
 **PASS — LUNA-26 ACP-0006 MULTI-HOP PREDICTION-ERROR ROUTING

@@ -3219,3 +3219,57 @@ analytic/replay baseline is recorded at
 N2 returns to Luna-0 for independent review. It does not authorize N3 or any
 later ACP-0002 stage, probationary/maturing edges, temporal mini-networks or
 Luna-13G. Luna-13F remains closed.
+
+## Luna-27 — TPCV-2 EXCURSION_V1 Snapshot Visualization
+
+**Authorization:** Luna-0 authorizes one bounded CPU visualization
+representation implementation after the post-Luna-22 compatibility review.
+The exact agent contract is `.github/agents/luna-27.agent.md`; the
+authorization record is
+`workflow/handoffs/luna-0-authorization-luna-27-tpcv2-excursion-snapshot-20261003.md`.
+This entry authorizes implementation but does not execute it.
+
+**Decision:** `DECISION C — VERSIONED EXCURSION VISUALIZATION FORMAT
+REQUIRED; LUNA-27 AUTHORIZED.` TPCV-2 is dedicated to instantaneous
+`EXCURSION_V1` snapshots at existing CPU epoch boundaries. TPCV-1 bytes,
+decoding, and historical meanings remain unchanged. The format version is
+the model discriminator; model type must not be inferred from values.
+
+**TPCV-2 observer contract:**
+
+- `state` is the existing E2 `state` alias (`x`).
+- `active` is true iff `mode != N`, meaning a non-neutral excursion mode is
+  currently admitted at capture; it does not mean nonzero TANH output.
+- `mode` is the bounded enum `N`, `S_PENDING`, `S_RETURN`, or `M_ACTIVE`.
+- `pending_internal_work` indicates only whether internal work is pending.
+- `processed_events` is the E2 `processed_event_count`, including processed
+  external and internal events.
+- No scalar activation is serialized or fabricated; a shared decoded API may
+  explicitly report activation as unavailable. No last emission, interval
+  activity, event history, or runtime checkpoint state is included.
+
+The format retains finite deterministic records, canonical ordering, strict
+malformed/oversize rejection, and TPCV-1 bounds. TPCV-2 uses the existing
+32-byte big-endian header with version byte 2; its neuron record contains a
+bounded UTF-8 ID, flags for active/optional position/pending work, explicit
+mode code, finite state, bounded processed-event count, and optional signed
+coordinates. Connection records keep their TPCV-1 layout. No ACP or A01-A15
+change is made.
+
+**Owned files:** `tpcn/visualization.py`, `tpcn/cpu_visualization.py`,
+`tests/test_visualization.py`, `tests/test_cpu_visualization.py`,
+`workflow/docs/luna/VISUALIZATION_CONTRACT.md`, and the Luna-27 completion
+handoff. No other visualization code is authorized.
+
+**Required gate:** preserve TPCV-1 byte/semantic behavior; test deterministic
+TPCV-2 round-trip and explicit model semantics; reject unsupported, malformed,
+oversize, and mixed-version sequences; pass all three CPU visualization tests,
+the existing visualization suite, and GPU TPCV-1 regression; verify offline
+replay and capture disabled/every-epoch/every-N result equivalence. Keep
+capture downstream-only, labels/future data isolated, and fixed topology
+unchanged. Report other 21 baseline downstream failures without repairing
+them. Stop and return to Luna-0 if core/runtime changes or ownership expansion
+is required.
+
+**Mandatory sequence:** `Luna-0 -> Luna-27 -> Luna-0`. Luna-27 returns with
+its evidence handoff and may not authorize a successor.
