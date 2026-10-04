@@ -1,4 +1,4 @@
-"""CPU training capture and offline replay for the downstream TPCV-1 path."""
+"""CPU training capture and offline replay for bounded TPCV snapshots."""
 
 from __future__ import annotations
 
@@ -10,6 +10,8 @@ from typing import Iterable
 
 from .experiments import ExperimentConfig, ExperimentMetrics, ExperimentRunner, TrainingResult, make_synthetic_workload
 from .visualization import (
+    MAX_EXPORT_BYTES,
+    MAX_RECORDS,
     ReferenceVisualizer,
     SnapshotCollector,
     VisualizationFormatError,
@@ -26,6 +28,9 @@ MAX_METRIC_BYTES = 1_048_576
 
 class ReplaySequenceError(ValueError):
     """Raised when a saved CPU replay sequence is missing or invalid."""
+
+
+MAX_SEQUENCE_RECORDS = MAX_RECORDS
 
 
 class CPUTrainingCapture:
@@ -58,12 +63,38 @@ class CPUTrainingCapture:
 class ReplaySequence:
     """A detached, validated snapshot sequence and its metric timeline."""
 
-    def __init__(self, records: Iterable[bytes], metrics: Iterable[dict[str, object]] = ()) -> None:
-        self.records = tuple(bytes(record) for record in records)
+    def __init__(
+        self,
+        records: Iterable[bytes],
+        metrics: Iterable[dict[str, object]] = (),
+        *,
+        max_snapshots: int = 64,
+    ) -> None:
+        if (isinstance(max_snapshots, bool) or not isinstance(max_snapshots, int) or
+                not 0 < max_snapshots <= MAX_SEQUENCE_RECORDS):
+            raise ValueError(f"max_snapshots must be in [1, {MAX_SEQUENCE_RECORDS}]")
+        bounded_records = []
+        total_bytes = 0
+        for record in records:
+            if not isinstance(record, (bytes, bytearray, memoryview)):
+                raise TypeError("replay records must be bytes-like")
+            if len(bounded_records) >= max_snapshots:
+                raise ReplaySequenceError("replay sequence exceeds the bounded limit")
+            record_size = record.nbytes if isinstance(record, memoryview) else len(record)
+            if record_size > MAX_EXPORT_BYTES:
+                raise ReplaySequenceError("replay record exceeds the bounded size")
+            total_bytes += record_size
+            if total_bytes > max_snapshots * MAX_EXPORT_BYTES:
+                raise ReplaySequenceError("replay sequence exceeds the bounded size")
+            bounded_records.append(bytes(record))
+        self.records = tuple(bounded_records)
         try:
             self.snapshots = tuple(parse_snapshot(record) for record in self.records)
         except VisualizationFormatError as error:
-            raise ReplaySequenceError("replay contains an invalid TPCV-1 record") from error
+            raise ReplaySequenceError("replay contains an invalid TPCV record") from error
+        versions = {snapshot.format_version for snapshot in self.snapshots}
+        if len(versions) > 1:
+            raise ReplaySequenceError("replay sequence cannot mix TPCV versions")
         self.metrics = tuple(dict(item) for item in metrics)
         metric_bytes = json.dumps(self.metrics, sort_keys=True, separators=(",", ":")).encode("utf-8")
         if len(metric_bytes) > MAX_METRIC_BYTES:
@@ -110,14 +141,23 @@ class ReplaySequence:
 
     @classmethod
     def load(cls, directory: str | Path, *, max_snapshots: int = 64) -> "ReplaySequence":
-        if isinstance(max_snapshots, bool) or not isinstance(max_snapshots, int) or max_snapshots <= 0:
-            raise ValueError("max_snapshots must be a positive integer")
+        if (isinstance(max_snapshots, bool) or not isinstance(max_snapshots, int) or
+                not 0 < max_snapshots <= MAX_SEQUENCE_RECORDS):
+            raise ValueError(f"max_snapshots must be in [1, {MAX_SEQUENCE_RECORDS}]")
         target = Path(directory)
         manifest_path = target / MANIFEST_NAME
         if not manifest_path.is_file():
             raise ReplaySequenceError("replay manifest is missing")
         try:
-            manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+            if manifest_path.stat().st_size > MAX_METRIC_BYTES:
+                raise ReplaySequenceError("replay manifest exceeds the bounded limit")
+            with manifest_path.open("rb") as manifest_file:
+                manifest_bytes = manifest_file.read(MAX_METRIC_BYTES + 1)
+            if len(manifest_bytes) > MAX_METRIC_BYTES:
+                raise ReplaySequenceError("replay manifest exceeds the bounded limit")
+            manifest = json.loads(manifest_bytes.decode("utf-8"))
+        except ReplaySequenceError:
+            raise
         except (OSError, UnicodeDecodeError, json.JSONDecodeError) as error:
             raise ReplaySequenceError("replay manifest is malformed") from error
         if not isinstance(manifest, dict) or manifest.get("sequence_version") != SEQUENCE_VERSION:
@@ -134,10 +174,18 @@ class ReplaySequence:
             if not record_path.is_file():
                 raise ReplaySequenceError(f"replay record is missing: {name}")
             try:
-                records.append(record_path.read_bytes())
+                if record_path.stat().st_size > MAX_EXPORT_BYTES:
+                    raise ReplaySequenceError(f"replay record exceeds the bounded size: {name}")
+                with record_path.open("rb") as record_file:
+                    record = record_file.read(MAX_EXPORT_BYTES + 1)
+                if len(record) > MAX_EXPORT_BYTES:
+                    raise ReplaySequenceError(f"replay record exceeds the bounded size: {name}")
+                records.append(record)
+            except ReplaySequenceError:
+                raise
             except OSError as error:
                 raise ReplaySequenceError(f"replay record cannot be read: {name}") from error
-        sequence = cls(records, metrics)
+        sequence = cls(records, metrics, max_snapshots=max_snapshots)
         if manifest.get("digest") != sequence.digest:
             raise ReplaySequenceError("replay digest does not match manifest")
         return sequence

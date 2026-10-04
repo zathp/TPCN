@@ -61,6 +61,44 @@ contents, and hidden global state. A caller may provide only separately
 authorized observable records, and exporting them must not consume or mutate
 the source state.
 
+## TPCV version 2 — EXCURSION_V1 snapshots
+
+TPCV-2 is a separate, instantaneous CPU observation format for
+`EXCURSION_V1`. The header remains 32 bytes with the same field widths,
+bounds, flags, and reserved bits as TPCV-1; only the version byte is `2`.
+The version is the model discriminator. Numeric values must not be used to
+infer model identity, and existing TPCV-1 records are not reinterpreted.
+
+Each TPCV-2 neuron record contains:
+
+```text
+identifier_length:u8, identifier:utf8,
+flags:u8, mode:u8, state:f64, processed_events:u32,
+[position_x:i32, position_y:i32 if flags.position]
+```
+
+Flag bit 0 is `active` and must equal `(mode != N)`; bit 1 marks the optional
+position; bit 2 marks pending internal work; remaining bits are reserved zero.
+Mode codes are `0=N`, `1=S_PENDING`, `2=S_RETURN`, and `3=M_ACTIVE`. `state`
+is the neuron's current `x`; `processed_events` is its total processed-event
+count, including external and internal events. `pending_internal_work` only
+reports whether an internal event is pending.
+
+TPCV-2 defines no scalar activation. The shared decoded frame view uses
+`activation=None` in the fourth field of the existing neuron tuple to state
+that activation is unavailable; the tuple then appends `mode`,
+`pending_internal_work`, and `processed_events`. It does not substitute state,
+mode, an emission, or interval activity. TPCV-2 is not a runtime checkpoint
+and omits pending-event payloads and sequence IDs, emission/history,
+provenance, identity counters, prediction/eligibility ledgers, and queue state.
+Capture remains downstream-only at existing epoch boundaries.
+
+TPCV-2 retains TPCV-1 connection records, UTF-8 identifier limits,
+coordinates, record-count and one-megabyte snapshot bounds, deterministic
+ordering, uniqueness checks, and strict framing/value validation. CPU replay
+retains each snapshot's version and rejects a sequence mixing TPCV versions.
+Offline record loading checks the per-snapshot bound before reading the file.
+
 ## Reference tooling
 
 `VisualizationSnapshot.from_components()` pulls public neuron state and
@@ -72,7 +110,9 @@ without storing or consuming a snapshot.
 
 ## Later targets
 
-- CPU visualization and offline replay use this version-1 parser.
+- CPU visualization and offline replay support TPCV-1 and TPCV-2. TPCV-1
+  retains the historical scalar record semantics; TPCV-2 is CPU-only for
+  `EXCURSION_V1` under the Luna-27 scope.
 - Luna-13 uses `tpcn.gpu_visualization.TorchSnapshotExporter` to produce the
   same logical records. It pulls caller-supplied detached state and activation
   tensors plus bounded directed connections only at the requested epoch
