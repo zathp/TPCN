@@ -1,5 +1,90 @@
 # Architecture Changelog
 
+# Luna-0 independent review — Luna-27 closed - 2026-10-04
+
+**PASS — LUNA-27 TPCV-2 EXCURSION_V1 SNAPSHOT VISUALIZATION
+INDEPENDENTLY VERIFIED / CLOSED.** This closure applies only to bounded CPU
+TPCV-2 instantaneous `EXCURSION_V1` snapshot capture, versioned
+encoding/decoding, and offline replay. It is an observability result, not
+architecture promotion. No ACP is required and A01-A15 are unchanged.
+
+The review began at clean `main` with
+`HEAD == origin/main == 50230a30e9d1372891d9665f9b4a0d09ccd5d817`,
+subject `docs: record Luna-27 TPCV-2 verification`. Published lineage:
+
+- Authorization baseline: `10b9bfa09c949576099a220c2f507d939c01c337`.
+- Implementation: `3bb8edc9346f7c2ec80112058d6e97b64f75bd11`,
+  `feat: add TPCV-2 excursion snapshot support`.
+- Completion handoff: `50230a30e9d1372891d9665f9b4a0d09ccd5d817`,
+  `docs: record Luna-27 TPCV-2 verification`.
+
+The baseline-to-completion diff contains exactly the six authorized Luna-27
+files: `tpcn/visualization.py`, `tpcn/cpu_visualization.py`,
+`tests/test_visualization.py`, `tests/test_cpu_visualization.py`,
+`workflow/docs/luna/VISUALIZATION_CONTRACT.md`, and
+`workflow/handoffs/luna-27-tpcv2-excursion-snapshot-visualization-20261003.md`.
+No production code or tests were changed during this governance review.
+
+**TPCV-1 preserved:** the independent review confirmed version 1's historical
+record bytes and scalar semantics were not changed. The pre-change golden
+fixture remains 120 bytes with SHA-256
+`0ad558e8e229f1a4598513987b44715a051f43f399540c82e2515137af9b6eb8`.
+Version 1 retains its historical scalar state, scalar activation, `active`
+meaning, and processed-event representation; it is not reinterpreted as
+`EXCURSION_V1`.
+
+**TPCV-2 closed / CPU instantaneous observation only:** version 2 identifies
+an instantaneous `EXCURSION_V1` observation, with `state=x`,
+`active=(mode != N)`, explicit mode (`N`, `S_PENDING`, `S_RETURN`,
+`M_ACTIVE`), `pending_internal_work=(pending_internal_event is not None)`,
+and `processed_events=processed_event_count`. TPCV-2 has no scalar
+activation; where a shared decoded representation requires the historical
+field, `activation=None` means unavailable, never numeric zero. It is not a
+runtime checkpoint, IR-2, IR-3, event log, emission-history format, or
+interval-activity format.
+
+The review independently verified version dispatch, mode/active consistency,
+pending-work and processed-event mappings, strict malformed and bounded
+validation, mixed-version rejection, homogeneous-version offline replay,
+downstream-only capture, and capture-frequency computation invariance. The
+focused independent command was:
+
+```text
+C:\Users\zathp\AppData\Local\Programs\Python\Python311\python.exe -m pytest -q tests/test_visualization.py tests/test_cpu_visualization.py tests/test_gpu_visualization.py
+```
+
+**Independent focused result: 33 passed, 1 skipped.** The independent reviewer
+did not rerun the full repository suite. The implementation-run full-suite
+evidence is **821 passed, 21 failed, 1 skipped (843 collected)** and is
+recorded as **NOT INDEPENDENTLY RERUN BY LUNA-0**.
+
+The same 21 downstream failures remain separately unresolved and outside
+Luna-27 scope: Luna-12B structural integration (4), Luna-12E legacy
+observables (2), Luna-12L temporal scale (8), spiral benchmark (1), temporal
+analysis (3), and 3D viewer (3). They are not attributed to TPCV-2 and were
+not repaired.
+
+Architecture audit, limited to the reviewed representation:
+
+- **A01 — PASS:** capture cadence remains epoch-boundary observation, not
+  neural time.
+- **A04 — PASS:** records, IDs, parser input, and replay resources remain
+  bounded.
+- **A07 — PASS:** no labels or future information enter snapshot state.
+- **A08 — PASS:** encoding, parsing, and replay are deterministic and bounded.
+- **A15 — PASS:** TPCV-2 is a backend-neutral downstream representation;
+  no hardware realization or equivalence is claimed.
+
+Not established: GPU `EXCURSION_V1`, ModelSim/FPGA TPCV-2, GPU/FPGA or
+hardware equivalence, 3D viewer/temporal-analysis/structural-plasticity
+compatibility, predictive efficacy, useful delayed-credit learning, or
+physical energy calibration.
+
+The full review evidence is
+`workflow/handoffs/luna-0-independent-review-luna-27-tpcv2-excursion-visualization-20261004.md`.
+**Successor status: NOT AUTHORIZED.** No Luna-28 contract or downstream
+migration is authorized by this closure.
+
 # Luna-0 post-Luna-22 TPCV / EXCURSION_V1 compatibility review - 2026-10-03
 
 **DECISION C — VERSIONED EXCURSION VISUALIZATION FORMAT REQUIRED;

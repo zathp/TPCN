@@ -3273,3 +3273,16 @@ is required.
 
 **Mandatory sequence:** `Luna-0 -> Luna-27 -> Luna-0`. Luna-27 returns with
 its evidence handoff and may not authorize a successor.
+
+**Final status (2026-10-04): CLOSED / INDEPENDENTLY VERIFIED.** Luna-0
+independently reviewed the published implementation and focused test set and
+passed the bounded CPU TPCV-2 instantaneous `EXCURSION_V1` snapshot capture,
+versioned codec, and homogeneous-version offline replay scope. The independent
+review handoff is
+`workflow/handoffs/luna-0-independent-review-luna-27-tpcv2-excursion-visualization-20261004.md`.
+TPCV-1 bytes and historical meanings remain unchanged. This closure is
+observability-only: it is not architecture promotion, requires no ACP, and
+does not authorize GPU/FPGA support, downstream migrations, or a successor
+Luna. The implementation full-suite evidence remains 821 passed, 21 failed,
+1 skipped; the independent reviewer did not rerun the full suite. The 21
+previously classified downstream failures remain separate and unresolved.
