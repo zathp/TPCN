@@ -7,10 +7,13 @@ bounded outer-loop readout through reward and eligibility signals.
 
 from __future__ import annotations
 
+from collections import deque
+from collections.abc import Mapping
 from dataclasses import dataclass
 import hashlib
 import math
 import random
+from types import MappingProxyType
 from typing import Callable, Literal
 
 from .canonical_neuron import TPCNNeuron
@@ -23,11 +26,12 @@ from .predictive_coding import LocalPredictor, Observation
 from .streaming_classifier import ACTIVITY_EVENT, StreamingCharacterClassifier
 from .stroke_dataset import CharacterBoundary, END_CHARACTER, START_CHARACTER, StrokePoint
 from .structural_plasticity import CandidateEvidence, StructuralPlasticityController
+from .structural_observation import StructuralObservationPlane, StructuralObservationSnapshot
 from .topology import BoundedTopology
 
 ActivationMode = Literal["event_only", "utility"]
 RewardMode = Literal["dense", "sparse", "neutral"]
-StructuralPolicy = Literal["fixed", "baseline", "random", "temporal", "reversed"]
+StructuralPolicy = Literal["fixed", "baseline", "random", "temporal", "reversed", "e2_local_temporal"]
 NeuronModel = Literal["EXCURSION_V1", "TANH_LEGACY"]
 
 
@@ -55,6 +59,16 @@ class ExperimentConfig:
     max_classes: int = 26
     structural_plasticity: bool = False
     structural_policy: StructuralPolicy = "baseline"
+    structural_observation: bool = False
+    structural_neighbors: Mapping[str, tuple[str, ...]] | None = None
+    structural_neighborhood_limit: int | None = None
+    structural_reverse_observer_limit: int | None = None
+    structural_association_window: float | None = None
+    structural_history_capacity: int | None = None
+    structural_candidate_capacity: int | None = None
+    structural_maximum_score: int | None = None
+    structural_growth_delay: float | None = None
+    structural_growth_attempt_budget: int | None = None
     topology_fan_in: int = 2
     topology_fan_out: int = 2
     topology_edge_capacity: int = 8
@@ -84,7 +98,9 @@ class ExperimentConfig:
             raise ValueError("topology_initial_edges must be a nonnegative integer")
         if not isinstance(self.structural_plasticity, bool):
             raise TypeError("structural_plasticity must be a boolean")
-        if self.structural_policy not in ("fixed", "baseline", "random", "temporal", "reversed"):
+        if not isinstance(self.structural_observation, bool):
+            raise TypeError("structural_observation must be a boolean")
+        if self.structural_policy not in ("fixed", "baseline", "random", "temporal", "reversed", "e2_local_temporal"):
             raise ValueError("structural_policy must be a supported policy")
         if self.activation_mode not in ("event_only", "utility"):
             raise ValueError("activation_mode must be 'event_only' or 'utility'")
@@ -96,8 +112,68 @@ class ExperimentConfig:
             raise TypeError("learning_enabled must be a boolean")
         if self.neuron_model not in ("EXCURSION_V1", "TANH_LEGACY"):
             raise ValueError("neuron_model must be 'EXCURSION_V1' or 'TANH_LEGACY'")
+        if self.structural_neighbors is not None:
+            if not isinstance(self.structural_neighbors, Mapping):
+                raise TypeError("structural_neighbors must be a mapping")
+            normalized_neighbors: dict[str, tuple[str, ...]] = {}
+            for source, destinations in self.structural_neighbors.items():
+                if not isinstance(source, str) or not source:
+                    raise ValueError("structural neighbor sources must be non-empty strings")
+                if isinstance(destinations, (str, bytes)):
+                    raise ValueError("structural neighbor values must be node collections")
+                try:
+                    neighbors = tuple(destinations)
+                except TypeError as error:
+                    raise ValueError("structural neighbor values must be iterable") from error
+                if any(not isinstance(node, str) or not node for node in neighbors):
+                    raise ValueError("structural neighbor IDs must be non-empty strings")
+                if len(neighbors) != len(set(neighbors)):
+                    raise ValueError(f"structural neighbors for {source!r} must be unique")
+                if source in neighbors:
+                    raise ValueError("structural neighbors cannot contain the source")
+                normalized_neighbors[source] = tuple(sorted(neighbors))
+            object.__setattr__(
+                self,
+                "structural_neighbors",
+                MappingProxyType(dict(sorted(normalized_neighbors.items()))),
+            )
+        if self.structural_observation and self.neuron_model != "EXCURSION_V1":
+            raise ValueError("structural observation requires EXCURSION_V1 emissions")
         if self.neuron_model == "EXCURSION_V1" and self.structural_plasticity:
-            raise ValueError("structural plasticity is unavailable in the excursion integration")
+            if not self.structural_observation:
+                raise ValueError(
+                    "structural plasticity is unavailable unless structural observation is enabled"
+                )
+            if self.structural_policy != "e2_local_temporal":
+                raise ValueError(
+                    "EXCURSION_V1 growth requires structural_policy='e2_local_temporal'; "
+                    "legacy structural policies are unsupported"
+                )
+        if self.neuron_model == "EXCURSION_V1" and self.structural_observation:
+            integer_bounds = (
+                ("structural_neighborhood_limit", self.structural_neighborhood_limit),
+                ("structural_reverse_observer_limit", self.structural_reverse_observer_limit),
+                ("structural_history_capacity", self.structural_history_capacity),
+                ("structural_candidate_capacity", self.structural_candidate_capacity),
+                ("structural_maximum_score", self.structural_maximum_score),
+                ("structural_growth_attempt_budget", self.structural_growth_attempt_budget),
+            )
+            for name, value in integer_bounds:
+                if isinstance(value, bool) or not isinstance(value, int) or value <= 0:
+                    raise ValueError(f"{name} must be explicitly set to a positive integer")
+            for name, value in (
+                ("structural_association_window", self.structural_association_window),
+                ("structural_growth_delay", self.structural_growth_delay),
+            ):
+                if (
+                    isinstance(value, bool)
+                    or not isinstance(value, (int, float))
+                    or not math.isfinite(float(value))
+                    or float(value) <= 0.0
+                ):
+                    raise ValueError(f"{name} must be explicitly set to a finite positive number")
+            if self.structural_neighbors is None:
+                raise ValueError("structural_neighbors must be explicitly provided")
         for name in ("energy_weight", "reward_delay", "correct_reward", "incorrect_reward",
                      "settling_horizon", "prediction_expiry"):
             value = getattr(self, name)
@@ -178,6 +254,29 @@ class ExperimentMetrics:
     prediction_error_proxy: float = 0.0
     maximum_route_depth: int = 0
     provenance_truncated_count: int = 0
+    structural_emission_count: int = 0
+    structural_observation_work: int = 0
+    structural_candidate_count: int = 0
+    structural_candidate_rejections: int = 0
+    structural_growth_attempts: int = 0
+    structural_growth_attempt_budget: int = 0
+    structural_growth_budget_remaining: int = 0
+    structural_growth_budget_exhausted: bool = False
+    structural_decisions: tuple[StructuralDecision, ...] = ()
+
+
+@dataclass(frozen=True, slots=True)
+class StructuralDecision:
+    """One bounded post-character evidence and growth decision."""
+
+    evidence: StructuralObservationSnapshot
+    selected_candidate: CandidateEvidence | None
+    candidate_rank: int | None
+    status: str
+    reason: str | None
+    growth_attempted: bool
+    topology_before: tuple[tuple[str, str, float], ...]
+    topology_after: tuple[tuple[str, str, float], ...]
 
 
 @dataclass(frozen=True, slots=True)
@@ -369,6 +468,8 @@ class _ExampleRun:
     active_network_neuron_count: int = 0
     receiving_network_neuron_count: int = 0
     emitting_network_neuron_count: int = 0
+    structural_decision: StructuralDecision | None = None
+    structural_budget_exhausted: bool = False
 
 
 class ExperimentRunner:
@@ -390,6 +491,17 @@ class ExperimentRunner:
         self._mutation_rejection_reasons: dict[str, int] = {}
         self._last_mutation_rejection_reasons: dict[str, int] = {}
         self._network: _ComputationalNetwork | None = None
+        self._structural_growth_attempts = 0
+        self._structural_budget_exhaustions = 0
+        self._structural_pass_attempts = 0
+        self._structural_pass_admissions = 0
+        self._structural_pass_rejections = 0
+        self._structural_decision_history: deque[StructuralDecision] = deque(
+            maxlen=self.config.mutation_history_limit
+        )
+        self._structural_pass_decisions: deque[StructuralDecision] | None = None
+        self._last_structural_snapshot: StructuralObservationSnapshot | None = None
+        self._active_runtime: ExcursionCharacterRuntime | None = None
 
     @property
     def history(self) -> tuple[ExperimentMetrics, ...]:
@@ -417,6 +529,10 @@ class ExperimentRunner:
     def plasticity(self) -> StructuralPlasticityController | None:
         return self._plasticity
 
+    @property
+    def structural_decisions(self) -> tuple[StructuralDecision, ...]:
+        return tuple(self._structural_decision_history)
+
     def _ensure_topology(self, workload: tuple[SyntheticExample, ...]) -> None:
         node_count = self.config.topology_node_count or len(workload)
         nodes = tuple(f"neuron-{index}" for index in range(node_count))
@@ -434,12 +550,41 @@ class ExperimentRunner:
             if len(self._topology) >= initial_edges:
                 break
             self._topology.connect(source, destination, 1.0)
-        neighbors = {node: tuple(candidate for candidate in nodes if candidate != node)
-                 for node in nodes if len(nodes) > 1}
+        if self.config.neuron_model == "EXCURSION_V1" and self.config.structural_observation:
+            assert self.config.structural_neighbors is not None
+            assert self.config.structural_neighborhood_limit is not None
+            assert self.config.structural_reverse_observer_limit is not None
+            assert self.config.structural_history_capacity is not None
+            assert self.config.structural_candidate_capacity is not None
+            assert self.config.structural_association_window is not None
+            assert self.config.structural_maximum_score is not None
+            assert self.config.structural_growth_delay is not None
+            locality = self.config.structural_neighbors
+            StructuralObservationPlane(
+                nodes,
+                locality,
+                neighborhood_limit=self.config.structural_neighborhood_limit,
+                reverse_observer_limit=self.config.structural_reverse_observer_limit,
+                history_capacity=self.config.structural_history_capacity,
+                candidate_capacity=self.config.structural_candidate_capacity,
+                association_window=self.config.structural_association_window,
+                maximum_score=self.config.structural_maximum_score,
+                propagation_delay=self.config.structural_growth_delay,
+            )
+        else:
+            locality = {
+                node: tuple(candidate for candidate in nodes if candidate != node)
+                for node in nodes
+            }
+        controller_candidate_capacity = (
+            len(nodes) * self.config.structural_candidate_capacity
+            if self.config.neuron_model == "EXCURSION_V1" and self.config.structural_observation
+            else self.config.candidate_capacity
+        )
         self._plasticity = StructuralPlasticityController(
-            self._topology, candidate_capacity=self.config.candidate_capacity,
+            self._topology, candidate_capacity=controller_candidate_capacity,
             max_growth_per_adaptation=self.config.max_growth_per_epoch,
-            minimum_edge_count=0, local_neighbors=neighbors)
+            minimum_edge_count=0, local_neighbors=locality)
         self._network = _ComputationalNetwork(
             nodes,
             self._topology,
@@ -509,6 +654,103 @@ class ExperimentRunner:
         self._mutation_history.extend(mutations)
         del self._mutation_history[:-self.config.mutation_history_limit]
         return tuple(mutations)
+
+    def _record_structural_decision(self, decision: StructuralDecision) -> None:
+        self._structural_decision_history.append(decision)
+        if self._structural_pass_decisions is not None:
+            self._structural_pass_decisions.append(decision)
+
+    def _attempt_e2_growth(
+        self,
+        evidence: StructuralObservationSnapshot,
+        *,
+        successful_settling: bool,
+        update: bool,
+    ) -> tuple[StructuralDecision, bool]:
+        assert self._topology is not None
+        before = tuple(
+            (edge.source, edge.destination, float(edge.propagation_delay))
+            for edge in self._topology.edges
+        )
+        selected: CandidateEvidence | None = None
+        rank: int | None = None
+        attempted = False
+        budget_exhausted = False
+        retained_evidence = evidence
+        status = "observation_only" if not self.config.structural_plasticity else "no_candidate"
+        reason: str | None = None
+        if not successful_settling:
+            status = "discarded"
+            reason = "incomplete_settling"
+            retained_evidence = StructuralObservationSnapshot((), (), 0, 0, 0, ())
+        elif not update:
+            status = "evaluation_only"
+            reason = "topology_mutation_disabled_for_evaluation"
+        elif not self.config.structural_plasticity:
+            status = "observation_only"
+        elif evidence.candidates:
+            budget = self.config.structural_growth_attempt_budget
+            assert budget is not None
+            if self._structural_growth_attempts >= budget:
+                status = "budget_exhausted"
+                reason = "growth_attempt_budget"
+                self._structural_budget_exhaustions += 1
+                budget_exhausted = True
+                retained_evidence = StructuralObservationSnapshot((), (), 0, 0, 0, ())
+            else:
+                if self._active_runtime is not None:
+                    raise RuntimeError("structural growth cannot run while an E2 runtime is active")
+                assert self._plasticity is not None
+                selected = self._plasticity.select(evidence.candidates)
+                if selected is None:
+                    status = "candidate_unavailable"
+                    reason = "no_valid_candidate"
+                else:
+                    rank = evidence.candidates.index(selected) + 1
+                    self._structural_growth_attempts += 1
+                    attempted = True
+                    mutation = self._plasticity.grow(selected)
+                    status = mutation.status
+                    reason = mutation.reason
+                    self._structural_pass_attempts += 1
+                    self._topology = self._plasticity.topology
+                    assert self._network is not None
+                    self._network.set_topology(self._topology)
+                    source = selected.source
+                    destination = selected.destination
+                    mutation_reason = reason or "e2_local_temporal"
+                    self._mutation_history.append(
+                        (status, source, destination, mutation_reason)
+                    )
+                    del self._mutation_history[:-self.config.mutation_history_limit]
+                    if status not in ("grown", "pruned"):
+                        self._structural_pass_rejections += 1
+                        rejection = reason or status
+                        self._mutation_rejection_reasons[rejection] = (
+                            self._mutation_rejection_reasons.get(rejection, 0) + 1
+                        )
+                        self._last_mutation_rejection_reasons[rejection] = (
+                            self._last_mutation_rejection_reasons.get(rejection, 0) + 1
+                        )
+                    elif status == "grown":
+                        self._structural_pass_admissions += 1
+        after = tuple(
+            (edge.source, edge.destination, float(edge.propagation_delay))
+            for edge in self._topology.edges
+        )
+        decision = StructuralDecision(
+            retained_evidence,
+            selected,
+            rank,
+            status,
+            reason,
+            attempted,
+            before,
+            after,
+        )
+        if update:
+            self._record_structural_decision(decision)
+        return decision, budget_exhausted
 
     def _learned_prediction(self, feature: float, fallback: str) -> tuple[str, float]:
         if not self._prototypes:
@@ -608,6 +850,28 @@ class ExperimentRunner:
     def _run_excursion_example(self, example: SyntheticExample, index: int, *, update: bool) -> _ExampleRun:
         config = self.config
         assert self._network is not None
+        plane: StructuralObservationPlane | None = None
+        if config.structural_observation:
+            assert config.structural_neighbors is not None
+            assert config.structural_neighborhood_limit is not None
+            assert config.structural_reverse_observer_limit is not None
+            assert config.structural_history_capacity is not None
+            assert config.structural_candidate_capacity is not None
+            assert config.structural_association_window is not None
+            assert config.structural_maximum_score is not None
+            assert config.structural_growth_delay is not None
+            plane = StructuralObservationPlane(
+                self._network.topology.nodes,
+                config.structural_neighbors,
+                neighborhood_limit=config.structural_neighborhood_limit,
+                reverse_observer_limit=config.structural_reverse_observer_limit,
+                history_capacity=config.structural_history_capacity,
+                candidate_capacity=config.structural_candidate_capacity,
+                association_window=config.structural_association_window,
+                maximum_score=config.structural_maximum_score,
+                propagation_delay=config.structural_growth_delay,
+            )
+        self._last_structural_snapshot = None
         neurons = self._network.neurons
         if not all(isinstance(neuron, MultiExcursionNeuron) for neuron in neurons):
             raise RuntimeError("EXCURSION_V1 network contains a non-E2 neuron")
@@ -624,6 +888,7 @@ class ExperimentRunner:
             prediction_expiry=config.prediction_expiry,
             max_activity_events=config.event_budget,
             namespace=f"experiment-{config.seed}",
+            emission_observer=None if plane is None else plane.observe_emission,
         )
         first_timestamp = (
             example.points[0].timestamp
@@ -689,12 +954,31 @@ class ExperimentRunner:
             )
             return reward
 
-        result = runtime.end_character(
-            last_external_timestamp=last_timestamp,
-            reward=resolve_reward,
-            reward_delay=config.reward_delay,
-            reward_message_id=f"{example.example_id}:reward",
-        )
+        self._active_runtime = runtime
+        try:
+            result = runtime.end_character(
+                last_external_timestamp=last_timestamp,
+                reward=resolve_reward,
+                reward_delay=config.reward_delay,
+                reward_message_id=f"{example.example_id}:reward",
+            )
+        finally:
+            runtime.reset()
+            self._active_runtime = None
+        structural_decision: StructuralDecision | None = None
+        structural_budget_exhausted = False
+        if plane is not None:
+            frozen_evidence = plane.freeze()
+            structural_decision, structural_budget_exhausted = self._attempt_e2_growth(
+                frozen_evidence,
+                successful_settling=(
+                    not result.incomplete_settling
+                    and result.execution.completed
+                    and not result.execution.budget_exhausted
+                ),
+                update=update,
+            )
+            self._last_structural_snapshot = structural_decision.evidence
         network_feature = result.feature
         prediction = str(selected["raw_prediction"])
         raw_classifier_prediction = str(selected["classifier_prediction"])
@@ -754,12 +1038,39 @@ class ExperimentRunner:
             active_network_neuron_count=result.active_neuron_count,
             receiving_network_neuron_count=result.receiving_neuron_count,
             emitting_network_neuron_count=result.emitting_neuron_count,
+            structural_decision=structural_decision,
+            structural_budget_exhausted=structural_budget_exhausted,
         )
 
     def _execute(self, workload: tuple[SyntheticExample, ...], epoch: int, *, update: bool) -> EvaluationResult:
-        runs = [self._run_example(example, index, update=update) for index, example in enumerate(workload)]
+        self._structural_pass_decisions = deque(maxlen=self.config.mutation_history_limit)
+        self._structural_pass_attempts = 0
+        self._structural_pass_admissions = 0
+        self._structural_pass_rejections = 0
+        if self.config.neuron_model == "EXCURSION_V1":
+            self._last_mutation_rejection_reasons = {}
+        try:
+            runs = [
+                self._run_example(example, index, update=update)
+                for index, example in enumerate(workload)
+            ]
+        finally:
+            pass_decisions = tuple(self._structural_pass_decisions)
+            self._structural_pass_decisions = None
         self._last_neurons = tuple(run.neuron for run in runs)
-        mutations = self._adapt_topology(runs, epoch) if update else ()
+        if update and self.config.neuron_model == "TANH_LEGACY":
+            mutations = self._adapt_topology(runs, epoch)
+        else:
+            mutations = tuple(
+                (
+                    decision.status,
+                    decision.selected_candidate.source,
+                    decision.selected_candidate.destination,
+                    decision.reason or "e2_local_temporal",
+                )
+                for decision in pass_decisions
+                if decision.growth_attempted and decision.selected_candidate is not None
+            )
         counts: dict[str, int] = {}
         confusion: dict[tuple[str, str], int] = {}
         correct = 0
@@ -782,6 +1093,14 @@ class ExperimentRunner:
         cumulative_reward = self._cumulative_reward + reward
         if update:
             self._cumulative_reward = cumulative_reward
+        topology_metrics = self._topology_metrics(mutations)
+        if self.config.neuron_model == "EXCURSION_V1":
+            topology_metrics.update(
+                mutation_count=self._structural_pass_attempts,
+                accepted_additions=self._structural_pass_admissions,
+                pruned_connections=0,
+                rejected_mutations=self._structural_pass_rejections,
+            )
         metrics = ExperimentMetrics(
             epoch, correct / total, sum(run.loss for run in runs) / total, reward,
             sum(run.energy for run in runs), sum(run.events for run in runs),
@@ -814,7 +1133,7 @@ class ExperimentRunner:
                 else float(run.neuron.activation == 0.0)
                 for run in runs
             ) / total,
-            **self._topology_metrics(mutations),
+            **topology_metrics,
             per_class_accuracy=tuple(
                 (label, per_class_correct.get(label, 0) / count)
                 for label, count in sorted(counts.items())
@@ -856,6 +1175,47 @@ class ExperimentRunner:
             ),
             maximum_route_depth=max((run.maximum_route_depth for run in runs), default=0),
             provenance_truncated_count=sum(run.provenance_truncated for run in runs),
+            structural_emission_count=sum(
+                run.structural_decision.evidence.observation_count
+                for run in runs
+                if run.structural_decision is not None
+            ),
+            structural_observation_work=sum(
+                run.structural_decision.evidence.observation_work
+                for run in runs
+                if run.structural_decision is not None
+            ),
+            structural_candidate_count=sum(
+                len(run.structural_decision.evidence.candidates)
+                for run in runs
+                if run.structural_decision is not None
+            ),
+            structural_candidate_rejections=sum(
+                run.structural_decision.evidence.candidate_rejections
+                for run in runs
+                if run.structural_decision is not None
+            ),
+            structural_growth_attempts=sum(
+                run.structural_decision.growth_attempted
+                for run in runs
+                if run.structural_decision is not None
+            ),
+            structural_growth_attempt_budget=(
+                self.config.structural_growth_attempt_budget or 0
+            ),
+            structural_growth_budget_remaining=(
+                max(
+                    0,
+                    self.config.structural_growth_attempt_budget
+                    - self._structural_growth_attempts,
+                )
+                if self.config.structural_growth_attempt_budget is not None
+                else 0
+            ),
+            structural_growth_budget_exhausted=any(
+                run.structural_budget_exhausted for run in runs
+            ),
+            structural_decisions=pass_decisions,
         )
         predictions = tuple(run.raw_prediction for run in runs)
         trace = tuple(item for run in runs for item in run.trace)
@@ -894,5 +1254,6 @@ def train(workload: tuple[SyntheticExample, ...], *, config: ExperimentConfig | 
 
 __all__ = [
     "EvaluationResult", "ExperimentConfig", "ExperimentMetrics", "ExperimentRunner", "ReadoutDiagnostic",
+    "StructuralDecision",
     "SyntheticExample", "TrainingObserver", "TrainingResult", "evaluate", "make_synthetic_workload", "train",
 ]

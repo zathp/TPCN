@@ -97,6 +97,7 @@ class ExcursionCharacterRuntime:
         prediction_expiry: float,
         max_activity_events: int,
         namespace: str,
+        emission_observer: Callable[[str, str | int, float], None] | None = None,
     ) -> None:
         self.neurons = tuple(neurons)
         if not self.neurons or any(not isinstance(n, MultiExcursionNeuron) for n in self.neurons):
@@ -118,12 +119,15 @@ class ExcursionCharacterRuntime:
         self.prediction_expiry = self._nonnegative(prediction_expiry, "prediction_expiry")
         if not isinstance(namespace, str) or not namespace:
             raise ValueError("namespace must be a non-empty string")
+        if emission_observer is not None and not callable(emission_observer):
+            raise TypeError("emission_observer must be callable or None")
         self.topology = topology
         self.queue_capacity = queue_capacity
         self.event_budget = event_budget
         self.prediction_capacity = prediction_capacity
         self.max_activity_events = max_activity_events
         self.namespace = namespace
+        self._emission_observer = emission_observer
         self.queue: EventQueue[Event] | None = None
         self._sidecar: dict[int, RouteContext] = {}
         self._queued_timestamps: dict[int, float] = {}
@@ -563,6 +567,12 @@ class ExcursionCharacterRuntime:
         del parent
         queue = self._queue()
         assert self._predictor is not None and self._classifier is not None
+        if self._emission_observer is not None:
+            self._emission_observer(
+                emission.source,
+                emission.event_id,
+                emission.timestamp,
+            )
         self._emissions.append(emission)
         trace_id = f"{self.namespace}:{self._character_id}:{emission.event_id}"
         prediction_id: str | None = None
