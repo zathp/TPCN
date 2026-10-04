@@ -1,5 +1,24 @@
 # Architecture Changelog
 
+# Luna-0 authorization — ACP-0007 four-class EXCURSION_V1 efficacy (Luna-33) - 2026-10-04
+
+**AUTHORIZED / NOT EXECUTED.** Following Luna-32's independently verified
+closure, Luna-0 verified the full baseline (908 passed, 0 failed, 1
+CUDA-unavailable skip; 909 collected) and found the existing public
+`ExperimentRunner` APIs sufficient for matched seeded topology, structural
+decision evidence, held-out metrics, and exact later route-use accounting.
+Luna-33 is authorized for a bounded four-class EXCURSION_V1 experiment only;
+the frozen A–D design and falsifiable paired accuracy/engagement rules are
+recorded in `.github/agents/luna-33.agent.md` and
+`workflow/handoffs/luna-0-post-luna32-acp0007-four-class-efficacy-decision-20261004.md`.
+No outcome-bearing preview or experiment was run. This is within accepted
+ACP-0007: Architecture Contract 1.2, A01-A15, ACP-0007, and acceptance
+criteria are unchanged; no ACP required. Historical Luna-12L remains
+**NOT SUPPORTED / UNCHANGED**. Task efficacy, prediction benefit, resource
+benefit, and hardware equivalence remain **NOT ESTABLISHED**. E2 pruning and
+N3 remain **NOT AUTHORIZED**. Luna-33 must return to Luna-0 for independent
+review; no successor is authorized.
+
 # Luna-0 independent closure — Luna-32 historical Luna-12L / spiral model compatibility - 2026-10-04
 
 **PASS — LUNA-32 HISTORICAL LUNA-12L / SPIRAL MODEL-EXPLICIT COMPATIBILITY INDEPENDENTLY VERIFIED / CLOSED** within the exact historical compatibility scope. Independent review handoff: `workflow/handoffs/luna-0-independent-review-luna-32-historical-temporal-spiral-model-compatibility-20261004.md`. Historical `TANH_LEGACY` is explicit for all five Luna-12L classifier policies (including `fixed`) and all ten spiral controls; no policy/model confound or ACP-0007 alias exists. The historical Luna-12L verdict remains **NOT SUPPORTED / UNCHANGED**, and the current explicit-TANH compatibility run is not the same experiment as the retained historical artifact. Artifacts and historical evidence remain unchanged. Current `EXCURSION_V1` default and ACP-0007 are unchanged; no new E2 four-class experiment was performed. E2 pruning and N3 remain **NOT AUTHORIZED**. Task efficacy, resource benefit, and hardware equivalence remain **NOT ESTABLISHED**. Luna-33 is **NOT AUTHORIZED**.

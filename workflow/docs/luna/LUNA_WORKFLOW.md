@@ -3561,3 +3561,36 @@ Luna-32 (Historical Luna-12L / Spiral Model-Explicit Compatibility) is **AUTHORI
 Luna-32 = **CLOSED / INDEPENDENTLY VERIFIED** for historical Luna-12L/spiral model-explicit compatibility only. All five Luna-12L classifier policies, including `fixed`, and all ten spiral controls use the same explicit `TANH_LEGACY` model; historical policy execution, provenance, scale separation, and deterministic matched-model controls were independently verified. The full suite passed (908 passed, 0 failed, 1 unchanged CUDA-unavailable skip; 909 collected). Evidence: `workflow/handoffs/luna-0-independent-review-luna-32-historical-temporal-spiral-model-compatibility-20261004.md`.
 
 The corrected historical Luna-12L verdict remains **NOT SUPPORTED / UNCHANGED**. The explicit legacy compatibility run is not the same experiment as the retained artifact; artifacts and historical result handoffs are unchanged. Current `EXCURSION_V1` default and ACP-0007 are unchanged. No current E2 four-class experiment or efficacy result was established. E2 pruning and N3 remain **NOT AUTHORIZED**; task efficacy, resource benefit, and hardware equivalence remain **NOT ESTABLISHED**. Luna-33 is **NOT AUTHORIZED**.
+
+### Luna-33 authorization — ACP-0007 four-class EXCURSION_V1 efficacy — 2026-10-04
+
+**AUTHORIZED / NOT EXECUTED.** After Luna-32's independent closure at clean
+synchronized `main` (`cc66e6a4affb044bf726d92510bcfd214c1f698f`), Luna-0
+verified a green baseline (908 passed, 0 failed, 1 CUDA-unavailable skip;
+909 collected) and audited the public `ExperimentRunner` evidence surfaces.
+They expose deterministic seeded starting topology, structural decisions and
+before/after topology snapshots, held-out task/prediction metrics, and exact
+runtime route paths. A matched efficacy experiment needs no private topology
+injection or core/API change.
+
+Luna-33 is authorized to test whether growth-only ACP-0007
+`e2_local_temporal` improves four-class canonical held-out accuracy over
+matched fixed topology and whether any gain depends on preserved training
+point order. It uses four paired conditions (fixed A, observation-only B,
+growth C, temporal-order-destroyed training D), five seeds, one explicitly
+bounded eight-node synthetic reference setup, and a fixed canonical held-out
+split. The full configuration, label boundary, engagement/route-use gates,
+and falsifiable supported/not-supported/inconclusive rules are in
+`.github/agents/luna-33.agent.md` and
+`workflow/handoffs/luna-0-post-luna32-acp0007-four-class-efficacy-decision-20261004.md`.
+
+This is a distinct current EXCURSION_V1 experiment, not historical
+TANH_LEGACY compatibility and not a reuse of Luna-12L results or artifacts.
+The efficacy experiment and all outcome-bearing previews were **NOT RUN** for
+authorization. Contract 1.2, A01-A15, ACP-0007, and acceptance criteria are
+unchanged; **no ACP required**. The historical Luna-12L verdict remains
+**NOT SUPPORTED / UNCHANGED**. Task efficacy, prediction benefit, resource
+benefit, and hardware equivalence remain **NOT ESTABLISHED** until separate
+evidence exists. E2 pruning and N3 remain **NOT AUTHORIZED**. Sequence:
+`Luna-0 -> Luna-33 -> Luna-0`; Luna-33 must return to Luna-0 for independent
+review and may not self-close or authorize a successor.
