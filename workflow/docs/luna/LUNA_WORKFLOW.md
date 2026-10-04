@@ -3509,3 +3509,41 @@ N3 remain unauthorized. Task efficacy, resource benefit, and hardware
 equivalence are not established. Luna-30 closure does not authorize Luna-31
 or any successor; the remaining Luna-12E, Luna-12L, and spiral work requires
 separate governance decisions.
+
+## Luna-0 authorization — Luna-12E EXCURSION_V1 observable compatibility correction (Luna-31) - 2026-10-04
+
+**AUTHORIZED — LUNA-31 TEST-ONLY COMPATIBILITY CORRECTION; NOT EXECUTED.**
+This is a new bounded decision following the Luna-30 closure above; it does
+not revise the historical closure finding. The current verified baseline is
+clean synchronized `main`,
+`HEAD == origin/main == 8d5f7f5ad1c594df3cd886de327eb14c3dfbe15c`.
+The opaque revision token in the source request could not be resolved by Git;
+the live `origin/main` commit has the requested Luna-30 closure subject.
+
+Luna-0 reproduced the two named Luna-12E failures and independently probed
+their observables. The edge intervention changes route trace, event count,
+edge-transfer proxy and route depth while prediction loss remains equal.
+Equality is permitted; no prediction or task-efficacy claim follows. The E2
+character reset leaves stable neuron objects at the configured terminal
+horizon with neutral public state/mode and no pending event. The old exact
+terminal clocks `0.0`/`1.0` are legacy-only; an explicit TANH_LEGACY control
+retains those values, but is not required.
+
+Luna-31 may change only
+`tests/test_luna12e_integration.py` and its completion handoff
+`workflow/handoffs/luna-31-luna12e-e2-observable-compatibility-20261004.md`.
+The dispatch contract is `.github/agents/luna-31.agent.md`; the decision,
+baseline, evidence, assertion matrix, exclusions and acceptance checks are
+recorded in
+`workflow/handoffs/luna-0-post-luna30-luna12e-e2-observable-decision-20261004.md`.
+No production changes, Luna-12L/spiral work, or edits to the three historical
+Luna-12E topology component tests are authorized. If public E2 observables
+prove insufficient, stop and return to Luna-0.
+
+Run the full Luna-12E file, relevant E2 integration/routing and Luna-26
+multi-hop regressions, and the full suite. Require zero Luna-12E failures and
+no new applicable regressions. The previously established remaining groups
+are Luna-12L (8) and spiral (1); do not hard-code an aggregate pass count.
+Architecture change: **NO**. ACP required: **NO**. Architecture Contract 1.2,
+A01-A15, and accepted ACP-0007 are unchanged. Sequence:
+`Luna-0 -> Luna-31 -> Luna-0`; Luna-31 is **AUTHORIZED / NOT EXECUTED**.

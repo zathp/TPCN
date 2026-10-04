@@ -1,5 +1,33 @@
 # Architecture Changelog
 
+# Luna-0 authorization — Luna-12E EXCURSION_V1 observable compatibility correction (Luna-31) - 2026-10-04
+
+**AUTHORIZED — LUNA-31 TEST-ONLY COMPATIBILITY CORRECTION; NOT EXECUTED.**
+At clean synchronized `main`,
+`HEAD == origin/main == 8d5f7f5ad1c594df3cd886de327eb14c3dfbe15c`,
+Luna-0 reproduced and classified the two remaining Luna-12E failures as stale
+observable expectations. The routed-edge fixture demonstrates a real causal
+routing effect through route trace, event count, edge-transfer proxy, and route
+depth even though prediction loss is equal. The reset fixture's public E2
+state is neutral at the configured terminal horizon, with no pending event and
+stable neuron identity. Evidence and the explicit assertion matrix are in
+`workflow/handoffs/luna-0-post-luna30-luna12e-e2-observable-decision-20261004.md`.
+
+Luna-31 owns only
+`tests/test_luna12e_integration.py` and
+`workflow/handoffs/luna-31-luna12e-e2-observable-compatibility-20261004.md`.
+Production files, E2/prediction/routing/reset semantics, Luna-12L and spiral,
+and the first three historical Luna-12E topology component tests are excluded.
+The default E2 test must retain identity and assert horizon-derived terminal
+time, neutral state/mode, and no pending work. The prediction-loss inequality
+is removed as a required routing oracle; an explicit TANH_LEGACY clock
+regression is optional and not an authorization gate.
+
+Architecture change: **NO**. ACP required: **NO**. Architecture Contract 1.2,
+A01-A15, and accepted ACP-0007 remain unchanged. Task efficacy, resource
+benefit, and hardware equivalence are not established. Required sequence:
+`Luna-0 -> Luna-31 -> Luna-0`.
+
 # Luna-0 independent review — Luna-30 TPCV-2 replay consumer compatibility correction closed - 2026-10-04
 
 **PASS — LUNA-30 TPCV-2 REPLAY CONSUMER COMPATIBILITY CORRECTION
