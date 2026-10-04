@@ -11,7 +11,7 @@ tpcn_handoff:
   contract_version: "1.2"
   branch: "main"
   base_revision: "cc66e6a4affb044bf726d92510bcfd214c1f698f"
-  result_revision: "governance-only authorization publication"
+  result_revision: "34d286cc53dd8c80d00a660b00f516f900c3d4db"
   dependencies:
     - "Luna-32 closed and independently verified"
     - "Accepted ACP-0007"
