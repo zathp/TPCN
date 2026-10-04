@@ -11,7 +11,7 @@ tpcn_handoff:
   contract_version: "1.1"
   branch: "main"
   base_revision: "42026a9fc3ccc1b1fdc83e0344c79312f2d76b14"
-  result_revision: "42026a9fc3ccc1b1fdc83e0344c79312f2d76b14 (reviewed implementation baseline)"
+  result_revision: "ffbf5ed3241ea6291955a6e1bba98bd6be27b54a (review/governance publication; reviewed implementation baseline: 42026a9fc3ccc1b1fdc83e0344c79312f2d76b14)"
   dependencies:
     - "Accepted ACP-0006"
     - "Luna-23 independent closure"

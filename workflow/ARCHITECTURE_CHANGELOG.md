@@ -5,6 +5,8 @@
 **SCENARIO C — LUNA-22 REMAINS BLOCKED BY ONE VERIFIED MULTI-HOP
 PREDICTION-ERROR FORWARDING DEFECT.** Review began on clean
 `main == origin/main == 42026a9fc3ccc1b1fdc83e0344c79312f2d76b14`.
+The review and Luna-26 authorization were published at
+`ffbf5ed3241ea6291955a6e1bba98bd6be27b54a`.
 The request's token `F9h8mimKAXJ74YAEM4NsrHja2pxrrFaJyX29rnc7RyLb` is not a
 resolvable Git object. The actual implementation/review/correction lineage
 was verified from the repository's commit graph and is documented in the

@@ -10,8 +10,8 @@ tpcn_handoff:
   status: "authorized; not executed"
   contract_version: "1.1"
   branch: "main"
-  base_revision: "42026a9fc3ccc1b1fdc83e0344c79312f2d76b14"
-  result_revision: "42026a9fc3ccc1b1fdc83e0344c79312f2d76b14 (reviewed code baseline)"
+  base_revision: "ffbf5ed3241ea6291955a6e1bba98bd6be27b54a (Luna-0 review/authorization publication)"
+  result_revision: "ffbf5ed3241ea6291955a6e1bba98bd6be27b54a (authorization publication; reviewed code baseline: 42026a9fc3ccc1b1fdc83e0344c79312f2d76b14)"
   dependencies:
     - "Accepted ACP-0006"
     - "Luna-23 CLOSED / independently verified"
