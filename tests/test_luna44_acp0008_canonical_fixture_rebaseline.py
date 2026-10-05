@@ -2,6 +2,8 @@ from __future__ import annotations
 
 import hashlib
 import math
+from pathlib import Path
+import subprocess
 import sys
 
 import pytest
@@ -53,7 +55,22 @@ def test_fixture_loads_from_retained_files_without_generator_or_builder():
     assert hashlib.sha256(fixture_bytes).hexdigest() == provenance["fixture_json_sha256"]
     assert provenance["fixture_json_sha256"] == luna44.FIXTURE_FILE_SHA256
     assert provenance["fixture_json_sha256"] != provenance["canonical_fixture_sha256"]
-    assert GENERATOR_MODULE not in sys.modules
+    subprocess.run(
+        [
+            sys.executable,
+            "-c",
+            (
+                "import sys; "
+                "import run_luna44_acp0008_canonical_fixture_rebaseline as runner; "
+                "runner.load_fixture(); "
+                f"assert {GENERATOR_MODULE!r} not in sys.modules"
+            ),
+        ],
+        cwd=Path(luna44.__file__).resolve().parent,
+        check=True,
+        capture_output=True,
+        text=True,
+    )
 
 
 def test_topology_and_only_relay_integration_vary_by_arm():
