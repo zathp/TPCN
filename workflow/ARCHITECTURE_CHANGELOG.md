@@ -1,5 +1,44 @@
 # Architecture Changelog
 
+# Luna-0 independent post-Luna-35 review — eligibility lifecycle and capacity API - 2026-10-04
+
+**PASS — LUNA-35 EVIDENCE INDEPENDENTLY RECONSTRUCTED; NO PRODUCTION
+LIFECYCLE DEFECT ESTABLISHED; LUNA-36 AUTHORIZED / NOT EXECUTED.** Review
+started from clean synchronized `main` at
+`b0507cb68776011dba482907b0ac763bec2a225f`. Luna-35 used exactly its two
+authorized no-edge fixtures and changed no production semantics. Focused
+Luna-35, eligibility, excursion-integration and prediction tests: **77
+passed**. Full suite: **932 passed, 1 skipped, 933 collected**; the one skip
+is the CUDA visualization test because CUDA is unavailable. The increase
+from the pre-Luna-35 930 collected is exactly the three Luna-35 tests.
+Deterministic replay digests match. Exact commands, fixtures, and evidence:
+`workflow/handoffs/luna-0-independent-review-luna35-eligibility-capacity-20261004.md`.
+
+The reproducer reconciles `0 + 16 creations - 0 removals = 16` in the
+source ledger. The seventeenth unique trace is rejected at the existing
+finite per-ledger bound. Predictor expiry removes predictor records but does
+not retire matching eligibility. Delayed-credit behavior accepts a later
+reward by retained prediction identity after predictor expiry; deleting that
+trace at predictor expiry would destroy this supported credit path. The
+one-point control's neutral reward matched its explicit trace ID and decayed
+the value without removing it (`1 -> 1`); character destruction released
+that trace and the next character's ledgers were empty. Thus the live state
+is bounded and character-scoped, not an unbounded cross-character leak.
+
+Classification: **EXPECTED BOUNDED BEHAVIOR** for the overflow;
+**CONTRACT AMBIGUITY / PUBLIC API LIMITATION** for the workload-to-capacity
+relationship. Neither caller/fixture lifecycle misuse nor a production
+lifecycle defect is established. Luna-34 remains historically **BLOCKED /
+UNDETERMINED**; its mechanism question was not rerun. Luna-33 and ACP-0007
+remain unchanged.
+
+Luna-36 is authorized only to add a backward-compatible optional finite
+per-ledger `eligibility_capacity` setting to the EXCURSION runtime, preserving
+the exact existing derived default when omitted. It may not change
+eligibility retirement, predictor expiry, reward behavior, or event ordering;
+it is API compatibility work, not a Luna-34 mechanism rerun or efficacy
+experiment. No architecture change or Luna-37 is authorized.
+
 # Luna-0 independent post-Luna-34 review — eligibility capacity/lifecycle - 2026-10-04
 
 **PASS — LUNA-34 BLOCKER INDEPENDENTLY REPRODUCED; LUNA-35 AUTHORIZED /
@@ -29,7 +68,8 @@ Luna-35 is authorized solely for two-fixture eligibility lifecycle
 characterization (the exact 20-point no-edge reproducer and a one-point
 character-reset control). No topology-edge condition, propagation-to-emission
 retry, efficacy endpoint, capacity/expiry tuning, production edit, ACP,
-architecture promotion, or Luna-36 is authorized. Architecture Contract
+architecture promotion, or Luna-36 was authorized at that time. This
+historical status is superseded by the post-Luna-35 review above. Architecture Contract
 1.2, ACP-0007, the Luna-33 verdict, and the Luna-34 mechanism hypothesis are
 unchanged. Independent regression: 71 focused tests passed; full suite
 929 passed, 1 CUDA-unavailable skip; 930 collected, exactly nine more than

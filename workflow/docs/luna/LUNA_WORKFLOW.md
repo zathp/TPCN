@@ -1,5 +1,33 @@
 # TPCN Luna Multi-Agent Workflow — Event-Driven Architecture
 
+## Luna-0 independent review — Luna-35 eligibility capacity/lifecycle
+
+**PASS — LUNA-35 EVIDENCE INDEPENDENTLY RECONSTRUCTED; NO PRODUCTION
+LIFECYCLE DEFECT ESTABLISHED; LUNA-36 AUTHORIZED / NOT EXECUTED.** Review
+started from clean synchronized `main` at
+`b0507cb68776011dba482907b0ac763bec2a225f`. The fixed 20-point no-edge
+`c00-004` fixture independently reconciles 16 successful source eligibility
+creations, zero removals, peak/final occupancy `16/16`, and rejection of
+`source:excursion:17` at `255.79833294576443`. All 16 linked predictors
+expired while their eligibility entries remained resident; no reward or
+prediction-error signal reached that ledger before the overflow. In the
+one-point control, a matched neutral reward at time 4.0 updated/decayed the
+entry but did not remove it. Character destruction released the runtime's
+ledger references, and the next character received fresh empty ledgers.
+The full independent reconstruction and validation are in
+`workflow/handoffs/luna-0-independent-review-luna35-eligibility-capacity-20261004.md`.
+
+The capacity overflow is **EXPECTED BOUNDED BEHAVIOR**; the independent
+eligibility-capacity configuration gap is a **CONTRACT AMBIGUITY / PUBLIC API
+LIMITATION**. Predictor expiration is not an eligibility-retirement event,
+and retention supports delayed credit after predictor expiry. Luna-34 remains
+historically **BLOCKED / UNDETERMINED**; the propagation-to-emission
+hypothesis was not rerun or answered. Luna-33 and ACP-0007 are unchanged.
+Luna-36 is authorized only for an optional finite per-ledger capacity setting
+whose omitted default exactly preserves current behavior. No lifecycle,
+predictor, reward, or architecture semantics change and no experiment rerun
+is authorized. See `.github/agents/luna-36.agent.md`.
+
 ## Luna-0 independent review — Luna-34 eligibility-capacity blocker
 
 Luna-34's reported eligibility overflow was independently reproduced at
@@ -15,8 +43,9 @@ claimed. Luna-34 remains **BLOCKED** and its propagation-to-emission
 hypothesis **UNDETERMINED**. A bounded lifecycle-only diagnostic is
 **AUTHORIZED / NOT EXECUTED** as Luna-35 under
 `.github/agents/luna-35.agent.md`. It may not retry the propagation
-experiment, change capacity/expiry, or modify production behavior. Return to
-Luna-0; no Luna-36 is authorized. Full review:
+experiment, change capacity/expiry, or modify production behavior. At that
+post-Luna-34 point, no Luna-36 was authorized; that historical status is
+superseded by the post-Luna-35 review above. Full review:
 `workflow/handoffs/luna-0-independent-review-luna34-eligibility-capacity-20261004.md`.
 
 ## ACP-0003 heterogeneous execution review
