@@ -1,0 +1,522 @@
+{
+  "authorization_revision": "89f05f3d7c7ce18646d8b4302b74c66e90ee0895",
+  "code_baseline": "cc66e6a4affb044bf726d92510bcfd214c1f698f",
+  "condition_identity": {
+    "A": {
+      "structural_observation": false,
+      "structural_plasticity": false,
+      "training_order": "canonical"
+    },
+    "B": {
+      "structural_observation": true,
+      "structural_plasticity": false,
+      "training_order": "canonical"
+    },
+    "C": {
+      "structural_observation": true,
+      "structural_plasticity": true,
+      "training_order": "canonical"
+    },
+    "D": {
+      "structural_observation": true,
+      "structural_plasticity": true,
+      "training_order": "coordinate-time-destroyed"
+    }
+  },
+  "dataset": {
+    "classes": [
+      "spiral-left-outward",
+      "spiral-right-outward",
+      "spiral-left-inward",
+      "spiral-right-inward"
+    ],
+    "digests": {
+      "0": {
+        "class_counts_evaluation": {
+          "spiral-left-inward": 16,
+          "spiral-left-outward": 16,
+          "spiral-right-inward": 16,
+          "spiral-right-outward": 16
+        },
+        "class_counts_train": {
+          "spiral-left-inward": 16,
+          "spiral-left-outward": 16,
+          "spiral-right-inward": 16,
+          "spiral-right-outward": 16
+        },
+        "destroyed_train_digest": "1c90ff65dc442a17320232f018717d52d507a04fa4b4c24851ff4a493fbb3ce9",
+        "evaluation_count": 64,
+        "generated_evaluation_metadata_digest": "8b2eeb1292ecd9d14948c060c50be4cf4de24b86b828019f5852fae633963fc8",
+        "generated_train_metadata_digest": "aa6c475d0898efacbef8d264a990cb736dda91d3272670bfaaaf429dc6d9e7b1",
+        "ordered_evaluation_digest": "7889c0ecd3fdf6e165e8377b0fa49e66a240803df4424802d7e3bdfc6989eaab",
+        "ordered_train_digest": "74393067e0809e4b990fa8a9afd829f27874124932e06183ea84d3861919c1fe",
+        "train_count": 64
+      },
+      "1": {
+        "class_counts_evaluation": {
+          "spiral-left-inward": 16,
+          "spiral-left-outward": 16,
+          "spiral-right-inward": 16,
+          "spiral-right-outward": 16
+        },
+        "class_counts_train": {
+          "spiral-left-inward": 16,
+          "spiral-left-outward": 16,
+          "spiral-right-inward": 16,
+          "spiral-right-outward": 16
+        },
+        "destroyed_train_digest": "1fa22e977304da961c9587747488ddb426eb1d56a1e385872a373f277ecc1d0a",
+        "evaluation_count": 64,
+        "generated_evaluation_metadata_digest": "cf01614a5ed40b3b039d2f7ed74d3fb94c94bf50f62a82d8007954f4b4034411",
+        "generated_train_metadata_digest": "88518f5fdda892d8cad70b1c0e78fc7222ca192fb2ac81da06238c0a6354cc04",
+        "ordered_evaluation_digest": "2b02a4bc11e8569f6d31c93c85c51a082e876b1754bc914fb9c5751f88243f8a",
+        "ordered_train_digest": "6dd3b825da69c9babca053027531e8b1d2bb1d259019d8c6e957fb1e5b58a9a2",
+        "train_count": 64
+      },
+      "2": {
+        "class_counts_evaluation": {
+          "spiral-left-inward": 16,
+          "spiral-left-outward": 16,
+          "spiral-right-inward": 16,
+          "spiral-right-outward": 16
+        },
+        "class_counts_train": {
+          "spiral-left-inward": 16,
+          "spiral-left-outward": 16,
+          "spiral-right-inward": 16,
+          "spiral-right-outward": 16
+        },
+        "destroyed_train_digest": "51a57a4191865a2bd68eb135d0db6c9afbc2ebcefbd490975408ffc02c4ee7c2",
+        "evaluation_count": 64,
+        "generated_evaluation_metadata_digest": "5c2ab0799301afe57ec991854c54c53003d14402e20bd55c72e7143ab2c95c04",
+        "generated_train_metadata_digest": "5fb1bc7ae9e64e7e7ecd8a0584f182cc52f71cce9041ccdf573b28b2bff1381f",
+        "ordered_evaluation_digest": "39b75b3c5dea62199a86bd340b08eaf21541a39b1349b160507567548ea16f7c",
+        "ordered_train_digest": "132a7af86e20de3fb3a26680ae5346f50eb305fa893d5aea2ceffcac30aad14b",
+        "train_count": 64
+      },
+      "3": {
+        "class_counts_evaluation": {
+          "spiral-left-inward": 16,
+          "spiral-left-outward": 16,
+          "spiral-right-inward": 16,
+          "spiral-right-outward": 16
+        },
+        "class_counts_train": {
+          "spiral-left-inward": 16,
+          "spiral-left-outward": 16,
+          "spiral-right-inward": 16,
+          "spiral-right-outward": 16
+        },
+        "destroyed_train_digest": "1e65b0ec32638c26a67c4185fe4c063fd987a3c8efac33248a3f07ad220f653d",
+        "evaluation_count": 64,
+        "generated_evaluation_metadata_digest": "f08c1074e3ccb338003a2015de81b6d2717d851e8b81ebacee31a97970ca64dd",
+        "generated_train_metadata_digest": "b929f59a7ea312ec3180516219a4a41aa44196a08e48f29dad213036734b5a54",
+        "ordered_evaluation_digest": "3642b2013dfc9dcdf0751634d6c5914874236458e9245191ec1cff57cefa0f88",
+        "ordered_train_digest": "cb5c1bee4df4836354e49d76822d3aad61ac93fbcc04d4891f1ebe3dfdf038b5",
+        "train_count": 64
+      },
+      "4": {
+        "class_counts_evaluation": {
+          "spiral-left-inward": 16,
+          "spiral-left-outward": 16,
+          "spiral-right-inward": 16,
+          "spiral-right-outward": 16
+        },
+        "class_counts_train": {
+          "spiral-left-inward": 16,
+          "spiral-left-outward": 16,
+          "spiral-right-inward": 16,
+          "spiral-right-outward": 16
+        },
+        "destroyed_train_digest": "0aaa1efdfd48238c7315a71ab599ea72077d184c4823f3c280dcc098415212c5",
+        "evaluation_count": 64,
+        "generated_evaluation_metadata_digest": "72a123727a7c3a1f0fa38d39d76ea8beffbfdcb0d149fb32cd2017c095dff9d2",
+        "generated_train_metadata_digest": "6270459311b93516e818a20678ad1cefd25c46b345ee9a02194c74bb7f9fa95d",
+        "ordered_evaluation_digest": "386c1cd8498d109331c276e3a269588cb4a1738259c40096c5a951cf1f923848",
+        "ordered_train_digest": "0b049303db0539d7d004464be49912b4bc95d1f9624db307eda752f19947bd5d",
+        "train_count": 64
+      }
+    },
+    "disjoint_split_generation": true,
+    "evaluation_order_seed": "330001 + seed",
+    "evaluation_seed": "22017 + seed",
+    "examples_per_class": 16,
+    "generator": "make_spiral_dataset",
+    "point_shuffle_seed_stream": "330002 + seed; getrandbits(32) per training example",
+    "points_per_example_bounds": [
+      12,
+      20
+    ],
+    "train_seed": "12007 + seed",
+    "training_order_seed": "330000 + seed"
+  },
+  "environment": {
+    "platform": "Windows-10-10.0.19045-SP0",
+    "python": "3.11.5 (tags/v3.11.5:cce6ba9, Aug 24 2023, 14:38:34) [MSC v.1936 64 bit (AMD64)]"
+  },
+  "experiment_support_rule": {
+    "ab_noninterference_required": true,
+    "c_seeds_with_admitted_edge_later_route_used_minimum": 4,
+    "means": [
+      "C-A > 0",
+      "C-D > 0"
+    ],
+    "positive_seed_count_minimum": 4
+  },
+  "no_efficacy_preview_before_correction": true,
+  "original_invalid_topology_initial_edges": 8,
+  "schema": "LUNA33_CONFIG_V1",
+  "shared_experiment_config": {
+    "activation_mode": "event_only",
+    "candidate_capacity": 16,
+    "correct_reward": 1.0,
+    "energy_weight": 1.0,
+    "epochs": 1,
+    "event_budget": 1024,
+    "history_limit": 16,
+    "incorrect_reward": -1.0,
+    "learning_enabled": true,
+    "max_classes": 4,
+    "max_growth_per_epoch": 1,
+    "max_points": 20,
+    "mutation_history_limit": 64,
+    "neuron_model": "EXCURSION_V1",
+    "prediction_capacity": 8,
+    "prediction_expiry": 4.0,
+    "queue_capacity": 128,
+    "reward_delay": 0.0,
+    "reward_mode": "neutral",
+    "seed": 0,
+    "settling_horizon": 4.0,
+    "structural_association_window": 4.0,
+    "structural_candidate_capacity": 4,
+    "structural_growth_attempt_budget": 16,
+    "structural_growth_delay": 0.4,
+    "structural_history_capacity": 8,
+    "structural_maximum_score": 3,
+    "structural_neighborhood_limit": 2,
+    "structural_neighbors": {
+      "neuron-0": [
+        "neuron-1"
+      ],
+      "neuron-1": [
+        "neuron-2"
+      ],
+      "neuron-2": [
+        "neuron-3"
+      ],
+      "neuron-3": [
+        "neuron-4"
+      ],
+      "neuron-4": [
+        "neuron-5"
+      ],
+      "neuron-5": [
+        "neuron-6"
+      ],
+      "neuron-6": [
+        "neuron-7"
+      ],
+      "neuron-7": [
+        "neuron-0"
+      ]
+    },
+    "structural_observation": true,
+    "structural_plasticity": true,
+    "structural_policy": "e2_local_temporal",
+    "structural_reverse_observer_limit": 2,
+    "topology_edge_capacity": 16,
+    "topology_fan_in": 2,
+    "topology_fan_out": 2,
+    "topology_initial_edges": 2,
+    "topology_node_count": 8
+  },
+  "topology_correction_reason": "pre-outcome public-initializer feasibility",
+  "topology_initial_edges": 2,
+  "topology_profile": {
+    "edge_capacity": 16,
+    "fan_in": 2,
+    "fan_out": 2,
+    "neighborhood_limit": 2,
+    "node_count": 8,
+    "observation_neighbors": {
+      "neuron-0": [
+        "neuron-1"
+      ],
+      "neuron-1": [
+        "neuron-2"
+      ],
+      "neuron-2": [
+        "neuron-3"
+      ],
+      "neuron-3": [
+        "neuron-4"
+      ],
+      "neuron-4": [
+        "neuron-5"
+      ],
+      "neuron-5": [
+        "neuron-6"
+      ],
+      "neuron-6": [
+        "neuron-7"
+      ],
+      "neuron-7": [
+        "neuron-0"
+      ]
+    },
+    "preflight_initial_topologies": {
+      "0": {
+        "A": [
+          [
+            "neuron-6",
+            "neuron-2",
+            1.0
+          ],
+          [
+            "neuron-7",
+            "neuron-4",
+            1.0
+          ]
+        ],
+        "B": [
+          [
+            "neuron-6",
+            "neuron-2",
+            1.0
+          ],
+          [
+            "neuron-7",
+            "neuron-4",
+            1.0
+          ]
+        ],
+        "C": [
+          [
+            "neuron-6",
+            "neuron-2",
+            1.0
+          ],
+          [
+            "neuron-7",
+            "neuron-4",
+            1.0
+          ]
+        ],
+        "D": [
+          [
+            "neuron-6",
+            "neuron-2",
+            1.0
+          ],
+          [
+            "neuron-7",
+            "neuron-4",
+            1.0
+          ]
+        ]
+      },
+      "1": {
+        "A": [
+          [
+            "neuron-3",
+            "neuron-5",
+            1.0
+          ],
+          [
+            "neuron-7",
+            "neuron-6",
+            1.0
+          ]
+        ],
+        "B": [
+          [
+            "neuron-3",
+            "neuron-5",
+            1.0
+          ],
+          [
+            "neuron-7",
+            "neuron-6",
+            1.0
+          ]
+        ],
+        "C": [
+          [
+            "neuron-3",
+            "neuron-5",
+            1.0
+          ],
+          [
+            "neuron-7",
+            "neuron-6",
+            1.0
+          ]
+        ],
+        "D": [
+          [
+            "neuron-3",
+            "neuron-5",
+            1.0
+          ],
+          [
+            "neuron-7",
+            "neuron-6",
+            1.0
+          ]
+        ]
+      },
+      "2": {
+        "A": [
+          [
+            "neuron-2",
+            "neuron-1",
+            1.0
+          ],
+          [
+            "neuron-4",
+            "neuron-1",
+            1.0
+          ]
+        ],
+        "B": [
+          [
+            "neuron-2",
+            "neuron-1",
+            1.0
+          ],
+          [
+            "neuron-4",
+            "neuron-1",
+            1.0
+          ]
+        ],
+        "C": [
+          [
+            "neuron-2",
+            "neuron-1",
+            1.0
+          ],
+          [
+            "neuron-4",
+            "neuron-1",
+            1.0
+          ]
+        ],
+        "D": [
+          [
+            "neuron-2",
+            "neuron-1",
+            1.0
+          ],
+          [
+            "neuron-4",
+            "neuron-1",
+            1.0
+          ]
+        ]
+      },
+      "3": {
+        "A": [
+          [
+            "neuron-2",
+            "neuron-4",
+            1.0
+          ],
+          [
+            "neuron-6",
+            "neuron-4",
+            1.0
+          ]
+        ],
+        "B": [
+          [
+            "neuron-2",
+            "neuron-4",
+            1.0
+          ],
+          [
+            "neuron-6",
+            "neuron-4",
+            1.0
+          ]
+        ],
+        "C": [
+          [
+            "neuron-2",
+            "neuron-4",
+            1.0
+          ],
+          [
+            "neuron-6",
+            "neuron-4",
+            1.0
+          ]
+        ],
+        "D": [
+          [
+            "neuron-2",
+            "neuron-4",
+            1.0
+          ],
+          [
+            "neuron-6",
+            "neuron-4",
+            1.0
+          ]
+        ]
+      },
+      "4": {
+        "A": [
+          [
+            "neuron-3",
+            "neuron-4",
+            1.0
+          ],
+          [
+            "neuron-4",
+            "neuron-0",
+            1.0
+          ]
+        ],
+        "B": [
+          [
+            "neuron-3",
+            "neuron-4",
+            1.0
+          ],
+          [
+            "neuron-4",
+            "neuron-0",
+            1.0
+          ]
+        ],
+        "C": [
+          [
+            "neuron-3",
+            "neuron-4",
+            1.0
+          ],
+          [
+            "neuron-4",
+            "neuron-0",
+            1.0
+          ]
+        ],
+        "D": [
+          [
+            "neuron-3",
+            "neuron-4",
+            1.0
+          ],
+          [
+            "neuron-4",
+            "neuron-0",
+            1.0
+          ]
+        ]
+      }
+    },
+    "reverse_observer_limit": 2
+  }
+}

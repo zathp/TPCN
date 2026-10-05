@@ -1,0 +1,76 @@
+{
+  "ab_noninterference_by_seed": {
+    "0": true,
+    "1": true,
+    "2": true,
+    "3": true,
+    "4": true
+  },
+  "ab_noninterference_gate": true,
+  "accuracy_by_seed_condition": {
+    "0": {
+      "A": 0.25,
+      "B": 0.25,
+      "C": 0.25,
+      "D": 0.25
+    },
+    "1": {
+      "A": 0.296875,
+      "B": 0.296875,
+      "C": 0.296875,
+      "D": 0.296875
+    },
+    "2": {
+      "A": 0.234375,
+      "B": 0.234375,
+      "C": 0.234375,
+      "D": 0.234375
+    },
+    "3": {
+      "A": 0.25,
+      "B": 0.25,
+      "C": 0.25,
+      "D": 0.25
+    },
+    "4": {
+      "A": 0.15625,
+      "B": 0.15625,
+      "C": 0.15625,
+      "D": 0.15625
+    }
+  },
+  "c_route_engagement_gate": false,
+  "c_route_engagement_seed_count": 0,
+  "c_route_use_by_seed": {
+    "0": false,
+    "1": false,
+    "2": false,
+    "3": false,
+    "4": false
+  },
+  "hardware_equivalence_verdict": "NOT ESTABLISHED",
+  "heldout_evaluation_nonmutation_gate": true,
+  "mean_c_minus_a": 0.0,
+  "mean_c_minus_d": 0.0,
+  "paired_c_minus_a": {
+    "0": 0.0,
+    "1": 0.0,
+    "2": 0.0,
+    "3": 0.0,
+    "4": 0.0
+  },
+  "paired_c_minus_d": {
+    "0": 0.0,
+    "1": 0.0,
+    "2": 0.0,
+    "3": 0.0,
+    "4": 0.0
+  },
+  "positive_c_minus_a_seed_count": 0,
+  "positive_c_minus_d_seed_count": 0,
+  "prediction_benefit_verdict": "NOT ESTABLISHED",
+  "resource_benefit_verdict": "NOT ESTABLISHED",
+  "runtime_exceptions": [],
+  "scientific_efficacy_verdict": "NOT SUPPORTED IN THIS SETUP",
+  "valid_execution_gate": true
+}
