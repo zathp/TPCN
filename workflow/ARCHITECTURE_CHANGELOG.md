@@ -1,5 +1,45 @@
 # Architecture Changelog
 
+## Luna-0 independent post-Luna-42 review — ACP-0008 corrective calibration - 2026-10-05
+
+**PASS WITH FOLLOW-UP; no Luna-43 authorized.** Reviewed the exact final
+publication `3af1c1bcc0f4a0121752103211aa702fc6a6e85a`; the actual execution
+revision recorded in all primary evidence is
+`d073ecc13e789105c611181992ce4c8d48c79030`. The Phase-B runner fix before
+execution changes only arm-keyed paired-input digest initialization and its
+regression test. The final publication adds evidence/handoff material without
+changing runner or test behavior.
+
+Independently reconstructed all artifact/configuration digests, the 68
+enabled Phase-A recurrence steps, Phase-A candidate selection, and both
+Phase-A and Phase-B replay digests. The exact predeclared four-candidate
+search selects `decay_rate_z=0.0125`; all other ACP-0008 parameters remain
+fixed. Production-derived source emissions and Model-B transfers are used;
+the actual route payload, not an injected nominal `0.4`, enters the oracle.
+The frozen Phase-B records contain 320 characters per arm: all arms have
+1,715 matched source emissions/routes; CALIBRATED has 235 integration-
+mediated relay emissions and 235 onward transfers/receptions, while DEFAULT
+and DISABLED have zero relay emissions/transfers. There are zero destination
+emissions.
+
+An independent within-character ordered-emitter scan finds only 235
+`source -> relay` pairs inside the accepted ACP-0007 association window, all
+over the already-existing edge. Receptions do not count as emissions; no
+missing-edge candidate opportunity is evidenced. Accordingly the result
+supports calibrated fixed-topology integration and causal onward routing
+only, not ACP-0007 growth, task efficacy, optimality, resource benefit, or
+hardware equivalence. The test-only `abs_tol=1e-12` assertions in the
+focused Luna-42 tests are a non-blocking follow-up; they do not affect runner
+acceptance, selection, or artifact generation. Full suite: 1023 passed, 1
+CUDA-unavailable skip, 1024 collected, versus pre-Luna-42 baseline 1015
+passed, 1 skipped, 1016 collected. Luna-41 remains historically BLOCKED.
+
+No architecture-contract clause or ACP changes. ACP-0008 remains
+experimental/opt-in/unpromoted; ACP-0007 remains unchanged and disabled in
+Luna-42. No Luna-43, WEMA, new calibration search, growth/pruning, efficacy,
+or promotion is authorized. Full independent review:
+`workflow/handoffs/luna-0-independent-review-luna42-acp0008-corrective-calibration-20261005.md`.
+
 ## Luna-0 corrective decision — ACP-0008 calibration fixture/provenance; Luna-42 AUTHORIZED / NOT EXECUTED - 2026-10-05
 
 **CALIBRATION RESULT UNRESOLVED DUE TO FIXTURE SPECIFICATION / PROVENANCE
