@@ -16,8 +16,8 @@ tpcn_handoff:
   execution_start_revision: "e83cb286fe6ef71652d2b209f8dc5c2d85a797b4"
   implementation_revision: "none"
   artifact_result_revision: "none"
-  handoff_publication_revision: "pending"
-  final_origin_main: "pending"
+  handoff_publication_revision: "7be17ffb5b85c2aeb955f00f1269ea5b0731c4ef"
+  final_origin_main: "verified after publication; exact HEAD is reported in the final push verification"
   architecture_change: false
   proposal: null
   scientific_efficacy_verdict: "NOT ESTABLISHED — efficacy execution did not start"
