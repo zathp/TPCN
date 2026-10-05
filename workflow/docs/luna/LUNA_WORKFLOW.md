@@ -3648,3 +3648,47 @@ remains **NOT SUPPORTED / UNCHANGED**; Luna-13F remains **NOT SUPPORTED /
 UNCHANGED**. E2 pruning and N3 remain **NOT AUTHORIZED**. Luna-33 is closed
 only within the declared experiment scope. **Luna-34 and any successor are
 NOT AUTHORIZED.**
+
+### Luna-0 post-Luna-33 candidate-formation bootstrap decision - 2026-10-04
+
+**PASS - ACP-0007 CANDIDATE-FORMATION BOOTSTRAP CLASSIFIED;
+LUNA-34 AUTHORIZED / NOT EXECUTED.** Independent audit of all 64 C and D
+training decisions for each of five seeds found 64 `no_candidate` decisions,
+zero candidate rejections, retained candidates, attempts, or admissions per
+seed. Distinct-emitter deduplication found respectively 59/59/59/59/61
+emitting characters, 5/5/5/5/3 silent characters, and zero multi-emitter
+characters. Every emitted character's sole emitter was its designated input
+neuron; `emitting_neuron_count` reconciles exactly.
+
+Downstream receives are present without downstream canonical emissions:
+C receiving totals are 79/78/80/79/80, emitting totals 59/59/59/59/61,
+maximum route depth is 1 in every seed, and edge-transfer proxies are
+positive. The root cause is the **WITHIN-CHARACTER MULTI-EMITTER /
+PROPAGATION-TO-EMISSION BOOTSTRAP GAP**, not observation, ranking, capacity,
+reporting, or growth-controller failure. With no second distinct emitter,
+no legal ACP-0007 earlier-source/later-neighbor emission pair can form;
+ring orientation and `association_window=4.0` are **NOT THE ROOT CAUSE**.
+
+Default `theta_E=1`, `A_max=1`, and static Model-B signal-only transfer gives
+`tanh(1) < 1`; even the accepted `|edge_weight| <= 2` bound gives
+`tanh(2) < 1`. A single routed payload from neutral state cannot trigger a
+downstream ordinary excursion. Repeated within-character temporal
+accumulation is a mechanism question, not a defect. The public E2 runtime,
+fixed topology, point input and observation APIs suffice; no architecture
+change or ACP is required.
+
+Luna-34 is authorized **only** for a label-free, mechanism-only bridge
+experiment using a two-node direct fixed edge, the default static Model-B
+condition, and one predeclared `|w|=2` static-bound sensitivity condition
+plus a no-edge control. It must stop before topology mutation, use no
+classification/efficacy endpoints, retain actual emission and route
+evidence, and return to Luna-0. This is **not task efficacy**, not
+architecture promotion, and not authority to alter ACP-0007, treat
+reception as emission, carry evidence across characters, or run a new
+accuracy experiment. The exact bounded dispatch and file scope are in
+`.github/agents/luna-34.agent.md`; review evidence is in
+`workflow/handoffs/luna-0-post-luna33-candidate-formation-bootstrap-decision-20261004.md`.
+Luna-33's H1 remains **NOT SUPPORTED IN THIS SETUP**; engaged-growth task
+effect and temporal specificity remain **NOT ESTABLISHED**. Historical
+Luna-12L/Luna-13F and accepted ACP-0007 are unchanged. E2 pruning and N3
+remain **NOT AUTHORIZED**.

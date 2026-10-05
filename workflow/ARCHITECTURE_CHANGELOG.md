@@ -1,5 +1,38 @@
 # Architecture Changelog
 
+# Luna-0 candidate-formation bootstrap decision - Luna-34 mechanism authorization - 2026-10-04
+
+**PASS - ACP-0007 CANDIDATE-FORMATION BOOTSTRAP CLASSIFIED;
+LUNA-34 AUTHORIZED / NOT EXECUTED.** Independent audit of every C/D
+training decision in the published five-seed Luna-33 results confirms zero
+candidate opportunities, zero distinct multi-emitter characters, and no
+candidate rejection or growth attempt. Each emitting character's sole
+canonical emitter is its designated input neuron. Routed downstream
+activity is present (route depth 1 and positive edge-transfer proxy), but
+downstream canonical emission is absent. The bounded root cause is a
+within-character multi-emitter / propagation-to-emission bootstrap gap.
+Ring direction and association window are not causal because a second
+emitter is absent.
+
+One default signal-only Model-B transfer is bounded by `tanh(1) < theta_E`;
+even accepted static `|w| <= 2` is bounded by `tanh(2) < theta_E`. Repeated
+within-character temporal accumulation is the authorized mechanism question.
+Existing public EXCURSION_V1 runtime, fixed topology, point input, and
+emission-observation interfaces suffice. No architecture change or ACP is
+required; Architecture Contract 1.2 and accepted ACP-0007 are unchanged.
+
+Luna-34 may conduct only the predeclared two-node, fixed-edge,
+label-free mechanism experiment, with no-edge, default `w=1,d=1,r=0`, and
+static N2 bound-sensitivity `w=2,d=1,r=0` conditions. It is **NOT TASK
+EFFICACY**, does not alter emission-based character-local ACP-0007 evidence,
+and must return to Luna-0 before any follow-up. No accuracy retry, reception-
+as-emission, cross-character history, architecture promotion, E2 pruning, or
+N3 is authorized. See
+`.github/agents/luna-34.agent.md` and
+`workflow/handoffs/luna-0-post-luna33-candidate-formation-bootstrap-decision-20261004.md`.
+Luna-33's scientific H1 remains **NOT SUPPORTED IN THIS SETUP**; historical
+Luna-12L/Luna-13F remain **NOT SUPPORTED / UNCHANGED**.
+
 # Luna-0 independent closure - Luna-33 ACP-0007 four-class EXCURSION_V1 efficacy - 2026-10-04
 
 **PASS - LUNA-33 ACP-0007 FOUR-CLASS EXCURSION_V1 EFFICACY EXPERIMENT
