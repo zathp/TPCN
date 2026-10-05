@@ -1,0 +1,133 @@
+{
+  "arms": [
+    "FROZEN_NO_OBSERVATION",
+    "FROZEN_OBSERVATION_ONLY",
+    "LOCAL_GROWTH_ENABLED",
+    "NO_LOCAL_EVIDENCE_CONTROL"
+  ],
+  "endpoint": "actual route identities/payloads and destination ACP-0008 z trace; no task score",
+  "network": {
+    "edge_capacity": 3,
+    "fan_in_limit": 2,
+    "fan_out_limit": 2,
+    "initial_edges": [
+      {
+        "d": 1.0,
+        "delay": 1.0,
+        "destination": "relay",
+        "r": 0.0,
+        "source": "source",
+        "w": 1.0
+      },
+      {
+        "d": 1.0,
+        "delay": 1.0,
+        "destination": "destination",
+        "r": 0.0,
+        "source": "relay",
+        "w": 1.0
+      }
+    ],
+    "nodes": [
+      "source",
+      "relay",
+      "destination"
+    ],
+    "possible_growth": {
+      "created_only_by": "accepted StructuralPlasticityController admission from plane evidence",
+      "d": 1.0,
+      "delay": 0.4,
+      "destination": "destination",
+      "r": 0.0,
+      "source": "source",
+      "w": 1.0
+    },
+    "routing_capacity": 3
+  },
+  "neurons": {
+    "destination": {
+      "E1Config": {
+        "event_budget": 4096,
+        "integration": {
+          "decay_rate_z": 0.1,
+          "input_gain": 1.0,
+          "theta_Z": 1.0,
+          "z_max": 4.0
+        },
+        "theta_E": 1.0
+      },
+      "class": "MultiExcursionNeuron"
+    },
+    "relay": {
+      "E1Config": {
+        "event_budget": 4096,
+        "integration": null
+      },
+      "class": "MultiExcursionNeuron"
+    },
+    "source": {
+      "E1Config": {
+        "event_budget": 4096,
+        "integration": null
+      },
+      "class": "MultiExcursionNeuron"
+    }
+  },
+  "replay_count": 2,
+  "runtime": {
+    "eligibility_capacity_per_ledger": 1024,
+    "external_input_destination": "source",
+    "max_activity_events": 1024,
+    "neutral_reward": 0.0,
+    "prediction_capacity": 8,
+    "prediction_expiry": 4.0,
+    "queue_capacity": 128,
+    "runtime_event_budget": 1024,
+    "settling_horizon": 4.0
+  },
+  "schema": "TPCN-LUNA40-EXISTING-GROWTH-EFFECTIVE-ROUTED-DRIVE-CONFIG-1",
+  "start_revision": "a39dd335e7af1b18a8d28ef3faf7b975304132df",
+  "stream": {
+    "evaluation_seed": "22017 + seed (generated but not consumed)",
+    "examples_per_class": 16,
+    "generator": "read-only Luna-39/Luna-34 make_spiral_dataset",
+    "labels_and_label_bearing_metadata_read": false,
+    "point_transform": "point.x + point.y at existing timestamp",
+    "same_timestamp_batching": true,
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "stream_order": "random.Random(330000 + seed).shuffle(point_sequences)",
+    "training_seed": "12007 + seed"
+  },
+  "structural_policy": {
+    "association_window": 4.0,
+    "candidate_capacity_per_source": 4,
+    "evidence_source": "actual canonical emission identity and timestamp only",
+    "growth_attempt_budget_total_per_run": 4,
+    "growth_neighbors": {
+      "destination": [],
+      "relay": [],
+      "source": [
+        "destination"
+      ]
+    },
+    "history_capacity": 8,
+    "maximum_score": 3,
+    "maximum_successful_growths_per_character": 1,
+    "neighborhood_limit": 2,
+    "no_local_neighbors": {
+      "destination": [],
+      "relay": [],
+      "source": []
+    },
+    "policy": "e2_local_temporal",
+    "reverse_observer_limit": 2,
+    "structural_growth_delay": 0.4
+  },
+  "total_character_executions_per_replay": 1280
+}

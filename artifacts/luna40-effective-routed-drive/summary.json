@@ -1,0 +1,2132 @@
+{
+  "arms": {
+    "FROZEN_NO_OBSERVATION": {
+      "all_seed_total": {
+        "candidate_opportunities": 0,
+        "candidate_records": 0,
+        "candidate_rejections": 0,
+        "canonical_emissions_by_node": {
+          "destination": 0,
+          "relay": 0,
+          "source": 1715
+        },
+        "character_executions": 320,
+        "characters_using_each_edge": {
+          "source->relay": {
+            "denominator": 320,
+            "numerator": 297
+          }
+        },
+        "destination_emissions": {
+          "direct": 0,
+          "integrated_discharge": 0,
+          "total": 0
+        },
+        "destination_emitting_characters": 0,
+        "destination_emitting_characters_ratio": {
+          "denominator": 320,
+          "numerator": 0
+        },
+        "destination_max_abs_z": 0.0,
+        "destination_receiving_characters": {
+          "denominator": 320,
+          "numerator": 0
+        },
+        "destination_receptions": 0,
+        "destination_z_updates": 0,
+        "eligibility_max_peak": 19,
+        "eligibility_reconciliation_errors": 0,
+        "emitting_characters_by_node": {
+          "destination": {
+            "denominator": 320,
+            "numerator": 0
+          },
+          "relay": {
+            "denominator": 320,
+            "numerator": 0
+          },
+          "source": {
+            "denominator": 320,
+            "numerator": 297
+          }
+        },
+        "growth_attempts": 0,
+        "maximum_route_depth": 1,
+        "queue_peak": 2,
+        "routed_transfers": 1715,
+        "routes_by_edge": {
+          "source->relay": 1715
+        },
+        "runtime_events_processed": 11109,
+        "seed_count": 5,
+        "source_emissions": 1715,
+        "source_emitting_characters": {
+          "denominator": 320,
+          "numerator": 297
+        },
+        "successful_admissions": 0,
+        "used_relay_path_transfers": 1715,
+        "used_shortcut_transfers": 0
+      },
+      "per_seed": {
+        "0": {
+          "candidate_opportunities": 0,
+          "candidate_records": 0,
+          "candidate_rejections": 0,
+          "canonical_emissions_by_node": {
+            "destination": 0,
+            "relay": 0,
+            "source": 338
+          },
+          "characters": {
+            "denominator": 64,
+            "numerator": 64
+          },
+          "characters_using_each_edge": {
+            "source->relay": {
+              "denominator": 64,
+              "numerator": 59
+            }
+          },
+          "destination_emissions": {
+            "direct": 0,
+            "integrated_discharge": 0,
+            "total": 0
+          },
+          "destination_emitting_characters": 0,
+          "destination_emitting_characters_ratio": {
+            "denominator": 64,
+            "numerator": 0
+          },
+          "destination_max_abs_z": 0.0,
+          "destination_receiving_characters": {
+            "denominator": 64,
+            "numerator": 0
+          },
+          "destination_receptions": 0,
+          "destination_z_updates": 0,
+          "eligibility_max_peak": 18,
+          "eligibility_reconciliation_errors": 0,
+          "emitting_characters_by_node": {
+            "destination": {
+              "denominator": 64,
+              "numerator": 0
+            },
+            "relay": {
+              "denominator": 64,
+              "numerator": 0
+            },
+            "source": {
+              "denominator": 64,
+              "numerator": 59
+            }
+          },
+          "growth_attempts": 0,
+          "maximum_route_depth": 1,
+          "queue_peak": 2,
+          "routed_transfers": 338,
+          "routes_by_edge": {
+            "source->relay": 338
+          },
+          "runtime_events_processed": 2188,
+          "source_emissions": 338,
+          "source_emitting_characters": {
+            "denominator": 64,
+            "numerator": 59
+          },
+          "successful_admissions": 0,
+          "used_relay_path_transfers": 338,
+          "used_shortcut_transfers": 0
+        },
+        "1": {
+          "candidate_opportunities": 0,
+          "candidate_records": 0,
+          "candidate_rejections": 0,
+          "canonical_emissions_by_node": {
+            "destination": 0,
+            "relay": 0,
+            "source": 361
+          },
+          "characters": {
+            "denominator": 64,
+            "numerator": 64
+          },
+          "characters_using_each_edge": {
+            "source->relay": {
+              "denominator": 64,
+              "numerator": 59
+            }
+          },
+          "destination_emissions": {
+            "direct": 0,
+            "integrated_discharge": 0,
+            "total": 0
+          },
+          "destination_emitting_characters": 0,
+          "destination_emitting_characters_ratio": {
+            "denominator": 64,
+            "numerator": 0
+          },
+          "destination_max_abs_z": 0.0,
+          "destination_receiving_characters": {
+            "denominator": 64,
+            "numerator": 0
+          },
+          "destination_receptions": 0,
+          "destination_z_updates": 0,
+          "eligibility_max_peak": 17,
+          "eligibility_reconciliation_errors": 0,
+          "emitting_characters_by_node": {
+            "destination": {
+              "denominator": 64,
+              "numerator": 0
+            },
+            "relay": {
+              "denominator": 64,
+              "numerator": 0
+            },
+            "source": {
+              "denominator": 64,
+              "numerator": 59
+            }
+          },
+          "growth_attempts": 0,
+          "maximum_route_depth": 1,
+          "queue_peak": 2,
+          "routed_transfers": 361,
+          "routes_by_edge": {
+            "source->relay": 361
+          },
+          "runtime_events_processed": 2321,
+          "source_emissions": 361,
+          "source_emitting_characters": {
+            "denominator": 64,
+            "numerator": 59
+          },
+          "successful_admissions": 0,
+          "used_relay_path_transfers": 361,
+          "used_shortcut_transfers": 0
+        },
+        "2": {
+          "candidate_opportunities": 0,
+          "candidate_records": 0,
+          "candidate_rejections": 0,
+          "canonical_emissions_by_node": {
+            "destination": 0,
+            "relay": 0,
+            "source": 306
+          },
+          "characters": {
+            "denominator": 64,
+            "numerator": 64
+          },
+          "characters_using_each_edge": {
+            "source->relay": {
+              "denominator": 64,
+              "numerator": 59
+            }
+          },
+          "destination_emissions": {
+            "direct": 0,
+            "integrated_discharge": 0,
+            "total": 0
+          },
+          "destination_emitting_characters": 0,
+          "destination_emitting_characters_ratio": {
+            "denominator": 64,
+            "numerator": 0
+          },
+          "destination_max_abs_z": 0.0,
+          "destination_receiving_characters": {
+            "denominator": 64,
+            "numerator": 0
+          },
+          "destination_receptions": 0,
+          "destination_z_updates": 0,
+          "eligibility_max_peak": 17,
+          "eligibility_reconciliation_errors": 0,
+          "emitting_characters_by_node": {
+            "destination": {
+              "denominator": 64,
+              "numerator": 0
+            },
+            "relay": {
+              "denominator": 64,
+              "numerator": 0
+            },
+            "source": {
+              "denominator": 64,
+              "numerator": 59
+            }
+          },
+          "growth_attempts": 0,
+          "maximum_route_depth": 1,
+          "queue_peak": 2,
+          "routed_transfers": 306,
+          "routes_by_edge": {
+            "source->relay": 306
+          },
+          "runtime_events_processed": 2096,
+          "source_emissions": 306,
+          "source_emitting_characters": {
+            "denominator": 64,
+            "numerator": 59
+          },
+          "successful_admissions": 0,
+          "used_relay_path_transfers": 306,
+          "used_shortcut_transfers": 0
+        },
+        "3": {
+          "candidate_opportunities": 0,
+          "candidate_records": 0,
+          "candidate_rejections": 0,
+          "canonical_emissions_by_node": {
+            "destination": 0,
+            "relay": 0,
+            "source": 314
+          },
+          "characters": {
+            "denominator": 64,
+            "numerator": 64
+          },
+          "characters_using_each_edge": {
+            "source->relay": {
+              "denominator": 64,
+              "numerator": 59
+            }
+          },
+          "destination_emissions": {
+            "direct": 0,
+            "integrated_discharge": 0,
+            "total": 0
+          },
+          "destination_emitting_characters": 0,
+          "destination_emitting_characters_ratio": {
+            "denominator": 64,
+            "numerator": 0
+          },
+          "destination_max_abs_z": 0.0,
+          "destination_receiving_characters": {
+            "denominator": 64,
+            "numerator": 0
+          },
+          "destination_receptions": 0,
+          "destination_z_updates": 0,
+          "eligibility_max_peak": 17,
+          "eligibility_reconciliation_errors": 0,
+          "emitting_characters_by_node": {
+            "destination": {
+              "denominator": 64,
+              "numerator": 0
+            },
+            "relay": {
+              "denominator": 64,
+              "numerator": 0
+            },
+            "source": {
+              "denominator": 64,
+              "numerator": 59
+            }
+          },
+          "growth_attempts": 0,
+          "maximum_route_depth": 1,
+          "queue_peak": 2,
+          "routed_transfers": 314,
+          "routes_by_edge": {
+            "source->relay": 314
+          },
+          "runtime_events_processed": 2123,
+          "source_emissions": 314,
+          "source_emitting_characters": {
+            "denominator": 64,
+            "numerator": 59
+          },
+          "successful_admissions": 0,
+          "used_relay_path_transfers": 314,
+          "used_shortcut_transfers": 0
+        },
+        "4": {
+          "candidate_opportunities": 0,
+          "candidate_records": 0,
+          "candidate_rejections": 0,
+          "canonical_emissions_by_node": {
+            "destination": 0,
+            "relay": 0,
+            "source": 396
+          },
+          "characters": {
+            "denominator": 64,
+            "numerator": 64
+          },
+          "characters_using_each_edge": {
+            "source->relay": {
+              "denominator": 64,
+              "numerator": 61
+            }
+          },
+          "destination_emissions": {
+            "direct": 0,
+            "integrated_discharge": 0,
+            "total": 0
+          },
+          "destination_emitting_characters": 0,
+          "destination_emitting_characters_ratio": {
+            "denominator": 64,
+            "numerator": 0
+          },
+          "destination_max_abs_z": 0.0,
+          "destination_receiving_characters": {
+            "denominator": 64,
+            "numerator": 0
+          },
+          "destination_receptions": 0,
+          "destination_z_updates": 0,
+          "eligibility_max_peak": 19,
+          "eligibility_reconciliation_errors": 0,
+          "emitting_characters_by_node": {
+            "destination": {
+              "denominator": 64,
+              "numerator": 0
+            },
+            "relay": {
+              "denominator": 64,
+              "numerator": 0
+            },
+            "source": {
+              "denominator": 64,
+              "numerator": 61
+            }
+          },
+          "growth_attempts": 0,
+          "maximum_route_depth": 1,
+          "queue_peak": 2,
+          "routed_transfers": 396,
+          "routes_by_edge": {
+            "source->relay": 396
+          },
+          "runtime_events_processed": 2381,
+          "source_emissions": 396,
+          "source_emitting_characters": {
+            "denominator": 64,
+            "numerator": 61
+          },
+          "successful_admissions": 0,
+          "used_relay_path_transfers": 396,
+          "used_shortcut_transfers": 0
+        }
+      }
+    },
+    "FROZEN_OBSERVATION_ONLY": {
+      "all_seed_total": {
+        "candidate_opportunities": 0,
+        "candidate_records": 0,
+        "candidate_rejections": 0,
+        "canonical_emissions_by_node": {
+          "destination": 0,
+          "relay": 0,
+          "source": 1715
+        },
+        "character_executions": 320,
+        "characters_using_each_edge": {
+          "source->relay": {
+            "denominator": 320,
+            "numerator": 297
+          }
+        },
+        "destination_emissions": {
+          "direct": 0,
+          "integrated_discharge": 0,
+          "total": 0
+        },
+        "destination_emitting_characters": 0,
+        "destination_emitting_characters_ratio": {
+          "denominator": 320,
+          "numerator": 0
+        },
+        "destination_max_abs_z": 0.0,
+        "destination_receiving_characters": {
+          "denominator": 320,
+          "numerator": 0
+        },
+        "destination_receptions": 0,
+        "destination_z_updates": 0,
+        "eligibility_max_peak": 19,
+        "eligibility_reconciliation_errors": 0,
+        "emitting_characters_by_node": {
+          "destination": {
+            "denominator": 320,
+            "numerator": 0
+          },
+          "relay": {
+            "denominator": 320,
+            "numerator": 0
+          },
+          "source": {
+            "denominator": 320,
+            "numerator": 297
+          }
+        },
+        "growth_attempts": 0,
+        "maximum_route_depth": 1,
+        "queue_peak": 2,
+        "routed_transfers": 1715,
+        "routes_by_edge": {
+          "source->relay": 1715
+        },
+        "runtime_events_processed": 11109,
+        "seed_count": 5,
+        "source_emissions": 1715,
+        "source_emitting_characters": {
+          "denominator": 320,
+          "numerator": 297
+        },
+        "successful_admissions": 0,
+        "used_relay_path_transfers": 1715,
+        "used_shortcut_transfers": 0
+      },
+      "per_seed": {
+        "0": {
+          "candidate_opportunities": 0,
+          "candidate_records": 0,
+          "candidate_rejections": 0,
+          "canonical_emissions_by_node": {
+            "destination": 0,
+            "relay": 0,
+            "source": 338
+          },
+          "characters": {
+            "denominator": 64,
+            "numerator": 64
+          },
+          "characters_using_each_edge": {
+            "source->relay": {
+              "denominator": 64,
+              "numerator": 59
+            }
+          },
+          "destination_emissions": {
+            "direct": 0,
+            "integrated_discharge": 0,
+            "total": 0
+          },
+          "destination_emitting_characters": 0,
+          "destination_emitting_characters_ratio": {
+            "denominator": 64,
+            "numerator": 0
+          },
+          "destination_max_abs_z": 0.0,
+          "destination_receiving_characters": {
+            "denominator": 64,
+            "numerator": 0
+          },
+          "destination_receptions": 0,
+          "destination_z_updates": 0,
+          "eligibility_max_peak": 18,
+          "eligibility_reconciliation_errors": 0,
+          "emitting_characters_by_node": {
+            "destination": {
+              "denominator": 64,
+              "numerator": 0
+            },
+            "relay": {
+              "denominator": 64,
+              "numerator": 0
+            },
+            "source": {
+              "denominator": 64,
+              "numerator": 59
+            }
+          },
+          "growth_attempts": 0,
+          "maximum_route_depth": 1,
+          "queue_peak": 2,
+          "routed_transfers": 338,
+          "routes_by_edge": {
+            "source->relay": 338
+          },
+          "runtime_events_processed": 2188,
+          "source_emissions": 338,
+          "source_emitting_characters": {
+            "denominator": 64,
+            "numerator": 59
+          },
+          "successful_admissions": 0,
+          "used_relay_path_transfers": 338,
+          "used_shortcut_transfers": 0
+        },
+        "1": {
+          "candidate_opportunities": 0,
+          "candidate_records": 0,
+          "candidate_rejections": 0,
+          "canonical_emissions_by_node": {
+            "destination": 0,
+            "relay": 0,
+            "source": 361
+          },
+          "characters": {
+            "denominator": 64,
+            "numerator": 64
+          },
+          "characters_using_each_edge": {
+            "source->relay": {
+              "denominator": 64,
+              "numerator": 59
+            }
+          },
+          "destination_emissions": {
+            "direct": 0,
+            "integrated_discharge": 0,
+            "total": 0
+          },
+          "destination_emitting_characters": 0,
+          "destination_emitting_characters_ratio": {
+            "denominator": 64,
+            "numerator": 0
+          },
+          "destination_max_abs_z": 0.0,
+          "destination_receiving_characters": {
+            "denominator": 64,
+            "numerator": 0
+          },
+          "destination_receptions": 0,
+          "destination_z_updates": 0,
+          "eligibility_max_peak": 17,
+          "eligibility_reconciliation_errors": 0,
+          "emitting_characters_by_node": {
+            "destination": {
+              "denominator": 64,
+              "numerator": 0
+            },
+            "relay": {
+              "denominator": 64,
+              "numerator": 0
+            },
+            "source": {
+              "denominator": 64,
+              "numerator": 59
+            }
+          },
+          "growth_attempts": 0,
+          "maximum_route_depth": 1,
+          "queue_peak": 2,
+          "routed_transfers": 361,
+          "routes_by_edge": {
+            "source->relay": 361
+          },
+          "runtime_events_processed": 2321,
+          "source_emissions": 361,
+          "source_emitting_characters": {
+            "denominator": 64,
+            "numerator": 59
+          },
+          "successful_admissions": 0,
+          "used_relay_path_transfers": 361,
+          "used_shortcut_transfers": 0
+        },
+        "2": {
+          "candidate_opportunities": 0,
+          "candidate_records": 0,
+          "candidate_rejections": 0,
+          "canonical_emissions_by_node": {
+            "destination": 0,
+            "relay": 0,
+            "source": 306
+          },
+          "characters": {
+            "denominator": 64,
+            "numerator": 64
+          },
+          "characters_using_each_edge": {
+            "source->relay": {
+              "denominator": 64,
+              "numerator": 59
+            }
+          },
+          "destination_emissions": {
+            "direct": 0,
+            "integrated_discharge": 0,
+            "total": 0
+          },
+          "destination_emitting_characters": 0,
+          "destination_emitting_characters_ratio": {
+            "denominator": 64,
+            "numerator": 0
+          },
+          "destination_max_abs_z": 0.0,
+          "destination_receiving_characters": {
+            "denominator": 64,
+            "numerator": 0
+          },
+          "destination_receptions": 0,
+          "destination_z_updates": 0,
+          "eligibility_max_peak": 17,
+          "eligibility_reconciliation_errors": 0,
+          "emitting_characters_by_node": {
+            "destination": {
+              "denominator": 64,
+              "numerator": 0
+            },
+            "relay": {
+              "denominator": 64,
+              "numerator": 0
+            },
+            "source": {
+              "denominator": 64,
+              "numerator": 59
+            }
+          },
+          "growth_attempts": 0,
+          "maximum_route_depth": 1,
+          "queue_peak": 2,
+          "routed_transfers": 306,
+          "routes_by_edge": {
+            "source->relay": 306
+          },
+          "runtime_events_processed": 2096,
+          "source_emissions": 306,
+          "source_emitting_characters": {
+            "denominator": 64,
+            "numerator": 59
+          },
+          "successful_admissions": 0,
+          "used_relay_path_transfers": 306,
+          "used_shortcut_transfers": 0
+        },
+        "3": {
+          "candidate_opportunities": 0,
+          "candidate_records": 0,
+          "candidate_rejections": 0,
+          "canonical_emissions_by_node": {
+            "destination": 0,
+            "relay": 0,
+            "source": 314
+          },
+          "characters": {
+            "denominator": 64,
+            "numerator": 64
+          },
+          "characters_using_each_edge": {
+            "source->relay": {
+              "denominator": 64,
+              "numerator": 59
+            }
+          },
+          "destination_emissions": {
+            "direct": 0,
+            "integrated_discharge": 0,
+            "total": 0
+          },
+          "destination_emitting_characters": 0,
+          "destination_emitting_characters_ratio": {
+            "denominator": 64,
+            "numerator": 0
+          },
+          "destination_max_abs_z": 0.0,
+          "destination_receiving_characters": {
+            "denominator": 64,
+            "numerator": 0
+          },
+          "destination_receptions": 0,
+          "destination_z_updates": 0,
+          "eligibility_max_peak": 17,
+          "eligibility_reconciliation_errors": 0,
+          "emitting_characters_by_node": {
+            "destination": {
+              "denominator": 64,
+              "numerator": 0
+            },
+            "relay": {
+              "denominator": 64,
+              "numerator": 0
+            },
+            "source": {
+              "denominator": 64,
+              "numerator": 59
+            }
+          },
+          "growth_attempts": 0,
+          "maximum_route_depth": 1,
+          "queue_peak": 2,
+          "routed_transfers": 314,
+          "routes_by_edge": {
+            "source->relay": 314
+          },
+          "runtime_events_processed": 2123,
+          "source_emissions": 314,
+          "source_emitting_characters": {
+            "denominator": 64,
+            "numerator": 59
+          },
+          "successful_admissions": 0,
+          "used_relay_path_transfers": 314,
+          "used_shortcut_transfers": 0
+        },
+        "4": {
+          "candidate_opportunities": 0,
+          "candidate_records": 0,
+          "candidate_rejections": 0,
+          "canonical_emissions_by_node": {
+            "destination": 0,
+            "relay": 0,
+            "source": 396
+          },
+          "characters": {
+            "denominator": 64,
+            "numerator": 64
+          },
+          "characters_using_each_edge": {
+            "source->relay": {
+              "denominator": 64,
+              "numerator": 61
+            }
+          },
+          "destination_emissions": {
+            "direct": 0,
+            "integrated_discharge": 0,
+            "total": 0
+          },
+          "destination_emitting_characters": 0,
+          "destination_emitting_characters_ratio": {
+            "denominator": 64,
+            "numerator": 0
+          },
+          "destination_max_abs_z": 0.0,
+          "destination_receiving_characters": {
+            "denominator": 64,
+            "numerator": 0
+          },
+          "destination_receptions": 0,
+          "destination_z_updates": 0,
+          "eligibility_max_peak": 19,
+          "eligibility_reconciliation_errors": 0,
+          "emitting_characters_by_node": {
+            "destination": {
+              "denominator": 64,
+              "numerator": 0
+            },
+            "relay": {
+              "denominator": 64,
+              "numerator": 0
+            },
+            "source": {
+              "denominator": 64,
+              "numerator": 61
+            }
+          },
+          "growth_attempts": 0,
+          "maximum_route_depth": 1,
+          "queue_peak": 2,
+          "routed_transfers": 396,
+          "routes_by_edge": {
+            "source->relay": 396
+          },
+          "runtime_events_processed": 2381,
+          "source_emissions": 396,
+          "source_emitting_characters": {
+            "denominator": 64,
+            "numerator": 61
+          },
+          "successful_admissions": 0,
+          "used_relay_path_transfers": 396,
+          "used_shortcut_transfers": 0
+        }
+      }
+    },
+    "LOCAL_GROWTH_ENABLED": {
+      "all_seed_total": {
+        "candidate_opportunities": 0,
+        "candidate_records": 0,
+        "candidate_rejections": 0,
+        "canonical_emissions_by_node": {
+          "destination": 0,
+          "relay": 0,
+          "source": 1715
+        },
+        "character_executions": 320,
+        "characters_using_each_edge": {
+          "source->relay": {
+            "denominator": 320,
+            "numerator": 297
+          }
+        },
+        "destination_emissions": {
+          "direct": 0,
+          "integrated_discharge": 0,
+          "total": 0
+        },
+        "destination_emitting_characters": 0,
+        "destination_emitting_characters_ratio": {
+          "denominator": 320,
+          "numerator": 0
+        },
+        "destination_max_abs_z": 0.0,
+        "destination_receiving_characters": {
+          "denominator": 320,
+          "numerator": 0
+        },
+        "destination_receptions": 0,
+        "destination_z_updates": 0,
+        "eligibility_max_peak": 19,
+        "eligibility_reconciliation_errors": 0,
+        "emitting_characters_by_node": {
+          "destination": {
+            "denominator": 320,
+            "numerator": 0
+          },
+          "relay": {
+            "denominator": 320,
+            "numerator": 0
+          },
+          "source": {
+            "denominator": 320,
+            "numerator": 297
+          }
+        },
+        "growth_attempts": 0,
+        "maximum_route_depth": 1,
+        "queue_peak": 2,
+        "routed_transfers": 1715,
+        "routes_by_edge": {
+          "source->relay": 1715
+        },
+        "runtime_events_processed": 11109,
+        "seed_count": 5,
+        "source_emissions": 1715,
+        "source_emitting_characters": {
+          "denominator": 320,
+          "numerator": 297
+        },
+        "successful_admissions": 0,
+        "used_relay_path_transfers": 1715,
+        "used_shortcut_transfers": 0
+      },
+      "per_seed": {
+        "0": {
+          "candidate_opportunities": 0,
+          "candidate_records": 0,
+          "candidate_rejections": 0,
+          "canonical_emissions_by_node": {
+            "destination": 0,
+            "relay": 0,
+            "source": 338
+          },
+          "characters": {
+            "denominator": 64,
+            "numerator": 64
+          },
+          "characters_using_each_edge": {
+            "source->relay": {
+              "denominator": 64,
+              "numerator": 59
+            }
+          },
+          "destination_emissions": {
+            "direct": 0,
+            "integrated_discharge": 0,
+            "total": 0
+          },
+          "destination_emitting_characters": 0,
+          "destination_emitting_characters_ratio": {
+            "denominator": 64,
+            "numerator": 0
+          },
+          "destination_max_abs_z": 0.0,
+          "destination_receiving_characters": {
+            "denominator": 64,
+            "numerator": 0
+          },
+          "destination_receptions": 0,
+          "destination_z_updates": 0,
+          "eligibility_max_peak": 18,
+          "eligibility_reconciliation_errors": 0,
+          "emitting_characters_by_node": {
+            "destination": {
+              "denominator": 64,
+              "numerator": 0
+            },
+            "relay": {
+              "denominator": 64,
+              "numerator": 0
+            },
+            "source": {
+              "denominator": 64,
+              "numerator": 59
+            }
+          },
+          "growth_attempts": 0,
+          "maximum_route_depth": 1,
+          "queue_peak": 2,
+          "routed_transfers": 338,
+          "routes_by_edge": {
+            "source->relay": 338
+          },
+          "runtime_events_processed": 2188,
+          "source_emissions": 338,
+          "source_emitting_characters": {
+            "denominator": 64,
+            "numerator": 59
+          },
+          "successful_admissions": 0,
+          "used_relay_path_transfers": 338,
+          "used_shortcut_transfers": 0
+        },
+        "1": {
+          "candidate_opportunities": 0,
+          "candidate_records": 0,
+          "candidate_rejections": 0,
+          "canonical_emissions_by_node": {
+            "destination": 0,
+            "relay": 0,
+            "source": 361
+          },
+          "characters": {
+            "denominator": 64,
+            "numerator": 64
+          },
+          "characters_using_each_edge": {
+            "source->relay": {
+              "denominator": 64,
+              "numerator": 59
+            }
+          },
+          "destination_emissions": {
+            "direct": 0,
+            "integrated_discharge": 0,
+            "total": 0
+          },
+          "destination_emitting_characters": 0,
+          "destination_emitting_characters_ratio": {
+            "denominator": 64,
+            "numerator": 0
+          },
+          "destination_max_abs_z": 0.0,
+          "destination_receiving_characters": {
+            "denominator": 64,
+            "numerator": 0
+          },
+          "destination_receptions": 0,
+          "destination_z_updates": 0,
+          "eligibility_max_peak": 17,
+          "eligibility_reconciliation_errors": 0,
+          "emitting_characters_by_node": {
+            "destination": {
+              "denominator": 64,
+              "numerator": 0
+            },
+            "relay": {
+              "denominator": 64,
+              "numerator": 0
+            },
+            "source": {
+              "denominator": 64,
+              "numerator": 59
+            }
+          },
+          "growth_attempts": 0,
+          "maximum_route_depth": 1,
+          "queue_peak": 2,
+          "routed_transfers": 361,
+          "routes_by_edge": {
+            "source->relay": 361
+          },
+          "runtime_events_processed": 2321,
+          "source_emissions": 361,
+          "source_emitting_characters": {
+            "denominator": 64,
+            "numerator": 59
+          },
+          "successful_admissions": 0,
+          "used_relay_path_transfers": 361,
+          "used_shortcut_transfers": 0
+        },
+        "2": {
+          "candidate_opportunities": 0,
+          "candidate_records": 0,
+          "candidate_rejections": 0,
+          "canonical_emissions_by_node": {
+            "destination": 0,
+            "relay": 0,
+            "source": 306
+          },
+          "characters": {
+            "denominator": 64,
+            "numerator": 64
+          },
+          "characters_using_each_edge": {
+            "source->relay": {
+              "denominator": 64,
+              "numerator": 59
+            }
+          },
+          "destination_emissions": {
+            "direct": 0,
+            "integrated_discharge": 0,
+            "total": 0
+          },
+          "destination_emitting_characters": 0,
+          "destination_emitting_characters_ratio": {
+            "denominator": 64,
+            "numerator": 0
+          },
+          "destination_max_abs_z": 0.0,
+          "destination_receiving_characters": {
+            "denominator": 64,
+            "numerator": 0
+          },
+          "destination_receptions": 0,
+          "destination_z_updates": 0,
+          "eligibility_max_peak": 17,
+          "eligibility_reconciliation_errors": 0,
+          "emitting_characters_by_node": {
+            "destination": {
+              "denominator": 64,
+              "numerator": 0
+            },
+            "relay": {
+              "denominator": 64,
+              "numerator": 0
+            },
+            "source": {
+              "denominator": 64,
+              "numerator": 59
+            }
+          },
+          "growth_attempts": 0,
+          "maximum_route_depth": 1,
+          "queue_peak": 2,
+          "routed_transfers": 306,
+          "routes_by_edge": {
+            "source->relay": 306
+          },
+          "runtime_events_processed": 2096,
+          "source_emissions": 306,
+          "source_emitting_characters": {
+            "denominator": 64,
+            "numerator": 59
+          },
+          "successful_admissions": 0,
+          "used_relay_path_transfers": 306,
+          "used_shortcut_transfers": 0
+        },
+        "3": {
+          "candidate_opportunities": 0,
+          "candidate_records": 0,
+          "candidate_rejections": 0,
+          "canonical_emissions_by_node": {
+            "destination": 0,
+            "relay": 0,
+            "source": 314
+          },
+          "characters": {
+            "denominator": 64,
+            "numerator": 64
+          },
+          "characters_using_each_edge": {
+            "source->relay": {
+              "denominator": 64,
+              "numerator": 59
+            }
+          },
+          "destination_emissions": {
+            "direct": 0,
+            "integrated_discharge": 0,
+            "total": 0
+          },
+          "destination_emitting_characters": 0,
+          "destination_emitting_characters_ratio": {
+            "denominator": 64,
+            "numerator": 0
+          },
+          "destination_max_abs_z": 0.0,
+          "destination_receiving_characters": {
+            "denominator": 64,
+            "numerator": 0
+          },
+          "destination_receptions": 0,
+          "destination_z_updates": 0,
+          "eligibility_max_peak": 17,
+          "eligibility_reconciliation_errors": 0,
+          "emitting_characters_by_node": {
+            "destination": {
+              "denominator": 64,
+              "numerator": 0
+            },
+            "relay": {
+              "denominator": 64,
+              "numerator": 0
+            },
+            "source": {
+              "denominator": 64,
+              "numerator": 59
+            }
+          },
+          "growth_attempts": 0,
+          "maximum_route_depth": 1,
+          "queue_peak": 2,
+          "routed_transfers": 314,
+          "routes_by_edge": {
+            "source->relay": 314
+          },
+          "runtime_events_processed": 2123,
+          "source_emissions": 314,
+          "source_emitting_characters": {
+            "denominator": 64,
+            "numerator": 59
+          },
+          "successful_admissions": 0,
+          "used_relay_path_transfers": 314,
+          "used_shortcut_transfers": 0
+        },
+        "4": {
+          "candidate_opportunities": 0,
+          "candidate_records": 0,
+          "candidate_rejections": 0,
+          "canonical_emissions_by_node": {
+            "destination": 0,
+            "relay": 0,
+            "source": 396
+          },
+          "characters": {
+            "denominator": 64,
+            "numerator": 64
+          },
+          "characters_using_each_edge": {
+            "source->relay": {
+              "denominator": 64,
+              "numerator": 61
+            }
+          },
+          "destination_emissions": {
+            "direct": 0,
+            "integrated_discharge": 0,
+            "total": 0
+          },
+          "destination_emitting_characters": 0,
+          "destination_emitting_characters_ratio": {
+            "denominator": 64,
+            "numerator": 0
+          },
+          "destination_max_abs_z": 0.0,
+          "destination_receiving_characters": {
+            "denominator": 64,
+            "numerator": 0
+          },
+          "destination_receptions": 0,
+          "destination_z_updates": 0,
+          "eligibility_max_peak": 19,
+          "eligibility_reconciliation_errors": 0,
+          "emitting_characters_by_node": {
+            "destination": {
+              "denominator": 64,
+              "numerator": 0
+            },
+            "relay": {
+              "denominator": 64,
+              "numerator": 0
+            },
+            "source": {
+              "denominator": 64,
+              "numerator": 61
+            }
+          },
+          "growth_attempts": 0,
+          "maximum_route_depth": 1,
+          "queue_peak": 2,
+          "routed_transfers": 396,
+          "routes_by_edge": {
+            "source->relay": 396
+          },
+          "runtime_events_processed": 2381,
+          "source_emissions": 396,
+          "source_emitting_characters": {
+            "denominator": 64,
+            "numerator": 61
+          },
+          "successful_admissions": 0,
+          "used_relay_path_transfers": 396,
+          "used_shortcut_transfers": 0
+        }
+      }
+    },
+    "NO_LOCAL_EVIDENCE_CONTROL": {
+      "all_seed_total": {
+        "candidate_opportunities": 0,
+        "candidate_records": 0,
+        "candidate_rejections": 0,
+        "canonical_emissions_by_node": {
+          "destination": 0,
+          "relay": 0,
+          "source": 1715
+        },
+        "character_executions": 320,
+        "characters_using_each_edge": {
+          "source->relay": {
+            "denominator": 320,
+            "numerator": 297
+          }
+        },
+        "destination_emissions": {
+          "direct": 0,
+          "integrated_discharge": 0,
+          "total": 0
+        },
+        "destination_emitting_characters": 0,
+        "destination_emitting_characters_ratio": {
+          "denominator": 320,
+          "numerator": 0
+        },
+        "destination_max_abs_z": 0.0,
+        "destination_receiving_characters": {
+          "denominator": 320,
+          "numerator": 0
+        },
+        "destination_receptions": 0,
+        "destination_z_updates": 0,
+        "eligibility_max_peak": 19,
+        "eligibility_reconciliation_errors": 0,
+        "emitting_characters_by_node": {
+          "destination": {
+            "denominator": 320,
+            "numerator": 0
+          },
+          "relay": {
+            "denominator": 320,
+            "numerator": 0
+          },
+          "source": {
+            "denominator": 320,
+            "numerator": 297
+          }
+        },
+        "growth_attempts": 0,
+        "maximum_route_depth": 1,
+        "queue_peak": 2,
+        "routed_transfers": 1715,
+        "routes_by_edge": {
+          "source->relay": 1715
+        },
+        "runtime_events_processed": 11109,
+        "seed_count": 5,
+        "source_emissions": 1715,
+        "source_emitting_characters": {
+          "denominator": 320,
+          "numerator": 297
+        },
+        "successful_admissions": 0,
+        "used_relay_path_transfers": 1715,
+        "used_shortcut_transfers": 0
+      },
+      "per_seed": {
+        "0": {
+          "candidate_opportunities": 0,
+          "candidate_records": 0,
+          "candidate_rejections": 0,
+          "canonical_emissions_by_node": {
+            "destination": 0,
+            "relay": 0,
+            "source": 338
+          },
+          "characters": {
+            "denominator": 64,
+            "numerator": 64
+          },
+          "characters_using_each_edge": {
+            "source->relay": {
+              "denominator": 64,
+              "numerator": 59
+            }
+          },
+          "destination_emissions": {
+            "direct": 0,
+            "integrated_discharge": 0,
+            "total": 0
+          },
+          "destination_emitting_characters": 0,
+          "destination_emitting_characters_ratio": {
+            "denominator": 64,
+            "numerator": 0
+          },
+          "destination_max_abs_z": 0.0,
+          "destination_receiving_characters": {
+            "denominator": 64,
+            "numerator": 0
+          },
+          "destination_receptions": 0,
+          "destination_z_updates": 0,
+          "eligibility_max_peak": 18,
+          "eligibility_reconciliation_errors": 0,
+          "emitting_characters_by_node": {
+            "destination": {
+              "denominator": 64,
+              "numerator": 0
+            },
+            "relay": {
+              "denominator": 64,
+              "numerator": 0
+            },
+            "source": {
+              "denominator": 64,
+              "numerator": 59
+            }
+          },
+          "growth_attempts": 0,
+          "maximum_route_depth": 1,
+          "queue_peak": 2,
+          "routed_transfers": 338,
+          "routes_by_edge": {
+            "source->relay": 338
+          },
+          "runtime_events_processed": 2188,
+          "source_emissions": 338,
+          "source_emitting_characters": {
+            "denominator": 64,
+            "numerator": 59
+          },
+          "successful_admissions": 0,
+          "used_relay_path_transfers": 338,
+          "used_shortcut_transfers": 0
+        },
+        "1": {
+          "candidate_opportunities": 0,
+          "candidate_records": 0,
+          "candidate_rejections": 0,
+          "canonical_emissions_by_node": {
+            "destination": 0,
+            "relay": 0,
+            "source": 361
+          },
+          "characters": {
+            "denominator": 64,
+            "numerator": 64
+          },
+          "characters_using_each_edge": {
+            "source->relay": {
+              "denominator": 64,
+              "numerator": 59
+            }
+          },
+          "destination_emissions": {
+            "direct": 0,
+            "integrated_discharge": 0,
+            "total": 0
+          },
+          "destination_emitting_characters": 0,
+          "destination_emitting_characters_ratio": {
+            "denominator": 64,
+            "numerator": 0
+          },
+          "destination_max_abs_z": 0.0,
+          "destination_receiving_characters": {
+            "denominator": 64,
+            "numerator": 0
+          },
+          "destination_receptions": 0,
+          "destination_z_updates": 0,
+          "eligibility_max_peak": 17,
+          "eligibility_reconciliation_errors": 0,
+          "emitting_characters_by_node": {
+            "destination": {
+              "denominator": 64,
+              "numerator": 0
+            },
+            "relay": {
+              "denominator": 64,
+              "numerator": 0
+            },
+            "source": {
+              "denominator": 64,
+              "numerator": 59
+            }
+          },
+          "growth_attempts": 0,
+          "maximum_route_depth": 1,
+          "queue_peak": 2,
+          "routed_transfers": 361,
+          "routes_by_edge": {
+            "source->relay": 361
+          },
+          "runtime_events_processed": 2321,
+          "source_emissions": 361,
+          "source_emitting_characters": {
+            "denominator": 64,
+            "numerator": 59
+          },
+          "successful_admissions": 0,
+          "used_relay_path_transfers": 361,
+          "used_shortcut_transfers": 0
+        },
+        "2": {
+          "candidate_opportunities": 0,
+          "candidate_records": 0,
+          "candidate_rejections": 0,
+          "canonical_emissions_by_node": {
+            "destination": 0,
+            "relay": 0,
+            "source": 306
+          },
+          "characters": {
+            "denominator": 64,
+            "numerator": 64
+          },
+          "characters_using_each_edge": {
+            "source->relay": {
+              "denominator": 64,
+              "numerator": 59
+            }
+          },
+          "destination_emissions": {
+            "direct": 0,
+            "integrated_discharge": 0,
+            "total": 0
+          },
+          "destination_emitting_characters": 0,
+          "destination_emitting_characters_ratio": {
+            "denominator": 64,
+            "numerator": 0
+          },
+          "destination_max_abs_z": 0.0,
+          "destination_receiving_characters": {
+            "denominator": 64,
+            "numerator": 0
+          },
+          "destination_receptions": 0,
+          "destination_z_updates": 0,
+          "eligibility_max_peak": 17,
+          "eligibility_reconciliation_errors": 0,
+          "emitting_characters_by_node": {
+            "destination": {
+              "denominator": 64,
+              "numerator": 0
+            },
+            "relay": {
+              "denominator": 64,
+              "numerator": 0
+            },
+            "source": {
+              "denominator": 64,
+              "numerator": 59
+            }
+          },
+          "growth_attempts": 0,
+          "maximum_route_depth": 1,
+          "queue_peak": 2,
+          "routed_transfers": 306,
+          "routes_by_edge": {
+            "source->relay": 306
+          },
+          "runtime_events_processed": 2096,
+          "source_emissions": 306,
+          "source_emitting_characters": {
+            "denominator": 64,
+            "numerator": 59
+          },
+          "successful_admissions": 0,
+          "used_relay_path_transfers": 306,
+          "used_shortcut_transfers": 0
+        },
+        "3": {
+          "candidate_opportunities": 0,
+          "candidate_records": 0,
+          "candidate_rejections": 0,
+          "canonical_emissions_by_node": {
+            "destination": 0,
+            "relay": 0,
+            "source": 314
+          },
+          "characters": {
+            "denominator": 64,
+            "numerator": 64
+          },
+          "characters_using_each_edge": {
+            "source->relay": {
+              "denominator": 64,
+              "numerator": 59
+            }
+          },
+          "destination_emissions": {
+            "direct": 0,
+            "integrated_discharge": 0,
+            "total": 0
+          },
+          "destination_emitting_characters": 0,
+          "destination_emitting_characters_ratio": {
+            "denominator": 64,
+            "numerator": 0
+          },
+          "destination_max_abs_z": 0.0,
+          "destination_receiving_characters": {
+            "denominator": 64,
+            "numerator": 0
+          },
+          "destination_receptions": 0,
+          "destination_z_updates": 0,
+          "eligibility_max_peak": 17,
+          "eligibility_reconciliation_errors": 0,
+          "emitting_characters_by_node": {
+            "destination": {
+              "denominator": 64,
+              "numerator": 0
+            },
+            "relay": {
+              "denominator": 64,
+              "numerator": 0
+            },
+            "source": {
+              "denominator": 64,
+              "numerator": 59
+            }
+          },
+          "growth_attempts": 0,
+          "maximum_route_depth": 1,
+          "queue_peak": 2,
+          "routed_transfers": 314,
+          "routes_by_edge": {
+            "source->relay": 314
+          },
+          "runtime_events_processed": 2123,
+          "source_emissions": 314,
+          "source_emitting_characters": {
+            "denominator": 64,
+            "numerator": 59
+          },
+          "successful_admissions": 0,
+          "used_relay_path_transfers": 314,
+          "used_shortcut_transfers": 0
+        },
+        "4": {
+          "candidate_opportunities": 0,
+          "candidate_records": 0,
+          "candidate_rejections": 0,
+          "canonical_emissions_by_node": {
+            "destination": 0,
+            "relay": 0,
+            "source": 396
+          },
+          "characters": {
+            "denominator": 64,
+            "numerator": 64
+          },
+          "characters_using_each_edge": {
+            "source->relay": {
+              "denominator": 64,
+              "numerator": 61
+            }
+          },
+          "destination_emissions": {
+            "direct": 0,
+            "integrated_discharge": 0,
+            "total": 0
+          },
+          "destination_emitting_characters": 0,
+          "destination_emitting_characters_ratio": {
+            "denominator": 64,
+            "numerator": 0
+          },
+          "destination_max_abs_z": 0.0,
+          "destination_receiving_characters": {
+            "denominator": 64,
+            "numerator": 0
+          },
+          "destination_receptions": 0,
+          "destination_z_updates": 0,
+          "eligibility_max_peak": 19,
+          "eligibility_reconciliation_errors": 0,
+          "emitting_characters_by_node": {
+            "destination": {
+              "denominator": 64,
+              "numerator": 0
+            },
+            "relay": {
+              "denominator": 64,
+              "numerator": 0
+            },
+            "source": {
+              "denominator": 64,
+              "numerator": 61
+            }
+          },
+          "growth_attempts": 0,
+          "maximum_route_depth": 1,
+          "queue_peak": 2,
+          "routed_transfers": 396,
+          "routes_by_edge": {
+            "source->relay": 396
+          },
+          "runtime_events_processed": 2381,
+          "source_emissions": 396,
+          "source_emitting_characters": {
+            "denominator": 64,
+            "numerator": 61
+          },
+          "successful_admissions": 0,
+          "used_relay_path_transfers": 396,
+          "used_shortcut_transfers": 0
+        }
+      }
+    }
+  },
+  "equal_time_negative_control": {
+    "actual_observations": [
+      {
+        "emitter_id": "source",
+        "event_id": "source:excursion:1",
+        "observer": "source",
+        "timestamp": 0.5
+      },
+      {
+        "emitter_id": "destination",
+        "event_id": "destination:excursion:1",
+        "observer": "source",
+        "timestamp": 0.5
+      },
+      {
+        "emitter_id": "destination",
+        "event_id": "destination:excursion:1",
+        "observer": "destination",
+        "timestamp": 0.5
+      }
+    ],
+    "candidate_count": 0,
+    "candidates": [],
+    "destination_emission": {
+      "episode_id": 1,
+      "event_id": "destination:excursion:1",
+      "event_type": "excursion",
+      "lineage_id": 1,
+      "payload": 0.3,
+      "sequence": 1,
+      "source": "destination",
+      "timestamp": 0.5
+    },
+    "fixture_parameters_are_not_primary_run_parameters": "This isolated event fixture verifies only the accepted strict-order rule.",
+    "observation_count": 2,
+    "passed": true,
+    "same_timestamp": true,
+    "source_emission": {
+      "episode_id": 1,
+      "event_id": "source:excursion:1",
+      "event_type": "excursion",
+      "lineage_id": 1,
+      "payload": 0.3,
+      "sequence": 1,
+      "source": "source",
+      "timestamp": 0.5
+    },
+    "used_actual_canonical_emissions": true
+  },
+  "paired_growth_interpretation": {
+    "all_seed_count": 5,
+    "all_seed_interpretations": {
+      "0": {
+        "admitted_character_ids": [],
+        "characters_with_shortcut_attributable_max_abs_z_increase": [],
+        "characters_with_shortcut_route_and_trace_z_at_or_above_theta_Z": [],
+        "destination_emissions": {
+          "direct": 0,
+          "integrated_discharge": 0,
+          "total": 0
+        },
+        "integration_mediated_emission_characters": [],
+        "interpretation": "NO LEGAL EDGE ADMISSION",
+        "later_shortcut_transfer_characters": [],
+        "later_shortcut_transfer_count": 0,
+        "paired_max_abs_z_deltas_all_characters": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "1": {
+        "admitted_character_ids": [],
+        "characters_with_shortcut_attributable_max_abs_z_increase": [],
+        "characters_with_shortcut_route_and_trace_z_at_or_above_theta_Z": [],
+        "destination_emissions": {
+          "direct": 0,
+          "integrated_discharge": 0,
+          "total": 0
+        },
+        "integration_mediated_emission_characters": [],
+        "interpretation": "NO LEGAL EDGE ADMISSION",
+        "later_shortcut_transfer_characters": [],
+        "later_shortcut_transfer_count": 0,
+        "paired_max_abs_z_deltas_all_characters": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "2": {
+        "admitted_character_ids": [],
+        "characters_with_shortcut_attributable_max_abs_z_increase": [],
+        "characters_with_shortcut_route_and_trace_z_at_or_above_theta_Z": [],
+        "destination_emissions": {
+          "direct": 0,
+          "integrated_discharge": 0,
+          "total": 0
+        },
+        "integration_mediated_emission_characters": [],
+        "interpretation": "NO LEGAL EDGE ADMISSION",
+        "later_shortcut_transfer_characters": [],
+        "later_shortcut_transfer_count": 0,
+        "paired_max_abs_z_deltas_all_characters": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "3": {
+        "admitted_character_ids": [],
+        "characters_with_shortcut_attributable_max_abs_z_increase": [],
+        "characters_with_shortcut_route_and_trace_z_at_or_above_theta_Z": [],
+        "destination_emissions": {
+          "direct": 0,
+          "integrated_discharge": 0,
+          "total": 0
+        },
+        "integration_mediated_emission_characters": [],
+        "interpretation": "NO LEGAL EDGE ADMISSION",
+        "later_shortcut_transfer_characters": [],
+        "later_shortcut_transfer_count": 0,
+        "paired_max_abs_z_deltas_all_characters": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "4": {
+        "admitted_character_ids": [],
+        "characters_with_shortcut_attributable_max_abs_z_increase": [],
+        "characters_with_shortcut_route_and_trace_z_at_or_above_theta_Z": [],
+        "destination_emissions": {
+          "direct": 0,
+          "integrated_discharge": 0,
+          "total": 0
+        },
+        "integration_mediated_emission_characters": [],
+        "interpretation": "NO LEGAL EDGE ADMISSION",
+        "later_shortcut_transfer_characters": [],
+        "later_shortcut_transfer_count": 0,
+        "paired_max_abs_z_deltas_all_characters": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      }
+    },
+    "prohibited_inference_boundary": "Results apply only to the declared bounded stream/topology/configuration; no task efficacy, classification, generalization, growth usefulness, resource benefit, calibration, or ACP-0008 promotion is inferred."
+  },
+  "replay": {
+    "identical": true,
+    "initial_digest": "f5c7f4d8fbc2037c43ac1118e96e6a2a23e4f0241da78cd7bea99a226b730211",
+    "replay_digest": "f5c7f4d8fbc2037c43ac1118e96e6a2a23e4f0241da78cd7bea99a226b730211",
+    "replay_stop": null
+  },
+  "schema": "TPCN-LUNA40-EXISTING-GROWTH-EFFECTIVE-ROUTED-DRIVE-SUMMARY-1",
+  "start_revision": "a39dd335e7af1b18a8d28ef3faf7b975304132df",
+  "stop": null
+}
