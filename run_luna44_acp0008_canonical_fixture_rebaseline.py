@@ -1595,7 +1595,7 @@ def run_experiment(
     """Execute all fixture streams and full per-arm deterministic replays."""
     config = experiment_config()
     config_digest = _digest(config)
-    output_directory.mkdir(parents=True, exist_ok=True)
+    output_directory.mkdir(parents=True, exist_ok=False)
     run_records: dict[str, list[dict[str, Any]]] = {arm: [] for arm in ARMS}
     replay_records: dict[str, list[dict[str, Any]]] = {arm: [] for arm in ARMS}
     fixture: dict[str, Any] | None = None

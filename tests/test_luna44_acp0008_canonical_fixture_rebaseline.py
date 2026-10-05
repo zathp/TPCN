@@ -477,3 +477,13 @@ def test_primary_artifact_envelopes_have_provenance_and_self_excluding_digests()
     envelope = luna44._replay_envelope_digest(["first", "second"], config_digest)
     assert envelope != luna44._replay_envelope_digest(["second", "first"], config_digest)
     assert envelope != luna44._replay_envelope_digest(["first", "second"], "other-config")
+
+
+def test_run_experiment_refuses_to_overwrite_existing_artifacts(tmp_path):
+    output_directory = tmp_path / "retained-run"
+    output_directory.mkdir()
+
+    with pytest.raises(FileExistsError):
+        luna44.run_experiment(output_directory)
+
+    assert list(output_directory.iterdir()) == []
