@@ -5,12 +5,12 @@ tpcn_handoff:
   descriptive_name: "Luna-44 canonical point-fixture and relay propagation authorization"
   task_id: "luna-0-authorization-luna44-canonical-fixture-rebaseline-20261005"
   component: "Frozen generated point fixture and bounded ACP-0008 relay propagation comparison"
-  status: "complete — Luna-44 AUTHORIZED / NOT EXECUTED; this governance publication is uncommitted"
+  status: "complete — Luna-44 AUTHORIZED / NOT EXECUTED"
   contract_version: "1.2"
   branch: "copilot/establish-new-canonical-baseline"
   base_revision: "a79494cd66be28fd291ed11eddd62d342f457cfd"
-  result_revision: "uncommitted governance-only changes based on a79494cd66be28fd291ed11eddd62d342f457cfd"
-  authorization_revision: "this handoff; obtain its immutable publication revision before Luna-44 begins"
+  result_revision: "ff4bf51dcaab2e7b66f0409f4d63a33649c3e104"
+  authorization_revision: "ff4bf51dcaab2e7b66f0409f4d63a33649c3e104"
   dependencies:
     - "Explicit project-owner authorization in the 2026-10-05 task direction"
     - "Accepted ACP-0008; opt-in and unpromoted"
@@ -120,7 +120,7 @@ tpcn_handoff:
     - "The accepted Luna-42 Phase-B source/runtime bounds apply unchanged unless the frozen Luna-44 configuration records a narrower bound."
     - "The repository's governance root is workflow/; there is no tpcn-luna-workflow/ directory in this checkout."
   unresolved:
-    - "The authorization handoff and workflow/changelog edits are uncommitted; Luna-44 must not start until it can record and verify the immutable publication revision."
+    - "The authorization was immutably published at ff4bf51dcaab2e7b66f0409f4d63a33649c3e104 on the task branch; Luna-44 must record and verify this authorization revision."
     - "No origin/main ref exists in this shallow checkout. The owner-provided fetch result is recorded as FETCH_HEAD == a79494cd66be28fd291ed11eddd62d342f457cfd; this does not establish or claim synchronized origin/main."
   recommended_next_agent:
     - "Luna-44, only after this governance authorization is immutably published; then Luna-0 for independent review."
@@ -144,9 +144,9 @@ The authoritative starting revision is
 `git fetch origin main` returned this revision as `FETCH_HEAD`. There is no
 `refs/remotes/origin/main` in this checkout; the repository is shallow.
 Therefore this handoff does **not** claim `HEAD == origin/main` or synchronized
-main. Record the immutable publication revision of this authorization and the
-execution branch/HEAD/status when Luna-44 starts. Luna-44 must not begin from
-this uncommitted governance diff.
+main. This authorization was immutably published on the task branch at
+`ff4bf51dcaab2e7b66f0409f4d63a33649c3e104`. Record and verify that authorization
+ancestor plus the execution branch/HEAD/status when Luna-44 starts.
 
 The repository governance files are under `workflow/`. This publication does
 not touch `.github/agents`, implementation code, tests, or historical
@@ -265,5 +265,6 @@ contract, ACP-0007/ACP-0008, production API, prior tests, or historical
 Luna-42/43 handoffs/artifacts. ACP-0007 remains disabled and unchanged;
 ACP-0008 remains opt-in and unpromoted. No WEMA or Luna-45 is authorized.
 
-No scientific outcome is asserted here. The next bounded assignment is Luna-44
-after this governance authorization has an immutable publication revision.
+No scientific outcome is asserted here. The bounded Luna-44 assignment may
+begin from a clean, published runner/fixture revision descended from the
+authorization at `ff4bf51dcaab2e7b66f0409f4d63a33649c3e104`.

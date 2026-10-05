@@ -62,8 +62,9 @@ historical Luna-43 mismatch.
 Baseline is `a79494cd66be28fd291ed11eddd62d342f457cfd`. The owner reports
 `git fetch origin main` returned that as `FETCH_HEAD`; this shallow checkout
 has no `origin/main` ref, so synchronized-main status is not asserted. Luna-44
-must wait until the authorization is immutably published. Historical Luna-42
-remains **PASS WITH FOLLOW-UP** and Luna-43 remains **BLOCKED / DESTINATION
+must verify and record authorization revision
+`ff4bf51dcaab2e7b66f0409f4d63a33649c3e104`. Historical Luna-42 remains
+**PASS WITH FOLLOW-UP** and Luna-43 remains **BLOCKED / DESTINATION
 COMPARISON UNDETERMINED**. ACP-0007 remains disabled and unchanged; ACP-0008
 remains opt-in and unpromoted. No destination-integration variation,
 destination-state/emission analysis, tuning, efficacy, hardware claim, WEMA, or

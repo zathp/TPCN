@@ -58,9 +58,9 @@ historical mismatch.
 Starting revision: `a79494cd66be28fd291ed11eddd62d342f457cfd`. The owner reports
 `git fetch origin main` returned this as `FETCH_HEAD`; this shallow checkout has
 no `origin/main` ref, so synchronized-main status is not claimed. Luna-44 must
-wait until this uncommitted authorization is immutably published and record
-that revision. No code, tests, agent profile, experiment, or scientific result
-is included in this governance update. No destination-integration variation,
+verify and record the published authorization revision
+`ff4bf51dcaab2e7b66f0409f4d63a33649c3e104`. No code, tests, agent profile,
+experiment, or scientific result is included in this governance update. No destination-integration variation,
 destination-state/emission analysis, tuning, efficacy, WEMA, or Luna-45 is
 authorized. Preserve Luna-42 **PASS WITH FOLLOW-UP** and Luna-43 **BLOCKED /
 DESTINATION COMPARISON UNDETERMINED**. ACP-0007 remains disabled/unchanged;
