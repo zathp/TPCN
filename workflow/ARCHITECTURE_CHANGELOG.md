@@ -1,5 +1,76 @@
 # Architecture Changelog
 
+## Luna-0 owner-authorized Luna-44 canonical fixture and relay propagation — 2026-10-05
+
+**Luna-44 AUTHORIZED / NOT EXECUTED; governance-only authorization.** The
+explicit project-owner direction authorizes a frozen point-level fixture from
+the stipulated existing generator (seeds `0..4`, 64 ordered sequences each)
+and a three-condition relay-propagation experiment with replay. Each point
+records seed, sequence index, deterministic label-free stream ID
+`c{seed:02d}-{sequence_index:03d}`, zero-based point index in source order,
+zero-based sequence-local batch ordinal, raw `x/y/t`, and `x+y` as an audit
+value; number sequences from zero in generator order, and do not use generator
+metadata IDs that may contain labels. Each float is stored as decimal text
+that round-trips to the same binary64 value and reversible binary64 text
+(prefer `float.hex`).
+Define same-time batches by production `_point_batches` semantics: convert
+timestamps to `float`, reject decreasing numeric timestamps, group consecutive
+points whose converted timestamps compare numerically equal (including
+`+0.0 == -0.0`), assign batch ordinals in first-seen order, and preserve
+within-batch point order.
+Construct the fixture audit `x+y` once with production-declared
+`float(x) + float(y)`. The canonical UTF-8 JSON/SHA-256 binds **only** ordered
+seed/sequence/stream/point/batch identities and exact raw `x/y/t` bits;
+exclude audit `x+y`, neural results, events, and condition outcomes. A separate
+audit digest may bind the canonical fixture identity to ordered audit `x+y`
+bits, but it is not canonical identity. Per-sequence input digests bind raw
+identities and raw `x/y/t` only. The experiment runner loads raw values from
+reversible `float.hex` representations (checking decimal round-trip) and never
+calls the spiral generator. For each point in each
+condition and replay, it independently executes the production-declared
+`float(x) + float(y)`, retains that run's exact derived value, and feeds the
+computed value to the runtime rather than the audit value. Retain each
+per-point/per-arm/per-replay derived value as decimal plus `float.hex`.
+Compare each run's derived `x+y` separately to the fixture audit value using
+`64 * sys.float_info.epsilon * max(1.0, abs(observed), abs(expected))`, with
+observed, expected, residual, and bound recorded per point/run.
+
+Use fixed `source -> relay -> destination` topology with ordinary Model-B
+`w=1`, delay `1` edges. Source and destination integration remain disabled;
+relay conditions are disabled, default (`decay_rate_z=0.1`), and calibrated
+(`decay_rate_z=0.0125`). The endpoint is relay propagation: reconcile
+integration-mediated relay canonical emissions to actual ordinary
+`relay -> destination` transfers, requiring at least one causally matched
+onward transfer to meet the endpoint. No historical count is required; the
+destination is only a passive disabled receiver, with no destination
+integration or state/emission endpoint; capture it only to verify that onward
+transfers arrive.
+
+Record authorization revision/handoff digest, fixture-generation
+revision/fixture digest, runner revision/file hash, execution revision and
+execution/artifact digests, plus configuration/run/replay provenance. The
+numerical policy is predeclared per quantity: fixture/raw-input identity and discrete behavior remain exact;
+per-run `x+y`, source-emission payload, each Model-B edge payload, each named
+relay recurrence field, and each derived onward-arrival timestamp are reported
+separately using
+`64 * sys.float_info.epsilon * max(1.0, abs(observed), abs(expected))`.
+Elapsed-time deltas are exact timestamp subtraction. The allowance does not
+relax hard bounds, event classifications, within-run payload copies,
+strict-future causality, or replay identity, and is not inferred from the
+historical Luna-43 mismatch.
+
+Baseline is `a79494cd66be28fd291ed11eddd62d342f457cfd`. The owner reports
+`git fetch origin main` returned that as `FETCH_HEAD`; this shallow checkout
+has no `origin/main` ref, so synchronized-main status is not asserted. Luna-44
+must wait until the authorization is immutably published. Historical Luna-42
+remains **PASS WITH FOLLOW-UP** and Luna-43 remains **BLOCKED / DESTINATION
+COMPARISON UNDETERMINED**. ACP-0007 remains disabled and unchanged; ACP-0008
+remains opt-in and unpromoted. No destination-integration variation,
+destination-state/emission analysis, tuning, efficacy, hardware claim, WEMA, or
+Luna-45 is authorized. No A01-A15 contract change or ACP is proposed. No
+experiment ran and no scientific outcome is asserted. Full authorization:
+`workflow/handoffs/luna-0-authorization-luna44-canonical-fixture-rebaseline-20261005.md`.
+
 ## Luna-0 independent post-Luna-43 review — destination integration — 2026-10-05
 
 **Scientific result BLOCKED / destination comparison UNDETERMINED; execution
