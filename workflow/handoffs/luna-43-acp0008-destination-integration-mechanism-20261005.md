@@ -7,12 +7,12 @@ tpcn_handoff:
   descriptive_name: "ACP-0008 destination integration mechanism comparison"
   task_id: "luna-43-acp0008-destination-integration-mechanism-20261005"
   component: "Fixed-topology downstream destination integration"
-  status: "BLOCKED — exact historical Phase-B input fixture digest mismatch"
+  status: "BLOCKED — historical per-character reconciliation (exact input digest mismatch)"
   contract_version: "1.0"
   branch: "copilot/execute-luna-43-cycle"
   authorization_revision: "f304e96f994d5b3f7842589c1b505d09c8fae4c6"
-  execution_revision: "50aaa074929d6dfe506689c80c306d7e54be32f2"
-  execution_repo_revision: "50aaa074929d6dfe506689c80c306d7e54be32f2"
+  execution_revision: "49ee7abd3a2668f2a985e6f8de908e031360c8c0"
+  execution_repo_revision: "49ee7abd3a2668f2a985e6f8de908e031360c8c0"
   owner: "Project owner"
   classification:
     - "bounded CPU software-reference mechanism experiment"
@@ -27,25 +27,23 @@ tpcn_handoff:
     - "artifacts/luna43-acp0008-destination-integration-mechanism/summary.json"
     - "artifacts/luna43-acp0008-destination-integration-mechanism/replay.json"
     - "workflow/handoffs/luna-43-acp0008-destination-integration-mechanism-20261005.md"
-  runner_commit: "50aaa074929d6dfe506689c80c306d7e54be32f2"
-  runner_sha256: "f3bdc0288ded146e592587e1849329093f2a0d1702e69956447b4b5862842e5b"
+    - "workflow/handoffs/luna-0-independent-review-luna43-acp0008-destination-integration-20261005.md"
+    - "workflow/docs/luna/LUNA_WORKFLOW.md"
+  runner_commit: "49ee7abd3a2668f2a985e6f8de908e031360c8c0"
+  runner_sha256: "bd9ad0e3e6e161da8501784a0025632071166073b8d50e3b7047466c7a82171f"
   config_identity: "TPCN-LUNA43-ACP0008-DESTINATION-INTEGRATION-1"
   config_digest: "648db5a29a741332a96304c345a8588b0f7df27aed1e7b474f7527ab868cee59"
-  aggregate_run_digest: "365cbede264098af8d57d3ac3a79eed978b1fac866ebe67eae73a316eac56354"
+  aggregate_run_digest: "d5ed3c404f88d1fb26ea8eabad4ed95a6d96709646aa5352b66d58f1fc410232"
   environment:
     python: "3.12.3"
     platform: "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39"
     pytest: "9.1.1"
   tests_passing:
-    - "Luna-43 focused: 4 passed"
-    - "Relevant neuron/integration/runtime/routing/topology and Luna-38–42 selection: 217 passed"
-    - "Full suite: 1023 passed"
-    - "Python compile/import and git diff --check"
-    - "CodeQL: 0 alerts"
+    - "Luna-43 focused after review corrections: 8 passed"
   tests_failed:
-    - "Four known Luna-41/Luna-42 decimal-0.4 exact-float assertions; same failures recorded at authorization baseline"
+    - "Original-run integration/full-suite validation only: four known Luna-41/Luna-42 decimal-0.4 assertions; not rerun for these corrections"
   tests_skipped:
-    - "tests/test_gpu_visualization.py:61 — CUDA unavailable"
+    - "Original-run full suite: tests/test_gpu_visualization.py:61 — CUDA unavailable; not rerun for these corrections"
   tests_not_run:
     - "Whole-experiment replay — correctly not started after the historical fixture gate stopped the first arm"
     - "ACP-0007 precursor scan — not run; the experiment did not reach the condition-complete emission prerequisite"
@@ -137,15 +135,21 @@ this retained result; return the fixture/provenance blocker to Luna-0.
 ## Raw retained artifact identities
 
 All four artifacts have non-null provenance and share aggregate run digest
-`365cbede264098af8d57d3ac3a79eed978b1fac866ebe67eae73a316eac56354`.
+`d5ed3c404f88d1fb26ea8eabad4ed95a6d96709646aa5352b66d58f1fc410232`.
 The hashes below are SHA-256 of the files as retained.
 
 | Artifact | File SHA-256 | Internal `artifact_digest` |
 |---|---|---|
-| `config.json` | `0b97f064422cbdee531b6d7bc7732a3571a821798321333c4e26ee63913347f2` | `49115b4df94a8aec288e2410452aa4c0be92369667051a85d6438127d234bd4d` |
-| `results.json` | `b5c655abe2a653ab32a3d66c569574b5dedbe6f05af851e7678866e4ab513e26` | `a9665bcf19616eed7762f1865cf9d51131ffb4b593e888e87844665f4dd1e407` |
-| `summary.json` | `424da866201cece9b5f242702405c8940b046aa2b6d5d981d2c4538ff8031e9a` | `34975a156292cb0483b956fe6830f93b290b058591c832175aca4b2a529a0107` |
-| `replay.json` | `a3d6d9648605ab4be4abd9b4c33e714982b2e12c292c8b46e68c15cac3605f1d` | `8510aaead645251dd5f0b272c22fdd49c5508b2b6ddfe5d79d25a5f73fcf2b02` |
+| `config.json` | `2124a012e18e142c3b20ef4f97169d47fa1ac3e6312efc5cc88b43757741094b` | `5f7b44584beea28b9075c04b98c379a4b3390c75ec51dd2939087a327263b079` |
+| `results.json` | `a0ea8aaba19f8f3a21e2ae9b89eb277342f93c64e5c04c5bd7fd56ef19ee2ca3` | `39c0b2001d17eac368a5934261c58df6249aa372443024e624e53c9fbe4e8bd5` |
+| `summary.json` | `144fd85a8b31234dcb09b898596b557948c0bf7b14d099ebcec329167ae09113` | `756146b3cddcbfb833f81c37652854f928b8932cb6df0843967d161e28f80fcb` |
+| `replay.json` | `0eec738c43c2f8d7f95377725688a4df7ba4a03e967602ebe94d538ba5f3ae61` | `d10b18824b0e9db1220c80dd4797acc0158ac4831a96038ff5aa767486cc0434` |
+
+The corrected `excursion_emission` trace preserves its own field layout,
+including the emission ID, sequence, episode, lineage, causal roots, and
+`roots_truncated`. This corrected retained attempt was regenerated at runner
+commit `49ee7abd3a2668f2a985e6f8de908e031360c8c0`; it was not part of the
+earlier independent review's byte-for-byte reproduction.
 
 ## Validation and limitations
 
@@ -153,33 +157,13 @@ Commands and outcomes:
 
 ```text
 python -m pytest -q tests/test_luna43_acp0008_destination_integration_mechanism.py
-  4 passed
-
-python -m pytest -q tests/test_excursion_neuron.py tests/test_excursion_integration.py
-  tests/test_e2_multi_excursion.py tests/test_topology.py tests/test_event_runtime.py
-  tests/test_luna38_excursion_integration_state.py
-  tests/test_luna39_acp0008_propagation_emission_diagnostic.py
-  tests/test_luna41_acp0008_temporal_calibration.py
-  tests/test_luna42_acp0008_corrective_calibration.py
-  217 passed, 4 failed
-
-python -m pytest -q -rs
-  1023 passed, 4 failed, 1 skipped; 1028 collected
-
-python -m py_compile run_luna43_acp0008_destination_integration_mechanism.py
-  tests/test_luna43_acp0008_destination_integration_mechanism.py
-git diff --check
-  passed
+  8 passed
 ```
 
-The four failures are the known exact comparisons in the Luna-41/Luna-42 tests:
-computed `0.39999999999999997` is compared with literal `0.4`. The authorization
-baseline explicitly recorded the same four failures. They were not changed
-because the active Luna-43 contract superseded the earlier test-only assignment
-before execution. The sole full-suite skip is the pre-existing CUDA-unavailable
-GPU visualization test. CodeQL reported zero alerts. The parallel code-review
-validation returned no comments but also reported its review service was
-unavailable; no independent code review is claimed.
+The earlier integration and full-suite results remain as recorded for the
+original runner revision; they were not rerun for these focused review
+corrections. The corrected run remained at the same exact historical input
+gate and did not start a whole-experiment replay.
 
 This handoff records a **fixture-gate blocker**, not integration readiness,
 mechanism support, or a valid negative destination result. ACP-0008 remains

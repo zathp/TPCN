@@ -183,9 +183,10 @@ applicable**, and no destination emission inference is drawn.
 
 ### Artifact integrity and replay
 
-All file SHA-256 values, internal artifact digests, the frozen configuration
-digest, and aggregate digest were independently recomputed from the retained
-bytes and canonical JSON:
+For the original artifact bytes produced at execution revision
+`50aaa074929d6dfe506689c80c306d7e54be32f2`, all file SHA-256 values, internal
+artifact digests, the frozen configuration digest, and aggregate digest were
+independently recomputed from the then-retained bytes and canonical JSON:
 
 | Artifact | File SHA-256 | Internal artifact digest |
 |---|---|---|
@@ -199,11 +200,17 @@ Frozen configuration digest:
 Aggregate artifact digest:
 `365cbede264098af8d57d3ac3a79eed978b1fac866ebe67eae73a316eac56354`.
 
-I created a disposable detached worktree at the exact execution revision,
+These results refer to the original artifact set, not the corrected
+`49ee7abd3a2668f2a985e6f8de908e031360c8c0` attempt, which was regenerated after
+review feedback and has not undergone a new independent replay or audit. The
+current artifact hashes and corrected emission trace are recorded in the
+Luna-43 execution handoff.
+
+I created a disposable detached worktree at the original execution revision,
 supplied the committed Luna-42 raw source artifact, and ran the committed
 runner once with its recorded provenance and output under `/tmp`. All four
-generated artifacts matched the retained files byte-for-byte. This independently
-reproduces the retained attempt and its blocked gate. It is **not** a
+generated artifacts matched the then-retained files byte-for-byte. This
+independently reproduces that original attempt and its blocked gate. It is **not** a
 whole-experiment replay: the runner's `initial_digest` and `replay_digest`
 remain null with `not_run_after_blocker=true`, correctly recording that the
 second full execution was never started.
