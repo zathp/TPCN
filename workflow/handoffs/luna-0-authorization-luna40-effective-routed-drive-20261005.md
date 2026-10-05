@@ -11,7 +11,7 @@ tpcn_handoff:
   contract_version: "1.2"
   branch: "main"
   base_revision: "6ae253dd53b2b7a9ba1589c10035690a5b65e416"
-  result_revision: "commit containing this handoff"
+  result_revision: "initial governance publication 9a258b839da42aedbd3a2bcaf09f87e3fcb8a1a6"
   dependencies:
     - "Independent Luna-0 post-Luna-39 review"
     - "Accepted ACP-0007 and independently reviewed Luna-28 implementation"
@@ -149,7 +149,9 @@ are superseded only by this owner-directed decision.
 - **Not run:** Luna-40, production tests, or hardware validation. Production
   code is unchanged; this is a governance-only authorization.
 - `git diff --check`: passed before publication.
-- Final `HEAD == origin/main` and clean worktree: verify after publication.
+- Initial publication `9a258b839da42aedbd3a2bcaf09f87e3fcb8a1a6` was pushed;
+  `HEAD == origin/main`, with a clean index and worktree immediately after
+  publication.
 
 The narrow assumption that current public APIs can compose local structural
 growth with an integration-enabled destination must be verified before
