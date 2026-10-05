@@ -216,7 +216,7 @@ def _collect_provenance(*, require_clean: bool = True) -> dict[str, Any]:
             "execution must start on the synchronized published Luna-43 runner branch",
             {"branch": branch, "head": head, "upstream": upstream},
         )
-    if _git_output("merge-base", "--is-ancestor", AUTHORIZATION_REVISION, "HEAD") != "":
+    if _git_output("merge-base", AUTHORIZATION_REVISION, "HEAD") != AUTHORIZATION_REVISION:
         raise StopCondition("authorization revision is not an ancestor of execution HEAD")
     if origin_main != AUTHORIZATION_BASELINE:
         raise StopCondition(
@@ -429,6 +429,12 @@ def _topology_record(topology: BoundedTopology) -> list[dict[str, Any]]:
 
 
 def _runtime_trace_record(item: tuple[Any, ...]) -> dict[str, Any]:
+    if item[3] == "excursion_emission":
+        fields = (
+            "timestamp", "source", "destination", "event_type", "payload", "event_id",
+            "sequence", "episode_id", "lineage_id", "causal_roots", "roots_truncated",
+        )
+        return {name: _jsonable(value) for name, value in zip(fields, item)}
     fields = (
         "timestamp", "source", "destination", "event_type", "payload", "sequence",
         "event_id", "lineage_id", "causal_roots", "route_depth", "route_path",
@@ -1607,17 +1613,6 @@ def run_experiment(
         if validate_execution_environment:
             _verify_execution(provenance, "before retained experiment")
         history = _phase_once()
-        replay = _phase_once()
-        replay_digest = _summarize_replay(history, replay)
-        terminal_status = (
-            "PASS — bounded mechanism gate"
-            if replay_digest["equal"]
-            and history["paired_input_invariance"]
-            and history["historical_reconciliation"]["all_character_arm_records_match"]
-            else "BLOCKED"
-        )
-        if terminal_status == "BLOCKED":
-            stop_reason = "replay, paired-input, or historical relay reconciliation failed"
     except StopCondition as error:
         stop_reason = error.reason
         history = {"blocked": {"reason": error.reason, "detail": error.detail}}
@@ -1627,6 +1622,30 @@ def run_experiment(
             "equal": False,
             "not_run_after_blocker": True,
         }
+    else:
+        initial_digest = _digest(history)
+        try:
+            replay = _phase_once()
+        except StopCondition as error:
+            stop_reason = error.reason
+            replay_digest = {
+                "initial_digest": initial_digest,
+                "replay_digest": None,
+                "equal": False,
+                "not_run_after_blocker": False,
+                "replay_blocked": {"reason": error.reason, "detail": error.detail},
+            }
+        else:
+            replay_digest = _summarize_replay(history, replay)
+            terminal_status = (
+                "PASS — bounded mechanism gate"
+                if replay_digest["equal"]
+                and history["paired_input_invariance"]
+                and history["historical_reconciliation"]["all_character_arm_records_match"]
+                else "BLOCKED"
+            )
+            if terminal_status == "BLOCKED":
+                stop_reason = "replay, paired-input, or historical relay reconciliation failed"
     if validate_execution_environment:
         _verify_execution(provenance, "completion")
     config_artifact = {

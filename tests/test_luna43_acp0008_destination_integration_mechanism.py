@@ -1,7 +1,97 @@
 from __future__ import annotations
 
+from unittest import mock
+
+import pytest
+
 import run_luna39_acp0008_propagation_emission_diagnostic as luna39
 import run_luna43_acp0008_destination_integration_mechanism as luna43
+
+
+def test_unauthorized_execution_revision_is_a_stop_condition(monkeypatch) -> None:
+    def git_output(*args: str) -> str:
+        if args[0] == "branch":
+            return luna43.BRANCH
+        if args[0] == "rev-parse":
+            if args[1] == "origin/main":
+                return luna43.AUTHORIZATION_BASELINE
+            return "execution-revision"
+        if args[0] == "status":
+            return ""
+        if args[0] == "merge-base":
+            return "different-ancestor"
+        raise AssertionError(args)
+
+    monkeypatch.setattr(luna43, "_git_output", git_output)
+
+    with pytest.raises(luna43.StopCondition, match="authorization revision is not an ancestor"):
+        luna43._collect_provenance()
+
+
+def test_runtime_trace_record_preserves_emission_tuple_layout() -> None:
+    emission = (
+        1.5, "relay", "relay", "excursion_emission", 0.25,
+        "event-id", 17, "episode-id", "lineage-id", ("root",), True,
+    )
+
+    assert luna43._runtime_trace_record(emission) == {
+        "timestamp": 1.5,
+        "source": "relay",
+        "destination": "relay",
+        "event_type": "excursion_emission",
+        "payload": 0.25,
+        "event_id": "event-id",
+        "sequence": 17,
+        "episode_id": "episode-id",
+        "lineage_id": "lineage-id",
+        "causal_roots": ["root"],
+        "roots_truncated": True,
+    }
+
+
+def test_replay_blocker_preserves_successful_initial_run(tmp_path, monkeypatch) -> None:
+    first_run = {"result": "initial run"}
+    replay_error = luna43.StopCondition("replay stopped", {"reason": "replay detail"})
+    monkeypatch.setattr(luna43, "_phase_once", mock.Mock(side_effect=[first_run, replay_error]))
+
+    results, _ = luna43.run_experiment(
+        tmp_path,
+        execution_provenance={
+            "execution_revision": "test-revision",
+            "execution_repo_revision": "test-revision",
+        },
+        validate_execution_environment=False,
+    )
+
+    assert results["first_run"] == first_run
+    assert results["stop_reason"] == "replay stopped"
+    assert results["replay_run_digest"] == {
+        "initial_digest": luna43._digest(first_run),
+        "replay_digest": None,
+        "equal": False,
+        "not_run_after_blocker": False,
+        "replay_blocked": {"reason": "replay stopped", "detail": {"reason": "replay detail"}},
+    }
+
+
+def test_initial_run_blocker_marks_replay_not_run(tmp_path, monkeypatch) -> None:
+    initial_error = luna43.StopCondition("initial stopped", {"reason": "initial detail"})
+    monkeypatch.setattr(luna43, "_phase_once", mock.Mock(side_effect=initial_error))
+
+    results, _ = luna43.run_experiment(
+        tmp_path,
+        execution_provenance={
+            "execution_revision": "test-revision",
+            "execution_repo_revision": "test-revision",
+        },
+        validate_execution_environment=False,
+    )
+
+    assert results["first_run"] == {
+        "blocked": {"reason": "initial stopped", "detail": {"reason": "initial detail"}}
+    }
+    assert results["replay_run_digest"]["not_run_after_blocker"] is True
+    assert results["replay_run_digest"]["initial_digest"] is None
 
 
 def test_frozen_config_has_only_the_two_fixed_model_b_hops() -> None:

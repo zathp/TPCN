@@ -8,7 +8,7 @@ published result `32898e3b50daf0834c6ddb8889dd5127f7fb489d`, the authorized
 contract, committed runner/tests, raw Luna-43 artifacts, raw Luna-42 calibrated
 records, and relevant runtime/topology code. The exact historical input gate
 stopped at `DESTINATION_DISABLED`, seed 0, sequence 0 (`c00-000`): the 12-batch
-stream digest differed due one value at batch 3 / point 0
+stream digest differed due to one value at batch 3 / point 0
 (`-0.1646535199398629` versus `-0.16465351993986282`, 3 ULP). All other
 historical checks on that completed record passed. The runner did not execute
 another character or destination condition; no condition-complete destination
