@@ -1,5 +1,40 @@
 # Architecture Changelog
 
+## Luna-0 corrective decision — ACP-0008 calibration fixture/provenance; Luna-42 AUTHORIZED / NOT EXECUTED - 2026-10-05
+
+**CALIBRATION RESULT UNRESOLVED DUE TO FIXTURE SPECIFICATION / PROVENANCE
+DEFECT.** Luna-41 remains **BLOCKED**; this is not a demonstrated failure of
+the ACP-0008 mechanism. The analytic prediction is only partly confirmed:
+`0.0125` crossed/emitted in the near-triple fixture, but repeated source
+events routed `0.4000008889685561` and `0.4000008889707768` instead of the
+declared `0.4`; the `1e-12` acceptance tolerance was not in the contract,
+and `results.json.execution_revision` was null. Independent reconstruction
+found the ACP-0008 state equations accurate. Phase B correctly did not run.
+
+The existing ordinary source neuron, event queue, `BoundedTopology` and
+Model-B edge can express a causal fixture without architecture change.
+Therefore one corrective replication, Luna-42, is **AUTHORIZED / NOT
+EXECUTED**. It will preserve the four candidate values, fastest-decay-
+passing rule, source configuration and stimulus, timing, thresholds,
+equations, topology and bounds. It will route the source's actual production
+canonical emissions and use the exact resulting routed/reception values as
+the oracle inputs; no ideal repeated `0.4` route or observed-value magic
+constant is permitted. Discrete event/selection criteria and replay identity
+remain exact. Floating equation comparisons use the predeclared
+`64 * sys.float_info.epsilon * max(1, |a|, |b|)` bound, justified as a
+conservative binary64 operation-rounding budget. All primary artifacts must
+record non-null execution revision, runner hash, configuration digest,
+artifact digest and replay identity; absence blocks a scientific claim.
+Phase B remains strictly gated by valid Phase-A selection and frozen results.
+
+No production, ACP, or Architecture Contract change is authorized.
+ACP-0008 remains experimental/opt-in/unpromoted; ACP-0007 remains unchanged
+and disabled. WEMA remains an unresolved alternative idea only; no
+implementation/experiment, efficacy, optimality, growth, hardware, or
+promotion claim is authorized. Luna-40 and all earlier historical findings
+remain intact. See `.github/agents/luna-42.agent.md` and
+`workflow/handoffs/luna-0-acp0008-corrective-calibration-decision-20261005.md`.
+
 ## Luna-0 independent post-Luna-41 review — ACP-0008 temporal calibration - 2026-10-05
 
 **BLOCKED at the declared Phase-A source-payload gate; no candidate selected;

@@ -1,5 +1,40 @@
 # TPCN Luna Multi-Agent Workflow — Event-Driven Architecture
 
+## Luna-0 corrective decision — ACP-0008 fixture/provenance; Luna-42 AUTHORIZED / NOT EXECUTED
+
+**CALIBRATION RESULT UNRESOLVED DUE TO FIXTURE SPECIFICATION / PROVENANCE
+DEFECT. Luna-41 remains BLOCKED; this is not a demonstrated ACP-0008
+mechanism failure. Luna-42 is AUTHORIZED / NOT EXECUTED.** Starting revision
+verified clean
+and synchronized: `0ebb59c4fa61c5f2aad6ffa09341de1b342745bf`. Luna-41's
+repeated near-spaced source events routed `0.4000008889685561` and
+`0.4000008889707768` rather than the contract's literal `0.4`; its
+`1e-12` tolerance was undocumented, and its `results.json` omitted
+`execution_revision`. Mechanics were reproduced accurately and the analytic
+threshold prediction was partly confirmed, but no candidate validly passed
+Phase A. Phase B correctly did not run.
+
+The bounded corrective successor changes only the fixture/provenance and
+formal numerical-comparison contract. It uses the same source external
+stimulus/configuration and original timing, routes via the existing
+production `source -> relay` `w=1` path, records the actual payload, and
+uses that value in the recurrence oracle. It neither injects an idealized
+`0.4` nor encodes an observed route value as a constant. Exact discrete
+criteria remain exact; independent floating-equation checks use
+`64 * sys.float_info.epsilon * max(1, |a|, |b|)`, predeclared as a
+conservative binary64 operation-rounding allowance. Every artifact must
+carry a non-null execution revision, runner hash, config digest, artifact
+digest and replay identity; missing provenance blocks the claim. Candidate
+set (`0.1, 0.05, 0.025, 0.0125`), fastest-decay-passing rule, thresholds,
+near/far times, ACP-0008 equations and bounds remain unchanged. ACP-0007
+remains unchanged and disabled. ACP-0008 remains experimental/opt-in/
+unpromoted. WEMA is an unresolved alternative idea only; no implementation
+or experiment is authorized. No efficacy, optimality, promotion or hardware
+claim is authorized. Full decision and contract:
+`workflow/handoffs/luna-0-acp0008-corrective-calibration-decision-20261005.md`;
+executor:
+`.github/agents/luna-42.agent.md`.
+
 ## Luna-0 independent post-Luna-41 review — ACP-0008 temporal calibration
 
 **BLOCKED at the Phase-A normalized-routed-payload gate; bounded execution
