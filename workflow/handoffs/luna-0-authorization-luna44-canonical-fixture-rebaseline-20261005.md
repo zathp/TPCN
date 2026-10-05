@@ -152,6 +152,24 @@ The repository governance files are under `workflow/`. This publication does
 not touch `.github/agents`, implementation code, tests, or historical
 Luna-42/Luna-43 records.
 
+## Baseline test checkpoint before authorization
+
+On the clean starting revision, before publishing this authorization, the
+repository suite was run with `python -m pytest -q -rs`: **1027 passed, 4
+failed, 1 skipped; 1032 collected**. The four known failures are the existing
+Luna-41/Luna-42 exact nominal-`0.4` assertions, where production binary64
+arithmetic returned `0.39999999999999997`:
+
+- `test_isolated_routed_input_matches_normalized_amplitude_and_leaks`
+- `test_near_pair_records_source_residual_payload_deviation`
+- `test_isolated_routed_input_preserves_exact_provenance`
+- `test_near_pair_uses_actual_production_routed_payloads`
+
+The sole skip was the GPU visualization test because CUDA is unavailable.
+These baseline failures are recorded and left unchanged; no unrelated baseline
+failure was observed. No tests were run as part of the governance-only authoring
+pass itself.
+
 ## Frozen fixture and experiment boundary
 
 Construct the fixture once from the owner-stipulated existing Luna-39/Luna-34
