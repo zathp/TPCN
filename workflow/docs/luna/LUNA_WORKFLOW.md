@@ -1,5 +1,9 @@
 # TPCN Luna Multi-Agent Workflow — Event-Driven Architecture
 
+## Luna-0 independent review — Luna-37 propagation-to-emission diagnostic
+
+**NOT SUPPORTED IN THIS SETUP; CONTRACT PASS; NO PRODUCTION DEFECT; NO LUNA-38 AUTHORIZED.** Reviewed Luna-37 at `295309866c367cfeda7e42b4a42a47e813dd88ec`. 960 executions (seeds 0–4, three conditions, `eligibility_capacity=1024`, peak occupancy 19, no capacity errors). Routing occurred (1715 transfers per edge condition, depth 1) but downstream canonical emissions were 0 in all conditions; the no-edge control is a valid negative control. Maximum post-transfer destination state was 0.6855 (w=1) and 0.9327 (w=2), below `theta_E=1`, with no accumulation (gaps ≥12.9 vs decay 1.0). Replay digest independently reproduced. Full 952 passed, 1 skipped, 953 collected (+7). The bootstrap-gap classification is strengthened and refined; Luna-33 verdict, Luna-34 (BLOCKED / UNDETERMINED) and ACP-0007 are unchanged. Further direction requires a project-owner decision. See `workflow/handoffs/luna-0-independent-review-luna37-propagation-emission-diagnostic-20261004.md`.
+
 ## Luna-0 independent review — Luna-36 eligibility capacity API
 
 **PASS — PUBLIC-API BLOCKER RESOLVED; NO PRODUCTION DEFECT; LUNA-37 AUTHORIZED / NOT EXECUTED.** Reviewed Luna-36 at `8f8824a185a2b1ebc3fd74cbd29eef8d75cbd818` (clean, `HEAD == origin/main`). Only the three owned files changed. The optional keyword-only per-ledger `eligibility_capacity` defaults to the unchanged legacy `prediction_capacity * max(1, nodes)` (16 for the two-node, `prediction_capacity=8` fixture); an explicit 1024 yields 1024 per ledger; a deliberately small capacity still raises `EligibilityCapacityError`. Focused: 90 passed. Full: 945 passed, 1 skipped (CUDA), 946 collected; +13 from Luna-36 tests. Lifecycle, predictor, reward and delayed-credit semantics are unchanged. Luna-34 remains historically **BLOCKED / UNDETERMINED**; Luna-33 and ACP-0007 are unchanged.
