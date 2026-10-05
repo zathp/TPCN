@@ -1,5 +1,45 @@
 # TPCN Luna Multi-Agent Workflow — Event-Driven Architecture
 
+## Luna-0 independent post-Luna-43 review — destination integration
+
+**SCIENTIFIC RESULT BLOCKED / DESTINATION COMPARISON UNDETERMINED; EXECUTION
+PROTOCOL AND CONTRACT PASS WITH FOLLOW-UP.** Independently reviewed the clean
+published result `32898e3b50daf0834c6ddb8889dd5127f7fb489d`, the authorized
+contract, committed runner/tests, raw Luna-43 artifacts, raw Luna-42 calibrated
+records, and relevant runtime/topology code. The exact historical input gate
+stopped at `DESTINATION_DISABLED`, seed 0, sequence 0 (`c00-000`): the 12-batch
+stream digest differed due one value at batch 3 / point 0
+(`-0.1646535199398629` versus `-0.16465351993986282`, 3 ULP). All other
+historical checks on that completed record passed. The runner did not execute
+another character or destination condition; no condition-complete destination
+trace, full replay, or destination scientific verdict exists.
+
+Independently recalculated all four file hashes, internal artifact/configuration
+digests, and aggregate digest. Replayed the exact committed runner in a
+disposable detached worktree using the committed Luna-42 source artifact; its
+four output files matched retained artifacts byte-for-byte. The retained replay
+record correctly says whole-run replay was not run after the blocker, with null
+digests. The environment pair is Luna-42 Windows/Python 3.11.5 versus Luna-43
+Linux/Python 3.12.3; the specific cause of the binary64 difference is unknown.
+The predeclared exact identity gate remains intact.
+
+The only destination equation status is **not applicable**: this retained
+first character has no destination reception. No conclusion about destination
+emissions, integration, efficacy, or a negative mechanism result follows.
+Reran Luna-43 focused tests (4 passed), the ACP-0008/runtime/routing selection
+(217 passed, the same four nominal-0.4 exact-float failures as baseline), and
+the full suite (1023 passed, the same four failures, 1 CUDA-unavailable skip).
+No new or unrelated test failure was found.
+
+Return the source-stream comparability question to the project owner. This is
+not a production/API correction or automatic successor; **no Luna-44 is
+authorized**. A01-A15 and ACP-0007 remain unchanged; ACP-0008 remains
+experimental, opt-in, and unpromoted. Historical Luna-42 remains **PASS WITH
+FOLLOW-UP**, Luna-41 **BLOCKED**, Luna-40 **NOT SUPPORTED IN THIS SETUP**,
+Luna-39 **PASS WITH FOLLOW-UP**, Luna-37 **NOT SUPPORTED IN THIS SETUP**, and
+Luna-34 **BLOCKED / UNDETERMINED**. Full evidence and commands:
+`workflow/handoffs/luna-0-independent-review-luna43-acp0008-destination-integration-20261005.md`.
+
 ## Luna-0 owner-directed authorization — Luna-43 destination integration mechanism
 
 **Luna-43 AUTHORIZED / NOT EXECUTED.** The current project-owner direction
