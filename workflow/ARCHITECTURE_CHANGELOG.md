@@ -1,5 +1,20 @@
 # Architecture Changelog
 
+## Luna-0 authorization — Luna-43 test comparison policy correction - 2026-10-05
+
+**Luna-43 AUTHORIZED / NOT EXECUTED; governance-only authorization.** Current
+baseline validation found four failures, all exact comparisons of computed
+floating values against decimal `0.4` in the Luna-41 and Luna-42 focused test
+files. The narrow follow-up may change only those tests to use the predeclared
+`64 * sys.float_info.epsilon * max(1, |a|, |b|)` comparison rule for floating
+equation results and symmetry. Exact event, route, reception, and payload-copy
+identity checks remain exact; Luna-41's scientific route-payload failure stays
+failed. Baseline: 1019 passed, 4 failed, 1 CUDA-unavailable skip, 1024
+collected; no unrelated failure was observed. No experiment, runner,
+production, ACP, architecture, artifact, or historical evidence change is
+authorized. ACP-0008 remains experimental/opt-in/unpromoted. Full
+authorization: `workflow/handoffs/luna-0-authorization-luna43-test-comparison-policy-20261005.md`.
+
 ## Luna-0 independent post-Luna-42 review — ACP-0008 corrective calibration - 2026-10-05
 
 **PASS WITH FOLLOW-UP; no Luna-43 authorized.** Reviewed the exact final

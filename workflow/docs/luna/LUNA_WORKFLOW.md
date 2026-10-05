@@ -1,5 +1,19 @@
 # TPCN Luna Multi-Agent Workflow — Event-Driven Architecture
 
+## Luna-0 authorization — Luna-43 test comparison policy correction
+
+**Luna-43 AUTHORIZED / NOT EXECUTED; test files only.** The current baseline
+has four failures, all strict assertions equating a computed floating result
+with decimal `0.4` in the Luna-41 and Luna-42 focused tests. Luna-43 may update
+only those two test files to use the already declared binary64 comparison
+formula for equation-derived floating values and symmetry. Preserve exact
+event/provenance comparisons and Luna-41's historical blocked near-pair result.
+No runner, production, ACP, architecture, artifact or historical scientific
+claim may change. The full suite baseline was 1019 passed, 4 failed, 1 skipped
+(CUDA unavailable); no unrelated failure was observed. Full authorization:
+`workflow/handoffs/luna-0-authorization-luna43-test-comparison-policy-20261005.md`;
+executor contract: `.github/agents/luna-43.agent.md`.
+
 ## Luna-0 independent post-Luna-42 review — ACP-0008 calibration
 
 **PASS WITH FOLLOW-UP — corrected calibration and frozen fixed-topology
