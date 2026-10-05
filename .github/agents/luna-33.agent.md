@@ -12,7 +12,9 @@ Luna-0 -> Luna-33 -> Luna-0
 ```
 
 Luna-33 is **AUTHORIZED / NOT EXECUTED** by
-`workflow/handoffs/luna-0-post-luna32-acp0007-four-class-efficacy-decision-20261004.md`.
+`workflow/handoffs/luna-0-post-luna32-acp0007-four-class-efficacy-decision-20261004.md`,
+as corrected by
+`workflow/handoffs/luna-0-luna33-topology-feasibility-correction-20261004.md`.
 Code baseline: `cc66e6a4affb044bf726d92510bcfd214c1f698f` (Luna-32 closed).
 Before execution, verify clean `main`, `HEAD == origin/main`, and that the
 latest authorization publication contains this exact dispatch and decision.
@@ -79,12 +81,15 @@ result may be reused.
   the original sample ID and external label. Verify D preserves the
   coordinate multiset, ordered timestamp vector, duration, and point count.
   Do not use a transform that reassigns or regularizes timestamps.
-- Use `topology_node_count=8`, `topology_initial_edges=8`,
+- Use `topology_node_count=8`, `topology_initial_edges=2`,
   `topology_edge_capacity=16`, `topology_fan_in=2`, and
-  `topology_fan_out=2`. This seeded public initializer supplies the same
-  initial graph to A–D within each seed and leaves bounded growth headroom.
-  Eight nodes are a newly declared experimental reference, not a historical
-  scale or invariant.
+  `topology_fan_out=2`. A pre-outcome public-initializer feasibility sweep
+  established that 2 is the maximum requested initial edge count that builds
+  for all five required seeds; the exact sweep and topologies are recorded in
+  the corrective Luna-0 handoff. This seeded public initializer supplies the
+  same initial graph to A–D within each seed and leaves bounded growth
+  headroom under the static ring-candidate audit. Eight nodes are a newly
+  declared experimental reference, not a historical scale or invariant.
 - Declare the static directed observation fabric as the eight-node ring:
   `neuron-i: (neuron-(i+1 mod 8),)` for every `i`. Use neighborhood and
   reverse-observer limits 2/2. The fabric is fixed for every condition and

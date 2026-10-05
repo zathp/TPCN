@@ -3594,3 +3594,31 @@ benefit, and hardware equivalence remain **NOT ESTABLISHED** until separate
 evidence exists. E2 pruning and N3 remain **NOT AUTHORIZED**. Sequence:
 `Luna-0 -> Luna-33 -> Luna-0`; Luna-33 must return to Luna-0 for independent
 review and may not self-close or authorize a successor.
+
+### Luna-33 topology-feasibility correction — 2026-10-04
+
+**AUTHORIZED — CORRECTED LUNA-33 / NOT EXECUTED.** The original
+`topology_initial_edges=8` setting failed public initialization for four of
+five required seeds. Before any four-class efficacy run or outcome-bearing
+inspection, Luna-0 swept the public `ExperimentRunner` initializer over
+initial edge counts 0–8 and seeds 0–4. The maximum all-seed feasible count is
+2. The exact success/error matrix, resulting seed-specific two-edge
+topologies, and static ring headroom are recorded in
+`workflow/handoffs/luna-0-luna33-topology-feasibility-correction-20261004.md`.
+Each topology retains at least seven legal absent ring candidates under the
+unchanged fan-in/out limits of two and edge capacity 16.
+
+Only `topology_initial_edges` is corrected from 8 to 2 in
+`.github/agents/luna-33.agent.md`. Seeds, eight-node scale, edge capacity,
+fan-in/out, ring observation fabric, structural-growth bounds, dataset and
+split, A/B/C/D design, D intervention, primary metric, support rule, and
+public initializer remain unchanged. The original blocked-execution handoff
+is preserved unchanged as historical evidence. Contract 1.2, A01–A15,
+ACP-0007 and acceptance criteria are unchanged; no ACP is required. Luna-33
+is **AUTHORIZED / NOT EXECUTED** and may resume under the corrected dispatch,
+then must return to Luna-0. No efficacy outcome was examined or produced.
+Historical Luna-12L remains **NOT SUPPORTED / UNCHANGED**; Luna-13F
+useful-growth prediction remains **NOT SUPPORTED / UNCHANGED**; E2 pruning
+and N3 remain **NOT AUTHORIZED**. Task efficacy, prediction benefit,
+resource benefit and hardware equivalence remain **NOT ESTABLISHED**.
+Successor work is not authorized.

@@ -1,5 +1,28 @@
 # Architecture Changelog
 
+# Luna-0 corrective authorization — Luna-33 topology feasibility - 2026-10-04
+
+**AUTHORIZED — CORRECTED LUNA-33 / NOT EXECUTED.** After the original
+eight-edge Luna-33 profile stopped before efficacy execution, Luna-0 swept
+public initialization for initial edge counts 0–8 and required seeds 0–4.
+Two edges is the maximum count feasible for every seed, and each resulting
+topology retains 7–8 statically legal absent directed ring candidates under
+the unchanged edge-capacity and fan-in/out bounds. Evidence and the complete
+matrix/topologies are recorded in
+`workflow/handoffs/luna-0-luna33-topology-feasibility-correction-20261004.md`.
+Only `topology_initial_edges` changes from 8 to 2 in the Luna-33 dispatch;
+the seeds, node count, capacity, fan limits, observation fabric, growth bounds,
+dataset, A–D design, D intervention, endpoint, and support rule are unchanged.
+This is a pre-outcome experimental-profile correction within accepted
+ACP-0007; Architecture Contract 1.2, A01–A15, ACP-0007 and acceptance
+criteria remain unchanged; no ACP is required. The efficacy experiment was
+not run. Historical Luna-12L remains **NOT SUPPORTED / UNCHANGED**,
+Luna-13F useful-growth prediction remains **NOT SUPPORTED / UNCHANGED**,
+E2 pruning and N3 remain **NOT AUTHORIZED**, and task efficacy, prediction
+benefit, resource benefit, and hardware equivalence remain **NOT ESTABLISHED**.
+Luna-33 must return to Luna-0 for independent review; no successor is
+authorized.
+
 # Luna-0 authorization — ACP-0007 four-class EXCURSION_V1 efficacy (Luna-33) - 2026-10-04
 
 **AUTHORIZED / NOT EXECUTED.** Following Luna-32's independently verified
