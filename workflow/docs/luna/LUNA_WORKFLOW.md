@@ -1,5 +1,24 @@
 # TPCN Luna Multi-Agent Workflow — Event-Driven Architecture
 
+## Luna-0 independent review — Luna-34 eligibility-capacity blocker
+
+Luna-34's reported eligibility overflow was independently reproduced at
+`4d77489eaebadf638f22996d1d0d49e162b378ab`: seed 0,
+`NO_EDGE_CONTROL`, sequence index 4 (`c00-004`), source emission 17 with
+16 resident traces in a 16-entry per-ledger capacity. The prior 16 linked
+predictor records had expired, but the runtime's eligibility ledgers have no
+configured expiry and retain entries until the character lifecycle ends.
+The overflow exception is consistent with the existing deterministic bounded
+overflow behavior; whether this retention/capacity relationship is intended
+for the complete workload is not established, and no production defect is
+claimed. Luna-34 remains **BLOCKED** and its propagation-to-emission
+hypothesis **UNDETERMINED**. A bounded lifecycle-only diagnostic is
+**AUTHORIZED / NOT EXECUTED** as Luna-35 under
+`.github/agents/luna-35.agent.md`. It may not retry the propagation
+experiment, change capacity/expiry, or modify production behavior. Return to
+Luna-0; no Luna-36 is authorized. Full review:
+`workflow/handoffs/luna-0-independent-review-luna34-eligibility-capacity-20261004.md`.
+
 ## ACP-0003 heterogeneous execution review
 
 ACP-0003 is accepted for staged implementation as an architecture-governance

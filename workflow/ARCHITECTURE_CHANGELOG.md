@@ -1,5 +1,40 @@
 # Architecture Changelog
 
+# Luna-0 independent post-Luna-34 review — eligibility capacity/lifecycle - 2026-10-04
+
+**PASS — LUNA-34 BLOCKER INDEPENDENTLY REPRODUCED; LUNA-35 AUTHORIZED /
+NOT EXECUTED.** From clean revision
+`4d77489eaebadf638f22996d1d0d49e162b378ab`, the first fixed no-edge stream
+failure reproduces at seed 0, sequence index 4 (`c00-004`): the seventeenth
+source emission attempts a new unique eligibility trace while the source
+ledger has 16/16 entries. The runtime derives 16 entries per ledger from
+`prediction_capacity=8` times two neurons and allocates two per-node ledgers.
+All 16 linked predictions had expired, but eligibility entries remained
+resident; no errors or reward reached the ledger before failure. The
+character did not reach its reset boundary.
+
+The hard overflow is established bounded behavior, including an existing
+test requiring deterministic rejection without eviction. The relationship
+between predictor capacity and eligibility capacity, and retention after
+predictor expiry, are not a documented execution-capacity contract. No
+production defect is established; the exact contract-fixed workload cannot
+complete through the required public runtime without changing inputs or
+capacity. Luna-34 is correctly **BLOCKED**; all three conditions, the
+multi-emitter bridge, and candidate formation remain **UNDETERMINED**. Its
+initial artifacts remain honest; the independent exact failure coordinates
+and lifecycle observations are recorded in
+`workflow/handoffs/luna-0-independent-review-luna34-eligibility-capacity-20261004.md`.
+
+Luna-35 is authorized solely for two-fixture eligibility lifecycle
+characterization (the exact 20-point no-edge reproducer and a one-point
+character-reset control). No topology-edge condition, propagation-to-emission
+retry, efficacy endpoint, capacity/expiry tuning, production edit, ACP,
+architecture promotion, or Luna-36 is authorized. Architecture Contract
+1.2, ACP-0007, the Luna-33 verdict, and the Luna-34 mechanism hypothesis are
+unchanged. Independent regression: 71 focused tests passed; full suite
+929 passed, 1 CUDA-unavailable skip; 930 collected, exactly nine more than
+the pre-Luna-34 baseline due to Luna-34's nine added tests.
+
 # Luna-0 candidate-formation bootstrap decision - Luna-34 mechanism authorization - 2026-10-04
 
 **PASS - ACP-0007 CANDIDATE-FORMATION BOOTSTRAP CLASSIFIED;
