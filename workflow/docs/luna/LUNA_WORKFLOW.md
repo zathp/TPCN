@@ -1,5 +1,36 @@
 # TPCN Luna Multi-Agent Workflow — Event-Driven Architecture
 
+## Luna-0 owner-directed audit — existing routed-strength mechanisms; Luna-40 AUTHORIZED / NOT EXECUTED
+
+**The only accepted endogenous routed-strength mechanism identified is
+optional ACP-0007 E2 local structural growth, which can add bounded
+convergent edges at fixed Model-B parameters; edge weights themselves are
+not learnable.** Luna-39's independently reviewed result remains
+**PASS WITH FOLLOW-UP**: ACP-0008 integration at `w=1` accumulated to
+`max |z|=0.763164` without destination emissions; the predeclared `w=2`
+sensitivity produced 31 trace-verified integration-mediated emissions on
+27/320 characters and zero direct emissions. ACP-0008 remains experimental
+and opt-in, with no promotion or efficacy claim.
+
+The audit verified a clean synchronized baseline at
+`6ae253dd53b2b7a9ba1589c10035690a5b65e416`. Existing reward/eligibility
+updates local credit, not edge parameters. ACP-0007 structural growth uses
+actual source-local canonical-emission timing evidence, mutates only after
+quiescent character completion, and inserts default `w=1`, `d=1`, `r=0`
+edges under finite deterministic bounds. Prior Luna-12I/Luna-28 evidence
+supports mechanism validity and legal fan-in, not efficacy or present
+ACP-0008 bridge success.
+
+Luna-40 is authorized only to characterize whether that existing local
+growth mechanism can generate effective convergent routed drive under a
+predeclared ACP-0008 configuration and matched frozen controls. It may not
+learn weights, tune parameters, modify production code, evaluate accuracy,
+prune, or promote ACP-0008. **Luna-40 is AUTHORIZED / NOT EXECUTED.** See
+`.github/agents/luna-40.agent.md` and
+`workflow/handoffs/luna-0-authorization-luna40-effective-routed-drive-20261005.md`.
+All prior Luna verdicts and historical no-authorization records remain
+unchanged.
+
 ## Luna-0 independent review — Luna-39 ACP-0008 propagation-to-emission diagnostic
 **PASS WITH FOLLOW-UP; BOUNDED MECHANISTIC BRIDGE SUPPORTED ONLY UNDER STATIC N2 SENSITIVITY.** Reviewed `a185c6321b06f58df2bd7b22c56b1d23cb7d67e5`, starting from clean synchronized `main`. The 1,920-execution Luna-39 run passes historical reproduction: all 960 legacy-arm records exactly match Luna-37; source streams are invariant across arms. Independently reconstructed all six aggregate cells, 3,430 integration traces and 3,840 ledger-capacity records. Under ACP-0008, `w=1` accumulates (`max |z|=0.763164`) but produces zero destination emissions; the predeclared `w=2` sensitivity produces 31 integration-mediated canonical emissions on 27/320 characters. There are zero direct emissions. Capacity remains 1024 per ledger, peak occupancy 19; equations reconcile. Independent full rerun reproduced digest `5a19be65e2386e585eb50877c80f3114ee7383fda7b2a8324642440618b963d6`. Focused 227 passed; full suite 998 passed, 1 skipped (CUDA unavailable), 999 collected. ACP-0008 remains experimental/opt-in; no promotion, efficacy or ACP-0007 claim. Luna-37 remains historically NOT SUPPORTED IN THIS SETUP; Luna-34 remains BLOCKED / UNDETERMINED; Luna-33/ACP-0007 unchanged. A possible natural/learned-strength follow-up requires project-owner direction; no Luna-40 created or authorized. See `workflow/handoffs/luna-0-independent-review-luna39-acp0008-propagation-emission-20261005.md`.
 

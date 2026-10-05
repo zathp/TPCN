@@ -1,5 +1,37 @@
 # Architecture Changelog
 
+# Luna-0 owner-directed audit — routed-strength capability; Luna-40 AUTHORIZED / NOT EXECUTED - 2026-10-05
+
+**No edge-weight plasticity exists.** `Edge` is immutable and Model-B
+transfer remains the static N2 transform `tanh(w * payload)` followed by the
+declared divider/reference transform; `w` is bounded `[-2, 2]` at
+construction. Reward and eligibility update local credit only. The accepted,
+opt-in ACP-0007 `e2_local_temporal` mechanism can change effective routed
+drive only by adding a locally evidenced, bounded convergent edge, with
+default fixed Model-B parameters (`w=1`, `d=1`, `r=0`) and a declared positive
+delay. Fan-in, edge/routing capacities, candidate state, and growth attempts
+remain bounded and deterministic. Prior Luna-12I and independent Luna-28
+evidence establishes mechanism-level candidate/admission/routing behavior,
+not task efficacy or an ACP-0008 discharge result.
+
+The independently reviewed Luna-39 result is **PASS WITH FOLLOW-UP**:
+default `w=1` ACP-0008 integration reached `max |z|=0.763164` with zero
+destination canonical emissions; the predeclared static `w=2` sensitivity
+produced 31 trace-verified integration-mediated emissions on 27/320
+characters and zero direct emissions. ACP-0008 remains experimental,
+opt-in, and unpromoted. Luna-37's prior-architecture verdict and Luna-38/39
+mechanism verdicts are preserved.
+
+Following the owner-directed audit from clean `main` at
+`6ae253dd53b2b7a9ba1589c10035690a5b65e416`, Luna-40 is
+**AUTHORIZED / NOT EXECUTED** as a mechanism-only characterization of
+whether the existing ACP-0007 local growth mechanism creates effective
+convergent routed drive under ACP-0008's unchanged defaults. It may not
+change edge-weight semantics, production code, ACPs, thresholds, decay,
+reward/eligibility, or topology bounds; no efficacy, pruning, classification,
+or ACP-0008 promotion is authorized. See `.github/agents/luna-40.agent.md`
+and `workflow/handoffs/luna-0-authorization-luna40-effective-routed-drive-20261005.md`.
+
 # Luna-0 independent post-Luna-39 review — ACP-0008 propagation-to-emission diagnostic - 2026-10-05
 
 **PASS WITH FOLLOW-UP; bounded mechanism supported only under the predeclared static N2 sensitivity.** Independent post-Luna-39 review verified `a185c6321b06f58df2bd7b22c56b1d23cb7d67e5`: the legacy arm exactly reproduces all Luna-37 records; destination-only ACP-0008 integration preserves upstream source/routing schedules; `w=1` yields zero canonical destination emissions, while `w=2` yields 31 trace-verified integration-mediated emissions on 27/320 characters. Independent aggregate, equation, capacity, and full replay audits pass; full rerun digest is unchanged. No direct emissions, production defect, or architecture change. ACP-0008 stays accepted as experimental/opt-in, not promoted. Luna-37 remains historically NOT SUPPORTED IN THIS SETUP; Luna-34 BLOCKED / UNDETERMINED; Luna-33 and ACP-0007 unchanged. No Luna-40 created or authorized; a possible natural/learned routed-strength follow-up is returned to the project owner for direction. Full evidence and validation: `workflow/handoffs/luna-0-independent-review-luna39-acp0008-propagation-emission-20261005.md`.
