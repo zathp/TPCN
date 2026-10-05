@@ -1,5 +1,9 @@
 # Architecture Changelog
 
+# Luna-0 independent post-Luna-36 review — eligibility capacity API - 2026-10-04
+
+**PASS — PUBLIC-API BLOCKER RESOLVED; LUNA-37 AUTHORIZED / NOT EXECUTED.** Luna-36 (`8f8824a185a2b1ebc3fd74cbd29eef8d75cbd818`) added an optional finite per-ledger `eligibility_capacity` to the EXCURSION runtime with the legacy default preserved, bounded overflow intact, and no lifecycle/predictor/reward change. Focused 90 passed; full 945 passed, 1 skipped, 946 collected. No production defect and no architecture change. Luna-37 is authorized (not executed) as a Luna-34 mechanism-only successor with predeclared `eligibility_capacity=1024`. Luna-34 stays BLOCKED / UNDETERMINED; Luna-33 and ACP-0007 unchanged. Review: `workflow/handoffs/luna-0-independent-review-luna36-eligibility-capacity-api-20261004.md`.
+
 # Luna-0 independent post-Luna-35 review — eligibility lifecycle and capacity API - 2026-10-04
 
 **PASS — LUNA-35 EVIDENCE INDEPENDENTLY RECONSTRUCTED; NO PRODUCTION

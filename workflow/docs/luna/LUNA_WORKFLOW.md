@@ -1,5 +1,11 @@
 # TPCN Luna Multi-Agent Workflow — Event-Driven Architecture
 
+## Luna-0 independent review — Luna-36 eligibility capacity API
+
+**PASS — PUBLIC-API BLOCKER RESOLVED; NO PRODUCTION DEFECT; LUNA-37 AUTHORIZED / NOT EXECUTED.** Reviewed Luna-36 at `8f8824a185a2b1ebc3fd74cbd29eef8d75cbd818` (clean, `HEAD == origin/main`). Only the three owned files changed. The optional keyword-only per-ledger `eligibility_capacity` defaults to the unchanged legacy `prediction_capacity * max(1, nodes)` (16 for the two-node, `prediction_capacity=8` fixture); an explicit 1024 yields 1024 per ledger; a deliberately small capacity still raises `EligibilityCapacityError`. Focused: 90 passed. Full: 945 passed, 1 skipped (CUDA), 946 collected; +13 from Luna-36 tests. Lifecycle, predictor, reward and delayed-credit semantics are unchanged. Luna-34 remains historically **BLOCKED / UNDETERMINED**; Luna-33 and ACP-0007 are unchanged.
+
+Luna-37 is authorized only as a clean mechanism-only successor to Luna-34 (no-edge, default static edge, single `|w|=2` condition) with predeclared `eligibility_capacity=1024` derived from the per-character event budget. No efficacy, growth, pruning, architecture change or Luna-38 is authorized. See `.github/agents/luna-37.agent.md` and `workflow/handoffs/luna-0-independent-review-luna36-eligibility-capacity-api-20261004.md`.
+
 ## Luna-0 independent review — Luna-35 eligibility capacity/lifecycle
 
 **PASS — LUNA-35 EVIDENCE INDEPENDENTLY RECONSTRUCTED; NO PRODUCTION
