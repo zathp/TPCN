@@ -1,5 +1,30 @@
 # Architecture Changelog
 
+# Luna-0 independent closure - Luna-33 ACP-0007 four-class EXCURSION_V1 efficacy - 2026-10-04
+
+**PASS - LUNA-33 ACP-0007 FOUR-CLASS EXCURSION_V1 EFFICACY EXPERIMENT
+INDEPENDENTLY VERIFIED / CLOSED** within the exact declared synthetic
+four-class experiment scope. Independent review handoff:
+`workflow/handoffs/luna-0-independent-review-luna-33-acp0007-four-class-efficacy-20261004.md`.
+The committed experiment was independently reproduced byte-for-byte; all 20
+seed/condition runs were valid, and A/B observation non-interference and
+held-out non-mutation were independently verified.
+
+The joint predeclared H1 is **NOT SUPPORTED IN THIS SETUP**: mean C-A and C-D
+are both 0.0 (0/5 positive seeds). Structural observations were present, but
+candidate opportunities were zero, all C/D decisions were `no_candidate`,
+growth attempts and admissions were zero, and no admitted edge was later
+used. The effect of successfully engaged growth and its temporal specificity
+remain **NOT ESTABLISHED**. Prediction benefit, resource benefit, and
+hardware equivalence remain **NOT ESTABLISHED**.
+
+Historical Luna-12L remains **NOT SUPPORTED / UNCHANGED**; Luna-13F remains
+**NOT SUPPORTED / UNCHANGED**. Architecture Contract 1.2 and accepted
+ACP-0007 are **UNCHANGED**; no architecture or core/runtime change was made.
+E2 pruning and ACP-0002 N3 remain **NOT AUTHORIZED**. Hardware equivalence
+remains **NOT ESTABLISHED**. Luna-33 is closed only for this experiment
+scope; Luna-34 and any successor remain **NOT AUTHORIZED**.
+
 # Luna-0 corrective authorization — Luna-33 topology feasibility - 2026-10-04
 
 **AUTHORIZED — CORRECTED LUNA-33 / NOT EXECUTED.** After the original
