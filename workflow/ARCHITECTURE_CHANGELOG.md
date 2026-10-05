@@ -1,5 +1,34 @@
 # Architecture Changelog
 
+## Luna-0 independent post-Luna-40 review — existing structural growth and effective routed drive - 2026-10-05
+
+**NOT SUPPORTED IN THIS SETUP; EXECUTION CONTRACT PASS; NO PRODUCTION
+DEFECT; NO LUNA-41 AUTHORIZED.** Independent review of the completed
+Luna-40 artifact confirms the exact negative branch **NO LEGAL EDGE
+ADMISSION**. Across five seeds and four arms (1,280 character runs), no
+relay/destination canonical emissions or source/destination temporal pairs
+formed, so there were no candidates, attempts, admissions, shortcut routes,
+destination receptions, or ACP-0008 `z` updates. Source emissions and
+`source->relay` routes were 1,715 per arm. All paired neural records and
+runtime/resource projections match; the full artifact digest was independently
+recomputed and matches both replay records. The focused 11-test suite and the
+full repository suite (1009 passed, 1 skipped because CUDA is unavailable)
+pass. No production defect or architecture change is established. The run
+does not test effective drive after admission, makes no efficacy or ACP-0008
+promotion claim, and applies only to its frozen fixture. Historical
+Luna-33/34/37/38/39 and ACP-0007 verdicts remain unchanged; no Luna-41 is
+authorized. Review: `workflow/handoffs/luna-0-independent-review-luna40-effective-routed-drive-20261005.md`.
+
+For the architecture question, the answer under this fixture is **no**:
+growth did not engage because the source-local candidate was absent. Existing
+APIs composed without a blocker, but no conclusion is available about
+post-admission convergence or temporal alignment. Luna-39's default `w=1`
+integration result (`max |z|=0.763164`, no emission) and static `w=2`
+sensitivity (31 integrated emissions, `max |z|=1.118173`) are context only;
+Luna-40 had no destination input and cannot establish that convergent
+topology substitutes for stronger individual coupling. Return the
+no-relay-emission boundary to the project owner; no successor is authorized.
+
 # Luna-0 owner-directed audit — routed-strength capability; Luna-40 AUTHORIZED / NOT EXECUTED - 2026-10-05
 
 **No edge-weight plasticity exists.** `Edge` is immutable and Model-B

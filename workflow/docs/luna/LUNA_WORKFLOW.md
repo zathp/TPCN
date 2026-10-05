@@ -1,5 +1,38 @@
 # TPCN Luna Multi-Agent Workflow — Event-Driven Architecture
 
+## Luna-0 independent post-Luna-40 review — Existing structural growth and effective routed drive
+
+**NOT SUPPORTED IN THIS SETUP; EXECUTION CONTRACT PASS; NO PRODUCTION
+DEFECT; NO LUNA-41 AUTHORIZED.** Reviewed the completed bounded Luna-40 run
+at `ebff91176c02e29e3b9aad38308fc95d0b773817`, with its authorized start
+revision `a39dd335e7af1b18a8d28ef3faf7b975304132df`. The five-seed, four-arm
+artifact contains 1,280 character runs: every arm has 1,715 source emissions
+and source-to-relay transfers, but no relay or destination emissions,
+source/destination temporal pair, candidate, growth attempt, admission,
+destination reception, or `z` update. Independently reconstructed all
+per-arm totals, route/event/payload provenance, control equality, bounds,
+and the full replay digest
+`f5c7f4d8fbc2037c43ac1118e96e6a2a23e4f0241da78cd7bea99a226b730211`.
+Focused tests: 11 passed; full suite: 1009 passed, 1 skipped (CUDA
+unavailable; 1010 collected, 11 more than the prior 999). At review
+resumption, `HEAD == origin/main`; the only worktree changes were the
+unpublished Luna-0 review draft from the preceding turn, with no unrelated
+or experiment changes. The result is specifically **NO LEGAL EDGE ADMISSION**;
+because no shortcut was admitted or used, it does not test post-admission
+effective drive. It does not imply a production defect or generalize beyond
+the frozen fixture. ACP-0008 remains experimental/opt-in and unpromoted;
+Luna-33/34/37/38/39 and ACP-0007 verdicts are unchanged. No follow-up is
+authorized. Full review and limitations:
+`workflow/handoffs/luna-0-independent-review-luna40-effective-routed-drive-20261005.md`.
+
+**Architecture question:** Existing structural plasticity did not supply the
+routed-drive mechanism Luna-39 showed ACP-0008 could use in this fixture,
+because no legal candidate formed. The run was not blocked by API
+composition, and it does not test whether admitted convergent paths could
+substitute for Luna-39's `w=2` sensitivity. The declared stream's failure to
+produce relay emissions is returned to the project owner; it does not
+authorize tuning or a successor Luna.
+
 ## Luna-0 owner-directed audit — existing routed-strength mechanisms; Luna-40 AUTHORIZED / NOT EXECUTED
 
 **The only accepted endogenous routed-strength mechanism identified is

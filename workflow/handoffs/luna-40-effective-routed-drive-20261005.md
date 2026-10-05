@@ -11,7 +11,7 @@ tpcn_handoff:
   contract_version: "1.1"
   branch: "main"
   base_revision: "a39dd335e7af1b18a8d28ef3faf7b975304132df"
-  result_revision: "5cbd62ff3a682519956dbec94ab56a3012527061"
+  result_revision: "5cbd62f929bdc19fff2f24de936b13d47c5386f8"
   dependencies:
     - "Luna-0 authorization: workflow/handoffs/luna-0-authorization-luna40-effective-routed-drive-20261005.md"
     - "ACP-0007 local EXCURSION_V1 structural growth"
