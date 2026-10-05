@@ -173,3 +173,11 @@ def test_run_experiment_records_non_null_provenance_and_freeze_before_phase_b(
     assert freeze_artifact["recorded_before_phase_b_stream_creation"] is True
     assert freeze_artifact["provenance"]["execution_revision"] == "runner-commit"
     assert config_artifact["provenance"]["config_digest"] == results["provenance"]["config_digest"]
+
+
+def test_phase_b_once_builds_paired_input_digests_for_all_arms() -> None:
+    phase_b = luna42._phase_b_once(0.0125)
+
+    assert phase_b["paired_input_invariance"]
+    assert set(phase_b["input_digests"]) == {"CALIBRATED", "DEFAULT", "DISABLED"}
+    assert all(set(seed_map) == {"0", "1", "2", "3", "4"} for seed_map in phase_b["input_digests"].values())

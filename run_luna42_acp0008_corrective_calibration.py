@@ -1493,7 +1493,7 @@ def _phase_b_once(selected_decay_rate_z: float) -> dict[str, Any]:
     records: dict[str, dict[str, list[dict[str, Any]]]] = {
         arm: {str(seed): [] for seed in SEEDS} for arm in PHASE_B_ARMS
     }
-    input_digests: dict[str, dict[str, str]] = {}
+    input_digests: dict[str, dict[str, str]] = {arm: {} for arm in PHASE_B_ARMS}
     for arm in PHASE_B_ARMS:
         for seed in SEEDS:
             sequences = luna39.base._training_point_sequences(seed)
