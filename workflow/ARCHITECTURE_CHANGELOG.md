@@ -1,19 +1,34 @@
 # Architecture Changelog
 
-## Luna-0 authorization — Luna-43 test comparison policy correction - 2026-10-05
+## Luna-0 correction and owner-directed Luna-43 authorization — 2026-10-05
 
-**Luna-43 AUTHORIZED / NOT EXECUTED; governance-only authorization.** Current
-baseline validation found four failures, all exact comparisons of computed
-floating values against decimal `0.4` in the Luna-41 and Luna-42 focused test
-files. The narrow follow-up may change only those tests to use the predeclared
-`64 * sys.float_info.epsilon * max(1, |a|, |b|)` comparison rule for floating
-equation results and symmetry. Exact event, route, reception, and payload-copy
-identity checks remain exact; Luna-41's scientific route-payload failure stays
-failed. Baseline: 1019 passed, 4 failed, 1 CUDA-unavailable skip, 1024
-collected; no unrelated failure was observed. No experiment, runner,
-production, ACP, architecture, artifact, or historical evidence change is
-authorized. ACP-0008 remains experimental/opt-in/unpromoted. Full
-authorization: `workflow/handoffs/luna-0-authorization-luna43-test-comparison-policy-20261005.md`.
+The earlier governance publication `b495da7ddfe264b33adbb93690543b6c73a31b08`
+mistakenly authorized a test-only comparison correction as Luna-43. That
+assignment is superseded before execution by the current explicit project-owner
+direction and must not be executed. Its handoff is retained as history with a
+supersession note; the independent post-Luna-42 review remains accurate as of
+its publication.
+
+**Luna-43 AUTHORIZED / NOT EXECUTED** for only the following mechanism
+comparison: hold the ACP-0008 relay at calibrated `decay_rate_z=0.0125`;
+compare destination integration disabled, default, and calibrated at
+`0.0125`; use the reviewed fixed `source -> relay -> destination` topology with
+both ordinary `w=1` hops, no source-to-destination shortcut, ACP-0007 growth
+disabled, and all other parameters/streams/bounds frozen. Production neuron,
+runtime and topology APIs support this configuration; no production change or
+ACP amendment is needed. This grants no efficacy, task-score, hardware,
+promotion, or successor claim. ACP-0008 remains experimental, opt-in and
+unpromoted; ACP-0007 remains unchanged.
+
+Baseline: `python -m pytest -q -rs` yielded **1019 passed, 4 failed, 1 skipped
+(1024 collected)**; the four failures are the known nominal-`0.4` exact
+assertions in Luna-41/Luna-42 tests, and the skip is CUDA unavailable. The
+focused API/runtime/routing and Luna-41/42 selection yielded **217 passed, 4
+failed**, with only those same assertions failing. No unrelated failure was
+observed. The experiment was not run and no experiment runner/results were
+created. Full authorization and evidence:
+`workflow/handoffs/luna-0-authorization-luna43-destination-integration-20261005.md`;
+executor contract: `.github/agents/luna-43.agent.md`.
 
 ## Luna-0 independent post-Luna-42 review — ACP-0008 corrective calibration - 2026-10-05
 

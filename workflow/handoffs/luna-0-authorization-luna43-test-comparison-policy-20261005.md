@@ -201,3 +201,18 @@ test-only governance assignment.
 Luna-43 owns only the two test files above and the post-change validation.
 Return the completed handoff to Luna-0. No successor is authorized by this
 decision.
+
+## Supersession notice — 2026-10-05
+
+This handoff records the earlier published test-only authorization and is
+retained as historical evidence, with this notice appended. Before that
+assignment was executed, the project owner issued a new explicit Luna-43 task:
+the ACP-0008 destination-integration mechanism comparison. This new direction
+supersedes the test-only scope and the earlier "no successor authorized"
+disposition. **Do not execute the test-comparison assignment in this handoff.**
+The active Luna-43 contract and authorization are now
+`.github/agents/luna-43.agent.md` and
+`workflow/handoffs/luna-0-authorization-luna43-destination-integration-20261005.md`.
+The earlier publication created no test changes, runner, experiment, or
+scientific result. ACP-0008 remains experimental, opt-in, and unpromoted;
+ACP-0007 and all historical outcomes remain unchanged.

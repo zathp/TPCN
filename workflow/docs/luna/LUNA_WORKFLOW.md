@@ -1,18 +1,24 @@
 # TPCN Luna Multi-Agent Workflow — Event-Driven Architecture
 
-## Luna-0 authorization — Luna-43 test comparison policy correction
+## Luna-0 owner-directed authorization — Luna-43 destination integration mechanism
 
-**Luna-43 AUTHORIZED / NOT EXECUTED; test files only.** The current baseline
-has four failures, all strict assertions equating a computed floating result
-with decimal `0.4` in the Luna-41 and Luna-42 focused tests. Luna-43 may update
-only those two test files to use the already declared binary64 comparison
-formula for equation-derived floating values and symmetry. Preserve exact
-event/provenance comparisons and Luna-41's historical blocked near-pair result.
-No runner, production, ACP, architecture, artifact or historical scientific
-claim may change. The full suite baseline was 1019 passed, 4 failed, 1 skipped
-(CUDA unavailable); no unrelated failure was observed. Full authorization:
-`workflow/handoffs/luna-0-authorization-luna43-test-comparison-policy-20261005.md`;
-executor contract: `.github/agents/luna-43.agent.md`.
+**Luna-43 AUTHORIZED / NOT EXECUTED.** The current project-owner direction
+supersedes the post-Luna-42 review's then-current "no Luna-43 authorized"
+disposition and the mistakenly published test-only assignment. Luna-43 may
+run only the bounded mechanism comparison with the relay fixed at ACP-0008
+`decay_rate_z=0.0125` and destination integration disabled/default/calibrated.
+Use only the fixed `source -> relay -> destination` topology, ordinary `w=1`
+on both hops, no shortcut, ACP-0007 growth disabled, and all remaining
+parameters/streams/bounds frozen as reviewed. No task efficacy, promotion, or
+hardware claim is authorized; ACP-0008 remains experimental, opt-in, and
+unpromoted; ACP-0007 is unchanged. The full baseline was 1019 passed, 4 known
+Luna-41/Luna-42 nominal-float assertion failures, and 1 CUDA-unavailable skip;
+the focused ACP-0008/runtime/routing selection was 217 passed with only those
+same 4 failures. No unrelated failure was observed. Do not execute the
+superseded test-only assignment. Full authorization and baseline evidence:
+`workflow/handoffs/luna-0-authorization-luna43-destination-integration-20261005.md`;
+executor contract: `.github/agents/luna-43.agent.md`. No Luna-43 experiment was
+run in this authorization pass.
 
 ## Luna-0 independent post-Luna-42 review — ACP-0008 calibration
 

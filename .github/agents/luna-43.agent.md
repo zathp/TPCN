@@ -1,90 +1,140 @@
 ---
-name: Luna-43 ACP-0008 Test Comparison Policy Correction
-description: Align Luna-41/Luna-42 auxiliary test assertions with the predeclared binary64 comparison rule; test files only.
+name: Luna-43 ACP-0008 Destination Integration Mechanism
+description: Compare disabled, default, and calibrated destination integration with a frozen calibrated relay on the reviewed fixed two-hop route.
 ---
 
-# Luna-43 — ACP-0008 Test Comparison Policy Correction
+# Luna-43 — ACP-0008 Destination Integration Mechanism
 
-## Authorization and baseline
+## Authorization and execution boundary
 
-Luna-43 is **AUTHORIZED / NOT EXECUTED** by
-`workflow/handoffs/luna-0-authorization-luna43-test-comparison-policy-20261005.md`.
-Start only from the published authorization revision, with a clean worktree,
-and record the exact revision before editing. This is a test-only correction;
-it is not permission to run or republish either calibration experiment.
+Luna-43 is **AUTHORIZED / NOT EXECUTED** only for the mechanism experiment
+below, under the current project-owner direction and the matching Luna-0
+authorization handoff. This contract supersedes the earlier, mistakenly
+published test-comparison authorization. Do not execute that old test-only
+assignment. This contract does not authorize Luna-44.
 
-Read `workflow/ARCHITECTURE_CONTRACT.md`,
-`workflow/ARCHITECTURE_CHANGELOG.md`,
-`workflow/docs/luna/LUNA_WORKFLOW.md`,
-`workflow/docs/architecture/ACCEPTANCE_CRITERIA.md`,
-`workflow/docs/luna/AGENT_HANDOFF_TEMPLATE.md`, the Luna-41 and Luna-42 agent
-contracts and execution handoffs, the independent Luna-42 review, and both
-focused tests and runner comparison rules. A01-A15 and ACP status are
-unaffected; do not reinterpret the scientific outcomes.
+Before editing or running the experiment, read the architecture contract,
+ACP-0008, ACP-0007, Luna-42 contract/runner/results, the independent post-Luna-42
+review, and Luna-40/41/42 handoffs named by the authorization handoff. Verify
+the exact authorization revision, branch, clean worktree, and synchronized
+baseline before execution. Publish the owned runner/tests/configuration before
+running; capture the non-null execution revision, runner hash, frozen config
+digest, and environment identity. If required provenance or any interface
+assumption cannot be verified, stop BLOCKED and return to Luna-0.
 
-## Objective
+Luna-43 must not run in the Luna-0 authorization pass. Do not change production
+code, execute historical Luna-40/41/42 runners, or modify their artifacts,
+outcomes, or handoffs.
 
-Correct auxiliary floating-point assertions in the two calibration test files
-so nominal equation-derived values are checked using the already declared
-binary64 rule:
+## Objective and falsifiable hypothesis
+
+Using the exact reviewed Luna-42 Phase-B stream and bounds, determine whether
+the already observed ACP-0008 calibrated relay emissions cause distinct
+downstream destination behavior when the destination is configured with:
+
+1. integration disabled (`integration=None`);
+2. default integration (`IntegrationConfig()`, `decay_rate_z=0.1`); or
+3. calibrated integration (`IntegrationConfig(decay_rate_z=0.0125)`).
+
+The relay is always integration-enabled with the frozen calibrated
+`decay_rate_z=0.0125` in all three arms. The hypothesis is that destination
+integration configuration can change destination integration-mediated
+emissions under this fixed routed stream. No destination emission or
+between-arm difference is guaranteed; a null/negative result is valid.
+
+This is mechanism-only. Do not score classification, accuracy, task efficacy,
+prediction improvement, reward, utility, energy benefit, or structural-growth
+benefit.
+
+## Frozen interface and conditions
+
+Use the existing production `MultiExcursionNeuron`,
+`ExcursionCharacterRuntime`, and `BoundedTopology` APIs. Use only the static
+directed edges:
+
+- `source -> relay`
+- `relay -> destination`
+
+Both are ordinary fixed Model-B edges with delay `1.0`, `w=1.0`, `d=1.0`,
+`r=0.0` (`divider_strength=1.0`, `reference=0.0`). No
+`source -> destination` edge or other shortcut may exist. Keep the reviewed
+three-node bounded topology, fan-in/out limits 2, and edge/routing capacities
+3. Do not enable, invoke, or emulate ACP-0007 growth; topology is identical and
+fixed in all arms.
+
+Configuration by node:
+
+- source: unchanged Luna-42 Phase-B E1 configuration, integration disabled;
+- relay: unchanged Luna-42 Phase-B E1 configuration, ACP-0008 enabled at
+  `decay_rate_z=0.0125`;
+- destination: unchanged Luna-42 Phase-B E1 configuration, with only its
+  integration condition varied across the three arms above.
+
+All other ACP-0008 parameters and E1 parameters remain at the reviewed defaults:
+`input_gain=1.0`, `discharge_quantum=1.0`, `z_max=4.0`, fast
+`decay_rate=1.0`, and unchanged thresholds, delays, amplitude bounds,
+provenance limits, and event budgets. Read the exact Luna-42 Phase-B runner
+constants as the source of truth for stream and runtime bounds; do not infer or
+retune them.
+
+Reuse matched inputs and ordering from the Luna-42 Phase-B protocol: seeds
+`0..4`, 64 sequences per seed, fresh per-character runtime/neuron state, and
+the same points in each condition. Consume only each example's ordered point
+coordinates/timestamps. Do not read labels, classes, evaluation outcomes, or
+label-bearing metadata. Preserve the reviewed neutral reward and fixed
+prediction/eligibility/runtime capacities. The outer classifier/readout is not
+an endpoint and must not influence neural input or condition selection.
+
+## Measurements and acceptance
+
+Record the frozen configuration and exact topology for every arm. Reconcile
+source emissions, `source -> relay` transfers/receptions, relay
+integration-mediated emissions, `relay -> destination` transfers/receptions,
+destination traces and emissions by event identity, timestamp, route and
+payload. Distinguish direct from integration-mediated destination emissions.
+Record fixed resource limits and observed event/queue/eligibility high-water
+marks, completion/settling, bounded-state checks, and deterministic replay.
+Ensure all arms have identical input digests and that the relay's configuration,
+trace, emissions and onward route records are identical across arms throughout
+each matched sequence; the fixed topology has no return path from destination
+to relay.
+
+Predeclare the comparison and causal acceptance checks in the runner/tests
+before execution. Preserve exact identity/order/replay assertions; use the
+already declared binary64 comparison formula only for equation-derived
+floating-point reconstructions:
 
 `64 * sys.float_info.epsilon * max(1.0, abs(observed), abs(expected))`
 
-The current Linux/Python 3.12 baseline has four failures, all caused by tests
-requiring exact equality between a computed normalized value and decimal `0.4`.
-The independent Luna-42 review also noted two test-only `abs_tol=1e-12`
-assertions that are looser than the declared comparison policy. Correct only
-these test-policy discrepancies.
+Passing the mechanism gate means valid bounded execution, exact matched inputs,
+causal route/reception reconciliation, correct condition isolation, and
+deterministic replay. It does not require a destination emission or a positive
+effect. Report emissions and state observations without inventing an accuracy
+threshold or efficacy conclusion. Retain any failed, incomplete, or
+resource-exhausted arm; do not retry with increased limits or tuned parameters.
 
-## Owned files and interface
+## Owned files and exclusions
 
 Own only:
 
-- `tests/test_luna41_acp0008_temporal_calibration.py`
-- `tests/test_luna42_acp0008_corrective_calibration.py`
+- `run_luna43_acp0008_destination_integration_mechanism.py`
+- `tests/test_luna43_acp0008_destination_integration_mechanism.py`
+- `artifacts/luna43-acp0008-destination-integration-mechanism/`
+- `workflow/handoffs/luna-43-acp0008-destination-integration-mechanism-20261005.md`
 
-Implement a small, test-local helper in each file (or an equally narrow
-test-only approach) using the exact declared formula. Use it only where a test
-compares a floating equation result to a nominal expected value or checks
-floating symmetry. Preserve exact comparisons for event IDs, event ordering,
-route/reception identity, and copied payload equality.
+Do not change neuron, runtime, routing, topology, classifier, readout, or
+production APIs; ACP-0008/ACP-0007; architecture documents; previous runners,
+tests, artifacts or handoffs; or any experiment parameters. Do not add an
+architecture proposal: this is an experiment using the existing accepted
+opt-in ACP-0008 behavior and static topology. ACP-0008 remains experimental,
+opt-in and unpromoted; ACP-0007 remains unchanged and disabled.
 
-Do not edit runners, production code, ACP documents, architecture documents,
-artifacts, prior handoffs, or test selection/configuration. Do not add
-dependencies, change scientific tolerances, relax runner acceptance, regenerate
-evidence, or modify the recorded Luna-41/Luna-42 verdicts. In particular,
-Luna-41's near-pair failure at the runner's `ROUTE_PAYLOAD_TOLERANCE` remains
-failed; correcting a test assertion must not convert it into a passing
-calibration or change candidate selection.
+## Validation and return
 
-## Acceptance checks
-
-1. The only changed paths are the two owned test files.
-2. Nominal `0.4` and floating-symmetry assertions use the declared binary64
-   comparison formula; exact causal/event/provenance assertions remain exact.
-3. Luna-41's tests still assert the near-pair payload mismatch and blocked
-   result; Luna-42 scientific acceptance and artifacts are untouched.
-4. Run the Luna-41 focused tests, Luna-42 focused tests, and full repository
-   suite. Report exact pass/fail/skip counts and skip reasons. The governance
-   baseline recorded four target failures and one CUDA-unavailable skip; no
-   unrelated failure was observed.
-5. Run `git diff --check` and verify no runner, production, ACP, architecture,
-   artifact, or handoff file changed.
-
-If any unrelated failure occurs, stop without altering its cause. Report
-target-test failures separately from unrelated failures. Do not execute the
-Luna-41 or Luna-42 experiment runners.
-
-## Architectural and claim boundaries
-
-No A01–A15 invariant or ACP is changed. ACP-0008 remains experimental,
-opt-in, and unpromoted; ACP-0007 remains unchanged. This assignment makes no
-claim about calibration validity, efficacy, structural growth, energy,
-hardware, or architecture promotion. No new experiment or Luna successor is
-authorized by completing this test-only correction.
-
-## Handoff
-
-Return the exact revision, owned-file diff, focused/full test results,
-`git diff --check` result, and any limitations to Luna-0 in a completed
-handoff under `workflow/handoffs/`.
+Run the new focused tests, applicable ACP-0008/runtime/routing regressions, the
+full repository suite, and `git diff --check`. Report exact commands, revision,
+environment, counts, skips, failures, and artifact digests. Classify every
+check as passed, failed, not run, or not applicable. If any unrelated baseline
+failure appears, stop and return to Luna-0 without expanding scope. Return the
+completed handoff and evidence to Luna-0 for independent review. Do not
+self-review, claim promotion, or authorize a successor.
