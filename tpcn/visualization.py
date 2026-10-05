@@ -142,6 +142,8 @@ class ExcursionNeuronRecord:
     ) -> "ExcursionNeuronRecord":
         if not isinstance(neuron, MultiExcursionNeuron):
             raise TypeError("neuron must be a MultiExcursionNeuron")
+        if neuron.config.integration is not None:
+            raise ValueError("TPCV-2 cannot represent an ACP-0008 integration-enabled neuron")
         mode = neuron.mode
         return cls(
             neuron_id=neuron.neuron_id,

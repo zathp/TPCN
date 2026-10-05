@@ -573,6 +573,8 @@ def _neuron_to_ir2(
     e2_capable: bool,
 ) -> IR2Neuron:
     config = neuron.config
+    if config.integration is not None:
+        raise ValueError("IR-2 revision 1 cannot represent an ACP-0008 integration-enabled neuron")
     pending = neuron.pending_internal_event
     pending_ir = None if pending is None else IR2PendingInternal(
         pending.neuron_id, IR2PendingKind(pending.kind.value), pending.timestamp,

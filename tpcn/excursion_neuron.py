@@ -59,6 +59,38 @@ class E1EventBudgetExceeded(RuntimeError):
 
 
 @dataclass(frozen=True, slots=True)
+class IntegrationConfig:
+    """ACP-0008 opt-in slow integration state parameters (experimental)."""
+
+    decay_rate_z: float = 0.1
+    input_gain: float = 1.0
+    discharge_quantum: float = 1.0
+    z_max: float = 4.0
+
+    def __post_init__(self) -> None:
+        for name in ("decay_rate_z", "input_gain", "discharge_quantum", "z_max"):
+            object.__setattr__(self, name, _positive(getattr(self, name), name))
+        if self.discharge_quantum > self.z_max:
+            raise ValueError("discharge_quantum must not exceed z_max")
+
+    @property
+    def lambda_z(self) -> float:
+        return self.decay_rate_z
+
+    @property
+    def kappa(self) -> float:
+        return self.input_gain
+
+    @property
+    def theta_Z(self) -> float:
+        return self.discharge_quantum
+
+    @property
+    def Z_max(self) -> float:
+        return self.z_max
+
+
+@dataclass(frozen=True, slots=True)
 class E1Config:
     """Validated E1 parameters and bounded M settings consumed by E2 only."""
 
@@ -76,6 +108,7 @@ class E1Config:
     a_max: float = 1.0
     provenance_capacity: int = 16
     event_budget: int = 4096
+    integration: IntegrationConfig | None = None
 
     def __post_init__(self) -> None:
         decay_rate = _positive(self.decay_rate, "decay_rate")
@@ -94,6 +127,16 @@ class E1Config:
             raise ValueError("thresholds must satisfy theta_r < theta_e <= theta_hold < theta_m <= x_max")
         if delta_x_e > x_max:
             raise ValueError("delta_x_e must not exceed x_max")
+        if self.integration is not None:
+            integration = self.integration
+            if not isinstance(integration, IntegrationConfig):
+                raise TypeError("integration must be an IntegrationConfig or None")
+            if not integration.decay_rate_z < decay_rate:
+                raise ValueError("decay_rate_z must be smaller than decay_rate")
+            if integration.discharge_quantum < theta_e:
+                raise ValueError("discharge_quantum (theta_Z) must be at least theta_e")
+            if not theta_e + integration.discharge_quantum < theta_m:
+                raise ValueError("theta_e + discharge_quantum must be below theta_m")
         if a_min > a_max:
             raise ValueError("a_min must not exceed a_max")
         if (
@@ -144,6 +187,37 @@ class E1Config:
     @property
     def Delta_t_E(self) -> float:
         return self.emission_delay
+
+
+@dataclass(slots=True)
+class IntegrationTraceEntry:
+    """Per-external-event ACP-0008 diagnostic record (emission fields filled when the episode emits)."""
+
+    timestamp: float
+    elapsed: float
+    input_value: float
+    theta_e: float
+    theta_z: float
+    decay_rate: float
+    decay_rate_z: float
+    mode_before: E1Mode
+    x_before_decay: float
+    x_after_decay: float
+    z_before_decay: float
+    z_after_decay: float
+    x_after_input: float
+    z_after_input: float
+    integrated: bool
+    discharge_amount: float
+    x_post_discharge: float
+    z_post_discharge: float
+    crossed_theta_e: bool
+    admitted_episode_id: int | None
+    classification: str
+    emission_id: str | None = None
+    emission_timestamp: float | None = None
+    x_at_emission: float | None = None
+    z_at_emission: float | None = None
 
 
 @dataclass(frozen=True, slots=True)
@@ -257,6 +331,18 @@ class SingleExcursionNeuron:
         self._lineage_identity = 0
         self._input_identity = 0
         self.out_of_scope = False
+        self._z = 0.0
+        self._integration_trace: Deque[IntegrationTraceEntry] = deque(maxlen=self.config.event_budget)
+        self._trace_by_episode: dict[int, IntegrationTraceEntry] = {}
+
+    @property
+    def integration_state(self) -> float | None:
+        """Slow state z; None when integration is disabled."""
+        return self._z if self.config.integration is not None else None
+
+    @property
+    def integration_trace(self) -> tuple[IntegrationTraceEntry, ...]:
+        return tuple(self._integration_trace)
 
     @property
     def state(self) -> float:
@@ -303,6 +389,9 @@ class SingleExcursionNeuron:
         self.out_of_scope = False
         self.input_contribution_count = 0
         self.processed_event_count = 0
+        self._z = 0.0
+        self._integration_trace.clear()
+        self._trace_by_episode.clear()
 
     def receive_event(
         self,
@@ -320,12 +409,84 @@ class SingleExcursionNeuron:
             raise TypeError("E1 external contribution must be a real number")
         contribution = _finite_real(event.payload, "contribution")
         self._consume_budget()
+        integration = self.config.integration
+        if integration is None:
+            self._advance_to(event.timestamp)
+            self.x = self._clip(self.x + contribution)
+            self._record_provenance(event, contribution)
+            self.input_contribution_count += 1
+            self._update_after_external(queue)
+            return None
+        mode_before = self.mode
+        x_before = self.x
+        z_before = self._z
+        previous = self.clock.timestamp
         self._advance_to(event.timestamp)
+        x_decayed = self.x
+        z_decayed = self._z
         self.x = self._clip(self.x + contribution)
         self._record_provenance(event, contribution)
         self.input_contribution_count += 1
+        x_input = self.x
+        integrated = False
+        discharge = 0.0
+        if mode_before == E1Mode.N and abs(self.x) < self.config.theta_e:
+            integrated = True
+            z_limit = integration.z_max
+            self._z = max(-z_limit, min(z_limit, self._z + integration.input_gain * contribution))
+        z_input = self._z
+        if integrated and abs(self._z) >= integration.discharge_quantum and self.x * self._z >= 0.0:
+            sign = 1.0 if self._z > 0.0 else -1.0
+            discharge = sign * integration.discharge_quantum
+            self._z -= discharge
+            self.x = self._clip(self.x + discharge)
+        x_post = self.x
+        z_post = self._z
+        episode_before = self.ordinary_episode_id
         self._update_after_external(queue)
+        admitted = (
+            self._admitted_from(mode_before, episode_before)
+        )
+        episode = self.ordinary_episode_id if admitted else None
+        if admitted:
+            classification = "integrated_discharge" if discharge != 0.0 else "direct"
+        else:
+            classification = "none"
+        entry = IntegrationTraceEntry(
+            timestamp=event.timestamp,
+            elapsed=event.timestamp - previous,
+            input_value=contribution,
+            theta_e=self.config.theta_e,
+            theta_z=integration.discharge_quantum,
+            decay_rate=self.config.decay_rate,
+            decay_rate_z=integration.decay_rate_z,
+            mode_before=mode_before,
+            x_before_decay=x_before,
+            x_after_decay=x_decayed,
+            z_before_decay=z_before,
+            z_after_decay=z_decayed,
+            x_after_input=x_input,
+            z_after_input=z_input,
+            integrated=integrated,
+            discharge_amount=discharge,
+            x_post_discharge=x_post,
+            z_post_discharge=z_post,
+            crossed_theta_e=abs(x_post) >= self.config.theta_e,
+            admitted_episode_id=episode,
+            classification=classification,
+        )
+        self._integration_trace.append(entry)
+        if episode is not None:
+            self._trace_by_episode[episode] = entry
         return None
+
+    def _admitted_from(self, mode_before: E1Mode, episode_before: int | None) -> bool:
+        return (
+            mode_before == E1Mode.N
+            and self.mode == E1Mode.S_PENDING
+            and self.ordinary_episode_id is not None
+            and self.ordinary_episode_id != episode_before
+        )
 
     def receive_contribution(
         self,
@@ -487,6 +648,12 @@ class SingleExcursionNeuron:
             episode_id=self.ordinary_episode_id,
         )
         self.emissions.append(emission)
+        traced = self._trace_by_episode.pop(self.ordinary_episode_id, None)
+        if traced is not None:
+            traced.emission_id = emission.event_id
+            traced.emission_timestamp = emission.timestamp
+            traced.x_at_emission = self.x
+            traced.z_at_emission = self._z
         self.mode = E1Mode.S_RETURN
         magnitude = abs(self.x)
         if magnitude <= self.config.theta_r:
@@ -564,6 +731,8 @@ class SingleExcursionNeuron:
         elapsed = self.clock.advance_to(timestamp)
         if elapsed:
             self.x = self._clip(self.x * math.exp(-self.config.decay_rate * elapsed))
+            if self.config.integration is not None:
+                self._z *= math.exp(-self.config.integration.decay_rate_z * elapsed)
 
     def _record_provenance(self, event: Event, contribution: float) -> None:
         event_id: str | int
