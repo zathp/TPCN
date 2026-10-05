@@ -1,5 +1,39 @@
 # TPCN Luna Multi-Agent Workflow — Event-Driven Architecture
 
+## Luna-0 owner-directed calibration decision — ACP-0008; Luna-41 AUTHORIZED / NOT EXECUTED
+
+**A task-independent, bounded calibration is specified; Luna-41 is
+AUTHORIZED / NOT EXECUTED.** This decision follows Luna-40's independently
+reviewed **NOT SUPPORTED IN THIS SETUP** result, in which no relay emission
+or ACP-0007 candidate/admission formed. That negative result remains intact
+and does not establish a production defect or predict calibration success.
+
+Luna-41 may vary only `decay_rate_z` over the four predeclared values
+`0.1, 0.05, 0.025, 0.0125`, keeping `theta_E=1`, `theta_Z=1`,
+`input_gain=1`, `z_max=4`, fast decay `1`, and ACP-0007 disabled. Its
+normalized Phase-A fixtures require a single `0.4` input and two inputs at
+12.9 local-time spacing to remain subthreshold, three near inputs to yield
+exactly one integration-mediated relay emission, three inputs at the fixed
+far interval `51.6` to remain subthreshold, a sign-mirrored result, a
+disabled control, bounded/equation-consistent state, neutral return, and
+deterministic replay. Candidate choice is by the predeclared fastest-decay
+passing rule; no candidate expansion or task-based fitting is permitted.
+The `0.4` amplitude and timing anchor derive from normalized ACP-0008
+fixtures and previously reviewed local routed-arrival evidence, not Phase-B
+task success. These are planned criteria and analytic predictions, not
+observed experiment results.
+
+Only after Phase-A results and configuration are frozen may Phase B
+characterize identical unlabeled point streams through paired calibrated,
+default, and disabled relay arms over the unchanged fixed-`w=1` topology.
+No efficacy, accuracy, growth, promotion, or hardware claim is authorized;
+zero relay emissions is a valid outcome. No production code, ACP-0007,
+ACP-0008 equations, thresholds, topology, or Architecture Contract change
+is authorized. ACP-0008 remains experimental, opt-in, and unpromoted. Full
+authorization, fixtures, stop rules, bounds, and ownership:
+`.github/agents/luna-41.agent.md` and
+`workflow/handoffs/luna-0-acp0008-calibration-decision-20261005.md`.
+
 ## Luna-0 independent post-Luna-40 review — Existing structural growth and effective routed drive
 
 **NOT SUPPORTED IN THIS SETUP; EXECUTION CONTRACT PASS; NO PRODUCTION

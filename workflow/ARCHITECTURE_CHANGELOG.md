@@ -1,5 +1,31 @@
 # Architecture Changelog
 
+## Luna-0 owner-directed ACP-0008 calibration decision — Luna-41 AUTHORIZED / NOT EXECUTED - 2026-10-05
+
+The project-owner-directed follow-up is sufficiently bounded for
+**Luna-41 AUTHORIZED / NOT EXECUTED**. It may calibrate only the existing
+optional ACP-0008 `decay_rate_z` configuration over the predeclared finite set
+`{0.1, 0.05, 0.025, 0.0125}`. `theta_E=1`, `theta_Z=1`, `input_gain=1`,
+`z_max=4`, fast decay `1`, ACP-0007 disabled, and all production behavior
+remain unchanged. Phase A uses normalized routed `0.4` inputs, a 12.9
+near-gap and a 51.6 far-gap with isolated, near-pair, near-triple,
+far-triple, negative-sign, and integration-disabled controls. It requires
+equation-consistent, bounded state; exactly one integration-mediated near
+triple emission; no control emissions; neutral return; and deterministic
+replay. Selection is the largest passing decay rate; no parameter/grid
+expansion is authorized. Analytic equations predict only `0.0125` will pass,
+but this is not a runtime observation.
+
+Only after Phase-A selection is frozen may Phase B characterize paired
+unlabeled fixed-`w=1` relay-stream arms (calibrated, default, disabled).
+Task outcomes cannot select or retune the parameter; no-emission is a valid
+negative result. This is configuration evidence under accepted ACP-0008,
+not an architecture change, efficacy study, or promotion. ACP-0008 remains
+experimental, opt-in, and unpromoted. Luna-40's independent no-candidate/
+no-admission verdict, and all previous Luna/ACP findings, are unchanged.
+See `.github/agents/luna-41.agent.md` and
+`workflow/handoffs/luna-0-acp0008-calibration-decision-20261005.md`.
+
 ## Luna-0 independent post-Luna-40 review — existing structural growth and effective routed drive - 2026-10-05
 
 **NOT SUPPORTED IN THIS SETUP; EXECUTION CONTRACT PASS; NO PRODUCTION
