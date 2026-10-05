@@ -1,0 +1,47 @@
+{
+  "schema": "TPCN-LUNA34-EXCURSION-V1-RESULTS-1",
+  "execution_baseline": "c6f0f3b0e8c2e4d0883c7e1627cd5112ab6fa937",
+  "api_baseline": "1e2f80aa9e37b332e0637f6ff8b0df18d5f2ceb6",
+  "status": "BLOCKED — EXISTING PUBLIC API INSUFFICIENT",
+  "attempt_count": 1,
+  "attempted_command": ".venv\\Scripts\\python.exe run_luna34_excursion_v1_multi_emitter_bridge.py",
+  "design": {
+    "seeds": [0, 1, 2, 3, 4],
+    "training_characters_per_seed": 64,
+    "input_streams": 320,
+    "character_condition_executions": 960,
+    "conditions": [
+      "NO_EDGE_CONTROL",
+      "DEFAULT_STATIC_EDGE",
+      "STATIC_N2_BOUND_SENSITIVITY"
+    ]
+  },
+  "observed_failure": {
+    "exception_type": "EligibilityCapacityError",
+    "message": "eligibility trace capacity reached",
+    "failure_path": [
+      "ExcursionCharacterRuntime._process_one",
+      "ExcursionCharacterRuntime._consume_emission",
+      "EligibilityLedger.record_activity"
+    ],
+    "runtime_configuration": {
+      "prediction_capacity": 8,
+      "neuron_count": 2,
+      "eligibility_capacity_per_neuron": 16
+    },
+    "failing_seed_condition_sequence_index": "not captured by the first uncaught attempt",
+    "runtime_result_returned": false,
+    "artifact_writer_reached": false
+  },
+  "evidence_status": {
+    "completed_character_records_serialized": 0,
+    "per_seed_condition_mechanism_counts": "not available",
+    "canonical_emitter_bridge": "not determined",
+    "default_edge_bridge": "not determined",
+    "static_n2_transfer_sensitivity": "not determined",
+    "candidate_formation": "not determined",
+    "no_edge_negative_control": "not determined",
+    "full_design_replay_digest": "not available"
+  },
+  "interpretation": "The required runtime configuration reached its existing eligibility-trace capacity before the full paired design completed. No negative bridge or candidate conclusion is drawn. The run is blocked rather than treated as a successful or negative mechanism result."
+}

@@ -1,0 +1,45 @@
+{
+  "schema": "TPCN-LUNA34-EXCURSION-V1-SUMMARY-1",
+  "execution_baseline": "c6f0f3b0e8c2e4d0883c7e1627cd5112ab6fa937",
+  "api_baseline": "1e2f80aa9e37b332e0637f6ff8b0df18d5f2ceb6",
+  "execution_status": "BLOCKED — EXISTING PUBLIC API INSUFFICIENT",
+  "completed_experiment": false,
+  "terminal_classifications": [
+    "BLOCKED — EXISTING PUBLIC API INSUFFICIENT"
+  ],
+  "design_counts": {
+    "planned_seeds": 5,
+    "planned_input_streams": 320,
+    "planned_character_condition_executions": 960,
+    "completed_character_records_serialized": 0
+  },
+  "observed_failure": {
+    "exception_type": "EligibilityCapacityError",
+    "message": "eligibility trace capacity reached",
+    "configured_prediction_capacity": 8,
+    "nodes": 2,
+    "runtime_eligibility_capacity_per_neuron": 16,
+    "failure_character_coordinates": "not captured"
+  },
+  "condition_results": {
+    "NO_EDGE_CONTROL": "not adjudicated",
+    "DEFAULT_STATIC_EDGE": "not adjudicated",
+    "STATIC_N2_BOUND_SENSITIVITY": "not adjudicated"
+  },
+  "multi_emitter_bridge_by_condition": {
+    "NO_EDGE_CONTROL": "not determined",
+    "DEFAULT_STATIC_EDGE": "not determined",
+    "STATIC_N2_BOUND_SENSITIVITY": "not determined"
+  },
+  "candidate_formation": "not determined",
+  "n2_sensitivity": "not determined",
+  "no_edge_control_is_genuine_negative": "not determined",
+  "tests": {
+    "focused": "9 passed",
+    "full_suite": "929 passed, 1 skipped",
+    "skipped_reason": "CUDA unavailable; tests/test_gpu_visualization.py::test_cuda_records_have_cpu_semantics",
+    "compile": "passed",
+    "git_diff_check": "passed"
+  },
+  "scientific_boundary": "No inference about task efficacy, ACP-0007 candidate opportunity, beneficial growth, prediction or resource benefit, architecture promotion, or hardware equivalence."
+}
