@@ -98,6 +98,7 @@ class ExcursionCharacterRuntime:
         max_activity_events: int,
         namespace: str,
         emission_observer: Callable[[str, str | int, float], None] | None = None,
+        eligibility_capacity: int | None = None,
     ) -> None:
         self.neurons = tuple(neurons)
         if not self.neurons or any(not isinstance(n, MultiExcursionNeuron) for n in self.neurons):
@@ -115,6 +116,12 @@ class ExcursionCharacterRuntime:
         ):
             if isinstance(value, bool) or not isinstance(value, int) or value <= 0:
                 raise ValueError(f"{name} must be a positive integer")
+        if eligibility_capacity is None:
+            eligibility_capacity = prediction_capacity * max(1, len(self.neurons))
+        elif (isinstance(eligibility_capacity, bool) or not isinstance(eligibility_capacity, int)
+              or eligibility_capacity <= 0):
+            raise ValueError("eligibility_capacity must be a positive integer")
+        self._eligibility_capacity = eligibility_capacity
         self.settling_horizon = self._nonnegative(settling_horizon, "settling_horizon")
         self.prediction_expiry = self._nonnegative(prediction_expiry, "prediction_expiry")
         if not isinstance(namespace, str) or not namespace:
@@ -177,6 +184,7 @@ class ExcursionCharacterRuntime:
         prediction_expiry: float,
         max_activity_events: int,
         namespace: str,
+        eligibility_capacity: int | None = None,
     ) -> "ExcursionCharacterRuntime":
         """Start only from a uniformly excursion, quiescent IR-2 boundary."""
         if not isinstance(ir, TPCNIR2):
@@ -243,7 +251,12 @@ class ExcursionCharacterRuntime:
             prediction_expiry=prediction_expiry,
             max_activity_events=max_activity_events,
             namespace=namespace,
+            eligibility_capacity=eligibility_capacity,
         )
+
+    @property
+    def eligibility_capacity(self) -> int:
+        return self._eligibility_capacity
 
     @staticmethod
     def _nonnegative(value: Real, name: str) -> float:
@@ -299,7 +312,7 @@ class ExcursionCharacterRuntime:
         self._ledgers = {
             node: EligibilityLedger(
                 f"{self.namespace}:{character_id}:ledger:{node}",
-                max_traces=self.prediction_capacity * max(1, len(self.neurons)),
+                max_traces=self._eligibility_capacity,
                 decay_time_constant=4.0,
             )
             for node in self.by_id
