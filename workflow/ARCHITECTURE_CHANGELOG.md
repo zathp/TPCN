@@ -1,5 +1,35 @@
 # Architecture Changelog
 
+## Luna-0 independent post-Luna-41 review — ACP-0008 temporal calibration - 2026-10-05
+
+**BLOCKED at the declared Phase-A source-payload gate; no candidate selected;
+Phase B not run.** Reviewed the exact pushed Luna-41 ending revision
+`e8639fc2563862b9d35bb7d9c951c59e137c12d0` from clean synchronized `main`.
+Luna-41 complied with the bounded design and Phase-B gate: exactly four predeclared
+`decay_rate_z` candidates, all other integration parameters fixed,
+ACP-0007 disabled, no production/ACP changes, and no Phase-B execution after
+the Phase-A gate failed. The evidence has a provenance caveat:
+`results.json` leaves `execution_revision` null, but its enclosing commit
+contains the runner and artifacts and an independent rerun reproduces its
+digest. Independent recurrence reconstruction of 68
+production trace steps had maximum absolute discrepancy `1.271e-21`;
+two independent Phase-A replays matched the retained digest. The analytic
+prediction is partly confirmed: only `0.0125` crossed the near-triple
+threshold and emitted once in each polarity, while isolated and far controls
+remained silent. But residual fast state in the source made subsequent
+near-spaced routed payloads `0.4000008889685561` and
+`0.4000008889707768`, rather than the declared `0.4`. This exceeds the
+runner's `1e-12` tolerance and violates the explicit normalized-payload
+precondition; no candidate validly passes. The observed integrated relay
+spike is mechanistic evidence only, not a valid calibration result.
+Phase-B relay-stream and `relay->destination` multi-hop behavior remain
+untested. ACP-0008 remains experimental/opt-in/unpromoted. Luna-40's
+historical **NOT SUPPORTED IN THIS SETUP** result is unchanged. No Luna-42,
+WEMA, ACP-0007 growth diagnostic, retuning, or tolerance relaxation is
+authorized. The source-payload/tolerance issue is returned to the project
+owner. Full review:
+`workflow/handoffs/luna-0-independent-review-luna41-acp0008-temporal-calibration-20261005.md`.
+
 ## Luna-0 owner-directed ACP-0008 calibration decision — Luna-41 AUTHORIZED / NOT EXECUTED - 2026-10-05
 
 The project-owner-directed follow-up is sufficiently bounded for

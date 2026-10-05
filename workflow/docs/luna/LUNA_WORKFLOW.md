@@ -1,5 +1,33 @@
 # TPCN Luna Multi-Agent Workflow — Event-Driven Architecture
 
+## Luna-0 independent post-Luna-41 review — ACP-0008 temporal calibration
+
+**BLOCKED at the Phase-A normalized-routed-payload gate; bounded execution
+and Phase-B gate PASS WITH PROVENANCE CAVEAT; no candidate selected; Phase B
+NOT RUN.** Reviewed Luna-41 ending
+revision `e8639fc2563862b9d35bb7d9c951c59e137c12d0` from a clean synchronized
+`main`. The committed runner tested exactly the four authorized
+`decay_rate_z` values and held all other ACP-0008 parameters fixed with
+ACP-0007 disabled. Independent equation reconstruction matched all 68
+enabled integration-trace steps within `1.271e-21`; independent Phase-A
+replays matched the retained digest. Only `0.0125` produced the predicted
+positive and negative near-triple integrated relay emissions, and all
+isolated/far controls were silent. However, repeated near-spaced source
+emissions routed `0.4000008889685561` and `0.4000008889707768` instead of the
+declared `0.4`, exceeding the runner's `1e-12` tolerance. Since the contract
+requires stopping when source routes fail to deliver the declared payload,
+no candidate validly passes. The analytic threshold-crossing prediction is
+partly confirmed, not a calibration result. Phase B and multi-hop onward
+routing were not tested. The review verdict is BLOCKED, not a valid
+calibration success or a valid no-relay negative finding under normalized
+repeated inputs. ACP-0008 remains experimental/opt-in/unpromoted; historical
+Luna-40 and prior results are unchanged. No Luna-42, retuning, tolerance
+change, WEMA, or ACP-0007 diagnostic is authorized. Return the fixture
+amplitude/tolerance issue to the project owner. `results.json` omits its
+execution revision, although the enclosing commit and independent replay
+identify/reproduce the committed source:
+`workflow/handoffs/luna-0-independent-review-luna41-acp0008-temporal-calibration-20261005.md`.
+
 ## Luna-0 owner-directed calibration decision — ACP-0008; Luna-41 AUTHORIZED / NOT EXECUTED
 
 **A task-independent, bounded calibration is specified; Luna-41 is
