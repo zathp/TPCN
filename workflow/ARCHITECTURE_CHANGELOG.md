@@ -1,5 +1,9 @@
 # Architecture Changelog
 
+# ACP-0008 accepted (experimental, opt-in) - slow temporal-integration state; Luna-38 AUTHORIZED / NOT EXECUTED - 2026-10-05
+
+Project-owner decision after the post-Luna-37 review: add an optional, default-disabled slow integration state `z` (`lambda_z=0.1`, `kappa=1`, `theta_Z=1`, `Z_max=4`) to the EXCURSION_V1 neuron so temporally separated sub-threshold inputs can compress into one canonical emission via subtractive discharge through the unchanged ordinary emission path. Rationale: Luna-37 showed sub-threshold magnitude (max 0.6855/0.9327 < `theta_E=1`) plus fast decay over gaps of at least 12.9 prevented accumulation. The E2 `M` oscillator regime is unchanged; a `z`-driven oscillator is staged to a later Luna. `ARCHITECTURE_CONTRACT.md`, ACP-0007 and the Luna-33/34/37 verdicts are unchanged; promotion awaits independent post-Luna-38 review. Unit-scale parameters are not calibrated and are not expected to rescue Luna-37 streams. Sources: `workflow/docs/architecture_proposals/ACP-0008.md`, `workflow/handoffs/luna-0-owner-decision-acp0008-temporal-integration-20261005.md`, `.github/agents/luna-38.agent.md`.
+
 # Luna-0 independent post-Luna-37 review — propagation-to-emission diagnostic - 2026-10-05
 
 **NOT SUPPORTED IN THIS SETUP; CONTRACT PASS; NO LUNA-38 AUTHORIZED.** Luna-37 (`295309866c367cfeda7e42b4a42a47e813dd88ec`) validly ran the bounded mechanism diagnostic at `eligibility_capacity=1024`: valid routing, zero downstream canonical emissions in all three conditions (max destination state 0.6855 at w=1, 0.9327 at w=2, below `theta_E=1`; no accumulation). Bootstrap-gap classification strengthened. No production defect, no architecture change, ACP-0007 and Luna-33 unchanged, Luna-34 remains BLOCKED / UNDETERMINED. Full 952 passed, 1 skipped, 953 collected. Review: `workflow/handoffs/luna-0-independent-review-luna37-propagation-emission-diagnostic-20261004.md`.
