@@ -35,6 +35,10 @@ Boundedness: `|z| <= Z_max`; discharges <= (|z0| + kappa sum|v|)/theta_Z; no dis
 
 Caveat: B3 sits only 0.0044 below `theta_Z`; B's success is deliberately near threshold and is a test of the equations, not a calibration. The contract requires exact-formula comparison and not just emission counts.
 
+## Owner amendment — configurable canonical threshold
+
+Audit: `theta_E` is already `E1Config.theta_e` (validated `theta_R < theta_E <= theta_hold < theta_M <= X_max`, default 1, serialized by IR-2), so no new API is needed; Luna-38 must preserve it, read it via config at each use, and keep it fixed per execution. Per-neuron configuration is possible; runtime/adaptive change is future work (not blocked by the API shape). No `theta_I` introduced: `theta_Z` already is the integration/discharge threshold. Predeclared validation fixtures J (default compatibility), K (`theta_e=1.5`, `theta_z=1.5`: higher threshold creates no new emission) and L (`theta_e=0.5`: isolated 0.6 emits directly with `integrated=False`, versus none at default) distinguish accumulated-evidence emission from lowered-threshold emission. Invariant: integration decides how evidence accumulates; threshold decides how much is required for emission. Details in ACP-0008 and the Luna-38 contract.
+
 ## Interface audit (not modified)
 
 `ir2.py` (`neuron_to_ir2*`, `neuron_from_ir2*`) and `visualization.py` (`ExcursionNeuronRecord.from_neuron`) assume scalar `x`; Luna-38 must make them reject integration-enabled neurons. `experiment_excursion_runtime.py` and `experiments.py` construct default `E1Config`, so are unaffected when disabled. Routing, prediction, error, reward, eligibility, ACP-0007 evidence: unchanged.

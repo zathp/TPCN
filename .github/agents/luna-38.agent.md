@@ -47,7 +47,8 @@ violation.
 3. Expose read-only `integration_state` (and a bounded trace, capacity
    `event_budget`, recording per external event: timestamp, elapsed, input,
    `x` before/after decay, `z` before/after decay, `z` after input, integrated
-   flag, discharge amount, emission id, post-discharge `x` and `z`).
+   flag, discharge amount, configured `theta_E`, emission id, post-discharge
+   `x` and `z`).
 4. Make `neuron_to_ir2`, `neuron_to_ir2_e2` and
    `ExcursionNeuronRecord.from_neuron` raise a clear `ValueError`/`TypeError`
    for integration-enabled neurons (smallest guard; no schema change). Add
@@ -71,6 +72,27 @@ payload `v` at time `t`:
 | G | 40 inputs `v=0.4` at spacing 3 | `|z| <= Z_max` always; discharges ≤ floor(Σκ|v|/θ_Z); `θ_Z × discharges` equals integrated minus decayed minus remaining `z` (conservation check from trace); no emission lacking an external input |
 | H | B stream with `integration=None` | 0 emissions (disabled control) |
 | I | mixed-sign inputs | no discharge when `x*z < 0`; `z` retained |
+
+Threshold-configurability fixtures (API/dynamics validation only; exactly
+these three non-default values, no sweep, no Luna-37 data):
+
+| Id | Config | Stream | Required outcome |
+|---|---|---|---|
+| J | default `theta_e=1`, `IntegrationConfig()` omitted | fixtures from the existing neuron tests | unchanged; the existing suite passes unmodified (default-threshold compatibility) |
+| K | `theta_e=1.5`, `theta_hold=1.5`, `IntegrationConfig(theta_z=1.5)` (`theta_E+theta_Z=3<theta_M`) | B stream (0.4 at 0,2,4,6) and D-like `v=1.2` | 0 emissions in both; for every stream, emissions at `theta_e=1.5` are a subset of those at default (higher-threshold control: never creates an emission absent at the lower threshold); `z` still integrates (record `z` trajectory) |
+| L | `theta_e=0.5`, default `IntegrationConfig()` | isolated `v=0.6` at `t=0` | one emission at `t=0.5` directly from `x`, `integrated=False`, `z=0` throughout, no discharge; the same input at default `theta_e=1` gives 0 emissions. Also the B stream with `theta_e=0.5` still shows `z` trajectory identical to B and emission via discharge at `t=6` (`integrated=True` for the first four inputs, `0.4<0.5`) |
+
+Every threshold fixture must retain in its trace the configured `theta_E`,
+the `z` trajectory, the threshold-crossing `x` (value and event), the exact
+canonical emission event and the post-emission `x`/`z`, so a reviewer can
+tell *emission through accumulated evidence* (`integrated=True`, `z`
+discharge, `x` crossing after discharge) from *emission because the
+threshold was lowered for one isolated input* (`integrated=False`, no
+discharge). The code must read `config.theta_e` at each use (no cached
+constants), reject no new threshold values beyond the existing
+`E1Config` validation plus the ACP-0008 integration validation, and leave
+the `theta_e` field and IR-2 serialization unchanged. Luna-38 must not add
+threshold learning, homeostasis, optimization or runtime mutation.
 
 Required temporal-selectivity comparison: B (Δ=2) emits; C10 (Δ=10) and C40
 (Δ=40) do not. Report it explicitly. Unit tests must also assert
@@ -121,7 +143,9 @@ rescue of Luna-37 or Luna-33 streams (Luna-37 gaps of ≥12.9 decay by 0.275,
 and calibration is not authorized), candidate formation, structural growth,
 temporal specificity beyond the three predeclared spacings, biological
 equivalence, hardware equivalence, energy benefit, contract promotion, or
-any z-driven oscillator behavior. No parameter sweep or parameter change is
+any z-driven oscillator behavior, and any claim that a threshold value is
+optimal, learned or task-appropriate (fixtures K and L validate only that
+`theta_e` is causally connected to emission). No parameter sweep or parameter change is
 authorized.
 
 ## Completion
