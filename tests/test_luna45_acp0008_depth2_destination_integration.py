@@ -336,6 +336,194 @@ def test_destination_oracle_verifies_genuine_integrated_chain(integrated_record)
                for item in report["emission_timing_and_contributing_receptions"])
 
 
+def _destination_chain_and_link(record, relay_emission_id):
+    destination = next(
+        item for item in record["destination_evidence"]
+        if item["canonical_emission"] is not None
+        and any(
+            link["relay_canonical_emission"]["event_id"] == relay_emission_id
+            for link in item["genuine_chain"]["upstream_links"]
+        )
+    )
+    link = next(
+        item for item in destination["genuine_chain"]["upstream_links"]
+        if item["relay_canonical_emission"]["event_id"] == relay_emission_id
+    )
+    return destination, link
+
+
+def _add_unrelated_source_route(record, *, event_id, root, timestamp):
+    source = deepcopy(record["source_emissions"][0])
+    source.update(event_id=event_id, lineage_id=9001, timestamp=timestamp)
+    record["source_emissions"].append(source)
+    runtime_emission = deepcopy(next(
+        item for item in record["runtime_events"]
+        if item["event_type"] == "excursion_emission" and item["source"] == "source"
+    ))
+    runtime_emission.update(
+        event_id=event_id, lineage_id=9001, timestamp=timestamp,
+        causal_roots=[root], sequence=9001,
+    )
+    record["runtime_events"].append(runtime_emission)
+    enqueue = deepcopy(next(
+        item for item in record["routing_enqueue_events"]
+        if item["source"] == "source"
+    ))
+    enqueue.update(
+        event_id=event_id, originating_emission_id=event_id, lineage_id=9001,
+        causal_roots=[root], queue_sequence=9001,
+        enqueue_timestamp=timestamp - 1.0,
+        scheduled_delivery_timestamp=timestamp, timestamp=timestamp,
+    )
+    record["routing_enqueue_events"].append(enqueue)
+    reception = deepcopy(next(
+        item for item in record["source_to_relay_receptions"]
+    ))
+    reception.update(
+        event_id=event_id, originating_emission_id=event_id, lineage_id=9001,
+        causal_roots=[root], queue_sequence=9001,
+        reception_timestamp=timestamp, scheduled_delivery_timestamp=timestamp,
+    )
+    record["source_to_relay_receptions"].append(reception)
+
+
+def test_chain_includes_only_exact_provenance_roots(integrated_record):
+    record = deepcopy(integrated_record)
+    destination, link = _destination_chain_and_link(record, "relay:excursion:2")
+    assert link["relay_causal_roots"] == ["c00-000:input:2"]
+    assert [
+        item["source_inputs"][0]["point_index"]
+        for item in link["canonical_source_links"]
+    ] == [2]
+    assert luna45.reconstruct_chain(record, destination)["verified"]
+
+
+def test_chain_includes_each_second_valid_root(integrated_record):
+    link = next(
+        link for item in integrated_record["destination_evidence"]
+        for link in item.get("genuine_chain", {}).get("upstream_links", [])
+        if link["relay_canonical_emission"]["event_id"] == "relay:excursion:1"
+    )
+    assert link["relay_causal_roots"] == [
+        "c00-000:input:0", "c00-000:input:1",
+    ]
+    assert [
+        item["source_inputs"][0]["point_index"]
+        for item in link["canonical_source_links"]
+    ] == [0, 1]
+
+
+def test_two_earlier_source_events_outside_declared_roots_are_excluded(integrated_record):
+    record = deepcopy(integrated_record)
+    destination, link = _destination_chain_and_link(record, "relay:excursion:2")
+    check_time = link["relay_recurrence"]["timestamp"]
+    earlier = [
+        item for item in record["source_to_relay_receptions"]
+        if item["reception_timestamp"] <= check_time
+        and item["event_id"] != "source:excursion:3"
+    ]
+    assert len(earlier) >= 2
+    assert [
+        item["source_canonical_emission"]["event_id"]
+        for item in link["canonical_source_links"]
+    ] == ["source:excursion:3"]
+    assert luna45.reconstruct_chain(record, destination)["verified"]
+
+
+def test_nearby_earlier_event_outside_provenance_is_excluded(integrated_record):
+    record = deepcopy(integrated_record)
+    destination, link = _destination_chain_and_link(record, "relay:excursion:2")
+    check_time = link["relay_recurrence"]["timestamp"]
+    _add_unrelated_source_route(
+        record, event_id="source:unrelated-nearby",
+        root="c00-000:input:9", timestamp=check_time - 1.01,
+    )
+    rebuilt = luna45.reconstruct_chain(record, destination)
+    linked_ids = {
+        item["source_canonical_emission"]["event_id"]
+        for item in rebuilt["upstream_links"][1]["canonical_source_links"]
+    }
+    assert "source:unrelated-nearby" not in linked_ids
+
+
+def test_unknown_declared_root_blocks_chain(integrated_record):
+    record = deepcopy(integrated_record)
+    destination, _ = _destination_chain_and_link(record, "relay:excursion:2")
+    emission = next(
+        item for item in record["runtime_events"]
+        if item["event_id"] == "relay:excursion:2"
+    )
+    emission["causal_roots"] = ["unknown:input"]
+    with pytest.raises(luna45.Blocker, match="unknown input root"):
+        luna45.reconstruct_chain(record, destination)
+
+
+def test_extra_reconstructed_root_blocks_chain(integrated_record):
+    record = deepcopy(integrated_record)
+    destination, link = _destination_chain_and_link(record, "relay:excursion:2")
+    source_link = link["canonical_source_links"][0]
+    source_id = source_link["source_canonical_emission"]["event_id"]
+    extra = "c00-000:input:9"
+    source_link["relay_actual_reception"]["causal_roots"].append(extra)
+    source_link["source_queue_admission"]["causal_roots"].append(extra)
+    source_trace = next(
+        item for item in record["runtime_events"] if item["event_id"] == source_id
+    )
+    source_trace["causal_roots"].append(extra)
+    with pytest.raises(luna45.Blocker, match="provenance link absent"):
+        luna45.reconstruct_chain(record, destination)
+
+
+def test_missing_reconstructed_root_blocks_chain(integrated_record):
+    record = deepcopy(integrated_record)
+    destination, _ = _destination_chain_and_link(record, "relay:excursion:2")
+    record["source_to_relay_receptions"] = [
+        item for item in record["source_to_relay_receptions"]
+        if item["event_id"] != "source:excursion:3"
+    ]
+    with pytest.raises(luna45.Blocker, match="do not exactly match"):
+        luna45.reconstruct_chain(record, destination)
+
+
+def test_duplicate_root_blocks_under_production_deduplication_contract(integrated_record):
+    record = deepcopy(integrated_record)
+    destination, _ = _destination_chain_and_link(record, "relay:excursion:2")
+    emission = next(
+        item for item in record["runtime_events"]
+        if item["event_id"] == "relay:excursion:2"
+    )
+    emission["causal_roots"] *= 2
+    with pytest.raises(luna45.Blocker, match="duplicate"):
+        luna45.reconstruct_chain(record, destination)
+
+
+def test_lineage_provenance_mutation_blocks_chain(integrated_record):
+    record = deepcopy(integrated_record)
+    destination, link = _destination_chain_and_link(record, "relay:excursion:2")
+    link["canonical_source_links"][0]["relay_actual_reception"]["lineage_id"] += 1
+    with pytest.raises(luna45.Blocker, match="provenance link absent"):
+        luna45.reconstruct_chain(record, destination)
+
+
+def test_multi_hop_chain_roots_match_both_route_receivers(integrated_record):
+    record = deepcopy(integrated_record)
+    destination = next(
+        item for item in record["destination_evidence"]
+        if item["canonical_emission"] is not None
+    )
+    chain = luna45.reconstruct_chain(record, destination)
+    assert chain["verified"]
+    for link in chain["upstream_links"]:
+        roots = link["relay_causal_roots"]
+        assert link["relay_queue_admission"]["causal_roots"] == roots
+        assert link["destination_actual_reception"]["causal_roots"] == roots
+        assert [
+            root
+            for source_link in link["canonical_source_links"]
+            for root in source_link["relay_actual_reception"]["causal_roots"]
+        ] == roots
+
+
 @pytest.mark.parametrize("field,value", [
     ("elapsed", 0.125), ("z_after_input", 99.0),
     ("discharge_amount", -1.0), ("classification", "direct"),
@@ -405,6 +593,79 @@ def test_replay_digest_detects_one_bit_and_capture_changes(simple_runs):
     assert original == luna45.phase_digest(deepcopy(records), deepcopy(report))
     records[0]["source_emissions"][0]["payload"] = math.nextafter(records[0]["source_emissions"][0]["payload"], 1.0)
     assert original != luna45.phase_digest(records, report)
+
+
+def test_replay_canonical_bytes_match_for_identical_material(simple_runs):
+    records = deepcopy(simple_runs[luna45.ARMS[0]])
+    for record in records:
+        luna45.destination_evidence(record)
+    report = luna45.arm_report(records)
+    compared = luna45.compare_phase_replay(
+        records, report, deepcopy(records), deepcopy(report),
+    )
+    assert compared["matches"]
+    assert compared["canonical_bytes_equal"]
+    assert compared["digests_equal"]
+    assert compared["initial_byte_length"] == compared["replay_byte_length"]
+    assert compared["initial_sha256"] == compared["replay_sha256"]
+    assert compared["first_byte_difference"] is None
+
+
+def test_replay_canonical_bytes_sort_object_keys():
+    initial = {"records": [{"source": "source", "lineage_id": 3}], "report": {"count": 1}}
+    reordered = {
+        "report": {"count": 1},
+        "records": [{"lineage_id": 3, "source": "source"}],
+    }
+    initial_bytes = luna45.reference._canonical_bytes(initial)
+    replay_bytes = luna45.reference._canonical_bytes(reordered)
+    assert initial_bytes == replay_bytes
+
+
+@pytest.mark.parametrize("mutator", [
+    lambda row: row.pop("source"),
+    lambda row: row.update(mandatory_extension="extra"),
+    lambda row: row.update(payload=math.nextafter(row["payload"], 1.0)),
+    lambda row: row.update(event_id="different-source-event"),
+    lambda row: row.update(causal_roots=["different:root"]),
+])
+def test_replay_canonical_bytes_reject_material_mutations(mutator):
+    initial = [{"source": "source", "event_id": "source:excursion:1",
+                "payload": 0.25, "causal_roots": ["c00-000:input:0"]}]
+    replay = deepcopy(initial)
+    mutator(replay[0])
+    comparison = luna45.compare_phase_replay(
+        initial, {"count": 1}, replay, {"count": 1},
+    )
+    assert not comparison["matches"]
+    assert not comparison["canonical_bytes_equal"]
+    assert comparison["initial_sha256"] != comparison["replay_sha256"]
+    assert comparison["first_byte_difference"]["offset"] >= 0
+
+
+def test_equal_digest_cannot_override_unequal_canonical_bytes():
+    assert not luna45.replay_content_matches(b"initial", b"replay", "same", "same")
+    assert not luna45.replay_content_matches(b"same", b"same", "initial-hash", "replay-hash")
+
+
+def test_replay_accepts_only_equal_canonical_bytes_and_digests():
+    encoded = luna45.phase_canonical_bytes(
+        [{"source": "source", "payload": 0.25}], {"count": 1},
+    )
+    digest = hashlib.sha256(encoded).hexdigest()
+    assert luna45.replay_content_matches(encoded, bytes(encoded), digest, digest)
+    assert not luna45.replay_content_matches(encoded, encoded + b" ", digest, digest)
+
+
+def test_replay_comparison_records_first_differing_byte():
+    initial = [{"value": "before"}]
+    replay = [{"value": "after"}]
+    compared = luna45.compare_phase_replay(initial, {}, replay, {})
+    difference = compared["first_byte_difference"]
+    assert difference is not None
+    assert difference["initial_byte"] != difference["replay_byte"]
+    assert difference["initial_context_hex"]
+    assert difference["replay_context_hex"]
 
 
 def mock_startup(monkeypatch):

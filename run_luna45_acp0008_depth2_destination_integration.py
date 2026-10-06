@@ -729,62 +729,201 @@ def destination_evidence(record: Record) -> None:
 
 def reconstruct_chain(record: Record, destination: Record) -> Record:
     links = []
-    source_emissions = {item["event_id"]: item for item in record["source_emissions"]}
-    input_roots = {f"{record['stream_id']}:input:{index}": item
-                   for index, item in enumerate(record["point_inputs"])}
-    source_enqueue = {item["event_id"]: item for item in record["routing_enqueue_events"]
-                      if item["source"] == "source"}
-    source_receive = {item["event_id"]: item for item in record["source_to_relay_receptions"]}
-    relay_checks = {item["trace_emission_id"]: item for item in record["relay_recurrence_checks"]
-                    if item["trace_emission_id"] is not None}
-    for contribution in destination["contributing_receptions"]:
-        relay = next(item for item in record["relay_emissions"]
-                     if item["event_id"] == contribution["relay_emission_id"])
-        check = relay_checks.get(relay["event_id"])
+    stream_id = record["stream_id"]
+    input_roots = {
+        f"{stream_id}:input:{item['point_index']}": item
+        for item in record["point_inputs"]
+    }
+    expected_point_indexes = list(range(len(record["point_inputs"])))
+    if (
+        len(input_roots) != len(record["point_inputs"])
+        or [item["point_index"] for item in record["point_inputs"]] != expected_point_indexes
+    ):
+        raise Blocker("DESTINATION", {"reason": "canonical input-root inventory is invalid"})
+
+    def roots_of(item: Record, label: str) -> list[str]:
+        roots = item.get("causal_roots")
         if (
-            check is None or not check["matches"]
+            not isinstance(roots, list) or not roots
+            or any(not isinstance(root, str) for root in roots)
+            or len(roots) != len(set(roots))
+            or item.get("roots_truncated") is not False
+        ):
+            raise Blocker("DESTINATION", {
+                "reason": f"{label} has invalid, duplicate, or truncated causal roots",
+            })
+        return roots
+
+    def ordered_union(root_groups: list[list[str]]) -> list[str]:
+        result: list[str] = []
+        for group in root_groups:
+            for root in group:
+                if root not in result:
+                    result.append(root)
+        return result
+
+    def unique_index(items: list[Record], field: str, label: str) -> dict[Any, Record]:
+        result: dict[Any, Record] = {}
+        for item in items:
+            key = item[field]
+            if key in result:
+                raise Blocker("DESTINATION", {"reason": f"duplicate {label} identity"})
+            result[key] = item
+        return result
+
+    source_receive_by_event_id = unique_index(
+        record["source_to_relay_receptions"], "event_id", "source reception",
+    )
+    source_enqueue = unique_index(
+        [item for item in record["routing_enqueue_events"]
+         if item["source"] == "source" and item["destination"] == "relay"],
+        "event_id", "source admission",
+    )
+    source_emissions = unique_index(record["source_emissions"], "event_id", "source emission")
+    runtime_emissions = unique_index(
+        [item for item in record["runtime_events"]
+         if item["event_type"] == "excursion_emission"],
+        "event_id", "runtime emission",
+    )
+    relay_emissions = unique_index(record["relay_emissions"], "event_id", "relay emission")
+    relay_checks = unique_index(
+        [item for item in record["relay_recurrence_checks"]
+         if item["trace_emission_id"] is not None],
+        "trace_emission_id", "relay recurrence",
+    )
+    all_contributing_receiver_roots: list[list[str]] = []
+    destination_receptions = unique_index(
+        record["destination_receptions"], "queue_sequence", "destination reception",
+    )
+    onward_enqueues = unique_index(
+        [item for item in record["routing_enqueue_events"]
+         if item["source"] == "relay" and item["destination"] == "destination"],
+        "queue_sequence", "relay admission",
+    )
+
+    for contribution in destination["contributing_receptions"]:
+        relay_id = contribution["relay_emission_id"]
+        relay = relay_emissions.get(relay_id)
+        trace_emission = runtime_emissions.get(relay_id)
+        check = relay_checks.get(relay_id)
+        if (
+            relay is None or trace_emission is None or check is None
+            or not check["matches"]
             or check["expected_classification"] != "integrated_discharge"
+            or trace_emission["source"] != "relay"
+            or trace_emission["lineage_id"] != relay["lineage_id"]
+            or trace_emission["timestamp"] != relay["timestamp"]
         ):
             raise Blocker("DESTINATION", {"reason": "relay integrated emission link absent"})
-        eligible = [item for item in record["source_to_relay_receptions"]
-                    if item["reception_timestamp"] <= check["timestamp"]]
-        causal = []
-        for reception in eligible:
-            source = source_emissions.get(reception["event_id"])
-            enqueue = source_enqueue.get(reception["event_id"])
-            roots = reception["causal_roots"]
+        relay_roots = roots_of(trace_emission, "relay emission")
+        if any(root not in input_roots for root in relay_roots):
+            raise Blocker("DESTINATION", {"reason": "relay emission retains an unknown input root"})
+
+        candidate_receptions = []
+        candidate_groups = []
+        for reception in source_receive_by_event_id.values():
+            roots = roots_of(reception, "source reception")
+            if not any(root in relay_roots for root in roots):
+                continue
+            source_id = reception["event_id"]
+            source = source_emissions.get(source_id)
+            enqueue = source_enqueue.get(source_id)
+            source_trace = runtime_emissions.get(source_id)
+            source_trace_roots = (
+                None if source_trace is None else roots_of(source_trace, "source emission")
+            )
+            enqueue_roots = (
+                None if enqueue is None else roots_of(enqueue, "source admission")
+            )
             if (
-                source is None or enqueue is None or reception["roots_truncated"]
-                or not roots or any(root not in input_roots for root in roots)
-                or not reconcile([enqueue], [source_receive[source["event_id"]]])["reconciles"]
+                source is None or enqueue is None or source_trace is None
+                or source_trace["source"] != "source"
+                or source_trace["lineage_id"] != source["lineage_id"]
+                or reception["lineage_id"] != source["lineage_id"]
+                or enqueue["lineage_id"] != source["lineage_id"]
+                or source_trace["timestamp"] != source["timestamp"]
+                or reception["originating_emission_id"] != source_id
+                or enqueue["originating_emission_id"] != source_id
+                or source_trace_roots != roots
+                or enqueue_roots != roots
+                or set(roots) - set(relay_roots)
+                or reception["reception_timestamp"] > check["timestamp"]
+                or not reconcile([enqueue], [reception])["reconciles"]
             ):
-                raise Blocker("DESTINATION", {"reason": "canonical source/admission/reception link absent"})
+                raise Blocker("DESTINATION", {
+                    "reason": "canonical source/admission/reception provenance link absent",
+                    "source_event_id": source_id,
+                })
+            if any(root not in input_roots for root in roots):
+                raise Blocker("DESTINATION", {
+                    "reason": "source reception retains an unknown input root",
+                    "source_event_id": source_id,
+                })
+            candidate_receptions.append((source, enqueue, reception, roots))
+            candidate_groups.append(roots)
+
+        if ordered_union(candidate_groups) != relay_roots:
+            raise Blocker("DESTINATION", {
+                "reason": "reconstructed source roots do not exactly match relay emission roots",
+                "relay_emission_id": relay_id,
+                "declared_roots": relay_roots,
+                "reconstructed_roots": ordered_union(candidate_groups),
+            })
+        if not candidate_receptions:
+            raise Blocker("DESTINATION", {"reason": "relay lacks canonical source evidence"})
+
+        causal = []
+        for source, enqueue, reception, roots in candidate_receptions:
             causal.append({
                 "source_inputs": [input_roots[root] for root in roots],
                 "source_canonical_emission": source,
-                "source_queue_admission": enqueue, "relay_actual_reception": reception,
+                "source_queue_admission": enqueue,
+                "relay_actual_reception": reception,
                 "source_to_relay_emission_delta": relay["timestamp"] - source["timestamp"],
             })
-        if not causal:
-            raise Blocker("DESTINATION", {"reason": "relay lacks canonical source evidence"})
-        onward = next(item for item in record["routing_enqueue_events"]
-                      if item["queue_sequence"] == contribution["queue_sequence"])
-        receiver = next(item for item in record["destination_receptions"]
-                        if item["queue_sequence"] == contribution["queue_sequence"])
-        if not reconcile([onward], [receiver])["reconciles"]:
-            raise Blocker("DESTINATION", {"reason": "onward actual consumption link absent"})
+        sequence = contribution["queue_sequence"]
+        onward = onward_enqueues.get(sequence)
+        receiver = destination_receptions.get(sequence)
+        onward_roots = None if onward is None else roots_of(onward, "relay admission")
+        if (
+            onward is None or receiver is None
+            or onward["event_id"] != relay_id or receiver["event_id"] != relay_id
+            or onward["lineage_id"] != relay["lineage_id"]
+            or receiver["lineage_id"] != relay["lineage_id"]
+            or onward_roots != relay_roots
+            or roots_of(receiver, "destination reception") != relay_roots
+            or onward["causal_roots"] != trace_emission["causal_roots"]
+            or not reconcile([onward], [receiver])["reconciles"]
+        ):
+            raise Blocker("DESTINATION", {"reason": "onward actual consumption provenance link absent"})
+        all_contributing_receiver_roots.append(roots_of(receiver, "destination reception"))
         links.append({
+            "relay_causal_roots": relay_roots,
             "canonical_source_links": causal,
             "relay_state_trajectory": record["relay_state_trajectory"],
             "relay_recurrence": check, "relay_canonical_emission": relay,
             "relay_queue_admission": onward, "destination_actual_reception": receiver,
         })
-    if not links or destination["canonical_emission"] is None:
-        raise Blocker("DESTINATION", {"reason": "genuine chain incomplete"})
+
+    canonical_destination = destination["canonical_emission"]
+    destination_trace = (
+        None if canonical_destination is None
+        else runtime_emissions.get(canonical_destination["event_id"])
+    )
+    if (
+        not links or canonical_destination is None or destination_trace is None
+        or destination_trace["source"] != "destination"
+        or destination_trace["lineage_id"] != canonical_destination["lineage_id"]
+        or destination_trace["timestamp"] != canonical_destination["timestamp"]
+        or ordered_union(all_contributing_receiver_roots)
+        != roots_of(destination_trace, "destination emission")
+    ):
+        raise Blocker("DESTINATION", {"reason": "genuine chain incomplete or destination roots differ"})
     return {
         "verified": True, "upstream_links": links,
         "destination_recurrence": destination["oracle"],
-        "destination_canonical_emission": destination["canonical_emission"],
+        "destination_canonical_emission": canonical_destination,
+        "destination_causal_roots": destination_trace["causal_roots"],
     }
 
 
@@ -882,11 +1021,75 @@ def arm_report(records: list[Record]) -> Record:
 
 
 def phase_digest(records: list[Record], report: Record) -> str:
-    return digest({
+    return hashlib.sha256(phase_canonical_bytes(records, report)).hexdigest()
+
+
+def phase_canonical_bytes(
+    records: list[Record],
+    report: Record,
+    *,
+    config: Record | None = None,
+) -> bytes:
+    return reference._canonical_bytes({
         "fixture_file_sha256": reference.FIXTURE_FILE_SHA256,
         "fixture_semantic_digest": reference.FIXTURE_SHA256,
-        "config": experiment_config(), "records": records, "per_arm_report": report,
+        "config": experiment_config() if config is None else config,
+        "records": records,
+        "per_arm_report": report,
     })
+
+
+def _first_byte_difference(initial: bytes, replay: bytes) -> Record | None:
+    limit = min(len(initial), len(replay))
+    offset = next((index for index in range(limit) if initial[index] != replay[index]), limit)
+    if offset == len(initial) == len(replay):
+        return None
+    context_start = max(0, offset - 16)
+    context_end = offset + 17
+    return {
+        "offset": offset,
+        "initial_byte": None if offset >= len(initial) else initial[offset],
+        "replay_byte": None if offset >= len(replay) else replay[offset],
+        "initial_context_hex": initial[context_start:context_end].hex(),
+        "replay_context_hex": replay[context_start:context_end].hex(),
+    }
+
+
+def replay_content_matches(
+    initial: bytes,
+    replay: bytes,
+    initial_sha256: str,
+    replay_sha256: str,
+) -> bool:
+    return initial == replay and initial_sha256 == replay_sha256
+
+
+def compare_phase_replay(
+    initial_records: list[Record],
+    initial_report: Record,
+    replay_records: list[Record],
+    replay_report: Record,
+    *,
+    config: Record | None = None,
+) -> Record:
+    initial_bytes = phase_canonical_bytes(initial_records, initial_report, config=config)
+    replay_bytes = phase_canonical_bytes(replay_records, replay_report, config=config)
+    initial_sha256 = hashlib.sha256(initial_bytes).hexdigest()
+    replay_sha256 = hashlib.sha256(replay_bytes).hexdigest()
+    bytes_equal = initial_bytes == replay_bytes
+    digests_equal = initial_sha256 == replay_sha256
+    return {
+        "initial_byte_length": len(initial_bytes),
+        "replay_byte_length": len(replay_bytes),
+        "initial_sha256": initial_sha256,
+        "replay_sha256": replay_sha256,
+        "canonical_bytes_equal": bytes_equal,
+        "digests_equal": digests_equal,
+        "matches": replay_content_matches(
+            initial_bytes, replay_bytes, initial_sha256, replay_sha256,
+        ),
+        "first_byte_difference": _first_byte_difference(initial_bytes, replay_bytes),
+    }
 
 
 def decide(replay_passes: bool, reports: Record) -> tuple[str, str]:
@@ -990,15 +1193,29 @@ def run_experiment(output: Path = OUTPUT) -> Record:
     replay_digests: Record = {arm: None for arm in ARMS}
     replay_blocker = None
     replay_equal = False
+    replay_comparisons: Record = {}
     if initial_blocker is None:
         replay, replay_reports, replay_gates, replay_blocker = execute_phase(fixture, historical)
         if replay_blocker is None:
             replay_digests = {
                 arm: phase_digest(replay[arm], replay_reports[arm]) for arm in ARMS
             }
-            replay_equal = initial_digests == replay_digests
+            replay_comparisons = {
+                arm: compare_phase_replay(
+                    initial[arm], reports[arm], replay[arm], replay_reports[arm],
+                )
+                for arm in ARMS
+            }
+            replay_equal = (
+                initial_digests == replay_digests
+                and all(item["matches"] for item in replay_comparisons.values())
+            )
             if not replay_equal:
-                replay_blocker = {"gate": "REPLAY", "reason": "canonical phase digests differ"}
+                replay_blocker = {
+                    "gate": "REPLAY",
+                    "reason": "canonical phase bytes or SHA-256 digests differ",
+                    "per_arm": replay_comparisons,
+                }
         publications["replay"] = persist_phase(
             output, "replay", replay, metadata, replay_reports, replay_digests,
             replay_blocker, replay_gates,
@@ -1015,7 +1232,8 @@ def run_experiment(output: Path = OUTPUT) -> Record:
         "initial_blocker": initial_blocker, "replay_blocker": replay_blocker,
         "replay_not_run": initial_blocker is not None,
         "initial_digests": initial_digests, "replay_digests": replay_digests,
-        "replay_equal": replay_equal, "per_arm": reports,
+        "replay_equal": replay_equal, "replay_comparisons": replay_comparisons,
+        "per_arm": reports,
         "between_arm_differences": [
             {"left": left, "right": right,
              "integrated_count_delta": reports[left]["integration_mediated_emissions"] - reports[right]["integration_mediated_emissions"],
