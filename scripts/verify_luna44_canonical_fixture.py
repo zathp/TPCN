@@ -11,12 +11,12 @@ import subprocess
 from typing import Any
 
 
-MANIFEST_SHA256 = "04da7d14a60d6a22dd6b54d72337b60a699cecfdaa89ad580ac0b78aab3c3709"
+MANIFEST_SHA256 = "fbb5b21d7dcd1a6c74874c7c09104e3c3f1cd40a5e5621df49cdf118a17f7dac"
 FIXTURE_FILE_SHA256 = "66e187350536e6901d8371a1ffbe3e2a0abf3b49341c6ae6c8fed3ae7833b629"
 SEMANTIC_FIXTURE_SHA256 = "6c262ad1951a48f624d83a594abfc86ffa89d26882b397f6586698c097144305"
 SOURCE_REVISION = "a79494cd66be28fd291ed11eddd62d342f457cfd"
-MATERIALIZER_REVISION = "55e0232577d4fba2e9d87afbe1194f1efa728da1"
-MATERIALIZER_SHA256 = "afc5adf7c1bb8ab10e4de30c07c557ae22bb9bd91adf72a3b744662fcad4bc33"
+MATERIALIZER_REVISION = "10994419cec3646d30d965372f88d10605d83d57"
+MATERIALIZER_SHA256 = "696051cc3690aafc9f342e569697469a111757c37c2666b0c026333e6b16efce"
 EXPECTED_POINT_COUNT = 5164
 EXPECTED_SEQUENCE_COUNT = 320
 SEQUENCES_PER_SEED = 64
@@ -225,12 +225,13 @@ def verify_fixture(
     if manifest.get("ordering_rule") != EXPECTED_ORDERING_RULE:
         raise FixtureVerificationError("manifest ordering rule mismatch")
     if manifest.get("point_representation_format") != (
-        "StrokePoint with finite x/y/t values represented as Python binary64"
+        "JSON decimal strings plus Python hexadecimal float strings for x, y, t; "
+        "canonical identity includes only raw point metadata and the corresponding binary64 bits."
     ):
         raise FixtureVerificationError("manifest point representation mismatch")
-    if manifest.get("binary64_encoding_method") != (
-        "IEEE-754 binary64; big-endian 8-byte encoding rendered as 16 lowercase "
-        "hex digits; decimal repr and float.hex() must round-trip bitwise"
+    if manifest.get("binary64_encoding") != (
+        "struct.pack('>d', float_value).hex(), exactly 16 lowercase hexadecimal "
+        "characters in big-endian IEEE-754 binary64 encoding."
     ):
         raise FixtureVerificationError("manifest binary64 encoding mismatch")
     if manifest.get("canonical_serialization_format") != (
@@ -238,11 +239,20 @@ def verify_fixture(
         "list, finite numbers only"
     ):
         raise FixtureVerificationError("manifest canonical serialization mismatch")
-    if manifest.get("original_publication_materialization") != {
-        "invocations": 1,
-        "canonical_fixture_sha256": SEMANTIC_FIXTURE_SHA256,
-        "independent_repeat_performed": False,
-    }:
+    original = manifest.get("original_publication_materialization", {})
+    if (
+        original.get("publication_manifest_revision") != "be1f579281e1f39ed17776957f66cd9c40b83c83"
+        or original.get("publication_manifest_git_blob")
+        != "266a85a7ae42cf9ce66259db556776f0c7fc2e15"
+        or original.get("generation_execution_revision")
+        != "9226316be4935236ba3f6f511b4abfe8f23af278"
+        or original.get("canonical_fixture_publications") != 1
+        or original.get("independent_repeat_evidence_retained") is not False
+        or original.get("original_independent_materialization_count")
+        != "not established by retained evidence"
+        or original.get("fixture_file_sha256") != FIXTURE_FILE_SHA256
+        or original.get("semantic_fixture_digest") != SEMANTIC_FIXTURE_SHA256
+    ):
         raise FixtureVerificationError("original materialization provenance mismatch")
     runtime = manifest.get("runtime", {})
     if require_post_publication_evidence:
@@ -255,55 +265,63 @@ def verify_fixture(
         ):
             raise FixtureVerificationError("post-publication materialization statement missing")
         if verification.get("scope") != (
-            "Deterministic repeated materialization in the tested environment only; "
-            "no cross-platform or environment-independent claim."
+            "Same declared runtime environment only; no cross-platform determinism claim."
         ):
             raise FixtureVerificationError("post-publication materialization scope mismatch")
         if (
-            verification.get("verification_revision") != MATERIALIZER_REVISION
+            verification.get("materializer_revision") != MATERIALIZER_REVISION
             or verification.get("materializer_sha256") != MATERIALIZER_SHA256
+            or verification.get("materializer_path")
+            != "scripts/build_luna44_canonical_fixture.py"
         ):
             raise FixtureVerificationError("post-publication materializer identity mismatch")
-        runs = (verification.get("materialization_a"), verification.get("materialization_b"))
-        if any(not isinstance(run, dict) for run in runs):
+        runs = manifest.get("materializations")
+        if not isinstance(runs, list) or len(runs) != 2:
             raise FixtureVerificationError("two independent materialization records are required")
+        if [run.get("invocation_id") for run in runs] != verification.get("invocation_ids"):
+            raise FixtureVerificationError("post-publication invocation identities mismatch")
         if (
-            runs[0].get("process") == runs[1].get("process")
+            runs[0].get("invocation_id") == runs[1].get("invocation_id")
+            or runs[0].get("process_id") == runs[1].get("process_id")
             or runs[0].get("output_directory") == runs[1].get("output_directory")
-            or runs[0].get("generation_timestamp_utc")
-            == runs[1].get("generation_timestamp_utc")
+            or runs[0].get("started_at_utc") == runs[1].get("started_at_utc")
+            or runs[0].get("environment_identity") != runs[1].get("environment_identity")
         ):
             raise FixtureVerificationError("materialization runs are not independent")
         for run in runs:
             if (
-                run.get("fixture_byte_length") != 3_451_453
-                or run.get("fixture_json_sha256") != FIXTURE_FILE_SHA256
+                run.get("generator_revision") != SOURCE_REVISION
+                or run.get("generation_execution_revision") != SOURCE_REVISION
+                or run.get("materializer_source_sha256") != MATERIALIZER_SHA256
+                or run.get("byte_length") != 3_451_453
+                or run.get("fixture_file_sha256") != FIXTURE_FILE_SHA256
                 or run.get("semantic_fixture_digest") != SEMANTIC_FIXTURE_SHA256
-                or run.get("record_count") != EXPECTED_POINT_COUNT
-                or len(run.get("provenance_manifest_sha256", "")) != 64
+                or run.get("record_count") != EXPECTED_SEQUENCE_COUNT
+                or run.get("ordered_point_count") != EXPECTED_POINT_COUNT
+                or len(run.get("seed_sequence_point_order_sha256", "")) != 64
+                or len(run.get("exact_xyz_bits_sha256", "")) != 64
             ):
                 raise FixtureVerificationError("materialization result does not match pinned fixture")
-        comparison = verification.get("comparison", {})
+        comparison = manifest.get("materialization_comparison", {})
         required_equalities = (
-            "output_directories_distinct",
-            "processes_distinct",
-            "same_runtime_environment",
             "fixture_bytes_equal",
-            "fixture_byte_length_equal",
-            "fixture_sha256_equal",
+            "file_sha256_equal",
             "semantic_digest_equal",
-            "record_count_equal",
-            "all_x_y_t_binary64_bit_patterns_equal",
-            "ordering_equal",
+            "sequence_point_order_equal",
+            "point_by_point_exact_equal",
+            "independent_invocations",
         )
         if (
             any(comparison.get(key) is not True for key in required_equalities)
-            or comparison.get("point_records_compared") != EXPECTED_POINT_COUNT
-            or verification.get("runtime", {}).get("python_version")
-            != runtime.get("python_version")
-            or verification.get("runtime", {}).get("python_implementation")
-            != runtime.get("python_implementation")
-            or verification.get("runtime", {}).get("platform") != runtime.get("platform")
+            or runs[0].get("fixture_file_sha256") != runs[1].get("fixture_file_sha256")
+            or runs[0].get("semantic_fixture_digest") != runs[1].get("semantic_fixture_digest")
+            or runs[0].get("byte_length") != runs[1].get("byte_length")
+            or runs[0].get("record_count") != runs[1].get("record_count")
+            or runs[0].get("ordered_point_count") != runs[1].get("ordered_point_count")
+            or runs[0].get("seed_sequence_point_order_sha256")
+            != runs[1].get("seed_sequence_point_order_sha256")
+            or runs[0].get("exact_xyz_bits_sha256") != runs[1].get("exact_xyz_bits_sha256")
+            or verification.get("verified_after_original_publication") is not True
         ):
             raise FixtureVerificationError("materialization equality evidence is incomplete")
 

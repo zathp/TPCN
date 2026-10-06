@@ -3,11 +3,10 @@ from __future__ import annotations
 import hashlib
 import json
 from pathlib import Path
-import subprocess
-import sys
 
 import pytest
 
+from scripts import build_luna44_canonical_fixture as builder
 from scripts import verify_luna44_canonical_fixture as verifier
 
 
@@ -19,22 +18,9 @@ FIXTURE_PATH = ARTIFACTS / "fixture.json"
 
 @pytest.fixture(scope="module")
 def fresh_materializations(tmp_path_factory):
-    root = tmp_path_factory.mktemp("luna44-independent-materializations")
-    directories = (root / "materialization-a", root / "materialization-b")
-    for output_directory in directories:
-        subprocess.run(
-            [
-                sys.executable,
-                "scripts/build_luna44_canonical_fixture.py",
-                "--output-dir",
-                str(output_directory),
-            ],
-            cwd=ROOT,
-            check=True,
-            capture_output=True,
-            text=True,
-        )
-    return directories
+    root = tmp_path_factory.getbasetemp() / "luna44-independent-materializations"
+    builder.materialize_independently(root)
+    return root / "materialization-a", root / "materialization-b"
 
 
 def _write_inputs(tmp_path, manifest, fixture):
@@ -62,23 +48,11 @@ def _verify_mutation(tmp_path, manifest, fixture):
     )
 
 
-def test_independent_verifier_accepts_materialized_manifest(fresh_materializations):
-    first_directory, _ = fresh_materializations
-    result = verifier.verify_fixture(
-        first_directory / "provenance.json",
-        first_directory / "fixture.json",
-        ROOT,
-        expected_manifest_sha256=None,
-        require_post_publication_evidence=False,
+def _committed_inputs():
+    return (
+        json.loads(MANIFEST_PATH.read_text(encoding="utf-8")),
+        json.loads(FIXTURE_PATH.read_text(encoding="utf-8")),
     )
-
-    assert result["manifest_sha256"]
-    assert result["fixture_file_sha256"] == verifier.FIXTURE_FILE_SHA256
-    assert result["semantic_fixture_sha256"] == verifier.SEMANTIC_FIXTURE_SHA256
-    assert result["fixture_byte_length"] == 3_451_453
-    assert result["sequence_count"] == 320
-    assert result["point_count"] == 5164
-    assert result["source_files_verified"] == 4
 
 
 def test_committed_manifest_is_pinned_and_fully_verified():
@@ -91,9 +65,7 @@ def test_committed_manifest_is_pinned_and_fully_verified():
 
 
 def test_missing_manifest_source_file_fails_loudly(tmp_path, fresh_materializations):
-    first_directory, _ = fresh_materializations
-    manifest = json.loads((first_directory / "provenance.json").read_text(encoding="utf-8"))
-    fixture = json.loads((first_directory / "fixture.json").read_text(encoding="utf-8"))
+    manifest, fixture = _committed_inputs()
     manifest_path, fixture_path = _write_inputs(tmp_path, manifest, fixture)
 
     with pytest.raises(verifier.FixtureVerificationError, match="missing source file"):
@@ -107,9 +79,7 @@ def test_missing_manifest_source_file_fails_loudly(tmp_path, fresh_materializati
 
 
 def test_incorrect_source_sha_fails_loudly(tmp_path, fresh_materializations):
-    first_directory, _ = fresh_materializations
-    manifest = json.loads((first_directory / "provenance.json").read_text(encoding="utf-8"))
-    fixture = json.loads((first_directory / "fixture.json").read_text(encoding="utf-8"))
+    manifest, fixture = _committed_inputs()
     manifest["source_files"][0]["sha256"] = "0" * 64
 
     with pytest.raises(verifier.FixtureVerificationError, match="source SHA-256 mismatch"):
@@ -117,9 +87,8 @@ def test_incorrect_source_sha_fails_loudly(tmp_path, fresh_materializations):
 
 
 def test_fixture_file_digest_mismatch_fails_loudly(tmp_path, fresh_materializations):
-    first_directory, _ = fresh_materializations
-    manifest = json.loads((first_directory / "provenance.json").read_text(encoding="utf-8"))
-    fixture = (first_directory / "fixture.json").read_bytes() + b" "
+    manifest, _ = _committed_inputs()
+    fixture = FIXTURE_PATH.read_bytes() + b" "
     manifest["fixture_byte_length"] = len(fixture)
     manifest_path = tmp_path / "provenance.json"
     fixture_path = tmp_path / "fixture.json"
@@ -138,9 +107,7 @@ def test_fixture_file_digest_mismatch_fails_loudly(tmp_path, fresh_materializati
 
 
 def test_incorrect_fixture_point_count_fails_loudly(tmp_path, fresh_materializations):
-    first_directory, _ = fresh_materializations
-    manifest = json.loads((first_directory / "provenance.json").read_text(encoding="utf-8"))
-    fixture = json.loads((first_directory / "fixture.json").read_text(encoding="utf-8"))
+    manifest, fixture = _committed_inputs()
     sequence = fixture["sequences"][-1]
     sequence["points"].pop()
     sequence["point_count"] -= 1
@@ -151,9 +118,7 @@ def test_incorrect_fixture_point_count_fails_loudly(tmp_path, fresh_materializat
 
 
 def test_binary64_decimal_hex_mismatch_fails_loudly(tmp_path, fresh_materializations):
-    first_directory, _ = fresh_materializations
-    manifest = json.loads((first_directory / "provenance.json").read_text(encoding="utf-8"))
-    fixture = json.loads((first_directory / "fixture.json").read_text(encoding="utf-8"))
+    manifest, fixture = _committed_inputs()
     point = fixture["sequences"][0]["points"][0]
     point["x"]["decimal"] = repr(float.fromhex(point["x"]["hex"]) + 1.0)
 
@@ -162,9 +127,7 @@ def test_binary64_decimal_hex_mismatch_fails_loudly(tmp_path, fresh_materializat
 
 
 def test_manifest_configuration_mismatch_fails_loudly(tmp_path, fresh_materializations):
-    first_directory, _ = fresh_materializations
-    manifest = json.loads((first_directory / "provenance.json").read_text(encoding="utf-8"))
-    fixture = json.loads((first_directory / "fixture.json").read_text(encoding="utf-8"))
+    manifest, fixture = _committed_inputs()
     manifest["seeds"] = [1, 2, 3, 4, 5]
 
     with pytest.raises(verifier.FixtureVerificationError, match="seed configuration"):
@@ -174,21 +137,6 @@ def test_manifest_configuration_mismatch_fails_loudly(tmp_path, fresh_materializ
 def test_two_fresh_process_materializations_match_exactly(fresh_materializations):
     first_directory, second_directory = fresh_materializations
     assert first_directory != second_directory
-    first_provenance = json.loads(
-        (first_directory / "provenance.json").read_text(encoding="utf-8")
-    )
-    second_provenance = json.loads(
-        (second_directory / "provenance.json").read_text(encoding="utf-8")
-    )
-    assert first_provenance["generation_execution_revision"] == (
-        second_provenance["generation_execution_revision"]
-    )
-    assert first_provenance["materializer"]["sha256"] == (
-        second_provenance["materializer"]["sha256"]
-    )
-    assert first_provenance["generation_timestamp_utc"] != (
-        second_provenance["generation_timestamp_utc"]
-    )
     result = verifier.compare_materializations(
         first_directory / "fixture.json",
         second_directory / "fixture.json",

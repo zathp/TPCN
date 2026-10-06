@@ -1,5 +1,6 @@
 {
   "schema": "TPCN-LUNA44-CANONICAL-FIXTURE-PROVENANCE-1",
+  "manifest_version": 1,
   "generator": {
     "sequence_builder": {
       "module": "run_luna34_excursion_v1_multi_emitter_bridge",
@@ -38,8 +39,39 @@
       "ordering": "random.Random(330000 + seed).shuffle(point_sequences)"
     }
   },
-  "generation_execution_revision": "a79494cd66be28fd291ed11eddd62d342f457cfd",
-  "generation_timestamp_utc": "2026-10-06T00:15:22.755893+00:00",
+  "materializer": {
+    "path": "scripts/build_luna44_canonical_fixture.py",
+    "sha256": "696051cc3690aafc9f342e569697469a111757c37c2666b0c026333e6b16efce",
+    "repository_revision": "10994419cec3646d30d965372f88d10605d83d57"
+  },
+  "source_files": [
+    {
+      "path": "scripts/build_luna44_canonical_fixture.py",
+      "role": "materializer",
+      "revision": "10994419cec3646d30d965372f88d10605d83d57",
+      "sha256": "696051cc3690aafc9f342e569697469a111757c37c2666b0c026333e6b16efce"
+    },
+    {
+      "path": "run_luna34_excursion_v1_multi_emitter_bridge.py",
+      "role": "sequence_builder",
+      "revision": "a79494cd66be28fd291ed11eddd62d342f457cfd",
+      "sha256": "17e581cf702fae1f56889472a967d2e8e5fec37cc041edba8247da14a0a8b5db"
+    },
+    {
+      "path": "tpcn/spiral_benchmark.py",
+      "role": "point_generator",
+      "revision": "a79494cd66be28fd291ed11eddd62d342f457cfd",
+      "sha256": "2ffb1b5ebb23f016436043118bc675eddaa14bfd923129359fe61a12df94d9f0"
+    },
+    {
+      "path": "tpcn/stroke_dataset.py",
+      "role": "point_representation",
+      "revision": "a79494cd66be28fd291ed11eddd62d342f457cfd",
+      "sha256": "daca268597e2467bf984922ee77736b584bef9743b6f41ad729d7cb4d3c3ede7"
+    }
+  ],
+  "generation_execution_revision": "9226316be4935236ba3f6f511b4abfe8f23af278",
+  "generation_timestamp_utc": "2026-10-05T22:46:24.643250+00:00",
   "seeds": [
     0,
     1,
@@ -48,6 +80,13 @@
     4
   ],
   "sequences_per_seed": 64,
+  "sequence_count": 320,
+  "character_count": 320,
+  "expected_sequence_count": 320,
+  "expected_point_count": 5164,
+  "fixture_path": "artifacts/luna44-canonical-fixture/fixture.json",
+  "fixture_byte_length": 3451453,
+  "ordering_rule": "for seed in ascending order, preserve the sequence order returned by _training_point_sequences(seed), identified as c{seed:02d}-{sequence_index:03d}",
   "sequence_order": [
     "c00-000",
     "c00-001",
@@ -1664,7 +1703,11 @@
   },
   "canonical_fixture_sha256": "6c262ad1951a48f624d83a594abfc86ffa89d26882b397f6586698c097144305",
   "fixture_json_sha256": "66e187350536e6901d8371a1ffbe3e2a0abf3b49341c6ae6c8fed3ae7833b629",
+  "semantic_fixture_digest": "6c262ad1951a48f624d83a594abfc86ffa89d26882b397f6586698c097144305",
   "canonical_row_count": 5164,
+  "point_representation_format": "JSON decimal strings plus Python hexadecimal float strings for x, y, t; canonical identity includes only raw point metadata and the corresponding binary64 bits.",
+  "binary64_encoding": "struct.pack('>d', float_value).hex(), exactly 16 lowercase hexadecimal characters in big-endian IEEE-754 binary64 encoding.",
+  "canonical_serialization_format": "UTF-8 JSON, sorted keys, compact separators, ordered canonical raw-row list, finite numbers only",
   "neural_execution_started": false,
   "serialization": "UTF-8 JSON, sorted keys, compact separators, ordered row list, finite numbers only; raw values represented in identity as exact 16-character big-endian IEEE-754 binary64 hex.",
   "audit_boundary": "x+y is stored only as a derived audit value with a separate derived_audit_sha256; neither audit values nor audit digests enter canonical fixture identity.",
@@ -1715,6 +1758,33 @@
     "sequence_point_order_equal": true,
     "point_by_point_exact_equal": true,
     "independent_invocations": true,
-    "statement": "Two independent materializations produced identical canonical fixture bytes in the tested environment."
+    "statement": "Post-publication independent fixture materialization verification produced identical canonical fixture bytes/digests under the declared environment.",
+    "scope": "Repeated materialization was verified only in the recorded environment; this does not establish cross-platform or environment-independent determinism."
+  },
+  "original_publication_materialization": {
+    "publication_manifest_revision": "be1f579281e1f39ed17776957f66cd9c40b83c83",
+    "publication_manifest_git_blob": "266a85a7ae42cf9ce66259db556776f0c7fc2e15",
+    "generation_execution_revision": "9226316be4935236ba3f6f511b4abfe8f23af278",
+    "generation_timestamp_utc": "2026-10-05T22:46:24.643250+00:00",
+    "canonical_fixture_publications": 1,
+    "independent_repeat_evidence_retained": false,
+    "original_independent_materialization_count": "not established by retained evidence",
+    "fixture_file_sha256": "66e187350536e6901d8371a1ffbe3e2a0abf3b49341c6ae6c8fed3ae7833b629",
+    "semantic_fixture_digest": "6c262ad1951a48f624d83a594abfc86ffa89d26882b397f6586698c097144305",
+    "byte_length": 3451453,
+    "record_count": 320,
+    "ordered_point_count": 5164
+  },
+  "post_publication_independent_materialization_verification": {
+    "verified_after_original_publication": true,
+    "statement": "Post-publication independent fixture materialization verification produced identical canonical fixture bytes/digests under the declared environment.",
+    "materializer_path": "scripts/build_luna44_canonical_fixture.py",
+    "materializer_revision": "10994419cec3646d30d965372f88d10605d83d57",
+    "materializer_sha256": "696051cc3690aafc9f342e569697469a111757c37c2666b0c026333e6b16efce",
+    "invocation_ids": [
+      "16d3c11dbfec4963b582377c3ec9939c",
+      "b6187d9a674045488e01d7cdcc5d7a58"
+    ],
+    "scope": "Same declared runtime environment only; no cross-platform determinism claim."
   }
 }
