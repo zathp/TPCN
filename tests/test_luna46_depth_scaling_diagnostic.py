@@ -535,16 +535,35 @@ def test_depth_comparison_measures_unequal_stream_statistics_and_discloses_unfai
     fair = {"fixture": True, "sequence": True, "reset": True, "phase": True, "capture": True}
     result = diagnostic.depth_comparison([first], [second], fair, [100.0])
     assert result["fair"]
-    assert result["first_hop"]["frequency"]["intervals_per_time"] == .1
-    assert result["second_hop"]["frequency"]["intervals_per_time"] == 1 / 80
+    first_intervals = result["first_hop"]["interval_statistics"]
+    second_intervals = result["second_hop"]["interval_statistics"]
+    assert first_intervals["interval_count"] == 2
+    assert first_intervals["observed_duration"] == 20.
+    assert first_intervals["mean_interval_duration"] == 10.
+    assert first_intervals["reciprocal_mean_interval"] == .1
+    assert first_intervals["reciprocal_mean_interval_units"] == "intervals per retained logical-time unit"
+    assert "not an event rate" in first_intervals["definition"]
+    assert second_intervals["interval_count"] == 1
+    assert second_intervals["observed_duration"] == 80.
+    assert second_intervals["mean_interval_duration"] == 80.
+    assert second_intervals["reciprocal_mean_interval"] == 1 / 80
     assert result["first_hop"]["signs"]["negative"] == 1
     assert result["differences"]["receptions"] == -1
-    assert result["first_hop"]["common_fixture_frequency"]["receptions_per_time"] == .03
-    assert result["second_hop"]["common_fixture_frequency"]["receptions_per_time"] == .02
+    first_event_rate = result["first_hop"]["common_fixture_event_rate"]
+    second_event_rate = result["second_hop"]["common_fixture_event_rate"]
+    assert first_event_rate["event_count"] == 3
+    assert first_event_rate["observation_window_duration"] == 100.
+    assert first_event_rate["events_per_time_unit"] == .03
+    assert first_event_rate["units"] == "routed receptions per retained logical-time unit"
+    assert "reception count /" in first_event_rate["definition"]
+    assert second_event_rate["event_count"] == 2
+    assert second_event_rate["observation_window_duration"] == 100.
+    assert second_event_rate["events_per_time_unit"] == .02
     assert result["first_hop"]["timing"]["gaps"] != result["second_hop"]["timing"]["gaps"]
     unfair = diagnostic.depth_comparison([first], [], {**fair, "fixture": False})
     assert not unfair["fair"] and "unfair/missing" in unfair["limitation"]
-    assert unfair["second_hop"]["frequency"]["intervals_per_time"] is None
+    assert unfair["second_hop"]["interval_statistics"]["reciprocal_mean_interval"] is None
+    assert unfair["second_hop"]["common_fixture_event_rate"]["events_per_time_unit"] is None
 
 
 # Contract-to-test matrix (luna-46.agent.md critical-rate clause and checklist):
@@ -968,7 +987,12 @@ def test_assembled_offline_schema_uses_only_synthetic_sequence_records(tmp_path,
     assert result["aggregate"]["counts"]["DRIVE-LIMITED"] == 320
     assert result["verdict"] == "SUPPORTS DRIVE/CANCELLATION BOTTLENECK"
     assert result["depth_comparison"]["fair"]
-    assert result["depth_comparison"]["second_hop"]["common_fixture_frequency"]["exposure"] == 32000.
+    second_hop = result["depth_comparison"]["second_hop"]
+    assert second_hop["common_fixture_event_rate"]["observation_window_duration"] == 32000.
+    assert second_hop["common_fixture_event_rate"]["event_count"] == 320
+    assert second_hop["common_fixture_event_rate"]["events_per_time_unit"] == .01
+    assert second_hop["interval_statistics"]["interval_count"] == 0
+    assert second_hop["interval_statistics"]["reciprocal_mean_interval"] is None
     assert result["replay"]["analytical_bytes_equal"]
     assert result["feedback"] == "NONE; downstream only"
     assert result["efficacy"] == "NOT EVALUATED"

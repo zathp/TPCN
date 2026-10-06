@@ -711,9 +711,16 @@ def stream_metrics(streams: list[list[Record]]) -> Record:
             "payloads": distribution(payloads), "absolute_payloads": distribution([abs(p) for p in payloads]),
             "signs": {"positive": sum(p > 0 for p in payloads), "negative": sum(p < 0 for p in payloads),
                       "zero": sum(p == 0 for p in payloads)},
-            "frequency": {"interval_count": intervals, "observed_span": exposure,
-                          "intervals_per_time": intervals / exposure if exposure > 0 else None,
-                          "definition": "(receptions-1) / first-to-last arrival span; singleton/tied span null"},
+            "interval_statistics": {
+                "interval_count": intervals, "observed_duration": exposure,
+                "mean_interval_duration": exposure / intervals if intervals else None,
+                "reciprocal_mean_interval": intervals / exposure if exposure > 0 else None,
+                "reciprocal_mean_interval_units": "intervals per retained logical-time unit",
+                "definition": "within-character inter-arrival intervals divided by the summed "
+                              "first-to-last arrival durations; this is reciprocal mean interval, "
+                              "not an event rate over the observation window",
+                "zero_or_missing_duration": "reciprocal mean interval is null; no zero is imputed",
+            },
             "timing": pooled_timing([timing(stream) for stream in streams])}
 
 
@@ -727,12 +734,15 @@ def depth_comparison(first: list[list[Record]], second: list[list[Record]],
         require(all(number(span) >= 0 for span in fixture_exposures), "negative fixture exposure")
         common_exposure = sum(fixture_exposures)
     for metrics in (upstream, downstream):
-        metrics["common_fixture_frequency"] = {
-            "exposure": common_exposure,
-            "receptions_per_time": metrics["receptions"] / common_exposure
+        metrics["common_fixture_event_rate"] = {
+            "event_count": metrics["receptions"],
+            "observation_window_duration": common_exposure,
+            "events_per_time_unit": metrics["receptions"] / common_exposure
             if common_exposure is not None and common_exposure > 0 else None,
-            "definition": "receptions / sum(last-first frozen point timestamp) over matched characters",
-            "zero_or_missing_exposure": "null; do not substitute zero frequency",
+            "units": "routed receptions per retained logical-time unit",
+            "definition": "routed reception count / sum(last-first frozen point timestamp) "
+                          "over matched characters",
+            "zero_or_missing_exposure": "event rate is null; no zero is imputed",
         }
     return {"fair": fair, "matching_checks": fairness,
             "limitation": "different hop exposure; not identical layer statistics" if fair
