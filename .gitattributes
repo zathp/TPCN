@@ -6,3 +6,4 @@
 /run_luna34_excursion_v1_multi_emitter_bridge.py text eol=lf
 /tpcn/spiral_benchmark.py text eol=lf
 /tpcn/stroke_dataset.py text eol=lf
+/artifacts/luna44-acp0008-independent-routing-rerun-20261005/*.json text eol=lf
