@@ -37,7 +37,7 @@ from scripts.verify_luna44_canonical_fixture import (
 
 
 AUTHORIZATION_REVISION = "ff4bf51dcaab2e7b66f0409f4d63a33649c3e104"
-AUTHORIZATION_HANDOFF_SHA256 = "13e5419f44db5b874337de1e77dde290ed7859e2b29dfbef72c4d607040d45bd"
+AUTHORIZATION_HANDOFF_SHA256 = "a2baf6e0f6fefae6ec5e108688de965940242d34f109b1143c3f6909699cbe40"
 FIXTURE_REVISION = "6413cffe6982bccc6698af6bebfae51f04e71dd9"
 FIXTURE_PROVENANCE_REVISION = "86e5a2f389af06b06bf04a614edaed88e0847902"
 FIXTURE_SHA256 = "6c262ad1951a48f624d83a594abfc86ffa89d26882b397f6586698c097144305"
@@ -650,7 +650,7 @@ def _runner_sha256() -> str:
 
 
 def _authorization_handoff_sha256() -> str:
-    committed_path = f"{FIXTURE_REVISION}:{AUTHORIZATION_HANDOFF_PATH.as_posix()}"
+    committed_path = f"{AUTHORIZATION_REVISION}:{AUTHORIZATION_HANDOFF_PATH.as_posix()}"
     handoff_bytes = subprocess.run(
         ["git", "show", committed_path],
         check=True,
