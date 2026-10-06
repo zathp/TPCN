@@ -30,19 +30,24 @@ from tpcn.excursion_neuron import (
 from tpcn.experiment_excursion_runtime import ExcursionCharacterRuntime
 from tpcn.predictive_coding import LocalPredictor
 from tpcn.topology import BoundedTopology, Edge, TopologyCapacityError
+from scripts.verify_luna44_canonical_fixture import (
+    FixtureVerificationError,
+    verify_fixture as verify_committed_fixture_provenance,
+)
 
 
 AUTHORIZATION_REVISION = "ff4bf51dcaab2e7b66f0409f4d63a33649c3e104"
 AUTHORIZATION_HANDOFF_SHA256 = "13e5419f44db5b874337de1e77dde290ed7859e2b29dfbef72c4d607040d45bd"
 FIXTURE_REVISION = "6413cffe6982bccc6698af6bebfae51f04e71dd9"
+FIXTURE_PROVENANCE_REVISION = "86e5a2f389af06b06bf04a614edaed88e0847902"
 FIXTURE_SHA256 = "6c262ad1951a48f624d83a594abfc86ffa89d26882b397f6586698c097144305"
 FIXTURE_FILE_SHA256 = "66e187350536e6901d8371a1ffbe3e2a0abf3b49341c6ae6c8fed3ae7833b629"
-FIXTURE_PROVENANCE_SHA256 = "e9227379a5ed380b61f76cc0030639036d8b3afa609fb6e383106f85d50832f9"
-FIXTURE_PROVENANCE_GIT_BLOB = "68f53789cf2158fd32d3c6906aa5694cd7149c48"
+FIXTURE_PROVENANCE_SHA256 = "6e069f4f948e8a68b93397e12a5c0e4ab46cb5f5189243e6ef62bab2178cdf22"
+FIXTURE_PROVENANCE_GIT_BLOB = "eb9179abae7eed10891e6022832f16735111b220"
 FIXTURE_GENERATOR_REVISION = "a79494cd66be28fd291ed11eddd62d342f457cfd"
 FIXTURE_GENERATOR_SHA256 = "17e581cf702fae1f56889472a967d2e8e5fec37cc041edba8247da14a0a8b5db"
 FIXTURE_POINT_GENERATOR_SHA256 = "2ffb1b5ebb23f016436043118bc675eddaa14bfd923129359fe61a12df94d9f0"
-FIXTURE_GENERATION_EXECUTION_REVISION = "a79494cd66be28fd291ed11eddd62d342f457cfd"
+FIXTURE_GENERATION_EXECUTION_REVISION = "9226316be4935236ba3f6f511b4abfe8f23af278"
 AUTHORIZATION_HANDOFF_PATH = Path(
     "workflow/handoffs/luna-0-authorization-luna44-canonical-fixture-rebaseline-20261005.md"
 )
@@ -279,7 +284,7 @@ def _validate_materialization_provenance(
         if (
             item.get("generator_revision") != FIXTURE_GENERATOR_REVISION
             or item.get("generation_execution_revision")
-            != FIXTURE_GENERATION_EXECUTION_REVISION
+            != FIXTURE_GENERATOR_REVISION
             or not item.get("started_at_utc")
             or not item.get("completed_at_utc")
             or not item.get("environment_identity")
@@ -318,8 +323,23 @@ def _validate_materialization_provenance(
         != materializations[1]["environment_identity"]
     ):
         raise ValueError("fixture materializations were generated in different environments")
-    if provenance.get("committed_fixture_invocation_id") != invocation_ids[0]:
-        raise ValueError("committed fixture is not identified as Materialization A")
+    original_publication = provenance.get("original_publication_materialization", {})
+    if (
+        original_publication.get("independent_repeat_evidence_retained") is not False
+        or original_publication.get("original_independent_materialization_count")
+        != "not established by retained evidence"
+    ):
+        raise ValueError("original publication determinism evidence is unsupported")
+    verification = provenance.get(
+        "post_publication_independent_materialization_verification", {}
+    )
+    if (
+        verification.get("verified_after_original_publication") is not True
+        or verification.get("invocation_ids") != invocation_ids
+        or verification.get("materializer_sha256") != materializer_hashes[0]
+        or verification.get("materializer_revision") != "10994419cec3646d30d965372f88d10605d83d57"
+    ):
+        raise ValueError("post-publication materialization verification is incomplete")
     comparison = provenance.get("materialization_comparison", {})
     if (
         comparison.get("independent_invocations") is not True
@@ -329,7 +349,9 @@ def _validate_materialization_provenance(
         or comparison.get("sequence_point_order_equal") is not True
         or comparison.get("point_by_point_exact_equal") is not True
         or comparison.get("statement")
-        != "Two independent materializations produced identical canonical fixture bytes in the tested environment."
+        != "Post-publication independent fixture materialization verification produced identical canonical fixture bytes/digests under the declared environment."
+        or comparison.get("scope")
+        != "Repeated materialization was verified only in the recorded environment; this does not establish cross-platform or environment-independent determinism."
     ):
         raise ValueError("fixture determinism comparison is incomplete or failed")
 
@@ -345,21 +367,32 @@ def load_fixture(
     fixture_file_sha256 = hashlib.sha256(fixture_bytes).hexdigest()
     fixture = json.loads(fixture_bytes.decode("utf-8"))
     provenance_bytes = provenance_path.read_bytes()
-    committed_provenance_path = f"{FIXTURE_REVISION}:{FIXTURE_PROVENANCE_GIT_PATH}"
+    committed_provenance_path = (
+        f"{FIXTURE_PROVENANCE_REVISION}:{FIXTURE_PROVENANCE_GIT_PATH}"
+    )
     committed_provenance_blob = _git_output("rev-parse", committed_provenance_path)
     if committed_provenance_blob != FIXTURE_PROVENANCE_GIT_BLOB:
-        raise ValueError("fixture provenance Git blob differs from the pinned fixture revision")
+        raise ValueError("fixture provenance Git blob differs from the pinned provenance revision")
     committed_provenance_bytes = subprocess.run(
         ["git", "cat-file", "blob", committed_provenance_blob],
         check=True,
         capture_output=True,
     ).stdout
     if provenance_bytes != committed_provenance_bytes:
-        raise ValueError("fixture provenance differs from the committed fixture-revision blob")
+        raise ValueError("fixture provenance differs from the committed provenance-revision blob")
     provenance_sha256 = hashlib.sha256(provenance_bytes).hexdigest()
     if provenance_sha256 != FIXTURE_PROVENANCE_SHA256:
         raise ValueError("fixture provenance full-file SHA-256 does not match the pinned value")
     fixture_provenance = json.loads(provenance_bytes.decode("utf-8"))
+    try:
+        verify_committed_fixture_provenance(
+            provenance_path,
+            fixture_path,
+            Path.cwd(),
+            expected_manifest_sha256=FIXTURE_PROVENANCE_SHA256,
+        )
+    except FixtureVerificationError as error:
+        raise ValueError(f"independent fixture provenance verification failed: {error}") from error
     if fixture.get("schema") != "TPCN-LUNA44-CANONICAL-POINT-FIXTURE-1":
         raise ValueError("unexpected canonical fixture schema")
     if fixture_provenance.get("schema") != "TPCN-LUNA44-CANONICAL-FIXTURE-PROVENANCE-1":
@@ -470,6 +503,7 @@ def experiment_config() -> dict[str, Any]:
             "canonical_sha256": FIXTURE_SHA256,
             "file_sha256": FIXTURE_FILE_SHA256,
             "provenance_manifest_path": FIXTURE_PROVENANCE_PATH.as_posix(),
+            "provenance_manifest_revision": FIXTURE_PROVENANCE_REVISION,
             "provenance_manifest_sha256": FIXTURE_PROVENANCE_SHA256,
             "provenance_manifest_git_blob": FIXTURE_PROVENANCE_GIT_BLOB,
             "seeds": list(SEEDS),

@@ -149,7 +149,7 @@ def test_fixture_rejects_manifest_metadata_drift(tmp_path, monkeypatch):
     mutated_manifest_path.write_bytes(provenance_bytes.replace(original_timestamp, changed_timestamp))
     monkeypatch.setattr(luna44, "FIXTURE_PROVENANCE_PATH", mutated_manifest_path)
 
-    with pytest.raises(ValueError, match="committed fixture-revision blob"):
+    with pytest.raises(ValueError, match="committed provenance-revision blob"):
         luna44.load_fixture(provenance_path=mutated_manifest_path)
 
 
@@ -160,6 +160,9 @@ def test_topology_and_only_relay_integration_vary_by_arm():
     assert config["fixture"]["canonical_sha256"] == luna44.FIXTURE_SHA256
     assert config["fixture"]["provenance_manifest_path"] == (
         luna44.FIXTURE_PROVENANCE_PATH.as_posix()
+    )
+    assert config["fixture"]["provenance_manifest_revision"] == (
+        luna44.FIXTURE_PROVENANCE_REVISION
     )
     assert config["fixture"]["provenance_manifest_sha256"] == luna44.FIXTURE_PROVENANCE_SHA256
     assert config["fixture"]["provenance_manifest_git_blob"] == (
