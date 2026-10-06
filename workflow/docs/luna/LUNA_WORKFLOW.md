@@ -1,5 +1,139 @@
 # TPCN Luna Multi-Agent Workflow — Event-Driven Architecture
 
+## Luna-46 corrective completion — 2026-10-06
+
+**Corrective cycle complete; independent Luna-0 review PASS; scientific
+verdict MIXED, unchanged.** The corrective implementation is
+`96d015ecd8f6b5684237c489898ee33e4496a1cd`; Luna-0's independent corrective
+review is recorded in
+[`luna-46-corrective-verification-20261006.md`](../../handoffs/luna-46-corrective-verification-20261006.md).
+The retained corrected output is
+`artifacts/luna46-depth-scaling-diagnostic-corrective-20261006.json`.
+
+The correction adds canonical output-path protection for the frozen Luna-44
+fixture and retained evidence, plus analytical critical-rate classifications.
+It does not change diagnostic categories, retained evidence, or the
+predeclared **MIXED** scientific result: 212 `NO-RECEPTIONS`, 33
+`TEMPORAL-RETENTION-LIMITED`, 75 `DRIVE-LIMITED`, 0
+`CANCELLATION-LIMITED`, and 0 `ALREADY-CROSSING`. Of 320 sequences, 108 are
+reception-bearing, with 235 destination receptions. No production
+computation, tuning, efficacy study, ACP change, or architecture promotion
+occurred.
+
+Validation on Windows: Luna-46 focused tests **167 passed**. The full suite
+reported **1 failed, 7 errors, 1 skipped, 1,325 passed**. The failure and
+errors are the documented Luna-44 pinned-source materialization issue:
+global `core.autocrlf=true` converts the pinned LF source to CRLF in the
+temporary worktree, causing its pinned-source hash check to fail. This full
+suite remains failed; no failures were hidden or waived.
+
+The independent review retains two limitations: mixed-sign cases are
+conservatively classified as uniqueness-unproven rather than exhaustively
+root-solved; and output-path validation cannot eliminate a filesystem alias
+replacement race after validation but before writing. Earlier workflow
+entries recording a review as pending describe their state at the time and
+are preserved for audit; this corrective completion supersedes that pending
+status. **No successor Luna is authorized.**
+
+## Luna-0 independent review — Luna-46 retained depth-scaling diagnostic — 2026-10-06
+
+**PASS for the bounded evidence gates; independently recomputed verdict:
+MIXED.** Fresh Luna-0 review was performed read-only at published Commit C
+`b601ffecf6c0ddc8b87b878a31f4366b8fa3ac0a`. It independently checked the
+33 pinned input identities, all 22 Luna-45 catalog entries and internal
+digests, six initial/replay phase digests, output SHA-256/internal digest,
+and exact initial/replay raw-capture identities. All 1,950 captured route
+enqueue/reception pairs per phase reconcile; the 235 relay-to-destination
+pairs have zero duplicates, orphans, missing rows, or mismatches.
+
+Independent reconstruction of all 235 destination updates used retained
+prior timestamps and `lambda=0.0125`, `tau=80`, `theta_Z=1`. The largest
+recurrence residual was `1.1102230246251565e-16`, below the committed
+64-epsilon bound; no actual threshold crossing, direct admission, discharge,
+clipping, or destination canonical emission occurred. The signed offline
+zero-decay oracle crossed in 33 streams. The exact partition is 212
+`NO-RECEPTIONS`, 0 `ALREADY-CROSSING`, 33
+`TEMPORAL-RETENTION-LIMITED`, 0 `CANCELLATION-LIMITED`, and 75
+`DRIVE-LIMITED`. With `N=108`, cutoffs are 27/11/81, yielding the
+predeclared **MIXED** verdict.
+
+Five `roots_truncated=true` flags match between enqueue and reception,
+each with the retained bounded 16-root list. This marks incomplete causal-root
+metadata, not missing capture rows; full ancestry expansion is not claimed
+for those five events. The matched Luna-44 first-hop versus Luna-45 second-hop
+timing, signs, and run statistics were independently recomputed and remain
+descriptive, not a causal depth or efficacy conclusion. The evidence supports
+considering a future separately authorized adaptive-timescale question only;
+it does not establish a finite useful rate, and is not a WEMA, ACP-0008,
+parameter, or efficacy recommendation.
+
+Validation: Luna-46 focused **122 passed**; the selected Luna-38–45,
+Luna-44, runtime, and topology regression set **237 passed** with the same
+two known Windows-versus-frozen-Linux fixture-materialization failures;
+full suite **1,286 passed, 2 known failures, 1 CUDA-unavailable skip**.
+`py_compile` and `git diff --check` passed. No new failure was observed.
+The failures remain failures and cross-platform parity remains unresolved.
+
+Luna-42 **PASS WITH FOLLOW-UP**, Luna-43 **BLOCKED / DESTINATION COMPARISON
+UNDETERMINED**, Luna-44's reviewed canonical-fixture relay-propagation
+baseline, and Luna-45 **NOT SUPPORTED IN THIS SETUP** are preserved.
+ACP-0007 is unchanged/disabled; ACP-0008 remains experimental, opt-in, and
+unpromoted. No A01–A15 or ACP amendment was made. The independent review and
+full evidence are in
+[`luna-0-independent-review-luna46-depth-scaling-diagnostic-20261006.md`](../../handoffs/luna-0-independent-review-luna46-depth-scaling-diagnostic-20261006.md).
+No Luna-47 is authorized.
+
+## Luna-0 Luna-46 authorization gate - 2026-10-06
+
+**LUNA-46 AUTHORIZED / NOT EXECUTED; Commit A is governance only.** Baseline is
+`d1f901d3d995dc013f22dd086ae1ed8ffd28293d` on the clean, published
+`copilot/luna46-depth-scaling-diagnostic` branch. The merged Luna-45 corrective
+review commit `5ebc9ae7dcaae7ff45f0769686885dcae3f2dea4` is an ancestor.
+The retained corrective review reports retained-provenance-only ancestry,
+canonical replay byte equality, and no blocking correctness findings; its
+verification JSON matches the recorded SHA-256. This authorization gate is
+not a new independent review or scientific interpretation.
+
+Current baseline validation: Luna-45 focused tests **75 passed**, exit 0;
+the existing provenance/routing/ACP-0008/runtime regression command **348
+passed, 2 failed**, exit 1; full suite **1,164 passed, 2 failed, 1 skipped**,
+exit 1. Both failures are the previously documented Windows-versus-frozen-Linux
+fixture-materialization comparisons; CUDA is unavailable. No new failure was
+observed. `git diff --check` passed. Exact commands and exceptions are recorded
+in the [authorization handoff](../../handoffs/luna-0-authorization-luna46-depth-scaling-diagnostic-20261006.md).
+
+The owner's exact attachment specification was forwarded by the lead in a
+same-task correction; the earlier uncommitted missing-attachment blocker was
+a delegation omission, not absent owner authorization. The
+[Luna-46 contract](../../../.github/agents/luna-46.agent.md) predeclares the
+signed lambda=0.0125 recurrence (tau=80, theta_Z=1), offline zero-decay
+accumulator, NO-RECEPTIONS / ALREADY-CROSSING / TEMPORAL-RETENTION-LIMITED /
+CANCELLATION-LIMITED / DRIVE-LIMITED partition, and reception-bearing
+denominator. Substantial means ceil(25% of N); material means ceil(10% of N).
+Support requires retention substantial with drive/cancellation under material,
+or drive/cancellation at least 75% with retention under material; other valid
+splits are MIXED. Insufficient/corrupt evidence, missing required raw inputs
+or recurrence mismatch are BLOCKED. Counts/fractions accompany every verdict.
+
+Later bounded work uses retained Luna-45 calibrated raw emissions/enqueues/
+successful receptions first, with independent one-to-one reconciliation,
+trajectory reconstruction under the committed numerical policy, exact
+threshold classification, signed/retention/timing metrics, and fair retained
+Luna-44 first-hop comparison where possible. Only proven missing observations
+permit observation-only capture with the unchanged frozen experiment and
+non-interference checks. Offline accumulators are not production neurons.
+Comprehensive synthetic tests and retained integrity checks precede analysis.
+No code, tests, artifacts, sequence analysis, or science was performed in
+Commit A. No tuning, parameter/configuration sweep, alternate run, production
+configuration change, WEMA, ACP/core/runtime/topology/fixture change, efficacy,
+or Luna-47 is authorized.
+
+Luna-42 **PASS WITH FOLLOW-UP**, Luna-43 **BLOCKED / DESTINATION COMPARISON
+UNDETERMINED**, the Luna-44 reviewed canonical-fixture relay-propagation
+baseline, and Luna-45 **NOT SUPPORTED IN THIS SETUP** are preserved.
+ACP-0007 remains unchanged/disabled; ACP-0008 remains experimental, opt-in,
+and unpromoted. No A01-A15 or ACP change.
+
 ## Luna-0 corrective review — Luna-45 ancestry and replay evidence — 2026-10-06
 
 **CORRECTIVE VERIFICATION PASS; original scientific disposition unchanged.**
