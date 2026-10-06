@@ -9,16 +9,20 @@ generator. It never calls a scientific runner or reads labels or metadata.
 
 from __future__ import annotations
 
-import argparse
 from dataclasses import asdict
 from datetime import datetime, timezone
+import argparse
 import hashlib
 import json
 import math
+import os
 import platform
+import shutil
 import struct
 import subprocess
 import sys
+import tempfile
+import uuid
 from pathlib import Path
 from typing import Any, Iterable
 
@@ -29,23 +33,11 @@ sys.path.insert(0, str(ROOT))
 SOURCE_REVISION = "a79494cd66be28fd291ed11eddd62d342f457cfd"
 EXPECTED_GENERATOR_SHA256 = "17e581cf702fae1f56889472a967d2e8e5fec37cc041edba8247da14a0a8b5db"
 EXPECTED_SPIRAL_BENCHMARK_SHA256 = "2ffb1b5ebb23f016436043118bc675eddaa14bfd923129359fe61a12df94d9f0"
-EXPECTED_STROKE_DATASET_SHA256 = "daca268597e2467bf984922ee77736b584bef9743b6f41ad729d7cb4d3c3ede7"
 SEEDS = tuple(range(5))
 SEQUENCES_PER_SEED = 64
 ARTIFACT_DIRECTORY = ROOT / "artifacts" / "luna44-canonical-fixture"
 FIXTURE_PATH = ARTIFACT_DIRECTORY / "fixture.json"
 PROVENANCE_PATH = ARTIFACT_DIRECTORY / "provenance.json"
-FIXTURE_RELATIVE_PATH = "artifacts/luna44-canonical-fixture/fixture.json"
-SOURCE_FILES = (
-    ("scripts/build_luna44_canonical_fixture.py", "materializer", None),
-    (
-        "run_luna34_excursion_v1_multi_emitter_bridge.py",
-        "sequence_builder",
-        SOURCE_REVISION,
-    ),
-    ("tpcn/spiral_benchmark.py", "point_generator", SOURCE_REVISION),
-    ("tpcn/stroke_dataset.py", "point_representation", SOURCE_REVISION),
-)
 
 
 def _canonical_json_bytes(value: Any) -> bytes:
@@ -60,40 +52,6 @@ def _canonical_json_bytes(value: Any) -> bytes:
 
 def _sha256(value: bytes) -> str:
     return hashlib.sha256(value).hexdigest()
-
-
-def _git_revision() -> str:
-    return subprocess.run(
-        ["git", "rev-parse", "HEAD"],
-        cwd=ROOT,
-        check=True,
-        capture_output=True,
-        text=True,
-    ).stdout.strip()
-
-
-def _source_file_records(materializer_revision: str) -> list[dict[str, str]]:
-    records = []
-    for source_path, role, pinned_revision in SOURCE_FILES:
-        revision = pinned_revision or materializer_revision
-        source_bytes = (ROOT / source_path).read_bytes()
-        committed_bytes = subprocess.run(
-            ["git", "show", f"{revision}:{source_path}"],
-            cwd=ROOT,
-            check=True,
-            capture_output=True,
-        ).stdout
-        if source_bytes != committed_bytes:
-            raise RuntimeError(f"working source differs from pinned revision: {source_path}")
-        records.append(
-            {
-                "path": source_path,
-                "role": role,
-                "revision": revision,
-                "sha256": _sha256(source_bytes),
-            }
-        )
-    return records
 
 
 def _fixture_json_bytes(value: Any) -> bytes:
@@ -188,9 +146,6 @@ def _build_fixture() -> tuple[dict[str, Any], dict[str, Any]]:
     spiral_sha256 = _sha256(spiral_path.read_bytes())
     if spiral_sha256 != EXPECTED_SPIRAL_BENCHMARK_SHA256:
         raise RuntimeError("authorized point generator differs from the pinned baseline")
-    stroke_dataset_path = ROOT / "tpcn" / "stroke_dataset.py"
-    if _sha256(stroke_dataset_path.read_bytes()) != EXPECTED_STROKE_DATASET_SHA256:
-        raise RuntimeError("authorized point representation differs from the pinned baseline")
 
     sequences: list[dict[str, Any]] = []
     for seed in SEEDS:
@@ -263,17 +218,15 @@ def _build_fixture() -> tuple[dict[str, Any], dict[str, Any]]:
     rows = canonical_raw_rows(fixture)
     fixture_digest = _sha256(_canonical_json_bytes(rows))
 
-    execution_revision = _git_revision()
-    source_file_records = _source_file_records(execution_revision)
-    fixture_bytes = _fixture_json_bytes(fixture)
-    materializer_sha256 = next(
-        item["sha256"]
-        for item in source_file_records
-        if item["role"] == "materializer"
-    )
+    execution_revision = subprocess.run(
+        ["git", "rev-parse", "HEAD"],
+        cwd=ROOT,
+        check=True,
+        capture_output=True,
+        text=True,
+    ).stdout.strip()
     provenance = {
         "schema": "TPCN-LUNA44-CANONICAL-FIXTURE-PROVENANCE-1",
-        "manifest_version": 1,
         "generator": {
             "sequence_builder": {
                 "module": "run_luna34_excursion_v1_multi_emitter_bridge",
@@ -297,26 +250,9 @@ def _build_fixture() -> tuple[dict[str, Any], dict[str, Any]]:
             },
         },
         "generation_execution_revision": execution_revision,
-        "materializer": {
-            "path": "scripts/build_luna44_canonical_fixture.py",
-            "sha256": materializer_sha256,
-            "repository_revision": execution_revision,
-        },
-        "source_files": source_file_records,
         "generation_timestamp_utc": datetime.now(timezone.utc).isoformat(),
         "seeds": list(SEEDS),
         "sequences_per_seed": SEQUENCES_PER_SEED,
-        "sequence_count": len(sequences),
-        "character_count": len(sequences),
-        "expected_sequence_count": len(sequences),
-        "expected_point_count": len(rows),
-        "fixture_path": FIXTURE_RELATIVE_PATH,
-        "fixture_byte_length": len(fixture_bytes),
-        "ordering_rule": (
-            "for seed in ascending order, preserve the sequence order returned "
-            "by _training_point_sequences(seed), identified as c{seed:02d}-"
-            "{sequence_index:03d}"
-        ),
         "sequence_order": [
             f"c{seed:02d}-{sequence_index:03d}"
             for seed in SEEDS
@@ -343,40 +279,13 @@ def _build_fixture() -> tuple[dict[str, Any], dict[str, Any]]:
             ),
         },
         "canonical_fixture_sha256": fixture_digest,
-        "semantic_fixture_digest": fixture_digest,
         "fixture_json_sha256": _sha256(_fixture_json_bytes(fixture)),
         "canonical_row_count": len(rows),
-        "original_publication_materialization": {
-            "invocations": 1,
-            "canonical_fixture_sha256": fixture_digest,
-            "independent_repeat_performed": False,
-        },
         "neural_execution_started": False,
         "serialization": (
             "UTF-8 JSON, sorted keys, compact separators, ordered row list, "
             "finite numbers only; raw values represented in identity as exact "
             "16-character big-endian IEEE-754 binary64 hex."
-        ),
-        "point_representation": (
-            "StrokePoint records with finite x/y/t values converted to Python "
-            "binary64; canonical rows preserve the ordered seed, sequence, "
-            "stream, point, and batch identities."
-        ),
-        "point_representation_format": (
-            "StrokePoint with finite x/y/t values represented as Python binary64"
-        ),
-        "binary64_encoding": (
-            "IEEE-754 binary64, exact big-endian bytes encoded as 16 lowercase "
-            "hex digits; decimal repr and float.hex() are retained and checked "
-            "for bitwise round-trip."
-        ),
-        "binary64_encoding_method": (
-            "IEEE-754 binary64; big-endian 8-byte encoding rendered as 16 lowercase "
-            "hex digits; decimal repr and float.hex() must round-trip bitwise"
-        ),
-        "canonical_serialization_format": (
-            "UTF-8 JSON, sorted keys, compact separators, ordered canonical raw-row "
-            "list, finite numbers only"
         ),
         "audit_boundary": (
             "x+y is stored only as a derived audit value with a separate "
@@ -391,34 +300,291 @@ def _build_fixture() -> tuple[dict[str, Any], dict[str, Any]]:
     return fixture, provenance
 
 
+def _materialization_record(
+    fixture: dict[str, Any],
+    fixture_bytes: bytes,
+    provenance: dict[str, Any],
+    *,
+    invocation_id: str,
+    process_id: int,
+    started_at_utc: str,
+    completed_at_utc: str,
+    output_directory: Path,
+) -> dict[str, Any]:
+    rows = canonical_raw_rows(fixture)
+    environment = provenance["runtime"]
+    return {
+        "invocation_id": invocation_id,
+        "process_id": process_id,
+        "started_at_utc": started_at_utc,
+        "completed_at_utc": completed_at_utc,
+        "output_directory": str(output_directory.resolve()),
+        "generator_revision": SOURCE_REVISION,
+        "materializer_source_sha256": _sha256(Path(__file__).read_bytes()),
+        "generation_execution_revision": provenance["generation_execution_revision"],
+        "environment_identity": _sha256(_canonical_json_bytes(environment)),
+        "fixture_file_sha256": _sha256(fixture_bytes),
+        "semantic_fixture_digest": canonical_fixture_digest(fixture),
+        "byte_length": len(fixture_bytes),
+        "record_count": len(fixture["sequences"]),
+        "ordered_point_count": len(rows),
+        "seed_sequence_point_order_sha256": _sha256(
+            _canonical_json_bytes(
+                [
+                    [
+                        row["seed"],
+                        row["sequence_index"],
+                        row["stream_id"],
+                        row["point_index"],
+                    ]
+                    for row in rows
+                ]
+            )
+        ),
+        "exact_xyz_bits_sha256": _sha256(
+            _canonical_json_bytes(
+                [
+                    [row["x_bits_be"], row["y_bits_be"], row["t_bits_be"]]
+                    for row in rows
+                ]
+            )
+        ),
+    }
+
+
+def _materialize_worker(output_directory: Path) -> None:
+    if output_directory.exists():
+        raise FileExistsError(f"materialization output already exists: {output_directory}")
+    output_directory.mkdir(parents=True)
+    invocation_id = uuid.uuid4().hex
+    started_at_utc = datetime.now(timezone.utc).isoformat()
+    fixture, provenance = _build_fixture()
+    fixture_bytes = _fixture_json_bytes(fixture)
+    completed_at_utc = datetime.now(timezone.utc).isoformat()
+    record = _materialization_record(
+        fixture,
+        fixture_bytes,
+        provenance,
+        invocation_id=invocation_id,
+        process_id=os.getpid(),
+        started_at_utc=started_at_utc,
+        completed_at_utc=completed_at_utc,
+        output_directory=output_directory,
+    )
+    (output_directory / "fixture.json").write_bytes(fixture_bytes)
+    (output_directory / "provenance.json").write_text(
+        json.dumps(provenance, indent=2, ensure_ascii=False, allow_nan=False) + "\n",
+        encoding="utf-8",
+    )
+    (output_directory / "materialization.json").write_text(
+        json.dumps(record, indent=2, ensure_ascii=False, allow_nan=False) + "\n",
+        encoding="utf-8",
+    )
+
+
+def _verify_materialization(
+    record: dict[str, Any], fixture: dict[str, Any], fixture_bytes: bytes
+) -> None:
+    rows = canonical_raw_rows(fixture)
+    if record["fixture_file_sha256"] != _sha256(fixture_bytes):
+        raise ValueError("materialization file SHA-256 does not match its output")
+    if record["semantic_fixture_digest"] != canonical_fixture_digest(fixture):
+        raise ValueError("materialization semantic digest does not match its output")
+    if record["byte_length"] != len(fixture_bytes):
+        raise ValueError("materialization byte length does not match its output")
+    if record["record_count"] != len(fixture["sequences"]):
+        raise ValueError("materialization record count does not match its output")
+    if record["ordered_point_count"] != len(rows):
+        raise ValueError("materialization point count does not match its output")
+    expected_order_digest = _sha256(
+        _canonical_json_bytes(
+            [
+                [
+                    row["seed"],
+                    row["sequence_index"],
+                    row["stream_id"],
+                    row["point_index"],
+                ]
+                for row in rows
+            ]
+        )
+    )
+    if record["seed_sequence_point_order_sha256"] != expected_order_digest:
+        raise ValueError("materialization ordering digest does not match its output")
+    expected_bits_digest = _sha256(
+        _canonical_json_bytes(
+            [[row["x_bits_be"], row["y_bits_be"], row["t_bits_be"]] for row in rows]
+        )
+    )
+    if record["exact_xyz_bits_sha256"] != expected_bits_digest:
+        raise ValueError("materialization raw point-bit digest does not match its output")
+
+
+def _compare_materializations(
+    record_a: dict[str, Any],
+    fixture_bytes_a: bytes,
+    record_b: dict[str, Any],
+    fixture_bytes_b: bytes,
+) -> dict[str, bool]:
+    fixture_a = json.loads(fixture_bytes_a)
+    fixture_b = json.loads(fixture_bytes_b)
+    _verify_materialization(record_a, fixture_a, fixture_bytes_a)
+    _verify_materialization(record_b, fixture_b, fixture_bytes_b)
+    if record_a["invocation_id"] == record_b["invocation_id"]:
+        raise ValueError("materializations must have distinct invocation identifiers")
+    if record_a["process_id"] == record_b["process_id"]:
+        raise ValueError("materializations must come from distinct processes")
+    if record_a["output_directory"] == record_b["output_directory"]:
+        raise ValueError("materializations must use distinct output directories")
+    for field in (
+        "generator_revision",
+        "materializer_source_sha256",
+        "generation_execution_revision",
+        "environment_identity",
+    ):
+        if record_a[field] != record_b[field]:
+            raise ValueError(f"materializations differ in {field}")
+
+    raw_rows_equal = canonical_raw_rows(fixture_a) == canonical_raw_rows(fixture_b)
+    exact_bits_equal = [
+        [row["x_bits_be"], row["y_bits_be"], row["t_bits_be"]]
+        for row in canonical_raw_rows(fixture_a)
+    ] == [
+        [row["x_bits_be"], row["y_bits_be"], row["t_bits_be"]]
+        for row in canonical_raw_rows(fixture_b)
+    ]
+    sequence_order_equal = [
+        [sequence["seed"], sequence["sequence_index"], sequence["stream_id"]]
+        for sequence in fixture_a["sequences"]
+    ] == [
+        [sequence["seed"], sequence["sequence_index"], sequence["stream_id"]]
+        for sequence in fixture_b["sequences"]
+    ]
+    comparisons = {
+        "fixture_bytes_equal": fixture_bytes_a == fixture_bytes_b,
+        "file_sha256_equal": record_a["fixture_file_sha256"] == record_b["fixture_file_sha256"],
+        "semantic_digest_equal": record_a["semantic_fixture_digest"] == record_b["semantic_fixture_digest"],
+        "sequence_point_order_equal": sequence_order_equal,
+        "point_by_point_exact_equal": raw_rows_equal and exact_bits_equal,
+    }
+    if not all(comparisons.values()):
+        raise ValueError("independent fixture materializations differ")
+    return comparisons
+
+
+def materialize_independently(
+    output_root: Path,
+) -> tuple[bytes, dict[str, Any]]:
+    if output_root.exists():
+        raise FileExistsError(f"materialization root already exists: {output_root}")
+    output_a = output_root / "materialization-a"
+    output_b = output_root / "materialization-b"
+    source_checkout = output_root.parent / f"{output_root.name}-pinned-source"
+    subprocess.run(
+        [
+            "git",
+            "worktree",
+            "add",
+            "--detach",
+            str(source_checkout),
+            SOURCE_REVISION,
+        ],
+        cwd=ROOT,
+        check=True,
+        capture_output=True,
+        text=True,
+    )
+    try:
+        worker_script = source_checkout / "scripts" / Path(__file__).name
+        worker_script.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(Path(__file__).resolve(), worker_script)
+        for output_directory in (output_a, output_b):
+            subprocess.run(
+                [
+                    sys.executable,
+                    str(worker_script),
+                    "--materialize-worker",
+                    str(output_directory),
+                ],
+                cwd=source_checkout,
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+    finally:
+        subprocess.run(
+            ["git", "worktree", "remove", "--force", str(source_checkout)],
+            cwd=ROOT,
+            check=True,
+            capture_output=True,
+            text=True,
+        )
+    fixture_bytes_a = (output_a / "fixture.json").read_bytes()
+    fixture_bytes_b = (output_b / "fixture.json").read_bytes()
+    with (output_a / "materialization.json").open(encoding="utf-8") as source:
+        record_a = json.load(source)
+    with (output_b / "materialization.json").open(encoding="utf-8") as source:
+        record_b = json.load(source)
+    comparisons = _compare_materializations(
+        record_a, fixture_bytes_a, record_b, fixture_bytes_b
+    )
+    with (output_a / "provenance.json").open(encoding="utf-8") as source:
+        provenance = json.load(source)
+    provenance["materializations"] = [record_a, record_b]
+    provenance["committed_fixture_invocation_id"] = record_a["invocation_id"]
+    provenance["materialization_comparison"] = {
+        **comparisons,
+        "independent_invocations": True,
+        "statement": (
+            "Two independent materializations produced identical canonical fixture "
+            "bytes in the tested environment."
+        ),
+    }
+    return fixture_bytes_a, provenance
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument(
-        "--output-dir",
-        type=Path,
-        default=ARTIFACT_DIRECTORY,
-        help="write this materialization to a fresh directory",
-    )
-    output_directory = parser.parse_args().output_dir
-    fixture_path = output_directory / "fixture.json"
-    provenance_path = output_directory / "provenance.json"
-    if fixture_path.exists() or provenance_path.exists():
+    parser.add_argument("--materialize-worker", type=Path)
+    parser.add_argument("--refresh-provenance", action="store_true")
+    arguments = parser.parse_args()
+    if arguments.materialize_worker is not None:
+        _materialize_worker(arguments.materialize_worker)
+        return
+    artifacts_exist = FIXTURE_PATH.exists() or PROVENANCE_PATH.exists()
+    if artifacts_exist and not arguments.refresh_provenance:
         raise FileExistsError(
             "Luna-44 fixture materialization is one-time; refusing to overwrite "
             "an existing fixture or provenance manifest"
         )
-    fixture, provenance = _build_fixture()
-    output_directory.mkdir(parents=True, exist_ok=False)
-    fixture_path.write_bytes(_fixture_json_bytes(fixture))
-    provenance_path.write_text(
+    with tempfile.TemporaryDirectory(
+        prefix="luna44-materializations-", dir=ARTIFACT_DIRECTORY.parent
+    ) as temporary_directory:
+        fixture_bytes, provenance = materialize_independently(
+            Path(temporary_directory) / "runs"
+        )
+    ARTIFACT_DIRECTORY.mkdir(parents=True, exist_ok=True)
+    if FIXTURE_PATH.exists():
+        if FIXTURE_PATH.read_bytes() != fixture_bytes:
+            raise RuntimeError(
+                "refusing to refresh provenance for a different canonical fixture"
+            )
+    else:
+        FIXTURE_PATH.write_bytes(fixture_bytes)
+    PROVENANCE_PATH.write_text(
         json.dumps(provenance, indent=2, ensure_ascii=False, allow_nan=False) + "\n",
         encoding="utf-8",
     )
+    fixture = json.loads(fixture_bytes)
     print(
-        f"wrote {fixture_path} and {provenance_path}; "
+        f"wrote {FIXTURE_PATH.relative_to(ROOT)} and "
+        f"{PROVENANCE_PATH.relative_to(ROOT)}; "
         f"sequences={len(fixture['sequences'])}, "
         f"points={provenance['canonical_row_count']}, "
-        f"sha256={provenance['canonical_fixture_sha256']}"
+        f"sha256={provenance['canonical_fixture_sha256']}, "
+        f"materializations="
+        f"{provenance['materializations'][0]['invocation_id']},"
+        f"{provenance['materializations'][1]['invocation_id']}"
     )
 
 
