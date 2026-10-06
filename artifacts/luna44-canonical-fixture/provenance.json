@@ -1668,10 +1668,10 @@
   "audit_boundary": "x+y is stored only as a derived audit value with a separate derived_audit_sha256; neither audit values nor audit digests enter canonical fixture identity.",
   "data_access_boundary": "Only generated training point sequences were read. Labels, class metadata, evaluation streams, and neural outcomes were not read.",
   "fixture_json_sha256": "66e187350536e6901d8371a1ffbe3e2a0abf3b49341c6ae6c8fed3ae7833b629",
-  "pre_freeze_materialization_invocations": 2,
-  "pre_freeze_materialization_digests": [
-    "6c262ad1951a48f624d83a594abfc86ffa89d26882b397f6586698c097144305",
-    "6c262ad1951a48f624d83a594abfc86ffa89d26882b397f6586698c097144305"
-  ],
+  "original_publication_materialization": {
+    "invocations": 1,
+    "canonical_fixture_sha256": "6c262ad1951a48f624d83a594abfc86ffa89d26882b397f6586698c097144305",
+    "independent_repeat_performed": false
+  },
   "neural_execution_started": false
 }
