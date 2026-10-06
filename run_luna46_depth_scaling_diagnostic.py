@@ -3,7 +3,8 @@
 TPCN-LUNA46-OFFLINE-1 binds immutable inputs, code/environment, replay, sequence
 evidence and a mechanism-only verdict. Inputs are the published Luna-44/45
 inventory; limits are 320 characters, 4096 observations/character, 100 MiB/file.
-The CLI requires an explicit new output path outside retained evidence
+The CLI requires an explicit new output path in the artifacts/luna46-* namespace,
+canonically disjoint from retained evidence and the frozen Luna-44 fixture tree
 (suggested: artifacts/luna46-depth-scaling-diagnostic/analysis.json), verifies integrity before loading
 analytical inputs, and never captures, generates, tunes, or feeds back results.
 
@@ -11,7 +12,8 @@ Percentiles use sorted linear interpolation at (n-1)*p, p=50,75,90,95,99.
 Empty distributions have null statistics; zero ties are retained. Alignment
 uses the actual pre-input signed state; zero state/input are separate cases.
 Retention ratios with zero previous state are null, not invented full retention.
-Critical-rate estimation is deliberately NOT COMPUTED (no uniqueness solver).
+Critical rates are analytical-only status classifications; a boundary is
+reported only when same-sign monotonicity proves it unique (never tuning).
 Clipping, discharge, non-integrating receptions or unexplained state changes
 are BLOCKED rather than replaced with an alternate production configuration.
 Matching roots_truncated flags describe bounded causal-root metadata, not
@@ -25,6 +27,7 @@ from collections import Counter
 import hashlib
 import json
 import math
+import os
 from pathlib import Path
 import platform
 import statistics
@@ -32,6 +35,8 @@ import struct
 import subprocess
 import sys
 from typing import Any
+
+from scripts.verify_luna44_canonical_fixture import EXPECTED_FIXTURE_PATH
 
 
 Record = dict[str, Any]
@@ -43,6 +48,8 @@ L45 = Path("artifacts/luna45-acp0008-depth2-destination-integration-20261006")
 L44 = Path("artifacts/luna44-acp0008-independent-routing-rerun-20261005")
 CATALOG_HASH = "a47046da6916db49f373613d654d2cf59671737b5c6b8584b222fb67fe068e8e"
 VERIFICATION = Path("artifacts/luna45-corrective-verification-20261006-r1/verification.json")
+FIXTURE_ROOT = Path(EXPECTED_FIXTURE_PATH).parent
+OUTPUT_NAMESPACE = "luna46-"
 VERIFICATION_HASH = "547336a1140ea89b6b85cc76807ac5e931fb402296aebe759165804ecd6c103f"
 FIXTURE_HASH = "66e187350536e6901d8371a1ffbe3e2a0abf3b49341c6ae6c8fed3ae7833b629"
 FIXTURE_DIGEST = "6c262ad1951a48f624d83a594abfc86ffa89d26882b397f6586698c097144305"
@@ -86,13 +93,46 @@ POLICY = {
     "percentile_estimator": "linear interpolation at (n-1)*p/100",
     "zero_state": "alignment=zero-reference; retention_ratio=null",
     "zero_payload": "separate; breaks consecutive same-sign runs",
-    "critical_rate": {"status": "NOT COMPUTED", "reason": "optional uniqueness solver not implemented"},
+    "critical_rate": None,  # set below from CRITICAL_RATE_POLICY
     "limits": {"characters": MAX_SEQUENCES, "events_per_character": MAX_EVENTS,
                "bytes_per_file": MAX_FILE_BYTES},
     "boundary_policy": "BLOCKED for clipping, discharge, or non-integrating reception",
     "actual_state": "retained post-update state validated against signed recurrence; threshold flags must agree exactly",
     "roots_truncated": "exact matching boolean metadata; not raw-capture truncation or complete ancestry evidence",
 }
+
+# Analytical-only boundary of the declared signed equation; never production tuning,
+# never a network rate sweep, never a configuration recommendation, never fed back.
+CRITICAL_SOLVER_TOLERANCE = 64 * sys.float_info.epsilon * RATE
+CRITICAL_SOLVER_ITERATIONS = 1100  # exceeds binary64 bisection depth on [0, RATE]
+CRITICAL_RATE_POLICY = {
+    "scope": "OFFLINE ANALYTICAL ONLY; not production tuning, rate sweep or recommendation",
+    "equation": "z_k(l)=sum_{i<=k} u_i*exp(-l*(t_k-t_i)), retained timestamps/order/reset, "
+                "no discharge/clipping; F(l)=max_k abs(z_k(l)); crossing F(l)>=1",
+    "domain": "l in [0, inf); F(0)=signed zero-decay oracle, F(lambda)=actual-rate recurrence",
+    "uniqueness": "same-sign payloads make every abs(z_k) continuous non-increasing; with "
+                  "F(0)>=1>F(lambda) a second root would force a rate-independent maximizer "
+                  "with F=1 at every rate, contradicting F(lambda)<1; so {F>=1}=[0,l*]",
+    "solver": {"method": "bisection on [0, lambda] keeping F(lo)>=1>F(hi)",
+               "max_iterations": CRITICAL_SOLVER_ITERATIONS,
+               "stop": "hi-lo<=tolerance and no representable midpoint",
+               "tolerance": CRITICAL_SOLVER_TOLERANCE, "returned": "lo"},
+    "verification": "abs(F(l*)-1) under 64-epsilon policy; F(max(0,l*-tolerance))>=1 and "
+                    "F(l*+tolerance)<1; failure reports NOT COMPUTED, never a tuned estimate",
+    "statuses": {
+        "NOT APPLICABLE: NO RECEPTIONS": "no recurrence",
+        "NOT APPLICABLE: ALREADY-CROSSING": "actual rate already crosses",
+        "NO FINITE CRITICAL RATE: SINGLETON": "single reception; state is rate-independent",
+        "ABSENT: NO CROSSING AT ANY NONNEGATIVE RATE": "sum(abs(u))<1 bounds abs(z_k(l))<1",
+        "NOT APPLICABLE: NO ZERO-DECAY CROSSING": "signed cancellation; no zero-decay root, "
+            "no claim about other rates",
+        "NOT COMPUTED: NON-MONOTONE SIGNED": "mixed signs; uniqueness unproven, no root selected",
+        "ZERO-BOUNDARY": "F(0)==1 exactly; crossing only at l=0",
+        "UNIQUE": "verified unique finite boundary in (0, lambda)",
+        "NOT COMPUTED: VERIFICATION FAILED": "bracket/residual/perturbation check failed",
+    },
+}
+POLICY["critical_rate"] = CRITICAL_RATE_POLICY
 
 
 class Blocked(ValueError):
@@ -345,6 +385,65 @@ def category(count: int, actual_crosses: bool, zero_crosses: bool, absolute_inpu
     return CATEGORIES[4]
 
 
+def signed_maximum(steps: list[tuple[float, float]], rate: float) -> float:
+    """F(rate) of the declared signed equation over retained (dt, payload) updates."""
+    state = 0.0
+    peak = 0.0
+    for dt, payload in steps:
+        state = state * math.exp(-rate * dt) + payload
+        peak = max(peak, abs(state))
+    return peak
+
+
+def critical_rate(category_name: str, steps: list[tuple[float, float]],
+                  payloads: list[float]) -> Record:
+    """Analytical-only critical-rate classification; never production tuning or a sweep."""
+    def result(status: str, rate: float | None = None, **extra: Any) -> Record:
+        return {"status": status, "critical_rate": rate,
+                "reason": CRITICAL_RATE_POLICY["statuses"][status], **extra}
+    if category_name == CATEGORIES[0]:
+        return result("NOT APPLICABLE: NO RECEPTIONS")
+    if category_name == CATEGORIES[1]:
+        return result("NOT APPLICABLE: ALREADY-CROSSING")
+    if len(payloads) == 1:
+        return result("NO FINITE CRITICAL RATE: SINGLETON")
+    if category_name == CATEGORIES[4]:
+        return result("ABSENT: NO CROSSING AT ANY NONNEGATIVE RATE")
+    if category_name == CATEGORIES[3]:
+        return result("NOT APPLICABLE: NO ZERO-DECAY CROSSING")
+    require(category_name == CATEGORIES[2], "invalid critical-rate category")
+    if any(p > 0 for p in payloads) and any(p < 0 for p in payloads):
+        return result("NOT COMPUTED: NON-MONOTONE SIGNED")
+    low, high = signed_maximum(steps, 0.0), signed_maximum(steps, RATE)
+    if not (low >= THRESHOLD > high):
+        return result("NOT COMPUTED: VERIFICATION FAILED", bracket=[low, high])
+    if low == THRESHOLD:
+        return result("ZERO-BOUNDARY", 0.0, F_zero=low, F_lambda=high)
+    lo, hi = 0.0, RATE
+    iterations = 0
+    while iterations < CRITICAL_SOLVER_ITERATIONS:
+        middle = lo + (hi - lo) / 2
+        if hi - lo <= CRITICAL_SOLVER_TOLERANCE and middle in (lo, hi):
+            break
+        iterations += 1
+        if signed_maximum(steps, middle) >= THRESHOLD:
+            lo = middle
+        else:
+            hi = middle
+    root = lo
+    below_rate = max(0.0, root - CRITICAL_SOLVER_TOLERANCE)
+    above_rate = root + CRITICAL_SOLVER_TOLERANCE
+    residual = equation(signed_maximum(steps, root), THRESHOLD)
+    below, above = signed_maximum(steps, below_rate), signed_maximum(steps, above_rate)
+    checks = {"iterations": iterations, "bracket": [lo, hi], "residual": residual,
+              "below": {"rate": below_rate, "F": below, "crosses": below >= THRESHOLD},
+              "above": {"rate": above_rate, "F": above, "crosses": above >= THRESHOLD}}
+    if (hi - lo <= CRITICAL_SOLVER_TOLERANCE and residual["matches"]
+            and checks["below"]["crosses"] and not checks["above"]["crosses"]):
+        return result("UNIQUE", root, verification=checks)
+    return result("NOT COMPUTED: VERIFICATION FAILED", verification=checks)
+
+
 def unique(rows: list[Record], key: str) -> dict[Any, Record]:
     require(len(rows) <= MAX_EVENTS, "event capacity exceeded")
     result: dict[Any, Record] = {}
@@ -433,6 +532,7 @@ def analyze_sequence(stream_id: str, arrivals: list[Record], updates: list[Recor
     zero_values: list[float] = []
     first_actual = None
     first_zero = None
+    steps: list[tuple[float, float]] = []
     for update in updates:
         timestamp = number(update["timestamp"])
         prior = number(update["prior_clock"])
@@ -453,6 +553,7 @@ def analyze_sequence(stream_id: str, arrivals: list[Record], updates: list[Recor
             require(bits(update["payload"]) == bits(arrival["payload"]), "trajectory payload bits differ")
             payload = number(arrival["payload"])
         expected = pre_input + payload
+        steps.append((dt, payload))
         actual = number(update["z_after"])
         check = checked(actual, expected, f"{stream_id}/{update['queue_sequence']}")
         require((abs(actual) >= THRESHOLD) == (abs(expected) >= THRESHOLD),
@@ -500,6 +601,7 @@ def analyze_sequence(stream_id: str, arrivals: list[Record], updates: list[Recor
         previous_z, previous_time = actual, timestamp
     absolute_input = sum(abs(number(a["payload"])) for a in arrivals)
     counts = Counter(row["alignment"] for row in evidence)
+    category_name = category(len(arrivals), first_actual is not None, first_zero is not None, absolute_input)
     return {
         "stream_id": stream_id, "receptions": len(arrivals),
         "roots_truncated_metadata": roots_metadata(arrivals),
@@ -511,7 +613,7 @@ def analyze_sequence(stream_id: str, arrivals: list[Record], updates: list[Recor
         "maximum_abs_excursion_difference": max([0.0, *(abs(row["abs_excursion_difference"]) for row in boundary_evidence)]),
         "actual_crosses": first_actual is not None, "zero_crosses": first_zero is not None,
         "first_actual_crossing": first_actual, "first_zero_crossing": first_zero,
-        "category": category(len(arrivals), first_actual is not None, first_zero is not None, absolute_input),
+        "category": category_name,
         "alignment_counts": {key: counts[key] for key in ("constructive", "opposing", "zero-reference", "zero-input")},
         "constructive_input_magnitude": sum(abs(row["payload"]) for row in evidence if row["alignment"] == "constructive"),
         "opposing_input_magnitude": sum(abs(row["payload"]) for row in evidence if row["alignment"] == "opposing"),
@@ -521,7 +623,8 @@ def analyze_sequence(stream_id: str, arrivals: list[Record], updates: list[Recor
         "rho": distribution([row["rho"] for row in boundary_evidence]),
         "retention_ratio": distribution([row["retention_ratio"] for row in boundary_evidence if row["retention_ratio"] is not None]),
         "recurrence_evidence": evidence, "all_update_boundaries": boundary_evidence,
-        "timing": timing(arrivals), "critical_rate": POLICY["critical_rate"],
+        "timing": timing(arrivals),
+        "critical_rate": critical_rate(category_name, steps, [number(a["payload"]) for a in arrivals]),
     }
 
 
@@ -574,6 +677,8 @@ def aggregate(sequences: list[Record]) -> Record:
         "rho": distribution([row["rho"] for row in boundaries]),
         "retention_ratio": distribution([row["retention_ratio"] for row in boundaries if row["retention_ratio"] is not None]),
         "timing": pooled_timing([row["timing"] for row in sequences]),
+        "critical_rate_status_counts": dict(sorted(Counter(
+            row["critical_rate"]["status"] for row in sequences).items())),
     })
     return result
 
@@ -885,6 +990,28 @@ def offline_analysis(root: Path = ROOT) -> Record:
     return result
 
 
+def validate_output_path(output: Path, root: Path | None = None) -> Path:
+    """Canonical (symlink/junction-resolving) output guard; no string-prefix checks.
+
+    Rejects any tree overlap in either direction with retained evidence or the
+    frozen fixture root, then requires the artifacts/luna46-* namespace.
+    """
+    root = ROOT if root is None else root
+    resolved = Path(output).resolve()
+    protected = {"Luna45 evidence": root / L45, "Luna44 evidence": root / L44,
+                 "Luna45 verification": root / VERIFICATION.parent,
+                 "frozen Luna44 fixture": root / FIXTURE_ROOT}
+    for name, directory in protected.items():
+        tree = directory.resolve()
+        require(not (resolved == tree or tree in resolved.parents or resolved in tree.parents),
+                f"output overlaps {name} tree: {resolved}")
+    namespace = (root / "artifacts").resolve()
+    require(namespace in resolved.parents, f"output outside artifacts/{OUTPUT_NAMESPACE}*: {resolved}")
+    require(resolved.relative_to(namespace).parts[0].startswith(OUTPUT_NAMESPACE),
+            f"output outside artifacts/{OUTPUT_NAMESPACE}*: {resolved}")
+    return resolved
+
+
 def write_output(path: Path, result: Record) -> None:
     require(not path.exists(), f"refusing overwrite: {path}")
     payload = canonical(result) + b"\n"
@@ -898,11 +1025,9 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--output", type=Path, required=True, help="new diagnostic JSON file (never overwrite)")
     args = parser.parse_args(argv)
     try:
-        require(not args.output.exists(), f"refusing overwrite: {args.output}")
+        require(not os.path.lexists(args.output), f"refusing overwrite: {args.output}")
+        validate_output_path(args.output)
         require(args.output.parent.is_dir(), "output parent directory missing")
-        for directory in (ROOT / L45, ROOT / L44, ROOT / VERIFICATION.parent):
-            require(not args.output.resolve().is_relative_to(directory.resolve()),
-                    "output must be separate from retained evidence")
         result = offline_analysis()
         require(result["verdict"] != "BLOCKED", result["aggregate"]["reason"])
         write_output(args.output, result)

@@ -5,6 +5,7 @@ from __future__ import annotations
 import ast
 from copy import deepcopy
 import math
+import os
 from pathlib import Path
 import sys
 
@@ -546,12 +547,99 @@ def test_depth_comparison_measures_unequal_stream_statistics_and_discloses_unfai
     assert unfair["second_hop"]["frequency"]["intervals_per_time"] is None
 
 
-@pytest.mark.parametrize("payloads", [[.4, .4], [.4, -.4], [], [0.0], [1.0]])
-def test_optional_critical_rate_not_computed_never_blocks(payloads):
-    arrivals, updates = synthetic_sequence(payloads)
+# Contract-to-test matrix (luna-46.agent.md critical-rate clause and checklist):
+# A unique finite (same-sign, verified bisection); B drive-limited/no crossing at any
+# rate; C already-crossing; D zero-decay endpoint; E non-monotone/multiple (mixed sign,
+# no root selected); F signed cancellation (no zero-decay root); G singleton/no recurrence.
+CRITICAL_MATRIX = [
+    ("A-unique", [0.6, 0.6], [0.0, 80.0], "TEMPORAL-RETENTION-LIMITED", "UNIQUE"),
+    ("B-drive", [0.2, 0.3], [0.0, 80.0], "DRIVE-LIMITED", "ABSENT: NO CROSSING AT ANY NONNEGATIVE RATE"),
+    ("B-drive-mixed", [0.2, -0.3], [0.0, 80.0], "DRIVE-LIMITED", "ABSENT: NO CROSSING AT ANY NONNEGATIVE RATE"),
+    ("C-already", [0.5, 0.5], [0.0, 0.0], "ALREADY-CROSSING", "NOT APPLICABLE: ALREADY-CROSSING"),
+    ("D-zero-boundary", [0.5, 0.5], [0.0, 80.0], "TEMPORAL-RETENTION-LIMITED", "ZERO-BOUNDARY"),
+    ("E-non-monotone", [0.6, -0.1, 0.6], [0.0, 40.0, 80.0], "TEMPORAL-RETENTION-LIMITED",
+     "NOT COMPUTED: NON-MONOTONE SIGNED"),
+    ("F-cancellation", [0.6, -0.6], [0.0, 0.0], "CANCELLATION-LIMITED", "NOT APPLICABLE: NO ZERO-DECAY CROSSING"),
+    ("G-singleton", [0.3], [0.0], "DRIVE-LIMITED", "NO FINITE CRITICAL RATE: SINGLETON"),
+    ("G-singleton-zero", [0.0], [0.0], "DRIVE-LIMITED", "NO FINITE CRITICAL RATE: SINGLETON"),
+    ("G-no-receptions", [], [], "NO-RECEPTIONS", "NOT APPLICABLE: NO RECEPTIONS"),
+]
+
+
+@pytest.mark.parametrize("case,payloads,times,category,status", CRITICAL_MATRIX,
+                         ids=[row[0] for row in CRITICAL_MATRIX])
+def test_critical_rate_contract_matrix(case, payloads, times, category, status):
+    arrivals, updates = synthetic_sequence(payloads, times)
     result = diagnostic.analyze_sequence("synthetic", arrivals, updates)
-    assert result["critical_rate"]["status"] == "NOT COMPUTED"
-    assert "not implemented" in result["critical_rate"]["reason"]
+    assert result["category"] == category  # classification unchanged by critical-rate analysis
+    critical = result["critical_rate"]
+    assert critical["status"] == status
+    assert critical["status"] in diagnostic.CRITICAL_RATE_POLICY["statuses"]
+    if status == "UNIQUE":
+        assert 0 < critical["critical_rate"] < diagnostic.RATE
+    elif status == "ZERO-BOUNDARY":
+        assert critical["critical_rate"] == 0.0 and critical["F_zero"] == 1.0
+    else:
+        assert critical["critical_rate"] is None  # never fabricated
+
+
+def test_critical_rate_a_unique_matches_closed_form_and_predeclared_verification():
+    arrivals, updates = synthetic_sequence([0.6, 0.6], [0.0, 80.0])
+    critical = diagnostic.analyze_sequence("synthetic", arrivals, updates)["critical_rate"]
+    tolerance = diagnostic.CRITICAL_SOLVER_TOLERANCE
+    assert tolerance == 64 * sys.float_info.epsilon * diagnostic.RATE
+    root = critical["critical_rate"]
+    assert root == pytest.approx(math.log(1.5) / 80, rel=1e-12, abs=0)
+    checks = critical["verification"]
+    assert checks["iterations"] <= diagnostic.CRITICAL_SOLVER_ITERATIONS
+    lo, hi = checks["bracket"]
+    assert lo == root and hi - lo <= tolerance
+    assert checks["residual"]["matches"] and checks["residual"]["expected"] == 1.0
+    assert checks["below"]["rate"] == root - tolerance and checks["below"]["crosses"]
+    assert checks["above"]["rate"] == root + tolerance and not checks["above"]["crosses"]
+    steps = [(0.0, 0.6), (80.0, 0.6)]
+    assert diagnostic.signed_maximum(steps, 0.0) == 1.2
+    assert diagnostic.signed_maximum(steps, diagnostic.RATE) == 0.6 * math.exp(-1) + 0.6
+
+
+def test_critical_rate_unique_with_intervening_update_uses_all_retained_boundaries():
+    arrivals, updates = synthetic_sequence([0.4, 0.2, 0.5], [0.0, 30.0, 80.0])
+    result = diagnostic.analyze_sequence("synthetic", arrivals, updates)
+    assert result["category"] == "TEMPORAL-RETENTION-LIMITED"
+    assert result["critical_rate"]["status"] == "UNIQUE"
+    root = result["critical_rate"]["critical_rate"]
+    steps = [(0.0, 0.4), (30.0, 0.2), (50.0, 0.5)]
+    assert diagnostic.signed_maximum(steps, root) >= 1.0 > diagnostic.signed_maximum(
+        steps, root + diagnostic.CRITICAL_SOLVER_TOLERANCE)
+
+
+@pytest.mark.parametrize("case", ["B-drive", "C-already", "E-non-monotone", "F-cancellation",
+                                  "G-singleton", "G-no-receptions"])
+def test_critical_rate_non_unique_cases_never_evaluate_or_select_a_root(case, monkeypatch):
+    _, payloads, times, _, _ = next(row for row in CRITICAL_MATRIX if row[0] == case)
+    arrivals, updates = synthetic_sequence(payloads, times)
+    monkeypatch.setattr(diagnostic, "signed_maximum",
+                        lambda steps, rate: pytest.fail("no solver for non-unique/absent cases"))
+    assert diagnostic.analyze_sequence("synthetic", arrivals, updates)["critical_rate"]["critical_rate"] is None
+
+
+def test_critical_rate_inconsistent_bracket_reports_failure_not_estimate():
+    steps = [(0.0, 0.3), (80.0, 0.3)]  # zero-decay does not cross: bracket invalid
+    critical = diagnostic.critical_rate("TEMPORAL-RETENTION-LIMITED", steps, [0.3, 0.3])
+    assert critical["status"] == "NOT COMPUTED: VERIFICATION FAILED"
+    assert critical["critical_rate"] is None
+    with pytest.raises(diagnostic.Blocked):
+        diagnostic.critical_rate("UNKNOWN", steps, [0.3, 0.3])
+
+
+def test_critical_rate_policy_is_analytical_only_and_aggregated():
+    policy = diagnostic.POLICY["critical_rate"]
+    assert policy is diagnostic.CRITICAL_RATE_POLICY
+    assert "ANALYTICAL ONLY" in policy["scope"] and "not production tuning" in policy["scope"]
+    rows = [diagnostic.analyze_sequence(case, *synthetic_sequence(p, t)) for case, p, t, _, _ in CRITICAL_MATRIX]
+    counts = diagnostic.aggregate(rows)["critical_rate_status_counts"]
+    assert counts["UNIQUE"] == 1 and counts["ABSENT: NO CROSSING AT ANY NONNEGATIVE RATE"] == 2
+    assert sum(counts.values()) == len(CRITICAL_MATRIX)
 
 
 def test_deterministic_bytes_and_no_label_use():
@@ -572,12 +660,131 @@ def test_module_has_only_standard_library_imports():
             imported.update(alias.name.split(".")[0] for alias in node.names)
         elif isinstance(node, ast.ImportFrom):
             imported.add(node.module.split(".")[0])
-    assert imported <= sys.stdlib_module_names | {"__future__"}
+    # Sole non-stdlib import: the authoritative fixture path constant from the verifier.
+    assert imported <= sys.stdlib_module_names | {"__future__", "scripts"}
     assert not any(name.startswith(("tpcn", "run_luna")) for name in imported)
+    from scripts import verify_luna44_canonical_fixture as verifier
+    verifier_tree = ast.parse(Path(verifier.__file__).read_text(encoding="utf-8"))
+    verifier_imports = {alias.name.split(".")[0] for node in ast.walk(verifier_tree)
+                        if isinstance(node, ast.Import) for alias in node.names}
+    verifier_imports |= {node.module.split(".")[0] for node in ast.walk(verifier_tree)
+                         if isinstance(node, ast.ImportFrom)}
+    assert verifier_imports <= sys.stdlib_module_names | {"__future__"}
+    assert diagnostic.FIXTURE_ROOT == Path(verifier.EXPECTED_FIXTURE_PATH).parent
+
+
+def guard_root(tmp_path):
+    """Synthetic repository layout; never touches the real artifacts tree."""
+    fixture = tmp_path / diagnostic.FIXTURE_ROOT
+    fixture.mkdir(parents=True)
+    (fixture / "fixture.json").write_bytes(b"frozen")
+    namespace = tmp_path / "artifacts" / "luna46-test"
+    namespace.mkdir()
+    return fixture, namespace
+
+
+@pytest.mark.parametrize("relative", [
+    "artifacts/luna44-canonical-fixture",                         # exact
+    "artifacts/luna44-canonical-fixture/fixture.json",            # child (existing file)
+    "artifacts/luna44-canonical-fixture/new.json",                # child
+    "artifacts/luna44-canonical-fixture/a/b/new.json",            # nested
+    "artifacts/luna46-test/../luna44-canonical-fixture/new.json", # '..' escape
+    "artifacts/luna46-test/./../luna44-canonical-fixture",        # '..' exact
+    "artifacts",                                                  # broad parent (inverse)
+    ".",                                                          # repository root (inverse)
+    "artifacts/luna45-acp0008-depth2-destination-integration-20261006/new.json",
+    "artifacts/luna44-acp0008-independent-routing-rerun-20261005/new.json",
+    "artifacts/luna45-corrective-verification-20261006-r1/new.json",
+])
+def test_output_guard_rejects_fixture_and_evidence_overlap(tmp_path, relative):
+    guard_root(tmp_path)
+    with pytest.raises(diagnostic.Blocked, match="overlaps"):
+        diagnostic.validate_output_path(tmp_path / relative, tmp_path)
+
+
+def test_output_guard_rejects_relative_alias_from_cwd(tmp_path, monkeypatch):
+    guard_root(tmp_path)
+    monkeypatch.chdir(tmp_path / "artifacts" / "luna46-test")
+    with pytest.raises(diagnostic.Blocked, match="frozen Luna44 fixture"):
+        diagnostic.validate_output_path(Path("../luna44-canonical-fixture/new.json"), tmp_path)
+    accepted = diagnostic.validate_output_path(Path("new.json"), tmp_path)
+    assert accepted == (tmp_path / "artifacts" / "luna46-test" / "new.json").resolve()
+
+
+@pytest.mark.parametrize("relative", ["outside.json", "artifacts/new.json", "artifacts/luna47-x/new.json",
+                                      "artifacts/xluna46-x.json", "artifacts/luna46-test/../new.json",
+                                      "artifacts-luna46-x/new.json"])
+def test_output_guard_requires_luna46_namespace(tmp_path, relative):
+    guard_root(tmp_path)
+    with pytest.raises(diagnostic.Blocked, match="outside artifacts/luna46-"):
+        diagnostic.validate_output_path(tmp_path / relative, tmp_path)
+
+
+@pytest.mark.parametrize("relative", ["artifacts/luna46-test/out.json", "artifacts/luna46-new.json",
+                                      "artifacts/luna46-test/nested/out.json"])
+def test_output_guard_accepts_canonical_namespace(tmp_path, relative):
+    guard_root(tmp_path)
+    assert diagnostic.validate_output_path(tmp_path / relative, tmp_path) == (tmp_path / relative).resolve()
+
+
+def test_output_guard_temporary_directory_outside_namespace_rejected(tmp_path, tmp_path_factory):
+    guard_root(tmp_path)
+    elsewhere = tmp_path_factory.mktemp("elsewhere") / "out.json"
+    with pytest.raises(diagnostic.Blocked, match="outside"):
+        diagnostic.validate_output_path(elsewhere, tmp_path)
+
+
+def make_directory_alias(link, target, kind):
+    if kind == "symlink":
+        try:
+            os.symlink(target, link, target_is_directory=True)
+        except (OSError, NotImplementedError) as error:
+            pytest.skip(f"directory symlink unsupported: {error}")
+    else:
+        try:
+            import _winapi
+            _winapi.CreateJunction(str(target), str(link))
+        except (ImportError, AttributeError, OSError) as error:
+            pytest.skip(f"junction unsupported: {error}")
+
+
+@pytest.mark.parametrize("kind", ["symlink", "junction"])
+def test_output_guard_resolves_directory_aliases_to_fixture(tmp_path, kind):
+    fixture, _ = guard_root(tmp_path)
+    alias = tmp_path / "artifacts" / "luna46-alias"
+    make_directory_alias(alias, fixture, kind)
+    assert (alias / "fixture.json").read_bytes() == b"frozen"
+    with pytest.raises(diagnostic.Blocked, match="frozen Luna44 fixture"):
+        diagnostic.validate_output_path(alias / "new.json", tmp_path)
+    with pytest.raises(diagnostic.Blocked, match="frozen Luna44 fixture"):
+        diagnostic.validate_output_path(alias, tmp_path)
+    outer = tmp_path / "outer-alias"
+    make_directory_alias(outer, tmp_path / "artifacts", kind)
+    with pytest.raises(diagnostic.Blocked, match="frozen Luna44 fixture"):
+        diagnostic.validate_output_path(outer / "luna44-canonical-fixture" / "x.json", tmp_path)
+    assert (fixture / "fixture.json").read_bytes() == b"frozen"
+
+
+def test_output_guard_on_real_repository_layout_without_writing():
+    root = diagnostic.ROOT
+    before = sorted(p.name for p in (root / "artifacts").iterdir())
+    accepted = root / "artifacts" / "luna46-test" / "never-written.json"
+    assert diagnostic.validate_output_path(accepted) == accepted.resolve()
+    for path in (root / diagnostic.FIXTURE_ROOT, root / diagnostic.FIXTURE_ROOT / "fixture.json",
+                 root / "artifacts", root):
+        with pytest.raises(diagnostic.Blocked, match="overlaps"):
+            diagnostic.validate_output_path(path)
+    assert sorted(p.name for p in (root / "artifacts").iterdir()) == before
+
+
+def cli_namespace(tmp_path, monkeypatch):
+    _, namespace = guard_root(tmp_path)
+    monkeypatch.setattr(diagnostic, "ROOT", tmp_path)
+    return namespace
 
 
 def test_cli_refuses_overwrite_without_loading_or_analysis(tmp_path, monkeypatch, capsys):
-    path = tmp_path / "existing.json"
+    path = cli_namespace(tmp_path, monkeypatch) / "existing.json"
     path.write_bytes(b"untouched")
     def forbidden():
         pytest.fail("must not load retained analytical inputs")
@@ -587,8 +794,36 @@ def test_cli_refuses_overwrite_without_loading_or_analysis(tmp_path, monkeypatch
     assert "refusing overwrite" in capsys.readouterr().err
 
 
+def test_cli_refuses_retained_luna46_output_without_analysis(monkeypatch, capsys):
+    retained = diagnostic.ROOT / "artifacts" / "luna46-depth-scaling-diagnostic-20261006.json"
+    before = retained.read_bytes()
+    monkeypatch.setattr(diagnostic, "offline_analysis", lambda: pytest.fail("no analysis"))
+    assert diagnostic.main(["--output", str(retained)]) == 2
+    assert retained.read_bytes() == before
+    assert "refusing overwrite" in capsys.readouterr().err
+
+
+@pytest.mark.parametrize("relative", ["artifacts/luna44-canonical-fixture/new.json",
+                                      "artifacts/luna46-test/../luna44-canonical-fixture/new.json",
+                                      "outside.json"])
+def test_cli_output_guard_blocks_before_analysis(tmp_path, monkeypatch, capsys, relative):
+    cli_namespace(tmp_path, monkeypatch)
+    monkeypatch.setattr(diagnostic, "offline_analysis", lambda: pytest.fail("no analysis"))
+    assert diagnostic.main(["--output", str(tmp_path / relative)]) == 2
+    assert not (tmp_path / relative).exists()
+    assert sorted(p.name for p in (tmp_path / diagnostic.FIXTURE_ROOT).iterdir()) == ["fixture.json"]
+    assert "BLOCKED" in capsys.readouterr().err
+
+
+def test_cli_missing_output_parent_blocks(tmp_path, monkeypatch, capsys):
+    namespace = cli_namespace(tmp_path, monkeypatch)
+    monkeypatch.setattr(diagnostic, "offline_analysis", lambda: pytest.fail("no analysis"))
+    assert diagnostic.main(["--output", str(namespace / "missing" / "out.json")]) == 2
+    assert "parent directory missing" in capsys.readouterr().err
+
+
 def test_cli_explicit_failure_has_no_output(tmp_path, monkeypatch, capsys):
-    path = tmp_path / "not-created.json"
+    path = cli_namespace(tmp_path, monkeypatch) / "not-created.json"
     def blocked():
         raise diagnostic.Blocked("synthetic missing required input")
     monkeypatch.setattr(diagnostic, "offline_analysis", blocked)
@@ -600,7 +835,7 @@ def test_cli_explicit_failure_has_no_output(tmp_path, monkeypatch, capsys):
 def test_cli_n_zero_cannot_write_success(tmp_path, monkeypatch, capsys):
     result = {"verdict": "BLOCKED", "aggregate": {"reason": "N=0"}}
     monkeypatch.setattr(diagnostic, "offline_analysis", lambda: result)
-    path = tmp_path / "not-created.json"
+    path = cli_namespace(tmp_path, monkeypatch) / "not-created.json"
     assert diagnostic.main(["--output", str(path)]) == 2
     assert not path.exists() and "N=0" in capsys.readouterr().err
 
