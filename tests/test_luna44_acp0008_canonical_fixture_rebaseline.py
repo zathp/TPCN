@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import hashlib
+import json
 import math
 from pathlib import Path
 import subprocess
@@ -71,6 +72,22 @@ def test_fixture_loads_from_retained_files_without_generator_or_builder():
         capture_output=True,
         text=True,
     )
+
+
+def test_fixture_loader_rejects_unsupported_multi_run_provenance(tmp_path):
+    provenance = luna44.FIXTURE_PROVENANCE_PATH.read_text(encoding="utf-8")
+    manifest = json.loads(provenance)
+    manifest["pre_freeze_materialization_invocations"] = 2
+    manifest["pre_freeze_materialization_digests"] = [
+        manifest["canonical_fixture_sha256"],
+        manifest["canonical_fixture_sha256"],
+    ]
+    manifest["pre_freeze_determinism_replication"] = "matched"
+    path = tmp_path / "provenance.json"
+    path.write_text(json.dumps(manifest), encoding="utf-8")
+
+    with pytest.raises(ValueError, match="one materialization without replication"):
+        luna44.load_fixture(provenance_path=path)
 
 
 def test_topology_and_only_relay_integration_vary_by_arm():

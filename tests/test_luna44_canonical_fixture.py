@@ -226,11 +226,13 @@ def test_provenance_is_complete_and_matches_fixture(fixture, provenance):
     assert runtime["library_versions"]["external_dependencies"] == {}
     assert runtime["dependency_policy"].startswith("Point generation uses Python")
     assert provenance["canonical_fixture_sha256"] == canonical_fixture_digest(fixture)
-    assert provenance["pre_freeze_materialization_invocations"] == 2
+    assert provenance["pre_freeze_materialization_invocations"] == 1
     assert provenance["pre_freeze_materialization_digests"] == [
         EXPECTED_CANONICAL_FIXTURE_SHA256,
-        EXPECTED_CANONICAL_FIXTURE_SHA256,
     ]
+    assert provenance["pre_freeze_determinism_replication"] == (
+        "not performed; only one materialization invocation occurred."
+    )
     assert provenance["neural_execution_started"] is False
     assert "not read" in provenance["data_access_boundary"]
     assert "neither audit values nor audit digests enter" in provenance["audit_boundary"]

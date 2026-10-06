@@ -251,6 +251,14 @@ def load_fixture(
         raise ValueError("unexpected canonical fixture schema")
     if fixture_provenance.get("schema") != "TPCN-LUNA44-CANONICAL-FIXTURE-PROVENANCE-1":
         raise ValueError("unexpected fixture provenance schema")
+    if (
+        fixture_provenance.get("pre_freeze_materialization_invocations") != 1
+        or fixture_provenance.get("pre_freeze_materialization_digests")
+        != [fixture_provenance.get("canonical_fixture_sha256")]
+        or fixture_provenance.get("pre_freeze_determinism_replication")
+        != "not performed; only one materialization invocation occurred."
+    ):
+        raise ValueError("fixture provenance must report one materialization without replication")
     generator = fixture_provenance["generator"]
     sequence_builder = generator["sequence_builder"]
     point_generator = generator["point_generator"]

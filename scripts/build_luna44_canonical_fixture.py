@@ -276,8 +276,11 @@ def _build_fixture() -> tuple[dict[str, Any], dict[str, Any]]:
         "canonical_fixture_sha256": fixture_digest,
         "fixture_json_sha256": _sha256(_fixture_json_bytes(fixture)),
         "canonical_row_count": len(rows),
-        "pre_freeze_materialization_invocations": 2,
-        "pre_freeze_materialization_digests": [fixture_digest, fixture_digest],
+        "pre_freeze_materialization_invocations": 1,
+        "pre_freeze_materialization_digests": [fixture_digest],
+        "pre_freeze_determinism_replication": (
+            "not performed; only one materialization invocation occurred."
+        ),
         "neural_execution_started": False,
         "serialization": (
             "UTF-8 JSON, sorted keys, compact separators, ordered row list, "
