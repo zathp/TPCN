@@ -11,10 +11,12 @@ import subprocess
 from typing import Any
 
 
-MANIFEST_SHA256 = ""
+MANIFEST_SHA256 = "04da7d14a60d6a22dd6b54d72337b60a699cecfdaa89ad580ac0b78aab3c3709"
 FIXTURE_FILE_SHA256 = "66e187350536e6901d8371a1ffbe3e2a0abf3b49341c6ae6c8fed3ae7833b629"
 SEMANTIC_FIXTURE_SHA256 = "6c262ad1951a48f624d83a594abfc86ffa89d26882b397f6586698c097144305"
 SOURCE_REVISION = "a79494cd66be28fd291ed11eddd62d342f457cfd"
+MATERIALIZER_REVISION = "55e0232577d4fba2e9d87afbe1194f1efa728da1"
+MATERIALIZER_SHA256 = "afc5adf7c1bb8ab10e4de30c07c557ae22bb9bd91adf72a3b744662fcad4bc33"
 EXPECTED_POINT_COUNT = 5164
 EXPECTED_SEQUENCE_COUNT = 320
 SEQUENCES_PER_SEED = 64
@@ -173,6 +175,7 @@ def verify_fixture(
     *,
     expected_manifest_sha256: str | None = MANIFEST_SHA256,
     expected_fixture_sha256: str | None = FIXTURE_FILE_SHA256,
+    require_post_publication_evidence: bool = True,
 ) -> dict[str, Any]:
     """Validate committed fixture bytes and all pinned provenance inputs."""
     manifest_bytes = manifest_path.read_bytes()
@@ -241,8 +244,69 @@ def verify_fixture(
         "independent_repeat_performed": False,
     }:
         raise FixtureVerificationError("original materialization provenance mismatch")
-
     runtime = manifest.get("runtime", {})
+    if require_post_publication_evidence:
+        verification = manifest.get(
+            "post_publication_independent_materialization_verification", {}
+        )
+        if verification.get("statement") != (
+            "Post-publication independent fixture materialization verification "
+            "produced identical canonical fixture bytes/digests under the declared environment."
+        ):
+            raise FixtureVerificationError("post-publication materialization statement missing")
+        if verification.get("scope") != (
+            "Deterministic repeated materialization in the tested environment only; "
+            "no cross-platform or environment-independent claim."
+        ):
+            raise FixtureVerificationError("post-publication materialization scope mismatch")
+        if (
+            verification.get("verification_revision") != MATERIALIZER_REVISION
+            or verification.get("materializer_sha256") != MATERIALIZER_SHA256
+        ):
+            raise FixtureVerificationError("post-publication materializer identity mismatch")
+        runs = (verification.get("materialization_a"), verification.get("materialization_b"))
+        if any(not isinstance(run, dict) for run in runs):
+            raise FixtureVerificationError("two independent materialization records are required")
+        if (
+            runs[0].get("process") == runs[1].get("process")
+            or runs[0].get("output_directory") == runs[1].get("output_directory")
+            or runs[0].get("generation_timestamp_utc")
+            == runs[1].get("generation_timestamp_utc")
+        ):
+            raise FixtureVerificationError("materialization runs are not independent")
+        for run in runs:
+            if (
+                run.get("fixture_byte_length") != 3_451_453
+                or run.get("fixture_json_sha256") != FIXTURE_FILE_SHA256
+                or run.get("semantic_fixture_digest") != SEMANTIC_FIXTURE_SHA256
+                or run.get("record_count") != EXPECTED_POINT_COUNT
+                or len(run.get("provenance_manifest_sha256", "")) != 64
+            ):
+                raise FixtureVerificationError("materialization result does not match pinned fixture")
+        comparison = verification.get("comparison", {})
+        required_equalities = (
+            "output_directories_distinct",
+            "processes_distinct",
+            "same_runtime_environment",
+            "fixture_bytes_equal",
+            "fixture_byte_length_equal",
+            "fixture_sha256_equal",
+            "semantic_digest_equal",
+            "record_count_equal",
+            "all_x_y_t_binary64_bit_patterns_equal",
+            "ordering_equal",
+        )
+        if (
+            any(comparison.get(key) is not True for key in required_equalities)
+            or comparison.get("point_records_compared") != EXPECTED_POINT_COUNT
+            or verification.get("runtime", {}).get("python_version")
+            != runtime.get("python_version")
+            or verification.get("runtime", {}).get("python_implementation")
+            != runtime.get("python_implementation")
+            or verification.get("runtime", {}).get("platform") != runtime.get("platform")
+        ):
+            raise FixtureVerificationError("materialization equality evidence is incomplete")
+
     if not all(
         runtime.get(key)
         for key in ("python_version", "python_implementation", "platform")

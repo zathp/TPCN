@@ -58,6 +58,7 @@ def _verify_mutation(tmp_path, manifest, fixture):
         ROOT,
         expected_manifest_sha256=None,
         expected_fixture_sha256=None,
+        require_post_publication_evidence=False,
     )
 
 
@@ -68,6 +69,7 @@ def test_independent_verifier_accepts_materialized_manifest(fresh_materializatio
         first_directory / "fixture.json",
         ROOT,
         expected_manifest_sha256=None,
+        require_post_publication_evidence=False,
     )
 
     assert result["manifest_sha256"]
@@ -77,6 +79,15 @@ def test_independent_verifier_accepts_materialized_manifest(fresh_materializatio
     assert result["sequence_count"] == 320
     assert result["point_count"] == 5164
     assert result["source_files_verified"] == 4
+
+
+def test_committed_manifest_is_pinned_and_fully_verified():
+    result = verifier.verify_fixture(MANIFEST_PATH, FIXTURE_PATH, ROOT)
+
+    assert result["manifest_sha256"] == verifier.MANIFEST_SHA256
+    assert result["fixture_file_sha256"] == verifier.FIXTURE_FILE_SHA256
+    assert result["semantic_fixture_sha256"] == verifier.SEMANTIC_FIXTURE_SHA256
+    assert result["point_count"] == 5164
 
 
 def test_missing_manifest_source_file_fails_loudly(tmp_path, fresh_materializations):
@@ -109,6 +120,7 @@ def test_fixture_file_digest_mismatch_fails_loudly(tmp_path, fresh_materializati
     first_directory, _ = fresh_materializations
     manifest = json.loads((first_directory / "provenance.json").read_text(encoding="utf-8"))
     fixture = (first_directory / "fixture.json").read_bytes() + b" "
+    manifest["fixture_byte_length"] = len(fixture)
     manifest_path = tmp_path / "provenance.json"
     fixture_path = tmp_path / "fixture.json"
     manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
@@ -121,6 +133,7 @@ def test_fixture_file_digest_mismatch_fails_loudly(tmp_path, fresh_materializati
             ROOT,
             expected_manifest_sha256=None,
             expected_fixture_sha256=None,
+            require_post_publication_evidence=False,
         )
 
 
