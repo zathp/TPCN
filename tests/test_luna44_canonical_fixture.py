@@ -10,9 +10,13 @@ import pytest
 
 from scripts.build_luna44_canonical_fixture import (
     _canonical_json_bytes,
+    _compare_materializations,
+    _fixture_json_bytes,
+    _materialization_record,
     batch_ordinals,
     canonical_fixture_digest,
     canonical_raw_rows,
+    materialize_independently,
 )
 
 
@@ -90,6 +94,30 @@ def test_canonical_digest_is_stable_and_recomputed(fixture, provenance):
         "fixture_json_sha256"
     ]
     assert canonical_fixture_digest(json.loads(FIXTURE_PATH.read_text(encoding="utf-8"))) == digest
+    materializations = provenance["materializations"]
+    assert len(materializations) == 2
+    assert provenance["committed_fixture_invocation_id"] == materializations[0]["invocation_id"]
+    assert materializations[0]["invocation_id"] != materializations[1]["invocation_id"]
+    assert materializations[0]["process_id"] != materializations[1]["process_id"]
+    assert materializations[0]["output_directory"] != materializations[1]["output_directory"]
+    for materialization in materializations:
+        assert materialization["fixture_file_sha256"] == EXPECTED_FIXTURE_JSON_SHA256
+        assert materialization["semantic_fixture_digest"] == EXPECTED_CANONICAL_FIXTURE_SHA256
+        assert materialization["byte_length"] == len(FIXTURE_PATH.read_bytes())
+        assert materialization["record_count"] == 5 * 64
+        assert materialization["ordered_point_count"] == EXPECTED_POINT_COUNT
+    assert provenance["materialization_comparison"] == {
+        "fixture_bytes_equal": True,
+        "file_sha256_equal": True,
+        "semantic_digest_equal": True,
+        "sequence_point_order_equal": True,
+        "point_by_point_exact_equal": True,
+        "independent_invocations": True,
+        "statement": (
+            "Two independent materializations produced identical canonical fixture "
+            "bytes in the tested environment."
+        ),
+    }
     for sequence in fixture["sequences"]:
         sequence_rows = [
             row for row in rows
@@ -127,6 +155,50 @@ def test_batch_ordinals_use_numeric_timestamp_equality_and_preserve_order():
     with pytest.raises(ValueError, match="not ordered"):
         batch_ordinals(
             [SimpleNamespace(timestamp=2.0), SimpleNamespace(timestamp=1.0)]
+        )
+
+
+def test_two_fresh_process_materializations_match_committed_fixture(tmp_path):
+    fixture_bytes, provenance = materialize_independently(tmp_path / "runs")
+    materialization_a, materialization_b = provenance["materializations"]
+    assert materialization_a["invocation_id"] != materialization_b["invocation_id"]
+    assert materialization_a["process_id"] != materialization_b["process_id"]
+    assert materialization_a["output_directory"] != materialization_b["output_directory"]
+    assert Path(materialization_a["output_directory"], "fixture.json").read_bytes() == fixture_bytes
+    assert Path(materialization_b["output_directory"], "fixture.json").read_bytes() == fixture_bytes
+    assert fixture_bytes == FIXTURE_PATH.read_bytes()
+
+
+def test_materialization_comparison_rejects_duplicated_or_mismatching_records(
+    fixture, provenance
+):
+    fixture_bytes = FIXTURE_PATH.read_bytes()
+    materialization_a, materialization_b = provenance["materializations"]
+    duplicate = copy.deepcopy(materialization_a)
+    with pytest.raises(ValueError, match="distinct invocation identifiers"):
+        _compare_materializations(
+            materialization_a, fixture_bytes, duplicate, fixture_bytes
+        )
+
+    changed_fixture = copy.deepcopy(fixture)
+    first_point = changed_fixture["sequences"][0]["points"][0]
+    changed_value = math.nextafter(float.fromhex(first_point["x"]["hex"]), math.inf)
+    first_point["x"] = {"decimal": repr(changed_value), "hex": changed_value.hex()}
+    changed_bytes = _fixture_json_bytes(changed_fixture)
+    changed_provenance = copy.deepcopy(provenance)
+    mismatching = _materialization_record(
+        changed_fixture,
+        changed_bytes,
+        changed_provenance,
+        invocation_id="independent-mismatch",
+        process_id=materialization_b["process_id"] + 1,
+        started_at_utc=materialization_b["started_at_utc"],
+        completed_at_utc=materialization_b["completed_at_utc"],
+        output_directory=Path(materialization_b["output_directory"] + "-mismatch"),
+    )
+    with pytest.raises(ValueError, match="independent fixture materializations differ"):
+        _compare_materializations(
+            materialization_a, fixture_bytes, mismatching, changed_bytes
         )
 
 
@@ -226,13 +298,8 @@ def test_provenance_is_complete_and_matches_fixture(fixture, provenance):
     assert runtime["library_versions"]["external_dependencies"] == {}
     assert runtime["dependency_policy"].startswith("Point generation uses Python")
     assert provenance["canonical_fixture_sha256"] == canonical_fixture_digest(fixture)
-    assert provenance["pre_freeze_materialization_invocations"] == 1
-    assert provenance["pre_freeze_materialization_digests"] == [
-        EXPECTED_CANONICAL_FIXTURE_SHA256,
-    ]
-    assert provenance["pre_freeze_determinism_replication"] == (
-        "not performed; only one materialization invocation occurred."
-    )
+    assert len(provenance["materializations"]) == 2
+    assert provenance["materialization_comparison"]["independent_invocations"] is True
     assert provenance["neural_execution_started"] is False
     assert "not read" in provenance["data_access_boundary"]
     assert "neither audit values nor audit digests enter" in provenance["audit_boundary"]

@@ -74,19 +74,20 @@ def test_fixture_loads_from_retained_files_without_generator_or_builder():
     )
 
 
-def test_fixture_loader_rejects_unsupported_multi_run_provenance(tmp_path):
+def test_fixture_loader_rejects_duplicated_or_mismatching_materializations(tmp_path):
     provenance = luna44.FIXTURE_PROVENANCE_PATH.read_text(encoding="utf-8")
     manifest = json.loads(provenance)
-    manifest["pre_freeze_materialization_invocations"] = 2
-    manifest["pre_freeze_materialization_digests"] = [
-        manifest["canonical_fixture_sha256"],
-        manifest["canonical_fixture_sha256"],
-    ]
-    manifest["pre_freeze_determinism_replication"] = "matched"
     path = tmp_path / "provenance.json"
-    path.write_text(json.dumps(manifest), encoding="utf-8")
 
-    with pytest.raises(ValueError, match="one materialization without replication"):
+    manifest["materializations"][1] = manifest["materializations"][0].copy()
+    path.write_text(json.dumps(manifest), encoding="utf-8")
+    with pytest.raises(ValueError, match="duplicated or not independent"):
+        luna44.load_fixture(provenance_path=path)
+
+    manifest["materializations"][1] = json.loads(provenance)["materializations"][1]
+    manifest["materializations"][1]["semantic_fixture_digest"] = "0" * 64
+    path.write_text(json.dumps(manifest), encoding="utf-8")
+    with pytest.raises(ValueError, match="measurements differ"):
         luna44.load_fixture(provenance_path=path)
 
 

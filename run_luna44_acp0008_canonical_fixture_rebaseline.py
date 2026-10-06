@@ -40,7 +40,7 @@ FIXTURE_FILE_SHA256 = "66e187350536e6901d8371a1ffbe3e2a0abf3b49341c6ae6c8fed3ae7
 FIXTURE_GENERATOR_REVISION = "a79494cd66be28fd291ed11eddd62d342f457cfd"
 FIXTURE_GENERATOR_SHA256 = "17e581cf702fae1f56889472a967d2e8e5fec37cc041edba8247da14a0a8b5db"
 FIXTURE_POINT_GENERATOR_SHA256 = "2ffb1b5ebb23f016436043118bc675eddaa14bfd923129359fe61a12df94d9f0"
-FIXTURE_GENERATION_EXECUTION_REVISION = "9226316be4935236ba3f6f511b4abfe8f23af278"
+FIXTURE_GENERATION_EXECUTION_REVISION = "a79494cd66be28fd291ed11eddd62d342f457cfd"
 AUTHORIZATION_HANDOFF_PATH = Path(
     "workflow/handoffs/luna-0-authorization-luna44-canonical-fixture-rebaseline-20261005.md"
 )
@@ -238,6 +238,99 @@ def _validate_sequence(sequence: dict[str, Any]) -> None:
         raise ValueError(f"per-sequence raw source digest mismatch in {stream_id}")
 
 
+def _validate_materialization_provenance(
+    provenance: dict[str, Any],
+    fixture_bytes: bytes,
+    fixture: dict[str, Any],
+    rows: list[dict[str, Any]],
+) -> None:
+    materializations = provenance.get("materializations")
+    if not isinstance(materializations, list) or len(materializations) != 2:
+        raise ValueError("fixture provenance must contain two independent materializations")
+    invocation_ids = [item.get("invocation_id") for item in materializations]
+    process_ids = [item.get("process_id") for item in materializations]
+    output_directories = [item.get("output_directory") for item in materializations]
+    if (
+        any(not isinstance(value, str) or not value for value in invocation_ids)
+        or any(not isinstance(value, int) or isinstance(value, bool) for value in process_ids)
+        or any(not isinstance(value, str) or not value for value in output_directories)
+        or len(set(invocation_ids)) != 2
+        or len(set(process_ids)) != 2
+        or len(set(output_directories)) != 2
+    ):
+        raise ValueError("fixture materialization records are duplicated or not independent")
+    materializer_hashes = [
+        item.get("materializer_source_sha256") for item in materializations
+    ]
+    if (
+        any(
+            not isinstance(value, str)
+            or len(value) != 64
+            or any(character not in "0123456789abcdef" for character in value)
+            for value in materializer_hashes
+        )
+        or len(set(materializer_hashes)) != 1
+    ):
+        raise ValueError("fixture materialization source identities differ or are invalid")
+    for item in materializations:
+        if (
+            item.get("generator_revision") != FIXTURE_GENERATOR_REVISION
+            or item.get("generation_execution_revision")
+            != FIXTURE_GENERATION_EXECUTION_REVISION
+            or not item.get("started_at_utc")
+            or not item.get("completed_at_utc")
+            or not item.get("environment_identity")
+        ):
+            raise ValueError("fixture materialization identity or environment is invalid")
+        if (
+            item.get("fixture_file_sha256") != hashlib.sha256(fixture_bytes).hexdigest()
+            or item.get("semantic_fixture_digest")
+            != provenance.get("canonical_fixture_sha256")
+            or item.get("byte_length") != len(fixture_bytes)
+            or item.get("record_count") != len(fixture["sequences"])
+            or item.get("ordered_point_count") != len(rows)
+        ):
+            raise ValueError("fixture materialization measurements differ from committed fixture")
+        order_digest = _digest(
+            [
+                [
+                    row["seed"],
+                    row["sequence_index"],
+                    row["stream_id"],
+                    row["point_index"],
+                ]
+                for row in rows
+            ]
+        )
+        bits_digest = _digest(
+            [[row["x_bits_be"], row["y_bits_be"], row["t_bits_be"]] for row in rows]
+        )
+        if (
+            item.get("seed_sequence_point_order_sha256") != order_digest
+            or item.get("exact_xyz_bits_sha256") != bits_digest
+        ):
+            raise ValueError("fixture materialization ordering or point bits differ")
+    if (
+        materializations[0]["environment_identity"]
+        != materializations[1]["environment_identity"]
+    ):
+        raise ValueError("fixture materializations were generated in different environments")
+    if provenance.get("committed_fixture_invocation_id") != invocation_ids[0]:
+        raise ValueError("committed fixture is not identified as Materialization A")
+    comparison = provenance.get("materialization_comparison", {})
+    if (
+        comparison.get("independent_invocations") is not True
+        or comparison.get("fixture_bytes_equal") is not True
+        or comparison.get("file_sha256_equal") is not True
+        or comparison.get("semantic_digest_equal") is not True
+        or comparison.get("sequence_point_order_equal") is not True
+        or comparison.get("point_by_point_exact_equal") is not True
+        or comparison.get("statement")
+        != "Two independent materializations produced identical canonical fixture bytes in the tested environment."
+    ):
+        raise ValueError("fixture determinism comparison is incomplete or failed")
+
+
 def load_fixture(
     fixture_path: Path = FIXTURE_PATH,
     provenance_path: Path = FIXTURE_PROVENANCE_PATH,
@@ -251,14 +344,6 @@ def load_fixture(
         raise ValueError("unexpected canonical fixture schema")
     if fixture_provenance.get("schema") != "TPCN-LUNA44-CANONICAL-FIXTURE-PROVENANCE-1":
         raise ValueError("unexpected fixture provenance schema")
-    if (
-        fixture_provenance.get("pre_freeze_materialization_invocations") != 1
-        or fixture_provenance.get("pre_freeze_materialization_digests")
-        != [fixture_provenance.get("canonical_fixture_sha256")]
-        or fixture_provenance.get("pre_freeze_determinism_replication")
-        != "not performed; only one materialization invocation occurred."
-    ):
-        raise ValueError("fixture provenance must report one materialization without replication")
     generator = fixture_provenance["generator"]
     sequence_builder = generator["sequence_builder"]
     point_generator = generator["point_generator"]
@@ -335,6 +420,7 @@ def load_fixture(
     point_count = len(rows)
     if point_count != TOTAL_POINTS:
         raise ValueError(f"expected {TOTAL_POINTS} fixture points, got {point_count}")
+    _validate_materialization_provenance(fixture_provenance, fixture_bytes, fixture, rows)
     if digest != FIXTURE_SHA256 or digest != fixture_provenance["canonical_fixture_sha256"]:
         raise ValueError("canonical fixture digest does not match the pinned identity")
     if fixture_provenance["sequence_order"] != [item[2] for item in expected_order]:

@@ -38,8 +38,8 @@
       "ordering": "random.Random(330000 + seed).shuffle(point_sequences)"
     }
   },
-  "generation_execution_revision": "9226316be4935236ba3f6f511b4abfe8f23af278",
-  "generation_timestamp_utc": "2026-10-05T22:46:24.643250+00:00",
+  "generation_execution_revision": "a79494cd66be28fd291ed11eddd62d342f457cfd",
+  "generation_timestamp_utc": "2026-10-06T00:15:22.755893+00:00",
   "seeds": [
     0,
     1,
@@ -1663,15 +1663,58 @@
     "dependency_policy": "Point generation uses Python standard-library random/math and repository modules; no external package is used to generate points."
   },
   "canonical_fixture_sha256": "6c262ad1951a48f624d83a594abfc86ffa89d26882b397f6586698c097144305",
+  "fixture_json_sha256": "66e187350536e6901d8371a1ffbe3e2a0abf3b49341c6ae6c8fed3ae7833b629",
   "canonical_row_count": 5164,
+  "neural_execution_started": false,
   "serialization": "UTF-8 JSON, sorted keys, compact separators, ordered row list, finite numbers only; raw values represented in identity as exact 16-character big-endian IEEE-754 binary64 hex.",
   "audit_boundary": "x+y is stored only as a derived audit value with a separate derived_audit_sha256; neither audit values nor audit digests enter canonical fixture identity.",
   "data_access_boundary": "Only generated training point sequences were read. Labels, class metadata, evaluation streams, and neural outcomes were not read.",
-  "fixture_json_sha256": "66e187350536e6901d8371a1ffbe3e2a0abf3b49341c6ae6c8fed3ae7833b629",
-  "pre_freeze_materialization_invocations": 1,
-  "pre_freeze_materialization_digests": [
-    "6c262ad1951a48f624d83a594abfc86ffa89d26882b397f6586698c097144305"
+  "materializations": [
+    {
+      "invocation_id": "16d3c11dbfec4963b582377c3ec9939c",
+      "process_id": 5320,
+      "started_at_utc": "2026-10-06T00:15:22.415967+00:00",
+      "completed_at_utc": "2026-10-06T00:15:22.915608+00:00",
+      "output_directory": "/home/runner/work/TPCN/TPCN/artifacts/luna44-materializations-1ll6_a4r/runs/materialization-a",
+      "generator_revision": "a79494cd66be28fd291ed11eddd62d342f457cfd",
+      "materializer_source_sha256": "696051cc3690aafc9f342e569697469a111757c37c2666b0c026333e6b16efce",
+      "generation_execution_revision": "a79494cd66be28fd291ed11eddd62d342f457cfd",
+      "environment_identity": "0762ac1c73678db56a69c4a159653cde6e65bbf30b7f76fc63dc684fa425770b",
+      "fixture_file_sha256": "66e187350536e6901d8371a1ffbe3e2a0abf3b49341c6ae6c8fed3ae7833b629",
+      "semantic_fixture_digest": "6c262ad1951a48f624d83a594abfc86ffa89d26882b397f6586698c097144305",
+      "byte_length": 3451453,
+      "record_count": 320,
+      "ordered_point_count": 5164,
+      "seed_sequence_point_order_sha256": "8f9662ce3364ed38d2572bec081f78a1d18a8243d69bd6114bb6fa50a32fe940",
+      "exact_xyz_bits_sha256": "6fbed2a68c88ba17c142ef7933ea20e57837ebbb527bba87c25c7c3fe50cf5db"
+    },
+    {
+      "invocation_id": "b6187d9a674045488e01d7cdcc5d7a58",
+      "process_id": 5323,
+      "started_at_utc": "2026-10-06T00:15:23.024999+00:00",
+      "completed_at_utc": "2026-10-06T00:15:23.454936+00:00",
+      "output_directory": "/home/runner/work/TPCN/TPCN/artifacts/luna44-materializations-1ll6_a4r/runs/materialization-b",
+      "generator_revision": "a79494cd66be28fd291ed11eddd62d342f457cfd",
+      "materializer_source_sha256": "696051cc3690aafc9f342e569697469a111757c37c2666b0c026333e6b16efce",
+      "generation_execution_revision": "a79494cd66be28fd291ed11eddd62d342f457cfd",
+      "environment_identity": "0762ac1c73678db56a69c4a159653cde6e65bbf30b7f76fc63dc684fa425770b",
+      "fixture_file_sha256": "66e187350536e6901d8371a1ffbe3e2a0abf3b49341c6ae6c8fed3ae7833b629",
+      "semantic_fixture_digest": "6c262ad1951a48f624d83a594abfc86ffa89d26882b397f6586698c097144305",
+      "byte_length": 3451453,
+      "record_count": 320,
+      "ordered_point_count": 5164,
+      "seed_sequence_point_order_sha256": "8f9662ce3364ed38d2572bec081f78a1d18a8243d69bd6114bb6fa50a32fe940",
+      "exact_xyz_bits_sha256": "6fbed2a68c88ba17c142ef7933ea20e57837ebbb527bba87c25c7c3fe50cf5db"
+    }
   ],
-  "pre_freeze_determinism_replication": "not performed; only one materialization invocation occurred.",
-  "neural_execution_started": false
+  "committed_fixture_invocation_id": "16d3c11dbfec4963b582377c3ec9939c",
+  "materialization_comparison": {
+    "fixture_bytes_equal": true,
+    "file_sha256_equal": true,
+    "semantic_digest_equal": true,
+    "sequence_point_order_equal": true,
+    "point_by_point_exact_equal": true,
+    "independent_invocations": true,
+    "statement": "Two independent materializations produced identical canonical fixture bytes in the tested environment."
+  }
 }
