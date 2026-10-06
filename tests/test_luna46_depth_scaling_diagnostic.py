@@ -547,6 +547,17 @@ def test_depth_comparison_measures_unequal_stream_statistics_and_discloses_unfai
     assert second_intervals["observed_duration"] == 80.
     assert second_intervals["mean_interval_duration"] == 80.
     assert second_intervals["reciprocal_mean_interval"] == 1 / 80
+    tied, _ = synthetic_sequence([.2, .3], [5., 5.])
+    tied_intervals = diagnostic.stream_metrics([tied])["interval_statistics"]
+    assert tied_intervals["interval_count"] == 1
+    assert tied_intervals["observed_duration"] == 0.
+    assert tied_intervals["mean_interval_duration"] == 0.
+    assert tied_intervals["reciprocal_mean_interval"] is None
+    singleton, _ = synthetic_sequence([.2], [5.])
+    singleton_intervals = diagnostic.stream_metrics([singleton])["interval_statistics"]
+    assert singleton_intervals["interval_count"] == 0
+    assert singleton_intervals["mean_interval_duration"] is None
+    assert singleton_intervals["reciprocal_mean_interval"] is None
     assert result["first_hop"]["signs"]["negative"] == 1
     assert result["differences"]["receptions"] == -1
     first_event_rate = result["first_hop"]["common_fixture_event_rate"]

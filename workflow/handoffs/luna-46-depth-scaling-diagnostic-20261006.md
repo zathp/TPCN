@@ -251,16 +251,25 @@ assumed equal.
 |---|---:|---:|
 | Routed events | 1,715 | 235 |
 | Inter-arrival intervals | 1,418 | 127 |
-| Events per observed time unit | `0.03527883743968141` | `0.011761172661876184` |
+| Summed within-stream inter-arrival duration | `40194.06825478446` | `10798.242968719456` |
+| Mean inter-arrival duration | `28.345605257252796` | `85.02553518676737` |
+| Reciprocal mean inter-arrival interval (intervals per logical-time unit) | `0.03527883743968141` | `0.011761172661876184` |
+| Routed event rate over common fixture observation window (receptions per logical-time unit) | `0.01919241978881272` | `0.0026298651022571362` |
 | Inter-arrival mean / median | `28.34560525725278` / `18.745645230767586` | `85.02553518676737` / `79.3174729376263` |
 | Inter-arrival p90 / p95 / p99 / max | `71.26844559107914` / `90.9904284452375` / `116.33489908346476` / `144.04056750003937` | `135.49262068046568` / `146.6972352970952` / `175.37006810775276` / `196.54118747571587` |
 | Positive / negative / zero payloads | 868 / 847 / 0 | 121 / 114 / 0 |
 | Same-sign runs: count, mean length, median, max | 325, `5.276923076923077`, 4, 19 | 108, `2.175925925925926`, 2, 6 |
 | Same-sign run-gap mean / median / max | `27.845856659595746` / `18.697324030991602` / `144.04056750003937` | `85.02553518676737` / `79.3174729376263` / `196.54118747571587` |
 
-The lower event rate and longer gaps at the second hop are observed in these
-matched retained streams. They do not prove a causal effect of hop depth or
-show that the two layers should have identical input statistics.
+The reciprocal mean interval uses interval count divided by the sum of
+within-character first-to-last arrival durations; it is not an event count
+divided by the common observation window. The event rate uses routed event
+counts divided by the summed first-to-last frozen fixture timestamp duration
+over matched characters (`89358.19552048748` logical-time units). Both the
+lower event rate and longer inter-arrival intervals at the second hop are
+observed in these matched retained streams. They do not prove a causal effect
+of hop depth or show that the two layers should have identical input
+statistics.
 
 ## Validation record
 

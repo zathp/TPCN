@@ -9,7 +9,7 @@ tpcn_handoff:
   contract_version: "1.2"
   branch: "copilot/luna46-depth-scaling-diagnostic"
   base_revision: "7f063b1013f0274083e70e931333446c23e47ab5"
-  result_revision: "Corrective implementation 96d015ecd8f6b5684237c489898ee33e4496a1cd; this handoff and output are published in the containing commit"
+  result_revision: "Metric reporting code 8eab7112e61a24d260da6984450a17a49bc90578; regenerated output records source revision 6af1c0167c6a506477d6fe3f9c40b19692fce0ec; updated handoff is published in its containing commit"
   dependencies:
     - "Luna-46 authorization bb080228bac2287da49c1b47fc1484b436a59106"
     - "Luna-46 independent review 7f063b1013f0274083e70e931333446c23e47ab5"
@@ -71,6 +71,7 @@ tpcn_handoff:
     - "run_luna46_depth_scaling_diagnostic.py"
     - "tests/test_luna46_depth_scaling_diagnostic.py"
     - "artifacts/luna46-depth-scaling-diagnostic-corrective-20261006.json"
+    - "artifacts/luna46-depth-scaling-diagnostic-corrective-20261006-pre-label-correction.json"
     - "workflow/handoffs/luna-46-corrective-verification-20261006.md"
   tests_added:
     - "Contract-to-test matrix A-G for unique, absent, already-crossing, zero-boundary, non-monotone, cancellation, and singleton/no-reception critical-rate cases."
@@ -102,17 +103,20 @@ tpcn_handoff:
 
 **OBSERVED:** Corrective implementation commit
 `96d015ecd8f6b5684237c489898ee33e4496a1cd` adds a canonical output-path
-guard and analytical critical-rate classifications. It changes no production
-computation, topology, fixture, ACP, or prior retained output.
+guard and analytical critical-rate classifications. Reporting correction
+commit `8eab7112e61a24d260da6984450a17a49bc90578` separates inter-arrival
+statistics from event rates without changing the underlying counts or rates.
+No production computation, topology, fixture, or ACP changed.
 
-**OBSERVED:** The retained analysis was rerun from that pushed, clean code
-revision to
+**OBSERVED:** The corrected retained analysis was rerun from pushed code
+revision `6af1c0167c6a506477d6fe3f9c40b19692fce0ec` to
 `artifacts/luna46-depth-scaling-diagnostic-corrective-20261006.json`.
-The artifact is 2,336,500 bytes with SHA-256
-`3a54776b1186934381e585779643bd1289805880a90c00361f4ad97f3aadb601`.
-Its schema is `TPCN-LUNA46-OFFLINE-1`, its recorded code revision is
-`96d015ecd8f6b5684237c489898ee33e4496a1cd`, and its `MIXED` verdict and
-category counts match the previously reviewed result.
+The regenerated artifact is 2,337,376 bytes with SHA-256
+`54220205537184dadc26eba3c59f7e9b36f01db579fd895339728e089e313d51`.
+Its schema is `TPCN-LUNA46-OFFLINE-1`, and its `MIXED` verdict and category
+counts match the previously reviewed result. The formerly reviewed JSON was
+preserved byte-for-byte as
+`artifacts/luna46-depth-scaling-diagnostic-corrective-20261006-pre-label-correction.json`.
 
 The corrected analysis reports 33 `UNIQUE` mathematical boundaries, 32
 drive-limited sequences with no nonnegative-rate crossing, 43 single-reception
@@ -139,7 +143,8 @@ The three retained phase-pair canonical byte checks also passed.
 
 **OBSERVED:** Luna-0 independently reviewed publication commit
 `3fba4ac3b60e6d4f5dd6c08a5a8e9af54110e7b2`, corrective code revision
-`96d015ecd8f6b5684237c489898ee33e4496a1cd`, and this output. Disposition:
+`96d015ecd8f6b5684237c489898ee33e4496a1cd`, and the prior output now
+preserved under the `pre-label-correction` filename. Disposition:
 **PASS — corrective evidence review; scientific verdict remains MIXED**.
 The reviewer independently checked the path guard, analytical-rate rationale,
 all 33 retained input identities, raw enqueue/reception reconciliation,
@@ -153,16 +158,44 @@ time-of-check/time-of-use boundary: a concurrent replacement of parent
 symlinks or junctions after validation is outside the guard's guarantee.
 Neither caveat changes the retained classifications or verdict.
 
+### Metric semantic/reporting correction
+
+The depth-comparison object previously called `frequency` measured interval
+count divided by summed first-to-last arrival duration within streams. This is
+the reciprocal of mean inter-arrival duration, not routed event count divided
+by the observation window. It is now explicitly `interval_statistics`, with
+interval count, observed duration, mean interval duration, reciprocal mean
+interval, and units. The distinct matched-window quantity is now
+`common_fixture_event_rate`, with routed reception count, observation-window
+duration, and events per retained logical-time unit.
+
+| Hop | Interval count / duration | Mean interval duration | Reciprocal mean interval | Event count / common window | Event rate |
+|---|---:|---:|---:|---:|---:|
+| Source -> relay | 1,418 / 40,194.06825478446 | 28.345605257252796 | 0.03527883743968141 intervals per time unit | 1,715 / 89,358.19552048748 | 0.01919241978881272 receptions per time unit |
+| Relay -> destination | 127 / 10,798.242968719456 | 85.02553518676737 | 0.011761172661876184 intervals per time unit | 235 / 89,358.19552048748 | 0.0026298651022571362 receptions per time unit |
+
+This is a semantic/reporting correction: no prior interval-rate or
+event-rate numerical value changed; the corrected report makes their
+different denominators explicit and adds the mean interval duration.
+Inter-arrival gap distributions remain duration statistics. No separate
+per-gap reciprocal-frequency aggregate is claimed.
+
 This disposition is not owner approval, architecture promotion, or
 authorization of Luna-47. No repository files were changed and no analysis
 was rerun as part of the independent review.
+
+The metric naming/reporting correction below was made after this independent
+review. It changes only report field names and explicit metric definitions;
+the retained counts, numerical interval/event rates, category counts, and
+verdict are unchanged. That reporting-only correction is not represented as a
+separate Luna-0 review.
 
 ## Validation record
 
 | Command or procedure | Revision / environment / seed | Observed result | Evidence |
 |---|---|---|---|
-| `python -m pytest -q tests/test_luna46_depth_scaling_diagnostic.py` | Corrective code at `96d015e`; Windows; Python 3.11.5 | 167 passed | Focused test run |
-| `python run_luna46_depth_scaling_diagnostic.py --output artifacts/luna46-depth-scaling-diagnostic-corrective-20261006.json` | Corrective code at `96d015e`; retained inputs only | `MIXED`; replay equality passed | New JSON artifact |
+| `python -m pytest -q tests/test_luna46_depth_scaling_diagnostic.py` | Metric-reporting code at `8eab711`; Windows; Python 3.11.5 | 167 passed | Focused test run |
+| `python run_luna46_depth_scaling_diagnostic.py --output artifacts/luna46-depth-scaling-diagnostic-corrective-20261006.json` | Analyzer source revision `6af1c0167c6a506477d6fe3f9c40b19692fce0ec`; retained inputs only | `MIXED`; replay equality passed | Regenerated corrected JSON artifact |
 | Canonical fixture verification | After analysis and full-suite attempt | PASS, 5,164 points / 320 sequences | Pinned fixture, manifest, semantic digests above |
 | `python -m pytest -q` | Windows checkout; Git `core.autocrlf=true` | 1 failed, 7 errors, 1 skipped, 1,325 passed | All failed/error cases are Luna-44 pinned-source materialization checks |
 | Temporary pinned-source probe | Git revision `a79494cd66be28fd291ed11eddd62d342f457cfd` | Git blob matches expected SHA; temporary worktree file differs | Expected `17e581cf…a0a8b5db`; checkout `c16a099b…2e0530d44` |
@@ -177,10 +210,12 @@ No generator, fixture, or test expectation was changed to bypass the failure.
 
 ## Assumptions, limitations and unresolved issues
 
-**OBSERVED:** The previously published output remains untouched. No retained
-input was regenerated, no alternate configuration was run, and no parameter
-was changed. Critical-rate values are analytical results only and are not
-production tuning recommendations.
+**OBSERVED:** The previously reviewed output remains preserved byte-for-byte
+under the `pre-label-correction` filename; the canonical corrective artifact
+was regenerated with explicit metric names. No retained input was regenerated,
+no alternate configuration was run, and no parameter was changed.
+Critical-rate values are analytical results only and are not production
+tuning recommendations.
 
 **UNRESOLVED:** The full suite remains failed on the Windows pinned-source
 materialization checks described above. The reviewer independently confirmed

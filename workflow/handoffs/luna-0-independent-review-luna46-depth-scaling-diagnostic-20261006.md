@@ -319,31 +319,44 @@ interpolation at `(n-1)*p`.
 | Mean / p50 / p75 | `85.02553518676733` / `79.3174729376263` / `117.00313879569995` |
 | p90 / p95 / p99 | `135.49262068046568` / `146.6972352970952` / `175.37006810775276` |
 | Maximum / zero gaps | `196.54118747571587` / 0 |
-| Event interval frequency (127 / summed within-stream gap span) | `0.01176117266187619` |
+| Reciprocal mean inter-arrival interval (intervals per logical-time unit; 127 / summed within-stream gap duration) | `0.01176117266187619` |
 | Same-sign run count / mean length / median / maximum | 108 / `2.175925925925926` / 2 / 6 |
 
 The fair first-hop comparison was independently reconstructed from Luna-44’s
 calibrated raw captures, not inferred from the Luna-45 rate. All 1,950
 Luna-44 enqueue/reception pairs (both links) matched; filtering the original
 source-to-relay hop yields 1,715 events and 1,418 within-stream gaps. The
-common 320 stream IDs and frozen fixture are aligned. The interval frequency
-uses the same interval-count / summed-within-stream-span definition.
+common 320 stream IDs and frozen fixture are aligned. The reciprocal mean
+interval uses the same interval-count / summed-within-stream-duration
+definition.
 
 | First-hop source-to-relay comparison | Independently computed |
 |---|---:|
 | Events / within-stream gaps | 1,715 / 1,418 |
 | Mean / p50 / p90 | `28.345605257252778` / `18.745645230767586` / `71.26844559107914` |
 | p95 / p99 / maximum | `90.9904284452375` / `116.33489908346476` / `144.04056750003937` |
-| Event interval frequency | `0.035278837439681424` |
+| Reciprocal mean inter-arrival interval (intervals per logical-time unit) | `0.035278837439681424` |
 | Positive / negative / zero payloads | 868 / 847 / 0 |
 | Same-sign run count / mean length / median / maximum | 325 / `5.276923076923077` / 4 / 19 |
 
 Second-hop payload signs were independently `121 / 114 / 0` positive /
-negative / zero. Its lower interval frequency, longer gaps, and shorter
+negative / zero. Its lower reciprocal mean interval, longer gaps, and shorter
 same-sign runs are **OBSERVED** in this matched retained comparison.
 **INFERENCE LIMIT:** the layer inputs and event opportunity differ; these
 statistics do not establish that hop depth caused the differences or that
 the layers should have equal statistics.
+
+### Subsequent metric nomenclature clarification
+
+The values formerly labeled “event interval frequency” above are interval
+counts divided by summed within-stream first-to-last arrival durations. They
+are reciprocal mean inter-arrival intervals, not event counts per observation
+window; the numeric values are unchanged. The corrected report also
+distinguishes routed event rate over the matched frozen-fixture observation
+window (`89358.19552048748` logical-time units): 1,715 / 235 routed events
+gives `0.01919241978881272` / `0.0026298651022571362` routed receptions per
+logical-time unit for the first / second hop, respectively. This subsequent
+reporting clarification does not change category counts or the MIXED verdict.
 
 ## Interpretation boundary and architecture status
 
@@ -383,7 +396,7 @@ was used. Each pytest/compile command used only process-scoped
 | Recomputed six initial/replay arm phase digests and canonical replay identities | PASS |
 | Reconciled all 1,950 raw route pairs per phase and all 235 downstream pairs; initial/replay event identities exact | PASS; zero duplicate/orphan/missing/mismatched events |
 | Recomputed every destination recurrence, slow-state trace, threshold, signed prefix, category, first crossing, and aggregate | PASS; 235 updates, zero recurrence/classification mismatches |
-| Recomputed Luna-44 first-hop and Luna-45 second-hop timing, signs, runs, and frequency | PASS; fair common fixture/320-stream comparison |
+| Recomputed Luna-44 first-hop and Luna-45 second-hop timing, signs, runs, interval statistics, and event rates | PASS; fair common fixture/320-stream comparison |
 | `python -m pytest tests\test_luna46_depth_scaling_diagnostic.py -q -rs` | **122 passed** |
 | Luna-38–45, Luna-44 fixture/verifier, event-runtime, and topology regression selection | **237 passed, 2 known failures; exit 1** |
 | `python -m pytest -q -rs` | **1,286 passed, 2 known failures, 1 skipped; exit 1** |
