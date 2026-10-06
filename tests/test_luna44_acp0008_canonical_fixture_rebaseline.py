@@ -477,8 +477,6 @@ def test_route_reconciliation_accepts_independent_matching_records():
          "provenance_mismatch_count"),
         (lambda enqueue, reception: reception.update(destination="other"),
          "identity_mismatch_count"),
-        (lambda enqueue, reception: reception.update(source="other"),
-         "identity_mismatch_count"),
         (lambda enqueue, reception: reception.update(event_type="input"),
          "provenance_mismatch_count"),
         (lambda enqueue, reception: reception.update(route_depth=2),
@@ -514,6 +512,27 @@ def test_route_reconciliation_rejects_mismatched_copies(mutation, expected_count
     assert result[expected_count] > 0
     assert result["matched_count"] == 0
     assert result["unmatched_enqueue_count"] == 1
+
+
+def test_route_reconciliation_rejects_source_mutation_with_details():
+    enqueue, reception = _route_pair()
+    reception["source"] = "other"
+
+    result = luna44._reconcile_route_events([enqueue], [reception])
+
+    assert not result["reconciles"]
+    assert result["identity_mismatch_count"] == 1
+    assert result["matched_count"] == 0
+    assert result["unmatched_enqueue_count"] == 1
+    check = result["checks"][0]
+    assert not check["matches"]
+    assert not check["identity_matches"]
+    assert check["enqueue_source"] == "source"
+    assert check["reception_source"] == "other"
+    assert check["event_id"] == check["reception_event_id"] == "emission-1"
+    assert check["enqueue_route_path"] == ["source", "relay"]
+    assert check["reception_route_path"] == ["source", "relay"]
+    assert check["queue_sequence"] == 1
 
 
 @pytest.mark.parametrize(

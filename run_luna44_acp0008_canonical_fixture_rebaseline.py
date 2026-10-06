@@ -918,6 +918,8 @@ def _reconcile_route_events(
                 "queue_sequence": queue_sequence,
                 "matches": matches,
                 "identity_matches": identity_matches,
+                "enqueue_source": enqueued["source"],
+                "reception_source": received["source"],
                 "queue_sequence_matches": (
                     enqueued["queue_sequence"] == received["queue_sequence"]
                 ),
