@@ -1,5 +1,38 @@
 # Architecture Changelog
 
+## Luna-0 authorization - Luna-46 offline depth-scaling diagnostic - 2026-10-06
+
+**AUTHORIZED / NOT EXECUTED; governance-only Commit A; no architecture
+change.** Bound to baseline `d1f901d3d995dc013f22dd086ae1ed8ffd28293d`
+on `copilot/luna46-depth-scaling-diagnostic`, after merged Luna-45 correction
+`5ebc9ae7dcaae7ff45f0769686885dcae3f2dea4`, retained-provenance-only
+ancestry, canonical replay byte equality and no blocking review findings.
+Current gates: Luna-45 75 passed; regression 348 passed, 2 known failures;
+full 1164 passed, 2 known failures, 1 CUDA-unavailable skip. The two
+Windows-versus-frozen-Linux fixture failures remain failures (exit 1), not
+relaxed assertions; no new failure occurred. Whitespace checks passed.
+
+The owner's exact specification, forwarded in the same-task correction,
+authorizes only offline signed drive/cancellation/retention analysis using
+retained successful destination receptions reconciled against raw enqueues.
+The actual lambda=0.0125 oracle and zero-decay signed accumulator are
+diagnostics, not production neurons. Exact threshold/category rules,
+substantial/material cutoffs, broad verdicts, timing/retention metrics,
+fair Luna-44 first-hop comparison, reconstruction tolerance and tests are
+predeclared in [the contract](../.github/agents/luna-46.agent.md).
+Retained evidence is preferred; proven missing observations permit only
+unchanged frozen-experiment observation capture with non-interference checks.
+No diagnostic or capture was executed in this authorization.
+
+Preserve Luna-42 PASS WITH FOLLOW-UP, Luna-43 BLOCKED / DESTINATION COMPARISON
+UNDETERMINED, Luna-44's reviewed canonical-fixture relay-propagation baseline,
+and Luna-45 NOT SUPPORTED IN THIS SETUP. ACP-0007 unchanged/disabled;
+ACP-0008 experimental, opt-in, unpromoted. No A01-A15 or ACP change,
+Luna-45 reinterpretation, tuning, parameter/configuration sweep, alternate
+configuration, WEMA, production/core/runtime/topology/fixture change,
+efficacy claim, or Luna-47 authorization.
+Evidence: [authorization handoff](handoffs/luna-0-authorization-luna46-depth-scaling-diagnostic-20261006.md).
+
 ## Luna-0 corrective review — Luna-45 ancestry and replay evidence — 2026-10-06
 
 **PASS; evidence verification only, no architecture change.** The fresh
