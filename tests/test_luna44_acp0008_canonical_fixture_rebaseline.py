@@ -1,6 +1,8 @@
 from __future__ import annotations
 
 import hashlib
+from copy import deepcopy
+from dataclasses import replace
 import json
 import math
 from pathlib import Path
@@ -63,6 +65,7 @@ def _route_pair():
             "route_depth": 1,
             "lineage_id": "lineage-1",
             "causal_roots": ["root-1"],
+            "roots_truncated": False,
             "originating_emission_id": "emission-1",
         },
         {
@@ -73,12 +76,14 @@ def _route_pair():
             "receiver_node": "relay",
             "event_type": "excursion",
             "reception_timestamp": 2.0,
+            "scheduled_delivery_timestamp": 2.0,
             "payload": 0.5,
             "payload_bits": luna44._bits(0.5),
             "route_path": ["source", "relay"],
             "route_depth": 1,
             "lineage_id": "lineage-1",
             "causal_roots": ["root-1"],
+            "roots_truncated": False,
             "originating_emission_id": "emission-1",
         },
     )
@@ -330,6 +335,9 @@ def test_small_sequence_has_deterministic_event_order_and_replay_digest():
     assert first["record_digest"] == replay["record_digest"]
     assert first["runtime_events"] == replay["runtime_events"]
     assert first["relay_state_trajectory"] == replay["relay_state_trajectory"]
+    for field in ("routing_enqueue_events", "receiver_reception_events",
+                  "routing_stream_digests"):
+        assert first[field] == replay[field]
     input_events = [
         item for item in first["runtime_events"]
         if item["destination"] == "source" and item["event_type"] == "input"
@@ -467,6 +475,33 @@ def test_route_reconciliation_accepts_independent_matching_records():
          "route_path_mismatch_count"),
         (lambda enqueue, reception: reception.update(lineage_id="different-lineage"),
          "provenance_mismatch_count"),
+        (lambda enqueue, reception: reception.update(destination="other"),
+         "identity_mismatch_count"),
+        (lambda enqueue, reception: reception.update(source="other"),
+         "identity_mismatch_count"),
+        (lambda enqueue, reception: reception.update(event_type="input"),
+         "provenance_mismatch_count"),
+        (lambda enqueue, reception: reception.update(route_depth=2),
+         "route_path_mismatch_count"),
+        (lambda enqueue, reception: reception.update(causal_roots=["other"]),
+         "provenance_mismatch_count"),
+        (lambda enqueue, reception: reception.update(roots_truncated=True),
+         "provenance_mismatch_count"),
+        (lambda enqueue, reception: reception.update(originating_emission_id="other"),
+         "provenance_mismatch_count"),
+        (lambda enqueue, reception: reception.update(payload=0.75),
+         "payload_mismatch_count"),
+        (lambda enqueue, reception: reception.update(scheduled_delivery_timestamp=2.5),
+         "timing_mismatch_count"),
+        (lambda enqueue, reception: enqueue.update(enqueue_timestamp=2.0),
+         "timing_mismatch_count"),
+        (lambda enqueue, reception: reception.update(
+            reception_timestamp=math.nextafter(2.0, math.inf)),
+         "timing_mismatch_count"),
+        (lambda enqueue, reception: (
+            enqueue.update(payload=0.0, payload_bits=luna44._bits(0.0)),
+            reception.update(payload=-0.0, payload_bits=luna44._bits(-0.0))),
+         "payload_mismatch_count"),
     ],
 )
 def test_route_reconciliation_rejects_mismatched_copies(mutation, expected_count):
@@ -477,6 +512,8 @@ def test_route_reconciliation_rejects_mismatched_copies(mutation, expected_count
 
     assert not result["reconciles"]
     assert result[expected_count] > 0
+    assert result["matched_count"] == 0
+    assert result["unmatched_enqueue_count"] == 1
 
 
 @pytest.mark.parametrize(
@@ -485,6 +522,7 @@ def test_route_reconciliation_rejects_mismatched_copies(mutation, expected_count
         (lambda item: [item], lambda item: [], "unmatched_enqueue_count"),
         (lambda item: [], lambda item: [item], "orphan_reception_count"),
         (lambda item: [item], lambda item: [item, dict(item)], "duplicate_count"),
+        (lambda item: [item, dict(item)], lambda item: [item], "duplicate_enqueue_count"),
     ],
 )
 def test_route_reconciliation_rejects_missing_or_duplicate_events(
@@ -498,6 +536,119 @@ def test_route_reconciliation_rejects_missing_or_duplicate_events(
 
     assert not result["reconciles"]
     assert result[expected_count] > 0
+
+
+def test_route_reconciliation_is_one_to_one_by_admission_not_emission_id():
+    enqueue, reception = _route_pair()
+    second_enqueue, second_reception = deepcopy(enqueue), deepcopy(reception)
+    second_enqueue.update(queue_sequence=2, destination="destination",
+                          route_path=["source", "destination"])
+    second_reception.update(queue_sequence=2, destination="destination",
+                            receiver_node="destination",
+                            route_path=["source", "destination"])
+    result = luna44._reconcile_route_events(
+        [enqueue, second_enqueue], [second_reception, reception],
+    )
+    assert result["reconciles"]
+    assert result["matched_count"] == 2
+
+
+def test_wrong_admission_identity_is_missing_and_orphan():
+    enqueue, reception = _route_pair()
+    reception["queue_sequence"] = 99
+    result = luna44._reconcile_route_events([enqueue], [reception])
+    assert not result["reconciles"]
+    assert result["unmatched_enqueue_count"] == 1
+    assert result["orphan_reception_count"] == 1
+    assert any(check["reason"] == "orphan reception" for check in result["checks"])
+
+
+def test_capture_observes_receiver_mutation_independently(monkeypatch, tmp_path):
+    original = luna44.ExcursionCharacterRuntime._process_one
+    original_reconcile = luna44._reconcile_route_events
+    observations = []
+
+    def changed_delivery(runtime, event):
+        if event.event_type == luna44.EventType.EXCURSION:
+            event = replace(event, payload=float(event.payload) + 0.125)
+        return original(runtime, event)
+
+    def observe_reconciliation(enqueued, received):
+        result = original_reconcile(enqueued, received)
+        observations.append((deepcopy(enqueued), deepcopy(received), result))
+        return result
+
+    monkeypatch.setattr(luna44.ExcursionCharacterRuntime, "_process_one", changed_delivery)
+    monkeypatch.setattr(luna44, "_reconcile_route_events", observe_reconciliation)
+    sequence = _synthetic_sequence(((0.0, 4.0, 0.0), (30.0, 0.0, 0.0)))
+    with pytest.raises(luna44.RoutingEvidenceError,
+                       match="provenance did not reconcile") as failure:
+        luna44._run_character(arm="CALIBRATED", sequence=sequence)
+    enqueued, received, reconciliation = observations[-1]
+    assert enqueued and received
+    assert reconciliation["payload_mismatch_count"] > 0
+    assert enqueued[0]["payload_bits"] != received[0]["payload_bits"]
+    captures = {arm: [] for arm in luna44.ARMS}
+    captures["CALIBRATED"].append(failure.value.capture)
+    manifest = luna44._persist_routing_evidence(
+        tmp_path, {}, captures, {arm: [] for arm in luna44.ARMS},
+    )
+    assert not manifest["replay_equal"]
+    for name in ("initial_enqueue", "initial_reception"):
+        artifact = json.loads(
+            (tmp_path / manifest["artifacts"][name]["path"]).read_bytes()
+        )
+        assert artifact["per_arm"]["CALIBRATED"][0]["capture_status"] == (
+            "reconciliation_failed"
+        )
+
+
+def test_receiver_capture_requires_actual_processing(monkeypatch):
+    original_receive = luna44.MultiExcursionNeuron.receive_event
+
+    def skip_routed_event(neuron, event, queue=None):
+        if event.event_type == luna44.EventType.EXCURSION:
+            return None
+        return original_receive(neuron, event, queue)
+
+    monkeypatch.setattr(luna44.MultiExcursionNeuron, "receive_event", skip_routed_event)
+    sequence = _synthetic_sequence(((0.0, 4.0, 0.0), (30.0, 0.0, 0.0)))
+    with pytest.raises(RuntimeError, match="receiver did not process"):
+        luna44._run_character(arm="CALIBRATED", sequence=sequence)
+
+
+def test_raw_stream_persistence_and_replay_verification(tmp_path):
+    sequence = _synthetic_sequence(((0.0, 4.0, 0.0), (30.0, 0.0, 0.0)))
+    initial = {arm: [luna44._run_character(arm=arm, sequence=sequence)]
+               for arm in luna44.ARMS}
+    replay = {arm: [luna44._run_character(arm=arm, sequence=sequence)]
+              for arm in luna44.ARMS}
+    manifest = luna44._persist_routing_evidence(tmp_path, {}, initial, replay)
+    assert manifest["replay_equal"]
+    assert len(manifest["artifacts"]) == 4
+    second_directory = tmp_path / "fresh-replay"
+    second_directory.mkdir()
+    assert manifest == luna44._persist_routing_evidence(
+        second_directory, {}, initial, replay,
+    )
+    for name, reference in manifest["artifacts"].items():
+        data = (tmp_path / reference["path"]).read_bytes()
+        artifact = json.loads(data)
+        assert hashlib.sha256(data).hexdigest() == reference["file_sha256"]
+        assert luna44._artifact_digest(artifact) == reference["artifact_digest"]
+        assert luna44._digest(artifact["per_arm"]) == reference["streams_digest"]
+        field = ("routing_enqueue_events" if name.endswith("_enqueue")
+                 else "receiver_reception_events")
+        records = initial if name.startswith("initial_") else replay
+        for arm in luna44.ARMS:
+            retained = artifact["per_arm"][arm][0]
+            assert retained["events"] == records[arm][0][field]
+            assert retained["stream_digest"] == luna44._digest(retained["events"])
+    replay["CALIBRATED"][0]["receiver_reception_events"][0]["payload_bits"] = "bad"
+    manifest = luna44._persist_routing_evidence(tmp_path, {}, initial, replay)
+    assert not manifest["replay_equal"]
+    assert manifest["streams"]["enqueue"]["equal"]
+    assert not manifest["streams"]["reception"]["equal"]
 
 
 def test_direct_and_integration_mediated_emission_classification():
