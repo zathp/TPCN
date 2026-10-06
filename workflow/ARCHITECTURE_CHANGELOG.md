@@ -1,5 +1,18 @@
 # Architecture Changelog
 
+## Luna-0 authorization — Luna-45 depth-2 destination integration — 2026-10-06
+
+**Luna-45 AUTHORIZED / NOT EXECUTED; no architecture change.** Baseline
+`dbb440c763509781ee7ac5e4f2924851dde8e19c`. Authorizes only a bounded,
+mechanism-only comparison of destination integration (disabled / default
+`0.1` / calibrated `0.0125`) behind a frozen calibrated relay (`0.0125`) on the
+fixed `source -> relay -> destination` ordinary-edge route, consuming the frozen
+Luna-44 fixture (SHA-256
+`66e187350536e6901d8371a1ffbe3e2a0abf3b49341c6ae6c8fed3ae7833b629`, semantic
+digest `6c262ad1951a48f624d83a594abfc86ffa89d26882b397f6586698c097144305`).
+No A01-A15, ACP-0007, ACP-0008, production, topology or fixture change; no
+tuning, efficacy, parity work or Luna-46. Historical Luna-42/43/44 verdicts
+are preserved; ACP-0008 stays experimental, opt-in and unpromoted.
 ## Luna-0 independent review — Luna-44 evidence-quality correction — 2026-10-05
 
 **Evidence-quality PASS WITH FOLLOW-UP; no architecture change.** Independently

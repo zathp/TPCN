@@ -1,5 +1,38 @@
 # TPCN Luna Multi-Agent Workflow — Event-Driven Architecture
 
+## Luna-0 owner-authorized Luna-45 — depth-2 destination integration mechanism — 2026-10-06
+
+**LUNA-45 — AUTHORIZED / NOT EXECUTED.** The project owner directly authorized
+a bounded mechanism experiment at baseline
+`dbb440c763509781ee7ac5e4f2924851dde8e19c` on
+`copilot/luna45-depth2-destination-integration` (published from current
+`origin/main`). This is a governance-only update: no code, test, fixture, ACP
+or experiment change and no scientific result.
+
+Scope: consume the frozen committed Luna-44 fixture (3,451,453 bytes; file
+SHA-256 `66e187350536e6901d8371a1ffbe3e2a0abf3b49341c6ae6c8fed3ae7833b629`;
+semantic digest
+`6c262ad1951a48f624d83a594abfc86ffa89d26882b397f6586698c097144305`; seeds
+`0..4`, 320 sequences, 5,164 ordered points) with complete pinned provenance
+and no generator call. Fixed `source -> relay -> destination` topology with
+ordinary `w=1`, delay `1.0`, `d=1`, `r=0` edges; source integration `None`;
+relay calibrated `decay_rate_z=0.0125` unchanged; only the destination varies:
+disabled, default `0.1`, or calibrated `0.0125`. Required: historical gate,
+upstream invariance, independently captured and reconciled enqueue/reception
+streams with exact source equality (and the retained source-mutation test),
+destination recurrence and direct-versus-integrated emission accounting,
+bounds, replay semantics, artifact provenance and retained execution evidence.
+
+Not authorized: tuning, topology change, ACP-0007 candidate instantiation or
+growth, efficacy/classification/energy claims, Windows/Linux parity work, ACP
+changes, promotion, or Luna-46. Historical verdicts are preserved: Luna-42
+PASS WITH FOLLOW-UP; Luna-43 BLOCKED / DESTINATION COMPARISON UNDETERMINED;
+Luna-44 evidence-quality PASS WITH FOLLOW-UP. ACP-0008 remains experimental,
+opt-in and unpromoted; ACP-0007 unchanged/disabled.
+
+Baseline evidence is recorded in the authorization handoff
+`workflow/handoffs/luna-0-authorization-luna45-depth2-destination-integration-20261006.md`
+and contract `.github/agents/luna-45.agent.md`.
 ## Luna-0 review of Luna-44 evidence-quality correction — 2026-10-05
 
 **PASS WITH FOLLOW-UP; task branch published but not merged.** The independent
