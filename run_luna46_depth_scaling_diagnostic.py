@@ -14,6 +14,8 @@ Retention ratios with zero previous state are null, not invented full retention.
 Critical-rate estimation is deliberately NOT COMPUTED (no uniqueness solver).
 Clipping, discharge, non-integrating receptions or unexplained state changes
 are BLOCKED rather than replaced with an alternate production configuration.
+Matching roots_truncated flags describe bounded causal-root metadata, not
+missing raw captures; preserve/count them without claiming complete ancestry.
 """
 
 from __future__ import annotations
@@ -89,6 +91,7 @@ POLICY = {
                "bytes_per_file": MAX_FILE_BYTES},
     "boundary_policy": "BLOCKED for clipping, discharge, or non-integrating reception",
     "actual_state": "retained post-update state validated against signed recurrence; threshold flags must agree exactly",
+    "roots_truncated": "exact matching boolean metadata; not raw-capture truncation or complete ancestry evidence",
 }
 
 
@@ -381,7 +384,7 @@ def reconcile(enqueued: list[Record], received: list[Record],
         require(row["route_path"] == [source, destination] and row["route_depth"] == 1,
                 "retained route path/depth differs")
         require(row["event_id"] == row["originating_emission_id"], "emission identity differs")
-        require(not row["roots_truncated"], "truncated provenance")
+        require(type(row["roots_truncated"]) is bool, "invalid roots_truncated metadata")
         require(row["payload_bits"] == bits(row["payload"]), "payload bits differ")
         if "payload_encoding" in row:
             expected_encoding = {"decimal": repr(number(row["payload"])),
@@ -398,8 +401,18 @@ def reconcile(enqueued: list[Record], received: list[Record],
         previous = order
         result.append({"timestamp": timestamp, "payload": number(row["payload"]),
                        "event_id": row["event_id"], "queue_sequence": row["queue_sequence"],
+                       "causal_roots": row["causal_roots"], "roots_truncated": row["roots_truncated"],
                        "raw_enqueue": enqueue, "raw_reception": row})
     return result
+
+
+def roots_metadata(rows: list[Record]) -> Record:
+    flags = [row["roots_truncated"] for row in rows]
+    require(all(type(flag) is bool for flag in flags), "invalid roots_truncated metadata")
+    count = sum(flags)
+    return {"receptions": len(flags), "true_count": count, "false_count": len(flags) - count,
+            "true_fraction": count / len(flags) if flags else None,
+            "meaning": "bounded causal-root metadata; raw capture completeness checked independently"}
 
 
 def analyze_sequence(stream_id: str, arrivals: list[Record], updates: list[Record]) -> Record:
@@ -475,6 +488,8 @@ def analyze_sequence(stream_id: str, arrivals: list[Record], updates: list[Recor
             cancelled = min(abs(pre_input), abs(payload)) if alignment == "opposing" else 0.0
             evidence.append({
                 **boundary, "payload": payload, "zero_decay_state": zero,
+                "roots_truncated": arrival["roots_truncated"],
+                "causal_roots": arrival["causal_roots"],
                 "signed_zero_minus_actual": zero - actual,
                 "abs_zero_minus_actual": abs(zero - actual),
                 "abs_excursion_difference": abs(zero) - abs(actual),
@@ -487,6 +502,7 @@ def analyze_sequence(stream_id: str, arrivals: list[Record], updates: list[Recor
     counts = Counter(row["alignment"] for row in evidence)
     return {
         "stream_id": stream_id, "receptions": len(arrivals),
+        "roots_truncated_metadata": roots_metadata(arrivals),
         "signed_sum": sum(number(a["payload"]) for a in arrivals),
         "total_absolute_input": absolute_input,
         "actual": extrema(actual_values), "zero_decay": extrema(zero_values),
@@ -540,6 +556,9 @@ def aggregate(sequences: list[Record]) -> Record:
     result.update({
         "sequence_count": len(sequences),
         "receptions": sum(row["receptions"] for row in sequences),
+        "roots_truncated_metadata": roots_metadata(evidence),
+        "sequences_with_roots_truncated": sum(
+            row["roots_truncated_metadata"]["true_count"] > 0 for row in sequences),
         **{key: sum(row[key] for row in sequences) for key in (
             "signed_sum", "total_absolute_input", "constructive_input_magnitude",
             "opposing_input_magnitude", "cancelled_magnitude", "signed_decay_loss", "absolute_decay_loss")},
@@ -581,7 +600,9 @@ def stream_metrics(streams: list[list[Record]]) -> Record:
     spans = [stream[-1]["timestamp"] - stream[0]["timestamp"] for stream in streams if len(stream) > 1]
     exposure = sum(spans)
     intervals = sum(max(0, len(stream) - 1) for stream in streams)
-    return {"receptions": len(payloads), "per_character_counts": distribution([float(len(s)) for s in streams]),
+    return {"receptions": len(payloads),
+            "roots_truncated_metadata": roots_metadata([row for stream in streams for row in stream]),
+            "per_character_counts": distribution([float(len(s)) for s in streams]),
             "payloads": distribution(payloads), "absolute_payloads": distribution([abs(p) for p in payloads]),
             "signs": {"positive": sum(p > 0 for p in payloads), "negative": sum(p < 0 for p in payloads),
                       "zero": sum(p == 0 for p in payloads)},

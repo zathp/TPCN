@@ -21,7 +21,8 @@ def synthetic_sequence(payloads, times=None, prior=0.0):
     for index, (payload, timestamp) in enumerate(zip(payloads, times)):
         after = state * math.exp(-diagnostic.RATE * (timestamp - prior)) + payload
         arrivals.append({"event_id": f"e{index}", "queue_sequence": index,
-                         "timestamp": timestamp, "payload": payload})
+                         "timestamp": timestamp, "payload": payload,
+                         "causal_roots": [f"root{index}"], "roots_truncated": False})
         updates.append({
             "event_id": f"e{index}", "queue_sequence": index, "event_type": "excursion",
             "timestamp": timestamp, "prior_clock": prior, "payload": payload,
@@ -316,8 +317,8 @@ def test_one_to_one_capture_mutations_block(field, value):
 
 
 @pytest.mark.parametrize("mutation", ["missing-enqueue", "missing-reception", "duplicate-enqueue",
-                                     "duplicate-reception", "reorder", "duplicate-emission", "truncated"])
-def test_capture_missing_duplicates_order_and_truncation_block(mutation):
+                                     "duplicate-reception", "reorder", "duplicate-emission"])
+def test_capture_missing_duplicates_and_order_block(mutation):
     enqueues, receptions = synthetic_captures()
     if mutation == "missing-enqueue":
         enqueues.pop()
@@ -331,9 +332,53 @@ def test_capture_missing_duplicates_order_and_truncation_block(mutation):
         receptions.reverse()
     elif mutation == "duplicate-emission":
         receptions[1]["event_id"] = enqueues[1]["event_id"] = enqueues[0]["event_id"]
-    else:
-        receptions[0]["roots_truncated"] = enqueues[0]["roots_truncated"] = True
     with pytest.raises(diagnostic.Blocked):
+        diagnostic.reconcile(enqueues, receptions, "relay", "destination")
+
+
+def test_matching_true_roots_metadata_preserved_and_reported_without_changing_oracles():
+    record, arrivals = synthetic_destination()
+    unflagged = diagnostic.analyze_sequence(
+        "synthetic", arrivals, diagnostic.destination_updates(record, arrivals))
+    enqueue = [deepcopy(row["raw_enqueue"]) for row in arrivals]
+    received = [deepcopy(row["raw_reception"]) for row in arrivals]
+    enqueue[0]["roots_truncated"] = received[0]["roots_truncated"] = True
+    before = diagnostic.canonical([enqueue, received])
+    flagged = diagnostic.reconcile(enqueue, received, "relay", "destination")
+    assert diagnostic.canonical([enqueue, received]) == before
+    assert [row["roots_truncated"] for row in flagged] == [True, False]
+    assert flagged[0]["causal_roots"] == enqueue[0]["causal_roots"]
+    result = diagnostic.analyze_sequence("synthetic", flagged, record["destination_state_trajectory"])
+    assert result["roots_truncated_metadata"]["true_count"] == 1
+    assert result["roots_truncated_metadata"]["false_count"] == 1
+    assert result["roots_truncated_metadata"]["true_fraction"] == .5
+    assert result["recurrence_evidence"][0]["roots_truncated"] is True
+    assert result["recurrence_evidence"][0]["causal_roots"] == enqueue[0]["causal_roots"]
+    for key in ("actual", "zero_decay", "category", "actual_crosses", "zero_crosses"):
+        assert result[key] == unflagged[key]
+    combined = diagnostic.aggregate([result, diagnostic.analyze_sequence("empty", [], [])])
+    assert combined["roots_truncated_metadata"]["true_count"] == 1
+    assert combined["roots_truncated_metadata"]["false_count"] == 1
+    assert combined["roots_truncated_metadata"]["true_fraction"] == .5
+    assert combined["sequences_with_roots_truncated"] == 1
+    assert diagnostic.analyze_sequence("empty", [], [])["roots_truncated_metadata"]["true_fraction"] is None
+    assert diagnostic.stream_metrics([flagged])["roots_truncated_metadata"]["true_count"] == 1
+
+
+@pytest.mark.parametrize("enqueue_flag,reception_flag", [(True, False), (False, True)])
+def test_roots_truncated_capture_site_mismatch_blocks(enqueue_flag, reception_flag):
+    enqueues, receptions = synthetic_captures()
+    enqueues[0]["roots_truncated"] = enqueue_flag
+    receptions[0]["roots_truncated"] = reception_flag
+    with pytest.raises(diagnostic.Blocked, match="raw capture identity differs: roots_truncated"):
+        diagnostic.reconcile(enqueues, receptions, "relay", "destination")
+
+
+@pytest.mark.parametrize("invalid", [0, 1, None, "true"])
+def test_matching_nonboolean_roots_metadata_blocks(invalid):
+    enqueues, receptions = synthetic_captures()
+    enqueues[0]["roots_truncated"] = receptions[0]["roots_truncated"] = invalid
+    with pytest.raises(diagnostic.Blocked, match="invalid roots_truncated"):
         diagnostic.reconcile(enqueues, receptions, "relay", "destination")
 
 
