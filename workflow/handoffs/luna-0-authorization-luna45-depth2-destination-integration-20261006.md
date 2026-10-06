@@ -9,8 +9,8 @@ tpcn_handoff:
   contract_version: "1.2"
   branch: "copilot/luna45-depth2-destination-integration"
   base_revision: "dbb440c763509781ee7ac5e4f2924851dde8e19c"
-  result_revision: "uncommitted"
-  authorization_revision: "uncommitted; to be recorded by the committing owner/task before Luna-45 execution"
+  result_revision: "9af6b4435ac581887f04f0951d0f7b16d7d661cd"
+  authorization_revision: "9af6b4435ac581887f04f0951d0f7b16d7d661cd"
   dependencies:
     - "Explicit project-owner authorization of the Luna-45 experiment (2026-10-06)"
     - "Accepted ACP-0008; experimental, opt-in, unpromoted"
@@ -84,18 +84,18 @@ tpcn_handoff:
   tests_passing:
     - "Baseline (Python 3.11.5, process-local GIT_CONFIG core.autocrlf=false, core.eol=lf): source-mutation reconciliation test, 1 passed."
     - "Baseline: py -3.11 scripts/verify_luna44_canonical_fixture.py passed."
-    - "Baseline: focused selection 287 passed, 2 failed (known failures below)."
-    - "Baseline: full suite 1089 passed, 2 failed, 1 skipped (known failures and CUDA skip below)."
     - "git diff --check clean."
   tests_failed:
-    - "Two known Windows-versus-frozen-Linux materialization comparisons (test_two_fresh_process_materializations_match_committed_fixture and test_two_fresh_process_materializations_match_exactly); unchanged baseline condition, not relaxed, not a blocker."
+    - "Focused baseline selection: 287 passed, 2 failed; both failures are the known Windows-versus-frozen-Linux fixture materialization comparisons."
+    - "Full baseline suite: 1089 passed, 2 failed, 1 skipped; both failures are those same comparisons."
+    - "Failing tests: test_two_fresh_process_materializations_match_committed_fixture and test_two_fresh_process_materializations_match_exactly; unchanged baseline condition, not relaxed, not a Luna-45 blocker."
   tests_not_run:
     - "No Luna-45 experiment or Luna-45 tests; none exist."
-    - "CUDA-only test skipped in the full suite."
+    - "CUDA-specific test was skipped by the full-suite run."
   assumptions:
-    - "Baseline test counts are as supplied by the owner/prior validation pass and were not re-run in this authorization edit."
+    - "Baseline results were run by the lead orchestrator at dbb440c on Windows/Python 3.11.5 with process-local Git LF overrides."
   unresolved:
-    - "Authorization revision/handoff digest are unknown until committed; Luna-45 must record them."
+    - "The final committed handoff SHA-256 must be recorded in Luna-45 provenance."
     - "Cross-platform fixture parity remains an unresolved owner decision, out of scope."
   recommended_next_agent:
     - "Luna-45 (execute under .github/agents/luna-45.agent.md), then Luna-0 independent review"
@@ -111,9 +111,11 @@ tpcn_handoff:
 `.github/agents/luna-45.agent.md` contract, a new entry in
 `workflow/docs/luna/LUNA_WORKFLOW.md`, a new entry in
 `workflow/ARCHITECTURE_CHANGELOG.md`, and this handoff. No code, tests,
-fixtures, ACPs or artifacts changed; nothing committed or pushed.
+fixtures, ACPs or experiment artifacts changed. Governance was committed at
+authorization revision `9af6b4435ac581887f04f0951d0f7b16d7d661cd`; no
+scientific execution has occurred.
 
-## Contract scope note (revision 2 of this draft, still Phase 1 only)
+## Contract scope note (final authorization contract)
 
 Authorization ownership: the **project owner** authorizes Luna-45; Luna-0
 records and gates it and does not self-authorize or review its own
@@ -128,11 +130,15 @@ with separately reported reconciliation categories and exact source equality
 plus the retained mutation test; G4 capacity bounds, high-water marks and
 pending events. It also specifies full destination evidence fields with
 independent `z_new`/discharge recomputation, the per-arm report, conditional
-"candidate-opportunity precursor" analysis (never candidate instantiation),
-NOT SUPPORTED IN THIS SETUP only after all gates pass, replay digest material,
-equality and blocker-preservation semantics, and the restated no-tuning
-exclusions. No code, test, fixture, ACP or artifact was changed; nothing was
-executed, committed or pushed.
+"candidate-opportunity precursor" analysis from source canonical emitters to
+destination canonical emitters (never candidate instantiation), the full
+reconstructable causal chain required for support in the calibrated destination
+arm, NOT SUPPORTED IN THIS SETUP only after all gates pass, replay digest
+material, equality and blocker-preservation semantics, and the restated
+no-tuning exclusions. No code, test, fixture, ACP or experiment artifact was
+changed; no experiment was executed. Governance authorization was committed
+as `9af6b4435ac581887f04f0951d0f7b16d7d661cd`; this handoff records that
+authorization revision.
 ## Architecture evidence
 
 **OBSERVED:** Luna-0 gate review at the baseline found: reconciliation requires
