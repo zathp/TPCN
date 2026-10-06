@@ -1,5 +1,29 @@
 # Architecture Changelog
 
+## Luna-0 corrective review — Luna-45 ancestry and replay evidence — 2026-10-06
+
+**PASS; evidence verification only, no architecture change.** The fresh
+independent review at branch revision
+`de6df64afda00d9ee4a63aa4de52d35c895b31a9` found no blocking issue in the
+Luna-45 correction. The runner now reconstructs ancestry only through exact
+retained source roots and requires canonical replay bytes and digests to agree.
+Focused synthetic tests cover valid, excluded, missing, extra, unknown,
+duplicate, truncated, and mutated ancestry. A separate verifier recomputes
+initial/replay canonical phase streams from retained artifacts without
+executing the experiment.
+
+All three retained arm pairs are byte-identical, each with matching SHA-256
+and phase digests; all 22 original catalogued artifacts remain hash/length
+identical. There are no destination canonical emissions in the retained run,
+so retained destination-chain validation is not applicable. The historical
+scientific disposition remains **NOT SUPPORTED IN THIS SETUP**. The reviewer
+noted that non-mutation is supported by read-only code inspection and matching
+catalog hashes rather than a before/after snapshot; this is non-blocking.
+No ACP, production, topology, fixture, or architecture change occurred.
+ACP-0008 remains experimental, opt-in, and unpromoted; no successor or
+Luna-46 is authorized. Details are in
+`workflow/handoffs/luna-0-independent-review-luna45-depth2-destination-integration-20261006.md`.
+
 ## Luna-0 authorization — Luna-45 depth-2 destination integration — 2026-10-06
 
 **Luna-45 AUTHORIZED / NOT EXECUTED; no architecture change.** Baseline

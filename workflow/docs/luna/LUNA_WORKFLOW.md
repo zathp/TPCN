@@ -1,5 +1,36 @@
 # TPCN Luna Multi-Agent Workflow — Event-Driven Architecture
 
+## Luna-0 corrective review — Luna-45 ancestry and replay evidence — 2026-10-06
+
+**CORRECTIVE VERIFICATION PASS; original scientific disposition unchanged.**
+The independent Luna-0 review of branch revision
+`de6df64afda00d9ee4a63aa4de52d35c895b31a9` found no blocking correctness
+issues in the corrected source-root ancestry reconstruction or canonical replay
+byte acceptance. The correction is limited to the Luna-45 runner, focused
+tests, and an offline verifier over retained evidence; it does not rerun the
+experiment or alter the 2026-10-06 raw artifacts.
+
+The verifier at revision `2392b78fe5ed0ae773ac957cd0b384c71d0f1eed` recomputed
+the canonical initial/replay phase material for all three arms. Each pair was
+byte-identical with equal SHA-256 and no byte difference; all 22 files in the
+original integrity catalog still match. The original result remains
+**NOT SUPPORTED IN THIS SETUP**. There were zero destination canonical
+emissions, so real retained destination ancestry validation is not applicable;
+exact-root and corruption cases are exercised by synthetic focused tests.
+
+Non-blocking review notes: raw-file non-mutation is supported by read-only
+verifier inspection and the unchanged catalog hashes, not by a before/after
+snapshot. Validation on Windows/Python 3.11.5: Luna-45 focused tests **75
+passed**; relevant regression selection **332 passed, 2 failed**; full suite
+**1,164 passed, 2 failed, 1 skipped**. Both failures are the known Windows
+versus frozen-Linux fixture-materialization comparisons; the CUDA test was
+skipped because CUDA is unavailable. `py_compile` and `git diff --check`
+passed. Full corrective evidence:
+`artifacts/luna45-corrective-verification-20261006-r1/verification.json`;
+the independent disposition is appended to
+`workflow/handoffs/luna-0-independent-review-luna45-depth2-destination-integration-20261006.md`.
+No successor, tuning, promotion, or Luna-46 is authorized.
+
 ## Luna-0 owner-authorized Luna-45 — depth-2 destination integration mechanism — 2026-10-06
 
 **LUNA-45 — AUTHORIZED / NOT EXECUTED.** The project owner directly authorized

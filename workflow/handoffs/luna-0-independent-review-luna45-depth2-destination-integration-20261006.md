@@ -224,3 +224,54 @@ emission after the second ordinary `w=1` hop, despite passing the required
 provenance, upstream, causal-routing, bounds, recurrence and replay gates.
 This result does not authorize tuning, promotion, or Luna-46. Return it to the
 project owner for any separately bounded successor decision.
+
+## Corrective evidence review addendum — 2026-10-06
+
+### Independent disposition
+
+**PASS — corrective verification mechanics are sound; no blocking correctness
+findings.** A fresh read-only Luna-0 review inspected branch revision
+`de6df64afda00d9ee4a63aa4de52d35c895b31a9`. The corrected ancestry logic
+follows only retained production causal roots, verifies root identity and
+lineage across source emissions/admissions/receptions and the relay emission,
+and requires exact root coverage at both hops and the destination emission.
+Focused tests exercise valid roots, roots excluded despite temporal proximity,
+and malformed, missing, extra, duplicate, truncated, or mutated provenance.
+
+Replay acceptance now requires both canonical byte equality and matching
+SHA-256 digests. Per-arm comparisons retain canonical byte lengths, hashes,
+equality results, and first-byte-difference context when unequal. The
+read-only verifier recomputes canonical phase material for all initial/replay
+arm files and checks those hashes against the phase artifacts and summary.
+
+### Evidence and limitations
+
+- Corrective code/test commit: `2392b78fe5ed0ae773ac957cd0b384c71d0f1eed`.
+- Corrective evidence publication: `de6df64afda00d9ee4a63aa4de52d35c895b31a9`.
+- Retained execution revision remains
+  `97a93b394d071413075a1f102fdef695664722ff`; no experiment rerun occurred.
+- Verification JSON SHA-256:
+  `547336A1140EA89B6B85CC76807AC5E931FB402296AEBE759165804ECD6C103F`.
+- All 22 catalogued retained artifacts match their recorded byte lengths and
+  SHA-256 values. For each of the three arms, initial and replay canonical
+  phase bytes are equal, their byte lengths and hashes match, and no first
+  difference exists. Recomputed hashes match the declared phase and summary
+  digests.
+- The retained experiment has zero destination canonical emissions, so there
+  is no actual destination chain to verify. This is **NOT APPLICABLE**, not
+  evidence of a real retained chain; the positive ancestry mechanism is
+  covered by synthetic tests.
+- The reviewer noted that the verifier's no-mutation assertion is descriptive
+  rather than a before/after snapshot. This is non-blocking: the verifier
+  reads the original evidence, writes only its separate output, and all
+  catalogued hashes independently still match.
+- Review scope was read-only; the reviewer did not rerun tests, the verifier,
+  or the experiment. The lead's CPython 3.11.5 validation was: Luna-45 focused
+  tests **75 passed**; relevant regression selection **332 passed, 2 failed**;
+  full suite **1,164 passed, 2 failed, 1 skipped**. Both failures are the
+  documented Windows-versus-frozen-Linux fixture materialization comparisons;
+  the CUDA test was skipped. `py_compile` and `git diff --check` passed.
+
+The original scientific disposition remains **NOT SUPPORTED IN THIS SETUP**.
+The independent review authorizes no scientific re-interpretation, tuning,
+promotion, successor, or Luna-46.
