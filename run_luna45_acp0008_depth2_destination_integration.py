@@ -36,6 +36,7 @@ HANDOFF = Path(
     "workflow/handoffs/luna-0-authorization-luna45-depth2-destination-integration-20261006.md"
 )
 HANDOFF_SHA256 = "c326548c8bd1b6795caca1bc2694993523c291ff1845e47b4f7e0c64dc61228e"
+HANDOFF_COMMITTED_SHA256 = "498ce49dd8f32f9d971f1c893e46bdce9ea2247007e66461512e885a6e3e41d9"
 REFERENCE_SOURCE_SHA256 = "782ab6474251abfbf138156e4126d590536a423c878029a270686081c7caec37"
 HISTORY = Path("artifacts/luna44-acp0008-independent-routing-rerun-20261005")
 HISTORY_REVISION = "4baab60f87b820db800e04d0eb3277fb0e94f9b3"
@@ -49,7 +50,7 @@ HISTORY_FILES = {
 ARMS = ("DESTINATION_DISABLED", "DESTINATION_DEFAULT", "DESTINATION_CALIBRATED")
 ASSOCIATION_WINDOW = 4.0
 OUTPUT = Path("artifacts/luna45-acp0008-depth2-destination-integration-20261006")
-PUBLISHED_CONFIG = Path("artifacts/luna45-depth2-frozen-config-20261006/config.json")
+PUBLISHED_CONFIG = Path("artifacts/luna45-depth2-frozen-config-20261006-r2/config.json")
 GIT_ENVIRONMENT = {
     "GIT_CONFIG_COUNT": "2",
     "GIT_CONFIG_KEY_0": "core.autocrlf",
@@ -101,6 +102,8 @@ def experiment_config() -> Record:
         "authorization_revision": AUTHORIZATION_REVISION,
         "authorization_handoff_revision": BASELINE,
         "authorization_handoff_sha256": HANDOFF_SHA256,
+        "authorization_handoff_committed_sha256": HANDOFF_COMMITTED_SHA256,
+        "authorization_handoff_byte_identity": "separate exact CRLF checkout and LF Git-blob pins",
         "baseline": BASELINE,
         "fixture": inherited["fixture"],
         "reference_driver_sha256": REFERENCE_SOURCE_SHA256,
@@ -200,7 +203,7 @@ def collect_provenance() -> Record:
         ["git", "show", f"{BASELINE}:{HANDOFF.as_posix()}"],
         check=True, capture_output=True,
     ).stdout
-    if hashlib.sha256(committed_handoff).hexdigest() != HANDOFF_SHA256:
+    if hashlib.sha256(committed_handoff).hexdigest() != HANDOFF_COMMITTED_SHA256:
         problems.append("baseline authorization handoff differs")
     if file_hash(Path(reference.__file__)) != REFERENCE_SOURCE_SHA256:
         problems.append("reviewed execution driver differs")
@@ -219,6 +222,7 @@ def collect_provenance() -> Record:
         "baseline": BASELINE, "authorization_revision": AUTHORIZATION_REVISION,
         "authorization_handoff_revision": BASELINE,
         "authorization_handoff_sha256": HANDOFF_SHA256,
+        "authorization_handoff_committed_sha256": HANDOFF_COMMITTED_SHA256,
         "runner_revision": head, "execution_revision": head,
         "runner_sha256": file_hash(runner),
         "reference_driver_sha256": REFERENCE_SOURCE_SHA256,

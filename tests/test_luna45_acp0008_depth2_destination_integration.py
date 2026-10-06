@@ -169,6 +169,18 @@ def test_frozen_loader_rejects_byte_length_mismatch(monkeypatch):
         luna45.load_inputs()
 
 
+def test_authorization_handoff_checkout_and_git_blob_have_separate_exact_pins():
+    working = luna45.HANDOFF.read_bytes()
+    committed = subprocess.run(
+        ["git", "show", f"{luna45.BASELINE}:{luna45.HANDOFF.as_posix()}"],
+        check=True, capture_output=True,
+    ).stdout
+    assert hashlib.sha256(working).hexdigest() == luna45.HANDOFF_SHA256
+    assert hashlib.sha256(committed).hexdigest() == luna45.HANDOFF_COMMITTED_SHA256
+    assert working != committed
+    assert working.replace(b"\r\n", b"\n") == committed
+
+
 def test_historical_evidence_identity_and_actual_capture_files():
     records, identity = luna45.load_history()
     assert len(records) == identity["records"] == 320
