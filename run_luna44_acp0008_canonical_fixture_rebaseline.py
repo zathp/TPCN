@@ -897,6 +897,7 @@ def _reconcile_route_events(
             == received["originating_emission_id"]
             and enqueued["roots_truncated"] == received["roots_truncated"]
         )
+        identity_matches &= enqueued["source"] == received["source"]
         event_id_mismatch_count += enqueued["event_id"] != received["event_id"]
         payload_mismatch_count += not payload_matches
         timing_mismatch_count += not timing_matches
