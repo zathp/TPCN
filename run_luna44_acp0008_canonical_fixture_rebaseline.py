@@ -251,6 +251,17 @@ def load_fixture(
         raise ValueError("unexpected canonical fixture schema")
     if fixture_provenance.get("schema") != "TPCN-LUNA44-CANONICAL-FIXTURE-PROVENANCE-1":
         raise ValueError("unexpected fixture provenance schema")
+    if (
+        fixture_provenance.get("original_publication_materialization")
+        != {
+            "invocations": 1,
+            "canonical_fixture_sha256": fixture_provenance.get(
+                "canonical_fixture_sha256"
+            ),
+            "independent_repeat_performed": False,
+        }
+    ):
+        raise ValueError("fixture provenance overstates original materialization evidence")
     generator = fixture_provenance["generator"]
     sequence_builder = generator["sequence_builder"]
     point_generator = generator["point_generator"]
