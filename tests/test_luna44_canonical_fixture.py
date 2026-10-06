@@ -96,7 +96,7 @@ def test_canonical_digest_is_stable_and_recomputed(fixture, provenance):
     assert canonical_fixture_digest(json.loads(FIXTURE_PATH.read_text(encoding="utf-8"))) == digest
     materializations = provenance["materializations"]
     assert len(materializations) == 2
-    assert provenance["committed_fixture_invocation_id"] == materializations[0]["invocation_id"]
+    assert "committed_fixture_invocation_id" not in provenance
     assert materializations[0]["invocation_id"] != materializations[1]["invocation_id"]
     assert materializations[0]["process_id"] != materializations[1]["process_id"]
     assert materializations[0]["output_directory"] != materializations[1]["output_directory"]
@@ -114,8 +114,12 @@ def test_canonical_digest_is_stable_and_recomputed(fixture, provenance):
         "point_by_point_exact_equal": True,
         "independent_invocations": True,
         "statement": (
-            "Two independent materializations produced identical canonical fixture "
-            "bytes in the tested environment."
+            "Post-publication independent fixture materialization verification "
+            "produced identical canonical fixture bytes/digests under the declared environment."
+        ),
+        "scope": (
+            "Repeated materialization was verified only in the recorded environment; "
+            "this does not establish cross-platform or environment-independent determinism."
         ),
     }
     for sequence in fixture["sequences"]:
@@ -186,6 +190,9 @@ def test_materialization_comparison_rejects_duplicated_or_mismatching_records(
     first_point["x"] = {"decimal": repr(changed_value), "hex": changed_value.hex()}
     changed_bytes = _fixture_json_bytes(changed_fixture)
     changed_provenance = copy.deepcopy(provenance)
+    changed_provenance["generation_execution_revision"] = materialization_b[
+        "generation_execution_revision"
+    ]
     mismatching = _materialization_record(
         changed_fixture,
         changed_bytes,
@@ -300,6 +307,15 @@ def test_provenance_is_complete_and_matches_fixture(fixture, provenance):
     assert provenance["canonical_fixture_sha256"] == canonical_fixture_digest(fixture)
     assert len(provenance["materializations"]) == 2
     assert provenance["materialization_comparison"]["independent_invocations"] is True
+    assert provenance["original_publication_materialization"][
+        "independent_repeat_evidence_retained"
+    ] is False
+    assert provenance["original_publication_materialization"][
+        "original_independent_materialization_count"
+    ] == "not established by retained evidence"
+    assert provenance["post_publication_independent_materialization_verification"][
+        "invocation_ids"
+    ] == [item["invocation_id"] for item in provenance["materializations"]]
     assert provenance["neural_execution_started"] is False
     assert "not read" in provenance["data_access_boundary"]
     assert "neither audit values nor audit digests enter" in provenance["audit_boundary"]

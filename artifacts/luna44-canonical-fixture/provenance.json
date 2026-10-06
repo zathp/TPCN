@@ -1750,7 +1750,6 @@
       "exact_xyz_bits_sha256": "6fbed2a68c88ba17c142ef7933ea20e57837ebbb527bba87c25c7c3fe50cf5db"
     }
   ],
-  "committed_fixture_invocation_id": "16d3c11dbfec4963b582377c3ec9939c",
   "materialization_comparison": {
     "fixture_bytes_equal": true,
     "file_sha256_equal": true,
