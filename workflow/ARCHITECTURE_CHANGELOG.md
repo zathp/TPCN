@@ -1,5 +1,42 @@
 # Architecture Changelog
 
+## Luna-0 corrective review — Luna-45 ancestry and replay evidence — 2026-10-06
+
+**PASS; evidence verification only, no architecture change.** The fresh
+independent review at branch revision
+`de6df64afda00d9ee4a63aa4de52d35c895b31a9` found no blocking issue in the
+Luna-45 correction. The runner now reconstructs ancestry only through exact
+retained source roots and requires canonical replay bytes and digests to agree.
+Focused synthetic tests cover valid, excluded, missing, extra, unknown,
+duplicate, truncated, and mutated ancestry. A separate verifier recomputes
+initial/replay canonical phase streams from retained artifacts without
+executing the experiment.
+
+All three retained arm pairs are byte-identical, each with matching SHA-256
+and phase digests; all 22 original catalogued artifacts remain hash/length
+identical. There are no destination canonical emissions in the retained run,
+so retained destination-chain validation is not applicable. The historical
+scientific disposition remains **NOT SUPPORTED IN THIS SETUP**. The reviewer
+noted that non-mutation is supported by read-only code inspection and matching
+catalog hashes rather than a before/after snapshot; this is non-blocking.
+No ACP, production, topology, fixture, or architecture change occurred.
+ACP-0008 remains experimental, opt-in, and unpromoted; no successor or
+Luna-46 is authorized. Details are in
+`workflow/handoffs/luna-0-independent-review-luna45-depth2-destination-integration-20261006.md`.
+
+## Luna-0 authorization — Luna-45 depth-2 destination integration — 2026-10-06
+
+**Luna-45 AUTHORIZED / NOT EXECUTED; no architecture change.** Baseline
+`dbb440c763509781ee7ac5e4f2924851dde8e19c`. Authorizes only a bounded,
+mechanism-only comparison of destination integration (disabled / default
+`0.1` / calibrated `0.0125`) behind a frozen calibrated relay (`0.0125`) on the
+fixed `source -> relay -> destination` ordinary-edge route, consuming the frozen
+Luna-44 fixture (SHA-256
+`66e187350536e6901d8371a1ffbe3e2a0abf3b49341c6ae6c8fed3ae7833b629`, semantic
+digest `6c262ad1951a48f624d83a594abfc86ffa89d26882b397f6586698c097144305`).
+No A01-A15, ACP-0007, ACP-0008, production, topology or fixture change; no
+tuning, efficacy, parity work or Luna-46. Historical Luna-42/43/44 verdicts
+are preserved; ACP-0008 stays experimental, opt-in and unpromoted.
 ## Luna-0 independent review — Luna-44 evidence-quality correction — 2026-10-05
 
 **Evidence-quality PASS WITH FOLLOW-UP; no architecture change.** Independently

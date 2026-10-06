@@ -1,5 +1,69 @@
 # TPCN Luna Multi-Agent Workflow — Event-Driven Architecture
 
+## Luna-0 corrective review — Luna-45 ancestry and replay evidence — 2026-10-06
+
+**CORRECTIVE VERIFICATION PASS; original scientific disposition unchanged.**
+The independent Luna-0 review of branch revision
+`de6df64afda00d9ee4a63aa4de52d35c895b31a9` found no blocking correctness
+issues in the corrected source-root ancestry reconstruction or canonical replay
+byte acceptance. The correction is limited to the Luna-45 runner, focused
+tests, and an offline verifier over retained evidence; it does not rerun the
+experiment or alter the 2026-10-06 raw artifacts.
+
+The verifier at revision `2392b78fe5ed0ae773ac957cd0b384c71d0f1eed` recomputed
+the canonical initial/replay phase material for all three arms. Each pair was
+byte-identical with equal SHA-256 and no byte difference; all 22 files in the
+original integrity catalog still match. The original result remains
+**NOT SUPPORTED IN THIS SETUP**. There were zero destination canonical
+emissions, so real retained destination ancestry validation is not applicable;
+exact-root and corruption cases are exercised by synthetic focused tests.
+
+Non-blocking review notes: raw-file non-mutation is supported by read-only
+verifier inspection and the unchanged catalog hashes, not by a before/after
+snapshot. Validation on Windows/Python 3.11.5: Luna-45 focused tests **75
+passed**; relevant regression selection **332 passed, 2 failed**; full suite
+**1,164 passed, 2 failed, 1 skipped**. Both failures are the known Windows
+versus frozen-Linux fixture-materialization comparisons; the CUDA test was
+skipped because CUDA is unavailable. `py_compile` and `git diff --check`
+passed. Full corrective evidence:
+`artifacts/luna45-corrective-verification-20261006-r1/verification.json`;
+the independent disposition is appended to
+`workflow/handoffs/luna-0-independent-review-luna45-depth2-destination-integration-20261006.md`.
+No successor, tuning, promotion, or Luna-46 is authorized.
+
+## Luna-0 owner-authorized Luna-45 — depth-2 destination integration mechanism — 2026-10-06
+
+**LUNA-45 — AUTHORIZED / NOT EXECUTED.** The project owner directly authorized
+a bounded mechanism experiment at baseline
+`dbb440c763509781ee7ac5e4f2924851dde8e19c` on
+`copilot/luna45-depth2-destination-integration` (published from current
+`origin/main`). This is a governance-only update: no code, test, fixture, ACP
+or experiment change and no scientific result.
+
+Scope: consume the frozen committed Luna-44 fixture (3,451,453 bytes; file
+SHA-256 `66e187350536e6901d8371a1ffbe3e2a0abf3b49341c6ae6c8fed3ae7833b629`;
+semantic digest
+`6c262ad1951a48f624d83a594abfc86ffa89d26882b397f6586698c097144305`; seeds
+`0..4`, 320 sequences, 5,164 ordered points) with complete pinned provenance
+and no generator call. Fixed `source -> relay -> destination` topology with
+ordinary `w=1`, delay `1.0`, `d=1`, `r=0` edges; source integration `None`;
+relay calibrated `decay_rate_z=0.0125` unchanged; only the destination varies:
+disabled, default `0.1`, or calibrated `0.0125`. Required: historical gate,
+upstream invariance, independently captured and reconciled enqueue/reception
+streams with exact source equality (and the retained source-mutation test),
+destination recurrence and direct-versus-integrated emission accounting,
+bounds, replay semantics, artifact provenance and retained execution evidence.
+
+Not authorized: tuning, topology change, ACP-0007 candidate instantiation or
+growth, efficacy/classification/energy claims, Windows/Linux parity work, ACP
+changes, promotion, or Luna-46. Historical verdicts are preserved: Luna-42
+PASS WITH FOLLOW-UP; Luna-43 BLOCKED / DESTINATION COMPARISON UNDETERMINED;
+Luna-44 evidence-quality PASS WITH FOLLOW-UP. ACP-0008 remains experimental,
+opt-in and unpromoted; ACP-0007 unchanged/disabled.
+
+Baseline evidence is recorded in the authorization handoff
+`workflow/handoffs/luna-0-authorization-luna45-depth2-destination-integration-20261006.md`
+and contract `.github/agents/luna-45.agent.md`.
 ## Luna-0 review of Luna-44 evidence-quality correction — 2026-10-05
 
 **PASS WITH FOLLOW-UP; task branch published but not merged.** The independent
