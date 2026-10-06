@@ -74,7 +74,7 @@ def test_fixture_loads_from_retained_files_without_generator_or_builder():
     )
 
 
-def test_fixture_loader_rejects_unsupported_multi_run_provenance(tmp_path):
+def test_fixture_loader_rejects_unsupported_multi_run_provenance(tmp_path, monkeypatch):
     provenance = luna44.FIXTURE_PROVENANCE_PATH.read_text(encoding="utf-8")
     manifest = json.loads(provenance)
     manifest["pre_freeze_materialization_invocations"] = 2
@@ -85,9 +85,26 @@ def test_fixture_loader_rejects_unsupported_multi_run_provenance(tmp_path):
     manifest["pre_freeze_determinism_replication"] = "matched"
     path = tmp_path / "provenance.json"
     path.write_text(json.dumps(manifest), encoding="utf-8")
+    monkeypatch.setattr(luna44, "FIXTURE_PROVENANCE_PATH", path)
 
-    with pytest.raises(ValueError, match="one materialization without replication"):
+    with pytest.raises(ValueError, match="committed fixture-revision blob"):
         luna44.load_fixture(provenance_path=path)
+
+
+def test_fixture_rejects_manifest_metadata_drift(tmp_path, monkeypatch):
+    provenance_bytes = luna44.FIXTURE_PROVENANCE_PATH.read_bytes()
+    with pytest.raises(ValueError, match="provenance path differs from the pinned path"):
+        luna44.load_fixture(provenance_path=tmp_path / "wrong-path.json")
+    original_timestamp = b'"generation_timestamp_utc": "2026-10-05T22:46:24.643250+00:00"'
+    changed_timestamp = b'"generation_timestamp_utc": "2026-10-05T22:46:24.643251+00:00"'
+    assert len(original_timestamp) == len(changed_timestamp)
+    assert original_timestamp in provenance_bytes
+    mutated_manifest_path = tmp_path / "provenance.json"
+    mutated_manifest_path.write_bytes(provenance_bytes.replace(original_timestamp, changed_timestamp))
+    monkeypatch.setattr(luna44, "FIXTURE_PROVENANCE_PATH", mutated_manifest_path)
+
+    with pytest.raises(ValueError, match="committed fixture-revision blob"):
+        luna44.load_fixture(provenance_path=mutated_manifest_path)
 
 
 def test_topology_and_only_relay_integration_vary_by_arm():
@@ -95,6 +112,13 @@ def test_topology_and_only_relay_integration_vary_by_arm():
     assert config["authorization_revision"] == luna44.AUTHORIZATION_REVISION
     assert config["fixture"]["revision"] == luna44.FIXTURE_REVISION
     assert config["fixture"]["canonical_sha256"] == luna44.FIXTURE_SHA256
+    assert config["fixture"]["provenance_manifest_path"] == (
+        luna44.FIXTURE_PROVENANCE_PATH.as_posix()
+    )
+    assert config["fixture"]["provenance_manifest_sha256"] == luna44.FIXTURE_PROVENANCE_SHA256
+    assert config["fixture"]["provenance_manifest_git_blob"] == (
+        luna44.FIXTURE_PROVENANCE_GIT_BLOB
+    )
     assert config["authorization_handoff_sha256"] == luna44.AUTHORIZATION_HANDOFF_SHA256
     for arm in luna44.ARMS:
         for node in luna44.NODES:

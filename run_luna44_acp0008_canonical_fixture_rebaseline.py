@@ -34,9 +34,11 @@ from tpcn.topology import BoundedTopology, Edge, TopologyCapacityError
 
 AUTHORIZATION_REVISION = "ff4bf51dcaab2e7b66f0409f4d63a33649c3e104"
 AUTHORIZATION_HANDOFF_SHA256 = "13e5419f44db5b874337de1e77dde290ed7859e2b29dfbef72c4d607040d45bd"
-FIXTURE_REVISION = "be1f579281e1f39ed17776957f66cd9c40b83c83"
+FIXTURE_REVISION = "3b6645ae75654b2489cceac95061b0e01bc7fa1a"
 FIXTURE_SHA256 = "6c262ad1951a48f624d83a594abfc86ffa89d26882b397f6586698c097144305"
 FIXTURE_FILE_SHA256 = "66e187350536e6901d8371a1ffbe3e2a0abf3b49341c6ae6c8fed3ae7833b629"
+FIXTURE_PROVENANCE_SHA256 = "1b458423c63940455ddb2d703e06f30e0b61b18dad1029d85ff162826aec691a"
+FIXTURE_PROVENANCE_GIT_BLOB = "ef90992e138d137731586b52c116b5b66da6e62d"
 FIXTURE_GENERATOR_REVISION = "a79494cd66be28fd291ed11eddd62d342f457cfd"
 FIXTURE_GENERATOR_SHA256 = "17e581cf702fae1f56889472a967d2e8e5fec37cc041edba8247da14a0a8b5db"
 FIXTURE_POINT_GENERATOR_SHA256 = "2ffb1b5ebb23f016436043118bc675eddaa14bfd923129359fe61a12df94d9f0"
@@ -64,6 +66,7 @@ NEURON_EVENT_BUDGET = 4096
 ARTIFACT_DIRECTORY = Path("artifacts/luna44-acp0008-canonical-fixture-rebaseline")
 FIXTURE_PATH = Path("artifacts/luna44-canonical-fixture/fixture.json")
 FIXTURE_PROVENANCE_PATH = Path("artifacts/luna44-canonical-fixture/provenance.json")
+FIXTURE_PROVENANCE_GIT_PATH = FIXTURE_PROVENANCE_PATH.as_posix()
 FLOAT_POLICY_FORMULA = (
     "64 * sys.float_info.epsilon * max(1.0, abs(observed), abs(expected))"
 )
@@ -243,10 +246,27 @@ def load_fixture(
     provenance_path: Path = FIXTURE_PROVENANCE_PATH,
 ) -> tuple[dict[str, Any], dict[str, Any]]:
     """Validate and load retained fixture files without importing a generator."""
+    if provenance_path != FIXTURE_PROVENANCE_PATH:
+        raise ValueError("fixture provenance path differs from the pinned path")
     fixture_bytes = fixture_path.read_bytes()
     fixture_file_sha256 = hashlib.sha256(fixture_bytes).hexdigest()
     fixture = json.loads(fixture_bytes.decode("utf-8"))
-    fixture_provenance = json.loads(provenance_path.read_text(encoding="utf-8"))
+    provenance_bytes = provenance_path.read_bytes()
+    committed_provenance_path = f"{FIXTURE_REVISION}:{FIXTURE_PROVENANCE_GIT_PATH}"
+    committed_provenance_blob = _git_output("rev-parse", committed_provenance_path)
+    if committed_provenance_blob != FIXTURE_PROVENANCE_GIT_BLOB:
+        raise ValueError("fixture provenance Git blob differs from the pinned fixture revision")
+    committed_provenance_bytes = subprocess.run(
+        ["git", "cat-file", "blob", committed_provenance_blob],
+        check=True,
+        capture_output=True,
+    ).stdout
+    if provenance_bytes != committed_provenance_bytes:
+        raise ValueError("fixture provenance differs from the committed fixture-revision blob")
+    provenance_sha256 = hashlib.sha256(provenance_bytes).hexdigest()
+    if provenance_sha256 != FIXTURE_PROVENANCE_SHA256:
+        raise ValueError("fixture provenance full-file SHA-256 does not match the pinned value")
+    fixture_provenance = json.loads(provenance_bytes.decode("utf-8"))
     if fixture.get("schema") != "TPCN-LUNA44-CANONICAL-POINT-FIXTURE-1":
         raise ValueError("unexpected canonical fixture schema")
     if fixture_provenance.get("schema") != "TPCN-LUNA44-CANONICAL-FIXTURE-PROVENANCE-1":
@@ -363,6 +383,9 @@ def experiment_config() -> dict[str, Any]:
             "revision": FIXTURE_REVISION,
             "canonical_sha256": FIXTURE_SHA256,
             "file_sha256": FIXTURE_FILE_SHA256,
+            "provenance_manifest_path": FIXTURE_PROVENANCE_PATH.as_posix(),
+            "provenance_manifest_sha256": FIXTURE_PROVENANCE_SHA256,
+            "provenance_manifest_git_blob": FIXTURE_PROVENANCE_GIT_BLOB,
             "seeds": list(SEEDS),
             "sequences_per_seed": SEQUENCES_PER_SEED,
             "total_sequences": TOTAL_SEQUENCES,
