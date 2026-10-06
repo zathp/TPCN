@@ -1,5 +1,45 @@
 # Architecture Changelog
 
+## Luna-0 independent review — Luna-44 evidence-quality correction — 2026-10-05
+
+**Evidence-quality PASS WITH FOLLOW-UP; no architecture change.** Independently
+reviewed branch revision `c271b7812d35b1b951e6e0fc088d28ee8abd8711`, based on
+main `b266077e47b71f36dbd87051da3e5b5ec1199b37`. The branch is published but
+not merged. The implementation adds separate runner-local queue-admission and
+successful receiver-consumption captures, exact one-to-one reconciliation,
+persisted initial/replay evidence, and tests; it does not change production
+computation, topology, A01-A15, ACP-0007, or ACP-0008.
+
+Findings A/B/C are closed by truthful single-original-publication provenance,
+a complete manifest SHA/blob pin, and independent raw enqueue/reception
+capture, respectively. Finding D is closed only within the recorded
+same-environment scope: distinct process/invocation materialization records
+and matching exact hashes/digests exist for the declared environment; fresh
+Windows/Python 3.11.5 invocations independently reproduce equality with each
+other but not with the frozen Linux fixture. The historical Linux output
+directories are no longer available for reopening, and cross-platform
+determinism is not claimed.
+
+The unchanged Luna-44 rerun at
+`artifacts/luna44-acp0008-independent-routing-rerun-20261005/` reports
+**PASS / SUPPORTED** for the authorized relay-propagation endpoint. The
+independent review recomputed the canonical fixture and manifest identities,
+reconciled 5,380 routed events for each of initial and replay with zero
+mismatches, and verified deterministic replay. It does not establish efficacy,
+destination integration behavior, energy benefit, hardware equivalence, or
+architecture promotion.
+
+Validation on Windows/Python 3.11.5: Luna-44 runner tests 43 passed; the
+independent focused selection 227 passed; full suite with process-scoped LF
+checkout configuration 1,089 passed, 2 exact cross-environment fixture
+materialization comparisons failed, and 1 CUDA-unavailable test skipped.
+Exactness gates were preserved. Luna-42 remains **PASS WITH FOLLOW-UP**;
+Luna-43 remains **BLOCKED / DESTINATION COMPARISON UNDETERMINED**. ACP-0007
+remains unchanged/disabled and ACP-0008 remains experimental, opt-in, and
+unpromoted. The project owner must decide whether to merge the task branch and
+whether cross-platform fixture parity warrants a separately authorized task.
+Full evidence: `workflow/handoffs/luna-0-review-luna44-evidence-quality-20261005.md`.
+
 ## Luna-0 owner-authorized Luna-44 canonical fixture and relay propagation — 2026-10-05
 
 **Luna-44 AUTHORIZED / NOT EXECUTED; governance-only authorization.** The

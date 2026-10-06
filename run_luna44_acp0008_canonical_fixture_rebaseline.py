@@ -2,6 +2,11 @@
 
 This runner consumes only the committed Luna-44 fixture. It deliberately does
 not import the fixture builder or any spiral/dataset generator.
+
+Routed EXCURSION evidence is captured independently at queue admission and
+successful neuron consumption, then retained in separate initial/replay JSON
+artifacts. The receiver timestamp is the destination's logical clock, not wall
+time. Instrumentation does not modify routing or neuron computation.
 """
 
 from __future__ import annotations
@@ -21,7 +26,7 @@ from typing import Any
 from unittest import mock
 
 from tpcn.eligibility import EligibilityCapacityError, EligibilityLedger
-from tpcn.event_runtime import Event, EventType, QueueCapacityError
+from tpcn.event_runtime import Event, EventQueue, EventType, QueueCapacityError
 from tpcn.excursion_neuron import (
     E1Config,
     IntegrationConfig,
@@ -98,6 +103,12 @@ class ProvenanceError(RuntimeError):
     def __init__(self, message: str, provenance: dict[str, Any]) -> None:
         super().__init__(message)
         self.provenance = provenance
+
+
+class RoutingEvidenceError(RuntimeError):
+    def __init__(self, capture: dict[str, Any]) -> None:
+        super().__init__("canonical emission/transfer/reception provenance did not reconcile")
+        self.capture = capture
 
 
 def _jsonable(value: Any) -> Any:
@@ -822,12 +833,12 @@ def _reconcile_route_events(
     enqueued_events: list[dict[str, Any]],
     reception_events: list[dict[str, Any]],
 ) -> dict[str, Any]:
-    enqueued_by_id: dict[Any, list[dict[str, Any]]] = {}
-    reception_by_id: dict[Any, list[dict[str, Any]]] = {}
+    enqueued_by_sequence: dict[int, list[dict[str, Any]]] = {}
+    reception_by_sequence: dict[int, list[dict[str, Any]]] = {}
     for item in enqueued_events:
-        enqueued_by_id.setdefault(item["event_id"], []).append(item)
+        enqueued_by_sequence.setdefault(item["queue_sequence"], []).append(item)
     for item in reception_events:
-        reception_by_id.setdefault(item["event_id"], []).append(item)
+        reception_by_sequence.setdefault(item["queue_sequence"], []).append(item)
 
     checks = []
     matched_count = 0
@@ -836,19 +847,18 @@ def _reconcile_route_events(
     route_path_mismatch_count = 0
     identity_mismatch_count = 0
     provenance_mismatch_count = 0
-    event_id_mismatch_count = len(
-        set(enqueued_by_id).symmetric_difference(reception_by_id)
-    )
-    for event_id, enqueued_rows in enqueued_by_id.items():
-        received_rows = reception_by_id.get(event_id, [])
+    event_id_mismatch_count = 0
+    for queue_sequence, enqueued_rows in enqueued_by_sequence.items():
+        received_rows = reception_by_sequence.get(queue_sequence, [])
         if len(enqueued_rows) != 1 or len(received_rows) != 1:
             checks.append(
                 {
-                    "event_id": event_id,
+                    "event_id": enqueued_rows[0]["event_id"],
+                    "queue_sequence": queue_sequence,
                     "matches": False,
                     "enqueue_count": len(enqueued_rows),
                     "reception_count": len(received_rows),
-                    "reason": "event ID is not one-to-one",
+                    "reason": "queue admission identity is not one-to-one",
                 }
             )
             continue
@@ -864,8 +874,17 @@ def _reconcile_route_events(
         )
         timing_matches = _bits(
             float(enqueued["scheduled_delivery_timestamp"])
-        ) == _bits(float(received["reception_timestamp"]))
-        payload_matches = enqueued["payload_bits"] == received["payload_bits"]
+        ) == _bits(float(received["reception_timestamp"])) and (
+            _bits(float(received["scheduled_delivery_timestamp"]))
+            == _bits(float(enqueued["scheduled_delivery_timestamp"]))
+            and float(enqueued["enqueue_timestamp"])
+            < float(enqueued["scheduled_delivery_timestamp"])
+        )
+        payload_matches = (
+            enqueued["payload_bits"] == received["payload_bits"]
+            == _bits(float(enqueued["payload"]))
+            == _bits(float(received["payload"]))
+        )
         route_path_matches = (
             enqueued["route_path"] == received["route_path"]
             and enqueued["route_depth"] == received["route_depth"]
@@ -876,7 +895,10 @@ def _reconcile_route_events(
             and enqueued["causal_roots"] == received["causal_roots"]
             and enqueued["originating_emission_id"]
             == received["originating_emission_id"]
+            and enqueued["roots_truncated"] == received["roots_truncated"]
         )
+        identity_matches &= enqueued["source"] == received["source"]
+        event_id_mismatch_count += enqueued["event_id"] != received["event_id"]
         payload_mismatch_count += not payload_matches
         timing_mismatch_count += not timing_matches
         route_path_mismatch_count += not route_path_matches
@@ -892,9 +914,13 @@ def _reconcile_route_events(
         matched_count += matches
         checks.append(
             {
-                "event_id": event_id,
+                "event_id": enqueued["event_id"],
+                "reception_event_id": received["event_id"],
+                "queue_sequence": queue_sequence,
                 "matches": matches,
                 "identity_matches": identity_matches,
+                "enqueue_source": enqueued["source"],
+                "reception_source": received["source"],
                 "queue_sequence_matches": (
                     enqueued["queue_sequence"] == received["queue_sequence"]
                 ),
@@ -913,17 +939,30 @@ def _reconcile_route_events(
             }
         )
 
-    duplicate_count = sum(max(0, len(rows) - 1) for rows in reception_by_id.values())
+    duplicate_count = sum(
+        max(0, len(rows) - 1) for rows in reception_by_sequence.values()
+    )
     orphan_reception_count = sum(
         len(rows)
-        for event_id, rows in reception_by_id.items()
-        if event_id not in enqueued_by_id
+        for queue_sequence, rows in reception_by_sequence.items()
+        if queue_sequence not in enqueued_by_sequence
     )
     unmatched_enqueue_count = sum(
-        len(rows)
-        for event_id, rows in enqueued_by_id.items()
-        if len(rows) != 1 or len(reception_by_id.get(event_id, ())) != 1
+        len(rows) for rows in enqueued_by_sequence.values()
+    ) - matched_count
+    duplicate_enqueue_count = sum(
+        max(0, len(rows) - 1) for rows in enqueued_by_sequence.values()
     )
+    for queue_sequence, rows in reception_by_sequence.items():
+        if queue_sequence not in enqueued_by_sequence:
+            checks.append({
+                "queue_sequence": queue_sequence,
+                "event_id": rows[0]["event_id"],
+                "matches": False,
+                "enqueue_count": 0,
+                "reception_count": len(rows),
+                "reason": "orphan reception",
+            })
     mismatch_count = (
         payload_mismatch_count
         + timing_mismatch_count
@@ -946,6 +985,8 @@ def _reconcile_route_events(
         "unmatched_enqueue_count": unmatched_enqueue_count,
         "orphan_reception_count": orphan_reception_count,
         "duplicate_count": duplicate_count,
+        "duplicate_reception_count": duplicate_count,
+        "duplicate_enqueue_count": duplicate_enqueue_count,
         "payload_mismatch_count": payload_mismatch_count,
         "timing_mismatch_count": timing_mismatch_count,
         "route_path_mismatch_count": route_path_mismatch_count,
@@ -1310,12 +1351,14 @@ def _run_character(*, arm: str, sequence: dict[str, Any]) -> dict[str, Any]:
     emission_peaks: dict[str, dict[str, Any]] = {}
     enqueue_events: list[dict[str, Any]] = []
     reception_events: list[dict[str, Any]] = []
+    enqueue_by_sequence: dict[int, dict[str, Any]] = {}
     active_receiver_context: Any = None
     original_reset = MultiExcursionNeuron.reset
     original_receive_event = MultiExcursionNeuron.receive_event
     original_emit_ordinary = MultiExcursionNeuron._emit_ordinary
     original_handle_m_internal = MultiExcursionNeuron._handle_m_internal
-    original_topology_route = BoundedTopology.route
+    original_push_propagated = EventQueue.push_propagated
+    original_attach = ExcursionCharacterRuntime._attach
     original_process_one = ExcursionCharacterRuntime._process_one
     original_ledger_init = EligibilityLedger.__init__
     original_record_activity = EligibilityLedger.record_activity
@@ -1340,9 +1383,12 @@ def _run_character(*, arm: str, sequence: dict[str, Any]) -> dict[str, Any]:
         before_x = float(neuron.state)
         before_z = None if neuron.integration_state is None else float(neuron.integration_state)
         prior_clock = float(neuron.clock.timestamp)
+        processed_before = neuron.processed_event_count
         mode_before = neuron.mode.value
         result = original_receive_event(neuron, event, queue)
         if event.event_type == EventType.EXCURSION:
+            if neuron.processed_event_count != processed_before + 1:
+                raise RuntimeError("receiver did not process the routed event")
             context = active_receiver_context
             if context is None:
                 raise RuntimeError("receiver event has no independently captured route context")
@@ -1354,17 +1400,19 @@ def _run_character(*, arm: str, sequence: dict[str, Any]) -> dict[str, Any]:
                     "destination": event.destination,
                     "receiver_node": neuron.neuron_id,
                     "event_type": _jsonable(event.event_type),
-                    "reception_timestamp": float(event.timestamp),
+                    "scheduled_delivery_timestamp": float(event.timestamp),
+                    "reception_timestamp": float(neuron.clock.timestamp),
                     "payload": float(event.payload),
                     "payload_bits": _bits(float(event.payload)),
                     "route_path": list(context.route_path),
                     "route_depth": context.route_depth,
                     "lineage_id": event.lineage_id,
                     "causal_roots": list(context.causal_roots),
+                    "roots_truncated": context.roots_truncated,
                     "originating_emission_id": event.event_id,
                     "receiver_state_transition": {
                         "event_sequence": event.sequence,
-                        "processed_events_before": neuron.processed_event_count - 1,
+                        "processed_events_before": processed_before,
                         "processed_events_after": neuron.processed_event_count,
                         "x_before": before_x,
                         "x_after": float(neuron.state),
@@ -1399,41 +1447,53 @@ def _run_character(*, arm: str, sequence: dict[str, Any]) -> dict[str, Any]:
             )
         return result
 
-    def capture_route(
-        routed_topology: BoundedTopology,
-        event: Event,
-        queue: Any,
+    def capture_enqueue(
+        queue: EventQueue[Event],
+        emission_time: Any,
+        source: str,
+        destination: str,
+        event_type: Any,
+        payload: Any,
+        delay: Any,
         **kwargs: Any,
-    ) -> tuple[Event, ...]:
-        routed_events = original_topology_route(
-            routed_topology,
-            event,
-            queue,
+    ) -> Event:
+        queued = original_push_propagated(
+            queue, emission_time, source, destination, event_type, payload, delay,
             **kwargs,
         )
-        if event.event_type == EventType.EXCURSION:
-            causal_roots = list(runtime._node_roots[event.source])
-            for routed_event in routed_events:
-                enqueue_events.append(
-                    {
-                        "event_id": routed_event.event_id,
-                        "queue_sequence": routed_event.sequence,
-                        "source": routed_event.source,
-                        "destination": routed_event.destination,
-                        "event_type": _jsonable(routed_event.event_type),
-                        "enqueue_timestamp": float(event.timestamp),
-                        "scheduled_delivery_timestamp": float(routed_event.timestamp),
-                        "timestamp": float(routed_event.timestamp),
-                        "payload": float(routed_event.payload),
-                        "payload_bits": _bits(float(routed_event.payload)),
-                        "route_path": [event.source, routed_event.destination],
-                        "route_depth": 1,
-                        "lineage_id": routed_event.lineage_id,
-                        "causal_roots": causal_roots,
-                        "originating_emission_id": event.event_id,
-                    }
-                )
-        return routed_events
+        if queue is runtime.queue and queued.event_type == EventType.EXCURSION:
+            row = {
+                "event_id": queued.event_id,
+                "queue_sequence": queued.sequence,
+                "source": queued.source,
+                "destination": queued.destination,
+                "event_type": _jsonable(queued.event_type),
+                "enqueue_timestamp": float(emission_time),
+                "scheduled_delivery_timestamp": float(queued.timestamp),
+                "timestamp": float(queued.timestamp),
+                "payload": float(queued.payload),
+                "payload_bits": _bits(float(queued.payload)),
+                "lineage_id": queued.lineage_id,
+                "originating_emission_id": kwargs.get("event_id"),
+            }
+            enqueue_events.append(row)
+            enqueue_by_sequence[queued.sequence] = row
+        return queued
+
+    def capture_attach(
+        character_runtime: ExcursionCharacterRuntime,
+        queued: Event,
+        context: Any,
+    ) -> None:
+        original_attach(character_runtime, queued, context)
+        if character_runtime is runtime and queued.event_type == EventType.EXCURSION:
+            row = enqueue_by_sequence[queued.sequence]
+            row.update({
+                "route_path": list(context.route_path),
+                "route_depth": context.route_depth,
+                "causal_roots": list(context.causal_roots),
+                "roots_truncated": context.roots_truncated,
+            })
 
     def capture_process_one(
         character_runtime: ExcursionCharacterRuntime,
@@ -1500,7 +1560,10 @@ def _run_character(*, arm: str, sequence: dict[str, Any]) -> dict[str, Any]:
                 mock.patch.object(MultiExcursionNeuron, "receive_event", capture_receive)
             )
             stack.enter_context(
-                mock.patch.object(BoundedTopology, "route", capture_route)
+                mock.patch.object(EventQueue, "push_propagated", capture_enqueue)
+            )
+            stack.enter_context(
+                mock.patch.object(ExcursionCharacterRuntime, "_attach", capture_attach)
             )
             stack.enter_context(
                 mock.patch.object(
@@ -1633,6 +1696,7 @@ def _run_character(*, arm: str, sequence: dict[str, Any]) -> dict[str, Any]:
         relay_transfers,
         destination_receptions,
     )
+    all_route_reconciliation = _reconcile_route_events(enqueue_events, reception_events)
     expected_emissions = source_emissions + relay_emissions
     emission_by_id = {item["event_id"]: item for item in expected_emissions}
     transfer_checks = []
@@ -1747,6 +1811,7 @@ def _run_character(*, arm: str, sequence: dict[str, Any]) -> dict[str, Any]:
         and len({item["event_id"] for item in transfers}) == len(transfers)
         and source_route_reconciliation["reconciles"]
         and onward_route_reconciliation["reconciles"]
+        and all_route_reconciliation["reconciles"]
     )
     causality_reconciles = (
         route_count_matches
@@ -1762,7 +1827,15 @@ def _run_character(*, arm: str, sequence: dict[str, Any]) -> dict[str, Any]:
         and all(item["classification_matches"] for item in classified_relay_emissions)
     )
     if not causality_reconciles:
-        raise RuntimeError("canonical emission/transfer/reception provenance did not reconcile")
+        raise RoutingEvidenceError({
+            "seed": seed,
+            "sequence_index": sequence_index,
+            "stream_id": stream_id,
+            "routing_enqueue_events": enqueue_events,
+            "receiver_reception_events": reception_events,
+            "routing_capture_status": "reconciliation_failed",
+            "routing_reconciliation": all_route_reconciliation,
+        })
     signed_z_values = [
         float(entry[key])
         for entry in relay_trace
@@ -1828,20 +1901,27 @@ def _run_character(*, arm: str, sequence: dict[str, Any]) -> dict[str, Any]:
         "receiver_reception_events": reception_events,
         "routing_capture_sources": {
             "enqueue": (
-                "events returned from BoundedTopology.route after queue admission"
+                "EventQueue.push_propagated after successful queue admission; "
+                "route context from successful ExcursionCharacterRuntime._attach"
             ),
             "reception": (
                 "events successfully consumed by MultiExcursionNeuron.receive_event"
             ),
         },
+        "routing_stream_digests": {
+            "enqueue": _digest(enqueue_events),
+            "reception": _digest(reception_events),
+        },
         "source_to_relay_receptions": source_receptions,
         "destination_receptions": destination_receptions,
         "routing_reconciliation": {
+            "all_routes": all_route_reconciliation,
             "source_to_relay": source_route_reconciliation,
             "relay_to_destination": onward_route_reconciliation,
             "reconciles": (
                 source_route_reconciliation["reconciles"]
                 and onward_route_reconciliation["reconciles"]
+                and all_route_reconciliation["reconciles"]
             ),
         },
         "transfer_checks": transfer_checks,
@@ -1986,7 +2066,7 @@ def _aggregate_arm(records: list[dict[str, Any]]) -> dict[str, Any]:
         return sum(record["counts"][name] for record in records)
 
     routing_reconciliation = {}
-    for hop in ("source_to_relay", "relay_to_destination"):
+    for hop in ("all_routes", "source_to_relay", "relay_to_destination"):
         routing_reconciliation[hop] = {
             name: sum(
                 record["routing_reconciliation"][hop][name]
@@ -1999,12 +2079,13 @@ def _aggregate_arm(records: list[dict[str, Any]]) -> dict[str, Any]:
                 "unmatched_enqueue_count",
                 "orphan_reception_count",
                 "duplicate_count",
+                "duplicate_reception_count",
+                "duplicate_enqueue_count",
                 "payload_mismatch_count",
                 "timing_mismatch_count",
                 "route_path_mismatch_count",
                 "identity_mismatch_count",
                 "provenance_mismatch_count",
-                "event_id_mismatch_count",
                 "event_id_mismatch_count",
                 "mismatch_count",
             )
@@ -2015,7 +2096,7 @@ def _aggregate_arm(records: list[dict[str, Any]]) -> dict[str, Any]:
         )
     routing_reconciliation["reconciles"] = all(
         routing_reconciliation[hop]["reconciles"]
-        for hop in ("source_to_relay", "relay_to_destination")
+        for hop in ("all_routes", "source_to_relay", "relay_to_destination")
     )
     return {
         "sequences": len(records),
@@ -2114,6 +2195,69 @@ def _write_json(path: Path, value: Any) -> None:
     path.write_bytes(_canonical_bytes(value) + b"\n")
 
 
+def _persist_routing_evidence(
+    output_directory: Path,
+    metadata: dict[str, Any],
+    initial: dict[str, list[dict[str, Any]]],
+    replay: dict[str, list[dict[str, Any]]],
+) -> dict[str, Any]:
+    """Persist independent captures, verifying bytes and replay stream digests."""
+    manifest: dict[str, Any] = {"artifacts": {}, "streams": {}}
+    for stream, field in (
+        ("enqueue", "routing_enqueue_events"),
+        ("reception", "receiver_reception_events"),
+    ):
+        captures = {}
+        for phase, runs in (("initial", initial), ("replay", replay)):
+            per_arm = {
+                arm: [
+                    {
+                        "seed": record["seed"],
+                        "sequence_index": record["sequence_index"],
+                        "stream_id": record["stream_id"],
+                        "capture_status": record.get("routing_capture_status", "completed"),
+                        "events": record[field],
+                        "stream_digest": _digest(record[field]),
+                    }
+                    for record in runs[arm]
+                ]
+                for arm in ARMS
+            }
+            captures[phase] = per_arm
+            filename = f"routing-{phase}-{stream}.json"
+            artifact = _seal_artifact({
+                **metadata,
+                "schema": "TPCN-LUNA44-ROUTING-RAW-1",
+                "phase": phase,
+                "capture_stream": stream,
+                "event_scope": "routed EXCURSION events only",
+                "timestamp_policy": "exact binary64 logical time; no wall clock",
+                "identity_key": "arm, seed, sequence_index, queue_sequence",
+                "per_arm": per_arm,
+                "streams_digest": _digest(per_arm),
+            })
+            path = output_directory / filename
+            _write_json(path, artifact)
+            persisted = path.read_bytes()
+            if persisted != _canonical_bytes(artifact) + b"\n":
+                raise RuntimeError(f"raw routing artifact persistence mismatch: {filename}")
+            manifest["artifacts"][f"{phase}_{stream}"] = {
+                "path": filename,
+                "file_sha256": hashlib.sha256(persisted).hexdigest(),
+                "artifact_digest": artifact["artifact_digest"],
+                "streams_digest": artifact["streams_digest"],
+            }
+        manifest["streams"][stream] = {
+            "initial_digest": _digest(captures["initial"]),
+            "replay_digest": _digest(captures["replay"]),
+            "equal": captures["initial"] == captures["replay"],
+        }
+    manifest["replay_equal"] = all(
+        item["equal"] for item in manifest["streams"].values()
+    )
+    return manifest
+
+
 def run_experiment(
     output_directory: Path = ARTIFACT_DIRECTORY,
 ) -> tuple[dict[str, Any], dict[str, Any]]:
@@ -2128,6 +2272,8 @@ def run_experiment(
     provenance: dict[str, Any]
     stop_reason: str | None = None
     fixture_error: str | None = None
+    failed_routing_capture: dict[str, Any] | None = None
+    execution_phase = "initial"
     try:
         fixture, fixture_source_provenance = load_fixture()
     except Exception as error:
@@ -2157,12 +2303,20 @@ def run_experiment(
     if stop_reason is None and fixture is not None:
         try:
             for arm in ARMS:
+                execution_phase = "initial"
                 for sequence in fixture["sequences"]:
                     run_records[arm].append(_run_character(arm=arm, sequence=sequence))
+                execution_phase = "replay"
                 for sequence in fixture["sequences"]:
                     replay_records[arm].append(_run_character(arm=arm, sequence=sequence))
         except Exception as error:
             stop_reason = f"execution blocker: {type(error).__name__}: {error}"
+            if isinstance(error, RoutingEvidenceError):
+                failed_routing_capture = {
+                    "phase": execution_phase,
+                    "arm": arm,
+                    **error.capture,
+                }
     if stop_reason is None:
         try:
             observed_head = _git_output("rev-parse", "HEAD")
@@ -2174,8 +2328,29 @@ def run_experiment(
         except Exception as error:
             stop_reason = f"provenance drift blocker: {type(error).__name__}: {error}"
 
+    artifact_metadata = _artifact_metadata(
+        provenance, fixture_source_provenance, config_digest,
+    )
+    routing_initial = {arm: list(records) for arm, records in run_records.items()}
+    routing_replay = {arm: list(records) for arm, records in replay_records.items()}
+    if failed_routing_capture is not None:
+        captures = (
+            routing_initial if failed_routing_capture["phase"] == "initial"
+            else routing_replay
+        )
+        captures[failed_routing_capture["arm"]].append(failed_routing_capture)
+    routing_evidence = _persist_routing_evidence(
+        output_directory, artifact_metadata, routing_initial, routing_replay,
+    )
+    if failed_routing_capture is not None:
+        routing_evidence["failed_capture"] = {
+            key: failed_routing_capture[key]
+            for key in ("phase", "arm", "seed", "sequence_index", "stream_id",
+                        "routing_reconciliation")
+        }
     replay_summary = {}
     replay_ok = stop_reason is None
+    replay_ok &= routing_evidence["replay_equal"]
     for arm in ARMS:
         first_digests = [item["record_digest"] for item in run_records[arm]]
         replay_digests = [item["record_digest"] for item in replay_records[arm]]
@@ -2244,11 +2419,6 @@ def run_experiment(
         if complete_all_arms
         else None
     )
-    artifact_metadata = _artifact_metadata(
-        provenance,
-        fixture_source_provenance,
-        config_digest,
-    )
     summary_body = {
         **artifact_metadata,
         "schema": "TPCN-LUNA44-ACP0008-CANONICAL-FIXTURE-SUMMARY-1",
@@ -2276,6 +2446,7 @@ def run_experiment(
             for arm in ARMS
         },
         "replay": replay_summary,
+        "routing_raw_evidence": routing_evidence,
         "replay_equal": replay_ok,
         "paired_raw_identity_and_input_invariance": invariance,
         "causality_reconciles": causal_ok,
@@ -2304,12 +2475,14 @@ def run_experiment(
             ),
         },
         "runs": run_records,
+        "routing_raw_evidence": routing_evidence,
     })
     replay_artifact = _seal_artifact({
         **artifact_metadata,
         "schema": "TPCN-LUNA44-ACP0008-CANONICAL-FIXTURE-REPLAY-1",
         "fixture_sha256": FIXTURE_SHA256,
         "config_digest": config_digest,
+        "routing_raw_evidence": routing_evidence,
         "digest_envelope": {
             "algorithm": "sha256",
             "canonicalization": "sorted-key compact UTF-8 JSON",

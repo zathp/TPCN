@@ -1,5 +1,58 @@
 # TPCN Luna Multi-Agent Workflow — Event-Driven Architecture
 
+## Luna-0 review of Luna-44 evidence-quality correction — 2026-10-05
+
+**PASS WITH FOLLOW-UP; task branch published but not merged.** The independent
+review applies to `c271b7812d35b1b951e6e0fc088d28ee8abd8711` on
+`copilot/luna44-independent-routing-evidence`; authoritative `main` remains
+`b266077e47b71f36dbd87051da3e5b5ec1199b37`. The evidence-only change adds
+separate queue-admission and successful receiver-consumption captures,
+one-to-one exact event reconciliation, four initial/replay raw artifacts, and
+fault-injection tests. No production computation, topology, ACP, architecture,
+or A01-A15 contract change was made.
+
+The four prior review findings are explicitly dispositioned:
+
+- **A CLOSED:** current provenance says one original fixture publication and
+  that its original independent-materialization count is not established;
+  two later invocations are reported separately.
+- **B CLOSED:** the complete current provenance manifest is pinned by the
+  exact Git blob at `86e5a2f389af06b06bf04a614edaed88e0847902` and complete
+  SHA-256 `6e069f4f948e8a68b93397e12a5c0e4ab46cb5f5189243e6ef62bab2178cdf22`.
+- **C CLOSED:** independent initial and replay enqueue/reception streams each
+  reconcile. Per phase, 5,145 source-to-relay and 235 calibrated
+  relay-to-destination events match, with zero unmatched, orphan, duplicate,
+  payload, timing, identity, route/path, or provenance mismatches.
+- **D CLOSED within tested-environment scope:** distinct process/invocation
+  records establish post-publication repeated materialization in its declared
+  Linux environment. Independent Windows/Python 3.11.5 materializations are
+  also identical to each other but differ from the frozen Linux fixture; no
+  cross-platform identity claim is made. Historical Linux A/B output
+  directories were temporary and cannot now be reopened.
+
+The unchanged-configuration scientific rerun is retained in
+`artifacts/luna44-acp0008-independent-routing-rerun-20261005/`, tied to
+runner revision `4baab60f87b820db800e04d0eb3277fb0e94f9b3`. It reports
+**PASS / SUPPORTED** for the authorized relay-propagation endpoint and exact
+replay. This is not task efficacy, a destination-integration result, an energy
+benefit, or an architecture promotion.
+
+Validation: Luna-44 focused runner tests **43 passed**; the independent
+Luna-0 focused selection **227 passed**. The full suite under process-scoped
+LF checkout configuration reported **1,089 passed, 2 failed, 1 skipped**.
+Both failures are exact frozen-fixture-versus-fresh-Windows-materialization
+comparisons; they are not relaxed. One CUDA-only test was skipped. The native
+Windows/Python 3.11.5 materializations are repeatable with each other, but
+cross-platform canonical fixture parity remains unresolved.
+
+Luna-42 remains **PASS WITH FOLLOW-UP** and Luna-43 remains **BLOCKED /
+DESTINATION COMPARISON UNDETERMINED**. ACP-0007 is unchanged/disabled;
+ACP-0008 remains experimental, opt-in, and unpromoted. The task branch is not
+authoritative main. The complete review and validation record is
+`workflow/handoffs/luna-0-review-luna44-evidence-quality-20261005.md`; return
+the merge and any cross-platform parity decision to the project owner. No
+successor Luna is authorized by this evidence review.
+
 ## Luna-0 owner-authorized Luna-44 — canonical fixture and relay propagation
 
 **LUNA-44 AUTHORIZED / NOT EXECUTED.** The project owner has authorized a frozen
