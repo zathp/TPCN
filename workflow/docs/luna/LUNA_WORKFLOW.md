@@ -1,5 +1,40 @@
 # TPCN Luna Multi-Agent Workflow — Event-Driven Architecture
 
+## Luna-46 corrective completion — 2026-10-06
+
+**Corrective cycle complete; independent Luna-0 review PASS; scientific
+verdict MIXED, unchanged.** The corrective implementation is
+`96d015ecd8f6b5684237c489898ee33e4496a1cd`; Luna-0's independent corrective
+review is recorded in
+[`luna-46-corrective-verification-20261006.md`](../../handoffs/luna-46-corrective-verification-20261006.md).
+The retained corrected output is
+`artifacts/luna46-depth-scaling-diagnostic-corrective-20261006.json`.
+
+The correction adds canonical output-path protection for the frozen Luna-44
+fixture and retained evidence, plus analytical critical-rate classifications.
+It does not change diagnostic categories, retained evidence, or the
+predeclared **MIXED** scientific result: 212 `NO-RECEPTIONS`, 33
+`TEMPORAL-RETENTION-LIMITED`, 75 `DRIVE-LIMITED`, 0
+`CANCELLATION-LIMITED`, and 0 `ALREADY-CROSSING`. Of 320 sequences, 108 are
+reception-bearing, with 235 destination receptions. No production
+computation, tuning, efficacy study, ACP change, or architecture promotion
+occurred.
+
+Validation on Windows: Luna-46 focused tests **167 passed**. The full suite
+reported **1 failed, 7 errors, 1 skipped, 1,325 passed**. The failure and
+errors are the documented Luna-44 pinned-source materialization issue:
+global `core.autocrlf=true` converts the pinned LF source to CRLF in the
+temporary worktree, causing its pinned-source hash check to fail. This full
+suite remains failed; no failures were hidden or waived.
+
+The independent review retains two limitations: mixed-sign cases are
+conservatively classified as uniqueness-unproven rather than exhaustively
+root-solved; and output-path validation cannot eliminate a filesystem alias
+replacement race after validation but before writing. Earlier workflow
+entries recording a review as pending describe their state at the time and
+are preserved for audit; this corrective completion supersedes that pending
+status. **No successor Luna is authorized.**
+
 ## Luna-0 independent review — Luna-46 retained depth-scaling diagnostic — 2026-10-06
 
 **PASS for the bounded evidence gates; independently recomputed verdict:
