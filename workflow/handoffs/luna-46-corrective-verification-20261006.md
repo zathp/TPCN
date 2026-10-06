@@ -1,11 +1,11 @@
 ---
 tpcn_handoff:
-  agent: "Luna-46 corrective verification; independent review pending"
+  agent: "Luna-46 corrective verification and independent Luna-0 review"
   luna_identifier: "Luna-46"
   descriptive_name: "Output guard and critical-rate corrective verification"
   task_id: "luna-46-corrective-verification-20261006"
   component: "Downstream offline evidence analysis"
-  status: "complete - MIXED; independent corrective review pending"
+  status: "complete - PASS / MIXED; independent corrective verification"
   contract_version: "1.2"
   branch: "copilot/luna46-depth-scaling-diagnostic"
   base_revision: "7f063b1013f0274083e70e931333446c23e47ab5"
@@ -20,7 +20,7 @@ tpcn_handoff:
     - "MECHANISM DIAGNOSTIC"
     - "MIXED"
     - "corrective verification; not efficacy or production-configuration evidence"
-    - "independent corrective review pending"
+    - "independent Luna-0 corrective review PASS"
   hypothesis: "The path guard rejects all canonical overlap with retained evidence and the frozen Luna-44 fixture, and analytical critical-rate statuses preserve the original diagnostic verdict."
   counter_hypothesis: "Path aliases may still reach protected evidence, or corrected critical-rate handling may change classifications, retained reconciliation, or the MIXED verdict."
   interfaces_relied_on:
@@ -82,18 +82,18 @@ tpcn_handoff:
   tests_failed:
     - "Repository-wide pytest: 1 failed, 7 errors, 1 skipped, 1,325 passed. The failed test and seven setup errors are the Luna-44 pinned-source materialization checks; workers report 'authorized generator source differs from the pinned baseline'. The Git blob at pinned revision a79494cd66be28fd291ed11eddd62d342f457cfd hashes to the expected 17e581cf702fae1f56889472a967d2e8e5fec37cc041edba8247da14a0a8b5db, while a Windows temporary worktree checkout hashes to c16a099b6c27c5af15c56f90614ccfdd420b6d984dd5a810acfd5ad2e0530d44. Git core.autocrlf is true. This is consistent with the previously documented Windows/frozen-source materialization incompatibility; exact equivalence to the two baseline failure signatures was not established."
   tests_not_run:
-    - "Independent Luna-0 corrective review is pending."
     - "GitHub PR description could not be updated: browser is signed out and gh has no write authentication."
     - "No CUDA execution; one test skipped because CUDA is unavailable."
   assumptions:
     - "The critical-rate solver is invoked only for same-sign retention-limited sequences; its domain is lambda >= 0, its finite boundary is bisected on [0, 0.0125], and all supporting statuses are explicit in output policy."
     - "Mixed-sign cases receive no selected root; absent or non-applicable cases receive no fabricated rate."
   unresolved:
-    - "Independent verification of the corrective commit and new retained output."
-    - "The exact source of the Windows temporary-worktree hash transformation should be independently reviewed; no fixture or generator source was modified."
+    - "The full suite remains failed on Windows pinned-source materialization; no failure was suppressed."
+    - "Mixed-sign critical-rate cases are conservatively classified as uniqueness-unproven; the implementation does not enumerate all roots."
+    - "Output-path validation is not a defense against concurrent replacement of parent filesystem aliases between validation and writing."
     - "PR #6 body still describes the earlier governance-only stage."
   recommended_next_agent:
-    - "Fresh read-only Luna-0 review of commit 96d015ecd8f6b5684237c489898ee33e4496a1cd, this handoff, and the new output; do not authorize Luna-47."
+    - "No successor is authorized; preserve MIXED and do not authorize Luna-47."
 ---
 
 # Luna-46 corrective verification
@@ -135,6 +135,28 @@ The corrected initial and replay analytical outputs are byte-identical
 (SHA-256 `a4220d7796d0b99c709ef3dfd265be12146d574c8644f1e0e080a9c9c808b7c0`).
 The three retained phase-pair canonical byte checks also passed.
 
+## Independent corrective review
+
+**OBSERVED:** Luna-0 independently reviewed publication commit
+`3fba4ac3b60e6d4f5dd6c08a5a8e9af54110e7b2`, corrective code revision
+`96d015ecd8f6b5684237c489898ee33e4496a1cd`, and this output. Disposition:
+**PASS — corrective evidence review; scientific verdict remains MIXED**.
+The reviewer independently checked the path guard, analytical-rate rationale,
+all 33 retained input identities, raw enqueue/reception reconciliation,
+recurrence, replay, categories, cutoffs, and frozen fixture hashes. No
+corrective mismatch was found.
+
+The review clarifies that mixed-sign cases are conservatively classified as
+uniqueness-unproven; this is not an exhaustive signed-root solver and does not
+enumerate possible multiple roots. It also notes the ordinary filesystem
+time-of-check/time-of-use boundary: a concurrent replacement of parent
+symlinks or junctions after validation is outside the guard's guarantee.
+Neither caveat changes the retained classifications or verdict.
+
+This disposition is not owner approval, architecture promotion, or
+authorization of Luna-47. No repository files were changed and no analysis
+was rerun as part of the independent review.
+
 ## Validation record
 
 | Command or procedure | Revision / environment / seed | Observed result | Evidence |
@@ -160,14 +182,14 @@ input was regenerated, no alternate configuration was run, and no parameter
 was changed. Critical-rate values are analytical results only and are not
 production tuning recommendations.
 
-**UNRESOLVED:** A fresh Luna-0 reviewer must independently verify the output
-guard, rate classification matrix, retained artifact identities, and the
-Windows materialization exception before this corrective pass is considered
-independently reviewed. PR #6 still has its stale description because no
-authenticated GitHub write session is available.
+**UNRESOLVED:** The full suite remains failed on the Windows pinned-source
+materialization checks described above. The reviewer independently confirmed
+that the Git LF-to-CRLF conversion under global `core.autocrlf=true` explains
+the source-hash difference; this is a platform materialization limitation,
+not a new Luna-46 corrective regression. The PR #6 description remains stale
+because GitHub CLI is unauthenticated and the browser session is signed out.
 
 ## Next assignment
 
-Request a read-only Luna-0 review of the corrective implementation, this
-handoff, and the new artifact. Preserve the `MIXED` result unless independent
-verification invalidates it. Do not authorize Luna-47.
+No further successor is authorized. Preserve the `MIXED` result. Do not
+authorize Luna-47.
