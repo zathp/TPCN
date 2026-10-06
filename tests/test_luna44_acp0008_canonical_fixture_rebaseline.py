@@ -47,6 +47,43 @@ def _synthetic_sequence(values: tuple[tuple[float, float, float], ...]):
     return sequence
 
 
+def _route_pair():
+    return (
+        {
+            "event_id": "emission-1",
+            "queue_sequence": 1,
+            "source": "source",
+            "destination": "relay",
+            "event_type": "excursion",
+            "enqueue_timestamp": 1.0,
+            "scheduled_delivery_timestamp": 2.0,
+            "payload": 0.5,
+            "payload_bits": luna44._bits(0.5),
+            "route_path": ["source", "relay"],
+            "route_depth": 1,
+            "lineage_id": "lineage-1",
+            "causal_roots": ["root-1"],
+            "originating_emission_id": "emission-1",
+        },
+        {
+            "event_id": "emission-1",
+            "queue_sequence": 1,
+            "source": "source",
+            "destination": "relay",
+            "receiver_node": "relay",
+            "event_type": "excursion",
+            "reception_timestamp": 2.0,
+            "payload": 0.5,
+            "payload_bits": luna44._bits(0.5),
+            "route_path": ["source", "relay"],
+            "route_depth": 1,
+            "lineage_id": "lineage-1",
+            "causal_roots": ["root-1"],
+            "originating_emission_id": "emission-1",
+        },
+    )
+
+
 def test_fixture_loads_from_retained_files_without_generator_or_builder():
     fixture, provenance = luna44.load_fixture()
     assert len(fixture["sequences"]) == 5 * 64
@@ -304,6 +341,33 @@ def test_relay_classification_onward_reconciliation_and_resource_bounds():
     )
     record = luna44._run_character(arm="CALIBRATED", sequence=sequence)
     assert record["causality_reconciles"]
+    assert record["routing_reconciliation"]["reconciles"]
+    assert record["routing_enqueue_events"]
+    assert record["receiver_reception_events"]
+    assert record["runtime_events"]
+    for hop in ("source_to_relay", "relay_to_destination"):
+        reconciliation = record["routing_reconciliation"][hop]
+        assert reconciliation["reconciles"]
+        assert reconciliation["enqueued_count"] == reconciliation["received_count"]
+        assert reconciliation["matched_count"] == reconciliation["enqueued_count"]
+        assert reconciliation["unmatched_enqueue_count"] == 0
+        assert reconciliation["orphan_reception_count"] == 0
+        assert reconciliation["duplicate_count"] == 0
+        assert reconciliation["payload_mismatch_count"] == 0
+        assert reconciliation["timing_mismatch_count"] == 0
+        assert reconciliation["route_path_mismatch_count"] == 0
+    for enqueue in record["routing_enqueue_events"]:
+        reception = next(
+            item
+            for item in record["receiver_reception_events"]
+            if item["event_id"] == enqueue["event_id"]
+        )
+        assert enqueue["payload_bits"] == reception["payload_bits"]
+        assert enqueue["scheduled_delivery_timestamp"] == reception["reception_timestamp"]
+        assert enqueue["route_path"] == reception["route_path"]
+        assert reception["receiver_state_transition"]["processed_events_after"] == (
+            reception["receiver_state_transition"]["processed_events_before"] + 1
+        )
     assert record["counts"]["source_emissions"] == record["counts"]["source_to_relay_transfers"]
     assert record["counts"]["source_emissions"] == record["counts"]["source_to_relay_receptions"]
     assert record["counts"]["source_to_relay_receptions"] == len(record["source_to_relay_receptions"])
@@ -362,6 +426,66 @@ def test_relay_classification_onward_reconciliation_and_resource_bounds():
         for item in high_water["eligibility_ledgers"]
     )
     assert record["settling"]["completed"]
+
+
+def test_route_reconciliation_accepts_independent_matching_records():
+    enqueue, reception = _route_pair()
+
+    result = luna44._reconcile_route_events([enqueue], [reception])
+
+    assert result["reconciles"]
+    assert result["enqueued_count"] == 1
+    assert result["received_count"] == 1
+    assert result["matched_count"] == 1
+    assert result["mismatch_count"] == 0
+
+
+@pytest.mark.parametrize(
+    ("mutation", "expected_count"),
+    [
+        (lambda enqueue, reception: reception.update(payload_bits=luna44._bits(0.75)),
+         "payload_mismatch_count"),
+        (lambda enqueue, reception: reception.update(event_id="different-event"),
+         "event_id_mismatch_count"),
+        (lambda enqueue, reception: reception.update(receiver_node="destination"),
+         "identity_mismatch_count"),
+        (lambda enqueue, reception: reception.update(reception_timestamp=2.5),
+         "timing_mismatch_count"),
+        (lambda enqueue, reception: reception.update(route_path=["source", "other"]),
+         "route_path_mismatch_count"),
+        (lambda enqueue, reception: reception.update(lineage_id="different-lineage"),
+         "provenance_mismatch_count"),
+    ],
+)
+def test_route_reconciliation_rejects_mismatched_copies(mutation, expected_count):
+    enqueue, reception = _route_pair()
+    mutation(enqueue, reception)
+
+    result = luna44._reconcile_route_events([enqueue], [reception])
+
+    assert not result["reconciles"]
+    assert result[expected_count] > 0
+
+
+@pytest.mark.parametrize(
+    ("enqueues", "receptions", "expected_count"),
+    [
+        (lambda item: [item], lambda item: [], "unmatched_enqueue_count"),
+        (lambda item: [], lambda item: [item], "orphan_reception_count"),
+        (lambda item: [item], lambda item: [item, dict(item)], "duplicate_count"),
+    ],
+)
+def test_route_reconciliation_rejects_missing_or_duplicate_events(
+    enqueues,
+    receptions,
+    expected_count,
+):
+    enqueue, reception = _route_pair()
+
+    result = luna44._reconcile_route_events(enqueues(enqueue), receptions(reception))
+
+    assert not result["reconciles"]
+    assert result[expected_count] > 0
 
 
 def test_direct_and_integration_mediated_emission_classification():
