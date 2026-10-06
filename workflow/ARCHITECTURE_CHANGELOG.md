@@ -1,5 +1,28 @@
 # Architecture Changelog
 
+## Luna-46 corrective implementation and independent review — 2026-10-06
+
+**Corrective evidence review PASS; scientific verdict remains MIXED.** The
+bounded implementation correction is commit
+`96d015ecd8f6b5684237c489898ee33e4496a1cd`; the independent Luna-0 review and
+corrective verification record are published in
+`19d94cd967c065785bbd6be0ef3c3f653b65d7c3`. The retained corrected output is
+`artifacts/luna46-depth-scaling-diagnostic-corrective-20261006.json`.
+
+The correction protects the frozen Luna-44 fixture and retained evidence
+from overlapping output paths, and adds analytical critical-rate statuses
+without changing the retained partition or verdict. Luna-0 independently
+reviewed the correction and its retained evidence: **PASS**. This is
+diagnostic/mechanistic evidence only; it is not efficacy evidence,
+architecture promotion, or authorization of further work.
+
+Retained limitations: mixed-sign cases are conservatively classified as
+uniqueness-unproven rather than exhaustively root-solved; output-path
+validation cannot eliminate a filesystem alias replacement race after
+validation and before writing. The full Windows test suite remains failed on
+the documented pinned-source materialization issue; failures were not
+suppressed. **No successor Luna is authorized.**
+
 ## Luna-0 independent review — Luna-46 retained depth-scaling diagnostic — 2026-10-06
 
 **PASS for the bounded evidence gates; diagnostic disposition MIXED.**
