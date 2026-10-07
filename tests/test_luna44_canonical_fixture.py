@@ -13,6 +13,7 @@ from scripts.build_luna44_canonical_fixture import (
     _compare_materializations,
     _fixture_json_bytes,
     _materialization_record,
+    _source_identity,
     batch_ordinals,
     canonical_fixture_digest,
     canonical_raw_rows,
@@ -162,6 +163,32 @@ def test_batch_ordinals_use_numeric_timestamp_equality_and_preserve_order():
         )
 
 
+def test_source_identity_uses_git_bytes_and_records_checkout_bytes(tmp_path):
+    relative_path = "run_luna34_excursion_v1_multi_emitter_bridge.py"
+    canonical_bytes = (ROOT / relative_path).read_bytes()
+    checkout_bytes = canonical_bytes.replace(b"\n", b"\r\n")
+    source_path = tmp_path / "generator.py"
+    source_path.write_bytes(checkout_bytes)
+
+    identity = _source_identity(source_path, relative_path)
+
+    assert identity["canonical_sha256"] == (
+        "17e581cf702fae1f56889472a967d2e8e5fec37cc041edba8247da14a0a8b5db"
+    )
+    assert identity["execution_sha256"] != identity["canonical_sha256"]
+
+
+def test_source_identity_rejects_non_line_ending_source_change(tmp_path):
+    relative_path = "run_luna34_excursion_v1_multi_emitter_bridge.py"
+    source_path = tmp_path / "generator.py"
+    source_path.write_bytes((ROOT / relative_path).read_bytes() + b"\n")
+
+    with pytest.raises(
+        RuntimeError, match="materialized source differs from the pinned Git object"
+    ):
+        _source_identity(source_path, relative_path)
+
+
 def test_two_fresh_process_materializations_match_committed_fixture(tmp_path):
     fixture_bytes, provenance = materialize_independently(tmp_path / "runs")
     materialization_a, materialization_b = provenance["materializations"]
@@ -203,6 +230,9 @@ def test_materialization_comparison_rejects_duplicated_or_mismatching_records(
         completed_at_utc=materialization_b["completed_at_utc"],
         output_directory=Path(materialization_b["output_directory"] + "-mismatch"),
     )
+    mismatching["materializer_source_sha256"] = materialization_a[
+        "materializer_source_sha256"
+    ]
     with pytest.raises(ValueError, match="independent fixture materializations differ"):
         _compare_materializations(
             materialization_a, fixture_bytes, mismatching, changed_bytes

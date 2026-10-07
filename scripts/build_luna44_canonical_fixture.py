@@ -5,6 +5,8 @@ Run once before any neural execution:
 
 This script invokes only the authorized Luna-34 training-point-sequence
 generator. It never calls a scientific runner or reads labels or metadata.
+Pinned source identities are read from Git objects; checkout line endings are
+recorded separately from the bytes executed by the generator.
 """
 
 from __future__ import annotations
@@ -52,6 +54,34 @@ def _canonical_json_bytes(value: Any) -> bytes:
 
 def _sha256(value: bytes) -> str:
     return hashlib.sha256(value).hexdigest()
+
+
+def _canonical_source_bytes(relative_path: str) -> bytes:
+    try:
+        return subprocess.run(
+            ["git", "cat-file", "blob", f"{SOURCE_REVISION}:{relative_path}"],
+            cwd=ROOT,
+            check=True,
+            capture_output=True,
+        ).stdout
+    except subprocess.CalledProcessError as error:
+        raise RuntimeError(
+            f"pinned source Git object is unavailable: {SOURCE_REVISION}:{relative_path}"
+        ) from error
+
+
+def _source_identity(path: Path, relative_path: str) -> dict[str, str]:
+    execution_bytes = path.read_bytes()
+    canonical_bytes = _canonical_source_bytes(relative_path)
+    normalized_execution_bytes = execution_bytes.replace(b"\r\n", b"\n")
+    if normalized_execution_bytes != canonical_bytes:
+        raise RuntimeError(
+            f"materialized source differs from the pinned Git object: {relative_path}"
+        )
+    return {
+        "canonical_sha256": _sha256(canonical_bytes),
+        "execution_sha256": _sha256(execution_bytes),
+    }
 
 
 def _fixture_json_bytes(value: Any) -> bytes:
@@ -136,16 +166,18 @@ def canonical_fixture_digest(fixture: dict[str, Any]) -> str:
 
 
 def _build_fixture() -> tuple[dict[str, Any], dict[str, Any]]:
-    import run_luna34_excursion_v1_multi_emitter_bridge as generator
-
     generator_path = ROOT / "run_luna34_excursion_v1_multi_emitter_bridge.py"
-    generator_sha256 = _sha256(generator_path.read_bytes())
-    if generator_sha256 != EXPECTED_GENERATOR_SHA256:
+    generator_identity = _source_identity(
+        generator_path, "run_luna34_excursion_v1_multi_emitter_bridge.py"
+    )
+    if generator_identity["canonical_sha256"] != EXPECTED_GENERATOR_SHA256:
         raise RuntimeError("authorized generator source differs from the pinned baseline")
     spiral_path = ROOT / "tpcn" / "spiral_benchmark.py"
-    spiral_sha256 = _sha256(spiral_path.read_bytes())
-    if spiral_sha256 != EXPECTED_SPIRAL_BENCHMARK_SHA256:
+    spiral_identity = _source_identity(spiral_path, "tpcn/spiral_benchmark.py")
+    if spiral_identity["canonical_sha256"] != EXPECTED_SPIRAL_BENCHMARK_SHA256:
         raise RuntimeError("authorized point generator differs from the pinned baseline")
+
+    import run_luna34_excursion_v1_multi_emitter_bridge as generator
 
     sequences: list[dict[str, Any]] = []
     for seed in SEEDS:
@@ -232,13 +264,15 @@ def _build_fixture() -> tuple[dict[str, Any], dict[str, Any]]:
                 "module": "run_luna34_excursion_v1_multi_emitter_bridge",
                 "function": "_training_point_sequences",
                 "source_path": "run_luna34_excursion_v1_multi_emitter_bridge.py",
-                "source_sha256": generator_sha256,
+                "source_sha256": generator_identity["canonical_sha256"],
+                "execution_source_sha256": generator_identity["execution_sha256"],
             },
             "point_generator": {
                 "module": "tpcn.spiral_benchmark",
                 "function": "make_spiral_dataset",
                 "source_path": "tpcn/spiral_benchmark.py",
-                "source_sha256": spiral_sha256,
+                "source_sha256": spiral_identity["canonical_sha256"],
+                "execution_source_sha256": spiral_identity["execution_sha256"],
             },
             "source_repository_revision": SOURCE_REVISION,
             "point_generation_parameters": {

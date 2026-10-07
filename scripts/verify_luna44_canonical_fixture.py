@@ -1,4 +1,8 @@
-"""Independently verify Luna-44 fixture provenance and materialization evidence."""
+"""Independently verify Luna-44 fixture provenance and materialization evidence.
+
+Source identities are verified from their pinned Git objects rather than
+platform-dependent checkout bytes.
+"""
 
 from __future__ import annotations
 
@@ -128,9 +132,6 @@ def _verify_source_files(
             raise FixtureVerificationError(f"source path escapes repository: {role}")
         if not source_path.is_file():
             raise FixtureVerificationError(f"missing source file: {record['path']}")
-        source_sha256 = _sha256(source_path.read_bytes())
-        if source_sha256 != record.get("sha256"):
-            raise FixtureVerificationError(f"source SHA-256 mismatch: {record['path']}")
         revision = record.get("revision")
         if not isinstance(revision, str) or not revision:
             raise FixtureVerificationError(f"missing source revision: {record['path']}")
@@ -145,7 +146,7 @@ def _verify_source_files(
             raise FixtureVerificationError(
                 f"source revision cannot provide {record['path']}: {revision}"
             ) from error
-        if _sha256(committed) != record["sha256"]:
+        if _sha256(committed) != record.get("sha256"):
             raise FixtureVerificationError(
                 f"pinned revision source SHA-256 mismatch: {record['path']}"
             )
