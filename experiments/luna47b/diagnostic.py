@@ -9,6 +9,7 @@ from pathlib import Path
 import statistics
 import subprocess
 import sys
+from unittest.mock import patch
 
 import run_luna46_depth_scaling_diagnostic as retained
 
@@ -124,18 +125,37 @@ def trajectory(rows: list[dict], gain: float) -> dict:
 def reconstruct() -> tuple[dict, dict]:
     # Reuse reviewed read-only integrity/reconciliation routines, not its CLI
     # (which intentionally enforces the historical Luna-46 branch).
-    ensure((ROOT / RETAINED).read_bytes() == git("show", f"{EVIDENCE_BASE}:{RETAINED.as_posix()}"),
-           "retained corrected artifact changed")
+    materialization = {}
+    cache = {}
+    def committed_bytes(path: Path) -> bytes:
+        relative = path.relative_to(ROOT).as_posix()
+        if relative not in cache:
+            committed = git("show", f"{EVIDENCE_BASE}:{relative}")
+            worktree = path.read_bytes()
+            ensure(worktree == committed or worktree == committed.replace(b"\n", b"\r\n"),
+                   "evidence differs beyond Git checkout materialization")
+            ensure(git("rev-parse", f"HEAD:{relative}") ==
+                   git("rev-parse", f"{EVIDENCE_BASE}:{relative}"),
+                   "evidence Git blob changed")
+            cache[relative] = committed
+            materialization[relative] = {
+                "consumed_committed_sha256": retained.sha(committed),
+                "consumed_revision": EVIDENCE_BASE, "byte_length": len(committed),
+                "worktree_sha256": retained.sha(worktree),
+                "worktree_equal": worktree == committed,
+                "checkout_only_crlf": worktree != committed}
+        return cache[relative]
     for path in ("run_luna46_depth_scaling_diagnostic.py",):
         ensure((ROOT / path).read_bytes().replace(b"\r\n", b"\n")
                == git("show", f"{BASE}:{path}"),
                "reviewed analyzer changed")
-    integrity = retained.verify_integrity(ROOT)
-    document = json.loads((ROOT / RETAINED).read_bytes())
+    with patch.object(retained, "read_bytes", committed_bytes):
+        integrity = retained.verify_integrity(ROOT)
+    document = json.loads(committed_bytes(ROOT / RETAINED))
     ensure(retained.digest({k: v for k, v in document.items() if k != "output_digest"})
            == document["output_digest"], "corrected output internal digest differs")
     ensure(document["verdict"] == "MIXED", "retained verdict differs")
-    load = lambda path: json.loads((ROOT / path).read_bytes())
+    load = lambda path: json.loads(committed_bytes(ROOT / path))
     config = load(retained.L45 / "config.json")["experiment"]
     retained.validate_config(config, load(retained.L44 / "config.json")["experiment"])
     summary = load(retained.L45 / "summary.json")
@@ -163,8 +183,9 @@ def reconstruct() -> tuple[dict, dict]:
     ensure(dict(Counter(s["category"] for s in document["sequences"])) == EXPECTED_COUNTS,
            "retained category partition differs")
     return document, {"integrity": integrity, "phase_digests": phases,
-                      "retained_sha256": retained.sha((ROOT / RETAINED).read_bytes()),
-                      "configuration_digest": retained.digest(config)}
+                      "retained_sha256": retained.sha(committed_bytes(ROOT / RETAINED)),
+                      "configuration_digest": retained.digest(config),
+                      "materialization": materialization}
 
 
 def analyze(document: dict) -> dict:

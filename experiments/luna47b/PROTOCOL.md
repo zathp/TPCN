@@ -52,6 +52,13 @@ timestamps, discrete threshold decisions, copied data, digests and replay
 are exact. Only source-code/protocol commit checks permit Windows CRLF-to-LF
 text materialization; retain both raw worktree and committed source hashes.
 Evidence files, numerical values and artifacts are never normalized.
+If checkout text has CRLF, consume the immutable evidence Git blobs at the
+declared production/evidence revision directly in memory, verify their exact
+retained hashes and current blob identity, and record both committed and
+checkout hashes/lengths. Permit only identical bytes or exact LF-to-CRLF Git
+materialization in the checkout; any other mismatch blocks. No evidence file
+is rewritten. The reviewed verifier's read-only byte loader is temporarily
+bound to this committed-blob reader; its verification logic is unchanged.
 Threshold comparisons have no tolerance. Bound states by 4;
 validate finite inputs, dt, gains, deposits and states, at most 320 sequences,
 512 update boundaries per sequence and 7 global arms. No random seed is used.
