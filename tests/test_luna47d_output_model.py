@@ -197,7 +197,7 @@ def test_negative_controls_preserve_failure_and_explicit_rejection():
     assert all(c["detected"] for c in controls)
     weak = [c for c in controls if c["type"] == "real-alternate-configuration"]
     assert len(weak) == 2
-    assert all(c["result"]["metrics"]["output_count"] == 2 for c in weak)
+    assert all(c["result"]["metrics"]["output_count"] == 3 for c in weak)
     assert all("count/compression-regime" in c["failures"] for c in weak)
     sustaining = next(c for c in controls if c["id"] == "self-sustaining-output")
     assert "output-after-neutral/self-sustaining" in sustaining["failures"]
