@@ -127,7 +127,8 @@ def reconstruct() -> tuple[dict, dict]:
     ensure((ROOT / RETAINED).read_bytes() == git("show", f"{EVIDENCE_BASE}:{RETAINED.as_posix()}"),
            "retained corrected artifact changed")
     for path in ("run_luna46_depth_scaling_diagnostic.py",):
-        ensure((ROOT / path).read_bytes() == git("show", f"{BASE}:{path}"),
+        ensure((ROOT / path).read_bytes().replace(b"\r\n", b"\n")
+               == git("show", f"{BASE}:{path}"),
                "reviewed analyzer changed")
     integrity = retained.verify_integrity(ROOT)
     document = json.loads((ROOT / RETAINED).read_bytes())
@@ -224,8 +225,12 @@ def run(replay_revision: str | None = None) -> dict:
     source_hashes = {}
     for path in (MODULE, PROTOCOL):
         data = (ROOT / path).read_bytes()
-        ensure(data == git("show", f"{revision}:{path.as_posix()}"), "protocol/code not committed")
-        source_hashes[path.as_posix()] = retained.sha(data)
+        committed = git("show", f"{revision}:{path.as_posix()}")
+        ensure(data.replace(b"\r\n", b"\n") == committed, "protocol/code not committed")
+        source_hashes[path.as_posix()] = {
+            "worktree_sha256": retained.sha(data),
+            "committed_sha256": retained.sha(committed),
+            "comparison": "CRLF-to-LF text materialization only; evidence bytes never normalized"}
     document, provenance = reconstruct()
     result = analyze(document)
     replay = analyze(document)
