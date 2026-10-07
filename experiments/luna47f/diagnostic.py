@@ -92,7 +92,8 @@ def classify(graph, source, target):
     incoming = {e["source"] for e in edges if e["destination"] == target}
     outgoing = {e["destination"] for e in edges if e["source"] == source}
     usage = {"fan_in_limit": len(incoming), "fan_out_limit": len(outgoing),
-             "edge_capacity": len(edges), "routing_capacity": len(edges)}
+             "edge_capacity": len(edges),
+             "routing_capacity": sum(e["source"] == source for e in edges)}
     saturated = {k: usage[k] >= graph[k] if k in graph else None for k in usage}
     feasible = None if None in saturated.values() else not any(saturated.values()) and not duplicate and not cycle
     hops, delay = distance(graph, source, target)
@@ -331,6 +332,16 @@ def safe_output():
     return path
 
 
+def validate_retained(retained, result, inventory, pre):
+    require(canonical(retained["analysis"]) == canonical(result["analysis"]),
+            "retained analysis drift")
+    require(retained["analysis_sha256"] == result["analysis_sha256"], "retained analysis hash drift")
+    require(retained["protocol_sha256"] == result["protocol_sha256"], "retained protocol drift")
+    require(retained["source_inventory"] == inventory, "retained input drift")
+    require(retained["non_mutation"]["pre"] == pre, "protected snapshot drift")
+    require(retained["code_sha256"] == result["code_sha256"], "code drift")
+
+
 def run(check=False):
     output = safe_output()
     require(check or not output.exists(), "output already exists; use --check")
@@ -406,10 +417,7 @@ def run(check=False):
                               for p in ("initial", "replay")}}
     if check:
         retained = json.loads(output.read_bytes())
-        require(retained["analysis_sha256"] == result["analysis_sha256"], "retained analysis drift")
-        require(retained["source_inventory"] == inventory, "retained input drift")
-        require(retained["non_mutation"]["pre"] == pre, "protected snapshot drift")
-        require(retained["code_sha256"] == result["code_sha256"], "code drift")
+        validate_retained(retained, result, inventory, pre)
         print("PASS: retained analysis, replay, inputs, code and protected hashes")
     else:
         output.parent.mkdir(parents=True, exist_ok=True)

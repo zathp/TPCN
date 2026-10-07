@@ -47,9 +47,21 @@ def test_classifications_without_mutation(graph):
     assert d.canonical(short) == d.canonical(d.classify(graph, "source", "destination"))
 
 
+def test_routing_capacity_is_per_source(graph):
+    graph["routing_capacity"] = 2
+    graph["edge_capacity"] = 10
+    graph["edges"].extend(
+        {"source": "unrelated-"+str(i), "destination": "other-"+str(i), "delay": 1.0}
+        for i in range(3)
+    )
+    result = d.classify(graph, "source", "destination")
+    assert result["saturated"]["routing_capacity"] is False
+    assert result["capacity_feasible_novel"] is True
+
+
 @pytest.mark.parametrize("limit", ["fan_in_limit", "fan_out_limit", "edge_capacity", "routing_capacity"])
 def test_saturation(graph, limit):
-    graph[limit] = 1 if limit.startswith("fan_") else 2
+    graph[limit] = 1 if limit.startswith("fan_") or limit == "routing_capacity" else 2
     result = d.classify(graph, "source", "destination")
     assert result["saturated"][limit] is True
     assert result["capacity_feasible_novel"] is False
@@ -225,6 +237,39 @@ def test_fixed_output_guard_and_existing_output(tmp_path, monkeypatch):
     with pytest.raises(ValueError, match="already exists"):
         d.run()
     assert output.read_bytes() == b"unchanged"
+
+
+def test_retained_analysis_content_checked_even_with_matching_hash(graph):
+    analysis = d.classify(graph, "source", "destination")
+    result = {
+        "analysis": analysis,
+        "analysis_sha256": d.sha(d.canonical(analysis)),
+        "protocol_sha256": "protocol-hash",
+        "source_inventory": {},
+        "non_mutation": {"pre": {}},
+        "code_sha256": "code-hash",
+    }
+    retained = deepcopy(result)
+    retained["analysis"]["capacity_status"] = "CORRUPTED"
+    retained["analysis_sha256"] = d.sha(d.canonical(retained["analysis"]))
+    with pytest.raises(ValueError, match="retained analysis drift"):
+        d.validate_retained(retained, result, {}, {})
+
+
+def test_retained_protocol_hash_checked(graph):
+    analysis = d.classify(graph, "source", "destination")
+    result = {
+        "analysis": analysis,
+        "analysis_sha256": d.sha(d.canonical(analysis)),
+        "protocol_sha256": "protocol-hash",
+        "source_inventory": {},
+        "non_mutation": {"pre": {}},
+        "code_sha256": "code-hash",
+    }
+    retained = deepcopy(result)
+    retained["protocol_sha256"] = "corrupted-protocol-hash"
+    with pytest.raises(ValueError, match="retained protocol drift"):
+        d.validate_retained(retained, result, {}, {})
 
 
 def test_no_production_imports():
