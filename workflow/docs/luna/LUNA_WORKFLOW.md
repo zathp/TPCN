@@ -1,5 +1,48 @@
 # TPCN Luna Multi-Agent Workflow — Event-Driven Architecture
 
+## Luna-47 evidence-lane authorization — 2026-10-06
+
+**Luna-47A through Luna-47G are AUTHORIZED / NOT EXECUTED**, solely for the
+isolated experimental investigations described in their contracts:
+[47A temporal retention](../../../.github/agents/luna-47a.agent.md),
+[47B drive gain](../../../.github/agents/luna-47b.agent.md),
+[47C noise qualification](../../../.github/agents/luna-47c.agent.md),
+[47D output compression](../../../.github/agents/luna-47d.agent.md),
+[47E hardware realizability](../../../.github/agents/luna-47e.agent.md),
+[47F replay-only candidate generation](../../../.github/agents/luna-47f.agent.md),
+and [47G analog variation robustness](../../../.github/agents/luna-47g.agent.md).
+The project-owner instruction is recorded in the
+[Luna-0 authorization handoff](../../handoffs/luna-0-authorization-luna47-20261006.md).
+
+### Luna-47A execution status — 2026-10-07
+
+**Luna-47A execution is complete with a PARTIALLY SUPPORTED verdict.** The
+completed experiment, replayable results, and handoff are recorded in the
+[Luna-47A WEMA temporal-retention handoff](../../handoffs/luna-47a-wema-temporal-retention-20261006.md).
+Luna-47B through Luna-47G remain authorized and not executed.
+
+The exact experimental source/evidence baseline is
+`2cef8ea4b37a4ae586e3f383511cba63c9268ddc`. Every lane must start from the
+same published Luna-0 authorization revision recorded in that handoff; it
+must be a documentation-only descendant of the stated baseline. Execute each
+lane in an isolated branch/worktree. Retained read-only evidence may be
+shared; lane code, generated changes, and unreviewed results may not. Each
+lane must preserve replayable, machine-readable evidence with source revision,
+configuration, fixture identities/hashes and numerical tolerances. A lane
+that needs another lane's result must report that dependency and may use only
+its separately published, reviewed evidence.
+
+The authorization permits mechanism/evidence work only. The current
+production architecture remains the comparison baseline. There is no
+authorization to promote WEMA or any other experimental model, alter
+production neuron semantics, topology or A01-A15, claim task efficacy or
+hardware equivalence, create an ACP, or execute Luna-48. Preserve Luna-46's
+independently reviewed **MIXED** scientific verdict and retained artifacts;
+do not silently reinterpret its evidence. Each lane must complete its
+handoff, push its changes/artifacts, and stop for independent Luna-0 review.
+Only after review may Luna-0 determine whether a separately bounded follow-up
+or an architecture proposal is warranted.
+
 ## Luna-46 corrective completion — 2026-10-06
 
 **Corrective cycle complete; independent Luna-0 review PASS; scientific

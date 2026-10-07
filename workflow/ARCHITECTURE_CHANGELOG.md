@@ -1,5 +1,23 @@
 # Architecture Changelog
 
+## Luna-47 evidence-lane authorization — 2026-10-06
+
+Luna-47A through Luna-47G are **AUTHORIZED / NOT EXECUTED** for the seven
+isolated investigations recorded in their agent contracts and the
+[Luna-0 authorization handoff](handoffs/luna-0-authorization-luna47-20261006.md).
+The declared production/evidence baseline is
+`2cef8ea4b37a4ae586e3f383511cba63c9268ddc`; all lanes must use the same
+published, documentation-only authorization revision as their isolated
+checkout base.
+
+This is authorization for evidence-only experimental models, analysis and
+simulation. No A01-A15 clause, production neuron semantics, topology,
+architecture contract or ACP is changed. No WEMA promotion, efficacy or
+hardware-equivalence claim, Luna-48, or other successor is authorized.
+Luna-46's MIXED verdict and artifacts remain unchanged. All lane results must
+be pushed and independently reviewed by Luna-0 before any follow-up or ACP
+decision.
+
 ## Luna-46 corrective implementation and independent review — 2026-10-06
 
 **Corrective evidence review PASS; scientific verdict remains MIXED.** The
