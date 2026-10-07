@@ -122,10 +122,15 @@ def main() -> None:
                             files={k: dict(sha256=sha(v), bytes=len(v)) for k, v in payloads.items()})
     if verify:
         retained = json.loads((TARGET / "package-manifest.json").read_bytes())
-        assert retained["script_sha256"] == package_manifest["script_sha256"]
-        assert retained["model_manifest_sha256"] == package_manifest["model_manifest_sha256"]
-        assert retained["files"] == package_manifest["files"]
-        assert all((TARGET / k).read_bytes() == v for k, v in payloads.items())
+        if retained["script_sha256"] != package_manifest["script_sha256"]:
+            raise ValueError("packaging script hash mismatch")
+        if retained["model_manifest_sha256"] != package_manifest["model_manifest_sha256"]:
+            raise ValueError("model manifest linkage mismatch")
+        if retained["files"] != package_manifest["files"]:
+            raise ValueError("package file hashes mismatch")
+        for name, payload in payloads.items():
+            if (TARGET / name).read_bytes() != payload:
+                raise ValueError(f"retained payload mismatch: {name}")
         print("Packaging replay: PASS")
     else:
         payloads["package-manifest.json"] = canonical(package_manifest)

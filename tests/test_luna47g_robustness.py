@@ -142,7 +142,17 @@ def test_event_budget_is_explicit(monkeypatch):
 
 def test_unrepresentable_return_rejected():
     with pytest.raises(ValueError, match="strict-future"):
-        model.simulate(model.nominal(), [[1e20, 4.0]], [0.0])
+        model.simulate(model.nominal(), [[1e16, 4.0]], [0.0])
+
+
+@pytest.mark.parametrize(("events", "shift"), [
+    ([[1e20, 0.6]], 0.0),
+    ([[0.0, 0.6]], 1e20),
+    ([[1e308, 0.6]], 1e308),
+])
+def test_unrepresentable_shifted_or_terminal_time_rejected(events, shift):
+    with pytest.raises(ValueError):
+        model.simulate(model.nominal(), events, [0.0], shift=shift)
 
 
 def test_canonical_and_wilson():

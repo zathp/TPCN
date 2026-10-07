@@ -73,6 +73,7 @@ def simulate(p: dict[str, float], events: list[list[float]],
         raise ValueError("invalid time shift")
     queue: list[tuple[float, int, int, float]] = []
     previous = -1.0
+    last_input_time = None
     for i, ((t, x), n) in enumerate(zip(events, noise)):
         if not all(math.isfinite(v) for v in (t, x, n)) or t < previous or t < 0:
             raise ValueError("nonfinite/late/negative input")
@@ -81,10 +82,16 @@ def simulate(p: dict[str, float], events: list[list[float]],
         v = sign * (x + p["N"] * n)
         if abs(v) > CONFIG["input_bound"]:
             raise ValueError("perturbed input bound")
-        heapq.heappush(queue, (t + shift, 0, i, v))
+        shifted_time = t + shift
+        if not math.isfinite(shifted_time):
+            raise ValueError("nonfinite shifted input time")
+        heapq.heappush(queue, (shifted_time, 0, i, v))
+        last_input_time = shifted_time
         previous = t
-    heapq.heappush(queue, (previous + shift + CONFIG["settle_interval"], 2,
-                          len(events), 0.0))
+    terminal_time = last_input_time + CONFIG["settle_interval"]
+    if not math.isfinite(terminal_time) or terminal_time <= last_input_time:
+        raise ValueError("invalid terminal observation time")
+    heapq.heappush(queue, (terminal_time, 2, len(events), 0.0))
     z = 0.0
     last = shift
     pending = False
