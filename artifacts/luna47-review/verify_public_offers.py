@@ -59,14 +59,18 @@ def fetch(component):
             parsed = json.loads(script)
         except ValueError:
             continue
-        values = parsed if isinstance(parsed, list) else parsed.get("@graph", [parsed])
-        products.extend(v for v in values if v.get("@type") == "Product")
+        values = parsed if isinstance(parsed, list) else (
+            parsed.get("@graph", [parsed]) if isinstance(parsed, dict) else [])
+        products.extend(v for v in values
+                        if isinstance(v, dict) and v.get("@type") == "Product")
     matches = [p for p in products if p.get("mpn") == component["part_number"]]
+    offer_matches = [p for p in matches if p.get("offers")]
     record["exact_product_matches"] = len(matches)
     record["selected_public_offer"] = [
-        {k: p.get(k) for k in ("mpn", "offers")} for p in matches]
+        {k: p.get(k) for k in ("mpn", "offers")} for p in offer_matches]
+    record["public_offer_matches"] = len(offer_matches)
     record["result"] = ("independent exact-part public offer observed"
-                        if status == b"200" and matches else
+                        if result.returncode == 0 and status == b"200" and offer_matches else
                         "BLOCKED: no independently parsed exact-part offer")
     return record
 

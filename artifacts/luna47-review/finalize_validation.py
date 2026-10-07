@@ -31,6 +31,12 @@ def git(*args: str, cwd: Path = ROOT) -> bytes:
     return subprocess.check_output(["git", "--no-pager", *args], cwd=cwd)
 
 
+def normalize_line_endings(data: bytes) -> bytes:
+    normalized = data.replace(b"\r\n", b"\n")
+    assert b"\r" not in normalized, "Python files may use LF or CRLF, not bare CR."
+    return normalized
+
+
 def validate() -> None:
     assert git("branch", "--show-current").decode().strip() == "copilot/luna47-independent-review"
     report: dict = {"schema": "LUNA47-REVIEW-PUBLICATION-1", "lanes": {}, "files": {}}
@@ -53,12 +59,15 @@ def validate() -> None:
         blob = git("show", f":{path}")
         if p.suffix in (".json", ".xml", ".log"):
             assert raw == blob, f"Raw evidence was altered by staging: {path}"
+        elif p.suffix == ".py":
+            assert normalize_line_endings(raw) == normalize_line_endings(blob), (
+                f"Working Python differs from staged content beyond LF/CRLF: {path}")
         if p.suffix == ".json":
             json.loads(raw)
         elif p.suffix == ".xml":
             ET.fromstring(raw)
         elif p.suffix == ".py":
-            ast.parse(raw.decode("utf-8"), filename=path)
+            ast.parse(blob.decode("utf-8"), filename=path)
         report["files"][path] = {
             "file_sha256": hashlib.sha256(raw).hexdigest(),
             "staged_sha256": hashlib.sha256(blob).hexdigest(),

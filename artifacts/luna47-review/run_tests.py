@@ -19,8 +19,10 @@ def run(name, cwd, args, overrides=None):
     env["PYTHONHASHSEED"] = "0"
     env["PYTHONDONTWRITEBYTECODE"] = "1"
     env.update(overrides or {})
+    xml_path = OUT / (name + ".xml")
+    xml_path.unlink(missing_ok=True)
     command = [sys.executable, "-m", "pytest", *args, "-ra",
-               f"--junitxml={OUT / (name + '.xml')}"]
+               f"--junitxml={xml_path}"]
     start = time.monotonic()
     stamp = datetime.datetime.now(datetime.timezone.utc).isoformat()
     with (OUT / (name + ".log")).open("wb") as log:
