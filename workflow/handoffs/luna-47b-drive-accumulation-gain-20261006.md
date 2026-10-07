@@ -9,7 +9,7 @@ tpcn_handoff:
   contract_version: "1.2"
   branch: "copilot/luna47b-investigation"
   base_revision: "789dda5988daf72f375d9713bd76a6da2b9e8b34"
-  result_revision: "38891b8 (exact full execution revision in results.json); outcome/handoff publication follows this revision"
+  result_revision: "1530b9cc79a4241ad7cc7b77dbeb7ea48c2799fc (outcome commit); exact execution revision 38891b81754ce385c55f96e4020e2bf04c2b9a5d"
   dependencies:
     - "Reviewed Luna46 MIXED corrected output and its 33 pinned retained sources"
     - "Production/evidence baseline 2cef8ea4b37a4ae586e3f383511cba63c9268ddc"
@@ -50,7 +50,7 @@ tpcn_handoff:
     - "artifacts/luna47b/validation.json"
     - "workflow/handoffs/luna-47b-drive-accumulation-gain-20261006.md"
   tests_added: ["tests/test_luna47b_gain.py"]
-  tests_passing: ["16 focused tests", "356 applicable regression tests", "initial internal replay", "33-source immutable-byte integrity", "both raw phase reconstructions"]
+  tests_passing: ["16 focused tests", "356 applicable regression tests", "initial internal replay", "clean-tree exact artifact replay", "33-source immutable-byte integrity", "both raw phase reconstructions"]
   tests_failed:
     - "Applicable regression suite: 2 failed, 7 errors; unchanged Windows checkout/materialization failures, not suppressed."
   tests_not_run: ["Full suite", "hardware", "efficacy", "counterfactual production dynamics"]
@@ -200,7 +200,7 @@ identities, provenance gates and output SHA-256 are in `validation.json`.
 | Two complete gain analyses, same canonical bytes/digest | PASS |
 | Focused tests | **16 passed**, no failures/errors/skips, 186.01s |
 | Eight applicable regression files | **356 passed, 2 failed, 7 errors**, 103.47s; suite failed, not waived |
-| Published-artifact clean-tree replay | Pending outcome commit; recorded after execution below |
+| Published-artifact clean-tree replay | **PASS**, exact artifact bytes/SHA-256 at clean outcome commit `1530b9cc79a4241ad7cc7b77dbeb7ea48c2799fc` |
 
 The Luna46 regression failure is `test_real_retained_artifacts_integrity_only`:
 its unchanged reader hashes the CRLF worktree catalog and fails the published
@@ -238,6 +238,10 @@ The initial result has SHA-256
 `b120d2cc5718649fb0d57d93611ddb89b45113e79c0d3003cf330fe092d0fb83`.
 Exact environment/source materialization is recorded; independent
 mathematical replay is also available through focused tests.
+The clean-tree published-artifact replay independently repeated all pinned
+integrity/raw-phase/gain calculations and reproduced the complete artifact
+byte for byte. Analytical initial/replay digest:
+`7e098d9d0fca2262977e2916509c24b723a7133898c618f7c2af595c4c58b16c`.
 
 Rollback affects only this lane's listed files; common authorization
 `789dda5988daf72f375d9713bd76a6da2b9e8b34` is the safe restoration point.

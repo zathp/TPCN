@@ -1,7 +1,7 @@
 {
   "schema": "TPCN-LUNA47B-VALIDATION-1",
   "authorization_revision": "789dda5988daf72f375d9713bd76a6da2b9e8b34",
-  "execution_revision": "38891b8",
+  "execution_revision": "38891b81754ce385c55f96e4020e2bf04c2b9a5d",
   "environment": {
     "os": "Windows",
     "python": "3.11.5",
@@ -59,7 +59,21 @@
     },
     {
       "command": "python -m experiments.luna47b.diagnostic --replay",
-      "status": "pending clean outcome commit"
+      "exit_code": 0,
+      "status": "PASS: exact complete artifact byte equality in clean outcome commit",
+      "replay_at_revision": "1530b9cc79a4241ad7cc7b77dbeb7ea48c2799fc",
+      "result_sha256": "b120d2cc5718649fb0d57d93611ddb89b45113e79c0d3003cf330fe092d0fb83",
+      "analytical_digest": "7e098d9d0fca2262977e2916509c24b723a7133898c618f7c2af595c4c58b16c"
+    },
+    {
+      "command": "python -m py_compile experiments/luna47b/diagnostic.py tests/test_luna47b_gain.py",
+      "exit_code": 0,
+      "scope": "final implementation, before outcome commit"
+    },
+    {
+      "command": "git diff --check; git diff --name-only 789dda5988daf72f375d9713bd76a6da2b9e8b34 HEAD",
+      "exit_code": 0,
+      "status": "PASS: eight files, all in authorized owned path families"
     }
   ],
   "not_run": [
