@@ -134,8 +134,10 @@ def simulate(fixture, config=Config()):
 
     # After final excitation, |q| is monotone; find its first epsilon crossing
     # in the exact event-boundary segments (the analytic metric is not an event).
-    recovery = None
+    recovery = 0.0 if not inputs else None
     for n, row in enumerate(trace):
+        if recovery is not None:
+            break
         if Fraction(row["time"]) < last_input:
             continue
         # Same-time rows must all be processed before declaring recovery.

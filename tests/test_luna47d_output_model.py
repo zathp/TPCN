@@ -141,6 +141,8 @@ def test_same_time_cancellation_and_empty_idle_have_no_idle_ticks():
     idle = simulate(select("idle"))
     assert len(idle["trace"]) == 1
     assert idle["metrics"]["opportunity_count"] == 0
+    assert idle["metrics"]["recovery_time"] == 0
+    assert idle["metrics"]["recovery_delay"] == 0
 
 
 @pytest.mark.parametrize("cfg", [
