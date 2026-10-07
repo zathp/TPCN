@@ -8,7 +8,14 @@ OUT = Path(__file__).resolve().parent
 reports = []
 for execution_path in sorted(OUT.glob("*-execution.json")):
     execution = json.loads(execution_path.read_bytes())
-    name = execution["name"]
+    name = execution_path.name[:-len("-execution.json")]
+    if execution.get("name") != name:
+        reports.append(dict(
+            name=name, pytest_exit=execution.get("exit_code"),
+            execution=execution, xml_status="invalid-execution",
+            counts=None, exceptions=[],
+            xml_error="Execution name does not match its report filename."))
+        continue
     path = OUT / (name + ".xml")
     report = dict(name=name, pytest_exit=execution["exit_code"],
                   execution=execution, xml_status="missing",
