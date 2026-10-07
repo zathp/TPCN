@@ -1,0 +1,109 @@
+{
+  "families": 8,
+  "components": 10,
+  "catalog_source_counts": {
+    "r1": 23,
+    "r2": 23,
+    "r3": 8,
+    "r4": 4,
+    "r5": 2
+  },
+  "independent_exact_part_offers": [
+    "TLV9062IDR",
+    "MCP41010-I/P",
+    "B32529C1104J289",
+    "TLV3201AIDBVR",
+    "1N4148-TAP",
+    "MFR-25FBF52-100K",
+    "LMC555CMX/NOPB",
+    "MCP4921-E/P"
+  ],
+  "owner_access": "BLOCKED",
+  "fpaa_independent_access": "BLOCKED",
+  "verdict": "PARTIALLY SUPPORTED",
+  "schema": "LUNA47E-VALIDATION-1",
+  "status": "PASS",
+  "checked_at_utc": "2026-10-07T01:32:45.098062+00:00",
+  "python": "3.11.5",
+  "platform": "Windows-10-10.0.19045-SP0",
+  "head_at_validation": "d19b2064ce846e6c564d1e34cd306b4ca0f3d036",
+  "authorization_revision": "789dda5988daf72f375d9713bd76a6da2b9e8b34",
+  "production_evidence_baseline": "2cef8ea4b37a4ae586e3f383511cba63c9268ddc",
+  "changed_paths": [
+    "artifacts/luna47e/primitive-matrix.json",
+    "artifacts/luna47e/sources-20261006-retrieval2.json",
+    "artifacts/luna47e/sources-20261006-retrieval3.json",
+    "artifacts/luna47e/sources-20261006-retrieval4.json",
+    "artifacts/luna47e/sources-20261006-retrieval5.json",
+    "artifacts/luna47e/sources-20261006.json",
+    "experiments/luna47e/README.md",
+    "experiments/luna47e/capture_sources.py",
+    "experiments/luna47e/criteria.md",
+    "experiments/luna47e/validate.py",
+    "tests/test_luna47e_evidence.py",
+    "workflow/handoffs/luna-47e-hardware-realizability-20261006.md"
+  ],
+  "validation_boundary": "Structural/source/stock/hash/hand-calculation checks only, no live or circuit equivalence checks.",
+  "file_integrity": [
+    {
+      "path": "artifacts/luna47e/primitive-matrix.json",
+      "bytes": 31399,
+      "sha256": "75eaff4a0e72ad0a1de575d607c5833f3c3554d0879462d67d410a0cf8a1702d"
+    },
+    {
+      "path": "artifacts/luna47e/sources-20261006-retrieval2.json",
+      "bytes": 42730,
+      "sha256": "c4098bc76e1a2cddc47fb221e99c643b2cc09784b820836d5665ecfeef9e9357"
+    },
+    {
+      "path": "artifacts/luna47e/sources-20261006-retrieval3.json",
+      "bytes": 21147,
+      "sha256": "f36cdcb4e3c3fdcf4c1252aebfc9ca9cb20f13fd084a60c3882e2868bbfb4ee0"
+    },
+    {
+      "path": "artifacts/luna47e/sources-20261006-retrieval4.json",
+      "bytes": 12587,
+      "sha256": "f7ceab493e2a92c818439996cfe5702c7ed9de11b8877ee1c74727a5918d76d8"
+    },
+    {
+      "path": "artifacts/luna47e/sources-20261006-retrieval5.json",
+      "bytes": 3981,
+      "sha256": "4f2b11b02fe33c82f6521c5549761e56f7e71654fc9cf133c25fc7db0201fa2e"
+    },
+    {
+      "path": "artifacts/luna47e/sources-20261006.json",
+      "bytes": 40121,
+      "sha256": "afc2365d562312103dabdbf6ffd5ad77012e6e5d3fe511cb11cc825cbe73ec6c"
+    },
+    {
+      "path": "experiments/luna47e/capture_sources.py",
+      "bytes": 11186,
+      "sha256": "54e1107c133da7f71aa0decbc1a65bd92142bf84e13f8f33175e9a1adb9f1649"
+    },
+    {
+      "path": "experiments/luna47e/criteria.md",
+      "bytes": 3108,
+      "sha256": "585bf7aa078a67718cc341f12bce026fb111fbca9dbd0db1018d783411a13210"
+    },
+    {
+      "path": "experiments/luna47e/README.md",
+      "bytes": 15317,
+      "sha256": "6ac034b7c28c858b0572fb85a4f238627f807b924d5be7e8bce756d78185c82b"
+    },
+    {
+      "path": "experiments/luna47e/validate.py",
+      "bytes": 12333,
+      "sha256": "4f93eeae6fa29777d519768b9d6ec747ae211aa93dc40d5ab4d0e3b85c137aff"
+    },
+    {
+      "path": "tests/test_luna47e_evidence.py",
+      "bytes": 5042,
+      "sha256": "ba5eb2559f83795a42c69d673edd25be745d3a294074294801ce913fc31fbe49"
+    },
+    {
+      "path": "workflow/handoffs/luna-47e-hardware-realizability-20261006.md",
+      "bytes": 18937,
+      "sha256": "057662f11c903ea3ab22cf549b855ca0994d177c4fe3d12a7f6c8188483299f6"
+    }
+  ]
+}
