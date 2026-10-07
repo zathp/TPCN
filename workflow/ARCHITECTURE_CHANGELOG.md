@@ -1,5 +1,20 @@
 # Architecture Changelog
 
+## Luna-0 post-Luna-47 review — Luna-48 provenance correction authorized — 2026-10-07
+
+**CORRECTIVE FOLLOW-UP AUTHORIZED; Luna-48 NOT EXECUTED.** Independent
+reproduction confirmed 307 Luna-47 focused passes, 347 historical/core passes,
+and the full-suite result of 1 failed, 7 errors, 1632 passed, 1 skipped.
+The Luna-44 failure is a Windows materialization defect: the pinned historical
+worktree lacks the later LF checkout attribute, producing CRLF source bytes
+that do not match canonical Git-blob hashes before fixture generation. The
+current committed source and fixture identities verify, so the canonical
+fixture remains authoritative. Luna-48 may correct only this provenance path;
+it may not change fixture identity, source pins, parameters, architecture,
+scientific hypotheses, or execute a causal experiment. See the
+[Luna-48 contract](../.github/agents/luna-48.agent.md) and
+[authorization handoff](handoffs/luna-0-authorization-luna48-20261007.md).
+
 ## Luna-47 final corrective pass — 2026-10-07
 
 **FINAL CORRECTIVE PASS INCOMPLETE — no architecture change and no Luna-48

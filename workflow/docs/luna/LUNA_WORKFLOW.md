@@ -1,5 +1,26 @@
 # TPCN Luna Multi-Agent Workflow — Event-Driven Architecture
 
+## Luna-0 post-Luna-47 review — Luna-48 authorized / not executed — 2026-10-07
+
+**CORRECTIVE FOLLOW-UP AUTHORIZED.** Independent review of published commit
+`39bedbce47055a7b180593ea312c6b646510c566` confirmed that the remaining
+Luna-44 gate fails before fixture generation: the pinned historical worktree
+does not carry the later LF checkout attribute, so Windows materializes its
+Python sources as CRLF while the worker compares checkout bytes with canonical
+Git-blob SHA-256 values. The committed source and fixture identities verify
+in the current checkout; the failure is a materialization/provenance defect,
+not evidence that the canonical fixture should change.
+
+Luna-48 is authorized only to correct this provenance path while preserving
+the pinned source revision, fixture bytes, semantic digest, generation
+parameters, and all existing acceptance criteria. Its contract is
+[Luna-48](../../../.github/agents/luna-48.agent.md), and its authorization
+handoff is [here](../../handoffs/luna-0-authorization-luna48-20261007.md).
+Luna-48 is **not executed in this governance pass**. No causal composition of
+Luna-47 mechanisms, production promotion, ACP action, Luna-49, or Luna-48
+scientific readiness is authorized. After the correction, Luna-0 must make a
+separate decision on any single causal mechanism question.
+
 ## Luna-47 final corrective pass — 2026-10-07
 
 **FINAL CORRECTIVE PASS INCOMPLETE — no Luna-48 authorization.** The
