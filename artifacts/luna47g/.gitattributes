@@ -1,0 +1,3 @@
+# Preserve exact evidence payload bytes on Windows checkouts.
+*.json -text whitespace=cr-at-eol
+*.gz -text
