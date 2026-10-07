@@ -1,5 +1,41 @@
 # Architecture Changelog
 
+## Luna-47 final independent evidence review — 2026-10-06
+
+**FOLLOW-UP REQUIRED — promising unresolved mechanisms; no architecture
+change.** Luna-0 reviewed the seven pinned, completed/pushed isolated lanes
+from governance baseline `4b11e0e828fd6fbcb4cbf9b994f121bde54e4c37`.
+No lane implementation was merged, repaired or composed. Independent decisions:
+**A/C/E/F/G PARTIALLY SUPPORTED; B SUPPORTED only for mathematical
+first-boundary gain sufficiency; D SUPPORTED only for frozen synthetic
+compression/bounded-return regimes.**
+
+Retention rescues 19/33 and 31/33 at the two declared finite rates while all
+75 drive-limited negatives remain; gain 3.3203132494971928 crosses all
+75 targets plus 33 non-targets; qualification retains mixed-sign/drift
+failures; synthetic output reconciles 44 inputs/40 outputs; public discrete
+offers do not prove owner access or validated hardware; candidate proxies
+provide one repeated novel endpoint with zero target-emission associations;
+assumed analog failures rise from 0/768 nominal to 631/768 at ±50%.
+E's claimed prior criteria declaration has no separate pre-outcome Git commit.
+These narrower findings are not efficacy, integrated computation, hardware
+equivalence or architecture-promotion evidence.
+
+Validation: **306 fresh focused tests passed**, **332 governance boundary
+regressions plus 21 canonical-neuron/predictive checks passed**.
+Required raw governance full suite: **1,324 passed,
+2 failed, 7 errors, 1 CUDA skip; exit 1**. Pinned-source materialization and
+raw LF/CRLF catalog failures remain failures; immutable Git-byte verification
+is reported separately, not substituted for a green suite.
+
+Evidence: [completed independent handoff](handoffs/luna-0-independent-review-luna47-20261006.md)
+and [review synthesis](../artifacts/luna47-review/SYNTHESIS.md).
+All retained negative/pre-correction history and Luna-46 **MIXED** remain.
+A01–A15, ACP-0007/0008 and production semantics are unchanged.
+**No Luna-48, successor contract/dispatch, integration experiment, ACP action,
+purchase/build or promotion is authorized.** Follow-up questions return to
+the project owner through Luna-0; this review does not create executable work.
+
 ## Luna-47 evidence-lane authorization — 2026-10-06
 
 Luna-47A through Luna-47G are **AUTHORIZED / NOT EXECUTED** for the seven

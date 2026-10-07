@@ -1,0 +1,36 @@
+cwd=C:\Users\zathp\.copilot\session-state\2c38ab9f-63a7-41fb-8437-e11b4732bee9\files\luna47-review
+command=['C:\\Users\\zathp\\Documents\\programming\\TPCN\\.venv\\Scripts\\python.exe', '-m', 'pytest', 'tests\\test_e2_multi_excursion.py', 'tests\\test_eligibility.py', 'tests\\test_energy_utility.py', 'tests\\test_event_runtime.py', 'tests\\test_excursion_integration.py', 'tests\\test_excursion_neuron.py', 'tests\\test_luna11_adversarial.py', 'tests\\test_luna28_excursion_structural_growth.py', 'tests\\test_luna34_excursion_v1_multi_emitter_bridge.py', 'tests\\test_luna35_eligibility_capacity_lifecycle.py', 'tests\\test_luna36_eligibility_capacity_api.py', 'tests\\test_luna37_excursion_v1_propagation_emission_diagnostic.py', 'tests\\test_luna38_excursion_integration_state.py', 'tests\\test_luna40_structural_effective_routed_drive.py', 'tests\\test_structural_plasticity.py', 'tests\\test_topology.py', '-ra', '--junitxml=C:\\Users\\zathp\\.copilot\\session-state\\2c38ab9f-63a7-41fb-8437-e11b4732bee9\\files\\luna47-review\\artifacts\\luna47-review\\governance-boundary.xml']
+PYTHONPATH=C:\Users\zathp\.copilot\session-state\2c38ab9f-63a7-41fb-8437-e11b4732bee9\files\luna47-review
+PYTHONHASHSEED=0
+PYTHONDONTWRITEBYTECODE=1
+started=2026-10-07T01:46:41.731707+00:00
+============================= test session starts =============================
+platform win32 -- Python 3.11.5, pytest-9.1.1, pluggy-1.6.0
+rootdir: C:\Users\zathp\.copilot\session-state\2c38ab9f-63a7-41fb-8437-e11b4732bee9\files\luna47-review
+collected 332 items
+
+tests\test_e2_multi_excursion.py ....................................... [ 11%]
+...                                                                      [ 12%]
+tests\test_eligibility.py .............                                  [ 16%]
+tests\test_energy_utility.py .......                                     [ 18%]
+tests\test_event_runtime.py ..............                               [ 22%]
+tests\test_excursion_integration.py .................................... [ 33%]
+.............                                                            [ 37%]
+tests\test_excursion_neuron.py ......................................... [ 50%]
+....                                                                     [ 51%]
+tests\test_luna11_adversarial.py ..........                              [ 54%]
+tests\test_luna28_excursion_structural_growth.py ....................... [ 61%]
+.....................                                                    [ 67%]
+tests\test_luna34_excursion_v1_multi_emitter_bridge.py .........         [ 70%]
+tests\test_luna35_eligibility_capacity_lifecycle.py ...                  [ 71%]
+tests\test_luna36_eligibility_capacity_api.py .............              [ 75%]
+tests\test_luna37_excursion_v1_propagation_emission_diagnostic.py ...... [ 76%]
+.                                                                        [ 77%]
+tests\test_luna38_excursion_integration_state.py ....................... [ 84%]
+...............                                                          [ 88%]
+tests\test_luna40_structural_effective_routed_drive.py ...........       [ 91%]
+tests\test_structural_plasticity.py ................                     [ 96%]
+tests\test_topology.py ...........                                       [100%]
+
+- generated xml file: C:\Users\zathp\.copilot\session-state\2c38ab9f-63a7-41fb-8437-e11b4732bee9\files\luna47-review\artifacts\luna47-review\governance-boundary.xml -
+============================ 332 passed in 18.21s =============================

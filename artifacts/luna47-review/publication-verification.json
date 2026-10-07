@@ -1,0 +1,339 @@
+{
+  "schema": "LUNA47-REVIEW-PUBLICATION-1",
+  "lanes": {
+    "a": {
+      "head": "eb56684eaa10dc9b765927ef8e883c7d56cb025b",
+      "remote": "eb56684eaa10dc9b765927ef8e883c7d56cb025b",
+      "status": ""
+    },
+    "b": {
+      "head": "41a0a28f6f85023b8933a47650f66628b0a9ceb0",
+      "remote": "41a0a28f6f85023b8933a47650f66628b0a9ceb0",
+      "status": ""
+    },
+    "c": {
+      "head": "609b2e5f8a7ae123f9b7f7da5c89378e29353624",
+      "remote": "609b2e5f8a7ae123f9b7f7da5c89378e29353624",
+      "status": ""
+    },
+    "d": {
+      "head": "deb01f07a0d6b315855d2fab57d558be303f95f3",
+      "remote": "deb01f07a0d6b315855d2fab57d558be303f95f3",
+      "status": ""
+    },
+    "e": {
+      "head": "4e413415a31853877333810d7093f415f93f72f7",
+      "remote": "4e413415a31853877333810d7093f415f93f72f7",
+      "status": ""
+    },
+    "f": {
+      "head": "8cddf9d5d3fc0ea6971dc54645e8033c290dc852",
+      "remote": "8cddf9d5d3fc0ea6971dc54645e8033c290dc852",
+      "status": ""
+    },
+    "g": {
+      "head": "42698364392901de955ca04a770c975a1b0a94d2",
+      "remote": "42698364392901de955ca04a770c975a1b0a94d2",
+      "status": ""
+    }
+  },
+  "files": {
+    "artifacts/luna47-review/.gitattributes": {
+      "file_sha256": "47fa415edacc76c6ac4ccfc3c0567079f1243e8af8d3683f6f0db92ec380195f",
+      "staged_sha256": "d1a4feedb470ba3e76b90e45123f798c901a32cdae9e8d883b06aa2c3a7defbf",
+      "bytes": 76
+    },
+    "artifacts/luna47-review/SYNTHESIS.md": {
+      "file_sha256": "a52268799fdb21bc8aeb3412121ed236eb3149a12db84b0c5c156bd976fbd851",
+      "staged_sha256": "25b0d23e5b2433e9c635d5d85607857ab16435e49dfd14159890127a5fbca36a",
+      "bytes": 15397
+    },
+    "artifacts/luna47-review/finalize_validation.py": {
+      "file_sha256": "3f035ff49ac80074e7d6f65343668e66a19798af9b9c21f1e988d21640450aac",
+      "staged_sha256": "0cf32fa8d878647908eac3177b4d9466c7108e0c6904a9577208d3fe0cd5ae66",
+      "bytes": 4675
+    },
+    "artifacts/luna47-review/governance-boundary-execution.json": {
+      "file_sha256": "08582b69ed4cbe39c7108882997ad3fae15cc316654bdb31d714ccb864b5efb7",
+      "staged_sha256": "08582b69ed4cbe39c7108882997ad3fae15cc316654bdb31d714ccb864b5efb7",
+      "bytes": 1903
+    },
+    "artifacts/luna47-review/governance-boundary.log": {
+      "file_sha256": "bdc0a7d481b5fc93b3453ef7dfba4c9d283d0b120e114adbbb89afa761e3c46e",
+      "staged_sha256": "bdc0a7d481b5fc93b3453ef7dfba4c9d283d0b120e114adbbb89afa761e3c46e",
+      "bytes": 3580
+    },
+    "artifacts/luna47-review/governance-boundary.xml": {
+      "file_sha256": "26873475d2abf293ac4c8e84b95c1d86b5dd51dec3336a9590ba78bb985c9a4b",
+      "staged_sha256": "26873475d2abf293ac4c8e84b95c1d86b5dd51dec3336a9590ba78bb985c9a4b",
+      "bytes": 46264
+    },
+    "artifacts/luna47-review/governance-full-execution.json": {
+      "file_sha256": "895aa7f1ee7968fe2d003dc59de0427e70c2805b838f2fe6e00c0092031e6291",
+      "staged_sha256": "895aa7f1ee7968fe2d003dc59de0427e70c2805b838f2fe6e00c0092031e6291",
+      "bytes": 1131
+    },
+    "artifacts/luna47-review/governance-full.log": {
+      "file_sha256": "5a6abdc52a5ca92bab58ccf97d270523d5347c36a923bf84cb93867ce832c52b",
+      "staged_sha256": "5a6abdc52a5ca92bab58ccf97d270523d5347c36a923bf84cb93867ce832c52b",
+      "bytes": 53218
+    },
+    "artifacts/luna47-review/governance-full.xml": {
+      "file_sha256": "a9844e899d53d90b9bfa046110629aeb9b2590787591a51d34e9d5f53b2b3e3b",
+      "staged_sha256": "a9844e899d53d90b9bfa046110629aeb9b2590787591a51d34e9d5f53b2b3e3b",
+      "bytes": 240217
+    },
+    "artifacts/luna47-review/governance-newline-override-execution.json": {
+      "file_sha256": "d6dde3fa8010c8e885db2b1a2a122132cc53bda24f6703ff0e7f221f7c1f6b07",
+      "staged_sha256": "d6dde3fa8010c8e885db2b1a2a122132cc53bda24f6703ff0e7f221f7c1f6b07",
+      "bytes": 1517
+    },
+    "artifacts/luna47-review/governance-newline-override.log": {
+      "file_sha256": "255697e1078a5354cda29f9ae3474d738e98fcc02481a8caa189f6258d6e1f74",
+      "staged_sha256": "255697e1078a5354cda29f9ae3474d738e98fcc02481a8caa189f6258d6e1f74",
+      "bytes": 7062
+    },
+    "artifacts/luna47-review/governance-newline-override.xml": {
+      "file_sha256": "2ffc7f1f0742435b9d1605ebadb89b975502627750b1b90ced55ee1e825a0ff8",
+      "staged_sha256": "2ffc7f1f0742435b9d1605ebadb89b975502627750b1b90ced55ee1e825a0ff8",
+      "bytes": 33448
+    },
+    "artifacts/luna47-review/governance-predictive-execution.json": {
+      "file_sha256": "91bfc609585fb7de11fd9478067ada9742badf89ca14d89648ee5c6fb245173f",
+      "staged_sha256": "91bfc609585fb7de11fd9478067ada9742badf89ca14d89648ee5c6fb245173f",
+      "bytes": 1247
+    },
+    "artifacts/luna47-review/governance-predictive.log": {
+      "file_sha256": "21f71c9e5ab5d3ed957ea08517520a2615eb1695add50378425fe0dc17e9d71e",
+      "staged_sha256": "21f71c9e5ab5d3ed957ea08517520a2615eb1695add50378425fe0dc17e9d71e",
+      "bytes": 1354
+    },
+    "artifacts/luna47-review/governance-predictive.xml": {
+      "file_sha256": "349adb58450e7efd90e6bc9e6dc6fdf1752826f96144ded8f6d60250ced3ff31",
+      "staged_sha256": "349adb58450e7efd90e6bc9e6dc6fdf1752826f96144ded8f6d60250ced3ff31",
+      "bytes": 3060
+    },
+    "artifacts/luna47-review/independent-manifest-verification.json": {
+      "file_sha256": "b4f1fdc666033734969fa93884e4b1042a0bbc43dc6f75f30eeab0f12a957b7a",
+      "staged_sha256": "b4f1fdc666033734969fa93884e4b1042a0bbc43dc6f75f30eeab0f12a957b7a",
+      "bytes": 69471
+    },
+    "artifacts/luna47-review/independent-public-offers.json": {
+      "file_sha256": "ac6b71623bf76ef510c7fda247a418ae636b19e91af89803b58832a63a84ce86",
+      "staged_sha256": "ac6b71623bf76ef510c7fda247a418ae636b19e91af89803b58832a63a84ce86",
+      "bytes": 10802
+    },
+    "artifacts/luna47-review/independent-verification.json": {
+      "file_sha256": "1d635c87cf2a7bc965ebbc65214da253dc4a7d882c2f80ed5a39af0030f43031",
+      "staged_sha256": "1d635c87cf2a7bc965ebbc65214da253dc4a7d882c2f80ed5a39af0030f43031",
+      "bytes": 131830
+    },
+    "artifacts/luna47-review/independent_oracle.py": {
+      "file_sha256": "cde7932340c9db1447ebc6a8618b4eda2054a80d0892d9cb309070cf40f3d6bc",
+      "staged_sha256": "8549d4929b9426cac3baa5200d48ea142af49aa0eeb76d953332ccc79c38fc73",
+      "bytes": 31729
+    },
+    "artifacts/luna47-review/lane-a-focused-execution.json": {
+      "file_sha256": "52562eb16266034ab58f5b31a672c05d0d19eed646996a969c25a8b9c1e7cf91",
+      "staged_sha256": "52562eb16266034ab58f5b31a672c05d0d19eed646996a969c25a8b9c1e7cf91",
+      "bytes": 1144
+    },
+    "artifacts/luna47-review/lane-a-focused.log": {
+      "file_sha256": "81ef380e6b97099c144ce990d76fc31376e99fe84062f2d90b7029456b4bc361",
+      "staged_sha256": "81ef380e6b97099c144ce990d76fc31376e99fe84062f2d90b7029456b4bc361",
+      "bytes": 1256
+    },
+    "artifacts/luna47-review/lane-a-focused.xml": {
+      "file_sha256": "cf0a41cfef373ca9ba9f5193b5f4cd3996de6ca5244369a9e32b07168edd0828",
+      "staged_sha256": "cf0a41cfef373ca9ba9f5193b5f4cd3996de6ca5244369a9e32b07168edd0828",
+      "bytes": 9297
+    },
+    "artifacts/luna47-review/lane-a-replay.log": {
+      "file_sha256": "bfd64458dfcd0b8f856a670ef2b74517e434826e2d8464f72c52bbdf279c91dc",
+      "staged_sha256": "bfd64458dfcd0b8f856a670ef2b74517e434826e2d8464f72c52bbdf279c91dc",
+      "bytes": 352
+    },
+    "artifacts/luna47-review/lane-b-focused-execution.json": {
+      "file_sha256": "dc4c0af3b700e172131f8d01206d4e679206fdf0cfd109829a37510bb260af4d",
+      "staged_sha256": "dc4c0af3b700e172131f8d01206d4e679206fdf0cfd109829a37510bb260af4d",
+      "bytes": 1139
+    },
+    "artifacts/luna47-review/lane-b-focused.log": {
+      "file_sha256": "b03ec48908eacb6a03a1660ac6a3fbd1e78b710b4541731d5fa7517be34ff15f",
+      "staged_sha256": "b03ec48908eacb6a03a1660ac6a3fbd1e78b710b4541731d5fa7517be34ff15f",
+      "bytes": 1170
+    },
+    "artifacts/luna47-review/lane-b-focused.xml": {
+      "file_sha256": "dbce9968d0f41a5eda37fae5b757ce7c5d0dc0245816e0e8fc018f254bc424f0",
+      "staged_sha256": "dbce9968d0f41a5eda37fae5b757ce7c5d0dc0245816e0e8fc018f254bc424f0",
+      "bytes": 1927
+    },
+    "artifacts/luna47-review/lane-b-replay.log": {
+      "file_sha256": "4b6b2d2cdb42270c7d7b19919e403ba04a5ce58bad36f1b722bab9d24d1c7e55",
+      "staged_sha256": "4b6b2d2cdb42270c7d7b19919e403ba04a5ce58bad36f1b722bab9d24d1c7e55",
+      "bytes": 3983
+    },
+    "artifacts/luna47-review/lane-c-focused-execution.json": {
+      "file_sha256": "ba3b3f215ac1cb9d8642b19394018e0cc9971896bfdace4ea485f18374728abf",
+      "staged_sha256": "ba3b3f215ac1cb9d8642b19394018e0cc9971896bfdace4ea485f18374728abf",
+      "bytes": 1135
+    },
+    "artifacts/luna47-review/lane-c-focused.log": {
+      "file_sha256": "f8f7b9ae3c6a38f9696b67525d2386f4f1541643f7ab843e96bf62e7462b37ca",
+      "staged_sha256": "f8f7b9ae3c6a38f9696b67525d2386f4f1541643f7ab843e96bf62e7462b37ca",
+      "bytes": 1179
+    },
+    "artifacts/luna47-review/lane-c-focused.xml": {
+      "file_sha256": "50ff029e7975d13695f239d73652eddb9382e123bc1749b041c348f749be31d8",
+      "staged_sha256": "50ff029e7975d13695f239d73652eddb9382e123bc1749b041c348f749be31d8",
+      "bytes": 2419
+    },
+    "artifacts/luna47-review/lane-c-replay.log": {
+      "file_sha256": "9723136a02d09e4e1cd76a8b18cb856420ffbb562243c14429d913065429c905",
+      "staged_sha256": "9723136a02d09e4e1cd76a8b18cb856420ffbb562243c14429d913065429c905",
+      "bytes": 299
+    },
+    "artifacts/luna47-review/lane-d-focused-execution.json": {
+      "file_sha256": "e208228d2dd1a06973cbd33c9e9a73ecf8709866260a4d8be5f5347610d51538",
+      "staged_sha256": "e208228d2dd1a06973cbd33c9e9a73ecf8709866260a4d8be5f5347610d51538",
+      "bytes": 1147
+    },
+    "artifacts/luna47-review/lane-d-focused.log": {
+      "file_sha256": "5817c779b638fc2491750a653f554deff79f4ae6db57696bb312b96a01f21fb1",
+      "staged_sha256": "5817c779b638fc2491750a653f554deff79f4ae6db57696bb312b96a01f21fb1",
+      "bytes": 1259
+    },
+    "artifacts/luna47-review/lane-d-focused.xml": {
+      "file_sha256": "c53c516d457bc491185d003284d894ee188f0a911afb79022b532524411e5049",
+      "staged_sha256": "c53c516d457bc491185d003284d894ee188f0a911afb79022b532524411e5049",
+      "bytes": 15063
+    },
+    "artifacts/luna47-review/lane-d-replay.log": {
+      "file_sha256": "01ff53f4f1ac26bb32addc283b2a3c4379d9b7886dc4f3d22f4a22592816b752",
+      "staged_sha256": "01ff53f4f1ac26bb32addc283b2a3c4379d9b7886dc4f3d22f4a22592816b752",
+      "bytes": 287
+    },
+    "artifacts/luna47-review/lane-e-focused-execution.json": {
+      "file_sha256": "94e16eab562f86b27edb197ef0095955fbab37c1e48c31d9528cb7b1b36968df",
+      "staged_sha256": "94e16eab562f86b27edb197ef0095955fbab37c1e48c31d9528cb7b1b36968df",
+      "bytes": 1143
+    },
+    "artifacts/luna47-review/lane-e-focused.log": {
+      "file_sha256": "7b46a6bc3cfd47dbc999762b0e607572eb03b6dc40ce12d576f32bc880cc82ad",
+      "staged_sha256": "7b46a6bc3cfd47dbc999762b0e607572eb03b6dc40ce12d576f32bc880cc82ad",
+      "bytes": 1174
+    },
+    "artifacts/luna47-review/lane-e-focused.xml": {
+      "file_sha256": "c35d5e995b2ff07023cef546cfc33ede252bb2b5c5fa1b885fd3ba3a07ced167",
+      "staged_sha256": "c35d5e995b2ff07023cef546cfc33ede252bb2b5c5fa1b885fd3ba3a07ced167",
+      "bytes": 2399
+    },
+    "artifacts/luna47-review/lane-e-replay.log": {
+      "file_sha256": "535442b0a4ceac765acec4dbc66c71775027d1bc271a722fe0ede72e1ca6fbd5",
+      "staged_sha256": "535442b0a4ceac765acec4dbc66c71775027d1bc271a722fe0ede72e1ca6fbd5",
+      "bytes": 1904
+    },
+    "artifacts/luna47-review/lane-f-focused-execution.json": {
+      "file_sha256": "ca90698b2f638efe64dcc19becb8d9e116db0061bc898890bb903ef62cfc550c",
+      "staged_sha256": "ca90698b2f638efe64dcc19becb8d9e116db0061bc898890bb903ef62cfc550c",
+      "bytes": 1185
+    },
+    "artifacts/luna47-review/lane-f-focused.log": {
+      "file_sha256": "bdaae11d4606bb611859cf1250157699cac90fe6b850a4fa3bf7e770aa6a9979",
+      "staged_sha256": "bdaae11d4606bb611859cf1250157699cac90fe6b850a4fa3bf7e770aa6a9979",
+      "bytes": 1373
+    },
+    "artifacts/luna47-review/lane-f-focused.xml": {
+      "file_sha256": "9e75451593a71ebce9a8379b54302f4cc3851e118bd49d82d64a7b2b9421f66e",
+      "staged_sha256": "9e75451593a71ebce9a8379b54302f4cc3851e118bd49d82d64a7b2b9421f66e",
+      "bytes": 6850
+    },
+    "artifacts/luna47-review/lane-f-replay.log": {
+      "file_sha256": "e19f8be26ae0d59555ed0a9aef672629c093c1d8d405e55384b7788781f3b8fb",
+      "staged_sha256": "e19f8be26ae0d59555ed0a9aef672629c093c1d8d405e55384b7788781f3b8fb",
+      "bytes": 296
+    },
+    "artifacts/luna47-review/lane-g-focused-execution.json": {
+      "file_sha256": "cb3e39d2b041e5041320af0fe1b0878ca15b93b1a0fcfbc51740ad77baed8942",
+      "staged_sha256": "cb3e39d2b041e5041320af0fe1b0878ca15b93b1a0fcfbc51740ad77baed8942",
+      "bytes": 1185
+    },
+    "artifacts/luna47-review/lane-g-focused.log": {
+      "file_sha256": "9835a1bc19b853d7355eeb659368db5b3a0bd7fb19d29fb709c134295f9d77e1",
+      "staged_sha256": "9835a1bc19b853d7355eeb659368db5b3a0bd7fb19d29fb709c134295f9d77e1",
+      "bytes": 1293
+    },
+    "artifacts/luna47-review/lane-g-focused.xml": {
+      "file_sha256": "94c189f3bf1602e124b1335ff98609561e8f3d20aeeb0fd0bb5ea17754e721bd",
+      "staged_sha256": "94c189f3bf1602e124b1335ff98609561e8f3d20aeeb0fd0bb5ea17754e721bd",
+      "bytes": 3248
+    },
+    "artifacts/luna47-review/lane-g-replay.log": {
+      "file_sha256": "7833dc0619703e9fea8f552693cbac91da0fa5007614f2af6285853ae91d0e02",
+      "staged_sha256": "7833dc0619703e9fea8f552693cbac91da0fa5007614f2af6285853ae91d0e02",
+      "bytes": 293
+    },
+    "artifacts/luna47-review/replay-executions.json": {
+      "file_sha256": "cb9de5862a92768807b09efd83fe2a28d6af4c785bb356bd02e4d746195a3da0",
+      "staged_sha256": "cb9de5862a92768807b09efd83fe2a28d6af4c785bb356bd02e4d746195a3da0",
+      "bytes": 3196
+    },
+    "artifacts/luna47-review/run_replays.py": {
+      "file_sha256": "653908a450349b7b288313e5f55ce3c1cb40f5978e221578dc4f251b38f83408",
+      "staged_sha256": "10e01081aacf6c990cd4967742126db9161df5ca42a65fce84f757c03b27b578",
+      "bytes": 1728
+    },
+    "artifacts/luna47-review/run_tests.py": {
+      "file_sha256": "5e8d9b6a62dc6ccf325c438c85645625b73213734bee40bd7e1910fcb187fd42",
+      "staged_sha256": "ec2b8df27742465ba20614a192a4337b0bf1aa48b59d52879e20340e2c1bffa9",
+      "bytes": 3916
+    },
+    "artifacts/luna47-review/summarize_tests.py": {
+      "file_sha256": "7980899e108cb1694dd5f14c0351b90bd5aacb78ecf516fa1d1231eb463ce9c5",
+      "staged_sha256": "cc19fc3ec220758ec96753c9cadf59aa2494f452b3f0aec3e4a5b13d59932530",
+      "bytes": 2277
+    },
+    "artifacts/luna47-review/test-summary.json": {
+      "file_sha256": "62cbcaed5db8fab6531135c8f1061fd62e807344894c4c7c941359ab56de6ae8",
+      "staged_sha256": "62cbcaed5db8fab6531135c8f1061fd62e807344894c4c7c941359ab56de6ae8",
+      "bytes": 27496
+    },
+    "artifacts/luna47-review/verify_manifests.py": {
+      "file_sha256": "6b71f5efb97a4369bb51d5aa228ecc75552411c6e2d6cf73e76b903ddd8e6219",
+      "staged_sha256": "ba9b711ec613923a229a34cfd07f198b50bc8fcc4b922d3fa0ad13293f8e381d",
+      "bytes": 4849
+    },
+    "artifacts/luna47-review/verify_public_offers.py": {
+      "file_sha256": "bf25c8762a09bcff3d3d517dc3152810f0f869142511882dbc8e9e635ccac2bb",
+      "staged_sha256": "49b534f4e1f5d9947b435287bf6aa5c381c421356750615e77d282153d44a82d",
+      "bytes": 3415
+    },
+    "workflow/ARCHITECTURE_CHANGELOG.md": {
+      "file_sha256": "d7373b67c0107688c2c0acbbbc98e6e17fccaece619e485d9792ba85a2190f86",
+      "staged_sha256": "856c85de9c3ecf82364f44109af95fc29d80b92cae9b8634d262a2c7c6d22e67",
+      "bytes": 200088
+    },
+    "workflow/docs/luna/LUNA_WORKFLOW.md": {
+      "file_sha256": "f4d27f5feb6f59daacc917171f66be7421e5111a18cfc1fb3cf84b5f8ca7fab1",
+      "staged_sha256": "62fc19d990f50d04b23fc31da3331e4f619a699db99638cb9c7120f547fd0a79",
+      "bytes": 241647
+    },
+    "workflow/handoffs/luna-0-independent-review-luna47-20261006.md": {
+      "file_sha256": "1975e9919b5c023ea58f35d0eaaf72786b46b54800b404ebf52d68eff0cdd5e8",
+      "staged_sha256": "e5961b418c322e64539ba0f78af5623bcd9550b0b84acf198f09a26139ed4c88",
+      "bytes": 17979
+    }
+  },
+  "raw_staged_whitespace_check": {
+    "exit": 2,
+    "output_path": "staged-whitespace-check.log",
+    "output_sha256": "09aab021a29bf38cecdc8d75e9b0dd16b74fcf8b34d5732bcd4b7184a48a0889",
+    "policy": "Raw JSON/XML/logs preserve Windows CRLF and traceback whitespace; not a scientific waiver."
+  },
+  "source_docs_whitespace_check": {
+    "exit": 0,
+    "output": ""
+  },
+  "status": "PASS - ownership, live lane parity/cleanliness, schemas, scripts and evidence bytes",
+  "self_hash_exclusion": "This generated report is excluded to avoid self-referential hashing."
+}

@@ -1,0 +1,2 @@
+*.json -text
+execution.json text eol=lf

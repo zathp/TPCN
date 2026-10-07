@@ -1,0 +1,24 @@
+{
+  "name": "lane-c-focused",
+  "cwd": "C:\\Users\\zathp\\.copilot\\session-state\\2c38ab9f-63a7-41fb-8437-e11b4732bee9\\files\\luna47c",
+  "command": [
+    "C:\\Users\\zathp\\Documents\\programming\\TPCN\\.venv\\Scripts\\python.exe",
+    "-m",
+    "pytest",
+    "tests\\test_luna47c_qualification.py",
+    "-ra",
+    "--junitxml=C:\\Users\\zathp\\.copilot\\session-state\\2c38ab9f-63a7-41fb-8437-e11b4732bee9\\files\\luna47-review\\artifacts\\luna47-review\\lane-c-focused.xml"
+  ],
+  "python": "3.11.5 (tags/v3.11.5:cce6ba9, Aug 24 2023, 14:38:34) [MSC v.1936 64 bit (AMD64)]",
+  "executable": "C:\\Users\\zathp\\Documents\\programming\\TPCN\\.venv\\Scripts\\python.exe",
+  "revision": "609b2e5f8a7ae123f9b7f7da5c89378e29353624",
+  "started_utc": "2026-10-07T01:45:12.146660+00:00",
+  "seconds": 3.375,
+  "exit_code": 0,
+  "environment": {
+    "PYTHONPATH": "C:\\Users\\zathp\\.copilot\\session-state\\2c38ab9f-63a7-41fb-8437-e11b4732bee9\\files\\luna47c",
+    "PYTHONHASHSEED": "0",
+    "PYTHONDONTWRITEBYTECODE": "1"
+  },
+  "log_sha256": "f8f7b9ae3c6a38f9696b67525d2386f4f1541643f7ab843e96bf62e7462b37ca"
+}

@@ -1,0 +1,121 @@
+{
+  "schema": "TPCN-LUNA47F-VALIDATION-1",
+  "authorization_revision": "789dda5988daf72f375d9713bd76a6da2b9e8b34",
+  "evidence_baseline": "2cef8ea4b37a4ae586e3f383511cba63c9268ddc",
+  "protocol_commit": "8af8d733a1c8fc7762ef3e34bec775afc10ca2ae",
+  "scoring_execution_commit": "39f99b1f318dd965643ec6ef65907163cd1d5667",
+  "environment": {
+    "os": "Windows-10-10.0.19045-SP0",
+    "python": "3.11.5",
+    "python_executable": "C:/Users/zathp/Documents/programming/TPCN/.venv/Scripts/python.exe",
+    "worktree": "C:/Users/zathp/.copilot/session-state/2c38ab9f-63a7-41fb-8437-e11b4732bee9/files/luna47f",
+    "git_checkout_policy": "Existing global core.autocrlf=true retained; no regression override"
+  },
+  "commands": [
+    {
+      "command": "python -m pytest -q tests/test_luna47f_diagnostic.py",
+      "stage": "Before first protocol commit; synthetic tests only",
+      "exit_code": 0,
+      "passed": 49
+    },
+    {
+      "command": "python experiments/luna47f/diagnostic.py",
+      "stage": "First attempt at 8af8d73",
+      "exit_code": 1,
+      "status": "BLOCKED at input identity gate, before scoring/output",
+      "reason": "Luna-45 config.json working bytes differ from published Git blob solely by LF-to-CRLF materialization"
+    },
+    {
+      "command": "python -m pytest -q tests/test_luna47f_diagnostic.py",
+      "stage": "Before provenance correction commit; scoring rules unchanged",
+      "exit_code": 0,
+      "passed": 50
+    },
+    {
+      "command": "python experiments/luna47f/diagnostic.py",
+      "stage": "After provenance correction commit 39f99b1",
+      "exit_code": 0,
+      "verdict": "PARTIALLY SUPPORTED",
+      "analysis_sha256": "c769d0eb052f4797e38f46591d38623613202ee9c391283e11cbd08162ae6bdf",
+      "initial_replay_canonical_analysis_equal": true
+    },
+    {
+      "command": "python -m pytest -q tests/test_luna47f_diagnostic.py tests/test_luna47f_retained.py",
+      "stage": "After outcome generation; retained tests added",
+      "exit_code": 0,
+      "passed": 55,
+      "duration_seconds": 38.91,
+      "includes": "Read-only --check invocation, exact row-pointer reconciliation, causal chains, duplicate/cycle/saturation unit positives, missing-field failures and graph/input non-mutation"
+    },
+    {
+      "command": "python -m pytest -q -ra tests/test_luna12i_temporal_association.py tests/test_luna12j_temporal_efficacy.py tests/test_luna12k_capacity_pressure.py tests/test_luna12m_edge_instrumentation.py tests/test_luna12n_temporal_direction.py tests/test_luna38_excursion_integration_state.py tests/test_luna44_canonical_fixture.py tests/test_luna44_canonical_fixture_verification.py tests/test_luna45_acp0008_depth2_destination_integration.py tests/test_luna46_depth_scaling_diagnostic.py tests/test_event_runtime.py tests/test_topology.py tests/test_structural_plasticity.py",
+      "exit_code": 1,
+      "passed": 373,
+      "failed": 2,
+      "errors": 7,
+      "duration_seconds": 104.93,
+      "status": "FAILED; no failure waived, source/test expectations unchanged"
+    },
+    {
+      "command": "python -m pytest -q tests/test_luna47f_diagnostic.py tests/test_luna47f_retained.py",
+      "stage": "Final strengthened retained scalar/similarity checks, after applicable regressions",
+      "exit_code": 0,
+      "passed": 55,
+      "duration_seconds": 23.98,
+      "includes": "Read-only --check again confirms original 878 protected hashes after regression execution"
+    },
+    {
+      "command": "python -m py_compile experiments/luna47f/diagnostic.py tests/test_luna47f_diagnostic.py tests/test_luna47f_retained.py",
+      "exit_code": 0
+    },
+    {
+      "command": "git diff --check",
+      "exit_code": 0
+    }
+  ],
+  "regression_failures": [
+    {
+      "test": "tests/test_luna44_canonical_fixture.py::test_two_fresh_process_materializations_match_committed_fixture",
+      "failure": "Pinned-source materialization subprocess exits 1 (CalledProcessError)",
+      "context": "Documented Windows pinned-source LF/CRLF materialization limitation; not relaxed"
+    },
+    {
+      "test": "tests/test_luna46_depth_scaling_diagnostic.py::test_real_retained_artifacts_integrity_only",
+      "failure": "run_luna46_depth_scaling_diagnostic.Blocked: published Luna45 catalog hash differs",
+      "context": "Current isolated checkout artifact-integrity.json has exact Git LF-to-CRLF materialization; this observed failure is retained separately from the previously documented generator failures",
+      "published_sha256": "a47046da6916db49f373613d654d2cf59671737b5c6b8584b222fb67fe068e8e",
+      "working_sha256": "5c41184dc9b9b5872263bcbbc1e5fc406789101c27942480b9cfb6b33c87da80"
+    }
+  ],
+  "regression_errors": [
+    "tests/test_luna44_canonical_fixture_verification.py::test_missing_manifest_source_file_fails_loudly",
+    "tests/test_luna44_canonical_fixture_verification.py::test_incorrect_source_sha_fails_loudly",
+    "tests/test_luna44_canonical_fixture_verification.py::test_fixture_file_digest_mismatch_fails_loudly",
+    "tests/test_luna44_canonical_fixture_verification.py::test_incorrect_fixture_point_count_fails_loudly",
+    "tests/test_luna44_canonical_fixture_verification.py::test_binary64_decimal_hex_mismatch_fails_loudly",
+    "tests/test_luna44_canonical_fixture_verification.py::test_manifest_configuration_mismatch_fails_loudly",
+    "tests/test_luna44_canonical_fixture_verification.py::test_two_fresh_process_materializations_match_exactly"
+  ],
+  "regression_error_cause": "All seven fail module setup while a pinned-source materialization subprocess exits 1; no lane-owned code is in that path",
+  "tool_limits": [
+    "VS Code runTests did not discover tests in the isolated worktree; direct pytest used",
+    "Pylance file syntax service did not find the isolated user file; py_compile used",
+    "Problems tool reported no errors for owned Python files; no claim of full Pylance analysis"
+  ],
+  "not_run": [
+    "Full repository test suite",
+    "Production/counterfactual experiment, topology admission or mutation",
+    "Task efficacy, hardware execution, independent Luna-0 review"
+  ],
+  "non_mutation": {
+    "protected_tracked_file_count": 878,
+    "pre_post_equal": true,
+    "aggregate_sha256": "92c24063e6865e07b81047f93a7a3ba74d7473d05ccd7bd6598528bfa6aca6c9",
+    "per_file_hashes": "diagnostic.json#/non_mutation"
+  },
+  "historical_context_only": {
+    "artifacts/edge-instrumentation-12m-corrected/summary.json": "a06033da5c54d8058ff844107933eeea9e77d7e7ecee486c2f4d309ce0ce4e8e",
+    "artifacts/temporal-direction-12n-corrective-20260929/summary.json": "fa95b778f2e74eeaceaa580503e73f26719e060bdb8bc5b4605066d7af0ed5e6",
+    "interpretation": "Historical synthetic controls are not scored/pooled with the Luna-45 retained EXCURSION_V1 traces"
+  }
+}

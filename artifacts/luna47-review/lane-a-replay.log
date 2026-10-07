@@ -1,0 +1,3 @@
+cwd=C:\Users\zathp\.copilot\session-state\2c38ab9f-63a7-41fb-8437-e11b4732bee9\files\luna47a
+command=['C:\\Users\\zathp\\Documents\\programming\\TPCN\\.venv\\Scripts\\python.exe', '-m', 'experiments.luna47a.run', '--verify']
+PASS exact bundle replay: PARTIALLY SUPPORTED; result_sha256=d1cac5065410767a42a35f99b659b4a4377f1b84d300e5cfd3ed304600322cff

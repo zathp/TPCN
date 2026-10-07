@@ -1,0 +1,1217 @@
+{
+  "schema": "LUNA47E-SOURCES-1",
+  "capture_revision": 1,
+  "source_baseline": "2cef8ea4b37a4ae586e3f383511cba63c9268ddc",
+  "authorization_revision": "789dda5988daf72f375d9713bd76a6da2b9e8b34",
+  "capture_script_sha256": "a8c1b43892a84e173aa9891e784b32e185061fb3fcacb9dc2c6cb97b7a5bf74d",
+  "raw_policy": "Hashed in memory; only limited extracts and selected structured offers retained.",
+  "sources": [
+    {
+      "id": "fpaa_store",
+      "kind": "manufacturer_store",
+      "url": "https://okikadevices.com/products.json?limit=50",
+      "effective_url": "https://okikadevices.com/products.json?limit=50",
+      "retrieved_at_utc": "2026-10-07T01:14:45.111992+00:00",
+      "method": "curl.exe unauthenticated HTTPS GET, redirects followed",
+      "http_status": "200",
+      "curl_exit": 0,
+      "raw_bytes": 35089,
+      "raw_sha256": "9e5716c7cf5d0d15d943832cfbfe845a35aae9a7732547f3017edd12be9a850e",
+      "error": null,
+      "state": "retrieved",
+      "offers": [
+        {
+          "title": "Chameleon™ Field Programmable Analog Module",
+          "handle": "chameleon-field-programmable-analog-module",
+          "variants": [
+            {
+              "sku": "OTC9300L",
+              "price": "25.00",
+              "available": true,
+              "inventory_quantity": null
+            }
+          ]
+        },
+        {
+          "title": "FlexAnalog™ Arduino Shield",
+          "handle": "flexanalog™-arduino-shield",
+          "variants": [
+            {
+              "sku": "OTC2312",
+              "price": "81.25",
+              "available": true,
+              "inventory_quantity": null
+            }
+          ]
+        },
+        {
+          "title": "AN231E04 Dynamically reconfigurable FPAA chip with 4 CABs",
+          "handle": "an231e04-dynamically-reconfigurable-fpaa-chip-with-4-cabs",
+          "variants": [
+            {
+              "sku": "AN231E04-QFNSP",
+              "price": "120.00",
+              "available": true,
+              "inventory_quantity": null
+            },
+            {
+              "sku": "AN231E04-QFNTY",
+              "price": "2199.60",
+              "available": true,
+              "inventory_quantity": null
+            },
+            {
+              "sku": "AN231E04-QFNTR",
+              "price": "8460.00",
+              "available": true,
+              "inventory_quantity": null
+            },
+            {
+              "sku": "AN231E04-QFNBTY",
+              "price": "21450.00",
+              "available": true,
+              "inventory_quantity": null
+            }
+          ]
+        },
+        {
+          "title": "AN231K04-DUAL2 Dual FlexAnalog™ FPAA Development Board",
+          "handle": "an231k04-dual2-dual-apex-development-board-for-an231e04",
+          "variants": [
+            {
+              "sku": "AN231K04-DUAL2",
+              "price": "219.00",
+              "available": true,
+              "inventory_quantity": null
+            }
+          ]
+        }
+      ],
+      "price_currency": "Store price strings; USD not assumed without page currency evidence."
+    },
+    {
+      "id": "fpaa_chip",
+      "kind": "manufacturer",
+      "url": "https://okikadevices.com/products/an231e04-dynamically-reconfigurable-fpaa-chip-with-4-cabs",
+      "effective_url": "https://okikadevices.com/products/an231e04-dynamically-reconfigurable-fpaa-chip-with-4-cabs",
+      "retrieved_at_utc": "2026-10-07T01:14:45.507992+00:00",
+      "method": "curl.exe unauthenticated HTTPS GET, redirects followed",
+      "http_status": "200",
+      "curl_exit": 0,
+      "raw_bytes": 182716,
+      "raw_sha256": "a7129c08b3c1d523a78f087af346faf52a5f3fd69a4f77c8fd7ecd1cf5ee1f85",
+      "error": null,
+      "state": "retrieved",
+      "brief_excerpts": [
+        {
+          "keyword": "integrat",
+          "text": "d-Programmable Analog Array (FPAA) Integrated Circuit Component • 10 Pack Part Number: AN231E04-QFNSP Order Quantity: 10 pieces • Tray Packed (26"
+        },
+        {
+          "keyword": "comparator",
+          "text": "high-pass, band-pass), amplifiers, comparators, modulators, mixers, rectifiers, and more. Functions can be adaptive and dynamically reconfigured "
+        },
+        {
+          "keyword": "capacitor",
+          "text": "Specifications Technology Switched-Capacitor Number of Cores 4 Power Supply 3.3V Unity Gain Bandwidth 18 MHz Signal Path Differential ADC Resolut"
+        },
+        {
+          "keyword": "SPI",
+          "text": "tage references across conditions. SPI-like Configuration Interface – Fast, serial configuration from a microcontroller or DSP. Shadow Configurat"
+        },
+        {
+          "keyword": "supply",
+          "text": "-Capacitor Number of Cores 4 Power Supply 3.3V Unity Gain Bandwidth 18 MHz Signal Path Differential ADC Resolution 8 ADC Data Rate 250ksps Analog"
+        },
+        {
+          "keyword": "rectif",
+          "text": ", comparators, modulators, mixers, rectifiers, and more. Functions can be adaptive and dynamically reconfigured during operation. What is the ope"
+        },
+        {
+          "keyword": "3.3",
+          "text": "tor Number of Cores 4 Power Supply 3.3V Unity Gain Bandwidth 18 MHz Signal Path Differential ADC Resolution 8 ADC Data Rate 250ksps Analog IO 4 D"
+        }
+      ]
+    },
+    {
+      "id": "fpaa_shield",
+      "kind": "manufacturer",
+      "url": "https://okikadevices.com/products/flexanalog%E2%84%A2-arduino-shield",
+      "effective_url": "https://okikadevices.com/products/flexanalog%E2%84%A2-arduino-shield",
+      "retrieved_at_utc": "2026-10-07T01:14:45.826999+00:00",
+      "method": "curl.exe unauthenticated HTTPS GET, redirects followed",
+      "http_status": "200",
+      "curl_exit": 0,
+      "raw_bytes": 168636,
+      "raw_sha256": "fedd609ea96a23255642d25a09675b9cd46a18399ca1a0cc948405246aa2f2de",
+      "error": null,
+      "state": "retrieved",
+      "brief_excerpts": [
+        {
+          "keyword": "integrat",
+          "text": "Arduino Uno shield form factor, it integrates the analog front end, power supplies, signal conditioning circuitry, and SPI interface needed to ra"
+        },
+        {
+          "keyword": "CAMs",
+          "text": "of 43 Configurable Analog Modules (CAMs), including filters, amplifiers, oscillators, comparators, and signal conditioning blocks. A key advantag"
+        },
+        {
+          "keyword": "comparator",
+          "text": " filters, amplifiers, oscillators, comparators, and signal conditioning blocks. A key advantage of FlexAnalog™ technology is the ability to updat"
+        },
+        {
+          "keyword": "oscillator",
+          "text": "s), including filters, amplifiers, oscillators, comparators, and signal conditioning blocks. A key advantage of FlexAnalog™ technology is the abi"
+        },
+        {
+          "keyword": "SPI",
+          "text": "signal conditioning circuitry, and SPI interface needed to rapidly develop and evaluate programmable analog systems. The shield supports one or t"
+        },
+        {
+          "keyword": "3.3",
+          "text": "differential signal path, onboard ±3.3V supplies, and flexible connectivity options, the OTC2312 is well suited for education, research, prototyp"
+        }
+      ]
+    },
+    {
+      "id": "fpaa_ds",
+      "kind": "manufacturer_pdf",
+      "url": "https://okikadevices.com/cdn/shop/files/Okika_AN231E04DSv2.2.pdf?v=12643572874655327773",
+      "state": "unavailable",
+      "retrieved_at_utc": "2026-10-07T01:14:52.986649+00:00",
+      "error": "'charmap' codec can't encode character '\\u25cf' in position 2285: character maps to <undefined>"
+    },
+    {
+      "id": "fpaa_um",
+      "kind": "manufacturer_pdf",
+      "url": "https://okikadevices.com/cdn/shop/files/FlexAnalog_AN231E04UM_User_Manual.pdf?v=9738655095111332330",
+      "effective_url": "https://okikadevices.com/cdn/shop/files/FlexAnalog_AN231E04UM_User_Manual.pdf?v=9738655095111332330",
+      "retrieved_at_utc": "2026-10-07T01:14:53.756637+00:00",
+      "method": "curl.exe unauthenticated HTTPS GET, redirects followed",
+      "http_status": "200",
+      "curl_exit": 0,
+      "raw_bytes": 1113852,
+      "raw_sha256": "0253711687eaa1537478d1624da70e2eed8cf1c8b63e94cc1218f954193935c4",
+      "error": null,
+      "state": "retrieved",
+      "pdf_pages": 31,
+      "pdf_metadata": {
+        "/Author": "Anadigm Tempe",
+        "/Company": "",
+        "/Created": "D:20060523",
+        "/CreationDate": "D:20250127192650-06'00'",
+        "/Creator": "Acrobat PDFMaker 24 for Word",
+        "/Keywords": "AnadigmApex FPAA Family User Manual",
+        "/LastSaved": "D:20150203",
+        "/ModDate": "D:20250127192710-06'00'",
+        "/Producer": "Adobe PDF Library 24.5.96",
+        "/SourceModified": "",
+        "/Subject": "AnadigmApex FPAA Family User Manual",
+        "/Title": "AnadigmApex FPAA Family User Manual"
+      },
+      "brief_excerpts": [
+        {
+          "page": 5,
+          "keyword": "capacitor",
+          "text": "ion of \nconventional  and switched capacitor  circuit elements  and are programmed from off-chip non-volatile memory  \nor by a host processor.  P"
+        },
+        {
+          "page": 8,
+          "keyword": "current",
+          "text": "her  in order to facilitate the concurrent  activation  of analog circuitry \nand provide for configuration error handling.  When connecting two o"
+        },
+        {
+          "page": 13,
+          "keyword": "absolute",
+          "text": "capacitor  signal processing,  the absolute value of the components  integrated into the chip is \nnot important,  but rather it is the ratio of t"
+        },
+        {
+          "page": 6,
+          "keyword": "rectif",
+          "text": "s include: gain, filter, summing,  rectification  and many other more \nspecialized behaviors.  Specific parameters  for each of the blocks used ("
+        },
+        {
+          "page": 3,
+          "keyword": "clock",
+          "text": "2 \n4.2.4. Analog and Configuration Clock Generation ............................................................................................."
+        }
+      ]
+    },
+    {
+      "id": "fpaa_boxcar",
+      "kind": "manufacturer",
+      "url": "https://okikadevices.com/pages/boxcar-integration-an-example-using-an231e04-fpaa-in-a-pulse-induction-metal-detector",
+      "effective_url": "https://okikadevices.com/pages/boxcar-integration-an-example-using-an231e04-fpaa-in-a-pulse-induction-metal-detector",
+      "retrieved_at_utc": "2026-10-07T01:14:59.747186+00:00",
+      "method": "curl.exe unauthenticated HTTPS GET, redirects followed",
+      "http_status": "200",
+      "curl_exit": 0,
+      "raw_bytes": 151325,
+      "raw_sha256": "21ba92a27c9b5b5787c306543ccc30ee405080cc9843ab72668964befb7d5ffe",
+      "error": null,
+      "state": "retrieved",
+      "brief_excerpts": [
+        {
+          "keyword": "integrat",
+          "text": " --> Boxcar Integration, an example using AN231E04 FPAA in a Pulse Inductio &ndash; Okika Devices Skip to content New! Cha"
+        },
+        {
+          "keyword": "CAMs",
+          "text": "gain or corner frequency of filter CAMs. There will also be a switch that changes between detection and discrimination. The switch will change be"
+        },
+        {
+          "keyword": "comparator",
+          "text": "ramp output at 1kHz which drives a comparator whose negative input is connected to +2V. This produces a square wave which is high for 200us and l"
+        },
+        {
+          "keyword": "oscillator",
+          "text": "llowing stages: Primary Pulse – an OscillatorSawSqr custom CAM produces a 2.5V ramp output at 1kHz which drives a comparator whose negative input"
+        },
+        {
+          "keyword": "capacitor",
+          "text": "ower supply is a good one then the capacitor may not be necessary. The coil requires a damping resistor across it to stop oscillation from occurr"
+        },
+        {
+          "keyword": "SPI",
+          "text": "nt creates a large reverse voltage spike (kick-back) of hundreds of volts which induces eddy currents in any nearby metal objects. As the voltage"
+        },
+        {
+          "keyword": "supply",
+          "text": "is was powered by the +5V external supply. The next two sections will describe the external coil circuit and the AnadigmDesigner®2 Software circu"
+        },
+        {
+          "keyword": "3.3",
+          "text": "ed by +5V which gets converted to +3.3V by the on-board regulator for powering the AN231E04 (FPAA) and digital circuitry. A circuit to power the "
+        }
+      ]
+    },
+    {
+      "id": "fpaa_distributor",
+      "kind": "distributor",
+      "url": "https://www.digikey.com/en/products/detail/okika-devices/AN231E04-QFNSP/28167850",
+      "effective_url": "https://www.digikey.com/en/products/detail/okika-devices/AN231E04-QFNSP/28167850",
+      "retrieved_at_utc": "2026-10-07T01:15:00.315450+00:00",
+      "method": "curl.exe unauthenticated HTTPS GET, redirects followed",
+      "http_status": "403",
+      "curl_exit": 0,
+      "raw_bytes": 5595,
+      "raw_sha256": "ca641e9d193f481ab3c70cc631d6341cb1f415b4fbd3bca38ed012a8f83aacfe",
+      "error": null,
+      "state": "unavailable"
+    },
+    {
+      "id": "fpaa_board_distributor",
+      "kind": "distributor",
+      "url": "https://www.digikey.com/en/products/detail/okika-devices/AN231K04-DUAL2/28167223",
+      "effective_url": "https://www.digikey.com/en/products/detail/okika-devices/AN231K04-DUAL2/28167223",
+      "retrieved_at_utc": "2026-10-07T01:15:00.874738+00:00",
+      "method": "curl.exe unauthenticated HTTPS GET, redirects followed",
+      "http_status": "403",
+      "curl_exit": 0,
+      "raw_bytes": 5595,
+      "raw_sha256": "ea56bea4e595c52031bf076bd94e578bdc705879950ef458d50f445a4317f531",
+      "error": null,
+      "state": "unavailable"
+    },
+    {
+      "id": "legacy_anadigm",
+      "kind": "manufacturer_legacy",
+      "url": "https://www.anadigm.com/an231e04.asp",
+      "effective_url": "https://www.anadigm.com/an231e04.asp",
+      "retrieved_at_utc": "2026-10-07T01:15:01.343002+00:00",
+      "method": "curl.exe unauthenticated HTTPS GET, redirects followed",
+      "http_status": "200",
+      "curl_exit": 0,
+      "raw_bytes": 114,
+      "raw_sha256": "6dc9c7fc93bb488bb0520a6c780a8d3c0fb5486a4711aca49b4c53fac7393023",
+      "error": "Legacy endpoint returns JavaScript /lander redirect, not product evidence.",
+      "state": "unavailable"
+    },
+    {
+      "id": "opamp_ds",
+      "kind": "manufacturer_pdf",
+      "url": "https://www.ti.com/lit/ds/symlink/tlv9062.pdf",
+      "state": "unavailable",
+      "retrieved_at_utc": "2026-10-07T01:16:09.448862+00:00",
+      "error": "'charmap' codec can't encode character '\\u221a' in position 234: character maps to <undefined>"
+    },
+    {
+      "id": "comparator_ds",
+      "kind": "manufacturer_pdf",
+      "url": "https://www.ti.com/lit/ds/symlink/tlv3201.pdf",
+      "state": "unavailable",
+      "retrieved_at_utc": "2026-10-07T01:16:24.313667+00:00",
+      "error": "'charmap' codec can't encode character '\\u03b8' in position 1747: character maps to <undefined>"
+    },
+    {
+      "id": "timer_ds",
+      "kind": "manufacturer_pdf",
+      "url": "https://www.ti.com/lit/ds/symlink/lmc555.pdf",
+      "state": "unavailable",
+      "retrieved_at_utc": "2026-10-07T01:16:35.065539+00:00",
+      "error": "'charmap' codec can't encode character '\\u2212' in position 337: character maps to <undefined>"
+    },
+    {
+      "id": "pot_ds",
+      "kind": "manufacturer_pdf",
+      "url": "https://ww1.microchip.com/downloads/en/DeviceDoc/11195c.pdf",
+      "state": "unavailable",
+      "retrieved_at_utc": "2026-10-07T01:16:41.862160+00:00",
+      "error": "'charmap' codec can't encode character '\\uf8e9' in position 16: character maps to <undefined>"
+    },
+    {
+      "id": "dac_ds",
+      "kind": "manufacturer_pdf",
+      "url": "https://ww1.microchip.com/downloads/en/DeviceDoc/22248a.pdf",
+      "state": "unavailable",
+      "retrieved_at_utc": "2026-10-07T01:17:41.162395+00:00",
+      "error": "'charmap' codec can't encode character '\\uf0e3' in position 16: character maps to <undefined>"
+    },
+    {
+      "id": "cap_ds",
+      "kind": "manufacturer_pdf",
+      "url": "https://www.tdk-electronics.tdk.com/inf/20/20/db/fc_2009/MKT_B32520_529.pdf",
+      "effective_url": "https://www.tdk-electronics.tdk.com/inf/20/20/db/fc_2009/MKT_B32520_529.pdf",
+      "retrieved_at_utc": "2026-10-07T01:17:41.420396+00:00",
+      "method": "curl.exe unauthenticated HTTPS GET, redirects followed",
+      "http_status": "403",
+      "curl_exit": 0,
+      "raw_bytes": 464,
+      "raw_sha256": "8ec8a8efc88a020d84b7758147f1b8051b91cd6f210254fb093672b822cf616a",
+      "error": null,
+      "state": "unavailable"
+    },
+    {
+      "id": "opamp_stock",
+      "kind": "distributor",
+      "url": "https://www.lcsc.com/product-detail/C398355.html",
+      "effective_url": "https://www.lcsc.com/product-detail/C398355.html",
+      "retrieved_at_utc": "2026-10-07T01:17:42.365116+00:00",
+      "method": "curl.exe unauthenticated HTTPS GET, redirects followed",
+      "http_status": "200",
+      "curl_exit": 0,
+      "raw_bytes": 456717,
+      "raw_sha256": "68c631e41cebb65dd45ce5a39e922f6d5e7cf2a29675ead766ed88086d60e240",
+      "error": null,
+      "state": "retrieved",
+      "product": {
+        "name": "TI TLV9062IDR",
+        "sku": "C398355",
+        "mpn": "TLV9062IDR",
+        "brand": {
+          "@type": "Brand",
+          "name": "TI"
+        },
+        "offers": {
+          "@type": "Offer",
+          "url": "https://www.lcsc.com/product-detail/C398355.html",
+          "priceCurrency": "USD",
+          "price": 0.0669,
+          "itemCondition": "http://schema.org/NewCondition",
+          "availability": "http://schema.org/InStock",
+          "inventoryLevel": 168340,
+          "seller": {
+            "@type": "Organization",
+            "name": "LCSC Electronics",
+            "url": "https://www.lcsc.com/"
+          },
+          "description": ""
+        },
+        "subjectOf": {
+          "@type": "DigitalDocument",
+          "name": "Datasheet",
+          "url": "https://datasheet.lcsc.com/datasheet/pdf/b3f500e21835dc38634fe987feaa838a.pdf?productCode=C398355"
+        }
+      },
+      "price_tiers": [
+        {
+          "ladder": 5,
+          "productPrice": "0.1220",
+          "usdPrice": 0.122,
+          "cnyProductPriceList": null,
+          "discountRate": "1",
+          "currencyPrice": 0.122,
+          "currencySymbol": "$",
+          "isForeignDiscount": null,
+          "ladderLevel": null,
+          "discountPrice": "0.1220",
+          "extPrice": "0.61",
+          "isRealOff": false
+        },
+        {
+          "ladder": 50,
+          "productPrice": "0.0968",
+          "usdPrice": 0.0968,
+          "cnyProductPriceList": null,
+          "discountRate": "1",
+          "currencyPrice": 0.0968,
+          "currencySymbol": "$",
+          "isForeignDiscount": null,
+          "ladderLevel": null,
+          "discountPrice": "0.0968",
+          "extPrice": "4.84",
+          "isRealOff": false
+        },
+        {
+          "ladder": 150,
+          "productPrice": "0.0838",
+          "usdPrice": 0.0838,
+          "cnyProductPriceList": null,
+          "discountRate": "1",
+          "currencyPrice": 0.0838,
+          "currencySymbol": "$",
+          "isForeignDiscount": null,
+          "ladderLevel": null,
+          "discountPrice": "0.0838",
+          "extPrice": "12.57",
+          "isRealOff": false
+        },
+        {
+          "ladder": 500,
+          "productPrice": "0.0732",
+          "usdPrice": 0.0732,
+          "cnyProductPriceList": null,
+          "discountRate": "1",
+          "currencyPrice": 0.0732,
+          "currencySymbol": "$",
+          "isForeignDiscount": null,
+          "ladderLevel": null,
+          "discountPrice": "0.0732",
+          "extPrice": "36.60",
+          "isRealOff": false
+        },
+        {
+          "ladder": 2500,
+          "productPrice": "0.0695",
+          "usdPrice": 0.0695,
+          "cnyProductPriceList": null,
+          "discountRate": "1",
+          "currencyPrice": 0.0695,
+          "currencySymbol": "$",
+          "isForeignDiscount": null,
+          "ladderLevel": null,
+          "discountPrice": "0.0695",
+          "extPrice": "173.75",
+          "isRealOff": false
+        },
+        {
+          "ladder": 5000,
+          "productPrice": "0.0669",
+          "usdPrice": 0.0669,
+          "cnyProductPriceList": null,
+          "discountRate": "1",
+          "currencyPrice": 0.0669,
+          "currencySymbol": "$",
+          "isForeignDiscount": null,
+          "ladderLevel": null,
+          "discountPrice": "0.0669",
+          "extPrice": "334.50",
+          "isRealOff": false
+        }
+      ],
+      "shipping_stock": {
+        "total": 168340,
+        "shipImmediately": 168340,
+        "ship3Days": 0
+      }
+    },
+    {
+      "id": "comparator_stock",
+      "kind": "distributor",
+      "url": "https://www.lcsc.com/product-detail/C105188.html",
+      "effective_url": "https://www.lcsc.com/product-detail/C105188.html",
+      "retrieved_at_utc": "2026-10-07T01:17:43.186118+00:00",
+      "method": "curl.exe unauthenticated HTTPS GET, redirects followed",
+      "http_status": "200",
+      "curl_exit": 0,
+      "raw_bytes": 453125,
+      "raw_sha256": "9406be13eb1364eb5cf282b59e12adb19588065bacd2c729ede1ac13ede15b31",
+      "error": null,
+      "state": "retrieved",
+      "product": {
+        "name": "TI TLV3201AIDBVR",
+        "sku": "C105188",
+        "mpn": "TLV3201AIDBVR",
+        "brand": {
+          "@type": "Brand",
+          "name": "TI"
+        },
+        "offers": {
+          "@type": "Offer",
+          "url": "https://www.lcsc.com/product-detail/C105188.html",
+          "priceCurrency": "USD",
+          "price": 0.6175,
+          "itemCondition": "http://schema.org/NewCondition",
+          "availability": "http://schema.org/InStock",
+          "inventoryLevel": 32169,
+          "seller": {
+            "@type": "Organization",
+            "name": "LCSC Electronics",
+            "url": "https://www.lcsc.com/"
+          },
+          "description": ""
+        },
+        "subjectOf": {
+          "@type": "DigitalDocument",
+          "name": "Datasheet",
+          "url": "https://datasheet.lcsc.com/datasheet/pdf/e49d4a72cfdc48969bc90ed0db7677d6.pdf?productCode=C105188"
+        }
+      },
+      "price_tiers": [
+        {
+          "ladder": 1,
+          "productPrice": "0.9820",
+          "usdPrice": 0.982,
+          "cnyProductPriceList": null,
+          "discountRate": "1",
+          "currencyPrice": 0.982,
+          "currencySymbol": "$",
+          "isForeignDiscount": null,
+          "ladderLevel": null,
+          "discountPrice": "0.9820",
+          "extPrice": "0.98",
+          "isRealOff": false
+        },
+        {
+          "ladder": 10,
+          "productPrice": "0.8638",
+          "usdPrice": 0.8638,
+          "cnyProductPriceList": null,
+          "discountRate": "1",
+          "currencyPrice": 0.8638,
+          "currencySymbol": "$",
+          "isForeignDiscount": null,
+          "ladderLevel": null,
+          "discountPrice": "0.8638",
+          "extPrice": "8.64",
+          "isRealOff": false
+        },
+        {
+          "ladder": 30,
+          "productPrice": "0.7521",
+          "usdPrice": 0.7521,
+          "cnyProductPriceList": null,
+          "discountRate": "1",
+          "currencyPrice": 0.7521,
+          "currencySymbol": "$",
+          "isForeignDiscount": null,
+          "ladderLevel": null,
+          "discountPrice": "0.7521",
+          "extPrice": "22.56",
+          "isRealOff": false
+        },
+        {
+          "ladder": 100,
+          "productPrice": "0.6684",
+          "usdPrice": 0.6684,
+          "cnyProductPriceList": null,
+          "discountRate": "1",
+          "currencyPrice": 0.6684,
+          "currencySymbol": "$",
+          "isForeignDiscount": null,
+          "ladderLevel": null,
+          "discountPrice": "0.6684",
+          "extPrice": "66.84",
+          "isRealOff": false
+        },
+        {
+          "ladder": 500,
+          "productPrice": "0.6355",
+          "usdPrice": 0.6355,
+          "cnyProductPriceList": null,
+          "discountRate": "1",
+          "currencyPrice": 0.6355,
+          "currencySymbol": "$",
+          "isForeignDiscount": null,
+          "ladderLevel": null,
+          "discountPrice": "0.6355",
+          "extPrice": "317.75",
+          "isRealOff": false
+        },
+        {
+          "ladder": 1000,
+          "productPrice": "0.6175",
+          "usdPrice": 0.6175,
+          "cnyProductPriceList": null,
+          "discountRate": "1",
+          "currencyPrice": 0.6175,
+          "currencySymbol": "$",
+          "isForeignDiscount": null,
+          "ladderLevel": null,
+          "discountPrice": "0.6175",
+          "extPrice": "617.50",
+          "isRealOff": false
+        }
+      ],
+      "shipping_stock": {
+        "total": 32169,
+        "shipImmediately": 32169,
+        "ship3Days": 0
+      }
+    },
+    {
+      "id": "timer_stock",
+      "kind": "distributor",
+      "url": "https://www.lcsc.com/product-detail/C90760.html",
+      "effective_url": "https://www.lcsc.com/product-detail/C90760.html",
+      "retrieved_at_utc": "2026-10-07T01:17:43.947191+00:00",
+      "method": "curl.exe unauthenticated HTTPS GET, redirects followed",
+      "http_status": "200",
+      "curl_exit": 0,
+      "raw_bytes": 416830,
+      "raw_sha256": "12e77a2ca9189f5ea368b70182296e7928e967c12c0a6f1f023723abb1fc1f1a",
+      "error": null,
+      "state": "retrieved",
+      "product": {
+        "name": "TI LMC555CMX/NOPB",
+        "sku": "C90760",
+        "mpn": "LMC555CMX/NOPB",
+        "brand": {
+          "@type": "Brand",
+          "name": "TI"
+        },
+        "offers": {
+          "@type": "Offer",
+          "url": "https://www.lcsc.com/product-detail/C90760.html",
+          "priceCurrency": "USD",
+          "price": 0.1478,
+          "itemCondition": "http://schema.org/NewCondition",
+          "availability": "http://schema.org/InStock",
+          "inventoryLevel": 610,
+          "seller": {
+            "@type": "Organization",
+            "name": "LCSC Electronics",
+            "url": "https://www.lcsc.com/"
+          },
+          "description": ""
+        },
+        "subjectOf": {
+          "@type": "DigitalDocument",
+          "name": "Datasheet",
+          "url": "https://datasheet.lcsc.com/datasheet/pdf/9ed69b1b2b4b43d6ace20bdaa5143d01.pdf?productCode=C90760"
+        }
+      },
+      "price_tiers": [
+        {
+          "ladder": 5,
+          "productPrice": "0.2948",
+          "usdPrice": 0.2948,
+          "cnyProductPriceList": null,
+          "discountRate": "1",
+          "currencyPrice": 0.2948,
+          "currencySymbol": "$",
+          "isForeignDiscount": null,
+          "ladderLevel": null,
+          "discountPrice": "0.2948",
+          "extPrice": "1.47",
+          "isRealOff": false
+        },
+        {
+          "ladder": 50,
+          "productPrice": "0.2350",
+          "usdPrice": 0.235,
+          "cnyProductPriceList": null,
+          "discountRate": "1",
+          "currencyPrice": 0.235,
+          "currencySymbol": "$",
+          "isForeignDiscount": null,
+          "ladderLevel": null,
+          "discountPrice": "0.2350",
+          "extPrice": "11.75",
+          "isRealOff": false
+        },
+        {
+          "ladder": 150,
+          "productPrice": "0.2094",
+          "usdPrice": 0.2094,
+          "cnyProductPriceList": null,
+          "discountRate": "1",
+          "currencyPrice": 0.2094,
+          "currencySymbol": "$",
+          "isForeignDiscount": null,
+          "ladderLevel": null,
+          "discountPrice": "0.2094",
+          "extPrice": "31.41",
+          "isRealOff": false
+        },
+        {
+          "ladder": 500,
+          "productPrice": "0.1706",
+          "usdPrice": 0.1706,
+          "cnyProductPriceList": null,
+          "discountRate": "1",
+          "currencyPrice": 0.1706,
+          "currencySymbol": "$",
+          "isForeignDiscount": null,
+          "ladderLevel": null,
+          "discountPrice": "0.1706",
+          "extPrice": "85.30",
+          "isRealOff": false
+        },
+        {
+          "ladder": 2500,
+          "productPrice": "0.1564",
+          "usdPrice": 0.1564,
+          "cnyProductPriceList": null,
+          "discountRate": "1",
+          "currencyPrice": 0.1564,
+          "currencySymbol": "$",
+          "isForeignDiscount": null,
+          "ladderLevel": null,
+          "discountPrice": "0.1564",
+          "extPrice": "391.00",
+          "isRealOff": false
+        },
+        {
+          "ladder": 5000,
+          "productPrice": "0.1478",
+          "usdPrice": 0.1478,
+          "cnyProductPriceList": null,
+          "discountRate": "1",
+          "currencyPrice": 0.1478,
+          "currencySymbol": "$",
+          "isForeignDiscount": null,
+          "ladderLevel": null,
+          "discountPrice": "0.1478",
+          "extPrice": "739.00",
+          "isRealOff": false
+        }
+      ],
+      "shipping_stock": {
+        "total": 610,
+        "shipImmediately": 610,
+        "ship3Days": 0
+      }
+    },
+    {
+      "id": "pot_stock",
+      "kind": "distributor",
+      "url": "https://www.lcsc.com/product-detail/C1539831.html",
+      "effective_url": "https://www.lcsc.com/product-detail/C1539831.html",
+      "retrieved_at_utc": "2026-10-07T01:17:45.382186+00:00",
+      "method": "curl.exe unauthenticated HTTPS GET, redirects followed",
+      "http_status": "200",
+      "curl_exit": 0,
+      "raw_bytes": 389232,
+      "raw_sha256": "a9ccc6af3cb403aef4fb1533818c26270c9d93a392e65ed4e1a1164c1bd00e63",
+      "error": null,
+      "state": "retrieved",
+      "product": {
+        "name": "MICROCHIP MCP41010-I/P",
+        "sku": "C1539831",
+        "mpn": "MCP41010-I/P",
+        "brand": {
+          "@type": "Brand",
+          "name": "MICROCHIP"
+        },
+        "offers": {
+          "@type": "Offer",
+          "url": "https://www.lcsc.com/product-detail/C1539831.html",
+          "priceCurrency": "USD",
+          "price": 2.3663,
+          "itemCondition": "http://schema.org/NewCondition",
+          "availability": "http://schema.org/InStock",
+          "inventoryLevel": 64,
+          "seller": {
+            "@type": "Organization",
+            "name": "LCSC Electronics",
+            "url": "https://www.lcsc.com/"
+          },
+          "description": ""
+        },
+        "subjectOf": {
+          "@type": "DigitalDocument",
+          "name": "Datasheet",
+          "url": "https://datasheet.lcsc.com/datasheet/pdf/fefd56092e2b5c07fcaac3dc9cc0315d.pdf?productCode=C1539831"
+        }
+      },
+      "price_tiers": [
+        {
+          "ladder": 1,
+          "productPrice": "3.7835",
+          "usdPrice": 3.7835,
+          "cnyProductPriceList": null,
+          "discountRate": "1",
+          "currencyPrice": 3.7835,
+          "currencySymbol": "$",
+          "isForeignDiscount": null,
+          "ladderLevel": null,
+          "discountPrice": "3.7835",
+          "extPrice": "3.78",
+          "isRealOff": false
+        },
+        {
+          "ladder": 10,
+          "productPrice": "3.2383",
+          "usdPrice": 3.2383,
+          "cnyProductPriceList": null,
+          "discountRate": "1",
+          "currencyPrice": 3.2383,
+          "currencySymbol": "$",
+          "isForeignDiscount": null,
+          "ladderLevel": null,
+          "discountPrice": "3.2383",
+          "extPrice": "32.38",
+          "isRealOff": false
+        },
+        {
+          "ladder": 60,
+          "productPrice": "2.9132",
+          "usdPrice": 2.9132,
+          "cnyProductPriceList": null,
+          "discountRate": "1",
+          "currencyPrice": 2.9132,
+          "currencySymbol": "$",
+          "isForeignDiscount": null,
+          "ladderLevel": null,
+          "discountPrice": "2.9132",
+          "extPrice": "174.79",
+          "isRealOff": false
+        },
+        {
+          "ladder": 120,
+          "productPrice": "2.5864",
+          "usdPrice": 2.5864,
+          "cnyProductPriceList": null,
+          "discountRate": "1",
+          "currencyPrice": 2.5864,
+          "currencySymbol": "$",
+          "isForeignDiscount": null,
+          "ladderLevel": null,
+          "discountPrice": "2.5864",
+          "extPrice": "310.37",
+          "isRealOff": false
+        },
+        {
+          "ladder": 480,
+          "productPrice": "2.4353",
+          "usdPrice": 2.4353,
+          "cnyProductPriceList": null,
+          "discountRate": "1",
+          "currencyPrice": 2.4353,
+          "currencySymbol": "$",
+          "isForeignDiscount": null,
+          "ladderLevel": null,
+          "discountPrice": "2.4353",
+          "extPrice": "1168.94",
+          "isRealOff": false
+        },
+        {
+          "ladder": 1200,
+          "productPrice": "2.3663",
+          "usdPrice": 2.3663,
+          "cnyProductPriceList": null,
+          "discountRate": "1",
+          "currencyPrice": 2.3663,
+          "currencySymbol": "$",
+          "isForeignDiscount": null,
+          "ladderLevel": null,
+          "discountPrice": "2.3663",
+          "extPrice": "2839.56",
+          "isRealOff": false
+        }
+      ],
+      "shipping_stock": {
+        "total": 64,
+        "shipImmediately": 64,
+        "ship3Days": 0
+      }
+    },
+    {
+      "id": "dac_stock",
+      "kind": "distributor",
+      "url": "https://www.lcsc.com/product-detail/C640392.html",
+      "effective_url": "https://www.lcsc.com/product-detail/C640392.html",
+      "retrieved_at_utc": "2026-10-07T01:17:46.344378+00:00",
+      "method": "curl.exe unauthenticated HTTPS GET, redirects followed",
+      "http_status": "200",
+      "curl_exit": 0,
+      "raw_bytes": 423966,
+      "raw_sha256": "fecd45e0c89f5e90b16b2db9d042cb7cdf897ef64eb8b01c2c5f70e1893d6934",
+      "error": null,
+      "state": "retrieved",
+      "product": {
+        "name": "MICROCHIP MCP4921-E/P",
+        "sku": "C640392",
+        "mpn": "MCP4921-E/P",
+        "brand": {
+          "@type": "Brand",
+          "name": "MICROCHIP"
+        },
+        "offers": {
+          "@type": "Offer",
+          "url": "https://www.lcsc.com/product-detail/C640392.html",
+          "priceCurrency": "USD",
+          "price": 2.8774,
+          "itemCondition": "http://schema.org/NewCondition",
+          "availability": "http://schema.org/InStock",
+          "inventoryLevel": 34,
+          "seller": {
+            "@type": "Organization",
+            "name": "LCSC Electronics",
+            "url": "https://www.lcsc.com/"
+          },
+          "description": ""
+        },
+        "subjectOf": {
+          "@type": "DigitalDocument",
+          "name": "Datasheet",
+          "url": "https://datasheet.lcsc.com/datasheet/pdf/ba53f2c0e20346bca03388cbd2b2df0a.pdf?productCode=C640392"
+        }
+      },
+      "price_tiers": [
+        {
+          "ladder": 1,
+          "productPrice": "4.4057",
+          "usdPrice": 4.4057,
+          "cnyProductPriceList": null,
+          "discountRate": "1",
+          "currencyPrice": 4.4057,
+          "currencySymbol": "$",
+          "isForeignDiscount": null,
+          "ladderLevel": null,
+          "discountPrice": "4.4057",
+          "extPrice": "4.41",
+          "isRealOff": false
+        },
+        {
+          "ladder": 10,
+          "productPrice": "3.8257",
+          "usdPrice": 3.8257,
+          "cnyProductPriceList": null,
+          "discountRate": "1",
+          "currencyPrice": 3.8257,
+          "currencySymbol": "$",
+          "isForeignDiscount": null,
+          "ladderLevel": null,
+          "discountPrice": "3.8257",
+          "extPrice": "38.26",
+          "isRealOff": false
+        },
+        {
+          "ladder": 25,
+          "productPrice": "3.4591",
+          "usdPrice": 3.4591,
+          "cnyProductPriceList": null,
+          "discountRate": "1",
+          "currencyPrice": 3.4591,
+          "currencySymbol": "$",
+          "isForeignDiscount": null,
+          "ladderLevel": null,
+          "discountPrice": "3.4591",
+          "extPrice": "86.48",
+          "isRealOff": false
+        },
+        {
+          "ladder": 100,
+          "productPrice": "3.1104",
+          "usdPrice": 3.1104,
+          "cnyProductPriceList": null,
+          "discountRate": "1",
+          "currencyPrice": 3.1104,
+          "currencySymbol": "$",
+          "isForeignDiscount": null,
+          "ladderLevel": null,
+          "discountPrice": "3.1104",
+          "extPrice": "311.04",
+          "isRealOff": false
+        },
+        {
+          "ladder": 500,
+          "productPrice": "2.9491",
+          "usdPrice": 2.9491,
+          "cnyProductPriceList": null,
+          "discountRate": "1",
+          "currencyPrice": 2.9491,
+          "currencySymbol": "$",
+          "isForeignDiscount": null,
+          "ladderLevel": null,
+          "discountPrice": "2.9491",
+          "extPrice": "1474.55",
+          "isRealOff": false
+        },
+        {
+          "ladder": 1000,
+          "productPrice": "2.8774",
+          "usdPrice": 2.8774,
+          "cnyProductPriceList": null,
+          "discountRate": "1",
+          "currencyPrice": 2.8774,
+          "currencySymbol": "$",
+          "isForeignDiscount": null,
+          "ladderLevel": null,
+          "discountPrice": "2.8774",
+          "extPrice": "2877.40",
+          "isRealOff": false
+        }
+      ],
+      "shipping_stock": {
+        "total": 34,
+        "shipImmediately": 34,
+        "ship3Days": 0
+      }
+    },
+    {
+      "id": "cap_stock",
+      "kind": "distributor",
+      "url": "https://www.lcsc.com/product-detail/C15523.html",
+      "effective_url": "https://www.lcsc.com/product-detail/C15523.html",
+      "retrieved_at_utc": "2026-10-07T01:17:47.173893+00:00",
+      "method": "curl.exe unauthenticated HTTPS GET, redirects followed",
+      "http_status": "200",
+      "curl_exit": 0,
+      "raw_bytes": 402068,
+      "raw_sha256": "1ff73c5bc35db0a59039013fb793d79524059aed5f12d2518f1f6b437bfaf353",
+      "error": null,
+      "state": "retrieved",
+      "product": {
+        "name": "TDK B32529C1104J289",
+        "sku": "C15523",
+        "mpn": "B32529C1104J289",
+        "brand": {
+          "@type": "Brand",
+          "name": "TDK"
+        },
+        "offers": {
+          "@type": "Offer",
+          "url": "https://www.lcsc.com/product-detail/C15523.html",
+          "priceCurrency": "USD",
+          "price": 0.0573,
+          "itemCondition": "http://schema.org/NewCondition",
+          "availability": "http://schema.org/InStock",
+          "inventoryLevel": 9430,
+          "seller": {
+            "@type": "Organization",
+            "name": "LCSC Electronics",
+            "url": "https://www.lcsc.com/"
+          },
+          "description": ""
+        },
+        "subjectOf": {
+          "@type": "DigitalDocument",
+          "name": "Datasheet",
+          "url": "https://datasheet.lcsc.com/datasheet/pdf/58115b0c2f21f05a3509bc03212563f4.pdf?productCode=C15523"
+        }
+      },
+      "price_tiers": [
+        {
+          "ladder": 5,
+          "productPrice": "0.1014",
+          "usdPrice": 0.1014,
+          "cnyProductPriceList": null,
+          "discountRate": "1",
+          "currencyPrice": 0.1014,
+          "currencySymbol": "$",
+          "isForeignDiscount": null,
+          "ladderLevel": null,
+          "discountPrice": "0.1014",
+          "extPrice": "0.51",
+          "isRealOff": false
+        },
+        {
+          "ladder": 50,
+          "productPrice": "0.0831",
+          "usdPrice": 0.0831,
+          "cnyProductPriceList": null,
+          "discountRate": "1",
+          "currencyPrice": 0.0831,
+          "currencySymbol": "$",
+          "isForeignDiscount": null,
+          "ladderLevel": null,
+          "discountPrice": "0.0831",
+          "extPrice": "4.16",
+          "isRealOff": false
+        },
+        {
+          "ladder": 150,
+          "productPrice": "0.0739",
+          "usdPrice": 0.0739,
+          "cnyProductPriceList": null,
+          "discountRate": "1",
+          "currencyPrice": 0.0739,
+          "currencySymbol": "$",
+          "isForeignDiscount": null,
+          "ladderLevel": null,
+          "discountPrice": "0.0739",
+          "extPrice": "11.09",
+          "isRealOff": false
+        },
+        {
+          "ladder": 500,
+          "productPrice": "0.0671",
+          "usdPrice": 0.0671,
+          "cnyProductPriceList": null,
+          "discountRate": "1",
+          "currencyPrice": 0.0671,
+          "currencySymbol": "$",
+          "isForeignDiscount": null,
+          "ladderLevel": null,
+          "discountPrice": "0.0671",
+          "extPrice": "33.55",
+          "isRealOff": false
+        },
+        {
+          "ladder": 3200,
+          "productPrice": "0.0600",
+          "usdPrice": 0.06,
+          "cnyProductPriceList": null,
+          "discountRate": "1",
+          "currencyPrice": 0.06,
+          "currencySymbol": "$",
+          "isForeignDiscount": null,
+          "ladderLevel": null,
+          "discountPrice": "0.0600",
+          "extPrice": "192.00",
+          "isRealOff": false
+        },
+        {
+          "ladder": 6400,
+          "productPrice": "0.0573",
+          "usdPrice": 0.0573,
+          "cnyProductPriceList": null,
+          "discountRate": "1",
+          "currencyPrice": 0.0573,
+          "currencySymbol": "$",
+          "isForeignDiscount": null,
+          "ladderLevel": null,
+          "discountPrice": "0.0573",
+          "extPrice": "366.72",
+          "isRealOff": false
+        }
+      ],
+      "shipping_stock": {
+        "total": 9430,
+        "shipImmediately": 9430,
+        "ship3Days": 0
+      }
+    },
+    {
+      "id": "pot_page_block",
+      "kind": "manufacturer",
+      "url": "https://www.microchip.com/en-us/product/MCP41010",
+      "effective_url": "https://www.microchip.com/en-us/product/MCP41010",
+      "retrieved_at_utc": "2026-10-07T01:17:47.487410+00:00",
+      "method": "curl.exe unauthenticated HTTPS GET, redirects followed",
+      "http_status": "403",
+      "curl_exit": 0,
+      "raw_bytes": 405,
+      "raw_sha256": "79dc0bdf335abd4128d49ea52eaa67fd6900d2efb33f9a50855244ea164a9d8b",
+      "error": null,
+      "state": "unavailable"
+    },
+    {
+      "id": "dac_page_block",
+      "kind": "manufacturer",
+      "url": "https://www.microchip.com/en-us/product/MCP4921",
+      "effective_url": "https://www.microchip.com/en-us/product/MCP4921",
+      "retrieved_at_utc": "2026-10-07T01:17:47.806271+00:00",
+      "method": "curl.exe unauthenticated HTTPS GET, redirects followed",
+      "http_status": "403",
+      "curl_exit": 0,
+      "raw_bytes": 404,
+      "raw_sha256": "348571b6a44ffbf7095d91895ea6c640176b5e66ba16d39a590935e449364c7c",
+      "error": null,
+      "state": "unavailable"
+    }
+  ]
+}

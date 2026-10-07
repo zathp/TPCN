@@ -1,0 +1,832 @@
+cwd=C:\Users\zathp\.copilot\session-state\2c38ab9f-63a7-41fb-8437-e11b4732bee9\files\luna47-review
+command=['C:\\Users\\zathp\\Documents\\programming\\TPCN\\.venv\\Scripts\\python.exe', '-m', 'pytest', 'tests', '-ra', '--junitxml=C:\\Users\\zathp\\.copilot\\session-state\\2c38ab9f-63a7-41fb-8437-e11b4732bee9\\files\\luna47-review\\artifacts\\luna47-review\\governance-full.xml']
+PYTHONPATH=C:\Users\zathp\.copilot\session-state\2c38ab9f-63a7-41fb-8437-e11b4732bee9\files\luna47-review
+PYTHONHASHSEED=0
+PYTHONDONTWRITEBYTECODE=1
+started=2026-10-07T01:41:03.347100+00:00
+============================= test session starts =============================
+platform win32 -- Python 3.11.5, pytest-9.1.1, pluggy-1.6.0
+rootdir: C:\Users\zathp\.copilot\session-state\2c38ab9f-63a7-41fb-8437-e11b4732bee9\files\luna47-review
+collected 1334 items
+
+tests\test_acp0002_n1.py ..................                              [  1%]
+tests\test_acp0002_n2.py ............................................... [  4%]
+........................................................................ [ 10%]
+........................................................................ [ 15%]
+.................................................                        [ 19%]
+tests\test_canonical_event_neuron.py .........                           [ 20%]
+tests\test_cpu_visualization.py ......                                   [ 20%]
+tests\test_e2_ir2.py .....                                               [ 20%]
+tests\test_e2_multi_excursion.py ....................................... [ 23%]
+...                                                                      [ 23%]
+tests\test_eligibility.py .............                                  [ 24%]
+tests\test_energy_utility.py .......                                     [ 25%]
+tests\test_event_runtime.py ..............                               [ 26%]
+tests\test_excursion_integration.py .................................... [ 29%]
+.............                                                            [ 30%]
+tests\test_excursion_neuron.py ......................................... [ 33%]
+....                                                                     [ 33%]
+tests\test_execution_ir.py ..................                            [ 34%]
+tests\test_experiments.py ............                                   [ 35%]
+tests\test_fpga_visualization.py ......                                  [ 36%]
+tests\test_gpu_visualization.py .s..                                     [ 36%]
+tests\test_ir2.py ...................................................... [ 40%]
+.........................................................                [ 44%]
+tests\test_joint_integration.py .....                                    [ 45%]
+tests\test_luna11_adversarial.py ..........                              [ 46%]
+tests\test_luna12b_integration.py .............                          [ 47%]
+tests\test_luna12e_integration.py ......                                 [ 47%]
+tests\test_luna12h_temporal.py .........                                 [ 48%]
+tests\test_luna12i_temporal_association.py ....                          [ 48%]
+tests\test_luna12j_temporal_efficacy.py ....                             [ 48%]
+tests\test_luna12k_capacity_pressure.py .......                          [ 49%]
+tests\test_luna12l_temporal_scale.py ............                        [ 50%]
+tests\test_luna12m_edge_instrumentation.py ..........                    [ 50%]
+tests\test_luna12n_temporal_direction.py ...................             [ 52%]
+tests\test_luna13b_temporal_crossover.py ........                        [ 52%]
+tests\test_luna13c_causal_utility.py ......                              [ 53%]
+tests\test_luna13d_finite_resource.py ..........                         [ 54%]
+tests\test_luna13e_post_pruning_admission.py ..........                  [ 54%]
+tests\test_luna13f_runtime_generated_evidence.py ...............         [ 55%]
+tests\test_luna28_excursion_structural_growth.py ....................... [ 57%]
+.....................                                                    [ 59%]
+tests\test_luna33_acp0007_four_class_efficacy.py ............            [ 60%]
+tests\test_luna34_excursion_v1_multi_emitter_bridge.py .........         [ 60%]
+tests\test_luna35_eligibility_capacity_lifecycle.py ...                  [ 61%]
+tests\test_luna36_eligibility_capacity_api.py .............              [ 62%]
+tests\test_luna37_excursion_v1_propagation_emission_diagnostic.py ...... [ 62%]
+.                                                                        [ 62%]
+tests\test_luna38_excursion_integration_state.py ....................... [ 64%]
+...............                                                          [ 65%]
+tests\test_luna39_acp0008_propagation_emission_diagnostic.py ........    [ 66%]
+tests\test_luna40_structural_effective_routed_drive.py ...........       [ 66%]
+tests\test_luna41_acp0008_temporal_calibration.py ......                 [ 67%]
+tests\test_luna42_acp0008_corrective_calibration.py ........             [ 67%]
+tests\test_luna43_acp0008_destination_integration_mechanism.py ........  [ 68%]
+tests\test_luna44_acp0008_canonical_fixture_rebaseline.py .............. [ 69%]
+.............................                                            [ 71%]
+tests\test_luna44_canonical_fixture.py .....F...                         [ 72%]
+tests\test_luna44_canonical_fixture_verification.py .EEEEEEE             [ 73%]
+tests\test_luna45_acp0008_depth2_destination_integration.py ............ [ 73%]
+...............................................................          [ 78%]
+tests\test_luna46_depth_scaling_diagnostic.py .......................... [ 80%]
+........................................................................ [ 85%]
+...F.................................................................    [ 91%]
+tests\test_predictive_coding.py ............                             [ 92%]
+tests\test_spiral_benchmark.py ......                                    [ 92%]
+tests\test_streaming_classifier.py ...............                       [ 93%]
+tests\test_stroke_dataset.py ......                                      [ 94%]
+tests\test_structural_plasticity.py ................                     [ 95%]
+tests\test_temporal_analysis.py ......                                   [ 95%]
+tests\test_topology.py ...........                                       [ 96%]
+tests\test_uci_character_trajectories_benchmark.py .......               [ 97%]
+tests\test_viewer_3d.py .............                                    [ 98%]
+tests\test_visualization.py ..........................                   [100%]
+
+=================================== ERRORS ====================================
+______ ERROR at setup of test_missing_manifest_source_file_fails_loudly _______
+
+tmp_path_factory = TempPathFactory(_given_basetemp=None, _trace=<pluggy._tracing.TagTracerSub object at 0x00000201C56A26D0>, _basetemp=WindowsPath('C:/Users/zathp/AppData/Local/Temp/pytest-of-zathp/pytest-379'), _retention_count=3, _retention_policy='all')
+
+    @pytest.fixture(scope="module")
+    def fresh_materializations(tmp_path_factory):
+        root = tmp_path_factory.getbasetemp() / "luna44-independent-materializations"
+>       builder.materialize_independently(root)
+
+tests\test_luna44_canonical_fixture_verification.py:22: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+scripts\build_luna44_canonical_fixture.py:502: in materialize_independently
+    subprocess.run(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+input = None, capture_output = True, timeout = None, check = True
+popenargs = (['C:\\Users\\zathp\\Documents\\programming\\TPCN\\.venv\\Scripts\\python.exe', 'C:\\Users\\zathp\\AppData\\Local\\Tem...s\\zathp\\AppData\\Local\\Temp\\pytest-of-zathp\\pytest-379\\luna44-independent-materializations\\materialization-a'],)
+kwargs = {'cwd': WindowsPath('C:/Users/zathp/AppData/Local/Temp/pytest-of-zathp/pytest-379/luna44-independent-materializations-pinned-source'), 'text': True, 'stdout': -1, 'stderr': -1}
+
+    def run(*popenargs,
+            input=None, capture_output=False, timeout=None, check=False, **kwargs):
+        """Run command with arguments and return a CompletedProcess instance.
+    
+        The returned instance will have attributes args, returncode, stdout and
+        stderr. By default, stdout and stderr are not captured, and those attributes
+        will be None. Pass stdout=PIPE and/or stderr=PIPE in order to capture them,
+        or pass capture_output=True to capture both.
+    
+        If check is True and the exit code was non-zero, it raises a
+        CalledProcessError. The CalledProcessError object will have the return code
+        in the returncode attribute, and output & stderr attributes if those streams
+        were captured.
+    
+        If timeout is given, and the process takes too long, a TimeoutExpired
+        exception will be raised.
+    
+        There is an optional argument "input", allowing you to
+        pass bytes or a string to the subprocess's stdin.  If you use this argument
+        you may not also use the Popen constructor's "stdin" argument, as
+        it will be used internally.
+    
+        By default, all communication is in bytes, and therefore any "input" should
+        be bytes, and the stdout and stderr will be bytes. If in text mode, any
+        "input" should be a string, and stdout and stderr will be strings decoded
+        according to locale encoding, or by "encoding" if set. Text mode is
+        triggered by setting any of text, encoding, errors or universal_newlines.
+    
+        The other arguments are the same as for the Popen constructor.
+        """
+        if input is not None:
+            if kwargs.get('stdin') is not None:
+                raise ValueError('stdin and input arguments may not both be used.')
+            kwargs['stdin'] = PIPE
+    
+        if capture_output:
+            if kwargs.get('stdout') is not None or kwargs.get('stderr') is not None:
+                raise ValueError('stdout and stderr arguments may not be used '
+                                 'with capture_output.')
+            kwargs['stdout'] = PIPE
+            kwargs['stderr'] = PIPE
+    
+        with Popen(*popenargs, **kwargs) as process:
+            try:
+                stdout, stderr = process.communicate(input, timeout=timeout)
+            except TimeoutExpired as exc:
+                process.kill()
+                if _mswindows:
+                    # Windows accumulates the output in a single blocking
+                    # read() call run on child threads, with the timeout
+                    # being done in a join() on those threads.  communicate()
+                    # _after_ kill() is required to collect that and add it
+                    # to the exception.
+                    exc.stdout, exc.stderr = process.communicate()
+                else:
+                    # POSIX _communicate already populated the output so
+                    # far into the TimeoutExpired exception.
+                    process.wait()
+                raise
+            except:  # Including KeyboardInterrupt, communicate handled that.
+                process.kill()
+                # We don't call process.wait() as .__exit__ does that for us.
+                raise
+            retcode = process.poll()
+            if check and retcode:
+>               raise CalledProcessError(retcode, process.args,
+                                         output=stdout, stderr=stderr)
+E               subprocess.CalledProcessError: Command '['C:\\Users\\zathp\\Documents\\programming\\TPCN\\.venv\\Scripts\\python.exe', 'C:\\Users\\zathp\\AppData\\Local\\Temp\\pytest-of-zathp\\pytest-379\\luna44-independent-materializations-pinned-source\\scripts\\build_luna44_canonical_fixture.py', '--materialize-worker', 'C:\\Users\\zathp\\AppData\\Local\\Temp\\pytest-of-zathp\\pytest-379\\luna44-independent-materializations\\materialization-a']' returned non-zero exit status 1.
+
+C:\Users\zathp\AppData\Local\Programs\Python\Python311\Lib\subprocess.py:571: CalledProcessError
+__________ ERROR at setup of test_incorrect_source_sha_fails_loudly ___________
+
+tmp_path_factory = TempPathFactory(_given_basetemp=None, _trace=<pluggy._tracing.TagTracerSub object at 0x00000201C56A26D0>, _basetemp=WindowsPath('C:/Users/zathp/AppData/Local/Temp/pytest-of-zathp/pytest-379'), _retention_count=3, _retention_policy='all')
+
+    @pytest.fixture(scope="module")
+    def fresh_materializations(tmp_path_factory):
+        root = tmp_path_factory.getbasetemp() / "luna44-independent-materializations"
+>       builder.materialize_independently(root)
+
+tests\test_luna44_canonical_fixture_verification.py:22: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+scripts\build_luna44_canonical_fixture.py:502: in materialize_independently
+    subprocess.run(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+input = None, capture_output = True, timeout = None, check = True
+popenargs = (['C:\\Users\\zathp\\Documents\\programming\\TPCN\\.venv\\Scripts\\python.exe', 'C:\\Users\\zathp\\AppData\\Local\\Tem...s\\zathp\\AppData\\Local\\Temp\\pytest-of-zathp\\pytest-379\\luna44-independent-materializations\\materialization-a'],)
+kwargs = {'cwd': WindowsPath('C:/Users/zathp/AppData/Local/Temp/pytest-of-zathp/pytest-379/luna44-independent-materializations-pinned-source'), 'text': True, 'stdout': -1, 'stderr': -1}
+
+    def run(*popenargs,
+            input=None, capture_output=False, timeout=None, check=False, **kwargs):
+        """Run command with arguments and return a CompletedProcess instance.
+    
+        The returned instance will have attributes args, returncode, stdout and
+        stderr. By default, stdout and stderr are not captured, and those attributes
+        will be None. Pass stdout=PIPE and/or stderr=PIPE in order to capture them,
+        or pass capture_output=True to capture both.
+    
+        If check is True and the exit code was non-zero, it raises a
+        CalledProcessError. The CalledProcessError object will have the return code
+        in the returncode attribute, and output & stderr attributes if those streams
+        were captured.
+    
+        If timeout is given, and the process takes too long, a TimeoutExpired
+        exception will be raised.
+    
+        There is an optional argument "input", allowing you to
+        pass bytes or a string to the subprocess's stdin.  If you use this argument
+        you may not also use the Popen constructor's "stdin" argument, as
+        it will be used internally.
+    
+        By default, all communication is in bytes, and therefore any "input" should
+        be bytes, and the stdout and stderr will be bytes. If in text mode, any
+        "input" should be a string, and stdout and stderr will be strings decoded
+        according to locale encoding, or by "encoding" if set. Text mode is
+        triggered by setting any of text, encoding, errors or universal_newlines.
+    
+        The other arguments are the same as for the Popen constructor.
+        """
+        if input is not None:
+            if kwargs.get('stdin') is not None:
+                raise ValueError('stdin and input arguments may not both be used.')
+            kwargs['stdin'] = PIPE
+    
+        if capture_output:
+            if kwargs.get('stdout') is not None or kwargs.get('stderr') is not None:
+                raise ValueError('stdout and stderr arguments may not be used '
+                                 'with capture_output.')
+            kwargs['stdout'] = PIPE
+            kwargs['stderr'] = PIPE
+    
+        with Popen(*popenargs, **kwargs) as process:
+            try:
+                stdout, stderr = process.communicate(input, timeout=timeout)
+            except TimeoutExpired as exc:
+                process.kill()
+                if _mswindows:
+                    # Windows accumulates the output in a single blocking
+                    # read() call run on child threads, with the timeout
+                    # being done in a join() on those threads.  communicate()
+                    # _after_ kill() is required to collect that and add it
+                    # to the exception.
+                    exc.stdout, exc.stderr = process.communicate()
+                else:
+                    # POSIX _communicate already populated the output so
+                    # far into the TimeoutExpired exception.
+                    process.wait()
+                raise
+            except:  # Including KeyboardInterrupt, communicate handled that.
+                process.kill()
+                # We don't call process.wait() as .__exit__ does that for us.
+                raise
+            retcode = process.poll()
+            if check and retcode:
+>               raise CalledProcessError(retcode, process.args,
+                                         output=stdout, stderr=stderr)
+E               subprocess.CalledProcessError: Command '['C:\\Users\\zathp\\Documents\\programming\\TPCN\\.venv\\Scripts\\python.exe', 'C:\\Users\\zathp\\AppData\\Local\\Temp\\pytest-of-zathp\\pytest-379\\luna44-independent-materializations-pinned-source\\scripts\\build_luna44_canonical_fixture.py', '--materialize-worker', 'C:\\Users\\zathp\\AppData\\Local\\Temp\\pytest-of-zathp\\pytest-379\\luna44-independent-materializations\\materialization-a']' returned non-zero exit status 1.
+
+C:\Users\zathp\AppData\Local\Programs\Python\Python311\Lib\subprocess.py:571: CalledProcessError
+______ ERROR at setup of test_fixture_file_digest_mismatch_fails_loudly _______
+
+tmp_path_factory = TempPathFactory(_given_basetemp=None, _trace=<pluggy._tracing.TagTracerSub object at 0x00000201C56A26D0>, _basetemp=WindowsPath('C:/Users/zathp/AppData/Local/Temp/pytest-of-zathp/pytest-379'), _retention_count=3, _retention_policy='all')
+
+    @pytest.fixture(scope="module")
+    def fresh_materializations(tmp_path_factory):
+        root = tmp_path_factory.getbasetemp() / "luna44-independent-materializations"
+>       builder.materialize_independently(root)
+
+tests\test_luna44_canonical_fixture_verification.py:22: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+scripts\build_luna44_canonical_fixture.py:502: in materialize_independently
+    subprocess.run(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+input = None, capture_output = True, timeout = None, check = True
+popenargs = (['C:\\Users\\zathp\\Documents\\programming\\TPCN\\.venv\\Scripts\\python.exe', 'C:\\Users\\zathp\\AppData\\Local\\Tem...s\\zathp\\AppData\\Local\\Temp\\pytest-of-zathp\\pytest-379\\luna44-independent-materializations\\materialization-a'],)
+kwargs = {'cwd': WindowsPath('C:/Users/zathp/AppData/Local/Temp/pytest-of-zathp/pytest-379/luna44-independent-materializations-pinned-source'), 'text': True, 'stdout': -1, 'stderr': -1}
+
+    def run(*popenargs,
+            input=None, capture_output=False, timeout=None, check=False, **kwargs):
+        """Run command with arguments and return a CompletedProcess instance.
+    
+        The returned instance will have attributes args, returncode, stdout and
+        stderr. By default, stdout and stderr are not captured, and those attributes
+        will be None. Pass stdout=PIPE and/or stderr=PIPE in order to capture them,
+        or pass capture_output=True to capture both.
+    
+        If check is True and the exit code was non-zero, it raises a
+        CalledProcessError. The CalledProcessError object will have the return code
+        in the returncode attribute, and output & stderr attributes if those streams
+        were captured.
+    
+        If timeout is given, and the process takes too long, a TimeoutExpired
+        exception will be raised.
+    
+        There is an optional argument "input", allowing you to
+        pass bytes or a string to the subprocess's stdin.  If you use this argument
+        you may not also use the Popen constructor's "stdin" argument, as
+        it will be used internally.
+    
+        By default, all communication is in bytes, and therefore any "input" should
+        be bytes, and the stdout and stderr will be bytes. If in text mode, any
+        "input" should be a string, and stdout and stderr will be strings decoded
+        according to locale encoding, or by "encoding" if set. Text mode is
+        triggered by setting any of text, encoding, errors or universal_newlines.
+    
+        The other arguments are the same as for the Popen constructor.
+        """
+        if input is not None:
+            if kwargs.get('stdin') is not None:
+                raise ValueError('stdin and input arguments may not both be used.')
+            kwargs['stdin'] = PIPE
+    
+        if capture_output:
+            if kwargs.get('stdout') is not None or kwargs.get('stderr') is not None:
+                raise ValueError('stdout and stderr arguments may not be used '
+                                 'with capture_output.')
+            kwargs['stdout'] = PIPE
+            kwargs['stderr'] = PIPE
+    
+        with Popen(*popenargs, **kwargs) as process:
+            try:
+                stdout, stderr = process.communicate(input, timeout=timeout)
+            except TimeoutExpired as exc:
+                process.kill()
+                if _mswindows:
+                    # Windows accumulates the output in a single blocking
+                    # read() call run on child threads, with the timeout
+                    # being done in a join() on those threads.  communicate()
+                    # _after_ kill() is required to collect that and add it
+                    # to the exception.
+                    exc.stdout, exc.stderr = process.communicate()
+                else:
+                    # POSIX _communicate already populated the output so
+                    # far into the TimeoutExpired exception.
+                    process.wait()
+                raise
+            except:  # Including KeyboardInterrupt, communicate handled that.
+                process.kill()
+                # We don't call process.wait() as .__exit__ does that for us.
+                raise
+            retcode = process.poll()
+            if check and retcode:
+>               raise CalledProcessError(retcode, process.args,
+                                         output=stdout, stderr=stderr)
+E               subprocess.CalledProcessError: Command '['C:\\Users\\zathp\\Documents\\programming\\TPCN\\.venv\\Scripts\\python.exe', 'C:\\Users\\zathp\\AppData\\Local\\Temp\\pytest-of-zathp\\pytest-379\\luna44-independent-materializations-pinned-source\\scripts\\build_luna44_canonical_fixture.py', '--materialize-worker', 'C:\\Users\\zathp\\AppData\\Local\\Temp\\pytest-of-zathp\\pytest-379\\luna44-independent-materializations\\materialization-a']' returned non-zero exit status 1.
+
+C:\Users\zathp\AppData\Local\Programs\Python\Python311\Lib\subprocess.py:571: CalledProcessError
+______ ERROR at setup of test_incorrect_fixture_point_count_fails_loudly ______
+
+tmp_path_factory = TempPathFactory(_given_basetemp=None, _trace=<pluggy._tracing.TagTracerSub object at 0x00000201C56A26D0>, _basetemp=WindowsPath('C:/Users/zathp/AppData/Local/Temp/pytest-of-zathp/pytest-379'), _retention_count=3, _retention_policy='all')
+
+    @pytest.fixture(scope="module")
+    def fresh_materializations(tmp_path_factory):
+        root = tmp_path_factory.getbasetemp() / "luna44-independent-materializations"
+>       builder.materialize_independently(root)
+
+tests\test_luna44_canonical_fixture_verification.py:22: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+scripts\build_luna44_canonical_fixture.py:502: in materialize_independently
+    subprocess.run(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+input = None, capture_output = True, timeout = None, check = True
+popenargs = (['C:\\Users\\zathp\\Documents\\programming\\TPCN\\.venv\\Scripts\\python.exe', 'C:\\Users\\zathp\\AppData\\Local\\Tem...s\\zathp\\AppData\\Local\\Temp\\pytest-of-zathp\\pytest-379\\luna44-independent-materializations\\materialization-a'],)
+kwargs = {'cwd': WindowsPath('C:/Users/zathp/AppData/Local/Temp/pytest-of-zathp/pytest-379/luna44-independent-materializations-pinned-source'), 'text': True, 'stdout': -1, 'stderr': -1}
+
+    def run(*popenargs,
+            input=None, capture_output=False, timeout=None, check=False, **kwargs):
+        """Run command with arguments and return a CompletedProcess instance.
+    
+        The returned instance will have attributes args, returncode, stdout and
+        stderr. By default, stdout and stderr are not captured, and those attributes
+        will be None. Pass stdout=PIPE and/or stderr=PIPE in order to capture them,
+        or pass capture_output=True to capture both.
+    
+        If check is True and the exit code was non-zero, it raises a
+        CalledProcessError. The CalledProcessError object will have the return code
+        in the returncode attribute, and output & stderr attributes if those streams
+        were captured.
+    
+        If timeout is given, and the process takes too long, a TimeoutExpired
+        exception will be raised.
+    
+        There is an optional argument "input", allowing you to
+        pass bytes or a string to the subprocess's stdin.  If you use this argument
+        you may not also use the Popen constructor's "stdin" argument, as
+        it will be used internally.
+    
+        By default, all communication is in bytes, and therefore any "input" should
+        be bytes, and the stdout and stderr will be bytes. If in text mode, any
+        "input" should be a string, and stdout and stderr will be strings decoded
+        according to locale encoding, or by "encoding" if set. Text mode is
+        triggered by setting any of text, encoding, errors or universal_newlines.
+    
+        The other arguments are the same as for the Popen constructor.
+        """
+        if input is not None:
+            if kwargs.get('stdin') is not None:
+                raise ValueError('stdin and input arguments may not both be used.')
+            kwargs['stdin'] = PIPE
+    
+        if capture_output:
+            if kwargs.get('stdout') is not None or kwargs.get('stderr') is not None:
+                raise ValueError('stdout and stderr arguments may not be used '
+                                 'with capture_output.')
+            kwargs['stdout'] = PIPE
+            kwargs['stderr'] = PIPE
+    
+        with Popen(*popenargs, **kwargs) as process:
+            try:
+                stdout, stderr = process.communicate(input, timeout=timeout)
+            except TimeoutExpired as exc:
+                process.kill()
+                if _mswindows:
+                    # Windows accumulates the output in a single blocking
+                    # read() call run on child threads, with the timeout
+                    # being done in a join() on those threads.  communicate()
+                    # _after_ kill() is required to collect that and add it
+                    # to the exception.
+                    exc.stdout, exc.stderr = process.communicate()
+                else:
+                    # POSIX _communicate already populated the output so
+                    # far into the TimeoutExpired exception.
+                    process.wait()
+                raise
+            except:  # Including KeyboardInterrupt, communicate handled that.
+                process.kill()
+                # We don't call process.wait() as .__exit__ does that for us.
+                raise
+            retcode = process.poll()
+            if check and retcode:
+>               raise CalledProcessError(retcode, process.args,
+                                         output=stdout, stderr=stderr)
+E               subprocess.CalledProcessError: Command '['C:\\Users\\zathp\\Documents\\programming\\TPCN\\.venv\\Scripts\\python.exe', 'C:\\Users\\zathp\\AppData\\Local\\Temp\\pytest-of-zathp\\pytest-379\\luna44-independent-materializations-pinned-source\\scripts\\build_luna44_canonical_fixture.py', '--materialize-worker', 'C:\\Users\\zathp\\AppData\\Local\\Temp\\pytest-of-zathp\\pytest-379\\luna44-independent-materializations\\materialization-a']' returned non-zero exit status 1.
+
+C:\Users\zathp\AppData\Local\Programs\Python\Python311\Lib\subprocess.py:571: CalledProcessError
+______ ERROR at setup of test_binary64_decimal_hex_mismatch_fails_loudly ______
+
+tmp_path_factory = TempPathFactory(_given_basetemp=None, _trace=<pluggy._tracing.TagTracerSub object at 0x00000201C56A26D0>, _basetemp=WindowsPath('C:/Users/zathp/AppData/Local/Temp/pytest-of-zathp/pytest-379'), _retention_count=3, _retention_policy='all')
+
+    @pytest.fixture(scope="module")
+    def fresh_materializations(tmp_path_factory):
+        root = tmp_path_factory.getbasetemp() / "luna44-independent-materializations"
+>       builder.materialize_independently(root)
+
+tests\test_luna44_canonical_fixture_verification.py:22: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+scripts\build_luna44_canonical_fixture.py:502: in materialize_independently
+    subprocess.run(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+input = None, capture_output = True, timeout = None, check = True
+popenargs = (['C:\\Users\\zathp\\Documents\\programming\\TPCN\\.venv\\Scripts\\python.exe', 'C:\\Users\\zathp\\AppData\\Local\\Tem...s\\zathp\\AppData\\Local\\Temp\\pytest-of-zathp\\pytest-379\\luna44-independent-materializations\\materialization-a'],)
+kwargs = {'cwd': WindowsPath('C:/Users/zathp/AppData/Local/Temp/pytest-of-zathp/pytest-379/luna44-independent-materializations-pinned-source'), 'text': True, 'stdout': -1, 'stderr': -1}
+
+    def run(*popenargs,
+            input=None, capture_output=False, timeout=None, check=False, **kwargs):
+        """Run command with arguments and return a CompletedProcess instance.
+    
+        The returned instance will have attributes args, returncode, stdout and
+        stderr. By default, stdout and stderr are not captured, and those attributes
+        will be None. Pass stdout=PIPE and/or stderr=PIPE in order to capture them,
+        or pass capture_output=True to capture both.
+    
+        If check is True and the exit code was non-zero, it raises a
+        CalledProcessError. The CalledProcessError object will have the return code
+        in the returncode attribute, and output & stderr attributes if those streams
+        were captured.
+    
+        If timeout is given, and the process takes too long, a TimeoutExpired
+        exception will be raised.
+    
+        There is an optional argument "input", allowing you to
+        pass bytes or a string to the subprocess's stdin.  If you use this argument
+        you may not also use the Popen constructor's "stdin" argument, as
+        it will be used internally.
+    
+        By default, all communication is in bytes, and therefore any "input" should
+        be bytes, and the stdout and stderr will be bytes. If in text mode, any
+        "input" should be a string, and stdout and stderr will be strings decoded
+        according to locale encoding, or by "encoding" if set. Text mode is
+        triggered by setting any of text, encoding, errors or universal_newlines.
+    
+        The other arguments are the same as for the Popen constructor.
+        """
+        if input is not None:
+            if kwargs.get('stdin') is not None:
+                raise ValueError('stdin and input arguments may not both be used.')
+            kwargs['stdin'] = PIPE
+    
+        if capture_output:
+            if kwargs.get('stdout') is not None or kwargs.get('stderr') is not None:
+                raise ValueError('stdout and stderr arguments may not be used '
+                                 'with capture_output.')
+            kwargs['stdout'] = PIPE
+            kwargs['stderr'] = PIPE
+    
+        with Popen(*popenargs, **kwargs) as process:
+            try:
+                stdout, stderr = process.communicate(input, timeout=timeout)
+            except TimeoutExpired as exc:
+                process.kill()
+                if _mswindows:
+                    # Windows accumulates the output in a single blocking
+                    # read() call run on child threads, with the timeout
+                    # being done in a join() on those threads.  communicate()
+                    # _after_ kill() is required to collect that and add it
+                    # to the exception.
+                    exc.stdout, exc.stderr = process.communicate()
+                else:
+                    # POSIX _communicate already populated the output so
+                    # far into the TimeoutExpired exception.
+                    process.wait()
+                raise
+            except:  # Including KeyboardInterrupt, communicate handled that.
+                process.kill()
+                # We don't call process.wait() as .__exit__ does that for us.
+                raise
+            retcode = process.poll()
+            if check and retcode:
+>               raise CalledProcessError(retcode, process.args,
+                                         output=stdout, stderr=stderr)
+E               subprocess.CalledProcessError: Command '['C:\\Users\\zathp\\Documents\\programming\\TPCN\\.venv\\Scripts\\python.exe', 'C:\\Users\\zathp\\AppData\\Local\\Temp\\pytest-of-zathp\\pytest-379\\luna44-independent-materializations-pinned-source\\scripts\\build_luna44_canonical_fixture.py', '--materialize-worker', 'C:\\Users\\zathp\\AppData\\Local\\Temp\\pytest-of-zathp\\pytest-379\\luna44-independent-materializations\\materialization-a']' returned non-zero exit status 1.
+
+C:\Users\zathp\AppData\Local\Programs\Python\Python311\Lib\subprocess.py:571: CalledProcessError
+_____ ERROR at setup of test_manifest_configuration_mismatch_fails_loudly _____
+
+tmp_path_factory = TempPathFactory(_given_basetemp=None, _trace=<pluggy._tracing.TagTracerSub object at 0x00000201C56A26D0>, _basetemp=WindowsPath('C:/Users/zathp/AppData/Local/Temp/pytest-of-zathp/pytest-379'), _retention_count=3, _retention_policy='all')
+
+    @pytest.fixture(scope="module")
+    def fresh_materializations(tmp_path_factory):
+        root = tmp_path_factory.getbasetemp() / "luna44-independent-materializations"
+>       builder.materialize_independently(root)
+
+tests\test_luna44_canonical_fixture_verification.py:22: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+scripts\build_luna44_canonical_fixture.py:502: in materialize_independently
+    subprocess.run(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+input = None, capture_output = True, timeout = None, check = True
+popenargs = (['C:\\Users\\zathp\\Documents\\programming\\TPCN\\.venv\\Scripts\\python.exe', 'C:\\Users\\zathp\\AppData\\Local\\Tem...s\\zathp\\AppData\\Local\\Temp\\pytest-of-zathp\\pytest-379\\luna44-independent-materializations\\materialization-a'],)
+kwargs = {'cwd': WindowsPath('C:/Users/zathp/AppData/Local/Temp/pytest-of-zathp/pytest-379/luna44-independent-materializations-pinned-source'), 'text': True, 'stdout': -1, 'stderr': -1}
+
+    def run(*popenargs,
+            input=None, capture_output=False, timeout=None, check=False, **kwargs):
+        """Run command with arguments and return a CompletedProcess instance.
+    
+        The returned instance will have attributes args, returncode, stdout and
+        stderr. By default, stdout and stderr are not captured, and those attributes
+        will be None. Pass stdout=PIPE and/or stderr=PIPE in order to capture them,
+        or pass capture_output=True to capture both.
+    
+        If check is True and the exit code was non-zero, it raises a
+        CalledProcessError. The CalledProcessError object will have the return code
+        in the returncode attribute, and output & stderr attributes if those streams
+        were captured.
+    
+        If timeout is given, and the process takes too long, a TimeoutExpired
+        exception will be raised.
+    
+        There is an optional argument "input", allowing you to
+        pass bytes or a string to the subprocess's stdin.  If you use this argument
+        you may not also use the Popen constructor's "stdin" argument, as
+        it will be used internally.
+    
+        By default, all communication is in bytes, and therefore any "input" should
+        be bytes, and the stdout and stderr will be bytes. If in text mode, any
+        "input" should be a string, and stdout and stderr will be strings decoded
+        according to locale encoding, or by "encoding" if set. Text mode is
+        triggered by setting any of text, encoding, errors or universal_newlines.
+    
+        The other arguments are the same as for the Popen constructor.
+        """
+        if input is not None:
+            if kwargs.get('stdin') is not None:
+                raise ValueError('stdin and input arguments may not both be used.')
+            kwargs['stdin'] = PIPE
+    
+        if capture_output:
+            if kwargs.get('stdout') is not None or kwargs.get('stderr') is not None:
+                raise ValueError('stdout and stderr arguments may not be used '
+                                 'with capture_output.')
+            kwargs['stdout'] = PIPE
+            kwargs['stderr'] = PIPE
+    
+        with Popen(*popenargs, **kwargs) as process:
+            try:
+                stdout, stderr = process.communicate(input, timeout=timeout)
+            except TimeoutExpired as exc:
+                process.kill()
+                if _mswindows:
+                    # Windows accumulates the output in a single blocking
+                    # read() call run on child threads, with the timeout
+                    # being done in a join() on those threads.  communicate()
+                    # _after_ kill() is required to collect that and add it
+                    # to the exception.
+                    exc.stdout, exc.stderr = process.communicate()
+                else:
+                    # POSIX _communicate already populated the output so
+                    # far into the TimeoutExpired exception.
+                    process.wait()
+                raise
+            except:  # Including KeyboardInterrupt, communicate handled that.
+                process.kill()
+                # We don't call process.wait() as .__exit__ does that for us.
+                raise
+            retcode = process.poll()
+            if check and retcode:
+>               raise CalledProcessError(retcode, process.args,
+                                         output=stdout, stderr=stderr)
+E               subprocess.CalledProcessError: Command '['C:\\Users\\zathp\\Documents\\programming\\TPCN\\.venv\\Scripts\\python.exe', 'C:\\Users\\zathp\\AppData\\Local\\Temp\\pytest-of-zathp\\pytest-379\\luna44-independent-materializations-pinned-source\\scripts\\build_luna44_canonical_fixture.py', '--materialize-worker', 'C:\\Users\\zathp\\AppData\\Local\\Temp\\pytest-of-zathp\\pytest-379\\luna44-independent-materializations\\materialization-a']' returned non-zero exit status 1.
+
+C:\Users\zathp\AppData\Local\Programs\Python\Python311\Lib\subprocess.py:571: CalledProcessError
+___ ERROR at setup of test_two_fresh_process_materializations_match_exactly ___
+
+tmp_path_factory = TempPathFactory(_given_basetemp=None, _trace=<pluggy._tracing.TagTracerSub object at 0x00000201C56A26D0>, _basetemp=WindowsPath('C:/Users/zathp/AppData/Local/Temp/pytest-of-zathp/pytest-379'), _retention_count=3, _retention_policy='all')
+
+    @pytest.fixture(scope="module")
+    def fresh_materializations(tmp_path_factory):
+        root = tmp_path_factory.getbasetemp() / "luna44-independent-materializations"
+>       builder.materialize_independently(root)
+
+tests\test_luna44_canonical_fixture_verification.py:22: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+scripts\build_luna44_canonical_fixture.py:502: in materialize_independently
+    subprocess.run(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+input = None, capture_output = True, timeout = None, check = True
+popenargs = (['C:\\Users\\zathp\\Documents\\programming\\TPCN\\.venv\\Scripts\\python.exe', 'C:\\Users\\zathp\\AppData\\Local\\Tem...s\\zathp\\AppData\\Local\\Temp\\pytest-of-zathp\\pytest-379\\luna44-independent-materializations\\materialization-a'],)
+kwargs = {'cwd': WindowsPath('C:/Users/zathp/AppData/Local/Temp/pytest-of-zathp/pytest-379/luna44-independent-materializations-pinned-source'), 'text': True, 'stdout': -1, 'stderr': -1}
+
+    def run(*popenargs,
+            input=None, capture_output=False, timeout=None, check=False, **kwargs):
+        """Run command with arguments and return a CompletedProcess instance.
+    
+        The returned instance will have attributes args, returncode, stdout and
+        stderr. By default, stdout and stderr are not captured, and those attributes
+        will be None. Pass stdout=PIPE and/or stderr=PIPE in order to capture them,
+        or pass capture_output=True to capture both.
+    
+        If check is True and the exit code was non-zero, it raises a
+        CalledProcessError. The CalledProcessError object will have the return code
+        in the returncode attribute, and output & stderr attributes if those streams
+        were captured.
+    
+        If timeout is given, and the process takes too long, a TimeoutExpired
+        exception will be raised.
+    
+        There is an optional argument "input", allowing you to
+        pass bytes or a string to the subprocess's stdin.  If you use this argument
+        you may not also use the Popen constructor's "stdin" argument, as
+        it will be used internally.
+    
+        By default, all communication is in bytes, and therefore any "input" should
+        be bytes, and the stdout and stderr will be bytes. If in text mode, any
+        "input" should be a string, and stdout and stderr will be strings decoded
+        according to locale encoding, or by "encoding" if set. Text mode is
+        triggered by setting any of text, encoding, errors or universal_newlines.
+    
+        The other arguments are the same as for the Popen constructor.
+        """
+        if input is not None:
+            if kwargs.get('stdin') is not None:
+                raise ValueError('stdin and input arguments may not both be used.')
+            kwargs['stdin'] = PIPE
+    
+        if capture_output:
+            if kwargs.get('stdout') is not None or kwargs.get('stderr') is not None:
+                raise ValueError('stdout and stderr arguments may not be used '
+                                 'with capture_output.')
+            kwargs['stdout'] = PIPE
+            kwargs['stderr'] = PIPE
+    
+        with Popen(*popenargs, **kwargs) as process:
+            try:
+                stdout, stderr = process.communicate(input, timeout=timeout)
+            except TimeoutExpired as exc:
+                process.kill()
+                if _mswindows:
+                    # Windows accumulates the output in a single blocking
+                    # read() call run on child threads, with the timeout
+                    # being done in a join() on those threads.  communicate()
+                    # _after_ kill() is required to collect that and add it
+                    # to the exception.
+                    exc.stdout, exc.stderr = process.communicate()
+                else:
+                    # POSIX _communicate already populated the output so
+                    # far into the TimeoutExpired exception.
+                    process.wait()
+                raise
+            except:  # Including KeyboardInterrupt, communicate handled that.
+                process.kill()
+                # We don't call process.wait() as .__exit__ does that for us.
+                raise
+            retcode = process.poll()
+            if check and retcode:
+>               raise CalledProcessError(retcode, process.args,
+                                         output=stdout, stderr=stderr)
+E               subprocess.CalledProcessError: Command '['C:\\Users\\zathp\\Documents\\programming\\TPCN\\.venv\\Scripts\\python.exe', 'C:\\Users\\zathp\\AppData\\Local\\Temp\\pytest-of-zathp\\pytest-379\\luna44-independent-materializations-pinned-source\\scripts\\build_luna44_canonical_fixture.py', '--materialize-worker', 'C:\\Users\\zathp\\AppData\\Local\\Temp\\pytest-of-zathp\\pytest-379\\luna44-independent-materializations\\materialization-a']' returned non-zero exit status 1.
+
+C:\Users\zathp\AppData\Local\Programs\Python\Python311\Lib\subprocess.py:571: CalledProcessError
+================================== FAILURES ===================================
+_______ test_two_fresh_process_materializations_match_committed_fixture _______
+
+tmp_path = WindowsPath('C:/Users/zathp/AppData/Local/Temp/pytest-of-zathp/pytest-379/test_two_fresh_process_materia0')
+
+    def test_two_fresh_process_materializations_match_committed_fixture(tmp_path):
+>       fixture_bytes, provenance = materialize_independently(tmp_path / "runs")
+                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_luna44_canonical_fixture.py:166: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+scripts\build_luna44_canonical_fixture.py:502: in materialize_independently
+    subprocess.run(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+input = None, capture_output = True, timeout = None, check = True
+popenargs = (['C:\\Users\\zathp\\Documents\\programming\\TPCN\\.venv\\Scripts\\python.exe', 'C:\\Users\\zathp\\AppData\\Local\\Tem...\zathp\\AppData\\Local\\Temp\\pytest-of-zathp\\pytest-379\\test_two_fresh_process_materia0\\runs\\materialization-a'],)
+kwargs = {'cwd': WindowsPath('C:/Users/zathp/AppData/Local/Temp/pytest-of-zathp/pytest-379/test_two_fresh_process_materia0/runs-pinned-source'), 'text': True, 'stdout': -1, 'stderr': -1}
+
+    def run(*popenargs,
+            input=None, capture_output=False, timeout=None, check=False, **kwargs):
+        """Run command with arguments and return a CompletedProcess instance.
+    
+        The returned instance will have attributes args, returncode, stdout and
+        stderr. By default, stdout and stderr are not captured, and those attributes
+        will be None. Pass stdout=PIPE and/or stderr=PIPE in order to capture them,
+        or pass capture_output=True to capture both.
+    
+        If check is True and the exit code was non-zero, it raises a
+        CalledProcessError. The CalledProcessError object will have the return code
+        in the returncode attribute, and output & stderr attributes if those streams
+        were captured.
+    
+        If timeout is given, and the process takes too long, a TimeoutExpired
+        exception will be raised.
+    
+        There is an optional argument "input", allowing you to
+        pass bytes or a string to the subprocess's stdin.  If you use this argument
+        you may not also use the Popen constructor's "stdin" argument, as
+        it will be used internally.
+    
+        By default, all communication is in bytes, and therefore any "input" should
+        be bytes, and the stdout and stderr will be bytes. If in text mode, any
+        "input" should be a string, and stdout and stderr will be strings decoded
+        according to locale encoding, or by "encoding" if set. Text mode is
+        triggered by setting any of text, encoding, errors or universal_newlines.
+    
+        The other arguments are the same as for the Popen constructor.
+        """
+        if input is not None:
+            if kwargs.get('stdin') is not None:
+                raise ValueError('stdin and input arguments may not both be used.')
+            kwargs['stdin'] = PIPE
+    
+        if capture_output:
+            if kwargs.get('stdout') is not None or kwargs.get('stderr') is not None:
+                raise ValueError('stdout and stderr arguments may not be used '
+                                 'with capture_output.')
+            kwargs['stdout'] = PIPE
+            kwargs['stderr'] = PIPE
+    
+        with Popen(*popenargs, **kwargs) as process:
+            try:
+                stdout, stderr = process.communicate(input, timeout=timeout)
+            except TimeoutExpired as exc:
+                process.kill()
+                if _mswindows:
+                    # Windows accumulates the output in a single blocking
+                    # read() call run on child threads, with the timeout
+                    # being done in a join() on those threads.  communicate()
+                    # _after_ kill() is required to collect that and add it
+                    # to the exception.
+                    exc.stdout, exc.stderr = process.communicate()
+                else:
+                    # POSIX _communicate already populated the output so
+                    # far into the TimeoutExpired exception.
+                    process.wait()
+                raise
+            except:  # Including KeyboardInterrupt, communicate handled that.
+                process.kill()
+                # We don't call process.wait() as .__exit__ does that for us.
+                raise
+            retcode = process.poll()
+            if check and retcode:
+>               raise CalledProcessError(retcode, process.args,
+                                         output=stdout, stderr=stderr)
+E               subprocess.CalledProcessError: Command '['C:\\Users\\zathp\\Documents\\programming\\TPCN\\.venv\\Scripts\\python.exe', 'C:\\Users\\zathp\\AppData\\Local\\Temp\\pytest-of-zathp\\pytest-379\\test_two_fresh_process_materia0\\runs-pinned-source\\scripts\\build_luna44_canonical_fixture.py', '--materialize-worker', 'C:\\Users\\zathp\\AppData\\Local\\Temp\\pytest-of-zathp\\pytest-379\\test_two_fresh_process_materia0\\runs\\materialization-a']' returned non-zero exit status 1.
+
+C:\Users\zathp\AppData\Local\Programs\Python\Python311\Lib\subprocess.py:571: CalledProcessError
+_________________ test_real_retained_artifacts_integrity_only _________________
+
+    def test_real_retained_artifacts_integrity_only():
+        # No sequence statistics, oracle, scientific summary or output writer invoked.
+>       result = diagnostic.verify_integrity()
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_luna46_depth_scaling_diagnostic.py:485: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+run_luna46_depth_scaling_diagnostic.py:236: in verify_integrity
+    require(sha(catalog_bytes) == CATALOG_HASH, "published Luna45 catalog hash differs")
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+condition = False, reason = 'published Luna45 catalog hash differs'
+
+    def require(condition: bool, reason: str) -> None:
+        if not condition:
+>           raise Blocked(reason)
+E           run_luna46_depth_scaling_diagnostic.Blocked: published Luna45 catalog hash differs
+
+run_luna46_depth_scaling_diagnostic.py:144: Blocked
+- generated xml file: C:\Users\zathp\.copilot\session-state\2c38ab9f-63a7-41fb-8437-e11b4732bee9\files\luna47-review\artifacts\luna47-review\governance-full.xml -
+=========================== short test summary info ===========================
+SKIPPED [1] tests\test_gpu_visualization.py:61: CUDA is unavailable
+ERROR tests/test_luna44_canonical_fixture_verification.py::test_missing_manifest_source_file_fails_loudly
+ERROR tests/test_luna44_canonical_fixture_verification.py::test_incorrect_source_sha_fails_loudly
+ERROR tests/test_luna44_canonical_fixture_verification.py::test_fixture_file_digest_mismatch_fails_loudly
+ERROR tests/test_luna44_canonical_fixture_verification.py::test_incorrect_fixture_point_count_fails_loudly
+ERROR tests/test_luna44_canonical_fixture_verification.py::test_binary64_decimal_hex_mismatch_fails_loudly
+ERROR tests/test_luna44_canonical_fixture_verification.py::test_manifest_configuration_mismatch_fails_loudly
+ERROR tests/test_luna44_canonical_fixture_verification.py::test_two_fresh_process_materializations_match_exactly
+FAILED tests/test_luna44_canonical_fixture.py::test_two_fresh_process_materializations_match_committed_fixture
+FAILED tests/test_luna46_depth_scaling_diagnostic.py::test_real_retained_artifacts_integrity_only
+======= 2 failed, 1324 passed, 1 skipped, 7 errors in 192.51s (0:03:12) =======

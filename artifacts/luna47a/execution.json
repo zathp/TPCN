@@ -1,0 +1,159 @@
+{
+  "schema": "TPCN-LUNA47A-EXECUTION-1",
+  "worktree": "C:\\Users\\zathp\\.copilot\\session-state\\2c38ab9f-63a7-41fb-8437-e11b4732bee9\\files\\luna47a",
+  "shell_call_prefix": "Set-Location 'C:\\Users\\zathp\\.copilot\\session-state\\2c38ab9f-63a7-41fb-8437-e11b4732bee9\\files\\luna47a';",
+  "python": "C:\\Users\\zathp\\Documents\\programming\\TPCN\\.venv\\Scripts\\python.exe",
+  "environment": "CPython 3.11.5; Windows-10-10.0.19045-SP0; binary64 epsilon=2.220446049250313e-16",
+  "authorization_revision": "789dda5988daf72f375d9713bd76a6da2b9e8b34",
+  "production_evidence_baseline": "2cef8ea4b37a4ae586e3f383511cba63c9268ddc",
+  "protocol_implementation_revision": "add3d0ca87b13dd8998b2e99c784c16a0103c9d2",
+  "preoutcome_pin_correction_and_execution_revision": "ec5231d7f6d66a709c160666f412dd525b4c9739",
+  "publication_revision": "Git commit containing this file and the completed handoff; exact hash reported after push",
+  "commands": [
+    {
+      "command": "python -m pytest -q tests/test_luna47a_retention.py",
+      "phase": "initial synthetic tests before numerical audit and Git-byte adapter",
+      "exit_code": 0,
+      "result": "70 passed, 1 skipped in 1.59s; only saved-bundle test skipped"
+    },
+    {
+      "command": "python -m pytest -q tests/test_luna47a_retention.py tests/test_luna46_depth_scaling_diagnostic.py",
+      "phase": "before protocol commit",
+      "exit_code": 1,
+      "result": "237 passed, 1 failed, 1 skipped in 23.52s",
+      "failure": "tests/test_luna46_depth_scaling_diagnostic.py::test_real_retained_artifacts_integrity_only: published Luna45 catalog hash differs",
+      "interpretation": "Physical CRLF checkout differs from reviewed Git LF bytes. No production edits. Failure retained, not relaxed."
+    },
+    {
+      "command": "python -m pytest -q tests/test_luna47a_retention.py",
+      "phase": "before first code/protocol commit, includes authoritative Git integrity adapter",
+      "exit_code": 0,
+      "result": "73 passed, 1 skipped in 139.44s"
+    },
+    {
+      "command": "git push -u origin copilot/luna47a-investigation",
+      "revision": "add3d0ca87b13dd8998b2e99c784c16a0103c9d2",
+      "exit_code": 0,
+      "result": "Published fixed protocol and implementation before retained outcome attempt"
+    },
+    {
+      "command": "python -m experiments.luna47a.run --output artifacts/luna47a",
+      "revision": "add3d0ca87b13dd8998b2e99c784c16a0103c9d2",
+      "exit_code": 2,
+      "result": "BLOCKED: Blocked: Luna46 file pin; aborted before new accumulator interpretation and before writing bundle",
+      "cause": "Initial Luna46 pin described physical CRLF file rather than exact Git blob. Corrected in a separate committed/pushed pre-outcome change; no model/criteria change."
+    },
+    {
+      "command": "python -m pytest -q tests/test_luna47a_retention.py",
+      "phase": "corrected pin before successful retained run",
+      "exit_code": 0,
+      "result": "73 passed, 1 skipped in 106.33s"
+    },
+    {
+      "command": "git push origin copilot/luna47a-investigation",
+      "revision": "ec5231d7f6d66a709c160666f412dd525b4c9739",
+      "exit_code": 0,
+      "result": "Published exact-Git pin correction before outcomes"
+    },
+    {
+      "command": "python -m experiments.luna47a.run --output artifacts/luna47a",
+      "revision": "ec5231d7f6d66a709c160666f412dd525b4c9739",
+      "exit_code": 0,
+      "result": "PARTIALLY SUPPORTED; inputs.json/results.json/manifest.json written with exact readback",
+      "counts": {
+        "total_streams": 320,
+        "reception_bearing": 108,
+        "primary_receptions_per_phase": 235,
+        "raw_route_pairs_per_phase": 1950,
+        "retention_limited": 33,
+        "tau800_rescues": 19,
+        "tau8000_rescues": 31,
+        "drive_limited_remaining_each_variant": 75,
+        "target_clipping": 0
+      }
+    },
+    {
+      "command": "python -m experiments.luna47a.run --verify --output artifacts/luna47a",
+      "exit_code": 0,
+      "result": "PASS exact bundle replay: PARTIALLY SUPPORTED; result_sha256=d1cac5065410767a42a35f99b659b4a4377f1b84d300e5cfd3ed304600322cff"
+    },
+    {
+      "command": "python -m pytest -q tests/test_luna47a_retention.py",
+      "phase": "after outcome bundle exists",
+      "exit_code": 0,
+      "result": "74 passed in 113.54s; no skips/failures"
+    },
+    {
+      "command": "python -m pytest -q tests/test_luna46_depth_scaling_diagnostic.py",
+      "exit_code": 1,
+      "result": "166 passed, 1 failed in 18.33s",
+      "failure": "test_real_retained_artifacts_integrity_only: published Luna45 catalog hash differs",
+      "interpretation": "Unchanged physical-checkout test still fails; authoritative Git 33-file verification passes separately. Not claimed to be an already accepted Luna46 test failure signature."
+    },
+    {
+      "command": "python -m pytest -q tests/test_luna38_excursion_integration_state.py tests/test_excursion_neuron.py tests/test_e2_multi_excursion.py tests/test_excursion_integration.py tests/test_topology.py tests/test_luna45_acp0008_depth2_destination_integration.py tests/test_luna44_canonical_fixture_verification.py",
+      "exit_code": 1,
+      "result": "261 passed, 7 errors in 60.54s",
+      "errors": [
+        "test_missing_manifest_source_file_fails_loudly",
+        "test_incorrect_source_sha_fails_loudly",
+        "test_fixture_file_digest_mismatch_fails_loudly",
+        "test_incorrect_fixture_point_count_fails_loudly",
+        "test_binary64_decimal_hex_mismatch_fails_loudly",
+        "test_manifest_configuration_mismatch_fails_loudly",
+        "test_two_fresh_process_materializations_match_exactly"
+      ],
+      "cause": "Shared Luna44 pinned-source materialization setup: authorized generator source differs from the pinned baseline. Existing Windows/core.autocrlf issue documented in authoritative workflow; no assertions changed."
+    },
+    {
+      "command": "python -m py_compile experiments/luna47a/run.py tests/test_luna47a_retention.py",
+      "exit_code": 0,
+      "result": "Passed before and after retained execution"
+    },
+    {
+      "command": "git diff --check",
+      "exit_code": 0,
+      "result": "Passed before implementation publication"
+    },
+    {
+      "command": "git diff --cached --check",
+      "phase": "initial artifact staging",
+      "exit_code": 2,
+      "result": "Human-written execution.json CRLF treated as trailing whitespace under blanket -text. Corrected only owned execution.json attribute to text eol=lf; inputs/results/manifest exact bytes unchanged."
+    }
+  ],
+  "tool_limitations": [
+    "Editor runTests returned no tests found for isolated worktree paths; used explicit scoped pytest.",
+    "Pylance file syntax tool did not recognize the isolated worktree as a user-file workspace; py_compile and pytest passed.",
+    "Editor problems tool reported no errors in lane runner/test.",
+    "Two read-only baseline schema probes used nonexistent events/reception_count keys and exited 1 with KeyError; corrected schema inspection before implementation, no files changed."
+  ],
+  "not_run": [
+    "Full repository test suite",
+    "Task efficacy or training experiment",
+    "Hardware execution/equivalence",
+    "Production neuron/output integration",
+    "Other Luna47 lane inspection",
+    "Independent Luna0 review"
+  ],
+  "artifact_pins": {
+    "inputs.json": {
+      "byte_length": 10665778,
+      "sha256": "03b5a27700723afa266e63b516c6b3dfbc9a7accc6983d21a4f7a12e4383b185"
+    },
+    "results.json": {
+      "byte_length": 4577293,
+      "sha256": "d1cac5065410767a42a35f99b659b4a4377f1b84d300e5cfd3ed304600322cff"
+    },
+    "manifest.json": {
+      "sha256": "254fd3f1ba3b8893e9e065fd7ab26e0fa3cd422969a8dfe02924c9067203a51f"
+    },
+    "configuration_semantic_sha256": "d0f5722574594d8335fa67d4ee1f21d68698170fc82cde884a356578b995024f",
+    "protocol_git_sha256": "6f947a6515b89f72a74a433e6e618c4a3529f53884222b18b1df21c68162a126",
+    "retained_luna46_git_sha256": "54220205537184dadc26eba3c59f7e9b36f01db579fd895339728e089e313d51",
+    "retained_luna46_physical_sha256": "0d32926f6f72a77a5b34eb054e1e46e9ece95cef3d6145e7892957cf3727722e"
+  },
+  "publication_checks": "Ownership PASS:11 owned additions only; staged inputs/results/manifest byte equality and pins PASS; final staged/working whitespace checks exit 0; final record JSON/pin validation exit 0. Commit/push/remote equality/clean status reported after publication; no merge.",
+  "verdict": "PARTIALLY SUPPORTED",
+  "preserved_luna46_verdict": "MIXED"
+}

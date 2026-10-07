@@ -1,0 +1,5 @@
+*.json -text
+*.xml -text
+*.log -text
+*.py text eol=lf
+*.md text eol=lf
