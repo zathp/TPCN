@@ -1,0 +1,458 @@
+{
+  "schema": "LUNA47E-SOURCES-1",
+  "capture_revision": 1,
+  "source_baseline": "2cef8ea4b37a4ae586e3f383511cba63c9268ddc",
+  "authorization_revision": "789dda5988daf72f375d9713bd76a6da2b9e8b34",
+  "capture_script_sha256": "cdc5543c0c8552a78220b43fc74d86827f317bf7825fce5d593db8c175bb7948",
+  "raw_policy": "Hashed in memory; only limited extracts and selected structured offers retained.",
+  "sources": [
+    {
+      "id": "fpaa_ds",
+      "kind": "manufacturer_pdf",
+      "url": "https://okikadevices.com/cdn/shop/files/Okika_AN231E04DSv2.2.pdf?v=12643572874655327773",
+      "effective_url": "https://okikadevices.com/cdn/shop/files/Okika_AN231E04DSv2.2.pdf?v=12643572874655327773",
+      "retrieved_at_utc": "2026-10-07T01:18:47.494644+00:00",
+      "method": "curl.exe unauthenticated HTTPS GET, redirects followed",
+      "http_status": "200",
+      "curl_exit": 0,
+      "raw_bytes": 1582020,
+      "raw_sha256": "37f43b5896e558755f1563473f090e9533651f5ec5b017f6b6712929c55f02e7",
+      "error": null,
+      "state": "retrieved",
+      "pdf_pages": 24,
+      "pdf_metadata": {
+        "/Author": "Jarrod Eliason",
+        "/Creator": "Microsoft® Word for Microsoft 365",
+        "/CreationDate": "D:20260901144058-05'00'",
+        "/ModDate": "D:20260901144058-05'00'",
+        "/Producer": "Microsoft® Word for Microsoft 365"
+      },
+      "brief_excerpts": [
+        {
+          "page": 4,
+          "keyword": "capacitor",
+          "text": "ation of conventional and switched capacitor circuit elements and are programmed from off -chip non-volatile memory or \nby a digital bitstream ty"
+        },
+        {
+          "page": 3,
+          "keyword": "supply voltage",
+          "text": "(7x7x0.9mm) \no Lead pitch 0.5mm \n● Supply voltage: 3.3V \n \nAPPLICATIONS \n \n● Analog Signal Processing  \n● RFID IF (Baseband Filtering)  \n● Real-t"
+        },
+        {
+          "page": 5,
+          "keyword": "operating conditions",
+          "text": " related issues.  \n1.2 Recommended Operating Conditions \nParameter Symbol Min Typ Max Unit Comment \nDC Power Supplies \n \nAVDD \nBVDD \nDVDD \n3.0 3."
+        },
+        {
+          "page": 3,
+          "keyword": "current",
+          "text": "ground task without disrupting the current circuit \nfunctionality. \n \nThe AN231E04 device features seven configurable input/output \nstructures. E"
+        },
+        {
+          "page": 18,
+          "keyword": "hysteresis",
+          "text": "ffset Voffcomp - 0.78 1.22 mV Zero hysteresis \nOffset Voltage Temperature  \nCoefficient  Voffsettc - 1 - µV/°C from -40°C to 125°C, \nZero hystere"
+        },
+        {
+          "page": 5,
+          "keyword": "absolute",
+          "text": "\n1 ELECTRICAL CHARACTERISTICS \n1.1 Absolute Maximum Ratings \nParameter Symbol Min Typ Max Unit Comment \nDC Power Supplies  a \n \nAVDD \nBVDD \nDVDD "
+        },
+        {
+          "page": 3,
+          "keyword": "rectif",
+          "text": "nal conditioning, filtering, gain, rectification, summing, \nsubtracting, multiplying, etc.   The device also accommodates \nnonlinear functions su"
+        },
+        {
+          "page": 3,
+          "keyword": "clock",
+          "text": "with active elements.  An o n-chip clock generator block \ncontrols multiple non -overlapping clock domains generated from \nan external stable clo"
+        }
+      ]
+    },
+    {
+      "id": "fpaa_um",
+      "kind": "manufacturer_pdf",
+      "url": "https://okikadevices.com/cdn/shop/files/FlexAnalog_AN231E04UM_User_Manual.pdf?v=9738655095111332330",
+      "effective_url": "https://okikadevices.com/cdn/shop/files/FlexAnalog_AN231E04UM_User_Manual.pdf?v=9738655095111332330",
+      "retrieved_at_utc": "2026-10-07T01:18:56.657739+00:00",
+      "method": "curl.exe unauthenticated HTTPS GET, redirects followed",
+      "http_status": "200",
+      "curl_exit": 0,
+      "raw_bytes": 1113852,
+      "raw_sha256": "0253711687eaa1537478d1624da70e2eed8cf1c8b63e94cc1218f954193935c4",
+      "error": null,
+      "state": "retrieved",
+      "pdf_pages": 31,
+      "pdf_metadata": {
+        "/Author": "Anadigm Tempe",
+        "/Company": "",
+        "/Created": "D:20060523",
+        "/CreationDate": "D:20250127192650-06'00'",
+        "/Creator": "Acrobat PDFMaker 24 for Word",
+        "/Keywords": "AnadigmApex FPAA Family User Manual",
+        "/LastSaved": "D:20150203",
+        "/ModDate": "D:20250127192710-06'00'",
+        "/Producer": "Adobe PDF Library 24.5.96",
+        "/SourceModified": "",
+        "/Subject": "AnadigmApex FPAA Family User Manual",
+        "/Title": "AnadigmApex FPAA Family User Manual"
+      },
+      "brief_excerpts": [
+        {
+          "page": 5,
+          "keyword": "capacitor",
+          "text": "ion of \nconventional  and switched capacitor  circuit elements  and are programmed from off-chip non-volatile memory  \nor by a host processor.  P"
+        },
+        {
+          "page": 8,
+          "keyword": "current",
+          "text": "her  in order to facilitate the concurrent  activation  of analog circuitry \nand provide for configuration error handling.  When connecting two o"
+        },
+        {
+          "page": 13,
+          "keyword": "absolute",
+          "text": "capacitor  signal processing,  the absolute value of the components  integrated into the chip is \nnot important,  but rather it is the ratio of t"
+        },
+        {
+          "page": 6,
+          "keyword": "rectif",
+          "text": "s include: gain, filter, summing,  rectification  and many other more \nspecialized behaviors.  Specific parameters  for each of the blocks used ("
+        },
+        {
+          "page": 3,
+          "keyword": "clock",
+          "text": "2 \n4.2.4. Analog and Configuration Clock Generation ............................................................................................."
+        }
+      ]
+    },
+    {
+      "id": "opamp_ds",
+      "kind": "manufacturer_pdf",
+      "url": "https://www.ti.com/lit/ds/symlink/tlv9062.pdf",
+      "effective_url": "https://www.ti.com/lit/ds/symlink/tlv9062.pdf",
+      "retrieved_at_utc": "2026-10-07T01:19:04.864491+00:00",
+      "method": "curl.exe unauthenticated HTTPS GET, redirects followed",
+      "http_status": "200",
+      "curl_exit": 0,
+      "raw_bytes": 8130802,
+      "raw_sha256": "7a5517d7f74bedddf4b8404fce93e21100d2833a6f4ae16a93f934eaf0c6477c",
+      "error": null,
+      "state": "retrieved",
+      "pdf_pages": 99,
+      "pdf_metadata": {
+        "/Creator": "Antenna House XSL Formatter V7.4 R1 Windows : 7.4.1.63121 (2023-12-20T11:05+09)",
+        "/Producer": "iText 2.1.7 by 1T3XT",
+        "/Title": "TLV906xS 10MHz, RRIO, CMOS Operational Amplifiers for Cost-Sensitive Systems datasheet (Rev. N)",
+        "/Keywords": "SBOS839N",
+        "/Subject": "Data Sheet",
+        "/ModDate": "D:20261005010112-05'00'",
+        "/Author": "Texas Instruments, Incorporated [SBOS839,N\n]",
+        "/CreationDate": "D:20261005010112-05'00'"
+      },
+      "brief_excerpts": [
+        {
+          "page": 26,
+          "keyword": "capacitor",
+          "text": "\nRatings table.\nPlace 0.1µF bypass capacitors close to the power-supply pins to reduce errors coupling in from noisy or \nhigh-impedance power sup"
+        },
+        {
+          "page": 1,
+          "keyword": "supply voltage",
+          "text": "FI and EMI filter\n• Operational at supply voltages as low as 1.8V\n• Easier to stabilize with higher capacitive load due \nto resistive open-loop o"
+        },
+        {
+          "page": 3,
+          "keyword": "operating conditions",
+          "text": "............... 10\n6.3 Recommended Operating Conditions.......................10\n6.4 Thermal Information: TLV9061................................"
+        },
+        {
+          "page": 1,
+          "keyword": "quiescent",
+          "text": "ow input bias current: 0.5pA\n• Low quiescent current: 538µA\n• Unity-gain stable\n• Internal RFI and EMI filter\n• Operational at supply voltages as"
+        },
+        {
+          "page": 1,
+          "keyword": "current",
+          "text": " noise: 10nV/√ Hz\n• Low input bias current: 0.5pA\n• Low quiescent current: 538µA\n• Unity-gain stable\n• Internal RFI and EMI filter\n• Operational "
+        },
+        {
+          "page": 34,
+          "keyword": "tolerance",
+          "text": "ions may vary due to manufacturing tolerance considerations and also routing constraints.\nSee Texas Instruments Literature No. SNVA009 (www.ti.co"
+        },
+        {
+          "page": 23,
+          "keyword": "hysteresis",
+          "text": "ith respect to the supply voltage. Hysteresis has \nbeen included in the switching threshold to ensure smooth switching characteristics. To ensure"
+        },
+        {
+          "page": 3,
+          "keyword": "absolute",
+          "text": "........................... 10\n6.1 Absolute Maximum Ratings...................................... 10\n6.2 ESD Ratings............................."
+        }
+      ]
+    },
+    {
+      "id": "comparator_ds",
+      "kind": "manufacturer_pdf",
+      "url": "https://www.ti.com/lit/ds/symlink/tlv3201.pdf",
+      "effective_url": "https://www.ti.com/lit/ds/symlink/tlv3201.pdf",
+      "retrieved_at_utc": "2026-10-07T01:20:00.747711+00:00",
+      "method": "curl.exe unauthenticated HTTPS GET, redirects followed",
+      "http_status": "200",
+      "curl_exit": 0,
+      "raw_bytes": 1756192,
+      "raw_sha256": "1777bba814c74772bb54c6f1f56702985039043ce2fb2affaf996a83eaf1076e",
+      "error": null,
+      "state": "retrieved",
+      "pdf_pages": 40,
+      "pdf_metadata": {
+        "/Creator": "AH XSL Formatter V7.2 MR7 for Windows (x64) : 7.2.8.57525 (2022-08-18T17:06+09)",
+        "/Producer": "iText 2.1.7 by 1T3XT",
+        "/Title": "TLV320x 40ns, microPOWER, Push-Pull Output Comparators datasheet (Rev. C)",
+        "/Keywords": "SBOS561C",
+        "/Subject": "Data Sheet",
+        "/ModDate": "D:20260914003440-05'00'",
+        "/Author": "Texas Instruments, Incorporated [SBOS561,C\n]",
+        "/CreationDate": "D:20260914003440-05'00'"
+      },
+      "brief_excerpts": [
+        {
+          "page": 16,
+          "keyword": "capacitor",
+          "text": "upled, high-pass frequency\n• Large capacitors require longer start-up time from device power on\n• Use 1µF capacitor to achieve high-pass frequenc"
+        },
+        {
+          "page": 4,
+          "keyword": "supply voltage",
+          "text": "ise noted)(1)\nMIN MAX UNIT\nVoltage\nSupply voltage 7\nV\nSignal input pins(2) –0.5 (VCC) + 0.5\nCurrent\nSignal input pins(2) –10 10\nmA\nOutput short c"
+        },
+        {
+          "page": 2,
+          "keyword": "operating conditions",
+          "text": "................ 4\n6.3 Recommended Operating Conditions.........................4\n6.4 Thermal Information........................................"
+        },
+        {
+          "page": 1,
+          "keyword": "quiescent",
+          "text": " Low Propagation Delay: 40ns\n• Low Quiescent Current:\n40µA per Channel\n• Input Common-Mode Range Extends 200mV \nBeyond Either Rail\n• Low Input Of"
+        },
+        {
+          "page": 1,
+          "keyword": "current",
+          "text": "gation Delay: 40ns\n• Low Quiescent Current:\n40µA per Channel\n• Input Common-Mode Range Extends 200mV \nBeyond Either Rail\n• Low Input Offset Volta"
+        },
+        {
+          "page": 29,
+          "keyword": "tolerance",
+          "text": "alternate designs. \n8. Solder mask tolerances between and around signal pads can vary based on board fabrication site.\n \nSYMM\nLAND PATTERN EXAMPL"
+        },
+        {
+          "page": 5,
+          "keyword": "hysteresis",
+          "text": " VCC = 2.5V to 5.5V 65 85 dB\nInput hysteresis 1.2 mV\nINPUT BIAS CURRENT\nIIB Input bias current\nVCM = VCC / 2 1 50 pA\nTA = –40°C to 125°C 5 nA\nIIO"
+        },
+        {
+          "page": 2,
+          "keyword": "absolute",
+          "text": "............................ 4\n6.1 Absolute Maximum Ratings........................................ 4\n6.2 ESD Ratings............................"
+        }
+      ]
+    },
+    {
+      "id": "timer_ds",
+      "kind": "manufacturer_pdf",
+      "url": "https://www.ti.com/lit/ds/symlink/lmc555.pdf",
+      "effective_url": "https://www.ti.com/lit/ds/symlink/lmc555.pdf",
+      "retrieved_at_utc": "2026-10-07T01:20:17.243254+00:00",
+      "method": "curl.exe unauthenticated HTTPS GET, redirects followed",
+      "http_status": "200",
+      "curl_exit": 0,
+      "raw_bytes": 1526083,
+      "raw_sha256": "ae6587f5d6b3bf536b051897e232fe28317a6ef1d682a0d73e1fbd33179d7578",
+      "error": null,
+      "state": "retrieved",
+      "pdf_pages": 35,
+      "pdf_metadata": {
+        "/Creator": "AH XSL Formatter V7.2 MR7 for Windows (x64) : 7.2.8.57525 (2022-08-18T17:06+09)",
+        "/Producer": "iText 2.1.7 by 1T3XT",
+        "/Title": "LMC555 CMOS Timer datasheet (Rev. N)",
+        "/Keywords": "SNAS558N",
+        "/Subject": "Data Sheet",
+        "/ModDate": "D:20261001003308-05'00'",
+        "/Author": "Texas Instruments, Incorporated [SNAS558,N\n]",
+        "/CreationDate": "D:20261001003308-05'00'"
+      },
+      "brief_excerpts": [
+        {
+          "page": 1,
+          "keyword": "capacitor",
+          "text": "\nby a single external resistor and capacitor. In astable \nmode, the oscillation frequency and duty cycle are \naccurately set by two external resi"
+        },
+        {
+          "page": 3,
+          "keyword": "supply voltage",
+          "text": "w when voltage \nreaches 2/3 of the supply voltage (V+).\nGROUND 1 A3 Power Ground reference voltage\nOUTPUT 3 C3 Output Output driven waveform\nRESE"
+        },
+        {
+          "page": 2,
+          "keyword": "operating conditions",
+          "text": "................ 4\n5.3 Recommended Operating Conditions.........................4\n5.4 Thermal Information........................................"
+        },
+        {
+          "page": 1,
+          "keyword": "current",
+          "text": "ply\n• Tested to −10mA, 50mA output current levels\n• Reduced supply current spikes during output \ntransitions\n• Extremely low reset, trigger, and "
+        },
+        {
+          "page": 26,
+          "keyword": "tolerance",
+          "text": "alternate designs. \n7. Solder mask tolerances between and around signal pads can vary based on board fabrication site.\n \nMETAL SOLDER MASK\nOPENIN"
+        },
+        {
+          "page": 2,
+          "keyword": "absolute",
+          "text": "............................ 4\n5.1 Absolute Maximum Ratings........................................ 4\n5.2 ESD Ratings............................"
+        },
+        {
+          "page": 8,
+          "keyword": "oscillator",
+          "text": "The LMC555 timer can operate as an oscillator and puts out a continuous \nstream of rectangular pulses having a specified frequency. The frequency"
+        }
+      ]
+    },
+    {
+      "id": "pot_ds",
+      "kind": "manufacturer_pdf",
+      "url": "https://ww1.microchip.com/downloads/en/DeviceDoc/11195c.pdf",
+      "effective_url": "https://ww1.microchip.com/downloads/en/DeviceDoc/11195c.pdf",
+      "retrieved_at_utc": "2026-10-07T01:20:28.587347+00:00",
+      "method": "curl.exe unauthenticated HTTPS GET, redirects followed",
+      "http_status": "200",
+      "curl_exit": 0,
+      "raw_bytes": 887040,
+      "raw_sha256": "f78338dbf59ddb8738867da30e644d52942538192bce9dff070c4e765b679c1a",
+      "error": null,
+      "state": "retrieved",
+      "pdf_pages": 32,
+      "pdf_metadata": {
+        "/Producer": "Acrobat Distiller 5.0 (Windows)",
+        "/Author": "Microchip Technology Inc.",
+        "/Title": "Single/Dual Digital Potentiometer with SPI Interface",
+        "/ModDate": "D:20030805163934-06'00'",
+        "/CreationDate": "D:20030805162730Z",
+        "/Creator": "FrameMaker 6.0",
+        "/Subject": "MCP41XXX,MCP42XXX",
+        "/Keywords": "digipot,digital,potentiometer,spi"
+      },
+      "brief_excerpts": [
+        {
+          "page": 13,
+          "keyword": "capacitor",
+          "text": "ur digital potentiome-\nter, bypass capacitors should be used. These capaci-\ntors should be placed as close as possible to the device\npin. A bypas"
+        },
+        {
+          "page": 2,
+          "keyword": "operating conditions",
+          "text": "±1 LSB max are specified monotonic operating conditions. See Figure 2-25 for test circuit.\n4: Resistor terminals A,B and W have no restrictions o"
+        },
+        {
+          "page": 1,
+          "keyword": "current",
+          "text": "S technology\n• 1 µA maximum supply current in static operation\n• Multiple devices can be daisy-chained together \n(MCP42XXX only)\n• Shutdown featu"
+        },
+        {
+          "page": 2,
+          "keyword": "resolution",
+          "text": "; TA = +25°C\nPotentiometer Divider\nResolution N 8 — — Bits\nMonotonicity N 8 — — Bits\nDifferential Non-Linearity DNL -1 ±1/4 +1 LSB Note 3\nIntegra"
+        },
+        {
+          "page": 2,
+          "keyword": "hysteresis",
+          "text": "l Input Voltage V IL — — 0.3V DD V\nHysteresis of Schmitt Trigger Inputs V HYS —0 . 0 5 V DD —\nLow-Level Output Voltage V OL — — 0.40 V I OL = 2.1"
+        },
+        {
+          "page": 5,
+          "keyword": "absolute",
+          "text": "nc. DS11195C-page 5\nMCP41XXX/42XXX\nAbsolute Maximum Ratings †\nVDD................................................................................"
+        },
+        {
+          "page": 5,
+          "keyword": "clock",
+          "text": "ym Min. Typ. Max. Units Conditions\nClock Frequency F CLK ——1 0 M H z V DD = 5V (Note 1)\nClock High Time t HI 40 — — ns\nClock Low Time t LO 40 — —"
+        }
+      ]
+    },
+    {
+      "id": "dac_ds",
+      "kind": "manufacturer_pdf",
+      "url": "https://ww1.microchip.com/downloads/en/DeviceDoc/22248a.pdf",
+      "effective_url": "https://ww1.microchip.com/downloads/en/DeviceDoc/22248a.pdf",
+      "retrieved_at_utc": "2026-10-07T01:20:36.296870+00:00",
+      "method": "curl.exe unauthenticated HTTPS GET, redirects followed",
+      "http_status": "200",
+      "curl_exit": 0,
+      "raw_bytes": 3418463,
+      "raw_sha256": "a52733deb49e0ae49c7f535e0f3591491d5e81c72f18e6c9f3846ce4ce2dcc5e",
+      "error": null,
+      "state": "retrieved",
+      "pdf_pages": 50,
+      "pdf_metadata": {
+        "/Author": "Microchip Technology Inc.",
+        "/CreationDate": "D:20100409172102Z",
+        "/Creator": "FrameMaker 8.0",
+        "/Keywords": "8/10/12-Bit Voltage Output Digital-to-Analog Converter with SPI Interface",
+        "/ModDate": "D:20100409172524-07'00'",
+        "/Producer": "Acrobat Distiller 9.0.0 (Windows)",
+        "/Subject": "8/10/12-Bit Voltage Output Digital-to-Analog Converter with SPI Interface",
+        "/Title": "8/10/12-Bit Voltage Output Digital-to-Analog Converter with SPI Interface"
+      },
+      "brief_excerpts": [
+        {
+          "page": 17,
+          "keyword": "capacitor",
+          "text": "ic) to ground. An additional\n10 µF capacitor (tantalum) in parallel is also recom-\nmended to further attenuate high-frequency noise\npresent in ap"
+        },
+        {
+          "page": 17,
+          "keyword": "supply voltage",
+          "text": " pins are listed in Table 3-1.\n3.1 Supply Voltage Pins (V DD, VSS)\nVDD is the positive supply voltage input pin. The input\nsupply voltage is rela"
+        },
+        {
+          "page": 3,
+          "keyword": "current",
+          "text": "...........V SS –0.3V to VDD+0.3V \nCurrent at Input Pins ....................................................±2 mA\nCurrent at Supply Pins ......."
+        },
+        {
+          "page": 1,
+          "keyword": "resolution",
+          "text": " packages. \nPackage Types\nP/N DAC \nResolution\nNo. of \nChannels\nVoltage \nReference\n(VREF)\nMCP4801 8 1\nInternal\n(2.048V)\nMCP4811 10 1\nMCP4821 12 1\n"
+        },
+        {
+          "page": 7,
+          "keyword": "hysteresis",
+          "text": "al input pins)\nVIL —— 0 . 2 V DD V\nHysteresis of Schmitt Trigger \nInputs\nVHYS —0 . 0 5 V DD —\nInput Leakage Current I LEAKAGE -1 — 1 AL DAC = CS"
+        },
+        {
+          "page": 3,
+          "keyword": "absolute",
+          "text": "21\n1.0 ELECTRICAL \nCHARACTERISTICS\nAbsolute Maximum Ratings †\nVDD ..............................................................................."
+        },
+        {
+          "page": 1,
+          "keyword": "clock",
+          "text": "Output\n• SPI Interface with 20 MHz Clock Support\n• Simultaneous Latching of the DAC Output \nwith LDAC Pin\n• Fast Settling Time of 4.5 µs\n• Select"
+        }
+      ]
+    },
+    {
+      "id": "cap_ds_mirror",
+      "kind": "manufacturer_pdf_distributor_mirror",
+      "url": "https://datasheet.lcsc.com/datasheet/pdf/58115b0c2f21f05a3509bc03212563f4.pdf?productCode=C15523",
+      "state": "unavailable",
+      "retrieved_at_utc": "2026-10-07T01:21:39.224309+00:00",
+      "error": "cryptography>=3.1 is required for AES algorithm"
+    }
+  ]
+}

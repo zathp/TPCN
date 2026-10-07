@@ -1,0 +1,380 @@
+{
+  "schema": "LUNA47E-MATRIX-1",
+  "revision": 1,
+  "analysis_date_local": "2026-10-06",
+  "retrieval_date_utc": "2026-10-07",
+  "date_note": "Retrievals after 01:00 UTC are still October 6 in the supplied UTC-04:00 owner-session date. Exact times are in catalogs.",
+  "authorization_revision": "789dda5988daf72f375d9713bd76a6da2b9e8b34",
+  "production_evidence_baseline": "2cef8ea4b37a4ae586e3f383511cba63c9268ddc",
+  "criteria_path": "experiments/luna47e/criteria.md",
+  "criteria_sha256": "e7dfd7bba267c25a276354052ee36a72a70a818108ce488f1ea6cabfbc619db9",
+  "verdict": "PARTIALLY SUPPORTED",
+  "verdict_scope": "Documentary primitive mapping only; not a build-ready validated BOM, architecture choice, efficacy or hardware equivalence.",
+  "owner_access": {
+    "region": null,
+    "budget": null,
+    "inventory": null,
+    "supply_constraints": null,
+    "status": "BLOCKED",
+    "reason": "Owner constraints not supplied; public offers do not prove delivery, affordability or permitted import."
+  },
+  "configuration": {
+    "id": "L47E-DOC-LOWV-1",
+    "type": "analytical illustration, not circuit design or production configuration",
+    "analog_supply_V": 5,
+    "signal_reference_V": 2.5,
+    "proposed_signal_excursion_V": [-1, 1],
+    "logical_time_to_seconds": null,
+    "hardware_execution": false,
+    "purchase": false,
+    "simulation": false,
+    "fixture_ids_used": [],
+    "reset": "Character reset, charge discharge, pending pulse cancellation and reinitialization are required but not implemented."
+  },
+  "retained_context": [
+    {
+      "path": "artifacts/luna46-depth-scaling-diagnostic-corrective-20261006.json",
+      "sha256": "0d32926f6f72a77a5b34eb054e1e46e9ece95cef3d6145e7892957cf3727722e",
+      "git_blob_sha256": "54220205537184dadc26eba3c59f7e9b36f01db579fd895339728e089e313d51",
+      "materialization_policy": "Windows checkout has CRLF instead of the Git blob terminal LF; checkout.replace(CRLF,LF) is byte-identical to the pinned Git blob. Both exact hashes are checked separately.",
+      "revision": "2cef8ea4b37a4ae586e3f383511cba63c9268ddc",
+      "role": "Hashed retained context only, not replayed, fitted or used as a hardware fixture.",
+      "preserved_verdict": "MIXED",
+      "context": "tau=80 logical units; 33 retention-limited, 75 drive-limited, 212 no-reception sequences. This does not prescribe RC seconds."
+    }
+  ],
+  "source_catalogs": {
+    "r1": "artifacts/luna47e/sources-20261006.json",
+    "r2": "artifacts/luna47e/sources-20261006-retrieval2.json",
+    "r3": "artifacts/luna47e/sources-20261006-retrieval3.json",
+    "r4": "artifacts/luna47e/sources-20261006-retrieval4.json",
+    "r5": "artifacts/luna47e/sources-20261006-retrieval5.json"
+  },
+  "source_ref_format": "catalog alias:source id; catalogs retain URL, UTC retrieval, raw SHA256, status and extracts. PDF locators refer to printed/PDF pages where stated.",
+  "components": [
+    {
+      "id": "fpaa",
+      "manufacturer": "Okika Devices; Anadigm-origin FlexAnalog platform",
+      "part_number": "AN231E04-QFNSP",
+      "function": "Dynamically configurable switched-capacitor FPAA, not an exposed ideal OTA or voltage-controlled resistor.",
+      "limits": {
+        "supply_V": [3.0, 3.6],
+        "nominal_supply_V": 3.3,
+        "ambient_C": [-40, 85],
+        "resources": "4 CABs, 7 analog IO cells; each CAB has 2 op-amps, comparator and programmable capacitor banks. DS lists 15 total op-amps, 4 comparators, 32 matched size-programmable capacitors.",
+        "input": "DS p5 sample/hold-conditioned range VMR +/-1.375 V; VMR=1.5 V above AVSS. Not a universal guarantee for all CAMs.",
+        "clock": "ACLK <=40 MHz, typical16 MHz; CAB clock divided below4 MHz; 45-55% duty. SCLK <=40 MHz (UM p14).",
+        "comparator": "DS p18 offset typical0.78 mV, max1.22 mV at zero hysteresis; hysteresis ON typical10 mV. Delay bounded by master-clock periods, not zero.",
+        "power": "DS p5 maximum resource-use dissipation0.25 W; inferred supply current scale0.25/3.3=75.76 mA, not a verified board/current budget.",
+        "capacitor_resolution": "32 matched size-programmable capacitors documented; absolute values, selected CAM coefficient grid and realized tau bounds not established by this investigation."
+      },
+      "configuration": "SRAM bitstream from AnadigmDesigner2/Okika Designer via serial configuration; .ahf/tool licensing/installability not tested. UM pp13-17.",
+      "package_accessories": "44-pin QFN exposed-pad chip requires PCB, soldering, 3.3 V rails, master clock, configuration host/nonvolatile storage, IO conditioning; no breadboard-ready bare IC.",
+      "availability": {
+        "status": "manufacturer_orderable_only",
+        "manufacturer_offer": "AN231E04-QFNSP 10-piece pack, USD120.00, available=true",
+        "stock_count": null,
+        "lead_time": null,
+        "independent_verification": "BLOCKED: DigiKey direct pages HTTP403; search-reported stock and prices rejected.",
+        "owner_access": "BLOCKED"
+      },
+      "source_refs": ["r1:fpaa_store", "r5:fpaa_chip", "r3:fpaa_ds", "r3:fpaa_um", "r1:fpaa_distributor"],
+      "spec_locators": ["DSv2.2 pp4-5,18", "UM pp6,13-17"],
+      "gaps": ["No verified exposed OTA", "No selected/compiled CAM circuit", "No independent stock verification", "No event-time WEMA equivalence", "Tool/software access unverified"]
+    },
+    {
+      "id": "fpaa_board",
+      "manufacturer": "Okika Devices",
+      "part_number": "AN231K04-DUAL2",
+      "function": "Manufacturer-listed dual AN231E04 development board reduces QFN prototyping burden.",
+      "limits": {"chip_limits": "Refer to fpaa; board supply input, current and IO protection specifications not verified."},
+      "configuration": "FPAA design software and host programming needed; compatible host/connector/software/license not verified.",
+      "package_accessories": "Board offer, not a confirmed complete bench kit. Cables, supply, host and documentation completeness unknown. Alternative OTC2312 Arduino shield is listed at USD81.25, available=true; manufacturer claims43 CAMs incl oscillators/comparators, but board-level limits are unverified.",
+      "availability": {
+        "status": "manufacturer_orderable_only",
+        "manufacturer_offer": "AN231K04-DUAL2 USD219.00, available=true",
+        "stock_count": null,
+        "lead_time": null,
+        "independent_verification": "BLOCKED: DigiKey HTTP403",
+        "owner_access": "BLOCKED"
+      },
+      "source_refs": ["r1:fpaa_store", "r5:fpaa_chip", "r1:fpaa_board_distributor", "r1:fpaa_shield"],
+      "spec_locators": ["Store variant sku; board title; shield product page"],
+      "gaps": ["Board manual/accessories not verified", "No checkout or purchase", "No supplier guarantee"]
+    },
+    {
+      "id": "opamp",
+      "manufacturer": "Texas Instruments",
+      "part_number": "TLV9062IDR",
+      "function": "Dual op-amp for referenced signed summing, difference amplifier, RC leak integration and precision rectifier composition.",
+      "limits": {
+        "supply_V": [1.8, 5.5],
+        "temperature_C": [-40, 125],
+        "bandwidth_MHz_typ": 10,
+        "slew_V_per_us_typ": 6.5,
+        "iq_uA_per_channel": {"typ": 538, "max_at_25C": 750, "max_over_temperature": 800, "condition": "VS5.5 V, unloaded"},
+        "offset_mV": {"typ": 0.3, "max_at_25C": 1.6, "max_over_temperature": 2, "condition": "VS5 V"},
+        "input_bias_pA_typ": 0.5,
+        "output_current": "50 mA is typical short-circuit current at5 V, NOT a recommended continuous design load.",
+        "capacitive_load": "Datasheet100 pF specified loading;100 nF state capacitor must be in a compensated feedback topology, not directly driven as an arbitrary load.",
+        "output_swing": "Not exact rails; DS p13 typical20 mV from rails atVS5.5 V, RL10 kohm."
+      },
+      "configuration": "Analog resistor/capacitor ratios; IDR has no shutdown pin (shutdown belongs to S variants).",
+      "package_accessories": "SOIC8; SOIC-to-DIP adapter or PCB, decoupling, clean reference required.",
+      "availability": {"status": "independent_public_stock", "distributor": "LCSC C398355", "stock_count": 168340, "price_USD": 0.1220, "price_min_quantity": 5, "lead_time": "overseas shipImmediately168340 at capture; destination transit unknown", "owner_access": "BLOCKED"},
+      "source_refs": ["r3:opamp_ds", "r1:opamp_stock"],
+      "spec_locators": ["SBOS839N July2026 pp1,10,13-14"],
+      "gaps": ["No circuit compensation, summing accuracy or saturation recovery validation"]
+    },
+    {
+      "id": "pot",
+      "manufacturer": "Microchip Technology",
+      "part_number": "MCP41010-I/P",
+      "function": "Single10 kohm SPI digital potentiometer; finite-step resistance, not ideal voltage-controlled conductance.",
+      "limits": {
+        "supply_V": [2.7, 5.5],
+        "temperature_C": [-40, 85],
+        "steps": 256,
+        "nominal_resistance_ohm": 10000,
+        "resistance_at_25C_ohm": [8000, 12000],
+        "wiper_ohm": "typ52/max100 atVDD5.5 V; typ73/max125 at2.7 V",
+        "wiper_current_mA_max_magnitude": 1,
+        "terminal_voltage": "A,B,W all within0..VDD; signed signals require bias or differential encoding.",
+        "iq_uA": "static max1; active typ340/max500 at5.5 V,fSCK10 MHz; ladder current additional.",
+        "linearity": "8 bits; INL,DNL max +/-1 LSB; resistance tempco typ800 ppm/C",
+        "settling": "typ2 us at5 V, code0->128,30 pF load, +/-1% error band"
+      },
+      "configuration": "SPI modes0,0 or1,1,16-bit command; volatile register resets code128 at powerup; no MCP42xxx daisy chain/reset pin on this single part.",
+      "package_accessories": "PDIP8, breadboard-compatible package; host SPI, resistor guard/current limit and decoupling still required.",
+      "availability": {"status": "independent_public_stock", "distributor": "LCSC C1539831", "stock_count": 64, "price_USD": 3.7835, "price_min_quantity": 1, "lead_time": "shipImmediately64 at capture; replenishment/transit unknown", "owner_access": "BLOCKED"},
+      "source_refs": ["r3:pot_ds", "r1:pot_stock"],
+      "spec_locators": ["DS11195C 2003 pp1-2,5"],
+      "gaps": ["Low codes are not zero ohms and can violate1 mA", "Resistance and reciprocal conductance increments differ", "Absolute tau requires measurement/calibration"]
+    },
+    {
+      "id": "cap",
+      "manufacturer": "TDK Electronics (EPCOS)",
+      "part_number": "B32529C1104J289",
+      "function": "Ordinary100 nF metallized PET film state/timing capacitor.",
+      "limits": {
+        "capacitance_nF": 100,
+        "tolerance_percent": 5,
+        "voltage_VDC": 100,
+        "voltage_VAC": "63 Vrms atf<=60 Hz, rated temperature85 C; derating above85 C",
+        "temperature_C": [-55, 125],
+        "insulation_Mohm_min": "3750 at20 C, RH<=65%, as-delivered, CR<=0.33 uF andVR<=100 V",
+        "dissipation_factor_max": "0.008 at1 kHz and20 C forCR<=0.1 uF",
+        "current": "No general-purpose DC/pulse-current limit established here; waveform/dVdt/thermal verification required."
+      },
+      "configuration": "Fixed capacitance; switched capacitor bank would need additional selected switches and parasitic characterization.",
+      "package_accessories": "Through-hole,5 mm lead spacing,2.5x6.5x7.3 mm max body; J=+/-5%,289=ammo pack. Distributor small-quantity cut-pack versus manufacturer MOQ distinct.",
+      "availability": {"status": "independent_public_stock", "distributor": "LCSC C15523", "stock_count": 9430, "price_USD": 0.1014, "price_min_quantity": 5, "lead_time": "shipImmediately9430 at capture; transit unknown", "owner_access": "BLOCKED"},
+      "source_refs": ["r4:cap_ds_mirror", "r1:cap_stock", "r1:cap_ds"],
+      "spec_locators": ["TDK B32520..B32529 September2019 pp2,7,19; manufacturer PDF mirrored by distributor"],
+      "gaps": ["Manufacturer endpoint HTTP403; mirrored manufacturer PDF identified and hashed", "Dielectric absorption, drift, soldering stress and board leakage not measured"]
+    },
+    {
+      "id": "comparator",
+      "manufacturer": "Texas Instruments",
+      "part_number": "TLV3201AIDBVR",
+      "function": "Single push-pull comparator; pair plus threshold references forms signed window/deadband.",
+      "limits": {
+        "supply_V": [2.7, 5.5],
+        "temperature_C": [-40, 125],
+        "iq_uA": "typ40/max50 at5 V,25 C; max65 overtemperature",
+        "offset_mV": "typ1,max3 at25 C,max4 overtemperature",
+        "hysteresis_mV_typ": 1.2,
+        "propagation_ns": "At5 V,20 mV overdrive,15 pF: typ47 low-high/45 high-low,max50 at25 C; max55 overtemperature",
+        "input_range": "Common mode VEE-0.2..VCC+0.2 within prescribed electrical conditions, not permission to violate absolute max.",
+        "output_current": "Use4 mA characterized output-load point; typical short-circuit figures are not continuous design limits."
+      },
+      "configuration": "Two DAC/reference thresholds around2.5 V plus declared hysteresis. Single comparator is not a full deadband or noise estimator.",
+      "package_accessories": "SOT23-5; PCB/adapter, thresholds, decoupling and logic compatibility needed.",
+      "availability": {"status": "independent_public_stock", "distributor": "LCSC C105188", "stock_count": 32169, "price_USD": 0.9820, "price_min_quantity": 1, "lead_time": "shipImmediately32169 at capture; transit unknown", "owner_access": "BLOCKED"},
+      "source_refs": ["r3:comparator_ds", "r1:comparator_stock"],
+      "spec_locators": ["SBOS561C May2024 pp4-6"],
+      "gaps": ["Near-threshold noise/metastability", "Adaptive noise tracking not implemented", "No exact deterministic equal-time decision"]
+    },
+    {
+      "id": "diode",
+      "manufacturer": "Vishay Semiconductors",
+      "part_number": "1N4148-TAP",
+      "function": "Feedback switching diode for op-amp precision rectifier composition.",
+      "limits": {
+        "reverse_voltage_V": 75,
+        "repetitive_peak_reverse_V": 100,
+        "forward_continuous_mA": 300,
+        "forward_average_mA": 150,
+        "forward_voltage_V_max": "1 at10 mA,25 C",
+        "reverse_leakage": "max25 nA at20 V,25 C; max50 uA at20 V,150 C",
+        "capacitance_pF_max": 4,
+        "recovery_ns_max": "8 forIF=IR=10 mA,iR1 mA",
+        "power": "max500 mW atlead length4 mm,TL<=25 C;440 mW at45 C; not intended operating dissipation",
+        "temperature": "TJ max175 C; storage-65..150 C"
+      },
+      "configuration": "Two-op-amp/full-wave feedback rectifier referenced to2.5 V; ordinary diode alone loses small signals.",
+      "package_accessories": "DO35 axial, TAP ammo pack; connections and resistor ratios required.",
+      "availability": {"status": "independent_public_stock", "distributor": "LCSC C917479", "stock_count": 18580, "price_USD": 0.0483, "price_min_quantity": 20, "lead_time": "Public offer InStock; arrival/replenishment unknown", "owner_access": "BLOCKED"},
+      "source_refs": ["r4:diode_ds", "r4:diode_stock"],
+      "spec_locators": ["Vishay81857 rev1.6 2024-11-07 pp1-2"],
+      "gaps": ["Zero-crossing error and amplifier saturation unvalidated"]
+    },
+    {
+      "id": "resistor",
+      "manufacturer": "Yageo",
+      "part_number": "MFR-25FBF52-100K",
+      "function": "Fixed100 kohm feedback/guard resistance or repeated equal-value summing arms.",
+      "limits": {
+        "resistance_ohm": 100000,
+        "tolerance_percent": 1,
+        "power_W": "0.25 at70 C, derate above70 C",
+        "max_working_voltage_V": "250; actual operating voltage also limited bysqrt(P*R)",
+        "temperature_C": [-55, 155],
+        "tempco": "MFR family +/-50 or100 ppm/C; selected F ordering suffix/distributor lists100 ppm/C"
+      },
+      "configuration": "Passive, repeated resistors or declared finite selectable bank. Switches for a digitally selected bank not selected/verified.",
+      "package_accessories": "Axial6.3x2.4 mm nominal body; ordinary low-voltage breadboard/PCB use.",
+      "availability": {"status": "independent_public_stock", "distributor": "LCSC C1364475", "stock_count": 10500, "price_USD": 0.0183, "price_min_quantity": 50, "lead_time": "Public offer InStock; transit/replenishment unknown", "owner_access": "BLOCKED"},
+      "source_refs": ["r5:resistor_ds_mirror", "r4:resistor_stock"],
+      "spec_locators": ["Yageo MFR V4 2024-04-03 pp2-3; manufacturer document mirrored by distributor"],
+      "gaps": ["Ratio matching is not guaranteed by independent1% tolerances", "Selected ordering tempco not independently lot-verified"]
+    },
+    {
+      "id": "timer",
+      "manufacturer": "Texas Instruments",
+      "part_number": "LMC555CMX/NOPB",
+      "function": "CMOS555 bounded-width one-shot or RC astable; requires gating to make bounded event output.",
+      "limits": {
+        "supply": "Manufacturer operation as low as1.5 V; electrical tests1.5,5,12 V;15 V is ABSOLUTE maximum, not selected operating voltage. Use proposed5 V only.",
+        "temperature_C": [-40, 85],
+        "iq_uA_at_5V": {"typ": 180, "max": 250},
+        "frequency_MHz": "3 typical maximum in specified5 V test circuit, not arbitrary network throughput",
+        "output": "At5 V sink8 mA: VOL typ0.3/max0.6 V; source2 mA: VOH min4.4/typ4.7 V.",
+        "timing": "Nominal one-shot~1.1RC; DS test timing at5 V spans1.0..1.20 ms aroundtyp1.1 ms. Component tolerances additional."
+      },
+      "configuration": "External R,C,trigger,RESET; threshold/control normally~2/3VDD,trigger~1/3VDD; DAC control changes both and needs characterization.",
+      "package_accessories": "SOIC8 adapter/PCB, decoupling, output gate/reset, timing parts and logic interface needed.",
+      "availability": {"status": "independent_public_stock", "distributor": "LCSC C90760", "stock_count": 610, "price_USD": 0.2948, "price_min_quantity": 5, "lead_time": "shipImmediately610 at capture; transit/replenishment unknown", "owner_access": "BLOCKED"},
+      "source_refs": ["r3:timer_ds", "r1:timer_stock"],
+      "spec_locators": ["SNAS558N March2024 pp1,4-5"],
+      "gaps": ["Free-running oscillator is not bounded spike count", "Refractory/gating/budget and signed output encoding not implemented"]
+    },
+    {
+      "id": "dac",
+      "manufacturer": "Microchip Technology",
+      "part_number": "MCP4921-E/P",
+      "function": "Single12-bit SPI buffered voltage DAC for threshold/bias/event-amplitude configuration.",
+      "limits": {
+        "supply_V": [2.7, 5.5],
+        "temperature_C": [-40, 125],
+        "bits": 12,
+        "settling_us_typ": "4.5 within0.5LSB on1/4-to3/4 fullscale step, not all-code guarantee",
+        "iq_uA_at_5V": {"typ": 175, "max": 350, "condition": "unbufferedVREF,no output load,code0"},
+        "INL_LSB": "typ+/-2,max+/-12 in stated electrical conditions",
+        "DNL_LSB_max": 0.75,
+        "output": "NominalVOUT=G*VREF*code/4096; gain1 or2; bounded by rail/headroom. DS accuracy range10 mV..VDD-40 mV.",
+        "VREF": "External reference; unbuffered0..VDD, buffered40 mV..VDD-40 mV;165 kohm typical input resistance unbuffered",
+        "output_current": "15 mA typical short-circuit value, NOT nominal continuous current load.",
+        "interface": "SPI compatible up to20 MHz per feature page,16-bit command,LDAC synchronous latch"
+      },
+      "configuration": "Host SPI+CS+LDAC; buffer/gain/shutdown bits; reference needed. Two independent window thresholds require2 DACs or another reference network.",
+      "package_accessories": "PDIP8; MCU/FPGA host not selected, calibrated external reference, decoupling and buffer/load isolation needed.",
+      "availability": {"status": "independent_public_stock", "distributor": "LCSC C640392", "stock_count": 34, "price_USD": 4.4057, "price_min_quantity": 1, "lead_time": "shipImmediately34 at capture; transit/replenishment unknown", "owner_access": "BLOCKED"},
+      "source_refs": ["r3:dac_ds", "r1:dac_stock"],
+      "spec_locators": ["DS22248A 2010 pp1,3-4"],
+      "gaps": ["12-bit code resolution does not guarantee12-bit absolute accuracy", "Reference, settling glitches and reset order unvalidated", "Not a current DAC or programmable resistance"]
+    }
+  ],
+  "primitives": [
+    {
+      "id": "leaky_integrator_wema",
+      "ideal": "Persistent bounded state with adjustable exponential leak and event deposition; WEMA additionally defines weighting/normalization per event.",
+      "fpaa": {"components": ["fpaa", "fpaa_board"], "verdict": "BLOCKED", "capability": "Switched-capacitor integration evidenced by manufacturer boxcar application; configurable cap ratios/clocks documented. Boxcar integration alone is not leaky event-time WEMA.", "source_refs": ["r1:fpaa_boxcar", "r3:fpaa_um"], "gaps": ["Exact leaky CAM configuration/tau grid unverified", "Independent purchasing blocked", "No exposed OTA assumed"]},
+      "discrete": {"components": ["opamp", "cap", "resistor", "pot", "dac"], "verdict": "PARTIALLY SUPPORTED", "mapping": "Referenced inverting summing integrator withCf100 nF and parallel leakageRf100 kohm; optional series10 kohm digi-pot adjustsRf in a limited range. Charge/pulse deposition must be bounded, calibrated and reset."},
+      "verdict": "PARTIALLY SUPPORTED",
+      "gaps": ["RC leak alone is not normalized WEMA", "No seconds/logical-time mapping", "No capacitor reset switch or event-deposition circuit verified", "Capacitive stability and board leakage unmeasured"]
+    },
+    {
+      "id": "programmable_resistance_conductance",
+      "ideal": "Bounded tunable resistance or input-to-state conductance.",
+      "fpaa": {"components": ["fpaa"], "verdict": "BLOCKED", "capability": "Switched capacitor equivalent conductance depends onclock*capacitance ratio; not a general two-terminal resistor/OTA.", "source_refs": ["r3:fpaa_um"], "gaps": ["CAM coefficient range and grid unverified", "Independent purchase blocked"]},
+      "discrete": {"components": ["pot", "resistor", "dac", "opamp"], "verdict": "SUPPORTED", "mapping": "MCP41010 provides actual256-position10 kohm resistance within documented rail/current limits. DAC-controlled amplifier bias/gain and resistor banks are alternative compositions, not claimed verified VCRs."},
+      "verdict": "SUPPORTED",
+      "gaps": ["Supported only as finite-step digi-pot primitive, not ideal continuous conductance", "Bank switches and activeV-to-I stage unverified"]
+    },
+    {
+      "id": "capacitor",
+      "ideal": "Finite analog charge-storage element with known capacitance.",
+      "fpaa": {"components": ["fpaa"], "verdict": "BLOCKED", "capability": "On-chip matched programmable capacitor banks documented; ratios support SC processing, not an arbitrary external long-hold capacitor.", "source_refs": ["r3:fpaa_ds", "r3:fpaa_um"], "gaps": ["Absolute capacitance/code-to-cap mapping not established", "Independent purchase blocked"]},
+      "discrete": {"components": ["cap"], "verdict": "SUPPORTED", "mapping": "TDK100 nF5% PET film through-hole part with verified distributor stock; ordinary fixed capacitor is baseline, not varactor/MEMS."},
+      "verdict": "SUPPORTED",
+      "gaps": ["Temperature drift/dielectric absorption affect state fidelity", "No adjustable capacitor bank verified"]
+    },
+    {
+      "id": "comparator_deadband",
+      "ideal": "Threshold/window qualification with explicit deadband and hysteresis.",
+      "fpaa": {"components": ["fpaa", "fpaa_board"], "verdict": "BLOCKED", "capability": "4 CAB comparators with OFF/ON hysteresis documented; shield CAM library lists comparators.", "source_refs": ["r3:fpaa_ds", "r1:fpaa_shield"], "gaps": ["User-programmable window composition not compiled", "Independent purchase blocked"]},
+      "discrete": {"components": ["comparator", "dac", "resistor"], "verdict": "PARTIALLY SUPPORTED", "mapping": "TwoTLV3201 comparators plus two threshold references form a biased signed window. Offset/hysteresis must be included in deadband, not ignored."},
+      "verdict": "PARTIALLY SUPPORTED",
+      "gaps": ["Single comparator individually documented; two-threshold composition unvalidated", "No adaptive noise estimator", "Threshold jitter and equal-time ordering unresolved"]
+    },
+    {
+      "id": "rectification_absolute_value",
+      "ideal": "Magnitude of signed drive without suppressing small signals.",
+      "fpaa": {"components": ["fpaa"], "verdict": "BLOCKED", "capability": "UM p6 names rectification building blocks, not certified absolute-value transfer accuracy for a selected circuit.", "source_refs": ["r3:fpaa_um"], "gaps": ["Transfer/dead-zone/saturation limits unverified", "Independent purchase blocked"]},
+      "discrete": {"components": ["opamp", "diode", "resistor"], "verdict": "PARTIALLY SUPPORTED", "mapping": "Two-op-amp feedback full-wave precision rectifier using1N4148-TAP, referenced to2.5 V; subtract reference for magnitude. Diode-only rectifier is rejected for low-amplitude precision."},
+      "verdict": "PARTIALLY SUPPORTED",
+      "gaps": ["No selected schematic or validated transfer curve", "Diode leakage, op-amp offset and zero-crossing recovery"]
+    },
+    {
+      "id": "summation_subtraction_accumulation",
+      "ideal": "Signed weighted sum/difference with persistent bounded accumulation.",
+      "fpaa": {"components": ["fpaa"], "verdict": "BLOCKED", "capability": "UM p6 summing and CAB op-amps/caps document constituent resources;4 CABs finite, not unlimited fan-in.", "source_refs": ["r3:fpaa_um"], "gaps": ["CAM resource allocation not compiled", "Temporal ties/order not equivalent to unordered analog sum", "Independent purchase blocked"]},
+      "discrete": {"components": ["opamp", "resistor", "cap"], "verdict": "PARTIALLY SUPPORTED", "mapping": "Referenced op-amp summing/difference stage; feedback capacitor plus resistor supplies leaky accumulation. Finite input arms and headroom must be specified."},
+      "verdict": "PARTIALLY SUPPORTED",
+      "gaps": ["1% resistor tolerances can produce~2% ratio mismatch", "Fan-in, event serialization, saturation and resets unvalidated"]
+    },
+    {
+      "id": "threshold_oscillator_bounded_output",
+      "ideal": "Local threshold-driven finite pulse output, bounded width/count/refractory return.",
+      "fpaa": {"components": ["fpaa", "fpaa_board"], "verdict": "BLOCKED", "capability": "Manufacturer shield library lists oscillators; comparator/CAB resources exist. Bounded event count and return semantics not evidenced.", "source_refs": ["r1:fpaa_shield", "r3:fpaa_ds"], "gaps": ["No compiled output CAM or gate", "Independent purchase blocked"]},
+      "discrete": {"components": ["comparator", "timer", "cap", "resistor"], "verdict": "PARTIALLY SUPPORTED", "mapping": "Comparator crossing triggersLMC555 one-shot,~1.1RC. With100 kohm100 nF nominal pulse11 ms. External finite trigger budget/reset/refractory gate required; free-running astable rejected as bounded output."},
+      "verdict": "PARTIALLY SUPPORTED",
+      "gaps": ["A timer does not enforce maximum event count", "No spike-compression transfer or causal routing verified", "Return/reset/gating unimplemented"]
+    },
+    {
+      "id": "dac_digital_configuration",
+      "ideal": "Finite-resolution bias/threshold programming and serialized circuit configuration.",
+      "fpaa": {"components": ["fpaa", "fpaa_board"], "verdict": "BLOCKED", "capability": "FPAA serial bitstream configuration documented. It is not itself a verified general voltageDAC; externalMCP4921 remains fallback.", "source_refs": ["r3:fpaa_um", "r5:fpaa_chip"], "gaps": ["Host/tool availability not tested", "Independent purchase blocked", "State continuity on reconfiguration unverified"]},
+      "discrete": {"components": ["dac", "pot"], "verdict": "SUPPORTED", "mapping": "MCP4921-E/P12-bit voltageDAC andMCP41010 SPI configuration; finite MCU/FPGA host required but not selected or programmed."},
+      "verdict": "SUPPORTED",
+      "gaps": ["Reference accuracy, logic-level translation and host ordering unresolved", "DAC voltage does not imply obtainable ideal conductance"]
+    }
+  ],
+  "analytical_checks": [
+    {"id": "rc_nominal", "classification": "INFERRED", "equation": "tau=R*C", "R_ohm": 100000, "C_F": 1e-7, "tau_s": 0.01, "tolerance_min_s": 0.009405, "tolerance_max_s": 0.010605, "conditions": "IndependentR1%,C5% initial tolerances only; excludes drift/leakage/absorption and active errors."},
+    {"id": "pot_step", "classification": "INFERRED", "equation": "RAB/256", "nominal_step_ohm": 39.0625, "nominal_C100nF_tau_step_s": 0.00000390625, "conditions": "Nominal resistance steps, not calibrated time accuracy; conductance steps not uniform."},
+    {"id": "limited_tau_adjustment", "classification": "INFERRED", "equation": "tau=(100000+52+code*10000/256)*1e-7", "code_range": [0, 255], "nominal_tau_range_s": [0.0100052, 0.01100129375], "conditions": "Illustrates100 kohm guard+10 kohm pot,52 ohm typical wiper at5.5 V; actual proposed5 V wiper not guaranteed. NOT1..10 ms full-range control."},
+    {"id": "dac_code", "classification": "INFERRED", "equation": "2.5/4096", "VREF_assumed_V": 2.5, "gain": 1, "ideal_step_V": 0.0006103515625, "conditions": "Not measured; INL up to12LSB, reference error and offset must be added."},
+    {"id": "guard_current", "classification": "INFERRED", "equation": "1V/100kohm", "nominal_uA": 10, "conditions": "Illustrative proposed1 V drive magnitude; not a measured transient current."},
+    {"id": "output_width", "classification": "INFERRED", "equation": "1.1*100000*1e-7", "nominal_width_s": 0.011, "conditions": "One-shot timing formula only; timer/component tolerance and trigger/reset behavior unvalidated."}
+  ],
+  "negative_results": [
+    {"verdict": "BLOCKED", "item": "IndependentFPAA distributor confirmation", "source_refs": ["r1:fpaa_distributor", "r1:fpaa_board_distributor"], "reason": "HTTP403, no verified current inventory/lead time"},
+    {"verdict": "BLOCKED", "item": "LegacyAnadigm product endpoint", "source_refs": ["r1:legacy_anadigm"], "reason": "HTTP200 JavaScript redirect to /lander, not a capability page"},
+    {"verdict": "NOT SUPPORTED", "item": "MCP41010 as ideal bipolar continuous VCR", "source_refs": ["r3:pot_ds"], "reason": "Finite steps, rail constraints, finite wiper/current limits"},
+    {"verdict": "NOT SUPPORTED", "item": "Unbounded555 oscillator as bounded event mechanism", "source_refs": ["r3:timer_ds"], "reason": "Astable behavior has no intrinsic finite event-count budget"},
+    {"verdict": "BLOCKED", "item": "AN231E04 exposedidealOTA", "source_refs": ["r3:fpaa_ds", "r3:fpaa_um"], "reason": "Reviewed documents establish op-amp/switched-cap resources; no exposed programmableOTA realization verified"}
+  ],
+  "implementation_gaps": [
+    "Owner region/budget/inventory unavailable",
+    "No complete schematic, BOM, controller/reference/reset-switch selection or accessory quotation",
+    "No circuit simulation or physical measurement",
+    "No fixed logical-time-to-seconds or event-charge scaling",
+    "No deterministic event routing/tie ordering, finite queue/lineage or local energy calibration",
+    "SCclock is hardware implementation clock; must not silently become mandatory neural timestep",
+    "No raw sources redistributed; catalog hashes permit integrity comparison only if identical source bytes are obtainable again",
+    "Live pages and prices vary; retained selected offers are observations, not guarantees",
+    "Varactor/MEMS/memristor/customASIC not baseline; no platform benefit or purchase evidence established"
+  ]
+}
