@@ -66,7 +66,7 @@ def step(previous: float, dt: float, payload: float, rate: float) -> Record:
 
 def accumulate(updates: list[Record], rate: float) -> Record:
     require(len(updates) <= CONFIG["max_events"], "event capacity")
-    state, clock = 0.0, 0.0
+    state, clock = 0.0, None
     last_key: tuple[float, int] | None = None
     ids: set[int] = set()
     rows = []
@@ -79,6 +79,8 @@ def accumulate(updates: list[Record], rate: float) -> Record:
         ids.add(queue)
         key = (t, queue)
         require(last_key is None or key > last_key, "event order")
+        if clock is None:
+            clock = prior
         require(evidence.bits(prior) == evidence.bits(clock) and t >= prior, "clock continuity")
         payload = update["payload"] if update["is_reception"] else 0.0
         row = step(state, t - prior, payload, rate)

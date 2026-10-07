@@ -52,6 +52,16 @@ def test_signed_recurrence_and_reset(rate):
     assert lane.accumulate(updates([(0.0, -0.4)]), rate)["rows"][0]["state_before"] == 0
 
 
+def test_first_interval_uses_retained_prior_clock():
+    rows = [{"timestamp": 20.0, "prior_clock": 19.0, "queue_sequence": 0,
+             "event_id": "test:0", "payload": 0.5, "is_reception": True},
+            {"timestamp": 21.0, "prior_clock": 20.0, "queue_sequence": 1,
+             "event_id": "test:1", "payload": 0.25, "is_reception": True}]
+    result = lane.accumulate(rows, RATES[0])
+    assert [row["dt"] for row in result["rows"]] == [1.0, 1.0]
+    assert result["rows"][0]["state_after"] == 0.5
+
+
 @pytest.mark.parametrize("payload", [1.0, -1.0, math.nextafter(1.0, 0.0), -math.nextafter(1.0, 0.0)])
 def test_threshold_exact_no_tolerance(payload):
     row = lane.step(0, 0, payload, RATES[0])

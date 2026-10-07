@@ -14,6 +14,13 @@ and [47G analog variation robustness](../../../.github/agents/luna-47g.agent.md)
 The project-owner instruction is recorded in the
 [Luna-0 authorization handoff](../../handoffs/luna-0-authorization-luna47-20261006.md).
 
+### Luna-47A execution status — 2026-10-07
+
+**Luna-47A execution is complete with a PARTIALLY SUPPORTED verdict.** The
+completed experiment, replayable results, and handoff are recorded in the
+[Luna-47A WEMA temporal-retention handoff](../../handoffs/luna-47a-wema-temporal-retention-20261006.md).
+Luna-47B through Luna-47G remain authorized and not executed.
+
 The exact experimental source/evidence baseline is
 `2cef8ea4b37a4ae586e3f383511cba63c9268ddc`. Every lane must start from the
 same published Luna-0 authorization revision recorded in that handoff; it
