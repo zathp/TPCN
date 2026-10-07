@@ -1,0 +1,5 @@
+# Preserve canonical evidence bytes on Windows checkouts; lane-local only.
+.gitattributes text eol=lf
+*.json -text
+# Raw pytest traceback whitespace is retained; do not render giant XML line diffs.
+*.xml -text -diff
