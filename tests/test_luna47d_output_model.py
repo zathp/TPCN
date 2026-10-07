@@ -3,11 +3,13 @@ from copy import deepcopy
 from dataclasses import replace
 from fractions import Fraction
 import math
+import subprocess
 
 import pytest
 
 from experiments.luna47d.model import (Config, canonical, load_fixtures, reconcile,
                                       scientific_failures, simulate)
+import experiments.luna47d.run as luna47d_run
 from experiments.luna47d.run import analyze, negative_controls
 
 FIXTURES = load_fixtures()
@@ -104,6 +106,12 @@ def test_exact_threshold_no_tolerance_and_leak_before_output_negative():
     assert result["trace"][1]["pre"] < 1
     assert result["metrics"]["exact_zero_final"] is False
     assert result["metrics"]["recovery_time"] == pytest.approx(math.log(1 / 1e-6) / 0.125)
+
+
+@pytest.mark.parametrize("period", ["2/4", "0.5"])
+def test_equivalent_period_encoding_passes_latency_check(period):
+    result = simulate(select("moderate-low"), replace(Config(), period=period))
+    assert not scientific_failures(result)
 
 
 def test_subthreshold_recovery_is_leak_not_reset():
@@ -228,3 +236,23 @@ def test_primary_symmetry_and_full_initial_replay():
     assert analysis["initial_sha256"] == analysis["replay_sha256"]
     assert analysis["replay_byte_equal"]
     assert sum(r["metrics"]["output_count"] for r in analysis["initial"]) == 40
+
+
+def test_source_manifest_rejects_mismatched_revision_checkout(tmp_path, monkeypatch):
+    subprocess.run(["git", "init", "-q"], cwd=tmp_path, check=True)
+    subprocess.run(["git", "config", "user.name", "Test"], cwd=tmp_path, check=True)
+    subprocess.run(["git", "config", "user.email", "test@example.invalid"],
+                   cwd=tmp_path, check=True)
+    source = tmp_path / "source.py"
+    source.write_bytes(b"committed\r\n")
+    subprocess.run(["git", "add", "source.py"], cwd=tmp_path, check=True)
+    subprocess.run(["git", "commit", "-qm", "fixture"], cwd=tmp_path, check=True)
+    revision = subprocess.check_output(
+        ["git", "rev-parse", "HEAD"], cwd=tmp_path, text=True
+    ).strip()
+    source.write_bytes(b"working tree\n")
+    monkeypatch.setattr(luna47d_run, "ROOT", tmp_path)
+    monkeypatch.setattr(luna47d_run, "SOURCES", ["source.py"])
+
+    with pytest.raises(ValueError, match="checkout source differs"):
+        luna47d_run.source_manifest(revision)

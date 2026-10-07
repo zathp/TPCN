@@ -30,10 +30,19 @@ def git(*args):
 
 
 def source_manifest(revision):
-    return [{
-        "path": path, "git_blob": git("rev-parse", f"{revision}:{path}"),
-        "sha256_lf": hashlib.sha256((ROOT / path).read_bytes().replace(b"\r\n", b"\n")).hexdigest(),
-    } for path in SOURCES]
+    manifest = []
+    for path in SOURCES:
+        checkout = (ROOT / path).read_bytes().replace(b"\r\n", b"\n")
+        committed = subprocess.check_output(
+            ["git", "--no-pager", "show", f"{revision}:{path}"], cwd=ROOT
+        ).replace(b"\r\n", b"\n")
+        if checkout != committed:
+            raise ValueError(f"checkout source differs from {revision}: {path}")
+        manifest.append({
+            "path": path, "git_blob": git("rev-parse", f"{revision}:{path}"),
+            "sha256_lf": hashlib.sha256(committed).hexdigest(),
+        })
+    return manifest
 
 
 def negative_controls(primary):

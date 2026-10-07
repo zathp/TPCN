@@ -196,7 +196,7 @@ def scientific_failures(result):
             or abs(trace[-1]["post"]) > config.epsilon or metrics["pending_at_horizon"] is not None):
         failures.append("loss-of-bounded-neutral-recovery")
     if outputs:
-        if metrics["first_latency"] != config.period:
+        if Fraction(metrics["first_latency"]) != Fraction(config.period):
             failures.append("latency")
         if any(Fraction(b["time"]) - Fraction(a["time"]) < Fraction(config.period)
                for a, b in zip(outputs, outputs[1:])):
