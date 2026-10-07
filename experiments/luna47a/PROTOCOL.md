@@ -83,7 +83,9 @@ events or invalid rates are rejected, not clipped into the accepted domain.
 
 Read only the corrected Luna-46 file:
 `artifacts/luna46-depth-scaling-diagnostic-corrective-20261006.json`,
-2337377 bytes, SHA-256
+2337376 exact Git bytes, SHA-256
+`54220205537184dadc26eba3c59f7e9b36f01db579fd895339728e089e313d51`.
+The untouched Windows physical checkout is 2337377 bytes, SHA-256
 `0d32926f6f72a77a5b34eb054e1e46e9ece95cef3d6145e7892957cf3727722e`.
 Require committed baseline bytes, internal digest, exact MIXED disposition,
 320 sequence identities and exact category inventory (212 no reception,
@@ -111,6 +113,14 @@ Exact pinned lengths/hashes still apply to the authoritative blob bytes.
 Record pre/post physical checkout hashes to prove no historical edit.
 The original regression remains a reported failure, not a passing test.
 This isolated read adapter is not a production or governance correction.
+
+Pre-outcome pin correction: the first execution attempt at `add3d0c`
+aborted with exit 2 at the Luna-46 file-pin gate, before extracting new
+accumulator outcomes or writing any bundle. The originally recorded pin
+was the physical CRLF hash, not its Git baseline blob hash. Correct it to
+the exact Git pin above, while preserving the physical pin separately.
+The two byte streams have exact LF/CRLF equivalence and the same parsed
+internal digest. No equations, variants, criteria or source evidence change.
 
 For each calibrated initial/replay character, independently reconcile both
 raw routes one-to-one and verify relay emission origins/fixed Model-B

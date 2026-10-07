@@ -195,6 +195,8 @@ def test_authoritative_git_evidence_integrity_only():
     inventory = lane.physical_inventory(observations)
     assert all(inventory[name]["sha256"] == row["physical_sha256"]
                for name, row in observations.items())
+    retained = (source / lane.RETAINED).read_bytes()
+    assert lane.verify_retained(retained, retained)["verdict"] == "MIXED"
 
 
 def test_write_new_exact_and_never_overwrite(tmp_path):

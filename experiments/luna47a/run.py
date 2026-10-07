@@ -18,7 +18,8 @@ AUTHORIZATION = "789dda5988daf72f375d9713bd76a6da2b9e8b34"
 BASELINE = "2cef8ea4b37a4ae586e3f383511cba63c9268ddc"
 BRANCH = "copilot/luna47a-investigation"
 RETAINED = Path("artifacts/luna46-depth-scaling-diagnostic-corrective-20261006.json")
-RETAINED_HASH = "0d32926f6f72a77a5b34eb054e1e46e9ece95cef3d6145e7892957cf3727722e"
+RETAINED_HASH = "54220205537184dadc26eba3c59f7e9b36f01db579fd895339728e089e313d51"
+RETAINED_BYTES = 2337376
 CONFIG = {
     "schema": "TPCN-LUNA47A-CONFIG-1",
     "rates": {"baseline_tau80": 0.0125, "retention_tau800": 0.00125,
@@ -177,7 +178,7 @@ def historical_updates(arrivals: list[Record]) -> list[Record]:
 
 
 def verify_retained(data: bytes, committed: bytes) -> Record:
-    require(len(data) == 2337377 and evidence.sha(data) == RETAINED_HASH, "Luna46 file pin")
+    require(len(data) == RETAINED_BYTES and evidence.sha(data) == RETAINED_HASH, "Luna46 file pin")
     require(data == committed, "retained working bytes differ from evidence baseline")
     value = evidence.parse(data)
     require(evidence.digest({k: v for k, v in value.items() if k != "output_digest"})
@@ -344,7 +345,7 @@ def verified_inputs() -> Record:
             "source_byte_policy": "exact Git baseline blobs; no historical-file normalization",
             "materialization": materialization,
             "retained_luna46": {"path": RETAINED.as_posix(), "sha256": RETAINED_HASH,
-                                "byte_length": 2337377, "output_digest": retained["output_digest"]},
+                                "byte_length": RETAINED_BYTES, "output_digest": retained["output_digest"]},
             "frozen_configuration": config45, "historical_configuration": config44,
             "phase_gates": phase_gates, "reconciled_route_counts": route_counts, "phases": phases}
 
