@@ -1,0 +1,89 @@
+{
+  "schema": "LUNA47G-VALIDATION-1",
+  "environment": {
+    "python": "3.11.5",
+    "interpreter": "C:/Users/zathp/Documents/programming/TPCN/.venv/Scripts/python.exe",
+    "os": "Windows",
+    "worktree": "C:/Users/zathp/.copilot/session-state/2c38ab9f-63a7-41fb-8437-e11b4732bee9/files/luna47g",
+    "core_autocrlf": true
+  },
+  "records": [
+    {
+      "revision": "8406de77e7328908e70525982336b74edc234124",
+      "command": "python -m pytest tests/test_luna47g_robustness.py -q",
+      "passed": 23,
+      "failed": 0,
+      "skipped": 1,
+      "reason_for_skip": "Retained output integrity gate skipped before sampling; subsequently executed and passed"
+    },
+    {
+      "revision": "8406de77e7328908e70525982336b74edc234124",
+      "command": "python -m pytest tests/test_event_runtime.py tests/test_excursion_neuron.py tests/test_e2_multi_excursion.py tests/test_luna38_excursion_integration_state.py -q",
+      "passed": 139,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "revision": "8406de77e7328908e70525982336b74edc234124",
+      "command": "python experiments/luna47g/simulate.py",
+      "exit_code": 0,
+      "result": "PARTIALLY SUPPORTED",
+      "sample_count": 3840,
+      "corner_count": 168,
+      "in_memory_replay": true
+    },
+    {
+      "revision": "8406de77e7328908e70525982336b74edc234124",
+      "command": "python experiments/luna47g/simulate.py --verify",
+      "exit_code": 0,
+      "result": "All frozen source hashes and compressed payload bytes matched in fresh process"
+    },
+    {
+      "revision": "8406de77e7328908e70525982336b74edc234124",
+      "command": "python -m pytest tests/test_luna47g_robustness.py tests/test_canonical_event_neuron.py tests/test_energy_utility.py tests/test_luna46_depth_scaling_diagnostic.py -q",
+      "passed": 206,
+      "failed": 1,
+      "skipped": 0,
+      "failed_test": "tests/test_luna46_depth_scaling_diagnostic.py::test_real_retained_artifacts_integrity_only",
+      "failure": "run_luna46_depth_scaling_diagnostic.Blocked: published Luna45 catalog hash differs",
+      "baseline_failure_evidence": "diagnostics.json:baseline_regression_failure",
+      "not_waived": true,
+      "includes_focused_lane_tests": 24
+    },
+    {
+      "revision_source": "package-manifest.json:packaging_revision",
+      "command": "python experiments/luna47g/package_evidence.py",
+      "exit_code": 0,
+      "result": "Supplemental provenance index and explanatory diagnostics only; frozen model not changed",
+      "authoritative_revision_source": "package-manifest.json:packaging_revision"
+    },
+    {
+      "revision_source": "package-manifest.json:packaging_revision",
+      "command": "python -m pytest tests/test_luna47g_robustness.py tests/test_luna47g_packaging.py -q",
+      "passed": 27,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "revision_source": "package-manifest.json:packaging_revision",
+      "command": "python experiments/luna47g/package_evidence.py --verify",
+      "exit_code": 0,
+      "result": "Exact supplemental bytes, hashes and model-manifest linkage matched"
+    }
+  ],
+  "not_run": [
+    "Full repository suite",
+    "Physical hardware tests",
+    "Task efficacy, production integration, topology mutation",
+    "Cross-platform/cross-Python replay certification",
+    "Independent Luna-0 review"
+  ],
+  "editor_checks": {
+    "problems_tool_original_model_and_tests": "No errors found",
+    "pylance_syntax_tool": "Isolated worktree file not in editor analysis set",
+    "editor_test_runner": "No tests found for isolated worktree; explicit terminal pytest used",
+    "problems_tool_packaging_source_and_tests": "No errors found",
+    "compileall": "Passed for experiments/luna47g and both owned test files",
+    "git_diff_check": "Passed before publication"
+  }
+}
