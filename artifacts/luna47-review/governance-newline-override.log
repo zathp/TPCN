@@ -1,0 +1,103 @@
+cwd=C:\Users\zathp\.copilot\session-state\2c38ab9f-63a7-41fb-8437-e11b4732bee9\files\luna47-review
+command=['C:\\Users\\zathp\\Documents\\programming\\TPCN\\.venv\\Scripts\\python.exe', '-m', 'pytest', 'tests/test_luna44_canonical_fixture.py', 'tests/test_luna44_canonical_fixture_verification.py', 'tests/test_luna46_depth_scaling_diagnostic.py', '-ra', '--junitxml=C:\\Users\\zathp\\.copilot\\session-state\\2c38ab9f-63a7-41fb-8437-e11b4732bee9\\files\\luna47-review\\artifacts\\luna47-review\\governance-newline-override.xml']
+PYTHONPATH=C:\Users\zathp\.copilot\session-state\2c38ab9f-63a7-41fb-8437-e11b4732bee9\files\luna47-review
+PYTHONHASHSEED=0
+PYTHONDONTWRITEBYTECODE=1
+started=2026-10-07T01:50:14.721213+00:00
+process_local_overrides={'GIT_CONFIG_COUNT': '2', 'GIT_CONFIG_KEY_0': 'core.autocrlf', 'GIT_CONFIG_VALUE_0': 'false', 'GIT_CONFIG_KEY_1': 'core.eol', 'GIT_CONFIG_VALUE_1': 'lf'}
+============================= test session starts =============================
+platform win32 -- Python 3.11.5, pytest-9.1.1, pluggy-1.6.0
+rootdir: C:\Users\zathp\.copilot\session-state\2c38ab9f-63a7-41fb-8437-e11b4732bee9\files\luna47-review
+collected 184 items
+
+tests\test_luna44_canonical_fixture.py .....F...                         [  4%]
+tests\test_luna44_canonical_fixture_verification.py .......F             [  9%]
+tests\test_luna46_depth_scaling_diagnostic.py .......................... [ 23%]
+........................................................................ [ 62%]
+...F.................................................................    [100%]
+
+================================== FAILURES ===================================
+_______ test_two_fresh_process_materializations_match_committed_fixture _______
+
+tmp_path = WindowsPath('C:/Users/zathp/AppData/Local/Temp/pytest-of-zathp/pytest-382/test_two_fresh_process_materia0')
+
+    def test_two_fresh_process_materializations_match_committed_fixture(tmp_path):
+        fixture_bytes, provenance = materialize_independently(tmp_path / "runs")
+        materialization_a, materialization_b = provenance["materializations"]
+        assert materialization_a["invocation_id"] != materialization_b["invocation_id"]
+        assert materialization_a["process_id"] != materialization_b["process_id"]
+        assert materialization_a["output_directory"] != materialization_b["output_directory"]
+        assert Path(materialization_a["output_directory"], "fixture.json").read_bytes() == fixture_bytes
+        assert Path(materialization_b["output_directory"], "fixture.json").read_bytes() == fixture_bytes
+>       assert fixture_bytes == FIXTURE_PATH.read_bytes()
+E       assert b'{\n  "schem...  }\n  ]\n}\n' == b'{\n  "schem...  }\n  ]\n}\n'
+E         
+E         At index 490 diff: b'c' != b'd'
+E         Use -v to get more diff
+
+tests\test_luna44_canonical_fixture.py:173: AssertionError
+____________ test_two_fresh_process_materializations_match_exactly ____________
+
+fresh_materializations = (WindowsPath('C:/Users/zathp/AppData/Local/Temp/pytest-of-zathp/pytest-382/luna44-independent-materializations/materia...('C:/Users/zathp/AppData/Local/Temp/pytest-of-zathp/pytest-382/luna44-independent-materializations/materialization-b'))
+
+    def test_two_fresh_process_materializations_match_exactly(fresh_materializations):
+        first_directory, second_directory = fresh_materializations
+        assert first_directory != second_directory
+>       result = verifier.compare_materializations(
+            first_directory / "fixture.json",
+            second_directory / "fixture.json",
+        )
+
+tests\test_luna44_canonical_fixture_verification.py:140: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+first = WindowsPath('C:/Users/zathp/AppData/Local/Temp/pytest-of-zathp/pytest-382/luna44-independent-materializations/materialization-a/fixture.json')
+second = WindowsPath('C:/Users/zathp/AppData/Local/Temp/pytest-of-zathp/pytest-382/luna44-independent-materializations/materialization-b/fixture.json')
+
+    def compare_materializations(first: Path, second: Path) -> dict[str, Any]:
+        """Require byte-, record-, order-, and binary64-exact fixture equality."""
+        first_bytes = first.read_bytes()
+        second_bytes = second.read_bytes()
+        if first_bytes != second_bytes:
+            raise FixtureVerificationError("independent materialization bytes differ")
+        first_fixture = json.loads(first_bytes)
+        second_fixture = json.loads(second_bytes)
+        first_rows = canonical_raw_rows(first_fixture)
+        second_rows = canonical_raw_rows(second_fixture)
+        if first_rows != second_rows:
+            raise FixtureVerificationError("independent materialization point bits/order differ")
+        if len(first_rows) != EXPECTED_POINT_COUNT:
+            raise FixtureVerificationError("independent materialization point count mismatch")
+        semantic_digest = _sha256(_canonical_json_bytes(first_rows))
+        if semantic_digest != SEMANTIC_FIXTURE_SHA256:
+>           raise FixtureVerificationError("independent materialization semantic digest mismatch")
+E           scripts.verify_luna44_canonical_fixture.FixtureVerificationError: independent materialization semantic digest mismatch
+
+scripts\verify_luna44_canonical_fixture.py:455: FixtureVerificationError
+_________________ test_real_retained_artifacts_integrity_only _________________
+
+    def test_real_retained_artifacts_integrity_only():
+        # No sequence statistics, oracle, scientific summary or output writer invoked.
+>       result = diagnostic.verify_integrity()
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_luna46_depth_scaling_diagnostic.py:485: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+run_luna46_depth_scaling_diagnostic.py:236: in verify_integrity
+    require(sha(catalog_bytes) == CATALOG_HASH, "published Luna45 catalog hash differs")
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+condition = False, reason = 'published Luna45 catalog hash differs'
+
+    def require(condition: bool, reason: str) -> None:
+        if not condition:
+>           raise Blocked(reason)
+E           run_luna46_depth_scaling_diagnostic.Blocked: published Luna45 catalog hash differs
+
+run_luna46_depth_scaling_diagnostic.py:144: Blocked
+- generated xml file: C:\Users\zathp\.copilot\session-state\2c38ab9f-63a7-41fb-8437-e11b4732bee9\files\luna47-review\artifacts\luna47-review\governance-newline-override.xml -
+=========================== short test summary info ===========================
+FAILED tests/test_luna44_canonical_fixture.py::test_two_fresh_process_materializations_match_committed_fixture
+FAILED tests/test_luna44_canonical_fixture_verification.py::test_two_fresh_process_materializations_match_exactly
+FAILED tests/test_luna46_depth_scaling_diagnostic.py::test_real_retained_artifacts_integrity_only
+======================= 3 failed, 181 passed in 46.93s ========================

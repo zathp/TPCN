@@ -1,0 +1,1834 @@
+{
+  "retained_inputs": [
+    {
+      "path": "artifacts/luna44-acp0008-independent-routing-rerun-20261005/config.json",
+      "baseline_git_blob": "853c401242f4de5bb41661b18c36b984de9924b5",
+      "consumed_sha256": "1cb40064bfb26572da86419898275d62a55a2f5eae5c1041976ffca3e4e484d3",
+      "consumed_bytes": 62236,
+      "materializations": {
+        "a": {
+          "file_sha256": "1cb40064bfb26572da86419898275d62a55a2f5eae5c1041976ffca3e4e484d3",
+          "file_bytes": 62236,
+          "exact": true,
+          "exact_LF_to_CRLF": false
+        },
+        "b": {
+          "file_sha256": "1cb40064bfb26572da86419898275d62a55a2f5eae5c1041976ffca3e4e484d3",
+          "file_bytes": 62236,
+          "exact": true,
+          "exact_LF_to_CRLF": false
+        },
+        "c": {
+          "file_sha256": "1cb40064bfb26572da86419898275d62a55a2f5eae5c1041976ffca3e4e484d3",
+          "file_bytes": 62236,
+          "exact": true,
+          "exact_LF_to_CRLF": false
+        },
+        "d": {
+          "file_sha256": "1cb40064bfb26572da86419898275d62a55a2f5eae5c1041976ffca3e4e484d3",
+          "file_bytes": 62236,
+          "exact": true,
+          "exact_LF_to_CRLF": false
+        },
+        "e": {
+          "file_sha256": "1cb40064bfb26572da86419898275d62a55a2f5eae5c1041976ffca3e4e484d3",
+          "file_bytes": 62236,
+          "exact": true,
+          "exact_LF_to_CRLF": false
+        },
+        "f": {
+          "file_sha256": "1cb40064bfb26572da86419898275d62a55a2f5eae5c1041976ffca3e4e484d3",
+          "file_bytes": 62236,
+          "exact": true,
+          "exact_LF_to_CRLF": false
+        },
+        "g": {
+          "file_sha256": "1cb40064bfb26572da86419898275d62a55a2f5eae5c1041976ffca3e4e484d3",
+          "file_bytes": 62236,
+          "exact": true,
+          "exact_LF_to_CRLF": false
+        }
+      }
+    },
+    {
+      "path": "artifacts/luna44-acp0008-independent-routing-rerun-20261005/results.json",
+      "baseline_git_blob": "b785ff90950f23e08cd408ddbc9872d8b6b2d71d",
+      "consumed_sha256": "16deacb459a9c6715c14fd7caa5ecf4f6910776316fb80e890a1969fa92aa6e9",
+      "consumed_bytes": 87543502,
+      "materializations": {
+        "a": {
+          "file_sha256": "16deacb459a9c6715c14fd7caa5ecf4f6910776316fb80e890a1969fa92aa6e9",
+          "file_bytes": 87543502,
+          "exact": true,
+          "exact_LF_to_CRLF": false
+        },
+        "b": {
+          "file_sha256": "16deacb459a9c6715c14fd7caa5ecf4f6910776316fb80e890a1969fa92aa6e9",
+          "file_bytes": 87543502,
+          "exact": true,
+          "exact_LF_to_CRLF": false
+        },
+        "c": {
+          "file_sha256": "16deacb459a9c6715c14fd7caa5ecf4f6910776316fb80e890a1969fa92aa6e9",
+          "file_bytes": 87543502,
+          "exact": true,
+          "exact_LF_to_CRLF": false
+        },
+        "d": {
+          "file_sha256": "16deacb459a9c6715c14fd7caa5ecf4f6910776316fb80e890a1969fa92aa6e9",
+          "file_bytes": 87543502,
+          "exact": true,
+          "exact_LF_to_CRLF": false
+        },
+        "e": {
+          "file_sha256": "16deacb459a9c6715c14fd7caa5ecf4f6910776316fb80e890a1969fa92aa6e9",
+          "file_bytes": 87543502,
+          "exact": true,
+          "exact_LF_to_CRLF": false
+        },
+        "f": {
+          "file_sha256": "16deacb459a9c6715c14fd7caa5ecf4f6910776316fb80e890a1969fa92aa6e9",
+          "file_bytes": 87543502,
+          "exact": true,
+          "exact_LF_to_CRLF": false
+        },
+        "g": {
+          "file_sha256": "16deacb459a9c6715c14fd7caa5ecf4f6910776316fb80e890a1969fa92aa6e9",
+          "file_bytes": 87543502,
+          "exact": true,
+          "exact_LF_to_CRLF": false
+        }
+      }
+    },
+    {
+      "path": "artifacts/luna44-acp0008-independent-routing-rerun-20261005/routing-initial-enqueue.json",
+      "baseline_git_blob": "601c20274569dd46e8aef0354bc8fa8f42dfe10c",
+      "consumed_sha256": "61e0040541a4ac877a833f7d7605138edb065547cb154b7a46bade4de1e7139b",
+      "consumed_bytes": 2849711,
+      "materializations": {
+        "a": {
+          "file_sha256": "61e0040541a4ac877a833f7d7605138edb065547cb154b7a46bade4de1e7139b",
+          "file_bytes": 2849711,
+          "exact": true,
+          "exact_LF_to_CRLF": false
+        },
+        "b": {
+          "file_sha256": "61e0040541a4ac877a833f7d7605138edb065547cb154b7a46bade4de1e7139b",
+          "file_bytes": 2849711,
+          "exact": true,
+          "exact_LF_to_CRLF": false
+        },
+        "c": {
+          "file_sha256": "61e0040541a4ac877a833f7d7605138edb065547cb154b7a46bade4de1e7139b",
+          "file_bytes": 2849711,
+          "exact": true,
+          "exact_LF_to_CRLF": false
+        },
+        "d": {
+          "file_sha256": "61e0040541a4ac877a833f7d7605138edb065547cb154b7a46bade4de1e7139b",
+          "file_bytes": 2849711,
+          "exact": true,
+          "exact_LF_to_CRLF": false
+        },
+        "e": {
+          "file_sha256": "61e0040541a4ac877a833f7d7605138edb065547cb154b7a46bade4de1e7139b",
+          "file_bytes": 2849711,
+          "exact": true,
+          "exact_LF_to_CRLF": false
+        },
+        "f": {
+          "file_sha256": "61e0040541a4ac877a833f7d7605138edb065547cb154b7a46bade4de1e7139b",
+          "file_bytes": 2849711,
+          "exact": true,
+          "exact_LF_to_CRLF": false
+        },
+        "g": {
+          "file_sha256": "61e0040541a4ac877a833f7d7605138edb065547cb154b7a46bade4de1e7139b",
+          "file_bytes": 2849711,
+          "exact": true,
+          "exact_LF_to_CRLF": false
+        }
+      }
+    },
+    {
+      "path": "artifacts/luna44-acp0008-independent-routing-rerun-20261005/routing-initial-reception.json",
+      "baseline_git_blob": "824b7c9b39dbc3df18dbf95f8012479353167c01",
+      "consumed_sha256": "d1e24f6239e9f0758e3991a2416d826407a5d12adf73c5ef97762ba89861b44a",
+      "consumed_bytes": 3966120,
+      "materializations": {
+        "a": {
+          "file_sha256": "d1e24f6239e9f0758e3991a2416d826407a5d12adf73c5ef97762ba89861b44a",
+          "file_bytes": 3966120,
+          "exact": true,
+          "exact_LF_to_CRLF": false
+        },
+        "b": {
+          "file_sha256": "d1e24f6239e9f0758e3991a2416d826407a5d12adf73c5ef97762ba89861b44a",
+          "file_bytes": 3966120,
+          "exact": true,
+          "exact_LF_to_CRLF": false
+        },
+        "c": {
+          "file_sha256": "d1e24f6239e9f0758e3991a2416d826407a5d12adf73c5ef97762ba89861b44a",
+          "file_bytes": 3966120,
+          "exact": true,
+          "exact_LF_to_CRLF": false
+        },
+        "d": {
+          "file_sha256": "d1e24f6239e9f0758e3991a2416d826407a5d12adf73c5ef97762ba89861b44a",
+          "file_bytes": 3966120,
+          "exact": true,
+          "exact_LF_to_CRLF": false
+        },
+        "e": {
+          "file_sha256": "d1e24f6239e9f0758e3991a2416d826407a5d12adf73c5ef97762ba89861b44a",
+          "file_bytes": 3966120,
+          "exact": true,
+          "exact_LF_to_CRLF": false
+        },
+        "f": {
+          "file_sha256": "d1e24f6239e9f0758e3991a2416d826407a5d12adf73c5ef97762ba89861b44a",
+          "file_bytes": 3966120,
+          "exact": true,
+          "exact_LF_to_CRLF": false
+        },
+        "g": {
+          "file_sha256": "d1e24f6239e9f0758e3991a2416d826407a5d12adf73c5ef97762ba89861b44a",
+          "file_bytes": 3966120,
+          "exact": true,
+          "exact_LF_to_CRLF": false
+        }
+      }
+    },
+    {
+      "path": "artifacts/luna44-acp0008-independent-routing-rerun-20261005/routing-replay-enqueue.json",
+      "baseline_git_blob": "4c46fa9661b42c4fa4bd4bf2fef5d474e076d452",
+      "consumed_sha256": "0663fee326614a74fb14770c45b4fbe7abb015c3510afd92022f80a43ac88f69",
+      "consumed_bytes": 2849710,
+      "materializations": {
+        "a": {
+          "file_sha256": "0663fee326614a74fb14770c45b4fbe7abb015c3510afd92022f80a43ac88f69",
+          "file_bytes": 2849710,
+          "exact": true,
+          "exact_LF_to_CRLF": false
+        },
+        "b": {
+          "file_sha256": "0663fee326614a74fb14770c45b4fbe7abb015c3510afd92022f80a43ac88f69",
+          "file_bytes": 2849710,
+          "exact": true,
+          "exact_LF_to_CRLF": false
+        },
+        "c": {
+          "file_sha256": "0663fee326614a74fb14770c45b4fbe7abb015c3510afd92022f80a43ac88f69",
+          "file_bytes": 2849710,
+          "exact": true,
+          "exact_LF_to_CRLF": false
+        },
+        "d": {
+          "file_sha256": "0663fee326614a74fb14770c45b4fbe7abb015c3510afd92022f80a43ac88f69",
+          "file_bytes": 2849710,
+          "exact": true,
+          "exact_LF_to_CRLF": false
+        },
+        "e": {
+          "file_sha256": "0663fee326614a74fb14770c45b4fbe7abb015c3510afd92022f80a43ac88f69",
+          "file_bytes": 2849710,
+          "exact": true,
+          "exact_LF_to_CRLF": false
+        },
+        "f": {
+          "file_sha256": "0663fee326614a74fb14770c45b4fbe7abb015c3510afd92022f80a43ac88f69",
+          "file_bytes": 2849710,
+          "exact": true,
+          "exact_LF_to_CRLF": false
+        },
+        "g": {
+          "file_sha256": "0663fee326614a74fb14770c45b4fbe7abb015c3510afd92022f80a43ac88f69",
+          "file_bytes": 2849710,
+          "exact": true,
+          "exact_LF_to_CRLF": false
+        }
+      }
+    },
+    {
+      "path": "artifacts/luna44-acp0008-independent-routing-rerun-20261005/routing-replay-reception.json",
+      "baseline_git_blob": "8e29e756f356e831788a61d75199c4433ac9de9d",
+      "consumed_sha256": "c6aa27f550dc6ac6e7e572b8ade143f36a02707f1041f0a0c45a5452ee83c9b0",
+      "consumed_bytes": 3966119,
+      "materializations": {
+        "a": {
+          "file_sha256": "c6aa27f550dc6ac6e7e572b8ade143f36a02707f1041f0a0c45a5452ee83c9b0",
+          "file_bytes": 3966119,
+          "exact": true,
+          "exact_LF_to_CRLF": false
+        },
+        "b": {
+          "file_sha256": "c6aa27f550dc6ac6e7e572b8ade143f36a02707f1041f0a0c45a5452ee83c9b0",
+          "file_bytes": 3966119,
+          "exact": true,
+          "exact_LF_to_CRLF": false
+        },
+        "c": {
+          "file_sha256": "c6aa27f550dc6ac6e7e572b8ade143f36a02707f1041f0a0c45a5452ee83c9b0",
+          "file_bytes": 3966119,
+          "exact": true,
+          "exact_LF_to_CRLF": false
+        },
+        "d": {
+          "file_sha256": "c6aa27f550dc6ac6e7e572b8ade143f36a02707f1041f0a0c45a5452ee83c9b0",
+          "file_bytes": 3966119,
+          "exact": true,
+          "exact_LF_to_CRLF": false
+        },
+        "e": {
+          "file_sha256": "c6aa27f550dc6ac6e7e572b8ade143f36a02707f1041f0a0c45a5452ee83c9b0",
+          "file_bytes": 3966119,
+          "exact": true,
+          "exact_LF_to_CRLF": false
+        },
+        "f": {
+          "file_sha256": "c6aa27f550dc6ac6e7e572b8ade143f36a02707f1041f0a0c45a5452ee83c9b0",
+          "file_bytes": 3966119,
+          "exact": true,
+          "exact_LF_to_CRLF": false
+        },
+        "g": {
+          "file_sha256": "c6aa27f550dc6ac6e7e572b8ade143f36a02707f1041f0a0c45a5452ee83c9b0",
+          "file_bytes": 3966119,
+          "exact": true,
+          "exact_LF_to_CRLF": false
+        }
+      }
+    },
+    {
+      "path": "artifacts/luna44-acp0008-independent-routing-rerun-20261005/summary.json",
+      "baseline_git_blob": "b0ed24885033254764b9a47943dd623975f50cd5",
+      "consumed_sha256": "5e10242aaf3219fca81a6fab62f252fb9f5a770a1b13ce6a4eeb36ff9da35f36",
+      "consumed_bytes": 166982,
+      "materializations": {
+        "a": {
+          "file_sha256": "5e10242aaf3219fca81a6fab62f252fb9f5a770a1b13ce6a4eeb36ff9da35f36",
+          "file_bytes": 166982,
+          "exact": true,
+          "exact_LF_to_CRLF": false
+        },
+        "b": {
+          "file_sha256": "5e10242aaf3219fca81a6fab62f252fb9f5a770a1b13ce6a4eeb36ff9da35f36",
+          "file_bytes": 166982,
+          "exact": true,
+          "exact_LF_to_CRLF": false
+        },
+        "c": {
+          "file_sha256": "5e10242aaf3219fca81a6fab62f252fb9f5a770a1b13ce6a4eeb36ff9da35f36",
+          "file_bytes": 166982,
+          "exact": true,
+          "exact_LF_to_CRLF": false
+        },
+        "d": {
+          "file_sha256": "5e10242aaf3219fca81a6fab62f252fb9f5a770a1b13ce6a4eeb36ff9da35f36",
+          "file_bytes": 166982,
+          "exact": true,
+          "exact_LF_to_CRLF": false
+        },
+        "e": {
+          "file_sha256": "5e10242aaf3219fca81a6fab62f252fb9f5a770a1b13ce6a4eeb36ff9da35f36",
+          "file_bytes": 166982,
+          "exact": true,
+          "exact_LF_to_CRLF": false
+        },
+        "f": {
+          "file_sha256": "5e10242aaf3219fca81a6fab62f252fb9f5a770a1b13ce6a4eeb36ff9da35f36",
+          "file_bytes": 166982,
+          "exact": true,
+          "exact_LF_to_CRLF": false
+        },
+        "g": {
+          "file_sha256": "5e10242aaf3219fca81a6fab62f252fb9f5a770a1b13ce6a4eeb36ff9da35f36",
+          "file_bytes": 166982,
+          "exact": true,
+          "exact_LF_to_CRLF": false
+        }
+      }
+    },
+    {
+      "path": "artifacts/luna44-canonical-fixture/fixture.json",
+      "baseline_git_blob": "c1fa6ed863c91b5084e38920258483657e035c61",
+      "consumed_sha256": "66e187350536e6901d8371a1ffbe3e2a0abf3b49341c6ae6c8fed3ae7833b629",
+      "consumed_bytes": 3451453,
+      "materializations": {
+        "a": {
+          "file_sha256": "66e187350536e6901d8371a1ffbe3e2a0abf3b49341c6ae6c8fed3ae7833b629",
+          "file_bytes": 3451453,
+          "exact": true,
+          "exact_LF_to_CRLF": false
+        },
+        "b": {
+          "file_sha256": "66e187350536e6901d8371a1ffbe3e2a0abf3b49341c6ae6c8fed3ae7833b629",
+          "file_bytes": 3451453,
+          "exact": true,
+          "exact_LF_to_CRLF": false
+        },
+        "c": {
+          "file_sha256": "66e187350536e6901d8371a1ffbe3e2a0abf3b49341c6ae6c8fed3ae7833b629",
+          "file_bytes": 3451453,
+          "exact": true,
+          "exact_LF_to_CRLF": false
+        },
+        "d": {
+          "file_sha256": "66e187350536e6901d8371a1ffbe3e2a0abf3b49341c6ae6c8fed3ae7833b629",
+          "file_bytes": 3451453,
+          "exact": true,
+          "exact_LF_to_CRLF": false
+        },
+        "e": {
+          "file_sha256": "66e187350536e6901d8371a1ffbe3e2a0abf3b49341c6ae6c8fed3ae7833b629",
+          "file_bytes": 3451453,
+          "exact": true,
+          "exact_LF_to_CRLF": false
+        },
+        "f": {
+          "file_sha256": "66e187350536e6901d8371a1ffbe3e2a0abf3b49341c6ae6c8fed3ae7833b629",
+          "file_bytes": 3451453,
+          "exact": true,
+          "exact_LF_to_CRLF": false
+        },
+        "g": {
+          "file_sha256": "66e187350536e6901d8371a1ffbe3e2a0abf3b49341c6ae6c8fed3ae7833b629",
+          "file_bytes": 3451453,
+          "exact": true,
+          "exact_LF_to_CRLF": false
+        }
+      }
+    },
+    {
+      "path": "artifacts/luna44-canonical-fixture/provenance.json",
+      "baseline_git_blob": "eb9179abae7eed10891e6022832f16735111b220",
+      "consumed_sha256": "6e069f4f948e8a68b93397e12a5c0e4ab46cb5f5189243e6ef62bab2178cdf22",
+      "consumed_bytes": 36113,
+      "materializations": {
+        "a": {
+          "file_sha256": "6e069f4f948e8a68b93397e12a5c0e4ab46cb5f5189243e6ef62bab2178cdf22",
+          "file_bytes": 36113,
+          "exact": true,
+          "exact_LF_to_CRLF": false
+        },
+        "b": {
+          "file_sha256": "6e069f4f948e8a68b93397e12a5c0e4ab46cb5f5189243e6ef62bab2178cdf22",
+          "file_bytes": 36113,
+          "exact": true,
+          "exact_LF_to_CRLF": false
+        },
+        "c": {
+          "file_sha256": "6e069f4f948e8a68b93397e12a5c0e4ab46cb5f5189243e6ef62bab2178cdf22",
+          "file_bytes": 36113,
+          "exact": true,
+          "exact_LF_to_CRLF": false
+        },
+        "d": {
+          "file_sha256": "6e069f4f948e8a68b93397e12a5c0e4ab46cb5f5189243e6ef62bab2178cdf22",
+          "file_bytes": 36113,
+          "exact": true,
+          "exact_LF_to_CRLF": false
+        },
+        "e": {
+          "file_sha256": "6e069f4f948e8a68b93397e12a5c0e4ab46cb5f5189243e6ef62bab2178cdf22",
+          "file_bytes": 36113,
+          "exact": true,
+          "exact_LF_to_CRLF": false
+        },
+        "f": {
+          "file_sha256": "6e069f4f948e8a68b93397e12a5c0e4ab46cb5f5189243e6ef62bab2178cdf22",
+          "file_bytes": 36113,
+          "exact": true,
+          "exact_LF_to_CRLF": false
+        },
+        "g": {
+          "file_sha256": "6e069f4f948e8a68b93397e12a5c0e4ab46cb5f5189243e6ef62bab2178cdf22",
+          "file_bytes": 36113,
+          "exact": true,
+          "exact_LF_to_CRLF": false
+        }
+      }
+    },
+    {
+      "path": "artifacts/luna45-acp0008-depth2-destination-integration-20261006/artifact-integrity.json",
+      "baseline_git_blob": "b1aaef4006422f321922bfb58425e4fb646d96b9",
+      "consumed_sha256": "a47046da6916db49f373613d654d2cf59671737b5c6b8584b222fb67fe068e8e",
+      "consumed_bytes": 7121,
+      "materializations": {
+        "a": {
+          "file_sha256": "5c41184dc9b9b5872263bcbbc1e5fc406789101c27942480b9cfb6b33c87da80",
+          "file_bytes": 7122,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "b": {
+          "file_sha256": "5c41184dc9b9b5872263bcbbc1e5fc406789101c27942480b9cfb6b33c87da80",
+          "file_bytes": 7122,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "c": {
+          "file_sha256": "5c41184dc9b9b5872263bcbbc1e5fc406789101c27942480b9cfb6b33c87da80",
+          "file_bytes": 7122,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "d": {
+          "file_sha256": "5c41184dc9b9b5872263bcbbc1e5fc406789101c27942480b9cfb6b33c87da80",
+          "file_bytes": 7122,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "e": {
+          "file_sha256": "5c41184dc9b9b5872263bcbbc1e5fc406789101c27942480b9cfb6b33c87da80",
+          "file_bytes": 7122,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "f": {
+          "file_sha256": "5c41184dc9b9b5872263bcbbc1e5fc406789101c27942480b9cfb6b33c87da80",
+          "file_bytes": 7122,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "g": {
+          "file_sha256": "5c41184dc9b9b5872263bcbbc1e5fc406789101c27942480b9cfb6b33c87da80",
+          "file_bytes": 7122,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        }
+      }
+    },
+    {
+      "path": "artifacts/luna45-acp0008-depth2-destination-integration-20261006/config.json",
+      "baseline_git_blob": "028de68e39dc6624305b2c08814894c3fed00e74",
+      "consumed_sha256": "0c8abbb1fb68f7b856a9f0718b0eef2a307943b3290ccf3e1bfed049d9dd111a",
+      "consumed_bytes": 36093,
+      "materializations": {
+        "a": {
+          "file_sha256": "c62ca9fe9759b2bc97f3dbb57c23128eb472db39d803248b07f60061c10b08b1",
+          "file_bytes": 36094,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "b": {
+          "file_sha256": "c62ca9fe9759b2bc97f3dbb57c23128eb472db39d803248b07f60061c10b08b1",
+          "file_bytes": 36094,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "c": {
+          "file_sha256": "c62ca9fe9759b2bc97f3dbb57c23128eb472db39d803248b07f60061c10b08b1",
+          "file_bytes": 36094,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "d": {
+          "file_sha256": "c62ca9fe9759b2bc97f3dbb57c23128eb472db39d803248b07f60061c10b08b1",
+          "file_bytes": 36094,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "e": {
+          "file_sha256": "c62ca9fe9759b2bc97f3dbb57c23128eb472db39d803248b07f60061c10b08b1",
+          "file_bytes": 36094,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "f": {
+          "file_sha256": "c62ca9fe9759b2bc97f3dbb57c23128eb472db39d803248b07f60061c10b08b1",
+          "file_bytes": 36094,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "g": {
+          "file_sha256": "c62ca9fe9759b2bc97f3dbb57c23128eb472db39d803248b07f60061c10b08b1",
+          "file_bytes": 36094,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        }
+      }
+    },
+    {
+      "path": "artifacts/luna45-acp0008-depth2-destination-integration-20261006/initial-destination_calibrated-enqueue.json",
+      "baseline_git_blob": "33604988c73e43bf5dadaa96ba423f295ebc3717",
+      "consumed_sha256": "c03e7c4af5d406c73f14a905ad105d74b19540d5e077bac6ca6d9b170e08779b",
+      "consumed_bytes": 1172950,
+      "materializations": {
+        "a": {
+          "file_sha256": "4dcd0c235a665341c40c869d376e2a1168db1a61b74d703817e8323f161b4da4",
+          "file_bytes": 1172951,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "b": {
+          "file_sha256": "4dcd0c235a665341c40c869d376e2a1168db1a61b74d703817e8323f161b4da4",
+          "file_bytes": 1172951,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "c": {
+          "file_sha256": "4dcd0c235a665341c40c869d376e2a1168db1a61b74d703817e8323f161b4da4",
+          "file_bytes": 1172951,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "d": {
+          "file_sha256": "4dcd0c235a665341c40c869d376e2a1168db1a61b74d703817e8323f161b4da4",
+          "file_bytes": 1172951,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "e": {
+          "file_sha256": "4dcd0c235a665341c40c869d376e2a1168db1a61b74d703817e8323f161b4da4",
+          "file_bytes": 1172951,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "f": {
+          "file_sha256": "4dcd0c235a665341c40c869d376e2a1168db1a61b74d703817e8323f161b4da4",
+          "file_bytes": 1172951,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "g": {
+          "file_sha256": "4dcd0c235a665341c40c869d376e2a1168db1a61b74d703817e8323f161b4da4",
+          "file_bytes": 1172951,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        }
+      }
+    },
+    {
+      "path": "artifacts/luna45-acp0008-depth2-destination-integration-20261006/initial-destination_calibrated-reception.json",
+      "baseline_git_blob": "b0f7965894c89ab3655a583ccd2db6486e4e3966",
+      "consumed_sha256": "e4ac637e9f60c49a038ad8770e0d0faa015ae27f5eae41ffc8e371331a056a8b",
+      "consumed_bytes": 1595510,
+      "materializations": {
+        "a": {
+          "file_sha256": "b3ab7b2718293b77e7f372f8a27bf1f095298aa0ebf5fc56fb4bf5ef44d0f818",
+          "file_bytes": 1595511,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "b": {
+          "file_sha256": "b3ab7b2718293b77e7f372f8a27bf1f095298aa0ebf5fc56fb4bf5ef44d0f818",
+          "file_bytes": 1595511,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "c": {
+          "file_sha256": "b3ab7b2718293b77e7f372f8a27bf1f095298aa0ebf5fc56fb4bf5ef44d0f818",
+          "file_bytes": 1595511,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "d": {
+          "file_sha256": "b3ab7b2718293b77e7f372f8a27bf1f095298aa0ebf5fc56fb4bf5ef44d0f818",
+          "file_bytes": 1595511,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "e": {
+          "file_sha256": "b3ab7b2718293b77e7f372f8a27bf1f095298aa0ebf5fc56fb4bf5ef44d0f818",
+          "file_bytes": 1595511,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "f": {
+          "file_sha256": "b3ab7b2718293b77e7f372f8a27bf1f095298aa0ebf5fc56fb4bf5ef44d0f818",
+          "file_bytes": 1595511,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "g": {
+          "file_sha256": "b3ab7b2718293b77e7f372f8a27bf1f095298aa0ebf5fc56fb4bf5ef44d0f818",
+          "file_bytes": 1595511,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        }
+      }
+    },
+    {
+      "path": "artifacts/luna45-acp0008-depth2-destination-integration-20261006/initial-destination_calibrated.json",
+      "baseline_git_blob": "701dace35f1ca511cbb7275a2d5dd9737964aed7",
+      "consumed_sha256": "7debc99cf9e62f789582ab1ab24647268083a3c4e9c796da82c55912f1d4ffe8",
+      "consumed_bytes": 40798965,
+      "materializations": {
+        "a": {
+          "file_sha256": "5a29fe999a9410af7655590c23df1140e9774f900fe2880aaeb95830693fb792",
+          "file_bytes": 40798966,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "b": {
+          "file_sha256": "5a29fe999a9410af7655590c23df1140e9774f900fe2880aaeb95830693fb792",
+          "file_bytes": 40798966,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "c": {
+          "file_sha256": "5a29fe999a9410af7655590c23df1140e9774f900fe2880aaeb95830693fb792",
+          "file_bytes": 40798966,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "d": {
+          "file_sha256": "5a29fe999a9410af7655590c23df1140e9774f900fe2880aaeb95830693fb792",
+          "file_bytes": 40798966,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "e": {
+          "file_sha256": "5a29fe999a9410af7655590c23df1140e9774f900fe2880aaeb95830693fb792",
+          "file_bytes": 40798966,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "f": {
+          "file_sha256": "5a29fe999a9410af7655590c23df1140e9774f900fe2880aaeb95830693fb792",
+          "file_bytes": 40798966,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "g": {
+          "file_sha256": "5a29fe999a9410af7655590c23df1140e9774f900fe2880aaeb95830693fb792",
+          "file_bytes": 40798966,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        }
+      }
+    },
+    {
+      "path": "artifacts/luna45-acp0008-depth2-destination-integration-20261006/initial-destination_default-enqueue.json",
+      "baseline_git_blob": "ff9d70758cc53b94bdbb3aca6641d59a24b2be2b",
+      "consumed_sha256": "d16006e819ecfa109d2c29028a989ce322c5c78956b6709f1b3671b4db22dc9a",
+      "consumed_bytes": 1172947,
+      "materializations": {
+        "a": {
+          "file_sha256": "654753bb81d6175925b5aaf3f9a5ba2eba0685b3ca48f63011243e99514accb8",
+          "file_bytes": 1172948,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "b": {
+          "file_sha256": "654753bb81d6175925b5aaf3f9a5ba2eba0685b3ca48f63011243e99514accb8",
+          "file_bytes": 1172948,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "c": {
+          "file_sha256": "654753bb81d6175925b5aaf3f9a5ba2eba0685b3ca48f63011243e99514accb8",
+          "file_bytes": 1172948,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "d": {
+          "file_sha256": "654753bb81d6175925b5aaf3f9a5ba2eba0685b3ca48f63011243e99514accb8",
+          "file_bytes": 1172948,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "e": {
+          "file_sha256": "654753bb81d6175925b5aaf3f9a5ba2eba0685b3ca48f63011243e99514accb8",
+          "file_bytes": 1172948,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "f": {
+          "file_sha256": "654753bb81d6175925b5aaf3f9a5ba2eba0685b3ca48f63011243e99514accb8",
+          "file_bytes": 1172948,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "g": {
+          "file_sha256": "654753bb81d6175925b5aaf3f9a5ba2eba0685b3ca48f63011243e99514accb8",
+          "file_bytes": 1172948,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        }
+      }
+    },
+    {
+      "path": "artifacts/luna45-acp0008-depth2-destination-integration-20261006/initial-destination_default-reception.json",
+      "baseline_git_blob": "13e1778027a1304c96088d9bb59bce1409de0e17",
+      "consumed_sha256": "7f3aca83b36767144d67047f1018072dff5264659507aef5195d596ea6138b91",
+      "consumed_bytes": 1595566,
+      "materializations": {
+        "a": {
+          "file_sha256": "84707bfe3aac42c3af4c1b13af05c851f457ced429e3376e449a0344b7ab62c4",
+          "file_bytes": 1595567,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "b": {
+          "file_sha256": "84707bfe3aac42c3af4c1b13af05c851f457ced429e3376e449a0344b7ab62c4",
+          "file_bytes": 1595567,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "c": {
+          "file_sha256": "84707bfe3aac42c3af4c1b13af05c851f457ced429e3376e449a0344b7ab62c4",
+          "file_bytes": 1595567,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "d": {
+          "file_sha256": "84707bfe3aac42c3af4c1b13af05c851f457ced429e3376e449a0344b7ab62c4",
+          "file_bytes": 1595567,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "e": {
+          "file_sha256": "84707bfe3aac42c3af4c1b13af05c851f457ced429e3376e449a0344b7ab62c4",
+          "file_bytes": 1595567,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "f": {
+          "file_sha256": "84707bfe3aac42c3af4c1b13af05c851f457ced429e3376e449a0344b7ab62c4",
+          "file_bytes": 1595567,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "g": {
+          "file_sha256": "84707bfe3aac42c3af4c1b13af05c851f457ced429e3376e449a0344b7ab62c4",
+          "file_bytes": 1595567,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        }
+      }
+    },
+    {
+      "path": "artifacts/luna45-acp0008-depth2-destination-integration-20261006/initial-destination_default.json",
+      "baseline_git_blob": "345b8ddfd92c330c5dae9790e45964c7a5c3be31",
+      "consumed_sha256": "9ff0be498c77ce73d6e50bfeca5cc95eeb214f3510db20d1a94cf75c6d132303",
+      "consumed_bytes": 40795764,
+      "materializations": {
+        "a": {
+          "file_sha256": "90748829b47062b23079ae776a5881dd68b1d8978c36cffd2b6be7157079c9dd",
+          "file_bytes": 40795765,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "b": {
+          "file_sha256": "90748829b47062b23079ae776a5881dd68b1d8978c36cffd2b6be7157079c9dd",
+          "file_bytes": 40795765,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "c": {
+          "file_sha256": "90748829b47062b23079ae776a5881dd68b1d8978c36cffd2b6be7157079c9dd",
+          "file_bytes": 40795765,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "d": {
+          "file_sha256": "90748829b47062b23079ae776a5881dd68b1d8978c36cffd2b6be7157079c9dd",
+          "file_bytes": 40795765,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "e": {
+          "file_sha256": "90748829b47062b23079ae776a5881dd68b1d8978c36cffd2b6be7157079c9dd",
+          "file_bytes": 40795765,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "f": {
+          "file_sha256": "90748829b47062b23079ae776a5881dd68b1d8978c36cffd2b6be7157079c9dd",
+          "file_bytes": 40795765,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "g": {
+          "file_sha256": "90748829b47062b23079ae776a5881dd68b1d8978c36cffd2b6be7157079c9dd",
+          "file_bytes": 40795765,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        }
+      }
+    },
+    {
+      "path": "artifacts/luna45-acp0008-depth2-destination-integration-20261006/initial-destination_disabled-enqueue.json",
+      "baseline_git_blob": "325ba0ac26db65ff364a5b33bcf5e60f309430ce",
+      "consumed_sha256": "b926581c83d8bf433f206e92168d1ed4a0913d79ba166e511ecfef13a42562b5",
+      "consumed_bytes": 1172948,
+      "materializations": {
+        "a": {
+          "file_sha256": "465518b8934e4e2513ddb36863a808828b14396ab32bcfba9882d3fc8c510dbc",
+          "file_bytes": 1172949,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "b": {
+          "file_sha256": "465518b8934e4e2513ddb36863a808828b14396ab32bcfba9882d3fc8c510dbc",
+          "file_bytes": 1172949,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "c": {
+          "file_sha256": "465518b8934e4e2513ddb36863a808828b14396ab32bcfba9882d3fc8c510dbc",
+          "file_bytes": 1172949,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "d": {
+          "file_sha256": "465518b8934e4e2513ddb36863a808828b14396ab32bcfba9882d3fc8c510dbc",
+          "file_bytes": 1172949,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "e": {
+          "file_sha256": "465518b8934e4e2513ddb36863a808828b14396ab32bcfba9882d3fc8c510dbc",
+          "file_bytes": 1172949,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "f": {
+          "file_sha256": "465518b8934e4e2513ddb36863a808828b14396ab32bcfba9882d3fc8c510dbc",
+          "file_bytes": 1172949,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "g": {
+          "file_sha256": "465518b8934e4e2513ddb36863a808828b14396ab32bcfba9882d3fc8c510dbc",
+          "file_bytes": 1172949,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        }
+      }
+    },
+    {
+      "path": "artifacts/luna45-acp0008-depth2-destination-integration-20261006/initial-destination_disabled-reception.json",
+      "baseline_git_blob": "23b7128e6d2bc3285b6ea22bc4ae6097f4c77419",
+      "consumed_sha256": "5e9a5c09279a969cfa3bf52c0fd5059d17bbd66677231e48eac2c8374864cf37",
+      "consumed_bytes": 1590297,
+      "materializations": {
+        "a": {
+          "file_sha256": "d5e7378a4e9e164bf667a7ed6780fdbe52810cd7201334d617fbe1b957d9fb31",
+          "file_bytes": 1590298,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "b": {
+          "file_sha256": "d5e7378a4e9e164bf667a7ed6780fdbe52810cd7201334d617fbe1b957d9fb31",
+          "file_bytes": 1590298,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "c": {
+          "file_sha256": "d5e7378a4e9e164bf667a7ed6780fdbe52810cd7201334d617fbe1b957d9fb31",
+          "file_bytes": 1590298,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "d": {
+          "file_sha256": "d5e7378a4e9e164bf667a7ed6780fdbe52810cd7201334d617fbe1b957d9fb31",
+          "file_bytes": 1590298,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "e": {
+          "file_sha256": "d5e7378a4e9e164bf667a7ed6780fdbe52810cd7201334d617fbe1b957d9fb31",
+          "file_bytes": 1590298,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "f": {
+          "file_sha256": "d5e7378a4e9e164bf667a7ed6780fdbe52810cd7201334d617fbe1b957d9fb31",
+          "file_bytes": 1590298,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "g": {
+          "file_sha256": "d5e7378a4e9e164bf667a7ed6780fdbe52810cd7201334d617fbe1b957d9fb31",
+          "file_bytes": 1590298,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        }
+      }
+    },
+    {
+      "path": "artifacts/luna45-acp0008-depth2-destination-integration-20261006/initial-destination_disabled.json",
+      "baseline_git_blob": "d9b785b6b413139f8c1fcd487aeec5d7f77bc4b2",
+      "consumed_sha256": "47f3da1dd29f316e84b4b7033865c60becab6e90152bfab2451d4652aa201281",
+      "consumed_bytes": 39752836,
+      "materializations": {
+        "a": {
+          "file_sha256": "ae6dbd204e70c53b7a4ac6bded07b9db14a48b8274fa46668bf462449edb36d3",
+          "file_bytes": 39752837,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "b": {
+          "file_sha256": "ae6dbd204e70c53b7a4ac6bded07b9db14a48b8274fa46668bf462449edb36d3",
+          "file_bytes": 39752837,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "c": {
+          "file_sha256": "ae6dbd204e70c53b7a4ac6bded07b9db14a48b8274fa46668bf462449edb36d3",
+          "file_bytes": 39752837,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "d": {
+          "file_sha256": "ae6dbd204e70c53b7a4ac6bded07b9db14a48b8274fa46668bf462449edb36d3",
+          "file_bytes": 39752837,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "e": {
+          "file_sha256": "ae6dbd204e70c53b7a4ac6bded07b9db14a48b8274fa46668bf462449edb36d3",
+          "file_bytes": 39752837,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "f": {
+          "file_sha256": "ae6dbd204e70c53b7a4ac6bded07b9db14a48b8274fa46668bf462449edb36d3",
+          "file_bytes": 39752837,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "g": {
+          "file_sha256": "ae6dbd204e70c53b7a4ac6bded07b9db14a48b8274fa46668bf462449edb36d3",
+          "file_bytes": 39752837,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        }
+      }
+    },
+    {
+      "path": "artifacts/luna45-acp0008-depth2-destination-integration-20261006/initial-gates.json",
+      "baseline_git_blob": "6eefae0e0392e7ab9630fd69b7214130fac2ee60",
+      "consumed_sha256": "40a490b3cd7dec5f1dce91e73388234c9749cfdc3f6ed9cd904f0a1bc36fa1a8",
+      "consumed_bytes": 63677174,
+      "materializations": {
+        "a": {
+          "file_sha256": "578839d3fcc46719dc1306135a47d5a117cf6468cec34acdf64eead428328fa1",
+          "file_bytes": 63677175,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "b": {
+          "file_sha256": "578839d3fcc46719dc1306135a47d5a117cf6468cec34acdf64eead428328fa1",
+          "file_bytes": 63677175,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "c": {
+          "file_sha256": "578839d3fcc46719dc1306135a47d5a117cf6468cec34acdf64eead428328fa1",
+          "file_bytes": 63677175,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "d": {
+          "file_sha256": "578839d3fcc46719dc1306135a47d5a117cf6468cec34acdf64eead428328fa1",
+          "file_bytes": 63677175,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "e": {
+          "file_sha256": "578839d3fcc46719dc1306135a47d5a117cf6468cec34acdf64eead428328fa1",
+          "file_bytes": 63677175,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "f": {
+          "file_sha256": "578839d3fcc46719dc1306135a47d5a117cf6468cec34acdf64eead428328fa1",
+          "file_bytes": 63677175,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "g": {
+          "file_sha256": "578839d3fcc46719dc1306135a47d5a117cf6468cec34acdf64eead428328fa1",
+          "file_bytes": 63677175,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        }
+      }
+    },
+    {
+      "path": "artifacts/luna45-acp0008-depth2-destination-integration-20261006/replay-destination_calibrated-enqueue.json",
+      "baseline_git_blob": "121455601ade7e7cfdd7891cc9cfd09144aab060",
+      "consumed_sha256": "eebc7f20435ffe2a59796e098d083df88fa262653b79c23ccca410202c5c90ce",
+      "consumed_bytes": 1172949,
+      "materializations": {
+        "a": {
+          "file_sha256": "40ac3049e1af7364e8c8e9010a2af826cafa9313252090c73fc4f88671c9af53",
+          "file_bytes": 1172950,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "b": {
+          "file_sha256": "40ac3049e1af7364e8c8e9010a2af826cafa9313252090c73fc4f88671c9af53",
+          "file_bytes": 1172950,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "c": {
+          "file_sha256": "40ac3049e1af7364e8c8e9010a2af826cafa9313252090c73fc4f88671c9af53",
+          "file_bytes": 1172950,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "d": {
+          "file_sha256": "40ac3049e1af7364e8c8e9010a2af826cafa9313252090c73fc4f88671c9af53",
+          "file_bytes": 1172950,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "e": {
+          "file_sha256": "40ac3049e1af7364e8c8e9010a2af826cafa9313252090c73fc4f88671c9af53",
+          "file_bytes": 1172950,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "f": {
+          "file_sha256": "40ac3049e1af7364e8c8e9010a2af826cafa9313252090c73fc4f88671c9af53",
+          "file_bytes": 1172950,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "g": {
+          "file_sha256": "40ac3049e1af7364e8c8e9010a2af826cafa9313252090c73fc4f88671c9af53",
+          "file_bytes": 1172950,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        }
+      }
+    },
+    {
+      "path": "artifacts/luna45-acp0008-depth2-destination-integration-20261006/replay-destination_calibrated-reception.json",
+      "baseline_git_blob": "bb1af6d2b3853581c03fd10556e437d5eb555e5a",
+      "consumed_sha256": "435907519d7171d9cbffcf42e0d2af5aeba23bb033e0c2a42c761c5233917b09",
+      "consumed_bytes": 1595509,
+      "materializations": {
+        "a": {
+          "file_sha256": "1534c7628f7bdc7807399b07e56db2c729f8d35156b96ef734f98db8ec612c68",
+          "file_bytes": 1595510,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "b": {
+          "file_sha256": "1534c7628f7bdc7807399b07e56db2c729f8d35156b96ef734f98db8ec612c68",
+          "file_bytes": 1595510,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "c": {
+          "file_sha256": "1534c7628f7bdc7807399b07e56db2c729f8d35156b96ef734f98db8ec612c68",
+          "file_bytes": 1595510,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "d": {
+          "file_sha256": "1534c7628f7bdc7807399b07e56db2c729f8d35156b96ef734f98db8ec612c68",
+          "file_bytes": 1595510,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "e": {
+          "file_sha256": "1534c7628f7bdc7807399b07e56db2c729f8d35156b96ef734f98db8ec612c68",
+          "file_bytes": 1595510,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "f": {
+          "file_sha256": "1534c7628f7bdc7807399b07e56db2c729f8d35156b96ef734f98db8ec612c68",
+          "file_bytes": 1595510,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "g": {
+          "file_sha256": "1534c7628f7bdc7807399b07e56db2c729f8d35156b96ef734f98db8ec612c68",
+          "file_bytes": 1595510,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        }
+      }
+    },
+    {
+      "path": "artifacts/luna45-acp0008-depth2-destination-integration-20261006/replay-destination_calibrated.json",
+      "baseline_git_blob": "83014b8c0cc3be014b3831051237c552c87bead6",
+      "consumed_sha256": "5061759db72d3749a0b127f83de56dce7a346f37a0e17add02a7326c0a1f5ad7",
+      "consumed_bytes": 40798964,
+      "materializations": {
+        "a": {
+          "file_sha256": "41cb8cf1666f34802cd11d6863f4769a5fa7d1940779eb5efab59750a6d2bc18",
+          "file_bytes": 40798965,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "b": {
+          "file_sha256": "41cb8cf1666f34802cd11d6863f4769a5fa7d1940779eb5efab59750a6d2bc18",
+          "file_bytes": 40798965,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "c": {
+          "file_sha256": "41cb8cf1666f34802cd11d6863f4769a5fa7d1940779eb5efab59750a6d2bc18",
+          "file_bytes": 40798965,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "d": {
+          "file_sha256": "41cb8cf1666f34802cd11d6863f4769a5fa7d1940779eb5efab59750a6d2bc18",
+          "file_bytes": 40798965,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "e": {
+          "file_sha256": "41cb8cf1666f34802cd11d6863f4769a5fa7d1940779eb5efab59750a6d2bc18",
+          "file_bytes": 40798965,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "f": {
+          "file_sha256": "41cb8cf1666f34802cd11d6863f4769a5fa7d1940779eb5efab59750a6d2bc18",
+          "file_bytes": 40798965,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "g": {
+          "file_sha256": "41cb8cf1666f34802cd11d6863f4769a5fa7d1940779eb5efab59750a6d2bc18",
+          "file_bytes": 40798965,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        }
+      }
+    },
+    {
+      "path": "artifacts/luna45-acp0008-depth2-destination-integration-20261006/replay-destination_default-enqueue.json",
+      "baseline_git_blob": "acb148f79927842b920766ed8c88132433b2f0ee",
+      "consumed_sha256": "01e218f411f6f077710de98e2e38dcef8955531cd86370a04228e295e41bbab3",
+      "consumed_bytes": 1172946,
+      "materializations": {
+        "a": {
+          "file_sha256": "564fb0eed33072ea7bdf481b233d443829c7969d49c0a1c230b0fd30971a9ca0",
+          "file_bytes": 1172947,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "b": {
+          "file_sha256": "564fb0eed33072ea7bdf481b233d443829c7969d49c0a1c230b0fd30971a9ca0",
+          "file_bytes": 1172947,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "c": {
+          "file_sha256": "564fb0eed33072ea7bdf481b233d443829c7969d49c0a1c230b0fd30971a9ca0",
+          "file_bytes": 1172947,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "d": {
+          "file_sha256": "564fb0eed33072ea7bdf481b233d443829c7969d49c0a1c230b0fd30971a9ca0",
+          "file_bytes": 1172947,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "e": {
+          "file_sha256": "564fb0eed33072ea7bdf481b233d443829c7969d49c0a1c230b0fd30971a9ca0",
+          "file_bytes": 1172947,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "f": {
+          "file_sha256": "564fb0eed33072ea7bdf481b233d443829c7969d49c0a1c230b0fd30971a9ca0",
+          "file_bytes": 1172947,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "g": {
+          "file_sha256": "564fb0eed33072ea7bdf481b233d443829c7969d49c0a1c230b0fd30971a9ca0",
+          "file_bytes": 1172947,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        }
+      }
+    },
+    {
+      "path": "artifacts/luna45-acp0008-depth2-destination-integration-20261006/replay-destination_default-reception.json",
+      "baseline_git_blob": "1a4c0eaefab593e2fee89e6130f55ef8c2df5b90",
+      "consumed_sha256": "b353007304b7d3127dfe4fb3a623168d1be9fbd574b8cff5ec534bd1147cd055",
+      "consumed_bytes": 1595565,
+      "materializations": {
+        "a": {
+          "file_sha256": "e9c6c627d42f17bfde3e14e494d0c0be6dadc82e08e92133643f25e686d1b936",
+          "file_bytes": 1595566,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "b": {
+          "file_sha256": "e9c6c627d42f17bfde3e14e494d0c0be6dadc82e08e92133643f25e686d1b936",
+          "file_bytes": 1595566,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "c": {
+          "file_sha256": "e9c6c627d42f17bfde3e14e494d0c0be6dadc82e08e92133643f25e686d1b936",
+          "file_bytes": 1595566,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "d": {
+          "file_sha256": "e9c6c627d42f17bfde3e14e494d0c0be6dadc82e08e92133643f25e686d1b936",
+          "file_bytes": 1595566,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "e": {
+          "file_sha256": "e9c6c627d42f17bfde3e14e494d0c0be6dadc82e08e92133643f25e686d1b936",
+          "file_bytes": 1595566,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "f": {
+          "file_sha256": "e9c6c627d42f17bfde3e14e494d0c0be6dadc82e08e92133643f25e686d1b936",
+          "file_bytes": 1595566,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "g": {
+          "file_sha256": "e9c6c627d42f17bfde3e14e494d0c0be6dadc82e08e92133643f25e686d1b936",
+          "file_bytes": 1595566,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        }
+      }
+    },
+    {
+      "path": "artifacts/luna45-acp0008-depth2-destination-integration-20261006/replay-destination_default.json",
+      "baseline_git_blob": "45daedccb5450402e60a92f0af4caa5409b91e1e",
+      "consumed_sha256": "770faa923108d4c8e1fb395e31913514c64b22a09c8badb48f31b1f400cfe364",
+      "consumed_bytes": 40795763,
+      "materializations": {
+        "a": {
+          "file_sha256": "a1151b061fa7da88d9d282124516b67cdbfd6aa4631c3e2a95fa0d95900e6094",
+          "file_bytes": 40795764,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "b": {
+          "file_sha256": "a1151b061fa7da88d9d282124516b67cdbfd6aa4631c3e2a95fa0d95900e6094",
+          "file_bytes": 40795764,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "c": {
+          "file_sha256": "a1151b061fa7da88d9d282124516b67cdbfd6aa4631c3e2a95fa0d95900e6094",
+          "file_bytes": 40795764,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "d": {
+          "file_sha256": "a1151b061fa7da88d9d282124516b67cdbfd6aa4631c3e2a95fa0d95900e6094",
+          "file_bytes": 40795764,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "e": {
+          "file_sha256": "a1151b061fa7da88d9d282124516b67cdbfd6aa4631c3e2a95fa0d95900e6094",
+          "file_bytes": 40795764,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "f": {
+          "file_sha256": "a1151b061fa7da88d9d282124516b67cdbfd6aa4631c3e2a95fa0d95900e6094",
+          "file_bytes": 40795764,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "g": {
+          "file_sha256": "a1151b061fa7da88d9d282124516b67cdbfd6aa4631c3e2a95fa0d95900e6094",
+          "file_bytes": 40795764,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        }
+      }
+    },
+    {
+      "path": "artifacts/luna45-acp0008-depth2-destination-integration-20261006/replay-destination_disabled-enqueue.json",
+      "baseline_git_blob": "8bd0b4791d18a093ab2dd7086d260eafe109da51",
+      "consumed_sha256": "d2952b2f1400d301ea36dd2634bd850b75ca7ef4da5adb42c9cef5290be1b425",
+      "consumed_bytes": 1172947,
+      "materializations": {
+        "a": {
+          "file_sha256": "b5166662266d47092cac185d1f9b2787c650132e9927362bb9c9fe7fe9bbb4cf",
+          "file_bytes": 1172948,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "b": {
+          "file_sha256": "b5166662266d47092cac185d1f9b2787c650132e9927362bb9c9fe7fe9bbb4cf",
+          "file_bytes": 1172948,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "c": {
+          "file_sha256": "b5166662266d47092cac185d1f9b2787c650132e9927362bb9c9fe7fe9bbb4cf",
+          "file_bytes": 1172948,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "d": {
+          "file_sha256": "b5166662266d47092cac185d1f9b2787c650132e9927362bb9c9fe7fe9bbb4cf",
+          "file_bytes": 1172948,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "e": {
+          "file_sha256": "b5166662266d47092cac185d1f9b2787c650132e9927362bb9c9fe7fe9bbb4cf",
+          "file_bytes": 1172948,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "f": {
+          "file_sha256": "b5166662266d47092cac185d1f9b2787c650132e9927362bb9c9fe7fe9bbb4cf",
+          "file_bytes": 1172948,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "g": {
+          "file_sha256": "b5166662266d47092cac185d1f9b2787c650132e9927362bb9c9fe7fe9bbb4cf",
+          "file_bytes": 1172948,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        }
+      }
+    },
+    {
+      "path": "artifacts/luna45-acp0008-depth2-destination-integration-20261006/replay-destination_disabled-reception.json",
+      "baseline_git_blob": "a33fa24af1cd7b2640e58602a1a2706408672a86",
+      "consumed_sha256": "5bccab08d9b96dea40b1a970b52cfa49392e826c681154e4713183da54f60b98",
+      "consumed_bytes": 1590296,
+      "materializations": {
+        "a": {
+          "file_sha256": "70c91d10fdf0d299040cc94a1122f81ea386721cb8567c67444062eb90d34937",
+          "file_bytes": 1590297,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "b": {
+          "file_sha256": "70c91d10fdf0d299040cc94a1122f81ea386721cb8567c67444062eb90d34937",
+          "file_bytes": 1590297,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "c": {
+          "file_sha256": "70c91d10fdf0d299040cc94a1122f81ea386721cb8567c67444062eb90d34937",
+          "file_bytes": 1590297,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "d": {
+          "file_sha256": "70c91d10fdf0d299040cc94a1122f81ea386721cb8567c67444062eb90d34937",
+          "file_bytes": 1590297,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "e": {
+          "file_sha256": "70c91d10fdf0d299040cc94a1122f81ea386721cb8567c67444062eb90d34937",
+          "file_bytes": 1590297,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "f": {
+          "file_sha256": "70c91d10fdf0d299040cc94a1122f81ea386721cb8567c67444062eb90d34937",
+          "file_bytes": 1590297,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "g": {
+          "file_sha256": "70c91d10fdf0d299040cc94a1122f81ea386721cb8567c67444062eb90d34937",
+          "file_bytes": 1590297,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        }
+      }
+    },
+    {
+      "path": "artifacts/luna45-acp0008-depth2-destination-integration-20261006/replay-destination_disabled.json",
+      "baseline_git_blob": "ee7cc290db581cef25cca27c60f62fb0813e5281",
+      "consumed_sha256": "8df6c251097758c073c1ef8fa85255d24105885d137cbe2b647a70b278fbc989",
+      "consumed_bytes": 39752835,
+      "materializations": {
+        "a": {
+          "file_sha256": "43f3e68fbdb75be142989b0f7611fb8004810d3dbc95832d3e3c10e8249aef52",
+          "file_bytes": 39752836,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "b": {
+          "file_sha256": "43f3e68fbdb75be142989b0f7611fb8004810d3dbc95832d3e3c10e8249aef52",
+          "file_bytes": 39752836,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "c": {
+          "file_sha256": "43f3e68fbdb75be142989b0f7611fb8004810d3dbc95832d3e3c10e8249aef52",
+          "file_bytes": 39752836,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "d": {
+          "file_sha256": "43f3e68fbdb75be142989b0f7611fb8004810d3dbc95832d3e3c10e8249aef52",
+          "file_bytes": 39752836,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "e": {
+          "file_sha256": "43f3e68fbdb75be142989b0f7611fb8004810d3dbc95832d3e3c10e8249aef52",
+          "file_bytes": 39752836,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "f": {
+          "file_sha256": "43f3e68fbdb75be142989b0f7611fb8004810d3dbc95832d3e3c10e8249aef52",
+          "file_bytes": 39752836,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "g": {
+          "file_sha256": "43f3e68fbdb75be142989b0f7611fb8004810d3dbc95832d3e3c10e8249aef52",
+          "file_bytes": 39752836,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        }
+      }
+    },
+    {
+      "path": "artifacts/luna45-acp0008-depth2-destination-integration-20261006/replay-gates.json",
+      "baseline_git_blob": "9c32bb18b5435bb6bbb7ba7517b2c6719cdb6cca",
+      "consumed_sha256": "27d127e2a9aac97ab81625a35957a66c5c452e33a0e757a0c2063efa3af60088",
+      "consumed_bytes": 63677173,
+      "materializations": {
+        "a": {
+          "file_sha256": "a7fe88a1b0cf9c4ee48ab3219ab94177d1d158d57b8c5a1435cdf655f5762690",
+          "file_bytes": 63677174,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "b": {
+          "file_sha256": "a7fe88a1b0cf9c4ee48ab3219ab94177d1d158d57b8c5a1435cdf655f5762690",
+          "file_bytes": 63677174,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "c": {
+          "file_sha256": "a7fe88a1b0cf9c4ee48ab3219ab94177d1d158d57b8c5a1435cdf655f5762690",
+          "file_bytes": 63677174,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "d": {
+          "file_sha256": "a7fe88a1b0cf9c4ee48ab3219ab94177d1d158d57b8c5a1435cdf655f5762690",
+          "file_bytes": 63677174,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "e": {
+          "file_sha256": "a7fe88a1b0cf9c4ee48ab3219ab94177d1d158d57b8c5a1435cdf655f5762690",
+          "file_bytes": 63677174,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "f": {
+          "file_sha256": "a7fe88a1b0cf9c4ee48ab3219ab94177d1d158d57b8c5a1435cdf655f5762690",
+          "file_bytes": 63677174,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "g": {
+          "file_sha256": "a7fe88a1b0cf9c4ee48ab3219ab94177d1d158d57b8c5a1435cdf655f5762690",
+          "file_bytes": 63677174,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        }
+      }
+    },
+    {
+      "path": "artifacts/luna45-acp0008-depth2-destination-integration-20261006/summary.json",
+      "baseline_git_blob": "3f46ed1715e496fc2935ba289d3c8923c8cff242",
+      "consumed_sha256": "74968daa82fce731b1a7c8445aa75d756c37a89d36431077ab0e9345f7283c32",
+      "consumed_bytes": 41579,
+      "materializations": {
+        "a": {
+          "file_sha256": "ebcae8f79f923fe62133943d1fc9f96ca311993f358d3a5f4c930a8159193378",
+          "file_bytes": 41580,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "b": {
+          "file_sha256": "ebcae8f79f923fe62133943d1fc9f96ca311993f358d3a5f4c930a8159193378",
+          "file_bytes": 41580,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "c": {
+          "file_sha256": "ebcae8f79f923fe62133943d1fc9f96ca311993f358d3a5f4c930a8159193378",
+          "file_bytes": 41580,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "d": {
+          "file_sha256": "ebcae8f79f923fe62133943d1fc9f96ca311993f358d3a5f4c930a8159193378",
+          "file_bytes": 41580,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "e": {
+          "file_sha256": "ebcae8f79f923fe62133943d1fc9f96ca311993f358d3a5f4c930a8159193378",
+          "file_bytes": 41580,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "f": {
+          "file_sha256": "ebcae8f79f923fe62133943d1fc9f96ca311993f358d3a5f4c930a8159193378",
+          "file_bytes": 41580,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "g": {
+          "file_sha256": "ebcae8f79f923fe62133943d1fc9f96ca311993f358d3a5f4c930a8159193378",
+          "file_bytes": 41580,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        }
+      }
+    },
+    {
+      "path": "artifacts/luna45-corrective-verification-20261006-r1/verification.json",
+      "baseline_git_blob": "d819b1448606e33ed7f6e2fb513d7c5d096d9afd",
+      "consumed_sha256": "547336a1140ea89b6b85cc76807ac5e931fb402296aebe759165804ecd6c103f",
+      "consumed_bytes": 10972,
+      "materializations": {
+        "a": {
+          "file_sha256": "ae3e7ce7574990e81bb720892b0bd7657e059355700b63f5d2ed8c2c14eabc26",
+          "file_bytes": 10973,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "b": {
+          "file_sha256": "ae3e7ce7574990e81bb720892b0bd7657e059355700b63f5d2ed8c2c14eabc26",
+          "file_bytes": 10973,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "c": {
+          "file_sha256": "ae3e7ce7574990e81bb720892b0bd7657e059355700b63f5d2ed8c2c14eabc26",
+          "file_bytes": 10973,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "d": {
+          "file_sha256": "ae3e7ce7574990e81bb720892b0bd7657e059355700b63f5d2ed8c2c14eabc26",
+          "file_bytes": 10973,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "e": {
+          "file_sha256": "ae3e7ce7574990e81bb720892b0bd7657e059355700b63f5d2ed8c2c14eabc26",
+          "file_bytes": 10973,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "f": {
+          "file_sha256": "ae3e7ce7574990e81bb720892b0bd7657e059355700b63f5d2ed8c2c14eabc26",
+          "file_bytes": 10973,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        },
+        "g": {
+          "file_sha256": "ae3e7ce7574990e81bb720892b0bd7657e059355700b63f5d2ed8c2c14eabc26",
+          "file_bytes": 10973,
+          "exact": false,
+          "exact_LF_to_CRLF": true
+        }
+      }
+    }
+  ],
+  "manifest_checks": [
+    {
+      "lane": "a",
+      "path": "inputs.json",
+      "file_sha256": "03b5a27700723afa266e63b516c6b3dfbc9a7accc6983d21a4f7a12e4383b185"
+    },
+    {
+      "lane": "a",
+      "path": "results.json",
+      "file_sha256": "d1cac5065410767a42a35f99b659b4a4377f1b84d300e5cfd3ed304600322cff"
+    },
+    {
+      "lane": "c",
+      "path": ".gitattributes",
+      "file_sha256": "6757d6ea9f640ba1372703f19fd39c635a2f9b62aae967d48abf2e9605800082"
+    },
+    {
+      "lane": "c",
+      "path": "boundary-regression.xml",
+      "file_sha256": "1e5b4b14ffcfde562a3ef8d59482b073455c9be0c88f579913486392068ebd5c"
+    },
+    {
+      "lane": "c",
+      "path": "focused.xml",
+      "file_sha256": "5bdeb2c3e0cb9a5ffc8b66474a8dd31c1b450a75615f573c14f7560855c812ef"
+    },
+    {
+      "lane": "c",
+      "path": "full-suite.xml",
+      "file_sha256": "064ca57f5ecbbecce98644910c5b8f858710486b842765e63dc4c5f7b06f2dfb"
+    },
+    {
+      "lane": "c",
+      "path": "replay.json",
+      "file_sha256": "6780944673d701cc5a201bd3d9d6c9502b0d8f434170cf67d1b93219620c84fc"
+    },
+    {
+      "lane": "c",
+      "path": "summary.json",
+      "file_sha256": "1bf25de7563dfd0e620ce804dd46185ab70e21251933be7d4f821f3c61356c96"
+    },
+    {
+      "lane": "c",
+      "path": "validation.json",
+      "file_sha256": "5e0a023991771dcbfd52c8db52e7fe259e6f42955663b05732f6c299436514fc"
+    },
+    {
+      "lane": "g",
+      "path": "corners.jsonl.gz",
+      "file_sha256": "08467f3367e08b6716eec9886345f9adaa59bef6d74024727ccb01dbfd97f575"
+    },
+    {
+      "lane": "g",
+      "path": "samples.jsonl.gz",
+      "file_sha256": "008073d1bbff799b6534ed35336b0c2cf2bda47dc24e503244a4f20d09e1bde6"
+    },
+    {
+      "lane": "g",
+      "path": "summary.json",
+      "file_sha256": "6fcd802bb657eb3799b31c61bc66407adafdd29f893ff45f27c9c07fee165a71"
+    },
+    {
+      "lane": "g",
+      "path": "diagnostics.json",
+      "file_sha256": "2f0d5f336a1540e429b5defb0cef401cea454d0482b321d6d96d76a3515bf016"
+    },
+    {
+      "lane": "g",
+      "path": "sample-provenance.jsonl.gz",
+      "file_sha256": "7ae747bae5cb3e065b27d8752ab4ef135c4eb52519fcb9ce51deb2869634cd86"
+    },
+    {
+      "lane": "g",
+      "path": "manifest.json",
+      "file_sha256": "098366d2e850e7695658f239265faf5589fae45efe8ae95eeb3fa315b32058da"
+    },
+    {
+      "lane": "a",
+      "source": "experiments/luna47a/PROTOCOL.md",
+      "git_sha256": "6f947a6515b89f72a74a433e6e618c4a3529f53884222b18b1df21c68162a126",
+      "file_sha256": "20abdd8b697e6c792cf465912368001e0d6f8bea57cd91c3a389d1dfb1da37fe"
+    },
+    {
+      "lane": "a",
+      "source": "experiments/luna47a/run.py",
+      "git_sha256": "5d17245a3723034cb21df58e531e3ed70473f7dfc71b1b42511f9f07f28143cc",
+      "file_sha256": "33878a07732e0354571d3eb1f78e37374f9a3df7d92cadb6c4efa3674d728bf9"
+    },
+    {
+      "lane": "a",
+      "source": "run_luna46_depth_scaling_diagnostic.py",
+      "git_sha256": "2603b710fa7f06e22a385a30a2cd407dd26466115819477b53b7861285168a0c",
+      "file_sha256": "ace06d7d90a21a0fa1415e6f232e4561b0554280592917c0cb2bd85bf554c9fe"
+    },
+    {
+      "lane": "a",
+      "source": "tests/test_luna47a_retention.py",
+      "git_sha256": "e01583af7724160bbab1ad9254eadc889f14b849032c5d382def0df5ed21105a",
+      "file_sha256": "94028b20e5b9f0f44ba7fa4c4d0832ff5c23468f92ecbeedc02a426c63e7c41c"
+    },
+    {
+      "lane": "b",
+      "source": "experiments/luna47b/PROTOCOL.md",
+      "git_sha256": "9c553817826b264d2a2cce5c28315184233ca689fce7577dfc2f72ce10f1f8f8",
+      "file_sha256": "dbeeaf5fff084690659efbe374cac3489129dcfdfc3e66ffe11b627ec8b85225"
+    },
+    {
+      "lane": "b",
+      "source": "experiments/luna47b/diagnostic.py",
+      "git_sha256": "0abebe86f87fd0555d075cffe2102a96254ce84d4475a016d53a7ce56e533d8a",
+      "file_sha256": "29bb62f78ee2d426452587f3ed7eec3bb4a61da4270f9be9d177fc165a765b3e"
+    },
+    {
+      "lane": "c",
+      "source": "experiments/luna47c/PROTOCOL.md",
+      "git_sha256": "79c231868a2ff2bd3b39e38a92bdc2c608495b69658fbb22af08523f834acd0d",
+      "file_sha256": "4d95c42edcba2e49174666d1573020024e31fad1808de722d8587f7a65de1bca"
+    },
+    {
+      "lane": "c",
+      "source": "experiments/luna47c/__init__.py",
+      "git_sha256": "0f1d80357699a75f0546fd29497e62ac30dc21c4f197528f25997221a7df2ef4",
+      "file_sha256": "d40a6251db6175c3efab92861494fed7b9e5896c07cdf809862eca2389a1a20f"
+    },
+    {
+      "lane": "c",
+      "source": "experiments/luna47c/evaluate.py",
+      "git_sha256": "5fa1dff87d34b473c7a780f2ea81c83fc549f1e338211481a92109dd812dcf5f",
+      "file_sha256": "e81d92db3d041d72dfd3af97185391573260a529c98d40c8a74201e394eb2b6f"
+    },
+    {
+      "lane": "c",
+      "source": "experiments/luna47c/fixtures.py",
+      "git_sha256": "aad9ff1db9997be07a8fb56f80a468e2ae631e2da53dfc98b480c868dae88c3d",
+      "file_sha256": "100ceb2f2e7cb37679ddf8b010aef7634b92df39c85fdceb0b980f15bf22b0b3"
+    },
+    {
+      "lane": "c",
+      "source": "experiments/luna47c/qualifier.py",
+      "git_sha256": "44fd2a413fdba8dff3957174567011adb38d33f2823583bf962583bf900413ee",
+      "file_sha256": "aa38b8e09c1bdc9f1100c9e4d45b751ce33bacbb916423cc17a95fde4e649eb4"
+    },
+    {
+      "lane": "c",
+      "source": "tests/test_luna47c_qualification.py",
+      "git_sha256": "de021f64a1ba8cbf2817004753db4e9a10890b1a1755b3b566989dd4b60e9c9f",
+      "file_sha256": "44c2fef62ac4452032e6a6d82d2f3e5d69afeb3e0dead63d4f9f81e0b2dcc09d"
+    },
+    {
+      "lane": "g",
+      "source": "experiments/luna47g/PROTOCOL.md",
+      "git_sha256": "75e49a6f159232abbc40e44ae296df2fce1fee4545aaeb58fde0662ce33eab9a",
+      "file_sha256": "3d0d7f0175ed7729b1b633f5046b655b3a9d13d05c5138545857e9e6d75774ba"
+    },
+    {
+      "lane": "g",
+      "source": "experiments/luna47g/config.json",
+      "git_sha256": "de21208c413711423e390a9678b94d2696c752276ebe978418fecc38eb0c5aee",
+      "file_sha256": "9103651ce305a78af858cfe1bff2dd37b99a007140adfbc4ede50c4fc8d6760a"
+    },
+    {
+      "lane": "g",
+      "source": "experiments/luna47g/fixtures.json",
+      "git_sha256": "b8337b433036c65f6d1de584af2c4fedc82ef058153b0cdbed0af982b4327c09",
+      "file_sha256": "7b4f2bd7072f2cb3718f1478f5a27a9c25cdb98d95bcd7a3d82861101f3c705a"
+    },
+    {
+      "lane": "g",
+      "source": "experiments/luna47g/simulate.py",
+      "git_sha256": "7a8f37a3fb446f9c30122b82a5277d5d05b659344e9929a0af29083927eb66c3",
+      "file_sha256": "b2ec30805d08b2c92a4a6845492956c0093575bca0199df55f98df0d0f001f5f"
+    },
+    {
+      "lane": "g",
+      "source": "tests/test_luna47g_robustness.py",
+      "git_sha256": "09e6f8eeadd1d06613d9c80acdb3c156e1fd25ec358988ae2bcebd046946051f",
+      "file_sha256": "0052441c5278851468d44e2184c2389e6c4c4f501ec67dcc323fb1ed0434f93d"
+    }
+  ],
+  "status": "PASS"
+}

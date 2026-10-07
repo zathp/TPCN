@@ -161,6 +161,9 @@ artifacts.
 | Lane execution and focused lane tests | Not applicable before publication | Not run by design | This is the prerequisite governance phase |
 | Full application test suite | Not run | Not applicable to documentation/agent-contract-only change | No implementation code changed |
 | `git diff --check` and publication checks | Authorization publication `789dda5988daf72f375d9713bd76a6da2b9e8b34` | **PASS**; the exact authorization commit is published and verified | GitHub commit record; shared by all Luna-47 lane contracts |
+| `git diff --cached --check` | Authorization commit `789dda5988daf72f375d9713bd76a6da2b9e8b34`; Windows | Passed | Staged governance diff |
+| Relative Markdown target check | Authorization commit content; Windows | All relative targets resolve | Read-only path validation |
+| Push, remote-ref equality and clean-worktree check | Published branch `copilot/luna46-depth-scaling-diagnostic`; remote verified at `40454fad3572dd90320be68bfbcaf80cc520e08a` | Passed; local and remote refs matched and worktree was clean | `git push origin copilot/luna46-depth-scaling-diagnostic`; `git ls-remote origin refs/heads/copilot/luna46-depth-scaling-diagnostic`; `git status --short --branch` |
 
 ## Assumptions, limitations and unresolved issues
 

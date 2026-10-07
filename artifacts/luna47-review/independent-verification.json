@@ -1,0 +1,2873 @@
+{
+  "schema": "LUNA47-REVIEW-ORACLE-1",
+  "python": "3.11.5 (tags/v3.11.5:cce6ba9, Aug 24 2023, 14:38:34) [MSC v.1936 64 bit (AMD64)]",
+  "interpreter": "C:\\Users\\zathp\\Documents\\programming\\TPCN\\.venv\\Scripts\\python.exe",
+  "reviewer_baseline": "4b11e0e828fd6fbcb4cbf9b994f121bde54e4c37",
+  "lane_inventory": {
+    "a": {
+      "ref": "eb56684eaa10dc9b765927ef8e883c7d56cb025b",
+      "files": [
+        {
+          "path": "artifacts/luna47a/.gitattributes",
+          "git_blob": "176d5029c531f85e69e90d97c2c9512fac8aaa5e",
+          "git_sha256": "e77571df1daf2396ff99002d2748d3680d0008dd61e1fdaac839823e8d36c0d5",
+          "git_bytes": 40,
+          "file_sha256": "664a9071c2398a6b7706a99675d792a002036ec159bccdce6244f9cbc9259a62",
+          "file_bytes": 42,
+          "materialization": "exact LF-to-CRLF"
+        },
+        {
+          "path": "artifacts/luna47a/execution.json",
+          "git_blob": "d9978d7dead4d915191be9a6ed966c291bcdded7",
+          "git_sha256": "b303ab5f9386f7cee43e38710cbc44cb396dc618cf00f6395b666359556e4833",
+          "git_bytes": 8511,
+          "file_sha256": "11aed49e3e695472f13f1163554deef7832aac9e2e908b241e4c1972b008b3ab",
+          "file_bytes": 8670,
+          "materialization": "exact LF-to-CRLF"
+        },
+        {
+          "path": "artifacts/luna47a/inputs.json",
+          "git_blob": "24989419f87dcf49ff0a651e5909c995e0d25fc0",
+          "git_sha256": "03b5a27700723afa266e63b516c6b3dfbc9a7accc6983d21a4f7a12e4383b185",
+          "git_bytes": 10665778,
+          "file_sha256": "03b5a27700723afa266e63b516c6b3dfbc9a7accc6983d21a4f7a12e4383b185",
+          "file_bytes": 10665778,
+          "materialization": "exact"
+        },
+        {
+          "path": "artifacts/luna47a/manifest.json",
+          "git_blob": "e5207fcdeb9dc1416cdd11ed07cead57013aad68",
+          "git_sha256": "254fd3f1ba3b8893e9e065fd7ab26e0fa3cd422969a8dfe02924c9067203a51f",
+          "git_bytes": 2061,
+          "file_sha256": "254fd3f1ba3b8893e9e065fd7ab26e0fa3cd422969a8dfe02924c9067203a51f",
+          "file_bytes": 2061,
+          "materialization": "exact"
+        },
+        {
+          "path": "artifacts/luna47a/results.json",
+          "git_blob": "1526d1d15cbb59b0ca3d0fa04ef04f1c2c803f8f",
+          "git_sha256": "d1cac5065410767a42a35f99b659b4a4377f1b84d300e5cfd3ed304600322cff",
+          "git_bytes": 4577293,
+          "file_sha256": "d1cac5065410767a42a35f99b659b4a4377f1b84d300e5cfd3ed304600322cff",
+          "file_bytes": 4577293,
+          "materialization": "exact"
+        },
+        {
+          "path": "experiments/luna47a/.gitignore",
+          "git_blob": "d7a078af5cf3adcc8934966c28aa20d719f81af3",
+          "git_sha256": "39841d258f4d79229e5c6ef69e85207524cd61ac5c18151920d5648faaa2bf0e",
+          "git_bytes": 24,
+          "file_sha256": "280de0aa6b38f7b2e925de6d98defe4ab4450854d97dc75cc64aaef688e0d25c",
+          "file_bytes": 26,
+          "materialization": "exact LF-to-CRLF"
+        },
+        {
+          "path": "experiments/luna47a/PROTOCOL.md",
+          "git_blob": "2c0ceb1250af69a712e5f5ac0e5dcaa50efc6d9c",
+          "git_sha256": "6f947a6515b89f72a74a433e6e618c4a3529f53884222b18b1df21c68162a126",
+          "git_bytes": 11989,
+          "file_sha256": "20abdd8b697e6c792cf465912368001e0d6f8bea57cd91c3a389d1dfb1da37fe",
+          "file_bytes": 12194,
+          "materialization": "exact LF-to-CRLF"
+        },
+        {
+          "path": "experiments/luna47a/__init__.py",
+          "git_blob": "6975fc28af62453bf69097c0423be6a124a64b2e",
+          "git_sha256": "e48f3074adea3a97508d8a5c57ff936547bc3309085d76ddcfa6bda1e35ee979",
+          "git_bytes": 63,
+          "file_sha256": "414f5746305a2363d166780e073247c8f3f4b5e230b2c41b43d4cf0b9bd6a3b9",
+          "file_bytes": 64,
+          "materialization": "exact LF-to-CRLF"
+        },
+        {
+          "path": "experiments/luna47a/run.py",
+          "git_blob": "09a28302598242e0a7f46c71e3ab8ca0c9acf4dd",
+          "git_sha256": "5d17245a3723034cb21df58e531e3ed70473f7dfc71b1b42511f9f07f28143cc",
+          "git_bytes": 31170,
+          "file_sha256": "33878a07732e0354571d3eb1f78e37374f9a3df7d92cadb6c4efa3674d728bf9",
+          "file_bytes": 31709,
+          "materialization": "exact LF-to-CRLF"
+        },
+        {
+          "path": "tests/test_luna47a_retention.py",
+          "git_blob": "22a4a300e348cf804c1733f056e41b913b6a1a87",
+          "git_sha256": "e01583af7724160bbab1ad9254eadc889f14b849032c5d382def0df5ed21105a",
+          "git_bytes": 10530,
+          "file_sha256": "94028b20e5b9f0f44ba7fa4c4d0832ff5c23468f92ecbeedc02a426c63e7c41c",
+          "file_bytes": 10768,
+          "materialization": "exact LF-to-CRLF"
+        },
+        {
+          "path": "workflow/handoffs/luna-47a-wema-temporal-retention-20261006.md",
+          "git_blob": "111d0288bbece2f439072b8bda9d088669c2389d",
+          "git_sha256": "db19e8b8e34c79c91b11f13e6c3cf5c7b1ba167f001b1c7d8d14f245a4ec44b6",
+          "git_bytes": 21855,
+          "file_sha256": "b7d4fa8ef2efd317ba8debb5833aa68567f038c9c17950c35160159e1dec8fe4",
+          "file_bytes": 22222,
+          "materialization": "exact LF-to-CRLF"
+        }
+      ],
+      "history": [
+        {
+          "commit": "add3d0ca87b13dd8998b2e99c784c16a0103c9d2",
+          "metadata": "2026-10-06T21:18:31-04:00 2026-10-06T21:18:31-04:00 Predeclare Luna-47A bounded event-time retention protocol and replay",
+          "changed_paths": [
+            "experiments/luna47a/.gitignore",
+            "experiments/luna47a/PROTOCOL.md",
+            "experiments/luna47a/__init__.py",
+            "experiments/luna47a/run.py",
+            "tests/test_luna47a_retention.py"
+          ]
+        },
+        {
+          "commit": "ec5231d7f6d66a709c160666f412dd525b4c9739",
+          "metadata": "2026-10-06T21:24:04-04:00 2026-10-06T21:24:04-04:00 Correct pre-outcome Luna-47A pin to exact baseline Git bytes",
+          "changed_paths": [
+            "experiments/luna47a/PROTOCOL.md",
+            "experiments/luna47a/run.py",
+            "tests/test_luna47a_retention.py"
+          ]
+        },
+        {
+          "commit": "eb56684eaa10dc9b765927ef8e883c7d56cb025b",
+          "metadata": "2026-10-06T21:38:19-04:00 2026-10-06T21:38:19-04:00 Publish Luna-47A partial retention evidence and completed handoff",
+          "changed_paths": [
+            "artifacts/luna47a/.gitattributes",
+            "artifacts/luna47a/execution.json",
+            "artifacts/luna47a/inputs.json",
+            "artifacts/luna47a/manifest.json",
+            "artifacts/luna47a/results.json",
+            "workflow/handoffs/luna-47a-wema-temporal-retention-20261006.md"
+          ]
+        }
+      ]
+    },
+    "b": {
+      "ref": "41a0a28f6f85023b8933a47650f66628b0a9ceb0",
+      "files": [
+        {
+          "path": "artifacts/luna47b/results.json",
+          "git_blob": "a937c4a1176b7cfbed37a9674d9001921a14a907",
+          "git_sha256": "b120d2cc5718649fb0d57d93611ddb89b45113e79c0d3003cf330fe092d0fb83",
+          "git_bytes": 2174217,
+          "file_sha256": "b120d2cc5718649fb0d57d93611ddb89b45113e79c0d3003cf330fe092d0fb83",
+          "file_bytes": 2174217,
+          "materialization": "exact"
+        },
+        {
+          "path": "artifacts/luna47b/validation.json",
+          "git_blob": "e859e5226dc42aeacda869850139168a14dd8b10",
+          "git_sha256": "1efe835c4970f346d1d4045e659caa7854fb70825ad4317d932e8d9e3b46f41b",
+          "git_bytes": 4763,
+          "file_sha256": "1ef630d88e4699e9bcc1e5d05e2cc868f12f38a3958f8f1a065a4132df628fe0",
+          "file_bytes": 4851,
+          "materialization": "exact LF-to-CRLF"
+        },
+        {
+          "path": "experiments/luna47b/PROTOCOL.md",
+          "git_blob": "3604b51a81550bcd12b8afd899e78101d3c42eaf",
+          "git_sha256": "9c553817826b264d2a2cce5c28315184233ca689fce7577dfc2f72ce10f1f8f8",
+          "git_bytes": 5702,
+          "file_sha256": "dbeeaf5fff084690659efbe374cac3489129dcfdfc3e66ffe11b627ec8b85225",
+          "file_bytes": 5791,
+          "materialization": "exact LF-to-CRLF"
+        },
+        {
+          "path": "experiments/luna47b/README.md",
+          "git_blob": "f530bf891ee5076986e7eef725414b024b09f9da",
+          "git_sha256": "b11eceb22b39be196c6446d7ba3a4f259a9482a5148e156068de4a23a789ccdd",
+          "git_bytes": 1853,
+          "file_sha256": "c264864941c487792720011c8ff07e6b17c694697e2b71834537b76ba2ce2f4c",
+          "file_bytes": 1887,
+          "materialization": "exact LF-to-CRLF"
+        },
+        {
+          "path": "experiments/luna47b/__init__.py",
+          "git_blob": "3d2e13a6851fa22c132a90d86a082e412dfbb9b1",
+          "git_sha256": "a1f9e2aaf277a91fdc3297715566d127c41dd8d2d6a1bf047ece7b68088ae82d",
+          "git_bytes": 68,
+          "file_sha256": "667cef51963ec11b28502f72cdd23f30cb7c85b2fabb1d7b702d58d3b7ea6c7b",
+          "file_bytes": 69,
+          "materialization": "exact LF-to-CRLF"
+        },
+        {
+          "path": "experiments/luna47b/diagnostic.py",
+          "git_blob": "469485ac343bdcb104e889bfbee0925aad1f482c",
+          "git_sha256": "0abebe86f87fd0555d075cffe2102a96254ce84d4475a016d53a7ce56e533d8a",
+          "git_bytes": 15168,
+          "file_sha256": "29bb62f78ee2d426452587f3ed7eec3bb4a61da4270f9be9d177fc165a765b3e",
+          "file_bytes": 15460,
+          "materialization": "exact LF-to-CRLF"
+        },
+        {
+          "path": "tests/test_luna47b_gain.py",
+          "git_blob": "fc312893997a727675041e7eb85a574ce3c8e067",
+          "git_sha256": "970c7df0c19a92d83d28386b4693b0600529a228e57cfae56a141687f88fc4bb",
+          "git_bytes": 4796,
+          "file_sha256": "0aa2a9ddd3c521912e729fa348939e4fdbbf0ae9435b459f5b388f45f57a66f0",
+          "file_bytes": 4920,
+          "materialization": "exact LF-to-CRLF"
+        },
+        {
+          "path": "workflow/handoffs/luna-47b-drive-accumulation-gain-20261006.md",
+          "git_blob": "488dd34edc5318e26b63a3cda1eeb24ae7f45851",
+          "git_sha256": "3c27077a3221df90f3950094ae4196c79f7e13e641c2c17e547aeca6df80d77c",
+          "git_bytes": 14898,
+          "file_sha256": "d468d147c40594a241eba4ed0e725bf42758a0fdc3cff3db28d0b9fb7cb4f3d9",
+          "file_bytes": 15148,
+          "materialization": "exact LF-to-CRLF"
+        }
+      ],
+      "history": [
+        {
+          "commit": "4b159423e6faf2990fda07976ffebe3674bf2dea",
+          "metadata": "2026-10-06T21:10:24-04:00 2026-10-06T21:10:24-04:00 Predeclare Luna-47B gain-only protocol and deterministic replay diagnostic",
+          "changed_paths": [
+            "experiments/luna47b/PROTOCOL.md",
+            "experiments/luna47b/__init__.py",
+            "experiments/luna47b/diagnostic.py",
+            "tests/test_luna47b_gain.py"
+          ]
+        },
+        {
+          "commit": "aa878c39eaf3f3766728dccc48c1be974ff56186",
+          "metadata": "2026-10-06T21:11:16-04:00 2026-10-06T21:11:16-04:00 Record Windows source materialization while preserving exact evidence bytes",
+          "changed_paths": [
+            "experiments/luna47b/PROTOCOL.md",
+            "experiments/luna47b/diagnostic.py"
+          ]
+        },
+        {
+          "commit": "38891b81754ce385c55f96e4020e2bf04c2b9a5d",
+          "metadata": "2026-10-06T21:12:10-04:00 2026-10-06T21:12:10-04:00 Predeclare immutable committed-evidence loading for Windows checkouts",
+          "changed_paths": [
+            "experiments/luna47b/PROTOCOL.md",
+            "experiments/luna47b/diagnostic.py"
+          ]
+        },
+        {
+          "commit": "1530b9cc79a4241ad7cc7b77dbeb7ea48c2799fc",
+          "metadata": "2026-10-06T21:21:20-04:00 2026-10-06T21:21:20-04:00 Retain Luna-47B critical gains, replay evidence and completed mechanism handoff",
+          "changed_paths": [
+            "artifacts/luna47b/results.json",
+            "artifacts/luna47b/validation.json",
+            "experiments/luna47b/README.md",
+            "workflow/handoffs/luna-47b-drive-accumulation-gain-20261006.md"
+          ]
+        },
+        {
+          "commit": "41a0a28f6f85023b8933a47650f66628b0a9ceb0",
+          "metadata": "2026-10-06T21:24:27-04:00 2026-10-06T21:24:27-04:00 Record successful exact Luna-47B replay and final verification handoff",
+          "changed_paths": [
+            "artifacts/luna47b/validation.json",
+            "workflow/handoffs/luna-47b-drive-accumulation-gain-20261006.md"
+          ]
+        }
+      ]
+    },
+    "c": {
+      "ref": "609b2e5f8a7ae123f9b7f7da5c89378e29353624",
+      "files": [
+        {
+          "path": "artifacts/luna47c/.gitattributes",
+          "git_blob": "dfd45036c03564bf53f373be5aa62860feee8518",
+          "git_sha256": "6757d6ea9f640ba1372703f19fd39c635a2f9b62aae967d48abf2e9605800082",
+          "git_bytes": 216,
+          "file_sha256": "6757d6ea9f640ba1372703f19fd39c635a2f9b62aae967d48abf2e9605800082",
+          "file_bytes": 216,
+          "materialization": "exact"
+        },
+        {
+          "path": "artifacts/luna47c/boundary-regression.xml",
+          "git_blob": "b0c407fc426996f7acfeeed9dbfcd923c08264f2",
+          "git_sha256": "1e5b4b14ffcfde562a3ef8d59482b073455c9be0c88f579913486392068ebd5c",
+          "git_bytes": 10320,
+          "file_sha256": "1e5b4b14ffcfde562a3ef8d59482b073455c9be0c88f579913486392068ebd5c",
+          "file_bytes": 10320,
+          "materialization": "exact"
+        },
+        {
+          "path": "artifacts/luna47c/focused.xml",
+          "git_blob": "e3ea2d434de8802989d86898db30b4bc181a8075",
+          "git_sha256": "5bdeb2c3e0cb9a5ffc8b66474a8dd31c1b450a75615f573c14f7560855c812ef",
+          "git_bytes": 2419,
+          "file_sha256": "5bdeb2c3e0cb9a5ffc8b66474a8dd31c1b450a75615f573c14f7560855c812ef",
+          "file_bytes": 2419,
+          "materialization": "exact"
+        },
+        {
+          "path": "artifacts/luna47c/full-suite.xml",
+          "git_blob": "6130102763acc17ccab993c3af5db40fcd70c320",
+          "git_sha256": "064ca57f5ecbbecce98644910c5b8f858710486b842765e63dc4c5f7b06f2dfb",
+          "git_bytes": 242390,
+          "file_sha256": "064ca57f5ecbbecce98644910c5b8f858710486b842765e63dc4c5f7b06f2dfb",
+          "file_bytes": 242390,
+          "materialization": "exact"
+        },
+        {
+          "path": "artifacts/luna47c/manifest.json",
+          "git_blob": "55b971e04a844db7d2c1c7814c10315dd97f6f40",
+          "git_sha256": "f10029240bf32720315e1a9b02f6f30e5ae20d4f145198a2077ab6ec70e400cf",
+          "git_bytes": 723,
+          "file_sha256": "f10029240bf32720315e1a9b02f6f30e5ae20d4f145198a2077ab6ec70e400cf",
+          "file_bytes": 723,
+          "materialization": "exact"
+        },
+        {
+          "path": "artifacts/luna47c/replay.json",
+          "git_blob": "d11b15218bcdc44e29529f8d4bd2ca5ded5417b1",
+          "git_sha256": "6780944673d701cc5a201bd3d9d6c9502b0d8f434170cf67d1b93219620c84fc",
+          "git_bytes": 3969626,
+          "file_sha256": "6780944673d701cc5a201bd3d9d6c9502b0d8f434170cf67d1b93219620c84fc",
+          "file_bytes": 3969626,
+          "materialization": "exact"
+        },
+        {
+          "path": "artifacts/luna47c/summary.json",
+          "git_blob": "b04895fe7772cecd972d10f2958bf4cf4f079898",
+          "git_sha256": "1bf25de7563dfd0e620ce804dd46185ab70e21251933be7d4f821f3c61356c96",
+          "git_bytes": 29525,
+          "file_sha256": "1bf25de7563dfd0e620ce804dd46185ab70e21251933be7d4f821f3c61356c96",
+          "file_bytes": 29525,
+          "materialization": "exact"
+        },
+        {
+          "path": "artifacts/luna47c/validation.json",
+          "git_blob": "e0d847334ccad89c1a6c616a9b2f66fa1baff6b1",
+          "git_sha256": "5e0a023991771dcbfd52c8db52e7fe259e6f42955663b05732f6c299436514fc",
+          "git_bytes": 3228,
+          "file_sha256": "5e0a023991771dcbfd52c8db52e7fe259e6f42955663b05732f6c299436514fc",
+          "file_bytes": 3228,
+          "materialization": "exact"
+        },
+        {
+          "path": "experiments/luna47c/PROTOCOL.md",
+          "git_blob": "253d9e33bc3f412044fb0d7bedc1762ae2896bec",
+          "git_sha256": "79c231868a2ff2bd3b39e38a92bdc2c608495b69658fbb22af08523f834acd0d",
+          "git_bytes": 6850,
+          "file_sha256": "4d95c42edcba2e49174666d1573020024e31fad1808de722d8587f7a65de1bca",
+          "file_bytes": 6968,
+          "materialization": "exact LF-to-CRLF"
+        },
+        {
+          "path": "experiments/luna47c/__init__.py",
+          "git_blob": "30380fdf49ab57146389f15f702b5bf51652943d",
+          "git_sha256": "0f1d80357699a75f0546fd29497e62ac30dc21c4f197528f25997221a7df2ef4",
+          "git_bytes": 68,
+          "file_sha256": "d40a6251db6175c3efab92861494fed7b9e5896c07cdf809862eca2389a1a20f",
+          "file_bytes": 69,
+          "materialization": "exact LF-to-CRLF"
+        },
+        {
+          "path": "experiments/luna47c/evaluate.py",
+          "git_blob": "c80884b4703d21ce39c8b44b94f5ea5c7740b934",
+          "git_sha256": "5fa1dff87d34b473c7a780f2ea81c83fc549f1e338211481a92109dd812dcf5f",
+          "git_bytes": 9960,
+          "file_sha256": "e81d92db3d041d72dfd3af97185391573260a529c98d40c8a74201e394eb2b6f",
+          "file_bytes": 10163,
+          "materialization": "exact LF-to-CRLF"
+        },
+        {
+          "path": "experiments/luna47c/fixtures.py",
+          "git_blob": "1144010c66427f723faf5dd10f0ef5d8700395cb",
+          "git_sha256": "aad9ff1db9997be07a8fb56f80a468e2ae631e2da53dfc98b480c868dae88c3d",
+          "git_bytes": 2741,
+          "file_sha256": "100ceb2f2e7cb37679ddf8b010aef7634b92df39c85fdceb0b980f15bf22b0b3",
+          "file_bytes": 2818,
+          "materialization": "exact LF-to-CRLF"
+        },
+        {
+          "path": "experiments/luna47c/qualifier.py",
+          "git_blob": "4e09d4234af0bdda408c9706ddb258a302bb31c3",
+          "git_sha256": "44fd2a413fdba8dff3957174567011adb38d33f2823583bf962583bf900413ee",
+          "git_bytes": 2976,
+          "file_sha256": "aa38b8e09c1bdc9f1100c9e4d45b751ce33bacbb916423cc17a95fde4e649eb4",
+          "file_bytes": 3049,
+          "materialization": "exact LF-to-CRLF"
+        },
+        {
+          "path": "tests/test_luna47c_qualification.py",
+          "git_blob": "beae17e06fda54efcbae12d96de34842e868edd1",
+          "git_sha256": "de021f64a1ba8cbf2817004753db4e9a10890b1a1755b3b566989dd4b60e9c9f",
+          "git_bytes": 5583,
+          "file_sha256": "44c2fef62ac4452032e6a6d82d2f3e5d69afeb3e0dead63d4f9f81e0b2dcc09d",
+          "file_bytes": 5710,
+          "materialization": "exact LF-to-CRLF"
+        },
+        {
+          "path": "workflow/handoffs/luna-47c-adaptive-noise-qualification-20261006.md",
+          "git_blob": "28cf1b5b0865044f35a5ee82ee5e51af61681146",
+          "git_sha256": "ae67f617a88331007cd3229b1543187bb4af3dd3c76059af656a06b9dee031f3",
+          "git_bytes": 16457,
+          "file_sha256": "d4f0bca78b93e0bdf7a73b290d5f88693819a35ab21c9f0b679a786c29e41cf6",
+          "file_bytes": 16703,
+          "materialization": "exact LF-to-CRLF"
+        }
+      ],
+      "history": [
+        {
+          "commit": "3e03a1b3ad5f020a752dab796db157764cb784b5",
+          "metadata": "2026-10-06T21:09:42-04:00 2026-10-06T21:09:42-04:00 Freeze Luna-47C qualification mechanisms fixtures and scoring protocol",
+          "changed_paths": [
+            "experiments/luna47c/PROTOCOL.md",
+            "experiments/luna47c/__init__.py",
+            "experiments/luna47c/evaluate.py",
+            "experiments/luna47c/fixtures.py",
+            "experiments/luna47c/qualifier.py",
+            "tests/test_luna47c_qualification.py",
+            "workflow/handoffs/luna-47c-adaptive-noise-qualification-20261006.md"
+          ]
+        },
+        {
+          "commit": "609b2e5f8a7ae123f9b7f7da5c89378e29353624",
+          "metadata": "2026-10-06T21:18:46-04:00 2026-10-06T21:19:18-04:00 Publish Luna-47C replay evidence negative results and completed handoff",
+          "changed_paths": [
+            "artifacts/luna47c/.gitattributes",
+            "artifacts/luna47c/boundary-regression.xml",
+            "artifacts/luna47c/focused.xml",
+            "artifacts/luna47c/full-suite.xml",
+            "artifacts/luna47c/manifest.json",
+            "artifacts/luna47c/replay.json",
+            "artifacts/luna47c/summary.json",
+            "artifacts/luna47c/validation.json",
+            "workflow/handoffs/luna-47c-adaptive-noise-qualification-20261006.md"
+          ]
+        }
+      ]
+    },
+    "d": {
+      "ref": "deb01f07a0d6b315855d2fab57d558be303f95f3",
+      "files": [
+        {
+          "path": "artifacts/luna47d/README.md",
+          "git_blob": "7e2e588d7dc68be66e437d7c0a92fe23a99ceeb8",
+          "git_sha256": "26cfb9f79e238f7463caa96634f31f59bd75d91f63fc8e3b431d1f0dc366431c",
+          "git_bytes": 2726,
+          "file_sha256": "f1a87e9dc105ace4f8c6dc70c067d0a1450dc9a3aa4a85e8e68da3443363b16f",
+          "file_bytes": 2772,
+          "materialization": "exact LF-to-CRLF"
+        },
+        {
+          "path": "artifacts/luna47d/applicable-tests.xml",
+          "git_blob": "b18fc0edf56bcbd0f705e739ad76e38afd55a962",
+          "git_sha256": "341670f88932fffb8539275bf892410543f50227916f6a6256513c0bc97f4131",
+          "git_bytes": 55345,
+          "file_sha256": "8fa8571f00586e82f812de11e8ea486ffc4853427ce79096acb18e10fef4706e",
+          "file_bytes": 55363,
+          "materialization": "exact LF-to-CRLF"
+        },
+        {
+          "path": "artifacts/luna47d/evidence.json",
+          "git_blob": "2e895206a673f523bf4d5197efe15d501b369211",
+          "git_sha256": "c595a16fa3decad5090755e434fdc556478675c72f431c500b2622581dcc5f46",
+          "git_bytes": 272062,
+          "file_sha256": "c595a16fa3decad5090755e434fdc556478675c72f431c500b2622581dcc5f46",
+          "file_bytes": 272062,
+          "materialization": "exact"
+        },
+        {
+          "path": "artifacts/luna47d/focused-tests.xml",
+          "git_blob": "6972e22abebd8433e9b11349ffd273daf7c585b1",
+          "git_sha256": "f79ce70e177b2cee8aba9a409e43f56c88113a7d844d27ebff16566621376539",
+          "git_bytes": 15063,
+          "file_sha256": "f79ce70e177b2cee8aba9a409e43f56c88113a7d844d27ebff16566621376539",
+          "file_bytes": 15063,
+          "materialization": "exact"
+        },
+        {
+          "path": "artifacts/luna47d/full-tests.xml",
+          "git_blob": "364659229a600696ec2560101e3b16dcc7f7dd0c",
+          "git_sha256": "7a8caa259868707a1e7e3798bd05ef9a2b6f22a2868894e55a97f9ce16314cc9",
+          "git_bytes": 254331,
+          "file_sha256": "b74bfaef5d1e61f2108380e5fecc78908e702b4619f7381aabdecf874b39800f",
+          "file_bytes": 255036,
+          "materialization": "exact LF-to-CRLF"
+        },
+        {
+          "path": "artifacts/luna47d/initial-pre-idle-correction.json",
+          "git_blob": "a865881e1816f7a0499bee3d9a7fd46feea1a59b",
+          "git_sha256": "bf2178bd12ffa5e6f466674fb38abaaf214923b31272a64be9185cfe37b08c81",
+          "git_bytes": 272078,
+          "file_sha256": "bf2178bd12ffa5e6f466674fb38abaaf214923b31272a64be9185cfe37b08c81",
+          "file_bytes": 272078,
+          "materialization": "exact"
+        },
+        {
+          "path": "artifacts/luna47d/validation.json",
+          "git_blob": "d1fd554111406b140b1f6a06aa80840cc6c7eda7",
+          "git_sha256": "2410ab6e4916f7dd36ee0719bc1fd600b503dd5d971ae6478e8860d40b1c0343",
+          "git_bytes": 5981,
+          "file_sha256": "87eba0fcb7c3941b9872dc131d30e2724e369d078dd609e41f49fb7c6bbda1ad",
+          "file_bytes": 6105,
+          "materialization": "exact LF-to-CRLF"
+        },
+        {
+          "path": "experiments/luna47d/PROTOCOL.md",
+          "git_blob": "a5e9e596bb8a2c62a91f8b5ae6d477dd15e7b380",
+          "git_sha256": "7a7465fd9dd3abd17f0dc6ff8de5118b13f5046354739e0f005bc1d24dcbcf1e",
+          "git_bytes": 9152,
+          "file_sha256": "543ead0aeb78f2118737df129eb36f1a535dd71950cb591acbdbc26b6bcb68ec",
+          "file_bytes": 9313,
+          "materialization": "exact LF-to-CRLF"
+        },
+        {
+          "path": "experiments/luna47d/fixtures.json",
+          "git_blob": "ff5912150322351c8bd699f34e1943166685b177",
+          "git_sha256": "e8f6a19977f0da672e2a7f2390378eab6322676a9b304ecd27737b4d4c1bb897",
+          "git_bytes": 1413,
+          "file_sha256": "60b0268c37385908572b2dbfc6a6ffb3b7a5b530dcf933f9f354455f19b66275",
+          "file_bytes": 1433,
+          "materialization": "exact LF-to-CRLF"
+        },
+        {
+          "path": "experiments/luna47d/model.py",
+          "git_blob": "243056ade6b26f71a892364ede5df50fa3f0d1af",
+          "git_sha256": "f58af0ba7124852d6763c50cba330dcb29d221b7689c205fd403bbd7df180e42",
+          "git_bytes": 10443,
+          "file_sha256": "30004f94c466e2fa6158b1f77a4f4c133024826ff36a2d3c857b0532e78c8e49",
+          "file_bytes": 10668,
+          "materialization": "exact LF-to-CRLF"
+        },
+        {
+          "path": "experiments/luna47d/run.py",
+          "git_blob": "9010edcfce3ff0b134c8246840b1c33e4ca97e2a",
+          "git_sha256": "2940016118bd80e80655eeb5dac5817612e14e9eae58c12e64efec71c1b274a9",
+          "git_bytes": 10167,
+          "file_sha256": "577c0b89bcf13ac50fda5fff1fa3c5bb217879673ce8a5b94aa9ee3277fdbb3f",
+          "file_bytes": 10392,
+          "materialization": "exact LF-to-CRLF"
+        },
+        {
+          "path": "tests/test_luna47d_output_model.py",
+          "git_blob": "9e226b0b3021c3fe208c5227cad2e1b5b3e276dd",
+          "git_sha256": "fc8f817b4efcfbfffd6c98d796f999f81b9bb466a297934e70e15250da655aa2",
+          "git_bytes": 10554,
+          "file_sha256": "db8012b410975e27cf3014b8e43687251dc3762f2edb13b647a4508e84c50f9b",
+          "file_bytes": 10784,
+          "materialization": "exact LF-to-CRLF"
+        },
+        {
+          "path": "workflow/handoffs/luna-47d-spike-compression-20261006.md",
+          "git_blob": "f06d1eea071d224b09990fe2de6a11d7c93af97c",
+          "git_sha256": "ca5bd45f38ad5927f8b9882c9c8e7d2ce422a804406e29dd9cd953c69a7fb471",
+          "git_bytes": 18928,
+          "file_sha256": "47c1f042509f4c9363dc17b97088083e72f4fb0d60862096cc749f88aaa1bf4c",
+          "file_bytes": 19204,
+          "materialization": "exact LF-to-CRLF"
+        }
+      ],
+      "history": [
+        {
+          "commit": "6ece0de652270bd3aef1c0a04e487773e81154f7",
+          "metadata": "2026-10-06T21:12:05-04:00 2026-10-06T21:12:05-04:00 Luna-47D: predeclare synthetic compression protocol and bounded model",
+          "changed_paths": [
+            "experiments/luna47d/PROTOCOL.md",
+            "experiments/luna47d/fixtures.json",
+            "experiments/luna47d/model.py",
+            "experiments/luna47d/run.py",
+            "tests/test_luna47d_output_model.py",
+            "workflow/handoffs/luna-47d-spike-compression-20261006.md"
+          ]
+        },
+        {
+          "commit": "9c75e547a67239027d6f8ec8b7f26bc1eae3188e",
+          "metadata": "2026-10-06T21:13:17-04:00 2026-10-06T21:13:17-04:00 Luna-47D: correct weak-drain negative control count assertion",
+          "changed_paths": [
+            "tests/test_luna47d_output_model.py"
+          ]
+        },
+        {
+          "commit": "ee522bf6c4882bb09b9bc0af2520e50c3d1a3589",
+          "metadata": "2026-10-06T21:15:03-04:00 2026-10-06T21:15:03-04:00 Luna-47D: correct idle recovery metric and retain initial evidence",
+          "changed_paths": [
+            "artifacts/luna47d/applicable-tests.xml",
+            "artifacts/luna47d/initial-pre-idle-correction.json",
+            "experiments/luna47d/model.py",
+            "tests/test_luna47d_output_model.py"
+          ]
+        },
+        {
+          "commit": "deb01f07a0d6b315855d2fab57d558be303f95f3",
+          "metadata": "2026-10-06T21:24:10-04:00 2026-10-06T21:24:10-04:00 Luna-47D: publish replay evidence and completed synthetic-model handoff",
+          "changed_paths": [
+            "artifacts/luna47d/README.md",
+            "artifacts/luna47d/evidence.json",
+            "artifacts/luna47d/focused-tests.xml",
+            "artifacts/luna47d/full-tests.xml",
+            "artifacts/luna47d/validation.json",
+            "workflow/handoffs/luna-47d-spike-compression-20261006.md"
+          ]
+        }
+      ]
+    },
+    "e": {
+      "ref": "4e413415a31853877333810d7093f415f93f72f7",
+      "files": [
+        {
+          "path": "artifacts/luna47e/primitive-matrix.json",
+          "git_blob": "a991213ef71d18c0f9fa43b721c243e570e7ead9",
+          "git_sha256": "d444794ddfa62e8da82582199aaaef3940d7f604e293f4f85f2821bebf1b8003",
+          "git_bytes": 31399,
+          "file_sha256": "1c32cda3777056a496c4bc2c4be59c0001e34e117a69c5f94c1ad5b7474f3d50",
+          "file_bytes": 31779,
+          "materialization": "exact LF-to-CRLF"
+        },
+        {
+          "path": "artifacts/luna47e/sources-20261006-retrieval2.json",
+          "git_blob": "bcd2c9092c7fb1a1df7f6fc78f402a7995e3c5d9",
+          "git_sha256": "c4098bc76e1a2cddc47fb221e99c643b2cc09784b820836d5665ecfeef9e9357",
+          "git_bytes": 42730,
+          "file_sha256": "c4098bc76e1a2cddc47fb221e99c643b2cc09784b820836d5665ecfeef9e9357",
+          "file_bytes": 42730,
+          "materialization": "exact"
+        },
+        {
+          "path": "artifacts/luna47e/sources-20261006-retrieval3.json",
+          "git_blob": "6c9defaed8edd9385a3c383b1c3bc134e50a5531",
+          "git_sha256": "f36cdcb4e3c3fdcf4c1252aebfc9ca9cb20f13fd084a60c3882e2868bbfb4ee0",
+          "git_bytes": 21147,
+          "file_sha256": "f36cdcb4e3c3fdcf4c1252aebfc9ca9cb20f13fd084a60c3882e2868bbfb4ee0",
+          "file_bytes": 21147,
+          "materialization": "exact"
+        },
+        {
+          "path": "artifacts/luna47e/sources-20261006-retrieval4.json",
+          "git_blob": "4d6318cdbd51600e3c5cc580521c20d0e62519df",
+          "git_sha256": "f7ceab493e2a92c818439996cfe5702c7ed9de11b8877ee1c74727a5918d76d8",
+          "git_bytes": 12587,
+          "file_sha256": "f7ceab493e2a92c818439996cfe5702c7ed9de11b8877ee1c74727a5918d76d8",
+          "file_bytes": 12587,
+          "materialization": "exact"
+        },
+        {
+          "path": "artifacts/luna47e/sources-20261006-retrieval5.json",
+          "git_blob": "dcf410ef6fb5a81df39c090168b72cb47665dea4",
+          "git_sha256": "4f2b11b02fe33c82f6521c5549761e56f7e71654fc9cf133c25fc7db0201fa2e",
+          "git_bytes": 3981,
+          "file_sha256": "4f2b11b02fe33c82f6521c5549761e56f7e71654fc9cf133c25fc7db0201fa2e",
+          "file_bytes": 3981,
+          "materialization": "exact"
+        },
+        {
+          "path": "artifacts/luna47e/sources-20261006.json",
+          "git_blob": "c4104780be2211ed8999044673ae85f9638b28c3",
+          "git_sha256": "afc2365d562312103dabdbf6ffd5ad77012e6e5d3fe511cb11cc825cbe73ec6c",
+          "git_bytes": 40121,
+          "file_sha256": "afc2365d562312103dabdbf6ffd5ad77012e6e5d3fe511cb11cc825cbe73ec6c",
+          "file_bytes": 40121,
+          "materialization": "exact"
+        },
+        {
+          "path": "artifacts/luna47e/validation-20261006.json",
+          "git_blob": "471d4763091cc81c4a282a24c0f99de478222ae2",
+          "git_sha256": "8a50bb13fa0806713cf701b9bb108445be4f5381239eb3d863d36fdadbdceda7",
+          "git_bytes": 3744,
+          "file_sha256": "8a50bb13fa0806713cf701b9bb108445be4f5381239eb3d863d36fdadbdceda7",
+          "file_bytes": 3744,
+          "materialization": "exact"
+        },
+        {
+          "path": "experiments/luna47e/README.md",
+          "git_blob": "daf9887a59e23bcc07284f8eb4791c7c98b1e330",
+          "git_sha256": "6ac034b7c28c858b0572fb85a4f238627f807b924d5be7e8bce756d78185c82b",
+          "git_bytes": 15317,
+          "file_sha256": "a7b0c217be7f36c2d907a1283950e2c934ddc575ddb6e4f78f179faa2af997d2",
+          "file_bytes": 15547,
+          "materialization": "exact LF-to-CRLF"
+        },
+        {
+          "path": "experiments/luna47e/capture_sources.py",
+          "git_blob": "d7377f058f5c2edf94abf1046f5fa956bb961ea2",
+          "git_sha256": "a8e929a8d3ee61b0ea0cf5d5defcff64e53d7f0cf63283fbb4b20863741e858f",
+          "git_bytes": 10822,
+          "file_sha256": "e98d18e9da93c100ca5a468dea604759288ff3a1295b32cbbdbd4323110e1e98",
+          "file_bytes": 11010,
+          "materialization": "exact LF-to-CRLF"
+        },
+        {
+          "path": "experiments/luna47e/criteria.md",
+          "git_blob": "7f14c368261b380c7bda198e389d17a2cd5864fd",
+          "git_sha256": "585bf7aa078a67718cc341f12bce026fb111fbca9dbd0db1018d783411a13210",
+          "git_bytes": 3108,
+          "file_sha256": "e7dfd7bba267c25a276354052ee36a72a70a818108ce488f1ea6cabfbc619db9",
+          "file_bytes": 3162,
+          "materialization": "exact LF-to-CRLF"
+        },
+        {
+          "path": "experiments/luna47e/validate.py",
+          "git_blob": "1d6f24494ea2d5304ed78ae8435612a552299566",
+          "git_sha256": "7b4dd837e3215c1b492e74321c573ca1693491d08ce0b4b2d182dccc9ef40c9c",
+          "git_bytes": 11701,
+          "file_sha256": "af005c33256e50ba8cc43f57e631c53b8f902410edc0984625a090eac21c5459",
+          "file_bytes": 11920,
+          "materialization": "exact LF-to-CRLF"
+        },
+        {
+          "path": "tests/test_luna47e_evidence.py",
+          "git_blob": "788a2819c06fe84a3fe681d2063b0d625d4ebdfa",
+          "git_sha256": "63cb2709d1c1c132d40b9558cca7c5f50d87c3b029eca928751bcfddac4df7c2",
+          "git_bytes": 2546,
+          "file_sha256": "c4fd0d88d81a1d255dc035eb2301fa8f55a6cb2de3d7e91af5ed6cce0c5f4074",
+          "file_bytes": 2619,
+          "materialization": "exact LF-to-CRLF"
+        },
+        {
+          "path": "workflow/handoffs/luna-47e-hardware-realizability-20261006.md",
+          "git_blob": "c2cc5e376484726d41978a99b22413a31765cbaf",
+          "git_sha256": "057662f11c903ea3ab22cf549b855ca0994d177c4fe3d12a7f6c8188483299f6",
+          "git_bytes": 18937,
+          "file_sha256": "f964685b4beaa5ec57a25fc4fab075774ddd4cc2cbb8627b200999dd1b5dd0df",
+          "file_bytes": 19223,
+          "materialization": "exact LF-to-CRLF"
+        }
+      ],
+      "history": [
+        {
+          "commit": "d19b2064ce846e6c564d1e34cd306b4ca0f3d036",
+          "metadata": "2026-10-06T21:30:46-04:00 2026-10-06T21:30:46-04:00 Document Luna-47E primitive realizability and public component evidence",
+          "changed_paths": [
+            "artifacts/luna47e/primitive-matrix.json",
+            "artifacts/luna47e/sources-20261006-retrieval2.json",
+            "artifacts/luna47e/sources-20261006-retrieval3.json",
+            "artifacts/luna47e/sources-20261006-retrieval4.json",
+            "artifacts/luna47e/sources-20261006-retrieval5.json",
+            "artifacts/luna47e/sources-20261006.json",
+            "experiments/luna47e/README.md",
+            "experiments/luna47e/capture_sources.py",
+            "experiments/luna47e/criteria.md",
+            "experiments/luna47e/validate.py",
+            "tests/test_luna47e_evidence.py"
+          ]
+        },
+        {
+          "commit": "4e413415a31853877333810d7093f415f93f72f7",
+          "metadata": "2026-10-06T21:32:57-04:00 2026-10-06T21:32:57-04:00 Publish Luna-47E handoff and offline evidence integrity record",
+          "changed_paths": [
+            "artifacts/luna47e/validation-20261006.json",
+            "workflow/handoffs/luna-47e-hardware-realizability-20261006.md"
+          ]
+        }
+      ]
+    },
+    "f": {
+      "ref": "8cddf9d5d3fc0ea6971dc54645e8033c290dc852",
+      "files": [
+        {
+          "path": "artifacts/luna47f/diagnostic.json",
+          "git_blob": "0fe9b9decb11ff2255e92d4fc3183b90f42ad9d5",
+          "git_sha256": "b41eb8cc6aaefe2932f9177a9f76b2c506929c47d92ceaeb50063abd208680a3",
+          "git_bytes": 4405663,
+          "file_sha256": "b41eb8cc6aaefe2932f9177a9f76b2c506929c47d92ceaeb50063abd208680a3",
+          "file_bytes": 4405663,
+          "materialization": "exact"
+        },
+        {
+          "path": "artifacts/luna47f/validation.json",
+          "git_blob": "c70c9f1d4ae6f5712b672d54e2e71cef0629cc2a",
+          "git_sha256": "176069a349584347fd312e58439aee5f7128356f20d32c29b1b79ac18677f3cf",
+          "git_bytes": 6773,
+          "file_sha256": "e3c8cb236f57908319893c2e109a2c94f5dd8d50e6953f48810da74259a62c29",
+          "file_bytes": 6894,
+          "materialization": "exact LF-to-CRLF"
+        },
+        {
+          "path": "experiments/luna47f/PROTOCOL.md",
+          "git_blob": "c36ee1b2c63b9168357a27014ba04604740309c8",
+          "git_sha256": "a5024d539a2b79e5fe583cda937f01f6b88d06b2d404a502de246095e260c1fa",
+          "git_bytes": 8369,
+          "file_sha256": "38de79f14095224abe9e5a2f7ef3123541a960f89b5d390d442b677740dbf60f",
+          "file_bytes": 8506,
+          "materialization": "exact LF-to-CRLF"
+        },
+        {
+          "path": "experiments/luna47f/README.md",
+          "git_blob": "f3a67586808e2d51e7527405f497185f3476a55b",
+          "git_sha256": "6369181ea231bcc58430ab2941acbf3f47aaf7a08efbd3ca352b01722cf32b94",
+          "git_bytes": 3150,
+          "file_sha256": "224e3a2a9635dca195169ef08c0d5273ef30dbf08e8b35f181acc4e60af7c4b8",
+          "file_bytes": 3204,
+          "materialization": "exact LF-to-CRLF"
+        },
+        {
+          "path": "experiments/luna47f/diagnostic.py",
+          "git_blob": "2a3f94aa2c001e7f2b0d3ecc790ba19eb7a94e5c",
+          "git_sha256": "e677ed141c240700c0bb74b3572a32785d189ca3281185dcf9b8088bf62b5b5a",
+          "git_bytes": 23230,
+          "file_sha256": "066b51462119e782535682d3e1054f834e57007c1c1ce066f8a8dc597c6ad401",
+          "file_bytes": 23655,
+          "materialization": "exact LF-to-CRLF"
+        },
+        {
+          "path": "tests/test_luna47f_diagnostic.py",
+          "git_blob": "0f19ebf9a1d60513856410bdf74200681088684b",
+          "git_sha256": "5317b7ef1456fb5b58d19bb9cb8f5951fc0bf49f00f4472c4772a006c0092b25",
+          "git_bytes": 11747,
+          "file_sha256": "dd08c8154dd1c152a1d284dcc2e04420634ee882e246fd110a2267110fee6cb4",
+          "file_bytes": 11992,
+          "materialization": "exact LF-to-CRLF"
+        },
+        {
+          "path": "tests/test_luna47f_retained.py",
+          "git_blob": "d87b59f3e375f63bf1e456126679b55d419893c6",
+          "git_sha256": "d540b83001015ecaff9ba2a0c8032c919446076650bf158e4852b6faeb1efd95",
+          "git_bytes": 4826,
+          "file_sha256": "8a4f7de2ebb74aa5e332f47a1f861930dde3b4cdc9d1acf96d5668a8ceb3cd29",
+          "file_bytes": 4923,
+          "materialization": "exact LF-to-CRLF"
+        },
+        {
+          "path": "workflow/handoffs/luna-47f-candidate-generation-diagnostic-20261006.md",
+          "git_blob": "d0e1c838b5ca5a48f7a2ef005d6127dee24139ff",
+          "git_sha256": "50f2b6b7370557d5ca51cbaaefc64ef208ef0c93fe8a1c0e689bdf3156194192",
+          "git_bytes": 20613,
+          "file_sha256": "a2bc68c40a10ae612eaf7d1691f374660e66d3eb817fc566427bc8b29e21564d",
+          "file_bytes": 20957,
+          "materialization": "exact LF-to-CRLF"
+        }
+      ],
+      "history": [
+        {
+          "commit": "8af8d733a1c8fc7762ef3e34bec775afc10ca2ae",
+          "metadata": "2026-10-06T21:12:49-04:00 2026-10-06T21:12:49-04:00 Luna-47F predeclare replay-only causal candidate protocol and tests",
+          "changed_paths": [
+            "experiments/luna47f/PROTOCOL.md",
+            "experiments/luna47f/diagnostic.py",
+            "tests/test_luna47f_diagnostic.py"
+          ]
+        },
+        {
+          "commit": "39f99b1f318dd965643ec6ef65907163cd1d5667",
+          "metadata": "2026-10-06T21:14:38-04:00 2026-10-06T21:14:38-04:00 Luna-47F pin published JSON and exact Git checkout materialization",
+          "changed_paths": [
+            "experiments/luna47f/PROTOCOL.md",
+            "experiments/luna47f/diagnostic.py",
+            "tests/test_luna47f_diagnostic.py"
+          ]
+        },
+        {
+          "commit": "8cddf9d5d3fc0ea6971dc54645e8033c290dc852",
+          "metadata": "2026-10-06T21:22:52-04:00 2026-10-06T21:22:52-04:00 Luna-47F publish deterministic replay evidence and bounded partial handoff",
+          "changed_paths": [
+            "artifacts/luna47f/diagnostic.json",
+            "artifacts/luna47f/validation.json",
+            "experiments/luna47f/README.md",
+            "tests/test_luna47f_retained.py",
+            "workflow/handoffs/luna-47f-candidate-generation-diagnostic-20261006.md"
+          ]
+        }
+      ]
+    },
+    "g": {
+      "ref": "42698364392901de955ca04a770c975a1b0a94d2",
+      "files": [
+        {
+          "path": "artifacts/luna47g/.gitattributes",
+          "git_blob": "d42dd3289d628c2f57761c7366891f197b201daf",
+          "git_sha256": "7ff52c6b408ef746035e80f14ed5ef24f21429371ab98f24035089cd6e8ebf26",
+          "git_bytes": 107,
+          "file_sha256": "9baab614650f62812eb591cea7abf5e082274e0dd6f968fef585eaaf53301ff3",
+          "file_bytes": 110,
+          "materialization": "exact LF-to-CRLF"
+        },
+        {
+          "path": "artifacts/luna47g/corners.jsonl.gz",
+          "git_blob": "e310a3f331ff693ae06df6b598b22be130400394",
+          "git_sha256": "08467f3367e08b6716eec9886345f9adaa59bef6d74024727ccb01dbfd97f575",
+          "git_bytes": 441249,
+          "file_sha256": "08467f3367e08b6716eec9886345f9adaa59bef6d74024727ccb01dbfd97f575",
+          "file_bytes": 441249,
+          "materialization": "exact"
+        },
+        {
+          "path": "artifacts/luna47g/diagnostics.json",
+          "git_blob": "eba116d88df3ed4211b04c2ab22afaded8329f86",
+          "git_sha256": "2f0d5f336a1540e429b5defb0cef401cea454d0482b321d6d96d76a3515bf016",
+          "git_bytes": 8009,
+          "file_sha256": "2f0d5f336a1540e429b5defb0cef401cea454d0482b321d6d96d76a3515bf016",
+          "file_bytes": 8009,
+          "materialization": "exact"
+        },
+        {
+          "path": "artifacts/luna47g/manifest.json",
+          "git_blob": "892bcd63cc5788d935088c3fdeeb0b8194670a23",
+          "git_sha256": "098366d2e850e7695658f239265faf5589fae45efe8ae95eeb3fa315b32058da",
+          "git_bytes": 2031,
+          "file_sha256": "098366d2e850e7695658f239265faf5589fae45efe8ae95eeb3fa315b32058da",
+          "file_bytes": 2031,
+          "materialization": "exact"
+        },
+        {
+          "path": "artifacts/luna47g/package-manifest.json",
+          "git_blob": "ec76ab289bc1778b17eddd47660c70c74d93deb7",
+          "git_sha256": "f6334b8c222fb0d1883a31274e6fd1f2859a408617f48d9cdeb6bf2dc6b8a092",
+          "git_bytes": 482,
+          "file_sha256": "f6334b8c222fb0d1883a31274e6fd1f2859a408617f48d9cdeb6bf2dc6b8a092",
+          "file_bytes": 482,
+          "materialization": "exact"
+        },
+        {
+          "path": "artifacts/luna47g/sample-provenance.jsonl.gz",
+          "git_blob": "82b9ff7ee031864cc34d3408e23c76b536cd4234",
+          "git_sha256": "7ae747bae5cb3e065b27d8752ab4ef135c4eb52519fcb9ce51deb2869634cd86",
+          "git_bytes": 227052,
+          "file_sha256": "7ae747bae5cb3e065b27d8752ab4ef135c4eb52519fcb9ce51deb2869634cd86",
+          "file_bytes": 227052,
+          "materialization": "exact"
+        },
+        {
+          "path": "artifacts/luna47g/samples.jsonl.gz",
+          "git_blob": "d3cb10ecc6892e3ace5a230c74a8910bee204ad8",
+          "git_sha256": "008073d1bbff799b6534ed35336b0c2cf2bda47dc24e503244a4f20d09e1bde6",
+          "git_bytes": 12297952,
+          "file_sha256": "008073d1bbff799b6534ed35336b0c2cf2bda47dc24e503244a4f20d09e1bde6",
+          "file_bytes": 12297952,
+          "materialization": "exact"
+        },
+        {
+          "path": "artifacts/luna47g/summary.json",
+          "git_blob": "b65cfd0bdd69671d25b07d360f785a4b427873fc",
+          "git_sha256": "6fcd802bb657eb3799b31c61bc66407adafdd29f893ff45f27c9c07fee165a71",
+          "git_bytes": 14197,
+          "file_sha256": "6fcd802bb657eb3799b31c61bc66407adafdd29f893ff45f27c9c07fee165a71",
+          "file_bytes": 14197,
+          "materialization": "exact"
+        },
+        {
+          "path": "artifacts/luna47g/validation.json",
+          "git_blob": "e5a894d441b2be72fbc1ca4065202847ed14264b",
+          "git_sha256": "9f0ac5f6357378fb4bedf9e8620bbc4ae0f78ec11fc2fd2ce41fe54d8473dc6b",
+          "git_bytes": 3874,
+          "file_sha256": "9f0ac5f6357378fb4bedf9e8620bbc4ae0f78ec11fc2fd2ce41fe54d8473dc6b",
+          "file_bytes": 3874,
+          "materialization": "exact"
+        },
+        {
+          "path": "experiments/luna47g/PROTOCOL.md",
+          "git_blob": "02c6e3be5e3e2b28401b9131a3ddf01b72215f7b",
+          "git_sha256": "75e49a6f159232abbc40e44ae296df2fce1fee4545aaeb58fde0662ce33eab9a",
+          "git_bytes": 9346,
+          "file_sha256": "3d0d7f0175ed7729b1b633f5046b655b3a9d13d05c5138545857e9e6d75774ba",
+          "file_bytes": 9496,
+          "materialization": "exact LF-to-CRLF"
+        },
+        {
+          "path": "experiments/luna47g/config.json",
+          "git_blob": "47d2f422529c98a3a94f7efd2acdd06473114d2d",
+          "git_sha256": "de21208c413711423e390a9678b94d2696c752276ebe978418fecc38eb0c5aee",
+          "git_bytes": 979,
+          "file_sha256": "9103651ce305a78af858cfe1bff2dd37b99a007140adfbc4ede50c4fc8d6760a",
+          "file_bytes": 1008,
+          "materialization": "exact LF-to-CRLF"
+        },
+        {
+          "path": "experiments/luna47g/fixtures.json",
+          "git_blob": "0f4a86c286f52010af22b18165527aff3276fb56",
+          "git_sha256": "b8337b433036c65f6d1de584af2c4fedc82ef058153b0cdbed0af982b4327c09",
+          "git_bytes": 546,
+          "file_sha256": "7b4f2bd7072f2cb3718f1478f5a27a9c25cdb98d95bcd7a3d82861101f3c705a",
+          "file_bytes": 557,
+          "materialization": "exact LF-to-CRLF"
+        },
+        {
+          "path": "experiments/luna47g/package_evidence.py",
+          "git_blob": "0e726bc99de8f28bcc34ac90507582d57a28a7de",
+          "git_sha256": "8f44aa41981194ec695f98c9f9ccd437b15988285f8fd995c17e7b56cf53f0de",
+          "git_bytes": 7774,
+          "file_sha256": "949670db5643c9afa2892d4b26d152c158f010e832dca5a5e569b98c64655c99",
+          "file_bytes": 7915,
+          "materialization": "exact LF-to-CRLF"
+        },
+        {
+          "path": "experiments/luna47g/simulate.py",
+          "git_blob": "1c50b0544f3ec51caf4fe493599dd5f85f4628ec",
+          "git_sha256": "7a8f37a3fb446f9c30122b82a5277d5d05b659344e9929a0af29083927eb66c3",
+          "git_bytes": 19723,
+          "file_sha256": "b2ec30805d08b2c92a4a6845492956c0093575bca0199df55f98df0d0f001f5f",
+          "file_bytes": 20134,
+          "materialization": "exact LF-to-CRLF"
+        },
+        {
+          "path": "tests/test_luna47g_packaging.py",
+          "git_blob": "e60aded07b78fbe21488072e13c8ba13894f3d99",
+          "git_sha256": "15b684675a67a59d42a51c0444acea85cd51fe4dc216f83becf98decda7953ca",
+          "git_bytes": 2722,
+          "file_sha256": "ff910acc3e8102346c01acbec6459ef6c5f0ab3f8a47820691a85f77e7bc1ea6",
+          "file_bytes": 2781,
+          "materialization": "exact LF-to-CRLF"
+        },
+        {
+          "path": "tests/test_luna47g_robustness.py",
+          "git_blob": "7a35b29e0af8f36ad068777b7feae838f74f6123",
+          "git_sha256": "09e6f8eeadd1d06613d9c80acdb3c156e1fd25ec358988ae2bcebd046946051f",
+          "git_bytes": 6813,
+          "file_sha256": "0052441c5278851468d44e2184c2389e6c4c4f501ec67dcc323fb1ed0434f93d",
+          "file_bytes": 6991,
+          "materialization": "exact LF-to-CRLF"
+        },
+        {
+          "path": "workflow/handoffs/luna-47g-analog-robustness-20261006.md",
+          "git_blob": "52a3002fe8a27a0d62416005c19a0b4aef7d14bc",
+          "git_sha256": "761c8f6efd7ecaec75f57c46c28f43f2205a28ef0dc959aabe6ed12ab0387da8",
+          "git_bytes": 20265,
+          "file_sha256": "d0f1741ad712ce637ee0413de6b47cf4e48b2a8761631ed4b96caf042c9caec5",
+          "file_bytes": 20591,
+          "materialization": "exact LF-to-CRLF"
+        }
+      ],
+      "history": [
+        {
+          "commit": "8406de77e7328908e70525982336b74edc234124",
+          "metadata": "2026-10-06T21:11:38-04:00 2026-10-06T21:11:38-04:00 Preregister independent Luna-47G analog tolerance stand-in and gates",
+          "changed_paths": [
+            "experiments/luna47g/PROTOCOL.md",
+            "experiments/luna47g/config.json",
+            "experiments/luna47g/fixtures.json",
+            "experiments/luna47g/simulate.py",
+            "tests/test_luna47g_robustness.py",
+            "workflow/handoffs/luna-47g-analog-robustness-20261006.md"
+          ]
+        },
+        {
+          "commit": "b0539cd920e8c962f319a0a5643f54e1b4676b02",
+          "metadata": "2026-10-06T21:17:52-04:00 2026-10-06T21:17:52-04:00 Add post-outcome provenance packaging without changing frozen model gates",
+          "changed_paths": [
+            "experiments/luna47g/package_evidence.py",
+            "tests/test_luna47g_packaging.py"
+          ]
+        },
+        {
+          "commit": "42698364392901de955ca04a770c975a1b0a94d2",
+          "metadata": "2026-10-06T21:25:01-04:00 2026-10-06T21:25:01-04:00 Publish Luna-47G partial robustness evidence, failures, replay and handoff",
+          "changed_paths": [
+            "artifacts/luna47g/.gitattributes",
+            "artifacts/luna47g/corners.jsonl.gz",
+            "artifacts/luna47g/diagnostics.json",
+            "artifacts/luna47g/manifest.json",
+            "artifacts/luna47g/package-manifest.json",
+            "artifacts/luna47g/sample-provenance.jsonl.gz",
+            "artifacts/luna47g/samples.jsonl.gz",
+            "artifacts/luna47g/summary.json",
+            "artifacts/luna47g/validation.json",
+            "workflow/handoffs/luna-47g-analog-robustness-20261006.md"
+          ]
+        }
+      ]
+    }
+  },
+  "source_integrity": {
+    "catalog_files": 22,
+    "phases": [
+      {
+        "phase": "initial",
+        "pairs": 1950,
+        "downstream": 235
+      },
+      {
+        "phase": "replay",
+        "pairs": 1950,
+        "downstream": 235
+      }
+    ],
+    "materialization": {
+      "a:artifacts/luna45-acp0008-depth2-destination-integration-20261006/config.json": {
+        "file_sha256": "c62ca9fe9759b2bc97f3dbb57c23128eb472db39d803248b07f60061c10b08b1",
+        "git_sha256": "0c8abbb1fb68f7b856a9f0718b0eef2a307943b3290ccf3e1bfed049d9dd111a",
+        "file_bytes": 36094,
+        "git_bytes": 36093,
+        "status": "exact LF-to-CRLF"
+      },
+      "b:artifacts/luna45-acp0008-depth2-destination-integration-20261006/config.json": {
+        "file_sha256": "c62ca9fe9759b2bc97f3dbb57c23128eb472db39d803248b07f60061c10b08b1",
+        "git_sha256": "0c8abbb1fb68f7b856a9f0718b0eef2a307943b3290ccf3e1bfed049d9dd111a",
+        "file_bytes": 36094,
+        "git_bytes": 36093,
+        "status": "exact LF-to-CRLF"
+      },
+      "c:artifacts/luna45-acp0008-depth2-destination-integration-20261006/config.json": {
+        "file_sha256": "c62ca9fe9759b2bc97f3dbb57c23128eb472db39d803248b07f60061c10b08b1",
+        "git_sha256": "0c8abbb1fb68f7b856a9f0718b0eef2a307943b3290ccf3e1bfed049d9dd111a",
+        "file_bytes": 36094,
+        "git_bytes": 36093,
+        "status": "exact LF-to-CRLF"
+      },
+      "d:artifacts/luna45-acp0008-depth2-destination-integration-20261006/config.json": {
+        "file_sha256": "c62ca9fe9759b2bc97f3dbb57c23128eb472db39d803248b07f60061c10b08b1",
+        "git_sha256": "0c8abbb1fb68f7b856a9f0718b0eef2a307943b3290ccf3e1bfed049d9dd111a",
+        "file_bytes": 36094,
+        "git_bytes": 36093,
+        "status": "exact LF-to-CRLF"
+      },
+      "e:artifacts/luna45-acp0008-depth2-destination-integration-20261006/config.json": {
+        "file_sha256": "c62ca9fe9759b2bc97f3dbb57c23128eb472db39d803248b07f60061c10b08b1",
+        "git_sha256": "0c8abbb1fb68f7b856a9f0718b0eef2a307943b3290ccf3e1bfed049d9dd111a",
+        "file_bytes": 36094,
+        "git_bytes": 36093,
+        "status": "exact LF-to-CRLF"
+      },
+      "f:artifacts/luna45-acp0008-depth2-destination-integration-20261006/config.json": {
+        "file_sha256": "c62ca9fe9759b2bc97f3dbb57c23128eb472db39d803248b07f60061c10b08b1",
+        "git_sha256": "0c8abbb1fb68f7b856a9f0718b0eef2a307943b3290ccf3e1bfed049d9dd111a",
+        "file_bytes": 36094,
+        "git_bytes": 36093,
+        "status": "exact LF-to-CRLF"
+      },
+      "g:artifacts/luna45-acp0008-depth2-destination-integration-20261006/config.json": {
+        "file_sha256": "c62ca9fe9759b2bc97f3dbb57c23128eb472db39d803248b07f60061c10b08b1",
+        "git_sha256": "0c8abbb1fb68f7b856a9f0718b0eef2a307943b3290ccf3e1bfed049d9dd111a",
+        "file_bytes": 36094,
+        "git_bytes": 36093,
+        "status": "exact LF-to-CRLF"
+      },
+      "a:artifacts/luna45-acp0008-depth2-destination-integration-20261006/initial-destination_calibrated-enqueue.json": {
+        "file_sha256": "4dcd0c235a665341c40c869d376e2a1168db1a61b74d703817e8323f161b4da4",
+        "git_sha256": "c03e7c4af5d406c73f14a905ad105d74b19540d5e077bac6ca6d9b170e08779b",
+        "file_bytes": 1172951,
+        "git_bytes": 1172950,
+        "status": "exact LF-to-CRLF"
+      },
+      "b:artifacts/luna45-acp0008-depth2-destination-integration-20261006/initial-destination_calibrated-enqueue.json": {
+        "file_sha256": "4dcd0c235a665341c40c869d376e2a1168db1a61b74d703817e8323f161b4da4",
+        "git_sha256": "c03e7c4af5d406c73f14a905ad105d74b19540d5e077bac6ca6d9b170e08779b",
+        "file_bytes": 1172951,
+        "git_bytes": 1172950,
+        "status": "exact LF-to-CRLF"
+      },
+      "c:artifacts/luna45-acp0008-depth2-destination-integration-20261006/initial-destination_calibrated-enqueue.json": {
+        "file_sha256": "4dcd0c235a665341c40c869d376e2a1168db1a61b74d703817e8323f161b4da4",
+        "git_sha256": "c03e7c4af5d406c73f14a905ad105d74b19540d5e077bac6ca6d9b170e08779b",
+        "file_bytes": 1172951,
+        "git_bytes": 1172950,
+        "status": "exact LF-to-CRLF"
+      },
+      "d:artifacts/luna45-acp0008-depth2-destination-integration-20261006/initial-destination_calibrated-enqueue.json": {
+        "file_sha256": "4dcd0c235a665341c40c869d376e2a1168db1a61b74d703817e8323f161b4da4",
+        "git_sha256": "c03e7c4af5d406c73f14a905ad105d74b19540d5e077bac6ca6d9b170e08779b",
+        "file_bytes": 1172951,
+        "git_bytes": 1172950,
+        "status": "exact LF-to-CRLF"
+      },
+      "e:artifacts/luna45-acp0008-depth2-destination-integration-20261006/initial-destination_calibrated-enqueue.json": {
+        "file_sha256": "4dcd0c235a665341c40c869d376e2a1168db1a61b74d703817e8323f161b4da4",
+        "git_sha256": "c03e7c4af5d406c73f14a905ad105d74b19540d5e077bac6ca6d9b170e08779b",
+        "file_bytes": 1172951,
+        "git_bytes": 1172950,
+        "status": "exact LF-to-CRLF"
+      },
+      "f:artifacts/luna45-acp0008-depth2-destination-integration-20261006/initial-destination_calibrated-enqueue.json": {
+        "file_sha256": "4dcd0c235a665341c40c869d376e2a1168db1a61b74d703817e8323f161b4da4",
+        "git_sha256": "c03e7c4af5d406c73f14a905ad105d74b19540d5e077bac6ca6d9b170e08779b",
+        "file_bytes": 1172951,
+        "git_bytes": 1172950,
+        "status": "exact LF-to-CRLF"
+      },
+      "g:artifacts/luna45-acp0008-depth2-destination-integration-20261006/initial-destination_calibrated-enqueue.json": {
+        "file_sha256": "4dcd0c235a665341c40c869d376e2a1168db1a61b74d703817e8323f161b4da4",
+        "git_sha256": "c03e7c4af5d406c73f14a905ad105d74b19540d5e077bac6ca6d9b170e08779b",
+        "file_bytes": 1172951,
+        "git_bytes": 1172950,
+        "status": "exact LF-to-CRLF"
+      },
+      "a:artifacts/luna45-acp0008-depth2-destination-integration-20261006/initial-destination_calibrated-reception.json": {
+        "file_sha256": "b3ab7b2718293b77e7f372f8a27bf1f095298aa0ebf5fc56fb4bf5ef44d0f818",
+        "git_sha256": "e4ac637e9f60c49a038ad8770e0d0faa015ae27f5eae41ffc8e371331a056a8b",
+        "file_bytes": 1595511,
+        "git_bytes": 1595510,
+        "status": "exact LF-to-CRLF"
+      },
+      "b:artifacts/luna45-acp0008-depth2-destination-integration-20261006/initial-destination_calibrated-reception.json": {
+        "file_sha256": "b3ab7b2718293b77e7f372f8a27bf1f095298aa0ebf5fc56fb4bf5ef44d0f818",
+        "git_sha256": "e4ac637e9f60c49a038ad8770e0d0faa015ae27f5eae41ffc8e371331a056a8b",
+        "file_bytes": 1595511,
+        "git_bytes": 1595510,
+        "status": "exact LF-to-CRLF"
+      },
+      "c:artifacts/luna45-acp0008-depth2-destination-integration-20261006/initial-destination_calibrated-reception.json": {
+        "file_sha256": "b3ab7b2718293b77e7f372f8a27bf1f095298aa0ebf5fc56fb4bf5ef44d0f818",
+        "git_sha256": "e4ac637e9f60c49a038ad8770e0d0faa015ae27f5eae41ffc8e371331a056a8b",
+        "file_bytes": 1595511,
+        "git_bytes": 1595510,
+        "status": "exact LF-to-CRLF"
+      },
+      "d:artifacts/luna45-acp0008-depth2-destination-integration-20261006/initial-destination_calibrated-reception.json": {
+        "file_sha256": "b3ab7b2718293b77e7f372f8a27bf1f095298aa0ebf5fc56fb4bf5ef44d0f818",
+        "git_sha256": "e4ac637e9f60c49a038ad8770e0d0faa015ae27f5eae41ffc8e371331a056a8b",
+        "file_bytes": 1595511,
+        "git_bytes": 1595510,
+        "status": "exact LF-to-CRLF"
+      },
+      "e:artifacts/luna45-acp0008-depth2-destination-integration-20261006/initial-destination_calibrated-reception.json": {
+        "file_sha256": "b3ab7b2718293b77e7f372f8a27bf1f095298aa0ebf5fc56fb4bf5ef44d0f818",
+        "git_sha256": "e4ac637e9f60c49a038ad8770e0d0faa015ae27f5eae41ffc8e371331a056a8b",
+        "file_bytes": 1595511,
+        "git_bytes": 1595510,
+        "status": "exact LF-to-CRLF"
+      },
+      "f:artifacts/luna45-acp0008-depth2-destination-integration-20261006/initial-destination_calibrated-reception.json": {
+        "file_sha256": "b3ab7b2718293b77e7f372f8a27bf1f095298aa0ebf5fc56fb4bf5ef44d0f818",
+        "git_sha256": "e4ac637e9f60c49a038ad8770e0d0faa015ae27f5eae41ffc8e371331a056a8b",
+        "file_bytes": 1595511,
+        "git_bytes": 1595510,
+        "status": "exact LF-to-CRLF"
+      },
+      "g:artifacts/luna45-acp0008-depth2-destination-integration-20261006/initial-destination_calibrated-reception.json": {
+        "file_sha256": "b3ab7b2718293b77e7f372f8a27bf1f095298aa0ebf5fc56fb4bf5ef44d0f818",
+        "git_sha256": "e4ac637e9f60c49a038ad8770e0d0faa015ae27f5eae41ffc8e371331a056a8b",
+        "file_bytes": 1595511,
+        "git_bytes": 1595510,
+        "status": "exact LF-to-CRLF"
+      },
+      "a:artifacts/luna45-acp0008-depth2-destination-integration-20261006/initial-destination_calibrated.json": {
+        "file_sha256": "5a29fe999a9410af7655590c23df1140e9774f900fe2880aaeb95830693fb792",
+        "git_sha256": "7debc99cf9e62f789582ab1ab24647268083a3c4e9c796da82c55912f1d4ffe8",
+        "file_bytes": 40798966,
+        "git_bytes": 40798965,
+        "status": "exact LF-to-CRLF"
+      },
+      "b:artifacts/luna45-acp0008-depth2-destination-integration-20261006/initial-destination_calibrated.json": {
+        "file_sha256": "5a29fe999a9410af7655590c23df1140e9774f900fe2880aaeb95830693fb792",
+        "git_sha256": "7debc99cf9e62f789582ab1ab24647268083a3c4e9c796da82c55912f1d4ffe8",
+        "file_bytes": 40798966,
+        "git_bytes": 40798965,
+        "status": "exact LF-to-CRLF"
+      },
+      "c:artifacts/luna45-acp0008-depth2-destination-integration-20261006/initial-destination_calibrated.json": {
+        "file_sha256": "5a29fe999a9410af7655590c23df1140e9774f900fe2880aaeb95830693fb792",
+        "git_sha256": "7debc99cf9e62f789582ab1ab24647268083a3c4e9c796da82c55912f1d4ffe8",
+        "file_bytes": 40798966,
+        "git_bytes": 40798965,
+        "status": "exact LF-to-CRLF"
+      },
+      "d:artifacts/luna45-acp0008-depth2-destination-integration-20261006/initial-destination_calibrated.json": {
+        "file_sha256": "5a29fe999a9410af7655590c23df1140e9774f900fe2880aaeb95830693fb792",
+        "git_sha256": "7debc99cf9e62f789582ab1ab24647268083a3c4e9c796da82c55912f1d4ffe8",
+        "file_bytes": 40798966,
+        "git_bytes": 40798965,
+        "status": "exact LF-to-CRLF"
+      },
+      "e:artifacts/luna45-acp0008-depth2-destination-integration-20261006/initial-destination_calibrated.json": {
+        "file_sha256": "5a29fe999a9410af7655590c23df1140e9774f900fe2880aaeb95830693fb792",
+        "git_sha256": "7debc99cf9e62f789582ab1ab24647268083a3c4e9c796da82c55912f1d4ffe8",
+        "file_bytes": 40798966,
+        "git_bytes": 40798965,
+        "status": "exact LF-to-CRLF"
+      },
+      "f:artifacts/luna45-acp0008-depth2-destination-integration-20261006/initial-destination_calibrated.json": {
+        "file_sha256": "5a29fe999a9410af7655590c23df1140e9774f900fe2880aaeb95830693fb792",
+        "git_sha256": "7debc99cf9e62f789582ab1ab24647268083a3c4e9c796da82c55912f1d4ffe8",
+        "file_bytes": 40798966,
+        "git_bytes": 40798965,
+        "status": "exact LF-to-CRLF"
+      },
+      "g:artifacts/luna45-acp0008-depth2-destination-integration-20261006/initial-destination_calibrated.json": {
+        "file_sha256": "5a29fe999a9410af7655590c23df1140e9774f900fe2880aaeb95830693fb792",
+        "git_sha256": "7debc99cf9e62f789582ab1ab24647268083a3c4e9c796da82c55912f1d4ffe8",
+        "file_bytes": 40798966,
+        "git_bytes": 40798965,
+        "status": "exact LF-to-CRLF"
+      },
+      "a:artifacts/luna45-acp0008-depth2-destination-integration-20261006/initial-destination_default-enqueue.json": {
+        "file_sha256": "654753bb81d6175925b5aaf3f9a5ba2eba0685b3ca48f63011243e99514accb8",
+        "git_sha256": "d16006e819ecfa109d2c29028a989ce322c5c78956b6709f1b3671b4db22dc9a",
+        "file_bytes": 1172948,
+        "git_bytes": 1172947,
+        "status": "exact LF-to-CRLF"
+      },
+      "b:artifacts/luna45-acp0008-depth2-destination-integration-20261006/initial-destination_default-enqueue.json": {
+        "file_sha256": "654753bb81d6175925b5aaf3f9a5ba2eba0685b3ca48f63011243e99514accb8",
+        "git_sha256": "d16006e819ecfa109d2c29028a989ce322c5c78956b6709f1b3671b4db22dc9a",
+        "file_bytes": 1172948,
+        "git_bytes": 1172947,
+        "status": "exact LF-to-CRLF"
+      },
+      "c:artifacts/luna45-acp0008-depth2-destination-integration-20261006/initial-destination_default-enqueue.json": {
+        "file_sha256": "654753bb81d6175925b5aaf3f9a5ba2eba0685b3ca48f63011243e99514accb8",
+        "git_sha256": "d16006e819ecfa109d2c29028a989ce322c5c78956b6709f1b3671b4db22dc9a",
+        "file_bytes": 1172948,
+        "git_bytes": 1172947,
+        "status": "exact LF-to-CRLF"
+      },
+      "d:artifacts/luna45-acp0008-depth2-destination-integration-20261006/initial-destination_default-enqueue.json": {
+        "file_sha256": "654753bb81d6175925b5aaf3f9a5ba2eba0685b3ca48f63011243e99514accb8",
+        "git_sha256": "d16006e819ecfa109d2c29028a989ce322c5c78956b6709f1b3671b4db22dc9a",
+        "file_bytes": 1172948,
+        "git_bytes": 1172947,
+        "status": "exact LF-to-CRLF"
+      },
+      "e:artifacts/luna45-acp0008-depth2-destination-integration-20261006/initial-destination_default-enqueue.json": {
+        "file_sha256": "654753bb81d6175925b5aaf3f9a5ba2eba0685b3ca48f63011243e99514accb8",
+        "git_sha256": "d16006e819ecfa109d2c29028a989ce322c5c78956b6709f1b3671b4db22dc9a",
+        "file_bytes": 1172948,
+        "git_bytes": 1172947,
+        "status": "exact LF-to-CRLF"
+      },
+      "f:artifacts/luna45-acp0008-depth2-destination-integration-20261006/initial-destination_default-enqueue.json": {
+        "file_sha256": "654753bb81d6175925b5aaf3f9a5ba2eba0685b3ca48f63011243e99514accb8",
+        "git_sha256": "d16006e819ecfa109d2c29028a989ce322c5c78956b6709f1b3671b4db22dc9a",
+        "file_bytes": 1172948,
+        "git_bytes": 1172947,
+        "status": "exact LF-to-CRLF"
+      },
+      "g:artifacts/luna45-acp0008-depth2-destination-integration-20261006/initial-destination_default-enqueue.json": {
+        "file_sha256": "654753bb81d6175925b5aaf3f9a5ba2eba0685b3ca48f63011243e99514accb8",
+        "git_sha256": "d16006e819ecfa109d2c29028a989ce322c5c78956b6709f1b3671b4db22dc9a",
+        "file_bytes": 1172948,
+        "git_bytes": 1172947,
+        "status": "exact LF-to-CRLF"
+      },
+      "a:artifacts/luna45-acp0008-depth2-destination-integration-20261006/initial-destination_default-reception.json": {
+        "file_sha256": "84707bfe3aac42c3af4c1b13af05c851f457ced429e3376e449a0344b7ab62c4",
+        "git_sha256": "7f3aca83b36767144d67047f1018072dff5264659507aef5195d596ea6138b91",
+        "file_bytes": 1595567,
+        "git_bytes": 1595566,
+        "status": "exact LF-to-CRLF"
+      },
+      "b:artifacts/luna45-acp0008-depth2-destination-integration-20261006/initial-destination_default-reception.json": {
+        "file_sha256": "84707bfe3aac42c3af4c1b13af05c851f457ced429e3376e449a0344b7ab62c4",
+        "git_sha256": "7f3aca83b36767144d67047f1018072dff5264659507aef5195d596ea6138b91",
+        "file_bytes": 1595567,
+        "git_bytes": 1595566,
+        "status": "exact LF-to-CRLF"
+      },
+      "c:artifacts/luna45-acp0008-depth2-destination-integration-20261006/initial-destination_default-reception.json": {
+        "file_sha256": "84707bfe3aac42c3af4c1b13af05c851f457ced429e3376e449a0344b7ab62c4",
+        "git_sha256": "7f3aca83b36767144d67047f1018072dff5264659507aef5195d596ea6138b91",
+        "file_bytes": 1595567,
+        "git_bytes": 1595566,
+        "status": "exact LF-to-CRLF"
+      },
+      "d:artifacts/luna45-acp0008-depth2-destination-integration-20261006/initial-destination_default-reception.json": {
+        "file_sha256": "84707bfe3aac42c3af4c1b13af05c851f457ced429e3376e449a0344b7ab62c4",
+        "git_sha256": "7f3aca83b36767144d67047f1018072dff5264659507aef5195d596ea6138b91",
+        "file_bytes": 1595567,
+        "git_bytes": 1595566,
+        "status": "exact LF-to-CRLF"
+      },
+      "e:artifacts/luna45-acp0008-depth2-destination-integration-20261006/initial-destination_default-reception.json": {
+        "file_sha256": "84707bfe3aac42c3af4c1b13af05c851f457ced429e3376e449a0344b7ab62c4",
+        "git_sha256": "7f3aca83b36767144d67047f1018072dff5264659507aef5195d596ea6138b91",
+        "file_bytes": 1595567,
+        "git_bytes": 1595566,
+        "status": "exact LF-to-CRLF"
+      },
+      "f:artifacts/luna45-acp0008-depth2-destination-integration-20261006/initial-destination_default-reception.json": {
+        "file_sha256": "84707bfe3aac42c3af4c1b13af05c851f457ced429e3376e449a0344b7ab62c4",
+        "git_sha256": "7f3aca83b36767144d67047f1018072dff5264659507aef5195d596ea6138b91",
+        "file_bytes": 1595567,
+        "git_bytes": 1595566,
+        "status": "exact LF-to-CRLF"
+      },
+      "g:artifacts/luna45-acp0008-depth2-destination-integration-20261006/initial-destination_default-reception.json": {
+        "file_sha256": "84707bfe3aac42c3af4c1b13af05c851f457ced429e3376e449a0344b7ab62c4",
+        "git_sha256": "7f3aca83b36767144d67047f1018072dff5264659507aef5195d596ea6138b91",
+        "file_bytes": 1595567,
+        "git_bytes": 1595566,
+        "status": "exact LF-to-CRLF"
+      },
+      "a:artifacts/luna45-acp0008-depth2-destination-integration-20261006/initial-destination_default.json": {
+        "file_sha256": "90748829b47062b23079ae776a5881dd68b1d8978c36cffd2b6be7157079c9dd",
+        "git_sha256": "9ff0be498c77ce73d6e50bfeca5cc95eeb214f3510db20d1a94cf75c6d132303",
+        "file_bytes": 40795765,
+        "git_bytes": 40795764,
+        "status": "exact LF-to-CRLF"
+      },
+      "b:artifacts/luna45-acp0008-depth2-destination-integration-20261006/initial-destination_default.json": {
+        "file_sha256": "90748829b47062b23079ae776a5881dd68b1d8978c36cffd2b6be7157079c9dd",
+        "git_sha256": "9ff0be498c77ce73d6e50bfeca5cc95eeb214f3510db20d1a94cf75c6d132303",
+        "file_bytes": 40795765,
+        "git_bytes": 40795764,
+        "status": "exact LF-to-CRLF"
+      },
+      "c:artifacts/luna45-acp0008-depth2-destination-integration-20261006/initial-destination_default.json": {
+        "file_sha256": "90748829b47062b23079ae776a5881dd68b1d8978c36cffd2b6be7157079c9dd",
+        "git_sha256": "9ff0be498c77ce73d6e50bfeca5cc95eeb214f3510db20d1a94cf75c6d132303",
+        "file_bytes": 40795765,
+        "git_bytes": 40795764,
+        "status": "exact LF-to-CRLF"
+      },
+      "d:artifacts/luna45-acp0008-depth2-destination-integration-20261006/initial-destination_default.json": {
+        "file_sha256": "90748829b47062b23079ae776a5881dd68b1d8978c36cffd2b6be7157079c9dd",
+        "git_sha256": "9ff0be498c77ce73d6e50bfeca5cc95eeb214f3510db20d1a94cf75c6d132303",
+        "file_bytes": 40795765,
+        "git_bytes": 40795764,
+        "status": "exact LF-to-CRLF"
+      },
+      "e:artifacts/luna45-acp0008-depth2-destination-integration-20261006/initial-destination_default.json": {
+        "file_sha256": "90748829b47062b23079ae776a5881dd68b1d8978c36cffd2b6be7157079c9dd",
+        "git_sha256": "9ff0be498c77ce73d6e50bfeca5cc95eeb214f3510db20d1a94cf75c6d132303",
+        "file_bytes": 40795765,
+        "git_bytes": 40795764,
+        "status": "exact LF-to-CRLF"
+      },
+      "f:artifacts/luna45-acp0008-depth2-destination-integration-20261006/initial-destination_default.json": {
+        "file_sha256": "90748829b47062b23079ae776a5881dd68b1d8978c36cffd2b6be7157079c9dd",
+        "git_sha256": "9ff0be498c77ce73d6e50bfeca5cc95eeb214f3510db20d1a94cf75c6d132303",
+        "file_bytes": 40795765,
+        "git_bytes": 40795764,
+        "status": "exact LF-to-CRLF"
+      },
+      "g:artifacts/luna45-acp0008-depth2-destination-integration-20261006/initial-destination_default.json": {
+        "file_sha256": "90748829b47062b23079ae776a5881dd68b1d8978c36cffd2b6be7157079c9dd",
+        "git_sha256": "9ff0be498c77ce73d6e50bfeca5cc95eeb214f3510db20d1a94cf75c6d132303",
+        "file_bytes": 40795765,
+        "git_bytes": 40795764,
+        "status": "exact LF-to-CRLF"
+      },
+      "a:artifacts/luna45-acp0008-depth2-destination-integration-20261006/initial-destination_disabled-enqueue.json": {
+        "file_sha256": "465518b8934e4e2513ddb36863a808828b14396ab32bcfba9882d3fc8c510dbc",
+        "git_sha256": "b926581c83d8bf433f206e92168d1ed4a0913d79ba166e511ecfef13a42562b5",
+        "file_bytes": 1172949,
+        "git_bytes": 1172948,
+        "status": "exact LF-to-CRLF"
+      },
+      "b:artifacts/luna45-acp0008-depth2-destination-integration-20261006/initial-destination_disabled-enqueue.json": {
+        "file_sha256": "465518b8934e4e2513ddb36863a808828b14396ab32bcfba9882d3fc8c510dbc",
+        "git_sha256": "b926581c83d8bf433f206e92168d1ed4a0913d79ba166e511ecfef13a42562b5",
+        "file_bytes": 1172949,
+        "git_bytes": 1172948,
+        "status": "exact LF-to-CRLF"
+      },
+      "c:artifacts/luna45-acp0008-depth2-destination-integration-20261006/initial-destination_disabled-enqueue.json": {
+        "file_sha256": "465518b8934e4e2513ddb36863a808828b14396ab32bcfba9882d3fc8c510dbc",
+        "git_sha256": "b926581c83d8bf433f206e92168d1ed4a0913d79ba166e511ecfef13a42562b5",
+        "file_bytes": 1172949,
+        "git_bytes": 1172948,
+        "status": "exact LF-to-CRLF"
+      },
+      "d:artifacts/luna45-acp0008-depth2-destination-integration-20261006/initial-destination_disabled-enqueue.json": {
+        "file_sha256": "465518b8934e4e2513ddb36863a808828b14396ab32bcfba9882d3fc8c510dbc",
+        "git_sha256": "b926581c83d8bf433f206e92168d1ed4a0913d79ba166e511ecfef13a42562b5",
+        "file_bytes": 1172949,
+        "git_bytes": 1172948,
+        "status": "exact LF-to-CRLF"
+      },
+      "e:artifacts/luna45-acp0008-depth2-destination-integration-20261006/initial-destination_disabled-enqueue.json": {
+        "file_sha256": "465518b8934e4e2513ddb36863a808828b14396ab32bcfba9882d3fc8c510dbc",
+        "git_sha256": "b926581c83d8bf433f206e92168d1ed4a0913d79ba166e511ecfef13a42562b5",
+        "file_bytes": 1172949,
+        "git_bytes": 1172948,
+        "status": "exact LF-to-CRLF"
+      },
+      "f:artifacts/luna45-acp0008-depth2-destination-integration-20261006/initial-destination_disabled-enqueue.json": {
+        "file_sha256": "465518b8934e4e2513ddb36863a808828b14396ab32bcfba9882d3fc8c510dbc",
+        "git_sha256": "b926581c83d8bf433f206e92168d1ed4a0913d79ba166e511ecfef13a42562b5",
+        "file_bytes": 1172949,
+        "git_bytes": 1172948,
+        "status": "exact LF-to-CRLF"
+      },
+      "g:artifacts/luna45-acp0008-depth2-destination-integration-20261006/initial-destination_disabled-enqueue.json": {
+        "file_sha256": "465518b8934e4e2513ddb36863a808828b14396ab32bcfba9882d3fc8c510dbc",
+        "git_sha256": "b926581c83d8bf433f206e92168d1ed4a0913d79ba166e511ecfef13a42562b5",
+        "file_bytes": 1172949,
+        "git_bytes": 1172948,
+        "status": "exact LF-to-CRLF"
+      },
+      "a:artifacts/luna45-acp0008-depth2-destination-integration-20261006/initial-destination_disabled-reception.json": {
+        "file_sha256": "d5e7378a4e9e164bf667a7ed6780fdbe52810cd7201334d617fbe1b957d9fb31",
+        "git_sha256": "5e9a5c09279a969cfa3bf52c0fd5059d17bbd66677231e48eac2c8374864cf37",
+        "file_bytes": 1590298,
+        "git_bytes": 1590297,
+        "status": "exact LF-to-CRLF"
+      },
+      "b:artifacts/luna45-acp0008-depth2-destination-integration-20261006/initial-destination_disabled-reception.json": {
+        "file_sha256": "d5e7378a4e9e164bf667a7ed6780fdbe52810cd7201334d617fbe1b957d9fb31",
+        "git_sha256": "5e9a5c09279a969cfa3bf52c0fd5059d17bbd66677231e48eac2c8374864cf37",
+        "file_bytes": 1590298,
+        "git_bytes": 1590297,
+        "status": "exact LF-to-CRLF"
+      },
+      "c:artifacts/luna45-acp0008-depth2-destination-integration-20261006/initial-destination_disabled-reception.json": {
+        "file_sha256": "d5e7378a4e9e164bf667a7ed6780fdbe52810cd7201334d617fbe1b957d9fb31",
+        "git_sha256": "5e9a5c09279a969cfa3bf52c0fd5059d17bbd66677231e48eac2c8374864cf37",
+        "file_bytes": 1590298,
+        "git_bytes": 1590297,
+        "status": "exact LF-to-CRLF"
+      },
+      "d:artifacts/luna45-acp0008-depth2-destination-integration-20261006/initial-destination_disabled-reception.json": {
+        "file_sha256": "d5e7378a4e9e164bf667a7ed6780fdbe52810cd7201334d617fbe1b957d9fb31",
+        "git_sha256": "5e9a5c09279a969cfa3bf52c0fd5059d17bbd66677231e48eac2c8374864cf37",
+        "file_bytes": 1590298,
+        "git_bytes": 1590297,
+        "status": "exact LF-to-CRLF"
+      },
+      "e:artifacts/luna45-acp0008-depth2-destination-integration-20261006/initial-destination_disabled-reception.json": {
+        "file_sha256": "d5e7378a4e9e164bf667a7ed6780fdbe52810cd7201334d617fbe1b957d9fb31",
+        "git_sha256": "5e9a5c09279a969cfa3bf52c0fd5059d17bbd66677231e48eac2c8374864cf37",
+        "file_bytes": 1590298,
+        "git_bytes": 1590297,
+        "status": "exact LF-to-CRLF"
+      },
+      "f:artifacts/luna45-acp0008-depth2-destination-integration-20261006/initial-destination_disabled-reception.json": {
+        "file_sha256": "d5e7378a4e9e164bf667a7ed6780fdbe52810cd7201334d617fbe1b957d9fb31",
+        "git_sha256": "5e9a5c09279a969cfa3bf52c0fd5059d17bbd66677231e48eac2c8374864cf37",
+        "file_bytes": 1590298,
+        "git_bytes": 1590297,
+        "status": "exact LF-to-CRLF"
+      },
+      "g:artifacts/luna45-acp0008-depth2-destination-integration-20261006/initial-destination_disabled-reception.json": {
+        "file_sha256": "d5e7378a4e9e164bf667a7ed6780fdbe52810cd7201334d617fbe1b957d9fb31",
+        "git_sha256": "5e9a5c09279a969cfa3bf52c0fd5059d17bbd66677231e48eac2c8374864cf37",
+        "file_bytes": 1590298,
+        "git_bytes": 1590297,
+        "status": "exact LF-to-CRLF"
+      },
+      "a:artifacts/luna45-acp0008-depth2-destination-integration-20261006/initial-destination_disabled.json": {
+        "file_sha256": "ae6dbd204e70c53b7a4ac6bded07b9db14a48b8274fa46668bf462449edb36d3",
+        "git_sha256": "47f3da1dd29f316e84b4b7033865c60becab6e90152bfab2451d4652aa201281",
+        "file_bytes": 39752837,
+        "git_bytes": 39752836,
+        "status": "exact LF-to-CRLF"
+      },
+      "b:artifacts/luna45-acp0008-depth2-destination-integration-20261006/initial-destination_disabled.json": {
+        "file_sha256": "ae6dbd204e70c53b7a4ac6bded07b9db14a48b8274fa46668bf462449edb36d3",
+        "git_sha256": "47f3da1dd29f316e84b4b7033865c60becab6e90152bfab2451d4652aa201281",
+        "file_bytes": 39752837,
+        "git_bytes": 39752836,
+        "status": "exact LF-to-CRLF"
+      },
+      "c:artifacts/luna45-acp0008-depth2-destination-integration-20261006/initial-destination_disabled.json": {
+        "file_sha256": "ae6dbd204e70c53b7a4ac6bded07b9db14a48b8274fa46668bf462449edb36d3",
+        "git_sha256": "47f3da1dd29f316e84b4b7033865c60becab6e90152bfab2451d4652aa201281",
+        "file_bytes": 39752837,
+        "git_bytes": 39752836,
+        "status": "exact LF-to-CRLF"
+      },
+      "d:artifacts/luna45-acp0008-depth2-destination-integration-20261006/initial-destination_disabled.json": {
+        "file_sha256": "ae6dbd204e70c53b7a4ac6bded07b9db14a48b8274fa46668bf462449edb36d3",
+        "git_sha256": "47f3da1dd29f316e84b4b7033865c60becab6e90152bfab2451d4652aa201281",
+        "file_bytes": 39752837,
+        "git_bytes": 39752836,
+        "status": "exact LF-to-CRLF"
+      },
+      "e:artifacts/luna45-acp0008-depth2-destination-integration-20261006/initial-destination_disabled.json": {
+        "file_sha256": "ae6dbd204e70c53b7a4ac6bded07b9db14a48b8274fa46668bf462449edb36d3",
+        "git_sha256": "47f3da1dd29f316e84b4b7033865c60becab6e90152bfab2451d4652aa201281",
+        "file_bytes": 39752837,
+        "git_bytes": 39752836,
+        "status": "exact LF-to-CRLF"
+      },
+      "f:artifacts/luna45-acp0008-depth2-destination-integration-20261006/initial-destination_disabled.json": {
+        "file_sha256": "ae6dbd204e70c53b7a4ac6bded07b9db14a48b8274fa46668bf462449edb36d3",
+        "git_sha256": "47f3da1dd29f316e84b4b7033865c60becab6e90152bfab2451d4652aa201281",
+        "file_bytes": 39752837,
+        "git_bytes": 39752836,
+        "status": "exact LF-to-CRLF"
+      },
+      "g:artifacts/luna45-acp0008-depth2-destination-integration-20261006/initial-destination_disabled.json": {
+        "file_sha256": "ae6dbd204e70c53b7a4ac6bded07b9db14a48b8274fa46668bf462449edb36d3",
+        "git_sha256": "47f3da1dd29f316e84b4b7033865c60becab6e90152bfab2451d4652aa201281",
+        "file_bytes": 39752837,
+        "git_bytes": 39752836,
+        "status": "exact LF-to-CRLF"
+      },
+      "a:artifacts/luna45-acp0008-depth2-destination-integration-20261006/initial-gates.json": {
+        "file_sha256": "578839d3fcc46719dc1306135a47d5a117cf6468cec34acdf64eead428328fa1",
+        "git_sha256": "40a490b3cd7dec5f1dce91e73388234c9749cfdc3f6ed9cd904f0a1bc36fa1a8",
+        "file_bytes": 63677175,
+        "git_bytes": 63677174,
+        "status": "exact LF-to-CRLF"
+      },
+      "b:artifacts/luna45-acp0008-depth2-destination-integration-20261006/initial-gates.json": {
+        "file_sha256": "578839d3fcc46719dc1306135a47d5a117cf6468cec34acdf64eead428328fa1",
+        "git_sha256": "40a490b3cd7dec5f1dce91e73388234c9749cfdc3f6ed9cd904f0a1bc36fa1a8",
+        "file_bytes": 63677175,
+        "git_bytes": 63677174,
+        "status": "exact LF-to-CRLF"
+      },
+      "c:artifacts/luna45-acp0008-depth2-destination-integration-20261006/initial-gates.json": {
+        "file_sha256": "578839d3fcc46719dc1306135a47d5a117cf6468cec34acdf64eead428328fa1",
+        "git_sha256": "40a490b3cd7dec5f1dce91e73388234c9749cfdc3f6ed9cd904f0a1bc36fa1a8",
+        "file_bytes": 63677175,
+        "git_bytes": 63677174,
+        "status": "exact LF-to-CRLF"
+      },
+      "d:artifacts/luna45-acp0008-depth2-destination-integration-20261006/initial-gates.json": {
+        "file_sha256": "578839d3fcc46719dc1306135a47d5a117cf6468cec34acdf64eead428328fa1",
+        "git_sha256": "40a490b3cd7dec5f1dce91e73388234c9749cfdc3f6ed9cd904f0a1bc36fa1a8",
+        "file_bytes": 63677175,
+        "git_bytes": 63677174,
+        "status": "exact LF-to-CRLF"
+      },
+      "e:artifacts/luna45-acp0008-depth2-destination-integration-20261006/initial-gates.json": {
+        "file_sha256": "578839d3fcc46719dc1306135a47d5a117cf6468cec34acdf64eead428328fa1",
+        "git_sha256": "40a490b3cd7dec5f1dce91e73388234c9749cfdc3f6ed9cd904f0a1bc36fa1a8",
+        "file_bytes": 63677175,
+        "git_bytes": 63677174,
+        "status": "exact LF-to-CRLF"
+      },
+      "f:artifacts/luna45-acp0008-depth2-destination-integration-20261006/initial-gates.json": {
+        "file_sha256": "578839d3fcc46719dc1306135a47d5a117cf6468cec34acdf64eead428328fa1",
+        "git_sha256": "40a490b3cd7dec5f1dce91e73388234c9749cfdc3f6ed9cd904f0a1bc36fa1a8",
+        "file_bytes": 63677175,
+        "git_bytes": 63677174,
+        "status": "exact LF-to-CRLF"
+      },
+      "g:artifacts/luna45-acp0008-depth2-destination-integration-20261006/initial-gates.json": {
+        "file_sha256": "578839d3fcc46719dc1306135a47d5a117cf6468cec34acdf64eead428328fa1",
+        "git_sha256": "40a490b3cd7dec5f1dce91e73388234c9749cfdc3f6ed9cd904f0a1bc36fa1a8",
+        "file_bytes": 63677175,
+        "git_bytes": 63677174,
+        "status": "exact LF-to-CRLF"
+      },
+      "a:artifacts/luna45-acp0008-depth2-destination-integration-20261006/replay-destination_calibrated-enqueue.json": {
+        "file_sha256": "40ac3049e1af7364e8c8e9010a2af826cafa9313252090c73fc4f88671c9af53",
+        "git_sha256": "eebc7f20435ffe2a59796e098d083df88fa262653b79c23ccca410202c5c90ce",
+        "file_bytes": 1172950,
+        "git_bytes": 1172949,
+        "status": "exact LF-to-CRLF"
+      },
+      "b:artifacts/luna45-acp0008-depth2-destination-integration-20261006/replay-destination_calibrated-enqueue.json": {
+        "file_sha256": "40ac3049e1af7364e8c8e9010a2af826cafa9313252090c73fc4f88671c9af53",
+        "git_sha256": "eebc7f20435ffe2a59796e098d083df88fa262653b79c23ccca410202c5c90ce",
+        "file_bytes": 1172950,
+        "git_bytes": 1172949,
+        "status": "exact LF-to-CRLF"
+      },
+      "c:artifacts/luna45-acp0008-depth2-destination-integration-20261006/replay-destination_calibrated-enqueue.json": {
+        "file_sha256": "40ac3049e1af7364e8c8e9010a2af826cafa9313252090c73fc4f88671c9af53",
+        "git_sha256": "eebc7f20435ffe2a59796e098d083df88fa262653b79c23ccca410202c5c90ce",
+        "file_bytes": 1172950,
+        "git_bytes": 1172949,
+        "status": "exact LF-to-CRLF"
+      },
+      "d:artifacts/luna45-acp0008-depth2-destination-integration-20261006/replay-destination_calibrated-enqueue.json": {
+        "file_sha256": "40ac3049e1af7364e8c8e9010a2af826cafa9313252090c73fc4f88671c9af53",
+        "git_sha256": "eebc7f20435ffe2a59796e098d083df88fa262653b79c23ccca410202c5c90ce",
+        "file_bytes": 1172950,
+        "git_bytes": 1172949,
+        "status": "exact LF-to-CRLF"
+      },
+      "e:artifacts/luna45-acp0008-depth2-destination-integration-20261006/replay-destination_calibrated-enqueue.json": {
+        "file_sha256": "40ac3049e1af7364e8c8e9010a2af826cafa9313252090c73fc4f88671c9af53",
+        "git_sha256": "eebc7f20435ffe2a59796e098d083df88fa262653b79c23ccca410202c5c90ce",
+        "file_bytes": 1172950,
+        "git_bytes": 1172949,
+        "status": "exact LF-to-CRLF"
+      },
+      "f:artifacts/luna45-acp0008-depth2-destination-integration-20261006/replay-destination_calibrated-enqueue.json": {
+        "file_sha256": "40ac3049e1af7364e8c8e9010a2af826cafa9313252090c73fc4f88671c9af53",
+        "git_sha256": "eebc7f20435ffe2a59796e098d083df88fa262653b79c23ccca410202c5c90ce",
+        "file_bytes": 1172950,
+        "git_bytes": 1172949,
+        "status": "exact LF-to-CRLF"
+      },
+      "g:artifacts/luna45-acp0008-depth2-destination-integration-20261006/replay-destination_calibrated-enqueue.json": {
+        "file_sha256": "40ac3049e1af7364e8c8e9010a2af826cafa9313252090c73fc4f88671c9af53",
+        "git_sha256": "eebc7f20435ffe2a59796e098d083df88fa262653b79c23ccca410202c5c90ce",
+        "file_bytes": 1172950,
+        "git_bytes": 1172949,
+        "status": "exact LF-to-CRLF"
+      },
+      "a:artifacts/luna45-acp0008-depth2-destination-integration-20261006/replay-destination_calibrated-reception.json": {
+        "file_sha256": "1534c7628f7bdc7807399b07e56db2c729f8d35156b96ef734f98db8ec612c68",
+        "git_sha256": "435907519d7171d9cbffcf42e0d2af5aeba23bb033e0c2a42c761c5233917b09",
+        "file_bytes": 1595510,
+        "git_bytes": 1595509,
+        "status": "exact LF-to-CRLF"
+      },
+      "b:artifacts/luna45-acp0008-depth2-destination-integration-20261006/replay-destination_calibrated-reception.json": {
+        "file_sha256": "1534c7628f7bdc7807399b07e56db2c729f8d35156b96ef734f98db8ec612c68",
+        "git_sha256": "435907519d7171d9cbffcf42e0d2af5aeba23bb033e0c2a42c761c5233917b09",
+        "file_bytes": 1595510,
+        "git_bytes": 1595509,
+        "status": "exact LF-to-CRLF"
+      },
+      "c:artifacts/luna45-acp0008-depth2-destination-integration-20261006/replay-destination_calibrated-reception.json": {
+        "file_sha256": "1534c7628f7bdc7807399b07e56db2c729f8d35156b96ef734f98db8ec612c68",
+        "git_sha256": "435907519d7171d9cbffcf42e0d2af5aeba23bb033e0c2a42c761c5233917b09",
+        "file_bytes": 1595510,
+        "git_bytes": 1595509,
+        "status": "exact LF-to-CRLF"
+      },
+      "d:artifacts/luna45-acp0008-depth2-destination-integration-20261006/replay-destination_calibrated-reception.json": {
+        "file_sha256": "1534c7628f7bdc7807399b07e56db2c729f8d35156b96ef734f98db8ec612c68",
+        "git_sha256": "435907519d7171d9cbffcf42e0d2af5aeba23bb033e0c2a42c761c5233917b09",
+        "file_bytes": 1595510,
+        "git_bytes": 1595509,
+        "status": "exact LF-to-CRLF"
+      },
+      "e:artifacts/luna45-acp0008-depth2-destination-integration-20261006/replay-destination_calibrated-reception.json": {
+        "file_sha256": "1534c7628f7bdc7807399b07e56db2c729f8d35156b96ef734f98db8ec612c68",
+        "git_sha256": "435907519d7171d9cbffcf42e0d2af5aeba23bb033e0c2a42c761c5233917b09",
+        "file_bytes": 1595510,
+        "git_bytes": 1595509,
+        "status": "exact LF-to-CRLF"
+      },
+      "f:artifacts/luna45-acp0008-depth2-destination-integration-20261006/replay-destination_calibrated-reception.json": {
+        "file_sha256": "1534c7628f7bdc7807399b07e56db2c729f8d35156b96ef734f98db8ec612c68",
+        "git_sha256": "435907519d7171d9cbffcf42e0d2af5aeba23bb033e0c2a42c761c5233917b09",
+        "file_bytes": 1595510,
+        "git_bytes": 1595509,
+        "status": "exact LF-to-CRLF"
+      },
+      "g:artifacts/luna45-acp0008-depth2-destination-integration-20261006/replay-destination_calibrated-reception.json": {
+        "file_sha256": "1534c7628f7bdc7807399b07e56db2c729f8d35156b96ef734f98db8ec612c68",
+        "git_sha256": "435907519d7171d9cbffcf42e0d2af5aeba23bb033e0c2a42c761c5233917b09",
+        "file_bytes": 1595510,
+        "git_bytes": 1595509,
+        "status": "exact LF-to-CRLF"
+      },
+      "a:artifacts/luna45-acp0008-depth2-destination-integration-20261006/replay-destination_calibrated.json": {
+        "file_sha256": "41cb8cf1666f34802cd11d6863f4769a5fa7d1940779eb5efab59750a6d2bc18",
+        "git_sha256": "5061759db72d3749a0b127f83de56dce7a346f37a0e17add02a7326c0a1f5ad7",
+        "file_bytes": 40798965,
+        "git_bytes": 40798964,
+        "status": "exact LF-to-CRLF"
+      },
+      "b:artifacts/luna45-acp0008-depth2-destination-integration-20261006/replay-destination_calibrated.json": {
+        "file_sha256": "41cb8cf1666f34802cd11d6863f4769a5fa7d1940779eb5efab59750a6d2bc18",
+        "git_sha256": "5061759db72d3749a0b127f83de56dce7a346f37a0e17add02a7326c0a1f5ad7",
+        "file_bytes": 40798965,
+        "git_bytes": 40798964,
+        "status": "exact LF-to-CRLF"
+      },
+      "c:artifacts/luna45-acp0008-depth2-destination-integration-20261006/replay-destination_calibrated.json": {
+        "file_sha256": "41cb8cf1666f34802cd11d6863f4769a5fa7d1940779eb5efab59750a6d2bc18",
+        "git_sha256": "5061759db72d3749a0b127f83de56dce7a346f37a0e17add02a7326c0a1f5ad7",
+        "file_bytes": 40798965,
+        "git_bytes": 40798964,
+        "status": "exact LF-to-CRLF"
+      },
+      "d:artifacts/luna45-acp0008-depth2-destination-integration-20261006/replay-destination_calibrated.json": {
+        "file_sha256": "41cb8cf1666f34802cd11d6863f4769a5fa7d1940779eb5efab59750a6d2bc18",
+        "git_sha256": "5061759db72d3749a0b127f83de56dce7a346f37a0e17add02a7326c0a1f5ad7",
+        "file_bytes": 40798965,
+        "git_bytes": 40798964,
+        "status": "exact LF-to-CRLF"
+      },
+      "e:artifacts/luna45-acp0008-depth2-destination-integration-20261006/replay-destination_calibrated.json": {
+        "file_sha256": "41cb8cf1666f34802cd11d6863f4769a5fa7d1940779eb5efab59750a6d2bc18",
+        "git_sha256": "5061759db72d3749a0b127f83de56dce7a346f37a0e17add02a7326c0a1f5ad7",
+        "file_bytes": 40798965,
+        "git_bytes": 40798964,
+        "status": "exact LF-to-CRLF"
+      },
+      "f:artifacts/luna45-acp0008-depth2-destination-integration-20261006/replay-destination_calibrated.json": {
+        "file_sha256": "41cb8cf1666f34802cd11d6863f4769a5fa7d1940779eb5efab59750a6d2bc18",
+        "git_sha256": "5061759db72d3749a0b127f83de56dce7a346f37a0e17add02a7326c0a1f5ad7",
+        "file_bytes": 40798965,
+        "git_bytes": 40798964,
+        "status": "exact LF-to-CRLF"
+      },
+      "g:artifacts/luna45-acp0008-depth2-destination-integration-20261006/replay-destination_calibrated.json": {
+        "file_sha256": "41cb8cf1666f34802cd11d6863f4769a5fa7d1940779eb5efab59750a6d2bc18",
+        "git_sha256": "5061759db72d3749a0b127f83de56dce7a346f37a0e17add02a7326c0a1f5ad7",
+        "file_bytes": 40798965,
+        "git_bytes": 40798964,
+        "status": "exact LF-to-CRLF"
+      },
+      "a:artifacts/luna45-acp0008-depth2-destination-integration-20261006/replay-destination_default-enqueue.json": {
+        "file_sha256": "564fb0eed33072ea7bdf481b233d443829c7969d49c0a1c230b0fd30971a9ca0",
+        "git_sha256": "01e218f411f6f077710de98e2e38dcef8955531cd86370a04228e295e41bbab3",
+        "file_bytes": 1172947,
+        "git_bytes": 1172946,
+        "status": "exact LF-to-CRLF"
+      },
+      "b:artifacts/luna45-acp0008-depth2-destination-integration-20261006/replay-destination_default-enqueue.json": {
+        "file_sha256": "564fb0eed33072ea7bdf481b233d443829c7969d49c0a1c230b0fd30971a9ca0",
+        "git_sha256": "01e218f411f6f077710de98e2e38dcef8955531cd86370a04228e295e41bbab3",
+        "file_bytes": 1172947,
+        "git_bytes": 1172946,
+        "status": "exact LF-to-CRLF"
+      },
+      "c:artifacts/luna45-acp0008-depth2-destination-integration-20261006/replay-destination_default-enqueue.json": {
+        "file_sha256": "564fb0eed33072ea7bdf481b233d443829c7969d49c0a1c230b0fd30971a9ca0",
+        "git_sha256": "01e218f411f6f077710de98e2e38dcef8955531cd86370a04228e295e41bbab3",
+        "file_bytes": 1172947,
+        "git_bytes": 1172946,
+        "status": "exact LF-to-CRLF"
+      },
+      "d:artifacts/luna45-acp0008-depth2-destination-integration-20261006/replay-destination_default-enqueue.json": {
+        "file_sha256": "564fb0eed33072ea7bdf481b233d443829c7969d49c0a1c230b0fd30971a9ca0",
+        "git_sha256": "01e218f411f6f077710de98e2e38dcef8955531cd86370a04228e295e41bbab3",
+        "file_bytes": 1172947,
+        "git_bytes": 1172946,
+        "status": "exact LF-to-CRLF"
+      },
+      "e:artifacts/luna45-acp0008-depth2-destination-integration-20261006/replay-destination_default-enqueue.json": {
+        "file_sha256": "564fb0eed33072ea7bdf481b233d443829c7969d49c0a1c230b0fd30971a9ca0",
+        "git_sha256": "01e218f411f6f077710de98e2e38dcef8955531cd86370a04228e295e41bbab3",
+        "file_bytes": 1172947,
+        "git_bytes": 1172946,
+        "status": "exact LF-to-CRLF"
+      },
+      "f:artifacts/luna45-acp0008-depth2-destination-integration-20261006/replay-destination_default-enqueue.json": {
+        "file_sha256": "564fb0eed33072ea7bdf481b233d443829c7969d49c0a1c230b0fd30971a9ca0",
+        "git_sha256": "01e218f411f6f077710de98e2e38dcef8955531cd86370a04228e295e41bbab3",
+        "file_bytes": 1172947,
+        "git_bytes": 1172946,
+        "status": "exact LF-to-CRLF"
+      },
+      "g:artifacts/luna45-acp0008-depth2-destination-integration-20261006/replay-destination_default-enqueue.json": {
+        "file_sha256": "564fb0eed33072ea7bdf481b233d443829c7969d49c0a1c230b0fd30971a9ca0",
+        "git_sha256": "01e218f411f6f077710de98e2e38dcef8955531cd86370a04228e295e41bbab3",
+        "file_bytes": 1172947,
+        "git_bytes": 1172946,
+        "status": "exact LF-to-CRLF"
+      },
+      "a:artifacts/luna45-acp0008-depth2-destination-integration-20261006/replay-destination_default-reception.json": {
+        "file_sha256": "e9c6c627d42f17bfde3e14e494d0c0be6dadc82e08e92133643f25e686d1b936",
+        "git_sha256": "b353007304b7d3127dfe4fb3a623168d1be9fbd574b8cff5ec534bd1147cd055",
+        "file_bytes": 1595566,
+        "git_bytes": 1595565,
+        "status": "exact LF-to-CRLF"
+      },
+      "b:artifacts/luna45-acp0008-depth2-destination-integration-20261006/replay-destination_default-reception.json": {
+        "file_sha256": "e9c6c627d42f17bfde3e14e494d0c0be6dadc82e08e92133643f25e686d1b936",
+        "git_sha256": "b353007304b7d3127dfe4fb3a623168d1be9fbd574b8cff5ec534bd1147cd055",
+        "file_bytes": 1595566,
+        "git_bytes": 1595565,
+        "status": "exact LF-to-CRLF"
+      },
+      "c:artifacts/luna45-acp0008-depth2-destination-integration-20261006/replay-destination_default-reception.json": {
+        "file_sha256": "e9c6c627d42f17bfde3e14e494d0c0be6dadc82e08e92133643f25e686d1b936",
+        "git_sha256": "b353007304b7d3127dfe4fb3a623168d1be9fbd574b8cff5ec534bd1147cd055",
+        "file_bytes": 1595566,
+        "git_bytes": 1595565,
+        "status": "exact LF-to-CRLF"
+      },
+      "d:artifacts/luna45-acp0008-depth2-destination-integration-20261006/replay-destination_default-reception.json": {
+        "file_sha256": "e9c6c627d42f17bfde3e14e494d0c0be6dadc82e08e92133643f25e686d1b936",
+        "git_sha256": "b353007304b7d3127dfe4fb3a623168d1be9fbd574b8cff5ec534bd1147cd055",
+        "file_bytes": 1595566,
+        "git_bytes": 1595565,
+        "status": "exact LF-to-CRLF"
+      },
+      "e:artifacts/luna45-acp0008-depth2-destination-integration-20261006/replay-destination_default-reception.json": {
+        "file_sha256": "e9c6c627d42f17bfde3e14e494d0c0be6dadc82e08e92133643f25e686d1b936",
+        "git_sha256": "b353007304b7d3127dfe4fb3a623168d1be9fbd574b8cff5ec534bd1147cd055",
+        "file_bytes": 1595566,
+        "git_bytes": 1595565,
+        "status": "exact LF-to-CRLF"
+      },
+      "f:artifacts/luna45-acp0008-depth2-destination-integration-20261006/replay-destination_default-reception.json": {
+        "file_sha256": "e9c6c627d42f17bfde3e14e494d0c0be6dadc82e08e92133643f25e686d1b936",
+        "git_sha256": "b353007304b7d3127dfe4fb3a623168d1be9fbd574b8cff5ec534bd1147cd055",
+        "file_bytes": 1595566,
+        "git_bytes": 1595565,
+        "status": "exact LF-to-CRLF"
+      },
+      "g:artifacts/luna45-acp0008-depth2-destination-integration-20261006/replay-destination_default-reception.json": {
+        "file_sha256": "e9c6c627d42f17bfde3e14e494d0c0be6dadc82e08e92133643f25e686d1b936",
+        "git_sha256": "b353007304b7d3127dfe4fb3a623168d1be9fbd574b8cff5ec534bd1147cd055",
+        "file_bytes": 1595566,
+        "git_bytes": 1595565,
+        "status": "exact LF-to-CRLF"
+      },
+      "a:artifacts/luna45-acp0008-depth2-destination-integration-20261006/replay-destination_default.json": {
+        "file_sha256": "a1151b061fa7da88d9d282124516b67cdbfd6aa4631c3e2a95fa0d95900e6094",
+        "git_sha256": "770faa923108d4c8e1fb395e31913514c64b22a09c8badb48f31b1f400cfe364",
+        "file_bytes": 40795764,
+        "git_bytes": 40795763,
+        "status": "exact LF-to-CRLF"
+      },
+      "b:artifacts/luna45-acp0008-depth2-destination-integration-20261006/replay-destination_default.json": {
+        "file_sha256": "a1151b061fa7da88d9d282124516b67cdbfd6aa4631c3e2a95fa0d95900e6094",
+        "git_sha256": "770faa923108d4c8e1fb395e31913514c64b22a09c8badb48f31b1f400cfe364",
+        "file_bytes": 40795764,
+        "git_bytes": 40795763,
+        "status": "exact LF-to-CRLF"
+      },
+      "c:artifacts/luna45-acp0008-depth2-destination-integration-20261006/replay-destination_default.json": {
+        "file_sha256": "a1151b061fa7da88d9d282124516b67cdbfd6aa4631c3e2a95fa0d95900e6094",
+        "git_sha256": "770faa923108d4c8e1fb395e31913514c64b22a09c8badb48f31b1f400cfe364",
+        "file_bytes": 40795764,
+        "git_bytes": 40795763,
+        "status": "exact LF-to-CRLF"
+      },
+      "d:artifacts/luna45-acp0008-depth2-destination-integration-20261006/replay-destination_default.json": {
+        "file_sha256": "a1151b061fa7da88d9d282124516b67cdbfd6aa4631c3e2a95fa0d95900e6094",
+        "git_sha256": "770faa923108d4c8e1fb395e31913514c64b22a09c8badb48f31b1f400cfe364",
+        "file_bytes": 40795764,
+        "git_bytes": 40795763,
+        "status": "exact LF-to-CRLF"
+      },
+      "e:artifacts/luna45-acp0008-depth2-destination-integration-20261006/replay-destination_default.json": {
+        "file_sha256": "a1151b061fa7da88d9d282124516b67cdbfd6aa4631c3e2a95fa0d95900e6094",
+        "git_sha256": "770faa923108d4c8e1fb395e31913514c64b22a09c8badb48f31b1f400cfe364",
+        "file_bytes": 40795764,
+        "git_bytes": 40795763,
+        "status": "exact LF-to-CRLF"
+      },
+      "f:artifacts/luna45-acp0008-depth2-destination-integration-20261006/replay-destination_default.json": {
+        "file_sha256": "a1151b061fa7da88d9d282124516b67cdbfd6aa4631c3e2a95fa0d95900e6094",
+        "git_sha256": "770faa923108d4c8e1fb395e31913514c64b22a09c8badb48f31b1f400cfe364",
+        "file_bytes": 40795764,
+        "git_bytes": 40795763,
+        "status": "exact LF-to-CRLF"
+      },
+      "g:artifacts/luna45-acp0008-depth2-destination-integration-20261006/replay-destination_default.json": {
+        "file_sha256": "a1151b061fa7da88d9d282124516b67cdbfd6aa4631c3e2a95fa0d95900e6094",
+        "git_sha256": "770faa923108d4c8e1fb395e31913514c64b22a09c8badb48f31b1f400cfe364",
+        "file_bytes": 40795764,
+        "git_bytes": 40795763,
+        "status": "exact LF-to-CRLF"
+      },
+      "a:artifacts/luna45-acp0008-depth2-destination-integration-20261006/replay-destination_disabled-enqueue.json": {
+        "file_sha256": "b5166662266d47092cac185d1f9b2787c650132e9927362bb9c9fe7fe9bbb4cf",
+        "git_sha256": "d2952b2f1400d301ea36dd2634bd850b75ca7ef4da5adb42c9cef5290be1b425",
+        "file_bytes": 1172948,
+        "git_bytes": 1172947,
+        "status": "exact LF-to-CRLF"
+      },
+      "b:artifacts/luna45-acp0008-depth2-destination-integration-20261006/replay-destination_disabled-enqueue.json": {
+        "file_sha256": "b5166662266d47092cac185d1f9b2787c650132e9927362bb9c9fe7fe9bbb4cf",
+        "git_sha256": "d2952b2f1400d301ea36dd2634bd850b75ca7ef4da5adb42c9cef5290be1b425",
+        "file_bytes": 1172948,
+        "git_bytes": 1172947,
+        "status": "exact LF-to-CRLF"
+      },
+      "c:artifacts/luna45-acp0008-depth2-destination-integration-20261006/replay-destination_disabled-enqueue.json": {
+        "file_sha256": "b5166662266d47092cac185d1f9b2787c650132e9927362bb9c9fe7fe9bbb4cf",
+        "git_sha256": "d2952b2f1400d301ea36dd2634bd850b75ca7ef4da5adb42c9cef5290be1b425",
+        "file_bytes": 1172948,
+        "git_bytes": 1172947,
+        "status": "exact LF-to-CRLF"
+      },
+      "d:artifacts/luna45-acp0008-depth2-destination-integration-20261006/replay-destination_disabled-enqueue.json": {
+        "file_sha256": "b5166662266d47092cac185d1f9b2787c650132e9927362bb9c9fe7fe9bbb4cf",
+        "git_sha256": "d2952b2f1400d301ea36dd2634bd850b75ca7ef4da5adb42c9cef5290be1b425",
+        "file_bytes": 1172948,
+        "git_bytes": 1172947,
+        "status": "exact LF-to-CRLF"
+      },
+      "e:artifacts/luna45-acp0008-depth2-destination-integration-20261006/replay-destination_disabled-enqueue.json": {
+        "file_sha256": "b5166662266d47092cac185d1f9b2787c650132e9927362bb9c9fe7fe9bbb4cf",
+        "git_sha256": "d2952b2f1400d301ea36dd2634bd850b75ca7ef4da5adb42c9cef5290be1b425",
+        "file_bytes": 1172948,
+        "git_bytes": 1172947,
+        "status": "exact LF-to-CRLF"
+      },
+      "f:artifacts/luna45-acp0008-depth2-destination-integration-20261006/replay-destination_disabled-enqueue.json": {
+        "file_sha256": "b5166662266d47092cac185d1f9b2787c650132e9927362bb9c9fe7fe9bbb4cf",
+        "git_sha256": "d2952b2f1400d301ea36dd2634bd850b75ca7ef4da5adb42c9cef5290be1b425",
+        "file_bytes": 1172948,
+        "git_bytes": 1172947,
+        "status": "exact LF-to-CRLF"
+      },
+      "g:artifacts/luna45-acp0008-depth2-destination-integration-20261006/replay-destination_disabled-enqueue.json": {
+        "file_sha256": "b5166662266d47092cac185d1f9b2787c650132e9927362bb9c9fe7fe9bbb4cf",
+        "git_sha256": "d2952b2f1400d301ea36dd2634bd850b75ca7ef4da5adb42c9cef5290be1b425",
+        "file_bytes": 1172948,
+        "git_bytes": 1172947,
+        "status": "exact LF-to-CRLF"
+      },
+      "a:artifacts/luna45-acp0008-depth2-destination-integration-20261006/replay-destination_disabled-reception.json": {
+        "file_sha256": "70c91d10fdf0d299040cc94a1122f81ea386721cb8567c67444062eb90d34937",
+        "git_sha256": "5bccab08d9b96dea40b1a970b52cfa49392e826c681154e4713183da54f60b98",
+        "file_bytes": 1590297,
+        "git_bytes": 1590296,
+        "status": "exact LF-to-CRLF"
+      },
+      "b:artifacts/luna45-acp0008-depth2-destination-integration-20261006/replay-destination_disabled-reception.json": {
+        "file_sha256": "70c91d10fdf0d299040cc94a1122f81ea386721cb8567c67444062eb90d34937",
+        "git_sha256": "5bccab08d9b96dea40b1a970b52cfa49392e826c681154e4713183da54f60b98",
+        "file_bytes": 1590297,
+        "git_bytes": 1590296,
+        "status": "exact LF-to-CRLF"
+      },
+      "c:artifacts/luna45-acp0008-depth2-destination-integration-20261006/replay-destination_disabled-reception.json": {
+        "file_sha256": "70c91d10fdf0d299040cc94a1122f81ea386721cb8567c67444062eb90d34937",
+        "git_sha256": "5bccab08d9b96dea40b1a970b52cfa49392e826c681154e4713183da54f60b98",
+        "file_bytes": 1590297,
+        "git_bytes": 1590296,
+        "status": "exact LF-to-CRLF"
+      },
+      "d:artifacts/luna45-acp0008-depth2-destination-integration-20261006/replay-destination_disabled-reception.json": {
+        "file_sha256": "70c91d10fdf0d299040cc94a1122f81ea386721cb8567c67444062eb90d34937",
+        "git_sha256": "5bccab08d9b96dea40b1a970b52cfa49392e826c681154e4713183da54f60b98",
+        "file_bytes": 1590297,
+        "git_bytes": 1590296,
+        "status": "exact LF-to-CRLF"
+      },
+      "e:artifacts/luna45-acp0008-depth2-destination-integration-20261006/replay-destination_disabled-reception.json": {
+        "file_sha256": "70c91d10fdf0d299040cc94a1122f81ea386721cb8567c67444062eb90d34937",
+        "git_sha256": "5bccab08d9b96dea40b1a970b52cfa49392e826c681154e4713183da54f60b98",
+        "file_bytes": 1590297,
+        "git_bytes": 1590296,
+        "status": "exact LF-to-CRLF"
+      },
+      "f:artifacts/luna45-acp0008-depth2-destination-integration-20261006/replay-destination_disabled-reception.json": {
+        "file_sha256": "70c91d10fdf0d299040cc94a1122f81ea386721cb8567c67444062eb90d34937",
+        "git_sha256": "5bccab08d9b96dea40b1a970b52cfa49392e826c681154e4713183da54f60b98",
+        "file_bytes": 1590297,
+        "git_bytes": 1590296,
+        "status": "exact LF-to-CRLF"
+      },
+      "g:artifacts/luna45-acp0008-depth2-destination-integration-20261006/replay-destination_disabled-reception.json": {
+        "file_sha256": "70c91d10fdf0d299040cc94a1122f81ea386721cb8567c67444062eb90d34937",
+        "git_sha256": "5bccab08d9b96dea40b1a970b52cfa49392e826c681154e4713183da54f60b98",
+        "file_bytes": 1590297,
+        "git_bytes": 1590296,
+        "status": "exact LF-to-CRLF"
+      },
+      "a:artifacts/luna45-acp0008-depth2-destination-integration-20261006/replay-destination_disabled.json": {
+        "file_sha256": "43f3e68fbdb75be142989b0f7611fb8004810d3dbc95832d3e3c10e8249aef52",
+        "git_sha256": "8df6c251097758c073c1ef8fa85255d24105885d137cbe2b647a70b278fbc989",
+        "file_bytes": 39752836,
+        "git_bytes": 39752835,
+        "status": "exact LF-to-CRLF"
+      },
+      "b:artifacts/luna45-acp0008-depth2-destination-integration-20261006/replay-destination_disabled.json": {
+        "file_sha256": "43f3e68fbdb75be142989b0f7611fb8004810d3dbc95832d3e3c10e8249aef52",
+        "git_sha256": "8df6c251097758c073c1ef8fa85255d24105885d137cbe2b647a70b278fbc989",
+        "file_bytes": 39752836,
+        "git_bytes": 39752835,
+        "status": "exact LF-to-CRLF"
+      },
+      "c:artifacts/luna45-acp0008-depth2-destination-integration-20261006/replay-destination_disabled.json": {
+        "file_sha256": "43f3e68fbdb75be142989b0f7611fb8004810d3dbc95832d3e3c10e8249aef52",
+        "git_sha256": "8df6c251097758c073c1ef8fa85255d24105885d137cbe2b647a70b278fbc989",
+        "file_bytes": 39752836,
+        "git_bytes": 39752835,
+        "status": "exact LF-to-CRLF"
+      },
+      "d:artifacts/luna45-acp0008-depth2-destination-integration-20261006/replay-destination_disabled.json": {
+        "file_sha256": "43f3e68fbdb75be142989b0f7611fb8004810d3dbc95832d3e3c10e8249aef52",
+        "git_sha256": "8df6c251097758c073c1ef8fa85255d24105885d137cbe2b647a70b278fbc989",
+        "file_bytes": 39752836,
+        "git_bytes": 39752835,
+        "status": "exact LF-to-CRLF"
+      },
+      "e:artifacts/luna45-acp0008-depth2-destination-integration-20261006/replay-destination_disabled.json": {
+        "file_sha256": "43f3e68fbdb75be142989b0f7611fb8004810d3dbc95832d3e3c10e8249aef52",
+        "git_sha256": "8df6c251097758c073c1ef8fa85255d24105885d137cbe2b647a70b278fbc989",
+        "file_bytes": 39752836,
+        "git_bytes": 39752835,
+        "status": "exact LF-to-CRLF"
+      },
+      "f:artifacts/luna45-acp0008-depth2-destination-integration-20261006/replay-destination_disabled.json": {
+        "file_sha256": "43f3e68fbdb75be142989b0f7611fb8004810d3dbc95832d3e3c10e8249aef52",
+        "git_sha256": "8df6c251097758c073c1ef8fa85255d24105885d137cbe2b647a70b278fbc989",
+        "file_bytes": 39752836,
+        "git_bytes": 39752835,
+        "status": "exact LF-to-CRLF"
+      },
+      "g:artifacts/luna45-acp0008-depth2-destination-integration-20261006/replay-destination_disabled.json": {
+        "file_sha256": "43f3e68fbdb75be142989b0f7611fb8004810d3dbc95832d3e3c10e8249aef52",
+        "git_sha256": "8df6c251097758c073c1ef8fa85255d24105885d137cbe2b647a70b278fbc989",
+        "file_bytes": 39752836,
+        "git_bytes": 39752835,
+        "status": "exact LF-to-CRLF"
+      },
+      "a:artifacts/luna45-acp0008-depth2-destination-integration-20261006/replay-gates.json": {
+        "file_sha256": "a7fe88a1b0cf9c4ee48ab3219ab94177d1d158d57b8c5a1435cdf655f5762690",
+        "git_sha256": "27d127e2a9aac97ab81625a35957a66c5c452e33a0e757a0c2063efa3af60088",
+        "file_bytes": 63677174,
+        "git_bytes": 63677173,
+        "status": "exact LF-to-CRLF"
+      },
+      "b:artifacts/luna45-acp0008-depth2-destination-integration-20261006/replay-gates.json": {
+        "file_sha256": "a7fe88a1b0cf9c4ee48ab3219ab94177d1d158d57b8c5a1435cdf655f5762690",
+        "git_sha256": "27d127e2a9aac97ab81625a35957a66c5c452e33a0e757a0c2063efa3af60088",
+        "file_bytes": 63677174,
+        "git_bytes": 63677173,
+        "status": "exact LF-to-CRLF"
+      },
+      "c:artifacts/luna45-acp0008-depth2-destination-integration-20261006/replay-gates.json": {
+        "file_sha256": "a7fe88a1b0cf9c4ee48ab3219ab94177d1d158d57b8c5a1435cdf655f5762690",
+        "git_sha256": "27d127e2a9aac97ab81625a35957a66c5c452e33a0e757a0c2063efa3af60088",
+        "file_bytes": 63677174,
+        "git_bytes": 63677173,
+        "status": "exact LF-to-CRLF"
+      },
+      "d:artifacts/luna45-acp0008-depth2-destination-integration-20261006/replay-gates.json": {
+        "file_sha256": "a7fe88a1b0cf9c4ee48ab3219ab94177d1d158d57b8c5a1435cdf655f5762690",
+        "git_sha256": "27d127e2a9aac97ab81625a35957a66c5c452e33a0e757a0c2063efa3af60088",
+        "file_bytes": 63677174,
+        "git_bytes": 63677173,
+        "status": "exact LF-to-CRLF"
+      },
+      "e:artifacts/luna45-acp0008-depth2-destination-integration-20261006/replay-gates.json": {
+        "file_sha256": "a7fe88a1b0cf9c4ee48ab3219ab94177d1d158d57b8c5a1435cdf655f5762690",
+        "git_sha256": "27d127e2a9aac97ab81625a35957a66c5c452e33a0e757a0c2063efa3af60088",
+        "file_bytes": 63677174,
+        "git_bytes": 63677173,
+        "status": "exact LF-to-CRLF"
+      },
+      "f:artifacts/luna45-acp0008-depth2-destination-integration-20261006/replay-gates.json": {
+        "file_sha256": "a7fe88a1b0cf9c4ee48ab3219ab94177d1d158d57b8c5a1435cdf655f5762690",
+        "git_sha256": "27d127e2a9aac97ab81625a35957a66c5c452e33a0e757a0c2063efa3af60088",
+        "file_bytes": 63677174,
+        "git_bytes": 63677173,
+        "status": "exact LF-to-CRLF"
+      },
+      "g:artifacts/luna45-acp0008-depth2-destination-integration-20261006/replay-gates.json": {
+        "file_sha256": "a7fe88a1b0cf9c4ee48ab3219ab94177d1d158d57b8c5a1435cdf655f5762690",
+        "git_sha256": "27d127e2a9aac97ab81625a35957a66c5c452e33a0e757a0c2063efa3af60088",
+        "file_bytes": 63677174,
+        "git_bytes": 63677173,
+        "status": "exact LF-to-CRLF"
+      },
+      "a:artifacts/luna45-acp0008-depth2-destination-integration-20261006/summary.json": {
+        "file_sha256": "ebcae8f79f923fe62133943d1fc9f96ca311993f358d3a5f4c930a8159193378",
+        "git_sha256": "74968daa82fce731b1a7c8445aa75d756c37a89d36431077ab0e9345f7283c32",
+        "file_bytes": 41580,
+        "git_bytes": 41579,
+        "status": "exact LF-to-CRLF"
+      },
+      "b:artifacts/luna45-acp0008-depth2-destination-integration-20261006/summary.json": {
+        "file_sha256": "ebcae8f79f923fe62133943d1fc9f96ca311993f358d3a5f4c930a8159193378",
+        "git_sha256": "74968daa82fce731b1a7c8445aa75d756c37a89d36431077ab0e9345f7283c32",
+        "file_bytes": 41580,
+        "git_bytes": 41579,
+        "status": "exact LF-to-CRLF"
+      },
+      "c:artifacts/luna45-acp0008-depth2-destination-integration-20261006/summary.json": {
+        "file_sha256": "ebcae8f79f923fe62133943d1fc9f96ca311993f358d3a5f4c930a8159193378",
+        "git_sha256": "74968daa82fce731b1a7c8445aa75d756c37a89d36431077ab0e9345f7283c32",
+        "file_bytes": 41580,
+        "git_bytes": 41579,
+        "status": "exact LF-to-CRLF"
+      },
+      "d:artifacts/luna45-acp0008-depth2-destination-integration-20261006/summary.json": {
+        "file_sha256": "ebcae8f79f923fe62133943d1fc9f96ca311993f358d3a5f4c930a8159193378",
+        "git_sha256": "74968daa82fce731b1a7c8445aa75d756c37a89d36431077ab0e9345f7283c32",
+        "file_bytes": 41580,
+        "git_bytes": 41579,
+        "status": "exact LF-to-CRLF"
+      },
+      "e:artifacts/luna45-acp0008-depth2-destination-integration-20261006/summary.json": {
+        "file_sha256": "ebcae8f79f923fe62133943d1fc9f96ca311993f358d3a5f4c930a8159193378",
+        "git_sha256": "74968daa82fce731b1a7c8445aa75d756c37a89d36431077ab0e9345f7283c32",
+        "file_bytes": 41580,
+        "git_bytes": 41579,
+        "status": "exact LF-to-CRLF"
+      },
+      "f:artifacts/luna45-acp0008-depth2-destination-integration-20261006/summary.json": {
+        "file_sha256": "ebcae8f79f923fe62133943d1fc9f96ca311993f358d3a5f4c930a8159193378",
+        "git_sha256": "74968daa82fce731b1a7c8445aa75d756c37a89d36431077ab0e9345f7283c32",
+        "file_bytes": 41580,
+        "git_bytes": 41579,
+        "status": "exact LF-to-CRLF"
+      },
+      "g:artifacts/luna45-acp0008-depth2-destination-integration-20261006/summary.json": {
+        "file_sha256": "ebcae8f79f923fe62133943d1fc9f96ca311993f358d3a5f4c930a8159193378",
+        "git_sha256": "74968daa82fce731b1a7c8445aa75d756c37a89d36431077ab0e9345f7283c32",
+        "file_bytes": 41580,
+        "git_bytes": 41579,
+        "status": "exact LF-to-CRLF"
+      }
+    }
+  },
+  "AB": {
+    "partition": {
+      "NO-RECEPTIONS": 212,
+      "TEMPORAL-RETENTION-LIMITED": 33,
+      "DRIVE-LIMITED": 75
+    },
+    "A_rescues": {
+      "retention_tau8000": {
+        "TEMPORAL-RETENTION-LIMITED": 31
+      },
+      "retention_tau800": {
+        "TEMPORAL-RETENTION-LIMITED": 19
+      }
+    },
+    "A_historical": {
+      "baseline_tau80": {
+        "crossing_streams": 108,
+        "clipped_events": 0
+      },
+      "retention_tau800": {
+        "crossing_streams": 166,
+        "clipped_events": 121
+      },
+      "retention_tau8000": {
+        "crossing_streams": 167,
+        "clipped_events": 179
+      }
+    },
+    "B_critical_range": [
+      1.8425872009402644,
+      3.28743886088831
+    ],
+    "B_critical_target_median": 2.8548209160858264,
+    "B_arms": [
+      {
+        "gain": 1.0,
+        "rescued": 0,
+        "unintended": 0
+      },
+      {
+        "gain": 1.1950099247935608,
+        "rescued": 0,
+        "unintended": 0
+      },
+      {
+        "gain": 1.219151539435855,
+        "rescued": 0,
+        "unintended": 1
+      },
+      {
+        "gain": 2.5281413691871313,
+        "rescued": 18,
+        "unintended": 33
+      },
+      {
+        "gain": 2.5792149322010127,
+        "rescued": 23,
+        "unintended": 33
+      },
+      {
+        "gain": 3.254564472279427,
+        "rescued": 72,
+        "unintended": 33
+      },
+      {
+        "gain": 3.3203132494971928,
+        "rescued": 75,
+        "unintended": 33
+      }
+    ]
+  },
+  "C": {
+    "fixtures": 16,
+    "runs": 48,
+    "tested_and_control_events": 23040,
+    "metrics": [
+      {
+        "fixture": "stationary:+1",
+        "method": "fixed",
+        "false_admissions": 0,
+        "misses": 0
+      },
+      {
+        "fixture": "stationary:+1",
+        "method": "adaptive",
+        "false_admissions": 28,
+        "misses": 0
+      },
+      {
+        "fixture": "stationary:+1",
+        "method": "robust",
+        "false_admissions": 28,
+        "misses": 0
+      },
+      {
+        "fixture": "stationary:-1",
+        "method": "fixed",
+        "false_admissions": 0,
+        "misses": 0
+      },
+      {
+        "fixture": "stationary:-1",
+        "method": "adaptive",
+        "false_admissions": 28,
+        "misses": 0
+      },
+      {
+        "fixture": "stationary:-1",
+        "method": "robust",
+        "false_admissions": 28,
+        "misses": 0
+      },
+      {
+        "fixture": "drift:+1",
+        "method": "fixed",
+        "false_admissions": 0,
+        "misses": 0
+      },
+      {
+        "fixture": "drift:+1",
+        "method": "adaptive",
+        "false_admissions": 50,
+        "misses": 0
+      },
+      {
+        "fixture": "drift:+1",
+        "method": "robust",
+        "false_admissions": 71,
+        "misses": 0
+      },
+      {
+        "fixture": "drift:-1",
+        "method": "fixed",
+        "false_admissions": 0,
+        "misses": 0
+      },
+      {
+        "fixture": "drift:-1",
+        "method": "adaptive",
+        "false_admissions": 50,
+        "misses": 0
+      },
+      {
+        "fixture": "drift:-1",
+        "method": "robust",
+        "false_admissions": 71,
+        "misses": 0
+      },
+      {
+        "fixture": "isolated:+1",
+        "method": "fixed",
+        "false_admissions": 0,
+        "misses": 0
+      },
+      {
+        "fixture": "isolated:+1",
+        "method": "adaptive",
+        "false_admissions": 21,
+        "misses": 0
+      },
+      {
+        "fixture": "isolated:+1",
+        "method": "robust",
+        "false_admissions": 28,
+        "misses": 0
+      },
+      {
+        "fixture": "isolated:-1",
+        "method": "fixed",
+        "false_admissions": 0,
+        "misses": 0
+      },
+      {
+        "fixture": "isolated:-1",
+        "method": "adaptive",
+        "false_admissions": 21,
+        "misses": 0
+      },
+      {
+        "fixture": "isolated:-1",
+        "method": "robust",
+        "false_admissions": 28,
+        "misses": 0
+      },
+      {
+        "fixture": "clustered:+1",
+        "method": "fixed",
+        "false_admissions": 0,
+        "misses": 0
+      },
+      {
+        "fixture": "clustered:+1",
+        "method": "adaptive",
+        "false_admissions": 22,
+        "misses": 10
+      },
+      {
+        "fixture": "clustered:+1",
+        "method": "robust",
+        "false_admissions": 28,
+        "misses": 0
+      },
+      {
+        "fixture": "clustered:-1",
+        "method": "fixed",
+        "false_admissions": 0,
+        "misses": 0
+      },
+      {
+        "fixture": "clustered:-1",
+        "method": "adaptive",
+        "false_admissions": 22,
+        "misses": 10
+      },
+      {
+        "fixture": "clustered:-1",
+        "method": "robust",
+        "false_admissions": 28,
+        "misses": 0
+      },
+      {
+        "fixture": "mixed_signs:+1",
+        "method": "fixed",
+        "false_admissions": 0,
+        "misses": 0
+      },
+      {
+        "fixture": "mixed_signs:+1",
+        "method": "adaptive",
+        "false_admissions": 23,
+        "misses": 17
+      },
+      {
+        "fixture": "mixed_signs:+1",
+        "method": "robust",
+        "false_admissions": 23,
+        "misses": 11
+      },
+      {
+        "fixture": "mixed_signs:-1",
+        "method": "fixed",
+        "false_admissions": 0,
+        "misses": 0
+      },
+      {
+        "fixture": "mixed_signs:-1",
+        "method": "adaptive",
+        "false_admissions": 23,
+        "misses": 17
+      },
+      {
+        "fixture": "mixed_signs:-1",
+        "method": "robust",
+        "false_admissions": 23,
+        "misses": 11
+      },
+      {
+        "fixture": "near_boundary:+1",
+        "method": "fixed",
+        "false_admissions": 0,
+        "misses": 3
+      },
+      {
+        "fixture": "near_boundary:+1",
+        "method": "adaptive",
+        "false_admissions": 23,
+        "misses": 0
+      },
+      {
+        "fixture": "near_boundary:+1",
+        "method": "robust",
+        "false_admissions": 27,
+        "misses": 0
+      },
+      {
+        "fixture": "near_boundary:-1",
+        "method": "fixed",
+        "false_admissions": 0,
+        "misses": 3
+      },
+      {
+        "fixture": "near_boundary:-1",
+        "method": "adaptive",
+        "false_admissions": 23,
+        "misses": 0
+      },
+      {
+        "fixture": "near_boundary:-1",
+        "method": "robust",
+        "false_admissions": 27,
+        "misses": 0
+      },
+      {
+        "fixture": "contamination_chain:+1",
+        "method": "fixed",
+        "false_admissions": 0,
+        "misses": 0
+      },
+      {
+        "fixture": "contamination_chain:+1",
+        "method": "adaptive",
+        "false_admissions": 0,
+        "misses": 4
+      },
+      {
+        "fixture": "contamination_chain:+1",
+        "method": "robust",
+        "false_admissions": 0,
+        "misses": 0
+      },
+      {
+        "fixture": "contamination_chain:-1",
+        "method": "fixed",
+        "false_admissions": 0,
+        "misses": 0
+      },
+      {
+        "fixture": "contamination_chain:-1",
+        "method": "adaptive",
+        "false_admissions": 0,
+        "misses": 4
+      },
+      {
+        "fixture": "contamination_chain:-1",
+        "method": "robust",
+        "false_admissions": 0,
+        "misses": 0
+      },
+      {
+        "fixture": "noise_step:+1",
+        "method": "fixed",
+        "false_admissions": 50,
+        "misses": 0
+      },
+      {
+        "fixture": "noise_step:+1",
+        "method": "adaptive",
+        "false_admissions": 32,
+        "misses": 0
+      },
+      {
+        "fixture": "noise_step:+1",
+        "method": "robust",
+        "false_admissions": 47,
+        "misses": 0
+      },
+      {
+        "fixture": "noise_step:-1",
+        "method": "fixed",
+        "false_admissions": 50,
+        "misses": 0
+      },
+      {
+        "fixture": "noise_step:-1",
+        "method": "adaptive",
+        "false_admissions": 32,
+        "misses": 0
+      },
+      {
+        "fixture": "noise_step:-1",
+        "method": "robust",
+        "false_admissions": 47,
+        "misses": 0
+      }
+    ]
+  },
+  "D": {
+    "trajectories": 30,
+    "inputs": 44,
+    "outputs": 40,
+    "records": [
+      {
+        "trajectory": "idle/positive",
+        "outputs": 0
+      },
+      {
+        "trajectory": "idle/negative",
+        "outputs": 0
+      },
+      {
+        "trajectory": "subthreshold/positive",
+        "outputs": 0
+      },
+      {
+        "trajectory": "subthreshold/negative",
+        "outputs": 0
+      },
+      {
+        "trajectory": "subthreshold-near/positive",
+        "outputs": 0
+      },
+      {
+        "trajectory": "subthreshold-near/negative",
+        "outputs": 0
+      },
+      {
+        "trajectory": "subthreshold-cluster/positive",
+        "outputs": 0
+      },
+      {
+        "trajectory": "subthreshold-cluster/negative",
+        "outputs": 0
+      },
+      {
+        "trajectory": "threshold-boundary/positive",
+        "outputs": 0
+      },
+      {
+        "trajectory": "threshold-boundary/negative",
+        "outputs": 0
+      },
+      {
+        "trajectory": "marginal-crossing/positive",
+        "outputs": 0
+      },
+      {
+        "trajectory": "marginal-crossing/negative",
+        "outputs": 0
+      },
+      {
+        "trajectory": "moderate-low/positive",
+        "outputs": 1
+      },
+      {
+        "trajectory": "moderate-low/negative",
+        "outputs": 1
+      },
+      {
+        "trajectory": "moderate-high/positive",
+        "outputs": 1
+      },
+      {
+        "trajectory": "moderate-high/negative",
+        "outputs": 1
+      },
+      {
+        "trajectory": "moderate-cluster/positive",
+        "outputs": 1
+      },
+      {
+        "trajectory": "moderate-cluster/negative",
+        "outputs": 1
+      },
+      {
+        "trajectory": "extreme-low/positive",
+        "outputs": 2
+      },
+      {
+        "trajectory": "extreme-low/negative",
+        "outputs": 2
+      },
+      {
+        "trajectory": "extreme/positive",
+        "outputs": 3
+      },
+      {
+        "trajectory": "extreme/negative",
+        "outputs": 3
+      },
+      {
+        "trajectory": "extreme-cap/positive",
+        "outputs": 7
+      },
+      {
+        "trajectory": "extreme-cap/negative",
+        "outputs": 7
+      },
+      {
+        "trajectory": "extreme-cluster/positive",
+        "outputs": 3
+      },
+      {
+        "trajectory": "extreme-cluster/negative",
+        "outputs": 3
+      },
+      {
+        "trajectory": "cancellation/positive",
+        "outputs": 0
+      },
+      {
+        "trajectory": "cancellation/negative",
+        "outputs": 0
+      },
+      {
+        "trajectory": "separated-moderate/positive",
+        "outputs": 2
+      },
+      {
+        "trajectory": "separated-moderate/negative",
+        "outputs": 2
+      }
+    ],
+    "weak_drain_outputs_per_polarity": 3
+  },
+  "E": {
+    "offers": [
+      {
+        "part": "TLV9062IDR",
+        "url": "https://www.lcsc.com/product-detail/C398355.html",
+        "stock": 168340,
+        "price": 0.122,
+        "retrieved_utc": "2026-10-07T01:14:01.365895+00:00"
+      },
+      {
+        "part": "MCP41010-I/P",
+        "url": "https://www.lcsc.com/product-detail/C1539831.html",
+        "stock": 64,
+        "price": 3.7835,
+        "retrieved_utc": "2026-10-07T01:14:03.050866+00:00"
+      },
+      {
+        "part": "B32529C1104J289",
+        "url": "https://www.lcsc.com/product-detail/C15523.html",
+        "stock": 9430,
+        "price": 0.1014,
+        "retrieved_utc": "2026-10-07T01:14:04.924792+00:00"
+      },
+      {
+        "part": "TLV3201AIDBVR",
+        "url": "https://www.lcsc.com/product-detail/C105188.html",
+        "stock": 32169,
+        "price": 0.982,
+        "retrieved_utc": "2026-10-07T01:14:01.927208+00:00"
+      },
+      {
+        "part": "1N4148-TAP",
+        "url": "https://www.lcsc.com/product-detail/C917479.html",
+        "stock": 18580,
+        "price": 0.0483,
+        "retrieved_utc": "2026-10-07T01:23:08.206605+00:00"
+      },
+      {
+        "part": "MFR-25FBF52-100K",
+        "url": "https://www.lcsc.com/product-detail/C1364475.html",
+        "stock": 10500,
+        "price": 0.0183,
+        "retrieved_utc": "2026-10-07T01:23:09.692019+00:00"
+      },
+      {
+        "part": "LMC555CMX/NOPB",
+        "url": "https://www.lcsc.com/product-detail/C90760.html",
+        "stock": 610,
+        "price": 0.2948,
+        "retrieved_utc": "2026-10-07T01:14:02.518696+00:00"
+      },
+      {
+        "part": "MCP4921-E/P",
+        "url": "https://www.lcsc.com/product-detail/C640392.html",
+        "stock": 34,
+        "price": 4.4057,
+        "retrieved_utc": "2026-10-07T01:14:04.082022+00:00"
+      }
+    ],
+    "primitive_families": 8,
+    "owner_access": "BLOCKED",
+    "independent_FPAA_availability": "BLOCKED",
+    "predeclaration": "Criteria first committed together with findings; prior freeze not independently proven"
+  },
+  "F": {
+    "rows": 2420,
+    "counts": {
+      "output-drive-proxy:opportunities": 2185,
+      "output-drive-proxy:duplicates": 1950,
+      "novel": 235,
+      "local-deposition:opportunities": 235,
+      "local-deposition:duplicates": 235
+    },
+    "streams": {
+      "output-drive-proxy": 297,
+      "local-deposition": 108
+    },
+    "source_local_availability": "BLOCKED",
+    "useful_novel_emission_associations": 0
+  },
+  "G": {
+    "samples": 3840,
+    "corners": 168,
+    "reconstructed_events": 516666,
+    "counts": {
+      "nominal:n": 768,
+      "nominal:failed": 0,
+      "selected:n": 768,
+      "selected:failed": 1,
+      "general:n": 768,
+      "general:failed": 81,
+      "loose:n": 768,
+      "loose:failed": 418,
+      "stress:n": 768,
+      "stress:failed": 631
+    },
+    "scope": "independent assumed stand-in; no composed-lane or hardware yield inference"
+  },
+  "check_counts": {
+    "pinned HEAD": 7,
+    "lane clean": 7,
+    "lane ownership": 7,
+    "changed-file materialization": 85,
+    "L45 catalog sha256": 22,
+    "L45 catalog length": 22,
+    "L45 internal digest": 22,
+    "shared evidence blob": 154,
+    "shared evidence materialization": 154,
+    "raw stream": 640,
+    "unique raw enqueue": 640,
+    "raw coverage": 640,
+    "unique raw reception": 3900,
+    "raw identity payload": 3900,
+    "raw identity payload_bits": 3900,
+    "raw identity lineage_id": 3900,
+    "raw identity causal_roots": 3900,
+    "raw identity roots_truncated": 3900,
+    "raw identity route_depth": 3900,
+    "raw identity route_path": 3900,
+    "raw identity scheduled_delivery_timestamp": 3900,
+    "raw arrival": 3900,
+    "raw total": 2,
+    "downstream total": 2,
+    "preserved MIXED": 1,
+    "L46 internal digest": 1,
+    "B critical gain": 320,
+    "A stream crossing": 960,
+    "B first crossing": 2456,
+    "baseline recurrence": 235,
+    "A retained state": 705,
+    "A state": 705,
+    "A threshold": 705,
+    "B state": 1733,
+    "B threshold": 1733,
+    "B post-cross censor": 382,
+    "L46 partition": 1,
+    "A historical state": 5145,
+    "A historical count": 3,
+    "A historical clipping": 3,
+    "B rescue aggregate": 7,
+    "B other aggregate": 7,
+    "C fixture capacity": 48,
+    "C fixture decomposition": 11520,
+    "C B": 23040,
+    "C N": 23040,
+    "C E": 23040,
+    "C B_after": 23040,
+    "C N_after": 23040,
+    "C admission": 23040,
+    "C false admissions": 48,
+    "C misses": 48,
+    "D exact phase replay": 1,
+    "D output identities/time/sign": 30,
+    "D trace coverage": 30,
+    "D final state": 30,
+    "D expected regime": 30,
+    "D neutral recovery": 30,
+    "D boundary time": 90,
+    "D pre state": 90,
+    "D post state": 90,
+    "D weak-drain negative": 2,
+    "E owner gate": 10,
+    "E exact offer identity": 8,
+    "E captured stock": 8,
+    "E discrete offer count": 1,
+    "F source delta reference": 2420,
+    "F target delta reference": 2420,
+    "F lag": 2420,
+    "F opportunity": 2420,
+    "F static duplicate": 2420,
+    "F trigger causal direction": 3360,
+    "F repetitions": 2420,
+    "F novel endpoints": 235,
+    "F hop reduction": 235,
+    "F novel capacity": 235,
+    "F novel emission absent": 235,
+    "F novel total": 1,
+    "G RNG parameter draw": 3840,
+    "G RNG noise draw": 3840,
+    "G parameter transforms": 3840,
+    "G trace coverage": 108216,
+    "G trace kind": 516666,
+    "G trace time": 516666,
+    "G trace qualified": 516666,
+    "G trace scheduled": 516666,
+    "G state input": 516666,
+    "G state before": 516666,
+    "G state raw": 516666,
+    "G state pre_output": 516666,
+    "G state after": 516666,
+    "G output decision": 516666,
+    "G exact output trace": 108216,
+    "G run admitted": 108216,
+    "G run deposition": 108216,
+    "G run peak": 108216,
+    "G run final": 108216,
+    "G run neutral": 108216,
+    "G output value": 71610,
+    "G signed regime gates": 8016,
+    "G sample pass": 4008,
+    "G sample denominator": 5,
+    "G failure aggregate": 5
+  },
+  "max_residuals": {
+    "B critical gain": 0.0,
+    "baseline recurrence": 0.0,
+    "A retained state": 0.0,
+    "A state": 0.0,
+    "B state": 0.0,
+    "A historical state": 0.0,
+    "C B": 0.0,
+    "C N": 0.0,
+    "C E": 0.0,
+    "C B_after": 0.0,
+    "C N_after": 0.0,
+    "D final state": 0.0,
+    "D pre state": 0.0,
+    "D post state": 0.0,
+    "G state input": 0.0,
+    "G state before": 0.0,
+    "G state raw": 0.0,
+    "G state pre_output": 0.0,
+    "G state after": 0.0,
+    "G output value": 0.0
+  },
+  "seconds": 147.71899999999732,
+  "status": "PASS"
+}

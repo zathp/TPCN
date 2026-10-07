@@ -1,0 +1,24 @@
+{
+  "name": "governance-full",
+  "cwd": "C:\\Users\\zathp\\.copilot\\session-state\\2c38ab9f-63a7-41fb-8437-e11b4732bee9\\files\\luna47-review",
+  "command": [
+    "C:\\Users\\zathp\\Documents\\programming\\TPCN\\.venv\\Scripts\\python.exe",
+    "-m",
+    "pytest",
+    "tests",
+    "-ra",
+    "--junitxml=C:\\Users\\zathp\\.copilot\\session-state\\2c38ab9f-63a7-41fb-8437-e11b4732bee9\\files\\luna47-review\\artifacts\\luna47-review\\governance-full.xml"
+  ],
+  "python": "3.11.5 (tags/v3.11.5:cce6ba9, Aug 24 2023, 14:38:34) [MSC v.1936 64 bit (AMD64)]",
+  "executable": "C:\\Users\\zathp\\Documents\\programming\\TPCN\\.venv\\Scripts\\python.exe",
+  "revision": "4b11e0e828fd6fbcb4cbf9b994f121bde54e4c37",
+  "started_utc": "2026-10-07T01:41:03.347100+00:00",
+  "seconds": 195.63999999999942,
+  "exit_code": 1,
+  "environment": {
+    "PYTHONPATH": "C:\\Users\\zathp\\.copilot\\session-state\\2c38ab9f-63a7-41fb-8437-e11b4732bee9\\files\\luna47-review",
+    "PYTHONHASHSEED": "0",
+    "PYTHONDONTWRITEBYTECODE": "1"
+  },
+  "log_sha256": "5a6abdc52a5ca92bab58ccf97d270523d5347c36a923bf84cb93867ce832c52b"
+}

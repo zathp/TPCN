@@ -1,0 +1,39 @@
+{
+  "name": "governance-boundary",
+  "cwd": "C:\\Users\\zathp\\.copilot\\session-state\\2c38ab9f-63a7-41fb-8437-e11b4732bee9\\files\\luna47-review",
+  "command": [
+    "C:\\Users\\zathp\\Documents\\programming\\TPCN\\.venv\\Scripts\\python.exe",
+    "-m",
+    "pytest",
+    "tests\\test_e2_multi_excursion.py",
+    "tests\\test_eligibility.py",
+    "tests\\test_energy_utility.py",
+    "tests\\test_event_runtime.py",
+    "tests\\test_excursion_integration.py",
+    "tests\\test_excursion_neuron.py",
+    "tests\\test_luna11_adversarial.py",
+    "tests\\test_luna28_excursion_structural_growth.py",
+    "tests\\test_luna34_excursion_v1_multi_emitter_bridge.py",
+    "tests\\test_luna35_eligibility_capacity_lifecycle.py",
+    "tests\\test_luna36_eligibility_capacity_api.py",
+    "tests\\test_luna37_excursion_v1_propagation_emission_diagnostic.py",
+    "tests\\test_luna38_excursion_integration_state.py",
+    "tests\\test_luna40_structural_effective_routed_drive.py",
+    "tests\\test_structural_plasticity.py",
+    "tests\\test_topology.py",
+    "-ra",
+    "--junitxml=C:\\Users\\zathp\\.copilot\\session-state\\2c38ab9f-63a7-41fb-8437-e11b4732bee9\\files\\luna47-review\\artifacts\\luna47-review\\governance-boundary.xml"
+  ],
+  "python": "3.11.5 (tags/v3.11.5:cce6ba9, Aug 24 2023, 14:38:34) [MSC v.1936 64 bit (AMD64)]",
+  "executable": "C:\\Users\\zathp\\Documents\\programming\\TPCN\\.venv\\Scripts\\python.exe",
+  "revision": "4b11e0e828fd6fbcb4cbf9b994f121bde54e4c37",
+  "started_utc": "2026-10-07T01:46:41.731707+00:00",
+  "seconds": 20.25,
+  "exit_code": 0,
+  "environment": {
+    "PYTHONPATH": "C:\\Users\\zathp\\.copilot\\session-state\\2c38ab9f-63a7-41fb-8437-e11b4732bee9\\files\\luna47-review",
+    "PYTHONHASHSEED": "0",
+    "PYTHONDONTWRITEBYTECODE": "1"
+  },
+  "log_sha256": "bdc0a7d481b5fc93b3453ef7dfba4c9d283d0b120e114adbbb89afa761e3c46e"
+}

@@ -1,0 +1,16 @@
+cwd=C:\Users\zathp\.copilot\session-state\2c38ab9f-63a7-41fb-8437-e11b4732bee9\files\luna47a
+command=['C:\\Users\\zathp\\Documents\\programming\\TPCN\\.venv\\Scripts\\python.exe', '-m', 'pytest', 'tests\\test_luna47a_retention.py', '-ra', '--junitxml=C:\\Users\\zathp\\.copilot\\session-state\\2c38ab9f-63a7-41fb-8437-e11b4732bee9\\files\\luna47-review\\artifacts\\luna47-review\\lane-a-focused.xml']
+PYTHONPATH=C:\Users\zathp\.copilot\session-state\2c38ab9f-63a7-41fb-8437-e11b4732bee9\files\luna47a
+PYTHONHASHSEED=0
+PYTHONDONTWRITEBYTECODE=1
+started=2026-10-07T01:41:03.271529+00:00
+============================= test session starts =============================
+platform win32 -- Python 3.11.5, pytest-9.1.1, pluggy-1.6.0
+rootdir: C:\Users\zathp\.copilot\session-state\2c38ab9f-63a7-41fb-8437-e11b4732bee9\files\luna47a
+collected 74 items
+
+tests\test_luna47a_retention.py ........................................ [ 54%]
+..................................                                       [100%]
+
+- generated xml file: C:\Users\zathp\.copilot\session-state\2c38ab9f-63a7-41fb-8437-e11b4732bee9\files\luna47-review\artifacts\luna47-review\lane-a-focused.xml -
+======================= 74 passed in 110.22s (0:01:50) ========================

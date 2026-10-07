@@ -1,5 +1,42 @@
 # TPCN Luna Multi-Agent Workflow — Event-Driven Architecture
 
+## Luna-47 independent review and synthesis — 2026-10-06
+
+**Review complete; FOLLOW-UP REQUIRED — promising unresolved mechanisms.**
+The seven pushed, isolated lane pins were independently inspected and tested
+without merging or composing their implementations. Reviewer verdicts:
+**A PARTIALLY SUPPORTED; B SUPPORTED (mathematical first-crossing only);
+C PARTIALLY SUPPORTED; D SUPPORTED (synthetic output regimes only);
+E PARTIALLY SUPPORTED (documentary primitives only);
+F PARTIALLY SUPPORTED (geometrical proxy only); G PARTIALLY SUPPORTED
+(assumed independent stand-in only).**
+
+Evidence, exact pins, predeclaration/correction audit, independent oracles,
+test failures and interpretation boundaries are in the
+[completed Luna-0 handoff](../../handoffs/luna-0-independent-review-luna47-20261006.md)
+and [review synthesis](../../../artifacts/luna47-review/SYNTHESIS.md).
+Fresh focused lane tests: **306 passed**; governance boundary regressions:
+**332 passed**, with **21 additional canonical-neuron/predictive checks passed**.
+The required raw governance full suite remains **FAILED**:
+**1,324 passed, 2 failed, 7 errors, 1 CUDA skip; exit 1**.
+The supplied same-revision baseline had 1,325 passed, 1 failed, 7 errors,
+1 skip; the additional raw catalog failure is an exactly verified LF/CRLF
+checkout mismatch, not a changed scientific blob or a waived test.
+
+These results do not establish a composed neuron, task efficacy, selective
+noise rejection, useful source-local candidate growth, owner-accessible
+validated hardware, or commercial analog yield. E's reported prior criteria
+freeze is not independently proven by Git: criteria and findings first appear
+in the same commit. Keep all lane negative and pre-correction history.
+
+**No architecture change or successor authorization.** No Luna-48, other
+successor contract/dispatch, composition/integration experiment, production
+promotion, ACP action, purchase or hardware build is authorized in this cycle.
+Luna-46 remains **MIXED**; ACP-0007/0008 and A01–A15 are unchanged.
+The project owner, through Luna-0, is the next decision recipient. Questions
+for separately authorized follow-up are recommendations, not active work.
+The following authorization entry remains as history at its publication date.
+
 ## Luna-47 evidence-lane authorization — 2026-10-06
 
 **Luna-47A through Luna-47G are AUTHORIZED / NOT EXECUTED**, solely for the

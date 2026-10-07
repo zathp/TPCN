@@ -1,0 +1,117 @@
+cwd=C:\Users\zathp\.copilot\session-state\2c38ab9f-63a7-41fb-8437-e11b4732bee9\files\luna47b
+command=['C:\\Users\\zathp\\Documents\\programming\\TPCN\\.venv\\Scripts\\python.exe', '-m', 'experiments.luna47b.diagnostic', '--replay']
+{
+  "verdict": "SUPPORTED",
+  "summaries": [
+    {
+      "gain": 1.0,
+      "rescued": 0,
+      "target_denominator": 75,
+      "rescued_fraction": 0.0,
+      "unintended_crossings": 0,
+      "non_target_denominator": 245,
+      "non_target_fraction": 0.0,
+      "other_reception_denominator": 33,
+      "other_reception_fraction": 0.0,
+      "saturations": 0,
+      "maximum_abs_evaluated_state": 0.8284450023885981,
+      "cancelled_magnitude_before_stop": 0.0,
+      "sign_reversals_before_stop": 0
+    },
+    {
+      "gain": 1.1950099247935608,
+      "rescued": 0,
+      "target_denominator": 75,
+      "rescued_fraction": 0.0,
+      "unintended_crossings": 0,
+      "non_target_denominator": 245,
+      "non_target_fraction": 0.0,
+      "other_reception_denominator": 33,
+      "other_reception_fraction": 0.0,
+      "saturations": 0,
+      "maximum_abs_evaluated_state": 0.99,
+      "cancelled_magnitude_before_stop": 0.0,
+      "sign_reversals_before_stop": 0
+    },
+    {
+      "gain": 1.219151539435855,
+      "rescued": 0,
+      "target_denominator": 75,
+      "rescued_fraction": 0.0,
+      "unintended_crossings": 1,
+      "non_target_denominator": 245,
+      "non_target_fraction": 0.004081632653061225,
+      "other_reception_denominator": 33,
+      "other_reception_fraction": 0.030303030303030304,
+      "saturations": 0,
+      "maximum_abs_evaluated_state": 1.01,
+      "cancelled_magnitude_before_stop": 0.0,
+      "sign_reversals_before_stop": 0
+    },
+    {
+      "gain": 2.5281413691871313,
+      "rescued": 18,
+      "target_denominator": 75,
+      "rescued_fraction": 0.24,
+      "unintended_crossings": 33,
+      "non_target_denominator": 245,
+      "non_target_fraction": 0.1346938775510204,
+      "other_reception_denominator": 33,
+      "other_reception_fraction": 1.0,
+      "saturations": 0,
+      "maximum_abs_evaluated_state": 1.593864647375143,
+      "cancelled_magnitude_before_stop": 0.0,
+      "sign_reversals_before_stop": 0
+    },
+    {
+      "gain": 2.5792149322010127,
+      "rescued": 23,
+      "target_denominator": 75,
+      "rescued_fraction": 0.30666666666666664,
+      "unintended_crossings": 33,
+      "non_target_denominator": 245,
+      "non_target_fraction": 0.1346938775510204,
+      "other_reception_denominator": 33,
+      "other_reception_fraction": 1.0,
+      "saturations": 0,
+      "maximum_abs_evaluated_state": 1.6260639331807014,
+      "cancelled_magnitude_before_stop": 0.0,
+      "sign_reversals_before_stop": 0
+    },
+    {
+      "gain": 3.254564472279427,
+      "rescued": 72,
+      "target_denominator": 75,
+      "rescued_fraction": 0.96,
+      "unintended_crossings": 33,
+      "non_target_denominator": 245,
+      "non_target_fraction": 0.1346938775510204,
+      "other_reception_denominator": 33,
+      "other_reception_fraction": 1.0,
+      "saturations": 0,
+      "maximum_abs_evaluated_state": 1.5326824480423076,
+      "cancelled_magnitude_before_stop": 0.0,
+      "sign_reversals_before_stop": 0
+    },
+    {
+      "gain": 3.3203132494971928,
+      "rescued": 75,
+      "target_denominator": 75,
+      "rescued_fraction": 1.0,
+      "unintended_crossings": 33,
+      "non_target_denominator": 245,
+      "non_target_fraction": 0.1346938775510204,
+      "other_reception_denominator": 33,
+      "other_reception_fraction": 1.0,
+      "saturations": 0,
+      "maximum_abs_evaluated_state": 1.2962629607423466,
+      "cancelled_magnitude_before_stop": 0.0,
+      "sign_reversals_before_stop": 0
+    }
+  ],
+  "target_critical_range": [
+    1.8425872009402644,
+    3.28743886088831
+  ],
+  "sha256": "b120d2cc5718649fb0d57d93611ddb89b45113e79c0d3003cf330fe092d0fb83"
+}
