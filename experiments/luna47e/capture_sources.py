@@ -73,76 +73,79 @@ def capture(identity: str, kind: str, url: str, inspect_pdf: bool) -> dict:
     }
     if record["state"] != "retrieved":
         return record
-    if data.startswith(b"%PDF"):
-        from pypdf import PdfReader
-        reader = PdfReader(io.BytesIO(data))
-        texts = [p.extract_text() or "" for p in reader.pages]
-        record["pdf_pages"] = len(texts)
-        record["pdf_metadata"] = {str(k): str(v) for k, v in (reader.metadata or {}).items()}
-        words = ["integrator", "capacitor", "supply voltage", "operating conditions",
-                 "quiescent", "current", "resolution", "tolerance", "hysteresis",
-                 "absolute", "rectif", "oscillator", "clock"]
-        excerpts = []
-        for word in words:
-            for page, text in enumerate(texts, 1):
-                match = re.search(re.escape(word), text, re.IGNORECASE)
-                if match:
-                    excerpts.append({"page": page, "keyword": word,
-                                     "text": text[max(0, match.start()-35):match.start()+110]})
-                    break
-        record["brief_excerpts"] = excerpts[:8]
-        if inspect_pdf:
-            print(f"\nPDF {identity}: {len(texts)} pages")
-            for page, text in enumerate(texts, 1):
-                if page == 1 or re.search(
-                    "recommended operating|electrical characteristics|switched capacitor|"
-                    "Integrator|SumFilter|Rectifier|Capacitor Bank", text, re.I
-                ):
-                    print(f"--- page {page} ---\n{text[:9500]}")
-        return record
-    text = data.decode("utf-8", errors="replace")
-    if identity == "legacy_anadigm" and "/lander" in text:
-        record["state"] = "unavailable"
-        record["error"] = "Legacy endpoint returns JavaScript /lander redirect, not product evidence."
-    elif identity == "fpaa_store":
-        products = json.loads(text)["products"]
-        record["offers"] = [
-            {"title": p["title"], "handle": p["handle"],
-             "variants": [{k: v.get(k) for k in ("sku", "price", "available", "inventory_quantity")}
-                          for v in p["variants"]]}
-            for p in products if any(
-                v.get("sku") in ("AN231E04-QFNSP", "OTC2312", "AN231K04-DUAL2", "OTC9300L")
-                for v in p["variants"])
-        ]
-        record["price_currency"] = "Store price strings; USD not assumed without page currency evidence."
-    elif "lcsc.com/product-detail" in url:
-        scripts = re.findall(r'<script[^>]+type="application/ld\+json"[^>]*>(.*?)</script>',
-                             text, re.S)
-        product = next((json.loads(s) for s in scripts if '"@type":"Product"' in s), None)
-        if product:
-            record["product"] = {k: product.get(k) for k in
-                                 ("name", "sku", "mpn", "brand", "offers", "subjectOf")}
-        prices = re.search(r'"productPriceList":(\[.*?\])', text, re.S)
-        record["price_tiers"] = json.loads(prices.group(1)) if prices else None
-        shipping = re.search(r'"overseasStockVO":(\{.*?\})', text, re.S)
-        record["shipping_stock"] = json.loads(shipping.group(1)) if shipping else None
-        if not product:
+    try:
+        if data.startswith(b"%PDF"):
+            from pypdf import PdfReader
+            reader = PdfReader(io.BytesIO(data))
+            texts = [p.extract_text() or "" for p in reader.pages]
+            record["pdf_pages"] = len(texts)
+            record["pdf_metadata"] = {str(k): str(v) for k, v in (reader.metadata or {}).items()}
+            words = ["integrator", "capacitor", "supply voltage", "operating conditions",
+                     "quiescent", "current", "resolution", "tolerance", "hysteresis",
+                     "absolute", "rectif", "oscillator", "clock"]
+            excerpts = []
+            for word in words:
+                for page, text in enumerate(texts, 1):
+                    match = re.search(re.escape(word), text, re.IGNORECASE)
+                    if match:
+                        excerpts.append({"page": page, "keyword": word,
+                                         "text": text[max(0, match.start()-35):match.start()+110]})
+                        break
+            record["brief_excerpts"] = excerpts[:8]
+            if inspect_pdf:
+                print(f"\nPDF {identity}: {len(texts)} pages")
+                for page, text in enumerate(texts, 1):
+                    if page == 1 or re.search(
+                        "recommended operating|electrical characteristics|switched capacitor|"
+                        "Integrator|SumFilter|Rectifier|Capacitor Bank", text, re.I
+                    ):
+                        print(f"--- page {page} ---\n{text[:9500]}")
+            return record
+        text = data.decode("utf-8", errors="replace")
+        if identity == "legacy_anadigm" and "/lander" in text:
             record["state"] = "unavailable"
-            record["error"] = "No identifiable product offer in response; do not infer stock."
-    else:
-        record["structured_price_currencies"] = sorted(set(
-            re.findall(r'"priceCurrency"\s*:\s*"([A-Z]{3})"', text)
-        ))
-        clean = re.sub(r"<script.*?</script>|<style.*?</style>", " ", text, flags=re.S)
-        clean = re.sub(r"<[^>]+>", " ", clean)
-        clean = re.sub(r"\s+", " ", clean)
-        excerpts = []
-        for word in ("integrat", "CAMs", "comparator", "oscillator", "capacitor", "SPI",
-                     "supply", "rectif", "priceCurrency", "3.3"):
-            m = re.search(word, clean, re.I)
-            if m:
-                excerpts.append({"keyword": word, "text": clean[max(0,m.start()-35):m.start()+110]})
-        record["brief_excerpts"] = excerpts[:8]
+            record["error"] = "Legacy endpoint returns JavaScript /lander redirect, not product evidence."
+        elif identity == "fpaa_store":
+            products = json.loads(text)["products"]
+            record["offers"] = [
+                {"title": p["title"], "handle": p["handle"],
+                 "variants": [{k: v.get(k) for k in ("sku", "price", "available", "inventory_quantity")}
+                              for v in p["variants"]]}
+                for p in products if any(
+                    v.get("sku") in ("AN231E04-QFNSP", "OTC2312", "AN231K04-DUAL2", "OTC9300L")
+                    for v in p["variants"])
+            ]
+            record["price_currency"] = "Store price strings; USD not assumed without page currency evidence."
+        elif "lcsc.com/product-detail" in url:
+            scripts = re.findall(r'<script[^>]+type="application/ld\+json"[^>]*>(.*?)</script>',
+                                 text, re.S)
+            product = next((json.loads(s) for s in scripts if '"@type":"Product"' in s), None)
+            if product:
+                record["product"] = {k: product.get(k) for k in
+                                     ("name", "sku", "mpn", "brand", "offers", "subjectOf")}
+            prices = re.search(r'"productPriceList":(\[.*?\])', text, re.S)
+            record["price_tiers"] = json.loads(prices.group(1)) if prices else None
+            shipping = re.search(r'"overseasStockVO":(\{.*?\})', text, re.S)
+            record["shipping_stock"] = json.loads(shipping.group(1)) if shipping else None
+            if not product:
+                record["state"] = "unavailable"
+                record["error"] = "No identifiable product offer in response; do not infer stock."
+        else:
+            record["structured_price_currencies"] = sorted(set(
+                re.findall(r'"priceCurrency"\s*:\s*"([A-Z]{3})"', text)
+            ))
+            clean = re.sub(r"<script.*?</script>|<style.*?</style>", " ", text, flags=re.S)
+            clean = re.sub(r"<[^>]+>", " ", clean)
+            clean = re.sub(r"\s+", " ", clean)
+            excerpts = []
+            for word in ("integrat", "CAMs", "comparator", "oscillator", "capacitor", "SPI",
+                         "supply", "rectif", "priceCurrency", "3.3"):
+                m = re.search(word, clean, re.I)
+                if m:
+                    excerpts.append({"keyword": word, "text": clean[max(0,m.start()-35):m.start()+110]})
+            record["brief_excerpts"] = excerpts[:8]
+    except Exception as exc:
+        record["processing_error"] = str(exc)
     return record
 
 

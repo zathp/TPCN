@@ -9,7 +9,7 @@ import platform
 import re
 import subprocess
 from datetime import datetime, timezone
-from pathlib import Path
+from pathlib import Path, PurePosixPath, PureWindowsPath
 from urllib.parse import urlparse
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -26,7 +26,7 @@ VERDICTS = {"SUPPORTED", "PARTIALLY SUPPORTED", "NOT SUPPORTED", "BLOCKED"}
 
 
 def sha(path: Path) -> str:
-    return hashlib.sha256(path.read_bytes()).hexdigest()
+    return hashlib.sha256(path.read_bytes().replace(b"\r\n", b"\n")).hexdigest()
 
 
 def load(path: str) -> dict:
@@ -38,8 +38,19 @@ def require(condition: bool, message: str) -> None:
         raise ValueError(message)
 
 
+def safe_relative(path: str) -> bool:
+    if not isinstance(path, str) or "\\" in path:
+        return False
+    posix_path = PurePosixPath(path)
+    windows_path = PureWindowsPath(path)
+    return not (
+        posix_path.is_absolute() or windows_path.is_absolute() or windows_path.drive
+        or ".." in posix_path.parts or ".." in windows_path.parts
+    )
+
+
 def owned(path: str) -> bool:
-    return (
+    return safe_relative(path) and (
         path.startswith(("experiments/luna47e/", "artifacts/luna47e/"))
         or bool(re.fullmatch(r"tests/test_luna47e_[^/]+\.py", path))
         or path == HANDOFF
@@ -55,6 +66,7 @@ def validate(matrix: dict) -> dict:
     require(owner["status"] == "BLOCKED", "Owner access must remain blocked")
     require(all(owner[k] is None for k in ("region", "budget", "inventory", "supply_constraints")),
             "Owner constraints were not supplied")
+    require(owned(matrix["criteria_path"]), "Criteria outside lane")
     require(sha(ROOT / matrix["criteria_path"]) == matrix["criteria_sha256"],
             "Criteria changed after declaration")
     cfg = matrix["configuration"]
@@ -147,6 +159,7 @@ def validate(matrix: dict) -> dict:
         require(negative["verdict"] in VERDICTS, "Invalid negative classification")
         check_refs(negative["source_refs"])
     for context in matrix["retained_context"]:
+        require(safe_relative(context["path"]), "Unsafe retained context path")
         require(sha(ROOT / context["path"]) == context["sha256"], "Retained evidence changed")
         baseline_bytes = subprocess.run(
             ["git", "show", PRODUCTION + ":" + context["path"]],
@@ -207,7 +220,8 @@ def main() -> None:
         if (ROOT / HANDOFF).exists():
             inventory.append(ROOT / HANDOFF)
         summary["file_integrity"] = [
-            {"path": p.relative_to(ROOT).as_posix(), "bytes": p.stat().st_size, "sha256": sha(p)}
+            {"path": p.relative_to(ROOT).as_posix(),
+             "bytes": len(p.read_bytes().replace(b"\r\n", b"\n")), "sha256": sha(p)}
             for p in sorted(inventory) if p.is_file()
         ]
         with path.open("x", encoding="utf-8", newline="\n") as handle:

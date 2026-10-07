@@ -7,7 +7,7 @@
   "authorization_revision": "789dda5988daf72f375d9713bd76a6da2b9e8b34",
   "production_evidence_baseline": "2cef8ea4b37a4ae586e3f383511cba63c9268ddc",
   "criteria_path": "experiments/luna47e/criteria.md",
-  "criteria_sha256": "e7dfd7bba267c25a276354052ee36a72a70a818108ce488f1ea6cabfbc619db9",
+  "criteria_sha256": "585bf7aa078a67718cc341f12bce026fb111fbca9dbd0db1018d783411a13210",
   "verdict": "PARTIALLY SUPPORTED",
   "verdict_scope": "Documentary primitive mapping only; not a build-ready validated BOM, architecture choice, efficacy or hardware equivalence.",
   "owner_access": {
@@ -34,7 +34,7 @@
   "retained_context": [
     {
       "path": "artifacts/luna46-depth-scaling-diagnostic-corrective-20261006.json",
-      "sha256": "0d32926f6f72a77a5b34eb054e1e46e9ece95cef3d6145e7892957cf3727722e",
+      "sha256": "54220205537184dadc26eba3c59f7e9b36f01db579fd895339728e089e313d51",
       "git_blob_sha256": "54220205537184dadc26eba3c59f7e9b36f01db579fd895339728e089e313d51",
       "materialization_policy": "Windows checkout has CRLF instead of the Git blob terminal LF; checkout.replace(CRLF,LF) is byte-identical to the pinned Git blob. Both exact hashes are checked separately.",
       "revision": "2cef8ea4b37a4ae586e3f383511cba63c9268ddc",

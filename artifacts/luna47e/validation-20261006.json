@@ -47,8 +47,8 @@
   "file_integrity": [
     {
       "path": "artifacts/luna47e/primitive-matrix.json",
-      "bytes": 31779,
-      "sha256": "1c32cda3777056a496c4bc2c4be59c0001e34e117a69c5f94c1ad5b7474f3d50"
+      "bytes": 31399,
+      "sha256": "75eaff4a0e72ad0a1de575d607c5833f3c3554d0879462d67d410a0cf8a1702d"
     },
     {
       "path": "artifacts/luna47e/sources-20261006-retrieval2.json",
@@ -77,33 +77,33 @@
     },
     {
       "path": "experiments/luna47e/capture_sources.py",
-      "bytes": 11010,
-      "sha256": "e98d18e9da93c100ca5a468dea604759288ff3a1295b32cbbdbd4323110e1e98"
+      "bytes": 11186,
+      "sha256": "54e1107c133da7f71aa0decbc1a65bd92142bf84e13f8f33175e9a1adb9f1649"
     },
     {
       "path": "experiments/luna47e/criteria.md",
-      "bytes": 3162,
-      "sha256": "e7dfd7bba267c25a276354052ee36a72a70a818108ce488f1ea6cabfbc619db9"
+      "bytes": 3108,
+      "sha256": "585bf7aa078a67718cc341f12bce026fb111fbca9dbd0db1018d783411a13210"
     },
     {
       "path": "experiments/luna47e/README.md",
-      "bytes": 15547,
-      "sha256": "a7b0c217be7f36c2d907a1283950e2c934ddc575ddb6e4f78f179faa2af997d2"
+      "bytes": 15317,
+      "sha256": "6ac034b7c28c858b0572fb85a4f238627f807b924d5be7e8bce756d78185c82b"
     },
     {
       "path": "experiments/luna47e/validate.py",
-      "bytes": 11920,
-      "sha256": "af005c33256e50ba8cc43f57e631c53b8f902410edc0984625a090eac21c5459"
+      "bytes": 12333,
+      "sha256": "4f93eeae6fa29777d519768b9d6ec747ae211aa93dc40d5ab4d0e3b85c137aff"
     },
     {
       "path": "tests/test_luna47e_evidence.py",
-      "bytes": 2619,
-      "sha256": "c4fd0d88d81a1d255dc035eb2301fa8f55a6cb2de3d7e91af5ed6cce0c5f4074"
+      "bytes": 5042,
+      "sha256": "ba5eb2559f83795a42c69d673edd25be745d3a294074294801ce913fc31fbe49"
     },
     {
       "path": "workflow/handoffs/luna-47e-hardware-realizability-20261006.md",
-      "bytes": 19223,
-      "sha256": "f964685b4beaa5ec57a25fc4fab075774ddd4cc2cbb8627b200999dd1b5dd0df"
+      "bytes": 18937,
+      "sha256": "057662f11c903ea3ab22cf549b855ca0994d177c4fe3d12a7f6c8188483299f6"
     }
   ]
 }
