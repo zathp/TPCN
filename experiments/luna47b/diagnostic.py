@@ -33,6 +33,10 @@ def ensure(ok: bool, reason: str) -> None:
         raise ValueError("BLOCKED: " + reason)
 
 
+def artifact_matches_checkout(observed: bytes, expected: bytes) -> bool:
+    return observed.replace(b"\r\n", b"\n") == expected
+
+
 def finite(value: float) -> float:
     ensure(math.isfinite(value), "nonfinite numerical value")
     return value
@@ -277,7 +281,8 @@ def main() -> None:
     output = run(revision)
     data = retained.canonical(output) + b"\n"
     if args.replay:
-        ensure(path.read_bytes() == data, "published replay artifact differs")
+        ensure(artifact_matches_checkout(path.read_bytes(), data),
+               "published replay artifact differs")
     else:
         ensure(not path.exists(), "refusing to overwrite retained lane output")
         path.parent.mkdir(parents=True, exist_ok=True)

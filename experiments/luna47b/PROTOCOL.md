@@ -49,9 +49,10 @@ silently: fail/block execution. No outcome-driven sweep adjustment.
 Numerics: binary64, math.exp; equation comparisons use
 64*epsilon*max(1,abs(observed),abs(expected)). Inputs, identity, order,
 timestamps, discrete threshold decisions, copied data, digests and replay
-are exact. Only source-code/protocol commit checks permit Windows CRLF-to-LF
-text materialization; retain both raw worktree and committed source hashes.
-Evidence files, numerical values and artifacts are never normalized.
+are exact. Source-code/protocol commit checks and published-artifact replay
+comparison permit only exact Windows CRLF-to-LF checkout materialization;
+retain both raw worktree and committed source hashes. Evidence files,
+numerical values and artifacts are never rewritten or otherwise normalized.
 If checkout text has CRLF, consume the immutable evidence Git blobs at the
 declared production/evidence revision directly in memory, verify their exact
 retained hashes and current blob identity, and record both committed and

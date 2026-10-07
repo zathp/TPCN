@@ -9,7 +9,7 @@ tpcn_handoff:
   contract_version: "1.2"
   branch: "copilot/luna46-depth-scaling-diagnostic"
   base_revision: "2cef8ea4b37a4ae586e3f383511cba63c9268ddc"
-  result_revision: "Authorization revision recorded after publication; see commit history and final report"
+  result_revision: "789dda5988daf72f375d9713bd76a6da2b9e8b34 (published authorization revision)"
   dependencies:
     - "Project owner's attached Luna-47A through Luna-47G specification"
     - "Luna-46 retained MIXED result and independent corrective review"
@@ -95,7 +95,6 @@ tpcn_handoff:
     - "Project-owner instruction authorizes the seven explicitly described experimental scopes and publication of this governance change."
     - "Project-owner-specific purchasing region/inventory/budget is not supplied; Luna-47E must limit or block owner-specific availability claims if still unknown."
   unresolved:
-    - "Exact authorization commit and clean/pushed state are to be recorded after publication."
     - "Lane outcomes, including any dependency between evidence lanes, remain unknown."
   recommended_next_agent:
     - "Luna-47A through Luna-47G, each dispatched independently from the same recorded authorization revision; all return to Luna-0 for independent review."
@@ -161,7 +160,7 @@ artifacts.
 | Read authoritative contract, workflow, acceptance criteria, ACP process/template, handoff template and Luna-46 records | Same start revision | Completed; no A01-A15 change required | Linked governance files |
 | Lane execution and focused lane tests | Not applicable before publication | Not run by design | This is the prerequisite governance phase |
 | Full application test suite | Not run | Not applicable to documentation/agent-contract-only change | No implementation code changed |
-| `git diff --check` and publication checks | To be filled after edits/commit/push | Pending | Final result revision recorded after publication |
+| `git diff --check` and publication checks | Authorization publication `789dda5988daf72f375d9713bd76a6da2b9e8b34` | **PASS**; the exact authorization commit is published and verified | GitHub commit record; shared by all Luna-47 lane contracts |
 
 ## Assumptions, limitations and unresolved issues
 
