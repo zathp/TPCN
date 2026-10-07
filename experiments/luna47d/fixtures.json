@@ -1,0 +1,20 @@
+{
+  "schema": "L47D-FIXTURE-1",
+  "families": [
+    {"id": "idle", "events": [], "expected_count": 0},
+    {"id": "subthreshold", "events": [["i0", "0", 0.5]], "expected_count": 0},
+    {"id": "subthreshold-near", "events": [["i0", "0", 0.999]], "expected_count": 0},
+    {"id": "subthreshold-cluster", "events": [["i0", "0", 0.3], ["i1", "1/8", 0.3], ["i2", "1/4", 0.3]], "expected_count": 0},
+    {"id": "threshold-boundary", "events": [["i0", "0", 1.0]], "expected_count": 0},
+    {"id": "marginal-crossing", "events": [["i0", "0", 1.01]], "expected_count": 0},
+    {"id": "moderate-low", "events": [["i0", "0", 1.25]], "expected_count": 1},
+    {"id": "moderate-high", "events": [["i0", "0", 2.5]], "expected_count": 1},
+    {"id": "moderate-cluster", "events": [["i0", "0", 1.25], ["i1", "1/8", 1.25], ["i2", "1/4", 1.25]], "expected_count": 1},
+    {"id": "extreme-low", "events": [["i0", "0", 8.0]], "expected_count": 2},
+    {"id": "extreme", "events": [["i0", "0", 12.0]], "expected_count": 3},
+    {"id": "extreme-cap", "events": [["i0", "0", 32.0]], "expected_count": 7},
+    {"id": "extreme-cluster", "events": [["i0", "0", 4.0], ["i1", "1/8", 4.0], ["i2", "1/4", 4.0]], "expected_count": 3},
+    {"id": "cancellation", "events": [["i0", "0", 2.5], ["i1", "0", -2.5]], "expected_count": 0},
+    {"id": "separated-moderate", "events": [["i0", "0", 1.25], ["i1", "2", 1.25]], "expected_count": 2}
+  ]
+}

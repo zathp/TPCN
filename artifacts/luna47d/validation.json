@@ -1,0 +1,124 @@
+{
+  "schema": "L47D-VALIDATION-1",
+  "authorization_revision": "789dda5988daf72f375d9713bd76a6da2b9e8b34",
+  "production_evidence_revision": "2cef8ea4b37a4ae586e3f383511cba63c9268ddc",
+  "pre_outcome_revision": "6ece0de652270bd3aef1c0a04e487773e81154f7",
+  "assertion_correction_revision": "9c75e547a67239027d6f8ec8b7f26bc1eae3188e",
+  "canonical_source_revision": "ee522bf6c4882bb09b9bc0af2520e50c3d1a3589",
+  "interpreter": "C:/Users/zathp/Documents/programming/TPCN/.venv/Scripts/python.exe",
+  "python_version": "3.11.5",
+  "working_directory": "C:/Users/zathp/.copilot/session-state/2c38ab9f-63a7-41fb-8437-e11b4732bee9/files/luna47d",
+  "checks": [
+    {
+      "name": "initial-focused",
+      "command": "python -m pytest -q tests/test_luna47d_output_model.py",
+      "revision": "6ece0de652270bd3aef1c0a04e487773e81154f7",
+      "passed": 97,
+      "failed": 1,
+      "exit_code": 1,
+      "failure": "test_negative_controls_preserve_failure_and_explicit_rejection: incorrect test assertion expected two weak-drain outputs; runtime and recurrence give three",
+      "resolution": "Correct test assertion only; frozen criterion remains exactly one. No parameter, model, fixture or protocol adjustment."
+    },
+    {
+      "name": "corrected-assertion-focused",
+      "command": "python -m pytest -q tests/test_luna47d_output_model.py",
+      "revision": "9c75e547a67239027d6f8ec8b7f26bc1eae3188e",
+      "passed": 98,
+      "failed": 0,
+      "exit_code": 0
+    },
+    {
+      "name": "canonical-focused",
+      "command": "python -m pytest -q tests/test_luna47d_output_model.py --junitxml=artifacts/luna47d/focused-tests.xml",
+      "revision": "ee522bf6c4882bb09b9bc0af2520e50c3d1a3589",
+      "passed": 98,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "exit_code": 0,
+      "report": "artifacts/luna47d/focused-tests.xml"
+    },
+    {
+      "name": "applicable-regression",
+      "command": "python -m pytest -q tests/test_event_runtime.py tests/test_canonical_event_neuron.py tests/test_excursion_neuron.py tests/test_e2_multi_excursion.py tests/test_excursion_integration.py tests/test_topology.py tests/test_luna38_excursion_integration_state.py tests/test_luna46_depth_scaling_diagnostic.py --junitxml=artifacts/luna47d/applicable-tests.xml",
+      "revision": "9c75e547a67239027d6f8ec8b7f26bc1eae3188e",
+      "passed": 374,
+      "failed": 1,
+      "errors": 0,
+      "skipped": 0,
+      "exit_code": 1,
+      "failure": "tests/test_luna46_depth_scaling_diagnostic.py::test_real_retained_artifacts_integrity_only",
+      "report": "artifacts/luna47d/applicable-tests.xml"
+    },
+    {
+      "name": "full-suite",
+      "command": "python -m pytest -q --junitxml=artifacts/luna47d/full-tests.xml",
+      "revision": "ee522bf6c4882bb09b9bc0af2520e50c3d1a3589",
+      "passed": 1422,
+      "failed": 2,
+      "errors": 7,
+      "skipped": 1,
+      "exit_code": 1,
+      "failure_groups": [
+        "Luna-44 pinned-source materialization: one failed test and seven setup errors",
+        "Luna-46 Luna-45 catalog checkout-byte hash: one failed test"
+      ],
+      "skip": "tests/test_gpu_visualization.py::test_cuda_records_have_cpu_semantics: CUDA is unavailable",
+      "report": "artifacts/luna47d/full-tests.xml",
+      "not_waived": true
+    },
+    {
+      "name": "syntax",
+      "command": "python -m compileall -q experiments/luna47d tests/test_luna47d_output_model.py",
+      "exit_code": 0
+    },
+    {
+      "name": "fresh-process-replay",
+      "command": "python -m experiments.luna47d.run --verify",
+      "exit_code": 0,
+      "verdict": "SUPPORTED",
+      "all_identities_states_metrics_and_controls_equal": true
+    },
+    {
+      "name": "whitespace",
+      "command": "git diff --cached --check -- . :!artifacts/luna47d/*.xml",
+      "exit_code": 0
+    },
+    {
+      "name": "raw-captured-report-whitespace",
+      "command": "git diff --cached --check",
+      "exit_code": 2,
+      "result": "Trailing whitespace in original pytest traceback text in full-tests.xml; raw report retained without text normalization.",
+      "scientific_or_test_failure_waived": false
+    }
+  ],
+  "idle_metric_correction": {
+    "superseded_artifact": "artifacts/luna47d/initial-pre-idle-correction.json",
+    "canonical_artifact": "artifacts/luna47d/evidence.json",
+    "detected_by": "Post-generation inspection of per-regime metrics",
+    "changed_primary_trajectories": ["idle/positive", "idle/negative"],
+    "changed_metrics": ["recovery_time", "recovery_delay"],
+    "before": 144.0,
+    "after": 0.0,
+    "all_non_idle_primary_results_equal": true,
+    "dynamics_parameters_fixtures_criteria_unchanged": true
+  },
+  "verified_checkout_byte_diagnosis": {
+    "path": "artifacts/luna45-acp0008-depth2-destination-integration-20261006/artifact-integrity.json",
+    "core_autocrlf": true,
+    "expected_sha256": "a47046da6916db49f373613d654d2cf59671737b5c6b8584b222fb67fe068e8e",
+    "disk_sha256": "5c41184dc9b9b5872263bcbbc1e5fc406789101c27942480b9cfb6b33c87da80",
+    "lf_normalized_sha256": "a47046da6916db49f373613d654d2cf59671737b5c6b8584b222fb67fe068e8e",
+    "authorization_git_blob_sha256": "a47046da6916db49f373613d654d2cf59671737b5c6b8584b222fb67fe068e8e",
+    "lf_normalized_bytes_equal_authorization_git_blob": true,
+    "production_or_retained_file_modified": false,
+    "materialization_failure_interpretation": "Luna-44 exceptions are consistent with the previously documented Windows pinned-source issue; its subprocess stderr was not independently extracted in this lane."
+  },
+  "tool_limitations": [
+    "Editor runTests could not discover the external worktree tests.",
+    "Pylance file syntax tool could not discover external worktree user files; configured-interpreter compileall and pytest supplied validation.",
+    "Editor problems tool returned no errors; this is not treated as proof of workspace-wide static analysis."
+  ],
+  "independent_review": "pending Luna-0",
+  "production_integration": "not authorized"
+}
