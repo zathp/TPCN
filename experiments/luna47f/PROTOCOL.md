@@ -22,6 +22,15 @@ Luna-12I/J/K/M/N handoffs inform interpretation only; historical TANH_LEGACY
 efficacy/candidate totals are not pooled with EXCURSION_V1. No other lane is used.
 Every consumed input is pinned to its baseline Git blob and working-byte SHA-256.
 
+Pre-outcome provenance correction: the first execution attempt stopped at the
+input gate (no scoring/output) because Git materialized LF JSON as CRLF.
+Published bytes are therefore read directly from the baseline Git blob, checked
+against the retained catalog/internal digests. Working bytes must equal that
+blob **exactly**, or its exact LF-to-CRLF checkout transform with no other
+changes. Record both byte lengths/hashes and the materialization classification.
+No source file is rewritten, and no numeric value or trace identity is normalized.
+This correction changes provenance handling only, not any scoring rule.
+
 ## Rules fixed before scoring
 
 Time is retained logical time (no conversion to seconds). Reset per stream,

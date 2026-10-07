@@ -233,3 +233,13 @@ def test_no_production_imports():
     imports = [n.module for n in ast.walk(tree) if isinstance(n, ast.ImportFrom)]
     imports += [a.name for n in ast.walk(tree) if isinstance(n, ast.Import) for a in n.names]
     assert not any(name and (name.startswith(("tpcn", "run_", "scripts"))) for name in imports)
+
+
+def test_exact_git_materialization_only():
+    original = b'{"unchanged":1}\n'
+    assert d.verify_materialization(original, original) == "exact"
+    assert d.verify_materialization(original.replace(b"\n", b"\r\n"), original).startswith("exact-Git")
+    with pytest.raises(ValueError, match="beyond"):
+        d.verify_materialization(b'{"unchanged":2}\r\n', original)
+    with pytest.raises(ValueError, match="beyond"):
+        d.verify_materialization(original+b"\n", original)

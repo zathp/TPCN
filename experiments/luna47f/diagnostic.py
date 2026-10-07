@@ -23,11 +23,20 @@ LIMIT = 100 * 1024 * 1024
 
 def canonical(value):
     return json.dumps(value, sort_keys=True, separators=(",", ":"),
-                      allow_nan=False).encode()
+                      ensure_ascii=False, allow_nan=False).encode()
 
 
 def sha(data):
     return hashlib.sha256(data).hexdigest()
+
+
+def verify_materialization(working, pinned):
+    """Permit only Git's exact LF->CRLF checkout transform, without editing inputs."""
+    if working == pinned:
+        return "exact"
+    require(b"\r\n" not in pinned and working == pinned.replace(b"\n", b"\r\n"),
+            "baseline input bytes differ beyond Git newline materialization")
+    return "exact-Git-LF-to-CRLF-checkout"
 
 
 def require(condition, reason):
@@ -345,11 +354,26 @@ def run(check=False):
         data = (ROOT/path).read_bytes()
         require(len(data) <= LIMIT, "input size limit")
         pinned = git("show", BASE+":"+path)
-        require(data == pinned, "baseline input bytes differ: "+path)
+        materialization = verify_materialization(data, pinned)
         inventory[path] = {"sha256": sha(data), "bytes": len(data),
+                           "published_sha256": sha(pinned), "published_bytes": len(pinned),
+                           "checkout_materialization": materialization,
                            "baseline_git_blob": git("rev-parse", BASE+":"+path).decode().strip()}
-        loaded[path] = json.loads(data)
+        loaded[path] = json.loads(pinned)
+        if "artifact_digest" in loaded[path]:
+            body = {k: v for k, v in loaded[path].items() if k != "artifact_digest"}
+            require(sha(canonical(body)) == loaded[path]["artifact_digest"], "internal digest: "+path)
+    catalog = loaded[L45+"/artifact-integrity.json"]
+    for name in names:
+        if name == "artifact-integrity.json":
+            continue
+        identity = inventory[L45+"/"+name]
+        published = catalog["files"][name]
+        require(identity["published_sha256"] == published["file_sha256"] and
+                identity["published_bytes"] == published["byte_length"], "catalog file pin")
+        require(loaded[L45+"/"+name]["artifact_digest"] == published["artifact_digest"], "catalog digest pin")
     config = loaded[L45+"/config.json"]
+    require(sha(canonical(config["experiment"])) == config["config_digest"], "configuration digest")
     graph = config["experiment"]["topology"]
     require(config["experiment"]["structural_plasticity"] is False, "growth enabled")
     initial, replay = [
