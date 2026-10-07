@@ -1,0 +1,518 @@
+{
+  "reports": [
+    {
+      "name": "governance-boundary",
+      "counts": {
+        "failure": 0,
+        "error": 0,
+        "skipped": 0,
+        "passed": 332
+      },
+      "exceptions": [],
+      "pytest_exit": 0,
+      "execution": {
+        "name": "governance-boundary",
+        "cwd": "C:\\Users\\zathp\\.copilot\\session-state\\2c38ab9f-63a7-41fb-8437-e11b4732bee9\\files\\luna47-review",
+        "command": [
+          "C:\\Users\\zathp\\Documents\\programming\\TPCN\\.venv\\Scripts\\python.exe",
+          "-m",
+          "pytest",
+          "tests\\test_e2_multi_excursion.py",
+          "tests\\test_eligibility.py",
+          "tests\\test_energy_utility.py",
+          "tests\\test_event_runtime.py",
+          "tests\\test_excursion_integration.py",
+          "tests\\test_excursion_neuron.py",
+          "tests\\test_luna11_adversarial.py",
+          "tests\\test_luna28_excursion_structural_growth.py",
+          "tests\\test_luna34_excursion_v1_multi_emitter_bridge.py",
+          "tests\\test_luna35_eligibility_capacity_lifecycle.py",
+          "tests\\test_luna36_eligibility_capacity_api.py",
+          "tests\\test_luna37_excursion_v1_propagation_emission_diagnostic.py",
+          "tests\\test_luna38_excursion_integration_state.py",
+          "tests\\test_luna40_structural_effective_routed_drive.py",
+          "tests\\test_structural_plasticity.py",
+          "tests\\test_topology.py",
+          "-ra",
+          "--junitxml=C:\\Users\\zathp\\.copilot\\session-state\\2c38ab9f-63a7-41fb-8437-e11b4732bee9\\files\\luna47-review\\artifacts\\luna47-review\\governance-boundary.xml"
+        ],
+        "python": "3.11.5 (tags/v3.11.5:cce6ba9, Aug 24 2023, 14:38:34) [MSC v.1936 64 bit (AMD64)]",
+        "executable": "C:\\Users\\zathp\\Documents\\programming\\TPCN\\.venv\\Scripts\\python.exe",
+        "revision": "4b11e0e828fd6fbcb4cbf9b994f121bde54e4c37",
+        "started_utc": "2026-10-07T01:46:41.731707+00:00",
+        "seconds": 20.25,
+        "exit_code": 0,
+        "environment": {
+          "PYTHONPATH": "C:\\Users\\zathp\\.copilot\\session-state\\2c38ab9f-63a7-41fb-8437-e11b4732bee9\\files\\luna47-review",
+          "PYTHONHASHSEED": "0",
+          "PYTHONDONTWRITEBYTECODE": "1"
+        },
+        "log_sha256": "bdc0a7d481b5fc93b3453ef7dfba4c9d283d0b120e114adbbb89afa761e3c46e"
+      },
+      "xml_sha256": "26873475d2abf293ac4c8e84b95c1d86b5dd51dec3336a9590ba78bb985c9a4b"
+    },
+    {
+      "name": "governance-full",
+      "counts": {
+        "failure": 2,
+        "error": 7,
+        "skipped": 1,
+        "passed": 1324
+      },
+      "exceptions": [
+        {
+          "kind": "skipped",
+          "classname": "tests.test_gpu_visualization",
+          "name": "test_cuda_records_have_cpu_semantics",
+          "message": "CUDA is unavailable"
+        },
+        {
+          "kind": "failure",
+          "classname": "tests.test_luna44_canonical_fixture",
+          "name": "test_two_fresh_process_materializations_match_committed_fixture",
+          "message": "subprocess.CalledProcessError: Command '['C:\\\\Users\\\\zathp\\\\Documents\\\\programming\\\\TPCN\\\\.venv\\\\Scripts\\\\python.exe', 'C:\\\\Users\\\\zathp\\\\AppData\\\\Local\\\\Temp\\\\pytest-of-zathp\\\\pytest-379\\\\test_two_fresh_process_materia0\\\\runs-pinned-source\\\\scripts\\\\build_luna44_canonical_fixture.py', '--materialize-worker', 'C:\\\\Users\\\\zathp\\\\AppData\\\\Local\\\\Temp\\\\pytest-of-zathp\\\\pytest-379\\\\test_two_fresh_process_materia0\\\\runs\\\\materialization-a']' returned non-zero exit status 1."
+        },
+        {
+          "kind": "error",
+          "classname": "tests.test_luna44_canonical_fixture_verification",
+          "name": "test_missing_manifest_source_file_fails_loudly",
+          "message": "failed on setup with \"subprocess.CalledProcessError: Command '['C:\\\\Users\\\\zathp\\\\Documents\\\\programming\\\\TPCN\\\\.venv\\\\Scripts\\\\python.exe', 'C:\\\\Users\\\\zathp\\\\AppData\\\\Local\\\\Temp\\\\pytest-of-zathp\\\\pytest-379\\\\luna44-independent-materializations-pinned-source\\\\scripts\\\\build_luna44_canonical_fixture.py', '--materialize-worker', 'C:\\\\Users\\\\zathp\\\\AppData\\\\Local\\\\Temp\\\\pytest-of-zathp\\\\pytest-379\\\\luna44-independent-materializations\\\\materialization-a']' returned non-zero exit status 1.\""
+        },
+        {
+          "kind": "error",
+          "classname": "tests.test_luna44_canonical_fixture_verification",
+          "name": "test_incorrect_source_sha_fails_loudly",
+          "message": "failed on setup with \"subprocess.CalledProcessError: Command '['C:\\\\Users\\\\zathp\\\\Documents\\\\programming\\\\TPCN\\\\.venv\\\\Scripts\\\\python.exe', 'C:\\\\Users\\\\zathp\\\\AppData\\\\Local\\\\Temp\\\\pytest-of-zathp\\\\pytest-379\\\\luna44-independent-materializations-pinned-source\\\\scripts\\\\build_luna44_canonical_fixture.py', '--materialize-worker', 'C:\\\\Users\\\\zathp\\\\AppData\\\\Local\\\\Temp\\\\pytest-of-zathp\\\\pytest-379\\\\luna44-independent-materializations\\\\materialization-a']' returned non-zero exit status 1.\""
+        },
+        {
+          "kind": "error",
+          "classname": "tests.test_luna44_canonical_fixture_verification",
+          "name": "test_fixture_file_digest_mismatch_fails_loudly",
+          "message": "failed on setup with \"subprocess.CalledProcessError: Command '['C:\\\\Users\\\\zathp\\\\Documents\\\\programming\\\\TPCN\\\\.venv\\\\Scripts\\\\python.exe', 'C:\\\\Users\\\\zathp\\\\AppData\\\\Local\\\\Temp\\\\pytest-of-zathp\\\\pytest-379\\\\luna44-independent-materializations-pinned-source\\\\scripts\\\\build_luna44_canonical_fixture.py', '--materialize-worker', 'C:\\\\Users\\\\zathp\\\\AppData\\\\Local\\\\Temp\\\\pytest-of-zathp\\\\pytest-379\\\\luna44-independent-materializations\\\\materialization-a']' returned non-zero exit status 1.\""
+        },
+        {
+          "kind": "error",
+          "classname": "tests.test_luna44_canonical_fixture_verification",
+          "name": "test_incorrect_fixture_point_count_fails_loudly",
+          "message": "failed on setup with \"subprocess.CalledProcessError: Command '['C:\\\\Users\\\\zathp\\\\Documents\\\\programming\\\\TPCN\\\\.venv\\\\Scripts\\\\python.exe', 'C:\\\\Users\\\\zathp\\\\AppData\\\\Local\\\\Temp\\\\pytest-of-zathp\\\\pytest-379\\\\luna44-independent-materializations-pinned-source\\\\scripts\\\\build_luna44_canonical_fixture.py', '--materialize-worker', 'C:\\\\Users\\\\zathp\\\\AppData\\\\Local\\\\Temp\\\\pytest-of-zathp\\\\pytest-379\\\\luna44-independent-materializations\\\\materialization-a']' returned non-zero exit status 1.\""
+        },
+        {
+          "kind": "error",
+          "classname": "tests.test_luna44_canonical_fixture_verification",
+          "name": "test_binary64_decimal_hex_mismatch_fails_loudly",
+          "message": "failed on setup with \"subprocess.CalledProcessError: Command '['C:\\\\Users\\\\zathp\\\\Documents\\\\programming\\\\TPCN\\\\.venv\\\\Scripts\\\\python.exe', 'C:\\\\Users\\\\zathp\\\\AppData\\\\Local\\\\Temp\\\\pytest-of-zathp\\\\pytest-379\\\\luna44-independent-materializations-pinned-source\\\\scripts\\\\build_luna44_canonical_fixture.py', '--materialize-worker', 'C:\\\\Users\\\\zathp\\\\AppData\\\\Local\\\\Temp\\\\pytest-of-zathp\\\\pytest-379\\\\luna44-independent-materializations\\\\materialization-a']' returned non-zero exit status 1.\""
+        },
+        {
+          "kind": "error",
+          "classname": "tests.test_luna44_canonical_fixture_verification",
+          "name": "test_manifest_configuration_mismatch_fails_loudly",
+          "message": "failed on setup with \"subprocess.CalledProcessError: Command '['C:\\\\Users\\\\zathp\\\\Documents\\\\programming\\\\TPCN\\\\.venv\\\\Scripts\\\\python.exe', 'C:\\\\Users\\\\zathp\\\\AppData\\\\Local\\\\Temp\\\\pytest-of-zathp\\\\pytest-379\\\\luna44-independent-materializations-pinned-source\\\\scripts\\\\build_luna44_canonical_fixture.py', '--materialize-worker', 'C:\\\\Users\\\\zathp\\\\AppData\\\\Local\\\\Temp\\\\pytest-of-zathp\\\\pytest-379\\\\luna44-independent-materializations\\\\materialization-a']' returned non-zero exit status 1.\""
+        },
+        {
+          "kind": "error",
+          "classname": "tests.test_luna44_canonical_fixture_verification",
+          "name": "test_two_fresh_process_materializations_match_exactly",
+          "message": "failed on setup with \"subprocess.CalledProcessError: Command '['C:\\\\Users\\\\zathp\\\\Documents\\\\programming\\\\TPCN\\\\.venv\\\\Scripts\\\\python.exe', 'C:\\\\Users\\\\zathp\\\\AppData\\\\Local\\\\Temp\\\\pytest-of-zathp\\\\pytest-379\\\\luna44-independent-materializations-pinned-source\\\\scripts\\\\build_luna44_canonical_fixture.py', '--materialize-worker', 'C:\\\\Users\\\\zathp\\\\AppData\\\\Local\\\\Temp\\\\pytest-of-zathp\\\\pytest-379\\\\luna44-independent-materializations\\\\materialization-a']' returned non-zero exit status 1.\""
+        },
+        {
+          "kind": "failure",
+          "classname": "tests.test_luna46_depth_scaling_diagnostic",
+          "name": "test_real_retained_artifacts_integrity_only",
+          "message": "run_luna46_depth_scaling_diagnostic.Blocked: published Luna45 catalog hash differs"
+        }
+      ],
+      "pytest_exit": 1,
+      "execution": {
+        "name": "governance-full",
+        "cwd": "C:\\Users\\zathp\\.copilot\\session-state\\2c38ab9f-63a7-41fb-8437-e11b4732bee9\\files\\luna47-review",
+        "command": [
+          "C:\\Users\\zathp\\Documents\\programming\\TPCN\\.venv\\Scripts\\python.exe",
+          "-m",
+          "pytest",
+          "tests",
+          "-ra",
+          "--junitxml=C:\\Users\\zathp\\.copilot\\session-state\\2c38ab9f-63a7-41fb-8437-e11b4732bee9\\files\\luna47-review\\artifacts\\luna47-review\\governance-full.xml"
+        ],
+        "python": "3.11.5 (tags/v3.11.5:cce6ba9, Aug 24 2023, 14:38:34) [MSC v.1936 64 bit (AMD64)]",
+        "executable": "C:\\Users\\zathp\\Documents\\programming\\TPCN\\.venv\\Scripts\\python.exe",
+        "revision": "4b11e0e828fd6fbcb4cbf9b994f121bde54e4c37",
+        "started_utc": "2026-10-07T01:41:03.347100+00:00",
+        "seconds": 195.63999999999942,
+        "exit_code": 1,
+        "environment": {
+          "PYTHONPATH": "C:\\Users\\zathp\\.copilot\\session-state\\2c38ab9f-63a7-41fb-8437-e11b4732bee9\\files\\luna47-review",
+          "PYTHONHASHSEED": "0",
+          "PYTHONDONTWRITEBYTECODE": "1"
+        },
+        "log_sha256": "5a6abdc52a5ca92bab58ccf97d270523d5347c36a923bf84cb93867ce832c52b"
+      },
+      "xml_sha256": "a9844e899d53d90b9bfa046110629aeb9b2590787591a51d34e9d5f53b2b3e3b"
+    },
+    {
+      "name": "governance-newline-override",
+      "counts": {
+        "failure": 3,
+        "error": 0,
+        "skipped": 0,
+        "passed": 181
+      },
+      "exceptions": [
+        {
+          "kind": "failure",
+          "classname": "tests.test_luna44_canonical_fixture",
+          "name": "test_two_fresh_process_materializations_match_committed_fixture",
+          "message": "assert b'{\\n  \"schem...  }\\n  ]\\n}\\n' == b'{\\n  \"schem...  }\\n  ]\\n}\\n'\n  \n  At index 490 diff: b'c' != b'd'\n  Use -v to get more diff"
+        },
+        {
+          "kind": "failure",
+          "classname": "tests.test_luna44_canonical_fixture_verification",
+          "name": "test_two_fresh_process_materializations_match_exactly",
+          "message": "scripts.verify_luna44_canonical_fixture.FixtureVerificationError: independent materialization semantic digest mismatch"
+        },
+        {
+          "kind": "failure",
+          "classname": "tests.test_luna46_depth_scaling_diagnostic",
+          "name": "test_real_retained_artifacts_integrity_only",
+          "message": "run_luna46_depth_scaling_diagnostic.Blocked: published Luna45 catalog hash differs"
+        }
+      ],
+      "pytest_exit": 1,
+      "execution": {
+        "name": "governance-newline-override",
+        "cwd": "C:\\Users\\zathp\\.copilot\\session-state\\2c38ab9f-63a7-41fb-8437-e11b4732bee9\\files\\luna47-review",
+        "command": [
+          "C:\\Users\\zathp\\Documents\\programming\\TPCN\\.venv\\Scripts\\python.exe",
+          "-m",
+          "pytest",
+          "tests/test_luna44_canonical_fixture.py",
+          "tests/test_luna44_canonical_fixture_verification.py",
+          "tests/test_luna46_depth_scaling_diagnostic.py",
+          "-ra",
+          "--junitxml=C:\\Users\\zathp\\.copilot\\session-state\\2c38ab9f-63a7-41fb-8437-e11b4732bee9\\files\\luna47-review\\artifacts\\luna47-review\\governance-newline-override.xml"
+        ],
+        "python": "3.11.5 (tags/v3.11.5:cce6ba9, Aug 24 2023, 14:38:34) [MSC v.1936 64 bit (AMD64)]",
+        "executable": "C:\\Users\\zathp\\Documents\\programming\\TPCN\\.venv\\Scripts\\python.exe",
+        "revision": "4b11e0e828fd6fbcb4cbf9b994f121bde54e4c37",
+        "started_utc": "2026-10-07T01:50:14.721213+00:00",
+        "seconds": 48.562000000005355,
+        "exit_code": 1,
+        "environment": {
+          "PYTHONPATH": "C:\\Users\\zathp\\.copilot\\session-state\\2c38ab9f-63a7-41fb-8437-e11b4732bee9\\files\\luna47-review",
+          "PYTHONHASHSEED": "0",
+          "PYTHONDONTWRITEBYTECODE": "1"
+        },
+        "process_local_overrides": {
+          "GIT_CONFIG_COUNT": "2",
+          "GIT_CONFIG_KEY_0": "core.autocrlf",
+          "GIT_CONFIG_VALUE_0": "false",
+          "GIT_CONFIG_KEY_1": "core.eol",
+          "GIT_CONFIG_VALUE_1": "lf"
+        },
+        "log_sha256": "255697e1078a5354cda29f9ae3474d738e98fcc02481a8caa189f6258d6e1f74"
+      },
+      "xml_sha256": "2ffc7f1f0742435b9d1605ebadb89b975502627750b1b90ced55ee1e825a0ff8"
+    },
+    {
+      "name": "governance-predictive",
+      "counts": {
+        "failure": 0,
+        "error": 0,
+        "skipped": 0,
+        "passed": 21
+      },
+      "exceptions": [],
+      "pytest_exit": 0,
+      "execution": {
+        "name": "governance-predictive",
+        "cwd": "C:\\Users\\zathp\\.copilot\\session-state\\2c38ab9f-63a7-41fb-8437-e11b4732bee9\\files\\luna47-review",
+        "command": [
+          "C:\\Users\\zathp\\Documents\\programming\\TPCN\\.venv\\Scripts\\python.exe",
+          "-m",
+          "pytest",
+          "tests/test_canonical_event_neuron.py",
+          "tests/test_predictive_coding.py",
+          "-ra",
+          "--junitxml=C:\\Users\\zathp\\.copilot\\session-state\\2c38ab9f-63a7-41fb-8437-e11b4732bee9\\files\\luna47-review\\artifacts\\luna47-review\\governance-predictive.xml"
+        ],
+        "python": "3.11.5 (tags/v3.11.5:cce6ba9, Aug 24 2023, 14:38:34) [MSC v.1936 64 bit (AMD64)]",
+        "executable": "C:\\Users\\zathp\\Documents\\programming\\TPCN\\.venv\\Scripts\\python.exe",
+        "revision": "4b11e0e828fd6fbcb4cbf9b994f121bde54e4c37",
+        "started_utc": "2026-10-07T01:53:18.073026+00:00",
+        "seconds": 2.438000000009197,
+        "exit_code": 0,
+        "environment": {
+          "PYTHONPATH": "C:\\Users\\zathp\\.copilot\\session-state\\2c38ab9f-63a7-41fb-8437-e11b4732bee9\\files\\luna47-review",
+          "PYTHONHASHSEED": "0",
+          "PYTHONDONTWRITEBYTECODE": "1"
+        },
+        "process_local_overrides": {},
+        "log_sha256": "21f71c9e5ab5d3ed957ea08517520a2615eb1695add50378425fe0dc17e9d71e"
+      },
+      "xml_sha256": "349adb58450e7efd90e6bc9e6dc6fdf1752826f96144ded8f6d60250ced3ff31"
+    },
+    {
+      "name": "lane-a-focused",
+      "counts": {
+        "failure": 0,
+        "error": 0,
+        "skipped": 0,
+        "passed": 74
+      },
+      "exceptions": [],
+      "pytest_exit": 0,
+      "execution": {
+        "name": "lane-a-focused",
+        "cwd": "C:\\Users\\zathp\\.copilot\\session-state\\2c38ab9f-63a7-41fb-8437-e11b4732bee9\\files\\luna47a",
+        "command": [
+          "C:\\Users\\zathp\\Documents\\programming\\TPCN\\.venv\\Scripts\\python.exe",
+          "-m",
+          "pytest",
+          "tests\\test_luna47a_retention.py",
+          "-ra",
+          "--junitxml=C:\\Users\\zathp\\.copilot\\session-state\\2c38ab9f-63a7-41fb-8437-e11b4732bee9\\files\\luna47-review\\artifacts\\luna47-review\\lane-a-focused.xml"
+        ],
+        "python": "3.11.5 (tags/v3.11.5:cce6ba9, Aug 24 2023, 14:38:34) [MSC v.1936 64 bit (AMD64)]",
+        "executable": "C:\\Users\\zathp\\Documents\\programming\\TPCN\\.venv\\Scripts\\python.exe",
+        "revision": "eb56684eaa10dc9b765927ef8e883c7d56cb025b",
+        "started_utc": "2026-10-07T01:41:03.271529+00:00",
+        "seconds": 111.54699999999139,
+        "exit_code": 0,
+        "environment": {
+          "PYTHONPATH": "C:\\Users\\zathp\\.copilot\\session-state\\2c38ab9f-63a7-41fb-8437-e11b4732bee9\\files\\luna47a",
+          "PYTHONHASHSEED": "0",
+          "PYTHONDONTWRITEBYTECODE": "1"
+        },
+        "log_sha256": "81ef380e6b97099c144ce990d76fc31376e99fe84062f2d90b7029456b4bc361"
+      },
+      "xml_sha256": "cf0a41cfef373ca9ba9f5193b5f4cd3996de6ca5244369a9e32b07168edd0828"
+    },
+    {
+      "name": "lane-b-focused",
+      "counts": {
+        "failure": 0,
+        "error": 0,
+        "skipped": 0,
+        "passed": 16
+      },
+      "exceptions": [],
+      "pytest_exit": 0,
+      "execution": {
+        "name": "lane-b-focused",
+        "cwd": "C:\\Users\\zathp\\.copilot\\session-state\\2c38ab9f-63a7-41fb-8437-e11b4732bee9\\files\\luna47b",
+        "command": [
+          "C:\\Users\\zathp\\Documents\\programming\\TPCN\\.venv\\Scripts\\python.exe",
+          "-m",
+          "pytest",
+          "tests\\test_luna47b_gain.py",
+          "-ra",
+          "--junitxml=C:\\Users\\zathp\\.copilot\\session-state\\2c38ab9f-63a7-41fb-8437-e11b4732bee9\\files\\luna47-review\\artifacts\\luna47-review\\lane-b-focused.xml"
+        ],
+        "python": "3.11.5 (tags/v3.11.5:cce6ba9, Aug 24 2023, 14:38:34) [MSC v.1936 64 bit (AMD64)]",
+        "executable": "C:\\Users\\zathp\\Documents\\programming\\TPCN\\.venv\\Scripts\\python.exe",
+        "revision": "41a0a28f6f85023b8933a47650f66628b0a9ceb0",
+        "started_utc": "2026-10-07T01:42:54.828066+00:00",
+        "seconds": 137.29700000000594,
+        "exit_code": 0,
+        "environment": {
+          "PYTHONPATH": "C:\\Users\\zathp\\.copilot\\session-state\\2c38ab9f-63a7-41fb-8437-e11b4732bee9\\files\\luna47b",
+          "PYTHONHASHSEED": "0",
+          "PYTHONDONTWRITEBYTECODE": "1"
+        },
+        "log_sha256": "b03ec48908eacb6a03a1660ac6a3fbd1e78b710b4541731d5fa7517be34ff15f"
+      },
+      "xml_sha256": "dbce9968d0f41a5eda37fae5b757ce7c5d0dc0245816e0e8fc018f254bc424f0"
+    },
+    {
+      "name": "lane-c-focused",
+      "counts": {
+        "failure": 0,
+        "error": 0,
+        "skipped": 0,
+        "passed": 18
+      },
+      "exceptions": [],
+      "pytest_exit": 0,
+      "execution": {
+        "name": "lane-c-focused",
+        "cwd": "C:\\Users\\zathp\\.copilot\\session-state\\2c38ab9f-63a7-41fb-8437-e11b4732bee9\\files\\luna47c",
+        "command": [
+          "C:\\Users\\zathp\\Documents\\programming\\TPCN\\.venv\\Scripts\\python.exe",
+          "-m",
+          "pytest",
+          "tests\\test_luna47c_qualification.py",
+          "-ra",
+          "--junitxml=C:\\Users\\zathp\\.copilot\\session-state\\2c38ab9f-63a7-41fb-8437-e11b4732bee9\\files\\luna47-review\\artifacts\\luna47-review\\lane-c-focused.xml"
+        ],
+        "python": "3.11.5 (tags/v3.11.5:cce6ba9, Aug 24 2023, 14:38:34) [MSC v.1936 64 bit (AMD64)]",
+        "executable": "C:\\Users\\zathp\\Documents\\programming\\TPCN\\.venv\\Scripts\\python.exe",
+        "revision": "609b2e5f8a7ae123f9b7f7da5c89378e29353624",
+        "started_utc": "2026-10-07T01:45:12.146660+00:00",
+        "seconds": 3.375,
+        "exit_code": 0,
+        "environment": {
+          "PYTHONPATH": "C:\\Users\\zathp\\.copilot\\session-state\\2c38ab9f-63a7-41fb-8437-e11b4732bee9\\files\\luna47c",
+          "PYTHONHASHSEED": "0",
+          "PYTHONDONTWRITEBYTECODE": "1"
+        },
+        "log_sha256": "f8f7b9ae3c6a38f9696b67525d2386f4f1541643f7ab843e96bf62e7462b37ca"
+      },
+      "xml_sha256": "50ff029e7975d13695f239d73652eddb9382e123bc1749b041c348f749be31d8"
+    },
+    {
+      "name": "lane-d-focused",
+      "counts": {
+        "failure": 0,
+        "error": 0,
+        "skipped": 0,
+        "passed": 98
+      },
+      "exceptions": [],
+      "pytest_exit": 0,
+      "execution": {
+        "name": "lane-d-focused",
+        "cwd": "C:\\Users\\zathp\\.copilot\\session-state\\2c38ab9f-63a7-41fb-8437-e11b4732bee9\\files\\luna47d",
+        "command": [
+          "C:\\Users\\zathp\\Documents\\programming\\TPCN\\.venv\\Scripts\\python.exe",
+          "-m",
+          "pytest",
+          "tests\\test_luna47d_output_model.py",
+          "-ra",
+          "--junitxml=C:\\Users\\zathp\\.copilot\\session-state\\2c38ab9f-63a7-41fb-8437-e11b4732bee9\\files\\luna47-review\\artifacts\\luna47-review\\lane-d-focused.xml"
+        ],
+        "python": "3.11.5 (tags/v3.11.5:cce6ba9, Aug 24 2023, 14:38:34) [MSC v.1936 64 bit (AMD64)]",
+        "executable": "C:\\Users\\zathp\\Documents\\programming\\TPCN\\.venv\\Scripts\\python.exe",
+        "revision": "deb01f07a0d6b315855d2fab57d558be303f95f3",
+        "started_utc": "2026-10-07T01:45:15.546010+00:00",
+        "seconds": 1.7180000000080327,
+        "exit_code": 0,
+        "environment": {
+          "PYTHONPATH": "C:\\Users\\zathp\\.copilot\\session-state\\2c38ab9f-63a7-41fb-8437-e11b4732bee9\\files\\luna47d",
+          "PYTHONHASHSEED": "0",
+          "PYTHONDONTWRITEBYTECODE": "1"
+        },
+        "log_sha256": "5817c779b638fc2491750a653f554deff79f4ae6db57696bb312b96a01f21fb1"
+      },
+      "xml_sha256": "c53c516d457bc491185d003284d894ee188f0a911afb79022b532524411e5049"
+    },
+    {
+      "name": "lane-e-focused",
+      "counts": {
+        "failure": 0,
+        "error": 0,
+        "skipped": 0,
+        "passed": 18
+      },
+      "exceptions": [],
+      "pytest_exit": 0,
+      "execution": {
+        "name": "lane-e-focused",
+        "cwd": "C:\\Users\\zathp\\.copilot\\session-state\\2c38ab9f-63a7-41fb-8437-e11b4732bee9\\files\\luna47e",
+        "command": [
+          "C:\\Users\\zathp\\Documents\\programming\\TPCN\\.venv\\Scripts\\python.exe",
+          "-m",
+          "pytest",
+          "tests\\test_luna47e_evidence.py",
+          "-ra",
+          "--junitxml=C:\\Users\\zathp\\.copilot\\session-state\\2c38ab9f-63a7-41fb-8437-e11b4732bee9\\files\\luna47-review\\artifacts\\luna47-review\\lane-e-focused.xml"
+        ],
+        "python": "3.11.5 (tags/v3.11.5:cce6ba9, Aug 24 2023, 14:38:34) [MSC v.1936 64 bit (AMD64)]",
+        "executable": "C:\\Users\\zathp\\Documents\\programming\\TPCN\\.venv\\Scripts\\python.exe",
+        "revision": "4e413415a31853877333810d7093f415f93f72f7",
+        "started_utc": "2026-10-07T01:45:17.279994+00:00",
+        "seconds": 1.7969999999913853,
+        "exit_code": 0,
+        "environment": {
+          "PYTHONPATH": "C:\\Users\\zathp\\.copilot\\session-state\\2c38ab9f-63a7-41fb-8437-e11b4732bee9\\files\\luna47e",
+          "PYTHONHASHSEED": "0",
+          "PYTHONDONTWRITEBYTECODE": "1"
+        },
+        "log_sha256": "7b46a6bc3cfd47dbc999762b0e607572eb03b6dc40ce12d576f32bc880cc82ad"
+      },
+      "xml_sha256": "c35d5e995b2ff07023cef546cfc33ede252bb2b5c5fa1b885fd3ba3a07ced167"
+    },
+    {
+      "name": "lane-f-focused",
+      "counts": {
+        "failure": 0,
+        "error": 0,
+        "skipped": 0,
+        "passed": 55
+      },
+      "exceptions": [],
+      "pytest_exit": 0,
+      "execution": {
+        "name": "lane-f-focused",
+        "cwd": "C:\\Users\\zathp\\.copilot\\session-state\\2c38ab9f-63a7-41fb-8437-e11b4732bee9\\files\\luna47f",
+        "command": [
+          "C:\\Users\\zathp\\Documents\\programming\\TPCN\\.venv\\Scripts\\python.exe",
+          "-m",
+          "pytest",
+          "tests\\test_luna47f_diagnostic.py",
+          "tests\\test_luna47f_retained.py",
+          "-ra",
+          "--junitxml=C:\\Users\\zathp\\.copilot\\session-state\\2c38ab9f-63a7-41fb-8437-e11b4732bee9\\files\\luna47-review\\artifacts\\luna47-review\\lane-f-focused.xml"
+        ],
+        "python": "3.11.5 (tags/v3.11.5:cce6ba9, Aug 24 2023, 14:38:34) [MSC v.1936 64 bit (AMD64)]",
+        "executable": "C:\\Users\\zathp\\Documents\\programming\\TPCN\\.venv\\Scripts\\python.exe",
+        "revision": "8cddf9d5d3fc0ea6971dc54645e8033c290dc852",
+        "started_utc": "2026-10-07T01:45:19.106759+00:00",
+        "seconds": 29.406000000002678,
+        "exit_code": 0,
+        "environment": {
+          "PYTHONPATH": "C:\\Users\\zathp\\.copilot\\session-state\\2c38ab9f-63a7-41fb-8437-e11b4732bee9\\files\\luna47f",
+          "PYTHONHASHSEED": "0",
+          "PYTHONDONTWRITEBYTECODE": "1"
+        },
+        "log_sha256": "bdaae11d4606bb611859cf1250157699cac90fe6b850a4fa3bf7e770aa6a9979"
+      },
+      "xml_sha256": "9e75451593a71ebce9a8379b54302f4cc3851e118bd49d82d64a7b2b9421f66e"
+    },
+    {
+      "name": "lane-g-focused",
+      "counts": {
+        "failure": 0,
+        "error": 0,
+        "skipped": 0,
+        "passed": 27
+      },
+      "exceptions": [],
+      "pytest_exit": 0,
+      "execution": {
+        "name": "lane-g-focused",
+        "cwd": "C:\\Users\\zathp\\.copilot\\session-state\\2c38ab9f-63a7-41fb-8437-e11b4732bee9\\files\\luna47g",
+        "command": [
+          "C:\\Users\\zathp\\Documents\\programming\\TPCN\\.venv\\Scripts\\python.exe",
+          "-m",
+          "pytest",
+          "tests\\test_luna47g_packaging.py",
+          "tests\\test_luna47g_robustness.py",
+          "-ra",
+          "--junitxml=C:\\Users\\zathp\\.copilot\\session-state\\2c38ab9f-63a7-41fb-8437-e11b4732bee9\\files\\luna47-review\\artifacts\\luna47-review\\lane-g-focused.xml"
+        ],
+        "python": "3.11.5 (tags/v3.11.5:cce6ba9, Aug 24 2023, 14:38:34) [MSC v.1936 64 bit (AMD64)]",
+        "executable": "C:\\Users\\zathp\\Documents\\programming\\TPCN\\.venv\\Scripts\\python.exe",
+        "revision": "42698364392901de955ca04a770c975a1b0a94d2",
+        "started_utc": "2026-10-07T01:45:48.525097+00:00",
+        "seconds": 52.78199999999197,
+        "exit_code": 0,
+        "environment": {
+          "PYTHONPATH": "C:\\Users\\zathp\\.copilot\\session-state\\2c38ab9f-63a7-41fb-8437-e11b4732bee9\\files\\luna47g",
+          "PYTHONHASHSEED": "0",
+          "PYTHONDONTWRITEBYTECODE": "1"
+        },
+        "log_sha256": "9835a1bc19b853d7355eeb659368db5b3a0bd7fb19d29fb709c134295f9d77e1"
+      },
+      "xml_sha256": "94c189f3bf1602e124b1335ff98609561e8f3d20aeeb0fd0bb5ea17754e721bd"
+    }
+  ],
+  "baseline_comparison": {
+    "supplied_log": "C:\\Users\\zathp\\.copilot\\session-state\\2c38ab9f-63a7-41fb-8437-e11b4732bee9\\files\\luna47-baseline-tests.log",
+    "sha256": "9aa8d8b11652f48f2cfe042cb097ce5f722fe4d9b3269621247399b3f81bf589",
+    "encoding": "utf-16",
+    "summary_lines": [
+      "1 failed, 1325 passed, 1 skipped, 7 errors in 408.26s (0:06:48)"
+    ],
+    "supplied_revision": "4b11e0e828fd6fbcb4cbf9b994f121bde54e4c37",
+    "comparison": "Same pinned-source failure and seven setup errors. Additional review-checkout Luna-46 catalog failure is exact LF-to-CRLF materialization, not waived."
+  }
+}

@@ -1,0 +1,297 @@
+{
+  "records": [
+    {
+      "part": "AN231E04-QFNSP",
+      "url": "https://www.digikey.com/en/products/detail/okika-devices/AN231E04-QFNSP/28167850",
+      "retrieved_at_utc": "2026-10-07T01:47:18.472994+00:00",
+      "curl_exit": 0,
+      "http_status": "403",
+      "raw_sha256": "b43213b43fd55c4e3a9999739d060e5db91b6d2bd1e49aac0c469cb9638c7024",
+      "raw_bytes": 5595,
+      "raw_not_retained": true,
+      "shipping_owner_access": "BLOCKED",
+      "exact_product_matches": 0,
+      "selected_public_offer": [],
+      "result": "BLOCKED: no independently parsed exact-part offer"
+    },
+    {
+      "part": "AN231K04-DUAL2",
+      "url": "https://www.digikey.com/en/products/detail/okika-devices/AN231K04-DUAL2/28167223",
+      "retrieved_at_utc": "2026-10-07T01:47:18.506995+00:00",
+      "curl_exit": 0,
+      "http_status": "403",
+      "raw_sha256": "7a0026cb09be00b3422ef1fadf12644158773de6c7374ca26b179048c7d1eb57",
+      "raw_bytes": 5595,
+      "raw_not_retained": true,
+      "shipping_owner_access": "BLOCKED",
+      "exact_product_matches": 0,
+      "selected_public_offer": [],
+      "result": "BLOCKED: no independently parsed exact-part offer"
+    },
+    {
+      "part": "TLV9062IDR",
+      "url": "https://www.lcsc.com/product-detail/C398355.html",
+      "retrieved_at_utc": "2026-10-07T01:47:20.201745+00:00",
+      "curl_exit": 0,
+      "http_status": "200",
+      "raw_sha256": "ecaebd11968074551dc1f4cb2e183179c573d18b14009c81cde644af83001334",
+      "raw_bytes": 456717,
+      "raw_not_retained": true,
+      "shipping_owner_access": "BLOCKED",
+      "exact_product_matches": 1,
+      "selected_public_offer": [
+        {
+          "mpn": "TLV9062IDR",
+          "offers": {
+            "@type": "Offer",
+            "url": "https://www.lcsc.com/product-detail/C398355.html",
+            "priceCurrency": "USD",
+            "price": 0.0669,
+            "itemCondition": "http://schema.org/NewCondition",
+            "availability": "http://schema.org/InStock",
+            "inventoryLevel": 168340,
+            "seller": {
+              "@type": "Organization",
+              "name": "LCSC Electronics",
+              "url": "https://www.lcsc.com/"
+            },
+            "description": ""
+          }
+        }
+      ],
+      "result": "independent exact-part public offer observed"
+    },
+    {
+      "part": "MCP41010-I/P",
+      "url": "https://www.lcsc.com/product-detail/C1539831.html",
+      "retrieved_at_utc": "2026-10-07T01:47:20.821898+00:00",
+      "curl_exit": 0,
+      "http_status": "200",
+      "raw_sha256": "15b3f327267b2a7b76a3de203dc9aebed8b4ed6bb7aca7d43489e0e9d466ceb3",
+      "raw_bytes": 389244,
+      "raw_not_retained": true,
+      "shipping_owner_access": "BLOCKED",
+      "exact_product_matches": 1,
+      "selected_public_offer": [
+        {
+          "mpn": "MCP41010-I/P",
+          "offers": {
+            "@type": "Offer",
+            "url": "https://www.lcsc.com/product-detail/C1539831.html",
+            "priceCurrency": "USD",
+            "price": 2.3663,
+            "itemCondition": "http://schema.org/NewCondition",
+            "availability": "http://schema.org/InStock",
+            "inventoryLevel": 64,
+            "seller": {
+              "@type": "Organization",
+              "name": "LCSC Electronics",
+              "url": "https://www.lcsc.com/"
+            },
+            "description": ""
+          }
+        }
+      ],
+      "result": "independent exact-part public offer observed"
+    },
+    {
+      "part": "B32529C1104J289",
+      "url": "https://www.lcsc.com/product-detail/C15523.html",
+      "retrieved_at_utc": "2026-10-07T01:47:23.995548+00:00",
+      "curl_exit": 0,
+      "http_status": "200",
+      "raw_sha256": "85039f6ee1f8faa76729df6f41aad8d039a6217be96e225049bfd8f41e6da161",
+      "raw_bytes": 402056,
+      "raw_not_retained": true,
+      "shipping_owner_access": "BLOCKED",
+      "exact_product_matches": 1,
+      "selected_public_offer": [
+        {
+          "mpn": "B32529C1104J289",
+          "offers": {
+            "@type": "Offer",
+            "url": "https://www.lcsc.com/product-detail/C15523.html",
+            "priceCurrency": "USD",
+            "price": 0.0573,
+            "itemCondition": "http://schema.org/NewCondition",
+            "availability": "http://schema.org/InStock",
+            "inventoryLevel": 9430,
+            "seller": {
+              "@type": "Organization",
+              "name": "LCSC Electronics",
+              "url": "https://www.lcsc.com/"
+            },
+            "description": ""
+          }
+        }
+      ],
+      "result": "independent exact-part public offer observed"
+    },
+    {
+      "part": "TLV3201AIDBVR",
+      "url": "https://www.lcsc.com/product-detail/C105188.html",
+      "retrieved_at_utc": "2026-10-07T01:47:21.257936+00:00",
+      "curl_exit": 0,
+      "http_status": "200",
+      "raw_sha256": "d498ed46f89885a2382645ecac971c2a41f31bdc2489a17eca97616affd25c3b",
+      "raw_bytes": 453125,
+      "raw_not_retained": true,
+      "shipping_owner_access": "BLOCKED",
+      "exact_product_matches": 1,
+      "selected_public_offer": [
+        {
+          "mpn": "TLV3201AIDBVR",
+          "offers": {
+            "@type": "Offer",
+            "url": "https://www.lcsc.com/product-detail/C105188.html",
+            "priceCurrency": "USD",
+            "price": 0.6175,
+            "itemCondition": "http://schema.org/NewCondition",
+            "availability": "http://schema.org/InStock",
+            "inventoryLevel": 32169,
+            "seller": {
+              "@type": "Organization",
+              "name": "LCSC Electronics",
+              "url": "https://www.lcsc.com/"
+            },
+            "description": ""
+          }
+        }
+      ],
+      "result": "independent exact-part public offer observed"
+    },
+    {
+      "part": "1N4148-TAP",
+      "url": "https://www.lcsc.com/product-detail/C917479.html",
+      "retrieved_at_utc": "2026-10-07T01:47:19.906746+00:00",
+      "curl_exit": 0,
+      "http_status": "200",
+      "raw_sha256": "5f7ee6f6497ae311bd964001973670029e9d127d149ad2d1f6ab122134637dfe",
+      "raw_bytes": 422924,
+      "raw_not_retained": true,
+      "shipping_owner_access": "BLOCKED",
+      "exact_product_matches": 1,
+      "selected_public_offer": [
+        {
+          "mpn": "1N4148-TAP",
+          "offers": {
+            "@type": "Offer",
+            "url": "https://www.lcsc.com/product-detail/C917479.html",
+            "priceCurrency": "USD",
+            "price": 0.0222,
+            "itemCondition": "http://schema.org/NewCondition",
+            "availability": "http://schema.org/InStock",
+            "inventoryLevel": 18580,
+            "seller": {
+              "@type": "Organization",
+              "name": "LCSC Electronics",
+              "url": "https://www.lcsc.com/"
+            },
+            "description": ""
+          }
+        }
+      ],
+      "result": "independent exact-part public offer observed"
+    },
+    {
+      "part": "MFR-25FBF52-100K",
+      "url": "https://www.lcsc.com/product-detail/C1364475.html",
+      "retrieved_at_utc": "2026-10-07T01:47:21.103935+00:00",
+      "curl_exit": 0,
+      "http_status": "200",
+      "raw_sha256": "145f21fc60bfae61cb41dcb252c440fbcc663ce8925f516c757965bd32324412",
+      "raw_bytes": 411057,
+      "raw_not_retained": true,
+      "shipping_owner_access": "BLOCKED",
+      "exact_product_matches": 1,
+      "selected_public_offer": [
+        {
+          "mpn": "MFR-25FBF52-100K",
+          "offers": {
+            "@type": "Offer",
+            "url": "https://www.lcsc.com/product-detail/C1364475.html",
+            "priceCurrency": "USD",
+            "price": 0.0088,
+            "itemCondition": "http://schema.org/NewCondition",
+            "availability": "http://schema.org/InStock",
+            "inventoryLevel": 10500,
+            "seller": {
+              "@type": "Organization",
+              "name": "LCSC Electronics",
+              "url": "https://www.lcsc.com/"
+            },
+            "description": ""
+          }
+        }
+      ],
+      "result": "independent exact-part public offer observed"
+    },
+    {
+      "part": "LMC555CMX/NOPB",
+      "url": "https://www.lcsc.com/product-detail/C90760.html",
+      "retrieved_at_utc": "2026-10-07T01:47:20.672848+00:00",
+      "curl_exit": 0,
+      "http_status": "200",
+      "raw_sha256": "a49f8541092f50cb92e4d4065103ac16e70541864b2ffd7f6738148f248d1816",
+      "raw_bytes": 416830,
+      "raw_not_retained": true,
+      "shipping_owner_access": "BLOCKED",
+      "exact_product_matches": 1,
+      "selected_public_offer": [
+        {
+          "mpn": "LMC555CMX/NOPB",
+          "offers": {
+            "@type": "Offer",
+            "url": "https://www.lcsc.com/product-detail/C90760.html",
+            "priceCurrency": "USD",
+            "price": 0.1478,
+            "itemCondition": "http://schema.org/NewCondition",
+            "availability": "http://schema.org/InStock",
+            "inventoryLevel": 610,
+            "seller": {
+              "@type": "Organization",
+              "name": "LCSC Electronics",
+              "url": "https://www.lcsc.com/"
+            },
+            "description": ""
+          }
+        }
+      ],
+      "result": "independent exact-part public offer observed"
+    },
+    {
+      "part": "MCP4921-E/P",
+      "url": "https://www.lcsc.com/product-detail/C640392.html",
+      "retrieved_at_utc": "2026-10-07T01:47:21.835933+00:00",
+      "curl_exit": 0,
+      "http_status": "200",
+      "raw_sha256": "c0e82a274def03558798ccce8715f8cfe838bf4322c76ee63428373646859e86",
+      "raw_bytes": 423966,
+      "raw_not_retained": true,
+      "shipping_owner_access": "BLOCKED",
+      "exact_product_matches": 1,
+      "selected_public_offer": [
+        {
+          "mpn": "MCP4921-E/P",
+          "offers": {
+            "@type": "Offer",
+            "url": "https://www.lcsc.com/product-detail/C640392.html",
+            "priceCurrency": "USD",
+            "price": 2.8774,
+            "itemCondition": "http://schema.org/NewCondition",
+            "availability": "http://schema.org/InStock",
+            "inventoryLevel": 34,
+            "seller": {
+              "@type": "Organization",
+              "name": "LCSC Electronics",
+              "url": "https://www.lcsc.com/"
+            },
+            "description": ""
+          }
+        }
+      ],
+      "result": "independent exact-part public offer observed"
+    }
+  ],
+  "scope": "Public offers, not supplier authenticity, delivery, owner access or circuit validation"
+}

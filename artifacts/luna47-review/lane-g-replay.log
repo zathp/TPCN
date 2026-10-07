@@ -1,0 +1,3 @@
+cwd=C:\Users\zathp\.copilot\session-state\2c38ab9f-63a7-41fb-8437-e11b4732bee9\files\luna47g
+command=['C:\\Users\\zathp\\Documents\\programming\\TPCN\\.venv\\Scripts\\python.exe', 'experiments/luna47g/simulate.py', '--verify']
+Fresh-process replay: PASS (all payload bytes and source hashes)

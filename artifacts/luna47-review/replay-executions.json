@@ -1,0 +1,89 @@
+[
+  {
+    "lane": "a",
+    "command": [
+      "C:\\Users\\zathp\\Documents\\programming\\TPCN\\.venv\\Scripts\\python.exe",
+      "-m",
+      "experiments.luna47a.run",
+      "--verify"
+    ],
+    "cwd": "C:\\Users\\zathp\\.copilot\\session-state\\2c38ab9f-63a7-41fb-8437-e11b4732bee9\\files\\luna47a",
+    "exit_code": 0,
+    "seconds": 210.76499999999942,
+    "log_sha256": "bfd64458dfcd0b8f856a670ef2b74517e434826e2d8464f72c52bbdf279c91dc"
+  },
+  {
+    "lane": "b",
+    "command": [
+      "C:\\Users\\zathp\\Documents\\programming\\TPCN\\.venv\\Scripts\\python.exe",
+      "-m",
+      "experiments.luna47b.diagnostic",
+      "--replay"
+    ],
+    "cwd": "C:\\Users\\zathp\\.copilot\\session-state\\2c38ab9f-63a7-41fb-8437-e11b4732bee9\\files\\luna47b",
+    "exit_code": 0,
+    "seconds": 133.07800000000861,
+    "log_sha256": "4b6b2d2cdb42270c7d7b19919e403ba04a5ce58bad36f1b722bab9d24d1c7e55"
+  },
+  {
+    "lane": "c",
+    "command": [
+      "C:\\Users\\zathp\\Documents\\programming\\TPCN\\.venv\\Scripts\\python.exe",
+      "-m",
+      "experiments.luna47c.evaluate",
+      "--verify"
+    ],
+    "cwd": "C:\\Users\\zathp\\.copilot\\session-state\\2c38ab9f-63a7-41fb-8437-e11b4732bee9\\files\\luna47c",
+    "exit_code": 0,
+    "seconds": 2.5930000000080327,
+    "log_sha256": "9723136a02d09e4e1cd76a8b18cb856420ffbb562243c14429d913065429c905"
+  },
+  {
+    "lane": "d",
+    "command": [
+      "C:\\Users\\zathp\\Documents\\programming\\TPCN\\.venv\\Scripts\\python.exe",
+      "-m",
+      "experiments.luna47d.run",
+      "--verify"
+    ],
+    "cwd": "C:\\Users\\zathp\\.copilot\\session-state\\2c38ab9f-63a7-41fb-8437-e11b4732bee9\\files\\luna47d",
+    "exit_code": 0,
+    "seconds": 0.8279999999940628,
+    "log_sha256": "01ff53f4f1ac26bb32addc283b2a3c4379d9b7886dc4f3d22f4a22592816b752"
+  },
+  {
+    "lane": "e",
+    "command": [
+      "C:\\Users\\zathp\\Documents\\programming\\TPCN\\.venv\\Scripts\\python.exe",
+      "experiments/luna47e/validate.py"
+    ],
+    "cwd": "C:\\Users\\zathp\\.copilot\\session-state\\2c38ab9f-63a7-41fb-8437-e11b4732bee9\\files\\luna47e",
+    "exit_code": 0,
+    "seconds": 0.7339999999967404,
+    "log_sha256": "535442b0a4ceac765acec4dbc66c71775027d1bc271a722fe0ede72e1ca6fbd5"
+  },
+  {
+    "lane": "f",
+    "command": [
+      "C:\\Users\\zathp\\Documents\\programming\\TPCN\\.venv\\Scripts\\python.exe",
+      "experiments/luna47f/diagnostic.py",
+      "--check"
+    ],
+    "cwd": "C:\\Users\\zathp\\.copilot\\session-state\\2c38ab9f-63a7-41fb-8437-e11b4732bee9\\files\\luna47f",
+    "exit_code": 0,
+    "seconds": 18.187999999994645,
+    "log_sha256": "e19f8be26ae0d59555ed0a9aef672629c093c1d8d405e55384b7788781f3b8fb"
+  },
+  {
+    "lane": "g",
+    "command": [
+      "C:\\Users\\zathp\\Documents\\programming\\TPCN\\.venv\\Scripts\\python.exe",
+      "experiments/luna47g/simulate.py",
+      "--verify"
+    ],
+    "cwd": "C:\\Users\\zathp\\.copilot\\session-state\\2c38ab9f-63a7-41fb-8437-e11b4732bee9\\files\\luna47g",
+    "exit_code": 0,
+    "seconds": 80.73399999999674,
+    "log_sha256": "7833dc0619703e9fea8f552693cbac91da0fa5007614f2af6285853ae91d0e02"
+  }
+]
