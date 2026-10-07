@@ -8795,7 +8795,7 @@
     ],
     "verdict": "SUPPORTED"
   },
-  "integrity_sha256": "3fc0f575952cf085a7cf5c6d22c3a32a12d7387fc92649efc5e666ba02f94daf",
+  "integrity_sha256": "7009f481c76e19cdd94c99d33c7d7dfbbc612daf517a9cb928ff8c7cce181ea3",
   "provenance": {
     "authorization_revision": "789dda5988daf72f375d9713bd76a6da2b9e8b34",
     "branch": "copilot/luna47d-investigation",
@@ -8804,7 +8804,7 @@
     "production_evidence_revision": "2cef8ea4b37a4ae586e3f383511cba63c9268ddc",
     "python": "3.11.5 (tags/v3.11.5:cce6ba9, Aug 24 2023, 14:38:34) [MSC v.1936 64 bit (AMD64)]",
     "seed": null,
-    "source_revision": "ee522bf6c4882bb09b9bc0af2520e50c3d1a3589",
+    "source_revision": "cd5b1f5f49a890f3041e413e8f303d7b5ee3c3b9",
     "sources": [
       {
         "git_blob": "a5e9e596bb8a2c62a91f8b5ae6d477dd15e7b380",
@@ -8817,19 +8817,19 @@
         "sha256_lf": "e8f6a19977f0da672e2a7f2390378eab6322676a9b304ecd27737b4d4c1bb897"
       },
       {
-        "git_blob": "243056ade6b26f71a892364ede5df50fa3f0d1af",
+        "git_blob": "f4143b7e2c5809b9082b072ff8deb5501d4feddf",
         "path": "experiments/luna47d/model.py",
-        "sha256_lf": "f58af0ba7124852d6763c50cba330dcb29d221b7689c205fd403bbd7df180e42"
+        "sha256_lf": "ede1a9eb4fac6129e6f87b8b71a175a487ee44f8e303350152cc7f95a88a4f5b"
       },
       {
-        "git_blob": "9010edcfce3ff0b134c8246840b1c33e4ca97e2a",
+        "git_blob": "eff16e9ea50751928145fe08567f49cbd74e84b7",
         "path": "experiments/luna47d/run.py",
-        "sha256_lf": "2940016118bd80e80655eeb5dac5817612e14e9eae58c12e64efec71c1b274a9"
+        "sha256_lf": "fc38c3c31c534d1fc1d841adc90572cd48d704ecf06bc8f6e43295498f057108"
       },
       {
-        "git_blob": "9e226b0b3021c3fe208c5227cad2e1b5b3e276dd",
+        "git_blob": "9c5a07e5842158d96cd437ab3b6f0b03f17f8609",
         "path": "tests/test_luna47d_output_model.py",
-        "sha256_lf": "fc8f817b4efcfbfffd6c98d796f999f81b9bb466a297934e70e15250da655aa2"
+        "sha256_lf": "a1ce013e593a02e827f219b2122734170d36e599724dde1cfa4c966da88a5cf6"
       }
     ]
   },

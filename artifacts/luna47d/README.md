@@ -1,7 +1,7 @@
 # Luna-47D evidence catalog
 
-The canonical scientific result is `evidence.json`, generated from committed
-source `ee522bf6c4882bb09b9bc0af2520e50c3d1a3589`.
+The canonical scientific result is `evidence.json`, retained from the original
+analysis and attributed to corrected source `cd5b1f5f49a890f3041e413e8f303d7b5ee3c3b9`.
 Its verdict is **SUPPORTED only for the frozen synthetic regimes**.
 
 * `evidence.json`: full initial/replay trajectories, identities, rational
