@@ -14,8 +14,7 @@ Set-Location 'C:\Users\zathp\.copilot\session-state\2c38ab9f-63a7-41fb-8437-e11b
 
 Replay regenerates the artifact in memory, checks the pinned execution
 revision is an ancestor, verifies protocol/code committed content, verifies
-all pinned committed evidence, and demands identical artifact bytes except for
-exact CRLF-to-LF checkout materialization.
+all pinned committed evidence, and demands exact artifact bytes.
 It never overwrites the result. Exact-byte replay includes Python/environment
 and checkout-source hashes, so use the recorded environment/materialization.
 Portable mathematical replay is also covered by the focused tests.

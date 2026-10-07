@@ -7,14 +7,6 @@ import pytest
 from experiments.luna47b import diagnostic as d
 
 
-def test_artifact_comparison_allows_only_crlf_checkout_conversion():
-    expected = b'{"value":"line one\\nline two"}\n'
-    assert d.artifact_matches_checkout(expected, expected)
-    assert d.artifact_matches_checkout(expected.replace(b"\n", b"\r\n"), expected)
-    assert not d.artifact_matches_checkout(expected + b"\r", expected)
-    assert not d.artifact_matches_checkout(expected + b" ", expected)
-
-
 def rows(inputs, gaps=None):
     gaps = gaps or [0.0] * len(inputs)
     clock = 0.0
