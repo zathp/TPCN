@@ -1,0 +1,50 @@
+cwd=C:\Users\zathp\.copilot\session-state\2c38ab9f-63a7-41fb-8437-e11b4732bee9\files\luna47e
+command=['C:\\Users\\zathp\\Documents\\programming\\TPCN\\.venv\\Scripts\\python.exe', 'experiments/luna47e/validate.py']
+{
+  "families": 8,
+  "components": 10,
+  "catalog_source_counts": {
+    "r1": 23,
+    "r2": 23,
+    "r3": 8,
+    "r4": 4,
+    "r5": 2
+  },
+  "independent_exact_part_offers": [
+    "TLV9062IDR",
+    "MCP41010-I/P",
+    "B32529C1104J289",
+    "TLV3201AIDBVR",
+    "1N4148-TAP",
+    "MFR-25FBF52-100K",
+    "LMC555CMX/NOPB",
+    "MCP4921-E/P"
+  ],
+  "owner_access": "BLOCKED",
+  "fpaa_independent_access": "BLOCKED",
+  "verdict": "PARTIALLY SUPPORTED",
+  "schema": "LUNA47E-VALIDATION-1",
+  "status": "PASS",
+  "checked_at_utc": "2026-10-07T01:52:27.224435+00:00",
+  "python": "3.11.5",
+  "platform": "Windows-10-10.0.19045-SP0",
+  "head_at_validation": "4e413415a31853877333810d7093f415f93f72f7",
+  "authorization_revision": "789dda5988daf72f375d9713bd76a6da2b9e8b34",
+  "production_evidence_baseline": "2cef8ea4b37a4ae586e3f383511cba63c9268ddc",
+  "changed_paths": [
+    "artifacts/luna47e/primitive-matrix.json",
+    "artifacts/luna47e/sources-20261006-retrieval2.json",
+    "artifacts/luna47e/sources-20261006-retrieval3.json",
+    "artifacts/luna47e/sources-20261006-retrieval4.json",
+    "artifacts/luna47e/sources-20261006-retrieval5.json",
+    "artifacts/luna47e/sources-20261006.json",
+    "artifacts/luna47e/validation-20261006.json",
+    "experiments/luna47e/README.md",
+    "experiments/luna47e/capture_sources.py",
+    "experiments/luna47e/criteria.md",
+    "experiments/luna47e/validate.py",
+    "tests/test_luna47e_evidence.py",
+    "workflow/handoffs/luna-47e-hardware-realizability-20261006.md"
+  ],
+  "validation_boundary": "Structural/source/stock/hash/hand-calculation checks only, no live or circuit equivalence checks."
+}

@@ -1,0 +1,33 @@
+{
+  "name": "governance-newline-override",
+  "cwd": "C:\\Users\\zathp\\.copilot\\session-state\\2c38ab9f-63a7-41fb-8437-e11b4732bee9\\files\\luna47-review",
+  "command": [
+    "C:\\Users\\zathp\\Documents\\programming\\TPCN\\.venv\\Scripts\\python.exe",
+    "-m",
+    "pytest",
+    "tests/test_luna44_canonical_fixture.py",
+    "tests/test_luna44_canonical_fixture_verification.py",
+    "tests/test_luna46_depth_scaling_diagnostic.py",
+    "-ra",
+    "--junitxml=C:\\Users\\zathp\\.copilot\\session-state\\2c38ab9f-63a7-41fb-8437-e11b4732bee9\\files\\luna47-review\\artifacts\\luna47-review\\governance-newline-override.xml"
+  ],
+  "python": "3.11.5 (tags/v3.11.5:cce6ba9, Aug 24 2023, 14:38:34) [MSC v.1936 64 bit (AMD64)]",
+  "executable": "C:\\Users\\zathp\\Documents\\programming\\TPCN\\.venv\\Scripts\\python.exe",
+  "revision": "4b11e0e828fd6fbcb4cbf9b994f121bde54e4c37",
+  "started_utc": "2026-10-07T01:50:14.721213+00:00",
+  "seconds": 48.562000000005355,
+  "exit_code": 1,
+  "environment": {
+    "PYTHONPATH": "C:\\Users\\zathp\\.copilot\\session-state\\2c38ab9f-63a7-41fb-8437-e11b4732bee9\\files\\luna47-review",
+    "PYTHONHASHSEED": "0",
+    "PYTHONDONTWRITEBYTECODE": "1"
+  },
+  "process_local_overrides": {
+    "GIT_CONFIG_COUNT": "2",
+    "GIT_CONFIG_KEY_0": "core.autocrlf",
+    "GIT_CONFIG_VALUE_0": "false",
+    "GIT_CONFIG_KEY_1": "core.eol",
+    "GIT_CONFIG_VALUE_1": "lf"
+  },
+  "log_sha256": "255697e1078a5354cda29f9ae3474d738e98fcc02481a8caa189f6258d6e1f74"
+}

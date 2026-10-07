@@ -1,0 +1,17 @@
+cwd=C:\Users\zathp\.copilot\session-state\2c38ab9f-63a7-41fb-8437-e11b4732bee9\files\luna47f
+command=['C:\\Users\\zathp\\Documents\\programming\\TPCN\\.venv\\Scripts\\python.exe', '-m', 'pytest', 'tests\\test_luna47f_diagnostic.py', 'tests\\test_luna47f_retained.py', '-ra', '--junitxml=C:\\Users\\zathp\\.copilot\\session-state\\2c38ab9f-63a7-41fb-8437-e11b4732bee9\\files\\luna47-review\\artifacts\\luna47-review\\lane-f-focused.xml']
+PYTHONPATH=C:\Users\zathp\.copilot\session-state\2c38ab9f-63a7-41fb-8437-e11b4732bee9\files\luna47f
+PYTHONHASHSEED=0
+PYTHONDONTWRITEBYTECODE=1
+started=2026-10-07T01:45:19.106759+00:00
+============================= test session starts =============================
+platform win32 -- Python 3.11.5, pytest-9.1.1, pluggy-1.6.0
+rootdir: C:\Users\zathp\.copilot\session-state\2c38ab9f-63a7-41fb-8437-e11b4732bee9\files\luna47f
+collected 55 items
+
+tests\test_luna47f_diagnostic.py ....................................... [ 70%]
+...........                                                              [ 90%]
+tests\test_luna47f_retained.py .....                                     [100%]
+
+- generated xml file: C:\Users\zathp\.copilot\session-state\2c38ab9f-63a7-41fb-8437-e11b4732bee9\files\luna47-review\artifacts\luna47-review\lane-f-focused.xml -
+============================= 55 passed in 27.86s =============================
