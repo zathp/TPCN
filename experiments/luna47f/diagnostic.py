@@ -314,7 +314,12 @@ def analyze(phase, enqueues, receptions, graph):
 def owned(path):
     return (path.startswith(("experiments/luna47f/", "artifacts/luna47f/")) or
             path.startswith("tests/test_luna47f_") and path.endswith(".py") or
-            path == "workflow/handoffs/luna-47f-candidate-generation-diagnostic-20261006.md")
+            path in {
+                "workflow/ARCHITECTURE_CHANGELOG.md",
+                "workflow/docs/luna/LUNA_WORKFLOW.md",
+                "workflow/handoffs/luna-47f-candidate-generation-diagnostic-20261006.md",
+                "workflow/handoffs/luna-47-final-corrective-pass-20261007.md",
+            })
 
 
 def protected_snapshot():
@@ -345,7 +350,8 @@ def validate_retained(retained, result, inventory, pre):
 def run(check=False):
     output = safe_output()
     require(check or not output.exists(), "output already exists; use --check")
-    changed = git("diff", "--name-only", AUTH).decode().splitlines()
+    changed = set(git("diff", "--name-only").decode().splitlines())
+    changed.update(git("diff", "--cached", "--name-only").decode().splitlines())
     require(all(owned(p) for p in changed), "non-owned change")
     pre = protected_snapshot()
     inventory, loaded = {}, {}

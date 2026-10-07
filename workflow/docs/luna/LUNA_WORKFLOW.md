@@ -1,5 +1,25 @@
 # TPCN Luna Multi-Agent Workflow — Event-Driven Architecture
 
+## Luna-47 final corrective pass — 2026-10-07
+
+**FINAL CORRECTIVE PASS INCOMPLETE — no Luna-48 authorization.** The
+integrated Luna-47F retained replay guard now checks only staged and unstaged
+working-tree mutations, so the published integrated `main` revision is a
+valid replay context. The regenerated retained artifact passes its code and
+protocol identity checks. The Luna-47 focused suite passes **307 tests** and
+the historical/core compatibility audit passes **377 tests**.
+
+The repository-wide suite remains red: **1 failed, 7 errors, 1632 passed,
+1 skipped**. The failure and errors are the existing Luna-44 canonical-fixture
+source/materialization mismatch on this Windows checkout. More importantly,
+Luna-47A–G remain isolated mechanism/model investigations; no composed causal
+efficacy, hardware-equivalence, or production evidence exists. The exact
+corrective record is in the
+[final Luna-47 handoff](../../handoffs/luna-47-final-corrective-pass-20261007.md).
+Luna-0 must independently review this result before any separately bounded
+follow-up. No Luna-48 contract, composition experiment, ACP action, or
+production promotion is authorized.
+
 ## Luna-47 independent review and synthesis — 2026-10-06
 
 **Review complete; FOLLOW-UP REQUIRED — promising unresolved mechanisms.**
