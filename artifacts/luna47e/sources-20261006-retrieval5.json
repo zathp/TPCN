@@ -1,0 +1,86 @@
+{
+  "schema": "LUNA47E-SOURCES-1",
+  "capture_revision": 1,
+  "source_baseline": "2cef8ea4b37a4ae586e3f383511cba63c9268ddc",
+  "authorization_revision": "789dda5988daf72f375d9713bd76a6da2b9e8b34",
+  "capture_script_sha256": "e98d18e9da93c100ca5a468dea604759288ff3a1295b32cbbdbd4323110e1e98",
+  "raw_policy": "Hashed in memory; only limited extracts and selected structured offers retained.",
+  "sources": [
+    {
+      "id": "fpaa_chip",
+      "kind": "manufacturer",
+      "url": "https://okikadevices.com/products/an231e04-dynamically-reconfigurable-fpaa-chip-with-4-cabs",
+      "effective_url": "https://okikadevices.com/products/an231e04-dynamically-reconfigurable-fpaa-chip-with-4-cabs",
+      "retrieved_at_utc": "2026-10-07T01:24:21.768299+00:00",
+      "method": "curl.exe unauthenticated HTTPS GET, redirects followed",
+      "http_status": "200",
+      "curl_exit": 0,
+      "raw_bytes": 182716,
+      "raw_sha256": "1e7ed42980a97312a0662c6666ad0ad04241719a2d9e7c6555b1598840ae6915",
+      "error": null,
+      "state": "retrieved",
+      "structured_price_currencies": [
+        "USD"
+      ],
+      "brief_excerpts": [
+        {
+          "keyword": "integrat",
+          "text": "d-Programmable Analog Array (FPAA) Integrated Circuit Component • 10 Pack Part Number: AN231E04-QFNSP Order Quantity: 10 pieces • Tray Packed (26"
+        },
+        {
+          "keyword": "comparator",
+          "text": "high-pass, band-pass), amplifiers, comparators, modulators, mixers, rectifiers, and more. Functions can be adaptive and dynamically reconfigured "
+        },
+        {
+          "keyword": "capacitor",
+          "text": "Specifications Technology Switched-Capacitor Number of Cores 4 Power Supply 3.3V Unity Gain Bandwidth 18 MHz Signal Path Differential ADC Resolut"
+        },
+        {
+          "keyword": "SPI",
+          "text": "tage references across conditions. SPI-like Configuration Interface – Fast, serial configuration from a microcontroller or DSP. Shadow Configurat"
+        },
+        {
+          "keyword": "supply",
+          "text": "-Capacitor Number of Cores 4 Power Supply 3.3V Unity Gain Bandwidth 18 MHz Signal Path Differential ADC Resolution 8 ADC Data Rate 250ksps Analog"
+        },
+        {
+          "keyword": "rectif",
+          "text": ", comparators, modulators, mixers, rectifiers, and more. Functions can be adaptive and dynamically reconfigured during operation. What is the ope"
+        },
+        {
+          "keyword": "3.3",
+          "text": "tor Number of Cores 4 Power Supply 3.3V Unity Gain Bandwidth 18 MHz Signal Path Differential ADC Resolution 8 ADC Data Rate 250ksps Analog IO 4 D"
+        }
+      ]
+    },
+    {
+      "id": "resistor_ds_mirror",
+      "kind": "manufacturer_pdf_distributor_mirror",
+      "url": "https://datasheet.lcsc.com/datasheet/pdf/78d4ba5bf7705bcd93e9318716385ddc.pdf?productCode=C1364475",
+      "effective_url": "https://datasheet.lcsc.com/datasheet/pdf/78d4ba5bf7705bcd93e9318716385ddc.pdf?productCode=C1364475",
+      "retrieved_at_utc": "2026-10-07T01:24:22.357298+00:00",
+      "method": "curl.exe unauthenticated HTTPS GET, redirects followed",
+      "http_status": "200",
+      "curl_exit": 0,
+      "raw_bytes": 1045274,
+      "raw_sha256": "b460acdb476469774e0785a8ef85aec79e2d95fe41beaa79c5a414e4e95e3fe0",
+      "error": null,
+      "state": "retrieved",
+      "pdf_pages": 17,
+      "pdf_metadata": {
+        "/Author": "林瓊貞",
+        "/Creator": "適用於 Microsoft 365 的 Microsoft® Word",
+        "/CreationDate": "D:20240403013445+08'00'",
+        "/ModDate": "D:20240403013445+08'00'",
+        "/Producer": "適用於 Microsoft 365 的 Microsoft® Word"
+      },
+      "brief_excerpts": [
+        {
+          "page": 2,
+          "keyword": "tolerance",
+          "text": "fied by \nthe series, power rating, tolerance, packing, temperature coefficient, \nforming and resistance value. \n \nPART NUMBER \n \nMFR    200    F "
+        }
+      ]
+    }
+  ]
+}

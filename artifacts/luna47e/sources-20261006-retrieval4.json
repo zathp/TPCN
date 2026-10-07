@@ -1,0 +1,364 @@
+{
+  "schema": "LUNA47E-SOURCES-1",
+  "capture_revision": 1,
+  "source_baseline": "2cef8ea4b37a4ae586e3f383511cba63c9268ddc",
+  "authorization_revision": "789dda5988daf72f375d9713bd76a6da2b9e8b34",
+  "capture_script_sha256": "20a2677feddebc534da9a5d3315ccfacbee452df2dfb305006dfd3048801177c",
+  "raw_policy": "Hashed in memory; only limited extracts and selected structured offers retained.",
+  "sources": [
+    {
+      "id": "cap_ds_mirror",
+      "kind": "manufacturer_pdf_distributor_mirror",
+      "url": "https://datasheet.lcsc.com/datasheet/pdf/58115b0c2f21f05a3509bc03212563f4.pdf?productCode=C15523",
+      "effective_url": "https://datasheet.lcsc.com/datasheet/pdf/58115b0c2f21f05a3509bc03212563f4.pdf?productCode=C15523",
+      "retrieved_at_utc": "2026-10-07T01:23:00.043238+00:00",
+      "method": "curl.exe unauthenticated HTTPS GET, redirects followed",
+      "http_status": "200",
+      "curl_exit": 0,
+      "raw_bytes": 995825,
+      "raw_sha256": "ec6654667aea1ac60e6ac047e08d2acb796741998899c5eac1e09ad6245e0660",
+      "error": null,
+      "state": "retrieved",
+      "pdf_pages": 44,
+      "pdf_metadata": {
+        "/Author": "TDK Electronics AG",
+        "/CreationDate": "D:20210224131716+01'00'",
+        "/ModDate": "D:20210224131716+01'00'",
+        "/Producer": "Acrobat Distiller 11.0 (Windows)",
+        "/Title": "Film Capacitors - Metallized Polyester Film Capacitors (MKT) - B32520 ... B32529"
+      },
+      "brief_excerpts": [
+        {
+          "page": 1,
+          "keyword": "capacitor",
+          "text": "Film Capacitors\nMetallized Polyester Film Capacitors (MKT)\nSeries/Type: B32520 ... B32529\nDate: September 2019\n© TD"
+        },
+        {
+          "page": 19,
+          "keyword": "operating conditions",
+          "text": " VR,8 5 °C\nFor conversion to other operating conditions and temperatures,\nrefer to chapter \"Quality, 2 Reliability\".Failure criteria:\nTotal failu"
+        },
+        {
+          "page": 40,
+          "keyword": "current",
+          "text": "cing permissible\nAC voltage due to current limit\nGrenzfrequenz für strombedingte\nReduzierung der zulässigen\nWechselspannung\nfr Resonant frequency"
+        },
+        {
+          "page": 2,
+          "keyword": "tolerance",
+          "text": "o,\nrated capacitance (coded),\ncap. tolerance (code letter), rated DC voltage,\ndate of manufacture (coded),\ncoded type (\"1\") for lead spacing 5 mm"
+        },
+        {
+          "page": 40,
+          "keyword": "absolute",
+          "text": "Rated capacitance Nennkapazität\nΔC Absolute capacitance change Absolute Kapazitätsänderung\nΔC/C Relative capacitance change (relative\ndeviation o"
+        }
+      ]
+    },
+    {
+      "id": "diode_stock",
+      "kind": "distributor",
+      "url": "https://www.lcsc.com/product-detail/C917479.html",
+      "effective_url": "https://www.lcsc.com/product-detail/C917479.html",
+      "retrieved_at_utc": "2026-10-07T01:23:08.206605+00:00",
+      "method": "curl.exe unauthenticated HTTPS GET, redirects followed",
+      "http_status": "200",
+      "curl_exit": 0,
+      "raw_bytes": 422909,
+      "raw_sha256": "05aec556430531b95c9f809de17e8817c2719b6d8c536a8264e948d4edf0c13c",
+      "error": null,
+      "state": "retrieved",
+      "product": {
+        "name": "VISHAY 1N4148-TAP",
+        "sku": "C917479",
+        "mpn": "1N4148-TAP",
+        "brand": {
+          "@type": "Brand",
+          "name": "VISHAY"
+        },
+        "offers": {
+          "@type": "Offer",
+          "url": "https://www.lcsc.com/product-detail/C917479.html",
+          "priceCurrency": "USD",
+          "price": 0.0222,
+          "itemCondition": "http://schema.org/NewCondition",
+          "availability": "http://schema.org/InStock",
+          "inventoryLevel": 18580,
+          "seller": {
+            "@type": "Organization",
+            "name": "LCSC Electronics",
+            "url": "https://www.lcsc.com/"
+          },
+          "description": ""
+        },
+        "subjectOf": {
+          "@type": "DigitalDocument",
+          "name": "Datasheet",
+          "url": "https://datasheet.lcsc.com/datasheet/pdf/3aef22255680a4f79d1b1f75fbcf643c.pdf?productCode=C917479"
+        }
+      },
+      "price_tiers": [
+        {
+          "ladder": 20,
+          "productPrice": "0.0483",
+          "usdPrice": 0.0483,
+          "cnyProductPriceList": null,
+          "discountRate": "1",
+          "currencyPrice": 0.0483,
+          "currencySymbol": "$",
+          "isForeignDiscount": null,
+          "ladderLevel": null,
+          "discountPrice": "0.0483",
+          "extPrice": "0.97",
+          "isRealOff": false
+        },
+        {
+          "ladder": 200,
+          "productPrice": "0.0371",
+          "usdPrice": 0.0371,
+          "cnyProductPriceList": null,
+          "discountRate": "1",
+          "currencyPrice": 0.0371,
+          "currencySymbol": "$",
+          "isForeignDiscount": null,
+          "ladderLevel": null,
+          "discountPrice": "0.0371",
+          "extPrice": "7.42",
+          "isRealOff": false
+        },
+        {
+          "ladder": 600,
+          "productPrice": "0.0309",
+          "usdPrice": 0.0309,
+          "cnyProductPriceList": null,
+          "discountRate": "1",
+          "currencyPrice": 0.0309,
+          "currencySymbol": "$",
+          "isForeignDiscount": null,
+          "ladderLevel": null,
+          "discountPrice": "0.0309",
+          "extPrice": "18.54",
+          "isRealOff": false
+        },
+        {
+          "ladder": 2000,
+          "productPrice": "0.0271",
+          "usdPrice": 0.0271,
+          "cnyProductPriceList": null,
+          "discountRate": "1",
+          "currencyPrice": 0.0271,
+          "currencySymbol": "$",
+          "isForeignDiscount": null,
+          "ladderLevel": null,
+          "discountPrice": "0.0271",
+          "extPrice": "54.20",
+          "isRealOff": false
+        },
+        {
+          "ladder": 10000,
+          "productPrice": "0.0239",
+          "usdPrice": 0.0239,
+          "cnyProductPriceList": null,
+          "discountRate": "1",
+          "currencyPrice": 0.0239,
+          "currencySymbol": "$",
+          "isForeignDiscount": null,
+          "ladderLevel": null,
+          "discountPrice": "0.0239",
+          "extPrice": "239.00",
+          "isRealOff": false
+        },
+        {
+          "ladder": 20000,
+          "productPrice": "0.0222",
+          "usdPrice": 0.0222,
+          "cnyProductPriceList": null,
+          "discountRate": "1",
+          "currencyPrice": 0.0222,
+          "currencySymbol": "$",
+          "isForeignDiscount": null,
+          "ladderLevel": null,
+          "discountPrice": "0.0222",
+          "extPrice": "444.00",
+          "isRealOff": false
+        }
+      ],
+      "shipping_stock": {
+        "total": 18580,
+        "shipImmediately": 18580,
+        "ship3Days": 0
+      }
+    },
+    {
+      "id": "diode_ds",
+      "kind": "manufacturer_pdf",
+      "url": "https://www.vishay.com/docs/81857/1n4148.pdf",
+      "effective_url": "https://www.vishay.com/docs/81857/1n4148.pdf",
+      "retrieved_at_utc": "2026-10-07T01:23:08.415608+00:00",
+      "method": "curl.exe unauthenticated HTTPS GET, redirects followed",
+      "http_status": "200",
+      "curl_exit": 0,
+      "raw_bytes": 93384,
+      "raw_sha256": "aefe85400a427ed886a4e1c88205ceabb9f9b38044b29c6acee4bb00146a44b7",
+      "error": null,
+      "state": "retrieved",
+      "pdf_pages": 4,
+      "pdf_metadata": {
+        "/ModDate": "D:20260402230557-04'00'",
+        "/CreationDate": "D:20260402230557-04'00'",
+        "/Producer": "iText® 5.3.3 ©2000-2012 1T3XT BVBA (Vishay Intertechnology; licensed version)"
+      },
+      "brief_excerpts": [
+        {
+          "page": 1,
+          "keyword": "current",
+          "text": "oltage V R 75 V\nPeak forward surge current t p = 1 μs I FSM 2A\nRepetitive peak forward current I FRM 500 mA\nForward continuous current I F 300 mA"
+        },
+        {
+          "page": 1,
+          "keyword": "absolute",
+          "text": " Si ngle Tape and re el / ammopack\nABSOLUTE MAXIMUM RATINGS (Tamb = 25 °C, unless otherwise specified)\nPARAMETER TEST CONDITION SYMBOL VALUE UNIT"
+        },
+        {
+          "page": 2,
+          "keyword": "rectif",
+          "text": " V, f = 1 MHz,\nVHF = 50 mV CD 4p F\nRectification efficiency V HF = 2 V, f = 100 MHz ηr 45 %\nReverse recovery time\nIF = IR = 10 mA,\niR = 1 mA trr "
+        }
+      ]
+    },
+    {
+      "id": "resistor_stock",
+      "kind": "distributor",
+      "url": "https://www.lcsc.com/product-detail/C1364475.html",
+      "effective_url": "https://www.lcsc.com/product-detail/C1364475.html",
+      "retrieved_at_utc": "2026-10-07T01:23:09.692019+00:00",
+      "method": "curl.exe unauthenticated HTTPS GET, redirects followed",
+      "http_status": "200",
+      "curl_exit": 0,
+      "raw_bytes": 411057,
+      "raw_sha256": "8485732a3611e6def43a19986a261032b6dbb78db4479773d210792e3e0f2d8b",
+      "error": null,
+      "state": "retrieved",
+      "product": {
+        "name": "YAGEO MFR-25FBF52-100K",
+        "sku": "C1364475",
+        "mpn": "MFR-25FBF52-100K",
+        "brand": {
+          "@type": "Brand",
+          "name": "YAGEO"
+        },
+        "offers": {
+          "@type": "Offer",
+          "url": "https://www.lcsc.com/product-detail/C1364475.html",
+          "priceCurrency": "USD",
+          "price": 0.0088,
+          "itemCondition": "http://schema.org/NewCondition",
+          "availability": "http://schema.org/InStock",
+          "inventoryLevel": 10500,
+          "seller": {
+            "@type": "Organization",
+            "name": "LCSC Electronics",
+            "url": "https://www.lcsc.com/"
+          },
+          "description": ""
+        },
+        "subjectOf": {
+          "@type": "DigitalDocument",
+          "name": "Datasheet",
+          "url": "https://datasheet.lcsc.com/datasheet/pdf/78d4ba5bf7705bcd93e9318716385ddc.pdf?productCode=C1364475"
+        }
+      },
+      "price_tiers": [
+        {
+          "ladder": 50,
+          "productPrice": "0.0183",
+          "usdPrice": 0.0183,
+          "cnyProductPriceList": null,
+          "discountRate": "1",
+          "currencyPrice": 0.0183,
+          "currencySymbol": "$",
+          "isForeignDiscount": null,
+          "ladderLevel": null,
+          "discountPrice": "0.0183",
+          "extPrice": "0.92",
+          "isRealOff": false
+        },
+        {
+          "ladder": 500,
+          "productPrice": "0.0142",
+          "usdPrice": 0.0142,
+          "cnyProductPriceList": null,
+          "discountRate": "1",
+          "currencyPrice": 0.0142,
+          "currencySymbol": "$",
+          "isForeignDiscount": null,
+          "ladderLevel": null,
+          "discountPrice": "0.0142",
+          "extPrice": "7.10",
+          "isRealOff": false
+        },
+        {
+          "ladder": 2000,
+          "productPrice": "0.0120",
+          "usdPrice": 0.012,
+          "cnyProductPriceList": null,
+          "discountRate": "1",
+          "currencyPrice": 0.012,
+          "currencySymbol": "$",
+          "isForeignDiscount": null,
+          "ladderLevel": null,
+          "discountPrice": "0.0120",
+          "extPrice": "24.00",
+          "isRealOff": false
+        },
+        {
+          "ladder": 5000,
+          "productPrice": "0.0106",
+          "usdPrice": 0.0106,
+          "cnyProductPriceList": null,
+          "discountRate": "1",
+          "currencyPrice": 0.0106,
+          "currencySymbol": "$",
+          "isForeignDiscount": null,
+          "ladderLevel": null,
+          "discountPrice": "0.0106",
+          "extPrice": "53.00",
+          "isRealOff": false
+        },
+        {
+          "ladder": 25000,
+          "productPrice": "0.0095",
+          "usdPrice": 0.0095,
+          "cnyProductPriceList": null,
+          "discountRate": "1",
+          "currencyPrice": 0.0095,
+          "currencySymbol": "$",
+          "isForeignDiscount": null,
+          "ladderLevel": null,
+          "discountPrice": "0.0095",
+          "extPrice": "237.50",
+          "isRealOff": false
+        },
+        {
+          "ladder": 50000,
+          "productPrice": "0.0088",
+          "usdPrice": 0.0088,
+          "cnyProductPriceList": null,
+          "discountRate": "1",
+          "currencyPrice": 0.0088,
+          "currencySymbol": "$",
+          "isForeignDiscount": null,
+          "ladderLevel": null,
+          "discountPrice": "0.0088",
+          "extPrice": "440.00",
+          "isRealOff": false
+        }
+      ],
+      "shipping_stock": {
+        "total": 10500,
+        "shipImmediately": 10500,
+        "ship3Days": 0
+      }
+    }
+  ]
+}
