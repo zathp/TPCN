@@ -95,7 +95,6 @@ tpcn_handoff:
     - "Project-owner instruction authorizes the seven explicitly described experimental scopes and publication of this governance change."
     - "Project-owner-specific purchasing region/inventory/budget is not supplied; Luna-47E must limit or block owner-specific availability claims if still unknown."
   unresolved:
-    - "Exact authorization commit and clean/pushed state are to be recorded after publication."
     - "Lane outcomes, including any dependency between evidence lanes, remain unknown."
   recommended_next_agent:
     - "Luna-47A through Luna-47G, each dispatched independently from the same recorded authorization revision; all return to Luna-0 for independent review."
@@ -161,6 +160,7 @@ artifacts.
 | Read authoritative contract, workflow, acceptance criteria, ACP process/template, handoff template and Luna-46 records | Same start revision | Completed; no A01-A15 change required | Linked governance files |
 | Lane execution and focused lane tests | Not applicable before publication | Not run by design | This is the prerequisite governance phase |
 | Full application test suite | Not run | Not applicable to documentation/agent-contract-only change | No implementation code changed |
+| `git diff --check` and publication checks | Authorization publication `789dda5988daf72f375d9713bd76a6da2b9e8b34` | **PASS**; the exact authorization commit is published and verified | GitHub commit record; shared by all Luna-47 lane contracts |
 | `git diff --cached --check` | Authorization commit `789dda5988daf72f375d9713bd76a6da2b9e8b34`; Windows | Passed | Staged governance diff |
 | Relative Markdown target check | Authorization commit content; Windows | All relative targets resolve | Read-only path validation |
 | Push, remote-ref equality and clean-worktree check | Published branch `copilot/luna46-depth-scaling-diagnostic`; remote verified at `40454fad3572dd90320be68bfbcaf80cc520e08a` | Passed; local and remote refs matched and worktree was clean | `git push origin copilot/luna46-depth-scaling-diagnostic`; `git ls-remote origin refs/heads/copilot/luna46-depth-scaling-diagnostic`; `git status --short --branch` |

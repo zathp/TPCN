@@ -1,0 +1,88 @@
+{
+  "schema": "TPCN-LUNA47B-VALIDATION-1",
+  "authorization_revision": "789dda5988daf72f375d9713bd76a6da2b9e8b34",
+  "execution_revision": "38891b81754ce385c55f96e4020e2bf04c2b9a5d",
+  "environment": {
+    "os": "Windows",
+    "python": "3.11.5",
+    "executable": "C:/Users/zathp/Documents/programming/TPCN/.venv/Scripts/python.exe",
+    "worktree": "C:/Users/zathp/.copilot/session-state/2c38ab9f-63a7-41fb-8437-e11b4732bee9/files/luna47b"
+  },
+  "checks": [
+    {
+      "command": "python -m py_compile experiments/luna47b/diagnostic.py tests/test_luna47b_gain.py",
+      "exit_code": 0,
+      "scope": "initial precommit syntax"
+    },
+    {
+      "command": "python -m experiments.luna47b.diagnostic",
+      "exit_code": 0,
+      "result_sha256": "b120d2cc5718649fb0d57d93611ddb89b45113e79c0d3003cf330fe092d0fb83",
+      "integrity": "33 pinned inputs verified from immutable committed bytes; 34 materialization identities including corrected Luna46 output",
+      "replay": "two complete gain analyses byte-identical; both retained raw phases exactly reconstruct reviewed Luna46 sequences"
+    },
+    {
+      "command": "python -m pytest -q tests/test_luna47b_gain.py",
+      "exit_code": 0,
+      "passed": 16,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 186.01
+    },
+    {
+      "command": "python -m pytest -q tests/test_luna46_depth_scaling_diagnostic.py tests/test_luna45_acp0008_depth2_destination_integration.py tests/test_luna44_acp0008_canonical_fixture_rebaseline.py tests/test_luna44_canonical_fixture.py tests/test_luna44_canonical_fixture_verification.py tests/test_luna38_excursion_integration_state.py tests/test_event_runtime.py tests/test_topology.py",
+      "exit_code": 1,
+      "passed": 356,
+      "failed": 2,
+      "errors": 7,
+      "seconds": 103.47,
+      "failures": [
+        "tests/test_luna46_depth_scaling_diagnostic.py::test_real_retained_artifacts_integrity_only",
+        "tests/test_luna44_canonical_fixture.py::test_two_fresh_process_materializations_match_committed_fixture"
+      ],
+      "error_tests": [
+        "tests/test_luna44_canonical_fixture_verification.py::test_missing_manifest_source_file_fails_loudly",
+        "tests/test_luna44_canonical_fixture_verification.py::test_incorrect_source_sha_fails_loudly",
+        "tests/test_luna44_canonical_fixture_verification.py::test_fixture_file_digest_mismatch_fails_loudly",
+        "tests/test_luna44_canonical_fixture_verification.py::test_incorrect_fixture_point_count_fails_loudly",
+        "tests/test_luna44_canonical_fixture_verification.py::test_binary64_decimal_hex_mismatch_fails_loudly",
+        "tests/test_luna44_canonical_fixture_verification.py::test_manifest_configuration_mismatch_fails_loudly",
+        "tests/test_luna44_canonical_fixture_verification.py::test_two_fresh_process_materializations_match_exactly"
+      ],
+      "disposition": "Suite failed, not waived. Unchanged tests/source paths: Luna46 checks checkout catalog bytes rather than immutable blobs; Luna44 temporary pinned-source materialization fails its source hash check. No shared files changed."
+    },
+    {
+      "command": "Pylance file syntax check and editor runTests",
+      "status": "unavailable for isolated worktree",
+      "details": "Pylance: no user file found; runTests: no tests found. Terminal py_compile/pytest used as fallback."
+    },
+    {
+      "command": "python -m experiments.luna47b.diagnostic --replay",
+      "exit_code": 0,
+      "status": "PASS: exact complete artifact byte equality in clean outcome commit",
+      "replay_at_revision": "1530b9cc79a4241ad7cc7b77dbeb7ea48c2799fc",
+      "result_sha256": "b120d2cc5718649fb0d57d93611ddb89b45113e79c0d3003cf330fe092d0fb83",
+      "analytical_digest": "7e098d9d0fca2262977e2916509c24b723a7133898c618f7c2af595c4c58b16c"
+    },
+    {
+      "command": "python -m py_compile experiments/luna47b/diagnostic.py tests/test_luna47b_gain.py",
+      "exit_code": 0,
+      "scope": "final implementation, before outcome commit"
+    },
+    {
+      "command": "git diff --check; git diff --name-only 789dda5988daf72f375d9713bd76a6da2b9e8b34 HEAD",
+      "exit_code": 0,
+      "status": "PASS: eight files, all in authorized owned path families"
+    }
+  ],
+  "not_run": [
+    "full repository suite (focused and eight applicable regression files run instead)",
+    "production counterfactual runtime, circuit simulation, hardware measurements, efficacy"
+  ],
+  "pre_outcome_gate_failures": [
+    "4b159423: CRLF worktree source versus LF committed source",
+    "aa878c3: CRLF corrected artifact versus LF committed artifact"
+  ],
+  "gate_correction": "38891b8 precommitted immutable-blob evidence loading before any outcome artifact; no retained evidence edited or normalized"
+}

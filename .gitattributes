@@ -1,5 +1,6 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+/artifacts/luna47b/results.json text eol=lf
 /artifacts/luna44-canonical-fixture/fixture.json text eol=lf
 /artifacts/luna44-canonical-fixture/provenance.json text eol=lf
 /scripts/build_luna44_canonical_fixture.py text eol=lf
