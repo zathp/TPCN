@@ -697,10 +697,52 @@ def _emission_record(emission: Any) -> Record:
     }
 
 
-def audit_recurrence(traces: list[Record], config: E1Config, label: str) -> Record:
+def audit_recurrence(
+    traces: list[Record],
+    config: E1Config,
+    label: str,
+    runtime_event_trace: list[Record] | None = None,
+    neuron_id: str | None = None,
+) -> Record:
     if config.integration is None:
         raise GateError(f"{label} integration state unexpectedly disabled")
     integration = config.integration
+    expected_elapsed_by_update: list[float] | None = None
+    if runtime_event_trace is not None:
+        if neuron_id is None:
+            raise GateError(f"{label} runtime-event audit requires a neuron ID")
+        node_events = [
+            event
+            for event in runtime_event_trace
+            if event[2] == neuron_id
+        ]
+        input_events = [
+            event
+            for event in node_events
+            if event[3] == EventType.EXCURSION.value
+        ]
+        if len(input_events) != len(traces):
+            raise GateError(
+                f"{label} runtime-event/integration trace count mismatch: "
+                f"{len(input_events)} != {len(traces)}"
+            )
+        expected_elapsed_by_update = []
+        last_node_event_time = 0.0
+        update_index = 0
+        for event in node_events:
+            event_timestamp = float(event[0])
+            if event_timestamp < last_node_event_time:
+                raise GateError(f"{label} runtime event time moved backwards")
+            if event[3] == EventType.EXCURSION.value:
+                if float(traces[update_index]["timestamp"]) != event_timestamp:
+                    raise GateError(
+                        f"{label} runtime event/integration timestamp mismatch at {update_index}"
+                    )
+                expected_elapsed_by_update.append(
+                    event_timestamp - last_node_event_time
+                )
+                update_index += 1
+            last_node_event_time = event_timestamp
     z = 0.0
     prior_timestamp = 0.0
     crossing_count = 0
@@ -709,7 +751,12 @@ def audit_recurrence(traces: list[Record], config: E1Config, label: str) -> Reco
     for index, trace in enumerate(traces):
         timestamp = float(trace["timestamp"])
         elapsed = timestamp - prior_timestamp
-        if timestamp < prior_timestamp or trace["elapsed"] != elapsed:
+        if timestamp < prior_timestamp or float(trace["elapsed"]) < 0.0:
+            raise GateError(f"{label} recurrence timestamp/elapsed moved backwards at {index}")
+        if (
+            expected_elapsed_by_update is not None
+            and float(trace["elapsed"]) != expected_elapsed_by_update[index]
+        ):
             raise GateError(f"{label} recurrence timestamp/elapsed mismatch at {index}")
         expected_decay = z * math.exp(-integration.decay_rate_z * elapsed)
         _require_close(float(trace["z_before_decay"]), z, f"{label} z-before at {index}")
@@ -897,6 +944,7 @@ def run_stream(
                 "destination_state": _neuron_state(destination),
                 "relay_processed_events": relay.processed_event_count,
                 "destination_processed_events": destination.processed_event_count,
+                "runtime_event_trace": [jsonable(item) for item in runtime._trace],
             }
         )
         original_destroy(timestamp)
@@ -1059,11 +1107,20 @@ def run_stream(
         )
     if len(destination_traces) != len(destination_receptions):
         raise GateError(f"destination trace/reception counts differ: {stream_id}")
-    relay_oracle = audit_recurrence(relay_traces, relay_config, f"{stream_id}/relay")
+    runtime_event_trace = neuron_snapshot["runtime_event_trace"]
+    relay_oracle = audit_recurrence(
+        relay_traces,
+        relay_config,
+        f"{stream_id}/relay",
+        runtime_event_trace,
+        "relay",
+    )
     destination_oracle = audit_recurrence(
         destination_traces,
         destination_config,
         f"{stream_id}/destination",
+        runtime_event_trace,
+        "destination",
     )
     route_reconciliation = reconcile_routes(
         route_enqueues,
@@ -1174,6 +1231,7 @@ def run_stream(
         "relay_to_destination_enqueues": route_enqueues,
         "destination_reception_count": len(destination_receptions),
         "destination_receptions": destination_receptions,
+        "runtime_event_trace": runtime_event_trace,
         "destination_integration_count": len(destination_traces),
         "destination_integration_traces": destination_traces,
         "destination_threshold_crossings": destination_crossings,

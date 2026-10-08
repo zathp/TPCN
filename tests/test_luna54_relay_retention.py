@@ -113,6 +113,31 @@ def test_independent_recurrence_rejects_a_mutated_state() -> None:
         luna54.audit_recurrence(mutated, relay, "synthetic-002/relay")
 
 
+def test_recurrence_elapsed_uses_intervening_node_events() -> None:
+    relay, destination = _config("intervention")
+    output = luna54.run_stream(
+        "synthetic-004",
+        _synthetic_inputs((0.4, 0.4, 0.4)),
+        relay,
+        destination,
+        BOUNDS,
+    )
+    events = deepcopy(output["runtime_event_trace"])
+    events.insert(
+        1,
+        [10.0, "relay", "relay", "internal", {}, 99, None, None, [], 0, [], False],
+    )
+
+    with pytest.raises(luna54.GateError, match="timestamp/elapsed mismatch"):
+        luna54.audit_recurrence(
+            output["relay_integration_traces"],
+            relay,
+            "synthetic-004/relay",
+            events,
+            "relay",
+        )
+
+
 def test_destination_decay_is_historical_under_intervention() -> None:
     relay, destination, result = luna54._config_for_condition(
         "intervention", FROZEN_CONFIG, LUNA54_CONFIG
