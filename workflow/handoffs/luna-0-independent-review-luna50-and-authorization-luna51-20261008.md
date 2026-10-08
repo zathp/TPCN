@@ -215,3 +215,22 @@ No A01-A15 clause or ACP changes.
 **Next required flow: Luna-0 authorization -> Luna-51 correction-only
 execution -> Luna-0 independent review.** This commit authorizes Luna-51 but
 does not execute it. No Luna-52 is authorized.
+
+## Subsequent governance decision — Luna-51 follow-ups
+
+This section records a later decision; it does not change the scope or
+historical outcome above. After the Luna-51 publication was independently
+accepted with follow-up, Luna-0 reviewed the remaining Luna-47B historical
+source compatibility failure and Luna-47F public `--check` coverage gap.
+Both are authorized together as **Luna-52 corrective follow-up / NOT
+EXECUTED**, from starting revision
+`e6bd96a13eb2d5bb19fce8ef6c4b3aa3ec8f8c2e`. See the
+[Luna-52 governance handoff](luna-0-review-luna51-authorize-luna52-20261008.md)
+and [Luna-52 contract](../../.github/agents/luna-52.agent.md).
+
+Luna-47B must retrieve and use its historical Luna-46 analyzer source, while
+separately recognizing the Luna-51-reviewed current source. Luna-47F must add
+isolated adversarial tests through the real `--check` entry point. No retained
+scientific evidence may change, and no scientific work, architecture change,
+or Luna-53 is authorized. The required next flow is **Luna-52 execution ->
+independent Luna-0 review**.

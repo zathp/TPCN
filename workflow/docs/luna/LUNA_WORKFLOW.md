@@ -1,5 +1,26 @@
 # TPCN Luna Multi-Agent Workflow — Event-Driven Architecture
 
+## Luna-0 governance review — Luna-52 corrective follow-up authorized — 2026-10-08
+
+**LUNA-52 AUTHORIZED / NOT EXECUTED.** The Luna-51 correction is accepted
+with follow-up. A single correction-only successor is authorized for the two
+remaining gates: Luna-47B must authenticate and use its historical Luna-46
+analyzer source separately from reviewed current source; Luna-47F must add
+adversarial coverage through its public `--check` path. The exact historical
+analyzer object remains recoverable; Luna-51's change is to provenance
+verification, not scientific analysis. The existing Luna-47F `--check` path
+passes unchanged but lacks adversarial CLI coverage.
+
+Luna-52 must preserve all scientific artifacts and interpretations, make the
+full suite meaningfully green, and test negative and positive public-path
+controls in isolated state. No scientific experiment, A01-A15/ACP change, or
+Luna-53 is authorized. See the [Luna-52 governance handoff](../../handoffs/luna-0-review-luna51-authorize-luna52-20261008.md),
+[Luna-52 contract](../../../.github/agents/luna-52.agent.md), and
+[Luna-51 execution handoff](../../handoffs/luna-51-provenance-guard-correction-20261008.md).
+
+Next: **Luna-52 execution -> Luna-0 independent review**. No scientific
+successor is selected or authorized.
+
 ## Luna-51 execution — corrections complete; governance required — 2026-10-08
 
 **BLOCKED — GOVERNANCE REQUIRED.** Luna-0 authorized this correction-only

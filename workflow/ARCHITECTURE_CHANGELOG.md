@@ -1,5 +1,27 @@
 # Architecture Changelog
 
+## Luna-0 governance review — Luna-52 corrective follow-up authorized — 2026-10-08
+
+**LUNA-52 AUTHORIZED / NOT EXECUTED.** The Luna-51 publication is accepted
+with follow-up. Luna-0 authorizes one bounded correction-only successor to
+separate Luna-47B's authenticated historical Luna-46 analyzer from reviewed
+current source and to exercise Luna-47F's actual public `--check` path with
+adversarial mutations. The historical analyzer Git blob remains available;
+the Luna-51 source change corrected provenance/integrity checks and did not
+change Luna-46 scientific analysis. The existing Luna-47F CLI check passes
+with unmodified evidence but lacks public-path adversarial coverage.
+
+The successor must preserve all historical source, input, protocol,
+configuration, and retained-result identities; use the exact historical
+analyzer for Luna-47B reconstruction; test the public Luna-47F CLI in
+isolated repository state; keep all listed retained artifact hashes fixed;
+and make the complete suite meaningfully green. The allowed Windows symlink
+privilege skip may remain. No A01-A15 clause, ACP, scientific result,
+architecture decision, or hardware claim changes. No scientific replay,
+experiment, or Luna-53 is authorized. See the
+[Luna-0 governance handoff](handoffs/luna-0-review-luna51-authorize-luna52-20261008.md)
+and [Luna-52 contract](../.github/agents/luna-52.agent.md).
+
 ## Luna-51 execution — provenance corrections complete; blocked for governance — 2026-10-08
 
 **BLOCKED — GOVERNANCE REQUIRED.** Luna-51 was authorized as correction-only
