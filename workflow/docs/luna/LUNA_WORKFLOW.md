@@ -1,5 +1,39 @@
 # TPCN Luna Multi-Agent Workflow — Event-Driven Architecture
 
+## Luna-0 independent review — Luna-49 runtime reproducibility — 2026-10-08
+
+**LUNA-49 FOLLOW-UP REQUIRED — HISTORICAL RUNTIME REPRODUCTION.** Review at
+`be6e2d2df179be842208724d20b00d9497d4e4a4` independently verified the
+canonical fixture/provenance hashes, Windows materialization hashes, first
+1-ULP `x` divergence, and full-fixture difference counts. Luna-49's diagnostic
+is **CORRECT WITH FOLLOW-UP**: it establishes the observed Windows comparison,
+but does not compare historical primitive intermediates or establish exact
+historical-runtime reproduction.
+
+The current host is Windows 10 x64 with an RTX 4070 SUPER and CUDA driver
+support; WSL has no installed Linux distribution and Docker is unavailable.
+The generator imports CPU Python `math`/`random` and repository code only; CUDA
+does not participate. No Linux materialization was performed. Historical exact
+reproduction remains **NOT ESTABLISHED**, and fresh-runtime neural/category
+decision sensitivity remains **NOT TESTED / UNKNOWN**. Source provenance is
+**CLOSED**; fixture validity remains **VALID — ENVIRONMENT-PINNED**.
+
+Luna-0 authorizes **Luna-50**, a single bounded historical CPU runtime
+reconstruction and primitive/PRNG-vs-math characterization, **AUTHORIZED / NOT
+EXECUTED**. It excludes GPU generation, downstream scientific replay, and
+Luna-46/Luna-47 retained-evidence repair. The Luna-46 CRLF catalog failure and
+Luna-47F stale whole-repository snapshot are separate retained-provenance
+issues and remain unmodified. See the [independent review handoff](../../handoffs/luna-0-independent-review-luna49-runtime-reproducibility-20261008.md)
+and [Luna-50 contract](../../../.github/agents/luna-50.agent.md).
+
+Validation: Luna-49 focused **7 passed**; Luna-44 provenance/materialization
+**60 passed, 2 failed**; Luna-46 **165 passed, 1 failed, 1 skipped**; Luna-47
+focused **306 passed, 1 failed**; historical/core **676 passed, 2 failed**;
+full suite **1,645 passed, 4 failed, 1 skipped**. The four failures are the
+two Luna-44 exact environment comparisons, Luna-46 raw checkout catalog hash,
+and Luna-47F retained input drift. No failure was suppressed or repaired.
+Next step: **Luna-50 execution -> Luna-0 independent review**.
+
 ## Luna-49 execution — PASS WITH FOLLOW-UP — 2026-10-08
 
 The runtime/numerical characterization is complete from clean baseline

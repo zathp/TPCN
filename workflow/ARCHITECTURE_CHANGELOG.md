@@ -1,5 +1,34 @@
 # Architecture Changelog
 
+## Luna-0 independent review — Luna-49 and Luna-50 authorization — 2026-10-08
+
+**LUNA-49 FOLLOW-UP REQUIRED — HISTORICAL RUNTIME REPRODUCTION.** Independent
+review verified the committed Windows/Linux fixture divergence and reported
+counts; canonical fixture/provenance hashes remain unchanged. The available
+RTX 4070 SUPER/CUDA host is Windows, with no WSL distribution or Docker runtime.
+The Luna-44 generator is CPU Python `math`/`random`; CUDA is irrelevant to its
+historical execution. Exact historical CPython 3.12.3/Linux/glibc 2.39
+reproduction and downstream discrete sensitivity remain unestablished.
+
+Luna-49 diagnostics are **CORRECT WITH FOLLOW-UP**. The exact historical
+authorization commit resolves to `59e5ab7b475b74a23faeddc2563eed87adf1e044`;
+the supplied string in its report was incomplete. Source Git-object provenance
+is **CLOSED**. Windows 3.11.4 and 3.11.5, plus retained Linux 3.12.3 runs, are
+byte-deterministic within their recorded environments; cross-runtime values
+are **NON-EXACT BUT CHARACTERIZED**. Scientific reproducibility remains
+**NOT ESTABLISHED**; fixture validity remains **VALID — ENVIRONMENT-PINNED**.
+
+One bounded **Luna-50 — Historical Luna-44 CPU Runtime Reconstruction** is
+**AUTHORIZED / NOT EXECUTED** under
+[`.github/agents/luna-50.agent.md`](../.github/agents/luna-50.agent.md). It may
+recreate/provision the historical CPU runtime ephemerally, run two independent
+materializations, and isolate PRNG/Gaussian/trigonometric/arithmetic divergence.
+No GPU point generation, neural/scientific replay, retained evidence repair,
+ACP, or architecture change is authorized. Luna-46 checkout-byte provenance
+and Luna-47F retained snapshot scope are independent follow-ups and are not
+included. Full suite remains **1,645 passed, 4 failed, 1 skipped**. Details:
+[independent Luna-0 review](handoffs/luna-0-independent-review-luna49-runtime-reproducibility-20261008.md).
+
 ## Luna-49 runtime reproducibility execution — 2026-10-08
 
 **PASS WITH FOLLOW-UP; diagnostic/provenance work only.** From clean baseline
