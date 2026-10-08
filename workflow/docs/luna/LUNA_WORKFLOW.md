@@ -1,14 +1,43 @@
 # TPCN Luna Multi-Agent Workflow — Event-Driven Architecture
 
-## Luna-53 destination-retention mechanism — SUPPORTED; independent review required — 2026-10-08
+## Luna-54 relay event-generation and propagation — AUTHORIZED / NOT EXECUTED — 2026-10-08
+
+**ONE BOUNDED MECHANISM EXPERIMENT IS AUTHORIZED; NO EXECUTION HAS OCCURRED.**
+The [Luna-54 contract](../../../.github/agents/luna-54.agent.md) tests whether
+changing only the relay's ACP-0008 `decay_rate_z` from `0.0125` to the already
+predeclared `0.00125` produces additional canonically emitted, correctly
+routed relay outputs in the 75 Luna-46 `DRIVE-LIMITED` streams. It replays
+authenticated source-to-relay inputs through the relay E2 runtime and the
+unchanged relay-to-destination route; source and destination configurations,
+topology and every other parameter remain frozen.
+
+The selection follows review of Luna-45 through Luna-53 retained evidence:
+all 676 source-to-relay inputs in the 75 target streams integrate, but only
+109 produce matched relay emissions and destination receptions. The 75
+destination-drive traces remain below threshold even in the zero-decay oracle
+and do not exhibit opposing-sign cancellation. The heterogeneous
+`NO-RECEPTIONS` stratum is split into 23 no-source-input controls and 189
+upstream-active streams, reported separately. This is a relay event-generation
+test, not destination gain, route repair, efficacy, or architecture promotion.
+ACP-0008 remains experimental, opt-in and disabled by default. Stop after the
+bounded execution for independent Luna-0 review; Luna-55 and any other
+successor are not authorized.
+
+See the [Luna-0 selection handoff](../../handoffs/luna-0-scientific-successor-selection-luna54-20261008.md).
+
+## Luna-53 destination-retention mechanism — SUPPORTED; independent review PASS — 2026-10-08
 
 **SUPPORTED WITHIN THE FROZEN RETAINED-INPUT MECHANISM SETUP. INDEPENDENT
-LUNA-0 REVIEW IS THE NEXT GATE.** The implementation was published at
+LUNA-0 REVIEW PASSED.** The implementation was published at
 `2e527934692d96439207b8e15ee6a99eab683a65`; all four fresh-process executions
 and the summary are retained under [artifacts/luna53/](../../../artifacts/luna53/).
 The summary reports exact initial/replay scientific digests for each
 condition, historical-control compatibility on all 320 streams and 235
-destination traces per phase, and no-reception isolation.
+destination traces per phase, and no-reception isolation. Luna-0 independently
+reviewed the five result artifact hashes, baseline compatibility, replay,
+recurrence, bounds and label isolation and returned **PASS** within this
+frozen setup. The review does not extend the result to relays, tasks, defaults
+or hardware.
 
 At the one predeclared intervention (`decay_rate_z=0.00125` versus
 `0.0125`), 19/33 temporal-retention-limited streams produced new E2 discharge
@@ -25,7 +54,8 @@ governed Windows directory-symlink privilege skip**. See the [Luna-53
 execution handoff](../../handoffs/luna-53-acp0008-destination-retention-20261008.md),
 [execution contract](../../../.github/agents/luna-53.agent.md), and
 [Luna-0 scientific selection handoff](../../handoffs/luna-0-scientific-successor-selection-luna53-20261008.md).
-No later successor is authorized; stop at independent Luna-0 review.
+Luna-54 is the separately authorized next bounded mechanism test above; no
+later successor is authorized.
 
 ## Luna-52 clean-checkout correction — complete; documentation follow-up PASS — 2026-10-08
 

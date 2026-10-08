@@ -1,8 +1,37 @@
 # Architecture Changelog
 
-## Luna-53 destination-retention mechanism — SUPPORTED within frozen setup — 2026-10-08
+## Luna-54 relay event-generation and propagation — AUTHORIZED / NOT EXECUTED — 2026-10-08
 
-**SUPPORTED; INDEPENDENT LUNA-0 REVIEW REQUIRED.** Execution code was
+**ONE BOUNDED MECHANISM EXPERIMENT IS AUTHORIZED; NO EXECUTION HAS OCCURRED.**
+The [Luna-54 contract](../.github/agents/luna-54.agent.md) tests whether a
+single relay-only ACP-0008 `decay_rate_z` change from `0.0125` to the already
+predeclared `0.00125` produces additional canonically emitted and correctly
+routed outputs in the 75 Luna-46 `DRIVE-LIMITED` streams. It uses authenticated
+retained source-to-relay inputs and the unchanged relay-to-destination route.
+All source and destination settings, topology, routing and other parameters
+remain frozen.
+
+The evidence shows 676 source-to-relay inputs in the target group, all
+integrated at the relay; 109 produced relay emissions matched by 109
+destination receptions. All 75 destination traces remain below threshold in
+the zero-decay oracle, without opposing-sign cancellation. The original
+212-stream `NO-RECEPTIONS` group is split into 23 no-source-input controls and
+189 upstream-active streams, which must remain separate strata. This is a
+relay-local event-generation hypothesis, not a route-loss diagnosis,
+destination-gain intervention, task efficacy claim, or production parameter
+selection. Luna-54 is authorized but not executed. Stop after its bounded
+execution for independent Luna-0 review; no Luna-55 or other successor is
+authorized.
+
+The selection basis, alternatives, evidence pins, controls, boundedness and
+interpretation limits are in the
+[Luna-0 selection handoff](handoffs/luna-0-scientific-successor-selection-luna54-20261008.md).
+No A01-A15 clause or ACP changes; ACP-0008 remains experimental, opt-in and
+disabled by default.
+
+## Luna-53 destination-retention mechanism — SUPPORTED within frozen setup; independent review PASS — 2026-10-08
+
+**SUPPORTED; INDEPENDENT LUNA-0 REVIEW PASS.** Execution code was
 published at `2e527934692d96439207b8e15ee6a99eab683a65`. The four run records
 and summary are published under [artifacts/luna53/](../artifacts/luna53/);
 the [execution handoff](handoffs/luna-53-acp0008-destination-retention-20261008.md)
@@ -19,12 +48,15 @@ initial/replay digest checks. No clipping, budget exhaustion, or no-reception
 input occurred. The contract verdict is **SUPPORTED** for this isolated,
 bounded mechanism only.
 
-The full suite passed **1,704 tests, 1 governed Windows directory-symlink
-privilege skip** on the execution revision. This is not task efficacy, useful
-prediction, production adoption, architecture promotion, or hardware
-equivalence. **No A01-A15 clause or ACP changes; ACP-0008 remains accepted,
-experimental, opt-in and disabled by default.** No successor is authorized;
-the next and only gate is independent Luna-0 review.
+Luna-0 independently reviewed the five result artifact hashes, baseline
+compatibility, replay, recurrence, bounds and label isolation and returned
+**PASS**, limited to this frozen mechanism setup. The full suite passed
+**1,704 tests, 1 governed Windows directory-symlink privilege skip** on the
+execution revision. This is not task efficacy, useful prediction, production
+adoption, architecture promotion, or hardware equivalence. **No A01-A15
+clause or ACP changes; ACP-0008 remains accepted, experimental, opt-in and
+disabled by default.** Luna-54 is authorized as the separate bounded
+successor-selection decision above; no later successor is authorized.
 
 ## Luna-53 scientific selection — one mechanism experiment authorized — 2026-10-08
 
