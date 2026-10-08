@@ -1,24 +1,28 @@
 # Architecture Changelog
 
-## Luna-52 execution — retained provenance verification closed; review pending — 2026-10-08
+## Luna-0 independent review — Luna-52 correction required — 2026-10-08
 
-**PASS — RETAINED PROVENANCE VERIFICATION CLOSED.** The authorized correction
-separates Luna-47B's authenticated historical Luna-46 analyzer source from
-reviewed current source and exercises Luna-47F's public `--check` path against
-adversarial disposable-repository mutations, including its live pre/post
-guard. Historical source/object identities and all retained evidence remain
-fixed. The full suite reports **1,693 passed, 1 skipped, zero failures/errors**;
-the skip is the existing Windows directory-symlink privilege limitation.
+**LUNA-52 CORRECTION REQUIRED.** Independent review confirms the retained
+artifact hashes, Luna-47B historical/current analyzer separation, and actual
+Luna-47F public-check rejection of representative protected mutations. The
+full suite on published revision `a700024cb44e1c24df1d1284b96a9e75aeb1e261`
+reports **1,683 passed, 10 failed, 1 skipped**. All ten failures occur before
+the public subprocess runs: `_cli_repository()` tries to commit the reviewed
+Luna-47F verifier after cloning a revision where those exact bytes are already
+committed. Independent manual CLI checks in disposable clones pass the
+expected mutation/acceptance outcomes, including the live pre/post guard, but
+do not substitute for passing committed tests.
 
 No A01-A15 clause, ACP, scientific result, or architecture decision changed.
 Luna-46 remains MIXED; no integrated Luna-47 mechanism, task efficacy, or
-useful structural growth is established. Luna-47G remains synthetic
-tolerance evidence and hardware equivalence is unestablished. Fresh historical
-Linux regeneration remains parked, and alternate-runtime scientific
-sensitivity remains unknown/not tested. No scientific replay or Luna-53 is
-authorized. See the
+useful structural-growth efficacy is established. Luna-47G remains synthetic
+tolerance evidence; hardware equivalence is unestablished. Fresh historical
+Linux regeneration remains parked and alternate-runtime scientific sensitivity
+remains UNKNOWN / NOT TESTED. Do not authorize a scientific successor until a
+narrow test-harness correction passes the public adversarial suite and full
+repository gate, followed by another independent Luna-0 review. See the
+[independent Luna-52 review](handoffs/luna-0-independent-review-luna52-20261008.md),
 [Luna-52 execution handoff](handoffs/luna-52-retained-provenance-verification-20261008.md),
-[Luna-0 authorization handoff](handoffs/luna-0-review-luna51-authorize-luna52-20261008.md),
 and [Luna-52 contract](../.github/agents/luna-52.agent.md).
 
 ## Luna-51 execution — provenance corrections complete; blocked for governance — 2026-10-08
