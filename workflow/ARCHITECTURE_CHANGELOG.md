@@ -1,5 +1,27 @@
 # Architecture Changelog
 
+## Luna-50 historical runtime reconstruction — 2026-10-08
+
+**BLOCKED — HISTORICAL RUNTIME UNAVAILABLE.** Luna-50 executed from its exact
+authorization revision `b49f6642957ea630598b576c3c57f8862e436a14`; the
+contract's `be6e2d2df179be842208724d20b00d9497d4e4a4` remains the Luna-49
+execution-baseline field only. The available Windows 10/CPython 3.11.4 host
+had no usable Linux runtime/container or remote endpoint. No system runtime
+was installed. Two fresh target materializations and Windows/Linux primitive
+comparison were not run; CUDA was not used.
+
+An additive CPU-only Windows control records current source/runtime identity
+and reconstructs `c00-000` point 3 exactly. Relative to the retained historical
+final bits, x and y differ by one ULP while t is bit-identical. Historical
+Gaussian/trigonometric intermediates are not retained, so the cause is
+unassigned and is not attributed to libm. Canonical fixture and provenance
+hashes remain unchanged. Luna-50's focused tests pass (6); Luna-49 tests pass
+(7); the full suite reports 1,651 passed, 4 known failures, 1 skip. The four
+failures are the two Luna-44 cross-runtime fixture checks, Luna-46 checkout
+catalog-byte check, and Luna-47F stale inventory check. No retained evidence,
+architecture clause, or ACP changed. Return to Luna-0 for independent review;
+no Luna-51 is authorized. See the [execution handoff](handoffs/luna-50-historical-runtime-reconstruction-20261008.md).
+
 ## Luna-0 independent review — Luna-49 and Luna-50 authorization — 2026-10-08
 
 **LUNA-49 FOLLOW-UP REQUIRED — HISTORICAL RUNTIME REPRODUCTION.** Independent

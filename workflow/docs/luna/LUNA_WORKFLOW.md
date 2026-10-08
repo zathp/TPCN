@@ -1,5 +1,38 @@
 # TPCN Luna Multi-Agent Workflow — Event-Driven Architecture
 
+## Luna-50 historical runtime reconstruction — 2026-10-08
+
+**BLOCKED — HISTORICAL RUNTIME UNAVAILABLE.** Execution began at exact Luna-50
+authorization revision `b49f6642957ea630598b576c3c57f8862e436a14`; the
+contract's `be6e2d2df179be842208724d20b00d9497d4e4a4` field identifies the
+Luna-49 execution baseline, not the mandatory Luna-50 starting revision.
+The current Windows 10/CPython 3.11.4 host has no usable Linux runtime, WSL
+distribution, Docker/Podman, or supplied remote endpoint. No provisioning or
+installation was attempted. The target is **UNAVAILABLE**; two independent
+historical-runtime materializations and Windows/Linux primitive comparison
+were **NOT RUN / NOT AVAILABLE**. CUDA was not used.
+
+A CPU-only Windows point-3 control reproduces its own output exactly and
+records raw MT draws, Gaussian cached-state/transforms, trigonometric values,
+coordinate operation order, binary64 bits, serialization round trips, and
+source/runtime identities in
+[`windows-control.json`](../../../artifacts/luna50-historical-runtime-20261008/windows-control.json).
+Against the historical final point, x and y each differ by 1 ULP and t is
+bit-identical. Historical intermediates are unavailable; the divergence cause
+remains unassigned, with no libm attribution. Canonical fixture and provenance
+hashes are unchanged. See the [Luna-50 execution handoff](../../handoffs/luna-50-historical-runtime-reconstruction-20261008.md).
+
+Validation: Luna-50 **6 passed**; Luna-49 **7 passed**; Luna-44 standalone
+verifier passed; Luna-44 fixture/provenance tests **17 passed, 2 known
+failures**; Luna-46 **165 passed, 1 known failure, 1 skipped**; Luna-47A-G
+**306 passed, 1 known failure**; historical/core selection **350 passed, 2
+known failures**; full suite **1,651 passed, 4 known failures, 1 skipped**.
+The four failures are the two Windows-versus-frozen Luna-44 comparisons,
+Luna-46 checkout-byte catalog hash, and Luna-47F stale retained inventory.
+No retained evidence was repaired. Required next step: **Luna-50 execution ->
+Luna-0 independent review**. No architecture clause, ACP, or successor is
+authorized.
+
 ## Luna-0 independent review — Luna-49 runtime reproducibility — 2026-10-08
 
 **LUNA-49 FOLLOW-UP REQUIRED — HISTORICAL RUNTIME REPRODUCTION.** Review at

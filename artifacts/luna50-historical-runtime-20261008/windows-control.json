@@ -1,0 +1,1003 @@
+{
+  "schema": "TPCN-LUNA50-WINDOWS-PRIMITIVE-CONTROL-1",
+  "authorization_revision": "b49f6642957ea630598b576c3c57f8862e436a14",
+  "starting_revision": "b49f6642957ea630598b576c3c57f8862e436a14",
+  "luna49_baseline_field_revision": "be6e2d2df179be842208724d20b00d9497d4e4a4",
+  "current_revision": "b49f6642957ea630598b576c3c57f8862e436a14",
+  "invocation_id": "80a6cec7330c40b6b9e949761fd15417",
+  "process_id": 19004,
+  "captured_at_utc": "2026-10-08T16:26:38.666789+00:00",
+  "environment_classification": "UNAVAILABLE",
+  "current_runtime_role": "WINDOWS CONTROL ONLY; not exact or near-match Linux",
+  "runtime": {
+    "os": "Windows-10-10.0.19045-SP0",
+    "architecture": "AMD64",
+    "python_version": "3.11.4 (tags/v3.11.4:d2340ef, Jun  7 2023, 05:45:37) [MSC v.1934 64 bit (AMD64)]",
+    "python_implementation": "cpython",
+    "python_build": [
+      "tags/v3.11.4:d2340ef",
+      "Jun  7 2023 05:45:37"
+    ],
+    "python_compiler": "MSC v.1934 64 bit (AMD64)",
+    "sysconfig": {
+      "CC": null,
+      "CONFIG_ARGS": null,
+      "MULTIARCH": null
+    },
+    "libc": [
+      "",
+      ""
+    ],
+    "libm_lookup": null,
+    "locale": "LC_COLLATE=C;LC_CTYPE=English_United States.1252;LC_MONETARY=C;LC_NUMERIC=C;LC_TIME=C",
+    "environment": {
+      "PYTHONHASHSEED": null,
+      "PYTHONPATH": null,
+      "VIRTUAL_ENV": null,
+      "LANG": "en_US.UTF-8",
+      "LC_ALL": null,
+      "TZ": null
+    },
+    "cwd": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN",
+    "cuda_used": false
+  },
+  "source_identity": [
+    {
+      "role": "materializer",
+      "path": "scripts/build_luna44_canonical_fixture.py",
+      "revision": "10994419cec3646d30d965372f88d10605d83d57",
+      "git_object": "33e53bee1ca16e95e400d05e71906d199c1e7aca",
+      "git_blob_sha256": "696051cc3690aafc9f342e569697469a111757c37c2666b0c026333e6b16efce",
+      "checkout_sha256": "405f6e3151f38bd25cac448d7d6fd3beb101e7fbf871ee00d90252212f25d19b",
+      "checkout_line_ending_relation": "materialized bytes differ"
+    },
+    {
+      "role": "sequence_builder",
+      "path": "run_luna34_excursion_v1_multi_emitter_bridge.py",
+      "revision": "a79494cd66be28fd291ed11eddd62d342f457cfd",
+      "git_object": "f910829110612853098be9f0ed4d27321c041917",
+      "git_blob_sha256": "17e581cf702fae1f56889472a967d2e8e5fec37cc041edba8247da14a0a8b5db",
+      "checkout_sha256": "17e581cf702fae1f56889472a967d2e8e5fec37cc041edba8247da14a0a8b5db",
+      "checkout_line_ending_relation": "exact Git bytes"
+    },
+    {
+      "role": "point_generator",
+      "path": "tpcn/spiral_benchmark.py",
+      "revision": "a79494cd66be28fd291ed11eddd62d342f457cfd",
+      "git_object": "6e938593688dd16bdad192ff21e7253e01ebbf71",
+      "git_blob_sha256": "2ffb1b5ebb23f016436043118bc675eddaa14bfd923129359fe61a12df94d9f0",
+      "checkout_sha256": "2ffb1b5ebb23f016436043118bc675eddaa14bfd923129359fe61a12df94d9f0",
+      "checkout_line_ending_relation": "exact Git bytes"
+    },
+    {
+      "role": "point_representation",
+      "path": "tpcn/stroke_dataset.py",
+      "revision": "a79494cd66be28fd291ed11eddd62d342f457cfd",
+      "git_object": "3a67be6c885e4dd831dbcbf2220aa00c77806e69",
+      "git_blob_sha256": "daca268597e2467bf984922ee77736b584bef9743b6f41ad729d7cb4d3c3ede7",
+      "checkout_sha256": "daca268597e2467bf984922ee77736b584bef9743b6f41ad729d7cb4d3c3ede7",
+      "checkout_line_ending_relation": "exact Git bytes"
+    }
+  ],
+  "executed_source_bytes": [
+    {
+      "path": "scripts/luna50_primitive_diagnostic.py",
+      "resolved_path": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN\\scripts\\luna50_primitive_diagnostic.py",
+      "executed_source_sha256": "524d388ffdd285045bcb84f581ceb065f9327a6ff0ba38e036846743f8a1fe01"
+    },
+    {
+      "path": "tpcn/spiral_benchmark.py",
+      "resolved_path": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN\\tpcn\\spiral_benchmark.py",
+      "executed_source_sha256": "2ffb1b5ebb23f016436043118bc675eddaa14bfd923129359fe61a12df94d9f0"
+    }
+  ],
+  "canonical_before": {
+    "fixture_sha256": "66e187350536e6901d8371a1ffbe3e2a0abf3b49341c6ae6c8fed3ae7833b629",
+    "provenance_sha256": "6e069f4f948e8a68b93397e12a5c0e4ab46cb5f5189243e6ef62bab2178cdf22",
+    "fixture_semantic_digest": "6c262ad1951a48f624d83a594abfc86ffa89d26882b397f6586698c097144305"
+  },
+  "execution": {
+    "command": "python scripts/luna50_primitive_diagnostic.py --output artifacts/luna50-historical-runtime-20261008/windows-control.json",
+    "generator_source_revision": "a79494cd66be28fd291ed11eddd62d342f457cfd",
+    "materializer_source_revision": "10994419cec3646d30d965372f88d10605d83d57",
+    "materializations": "NOT RUN: historical Linux runtime unavailable; this control does not materialize a fixture",
+    "primitive_trace": {
+      "stream_id": "c00-000",
+      "output_point_index": 3,
+      "generator_point_index": 3,
+      "generator_parameters": {
+        "seed": 12007000053,
+        "rotation": {
+          "decimal": "1.3013446012222407",
+          "hex": "0x1.4d24eb7713602p+0",
+          "bits_be": "3ff4d24eb7713602"
+        },
+        "scale": {
+          "decimal": "0.8995723233588142",
+          "hex": "0x1.cc94be5a6cf9ep-1",
+          "bits_be": "3fecc94be5a6cf9e"
+        },
+        "offset_x": {
+          "decimal": "0.31485454609026764",
+          "hex": "0x1.42693ae9d1890p-2",
+          "bits_be": "3fd42693ae9d1890"
+        },
+        "offset_y": {
+          "decimal": "-0.16015744708884028",
+          "hex": "-0x1.4800a0aba8cb8p-3",
+          "bits_be": "bfc4800a0aba8cb8"
+        },
+        "angular_speed": {
+          "decimal": "2.084744207994682",
+          "hex": "0x1.0ad8e5f0ee691p+1",
+          "bits_be": "4000ad8e5f0ee691"
+        },
+        "radial_growth": {
+          "decimal": "0.8907372591015146",
+          "hex": "0x1.c80eb6ca56e0cp-1",
+          "bits_be": "3fec80eb6ca56e0c"
+        },
+        "timing_jitter": {
+          "decimal": "0.008098831318258446",
+          "hex": "0x1.0961ebd2e929fp-7",
+          "bits_be": "3f80961ebd2e929f"
+        },
+        "coordinate_noise": {
+          "decimal": "0.01877434118039624",
+          "hex": "0x1.33994b57eb7c4p-6",
+          "bits_be": "3f933994b57eb7c4"
+        },
+        "radial_jitter": {
+          "decimal": "0.004542659359835462",
+          "hex": "0x1.29b52d632a215p-8",
+          "bits_be": "3f729b52d632a215"
+        },
+        "sample_count": 12,
+        "duration": {
+          "decimal": "298.2195236202522",
+          "hex": "0x1.2a3832b331aecp+8",
+          "bits_be": "4072a3832b331aec"
+        },
+        "handedness": -1
+      },
+      "pre_coordinate_draws": {
+        "timing_uniforms": [
+          {
+            "decimal": "0.005260541807054769",
+            "hex": "0x1.58c13f05422c6p-8",
+            "bits_be": "3f758c13f05422c6"
+          },
+          {
+            "decimal": "-0.002755330386254801",
+            "hex": "-0x1.69258bcc1a774p-9",
+            "bits_be": "bf669258bcc1a774"
+          },
+          {
+            "decimal": "0.0007987087666752012",
+            "hex": "0x1.a2c0e04153fe0p-11",
+            "bits_be": "3f4a2c0e04153fe0"
+          },
+          {
+            "decimal": "0.008083968108200978",
+            "hex": "0x1.08e53d52c4c73p-7",
+            "bits_be": "3f808e53d52c4c73"
+          },
+          {
+            "decimal": "-0.005351214240779475",
+            "hex": "-0x1.5eb27a2875223p-8",
+            "bits_be": "bf75eb27a2875223"
+          },
+          {
+            "decimal": "-0.003838297194328223",
+            "hex": "-0x1.f717e1d80c39cp-9",
+            "bits_be": "bf6f717e1d80c39c"
+          },
+          {
+            "decimal": "0.0010104152768818271",
+            "hex": "0x1.08dfd247419d0p-10",
+            "bits_be": "3f508dfd247419d0"
+          },
+          {
+            "decimal": "-0.0030557227633693307",
+            "hex": "-0x1.90850aab2b352p-9",
+            "bits_be": "bf690850aab2b352"
+          },
+          {
+            "decimal": "0.007411737840587936",
+            "hex": "0x1.e5bc53a1c0fa2p-8",
+            "bits_be": "3f7e5bc53a1c0fa2"
+          },
+          {
+            "decimal": "0.006280888025651573",
+            "hex": "0x1.9b9fd0a8f683cp-8",
+            "bits_be": "3f79b9fd0a8f683c"
+          },
+          {
+            "decimal": "0.007799510540189942",
+            "hex": "0x1.ff2612b1e67aep-8",
+            "bits_be": "3f7ff2612b1e67ae"
+          }
+        ],
+        "timing_raw_draw_count": 11
+      },
+      "raw_random_uniforms_through_target": [
+        {
+          "decimal": "0.8247716615109094",
+          "hex": "0x1.a64878a1b6c09p-1",
+          "bits_be": "3fea64878a1b6c09"
+        },
+        {
+          "decimal": "0.3298933341133409",
+          "hex": "0x1.51cf8ee4bda52p-2",
+          "bits_be": "3fd51cf8ee4bda52"
+        },
+        {
+          "decimal": "0.5493101248370582",
+          "hex": "0x1.193f2d3b12dd0p-1",
+          "bits_be": "3fe193f2d3b12dd0"
+        },
+        {
+          "decimal": "0.9990823855027107",
+          "hex": "0x1.ff87b9f77cd44p-1",
+          "bits_be": "3feff87b9f77cd44"
+        },
+        {
+          "decimal": "0.16963046700852957",
+          "hex": "0x1.5b6737e1a79c8p-3",
+          "bits_be": "3fc5b6737e1a79c8"
+        },
+        {
+          "decimal": "0.2630338845510366",
+          "hex": "0x1.0d58c12f8bd1ap-2",
+          "bits_be": "3fd0d58c12f8bd1a"
+        },
+        {
+          "decimal": "0.5623803137252589",
+          "hex": "0x1.1ff04ffeba795p-1",
+          "bits_be": "3fe1ff04ffeba795"
+        },
+        {
+          "decimal": "0.31134791902133196",
+          "hex": "0x1.3ed1fd277f428p-2",
+          "bits_be": "3fd3ed1fd277f428"
+        },
+        {
+          "decimal": "0.957580702037744",
+          "hex": "0x1.ea48048d10cf4p-1",
+          "bits_be": "3feea48048d10cf4"
+        },
+        {
+          "decimal": "0.8877650847901719",
+          "hex": "0x1.c689252b68ae6p-1",
+          "bits_be": "3fec689252b68ae6"
+        },
+        {
+          "decimal": "0.9815207425425877",
+          "hex": "0x1.f689e30321d15p-1",
+          "bits_be": "3fef689e30321d15"
+        },
+        {
+          "decimal": "0.9191080682760238",
+          "hex": "0x1.d695552d7873ap-1",
+          "bits_be": "3fed695552d7873a"
+        },
+        {
+          "decimal": "0.7682512358627872",
+          "hex": "0x1.895839da48d57p-1",
+          "bits_be": "3fe895839da48d57"
+        },
+        {
+          "decimal": "0.8438213950574892",
+          "hex": "0x1.b0095b9edfc01p-1",
+          "bits_be": "3feb0095b9edfc01"
+        },
+        {
+          "decimal": "0.6901758711620531",
+          "hex": "0x1.615ebb5642374p-1",
+          "bits_be": "3fe615ebb5642374"
+        },
+        {
+          "decimal": "0.740608680431454",
+          "hex": "0x1.7b310f9b2c726p-1",
+          "bits_be": "3fe7b310f9b2c726"
+        },
+        {
+          "decimal": "0.7826531498422137",
+          "hex": "0x1.90b7e9e55e0d5p-1",
+          "bits_be": "3fe90b7e9e55e0d5"
+        },
+        {
+          "decimal": "0.11384125008650647",
+          "hex": "0x1.d24b33e0eab60p-4",
+          "bits_be": "3fbd24b33e0eab60"
+        },
+        {
+          "decimal": "0.6459061287674045",
+          "hex": "0x1.4ab43546af165p-1",
+          "bits_be": "3fe4ab43546af165"
+        },
+        {
+          "decimal": "0.16612664836016477",
+          "hex": "0x1.543a354d9ba5cp-3",
+          "bits_be": "3fc543a354d9ba5c"
+        }
+      ],
+      "raw_uniform_draw_count": 20,
+      "point_trace": {
+        "generator_point_index": 3,
+        "timestamp": {
+          "decimal": "81.33339605974454",
+          "hex": "0x1.455565c6d4df5p+6",
+          "bits_be": "405455565c6d4df5"
+        },
+        "radial_jitter": {
+          "decimal": "-0.0035083753193537854",
+          "hex": "-0x1.cbd98a8476b1bp-9",
+          "bits_be": "bf6cbd98a8476b1b"
+        },
+        "angle": {
+          "decimal": "3.572409320972708",
+          "hex": "0x1.c944b568c06dbp+1",
+          "bits_be": "400c944b568c06db"
+        },
+        "angle_sin": {
+          "decimal": "-0.41761298601157304",
+          "hex": "-0x1.aba2bd1537ec2p-2",
+          "bits_be": "bfdaba2bd1537ec2"
+        },
+        "angle_cos": {
+          "decimal": "-0.9086250018101514",
+          "hex": "-0x1.d1374bd634804p-1",
+          "bits_be": "bfed1374bd634804"
+        },
+        "rotation": {
+          "decimal": "1.3013446012222407",
+          "hex": "0x1.4d24eb7713602p+0",
+          "bits_be": "3ff4d24eb7713602"
+        },
+        "rotation_sin": {
+          "decimal": "0.9639169935271708",
+          "hex": "0x1.ed8687368403ep-1",
+          "bits_be": "3feed8687368403e"
+        },
+        "rotation_cos": {
+          "decimal": "0.2662029856886286",
+          "hex": "0x1.109783f685575p-2",
+          "bits_be": "3fd109783f685575"
+        },
+        "gaussian_x": {
+          "cache_hit": false,
+          "uniforms": [
+            {
+              "decimal": "0.6459061287674045",
+              "hex": "0x1.4ab43546af165p-1",
+              "bits_be": "3fe4ab43546af165"
+            },
+            {
+              "decimal": "0.16612664836016477",
+              "hex": "0x1.543a354d9ba5cp-3",
+              "bits_be": "3fc543a354d9ba5c"
+            }
+          ],
+          "angle": {
+            "decimal": "4.058347898088602",
+            "hex": "0x1.03bbf8d2852d4p+2",
+            "bits_be": "40103bbf8d2852d4"
+          },
+          "log_input": {
+            "decimal": "0.8338733516398352",
+            "hex": "0x1.aaf172ac99169p-1",
+            "bits_be": "3feaaf172ac99169"
+          },
+          "radius": {
+            "decimal": "0.6027831197067869",
+            "hex": "0x1.349ffd337168dp-1",
+            "bits_be": "3fe349ffd337168d"
+          },
+          "cos_input": {
+            "decimal": "4.058347898088602",
+            "hex": "0x1.03bbf8d2852d4p+2",
+            "bits_be": "40103bbf8d2852d4"
+          },
+          "cos_output": {
+            "decimal": "-0.6083984956796562",
+            "hex": "-0x1.378001f3c26acp-1",
+            "bits_be": "bfe378001f3c26ac"
+          },
+          "sin_input": {
+            "decimal": "4.058347898088602",
+            "hex": "0x1.03bbf8d2852d4p+2",
+            "bits_be": "40103bbf8d2852d4"
+          },
+          "sin_output": {
+            "decimal": "-0.7936316969821274",
+            "hex": "-0x1.9656e4cf36e57p-1",
+            "bits_be": "bfe9656e4cf36e57"
+          },
+          "standard_normal": {
+            "decimal": "-0.36673234325069926",
+            "hex": "-0x1.7788aef296bb8p-2",
+            "bits_be": "bfd7788aef296bb8"
+          },
+          "cached_standard_normal": {
+            "decimal": "-0.47838779020507816",
+            "hex": "-0x1.e9de7d26f2324p-2",
+            "bits_be": "bfde9de7d26f2324"
+          },
+          "cached_standard_before": null,
+          "cached_standard_after": {
+            "decimal": "-0.47838779020507816",
+            "hex": "-0x1.e9de7d26f2324p-2",
+            "bits_be": "bfde9de7d26f2324"
+          },
+          "mu": {
+            "decimal": "0.0",
+            "hex": "0x0.0p+0",
+            "bits_be": "0000000000000000"
+          },
+          "sigma": {
+            "decimal": "0.01877434118039624",
+            "hex": "0x1.33994b57eb7c4p-6",
+            "bits_be": "3f933994b57eb7c4"
+          },
+          "result": {
+            "decimal": "-0.006885158134074812",
+            "hex": "-0x1.c339c9037de43p-8",
+            "bits_be": "bf7c339c9037de43"
+          },
+          "raw_uniform_draw_range": [
+            18,
+            20
+          ]
+        },
+        "gaussian_y": {
+          "cache_hit": true,
+          "standard_normal": {
+            "decimal": "-0.47838779020507816",
+            "hex": "-0x1.e9de7d26f2324p-2",
+            "bits_be": "bfde9de7d26f2324"
+          },
+          "cached_standard_before": {
+            "decimal": "-0.47838779020507816",
+            "hex": "-0x1.e9de7d26f2324p-2",
+            "bits_be": "bfde9de7d26f2324"
+          },
+          "cached_standard_after": null,
+          "mu": {
+            "decimal": "0.0",
+            "hex": "0x0.0p+0",
+            "bits_be": "0000000000000000"
+          },
+          "sigma": {
+            "decimal": "0.01877434118039624",
+            "hex": "0x1.33994b57eb7c4p-6",
+            "bits_be": "3f933994b57eb7c4"
+          },
+          "result": {
+            "decimal": "-0.008981415589845956",
+            "hex": "-0x1.264d931d764e8p-7",
+            "bits_be": "bf8264d931d764e8"
+          },
+          "raw_uniform_draw_range": [
+            20,
+            20
+          ]
+        },
+        "operations": [
+          {
+            "operation": "radial_growth * fraction",
+            "operands": [
+              {
+                "decimal": "0.8907372591015146",
+                "hex": "0x1.c80eb6ca56e0cp-1",
+                "bits_be": "3fec80eb6ca56e0c"
+              },
+              {
+                "decimal": "0.2727272727272727",
+                "hex": "0x1.1745d1745d174p-2",
+                "bits_be": "3fd1745d1745d174"
+              }
+            ],
+            "result": {
+              "decimal": "0.24292834339132213",
+              "hex": "0x1.f1846a5118f52p-3",
+              "bits_be": "3fcf1846a5118f52"
+            }
+          },
+          {
+            "operation": "radial_base + radial_jitter",
+            "operands": [
+              {
+                "decimal": "0.24292834339132213",
+                "hex": "0x1.f1846a5118f52p-3",
+                "bits_be": "3fcf1846a5118f52"
+              },
+              {
+                "decimal": "-0.0035083753193537854",
+                "hex": "-0x1.cbd98a8476b1bp-9",
+                "bits_be": "bf6cbd98a8476b1b"
+              }
+            ],
+            "result": {
+              "decimal": "0.23941996807196836",
+              "hex": "0x1.ea550427071a6p-3",
+              "bits_be": "3fcea550427071a6"
+            }
+          },
+          {
+            "operation": "angular_speed * fraction",
+            "operands": [
+              {
+                "decimal": "2.084744207994682",
+                "hex": "0x1.0ad8e5f0ee691p+1",
+                "bits_be": "4000ad8e5f0ee691"
+              },
+              {
+                "decimal": "0.2727272727272727",
+                "hex": "0x1.1745d1745d174p-2",
+                "bits_be": "3fd1745d1745d174"
+              }
+            ],
+            "result": {
+              "decimal": "0.5685666021803678",
+              "hex": "0x1.231b2963eccfbp-1",
+              "bits_be": "3fe231b2963eccfb"
+            }
+          },
+          {
+            "operation": "angle_rate * 2.0",
+            "operands": [
+              {
+                "decimal": "0.5685666021803678",
+                "hex": "0x1.231b2963eccfbp-1",
+                "bits_be": "3fe231b2963eccfb"
+              },
+              {
+                "decimal": "2.0",
+                "hex": "0x1.0000000000000p+1",
+                "bits_be": "4000000000000000"
+              }
+            ],
+            "result": {
+              "decimal": "1.1371332043607356",
+              "hex": "0x1.231b2963eccfbp+0",
+              "bits_be": "3ff231b2963eccfb"
+            }
+          },
+          {
+            "operation": "angle_turns * pi",
+            "operands": [
+              {
+                "decimal": "1.1371332043607356",
+                "hex": "0x1.231b2963eccfbp+0",
+                "bits_be": "3ff231b2963eccfb"
+              },
+              {
+                "decimal": "3.141592653589793",
+                "hex": "0x1.921fb54442d18p+1",
+                "bits_be": "400921fb54442d18"
+              }
+            ],
+            "result": {
+              "decimal": "3.572409320972708",
+              "hex": "0x1.c944b568c06dbp+1",
+              "bits_be": "400c944b568c06db"
+            }
+          },
+          {
+            "operation": "scale * radius",
+            "operands": [
+              {
+                "decimal": "0.8995723233588142",
+                "hex": "0x1.cc94be5a6cf9ep-1",
+                "bits_be": "3fecc94be5a6cf9e"
+              },
+              {
+                "decimal": "0.23941996807196836",
+                "hex": "0x1.ea550427071a6p-3",
+                "bits_be": "3fcea550427071a6"
+              }
+            ],
+            "result": {
+              "decimal": "0.2153755769369937",
+              "hex": "0x1.b916d49a69833p-3",
+              "bits_be": "3fcb916d49a69833"
+            }
+          },
+          {
+            "operation": "scaled_radius * cos(angle)",
+            "operands": [
+              {
+                "decimal": "0.2153755769369937",
+                "hex": "0x1.b916d49a69833p-3",
+                "bits_be": "3fcb916d49a69833"
+              },
+              {
+                "decimal": "-0.9086250018101514",
+                "hex": "-0x1.d1374bd634804p-1",
+                "bits_be": "bfed1374bd634804"
+              }
+            ],
+            "result": {
+              "decimal": "-0.19569563398423828",
+              "hex": "-0x1.90c8df5f75544p-3",
+              "bits_be": "bfc90c8df5f75544"
+            }
+          },
+          {
+            "operation": "handedness * scale * radius",
+            "operands": [
+              {
+                "decimal": "-1.0",
+                "hex": "-0x1.0000000000000p+0",
+                "bits_be": "bff0000000000000"
+              },
+              {
+                "decimal": "0.8995723233588142",
+                "hex": "0x1.cc94be5a6cf9ep-1",
+                "bits_be": "3fecc94be5a6cf9e"
+              },
+              {
+                "decimal": "0.23941996807196836",
+                "hex": "0x1.ea550427071a6p-3",
+                "bits_be": "3fcea550427071a6"
+              }
+            ],
+            "result": {
+              "decimal": "-0.2153755769369937",
+              "hex": "-0x1.b916d49a69833p-3",
+              "bits_be": "bfcb916d49a69833"
+            }
+          },
+          {
+            "operation": "handed_scaled_radius * sin(angle)",
+            "operands": [
+              {
+                "decimal": "-0.2153755769369937",
+                "hex": "-0x1.b916d49a69833p-3",
+                "bits_be": "bfcb916d49a69833"
+              },
+              {
+                "decimal": "-0.41761298601157304",
+                "hex": "-0x1.aba2bd1537ec2p-2",
+                "bits_be": "bfdaba2bd1537ec2"
+              }
+            ],
+            "result": {
+              "decimal": "0.08994363779862322",
+              "hex": "0x1.7068bd6d40f26p-4",
+              "bits_be": "3fb7068bd6d40f26"
+            }
+          },
+          {
+            "operation": "cos(rotation) * local_x",
+            "operands": [
+              {
+                "decimal": "0.2662029856886286",
+                "hex": "0x1.109783f685575p-2",
+                "bits_be": "3fd109783f685575"
+              },
+              {
+                "decimal": "-0.19569563398423828",
+                "hex": "-0x1.90c8df5f75544p-3",
+                "bits_be": "bfc90c8df5f75544"
+              }
+            ],
+            "result": {
+              "decimal": "-0.05209476205283328",
+              "hex": "-0x1.aac2a269ea0d4p-5",
+              "bits_be": "bfaaac2a269ea0d4"
+            }
+          },
+          {
+            "operation": "sin(rotation) * local_y",
+            "operands": [
+              {
+                "decimal": "0.9639169935271708",
+                "hex": "0x1.ed8687368403ep-1",
+                "bits_be": "3feed8687368403e"
+              },
+              {
+                "decimal": "0.08994363779862322",
+                "hex": "0x1.7068bd6d40f26p-4",
+                "bits_be": "3fb7068bd6d40f26"
+              }
+            ],
+            "result": {
+              "decimal": "0.08669820093374568",
+              "hex": "0x1.631da71a1e9d7p-4",
+              "bits_be": "3fb631da71a1e9d7"
+            }
+          },
+          {
+            "operation": "rotated_x_cos - rotated_x_sin",
+            "operands": [
+              {
+                "decimal": "-0.05209476205283328",
+                "hex": "-0x1.aac2a269ea0d4p-5",
+                "bits_be": "bfaaac2a269ea0d4"
+              },
+              {
+                "decimal": "0.08669820093374568",
+                "hex": "0x1.631da71a1e9d7p-4",
+                "bits_be": "3fb631da71a1e9d7"
+              }
+            ],
+            "result": {
+              "decimal": "-0.13879296298657895",
+              "hex": "-0x1.1c3f7c2789d20p-3",
+              "bits_be": "bfc1c3f7c2789d20"
+            }
+          },
+          {
+            "operation": "sin(rotation) * local_x",
+            "operands": [
+              {
+                "decimal": "0.9639169935271708",
+                "hex": "0x1.ed8687368403ep-1",
+                "bits_be": "3feed8687368403e"
+              },
+              {
+                "decimal": "-0.19569563398423828",
+                "hex": "-0x1.90c8df5f75544p-3",
+                "bits_be": "bfc90c8df5f75544"
+              }
+            ],
+            "result": {
+              "decimal": "-0.1886343471564806",
+              "hex": "-0x1.8252b97f83e16p-3",
+              "bits_be": "bfc8252b97f83e16"
+            }
+          },
+          {
+            "operation": "cos(rotation) * local_y",
+            "operands": [
+              {
+                "decimal": "0.2662029856886286",
+                "hex": "0x1.109783f685575p-2",
+                "bits_be": "3fd109783f685575"
+              },
+              {
+                "decimal": "0.08994363779862322",
+                "hex": "0x1.7068bd6d40f26p-4",
+                "bits_be": "3fb7068bd6d40f26"
+              }
+            ],
+            "result": {
+              "decimal": "0.02394326492569009",
+              "hex": "0x1.884954f42debdp-6",
+              "bits_be": "3f9884954f42debd"
+            }
+          },
+          {
+            "operation": "rotated_y_sin + rotated_y_cos",
+            "operands": [
+              {
+                "decimal": "-0.1886343471564806",
+                "hex": "-0x1.8252b97f83e16p-3",
+                "bits_be": "bfc8252b97f83e16"
+              },
+              {
+                "decimal": "0.02394326492569009",
+                "hex": "0x1.884954f42debdp-6",
+                "bits_be": "3f9884954f42debd"
+              }
+            ],
+            "result": {
+              "decimal": "-0.1646910822307905",
+              "hex": "-0x1.51498ee0fe23ep-3",
+              "bits_be": "bfc51498ee0fe23e"
+            }
+          },
+          {
+            "operation": "rotated_x + gaussian_x",
+            "operands": [
+              {
+                "decimal": "-0.13879296298657895",
+                "hex": "-0x1.1c3f7c2789d20p-3",
+                "bits_be": "bfc1c3f7c2789d20"
+              },
+              {
+                "decimal": "-0.006885158134074812",
+                "hex": "-0x1.c339c9037de43p-8",
+                "bits_be": "bf7c339c9037de43"
+              }
+            ],
+            "result": {
+              "decimal": "-0.14567812112065376",
+              "hex": "-0x1.2a594a6fa5c12p-3",
+              "bits_be": "bfc2a594a6fa5c12"
+            }
+          },
+          {
+            "operation": "rotated_y + gaussian_y",
+            "operands": [
+              {
+                "decimal": "-0.1646910822307905",
+                "hex": "-0x1.51498ee0fe23ep-3",
+                "bits_be": "bfc51498ee0fe23e"
+              },
+              {
+                "decimal": "-0.008981415589845956",
+                "hex": "-0x1.264d931d764e8p-7",
+                "bits_be": "bf8264d931d764e8"
+              }
+            ],
+            "result": {
+              "decimal": "-0.17367249782063643",
+              "hex": "-0x1.63ae6812d588cp-3",
+              "bits_be": "bfc63ae6812d588c"
+            }
+          },
+          {
+            "operation": "offset_x + pre_offset_x",
+            "operands": [
+              {
+                "decimal": "0.31485454609026764",
+                "hex": "0x1.42693ae9d1890p-2",
+                "bits_be": "3fd42693ae9d1890"
+              },
+              {
+                "decimal": "-0.14567812112065376",
+                "hex": "-0x1.2a594a6fa5c12p-3",
+                "bits_be": "bfc2a594a6fa5c12"
+              }
+            ],
+            "result": {
+              "decimal": "0.16917642496961388",
+              "hex": "0x1.5a792b63fd50ep-3",
+              "bits_be": "3fc5a792b63fd50e"
+            }
+          },
+          {
+            "operation": "offset_y + pre_offset_y",
+            "operands": [
+              {
+                "decimal": "-0.16015744708884028",
+                "hex": "-0x1.4800a0aba8cb8p-3",
+                "bits_be": "bfc4800a0aba8cb8"
+              },
+              {
+                "decimal": "-0.17367249782063643",
+                "hex": "-0x1.63ae6812d588cp-3",
+                "bits_be": "bfc63ae6812d588c"
+              }
+            ],
+            "result": {
+              "decimal": "-0.3338299449094767",
+              "hex": "-0x1.55d7845f3f2a2p-2",
+              "bits_be": "bfd55d7845f3f2a2"
+            }
+          }
+        ],
+        "reconstructed": {
+          "x": {
+            "decimal": "0.16917642496961388",
+            "hex": "0x1.5a792b63fd50ep-3",
+            "bits_be": "3fc5a792b63fd50e"
+          },
+          "y": {
+            "decimal": "-0.3338299449094767",
+            "hex": "-0x1.55d7845f3f2a2p-2",
+            "bits_be": "bfd55d7845f3f2a2"
+          }
+        },
+        "generator_output": {
+          "x": {
+            "decimal": "0.16917642496961388",
+            "hex": "0x1.5a792b63fd50ep-3",
+            "bits_be": "3fc5a792b63fd50e"
+          },
+          "y": {
+            "decimal": "-0.3338299449094767",
+            "hex": "-0x1.55d7845f3f2a2p-2",
+            "bits_be": "bfd55d7845f3f2a2"
+          }
+        },
+        "raw_uniform_draw_range": [
+          17,
+          20
+        ]
+      },
+      "instrumented_reconstruction_exact": true,
+      "historical_intermediates": "UNAVAILABLE: only final canonical x/y/t bits are retained"
+    },
+    "historical_final_comparison": {
+      "fields": {
+        "t": {
+          "equal": true,
+          "expected": {
+            "decimal": "81.33339605974454",
+            "hex": "0x1.455565c6d4df5p+6",
+            "bits_be": "405455565c6d4df5"
+          },
+          "observed": {
+            "decimal": "81.33339605974454",
+            "hex": "0x1.455565c6d4df5p+6",
+            "bits_be": "405455565c6d4df5"
+          },
+          "absolute_difference": 0.0
+        },
+        "x": {
+          "equal": false,
+          "expected": {
+            "decimal": "0.16917642496961385",
+            "hex": "0x1.5a792b63fd50dp-3",
+            "bits_be": "3fc5a792b63fd50d"
+          },
+          "observed": {
+            "decimal": "0.16917642496961388",
+            "hex": "0x1.5a792b63fd50ep-3",
+            "bits_be": "3fc5a792b63fd50e"
+          },
+          "absolute_difference": 2.7755575615628914e-17
+        },
+        "y": {
+          "equal": false,
+          "expected": {
+            "decimal": "-0.33382994490947676",
+            "hex": "-0x1.55d7845f3f2a3p-2",
+            "bits_be": "bfd55d7845f3f2a3"
+          },
+          "observed": {
+            "decimal": "-0.3338299449094767",
+            "hex": "-0x1.55d7845f3f2a2p-2",
+            "bits_be": "bfd55d7845f3f2a2"
+          },
+          "absolute_difference": 5.551115123125783e-17
+        }
+      },
+      "all_equal": false,
+      "first_difference": "x"
+    },
+    "serialization_round_trip": {
+      "x": {
+        "source": {
+          "decimal": "0.16917642496961388",
+          "hex": "0x1.5a792b63fd50ep-3",
+          "bits_be": "3fc5a792b63fd50e"
+        },
+        "json_round_trip": {
+          "decimal": "0.16917642496961388",
+          "hex": "0x1.5a792b63fd50ep-3",
+          "bits_be": "3fc5a792b63fd50e"
+        },
+        "round_trip_bits_equal": true
+      },
+      "y": {
+        "source": {
+          "decimal": "-0.3338299449094767",
+          "hex": "-0x1.55d7845f3f2a2p-2",
+          "bits_be": "bfd55d7845f3f2a2"
+        },
+        "json_round_trip": {
+          "decimal": "-0.3338299449094767",
+          "hex": "-0x1.55d7845f3f2a2p-2",
+          "bits_be": "bfd55d7845f3f2a2"
+        },
+        "round_trip_bits_equal": true
+      },
+      "t": {
+        "source": {
+          "decimal": "81.33339605974454",
+          "hex": "0x1.455565c6d4df5p+6",
+          "bits_be": "405455565c6d4df5"
+        },
+        "json_round_trip": {
+          "decimal": "81.33339605974454",
+          "hex": "0x1.455565c6d4df5p+6",
+          "bits_be": "405455565c6d4df5"
+        },
+        "round_trip_bits_equal": true
+      }
+    },
+    "windows_linux_primitive_comparison": "NOT AVAILABLE: no Linux runtime or remote endpoint",
+    "linux_historical_intermediates": "NOT AVAILABLE",
+    "cuda": "NOT USED"
+  },
+  "canonical_after": {
+    "fixture_sha256": "66e187350536e6901d8371a1ffbe3e2a0abf3b49341c6ae6c8fed3ae7833b629",
+    "provenance_sha256": "6e069f4f948e8a68b93397e12a5c0e4ab46cb5f5189243e6ef62bab2178cdf22",
+    "unchanged": true
+  }
+}
