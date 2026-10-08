@@ -211,6 +211,20 @@ def test_luna52_historical_reconstruction_rejects_changed_consumed_input(tmp_pat
         d.reconstruct(clone)
 
 
+@pytest.mark.parametrize(("path", "message"), [
+    ("artifacts/luna47b/results.json", "retained Luna-47B result identity differs"),
+    ("experiments/luna47b/PROTOCOL.md", "protocol checkout differs"),
+    ("run_luna46_depth_scaling_diagnostic.py", "current analyzer checkout differs"),
+])
+def test_luna52_reconstruction_rejects_retained_lane_mutation(tmp_path, path, message):
+    clone = _clone_repo(tmp_path)
+    changed = clone / path
+    changed.write_bytes(changed.read_bytes() + b"\n# unauthorized mutation\n")
+
+    with pytest.raises(ValueError, match=message):
+        d.reconstruct(clone)
+
+
 def test_retained_artifact_if_present():
     path = d.ROOT / "artifacts/luna47b/results.json"
     if not path.exists():

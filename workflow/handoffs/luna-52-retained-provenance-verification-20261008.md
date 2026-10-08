@@ -5,7 +5,7 @@ tpcn_handoff:
   descriptive_name: "Historical source compatibility and public check adversarial coverage"
   task_id: "luna-52-retained-provenance-verification-20261008"
   component: "Luna-47B historical analyzer provenance and Luna-47F public verification"
-  status: "complete — PASS; independent Luna-0 review pending"
+  status: "complete — clean-checkout correction PASS; independent Luna-0 review pending"
   contract_version: "1.1"
   branch: "main"
   base_revision: "e6bd96a13eb2d5bb19fce8ef6c4b3aa3ec8f8c2e"
@@ -64,6 +64,10 @@ tpcn_handoff:
     - "Starting direct Luna-47F `python experiments/luna47f/diagnostic.py --check`: PASS: retained analysis, replay, inputs, code and protected hashes."
     - "Final full suite: 1,693 passed, 1 skipped, zero failures/errors."
     - "Historical/core and Luna-34 through Luna-45 selection: 286 passed."
+    - "Independent review at 522a5dbf67be1f188f8f8a6e4fc0d1bad4872a23 found all ten public CLI tests failed before CLI invocation because the clean published clone had no verifier change to commit."
+    - "Corrective public CLI and bootstrap selection: 12 passed, 58 deselected; all ten real public CLI cases plus both bootstrap-state tests passed."
+    - "Three retained-result/protocol/current-source mutation cases rejected through Luna-47B `reconstruct()`."
+    - "Corrective full suite: 1,698 passed, 1 skipped, zero failed/errors; final clean committed-state run recorded after publication."
   information_boundary_check:
     - "PASS: no evidence or analysis output was fed into TPCN computation."
   hardware_mapping:
@@ -91,6 +95,8 @@ tpcn_handoff:
     - "Full retained reconstruction exercises the dynamically loaded historical analyzer while current analyzer verification functions are replaced with test failures."
     - "Retained Luna-47B result/validation and protocol mutation rejection; consumed Luna-45 input mutation rejection through reconstruction."
     - "Ten public Luna-47F --check subprocess cases: consumed input mutation, wrong historical Git identity substitution, protocol mutation, configuration mutation, retained result mutation, retained validation mutation, same-path content substitution, unrelated repository evolution, exact LF/CRLF materialization, and live pre/post mutation."
+    - "Two CLI clone bootstrap states: changed verifier commits when required; already-committed identical verifier proceeds without a no-op commit."
+    - "Three Luna-47B retained result, protocol, and current-source substitutions rejected through the actual `reconstruct()` route."
   tests_passing:
     - "Luna-52-specific selection: 22 passed, 79 deselected."
     - "Luna-47B focused suite: 28 passed."
@@ -99,6 +105,12 @@ tpcn_handoff:
     - "Luna-44/Luna-51 provenance suites: 21 passed."
     - "Historical/core plus Luna-34 through Luna-45 regression selection: 286 passed."
     - "Full repository suite: 1,693 passed, 1 skipped, zero failed/errors."
+    - "Clean-checkout corrective full suite: 1,698 passed, 1 skipped, zero failed/errors; the sole skip remains the Windows directory-symlink privilege limitation."
+    - "Luna-47B corrective suite: 31 passed."
+    - "Luna-47F diagnostic and retained suites: 75 passed."
+    - "Luna-44/Luna-46 regressions: 196 passed, 1 Windows directory-symlink privilege skip."
+    - "Luna-51/materialization/non-mutation selection: 8 passed."
+    - "Core/runtime/topology plus Luna-34 through Luna-45 selection: 377 passed."
     - "Public clean `python experiments/luna47f/diagnostic.py --check`: exit 0."
     - "Changed Python files compile; `git diff --check` passes."
   tests_failed: []
@@ -115,6 +127,33 @@ tpcn_handoff:
 ---
 
 # Luna-52 retained provenance verification execution
+
+## Clean-checkout corrective pass — 2026-10-08
+
+**CORRECTIVE PASS COMPLETE — PASS PENDING INDEPENDENT LUNA-0 REVIEW.**
+The clean-checkout failure reported by Luna-0 was reproduced: all ten public
+CLI tests stopped because `_cli_repository()` tried to commit verifier bytes
+already present at `HEAD`. The bootstrap now compares staged verifier content
+to `HEAD`, commits only when it differs, propagates actual Git errors, and
+verifies that the temporary repository is clean before returning. Focused
+tests exercise both an already-committed verifier and a changed verifier that
+must be committed, then introduce a committed adversarial input mutation.
+
+The public subprocess helper confirms it launched the intended
+`diagnostic.py --check` arguments. All ten public CLI adversarial cases pass,
+including live mutation detection through the real check process. Luna-47B
+adds three route-level tests: `reconstruct()` rejects retained result,
+protocol, and unreviewed current analyzer changes. Historical/current source
+pins and all seven protected artifact bytes remain unchanged.
+
+Corrective validation: Luna-47B **31 passed**; Luna-47F diagnostic and
+retained **75 passed**; Luna-44/Luna-46 **196 passed, 1 Windows symlink
+privilege skip**; Luna-51/materialization/non-mutation **8 passed**;
+historical/core selection **377 passed**; full suite **1,698 passed, 1
+skipped, zero failures/errors**. The sole skip remains the existing Windows
+`WinError 1314` directory-symlink privilege limitation. Final full-suite
+results from the clean published correction commit are recorded after
+publication below.
 
 ## Outcome
 

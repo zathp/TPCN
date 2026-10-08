@@ -1,31 +1,26 @@
 # TPCN Luna Multi-Agent Workflow — Event-Driven Architecture
 
-## Luna-0 independent review — Luna-52 correction required — 2026-10-08
+## Luna-52 clean-checkout correction — review pending — 2026-10-08
 
-**LUNA-52 CORRECTION REQUIRED.** Independent review confirms Luna-47B's
-historical analyzer is authenticated and used separately from the reviewed
-current source, all seven protected artifacts retain their pinned hashes, and
-the actual Luna-47F public `--check` rejects isolated input, identity,
-protocol/configuration, retained-output, same-path, and live mutations while
-accepting unrelated evolution and exact LF/CRLF materialization.
+**CORRECTION COMPLETE — PENDING CLEAN-COMMIT VALIDATION AND LUNA-0 REVIEW.**
+The Luna-0 review found that all ten public CLI subprocess tests failed in
+clone setup when the verifier was already committed and identical. The
+bootstrap now conditionally commits only changed verifier content, preserves
+real Git errors, and asserts its baseline clone is clean. Two bootstrap tests
+cover the changed and already-committed states. Three Luna-47B tests now
+exercise retained result, protocol, and current-source mutations through
+`reconstruct()`.
 
-The published clean revision exposes a test-fixture defect: all ten Luna-47F
-public subprocess tests fail before invoking the CLI because their clone setup
-tries to commit verifier bytes already present at `HEAD`. The independently
-rerun full suite is **1,683 passed, 10 failed, 1 skipped**. The skip remains
-the Windows directory-symlink privilege limitation. Public behavior is also
-verified with independent disposable-clone CLI runs, but the required
-committed regression gate is not green. No scientific successor decision is
-made.
+The corrected focused public-path group passes **12 tests**; the Luna-47B
+suite passes **31**, Luna-47F diagnostic/retained **75**, Luna-44/Luna-46
+**196 with the existing one Windows symlink-privilege skip**,
+Luna-51/materialization **8**, and historical/core **377**. The full suite
+on this candidate reports **1,698 passed, 1 skipped, zero failures/errors**.
+All seven protected artifact hashes remain unchanged. The final full-suite
+run must also pass from the exact clean committed revision before Luna-0
+review. No scientific successor is authorized.
 
-Next: authorize a narrowly scoped test-harness repair that supports both a
-prepublication changed verifier and an already-published clean verifier; rerun
-the public adversarial suite and full suite, then return for independent
-Luna-0 review. Do not create a scientific successor contract or resume
-scientific work until Luna-52 passes. The fresh historical Linux regeneration
-remains a parked limitation, not the cause of this correction.
-
-See the [independent Luna-52 review](../../handoffs/luna-0-independent-review-luna52-20261008.md),
+See the [independent Luna-0 review](../../handoffs/luna-0-independent-review-luna52-20261008.md),
 [Luna-52 execution handoff](../../handoffs/luna-52-retained-provenance-verification-20261008.md),
 [Luna-52 authorization handoff](../../handoffs/luna-0-review-luna51-authorize-luna52-20261008.md),
 and [Luna-52 contract](../../../.github/agents/luna-52.agent.md).

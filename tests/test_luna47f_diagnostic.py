@@ -451,14 +451,63 @@ def _cli_repository(tmp_path):
         cwd=repo,
         check=True,
     )
-    subprocess.run(
-        ["git", "commit", "-m", "apply reviewed Luna-52 verification ownership"],
+    staged = subprocess.run(
+        ["git", "diff", "--cached", "--quiet", "--",
+         "experiments/luna47f/diagnostic.py"],
         cwd=repo,
-        check=True,
         capture_output=True,
         text=True,
     )
+    if staged.returncode == 1:
+        subprocess.run(
+            ["git", "commit", "-m", "apply reviewed Luna-52 verification ownership"],
+            cwd=repo,
+            check=True,
+            capture_output=True,
+            text=True,
+        )
+    elif staged.returncode != 0:
+        raise subprocess.CalledProcessError(
+            staged.returncode, staged.args, output=staged.stdout, stderr=staged.stderr
+        )
+    status = subprocess.check_output(
+        ["git", "status", "--porcelain"], cwd=repo, text=True
+    )
+    if status:
+        raise AssertionError(f"CLI repository baseline is not clean:\n{status}")
     return repo
+
+
+def _git(repo, *args):
+    return subprocess.check_output(["git", *args], cwd=repo, text=True).strip()
+
+
+def test_luna52_cli_repository_accepts_already_committed_verifier(tmp_path):
+    repo = _cli_repository(tmp_path)
+
+    assert (repo / "experiments/luna47f/diagnostic.py").read_bytes() == FILE.read_bytes()
+    assert _git(repo, "rev-parse", "HEAD") == _git(d.ROOT, "rev-parse", "HEAD")
+    assert not _git(repo, "status", "--porcelain")
+
+
+def test_luna52_cli_repository_commits_changed_verifier(tmp_path, monkeypatch):
+    changed_verifier = tmp_path / "diagnostic.py"
+    changed_verifier.write_bytes(FILE.read_bytes() + b"\n# isolated bootstrap fixture\n")
+    monkeypatch.setattr(sys.modules[__name__], "FILE", changed_verifier)
+
+    repo = _cli_repository(tmp_path)
+
+    assert (repo / "experiments/luna47f/diagnostic.py").read_bytes() == changed_verifier.read_bytes()
+    assert _git(repo, "rev-parse", "HEAD") != _git(d.ROOT, "rev-parse", "HEAD")
+    assert not _git(repo, "status", "--porcelain")
+
+    _commit_change(
+        repo,
+        "artifacts/luna45-acp0008-depth2-destination-integration-20261006/config.json",
+        (repo / "artifacts/luna45-acp0008-depth2-destination-integration-20261006/config.json")
+        .read_bytes() + b" ",
+    )
+    assert not _git(repo, "status", "--porcelain")
 
 
 def _commit_change(repo, relative, content):
@@ -476,14 +525,21 @@ def _commit_change(repo, relative, content):
 
 
 def _run_public_check(repo, env=None):
-    return subprocess.run(
-        [sys.executable, str(repo / "experiments/luna47f/diagnostic.py"), "--check"],
+    command = [
+        sys.executable,
+        str(repo / "experiments/luna47f/diagnostic.py"),
+        "--check",
+    ]
+    result = subprocess.run(
+        command,
         cwd=repo,
         env=env,
         capture_output=True,
         text=True,
         timeout=180,
     )
+    assert result.args == command
+    return result
 
 
 def test_luna52_public_check_rejects_consumed_input_mutation(tmp_path):
