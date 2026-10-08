@@ -1,0 +1,86 @@
+{
+  "schema": "TPCN-LUNA53-PROTOCOL-1",
+  "authorization_revision": "04305a2917195888cbbcccf378eba7971551e9b5",
+  "authorized_question": "Does changing only destination ACP-0008 decay_rate_z from 0.0125 to 0.00125 cause target-only E2 integration discharge with linked canonical emission on authenticated retained destination arrivals?",
+  "classification_boundary": "Luna-46 categories are evaluator-only; run_stream receives retained arrivals and configuration only.",
+  "populations": {
+    "TEMPORAL-RETENTION-LIMITED": 33,
+    "DRIVE-LIMITED": 75,
+    "NO-RECEPTIONS": 212
+  },
+  "conditions": {
+    "control_decay_rate_z": 0.0125,
+    "intervention_decay_rate_z": 0.00125,
+    "only_parameter_difference": "destination.integration.decay_rate_z"
+  },
+  "phases": ["initial", "replay"],
+  "replication_boundary": "Each phase-condition pair is a fresh process and fresh neuron/queue per stream. Initial and replay are deterministic retained executions, not independent scientific samples.",
+  "execution_gate_order": [
+    "verify all pinned Git objects and artifact identities",
+    "reconcile the 320 retained stream identities and 235 destination arrivals in both phases",
+    "execute both historical-control phases and require compatibility with Luna-45 and Luna-46",
+    "prove the intervention configuration differs only at destination.integration.decay_rate_z",
+    "execute both intervention phases",
+    "audit bounded execution, recurrence, class controls, and exact initial/replay equality"
+  ],
+  "runtime_boundary": {
+    "implementation": "tpcn.excursion_neuron.MultiExcursionNeuron and tpcn.event_runtime.EventQueue/execute_bounded",
+    "upstream_rerun": false,
+    "output_rerouting": false,
+    "stream_reset": "new isolated destination neuron and empty event queue",
+    "event_budget": 4096,
+    "queue_capacity": 128
+  },
+  "predeclared_luna47a_tau800_retention_crossing_streams": [
+    "c00-004", "c00-045", "c01-007", "c01-014", "c01-034",
+    "c01-048", "c01-057", "c02-004", "c02-034", "c02-042",
+    "c02-047", "c02-061", "c03-024", "c03-042", "c03-044",
+    "c04-008", "c04-017", "c04-020", "c04-059"
+  ],
+  "pinned_evidence": {
+    "luna45_config": {
+      "path": "artifacts/luna45-depth2-frozen-config-20261006-r2/config.json",
+      "sha256_lf": "a19bf911ebe04c52aba7d83e376faac853519db3308419ca8bfcad35143858e1",
+      "git_blob": "1fcf4e9865d1b6d1af9f39ab74d399eb6496b166"
+    },
+    "luna45_raw_route_catalog": {
+      "path": "artifacts/luna45-acp0008-depth2-destination-integration-20261006/artifact-integrity.json",
+      "sha256_lf": "a47046da6916db49f373613d654d2cf59671737b5c6b8584b222fb67fe068e8e",
+      "git_blob": "b1aaef4006422f321922bfb58425e4fb646d96b9"
+    },
+    "luna44_fixture": {
+      "path": "artifacts/luna44-canonical-fixture/fixture.json",
+      "revision": "6413cffe6982bccc6698af6bebfae51f04e71dd9",
+      "sha256": "66e187350536e6901d8371a1ffbe3e2a0abf3b49341c6ae6c8fed3ae7833b629",
+      "semantic_sha256": "6c262ad1951a48f624d83a594abfc86ffa89d26882b397f6586698c097144305",
+      "git_blob": "c1fa6ed863c91b5084e38920258483657e035c61"
+    },
+    "luna46_result": {
+      "path": "artifacts/luna46-depth-scaling-diagnostic-corrective-20261006.json",
+      "sha256": "0d32926f6f72a77a5b34eb054e1e46e9ece95cef3d6145e7892957cf3727722e",
+      "git_blob": "9506369d97babf7bc0ef15ed52efb738dcdcd549"
+    },
+    "luna47a_inputs": {
+      "path": "artifacts/luna47a/inputs.json",
+      "sha256": "03b5a27700723afa266e63b516c6b3dfbc9a7accc6983d21a4f7a12e4383b185",
+      "git_blob": "24989419f87dcf49ff0a651e5909c995e0d25fc0"
+    },
+    "luna47a_results": {
+      "path": "artifacts/luna47a/results.json",
+      "sha256": "d1cac5065410767a42a35f99b659b4a4377f1b84d300e5cfd3ed304600322cff",
+      "git_blob": "1526d1d15cbb59b0ca3d0fa04ef04f1c2c803f8f"
+    }
+  },
+  "interpretation": {
+    "supported": "At least one new target integration discharge with linked canonical E2 emission, neither negative-control group responds, historical control passes, execution is bounded, and initial/replay scientific records are exactly equal.",
+    "partially_supported": "Target z accumulation/threshold response occurs without a linked emission while controls remain non-crossing, or the target responds while one or more drive-limited controls also respond.",
+    "not_supported": "No target retention/discharge/emission response under valid compatible execution.",
+    "blocked": "Any provenance, historical compatibility, isolation, deterministic replay, boundedness, or required validation gate fails; any no-reception stream receives input or emits."
+  },
+  "prohibited": [
+    "no rate sweep or other retention value",
+    "no changes to gain, thresholds, decay of x, z cap, discharge, routing, event order, qualification, topology, or event budgets",
+    "no upstream rerun and no routing of destination outputs",
+    "no efficacy, architecture-promotion, hardware-equivalence, production-adoption, or successor claim"
+  ]
+}

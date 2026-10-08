@@ -1,0 +1,51 @@
+{
+  "schema": "TPCN-LUNA53-CONFIG-1",
+  "historical_destination": {
+    "a_max": 1.0,
+    "a_min": 0.25,
+    "decay_rate": 1.0,
+    "delta_x_e": 1.0,
+    "emission_delay": 0.5,
+    "event_budget": 4096,
+    "integration": {
+      "decay_rate_z": 0.0125,
+      "discharge_quantum": 1.0,
+      "input_gain": 1.0,
+      "z_max": 4.0
+    },
+    "m_emit_delay": 1.0,
+    "m_rearm_delay": 1.0,
+    "provenance_capacity": 16,
+    "theta_e": 1.0,
+    "theta_hold": 1.5,
+    "theta_m": 4.0,
+    "theta_r": 0.25,
+    "x_max": 8.0
+  },
+  "conditions": {
+    "control": {
+      "decay_rate_z": 0.0125
+    },
+    "intervention": {
+      "decay_rate_z": 0.00125
+    }
+  },
+  "runtime": {
+    "initial_timestamp": 0.0,
+    "queue_capacity": 128,
+    "event_budget": 4096,
+    "neuron_event_budget": 4096
+  },
+  "input_contract": {
+    "source": "relay",
+    "destination": "destination",
+    "event_type": "excursion",
+    "ordering": "ascending retained source queue_sequence; stable identity tie-break",
+    "route_depth": 1,
+    "route_path": ["relay", "destination"]
+  },
+  "numerical_policy": {
+    "recurrence_tolerance": "64 * sys.float_info.epsilon * max(1, abs(observed), abs(expected))",
+    "replay_equality": "canonical JSON equality of all scientific records"
+  }
+}
