@@ -1,5 +1,31 @@
 # Architecture Changelog
 
+## Luna-53 destination-retention mechanism — SUPPORTED within frozen setup — 2026-10-08
+
+**SUPPORTED; INDEPENDENT LUNA-0 REVIEW REQUIRED.** Execution code was
+published at `2e527934692d96439207b8e15ee6a99eab683a65`. The four run records
+and summary are published under [artifacts/luna53/](../artifacts/luna53/);
+the [execution handoff](handoffs/luna-53-acp0008-destination-retention-20261008.md)
+records each artifact SHA-256 and the validation results.
+
+With only destination `decay_rate_z` changed from `0.0125` to `0.00125`,
+19/33 temporal-retention-limited streams had a new E2 discharge linked to a
+canonical emission; all 19 match the predeclared Luna-47A tau=800 scalar
+crossings. The 75 drive-limited and 212 no-reception controls had no
+discharge/emission. Both control phases reproduced all 235 retained
+destination integration traces with zero mismatches; all four runs passed
+the independent event-time recurrence audit and exact same-condition
+initial/replay digest checks. No clipping, budget exhaustion, or no-reception
+input occurred. The contract verdict is **SUPPORTED** for this isolated,
+bounded mechanism only.
+
+The full suite passed **1,704 tests, 1 governed Windows directory-symlink
+privilege skip** on the execution revision. This is not task efficacy, useful
+prediction, production adoption, architecture promotion, or hardware
+equivalence. **No A01-A15 clause or ACP changes; ACP-0008 remains accepted,
+experimental, opt-in and disabled by default.** No successor is authorized;
+the next and only gate is independent Luna-0 review.
+
 ## Luna-53 scientific selection — one mechanism experiment authorized — 2026-10-08
 
 **AUTHORIZED / NOT EXECUTED.** Luna-0 selected one bounded causal question:

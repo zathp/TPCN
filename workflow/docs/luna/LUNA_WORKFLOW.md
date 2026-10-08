@@ -1,31 +1,31 @@
 # TPCN Luna Multi-Agent Workflow — Event-Driven Architecture
 
-## Luna-53 scientific successor selection — AUTHORIZED / NOT EXECUTED — 2026-10-08
+## Luna-53 destination-retention mechanism — SUPPORTED; independent review required — 2026-10-08
 
-**LUNA-53 IS AUTHORIZED FOR ONE ISOLATED ACP-0008 DESTINATION-RETENTION
-MECHANISM EXPERIMENT. IT HAS NOT BEEN EXECUTED.**
+**SUPPORTED WITHIN THE FROZEN RETAINED-INPUT MECHANISM SETUP. INDEPENDENT
+LUNA-0 REVIEW IS THE NEXT GATE.** The implementation was published at
+`2e527934692d96439207b8e15ee6a99eab683a65`; all four fresh-process executions
+and the summary are retained under [artifacts/luna53/](../../../artifacts/luna53/).
+The summary reports exact initial/replay scientific digests for each
+condition, historical-control compatibility on all 320 streams and 235
+destination traces per phase, and no-reception isolation.
 
-The clean Luna-52 correction passed **1,698 tests with 1 governed Windows
-symlink-privilege skip** at `0d49c780ee1f4fd63089b1ee9ae17f156c80c668`.
-Luna-0's documentation-only follow-up review of `ef257f5030fba5814c0f8a2c729a4f740e90f576`
-returned **PASS**, closing the Luna-52 review gate.
+At the one predeclared intervention (`decay_rate_z=0.00125` versus
+`0.0125`), 19/33 temporal-retention-limited streams produced new E2 discharge
+with linked canonical emission. These are exactly the 19 predeclared
+Luna-47A tau=800 accumulator-crossing streams. None of the 75 drive-limited
+or 212 no-reception streams discharged or emitted; there was no clipping or
+budget exhaustion. This supports the narrow transfer from the isolated
+retention result to the bounded E2 destination discharge/emission path. It
+does not establish task efficacy, useful prediction, production parameter
+selection, architecture promotion, or hardware equivalence.
 
-Selection preserves Luna-46 **MIXED**: 212 streams have no destination
-reception, 33 are temporal-retention-limited, and 75 are drive-limited. The
-predeclared Luna-47A tau=800 condition selectively crossed 19/33 retention
-streams while all 75 drive-limited streams remained below threshold, but this
-was an isolated scalar accumulator with no discharge/output. Luna-53 will
-test whether the same single retention change (`decay_rate_z` 0.0125 to
-0.00125) produces actual ACP-0008 E2 discharge/canonical emissions on the
-authenticated frozen destination arrivals, with the 75 drive-limited and
-212 no-reception streams as negative controls.
-
-Luna-53 may change no parameter other than destination `decay_rate_z`; it
-will not rerun upstream routes, route new emissions onward, tune, test task
-efficacy, or promote ACP-0008. See the [Luna-53 contract](../../../.github/agents/luna-53.agent.md)
-and [Luna-0 scientific selection handoff](../../handoffs/luna-0-scientific-successor-selection-luna53-20261008.md).
-The next flow is **Luna-53 execution -> independent Luna-0 review**. No later
-successor is authorized.
+The full suite on the execution revision passed **1,704 tests with 1
+governed Windows directory-symlink privilege skip**. See the [Luna-53
+execution handoff](../../handoffs/luna-53-acp0008-destination-retention-20261008.md),
+[execution contract](../../../.github/agents/luna-53.agent.md), and
+[Luna-0 scientific selection handoff](../../handoffs/luna-0-scientific-successor-selection-luna53-20261008.md).
+No later successor is authorized; stop at independent Luna-0 review.
 
 ## Luna-52 clean-checkout correction — complete; documentation follow-up PASS — 2026-10-08
 

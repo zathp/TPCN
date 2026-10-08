@@ -125,6 +125,9 @@ def test_scientific_replay_digest_ignores_only_phase_metadata():
 
 def test_saved_run_artifacts_are_complete_and_replay_exact():
     summary = luna53.summarize_outputs()
+    saved_summary = json.loads((OUTPUTS / "summary.json").read_bytes())
+    assert saved_summary == summary
+    assert luna53._artifact_payload_digest(saved_summary)
     assert summary["retained_initial_replay_exact"]
     assert summary["no_reception_invariant"] == "PASS"
     assert summary["paired_causal_class_summary"]["classes"][
@@ -133,6 +136,11 @@ def test_saved_run_artifacts_are_complete_and_replay_exact():
     assert summary["paired_causal_class_summary"]["classes"]["DRIVE-LIMITED"]["n"] == 75
     assert summary["paired_causal_class_summary"]["classes"]["NO-RECEPTIONS"]["n"] == 212
     assert luna53._artifact_payload_digest(summary)
+
+    for relative_path, identity in summary["phase_condition_executions"].items():
+        artifact_path = ROOT / relative_path
+        assert artifact_path.stat().st_size == identity["bytes"]
+        assert luna53.sha256(artifact_path.read_bytes()) == identity["sha256"]
 
     for condition in ("control", "intervention"):
         for phase in ("initial", "replay"):
