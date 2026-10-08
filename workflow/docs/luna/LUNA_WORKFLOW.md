@@ -1,5 +1,42 @@
 # TPCN Luna Multi-Agent Workflow — Event-Driven Architecture
 
+## Luna-49 execution — PASS WITH FOLLOW-UP — 2026-10-08
+
+The runtime/numerical characterization is complete from clean baseline
+`7739ad7af868e2b2f5ebcf9685c25978022a25af`. Two independent CPython 3.11.4
+Windows materializations agree byte-for-byte at fixture SHA
+`60f551e06072b3fb7e814affa97f4a01e079c426d6044d3e710ad9a219ed907e`; the
+canonical Linux fixture and provenance hashes remain unchanged. The first
+observable binary64 difference is `c00-000`, point 3 `x`, at 1 ULP. The
+current operation trace reproduces the coordinate, but historical trig and
+Gaussian-noise intermediates were not retained. Windows/libm variation is a
+leading candidate, not an isolated cause; the exact Python 3.12.3/Linux
+historical environment could not be replayed.
+
+Sequence order, point identities, batch ordinals, and timestamps are identical
+for all 5,164 points. The retained downstream data has no counterpart decisions
+for the fresh coordinates, so threshold crossings, route changes, and
+Luna-46 category sensitivity remain **UNKNOWN / NOT TESTED**. The fixture
+remains **VALID AND ENVIRONMENT-PINNED**; scientific reproducibility is not
+established. Details, runtime metadata, ULP histograms, and the operation trace
+are in the [Luna-49 execution handoff](../../handoffs/luna-49-runtime-reproducibility-20261008.md)
+and its [diagnostic artifact](../../../artifacts/luna49-runtime-reproducibility-20261008/characterization.json).
+
+Validation: Luna-49 focused **7 passed**; Luna-44 provenance/materialization
+**60 passed, 2 failed**; Luna-46 retained gate **165 passed, 1 failed, 1
+skipped**; Luna-47 focused **306 passed, 1 failed**; historical/core regression
+**676 passed, 2 failed**; full suite **1,645 passed, 4 failed, 1 skipped**.
+The two Luna-44 failures remain environment-pinned exact-comparison failures;
+Luna-46 hashes a CRLF checkout rather than its matching Git blob; Luna-47F
+reports stale retained input/snapshot drift following reviewed source and
+governance changes. None was suppressed or repaired. Canonical and retained
+scientific artifacts were not changed.
+
+**PASS WITH FOLLOW-UP.** Exact historical-runtime regeneration and downstream
+neural-decision sensitivity remain open. No efficacy, mechanism, architecture,
+ACP, hardware, or Luna-50 conclusion is authorized. The required next step is
+**Luna-49 execution -> Luna-0 independent review**.
+
 ## Luna-0 post-Luna-48 review — Luna-49 runtime reproducibility authorized — 2026-10-07
 
 **LUNA-48 PASS WITH FOLLOW-UP — RUNTIME REPRODUCIBILITY.** The independent

@@ -1,0 +1,670 @@
+{
+  "schema": "TPCN-LUNA49-RUNTIME-CHARACTERIZATION-1",
+  "authorization_contract_revision": "7739ad7af868e2b2f5ebcf9685c25978022a25af",
+  "authorization_identifier_as_supplied": "59e5ab7b475b74a23faeddc2563eedf1e044 (unresolved; not a full Git object ID)",
+  "starting_revision": "7739ad7af868e2b2f5ebcf9685c25978022a25af",
+  "diagnostic_repository_revision_at_capture": "7739ad7af868e2b2f5ebcf9685c25978022a25af",
+  "diagnostic_source_path": "scripts/luna49_runtime_characterization.py",
+  "diagnostic_source_sha256": "8eb0bef49df31c9bb743efe0ae7b34ef410d28a25d2f14c4b9a383b39126f5d4",
+  "diagnostic_source_git_blob": "0a7032f4d3594caa284d68a299fc33d430652116",
+  "canonical_source_revision": "a79494cd66be28fd291ed11eddd62d342f457cfd",
+  "canonical_source_identities": [
+    {
+      "path": "scripts/build_luna44_canonical_fixture.py",
+      "role": "materializer",
+      "revision": "10994419cec3646d30d965372f88d10605d83d57",
+      "sha256": "696051cc3690aafc9f342e569697469a111757c37c2666b0c026333e6b16efce"
+    },
+    {
+      "path": "run_luna34_excursion_v1_multi_emitter_bridge.py",
+      "role": "sequence_builder",
+      "revision": "a79494cd66be28fd291ed11eddd62d342f457cfd",
+      "sha256": "17e581cf702fae1f56889472a967d2e8e5fec37cc041edba8247da14a0a8b5db"
+    },
+    {
+      "path": "tpcn/spiral_benchmark.py",
+      "role": "point_generator",
+      "revision": "a79494cd66be28fd291ed11eddd62d342f457cfd",
+      "sha256": "2ffb1b5ebb23f016436043118bc675eddaa14bfd923129359fe61a12df94d9f0"
+    },
+    {
+      "path": "tpcn/stroke_dataset.py",
+      "role": "point_representation",
+      "revision": "a79494cd66be28fd291ed11eddd62d342f457cfd",
+      "sha256": "daca268597e2467bf984922ee77736b584bef9743b6f41ad729d7cb4d3c3ede7"
+    }
+  ],
+  "canonical_fixture_sha256": "66e187350536e6901d8371a1ffbe3e2a0abf3b49341c6ae6c8fed3ae7833b629",
+  "canonical_semantic_digest": "6c262ad1951a48f624d83a594abfc86ffa89d26882b397f6586698c097144305",
+  "canonical_provenance_sha256": "6e069f4f948e8a68b93397e12a5c0e4ab46cb5f5189243e6ef62bab2178cdf22",
+  "historical_runtime": {
+    "python_version": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+    "python_implementation": "cpython",
+    "platform": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39",
+    "library_versions": {
+      "python_standard_library": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+      "external_dependencies": {}
+    },
+    "dependency_policy": "Point generation uses Python standard-library random/math and repository modules; no external package is used to generate points."
+  },
+  "historical_retained_materializations": [
+    {
+      "invocation_id": "16d3c11dbfec4963b582377c3ec9939c",
+      "process_id": 5320,
+      "started_at_utc": "2026-10-06T00:15:22.415967+00:00",
+      "completed_at_utc": "2026-10-06T00:15:22.915608+00:00",
+      "output_directory": "/home/runner/work/TPCN/TPCN/artifacts/luna44-materializations-1ll6_a4r/runs/materialization-a",
+      "generator_revision": "a79494cd66be28fd291ed11eddd62d342f457cfd",
+      "materializer_source_sha256": "696051cc3690aafc9f342e569697469a111757c37c2666b0c026333e6b16efce",
+      "generation_execution_revision": "a79494cd66be28fd291ed11eddd62d342f457cfd",
+      "environment_identity": "0762ac1c73678db56a69c4a159653cde6e65bbf30b7f76fc63dc684fa425770b",
+      "fixture_file_sha256": "66e187350536e6901d8371a1ffbe3e2a0abf3b49341c6ae6c8fed3ae7833b629",
+      "semantic_fixture_digest": "6c262ad1951a48f624d83a594abfc86ffa89d26882b397f6586698c097144305",
+      "byte_length": 3451453,
+      "record_count": 320,
+      "ordered_point_count": 5164,
+      "seed_sequence_point_order_sha256": "8f9662ce3364ed38d2572bec081f78a1d18a8243d69bd6114bb6fa50a32fe940",
+      "exact_xyz_bits_sha256": "6fbed2a68c88ba17c142ef7933ea20e57837ebbb527bba87c25c7c3fe50cf5db"
+    },
+    {
+      "invocation_id": "b6187d9a674045488e01d7cdcc5d7a58",
+      "process_id": 5323,
+      "started_at_utc": "2026-10-06T00:15:23.024999+00:00",
+      "completed_at_utc": "2026-10-06T00:15:23.454936+00:00",
+      "output_directory": "/home/runner/work/TPCN/TPCN/artifacts/luna44-materializations-1ll6_a4r/runs/materialization-b",
+      "generator_revision": "a79494cd66be28fd291ed11eddd62d342f457cfd",
+      "materializer_source_sha256": "696051cc3690aafc9f342e569697469a111757c37c2666b0c026333e6b16efce",
+      "generation_execution_revision": "a79494cd66be28fd291ed11eddd62d342f457cfd",
+      "environment_identity": "0762ac1c73678db56a69c4a159653cde6e65bbf30b7f76fc63dc684fa425770b",
+      "fixture_file_sha256": "66e187350536e6901d8371a1ffbe3e2a0abf3b49341c6ae6c8fed3ae7833b629",
+      "semantic_fixture_digest": "6c262ad1951a48f624d83a594abfc86ffa89d26882b397f6586698c097144305",
+      "byte_length": 3451453,
+      "record_count": 320,
+      "ordered_point_count": 5164,
+      "seed_sequence_point_order_sha256": "8f9662ce3364ed38d2572bec081f78a1d18a8243d69bd6114bb6fa50a32fe940",
+      "exact_xyz_bits_sha256": "6fbed2a68c88ba17c142ef7933ea20e57837ebbb527bba87c25c7c3fe50cf5db"
+    }
+  ],
+  "current_runtime": {
+    "os": "Windows-10-10.0.19045-SP0",
+    "os_name": "nt",
+    "architecture": "AMD64",
+    "python_version": "3.11.4 (tags/v3.11.4:d2340ef, Jun  7 2023, 05:45:37) [MSC v.1934 64 bit (AMD64)]",
+    "python_implementation": "cpython",
+    "python_build": [
+      "tags/v3.11.4:d2340ef",
+      "Jun  7 2023 05:45:37"
+    ],
+    "python_compiler": "MSC v.1934 64 bit (AMD64)",
+    "libc": [
+      "",
+      ""
+    ],
+    "sysconfig": {
+      "CC": null,
+      "CONFIG_ARGS": null,
+      "MULTIARCH": null
+    },
+    "point_generation_external_dependencies": {},
+    "math_module": "built-in",
+    "historical_libc_libm": "not captured as a library identity in provenance",
+    "windows_crt_observation": {
+      "path": "C:\\WINDOWS\\System32\\ucrtbase.dll",
+      "file_version": "10.0.19041.3636",
+      "source": "PowerShell Get-Item VersionInfo on 2026-10-08"
+    }
+  },
+  "runtime_matrix": [
+    {
+      "runtime": "CPython 3.12.3 / Linux x86_64 / glibc 2.39 / GCC 13.3.0",
+      "evidence": "two independently recorded post-publication materializations in canonical provenance",
+      "fixture_sha256": "66e187350536e6901d8371a1ffbe3e2a0abf3b49341c6ae6c8fed3ae7833b629",
+      "classification": "BYTE-DETERMINISTIC IN RETAINED EVIDENCE; Luna-49 exact replay not available"
+    },
+    {
+      "runtime": "CPython 3.11.5 / Windows x64",
+      "evidence": "Luna-48 reviewed independent materializations",
+      "fixture_sha256": "60f551e06072b3fb7e814affa97f4a01e079c426d6044d3e710ad9a219ed907e",
+      "classification": "BYTE-DETERMINISTIC IN REVIEWED RUNS; environment-dependent from canonical"
+    },
+    {
+      "runtime": "CPython 3.11.4 / Windows 10 x64 / UCRT 10.0.19041.3636",
+      "evidence": "two independent Luna-49 materializations",
+      "fixture_sha256": "60f551e06072b3fb7e814affa97f4a01e079c426d6044d3e710ad9a219ed907e",
+      "classification": "BYTE-DETERMINISTIC; environment-dependent from canonical"
+    },
+    {
+      "runtime": "CPython 3.10 / Windows",
+      "evidence": "Luna-48 review reports the first differing point and nuisance inputs matched Python 3.11 Windows",
+      "fixture_sha256": null,
+      "classification": "VALUE OBSERVATION ONLY; full fixture determinism not established"
+    },
+    {
+      "runtime": "CPython 3.12 / Windows and other Linux runtimes",
+      "evidence": "not installed or available in the execution environment",
+      "fixture_sha256": null,
+      "classification": "NOT ESTABLISHED"
+    }
+  ],
+  "current_materializations": [
+    {
+      "invocation_id": "0c2a83d6b5084cee8b6431413de32539",
+      "process_id": 28472,
+      "started_at_utc": "2026-10-08T14:40:05.161604+00:00",
+      "completed_at_utc": "2026-10-08T14:40:05.925266+00:00",
+      "output_directory": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN\\artifacts\\luna49-runtime-reproducibility-20261008\\current-runs\\materialization-a",
+      "generator_revision": "a79494cd66be28fd291ed11eddd62d342f457cfd",
+      "materializer_source_sha256": "405f6e3151f38bd25cac448d7d6fd3beb101e7fbf871ee00d90252212f25d19b",
+      "generation_execution_revision": "a79494cd66be28fd291ed11eddd62d342f457cfd",
+      "environment_identity": "dea226a4b30e42ef56d3d107182c394de7b9d9e5c5173c81422713cdfe9cae8a",
+      "fixture_file_sha256": "60f551e06072b3fb7e814affa97f4a01e079c426d6044d3e710ad9a219ed907e",
+      "semantic_fixture_digest": "2822c60d20569d82a220ef0de80813575f0b5adf240c611e011936cfb50a5876",
+      "byte_length": 3451415,
+      "record_count": 320,
+      "ordered_point_count": 5164,
+      "seed_sequence_point_order_sha256": "8f9662ce3364ed38d2572bec081f78a1d18a8243d69bd6114bb6fa50a32fe940",
+      "exact_xyz_bits_sha256": "7da4a5d8931c46d71ea988aced5bd78e33b89745cb8ca578888f413dff675d6c"
+    },
+    {
+      "invocation_id": "cc80803d12c446b4b3aaf5855d1a2f85",
+      "process_id": 29220,
+      "started_at_utc": "2026-10-08T14:40:06.055297+00:00",
+      "completed_at_utc": "2026-10-08T14:40:06.532408+00:00",
+      "output_directory": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN\\artifacts\\luna49-runtime-reproducibility-20261008\\current-runs\\materialization-b",
+      "generator_revision": "a79494cd66be28fd291ed11eddd62d342f457cfd",
+      "materializer_source_sha256": "405f6e3151f38bd25cac448d7d6fd3beb101e7fbf871ee00d90252212f25d19b",
+      "generation_execution_revision": "a79494cd66be28fd291ed11eddd62d342f457cfd",
+      "environment_identity": "dea226a4b30e42ef56d3d107182c394de7b9d9e5c5173c81422713cdfe9cae8a",
+      "fixture_file_sha256": "60f551e06072b3fb7e814affa97f4a01e079c426d6044d3e710ad9a219ed907e",
+      "semantic_fixture_digest": "2822c60d20569d82a220ef0de80813575f0b5adf240c611e011936cfb50a5876",
+      "byte_length": 3451415,
+      "record_count": 320,
+      "ordered_point_count": 5164,
+      "seed_sequence_point_order_sha256": "8f9662ce3364ed38d2572bec081f78a1d18a8243d69bd6114bb6fa50a32fe940",
+      "exact_xyz_bits_sha256": "7da4a5d8931c46d71ea988aced5bd78e33b89745cb8ca578888f413dff675d6c"
+    }
+  ],
+  "current_independent_materialization_comparison": {
+    "independent_invocations": true,
+    "fixture_bytes_equal": true,
+    "fixture_sha256_equal": true,
+    "semantic_digest_equal": true,
+    "exact_xyz_bits_equal": true,
+    "ordering_equal": true
+  },
+  "current_fixture_sha256": "60f551e06072b3fb7e814affa97f4a01e079c426d6044d3e710ad9a219ed907e",
+  "current_semantic_digest": "2822c60d20569d82a220ef0de80813575f0b5adf240c611e011936cfb50a5876",
+  "canonical_comparison": {
+    "point_count": 5164,
+    "sequence_count": 320,
+    "sequence_order_equal": true,
+    "point_identity_and_batch_ordinals_equal": true,
+    "coordinate_and_audit_values_equal": false,
+    "timestamps_bit_identical": true,
+    "minimum_positive_historical_timestamp_gap": 12.926386673536356,
+    "first_coordinate_divergence": {
+      "seed": 0,
+      "sequence_index": 0,
+      "stream_id": "c00-000",
+      "point_index": 3,
+      "field": "x",
+      "historical": 0.16917642496961385,
+      "current": 0.16917642496961388,
+      "historical_hex": "0x1.5a792b63fd50dp-3",
+      "current_hex": "0x1.5a792b63fd50ep-3",
+      "historical_bits_be": "3fc5a792b63fd50d",
+      "current_bits_be": "3fc5a792b63fd50e",
+      "absolute_difference": 2.7755575615628914e-17,
+      "relative_difference": 1.6406290427649215e-16,
+      "ulp_distance": 1
+    },
+    "fields": {
+      "x": {
+        "differing_points": 219,
+        "maximum_absolute_difference": 4.440892098500626e-16,
+        "maximum_relative_difference": 2.6518379923250872e-14,
+        "maximum_ulp_distance": 128,
+        "ulp_histogram": {
+          "1": 130,
+          "8": 8,
+          "4": 21,
+          "2": 46,
+          "32": 4,
+          "16": 4,
+          "128": 3,
+          "3": 1,
+          "64": 2
+        },
+        "first_difference": {
+          "seed": 0,
+          "sequence_index": 0,
+          "stream_id": "c00-000",
+          "point_index": 3,
+          "field": "x",
+          "historical": 0.16917642496961385,
+          "current": 0.16917642496961388,
+          "historical_hex": "0x1.5a792b63fd50dp-3",
+          "current_hex": "0x1.5a792b63fd50ep-3",
+          "historical_bits_be": "3fc5a792b63fd50d",
+          "current_bits_be": "3fc5a792b63fd50e",
+          "absolute_difference": 2.7755575615628914e-17,
+          "relative_difference": 1.6406290427649215e-16,
+          "ulp_distance": 1
+        }
+      },
+      "y": {
+        "differing_points": 195,
+        "maximum_absolute_difference": 2.220446049250313e-16,
+        "maximum_relative_difference": 1.0473095021541251e-14,
+        "maximum_ulp_distance": 64,
+        "ulp_histogram": {
+          "1": 128,
+          "4": 21,
+          "2": 32,
+          "8": 7,
+          "16": 5,
+          "64": 1,
+          "32": 1
+        },
+        "first_difference": {
+          "seed": 0,
+          "sequence_index": 0,
+          "stream_id": "c00-000",
+          "point_index": 3,
+          "field": "y",
+          "historical": -0.33382994490947676,
+          "current": -0.3338299449094767,
+          "historical_hex": "-0x1.55d7845f3f2a3p-2",
+          "current_hex": "-0x1.55d7845f3f2a2p-2",
+          "historical_bits_be": "bfd55d7845f3f2a3",
+          "current_bits_be": "bfd55d7845f3f2a2",
+          "absolute_difference": 5.551115123125783e-17,
+          "relative_difference": 1.6628571546003924e-16,
+          "ulp_distance": 1
+        }
+      },
+      "t": {
+        "differing_points": 0,
+        "maximum_absolute_difference": 0.0,
+        "maximum_relative_difference": 0.0,
+        "maximum_ulp_distance": 0,
+        "ulp_histogram": {},
+        "first_difference": null
+      },
+      "audit_x_plus_y": {
+        "differing_points": 231,
+        "maximum_absolute_difference": 4.440892098500626e-16,
+        "maximum_relative_difference": 5.0834011104982247e-14,
+        "maximum_ulp_distance": 256,
+        "ulp_histogram": {
+          "3": 5,
+          "2": 69,
+          "1": 111,
+          "4": 20,
+          "12": 1,
+          "8": 14,
+          "160": 1,
+          "6": 2,
+          "16": 3,
+          "24": 1,
+          "64": 1,
+          "256": 1,
+          "128": 1,
+          "32": 1
+        },
+        "first_difference": {
+          "seed": 0,
+          "sequence_index": 0,
+          "stream_id": "c00-000",
+          "point_index": 3,
+          "field": "audit_x_plus_y",
+          "historical": -0.1646535199398629,
+          "current": -0.16465351993986282,
+          "historical_hex": "-0x1.5135dd5a81039p-3",
+          "current_hex": "-0x1.5135dd5a81036p-3",
+          "historical_bits_be": "bfc5135dd5a81039",
+          "current_bits_be": "bfc5135dd5a81036",
+          "absolute_difference": 8.326672684688674e-17,
+          "relative_difference": 5.0570875665032e-16,
+          "ulp_distance": 3
+        }
+      }
+    },
+    "historical_intermediate_values": "Not retained. The canonical fixture contains final x/y/t and derived x+y only; historical trig, rotation, and Gaussian-noise operands/results cannot be recovered uniquely from those final coordinates."
+  },
+  "first_coordinate_operation_trace": {
+    "stream_id": "c00-000",
+    "output_point_index": 3,
+    "generator_point_index": 3,
+    "label": "spiral-right-outward",
+    "traversal": "outward",
+    "nuisance_parameters": {
+      "rotation": 1.3013446012222407,
+      "scale": 0.8995723233588142,
+      "offset_x": 0.31485454609026764,
+      "offset_y": -0.16015744708884028,
+      "angular_speed": 2.084744207994682,
+      "radial_growth": 0.8907372591015146,
+      "coordinate_noise": 0.01877434118039624,
+      "radial_jitter": 0.004542659359835462
+    },
+    "current_intermediates": {
+      "source_point_index": 3,
+      "fraction": 0.2727272727272727,
+      "raw_spiral_angle": 3.572409320972708,
+      "radius": 0.23941996807196836,
+      "sin_angle": -0.41761298601157304,
+      "cos_angle": -0.9086250018101514,
+      "unrotated_coordinate": {
+        "x": -0.19569563398423828,
+        "y": 0.08994363779862322
+      },
+      "rotation_constant": 1.3013446012222407,
+      "sin_rotation": 0.9639169935271708,
+      "cos_rotation": 0.2662029856886286,
+      "rotated_before_noise": {
+        "x": -0.13879296298657895,
+        "y": -0.1646910822307905
+      },
+      "noise_source_and_value": {
+        "generator": "random.Random.gauss(0.0, coordinate_noise)",
+        "x": -0.006885158134074812,
+        "y": -0.008981415589845956
+      },
+      "coordinate_before_offset": {
+        "x": -0.14567812112065376,
+        "y": -0.17367249782063643
+      },
+      "offset": {
+        "x": 0.31485454609026764,
+        "y": -0.16015744708884028
+      },
+      "current_final": {
+        "x": 0.16917642496961388,
+        "y": -0.3338299449094767
+      },
+      "operations": [
+        {
+          "operation": "math.cos(rotation)",
+          "operands": [
+            1.3013446012222407
+          ],
+          "result": 0.2662029856886286
+        },
+        {
+          "operation": "math.sin(rotation)",
+          "operands": [
+            1.3013446012222407
+          ],
+          "result": 0.9639169935271708
+        },
+        {
+          "operation": "radial_growth * fraction",
+          "operands": [
+            0.8907372591015146,
+            0.2727272727272727
+          ],
+          "result": 0.24292834339132213
+        },
+        {
+          "operation": "radial_base + radial_jitter",
+          "operands": [
+            0.24292834339132213,
+            -0.0035083753193537854
+          ],
+          "result": 0.23941996807196836
+        },
+        {
+          "operation": "angular_speed * fraction",
+          "operands": [
+            2.084744207994682,
+            0.2727272727272727
+          ],
+          "result": 0.5685666021803678
+        },
+        {
+          "operation": "angle_rate * 2.0",
+          "operands": [
+            0.5685666021803678,
+            2.0
+          ],
+          "result": 1.1371332043607356
+        },
+        {
+          "operation": "angle_turns * pi",
+          "operands": [
+            1.1371332043607356,
+            3.141592653589793
+          ],
+          "result": 3.572409320972708
+        },
+        {
+          "operation": "math.cos(theta)",
+          "operands": [
+            3.572409320972708
+          ],
+          "result": -0.9086250018101514
+        },
+        {
+          "operation": "math.sin(theta)",
+          "operands": [
+            3.572409320972708
+          ],
+          "result": -0.41761298601157304
+        },
+        {
+          "operation": "scale * radius",
+          "operands": [
+            0.8995723233588142,
+            0.23941996807196836
+          ],
+          "result": 0.2153755769369937
+        },
+        {
+          "operation": "scaled_radius * cos(theta)",
+          "operands": [
+            0.2153755769369937,
+            -0.9086250018101514
+          ],
+          "result": -0.19569563398423828
+        },
+        {
+          "operation": "handedness * scale",
+          "operands": [
+            -1,
+            0.8995723233588142
+          ],
+          "result": -0.8995723233588142
+        },
+        {
+          "operation": "handed_scaled_radius * radius",
+          "operands": [
+            -0.8995723233588142,
+            0.23941996807196836
+          ],
+          "result": -0.2153755769369937
+        },
+        {
+          "operation": "handed_scaled_radius * sin(theta)",
+          "operands": [
+            -0.2153755769369937,
+            -0.41761298601157304
+          ],
+          "result": 0.08994363779862322
+        },
+        {
+          "operation": "cos(rotation) * local_x",
+          "operands": [
+            0.2662029856886286,
+            -0.19569563398423828
+          ],
+          "result": -0.05209476205283328
+        },
+        {
+          "operation": "sin(rotation) * local_y",
+          "operands": [
+            0.9639169935271708,
+            0.08994363779862322
+          ],
+          "result": 0.08669820093374568
+        },
+        {
+          "operation": "rotated_x_cos_term - rotated_x_sin_term",
+          "operands": [
+            -0.05209476205283328,
+            0.08669820093374568
+          ],
+          "result": -0.13879296298657895
+        },
+        {
+          "operation": "sin(rotation) * local_x",
+          "operands": [
+            0.9639169935271708,
+            -0.19569563398423828
+          ],
+          "result": -0.1886343471564806
+        },
+        {
+          "operation": "cos(rotation) * local_y",
+          "operands": [
+            0.2662029856886286,
+            0.08994363779862322
+          ],
+          "result": 0.02394326492569009
+        },
+        {
+          "operation": "rotated_y_sin_term + rotated_y_cos_term",
+          "operands": [
+            -0.1886343471564806,
+            0.02394326492569009
+          ],
+          "result": -0.1646910822307905
+        },
+        {
+          "operation": "rotated_x + gaussian_noise_x",
+          "operands": [
+            -0.13879296298657895,
+            -0.006885158134074812
+          ],
+          "result": -0.14567812112065376
+        },
+        {
+          "operation": "rotated_y + gaussian_noise_y",
+          "operands": [
+            -0.1646910822307905,
+            -0.008981415589845956
+          ],
+          "result": -0.17367249782063643
+        },
+        {
+          "operation": "offset_x + coordinate_x_before_offset",
+          "operands": [
+            0.31485454609026764,
+            -0.14567812112065376
+          ],
+          "result": 0.16917642496961388
+        },
+        {
+          "operation": "offset_y + coordinate_y_before_offset",
+          "operands": [
+            -0.16015744708884028,
+            -0.17367249782063643
+          ],
+          "result": -0.3338299449094767
+        }
+      ]
+    },
+    "historical_final": {
+      "x": 0.16917642496961385,
+      "y": -0.33382994490947676
+    },
+    "current_final": {
+      "x": 0.16917642496961388,
+      "y": -0.3338299449094767
+    },
+    "historical_vs_current": {
+      "x": {
+        "historical": 0.16917642496961385,
+        "current": 0.16917642496961388,
+        "historical_hex": "0x1.5a792b63fd50dp-3",
+        "current_hex": "0x1.5a792b63fd50ep-3",
+        "historical_bits_be": "3fc5a792b63fd50d",
+        "current_bits_be": "3fc5a792b63fd50e",
+        "absolute_difference": 2.7755575615628914e-17,
+        "relative_difference": 1.6406290427649215e-16,
+        "ulp_distance": 1
+      },
+      "y": {
+        "historical": -0.33382994490947676,
+        "current": -0.3338299449094767,
+        "historical_hex": "-0x1.55d7845f3f2a3p-2",
+        "current_hex": "-0x1.55d7845f3f2a2p-2",
+        "historical_bits_be": "bfd55d7845f3f2a3",
+        "current_bits_be": "bfd55d7845f3f2a2",
+        "absolute_difference": 5.551115123125783e-17,
+        "relative_difference": 1.6628571546003924e-16,
+        "ulp_distance": 1
+      },
+      "x_plus_y": {
+        "historical": -0.1646535199398629,
+        "current": -0.16465351993986282,
+        "historical_hex": "-0x1.5135dd5a81039p-3",
+        "current_hex": "-0x1.5135dd5a81036p-3",
+        "historical_bits_be": "bfc5135dd5a81039",
+        "current_bits_be": "bfc5135dd5a81036",
+        "absolute_difference": 8.326672684688674e-17,
+        "relative_difference": 5.0570875665032e-16,
+        "ulp_distance": 3
+      }
+    },
+    "historical_intermediates": "NOT RETAINED; cannot be uniquely reconstructed from final coordinates",
+    "serialization": {
+      "format": "decimal repr plus Python float.hex; canonical identity uses packed big-endian binary64",
+      "historical_x_hex": "0x1.5a792b63fd50dp-3",
+      "current_x_hex": "0x1.5a792b63fd50ep-3",
+      "historical_y_hex": "-0x1.55d7845f3f2a3p-2",
+      "current_y_hex": "-0x1.55d7845f3f2a2p-2"
+    }
+  },
+  "historical_runtime_reproduction": "NOT ESTABLISHED: Python 3.12.3/Linux/glibc 2.39 unavailable here",
+  "downstream_decisions": {
+    "point_order_timestamps_batch_ordinals": "EXACTLY IDENTICAL",
+    "canonical_fixture_identity_gate": "DISCRETE RESULT CHANGED",
+    "canonical_fixture_identity_gate_note": "Expected provenance distinction: fresh Windows file/semantic hashes do not equal the historical canonical identity; fresh values must not be substituted for the fixture.",
+    "neuron_threshold_crossings_routes_and_Luna46_categories": "NOT TESTED / OUT OF SCOPE",
+    "reason": "The retained downstream artifacts contain decisions from the historical fixture, but no equivalent fresh-runtime decision outputs. Recomputing them would execute an excluded Luna-44/Luna-46/Luna-47 scientific path.",
+    "threshold_margin": "UNKNOWN: no downstream threshold values were re-evaluated under this contract boundary",
+    "timestamp_order_boundary_margin": {
+      "minimum_positive_historical_intra_sequence_gap": 12.926386673536356,
+      "timestamp_variation": 0.0,
+      "assessment": "EXACTLY IDENTICAL; no timestamp delta approaches the positive-order boundary"
+    }
+  },
+  "retained_gate_drift": {
+    "luna46_catalog": {
+      "classification": "CHECKOUT-MATERIALIZATION INVARIANT; retained Git object valid",
+      "expected_git_blob_sha256": "a47046da6916db49f373613d654d2cf59671737b5c6b8584b222fb67fe068e8e",
+      "windows_working_bytes_sha256": "5c41184dc9b9b5872263bcbbc1e5fc406789101c27942480b9cfb6b33c87da80",
+      "lf_normalization_matches_git_blob": true
+    },
+    "luna47f": {
+      "classification": "EXPECTED RETAINED-SNAPSHOT DRIFT; later governance rebaseline required",
+      "replay_failure": "retained input drift",
+      "retained_protected_entries": 995,
+      "current_protected_entries": 999,
+      "differing_protected_entries": 54,
+      "causes_observed": [
+        "reviewed Luna-48 generator/verifier and governance source changes",
+        "subsequent governance additions",
+        "Git-LF-to-CRLF checkout materialization for retained JSON evidence"
+      ],
+      "retained_scientific_artifacts_modified": false
+    }
+  },
+  "runtime_matrix_limitations": [
+    "Python 3.10/Windows, Python 3.12/Windows, and Linux runtimes were unavailable.",
+    "The current CPython 3.11.4 Windows build uses MSC v.1934; platform.libc_ver() is empty.",
+    "The historical provenance records glibc 2.39 and GCC 13.3.0 but no exact libm binary identity."
+  ],
+  "canonical_artifacts_unchanged": true
+}

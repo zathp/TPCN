@@ -1,5 +1,35 @@
 # Architecture Changelog
 
+## Luna-49 runtime reproducibility execution — 2026-10-08
+
+**PASS WITH FOLLOW-UP; diagnostic/provenance work only.** From clean baseline
+`7739ad7af868e2b2f5ebcf9685c25978022a25af`, two independent CPython 3.11.4
+Windows materializations produced equal fixture bytes, binary64 values,
+ordering, and semantic digests. The fresh fixture SHA is
+`60f551e06072b3fb7e814affa97f4a01e079c426d6044d3e710ad9a219ed907e`; the
+historical Luna-44 fixture and provenance remain byte-identical. Across 5,164
+points, 219 `x`, 195 `y`, and 231 audit sums differ; timestamps do not. Maximum
+ULP distances are 128, 64, and 256 respectively.
+
+The first observable difference remains `c00-000` point 3 `x`, one ULP. The
+current trace records angle, radius, trig, rotation, Gaussian-noise, arithmetic
+operands, and final bits. Historical primitive outputs were never retained.
+CPython Gaussian noise also uses sine/cosine, so platform/libm remains a
+supported candidate but is not proven over all numerical/runtime causes.
+Fresh-runtime neural threshold/category sensitivity is **NOT TESTED / UNKNOWN**;
+no scientific replay was run. The fixture remains **VALID AND
+ENVIRONMENT-PINNED**, and exact reproduction of the historical Linux runtime
+was not established in this Windows environment.
+
+The Luna-44 exact cross-environment comparisons remain failures by design;
+the two same-environment current materializations pass. The Luna-46 retained
+catalog’s Git blob hash is valid but its Windows CRLF checkout fails a raw-byte
+hash gate. The Luna-47F retained input/protected snapshot predates reviewed
+source and governance changes and also reflects CRLF materialization; its
+evidence was not repaired or rebaselined. Full-suite result is **1,645 passed,
+4 failed, 1 skipped**. No A01-A15, ACP, production, architecture, fixture, or
+retained scientific evidence change occurred. See the [execution handoff](handoffs/luna-49-runtime-reproducibility-20261008.md).
+
 ## Luna-0 independent post-Luna-48 review — Luna-49 runtime follow-up authorized — 2026-10-07
 
 **LUNA-48 PASS WITH FOLLOW-UP — RUNTIME REPRODUCIBILITY.** The Luna-48

@@ -1,0 +1,18 @@
+{
+  "invocation_id": "0c2a83d6b5084cee8b6431413de32539",
+  "process_id": 28472,
+  "started_at_utc": "2026-10-08T14:40:05.161604+00:00",
+  "completed_at_utc": "2026-10-08T14:40:05.925266+00:00",
+  "output_directory": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN\\artifacts\\luna49-runtime-reproducibility-20261008\\current-runs\\materialization-a",
+  "generator_revision": "a79494cd66be28fd291ed11eddd62d342f457cfd",
+  "materializer_source_sha256": "405f6e3151f38bd25cac448d7d6fd3beb101e7fbf871ee00d90252212f25d19b",
+  "generation_execution_revision": "a79494cd66be28fd291ed11eddd62d342f457cfd",
+  "environment_identity": "dea226a4b30e42ef56d3d107182c394de7b9d9e5c5173c81422713cdfe9cae8a",
+  "fixture_file_sha256": "60f551e06072b3fb7e814affa97f4a01e079c426d6044d3e710ad9a219ed907e",
+  "semantic_fixture_digest": "2822c60d20569d82a220ef0de80813575f0b5adf240c611e011936cfb50a5876",
+  "byte_length": 3451415,
+  "record_count": 320,
+  "ordered_point_count": 5164,
+  "seed_sequence_point_order_sha256": "8f9662ce3364ed38d2572bec081f78a1d18a8243d69bd6114bb6fa50a32fe940",
+  "exact_xyz_bits_sha256": "7da4a5d8931c46d71ea988aced5bd78e33b89745cb8ca578888f413dff675d6c"
+}
