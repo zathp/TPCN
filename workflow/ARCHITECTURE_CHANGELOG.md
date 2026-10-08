@@ -1,8 +1,30 @@
 # Architecture Changelog
 
+## Luna-53 scientific selection — one mechanism experiment authorized — 2026-10-08
+
+**AUTHORIZED / NOT EXECUTED.** Luna-0 selected one bounded causal question:
+whether lowering only ACP-0008 destination `decay_rate_z` from the retained
+historical value `0.0125` to the predeclared Luna-47A value `0.00125`
+(`tau_z=800`) yields an actual E2 integration discharge and canonical
+emission selectively in Luna-46's 33 temporal-retention-limited streams,
+while the 75 drive-limited and 212 no-reception streams remain non-crossing.
+The control, intervention, local measurements, negative controls, falsifiers,
+provenance gates and limits are specified in the
+[Luna-53 contract](../.github/agents/luna-53.agent.md) and
+[Luna-0 selection handoff](handoffs/luna-0-scientific-successor-selection-luna53-20261008.md).
+
+The basis is Luna-46 **MIXED** and Luna-47A's **PARTIALLY SUPPORTED**
+isolated scalar result (19/33 at tau800; 75/75 drive negatives remain
+non-crossing). Luna-53 moves that one variable into the existing bounded E2
+discharge/emission path using only authenticated retained destination
+arrivals. It does not rerun upstream routes, route outputs onward, change any
+other parameter, or measure task efficacy. **No A01-A15 clause or ACP changes;
+ACP-0008 remains experimental, opt-in and disabled by default.** No
+production promotion or post-Luna-53 successor is authorized.
+
 ## Luna-52 clean-checkout test correction — 2026-10-08
 
-**CLEAN-COMMIT VALIDATION PASS; DOCUMENTATION FOLLOW-UP PENDING.** The
+**CLEAN-COMMIT VALIDATION PASS; DOCUMENTATION FOLLOW-UP PASS.** The
 independent review found a public CLI test-bootstrap defect, not a verifier
 protection defect: `_cli_repository()` unconditionally attempted to commit an
 already-committed identical verifier. The helper now compares staged source
@@ -17,11 +39,12 @@ diagnostic/retained **75 passed**; Luna-44/Luna-46 **196 passed, 1 existing
 Windows symlink-privilege skip**; Luna-51/materialization **8 passed**;
 historical/core **377 passed**; full suite **1,698 passed, 1 skipped, zero
 failed/errors**. Luna-0's independent review confirmed the verifier/test
-correction and protected hashes, but blocked closure because this changelog
-and the workflow page still reported clean-commit validation as pending.
-Protected hashes and the
+correction and protected hashes. It initially blocked closure due stale
+documentation; the documentation-only follow-up review returned **PASS** at
+`ef257f5030fba5814c0f8a2c729a4f740e90f576`. Protected hashes and the
 historical/current source pins remain unchanged. No A01-A15, ACP, scientific
-result, or architecture claim changed; no scientific successor is authorized.
+result, or architecture claim changed by the Luna-52 correction itself.
+Luna-53 authorization is recorded separately above.
 See the [Luna-52 execution handoff](handoffs/luna-52-retained-provenance-verification-20261008.md),
 [Luna-0 review](handoffs/luna-0-independent-review-luna52-20261008.md),
 and [Luna-52 contract](../.github/agents/luna-52.agent.md).

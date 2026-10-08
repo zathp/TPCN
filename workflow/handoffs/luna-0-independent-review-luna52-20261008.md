@@ -5,10 +5,12 @@ tpcn_handoff:
   descriptive_name: "Independent post-execution review of Luna-52"
   task_id: "luna-0-independent-review-luna52-20261008"
   component: "Luna-47B historical provenance and Luna-47F public verification"
-  status: "complete - LUNA-52 CORRECTION REQUIRED; no scientific successor assessed"
+  status: "complete - initial correction required; documentation follow-up PASS"
   contract_version: "1.2"
   branch: "main"
   reviewed_revision: "a700024cb44e1c24df1d1284b96a9e75aeb1e261"
+  follow_up_reviewed_revision: "ef257f5030fba5814c0f8a2c729a4f740e90f576"
+  follow_up_disposition: "PASS — documentation-only correction; no scientific review"
   result_revision: "publication commit containing this handoff"
   dependencies:
     - "Luna-52 contract .github/agents/luna-52.agent.md"
@@ -275,3 +277,21 @@ Then run all public cases and the full suite on the exact clean published
 revision, reconfirm all seven hashes, and return for independent Luna-0 review.
 Do not create a scientific successor contract or resume scientific work
 before that review passes.
+
+## Luna-52 documentation-only follow-up review — 2026-10-08
+
+**PASS.** The follow-up review examined published commit
+`ef257f5030fba5814c0f8a2c729a4f740e90f576`, parent
+`0d49c780ee1f4fd63089b1ee9ae17f156c80c668`. It confirmed that only
+`workflow/ARCHITECTURE_CHANGELOG.md`,
+`workflow/docs/luna/LUNA_WORKFLOW.md`, and the Luna-52 execution handoff
+changed; the clean-commit test results and initial BLOCK were accurately
+reported; follow-up review remained pending at that point; no scientific
+successor was claimed; and no evidence artifacts changed. `git diff --check`
+passed and the worktree was clean. No scientific tests were rerun because the
+change was documentation-only.
+
+This PASS closes the Luna-52 review gate. The original BLOCK above is
+preserved as the disposition of the first review; it is not the final
+follow-up status. A later, separately authorized scientific selection is
+recorded in `luna-0-scientific-successor-selection-luna53-20261008.md`.

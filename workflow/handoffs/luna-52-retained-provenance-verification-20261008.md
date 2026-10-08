@@ -5,7 +5,7 @@ tpcn_handoff:
   descriptive_name: "Historical source compatibility and public check adversarial coverage"
   task_id: "luna-52-retained-provenance-verification-20261008"
   component: "Luna-47B historical analyzer provenance and Luna-47F public verification"
-  status: "complete — clean-checkout validation PASS; Luna-0 documentation follow-up pending"
+  status: "complete — clean-checkout validation PASS; Luna-0 documentation follow-up PASS"
   contract_version: "1.1"
   branch: "main"
   base_revision: "e6bd96a13eb2d5bb19fce8ef6c4b3aa3ec8f8c2e"
@@ -20,7 +20,7 @@ tpcn_handoff:
   classification:
     - "correction-only provenance and test coverage"
     - "no scientific replay or architecture change"
-    - "PASS pending independent documentation follow-up review"
+    - "PASS — independent documentation follow-up review completed"
   hypothesis: "Historical analyzer provenance and current reviewed source identity can be verified separately while retaining exact historical reconstruction and public mutation rejection."
   counter_hypothesis: "Separating historical/current source identities or invoking public CLI checks may weaken retained evidence protection or change scientific outputs."
   interfaces_relied_on:
@@ -121,16 +121,16 @@ tpcn_handoff:
     - "The historical analyzer Git blob at the pinned authorization/execution revisions is the authoritative Luna-47B verifier implementation; repository Git object integrity is trusted."
     - "The single Windows directory-symlink skip remains a host privilege limitation, not a Luna-52 failure."
   unresolved:
-    - "Luna-0 follow-up review of the documentation correction remains required before closure."
+    - "None for the Luna-52 correction; scientific mechanism and efficacy questions are separate."
   recommended_next_agent:
-    - "Independent Luna-0 follow-up review of the documentation-only correction; no Luna-53 or scientific successor."
+    - "Project owner through Luna-0 for a separately bounded scientific question; no automatic scientific conclusion."
 ---
 
 # Luna-52 retained provenance verification execution
 
 ## Clean-checkout corrective pass — 2026-10-08
 
-**CORRECTIVE PASS COMPLETE — CLEAN-COMMIT VALIDATION PASS; LUNA-0 DOCUMENTATION FOLLOW-UP PENDING.**
+**CORRECTIVE PASS COMPLETE — CLEAN-COMMIT VALIDATION PASS; LUNA-0 DOCUMENTATION FOLLOW-UP PASS.**
 The clean-checkout failure reported by Luna-0 was reproduced: all ten public
 CLI tests stopped because `_cli_repository()` tried to commit verifier bytes
 already present at `HEAD`. The bootstrap now compares staged verifier content
@@ -161,13 +161,14 @@ the public `python experiments/luna47f/diagnostic.py --check` (**PASS**).
 All seven protected artifact hashes matched their pinned values after the
 commit; `HEAD` matched `origin/main` and the worktree was clean.
 
-Independent Luna-0 review of that commit confirmed the test routes,
-production verifier boundary, and protected artifact status, but returned
-BLOCK because the workflow page and changelog still said clean-commit
-validation was pending. This documentation-only follow-up records the
-completed validation and exact review disposition. An independent Luna-0
-follow-up review of the corrected documentation remains required before
-closure.
+The first independent Luna-0 review confirmed the test routes, production
+verifier boundary, and protected artifact status, but returned BLOCK because
+the workflow page and changelog still said clean-commit validation was
+pending. Luna-0 then reviewed the documentation-only correction at published
+commit `ef257f5030fba5814c0f8a2c729a4f740e90f576` and returned **PASS**:
+validation and review status are aligned, the handoff records the earlier
+BLOCK and its correction, no scientific-successor authorization was claimed,
+and no artifacts changed. That follow-up closes the Luna-52 review gate.
 
 ## Outcome
 

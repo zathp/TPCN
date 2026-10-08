@@ -1,8 +1,35 @@
 # TPCN Luna Multi-Agent Workflow — Event-Driven Architecture
 
-## Luna-52 clean-checkout correction — clean commit validated; review follow-up pending — 2026-10-08
+## Luna-53 scientific successor selection — AUTHORIZED / NOT EXECUTED — 2026-10-08
 
-**CORRECTION COMPLETE — CLEAN-COMMIT VALIDATION PASS; LUNA-0 DOCUMENTATION FOLLOW-UP PENDING.**
+**LUNA-53 IS AUTHORIZED FOR ONE ISOLATED ACP-0008 DESTINATION-RETENTION
+MECHANISM EXPERIMENT. IT HAS NOT BEEN EXECUTED.**
+
+The clean Luna-52 correction passed **1,698 tests with 1 governed Windows
+symlink-privilege skip** at `0d49c780ee1f4fd63089b1ee9ae17f156c80c668`.
+Luna-0's documentation-only follow-up review of `ef257f5030fba5814c0f8a2c729a4f740e90f576`
+returned **PASS**, closing the Luna-52 review gate.
+
+Selection preserves Luna-46 **MIXED**: 212 streams have no destination
+reception, 33 are temporal-retention-limited, and 75 are drive-limited. The
+predeclared Luna-47A tau=800 condition selectively crossed 19/33 retention
+streams while all 75 drive-limited streams remained below threshold, but this
+was an isolated scalar accumulator with no discharge/output. Luna-53 will
+test whether the same single retention change (`decay_rate_z` 0.0125 to
+0.00125) produces actual ACP-0008 E2 discharge/canonical emissions on the
+authenticated frozen destination arrivals, with the 75 drive-limited and
+212 no-reception streams as negative controls.
+
+Luna-53 may change no parameter other than destination `decay_rate_z`; it
+will not rerun upstream routes, route new emissions onward, tune, test task
+efficacy, or promote ACP-0008. See the [Luna-53 contract](../../../.github/agents/luna-53.agent.md)
+and [Luna-0 scientific selection handoff](../../handoffs/luna-0-scientific-successor-selection-luna53-20261008.md).
+The next flow is **Luna-53 execution -> independent Luna-0 review**. No later
+successor is authorized.
+
+## Luna-52 clean-checkout correction — complete; documentation follow-up PASS — 2026-10-08
+
+**CORRECTION COMPLETE — CLEAN-COMMIT VALIDATION PASS; LUNA-0 DOCUMENTATION FOLLOW-UP PASS.**
 The Luna-0 review found that all ten public CLI subprocess tests failed in
 clone setup when the verifier was already committed and identical. The
 bootstrap now conditionally commits only changed verifier content, preserves
@@ -18,10 +45,11 @@ Luna-51/materialization **8**, and historical/core **377**. The full suite
 ran from clean published commit `0d49c780ee1f4fd63089b1ee9ae17f156c80c668`:
 **1,698 passed, 1 skipped, zero failures/errors**. All seven protected
 artifact hashes remain unchanged. Luna-0 independently reviewed that commit
-and found no test or verifier defect, but blocked closure because this section
-and the changelog still described clean-commit validation as pending. That
-documentation inconsistency is being corrected; no scientific successor is
-authorized.
+and found no test or verifier defect, but initially blocked closure because
+this section and the changelog still described clean-commit validation as
+pending. Luna-0's follow-up review of the corrected documentation returned
+PASS; that review gate is closed. The separate Luna-53 authorization above
+is a new scientific-governance decision, not a Luna-52 outcome.
 
 See the [independent Luna-0 review](../../handoffs/luna-0-independent-review-luna52-20261008.md),
 [Luna-52 execution handoff](../../handoffs/luna-52-retained-provenance-verification-20261008.md),
