@@ -1,5 +1,28 @@
 # Architecture Changelog
 
+## Luna-0 governance review — Luna-50 limitation parked; Luna-51 authorized — 2026-10-08
+
+**CORRECTIVE PROVENANCE FOLLOW-UP AUTHORIZED; Luna-51 NOT EXECUTED.** The
+accepted Luna-50 block means the historical Linux environment was unavailable;
+it does not contradict the authenticated canonical Luna-44 fixture. Exact
+fresh historical regeneration remains unverified, exact cross-runtime bits are
+not claimed, and alternate-runtime scientific sensitivity remains unknown.
+The committed canonical fixture continues to support results that actually
+used it; fresh regeneration is conditionally blocked only for claims requiring
+that runtime identity.
+
+The four full-suite failures share provenance-boundary defects but require
+distinct acceptance checks: Luna-44 applies canonical exact equality to
+alternate runtimes; Luna-46 hashes a CRLF checkout instead of its valid pinned
+Git object; Luna-47F compares a historical whole-repository snapshot and
+materialization-specific input hashes against a later checkout. **Luna-51**
+may correct those tests/guards only, preserving canonical and retained
+scientific artifacts and requiring adversarial mutation tests plus a green
+full-suite gate. No A01-A15 clause, ACP, scientific result, or architecture
+decision changes. No scientific runtime-sensitivity experiment or Luna-52 is
+authorized. See the [Luna-0 handoff](handoffs/luna-0-independent-review-luna50-and-authorization-luna51-20261008.md)
+and [Luna-51 contract](../.github/agents/luna-51.agent.md).
+
 ## Luna-50 historical runtime reconstruction — 2026-10-08
 
 **BLOCKED — HISTORICAL RUNTIME UNAVAILABLE.** Luna-50 executed from its exact

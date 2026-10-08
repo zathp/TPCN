@@ -1,5 +1,31 @@
 # TPCN Luna Multi-Agent Workflow — Event-Driven Architecture
 
+## Luna-0 governance review — Luna-50 limitation parked; Luna-51 authorized — 2026-10-08
+
+**CORRECTIVE PROVENANCE FOLLOW-UP AUTHORIZED.** Luna-50's
+**BLOCKED — HISTORICAL RUNTIME UNAVAILABLE** outcome is a missing capability,
+not contradictory evidence. The canonical Luna-44 fixture remains the
+authenticated historical input; fresh exact Linux reproduction and exact
+cross-runtime binary64 identity are not claimed. Source provenance is closed,
+and retained records support within-environment determinism without replacing
+a fresh replay. Scientific sensitivity to alternate-runtime-generated inputs
+remains unknown.
+
+Luna-0 authorizes **Luna-51**, correction-only and **NOT EXECUTED**, to repair
+the four known regression failures without changing historic artifacts:
+Luna-44's unconditional alternate-runtime exact comparison, Luna-46's
+checkout-byte versus pinned Git-blob check, and Luna-47F's whole-repository
+retained snapshot/checkout-sensitive input inventory. Preserve exact artifact
+and same-runtime checks; require adversarial mutation tests and a green full
+suite. Luna-47F's consumed-input guard and live pre/post non-mutation check
+remain distinct requirements. No scientific replay, evidence rebaseline,
+architecture/ACP change, or Luna-52 is authorized. See the
+[Luna-0 governance handoff](../../handoffs/luna-0-independent-review-luna50-and-authorization-luna51-20261008.md)
+and [Luna-51 contract](../../../.github/agents/luna-51.agent.md).
+
+Next: **Luna-0 -> Luna-51 -> Luna-0**. This provenance decision does not select
+or authorize a next causal mechanism experiment.
+
 ## Luna-50 historical runtime reconstruction — 2026-10-08
 
 **BLOCKED — HISTORICAL RUNTIME UNAVAILABLE.** Execution began at exact Luna-50
