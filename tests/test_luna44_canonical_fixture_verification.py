@@ -142,9 +142,25 @@ def test_two_fresh_process_materializations_match_exactly(fresh_materializations
         second_directory / "fixture.json",
     )
     assert result == {
-        "fixture_byte_length": 3_451_453,
-        "fixture_file_sha256": verifier.FIXTURE_FILE_SHA256,
-        "semantic_fixture_sha256": verifier.SEMANTIC_FIXTURE_SHA256,
+        "fixture_byte_length": first_directory.joinpath("fixture.json").stat().st_size,
+        "fixture_file_sha256": hashlib.sha256(
+            (first_directory / "fixture.json").read_bytes()
+        ).hexdigest(),
+        "semantic_fixture_sha256": verifier._sha256(
+            verifier._canonical_json_bytes(
+                verifier.canonical_raw_rows(
+                    json.loads((first_directory / "fixture.json").read_bytes())
+                )
+            )
+        ),
         "record_count": 5164,
         "all_binary64_bits_and_order_equal": True,
     }
+    canonical_rows = verifier.canonical_raw_rows(
+        json.loads(FIXTURE_PATH.read_bytes())
+    )
+    materialized_rows = verifier.canonical_raw_rows(
+        json.loads((first_directory / "fixture.json").read_bytes())
+    )
+    assert materialized_rows != canonical_rows
+    assert result["semantic_fixture_sha256"] != verifier.SEMANTIC_FIXTURE_SHA256

@@ -480,6 +480,118 @@ def test_missing_inputs_and_catalog_tampering_fail_before_analysis(tmp_path):
         diagnostic.verify_integrity(tmp_path)
 
 
+def test_luna51_catalog_identity_is_pinned_to_the_expected_git_object():
+    canonical_bytes = diagnostic.git(
+        "show",
+        f"{diagnostic.CATALOG_REVISION}:{diagnostic.CATALOG_GIT_PATH}",
+    )
+    checkout = diagnostic.read_bytes(diagnostic.ROOT / diagnostic.CATALOG_PATH)
+
+    catalog, identity = diagnostic.verify_catalog_identity(
+        diagnostic.ROOT, checkout
+    )
+
+    assert catalog["file_count"] == 22
+    assert identity["git_revision"] == diagnostic.CATALOG_REVISION
+    assert identity["git_blob"] == diagnostic.CATALOG_GIT_BLOB
+    assert identity["file_sha256"] == diagnostic.CATALOG_HASH
+    assert identity["checkout_materialization"] == (
+        "exact-Git-LF-to-CRLF-checkout"
+    )
+    assert diagnostic.verify_catalog_checkout(
+        canonical_bytes, canonical_bytes
+    ) == "exact"
+    assert diagnostic.verify_catalog_checkout(
+        canonical_bytes.replace(b"\n", b"\r\n"), canonical_bytes
+    ) == "exact-Git-LF-to-CRLF-checkout"
+
+    with pytest.raises(diagnostic.Blocked, match="revision differs"):
+        diagnostic.verify_catalog_identity(
+            diagnostic.ROOT,
+            checkout,
+            revision="HEAD",
+        )
+    with pytest.raises(diagnostic.Blocked, match="Git object differs"):
+        diagnostic.verify_catalog_identity(
+            diagnostic.ROOT,
+            checkout,
+            expected_blob="0" * 40,
+        )
+
+
+@pytest.mark.parametrize(
+    "mutate",
+    [
+        lambda data: data.replace(b'"file_count":22', b'"file_count":23', 1),
+        lambda data: data + b" ",
+        lambda data: data[:-2] + b"\n",
+        lambda data: data.replace(b"\n", b"\r\n") + b"\n",
+        lambda data: data.rstrip(b"\n"),
+    ],
+    ids=[
+        "changed-content",
+        "added-whitespace",
+        "removed-content",
+        "extra-newline-at-eof",
+        "newline-at-eof",
+    ],
+)
+def test_luna51_catalog_checkout_rejects_every_nonexact_mutation(mutate):
+    canonical_bytes = diagnostic.git(
+        "show",
+        f"{diagnostic.CATALOG_REVISION}:{diagnostic.CATALOG_GIT_PATH}",
+    )
+
+    with pytest.raises(diagnostic.Blocked, match="beyond line endings"):
+        diagnostic.verify_catalog_checkout(mutate(canonical_bytes), canonical_bytes)
+
+
+def test_luna51_catalog_checkout_rejects_mixed_line_endings():
+    canonical_bytes = b'{\n  "key": 1\n}\n'
+    mixed = b'{\r\n  "key": 1\n}\r\n'
+
+    with pytest.raises(diagnostic.Blocked, match="beyond line endings"):
+        diagnostic.verify_catalog_checkout(mixed, canonical_bytes)
+
+
+def test_luna51_exact_intentional_crlf_object_is_not_rewritten():
+    canonical_bytes = b'{\r\n  "key": 1\r\n}\r\n'
+
+    assert diagnostic.verify_git_text_checkout(
+        canonical_bytes, canonical_bytes, "synthetic content differs"
+    ) == "exact"
+    with pytest.raises(diagnostic.Blocked, match="canonical LF text"):
+        diagnostic.verify_git_text_checkout(
+            canonical_bytes.replace(b"\r\n", b"\n"),
+            canonical_bytes,
+            "synthetic content differs",
+        )
+
+
+def test_luna51_catalog_entries_accept_only_their_exact_checkout_transform():
+    body = {"schema": "synthetic", "payload": "historical"}
+    value = {**body, "artifact_digest": diagnostic.digest(body)}
+    canonical_bytes = diagnostic.canonical(value) + b"\n"
+    identity = {
+        "byte_length": len(canonical_bytes),
+        "file_sha256": diagnostic.sha(canonical_bytes),
+    }
+
+    assert diagnostic.verify_artifact(
+        canonical_bytes.replace(b"\n", b"\r\n"),
+        identity,
+        {},
+        canonical_bytes=canonical_bytes,
+    ) == value
+    with pytest.raises(diagnostic.Blocked, match="artifact checkout bytes differ"):
+        diagnostic.verify_artifact(
+            canonical_bytes.replace(b"historical", b"substituted"),
+            identity,
+            {},
+            canonical_bytes=canonical_bytes,
+        )
+
+
 def test_real_retained_artifacts_integrity_only():
     # No sequence statistics, oracle, scientific summary or output writer invoked.
     result = diagnostic.verify_integrity()

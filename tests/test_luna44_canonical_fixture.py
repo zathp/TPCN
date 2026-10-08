@@ -8,6 +8,7 @@ from types import SimpleNamespace
 
 import pytest
 
+from scripts import verify_luna44_canonical_fixture as verifier
 from scripts.build_luna44_canonical_fixture import (
     _canonical_json_bytes,
     _compare_materializations,
@@ -189,7 +190,28 @@ def test_source_identity_rejects_non_line_ending_source_change(tmp_path):
         _source_identity(source_path, relative_path)
 
 
-def test_two_fresh_process_materializations_match_committed_fixture(tmp_path):
+def test_luna51_source_identity_accepts_only_exact_git_crlf_checkout(tmp_path):
+    relative_path = "run_luna34_excursion_v1_multi_emitter_bridge.py"
+    canonical_bytes = (
+        ROOT / relative_path
+    ).read_bytes().replace(b"\r\n", b"\n")
+    source_path = tmp_path / "generator.py"
+    source_path.write_bytes(canonical_bytes.replace(b"\n", b"\r\n"))
+
+    identity = _source_identity(source_path, relative_path)
+
+    assert identity["canonical_sha256"] == (
+        "17e581cf702fae1f56889472a967d2e8e5fec37cc041edba8247da14a0a8b5db"
+    )
+    mixed = canonical_bytes.replace(b"\n", b"\r\n", 1)
+    source_path.write_bytes(mixed)
+    with pytest.raises(
+        RuntimeError, match="materialized source differs from the pinned Git object"
+    ):
+        _source_identity(source_path, relative_path)
+
+
+def test_luna51_two_fresh_materializations_report_alternate_runtime_difference(tmp_path):
     fixture_bytes, provenance = materialize_independently(tmp_path / "runs")
     materialization_a, materialization_b = provenance["materializations"]
     assert materialization_a["invocation_id"] != materialization_b["invocation_id"]
@@ -197,7 +219,60 @@ def test_two_fresh_process_materializations_match_committed_fixture(tmp_path):
     assert materialization_a["output_directory"] != materialization_b["output_directory"]
     assert Path(materialization_a["output_directory"], "fixture.json").read_bytes() == fixture_bytes
     assert Path(materialization_b["output_directory"], "fixture.json").read_bytes() == fixture_bytes
-    assert fixture_bytes == FIXTURE_PATH.read_bytes()
+    comparison = verifier.compare_materialization_to_canonical(
+        fixture_bytes,
+        provenance["runtime"],
+        FIXTURE_PATH.read_bytes(),
+        PROVENANCE_PATH.read_bytes(),
+    )
+    assert comparison["classification"] == "ALTERNATE_RUNTIME_DIAGNOSTIC"
+    assert comparison["runtime_matches_canonical"] is False
+    assert comparison["fixture_bytes_equal"] is False
+    assert comparison["point_bits_and_order_equal"] is False
+    assert comparison["differing_point_count"] > 0
+    assert comparison["first_difference"] is not None
+
+
+def test_luna51_canonical_runtime_comparison_is_exact_and_never_tolerant():
+    canonical_bytes = FIXTURE_PATH.read_bytes()
+    canonical_runtime = json.loads(PROVENANCE_PATH.read_bytes())["runtime"]
+
+    result = verifier.compare_materialization_to_canonical(
+        canonical_bytes,
+        canonical_runtime,
+        canonical_bytes,
+        PROVENANCE_PATH.read_bytes(),
+    )
+
+    assert result["classification"] == "CANONICAL_RUNTIME_EXACT"
+    assert result["fixture_bytes_equal"] is True
+    assert result["point_bits_and_order_equal"] is True
+    assert result["differing_point_count"] == 0
+    for nonidentical in (canonical_bytes + b" ",):
+        with pytest.raises(
+            verifier.FixtureVerificationError,
+            match="canonical-runtime materialization differs",
+        ):
+            verifier.compare_materialization_to_canonical(
+                nonidentical,
+                canonical_runtime,
+                canonical_bytes,
+                PROVENANCE_PATH.read_bytes(),
+            )
+    changed_fixture = json.loads(canonical_bytes)
+    point = changed_fixture["sequences"][0]["points"][0]
+    changed_value = math.nextafter(float.fromhex(point["x"]["hex"]), math.inf)
+    point["x"] = {"decimal": repr(changed_value), "hex": changed_value.hex()}
+    with pytest.raises(
+        verifier.FixtureVerificationError,
+        match="canonical-runtime materialization differs",
+    ):
+        verifier.compare_materialization_to_canonical(
+            _fixture_json_bytes(changed_fixture),
+            canonical_runtime,
+            canonical_bytes,
+            PROVENANCE_PATH.read_bytes(),
+        )
 
 
 def test_materialization_comparison_rejects_duplicated_or_mismatching_records(

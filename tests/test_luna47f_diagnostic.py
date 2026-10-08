@@ -229,6 +229,139 @@ def test_scope(path, ok):
     assert d.owned(path) == ok
 
 
+def test_luna51_consumed_input_identity_is_historically_anchored_and_local():
+    pinned = b'{"value":1}\n'
+    record = {
+        "baseline_git_blob": "historical-blob",
+        "published_sha256": d.sha(pinned),
+        "published_bytes": len(pinned),
+    }
+    for path in d.CONSUMED_INPUTS:
+        assert d.verify_consumed_input(
+            path, pinned, pinned, record, "historical-blob"
+        )["checkout_materialization"] == "exact"
+        assert d.verify_consumed_input(
+            path,
+            pinned.replace(b"\n", b"\r\n"),
+            pinned,
+            record,
+            "historical-blob",
+        )["checkout_materialization"] == "exact-Git-LF-to-CRLF-checkout"
+        with pytest.raises(ValueError, match="beyond Git newline"):
+            d.verify_consumed_input(
+                path, pinned + b" ", pinned, record, "historical-blob"
+            )
+        with pytest.raises(ValueError, match="beyond Git newline"):
+            d.verify_consumed_input(
+                path,
+                b'{"value":2}\n',
+                pinned,
+                record,
+                "historical-blob",
+            )
+    with pytest.raises(ValueError, match="revision differs"):
+        d.verify_consumed_input(
+            d.CONSUMED_INPUTS[0],
+            pinned,
+            pinned,
+            record,
+            "historical-blob",
+            revision="HEAD",
+        )
+    with pytest.raises(ValueError, match="Git object identity differs"):
+        d.verify_consumed_input(
+            d.CONSUMED_INPUTS[0], pinned, pinned, record, "wrong-blob"
+        )
+    with pytest.raises(ValueError, match="outside the Luna47F consumed set"):
+        d.verify_consumed_input(
+            "workflow/unrelated.md", pinned, pinned, record, "historical-blob"
+        )
+
+
+def test_luna51_historical_inventory_rejects_wrong_revision_and_input_set():
+    retained = {
+        "evidence_baseline": d.BASE,
+        "source_inventory": {path: {} for path in d.CONSUMED_INPUTS},
+    }
+    with pytest.raises(ValueError, match="baseline revision differs"):
+        d.verify_historical_inputs(Path.cwd(), retained, revision="HEAD")
+    retained["source_inventory"]["workflow/new-file.md"] = {}
+    with pytest.raises(ValueError, match="consumed-input inventory differs"):
+        d.verify_historical_inputs(Path.cwd(), retained)
+
+
+def test_luna51_protocol_and_execution_code_keep_their_historical_git_identities():
+    retained = d.verify_retained_files(d.ROOT)
+    protocol = d.verify_historical_source(
+        d.ROOT,
+        "experiments/luna47f/PROTOCOL.md",
+        d.PROTOCOL_REVISION,
+        retained["protocol_sha256"],
+        d.PROTOCOL_REVISION,
+    )
+    code = d.verify_historical_source(
+        d.ROOT,
+        "experiments/luna47f/diagnostic.py",
+        d.CODE_SOURCE_REVISION,
+        retained["code_sha256"],
+        d.CODE_SOURCE_REVISION,
+    )
+    assert protocol["recorded_execution_sha256"] == retained["protocol_sha256"]
+    assert code["recorded_execution_sha256"] == retained["code_sha256"]
+    with pytest.raises(ValueError, match="source revision differs"):
+        d.verify_historical_source(
+            d.ROOT,
+            "experiments/luna47f/PROTOCOL.md",
+            "HEAD",
+            retained["protocol_sha256"],
+            d.PROTOCOL_REVISION,
+        )
+    with pytest.raises(ValueError, match="source identity differs"):
+        d.verify_historical_source(
+            d.ROOT,
+            "experiments/luna47f/PROTOCOL.md",
+            d.PROTOCOL_REVISION,
+            "0" * 64,
+            d.PROTOCOL_REVISION,
+        )
+
+
+def test_luna51_live_pre_post_guard_detects_mutation_but_ignores_unrelated_evolution(tmp_path):
+    protected = tmp_path / "input.json"
+    protected.write_bytes(b'{"value":1}\n')
+    before = d.protected_snapshot(tmp_path, ("input.json",))
+    (tmp_path / "later-governance.md").write_text("new reviewed record")
+    after_unrelated = d.protected_snapshot(tmp_path, ("input.json",))
+    d.verify_live_nonmutation(before, after_unrelated)
+
+    protected.write_bytes(b'{"value":2}\n')
+    after_mutation = d.protected_snapshot(tmp_path, ("input.json",))
+    with pytest.raises(ValueError, match="changed during verification"):
+        d.verify_live_nonmutation(before, after_mutation)
+
+
+def test_luna51_retained_artifact_hashes_reject_result_and_validation_substitution(tmp_path):
+    source_result = d.ROOT / "artifacts/luna47f/diagnostic.json"
+    source_validation = d.ROOT / "artifacts/luna47f/validation.json"
+    result_path = tmp_path / "artifacts/luna47f/diagnostic.json"
+    validation_path = tmp_path / "artifacts/luna47f/validation.json"
+    result_path.parent.mkdir(parents=True)
+    result_bytes = source_result.read_bytes()
+    validation_bytes = source_validation.read_bytes()
+    result_path.write_bytes(result_bytes)
+    validation_path.write_bytes(validation_bytes)
+
+    assert d.verify_retained_files(tmp_path)["schema"] == "TPCN-LUNA47F-REPLAY-1"
+
+    result_path.write_bytes(result_bytes + b" ")
+    with pytest.raises(ValueError, match="result identity differs"):
+        d.verify_retained_files(tmp_path)
+    result_path.write_bytes(result_bytes)
+    validation_path.write_bytes(validation_bytes + b" ")
+    with pytest.raises(ValueError, match="validation identity differs"):
+        d.verify_retained_files(tmp_path)
+
+
 def test_fixed_output_guard_and_existing_output(tmp_path, monkeypatch):
     monkeypatch.setattr(d, "ROOT", tmp_path)
     output = d.safe_output()
@@ -280,11 +413,17 @@ def test_no_production_imports():
     assert not any(name and (name.startswith(("tpcn", "run_", "scripts"))) for name in imports)
 
 
-def test_exact_git_materialization_only():
+def test_luna51_exact_git_materialization_only():
     original = b'{"unchanged":1}\n'
     assert d.verify_materialization(original, original) == "exact"
     assert d.verify_materialization(original.replace(b"\n", b"\r\n"), original).startswith("exact-Git")
-    with pytest.raises(ValueError, match="beyond"):
-        d.verify_materialization(b'{"unchanged":2}\r\n', original)
-    with pytest.raises(ValueError, match="beyond"):
-        d.verify_materialization(original+b"\n", original)
+    for changed in (
+        b'{"unchanged":2}\r\n',
+        original + b" ",
+        original.replace(b"\n", b"\r\n", 1) + b"\n",
+        original.replace(b"\n", b"\r"),
+        original.rstrip(b"\n"),
+        original + b"\x00",
+    ):
+        with pytest.raises(ValueError, match="beyond"):
+            d.verify_materialization(changed, original)

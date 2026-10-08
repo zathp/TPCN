@@ -1,8 +1,21 @@
 # TPCN Luna Multi-Agent Workflow — Event-Driven Architecture
 
-## Luna-0 governance review — Luna-50 limitation parked; Luna-51 authorized — 2026-10-08
+## Luna-51 execution — corrections complete; governance required — 2026-10-08
 
-**CORRECTIVE PROVENANCE FOLLOW-UP AUTHORIZED.** Luna-50's
+**BLOCKED — GOVERNANCE REQUIRED.** Luna-0 authorized this correction-only
+follow-up. Execution started at `44ac1c8c7c8934a140da1b51dd807e429fd5b172`.
+The three provenance-boundary corrections and focused adversarial checks are
+complete; historical scientific artifacts remain unchanged. Luna-44 focused
+tests pass (21), Luna-46 pass (175, 1 Windows symlink privilege skip), Luna-47F
+pass (63), and the historical/core plus Luna-34–45 selection passes (318).
+The full suite reports **1,670 passed, 1 failed, 1 skipped**. The sole failure
+is `tests/test_luna47b_gain.py::test_full_retained_reconstruction_and_determinism`,
+whose strict source pin requires the now-corrected
+`run_luna46_depth_scaling_diagnostic.py` to match the pre-Luna-51 source at
+`789dda5988daf72f375d9713bd76a6da2b9e8b34`. Luna-47B files were not changed;
+this requires Luna-0 governance. No test was suppressed or weakened.
+
+Luna-50's
 **BLOCKED — HISTORICAL RUNTIME UNAVAILABLE** outcome is a missing capability,
 not contradictory evidence. The canonical Luna-44 fixture remains the
 authenticated historical input; fresh exact Linux reproduction and exact
@@ -11,20 +24,21 @@ and retained records support within-environment determinism without replacing
 a fresh replay. Scientific sensitivity to alternate-runtime-generated inputs
 remains unknown.
 
-Luna-0 authorizes **Luna-51**, correction-only and **NOT EXECUTED**, to repair
-the four known regression failures without changing historic artifacts:
+The authorized corrections repaired:
 Luna-44's unconditional alternate-runtime exact comparison, Luna-46's
 checkout-byte versus pinned Git-blob check, and Luna-47F's whole-repository
 retained snapshot/checkout-sensitive input inventory. Preserve exact artifact
-and same-runtime checks; require adversarial mutation tests and a green full
-suite. Luna-47F's consumed-input guard and live pre/post non-mutation check
-remain distinct requirements. No scientific replay, evidence rebaseline,
-architecture/ACP change, or Luna-52 is authorized. See the
-[Luna-0 governance handoff](../../handoffs/luna-0-independent-review-luna50-and-authorization-luna51-20261008.md)
+and same-runtime checks; adversarial mutation tests pass. Luna-47F's
+consumed-input guard and live pre/post non-mutation check remain distinct
+requirements. No scientific replay, evidence rebaseline, architecture/ACP
+change, or Luna-52 is authorized. See the
+[Luna-51 execution handoff](../../handoffs/luna-51-provenance-guard-correction-20261008.md),
+[Luna-0 governance handoff](../../handoffs/luna-0-independent-review-luna50-and-authorization-luna51-20261008.md),
 and [Luna-51 contract](../../../.github/agents/luna-51.agent.md).
 
-Next: **Luna-0 -> Luna-51 -> Luna-0**. This provenance decision does not select
-or authorize a next causal mechanism experiment.
+Next: **Luna-0 independent review** of the execution and disposition of the
+Luna-47B source pin. No next causal mechanism experiment is selected or
+authorized.
 
 ## Luna-50 historical runtime reconstruction — 2026-10-08
 

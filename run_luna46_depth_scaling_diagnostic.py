@@ -47,6 +47,10 @@ BRANCH = "copilot/luna46-depth-scaling-diagnostic"
 L45 = Path("artifacts/luna45-acp0008-depth2-destination-integration-20261006")
 L44 = Path("artifacts/luna44-acp0008-independent-routing-rerun-20261005")
 CATALOG_HASH = "a47046da6916db49f373613d654d2cf59671737b5c6b8584b222fb67fe068e8e"
+CATALOG_REVISION = BASELINE
+CATALOG_GIT_BLOB = "b1aaef4006422f321922bfb58425e4fb646d96b9"
+CATALOG_PATH = L45 / "artifact-integrity.json"
+CATALOG_GIT_PATH = "artifacts/luna45-acp0008-depth2-destination-integration-20261006/artifact-integrity.json"
 VERIFICATION = Path("artifacts/luna45-corrective-verification-20261006-r1/verification.json")
 FIXTURE_ROOT = Path(EXPECTED_FIXTURE_PATH).parent
 OUTPUT_NAMESPACE = "luna46-"
@@ -212,10 +216,24 @@ def read_json(path: Path) -> Record:
     return parse(read_bytes(path))
 
 
-def verify_artifact(data: bytes, identity: Record, pins: Record) -> Record:
-    require(len(data) == identity["byte_length"], "artifact length differs")
-    require(sha(data) == identity["file_sha256"], "artifact file hash differs")
-    value = parse(data)
+def verify_artifact(
+    data: bytes,
+    identity: Record,
+    pins: Record,
+    *,
+    canonical_bytes: bytes | None = None,
+) -> Record:
+    canonical_bytes = data if canonical_bytes is None else canonical_bytes
+    require(len(canonical_bytes) == identity["byte_length"], "artifact length differs")
+    require(sha(canonical_bytes) == identity["file_sha256"], "artifact file hash differs")
+    if data != canonical_bytes:
+        verify_git_text_checkout(
+            data, canonical_bytes, "artifact checkout bytes differ"
+        )
+    value = parse(canonical_bytes)
+    if data != canonical_bytes:
+        require(canonical(parse(data)) == canonical(value),
+                "artifact checkout parsed content differs")
     body = {key: item for key, item in value.items() if key != "artifact_digest"}
     require(digest(body) == value["artifact_digest"], "internal artifact digest differs")
     if "artifact_digest" in identity:
@@ -230,11 +248,62 @@ def git(*args: str, root: Path = ROOT) -> bytes:
                           capture_output=True, check=True).stdout
 
 
+def verify_catalog_checkout(working: bytes, canonical_bytes: bytes) -> str:
+    """Accept only the exact Git LF-to-CRLF transform for this JSON catalog."""
+    return verify_git_text_checkout(
+        working, canonical_bytes, "published Luna45 catalog hash checkout bytes differ"
+    )
+
+
+def verify_git_text_checkout(working: bytes, canonical_bytes: bytes, reason: str) -> str:
+    if working == canonical_bytes:
+        return "exact"
+    require(b"\x00" not in canonical_bytes and b"\r\n" not in canonical_bytes,
+            "pinned JSON object is not canonical LF text")
+    if working == canonical_bytes.replace(b"\n", b"\r\n"):
+        return "exact-Git-LF-to-CRLF-checkout"
+    raise Blocked(reason + " beyond line endings")
+
+
+def verify_catalog_identity(
+    root: Path,
+    working: bytes,
+    *,
+    revision: str = CATALOG_REVISION,
+    expected_blob: str = CATALOG_GIT_BLOB,
+) -> tuple[Record, Record]:
+    """Authenticate the pinned Git object separately from checkout bytes."""
+    require(revision == CATALOG_REVISION, "pinned Luna45 catalog revision differs")
+    require(expected_blob == CATALOG_GIT_BLOB, "pinned Luna45 catalog Git object differs")
+    path = CATALOG_GIT_PATH
+    try:
+        observed_blob = git("rev-parse", f"{revision}:{path}", root=root).decode().strip()
+        canonical_bytes = git("show", f"{revision}:{path}", root=root)
+    except subprocess.CalledProcessError as error:
+        raise Blocked("pinned Luna45 catalog hash Git object is unavailable") from error
+    require(observed_blob == CATALOG_GIT_BLOB, "pinned Luna45 catalog Git object differs")
+    require(sha(canonical_bytes) == CATALOG_HASH, "pinned Luna45 catalog hash differs")
+    materialization = verify_catalog_checkout(working, canonical_bytes)
+    catalog = parse(working)
+    canonical_catalog = parse(canonical_bytes)
+    require(canonical(catalog) == canonical(canonical_catalog),
+            "Luna45 catalog checkout content differs from its Git object")
+    identity = {
+        "git_revision": revision,
+        "git_blob": observed_blob,
+        "file_sha256": sha(canonical_bytes),
+        "byte_length": len(canonical_bytes),
+        "checkout_sha256": sha(working),
+        "checkout_byte_length": len(working),
+        "checkout_materialization": materialization,
+    }
+    return catalog, identity
+
+
 def verify_integrity(root: Path = ROOT) -> Record:
     """Read-only hash/catalog/config/provenance check; NO sequence statistics."""
-    catalog_bytes = read_bytes(root / L45 / "artifact-integrity.json")
-    require(sha(catalog_bytes) == CATALOG_HASH, "published Luna45 catalog hash differs")
-    catalog = parse(catalog_bytes)
+    catalog_bytes = read_bytes(root / CATALOG_PATH)
+    catalog, catalog_identity = verify_catalog_identity(root, catalog_bytes)
     require(digest({k: v for k, v in catalog.items() if k != "artifact_digest"})
             == catalog["artifact_digest"], "catalog internal digest differs")
     expected_names = {"config.json", "summary.json", "initial-gates.json", "replay-gates.json"}
@@ -264,7 +333,12 @@ def verify_integrity(root: Path = ROOT) -> Record:
     identities: Record = {}
     total = 0
     for name, identity in catalog["files"].items():
-        value = verify_artifact(read_bytes(root / L45 / name), identity, pins45)
+        relative_path = f"{L45.as_posix()}/{name}"
+        checkout_bytes = read_bytes(root / L45 / name)
+        canonical_bytes = git("show", f"{BASELINE}:{relative_path}", root=root)
+        value = verify_artifact(
+            checkout_bytes, identity, pins45, canonical_bytes=canonical_bytes
+        )
         if name == "config.json":
             require(digest(value["experiment"]) == CONFIG45, "Luna45 config digest differs")
         identities[str(L45 / name)] = identity
@@ -272,12 +346,28 @@ def verify_integrity(root: Path = ROOT) -> Record:
     require(total == catalog["total_bytes"], "catalog total length differs")
     for name, (length, file_hash) in HISTORY_FILES.items():
         identity = {"byte_length": length, "file_sha256": file_hash}
-        value = verify_artifact(read_bytes(root / L44 / name), identity, pins44)
+        relative_path = f"{L44.as_posix()}/{name}"
+        checkout_bytes = read_bytes(root / L44 / name)
+        canonical_bytes = git("show", f"{BASELINE}:{relative_path}", root=root)
+        value = verify_artifact(
+            checkout_bytes, identity, pins44, canonical_bytes=canonical_bytes
+        )
         if name == "config.json":
             require(digest(value["experiment"]) == CONFIG44, "Luna44 config digest differs")
         identities[str(L44 / name)] = {**identity, "artifact_digest": value["artifact_digest"]}
+    for path, expected_hash in ((VERIFICATION, VERIFICATION_HASH),):
+        data = read_bytes(root / path)
+        canonical_bytes = git("show", f"{BASELINE}:{path.as_posix()}", root=root)
+        verify_git_text_checkout(data, canonical_bytes, f"published evidence checkout differs: {path}")
+        require(sha(canonical_bytes) == expected_hash,
+                f"published evidence hash differs: {path}")
+        identities[str(path)] = {
+            "file_sha256": sha(canonical_bytes),
+            "byte_length": len(canonical_bytes),
+            "checkout_sha256": sha(data),
+            "checkout_byte_length": len(data),
+        }
     for path, expected_hash in (
-        (VERIFICATION, VERIFICATION_HASH),
         (Path("artifacts/luna44-canonical-fixture/provenance.json"), MANIFEST_HASH),
         (Path("artifacts/luna44-canonical-fixture/fixture.json"), FIXTURE_HASH),
     ):
@@ -303,7 +393,7 @@ def verify_integrity(root: Path = ROOT) -> Record:
     git("merge-base", "--is-ancestor", BASELINE, AUTHORIZATION, root=root)
     git("merge-base", "--is-ancestor", "5ebc9ae7dcaae7ff45f0769686885dcae3f2dea4", BASELINE, root=root)
     identities[str(L45 / "artifact-integrity.json")] = {
-        "file_sha256": CATALOG_HASH, "byte_length": len(catalog_bytes)}
+        **catalog_identity}
     return {"status": "PASS", "scope": "integrity/provenance only; no sequence analysis",
             "runner44_source_identity": {"git_blob_sha256": RUNNER44_GIT_HASH,
                                          "retained_execution_bytes_sha256": pins44["runner_sha256"]},

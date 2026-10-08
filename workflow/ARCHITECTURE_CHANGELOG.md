@@ -1,26 +1,30 @@
 # Architecture Changelog
 
-## Luna-0 governance review — Luna-50 limitation parked; Luna-51 authorized — 2026-10-08
+## Luna-51 execution — provenance corrections complete; blocked for governance — 2026-10-08
 
-**CORRECTIVE PROVENANCE FOLLOW-UP AUTHORIZED; Luna-51 NOT EXECUTED.** The
-accepted Luna-50 block means the historical Linux environment was unavailable;
-it does not contradict the authenticated canonical Luna-44 fixture. Exact
-fresh historical regeneration remains unverified, exact cross-runtime bits are
-not claimed, and alternate-runtime scientific sensitivity remains unknown.
-The committed canonical fixture continues to support results that actually
-used it; fresh regeneration is conditionally blocked only for claims requiring
-that runtime identity.
+**BLOCKED — GOVERNANCE REQUIRED.** Luna-51 was authorized as correction-only
+work and executed from `44ac1c8c7c8934a140da1b51dd807e429fd5b172`. The three
+provenance/test-boundary corrections are implemented, their focused suites
+pass, and protected scientific artifacts remain unchanged. Luna-44 focused
+tests: 21 passed; Luna-46: 175 passed, 1 skipped; Luna-47F: 63 passed;
+historical/core plus Luna-34 through Luna-45: 318 passed. The full suite is
+**1,670 passed, 1 failed, 1 skipped**.
 
-The four full-suite failures share provenance-boundary defects but require
-distinct acceptance checks: Luna-44 applies canonical exact equality to
-alternate runtimes; Luna-46 hashes a CRLF checkout instead of its valid pinned
-Git object; Luna-47F compares a historical whole-repository snapshot and
-materialization-specific input hashes against a later checkout. **Luna-51**
-may correct those tests/guards only, preserving canonical and retained
-scientific artifacts and requiring adversarial mutation tests plus a green
-full-suite gate. No A01-A15 clause, ACP, scientific result, or architecture
-decision changes. No scientific runtime-sensitivity experiment or Luna-52 is
-authorized. See the [Luna-0 handoff](handoffs/luna-0-independent-review-luna50-and-authorization-luna51-20261008.md)
+The sole failure is `tests/test_luna47b_gain.py::test_full_retained_reconstruction_and_determinism`:
+its source guard requires the corrected Luna-46 file to match the complete
+older source at `789dda5988daf72f375d9713bd76a6da2b9e8b34`. No Luna-47B change,
+skip, xfail, or weakened assertion was made. Luna-0 must decide whether a
+narrowly bounded source-pin compatibility correction is authorized before
+integration acceptance. See the [Luna-51 execution handoff](handoffs/luna-51-provenance-guard-correction-20261008.md).
+
+The accepted Luna-50 block means the historical Linux environment was
+unavailable; it does not contradict the authenticated canonical Luna-44
+fixture. Exact fresh historical regeneration remains unverified, exact
+cross-runtime bits are not claimed, and alternate-runtime scientific
+sensitivity remains unknown. The committed canonical fixture continues to
+support results that actually used it. No A01-A15 clause, ACP, scientific
+result, or architecture decision changed, and no scientific replay or Luna-52
+is authorized. See the [Luna-0 authorization handoff](handoffs/luna-0-independent-review-luna50-and-authorization-luna51-20261008.md)
 and [Luna-51 contract](../.github/agents/luna-51.agent.md).
 
 ## Luna-50 historical runtime reconstruction — 2026-10-08

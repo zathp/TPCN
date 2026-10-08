@@ -73,8 +73,12 @@ def _canonical_source_bytes(relative_path: str) -> bytes:
 def _source_identity(path: Path, relative_path: str) -> dict[str, str]:
     execution_bytes = path.read_bytes()
     canonical_bytes = _canonical_source_bytes(relative_path)
-    normalized_execution_bytes = execution_bytes.replace(b"\r\n", b"\n")
-    if normalized_execution_bytes != canonical_bytes:
+    checkout_bytes = (
+        canonical_bytes.replace(b"\n", b"\r\n")
+        if b"\x00" not in canonical_bytes and b"\r\n" not in canonical_bytes
+        else None
+    )
+    if execution_bytes != canonical_bytes and execution_bytes != checkout_bytes:
         raise RuntimeError(
             f"materialized source differs from the pinned Git object: {relative_path}"
         )

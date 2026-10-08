@@ -15,10 +15,36 @@ import sys
 ROOT = Path(__file__).resolve().parents[2]
 AUTH = "789dda5988daf72f375d9713bd76a6da2b9e8b34"
 BASE = "2cef8ea4b37a4ae586e3f383511cba63c9268ddc"
+PROTOCOL_REVISION = "39f99b1f318dd965643ec6ef65907163cd1d5667"
+EXECUTION_REVISION = "ce411ec049501b7ac6d05702ed242d4829ad24d7"
+CODE_SOURCE_REVISION = "39bedbce47055a7b180593ea312c6b646510c566"
+RETAINED_RESULT_SHA256 = "f24a56bf5a92f622c4dfdb661116a83a76df1f7b0ae0056d20920360ca3cbb7c"
+RETAINED_VALIDATION_SHA256 = "e3c8cb236f57908319893c2e109a2c94f5dd8d50e6953f48810da74259a62c29"
 L45 = "artifacts/luna45-acp0008-depth2-destination-integration-20261006"
 WINDOW = 4.0
 RATIO = 0.5
 LIMIT = 100 * 1024 * 1024
+CONSUMED_INPUTS = (
+    "artifacts/luna45-acp0008-depth2-destination-integration-20261006/config.json",
+    "artifacts/luna45-acp0008-depth2-destination-integration-20261006/artifact-integrity.json",
+    "artifacts/luna45-acp0008-depth2-destination-integration-20261006/summary.json",
+    "artifacts/luna45-acp0008-depth2-destination-integration-20261006/initial-destination_calibrated.json",
+    "artifacts/luna45-acp0008-depth2-destination-integration-20261006/initial-destination_calibrated-enqueue.json",
+    "artifacts/luna45-acp0008-depth2-destination-integration-20261006/initial-destination_calibrated-reception.json",
+    "artifacts/luna45-acp0008-depth2-destination-integration-20261006/replay-destination_calibrated.json",
+    "artifacts/luna45-acp0008-depth2-destination-integration-20261006/replay-destination_calibrated-enqueue.json",
+    "artifacts/luna45-acp0008-depth2-destination-integration-20261006/replay-destination_calibrated-reception.json",
+    "artifacts/luna44-canonical-fixture/fixture.json",
+    "artifacts/luna44-canonical-fixture/provenance.json",
+    "artifacts/luna46-depth-scaling-diagnostic-corrective-20261006.json",
+)
+PROTECTED_RUNTIME_PATHS = (
+    *CONSUMED_INPUTS,
+    "experiments/luna47f/diagnostic.py",
+    "experiments/luna47f/PROTOCOL.md",
+    "artifacts/luna47f/diagnostic.json",
+    "artifacts/luna47f/validation.json",
+)
 
 
 def canonical(value):
@@ -30,13 +56,131 @@ def sha(data):
     return hashlib.sha256(data).hexdigest()
 
 
+def parse(data):
+    value = json.loads(data)
+    require(isinstance(value, dict), "expected JSON object")
+    canonical(value)
+    return value
+
+
 def verify_materialization(working, pinned):
-    """Permit only Git's exact LF->CRLF checkout transform, without editing inputs."""
+    """Permit only this text input's exact Git LF-to-CRLF checkout transform."""
     if working == pinned:
         return "exact"
-    require(b"\r\n" not in pinned and working == pinned.replace(b"\n", b"\r\n"),
+    require(b"\x00" not in pinned and b"\r\n" not in pinned and
+            working == pinned.replace(b"\n", b"\r\n"),
             "baseline input bytes differ beyond Git newline materialization")
     return "exact-Git-LF-to-CRLF-checkout"
+
+
+def verify_consumed_input(
+    path,
+    working,
+    pinned,
+    record,
+    git_blob,
+    *,
+    revision=BASE,
+):
+    require(revision == BASE, "historical input revision differs")
+    require(path in CONSUMED_INPUTS, "input is outside the Luna47F consumed set")
+    require(record.get("baseline_git_blob") == git_blob,
+            "historical input Git object identity differs")
+    require(record.get("published_sha256") == sha(pinned) and
+            record.get("published_bytes") == len(pinned),
+            "historical input canonical content identity differs")
+    materialization = verify_materialization(working, pinned)
+    return {
+        "sha256": sha(working),
+        "bytes": len(working),
+        "published_sha256": sha(pinned),
+        "published_bytes": len(pinned),
+        "checkout_materialization": materialization,
+        "baseline_git_blob": git_blob,
+    }
+
+
+def verify_historical_inputs(root, retained, *, revision=BASE):
+    require(revision == BASE, "historical input baseline revision differs")
+    retained_inventory = None
+    if retained:
+        require(retained.get("evidence_baseline") == BASE,
+                "retained evidence baseline revision differs")
+        retained_inventory = retained.get("source_inventory")
+        require(isinstance(retained_inventory, dict) and
+                set(retained_inventory) == set(CONSUMED_INPUTS),
+                "retained consumed-input inventory differs")
+    inventory, loaded = {}, {}
+    for path in CONSUMED_INPUTS:
+        working = read_bytes(root / path)
+        try:
+            pinned = git("show", f"{revision}:{path}", root=root)
+            git_blob = git("rev-parse", f"{revision}:{path}", root=root).decode().strip()
+        except subprocess.CalledProcessError as error:
+            raise ValueError(f"missing pinned historical input: {path}") from error
+        record = (
+            retained_inventory[path]
+            if retained_inventory is not None
+            else {
+                "baseline_git_blob": git_blob,
+                "published_sha256": sha(pinned),
+                "published_bytes": len(pinned),
+            }
+        )
+        inventory[path] = verify_consumed_input(
+            path, working, pinned, record, git_blob, revision=revision
+        )
+        loaded[path] = parse(pinned)
+        if "artifact_digest" in loaded[path]:
+            body = {
+                key: value for key, value in loaded[path].items()
+                if key != "artifact_digest"
+            }
+            require(
+                sha(canonical(body)) == loaded[path]["artifact_digest"],
+                "internal artifact digest: " + path,
+            )
+    return inventory, loaded
+
+
+def verify_retained_files(root):
+    result_path = root / "artifacts/luna47f/diagnostic.json"
+    validation_path = root / "artifacts/luna47f/validation.json"
+    result_bytes = read_bytes(result_path)
+    validation_bytes = read_bytes(validation_path)
+    require(sha(result_bytes) == RETAINED_RESULT_SHA256,
+            "retained Luna47F result identity differs")
+    require(sha(validation_bytes) == RETAINED_VALIDATION_SHA256,
+            "retained Luna47F validation identity differs")
+    retained = json.loads(result_bytes)
+    require(retained.get("authorization_revision") == AUTH,
+            "retained Luna47F authorization identity differs")
+    require(retained.get("evidence_baseline") == BASE,
+            "retained Luna47F evidence baseline differs")
+    require(retained.get("execution_revision") == EXECUTION_REVISION,
+            "retained Luna47F execution revision differs")
+    return retained
+
+
+def verify_historical_source(root, path, revision, recorded_sha, expected_revision):
+    require(revision == expected_revision, "historical source revision differs")
+    try:
+        pinned = git("show", f"{revision}:{path}", root=root)
+    except subprocess.CalledProcessError as error:
+        raise ValueError(f"missing pinned historical source: {path}") from error
+    require(b"\x00" not in pinned and b"\r\n" not in pinned,
+            "pinned historical source is not LF text")
+    checkout = pinned.replace(b"\n", b"\r\n")
+    require(recorded_sha in {sha(pinned), sha(checkout)},
+            "retained historical source identity differs")
+    if path == "experiments/luna47f/PROTOCOL.md":
+        working = read_bytes(root / path)
+        verify_materialization(working, pinned)
+    return {"git_sha256": sha(pinned), "recorded_execution_sha256": recorded_sha}
+
+
+def verify_live_nonmutation(before, after):
+    require(before == after, "protected live input changed during verification")
 
 
 def require(condition, reason):
@@ -44,8 +188,14 @@ def require(condition, reason):
         raise ValueError(reason)
 
 
-def git(*args):
-    return subprocess.check_output(["git", "--no-pager", *args], cwd=ROOT)
+def read_bytes(path):
+    require(path.is_file(), f"missing required input: {path}")
+    require(path.stat().st_size <= LIMIT, f"input size limit: {path}")
+    return path.read_bytes()
+
+
+def git(*args, root=ROOT):
+    return subprocess.check_output(["git", "--no-pager", *args], cwd=root)
 
 
 def finite(value):
@@ -312,19 +462,27 @@ def analyze(phase, enqueues, receptions, graph):
 
 
 def owned(path):
-    return (path.startswith(("experiments/luna47f/", "artifacts/luna47f/")) or
-            path.startswith("tests/test_luna47f_") and path.endswith(".py") or
-            path in {
-                "workflow/ARCHITECTURE_CHANGELOG.md",
-                "workflow/docs/luna/LUNA_WORKFLOW.md",
-                "workflow/handoffs/luna-47f-candidate-generation-diagnostic-20261006.md",
-                "workflow/handoffs/luna-47-final-corrective-pass-20261007.md",
-            })
+    return (
+        path.startswith(("experiments/luna47f/", "artifacts/luna47f/"))
+        or path.startswith("tests/test_luna47f_") and path.endswith(".py")
+        or path in {
+            "scripts/build_luna44_canonical_fixture.py",
+            "scripts/verify_luna44_canonical_fixture.py",
+            "tests/test_luna44_canonical_fixture.py",
+            "tests/test_luna44_canonical_fixture_verification.py",
+            "run_luna46_depth_scaling_diagnostic.py",
+            "tests/test_luna46_depth_scaling_diagnostic.py",
+            "workflow/ARCHITECTURE_CHANGELOG.md",
+            "workflow/docs/luna/LUNA_WORKFLOW.md",
+            "workflow/handoffs/luna-47f-candidate-generation-diagnostic-20261006.md",
+            "workflow/handoffs/luna-47-final-corrective-pass-20261007.md",
+            "workflow/handoffs/luna-51-provenance-guard-correction-20261008.md",
+        }
+    )
 
 
-def protected_snapshot():
-    paths = git("ls-files", "-z").decode().split("\0")
-    return {p: sha((ROOT/p).read_bytes()) for p in sorted(paths) if p and not owned(p)}
+def protected_snapshot(root=ROOT, paths=PROTECTED_RUNTIME_PATHS):
+    return {path: sha(read_bytes(root / path)) for path in paths}
 
 
 def safe_output():
@@ -342,9 +500,20 @@ def validate_retained(retained, result, inventory, pre):
             "retained analysis drift")
     require(retained["analysis_sha256"] == result["analysis_sha256"], "retained analysis hash drift")
     require(retained["protocol_sha256"] == result["protocol_sha256"], "retained protocol drift")
-    require(retained["source_inventory"] == inventory, "retained input drift")
-    require(retained["non_mutation"]["pre"] == pre, "protected snapshot drift")
     require(retained["code_sha256"] == result["code_sha256"], "code drift")
+    historical_nonmutation = retained["non_mutation"]
+    require(historical_nonmutation["pre"] == historical_nonmutation["post"],
+            "retained historical non-mutation evidence differs")
+    require(
+        historical_nonmutation["aggregate_sha256"]
+        == sha(canonical(historical_nonmutation["pre"])),
+        "retained historical non-mutation digest differs",
+    )
+    require(
+        historical_nonmutation["protected_tracked_files"]
+        == len(historical_nonmutation["pre"]),
+        "retained historical non-mutation inventory differs",
+    )
 
 
 def run(check=False):
@@ -353,33 +522,29 @@ def run(check=False):
     changed = set(git("diff", "--name-only").decode().splitlines())
     changed.update(git("diff", "--cached", "--name-only").decode().splitlines())
     require(all(owned(p) for p in changed), "non-owned change")
+    retained = verify_retained_files(ROOT) if check else None
     pre = protected_snapshot()
-    inventory, loaded = {}, {}
     names = ["config.json", "artifact-integrity.json", "summary.json"]
     for phase in ("initial", "replay"):
         names += [f"{phase}-destination_calibrated{suffix}.json" for suffix in ("", "-enqueue", "-reception")]
-    paths = [L45+"/"+n for n in names] + [
-        "artifacts/luna44-canonical-fixture/fixture.json",
-        "artifacts/luna44-canonical-fixture/provenance.json",
-        "artifacts/luna46-depth-scaling-diagnostic-corrective-20261006.json",
-    ]
-    # Fixture filename is checked against committed provenance rather than guessed.
-    manifest_path = "artifacts/luna44-canonical-fixture/provenance.json"
-    manifest = json.loads((ROOT/manifest_path).read_bytes())
-    paths[paths.index("artifacts/luna44-canonical-fixture/fixture.json")] = manifest["fixture_path"]
-    for path in paths:
-        data = (ROOT/path).read_bytes()
-        require(len(data) <= LIMIT, "input size limit")
-        pinned = git("show", BASE+":"+path)
-        materialization = verify_materialization(data, pinned)
-        inventory[path] = {"sha256": sha(data), "bytes": len(data),
-                           "published_sha256": sha(pinned), "published_bytes": len(pinned),
-                           "checkout_materialization": materialization,
-                           "baseline_git_blob": git("rev-parse", BASE+":"+path).decode().strip()}
-        loaded[path] = json.loads(pinned)
-        if "artifact_digest" in loaded[path]:
-            body = {k: v for k, v in loaded[path].items() if k != "artifact_digest"}
-            require(sha(canonical(body)) == loaded[path]["artifact_digest"], "internal digest: "+path)
+    if check:
+        verify_historical_source(
+            ROOT,
+            "experiments/luna47f/PROTOCOL.md",
+            PROTOCOL_REVISION,
+            retained["protocol_sha256"],
+            PROTOCOL_REVISION,
+        )
+        verify_historical_source(
+            ROOT,
+            "experiments/luna47f/diagnostic.py",
+            CODE_SOURCE_REVISION,
+            retained["code_sha256"],
+            CODE_SOURCE_REVISION,
+        )
+    inventory, loaded = verify_historical_inputs(ROOT, retained or {})
+    for path in CONSUMED_INPUTS:
+        require(inventory[path]["bytes"] <= LIMIT, "input size limit")
     catalog = loaded[L45+"/artifact-integrity.json"]
     for name in names:
         if name == "artifact-integrity.json":
@@ -398,13 +563,12 @@ def run(check=False):
         for p in ("initial", "replay")]
     require(canonical(initial) == canonical(replay), "replay analysis differs")
     l46 = loaded["artifacts/luna46-depth-scaling-diagnostic-corrective-20261006.json"]
-    # Preserve complete retained output identity; no recomputation/reinterpretation.
     post = protected_snapshot()
-    require(pre == post, "protected file changed")
+    verify_live_nonmutation(pre, post)
     result = {"schema": "TPCN-LUNA47F-REPLAY-1", "authorization_revision": AUTH,
               "evidence_baseline": BASE, "execution_revision": git("rev-parse", "HEAD").decode().strip(),
-              "code_sha256": sha(Path(__file__).read_bytes()),
-              "protocol_sha256": sha((Path(__file__).parent/"PROTOCOL.md").read_bytes()),
+              "code_sha256": retained["code_sha256"] if retained else sha(Path(__file__).read_bytes()),
+              "protocol_sha256": retained["protocol_sha256"] if retained else sha((Path(__file__).parent/"PROTOCOL.md").read_bytes()),
               "environment": {"python": sys.version, "platform": platform.platform(),
                               "epsilon": sys.float_info.epsilon, "executable": sys.executable},
               "rules": {"window": WINDOW, "similarity_min": RATIO, "equation_epsilon_multiple": 64,
@@ -422,7 +586,6 @@ def run(check=False):
                                   "reception": L45+f"/{p}-destination_calibrated-reception.json"}
                               for p in ("initial", "replay")}}
     if check:
-        retained = json.loads(output.read_bytes())
         validate_retained(retained, result, inventory, pre)
         print("PASS: retained analysis, replay, inputs, code and protected hashes")
     else:

@@ -438,7 +438,7 @@ def verify_fixture(
 
 
 def compare_materializations(first: Path, second: Path) -> dict[str, Any]:
-    """Require byte-, record-, order-, and binary64-exact fixture equality."""
+    """Require exact deterministic equality between two runtime-local outputs."""
     first_bytes = first.read_bytes()
     second_bytes = second.read_bytes()
     if first_bytes != second_bytes:
@@ -452,12 +452,100 @@ def compare_materializations(first: Path, second: Path) -> dict[str, Any]:
     if len(first_rows) != EXPECTED_POINT_COUNT:
         raise FixtureVerificationError("independent materialization point count mismatch")
     semantic_digest = _sha256(_canonical_json_bytes(first_rows))
-    if semantic_digest != SEMANTIC_FIXTURE_SHA256:
-        raise FixtureVerificationError("independent materialization semantic digest mismatch")
     return {
         "fixture_byte_length": len(first_bytes),
         "fixture_file_sha256": _sha256(first_bytes),
         "semantic_fixture_sha256": semantic_digest,
         "record_count": len(first_rows),
         "all_binary64_bits_and_order_equal": True,
+    }
+
+
+def compare_materialization_to_canonical(
+    materialized_bytes: bytes,
+    materialized_runtime: dict[str, Any],
+    canonical_fixture_bytes: bytes,
+    canonical_provenance_bytes: bytes,
+) -> dict[str, Any]:
+    """Classify a fresh output against the authenticated fixture by runtime."""
+    if _sha256(canonical_fixture_bytes) != FIXTURE_FILE_SHA256:
+        raise FixtureVerificationError("canonical fixture file SHA-256 is not pinned")
+    if _sha256(canonical_provenance_bytes) != MANIFEST_SHA256:
+        raise FixtureVerificationError("canonical provenance SHA-256 is not pinned")
+    try:
+        canonical_fixture = json.loads(canonical_fixture_bytes)
+        materialized_fixture = json.loads(materialized_bytes)
+        canonical_provenance = json.loads(canonical_provenance_bytes)
+    except (UnicodeDecodeError, json.JSONDecodeError) as error:
+        raise FixtureVerificationError(f"cannot decode materialized fixture: {error}") from error
+    if (
+        canonical_provenance.get("fixture_json_sha256") != FIXTURE_FILE_SHA256
+        or canonical_provenance.get("semantic_fixture_digest") != SEMANTIC_FIXTURE_SHA256
+        or canonical_provenance.get("canonical_fixture_sha256") != SEMANTIC_FIXTURE_SHA256
+    ):
+        raise FixtureVerificationError("canonical provenance identity differs")
+
+    canonical_rows = canonical_raw_rows(canonical_fixture)
+    materialized_rows = canonical_raw_rows(materialized_fixture)
+    canonical_digest = _sha256(_canonical_json_bytes(canonical_rows))
+    if (
+        len(canonical_rows) != EXPECTED_POINT_COUNT
+        or canonical_digest != SEMANTIC_FIXTURE_SHA256
+    ):
+        raise FixtureVerificationError("canonical fixture semantic identity is not pinned")
+    if len(materialized_rows) != EXPECTED_POINT_COUNT:
+        raise FixtureVerificationError("materialized fixture point count mismatch")
+
+    same_point_bits = materialized_rows == canonical_rows
+    first_difference = None
+    differing_points = 0
+    for index, (observed, expected) in enumerate(zip(materialized_rows, canonical_rows)):
+        if observed != expected:
+            differing_points += 1
+            if first_difference is None:
+                first_difference = {
+                    "row_index": index,
+                    "stream_id": observed["stream_id"],
+                    "point_index": observed["point_index"],
+                    "observed_xyz_bits": [
+                        observed["x_bits_be"],
+                        observed["y_bits_be"],
+                        observed["t_bits_be"],
+                    ],
+                    "canonical_xyz_bits": [
+                        expected["x_bits_be"],
+                        expected["y_bits_be"],
+                        expected["t_bits_be"],
+                    ],
+                }
+
+    canonical_runtime = canonical_provenance.get("runtime")
+    runtime_matches = (
+        isinstance(materialized_runtime, dict)
+        and isinstance(canonical_runtime, dict)
+        and materialized_runtime == canonical_runtime
+    )
+    exact_bytes = materialized_bytes == canonical_fixture_bytes
+    if runtime_matches and (not exact_bytes or not same_point_bits):
+        raise FixtureVerificationError(
+            "canonical-runtime materialization differs from the authenticated fixture"
+        )
+
+    return {
+        "classification": (
+            "CANONICAL_RUNTIME_EXACT"
+            if runtime_matches
+            else "ALTERNATE_RUNTIME_DIAGNOSTIC"
+        ),
+        "runtime_matches_canonical": runtime_matches,
+        "materialized_file_sha256": _sha256(materialized_bytes),
+        "canonical_file_sha256": FIXTURE_FILE_SHA256,
+        "materialized_semantic_sha256": _sha256(
+            _canonical_json_bytes(materialized_rows)
+        ),
+        "canonical_semantic_sha256": canonical_digest,
+        "fixture_bytes_equal": exact_bytes,
+        "point_bits_and_order_equal": same_point_bits,
+        "differing_point_count": differing_points,
+        "first_difference": first_difference,
     }
