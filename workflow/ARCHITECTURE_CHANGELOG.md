@@ -1,5 +1,19 @@
 # Architecture Changelog
 
+## Luna-0 independent post-Luna-48 review — Luna-49 runtime follow-up authorized — 2026-10-07
+
+**LUNA-48 PASS WITH FOLLOW-UP — RUNTIME REPRODUCIBILITY.** The Luna-48
+Git-object correction is correct and the canonical fixture/provenance remain
+byte-for-byte unchanged. Two current Windows materializations agree, but
+Python 3.11.5/Windows differs from the retained Python 3.12.3/Linux fixture
+starting at a one-ULP trigonometric coordinate. The historical fixture remains
+valid and environment-pinned; exact cross-runtime regeneration and downstream
+discrete-decision equivalence are not established. Luna-49 is authorized only
+for bounded runtime/numerical characterization, not scientific execution,
+fixture mutation, retained-evidence repair, or mechanism composition. See the
+[independent review handoff](handoffs/luna-0-independent-review-luna48-20261007.md)
+and [Luna-49 contract](../.github/agents/luna-49.agent.md).
+
 ## Luna-0 post-Luna-47 review — Luna-48 provenance correction authorized — 2026-10-07
 
 **CORRECTIVE FOLLOW-UP AUTHORIZED; Luna-48 NOT EXECUTED.** Independent

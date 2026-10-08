@@ -1,5 +1,23 @@
 # TPCN Luna Multi-Agent Workflow — Event-Driven Architecture
 
+## Luna-0 post-Luna-48 review — Luna-49 runtime reproducibility authorized — 2026-10-07
+
+**LUNA-48 PASS WITH FOLLOW-UP — RUNTIME REPRODUCIBILITY.** The independent
+post-execution review accepted the Luna-48 Git-object source correction:
+canonical fixture/provenance hashes remain unchanged, CRLF/LF-equivalent
+materialization is checked without hiding substantive source changes, and two
+current Windows materializations agree byte-for-byte. The historical fixture
+was generated under Python 3.12.3/Linux; fresh Python 3.11.5/Windows output
+differs first at a one-ULP trigonometric coordinate and is not yet proven
+cross-runtime identical. The fixture remains valid and environment-pinned.
+
+Luna-49 is authorized only to characterize and govern this runtime/numerical
+reproducibility boundary. It must not regenerate or alter the canonical
+fixture, run Luna-44/Luna-46/Luna-47 scientific paths, compose mechanisms,
+change scientific parameters, repair retained evidence, or authorize Luna-50.
+See [Luna-49](../../../.github/agents/luna-49.agent.md) and the
+[independent Luna-48 review](../../handoffs/luna-0-independent-review-luna48-20261007.md).
+
 ## Luna-0 post-Luna-47 review — Luna-48 authorized / not executed — 2026-10-07
 
 **CORRECTIVE FOLLOW-UP AUTHORIZED.** Independent review of published commit
