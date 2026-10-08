@@ -1,6 +1,7 @@
 import copy
 import json
 import math
+import subprocess
 
 import pytest
 
@@ -87,9 +88,25 @@ def test_baseline_invariance_and_reset():
         d.derive(events)
 
 
-def test_full_retained_reconstruction_and_determinism():
+def test_full_retained_reconstruction_and_determinism(monkeypatch):
+    def reject_current_analyzer(*args, **kwargs):
+        pytest.fail("current analyzer was used for historical reconstruction")
+
+    monkeypatch.setattr(d.retained, "verify_integrity", reject_current_analyzer)
+    monkeypatch.setattr(d.retained, "analyze_sequence", reject_current_analyzer)
     document, provenance = d.reconstruct()
     result = d.analyze(document)
+    sources = provenance["analyzer_sources"]
+    assert sources["historical_revision"] == d.BASE
+    assert sources["historical_git_blob"] == "08f217daec167b2abc82f5988dba660c19f4ae0e"
+    assert sources["recorded_execution_revision"] == d.HISTORICAL_EXECUTION_REVISION
+    assert sources["execution_git_blob"] == sources["historical_git_blob"]
+    assert sources["current_revision"] == d.CURRENT_ANALYZER_REVISION
+    assert sources["current_git_blob"] == "59d24b08ffa0a2a9a1ebe03a35ae595fb646fcd4"
+    assert sources["current_git_blob"] != sources["historical_git_blob"]
+    assert sources["reconstruction_source"] == "authenticated historical Git object"
+    assert provenance["historical_lane"]["retained_result_sha256"] == d.LUNA47B_RESULT_SHA256
+    assert provenance["historical_lane"]["retained_validation_sha256"] == d.LUNA47B_VALIDATION_SHA256
     assert provenance["phase_digests"]["initial"] == provenance["phase_digests"]["replay"]
     assert d.retained.canonical(result) == d.retained.canonical(d.analyze(document))
     assert len(result["sequences"]) == 320
@@ -110,6 +127,88 @@ def test_full_retained_reconstruction_and_determinism():
                 if not event["censored"]:
                     assert event["crossed"] == (abs(event["state_input"]) >= 1)
                     assert abs(event["state_input"]) <= 4
+
+
+@pytest.mark.parametrize(("identity", "message"), [
+    ({"historical_revision": "HEAD"}, "historical analyzer revision differs"),
+    ({"historical_blob": "0" * 40}, "historical analyzer Git object pin differs"),
+    ({"historical_blob": d.CURRENT_ANALYZER_BLOB},
+     "historical analyzer Git object pin differs"),
+    ({"execution_revision": "HEAD"}, "historical analyzer execution revision differs"),
+    ({"current_blob": "0" * 40}, "reviewed current analyzer Git object pin differs"),
+])
+def test_luna52_historical_analyzer_rejects_substituted_identity(tmp_path, identity, message):
+    with pytest.raises(ValueError, match=message):
+        d.load_historical_analyzer(tmp_path, **identity)
+
+
+def test_luna52_historical_analyzer_object_must_be_retrievable(tmp_path):
+    with pytest.raises(ValueError, match="object unavailable"):
+        d.load_historical_analyzer(tmp_path)
+
+
+def test_luna52_historical_analyzer_bytes_must_match_git_blob(monkeypatch):
+    actual_git = d.git
+
+    def changed_historical_source(*args, **kwargs):
+        result = actual_git(*args, **kwargs)
+        if args[:2] == ("show", f"{d.BASE}:{d.ANALYZER_PATH}"):
+            return result + b"\n# unauthorized historical source edit\n"
+        return result
+
+    monkeypatch.setattr(d, "git", changed_historical_source)
+    with pytest.raises(ValueError, match="bytes do not match its Git object"):
+        d.load_historical_analyzer()
+
+
+def _clone_repo(tmp_path):
+    clone = tmp_path / "repo"
+    subprocess.run(
+        ["git", "clone", "--quiet", "--shared", str(d.ROOT), str(clone)],
+        check=True,
+        capture_output=True,
+        text=True,
+    )
+    subprocess.run(["git", "config", "user.name", "Luna-52 tests"],
+                   cwd=clone, check=True)
+    subprocess.run(["git", "config", "user.email", "luna52-tests@example.invalid"],
+                   cwd=clone, check=True)
+    return clone
+
+
+def test_luna52_current_analyzer_source_is_separately_pinned(tmp_path):
+    clone = _clone_repo(tmp_path)
+    current = clone / d.ANALYZER_PATH
+    current.write_bytes(current.read_bytes() + b"\n# unreviewed current source\n")
+    with pytest.raises(ValueError, match="current analyzer checkout differs"):
+        d.load_historical_analyzer(clone)
+
+
+@pytest.mark.parametrize(("path", "message"), [
+    ("experiments/luna47b/PROTOCOL.md", "protocol checkout differs"),
+    ("artifacts/luna47b/results.json", "retained Luna-47B result identity differs"),
+    ("artifacts/luna47b/validation.json", "retained Luna-47B validation identity differs"),
+])
+def test_luna52_retained_lane_metadata_rejects_protocol_and_result_substitution(
+    tmp_path, path, message
+):
+    clone = _clone_repo(tmp_path)
+    target = clone / path
+    target.write_bytes(target.read_bytes() + b"\n")
+    with pytest.raises(ValueError, match=message):
+        d.verify_historical_lane_metadata(clone)
+
+
+def test_luna52_historical_reconstruction_rejects_changed_consumed_input(tmp_path):
+    clone = _clone_repo(tmp_path)
+    changed = clone / d.retained.L45 / "summary.json"
+    changed.write_bytes(changed.read_bytes() + b" ")
+    subprocess.run(["git", "add", str(changed.relative_to(clone))],
+                   cwd=clone, check=True)
+    subprocess.run(["git", "commit", "-m", "mutate retained Luna-45 input"],
+                   cwd=clone, check=True, capture_output=True, text=True)
+    with pytest.raises(ValueError, match="evidence differs beyond Git checkout materialization"):
+        d.reconstruct(clone)
 
 
 def test_retained_artifact_if_present():

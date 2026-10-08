@@ -472,11 +472,14 @@ def owned(path):
             "tests/test_luna44_canonical_fixture_verification.py",
             "run_luna46_depth_scaling_diagnostic.py",
             "tests/test_luna46_depth_scaling_diagnostic.py",
+            "experiments/luna47b/diagnostic.py",
+            "tests/test_luna47b_gain.py",
             "workflow/ARCHITECTURE_CHANGELOG.md",
             "workflow/docs/luna/LUNA_WORKFLOW.md",
             "workflow/handoffs/luna-47f-candidate-generation-diagnostic-20261006.md",
             "workflow/handoffs/luna-47-final-corrective-pass-20261007.md",
             "workflow/handoffs/luna-51-provenance-guard-correction-20261008.md",
+            "workflow/handoffs/luna-52-retained-provenance-verification-20261008.md",
         }
     )
 

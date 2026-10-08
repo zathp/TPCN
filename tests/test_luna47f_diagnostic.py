@@ -1,7 +1,10 @@
 """Synthetic unit fixtures only; retained scoring runs after protocol commit."""
 from copy import deepcopy
 import importlib.util
+import os
 from pathlib import Path
+import subprocess
+import sys
 
 import pytest
 
@@ -427,3 +430,178 @@ def test_luna51_exact_git_materialization_only():
     ):
         with pytest.raises(ValueError, match="beyond"):
             d.verify_materialization(changed, original)
+
+
+def _cli_repository(tmp_path):
+    repo = tmp_path / "repo"
+    subprocess.run(
+        ["git", "clone", "--quiet", "--shared", str(d.ROOT), str(repo)],
+        check=True,
+        capture_output=True,
+        text=True,
+    )
+    subprocess.run(["git", "config", "user.name", "Luna-52 CLI tests"],
+                   cwd=repo, check=True)
+    subprocess.run(["git", "config", "user.email", "luna52-cli@example.invalid"],
+                   cwd=repo, check=True)
+    current_diagnostic = repo / "experiments/luna47f/diagnostic.py"
+    current_diagnostic.write_bytes(FILE.read_bytes())
+    subprocess.run(
+        ["git", "add", "experiments/luna47f/diagnostic.py"],
+        cwd=repo,
+        check=True,
+    )
+    subprocess.run(
+        ["git", "commit", "-m", "apply reviewed Luna-52 verification ownership"],
+        cwd=repo,
+        check=True,
+        capture_output=True,
+        text=True,
+    )
+    return repo
+
+
+def _commit_change(repo, relative, content):
+    target = repo / relative
+    target.parent.mkdir(parents=True, exist_ok=True)
+    target.write_bytes(content)
+    subprocess.run(["git", "add", relative], cwd=repo, check=True)
+    subprocess.run(
+        ["git", "commit", "-m", "isolated Luna-52 adversarial fixture"],
+        cwd=repo,
+        check=True,
+        capture_output=True,
+        text=True,
+    )
+
+
+def _run_public_check(repo, env=None):
+    return subprocess.run(
+        [sys.executable, str(repo / "experiments/luna47f/diagnostic.py"), "--check"],
+        cwd=repo,
+        env=env,
+        capture_output=True,
+        text=True,
+        timeout=180,
+    )
+
+
+def test_luna52_public_check_rejects_consumed_input_mutation(tmp_path):
+    repo = _cli_repository(tmp_path)
+    path = d.CONSUMED_INPUTS[0]
+    target = repo / path
+    _commit_change(repo, path, target.read_bytes() + b" ")
+    result = _run_public_check(repo)
+    assert result.returncode != 0
+    assert "baseline input bytes differ beyond Git newline materialization" in result.stderr
+
+
+def test_luna52_public_check_rejects_historical_identity_substitution(tmp_path):
+    repo = _cli_repository(tmp_path)
+    path = d.CONSUMED_INPUTS[0]
+    target = repo / path
+    _commit_change(repo, path, target.read_bytes() + b" ")
+    subprocess.run(
+        ["git", "replace", d.BASE, "HEAD"],
+        cwd=repo,
+        check=True,
+        capture_output=True,
+        text=True,
+    )
+    result = _run_public_check(repo)
+    assert result.returncode != 0
+    assert "historical input Git object identity differs" in result.stderr
+
+
+@pytest.mark.parametrize("path", [
+    "experiments/luna47f/PROTOCOL.md",
+    "artifacts/luna45-acp0008-depth2-destination-integration-20261006/config.json",
+])
+def test_luna52_public_check_rejects_protocol_and_configuration_mutation(tmp_path, path):
+    repo = _cli_repository(tmp_path)
+    target = repo / path
+    _commit_change(repo, path, target.read_bytes() + b" ")
+    result = _run_public_check(repo)
+    assert result.returncode != 0
+    assert ("historical source" in result.stderr.lower()
+            or "baseline input bytes differ" in result.stderr.lower())
+
+
+@pytest.mark.parametrize("path", [
+    "artifacts/luna47f/diagnostic.json",
+    "artifacts/luna47f/validation.json",
+])
+def test_luna52_public_check_rejects_retained_evidence_mutation(tmp_path, path):
+    repo = _cli_repository(tmp_path)
+    target = repo / path
+    _commit_change(repo, path, target.read_bytes() + b" ")
+    result = _run_public_check(repo)
+    assert result.returncode != 0
+    assert "retained Luna47F" in result.stderr
+    assert "identity differs" in result.stderr
+
+
+def test_luna52_public_check_rejects_same_path_content_substitution(tmp_path):
+    repo = _cli_repository(tmp_path)
+    path = d.CONSUMED_INPUTS[3]
+    _commit_change(repo, path, b'{"substituted":true}\n')
+    result = _run_public_check(repo)
+    assert result.returncode != 0
+    assert "baseline input bytes differ beyond Git newline materialization" in result.stderr
+
+
+def test_luna52_public_check_accepts_unrelated_evolution(tmp_path):
+    repo = _cli_repository(tmp_path)
+    governance = "workflow/handoffs/luna52-unrelated-governance-test.txt"
+    unrelated_source = "tests/test_luna52_unrelated_source.py"
+    _commit_change(repo, governance, b"later independent governance record\n")
+    _commit_change(repo, unrelated_source, b"def unrelated_test():\n    return True\n")
+    result = _run_public_check(repo)
+    assert result.returncode == 0, result.stdout + result.stderr
+    assert "PASS: retained analysis, replay, inputs, code and protected hashes" in result.stdout
+
+
+def test_luna52_public_check_accepts_exact_git_crlf_materialization(tmp_path):
+    repo = _cli_repository(tmp_path)
+    path = d.CONSUMED_INPUTS[0]
+    subprocess.run(["git", "config", "core.autocrlf", "true"], cwd=repo, check=True)
+    subprocess.run(["git", "checkout", "--force", "--", path], cwd=repo, check=True)
+    result = _run_public_check(repo)
+    assert result.returncode == 0, result.stdout + result.stderr
+    assert "PASS: retained analysis, replay, inputs, code and protected hashes" in result.stdout
+
+
+def test_luna52_public_check_detects_live_mutation(tmp_path):
+    repo = _cli_repository(tmp_path)
+    shim = tmp_path / "python-startup"
+    shim.mkdir()
+    (shim / "sitecustomize.py").write_text(
+        "import inspect\n"
+        "import os\n"
+        "from pathlib import Path\n"
+        "target = Path(os.environ['LUNA52_MUTATION_TARGET']).resolve()\n"
+        "original = Path.read_bytes\n"
+        "mutated = False\n"
+        "def instrumented_read_bytes(path):\n"
+        "    global mutated\n"
+        "    data = original(path)\n"
+        "    frame = inspect.currentframe().f_back\n"
+        "    in_snapshot = False\n"
+        "    while frame is not None:\n"
+        "        if frame.f_code.co_name == 'protected_snapshot':\n"
+        "            in_snapshot = True\n"
+        "            break\n"
+        "        frame = frame.f_back\n"
+        "    if not mutated and in_snapshot and path.resolve() == target:\n"
+        "        path.write_bytes(data + b' ')\n"
+        "        mutated = True\n"
+        "    return data\n"
+        "Path.read_bytes = instrumented_read_bytes\n",
+        encoding="utf-8",
+    )
+    env = os.environ.copy()
+    env["LUNA52_MUTATION_TARGET"] = str(repo / "artifacts/luna47f/validation.json")
+    env["PYTHONPATH"] = str(shim) + os.pathsep + env.get("PYTHONPATH", "")
+    result = _run_public_check(repo, env)
+    assert result.returncode != 0
+    assert "protected live input changed during verification" in result.stderr

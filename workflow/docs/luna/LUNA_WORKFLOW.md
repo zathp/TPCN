@@ -1,25 +1,32 @@
 # TPCN Luna Multi-Agent Workflow — Event-Driven Architecture
 
-## Luna-0 governance review — Luna-52 corrective follow-up authorized — 2026-10-08
+## Luna-52 execution — retained provenance verification closed; review pending — 2026-10-08
 
-**LUNA-52 AUTHORIZED / NOT EXECUTED.** The Luna-51 correction is accepted
-with follow-up. A single correction-only successor is authorized for the two
-remaining gates: Luna-47B must authenticate and use its historical Luna-46
-analyzer source separately from reviewed current source; Luna-47F must add
-adversarial coverage through its public `--check` path. The exact historical
-analyzer object remains recoverable; Luna-51's change is to provenance
-verification, not scientific analysis. The existing Luna-47F `--check` path
-passes unchanged but lacks adversarial CLI coverage.
+**PASS — RETAINED PROVENANCE VERIFICATION CLOSED.** Luna-52 executed from its
+exact authorized baseline `e6bd96a13eb2d5bb19fce8ef6c4b3aa3ec8f8c2e`.
+Luna-47B now reconstructs with the authenticated historical Luna-46 analyzer
+object (`789dda5988daf72f375d9713bd76a6da2b9e8b34`,
+`08f217daec167b2abc82f5988dba660c19f4ae0e`) while separately checking the
+reviewed current source (`e6bd96a13eb2d5bb19fce8ef6c4b3aa3ec8f8c2e`,
+`59d24b08ffa0a2a9a1ebe03a35ae595fb646fcd4`). Luna-47F's actual public
+`--check` path now has isolated subprocess adversarial coverage for consumed
+input and historical identity mutations, protocol/configuration changes,
+retained evidence, same-path substitution, unrelated repository evolution,
+exact LF/CRLF materialization, and live pre/post mutation.
 
-Luna-52 must preserve all scientific artifacts and interpretations, make the
-full suite meaningfully green, and test negative and positive public-path
-controls in isolated state. No scientific experiment, A01-A15/ACP change, or
-Luna-53 is authorized. See the [Luna-52 governance handoff](../../handoffs/luna-0-review-luna51-authorize-luna52-20261008.md),
-[Luna-52 contract](../../../.github/agents/luna-52.agent.md), and
-[Luna-51 execution handoff](../../handoffs/luna-51-provenance-guard-correction-20261008.md).
+Focused results: Luna-52-specific **22 passed**; Luna-47B **28 passed**;
+Luna-47F **73 passed**; Luna-46 **175 passed, 1 Windows symlink privilege
+skip**; Luna-44/Luna-51 **21 passed**; core and Luna-34–45 **286 passed**.
+The full suite is **1,693 passed, 1 skipped, zero failures/errors**. All seven
+protected Luna-47B/Luna-46/Luna-47F artifact hashes are unchanged. No
+scientific behavior, result, A01-A15 clause, or ACP changed. The Luna-50
+historical Linux-runtime limitation remains parked; no scientific successor
+or Luna-53 is authorized.
 
-Next: **Luna-52 execution -> Luna-0 independent review**. No scientific
-successor is selected or authorized.
+See the [Luna-52 execution handoff](../../handoffs/luna-52-retained-provenance-verification-20261008.md),
+[Luna-52 authorization handoff](../../handoffs/luna-0-review-luna51-authorize-luna52-20261008.md),
+and [Luna-52 contract](../../../.github/agents/luna-52.agent.md).
+Next: **independent Luna-0 review of the published execution**.
 
 ## Luna-51 execution — corrections complete; governance required — 2026-10-08
 

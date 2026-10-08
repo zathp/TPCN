@@ -3,12 +3,14 @@ from __future__ import annotations
 
 import argparse
 from collections import Counter
+import hashlib
 import json
 import math
 from pathlib import Path
 import statistics
 import subprocess
 import sys
+from types import ModuleType
 from unittest.mock import patch
 
 import run_luna46_depth_scaling_diagnostic as retained
@@ -16,16 +18,25 @@ import run_luna46_depth_scaling_diagnostic as retained
 ROOT = Path(__file__).resolve().parents[2]
 BASE = "789dda5988daf72f375d9713bd76a6da2b9e8b34"
 EVIDENCE_BASE = "2cef8ea4b37a4ae586e3f383511cba63c9268ddc"
+HISTORICAL_EXECUTION_REVISION = "38891b81754ce385c55f96e4020e2bf04c2b9a5d"
+HISTORICAL_ANALYZER_BLOB = "08f217daec167b2abc82f5988dba660c19f4ae0e"
+CURRENT_ANALYZER_REVISION = "e6bd96a13eb2d5bb19fce8ef6c4b3aa3ec8f8c2e"
+CURRENT_ANALYZER_BLOB = "59d24b08ffa0a2a9a1ebe03a35ae595fb646fcd4"
+ANALYZER_PATH = "run_luna46_depth_scaling_diagnostic.py"
 BRANCH = "copilot/luna47b-investigation"
 RETAINED = Path("artifacts/luna46-depth-scaling-diagnostic-corrective-20261006.json")
+LUNA47B_RESULT = Path("artifacts/luna47b/results.json")
+LUNA47B_VALIDATION = Path("artifacts/luna47b/validation.json")
+LUNA47B_RESULT_SHA256 = "b120d2cc5718649fb0d57d93611ddb89b45113e79c0d3003cf330fe092d0fb83"
+LUNA47B_VALIDATION_SHA256 = "1ef630d88e4699e9bcc1e5d05e2cc868f12f38a3958f8f1a065a4132df628fe0"
 MODULE = Path("experiments/luna47b/diagnostic.py")
 PROTOCOL = Path("experiments/luna47b/PROTOCOL.md")
 EXPECTED_COUNTS = {"NO-RECEPTIONS": 212, "DRIVE-LIMITED": 75,
                    "TEMPORAL-RETENTION-LIMITED": 33}
 
 
-def git(*args: str) -> bytes:
-    return subprocess.check_output(["git", "--no-pager", *args], cwd=ROOT)
+def git(*args: str, root: Path = ROOT) -> bytes:
+    return subprocess.check_output(["git", "--no-pager", *args], cwd=root)
 
 
 def ensure(ok: bool, reason: str) -> None:
@@ -122,70 +133,207 @@ def trajectory(rows: list[dict], gain: float) -> dict:
                 for e in events if not e["censored"]]])}
 
 
-def reconstruct() -> tuple[dict, dict]:
+def git_blob_sha(data: bytes) -> str:
+    header = f"blob {len(data)}\0".encode()
+    return hashlib.sha1(header + data).hexdigest()
+
+
+def verify_historical_lane_metadata(root: Path = ROOT) -> dict:
+    result_bytes = (root / LUNA47B_RESULT).read_bytes()
+    validation_bytes = (root / LUNA47B_VALIDATION).read_bytes()
+    ensure(retained.sha(result_bytes) == LUNA47B_RESULT_SHA256,
+           "retained Luna-47B result identity differs")
+    ensure(retained.sha(validation_bytes) == LUNA47B_VALIDATION_SHA256,
+           "retained Luna-47B validation identity differs")
+
+    result = json.loads(result_bytes)
+    ensure(result.get("execution_revision") == HISTORICAL_EXECUTION_REVISION,
+           "retained Luna-47B execution revision differs")
+    source_hashes = result.get("source_hashes")
+    ensure(isinstance(source_hashes, dict), "retained Luna-47B source identities missing")
+    try:
+        historical_module = git(
+            "show", f"{HISTORICAL_EXECUTION_REVISION}:{ANALYZER_PATH}", root=root
+        )
+        historical_protocol = git(
+            "show", f"{HISTORICAL_EXECUTION_REVISION}:{PROTOCOL.as_posix()}", root=root
+        )
+    except subprocess.CalledProcessError as error:
+        raise ValueError("BLOCKED: retained Luna-47B source object unavailable") from error
+
+    ensure(
+        git_blob_sha(historical_module) == HISTORICAL_ANALYZER_BLOB,
+        "retained Luna-47B historical analyzer object differs",
+    )
+    recorded_protocol = source_hashes.get(PROTOCOL.as_posix(), {})
+    ensure(
+        recorded_protocol.get("committed_sha256") == retained.sha(historical_protocol),
+        "retained Luna-47B protocol execution identity differs",
+    )
+    working_protocol = (root / PROTOCOL).read_bytes()
+    ensure(
+        working_protocol == historical_protocol
+        or working_protocol == historical_protocol.replace(b"\n", b"\r\n"),
+        "Luna-47B protocol checkout differs beyond Git newline materialization",
+    )
+    ensure(
+        result.get("protocol") == historical_protocol.decode("utf-8"),
+        "retained Luna-47B protocol content differs",
+    )
+    return {
+        "execution_revision": result["execution_revision"],
+        "historical_analyzer_sha256": retained.sha(historical_module),
+        "historical_protocol_sha256": retained.sha(historical_protocol),
+        "retained_result_sha256": retained.sha(result_bytes),
+        "retained_validation_sha256": retained.sha(validation_bytes),
+    }
+
+
+def load_historical_analyzer(
+    root: Path = ROOT,
+    *,
+    historical_revision: str = BASE,
+    historical_blob: str = HISTORICAL_ANALYZER_BLOB,
+    execution_revision: str = HISTORICAL_EXECUTION_REVISION,
+    current_revision: str = CURRENT_ANALYZER_REVISION,
+    current_blob: str = CURRENT_ANALYZER_BLOB,
+) -> tuple[ModuleType, dict]:
+    ensure(historical_revision == BASE, "historical analyzer revision differs")
+    ensure(execution_revision == HISTORICAL_EXECUTION_REVISION,
+           "historical analyzer execution revision differs")
+    ensure(historical_blob == HISTORICAL_ANALYZER_BLOB,
+           "historical analyzer Git object pin differs")
+    ensure(current_revision == CURRENT_ANALYZER_REVISION,
+           "reviewed current analyzer revision differs")
+    ensure(current_blob == CURRENT_ANALYZER_BLOB,
+           "reviewed current analyzer Git object pin differs")
+
+    try:
+        historical_object = git(
+            "rev-parse", f"{historical_revision}:{ANALYZER_PATH}", root=root
+        ).decode().strip()
+        historical_bytes = git(
+            "show", f"{historical_revision}:{ANALYZER_PATH}", root=root
+        )
+        execution_object = git(
+            "rev-parse", f"{execution_revision}:{ANALYZER_PATH}", root=root
+        ).decode().strip()
+        current_object = git(
+            "rev-parse", f"{current_revision}:{ANALYZER_PATH}", root=root
+        ).decode().strip()
+        current_bytes = git(
+            "show", f"{current_revision}:{ANALYZER_PATH}", root=root
+        )
+    except subprocess.CalledProcessError as error:
+        raise ValueError("BLOCKED: required historical/current analyzer object unavailable") from error
+
+    ensure(historical_object == HISTORICAL_ANALYZER_BLOB,
+           "historical analyzer Git object differs")
+    ensure(execution_object == HISTORICAL_ANALYZER_BLOB,
+           "recorded execution analyzer Git object differs")
+    ensure(current_object == CURRENT_ANALYZER_BLOB,
+           "reviewed current analyzer Git object differs")
+    ensure(git_blob_sha(historical_bytes) == historical_object,
+           "historical analyzer bytes do not match its Git object")
+    ensure(git_blob_sha(current_bytes) == current_object,
+           "reviewed current analyzer bytes do not match its Git object")
+
+    working_current = (root / ANALYZER_PATH).read_bytes()
+    ensure(
+        working_current == current_bytes
+        or working_current == current_bytes.replace(b"\n", b"\r\n"),
+        "current analyzer checkout differs beyond Git newline materialization",
+    )
+
+    module = ModuleType("_luna47b_historical_luna46_analyzer")
+    module.__file__ = str(root / ANALYZER_PATH)
+    module.__package__ = ""
+    exec(compile(historical_bytes, module.__file__, "exec"), module.__dict__)
+    return module, {
+        "historical_revision": historical_revision,
+        "historical_git_blob": historical_object,
+        "historical_sha256": retained.sha(historical_bytes),
+        "recorded_execution_revision": execution_revision,
+        "execution_git_blob": execution_object,
+        "current_revision": current_revision,
+        "current_git_blob": current_object,
+        "current_sha256": retained.sha(current_bytes),
+        "current_checkout_sha256": retained.sha(working_current),
+        "current_checkout_materialization": (
+            "exact" if working_current == current_bytes
+            else "exact-Git-LF-to-CRLF-checkout"
+        ),
+        "reconstruction_source": "authenticated historical Git object",
+    }
+
+
+def reconstruct(root: Path = ROOT) -> tuple[dict, dict]:
     # Reuse reviewed read-only integrity/reconciliation routines, not its CLI
     # (which intentionally enforces the historical Luna-46 branch).
+    lane_metadata = verify_historical_lane_metadata(root)
     materialization = {}
     cache = {}
+
+    analyzer, analyzer_sources = load_historical_analyzer(root)
+
     def committed_bytes(path: Path) -> bytes:
-        relative = path.relative_to(ROOT).as_posix()
+        relative = path.relative_to(root).as_posix()
         if relative not in cache:
-            committed = git("show", f"{EVIDENCE_BASE}:{relative}")
+            committed = git("show", f"{EVIDENCE_BASE}:{relative}", root=root)
             worktree = path.read_bytes()
             ensure(worktree == committed or worktree == committed.replace(b"\n", b"\r\n"),
                    "evidence differs beyond Git checkout materialization")
-            ensure(git("rev-parse", f"HEAD:{relative}") ==
-                   git("rev-parse", f"{EVIDENCE_BASE}:{relative}"),
+            ensure(git("rev-parse", f"HEAD:{relative}", root=root) ==
+                   git("rev-parse", f"{EVIDENCE_BASE}:{relative}", root=root),
                    "evidence Git blob changed")
             cache[relative] = committed
             materialization[relative] = {
-                "consumed_committed_sha256": retained.sha(committed),
+                "consumed_committed_sha256": analyzer.sha(committed),
                 "consumed_revision": EVIDENCE_BASE, "byte_length": len(committed),
-                "worktree_sha256": retained.sha(worktree),
+                "worktree_sha256": analyzer.sha(worktree),
                 "worktree_equal": worktree == committed,
                 "checkout_only_crlf": worktree != committed}
         return cache[relative]
-    for path in ("run_luna46_depth_scaling_diagnostic.py",):
-        ensure((ROOT / path).read_bytes().replace(b"\r\n", b"\n")
-               == git("show", f"{BASE}:{path}"),
-               "reviewed analyzer changed")
-    with patch.object(retained, "read_bytes", committed_bytes):
-        integrity = retained.verify_integrity(ROOT)
-    document = json.loads(committed_bytes(ROOT / RETAINED))
-    ensure(retained.digest({k: v for k, v in document.items() if k != "output_digest"})
+
+    with patch.object(analyzer, "read_bytes", committed_bytes):
+        integrity = analyzer.verify_integrity(root)
+    document = json.loads(committed_bytes(root / RETAINED))
+    ensure(analyzer.digest({k: v for k, v in document.items() if k != "output_digest"})
            == document["output_digest"], "corrected output internal digest differs")
     ensure(document["verdict"] == "MIXED", "retained verdict differs")
-    load = lambda path: json.loads(committed_bytes(ROOT / path))
+    load = lambda path: json.loads(committed_bytes(root / path))
     config = load(retained.L45 / "config.json")["experiment"]
-    retained.validate_config(config, load(retained.L44 / "config.json")["experiment"])
+    analyzer.validate_config(config, load(retained.L44 / "config.json")["experiment"])
     summary = load(retained.L45 / "summary.json")
     for arm in ("DESTINATION_DISABLED", "DESTINATION_DEFAULT", retained.CALIBRATED):
-        retained.verify_phase_pair(load(retained.L45 / f"initial-{arm.lower()}.json"),
+        analyzer.verify_phase_pair(load(retained.L45 / f"initial-{arm.lower()}.json"),
                                    load(retained.L45 / f"replay-{arm.lower()}.json"),
                                    config, summary, arm)
     phases = {}
     for phase in ("initial", "replay"):
         records = load(retained.L45 / f"{phase}-destination_calibrated.json")["records"]
-        enqueues = retained.select_raw(load(retained.L45 / f"{phase}-destination_calibrated-enqueue.json"),
+        enqueues = analyzer.select_raw(load(retained.L45 / f"{phase}-destination_calibrated-enqueue.json"),
                                        records, phase, "enqueue", retained.CALIBRATED)
-        receptions = retained.select_raw(load(retained.L45 / f"{phase}-destination_calibrated-reception.json"),
+        receptions = analyzer.select_raw(load(retained.L45 / f"{phase}-destination_calibrated-reception.json"),
                                          records, phase, "reception", retained.CALIBRATED)
         results = []
         for record, queued, received in zip(records, enqueues, receptions):
             hop = lambda rows: [r for r in rows if r["source"] == "relay"
                                 and r["destination"] == "destination"]
-            arrivals = retained.reconcile(hop(queued), hop(received), "relay", "destination")
-            results.append(retained.analyze_sequence(record["stream_id"], arrivals,
-                           retained.destination_updates(record, arrivals)))
+            arrivals = analyzer.reconcile(hop(queued), hop(received), "relay", "destination")
+            results.append(analyzer.analyze_sequence(record["stream_id"], arrivals,
+                           analyzer.destination_updates(record, arrivals)))
         ensure(results == document["sequences"], "exact reconstructed retained sequences differ")
-        phases[phase] = retained.digest(results)
+        phases[phase] = analyzer.digest(results)
     ensure(phases["initial"] == phases["replay"], "retained replay differs")
     ensure(dict(Counter(s["category"] for s in document["sequences"])) == EXPECTED_COUNTS,
            "retained category partition differs")
     return document, {"integrity": integrity, "phase_digests": phases,
-                      "retained_sha256": retained.sha(committed_bytes(ROOT / RETAINED)),
-                      "configuration_digest": retained.digest(config),
-                      "materialization": materialization}
+                      "retained_sha256": analyzer.sha(committed_bytes(root / RETAINED)),
+                      "configuration_digest": analyzer.digest(config),
+                      "materialization": materialization,
+                      "analyzer_sources": analyzer_sources,
+                      "historical_lane": lane_metadata}
 
 
 def analyze(document: dict) -> dict:
