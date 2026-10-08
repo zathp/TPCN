@@ -1,8 +1,8 @@
 # TPCN Luna Multi-Agent Workflow — Event-Driven Architecture
 
-## Luna-52 clean-checkout correction — review pending — 2026-10-08
+## Luna-52 clean-checkout correction — clean commit validated; review follow-up pending — 2026-10-08
 
-**CORRECTION COMPLETE — PENDING CLEAN-COMMIT VALIDATION AND LUNA-0 REVIEW.**
+**CORRECTION COMPLETE — CLEAN-COMMIT VALIDATION PASS; LUNA-0 DOCUMENTATION FOLLOW-UP PENDING.**
 The Luna-0 review found that all ten public CLI subprocess tests failed in
 clone setup when the verifier was already committed and identical. The
 bootstrap now conditionally commits only changed verifier content, preserves
@@ -15,10 +15,13 @@ The corrected focused public-path group passes **12 tests**; the Luna-47B
 suite passes **31**, Luna-47F diagnostic/retained **75**, Luna-44/Luna-46
 **196 with the existing one Windows symlink-privilege skip**,
 Luna-51/materialization **8**, and historical/core **377**. The full suite
-on this candidate reports **1,698 passed, 1 skipped, zero failures/errors**.
-All seven protected artifact hashes remain unchanged. The final full-suite
-run must also pass from the exact clean committed revision before Luna-0
-review. No scientific successor is authorized.
+ran from clean published commit `0d49c780ee1f4fd63089b1ee9ae17f156c80c668`:
+**1,698 passed, 1 skipped, zero failures/errors**. All seven protected
+artifact hashes remain unchanged. Luna-0 independently reviewed that commit
+and found no test or verifier defect, but blocked closure because this section
+and the changelog still described clean-commit validation as pending. That
+documentation inconsistency is being corrected; no scientific successor is
+authorized.
 
 See the [independent Luna-0 review](../../handoffs/luna-0-independent-review-luna52-20261008.md),
 [Luna-52 execution handoff](../../handoffs/luna-52-retained-provenance-verification-20261008.md),

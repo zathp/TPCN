@@ -2,7 +2,7 @@
 
 ## Luna-52 clean-checkout test correction — 2026-10-08
 
-**CORRECTIVE CANDIDATE GREEN; CLEAN-COMMIT VALIDATION PENDING.** The
+**CLEAN-COMMIT VALIDATION PASS; DOCUMENTATION FOLLOW-UP PENDING.** The
 independent review found a public CLI test-bootstrap defect, not a verifier
 protection defect: `_cli_repository()` unconditionally attempted to commit an
 already-committed identical verifier. The helper now compares staged source
@@ -11,12 +11,15 @@ checks that the temporary baseline is clean. Tests cover both bootstrap
 states. Three Luna-47B reconstruction-route mutation regressions cover retained
 result, protocol, and unauthorized current-source changes.
 
-Current corrective-candidate results: Luna-47B **31 passed**; Luna-47F
+The published clean commit `0d49c780ee1f4fd63089b1ee9ae17f156c80c668` passed:
+Luna-47B **31 passed**; Luna-47F
 diagnostic/retained **75 passed**; Luna-44/Luna-46 **196 passed, 1 existing
 Windows symlink-privilege skip**; Luna-51/materialization **8 passed**;
 historical/core **377 passed**; full suite **1,698 passed, 1 skipped, zero
-failed/errors**. The full suite must be rerun from the exact clean committed
-candidate before Luna-0 can close Luna-52. Protected hashes and the
+failed/errors**. Luna-0's independent review confirmed the verifier/test
+correction and protected hashes, but blocked closure because this changelog
+and the workflow page still reported clean-commit validation as pending.
+Protected hashes and the
 historical/current source pins remain unchanged. No A01-A15, ACP, scientific
 result, or architecture claim changed; no scientific successor is authorized.
 See the [Luna-52 execution handoff](handoffs/luna-52-retained-provenance-verification-20261008.md),
