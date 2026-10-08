@@ -1,0 +1,70 @@
+{
+  "schema": "TPCN-LUNA54-PROTOCOL-1",
+  "task_id": "luna-54-relay-temporal-retention-propagation-20261008",
+  "authorization_contract": ".github/agents/luna-54.agent.md",
+  "selection_handoff": "workflow/handoffs/luna-0-scientific-successor-selection-luna54-20261008.md",
+  "starting_baseline": "09701f7c5a1d7063dffecb7734eb199d1c0b0176",
+  "retained_evidence_baseline": "1bee6673ac68e99303d33053e197f41fe78b913f",
+  "question": "Does changing only relay ACP-0008 integration.decay_rate_z from 0.0125 to 0.00125 produce additional relay E2 discharges and canonical emissions with authenticated relay-to-destination enqueue and reception in the 75 retained DRIVE-LIMITED streams?",
+  "conditions": {
+    "control_relay_decay_rate_z": 0.0125,
+    "intervention_relay_decay_rate_z": 0.00125,
+    "source": "exact authenticated retained source-to-relay reception records",
+    "destination_decay_rate_z": 0.0125,
+    "all_other_configuration": "byte/value identical to the retained Luna-45 calibrated configuration"
+  },
+  "phases": ["initial", "replay"],
+  "replication_boundary": "Four separate fresh Python invocations; each stream has a fresh bounded E2 runtime and neurons. Initial and replay are deterministic retained replays, not independent samples.",
+  "runtime_boundary": {
+    "implementation": "MultiExcursionNeuron, ExcursionCharacterRuntime, EventQueue, and BoundedTopology",
+    "source_network_rerun": false,
+    "proxy_recurrence_as_neuron": false,
+    "source_to_relay_inputs": "authenticated arrival records only; sorted by original queue_sequence and exact identity tie-break",
+    "downstream_boundary": "process unchanged destination normally; do not route destination outputs",
+    "stream_reset": "fresh runtime, relay, destination, queue, and sidecar state for every stream/condition/phase",
+    "queue_capacity": 128,
+    "runtime_event_budget": 1024,
+    "per_neuron_event_budget": 4096,
+    "settling_horizon": 4.0
+  },
+  "strata": {
+    "primary": {"category": "DRIVE-LIMITED", "streams": 75, "source_to_relay_inputs": 676, "control_relay_emissions": 109},
+    "secondary_upstream_active": {"category": "NO-RECEPTIONS", "streams": 189, "source_to_relay_inputs": 558},
+    "secondary_zero_input": {"category": "NO-RECEPTIONS", "streams": 23, "source_to_relay_inputs": 0},
+    "secondary_retention": {"category": "TEMPORAL-RETENTION-LIMITED", "streams": 33},
+    "full_population": {"streams": 320, "source_to_relay_inputs": 1715, "relay_to_destination_control_pairs": 235}
+  },
+  "execution_gate_order": [
+    "verify starting-baseline ancestry, current E2 source blobs, exact retained Git objects, file hashes, internal artifact digests, and Luna-45 integrity catalog",
+    "authenticate both phase input captures and reconcile every retained source-to-relay enqueue/reception pair",
+    "execute initial and replay historical controls and require exact historical relay and destination compatibility",
+    "verify one-field relay-only intervention isolation before treatment",
+    "execute initial and replay intervention",
+    "independently audit relay and destination recurrence, causal roots, enqueues/receptions, no-input isolation, bounds, and exact replay",
+    "write class summaries, manifests, and a contract-scoped verdict"
+  ],
+  "primary_response": "A treatment-minus-control increase in relay integration discharges that produce canonical relay emissions and are routed and received at destination with authenticated source-to-relay lineage.",
+  "distinct_outcomes": [
+    "source-to-relay input integration",
+    "relay threshold crossing",
+    "relay integration discharge",
+    "relay canonical emission",
+    "relay-to-destination enqueue",
+    "destination reception",
+    "destination threshold crossing",
+    "destination integration discharge",
+    "destination canonical emission"
+  ],
+  "decision_rule": {
+    "SUPPORTED": "At least one primary stream has a reproducible additional relay integration discharge and linked canonical emission successfully enqueued and received at the destination; every integrity, historical-control, one-field-isolation, no-input, boundedness, recurrence, routing, and replay gate passes.",
+    "NOT SUPPORTED": "All required gates pass and no primary stream has an additional valid routed relay emission/reception.",
+    "INCONCLUSIVE": "All integrity/runtime gates pass but the observed primary difference cannot satisfy the full discharge/emission/reception causal endpoint.",
+    "BLOCKED": "Any integrity, historical compatibility, config isolation, no-input, boundedness, recurrence, route reconciliation, or replay gate fails."
+  },
+  "prohibited": [
+    "no source simulation or generated/proxy input",
+    "no additional condition, parameter sweep, destination change, edge/topology change, training, structural plasticity, or task-efficacy run",
+    "no class label in runtime input or computation",
+    "no successor authorization, production recommendation, ACP/A01-A15 change, hardware-equivalence claim, or production promotion"
+  ]
+}

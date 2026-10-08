@@ -1,0 +1,52 @@
+{
+  "schema": "TPCN-LUNA54-CONFIG-1",
+  "baseline_revision": "09701f7c5a1d7063dffecb7734eb199d1c0b0176",
+  "retained_configuration": {
+    "path": "artifacts/luna45-depth2-frozen-config-20261006-r2/config.json",
+    "sha256_lf": "a19bf911ebe04c52aba7d83e376faac853519db3308419ca8bfcad35143858e1",
+    "git_blob": "1fcf4e9865d1b6d1af9f39ab74d399eb6496b166",
+    "configuration_digest": "cb6621ff403836e1b72b86a65375df11c2841df61030fbe5dd8a654a70394c1a"
+  },
+  "conditions": {
+    "control": {
+      "relay_integration_decay_rate_z": 0.0125,
+      "destination_integration_decay_rate_z": 0.0125
+    },
+    "intervention": {
+      "relay_integration_decay_rate_z": 0.00125,
+      "destination_integration_decay_rate_z": 0.0125
+    }
+  },
+  "only_intervention_path": "relay.integration.decay_rate_z",
+  "runtime": {
+    "initial_timestamp": 0.0,
+    "queue_capacity": 128,
+    "runtime_event_budget": 1024,
+    "neuron_event_budget": 4096,
+    "settling_horizon": 4.0,
+    "prediction_capacity": 8,
+    "prediction_expiry": 4.0,
+    "max_activity_events": 1024,
+    "eligibility_capacity_per_ledger": 1024,
+    "neutral_reward": 0.0,
+    "reward_delay": 0.0
+  },
+  "topology": {
+    "route": ["relay", "destination"],
+    "propagation_delay": 1.0,
+    "edge_weight": 1.0,
+    "divider_strength": 1.0,
+    "reference": 0.0,
+    "legacy_identity": true,
+    "edge_capacity": 3,
+    "routing_capacity": 3,
+    "fan_in_limit": 2,
+    "fan_out_limit": 2
+  },
+  "numerical_policy": {
+    "recurrence_tolerance": "64 * sys.float_info.epsilon * max(1.0, abs(observed), abs(expected))",
+    "threshold_comparison": "exact; no threshold tolerance",
+    "copied_event_fields": "exact bits and values",
+    "initial_replay": "canonical scientific records byte-identical"
+  }
+}
