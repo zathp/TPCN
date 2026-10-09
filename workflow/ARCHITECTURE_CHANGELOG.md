@@ -1,5 +1,34 @@
 # Architecture Changelog
 
+## Luna-63A/B evidence integration and Luna-63C design-only authorization — 2026-10-09
+
+At clean authoritative starting `main` `e52098b2141a3f121f23b512e877783a64ef8baa`,
+independent Luna-0 reviews completed for the separately published Luna-63A and
+Luna-63B revisions. 63A is **PASS WITH LIMITATIONS** for scalar exact HOLD
+under zero leak followed by the frozen analytic decay recurrence only. Its
+executable model, tests and artifacts remain external on
+`experiment/luna63a-binary-adaptive-decay` at
+`1c3e33d6285c2d3aeb107f27aad07e57de2ba50f`; the main governance handoff records
+the evidence and the manifest's containing-commit placeholder. No history or
+manifest rewrite was made.
+
+63B is **PASS WITH LIMITATIONS — design prerequisite only** at
+`fe3ebe5fdd2e018e79dd640fa4f94548ebba8701`. The reviewed design report and
+handoff only were cherry-picked to main; there is no executable model, test or
+scientific result. A separate independent numerical review substantiated the
+candidate's rational equations and conditional binary64 recurrence bound, but
+blocked the full oracle prerequisite on the leaky scalar exponential-error
+certificate, exact observation/metadata semantics and pre-execution freeze.
+No 63B experiment is authorized.
+
+The owner authorized a **design-only Luna-63C prerequisite**, bounded by
+`.github/agents/luna-63c.agent.md`. No design implementation, simulation or
+trial was performed. No A01-A15 clause or ACP status changed; ACP-0008 was not
+amended; Luna-62 remains proposed and ACP-required. No integrated sequence
+echo or Luna-64 is authorized. See
+`workflow/handoffs/luna-0-63-governance-review-20261009.md` and
+`workflow/handoffs/luna-0-luna63b-numerical-prerequisite-review-20261009.md`.
+
 ## Luna-62 independent design review; isolated Luna-63 lane governance — 2026-10-09
 
 Reviewed baseline `8123147e04c6044d12023f541cf63130cdbb7dcc`, Luna-62

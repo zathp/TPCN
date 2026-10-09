@@ -1,5 +1,35 @@
 # TPCN Luna Multi-Agent Workflow — Event-Driven Architecture
 
+## Luna-63A/B reviewed evidence integrated; 63B numerical gate blocked; 63C design assigned — 2026-10-09
+
+The independent Luna-0 reviews of Luna-63A publication
+`1c3e33d6285c2d3aeb107f27aad07e57de2ba50f` and Luna-63B publication
+`fe3ebe5fdd2e018e79dd640fa4f94548ebba8701` both returned **PASS WITH
+LIMITATIONS**, with distinct scopes:
+
+- [Luna-63A evidence](../../handoffs/luna-0-63-governance-review-20261009.md):
+  isolated software scalar HOLD/RELEASE only. The executable lane, tests and
+  artifacts remain on its external experiment branch; no core/default
+  promotion.
+- [Luna-63B design](LUNA_63B_LOCAL_PCN_STATE_DESIGN.md): bounded proposed
+  model/protocol only. Its report and handoff have been integrated as
+  documentation; no executable model or scientific result is present.
+
+A separate mathematical/numerical review derived the candidate's rational
+oracle and conditional binary64 recurrence bound, but the full prerequisite
+is **BLOCKED** on a certified leaky-scalar exponential error, fully specified
+observation/metadata semantics, and an exact pre-execution freeze. No Luna-63B
+experiment is authorized; see the
+[numerical prerequisite review](../../handoffs/luna-0-luna63b-numerical-prerequisite-review-20261009.md).
+
+The owner authorized **Luna-63C design only**, under
+[its bounded assignment](../../../.github/agents/luna-63c.agent.md). It may
+specify one candidate and an unexecuted falsification protocol, then requires
+independent Luna-0 review. No implementation, simulation, trial, integrated
+echo, ACP adoption, architecture promotion or Luna-64 is authorized.
+Luna-62 remains proposed and **ACP REQUIRED**. No A01-A15 or ACP status
+changed.
+
 ## Luna-62 independent design review closed; Luna-63 bounded alternative lanes — 2026-10-09
 
 **LUNA-62: PASS WITH LIMITATIONS — DESIGN ONLY, NOT ADOPTION.** Independent
