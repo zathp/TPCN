@@ -11,7 +11,7 @@ tpcn_handoff:
   contract_version: "1.2"
   branch: "main"
   base_revision: "362282e1871fc46037d83bed4ed99d66fb5e796b"
-  result_revision: "uncommitted documentation; parent handles publication"
+  result_revision: "c33f4195d10d2c5de8e715ac4ad63349a724aa34"
   dependencies:
     - "Assigned committed .github/agents/luna-62.agent.md, read in full"
     - "Read-only 1343-line user attachment, read in full; contract prevails"
@@ -259,7 +259,8 @@ Git checks; that closes the worker's initially pending command validation.
 | Parent `git status`, tracked diff and untracked listing | **PASS:** exactly two new authorized documents | No code/workflow/ACP modifications |
 | Parent `git diff --check` and both `git diff --no-index --check -- NUL <path>` | **PASS:** no whitespace diagnostics | No-index content-difference exit 1 is not a whitespace failure |
 | All tests/runtime/trials/data generation/scoring/training/simulation/hardware | **NOT RUN / NOT AUTHORIZED** | No measurements or demonstrated recall |
-| Documentation staging/commit/push | Parent publication step | Exact design revision pinned after commit; final synchronization verified separately |
+| Documentation staging/commit | **PASS:** only two authorized paths; staged `git diff --check` clean | Design commit `c33f4195d10d2c5de8e715ac4ad63349a724aa34` |
+| Push/fetch and final clean-worktree verification | Parent publication step after this provenance pin | Not scientific or independent-review evidence |
 
 No test failures or test passes are reported; no tests ran. Git validation
 was initially unavailable to the worker and subsequently completed by the
@@ -318,10 +319,18 @@ in no-index whitespace checks because ordinary diff omits them. Content
 difference exit 1 had no whitespace diagnostics. Fetching/publication is
 parent-owned; no tests or task commands are part of these checks.
 
-Rollback: remove only these two newly created deliverables if still
-uncommitted, preserving unrelated work and the starting baseline
-`362282e1871fc46037d83bed4ed99d66fb5e796b`. No runtime/default/ACP rollback
-or generated-state cleanup is needed because none was changed.
+Design content was committed at
+`c33f4195d10d2c5de8e715ac4ad63349a724aa34`; a follow-up provenance-only
+commit pins that exact reviewable revision here. Inspect
+`git log --follow -- workflow/handoffs/luna-62-sequence-memory-architecture.md`
+for its final publication revision. These commits do not perform the next
+independent review.
+
+Rollback, if later explicitly requested: use a new documentation-only
+revert preserving unrelated work and the historical evidence. The known-good
+starting baseline is `362282e1871fc46037d83bed4ed99d66fb5e796b`.
+No runtime/default/ACP rollback or generated-state cleanup is needed
+because none was changed.
 
 ## Next assignment
 
