@@ -1,5 +1,19 @@
 # TPCN Luna Multi-Agent Workflow — Event-Driven Architecture
 
+## Current owner output decision — Luna-60 AUTHORIZED / NOT EXECUTED — 2026-10-09
+
+**TASK-OUTPUT INTERFACE PREREQUISITE AUTHORIZED.** The owner-approved binary,
+no-training interface uses existing canonical `destination` source emissions
+on fixed channel `target-before-deadline`; labels and silence remain external
+evaluation only. The [bounded Luna-60 assignment](../../../.github/agents/luna-60.agent.md)
+freezes record identity, inclusive timing, first-output/duplicates, eight
+fixtures and non-interference checks. See the [Luna-0 owner-decision handoff](../../handoffs/luna-0-owner-decision-luna60-governance-20261009.md).
+No prerequisite execution, runtime/training/credit change, scientific study,
+efficacy or ACP/A01-A15 promotion is authorized by this governance pass.
+This current pointer supersedes the open output-choice status below only for
+the bounded interface prerequisite; historical records and all later task
+construction/efficacy gates remain intact.
+
 ## Luna-59 owner task objective — task-output/reward-interface design prerequisite only — 2026-10-09
 
 **TASK OBJECTIVE DEFINED — TASK-OUTPUT INTERFACE PREREQUISITE REQUIRED.**

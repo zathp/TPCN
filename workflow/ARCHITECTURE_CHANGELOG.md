@@ -1,5 +1,22 @@
 # Architecture Changelog
 
+## Luna-60 binary task-output prerequisite — AUTHORIZED / NOT EXECUTED — 2026-10-09
+
+At exact clean `main` baseline `4ffd13f163d7eb95747b45a1d9d23550ee11c39f`,
+Luna-0 applied the current owner decision and verified an existing governed
+source: canonical `ExcursionEmission` / `EXCURSION` from neuron
+`destination`, observed at source emission time. Freeze one affirmative
+`target-before-deadline` channel, truth-independent identity/mapping,
+inclusive evidence/deadline scoring, first-output/duplicate rules, all eight
+fixture categories, balanced accuracy/separate timing metrics and evaluator-only
+silence. Authorize only the bounded downstream adapter/evaluator prerequisite
+in `.github/agents/luna-60.agent.md`; no execution occurred.
+Training, rewards/credit, duplicate penalties, benchmarks, tuning and efficacy
+remain excluded. No runtime, A01-A15, architecture contract, ACP, historical
+artifact or completed Luna-59 design change/promotion. Source evidence,
+limitations and scope are recorded in
+`handoffs/luna-0-owner-decision-luna60-governance-20261009.md`.
+
 ## Luna-58 independent governance review — PASS within frozen setup; task-output prerequisite remains — 2026-10-09
 
 At fetched clean `main == origin/main` baseline
