@@ -14,20 +14,20 @@ BLOCKED; do not substitute another candidate or enlarge the envelope.
 
 Assigned worktree: `C:\Users\Patrick\Documents\ActiveCode\TPCN-luna63b`.
 Branch: `experiment/luna63b-local-pcn-design`. Starting/design-source revision:
-`e52098b2141a3f121f23b512e877783a64ef8baa` (owner-supplied clean baseline).
+`e52098b2141a3f121f23b512e877783a64ef8baa` (parent-verified clean baseline).
 The agent's historical scientific baseline is
 `8123147e04c6044d12023f541cf63130cdbb7dcc`, not the current checkout.
 Contract is **v1.2**, at
 `e52098b2141a3f121f23b512e877783a64ef8baa:workflow/ARCHITECTURE_CONTRACT.md`.
-No distinct contract commit SHA is inferred from its version or blob.
+No separate contract commit SHA is inferred from its version or blob.
+The parent verified the assigned contract path and Git identity.
 
 OBSERVED: read the entire B agent; independent Luna-62 review first, then
 the separate authorization's governing/source/B sections. That authorization
 records published governance content revision
 `e191cebfcd3a31cd4a1339fd8f445125c47e89ae`; its provenance follow-up is present
-in the assigned baseline. This pin is documentary evidence, not a performed
-Git ancestry check. Read worktree Git metadata: HEAD names the assigned branch,
-and its loose branch ref contains the exact assigned baseline.
+in the assigned baseline. The parent verified the commit and ancestry. The
+design worker did not run Git.
 No main or other lane worktree content, trial results or artifacts is used.
 Required governance lane summaries do not supply this model's constants,
 HOLD law or scientific evidence.
@@ -42,17 +42,16 @@ attachment-wide orchestrator/lane instructions. No other lane's branch,
 scientific results, artifacts or contract was accessed. No claimed absent
 attachment or incorrect-path lookup is part of this invocation.
 
-**Publication status:** both deliverables are uncommitted edits. The exposed
-tools have no execute/Git interface. Commit, push, fetch, remote verification,
-diff/whitespace and clean-tree checks are NOT RUN. Publication SHA is unavailable,
-not invented. The authorized publisher must pin the eventual design content
-commit in a provenance-only follow-up to these same two files, identifying that
-follow-up separately; a commit cannot honestly contain its own SHA.
+**Publication status:** design content commit
+`ab9e919eb1c79d27134413dd093bf3661625a0a8` contains these two deliverables.
+The parent validated source identities, exact two-file scope and whitespace,
+and is recording the publication follow-up on the isolated branch. Push/fetch,
+remote-SHA and final clean-worktree verification are not yet reported here.
+No Git action is attributed to the design-only worker.
 
-Every source read is pinned by the exact starting tree plus path below. These
-are Git tree selectors, not independently rehashed checkout/blob identities.
-Historical blob identities in the review/authorization are inherited evidence
-only; source verification remains pending publication checks.
+Every source read is pinned by the exact starting tree plus path below. The
+parent resolved these Git tree selectors at the starting baseline. Historical
+blob identities in the review/authorization remain inherited evidence.
 
 | Source relative to repository root at `e52098b2141a3f121f23b512e877783a64ef8baa` | Read extent / role |
 |---|---|
@@ -512,8 +511,10 @@ Energy cost, physical joules and usefulness are not measured.
 
 ## 10. Checks, pending ownership and stop
 
-OBSERVED checks: documentation/source reads; branch/ref metadata reads; creation
-of only the two authorized Markdown deliverables using apply_patch.
+OBSERVED checks: documentation/source reads; parent-verified baseline, source
+identities, branch scope and whitespace; creation of only the two authorized
+Markdown deliverables using apply_patch. Push/fetch and final clean-worktree
+verification remain pending at this report revision.
 INFERRED: bounds and conditional composition algebra above.
 HYPOTHESIZED: the frozen future protocol would support finite state separation.
 All scientific commands, traces, simulations, trials, scoring, training,
@@ -530,7 +531,7 @@ production, its full regression suite is required in addition to focused checks.
 Independent Luna-0 must verify equations, update order, scalar/metadata bounds,
 predictive interpretation/locality, controls/confounds, tolerance derivation
 and initialization/source/publication provenance. No independent review is
-performed here. Publisher must complete documentation Git checks/publication.
+performed here.
 Future implementation/test owner is **not assigned by this handoff**.
 No automatic successor, ACP, canonical mutation, task efficacy, integrated echo,
 Luna-64, architecture promotion, decoder or sequence-memory claim. Stop.
