@@ -469,3 +469,29 @@ source and byte identity, regressions and nonclaims. No reviewer spawned;
 no architecture self-review. Stop after the completed handoff publication.
 No integrated echo, sequence-memory claim, ACP acceptance, promotion,
 Luna-64 or interlane composition authorized.
+
+### Publication follow-up — exact outcome revision pinned
+
+OBSERVED: outcome publication/result revision is
+**`0b3913641ff0ecf0afc4f3c987ceb79635159d5d`**. This resolves the
+completed handoff's `result_revision` above. The implementation/pre-outcome
+freeze remains `a0bf66e9d21bd326480b83668aee41af2f08bf68`; no scientific
+files or acceptance criteria changed afterward.
+
+Push succeeded, followed by fetch of only the assigned experiment branch.
+Local HEAD, fetched `origin/experiment/luna63a-binary-adaptive-decay` and
+`git ls-remote` all equaled that outcome revision; worktree was clean.
+Committed whitespace check passed. Baseline-to-outcome diff contains exactly
+the ten authorized worker-owned paths and no other tracked changes.
+Original blocked-handoff Git bytes remain an exact prefix of the completed
+handoff Git bytes. Both outcome artifacts have Git blob
+`1adc31912b402f602b424cc0e2b0a047b78785d3`; manifest Git blob is
+`2cdbce579e0588ae5e72e06a404b7184f56bd121`.
+All three artifacts' current checkout bytes equal their exact canonical Git
+bytes and match the SHA256 pins above. Git warns that a future checkout may
+materialize CRLF; that warning is not used to weaken these recorded pins.
+
+This follow-up changes only this handoff to pin the published outcome.
+Its own final commit/hash and repeated remote/clean checks are reported in
+the caller response, avoiding self-referential hash content. Independent
+Luna-0 review remains pending. No reviewer or successor is launched.
