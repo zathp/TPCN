@@ -75,7 +75,105 @@ tpcn_handoff:
     - "Project owner: any later task or training/efficacy work requires a separate explicit decision."
 ```
 
-## Outcome and disposition
+## Owner amendment — delayed symbolic sequence echo selected before execution
+
+```yaml
+tpcn_handoff:
+  agent: "Luna-0 Architecture Guardian"
+  luna_identifier: "Luna-0"
+  descriptive_name: "Luna-61 delayed symbolic event-sequence echo assignment amendment"
+  task_id: "luna-61-task-output-assignment-design"
+  component: "Amended documentation-only sequence-echo design assignment"
+  status: "complete; amended before Luna-61 execution; not executed"
+  contract_version: "1.2"
+  branch: "main"
+  base_revision: "8d0a739e7e8bb4f065cd04157864a96fc501b58c"
+  result_revision: "amendment publication commit; see final report"
+  dependencies:
+    - "New owner decision selecting delayed symbolic event-sequence echo"
+    - "Previously authorized but unexecuted Luna-61 documentation-only design"
+    - "Luna-60 binary task-output interface and completion handoff, retained as historical infrastructure"
+    - "Current architecture contract and accepted ACP-0006 boundaries"
+  owner: "Project owner; Luna-0 reviews the resulting design"
+  classification: ["GOVERNANCE", "DESIGN AUTHORIZATION"]
+  hypothesis: "External symbolic sequence truth can define delayed recall independently; current output identity and recall gating may not support a fixed/no-training task."
+  counter_hypothesis: "Existing input/output primitives already support predeclared ordered symbolic recall after a cue without new primitives or task-specific training."
+  interfaces_relied_on: ["Canonical event input", "ExcursionEmission", "event-time ordering", "Luna-60 binary TaskPrediction as historical interface only", "ACP-0006 eligibility/reward"]
+  label_information_boundary: ["Expected output is external LISTEN sequence truth; no expected answer or future symbol enters neural computation."]
+  timing_assumptions: ["Event-time phases; no global tick and no numeric delay/deadline selected."]
+  reset_boundaries: ["No trial execution; future reset/window policy remains a design question."]
+  resource_bounds: ["Documentation-only governance amendment."]
+  authorized_scope: ["Amend .github/agents/luna-61.agent.md and governance/workflow/changelog records in place."]
+  unauthorized_scope: ["Execute Luna-61, generate or score trials, train, alter runtime/reward/eligibility, authorize efficacy, or create Luna-62."]
+  controls: ["Verified clean authoritative baseline; verified Luna-61 unexecuted; retained Luna-60 unchanged."]
+  measurements: ["None; no task, data, score, training, or scientific measurement."]
+  information_boundary_check: ["No task truth was supplied to a neural runner; no runner was invoked."]
+  hardware_mapping: ["No hardware work or equivalence claim."]
+  architecture_invariants_touched: ["No A01-A15 or ACP change."]
+  preserves: ["Luna-60 binary interface remains valid; prior binary task choice is explicitly historical and superseded."]
+  architecture_change: false
+  proposal: null
+  files_changed: [".github/agents/luna-61.agent.md", "workflow/handoffs/luna-0-task-output-assignment-governance-20261009.md", "workflow/docs/luna/LUNA_WORKFLOW.md", "workflow/ARCHITECTURE_CHANGELOG.md"]
+  tests_added: []
+  tests_passing: []
+  tests_failed: []
+  tests_not_run: ["All tests, experiments, simulation, data generation, scoring and training; not authorized."]
+  assumptions: ["Owner's selection amends the unexecuted design assignment; it does not approve implementation or efficacy."]
+  unresolved: ["Existing input identity, multi-symbol output and RECALL gating viability; future task parameters, close rule, and any learning/architecture prerequisite."]
+  recommended_next_agent: ["Luna-61: execute only the amended design; then independent Luna-0 review."]
+```
+
+**SUPERSESSION CONFIRMED.** At the authoritative starting revision
+`8d0a739e7e8bb4f065cd04157864a96fc501b58c`, the worktree was clean and
+`HEAD == origin/main`. Luna-61 had not executed: there was no Luna-61 design
+deliverable, execution handoff, or runner record; the only Luna-61 record was
+the published authorization. Amend that existing authorization in place;
+no renumbering is needed and no Luna-62 is created.
+
+The earlier binary `target-before-deadline` task choice is superseded as the
+selected first task. Its design remains historical, and Luna-60 remains a
+valid implemented and reviewed binary task-output primitive. It is
+insufficient by itself for ordered multi-symbol sequence recall and is not
+modified.
+
+The amended task is delayed symbolic event-sequence echo: present an
+externally defined ordered sequence during LISTEN; provide a variable,
+event-driven DELAY with zero, neutral or distractor events; present one
+explicit `RECALL` cue; then evaluate whether actual output symbol events
+reproduce exactly the LISTEN sequence, in order and with multiplicity. No
+expected answer is separately sent to the network. The proposed initial
+vocabulary is `A, B, C, D`. This pass authorizes no speech/audio processing,
+training, trial execution, scoring or efficacy.
+
+The owner selected this family because it directly probes event-driven
+temporal storage, order preservation, delayed reconstruction and silence
+before the cue, with correctness defined by external input truth rather than
+binary output occurrence or mechanism strata.
+
+The amended Luna-61 design must assess input symbol identity, output options,
+cue-triggered recall gating, fixed/no-training viability, event-time recall
+close semantics, exact sequence accuracy and secondary sequence-error
+metrics, repeated-symbol and matched-count order controls, variable delay,
+distractors, capacity/generalization plans, fixture provenance, and current
+actual-emission credit limits. Compare one output source per symbol,
+payload-coded symbol identity and existing classifier-style readout against
+repository evidence. Implement or choose no mapping based on performance.
+Premature output is an error; the recall window must close under a finite
+event-time rule.
+
+Fixed/no-training evaluation remains **NOT AUTHORIZED** until the design
+establishes whether existing neural inputs, output identities, temporal
+retention and RECALL gating support an independently predeclared mapping.
+Current eligibility/reward applies to actual addressed emissions; it does
+not assign delayed sequence outcomes to missing, wrong, premature or
+misplaced outputs. No reward, penalty, omission credit, or new neural
+primitive is authorized.
+
+The only next task is **amended Luna-61 design execution → independent
+Luna-0 review**. No experiments, data generation, training, reward changes,
+architecture promotion or automatic successor are implied.
+
+## Historical first decision — superseded before Luna-61 execution
 
 **TASK EFFICACY STILL NOT BOUNDED. LUNA-61 TASK-OUTPUT ASSIGNMENT DESIGN
 PREREQUISITE AUTHORIZED — NOT EXECUTED.**

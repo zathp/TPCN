@@ -1,6 +1,33 @@
 # Architecture Changelog
 
-## Luna-60 follow-up — task-output assignment design prerequisite authorized; no task study — 2026-10-09
+## Owner-selected first task — delayed symbolic event-sequence echo; Luna-61 amended / not executed — 2026-10-09
+
+At authoritative clean `main == origin/main`
+`8d0a739e7e8bb4f065cd04157864a96fc501b58c`, the owner refined the selected
+first task before Luna-61 execution. The earlier binary
+`target-before-deadline` task choice is superseded; it remains historical
+design only. Luna-60's implemented/reviewed binary output adapter remains
+valid infrastructure and is not modified, but cannot alone encode an ordered
+sequence of distinct symbols.
+
+Amend Luna-61 in place (same Luna identifier; no Luna-62) for documentation-
+only design of delayed symbolic event-sequence echo: externally defined
+LISTEN sequence, variable event-driven DELAY with zero/neutral/distractor
+events, explicit `RECALL` cue, then exact ordered recall including repeated
+symbols. The proposed vocabulary is `A, B, C, D`. Luna-61 must assess
+multi-symbol output representation, recall gating, fixed/no-training
+viability, bounded event-time close semantics, metrics, anti-shortcut
+controls, capacity/generalization and fixture provenance.
+
+No tests, task generation, trial execution, scoring, training, reward or
+eligibility change, implementation, task efficacy, architecture promotion,
+or successor is authorized. No A01-A15 or ACP status changes. See
+`.github/agents/luna-61.agent.md` and
+`handoffs/luna-0-task-output-assignment-governance-20261009.md`. The next
+step is amended Luna-61 design execution followed by independent Luna-0
+review.
+
+## Historical Luna-60 follow-up — binary event/deadline task choice superseded before Luna-61 execution — 2026-10-09
 
 At clean published `main == origin/main`
 `dab2600680c1ef1c7e0c21747681bc16b2a72e99`, Luna-0 reviewed the completed
@@ -29,7 +56,7 @@ mistyped implementation SHA: actual implementation commit
 changes. See
 `handoffs/luna-0-task-output-assignment-governance-20261009.md`.
 
-## Luna-60 binary task-output prerequisite — AUTHORIZED / NOT EXECUTED — 2026-10-09
+## Historical Luna-60 binary task-output prerequisite — implemented infrastructure; no longer the selected first task — 2026-10-09
 
 At exact clean `main` baseline `4ffd13f163d7eb95747b45a1d9d23550ee11c39f`,
 Luna-0 applied the current owner decision and verified an existing governed

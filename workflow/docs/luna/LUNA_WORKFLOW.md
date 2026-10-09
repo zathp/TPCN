@@ -1,6 +1,30 @@
 # TPCN Luna Multi-Agent Workflow — Event-Driven Architecture
 
-## Luna-60 follow-up — task-output assignment prerequisite authorized; no task study — 2026-10-09
+## Owner-selected first task — delayed symbolic event-sequence echo; Luna-61 amended / not executed — 2026-10-09
+
+**FIRST TASK SELECTION SUPERSEDED BEFORE LUNA-61 EXECUTION.** The owner
+replaces the earlier binary target-before-deadline task with delayed symbolic
+sequence echo: LISTEN to an externally defined ordered symbol sequence,
+experience a variable event-driven DELAY containing zero, neutral or
+distractor events, receive one explicit `RECALL` cue, then reproduce the
+exact sequence in order, including repeated-symbol multiplicity. Proposed
+initial vocabulary: `A, B, C, D`. Expected output is the external LISTEN
+sequence; it is never separately supplied to neural execution.
+
+The [Luna-61 contract](../../../.github/agents/luna-61.agent.md) is amended
+in place and remains documentation-only / not executed. It must assess
+multi-symbol output identity, RECALL gating, fixed/no-training viability,
+finite event-time recall closure, exact-sequence accuracy, order/repetition
+controls, variable delay/distractors, capacity/generalization and provenance.
+No implementation, task generation, scoring, training or efficacy is
+authorized. The prior binary task choice remains historical; [Luna-60](../../../.github/agents/luna-60.agent.md)
+remains valid binary infrastructure and is unchanged, but is insufficient by
+itself for multi-symbol sequence recall. See the [Luna-0 amendment
+handoff](../../handoffs/luna-0-task-output-assignment-governance-20261009.md).
+The required next step is **amended Luna-61 design execution → independent
+Luna-0 review**; no Luna-62 is created.
+
+## Historical binary event/deadline choice — superseded before Luna-61 execution — 2026-10-09
 
 **TASK EFFICACY STILL NOT BOUNDED. LUNA-61 TASK-OUTPUT ASSIGNMENT DESIGN
 PREREQUISITE AUTHORIZED / NOT EXECUTED.** Luna-60 established a valid
@@ -23,7 +47,7 @@ records source, fixture, credit and revision evidence. No task, data
 generation, training, efficacy, parameter selection, new source, or ACP is
 authorized. Independent Luna-0 review is required before any successor.
 
-## Current owner output decision — Luna-60 AUTHORIZED / NOT EXECUTED — 2026-10-09
+## Historical Luna-60 binary interface authorization — implemented infrastructure, not the selected first task — 2026-10-09
 
 **TASK-OUTPUT INTERFACE PREREQUISITE AUTHORIZED.** The owner-approved binary,
 no-training interface uses existing canonical `destination` source emissions
@@ -31,16 +55,16 @@ on fixed channel `target-before-deadline`; labels and silence remain external
 evaluation only. The [bounded Luna-60 assignment](../../../.github/agents/luna-60.agent.md)
 freezes record identity, inclusive timing, first-output/duplicates, eight
 fixtures and non-interference checks. See the [Luna-0 owner-decision handoff](../../handoffs/luna-0-owner-decision-luna60-governance-20261009.md).
-No prerequisite execution, runtime/training/credit change, scientific study,
-efficacy or ACP/A01-A15 promotion is authorized by this governance pass.
-This current pointer supersedes the open output-choice status below only for
-the bounded interface prerequisite; historical records and all later task
-construction/efficacy gates remain intact.
+The interface prerequisite was subsequently implemented, reviewed and
+published. This historical authorization remains valid for the binary
+interface only; it is not the currently selected first task and does not
+represent an authorization for sequence recall, runtime/training/credit
+change, scientific study, efficacy or ACP/A01-A15 promotion.
 
-## Luna-59 owner task objective — task-output/reward-interface design prerequisite only — 2026-10-09
+## Historical Luna-59 owner task objective — binary event/deadline choice superseded before Luna-61 execution — 2026-10-09
 
-**TASK OBJECTIVE DEFINED — TASK-OUTPUT INTERFACE PREREQUISITE REQUIRED.**
-The owner selects controlled deterministic temporal event/deadline prediction,
+**HISTORICAL TASK OBJECTIVE — SUPERSEDED BEFORE LUNA-61 EXECUTION.**
+The earlier owner decision selected controlled deterministic temporal event/deadline prediction,
 correct negative/ambiguous-prefix silence, premature/late errors and
 first-output scoring with duplicate efficiency penalty. Held-out balanced
 accuracy is primary: at least +10 pp versus a declared historical/default
