@@ -18,7 +18,12 @@ BASE = "2cef8ea4b37a4ae586e3f383511cba63c9268ddc"
 PROTOCOL_REVISION = "39f99b1f318dd965643ec6ef65907163cd1d5667"
 EXECUTION_REVISION = "ce411ec049501b7ac6d05702ed242d4829ad24d7"
 CODE_SOURCE_REVISION = "39bedbce47055a7b180593ea312c6b646510c566"
+RETAINED_REVISION = "39bedbce47055a7b180593ea312c6b646510c566"
+RETAINED_RESULT_PATH = "artifacts/luna47f/diagnostic.json"
+RETAINED_RESULT_GIT_BLOB = "74c6859555caf8cb9c5a51f713080b238d716c79"
 RETAINED_RESULT_SHA256 = "f24a56bf5a92f622c4dfdb661116a83a76df1f7b0ae0056d20920360ca3cbb7c"
+RETAINED_VALIDATION_PATH = "artifacts/luna47f/validation.json"
+RETAINED_VALIDATION_GIT_BLOB = "c70c9f1d4ae6f5712b672d54e2e71cef0629cc2a"
 RETAINED_VALIDATION_SHA256 = "e3c8cb236f57908319893c2e109a2c94f5dd8d50e6953f48810da74259a62c29"
 L45 = "artifacts/luna45-acp0008-depth2-destination-integration-20261006"
 WINDOW = 4.0
@@ -143,15 +148,52 @@ def verify_historical_inputs(root, retained, *, revision=BASE):
     return inventory, loaded
 
 
+def _verify_retained_artifact(root, path, revision, expected_revision,
+                              expected_blob, expected_sha256, label):
+    require(revision == expected_revision,
+            f"retained Luna47F {label} historical revision differs")
+    try:
+        git_path = git("rev-parse", f"{revision}:{path}", root=ROOT).decode().strip()
+        pinned = git("show", f"{revision}:{path}", root=ROOT)
+    except subprocess.CalledProcessError as error:
+        raise ValueError(f"missing pinned historical Luna47F {label}: {path}") from error
+    require(git_path == expected_blob,
+            f"retained Luna47F {label} Git object identity differs")
+    require(b"\x00" not in pinned and b"\r\n" not in pinned,
+            f"pinned Luna47F {label} is not canonical LF text")
+
+    crlf = pinned.replace(b"\n", b"\r\n")
+    permitted = {sha(pinned), sha(crlf)}
+    require(expected_sha256 in permitted,
+            f"retained Luna47F {label} historical digest differs from its Git object")
+
+    try:
+        data = read_bytes(root / path)
+        verify_materialization(data, pinned)
+    except (ValueError, OSError) as error:
+        raise ValueError(f"retained Luna47F {label} identity differs: {error}") from error
+    return data
+
+
 def verify_retained_files(root):
-    result_path = root / "artifacts/luna47f/diagnostic.json"
-    validation_path = root / "artifacts/luna47f/validation.json"
-    result_bytes = read_bytes(result_path)
-    validation_bytes = read_bytes(validation_path)
-    require(sha(result_bytes) == RETAINED_RESULT_SHA256,
-            "retained Luna47F result identity differs")
-    require(sha(validation_bytes) == RETAINED_VALIDATION_SHA256,
-            "retained Luna47F validation identity differs")
+    result_bytes = _verify_retained_artifact(
+        root,
+        RETAINED_RESULT_PATH,
+        RETAINED_REVISION,
+        RETAINED_REVISION,
+        RETAINED_RESULT_GIT_BLOB,
+        RETAINED_RESULT_SHA256,
+        "result",
+    )
+    validation_bytes = _verify_retained_artifact(
+        root,
+        RETAINED_VALIDATION_PATH,
+        RETAINED_REVISION,
+        RETAINED_REVISION,
+        RETAINED_VALIDATION_GIT_BLOB,
+        RETAINED_VALIDATION_SHA256,
+        "validation",
+    )
     retained = json.loads(result_bytes)
     require(retained.get("authorization_revision") == AUTH,
             "retained Luna47F authorization identity differs")

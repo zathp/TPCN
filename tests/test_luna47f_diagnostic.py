@@ -1,8 +1,10 @@
 """Synthetic unit fixtures only; retained scoring runs after protocol commit."""
 from copy import deepcopy
+import hashlib
 import importlib.util
 import os
 from pathlib import Path
+import re
 import subprocess
 import sys
 
@@ -12,6 +14,29 @@ FILE = Path(__file__).resolve().parents[1]/"experiments/luna47f/diagnostic.py"
 SPEC = importlib.util.spec_from_file_location("luna47f_diagnostic", FILE)
 d = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(d)
+
+RETAINED_REVISION = "39bedbce47055a7b180593ea312c6b646510c566"
+RETAINED_RESULT_PATH = "artifacts/luna47f/diagnostic.json"
+RETAINED_RESULT_BLOB = "74c6859555caf8cb9c5a51f713080b238d716c79"
+RETAINED_RESULT_LF_SHA256 = "aec4e589102b0e40a31de725f97471072fdfb03fa7ee0a263d716f7de0d7e3ef"
+RETAINED_RESULT_CRLF_SHA256 = "f24a56bf5a92f622c4dfdb661116a83a76df1f7b0ae0056d20920360ca3cbb7c"
+RETAINED_VALIDATION_PATH = "artifacts/luna47f/validation.json"
+RETAINED_VALIDATION_BLOB = "c70c9f1d4ae6f5712b672d54e2e71cef0629cc2a"
+RETAINED_VALIDATION_LF_SHA256 = "176069a349584347fd312e58439aee5f7128356f20d32c29b1b79ac18677f3cf"
+RETAINED_VALIDATION_CRLF_SHA256 = "e3c8cb236f57908319893c2e109a2c94f5dd8d50e6953f48810da74259a62c29"
+
+
+def _canonical_retained(path, expected_blob):
+    actual_blob = subprocess.check_output(
+        ["git", "rev-parse", f"{RETAINED_REVISION}:{path}"],
+        cwd=d.ROOT,
+        text=True,
+    ).strip()
+    assert actual_blob == expected_blob
+    return subprocess.check_output(
+        ["git", "show", f"{RETAINED_REVISION}:{path}"],
+        cwd=d.ROOT,
+    )
 
 
 @pytest.fixture
@@ -343,25 +368,152 @@ def test_luna51_live_pre_post_guard_detects_mutation_but_ignores_unrelated_evolu
         d.verify_live_nonmutation(before, after_mutation)
 
 
-def test_luna51_retained_artifact_hashes_reject_result_and_validation_substitution(tmp_path):
-    source_result = d.ROOT / "artifacts/luna47f/diagnostic.json"
-    source_validation = d.ROOT / "artifacts/luna47f/validation.json"
-    result_path = tmp_path / "artifacts/luna47f/diagnostic.json"
-    validation_path = tmp_path / "artifacts/luna47f/validation.json"
+@pytest.mark.parametrize("result_crlf,validation_crlf", [
+    (False, False),
+    (False, True),
+    (True, False),
+    (True, True),
+])
+def test_luna51_retained_artifact_hashes_reject_result_and_validation_substitution(
+    tmp_path,
+    result_crlf,
+    validation_crlf,
+):
+    result = _canonical_retained(RETAINED_RESULT_PATH, RETAINED_RESULT_BLOB)
+    validation = _canonical_retained(
+        RETAINED_VALIDATION_PATH,
+        RETAINED_VALIDATION_BLOB,
+    )
+    result_crlf_bytes = result.replace(b"\n", b"\r\n")
+    validation_crlf_bytes = validation.replace(b"\n", b"\r\n")
+    assert hashlib.sha256(result).hexdigest() == RETAINED_RESULT_LF_SHA256
+    assert hashlib.sha256(result_crlf_bytes).hexdigest() == RETAINED_RESULT_CRLF_SHA256
+    assert hashlib.sha256(validation).hexdigest() == RETAINED_VALIDATION_LF_SHA256
+    assert hashlib.sha256(validation_crlf_bytes).hexdigest() == RETAINED_VALIDATION_CRLF_SHA256
+
+    result_path = tmp_path / RETAINED_RESULT_PATH
+    validation_path = tmp_path / RETAINED_VALIDATION_PATH
     result_path.parent.mkdir(parents=True)
-    result_bytes = source_result.read_bytes()
-    validation_bytes = source_validation.read_bytes()
-    result_path.write_bytes(result_bytes)
-    validation_path.write_bytes(validation_bytes)
+    validation_path.parent.mkdir(parents=True, exist_ok=True)
+    result_path.write_bytes(result_crlf_bytes if result_crlf else result)
+    validation_path.write_bytes(
+        validation_crlf_bytes if validation_crlf else validation
+    )
 
-    assert d.verify_retained_files(tmp_path)["schema"] == "TPCN-LUNA47F-REPLAY-1"
+    retained = d.verify_retained_files(tmp_path)
+    assert retained["schema"] == "TPCN-LUNA47F-REPLAY-1"
 
-    result_path.write_bytes(result_bytes + b" ")
+
+@pytest.mark.parametrize("mutation", [
+    "changed-character",
+    "changed-number",
+    "added-space",
+    "removed-space",
+    "mixed-newlines",
+    "missing-final-newline",
+])
+def test_luna56_retained_result_rejects_substantive_or_malformed_checkout(
+    tmp_path,
+    mutation,
+):
+    result = _canonical_retained(RETAINED_RESULT_PATH, RETAINED_RESULT_BLOB)
+    validation = _canonical_retained(
+        RETAINED_VALIDATION_PATH,
+        RETAINED_VALIDATION_BLOB,
+    )
+    result_path = tmp_path / RETAINED_RESULT_PATH
+    validation_path = tmp_path / RETAINED_VALIDATION_PATH
+    result_path.parent.mkdir(parents=True)
+    validation_path.parent.mkdir(parents=True, exist_ok=True)
+    validation_path.write_bytes(validation)
+
+    if mutation == "changed-character":
+        mutated = result.replace(
+            b"TPCN-LUNA47F-REPLAY-1",
+            b"TPCN-LUNA47F-REPLAY-2",
+            1,
+        )
+    elif mutation == "changed-number":
+        mutated, count = re.subn(
+            rb'("compatible_nontrigger_temporal_coincidences"\s*:\s*)0\b',
+            rb"\g<1>1",
+            result,
+            count=1,
+        )
+        assert count == 1
+    elif mutation == "added-space":
+        mutated = result + b" "
+    elif mutation == "removed-space":
+        assert b" " in result
+        mutated = result.replace(b" ", b"", 1)
+    elif mutation == "mixed-newlines":
+        mutated = result.replace(b'"schema"', b'\r\n"schema"', 1)
+    else:
+        assert result.endswith(b"\n")
+        mutated = result[:-1]
+    result_path.write_bytes(mutated)
+
     with pytest.raises(ValueError, match="result identity differs"):
         d.verify_retained_files(tmp_path)
-    result_path.write_bytes(result_bytes)
-    validation_path.write_bytes(validation_bytes + b" ")
-    with pytest.raises(ValueError, match="validation identity differs"):
+
+
+def test_luna56_retained_artifact_rejects_same_path_substitution(tmp_path):
+    result_path = tmp_path / RETAINED_RESULT_PATH
+    validation_path = tmp_path / RETAINED_VALIDATION_PATH
+    result_path.parent.mkdir(parents=True)
+    validation_path.parent.mkdir(parents=True, exist_ok=True)
+    result_path.write_bytes(_canonical_retained(RETAINED_VALIDATION_PATH, RETAINED_VALIDATION_BLOB))
+    validation_path.write_bytes(_canonical_retained(RETAINED_VALIDATION_PATH, RETAINED_VALIDATION_BLOB))
+
+    with pytest.raises(ValueError, match="result identity differs"):
+        d.verify_retained_files(tmp_path)
+
+
+def test_luna56_retained_artifact_rejects_wrong_revision_object_and_missing_file(
+    tmp_path,
+):
+    result = _canonical_retained(RETAINED_RESULT_PATH, RETAINED_RESULT_BLOB)
+    result_path = tmp_path / RETAINED_RESULT_PATH
+    validation_path = tmp_path / RETAINED_VALIDATION_PATH
+    result_path.parent.mkdir(parents=True)
+    validation_path.parent.mkdir(parents=True, exist_ok=True)
+    result_path.write_bytes(result)
+    validation_path.write_bytes(
+        _canonical_retained(RETAINED_VALIDATION_PATH, RETAINED_VALIDATION_BLOB)
+    )
+
+    with pytest.raises(ValueError, match="historical revision differs"):
+        d._verify_retained_artifact(
+            tmp_path,
+            RETAINED_RESULT_PATH,
+            "HEAD",
+            RETAINED_REVISION,
+            RETAINED_RESULT_BLOB,
+            RETAINED_RESULT_CRLF_SHA256,
+            "result",
+        )
+    with pytest.raises(ValueError, match="Git object identity differs"):
+        d._verify_retained_artifact(
+            tmp_path,
+            RETAINED_RESULT_PATH,
+            RETAINED_REVISION,
+            RETAINED_REVISION,
+            "0" * 40,
+            RETAINED_RESULT_CRLF_SHA256,
+            "result",
+        )
+    with pytest.raises(ValueError, match="missing pinned historical"):
+        d._verify_retained_artifact(
+            tmp_path,
+            "artifacts/luna47f/missing.json",
+            RETAINED_REVISION,
+            RETAINED_REVISION,
+            "0" * 40,
+            RETAINED_RESULT_CRLF_SHA256,
+            "result",
+        )
+    result_path.unlink()
+    with pytest.raises(ValueError, match="missing required input"):
         d.verify_retained_files(tmp_path)
 
 

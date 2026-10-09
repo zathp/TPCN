@@ -495,7 +495,16 @@ def test_luna51_catalog_identity_is_pinned_to_the_expected_git_object():
     assert identity["git_revision"] == diagnostic.CATALOG_REVISION
     assert identity["git_blob"] == diagnostic.CATALOG_GIT_BLOB
     assert identity["file_sha256"] == diagnostic.CATALOG_HASH
-    assert identity["checkout_materialization"] == (
+    assert identity["checkout_materialization"] in {
+        "exact",
+        "exact-Git-LF-to-CRLF-checkout",
+    }
+    crlf_catalog, crlf_identity = diagnostic.verify_catalog_identity(
+        diagnostic.ROOT,
+        canonical_bytes.replace(b"\n", b"\r\n"),
+    )
+    assert crlf_catalog == catalog
+    assert crlf_identity["checkout_materialization"] == (
         "exact-Git-LF-to-CRLF-checkout"
     )
     assert diagnostic.verify_catalog_checkout(

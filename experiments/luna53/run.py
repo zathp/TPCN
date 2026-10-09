@@ -147,14 +147,66 @@ def _verify_blob(revision: str, path: str, expected: str) -> str:
     return actual
 
 
+def _historical_blob_bytes(revision: str, path: str, expected_blob: str) -> bytes:
+    try:
+        blob = _verify_blob(revision, path, expected_blob)
+        return subprocess.check_output(
+            ["git", "cat-file", "blob", blob],
+            cwd=ROOT,
+            stderr=subprocess.PIPE,
+        )
+    except subprocess.CalledProcessError as error:
+        raise GateError(f"missing pinned historical object for {revision}:{path}") from error
+
+
+def _verify_checkout_materialization(working: bytes, pinned: bytes) -> str:
+    if working == pinned:
+        return "exact"
+    if (
+        b"\x00" not in pinned
+        and b"\r\n" not in pinned
+        and working == pinned.replace(b"\n", b"\r\n")
+    ):
+        return "exact-Git-LF-to-CRLF-checkout"
+    raise GateError("file checkout differs beyond exact Git line-ending materialization")
+
+
 def _verified_file(
     path: str,
     expected_sha256: str,
     *,
     expected_size: int | None = None,
+    canonical_bytes: bytes | None = None,
 ) -> tuple[bytes, Record]:
     source = ROOT / path
-    raw = source.read_bytes()
+    try:
+        raw = source.read_bytes()
+    except OSError as error:
+        raise GateError(f"missing required pinned file {path}: {error}") from error
+
+    if canonical_bytes is not None:
+        materialization = _verify_checkout_materialization(raw, canonical_bytes)
+        permitted = [(sha256(canonical_bytes), len(canonical_bytes))]
+        if b"\x00" not in canonical_bytes and b"\r\n" not in canonical_bytes:
+            crlf = canonical_bytes.replace(b"\n", b"\r\n")
+            permitted.append((sha256(crlf), len(crlf)))
+        recorded = next(
+            (size for digest_value, size in permitted if digest_value == expected_sha256),
+            None,
+        )
+        if recorded is None:
+            raise GateError(f"historical SHA-256 does not identify Git object for {path}")
+        if expected_size is not None and recorded != expected_size:
+            raise GateError(f"canonical byte length mismatch for {path}")
+        return raw, {
+            "path": path,
+            "checkout_bytes": len(raw),
+            "canonical_bytes": len(canonical_bytes),
+            "checkout_sha256": sha256(raw),
+            "canonical_sha256": sha256(canonical_bytes),
+            "checkout_materialization": materialization,
+        }
+
     normalized = raw.replace(b"\r\n", b"\n")
     raw_hash = sha256(raw)
     normalized_hash = sha256(normalized)
@@ -540,11 +592,19 @@ def verify_provenance(execution_revision: str | None = None) -> tuple[Record, Re
     protocol = json.loads((ROOT / PROTOCOL_PATH).read_bytes())
     config_identity = _verify_canonical_config(config)
 
-    for path, pins in PINNED_FILES.items():
-        _verify_blob(AUTHORIZATION_REVISION, path, pins["git_blob"])
     verified_files: dict[str, Record] = {}
     for path, pins in PINNED_FILES.items():
-        _, verified_files[path] = _verified_file(path, pins["sha256"])
+        canonical = _historical_blob_bytes(
+            AUTHORIZATION_REVISION,
+            path,
+            pins["git_blob"],
+        )
+        _, verified_files[path] = _verified_file(
+            path,
+            pins["sha256"],
+            canonical_bytes=canonical,
+        )
+        verified_files[path]["git_blob"] = pins["git_blob"]
 
     fixture_identity = _verify_fixture_provenance()
     catalog, catalog_identity = _verify_input_catalog()

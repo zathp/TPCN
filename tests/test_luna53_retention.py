@@ -1,14 +1,95 @@
 from __future__ import annotations
 
+import hashlib
 import inspect
 import json
 from pathlib import Path
+import subprocess
 
+import pytest
 from experiments.luna53 import run as luna53
 
 
 ROOT = Path(__file__).resolve().parents[1]
 OUTPUTS = ROOT / "artifacts" / "luna53"
+LUNA46_PIN_REVISION = "04305a2917195888cbbcccf378eba7971551e9b5"
+LUNA46_PIN_PATH = "artifacts/luna46-depth-scaling-diagnostic-corrective-20261006.json"
+LUNA46_PIN_BLOB = "9506369d97babf7bc0ef15ed52efb738dcdcd549"
+LUNA46_PIN_LF_SHA256 = "54220205537184dadc26eba3c59f7e9b36f01db579fd895339728e089e313d51"
+LUNA46_PIN_CRLF_SHA256 = "0d32926f6f72a77a5b34eb054e1e46e9ece95cef3d6145e7892957cf3727722e"
+
+
+def test_luna56_luna53_pin_verifies_historical_object_and_exact_materialization(
+    tmp_path,
+    monkeypatch,
+):
+    actual_blob = subprocess.check_output(
+        ["git", "rev-parse", f"{LUNA46_PIN_REVISION}:{LUNA46_PIN_PATH}"],
+        cwd=ROOT,
+        text=True,
+    ).strip()
+    assert actual_blob == LUNA46_PIN_BLOB
+    canonical = subprocess.check_output(
+        ["git", "show", f"{LUNA46_PIN_REVISION}:{LUNA46_PIN_PATH}"],
+        cwd=ROOT,
+    )
+    crlf = canonical.replace(b"\n", b"\r\n")
+    assert hashlib.sha256(canonical).hexdigest() == LUNA46_PIN_LF_SHA256
+    assert hashlib.sha256(crlf).hexdigest() == LUNA46_PIN_CRLF_SHA256
+    monkeypatch.setattr(luna53, "ROOT", tmp_path)
+    checkout = tmp_path / LUNA46_PIN_PATH
+    checkout.parent.mkdir(parents=True)
+
+    checkout.write_bytes(canonical)
+    _, lf_identity = luna53._verified_file(
+        LUNA46_PIN_PATH,
+        LUNA46_PIN_CRLF_SHA256,
+        canonical_bytes=canonical,
+    )
+    assert lf_identity["checkout_materialization"] == "exact"
+
+    checkout.write_bytes(crlf)
+    _, crlf_identity = luna53._verified_file(
+        LUNA46_PIN_PATH,
+        LUNA46_PIN_CRLF_SHA256,
+        canonical_bytes=canonical,
+    )
+    assert crlf_identity["checkout_materialization"] == (
+        "exact-Git-LF-to-CRLF-checkout"
+    )
+
+    mutations = (
+        canonical.replace(b'"schema"', b"'schema'", 1),
+        canonical.replace(b"320", b"321", 1),
+        canonical + b" ",
+        canonical.replace(b" ", b"", 1),
+        canonical.replace(b'"sequences"', b'\r\n"sequences"', 1),
+        canonical.replace(b"\n", b"\r", 1),
+        canonical[:-1],
+    )
+    for mutation in mutations:
+        assert mutation != canonical
+        checkout.write_bytes(mutation)
+        with pytest.raises(luna53.GateError, match="beyond exact Git line-ending"):
+            luna53._verified_file(
+                LUNA46_PIN_PATH,
+                LUNA46_PIN_CRLF_SHA256,
+                canonical_bytes=canonical,
+            )
+
+    monkeypatch.setattr(luna53, "ROOT", ROOT)
+    with pytest.raises(luna53.GateError, match="Git blob mismatch"):
+        luna53._historical_blob_bytes(
+            LUNA46_PIN_REVISION,
+            LUNA46_PIN_PATH,
+            "0" * 40,
+        )
+    with pytest.raises(luna53.GateError, match="missing pinned historical object"):
+        luna53._historical_blob_bytes(
+            "missing-historical-revision",
+            LUNA46_PIN_PATH,
+            LUNA46_PIN_BLOB,
+        )
 
 
 def _synthetic_arrivals() -> list[dict]:
