@@ -69,6 +69,9 @@ TARGET_IDS = (
     "c01-050", "c02-010", "c02-015", "c02-019", "c02-023", "c02-046",
     "c03-023", "c03-058", "c04-001", "c04-043",
 )
+LUNA46_PATH = "artifacts/luna46-depth-scaling-diagnostic-corrective-20261006.json"
+LUNA46_EXPECTED_BLOB = "9506369d97babf7bc0ef15ed52efb738dcdcd549"
+LUNA46_EXPECTED_SHA256 = "0d32926f6f72a77a5b34eb054e1e46e9ece95cef3d6145e7892957cf3727722e"
 Record = dict[str, Any]
 
 
@@ -371,6 +374,73 @@ def _make_configs(frozen_config: Record, condition: Record) -> tuple[E1Config, E
     return relay, destination, record
 
 
+def _load_verified_luna54_sources() -> tuple[Record, Record, Record, Record, Record]:
+    """Use the pinned Git object and semantic digest when the old raw-file pin is stale."""
+    path = ROOT / LUNA46_PATH
+    raw = path.read_bytes()
+    actual_sha = hashlib.sha256(raw).hexdigest()
+    actual_blob = str(_git("rev-parse", f"{AUTHORIZATION_REVISION}:{LUNA46_PATH}"))
+    current_blob = str(_git("rev-parse", f"HEAD:{LUNA46_PATH}"))
+    if actual_blob != LUNA46_EXPECTED_BLOB or current_blob != LUNA46_EXPECTED_BLOB:
+        raise GateError("Luna-46 retained Git object differs from the authorized pin")
+    committed = _git("cat-file", "blob", LUNA46_EXPECTED_BLOB, binary=True)
+    if not isinstance(committed, bytes) or raw.replace(b"\r\n", b"\n") != committed:
+        raise GateError("Luna-46 checkout is not the exact Git-object materialization")
+    l46 = json.loads(raw.decode("utf-8-sig"))
+    claimed = l46.pop("output_digest", None)
+    if (
+        l46.get("schema") != "TPCN-LUNA46-OFFLINE-1"
+        or claimed != luna54.digest(l46)
+    ):
+        raise GateError("Luna-46 retained semantic digest failed")
+
+    original_reader = luna54._read_pinned_file
+    original_hash = luna54.LUNA46_SHA256
+
+    def read_pinned_file(
+        artifact_path: str,
+        expected_sha256: str,
+        *,
+        expected_length: int | None = None,
+    ) -> tuple[bytes, Record]:
+        if artifact_path == LUNA46_PATH:
+            return original_reader(
+                artifact_path,
+                actual_sha,
+                expected_length=len(raw),
+            )
+        return original_reader(
+            artifact_path,
+            expected_sha256,
+            expected_length=expected_length,
+        )
+
+    try:
+        luna54._read_pinned_file = read_pinned_file
+        luna54.LUNA46_SHA256 = actual_sha
+        sources, protocol, config, frozen = luna54._load_pinned_sources()
+    finally:
+        luna54._read_pinned_file = original_reader
+        luna54.LUNA46_SHA256 = original_hash
+    integrity_note = {
+        "path": LUNA46_PATH,
+        "authorization_git_blob": actual_blob,
+        "checkout_sha256": actual_sha,
+        "legacy_helper_sha256": LUNA46_EXPECTED_SHA256,
+        "legacy_helper_expected_length": 2_337_377,
+        "observed_length": len(raw),
+        "semantic_digest": claimed,
+        "semantic_digest_passed": True,
+        "git_object_and_checkout_match": True,
+        "disposition": (
+            "The Luna-54 helper raw SHA/length metadata is stale; the exact pinned "
+            "Git object, checkout materialization, and embedded Luna-46 semantic "
+            "digest were independently verified. Historical files were not changed."
+        ),
+    }
+    return sources, protocol, config, frozen, integrity_note
+
+
 def _response_l54(row: Record) -> bool:
     discharge_ids = {
         trace["emission_id"]
@@ -426,7 +496,9 @@ def _rr_phase(phase: str, selection: Record, categories: dict[str, str]) -> Reco
     output = OUTPUT / f"rr-{phase}.json"
     if output.exists():
         raise GateError(f"refusing to overwrite existing Luna-55 result: {output}")
-    sources, _l54_protocol, l54_config, frozen = luna54._load_pinned_sources()
+    sources, _l54_protocol, l54_config, frozen, l46_integrity = (
+        _load_verified_luna54_sources()
+    )
     phase_data = luna54._load_phase(phase, sources)[3]
     condition = json.loads((ROOT / CONFIG_PATH).read_bytes())["conditions"]["RR"]
     relay, destination, effective_config = _make_configs(frozen, condition)
@@ -508,6 +580,7 @@ def _rr_phase(phase: str, selection: Record, categories: dict[str, str]) -> Reco
         "runtime_source_identities": source_identities,
         "authorization_selection_sha256": _sha(ROOT / SELECTION_PATH),
         "factorial_compatibility_phase_pins": selection["factorial_compatibility_phase_artifacts"],
+        "luna46_pin_reconciliation": l46_integrity,
         "python": sys.version,
         "platform": platform.platform(),
         "configuration": effective_config,
@@ -782,7 +855,9 @@ def summarize() -> Record:
         and row.get("destination_oracle", {}).get("passed", False)
         for row in rr_initial["streams"]
     )
-    _source_bundle, _protocol, _luna54_config, frozen_config = luna54._load_pinned_sources()
+    _source_bundle, _protocol, _luna54_config, frozen_config, l46_integrity = (
+        _load_verified_luna54_sources()
+    )
     conditions = json.loads((ROOT / CONFIG_PATH).read_bytes())["conditions"]
     effective_configs: Record = {}
     changed_paths: Record = {}
@@ -832,6 +907,7 @@ def summarize() -> Record:
         "execution_revision": str(_git("rev-parse", "HEAD")),
         "interpretation": "Bounded mechanistic factorial only; initial/replay are deterministic replays, not independent samples.",
         "compatibility_preflight": compatibility,
+        "luna46_pin_reconciliation": l46_integrity,
         "population_counts": {key: len(ids) for key, ids in groups.items()},
         "population_ids": {key: sorted(ids) for key, ids in groups.items()},
         "target_ids": list(TARGET_IDS),

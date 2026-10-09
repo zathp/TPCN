@@ -22,6 +22,17 @@ def test_luna55_retained_phase_pins_and_population_partition():
     assert compatibility["phase_checks"]["replay"]["matched_historical_destination_traces"] == 235
 
 
+def test_luna55_reauthenticates_stale_luna46_file_pin_without_mutating_history():
+    sources, _protocol, _config, _frozen, note = (
+        luna55._load_verified_luna54_sources()
+    )
+
+    assert note["git_object_and_checkout_match"]
+    assert note["semantic_digest_passed"]
+    assert note["legacy_helper_sha256"] != note["checkout_sha256"]
+    assert sources["l46_identity"]["git_blob"] == luna55.LUNA46_EXPECTED_BLOB
+
+
 def test_luna55_has_only_two_frozen_factorial_settings():
     selection = json.loads(
         (ROOT / "experiments/luna55/config.json").read_text(encoding="utf-8")
