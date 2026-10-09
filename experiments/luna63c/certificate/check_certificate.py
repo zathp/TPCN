@@ -1,5 +1,6 @@
 """Read-only Stage A metadata/hash checker. No model/oracle/fixture execution."""
 
+import argparse
 import hashlib
 import json
 from pathlib import Path
@@ -13,6 +14,10 @@ BLOCKED = "BLOCKED — NUMERICAL CERTIFICATE INCOMPLETE"
 DIRECTORY = Path(__file__).resolve().parent
 ROOT = DIRECTORY.parents[2]
 checks = 0
+PREFIX = "experiments/luna63c/certificate/"
+HASH_SCOPE = "raw Git blob content bytes; committed HEAD paths authoritative; no checkout-byte hashes"
+FILES = {"CERTIFICATE.md", "expected_outcomes.json", "sources.json",
+         "check_certificate.py", "manifest.json"}
 
 
 def require(condition, description):
@@ -27,20 +32,60 @@ def git(*args):
     return subprocess.check_output(["git", "--no-pager", *args], cwd=ROOT)
 
 
-def load(name):
-    return json.loads((DIRECTORY / name).read_text(encoding="utf-8"))
+def object_id(data, path=None):
+    args = ["git", "--no-pager", "hash-object"]
+    args += ["--path", path] if path else ["--no-filters"]
+    return subprocess.check_output(
+        args + ["--stdin"], input=data, cwd=ROOT).decode().strip()
+
+
+def snapshot(prepare):
+    result = {}
+    for name in sorted(FILES):
+        path = PREFIX + name
+        checkout = (DIRECTORY / name).read_bytes()
+        if prepare:
+            # Proposed blob only, not a committed artifact: prove this conversion
+            # agrees with Git's actual path-specific clean filters without -w.
+            data = checkout.replace(b"\r\n", b"\n")
+            oid = object_id(data)
+            require(object_id(checkout, path) == oid,
+                    "PREPUBLICATION proposed bytes match Git clean blob " + name)
+        else:
+            data = git("show", "HEAD:" + path)
+            oid = git("rev-parse", "HEAD:" + path).decode().strip()
+            require(object_id(data) == oid,
+                    "committed raw content matches HEAD blob " + name)
+            require(git("rev-parse", ":" + path).decode().strip() == oid,
+                    "index matches committed HEAD blob " + name)
+            require(object_id(checkout, path) == oid,
+                    "Git-filtered working tree matches HEAD blob " + name)
+        require(not data.startswith(b"\xef\xbb\xbf") and b"\r" not in data
+                and data.endswith(b"\n"),
+                "authoritative/proposed blob UTF-8/LF/no-BOM " + name)
+        data.decode("utf-8")
+        require(object_id(data, path) == object_id(data.replace(b"\n", b"\r\n"), path)
+                == oid, "LF/CRLF checkout clean-filter equivalence " + name)
+        result[name] = data
+    return result
 
 
 def main():
-    manifest = load("manifest.json")
-    sources = load("sources.json")
-    table = load("expected_outcomes.json")
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--prepare", action="store_true",
+                        help="validate proposed Git-clean blobs only; NOT publication verification")
+    args = parser.parse_args()
+    data_by_name = snapshot(args.prepare)
+    manifest = json.loads(data_by_name["manifest.json"])
+    sources = json.loads(data_by_name["sources.json"])
+    table = json.loads(data_by_name["expected_outcomes.json"])
     require(manifest["format"] == "luna63c-certificate-manifest"
             and manifest["version"] == 1, "manifest format/version")
     require(sources["format"] == "luna63c-certificate-sources"
             and sources["version"] == 1, "sources format/version")
     require(table["format"] == "luna63c-symbolic-expected-outcomes"
             and table["version"] == 1, "expectations format/version")
+    require(manifest["hash_scope"] == HASH_SCOPE, "raw Git blob hash scope")
     require(all(x["baseline"] == BASELINE for x in (manifest, sources, table)),
             "all baseline pins")
     require(table["design_revision"] == DESIGN
@@ -72,14 +117,9 @@ def main():
     require({p.name for p in DIRECTORY.iterdir()} ==
             set(manifest["files"]) | {"manifest.json"}, "certificate-only file set")
     for name, expected_hash in manifest["files"].items():
-        data = (DIRECTORY / name).read_bytes()
+        data = data_by_name[name]
         require(hashlib.sha256(data).hexdigest() == expected_hash,
-                "artifact SHA256 " + name)
-        unframed = data.replace(b"\r\n", b"")
-        require(not data.startswith(b"\xef\xbb\xbf") and b"\r" not in unframed
-                and b"\n" not in unframed and data.endswith(b"\r\n"),
-                "UTF-8/CRLF/no-BOM framing " + name)
-        data.decode("utf-8")
+                "raw Git blob content SHA256 " + name)
     require(table["bounds"] == {
         "within_budget_attempts": 16, "overflow_attempts": 1,
         "timer_records": 24, "output_records": 1, "unique_records": 42,
@@ -118,12 +158,16 @@ def main():
             and not table["future_replay"]["copied_artifacts_allowed"],
             "fresh future replay requirement")
     require("**Disposition: " + BLOCKED + ".**" in
-            (DIRECTORY / "CERTIFICATE.md").read_text(encoding="utf-8"),
+            data_by_name["CERTIFICATE.md"].decode("utf-8"),
             "report blocked disposition")
+    print(("PREPUBLICATION ONLY; not a committed-artifact PASS" if args.prepare
+           else "COMMITTED HEAD/INDEX/WORKING-TREE VERIFICATION"))
     print("SELF-CONSISTENCY/HASH CHECKS: %d passed, 0 failed; "
           "scientific fixtures: 0 executed; numerical gates remain BLOCKED" % checks)
-    print("manifest.json outer SHA256: " +
-          hashlib.sha256((DIRECTORY / "manifest.json").read_bytes()).hexdigest())
+    for name in sorted(FILES):
+        print(("proposed " if args.prepare else "committed ") + name +
+              " raw Git blob content SHA256: " +
+              hashlib.sha256(data_by_name[name]).hexdigest())
 
 
 if __name__ == "__main__":

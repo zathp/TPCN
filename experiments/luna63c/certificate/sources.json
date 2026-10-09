@@ -29,7 +29,7 @@
     "method": "independent hand derivation and manual versioned UTF-8/CRLF serialization using apply_patch; no oracle calculation",
     "numeric_data": "exact symbolic formulas only; no decimal approximations, intervals, candidate states or timestamps",
     "source_hash_method": "SHA256(subprocess.check_output(['git','--no-pager','show',revision+':'+path]))",
-    "artifact_hash_method": "SHA256(Path.read_bytes()); no line-ending normalization",
+    "artifact_hash_method": "SHA256(raw git show HEAD:experiments/luna63c/certificate/<file> bytes) after publication; before publication verify proposed LF bytes against git hash-object --path clean-filter blob identity",
     "self_check_command": "python -B experiments/luna63c/certificate/check_certificate.py",
     "precision_calculations_performed": 0,
     "root_bisections_performed": 0,

@@ -7,7 +7,8 @@ This is a certificate-only, partially established mathematical report, not a
 completed numerical certificate, runtime conformance verdict, mechanism result,
 or Stage B authorization. Stop here for independent Luna-0 review. No runtime,
 event adapter, propagation evaluator, root solver, timer engine, or C0–C7 runner
-was created or executed. No commit or push was made.
+was created or executed. No runtime, adapter, solver or scientific fixture
+execution is reported; this report remains blocked.
 
 ## 1. Identity, authority, provenance, and reproduction
 
@@ -33,13 +34,21 @@ preparation provenance.
 and records preparation environment, read extents, and generation method.
 `expected_outcomes.json` is a deterministic **symbolic expectation** table;
 null numeric certificates mean unresolved, not zero or a wildcard pass.
-`manifest.json` hashes the report, table, metadata and checker as raw bytes.
+`manifest.json` hashes the report, table, metadata and checker as raw Git blob
+content bytes from `git show HEAD:experiments/luna63c/certificate/<file>`
+after the artifact publication commit, not checkout bytes.
 The manifest excludes itself to avoid a circular hash; its outer SHA256 is
-returned to the caller. UTF-8/CRLF, no BOM, fixed field order, fixed metadata,
-and no current-time/seed/random generation are used. These are versioned JSON
-documents, not binary64 numeric oracle outputs. Do not normalize line endings
-before hashing. Source hashes are of `git show revision:path` bytes, not
-potentially CRLF-converted working files.
+returned to the caller using the same blob-content scope. Original preparation
+serialized UTF-8/CRLF without a BOM; repository `* text=auto` normalizes
+these text blobs to LF. Fixed field order, fixed metadata and no current-time/
+seed/random generation are used. These are versioned JSON documents, not
+binary64 numeric oracle outputs. Hash raw committed content without further
+normalization. Source hashes likewise use `git show revision:path` bytes.
+LF and CRLF checkouts are permitted: the default checker proves that each
+artifact's HEAD blob identity equals its index identity and its working-tree
+identity after Git's path-specific clean filters. It also verifies that LF
+and CRLF forms clean to the same blob. Checkout line endings are not an
+independent invariant or the hash authority.
 
 Read sources include the committed mechanism contract and authorization,
 both exact pinned design documents, architecture contract, current relevant
@@ -53,7 +62,8 @@ oracle/dependency here. That lane remains
 **LUNA-63B NUMERICAL ORACLE PREREQUISITE REQUIRED**. No 63A implementation or
 historical evidence is used.
 
-Reproduce from repository root, without importing runtime code:
+Reproduce **after the parent commits the updated artifacts**, from repository
+root, without importing runtime code:
 
 ```powershell
 git --no-pager rev-parse --verify '73aaa50f97ceab322907875ae4dcf23e7541c3b5^{commit}'
@@ -63,8 +73,28 @@ git --no-pager diff a303ebb835b72fdd01c86df478431b8638aacbb4 HEAD -- workflow/ha
 python -B experiments/luna63c/certificate/check_certificate.py
 git --no-pager diff --check
 git --no-pager status --short --untracked-files=all
-Get-FileHash -Algorithm SHA256 experiments/luna63c/certificate/*
 ```
+
+The checker prints every raw Git blob SHA256, including the manifest's outer
+hash. Do not use `Get-FileHash` on checkouts or PowerShell text pipelines to
+hash Git output: they may hash a different newline representation.
+
+Before publication, manifest generation uses proposed LF content
+`Path.read_bytes().replace(b"\r\n",b"\n")` only after proving its unfiltered
+Git object ID equals the actual checkout's `git hash-object --path <path>
+--stdin` clean-filter ID. Both commands are read-only (no `-w`); the
+checker makes the same proof in explicit preparation mode:
+
+```powershell
+python -B experiments/luna63c/certificate/check_certificate.py --prepare
+```
+
+Calculate SHA256 of those proved proposed blob bytes, update the four manifest
+entries, then calculate the proposed manifest's outer blob SHA256. This yields
+prospective committed-content hashes, not a claim of publication. The parent
+must commit all five paths with those exact content blobs and rerun the
+default command; a dirty index/working tree fails that post-commit verification.
+No commit, index write, push or fresh checkout is performed by this worker.
 
 The checker is read-only metadata/hash/self-consistency code, not an oracle.
 It neither evaluates the model nor establishes any outstanding mathematical
@@ -459,7 +489,11 @@ assertion: the Windows edit tool serialized CRLF while the initial checker
 expected LF. The SHA256 comparison had passed. Serialization metadata and
 the checker were corrected to explicitly pin actual UTF-8/CRLF raw bytes,
 not to normalize inputs or weaken numerical checks; the manifest was
-recomputed. This failed validation is retained here, not suppressed.
+recomputed. That intermediate CRLF checkout-hash policy was subsequently
+superseded after independent review identified Git's LF blob normalization.
+The final policy hashes raw Git content and checks HEAD/index/clean-filtered
+checkout agreement, so LF/CRLF checkout choice cannot alter the hash.
+This failed validation and intermediate policy are retained here, not suppressed.
 All required Stage B regression families (focused mechanism, numerical
 certificate arithmetic, event-time/representability, crossing/re-arm,
 record-bound/overflow, relevant E2/excursion, historical/core) have **0 tests

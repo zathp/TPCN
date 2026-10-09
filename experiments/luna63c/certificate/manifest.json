@@ -6,7 +6,7 @@
   "design_revision": "3e7d31b9a527e908b21abee3766906084e7cd082",
   "handoff_revision": "a303ebb835b72fdd01c86df478431b8638aacbb4",
   "hash_algorithm": "SHA256",
-  "hash_scope": "raw UTF-8/CRLF file bytes, no BOM, no normalization; source identities in sources.json",
+  "hash_scope": "raw Git blob content bytes; committed HEAD paths authoritative; no checkout-byte hashes",
   "generation_method": "manual deterministic serialization; hand-derived symbolic report; read-only stdlib/git checker",
   "environment_metadata": "sources.json",
   "parameter_identities": "expected_outcomes.json:model",
@@ -15,9 +15,9 @@
   "stage_b_eligible": false,
   "self_hash_policy": "manifest excluded to avoid circularity; outer SHA256 returned to caller",
   "files": {
-    "CERTIFICATE.md": "be9343aa71d498ecfd32937f8cf15cdf207a2e4b12f042dc3eb64ae795e0a912",
-    "check_certificate.py": "272e44c6f61eb61c604fcb2f18bb1e606d423dcc34acc7b3fd769044b3b586b6",
-    "expected_outcomes.json": "c9c05416c07fc4c754cfe3fb5c88b4d859c32babe7d7f9c5e2a18d5860e8c060",
-    "sources.json": "dd3e3380064b10fca8d380b0f2ad5e9803337b105f6327d95b05e30723c57b67"
+    "CERTIFICATE.md": "9de4a3f4677441b15aa4c860c2ff8aa49f6368cd5acd96b262be3029379ad10b",
+    "check_certificate.py": "af48c7b95d5da915bf81cad72049ebf1de9103c8f0ed14aaaa5057167cccd2f4",
+    "expected_outcomes.json": "6052fe301ec6ddfd419f74b275d85c385e386d85a874b54e42247b70afe511a8",
+    "sources.json": "64ebfa94054e41a0badd4b2e4dc6f47f882adb6e9a140c6782d15c477e7fda85"
   }
 }
