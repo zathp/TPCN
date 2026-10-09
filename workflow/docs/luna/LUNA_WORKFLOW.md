@@ -1,5 +1,33 @@
 # TPCN Luna Multi-Agent Workflow — Event-Driven Architecture
 
+## Luna-59 owner task objective — reward-interface design prerequisite only — 2026-10-09
+
+**TASK OBJECTIVE DEFINED — REWARD SEMANTICS PREREQUISITE REQUIRED.**
+The owner selects controlled deterministic temporal event/deadline prediction,
+correct negative/ambiguous-prefix silence, premature/late errors and
+first-output scoring with duplicate efficiency penalty. Held-out balanced
+accuracy is primary: at least +10 pp versus a declared historical/default
+comparator, at most +5 pp FPR degradation, matched temporal anti-shortcut
+controls and majority seed direction or exact independent deterministic replay.
+Applications remain deferred; E+49 has no imposed task crossing requirement.
+
+The current ACP-0006 interface predicts the next numeric external input and
+credits only actual emissions; no-emission reward is explicitly unmatched.
+It does not already provide task-deadline/omission semantics. **Only the
+documentation-only Luna-59 design prerequisite is authorized, not executed.**
+It must resolve fair credit or a justified no-training alternative without
+inventing semantics. No code, dataset generation, experiment, replay, tuning
+or automatic adoption of Luna-58's destination rate is authorized. No
+experimental arm or held-out population is frozen yet. The four-experiment
+allowance is not a quota; zero experiments are authorized.
+
+See the [bounded Luna-59 contract](../../../.github/agents/luna-59.agent.md)
+and [owner-objective governance handoff](../../handoffs/luna-0-owner-task-objective-luna59-governance-20261009.md).
+Prerequisite work requires authoritative publication and a later explicit
+assignment. Efficacy requires a separate complete authorization after
+interface/task gates close. Luna-58 independent review remains pending;
+no A01-A15, ACP or architecture-promotion status changes.
+
 ## Luna-58 finite destination-retention rescue — EXECUTED / SELECTIVE RESCUE SUPPORTED; independent Luna-0 review required — 2026-10-09
 
 **OBSERVED: SELECTIVE RESCUE SUPPORTED WITHIN THE FROZEN SETUP.** The

@@ -1,5 +1,33 @@
 # Architecture Changelog
 
+## Luna-59 task objective — reward-semantics design prerequisite, no experiment — 2026-10-09
+
+**TASK OBJECTIVE DEFINED — REWARD SEMANTICS PREREQUISITE REQUIRED.**
+At fetched clean `main == origin/main` baseline
+`0a6b0125627384a036410ff1588cd1115bf53147`, Luna-0 reviewed the owner-defined
+controlled temporal event/deadline objective, current ACP-0006/0008 interfaces
+and retained Luna-58 evidence. ACP-0006 intentionally records eligibility only
+on emissions and leaves reward without a readout emission unmatched. The
+current native next-input prediction/expiry/settling path does not establish
+a task-specific deadline output or omission error.
+
+Authorize only the bounded documentation design prerequisite in
+`.github/agents/luna-59.agent.md`: two documents, eight logical outcome cases,
+fair attribution versus a justified no-training alternative, zero executions.
+No reward rule, core/interface implementation, benchmark, dataset generator,
+scientific replay, tuning or experimental arm is authorized. The owner-defined
+held-out balanced-accuracy/+10 pp/FPR <=+5 pp/first-output/duplicate/control/
+reproducibility criteria are preserved, not claimed met. Exact task windows,
+independent population/splits/repetitions, comparator and arms remain gated.
+Luna-58's `0.00001` is not automatically selected; E+49 is not relabeled.
+
+The prerequisite is not executed and cannot begin before authoritative
+publication and explicit assignment. An efficacy experiment needs a separate
+complete contract. Luna-58 independent review remains pending; no A01-A15,
+accepted ACP, architecture contract, historical result or promotion changes.
+See
+`handoffs/luna-0-owner-task-objective-luna59-governance-20261009.md`.
+
 ## Luna-58 finite destination-retention rescue — EXECUTED / SELECTIVE RESCUE SUPPORTED; independent Luna-0 review required — 2026-10-09
 
 Read-only comparison of the frozen Luna-55 evidence identifies a bounded
