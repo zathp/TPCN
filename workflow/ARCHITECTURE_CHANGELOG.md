@@ -1,5 +1,35 @@
 # Architecture Changelog
 
+## Luna-55 serial relay/destination retention composition — AUTHORIZED / NOT EXECUTED — 2026-10-08
+
+**AUTHORIZED / NOT EXECUTED.** Read-only counterfactual analysis of the
+authenticated Luna-54 destination arrivals found a predeclared 16-stream
+subgroup among the 65/75 primary arrival responders whose signed
+zero-decay destination recurrence crosses threshold; the other 49 remain
+below threshold even under perfect retention. Neither historical destination
+dynamics nor the Luna-54 relay-only intervention crossed in the primary 75.
+There is no opposing-sign cancellation in the 65 responders. Luna-53/Luna-54
+historical destination inputs and traces match exactly across both phases.
+The complete per-stream evidence is retained in
+[the selection artifact](../artifacts/luna55-selection/post-luna54-destination-oracle.json);
+the [Luna-0 handoff](handoffs/luna-0-scientific-successor-selection-luna55-20261008.md)
+records the selection and provenance caveat.
+
+The authorized bounded design is a fixed 2x2 factorial using relay and
+destination `decay_rate_z` values `0.0125` and `0.00125`: historical,
+relay-only, destination-only, and composed. The primary target is exactly
+the 16 zero-decay-crossing streams. The E+ total-drive controls (49), E0
+(10), NR1 (189), and NR0 (23) remain separate. No arbitrary gain, payload,
+threshold, or timing change is permitted. This tests whether independently
+supported adjacent-stage retention mechanisms are serially sufficient in
+this subgroup.
+
+This is experimental mechanism authorization only. **No execution, task
+efficacy, production suitability, hardware equivalence, or architecture
+promotion is claimed.** No A01-A15 clause or ACP-0008 text changes;
+ACP-0008 remains experimental, opt-in, and disabled by default. No Luna-56
+or later successor is authorized.
+
 ## Luna-54 relay event-generation and propagation — SUPPORTED; independent Luna-0 review PASS — 2026-10-08
 
 **SUPPORTED WITHIN THE CONTRACTED BOUNDED MECHANISM; INDEPENDENT LUNA-0
@@ -38,8 +68,9 @@ aggregate provenance's use of the control-initial runner identity is a
 non-blocking presentation caveat because the phase records identify the other
 runner revisions. This result is not task efficacy, generalization, production
 parameter selection, or architecture promotion. No A01-A15 clause or ACP
-change; ACP-0008 remains experimental, opt-in and disabled by default. No
-Luna-55 or other successor is authorized.
+change; ACP-0008 remains experimental, opt-in and disabled by default.
+The then-current stop was subsequently revisited by the post-Luna-54
+selection above.
 
 ## Luna-53 destination-retention mechanism — SUPPORTED within frozen setup; independent review PASS — 2026-10-08
 

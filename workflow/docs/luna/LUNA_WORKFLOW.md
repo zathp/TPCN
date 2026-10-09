@@ -1,5 +1,33 @@
 # TPCN Luna Multi-Agent Workflow — Event-Driven Architecture
 
+## Luna-55 serial relay/destination retention composition — AUTHORIZED / NOT EXECUTED — 2026-10-08
+
+**AUTHORIZED / NOT EXECUTED.** Read-only analysis of the authenticated Luna-54
+intervention arrivals identifies a narrow target for a fixed 2x2 mechanism
+comparison. Of 65/75 primary streams with additional Luna-54 destination
+arrivals, 16 cross the Luna-46 signed zero-decay oracle and 49 remain below
+threshold; all 75 remain below the historical and Luna-54 actual destination
+threshold. The 65 responder streams have no opposing-sign arrivals. The 10
+E0 streams, 189 upstream-active NR1 streams, and 23 no-input NR0 streams
+remain separate. Luna-53 and Luna-54 historical-control arrivals and traces
+were verified exactly compatible in both phases. The per-stream analysis is
+retained in [the selection artifact](../../../artifacts/luna55-selection/post-luna54-destination-oracle.json)
+and the authorization is recorded in [the Luna-0 handoff](../../handoffs/luna-0-scientific-successor-selection-luna55-20261008.md).
+
+The four frozen arms are historical/historical, relay-retention only,
+destination-retention only, and the single composed relay+destination
+retention condition. Only `decay_rate_z=0.0125` or `0.00125` changes; no
+sweep or gain change. The primary target is the 16 exact zero-decay-crossing
+streams; the 49 E+ noncrossers, 10 E0, 189 NR1, and 23 NR0 streams remain
+separate controls. The target/control partition is an evaluation-only output,
+not a runtime input.
+
+This is mechanistic evidence only: no task efficacy, production default,
+hardware equivalence, architecture promotion, or ACP/A01-A15 change is
+authorized. **Luna-55 is not yet executed; stop for independent Luna-0
+review after the contracted factorial run. No Luna-56 is authorized.** See
+the [Luna-55 contract](../../../.github/agents/luna-55.agent.md).
+
 ## Luna-54 relay event-generation and propagation — SUPPORTED; independent Luna-0 review PASS — 2026-10-08
 
 **SUPPORTED WITHIN THE CONTRACTED BOUNDED MECHANISM; INDEPENDENT LUNA-0
@@ -33,8 +61,9 @@ intervention, and both controls passed before treatment. Luna-0 did not rerun
 the reported tests or inspect their test logs; a non-blocking aggregate
 provenance-presentation caveat is documented in the review handoff. This is
 not task efficacy, generalization, production selection, or architecture
-promotion. ACP-0008 remains experimental, opt-in and disabled by default. No
-A01-A15 change, Luna-55, or other successor is authorized. See the
+promotion. ACP-0008 remains experimental, opt-in and disabled by default.
+No A01-A15 change follows from Luna-54. The then-current stop was
+subsequently revisited by the post-Luna-54 selection above. See the
 [Luna-0 selection handoff](../../handoffs/luna-0-scientific-successor-selection-luna54-20261008.md).
 
 ## Luna-53 destination-retention mechanism — SUPPORTED; independent review PASS — 2026-10-08
