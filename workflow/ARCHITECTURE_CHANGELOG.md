@@ -23,7 +23,7 @@ reported separately and do not support the primary result. Source inputs had
 zero root truncations. Other bounded relay routes did have preserved
 root-truncation flags (5 control, 7 treatment); no truncated route contributes
 to the primary response. No z clipping, traced x-limit hit, budget exhaustion,
-or pending event occurred. The full suite passed **1,713 tests, 1 skip**.
+or pending event occurred. The full suite passed **1,714 tests, 1 skip**.
 
 An initial runner audit error and subsequent serialization defects are
 preserved and explained in the handoff and `artifacts/luna54/blocked.json`;

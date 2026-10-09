@@ -209,7 +209,7 @@ one-to-one CRLF checkout materialization; all canonical artifact digests stay
 identical across that representation.
 
 Final validation on the publication checkout: Luna-54 focused tests passed
-**10/10**; full repository suite passed **1,713**, skipped **1**, failed **0**.
+**10/10**; full repository suite passed **1,714**, skipped **1**, failed **0**.
 The runner preflight and final summary/integrity validation passed.
 
 One full-suite attempt made while the final Luna-54 JSON files were still

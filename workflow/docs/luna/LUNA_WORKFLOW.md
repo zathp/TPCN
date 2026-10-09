@@ -20,7 +20,7 @@ results do not broaden the primary claim. No source-input roots were
 truncated; preserved relay-route truncation flags occurred on 5 control and
 7 intervention routes, none of which contributes to the primary response.
 No accumulator clipping, traced x-limit hit, resource exhaustion, or pending
-event occurred. The full suite passed **1,713 tests, 1 skip**.
+event occurred. The full suite passed **1,714 tests, 1 skip**.
 
 An initial runner-audit block and subsequent serialization defects are
 preserved and documented in the handoff; they were corrected before
