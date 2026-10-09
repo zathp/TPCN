@@ -1,5 +1,37 @@
 # Architecture Changelog
 
+## Luna-62 independent design review; isolated Luna-63 lane governance — 2026-10-09
+
+Reviewed baseline `8123147e04c6044d12023f541cf63130cdbb7dcc`, Luna-62
+design commit `c33f4195d10d2c5de8e715ac4ad63349a724aa34`.
+Independent Luna-0 verdict: **PASS WITH LIMITATIONS — design only, not
+architecture adoption**. The FIFO-like proposal remains ACP-required;
+completion bridge, additional close cue, scoped drain, numeric bounds/drive
+and all-analog feasibility remain unresolved. Review precedes alternative
+lane authorization; old entries below remain historical.
+See `workflow/handoffs/luna-0-independent-review-luna62-20261009.md`.
+
+Current owner-authorized pre-ACP scope uses the contract/ACP README's
+isolated-experiment allowance, with named departures and no promotion:
+**63A AUTHORIZED / NOT EXECUTED**, frozen binary adaptive-decay component,
+zero leak rather than floating infinity, finite TTL, prior-gate elapsed
+settlement and expiry-equality preemption; **63B DESIGN PREREQUISITE
+REQUIRED / DESIGN ONLY AUTHORIZED**, missing local predictive interpretation/
+vector-state protocol; **63C NOT YET BOUNDED**, no executable contract or
+invented spiral field. New lane contracts are `.github/agents/luna-63a.agent.md`
+and `.github/agents/luna-63b.agent.md`. Detailed equations/controls, future
+ownership, source pins and independent-review gates are in
+`workflow/handoffs/luna-0-luna63-mechanism-authorization-20261009.md`.
+
+Actual Luna-62 authorization identity is
+`084033b03968c256dc47c8d24fbafa56f085b729`, not the preserved historical
+mistype. Luna-61 independent PASS remains conversation-provided, not
+tracked-verified. No prior records, A01-A15, ACP text/status, production,
+tests or scientific artifacts changed. No experiments, parallel lane work,
+branch creation, Luna-64 or integrated echo occurred here; only governance
+documentation is committed and published.
+Future isolated execution/design and independent reviews remain separate.
+
 ## Luna-62 bounded sequence-memory architecture proposal authorized — 2026-10-09
 
 At clean fetched `main == origin/main`

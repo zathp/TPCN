@@ -1,5 +1,41 @@
 # TPCN Luna Multi-Agent Workflow — Event-Driven Architecture
 
+## Luna-62 independent design review closed; Luna-63 bounded alternative lanes — 2026-10-09
+
+**LUNA-62: PASS WITH LIMITATIONS — DESIGN ONLY, NOT ADOPTION.** Independent
+Luna-0 reviewed publication `8123147e04c6044d12023f541cf63130cdbb7dcc`,
+design `c33f4195d10d2c5de8e715ac4ad63349a724aa34`, against actual governing/
+source evidence. The FIFO-like candidate remains proposed/ACP-required;
+close/bridge/flush/drive/hardware gates remain. See the
+[independent review](../../handoffs/luna-0-independent-review-luna62-20261009.md).
+Luna-61 independent PASS remains conversation-provided, not tracked-verified;
+actual Luna-62 authorization is `084033b03968c256dc47c8d24fbafa56f085b729`,
+not the historical mistype. Older status entries below are retained history.
+
+The owner's alternative is **not adopted**. Pre-ACP evidence is allowed
+only as expressly named, opt-in departures on isolated experiment branches,
+never a silent production/default change. The separate
+[authorization](../../handoffs/luna-0-luna63-mechanism-authorization-20261009.md)
+records:
+
+- [Luna-63A](../../../.github/agents/luna-63a.agent.md): **AUTHORIZED / NOT
+  EXECUTED**, binary zero/finite-leak retention component, frozen 33-instance
+  analytic matrix, finite TTL and prior-gate/expiry semantics; no canonical
+  output dynamics or sequence claim.
+- [Luna-63B](../../../.github/agents/luna-63b.agent.md): **DESIGN PREREQUISITE
+  REQUIRED / DESIGN ONLY AUTHORIZED**; local interpretation PCN equations
+  and vector state-separation protocol are not yet frozen. No trials.
+- Luna-63C: **NOT YET BOUNDED**, no executable contract. E2 scalar scheduling
+  and historical scalar charge drain are not the proposed nonlinear spatial
+  spiral vector field. Exact missing-field requirements are in the handoff.
+
+No lane execution, parallel work, branch creation or scientific validation
+occurs in this governance assignment; only governance documents are published.
+Future A/B use isolated
+branches/disjoint files and no interlane results. Published freeze and
+independent Luna-0 review gates apply; no ACP adoption, production edits,
+Luna-64 or integrated echo is authorized.
+
 ## Luna-62 — bounded sequence-memory architecture proposal authorized — 2026-10-09
 
 **LUNA-62 SEQUENCE-MEMORY ARCHITECTURE PROPOSAL AUTHORIZED / NOT EXECUTED.**
