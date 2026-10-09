@@ -1,5 +1,30 @@
 # Architecture Changelog
 
+## Luna-58 finite destination-retention rescue — AUTHORIZED / NOT EXECUTED — 2026-10-09
+
+Read-only comparison of the frozen Luna-55 evidence identifies a bounded
+mechanism question for the six RR nonresponders. Their decay-free E2 peaks
+exceed the unit discharge threshold by only `0.001245–0.009489`, while the
+ten responders have `0.291600–0.378256` of headroom. Absolute finite-decay
+loss overlaps between groups, so the result is not described as greater
+absolute decay sensitivity in the nonresponders. Their actual RR input
+sequences are same-sign; their route signatures match RH, and their retained
+destination traces show no prior discharge, reset, refractory state, or
+clipping. The exact event-time E2 recurrence predicts a zero-decay crossing
+at the final reception for all six.
+
+**Decision: Luna-58 authorized / not executed.** The bounded intervention
+changes only destination ACP-0008 `decay_rate_z` from `0.00125` to one
+predeclared finite value, `0.00001`; the relay remains at `0.00125`. The
+complete causal source-to-relay-to-destination path, frozen 320-stream
+population, ten RR responders, separate E+49/E0/NR1/NR0 controls, secondary
+stratum, and Luna-55 execution/resource bounds are retained. No neural
+experiment ran during selection. This is mechanistic software-reference
+evidence only; ACP-0008 remains experimental, opt-in and disabled by default.
+No A01-A15 clause, architecture contract, task-efficacy, production, or
+hardware-equivalence claim changes. See the [Luna-0 selection handoff](handoffs/luna-0-scientific-successor-selection-luna55-nonresponders-20261009.md)
+and [Luna-58 contract](../.github/agents/luna-58.agent.md).
+
 ## Luna-57 Luna-55 checkout-materialization correction — AUTHORIZED / NOT EXECUTED — 2026-10-09
 
 At clean baseline `a5d145d6751ee82a5fae1e2f8ad2f647d06438bc`, Luna-0

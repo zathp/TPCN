@@ -1,5 +1,30 @@
 # TPCN Luna Multi-Agent Workflow — Event-Driven Architecture
 
+## Luna-58 finite destination-retention rescue — AUTHORIZED / NOT EXECUTED — 2026-10-09
+
+**DECISION: ONE-POINT LUNA-58 MECHANISM EXPERIMENT AUTHORIZED.** Read-only
+comparison of the 16 frozen Luna-55 targets found that the six RR
+nonresponders have very small decay-free destination headroom
+(`0.001245–0.009489`), while responders have `0.291600–0.378256`. Their
+absolute RR decay losses overlap; the evidence does not support calling the
+nonresponders more absolutely decay-sensitive. The six retained input
+sequences are same-sign, their RR route signatures match RH exactly, and
+their destination traces have no prior discharge/reset/refractory transition.
+The actual E2 recurrence therefore predicts a zero-decay crossing on the
+final input for each stream, closing the oracle-mismatch concern.
+
+Luna-58 is authorized to test only destination
+`decay_rate_z=0.00001`, keeping the relay at `0.00125`, on the complete
+causal path and frozen 320-stream population. It must preserve the ten RR
+responders and separately report E+49, E0 10, NR1 189, NR0 23, and the
+33-stream secondary stratum. Initial/replay are determinism checks, not
+independent samples. No parameter search, neural execution, or artifact
+generation occurred during selection. The experiment is bounded by the
+published [Luna-58 contract](../../../.github/agents/luna-58.agent.md) and
+[Luna-0 selection handoff](../../handoffs/luna-0-scientific-successor-selection-luna55-nonresponders-20261009.md).
+No A01-A15, ACP, or architecture contract change is authorized. Stop after
+Luna-58 for independent Luna-0 review; no Luna-59 is authorized.
+
 ## Luna-57 Luna-55 checkout-materialization correction — AUTHORIZED / NOT EXECUTED — 2026-10-09
 
 **DECISION: CORRECTION-ONLY LUNA-57 AUTHORIZED.** At clean baseline
