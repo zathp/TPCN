@@ -155,7 +155,7 @@ A02 algebra is strictly weaker than ordered recall. A15 mapping is qualitative.
 | Equation derivation / budget inventory | Proposed rational constants; no platform run | Conditional analytic noncommutativity and ten-coordinate bound provided | Report sections 3–6 |
 | Post-edit documentation reread | Same worktree | Entire initial draft reread in sections; attachment/protocol/update-order corrections applied; targeted final source/field rereads recorded in tool history | Read-only tool, not schema execution |
 | Parent staged-scope and whitespace checks | Isolated branch | PASS for exactly the two contract-authorized docs | No scientific validation |
-| Parent commit/push/fetch, branch SHA and clean-tree verification | Isolated branch | PENDING at this handoff revision | No main merge |
+| Parent commit/push/fetch, branch SHA and clean-tree verification | Isolated branch | PASS at `e21240e755e0e3d0c592c6c124b04a0ddffd7ffd`; fetched SHA matched local HEAD and worktree was clean | No main merge |
 | Scientific/runtime/regression/oracle/hardware commands | Any platform | NOT RUN / not authorized | No tests added or passing |
 
 ## Benchmark and resource results
@@ -193,9 +193,10 @@ No results from other mechanism lanes enter this design.
 
 For document reproduction only, read the report's exact pinned sources in the
 assigned baseline and inspect the two deliverables. No scientific reproduction
-is authorized. The parent verified the branch/worktree/base, exact two-file
-scope, and whitespace. Push/fetch and remote-SHA/clean-tree verification are
-pending for this handoff revision.
+is authorized. The parent verified the branch/worktree/base, exact two-file scope and
+whitespace. The provenance commit `e21240e755e0e3d0c592c6c124b04a0ddffd7ffd`
+was pushed and fetched; fetched SHA matched local HEAD and the worktree was
+clean at verification.
 No instructions here grant experiments or changes to any other files/branches.
 
 Safe restoration point is
@@ -206,9 +207,9 @@ No datasets, executable state or artifacts require migration.
 ## Next assignment
 
 The design-content commit is
-`ab9e919eb1c79d27134413dd093bf3661625a0a8`. A provenance-only follow-up
-pins that content revision in this handoff. Push/fetch and final verification
-are pending; no main merge occurred.
+`ab9e919eb1c79d27134413dd093bf3661625a0a8`. Provenance commit
+`e21240e755e0e3d0c592c6c124b04a0ddffd7ffd` records that content revision and
+was verified against origin. No main merge occurred.
 
 Independent **Luna-0** must review the exact published equations, bounds,
 locality, predictive interpretation, controls, numerical criteria and
