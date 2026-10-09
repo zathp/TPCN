@@ -7,11 +7,20 @@ from copy import deepcopy
 import math
 import os
 from pathlib import Path
+import subprocess
 import sys
 
 import pytest
 
 import run_luna46_depth_scaling_diagnostic as diagnostic
+
+LUNA46_CATALOG_REVISION = "d1f901d3d995dc013f22dd086ae1ed8ffd28293d"
+LUNA46_CATALOG_PATH = (
+    "artifacts/luna45-acp0008-depth2-destination-integration-20261006/"
+    "artifact-integrity.json"
+)
+LUNA46_CATALOG_BLOB = "b1aaef4006422f321922bfb58425e4fb646d96b9"
+LUNA46_CATALOG_SHA256 = "a47046da6916db49f373613d654d2cf59671737b5c6b8584b222fb67fe068e8e"
 
 
 def synthetic_sequence(payloads, times=None, prior=0.0):
@@ -481,9 +490,13 @@ def test_missing_inputs_and_catalog_tampering_fail_before_analysis(tmp_path):
 
 
 def test_luna51_catalog_identity_is_pinned_to_the_expected_git_object():
-    canonical_bytes = diagnostic.git(
-        "show",
-        f"{diagnostic.CATALOG_REVISION}:{diagnostic.CATALOG_GIT_PATH}",
+    canonical_bytes = subprocess.check_output(
+        [
+            "git",
+            "show",
+            f"{LUNA46_CATALOG_REVISION}:{LUNA46_CATALOG_PATH}",
+        ],
+        cwd=diagnostic.ROOT,
     )
     checkout = diagnostic.read_bytes(diagnostic.ROOT / diagnostic.CATALOG_PATH)
 
@@ -492,9 +505,9 @@ def test_luna51_catalog_identity_is_pinned_to_the_expected_git_object():
     )
 
     assert catalog["file_count"] == 22
-    assert identity["git_revision"] == diagnostic.CATALOG_REVISION
-    assert identity["git_blob"] == diagnostic.CATALOG_GIT_BLOB
-    assert identity["file_sha256"] == diagnostic.CATALOG_HASH
+    assert identity["git_revision"] == LUNA46_CATALOG_REVISION
+    assert identity["git_blob"] == LUNA46_CATALOG_BLOB
+    assert identity["file_sha256"] == LUNA46_CATALOG_SHA256
     assert identity["checkout_materialization"] in {
         "exact",
         "exact-Git-LF-to-CRLF-checkout",
@@ -606,7 +619,7 @@ def test_real_retained_artifacts_integrity_only():
     result = diagnostic.verify_integrity()
     assert result["status"] == "PASS"
     assert len(result["inputs"]) == 33
-    assert result["inputs"][str(diagnostic.L45 / "artifact-integrity.json")]["file_sha256"] == diagnostic.CATALOG_HASH
+    assert result["inputs"][str(diagnostic.L45 / "artifact-integrity.json")]["file_sha256"] == LUNA46_CATALOG_SHA256
     assert result["runner44_source_identity"]["git_blob_sha256"] == diagnostic.RUNNER44_GIT_HASH
     assert result["runner44_source_identity"]["retained_execution_bytes_sha256"] != diagnostic.RUNNER44_GIT_HASH
 
