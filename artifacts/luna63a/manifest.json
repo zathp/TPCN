@@ -1,0 +1,418 @@
+{
+  "artifact_sha256": {
+    "replay.json": "58120206f245c9d59e0b0a621ee450ebea393b2ed149ea9e1bbb9dbd126e6b7a",
+    "results.json": "58120206f245c9d59e0b0a621ee450ebea393b2ed149ea9e1bbb9dbd126e6b7a"
+  },
+  "command": "python tests/test_luna63a_adaptive_decay.py --record a0bf66e9d21bd326480b83668aee41af2f08bf68",
+  "contract_blob": "a54ca6f22ff6b75e4b0297dac8012db4354df656",
+  "deterministic_replay_exact": true,
+  "environment": {
+    "executable": "C:\\Users\\Patrick\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+    "implementation": "CPython",
+    "machine": "AMD64",
+    "platform": "Windows-10-10.0.19045-SP0",
+    "version": "3.11.4 (tags/v3.11.4:d2340ef, Jun  7 2023, 05:45:37) [MSC v.1934 64 bit (AMD64)]"
+  },
+  "governance_sha": "e52098b2141a3f121f23b512e877783a64ef8baa",
+  "implementation_sha": "a0bf66e9d21bd326480b83668aee41af2f08bf68",
+  "instance_ids": [
+    "A1-normal/negative",
+    "A2-hold/negative",
+    "A3-A5-H2/negative",
+    "A3-A5-H8/negative",
+    "A3-A5-H32/negative",
+    "normal-comparator-H2/negative",
+    "normal-comparator-H8/negative",
+    "normal-comparator-H32/negative",
+    "prior-gate-switch/negative",
+    "expiry-boundary/negative",
+    "duplicate-cue/negative",
+    "A1-normal/zero",
+    "A2-hold/zero",
+    "A3-A5-H2/zero",
+    "A3-A5-H8/zero",
+    "A3-A5-H32/zero",
+    "normal-comparator-H2/zero",
+    "normal-comparator-H8/zero",
+    "normal-comparator-H32/zero",
+    "prior-gate-switch/zero",
+    "expiry-boundary/zero",
+    "duplicate-cue/zero",
+    "A1-normal/positive",
+    "A2-hold/positive",
+    "A3-A5-H2/positive",
+    "A3-A5-H8/positive",
+    "A3-A5-H32/positive",
+    "normal-comparator-H2/positive",
+    "normal-comparator-H8/positive",
+    "normal-comparator-H32/positive",
+    "prior-gate-switch/positive",
+    "expiry-boundary/positive",
+    "duplicate-cue/positive"
+  ],
+  "manifest_hash": "External handoff/publication; no recursive self-hash",
+  "original_blocked_handoff_sha": "1d1bee9a1c39edd1a0b4278d86d5750e4590b6d6",
+  "pre_outcome_sha": "a0bf66e9d21bd326480b83668aee41af2f08bf68",
+  "protocol_sha256": "9e7b3dab3448495088c0f2ad70836283c1fa8049d2354b7a91320c8415ef6c27",
+  "owner_attachment": {
+    "path": "C:\\Users\\Patrick\\AppData\\Roaming\\Code\\agentSessionData\\00a4b25e-bb56-4501-ab4b-415f83f45089\\attachments\\050e3485-1c22-4408-b209-7245484d0137\\Pasted text #1.txt",
+    "bytes": 20771,
+    "lines": 1157,
+    "sha256": "97b5fa14496ad439ef871a50c7f6491c2eb2578aac0a8f7a40e8ad693d362d78",
+    "use": "Read-only instructions/context; never a model input; not copied into repository"
+  },
+  "regressions": {
+    "command": "python -m pytest -q tests/test_event_runtime.py tests/test_excursion_neuron.py tests/test_e2_multi_excursion.py tests/test_luna38_excursion_integration_state.py tests/test_predictive_coding.py tests/test_luna47a_retention.py tests/test_luna47d_output_model.py",
+    "revision": "a0bf66e9d21bd326480b83668aee41af2f08bf68",
+    "exit_code": 0,
+    "passed": 327,
+    "failed": 0,
+    "skipped": 0,
+    "errors": 0,
+    "duration_seconds": 30.85,
+    "per_file_passed": {
+      "tests/test_event_runtime.py": 14,
+      "tests/test_excursion_neuron.py": 45,
+      "tests/test_e2_multi_excursion.py": 42,
+      "tests/test_luna38_excursion_integration_state.py": 38,
+      "tests/test_predictive_coding.py": 12,
+      "tests/test_luna47a_retention.py": 75,
+      "tests/test_luna47d_output_model.py": 101
+    },
+    "inventory_confirmation": "python -m pytest --collect-only -q followed by unchanged frozen-source diff; 327 collected, exit 0",
+    "historical_tests_are_regression_evidence_only": true
+  },
+  "focused_tests": {
+    "command": "python -m pytest -q tests/test_luna63a_adaptive_decay.py",
+    "revision": "a0bf66e9d21bd326480b83668aee41af2f08bf68",
+    "exit_code": 0,
+    "passed": 69,
+    "failed": 0,
+    "skipped": 0,
+    "errors": 0,
+    "duration_seconds": 0.18,
+    "pytest_version": "9.0.2",
+    "full_suite": "Not run; not required for isolated-only scope"
+  },
+  "validation_only_rejections": [
+    {"validation": "bool-gate", "rejection": "gate must be integer 0 or 1, not bool", "status": "FAULT", "state": 0.75, "last_time": 0.0, "count": 1, "due": null},
+    {"validation": "nonbinary-gate", "rejection": "gate must be integer 0 or 1, not bool", "status": "FAULT", "state": 0.75, "last_time": 0.0, "count": 1, "due": null},
+    {"validation": "nan-time", "rejection": "timestamp must be finite", "status": "FAULT", "state": 0.75, "last_time": 0.0, "count": 0, "due": null},
+    {"validation": "infinite-time", "rejection": "timestamp must be finite", "status": "FAULT", "state": 0.75, "last_time": 0.0, "count": 0, "due": null},
+    {"validation": "negative-time", "rejection": "timestamp outside [0,65] or late", "status": "FAULT", "state": 0.75, "last_time": 0.0, "count": 0, "due": null},
+    {"validation": "late-time", "rejection": "timestamp outside [0,65] or late", "status": "FAULT", "state": 0.75, "last_time": 2.0, "count": 1, "due": null},
+    {"validation": "event-overflow", "rejection": "event budget 32 exhausted; no truncation", "status": "FAULT", "state": 0.75, "last_time": 0.0, "count": 32, "due": null},
+    {"validation": "terminal-revival", "first_rejection": "expiry-preempts-cue", "rejection": "terminal-no-revival", "status": "EXPIRED", "state": null, "gate": 0, "due": null}
+  ],
+  "validation_notes": [
+    "Validation-only fault evidence materialized by inline standard-library script invoking the unchanged frozen model; no new scientific arm",
+    "Focused tests additionally reject NaN/infinity/out-of-bound/bool preload, float/NaN/infinite/bool/nonbinary cue, out-of-range timestamps, and payload attempts",
+    "Bounds endpoints and split-interval semigroup are validation-only; tested with frozen tolerance",
+    "Model, protocol and focused tests remained unchanged after outcomes"
+  ],
+  "publication": {
+    "pre_outcome_commit": "a0bf66e9d21bd326480b83668aee41af2f08bf68",
+    "pre_outcome_remote_confirmed_before_tests": true,
+    "pre_outcome_push": "Ref-lock race reported; remote was already exactly a0bf66e9d21bd326480b83668aee41af2f08bf68. Fetch and ls-remote confirmed exact branch identity and clean worktree; no force push or merge.",
+    "outcome_containing_commit": "Resolve containing artifact publication commit; final handoff/publication response pins exact SHA",
+    "only_branch": "experiment/luna63a-binary-adaptive-decay"
+  },
+  "run_labels": [
+    "initial",
+    "independent-fresh-replay"
+  ],
+  "schema": "L63A-MANIFEST-1",
+  "scientific_disposition": "SUPPORTED \u2014 ADAPTIVE-TAU HOLD/RELEASE",
+  "scientific_source_sha": "8123147e04c6044d12023f541cf63130cdbb7dcc",
+  "source_identities": {
+    "Initial-Architecture-Attempts/TPCN_inspiration/wema_predictive_coding_docs/02_wema_formulation.md": {
+      "git_blob": "7197a294a294aa7701fa232f17e35fb542cad7e6",
+      "git_sha256": "7bc8adbd709a9e043dc416b2463660fa83543e2fc0fd9f800b58ab50b3900765",
+      "checkout_sha256": "02d3035755fc8aaab49b9385caab3dc436b280cb59fb7b7e7b29c2dbd347b198",
+      "git_bytes": 264, "checkout_bytes": 279, "byte_relation": "exact-LF-to-CRLF"
+    },
+    "Initial-Architecture-Attempts/TPCN_inspiration/wema_predictive_coding_docs/05_multiscale_wema.md": {
+      "git_blob": "ea41ab5ec77768feb46975b9b443f9e0ef3733b8",
+      "git_sha256": "67609e299c0ff982f027fc0642017a0068bdd41e64da708ebb7b3fbb2c5b37fc",
+      "checkout_sha256": "bc189172a1acdbf85b95498ce7d00014434af0a5e8ab67438486d12caa7a06f2",
+      "git_bytes": 246, "checkout_bytes": 259, "byte_relation": "exact-LF-to-CRLF"
+    },
+    "Initial-Architecture-Attempts/TPCN_inspiration/predictive_coding/cpcn/cpcn.py": {
+      "git_blob": "a9c7f9353566085462a53eec020d7e262996f1c7",
+      "git_sha256": "f6845c1babaa143ab227fc0e066a9a4cc264cacb4299abd207fddb7dec8f376e",
+      "checkout_sha256": "c6cb6591ef23709d551fa0c748f785e42e5e911850a7d41c5688dc3e208b28fa",
+      "git_bytes": 24516, "checkout_bytes": 25083, "byte_relation": "exact-LF-to-CRLF"
+    },
+    "workflow/handoffs/luna-0-independent-review-luna47-20261006.md": {
+      "git_blob": "4a59d4a3b422d9734a0f9bf0522268f07b833500",
+      "git_sha256": "e5961b418c322e64539ba0f78af5623bcd9550b0b84acf198f09a26139ed4c88",
+      "checkout_sha256": "1975e9919b5c023ea58f35d0eaaf72786b46b54800b404ebf52d68eff0cdd5e8",
+      "git_bytes": 17708, "checkout_bytes": 17979, "byte_relation": "exact-LF-to-CRLF"
+    },
+    ".github/agents/luna-63a.agent.md": {
+      "byte_relation": "exact-LF-to-CRLF",
+      "checkout_bytes": 11314,
+      "checkout_sha256": "7f5852ae848917d6b6076c4c2ee26f0cf80fd226e9eb0b9a77017cc3497e7607",
+      "git_blob": "a54ca6f22ff6b75e4b0297dac8012db4354df656",
+      "git_bytes": 11108,
+      "git_sha256": "26f22a0393ad71ee4c426b00d1b838d44fb8029594699cfc1ab26d94be3ad4c6"
+    },
+    "experiments/luna47a/PROTOCOL.md": {
+      "byte_relation": "exact-LF-to-CRLF",
+      "checkout_bytes": 12194,
+      "checkout_sha256": "20abdd8b697e6c792cf465912368001e0d6f8bea57cd91c3a389d1dfb1da37fe",
+      "git_blob": "2c0ceb1250af69a712e5f5ac0e5dcaa50efc6d9c",
+      "git_bytes": 11989,
+      "git_sha256": "6f947a6515b89f72a74a433e6e618c4a3529f53884222b18b1df21c68162a126"
+    },
+    "experiments/luna47d/PROTOCOL.md": {
+      "byte_relation": "exact-LF-to-CRLF",
+      "checkout_bytes": 9313,
+      "checkout_sha256": "543ead0aeb78f2118737df129eb36f1a535dd71950cb591acbdbc26b6bcb68ec",
+      "git_blob": "a5e9e596bb8a2c62a91f8b5ae6d477dd15e7b380",
+      "git_bytes": 9152,
+      "git_sha256": "7a7465fd9dd3abd17f0dc6ff8de5118b13f5046354739e0f005bc1d24dcbcf1e"
+    },
+    "experiments/luna47d/model.py": {
+      "byte_relation": "exact-LF-to-CRLF",
+      "checkout_bytes": 10688,
+      "checkout_sha256": "b3fdd70566a1b8aacd4f57b20624c31526eddf0b2a1b672bad2b946e957be5cf",
+      "git_blob": "f4143b7e2c5809b9082b072ff8deb5501d4feddf",
+      "git_bytes": 10463,
+      "git_sha256": "ede1a9eb4fac6129e6f87b8b71a175a487ee44f8e303350152cc7f95a88a4f5b"
+    },
+    "experiments/luna63a/README.md": {
+      "byte_relation": "exact-LF-to-CRLF",
+      "checkout_bytes": 3688,
+      "checkout_sha256": "10fc0b4503e087c93c3ed191d57b972f3e0aae442dcf046d6e89e3e2ee814f7c",
+      "git_blob": "1bcd8a43ea3ab5795a13afcfd59506205e75b056",
+      "git_bytes": 3617,
+      "git_sha256": "19c310af893472e03b39fd18543b7a18b4aca6cc79b8fb18c1511881b92ff942"
+    },
+    "experiments/luna63a/__init__.py": {
+      "byte_relation": "exact-LF-to-CRLF",
+      "checkout_bytes": 70,
+      "checkout_sha256": "74c83b795537780b79773c0522d3cc90286fc062cabe338e734a2917bd383e69",
+      "git_blob": "0ea2be90afc610be63d5fb71868bc1a3fd793ba3",
+      "git_bytes": 69,
+      "git_sha256": "b332153369dfcd0a6c986fc6ab28baba93a8923caab3e945d65f031e986479a9"
+    },
+    "experiments/luna63a/model.py": {
+      "byte_relation": "exact-LF-to-CRLF",
+      "checkout_bytes": 4594,
+      "checkout_sha256": "9b866a532d3d6ac6effc9a7920e647ff8194c7858d7dfe78e668e4f1f7d77431",
+      "git_blob": "628af644052bdbdd627ee8c0c36296e53e88c4c5",
+      "git_bytes": 4470,
+      "git_sha256": "f4cf358365e170781c5aab097555d24dd33a43319b34ec2c94199a1ec3b3881a"
+    },
+    "experiments/luna63a/protocol.json": {
+      "byte_relation": "exact-LF-to-CRLF",
+      "checkout_bytes": 5289,
+      "checkout_sha256": "9259419281a6c8e48243e643bb481af321db9c5ae26e225c1a3a251d94e5b1d1",
+      "git_blob": "aa24fda1920bdf1786545e6e10b0fc790de408e9",
+      "git_bytes": 5191,
+      "git_sha256": "113489f939bdbdecf515a9773fdfee82ad7e5de6ce50a32a98f44e7fc2759e62"
+    },
+    "experiments/luna63a/run.py": {
+      "byte_relation": "exact-LF-to-CRLF",
+      "checkout_bytes": 2623,
+      "checkout_sha256": "2e53ff632e676d57179cb72160bdc35260894936282f6412c74aea00596a084a",
+      "git_blob": "9712a810e3269f0fd5d3ed89cf22a0675f6ec934",
+      "git_bytes": 2560,
+      "git_sha256": "3dd542bc4ed0dd98addd6b69ba10cd14018218ee6b5fee9621ac8426ddc69543"
+    },
+    "tests/test_e2_multi_excursion.py": {
+      "byte_relation": "exact-LF-to-CRLF",
+      "checkout_bytes": 22379,
+      "checkout_sha256": "0abb89b64f0148dafe1a321979ed92f440e1cfcd05a1b102c2da7f5664b6b87d",
+      "git_blob": "527d295c0b1698492bb040c6607150b6d94d8d1b",
+      "git_bytes": 21813,
+      "git_sha256": "aee8f7c972bcbe857aa8448aab863d6dfbcda71e33aaeb4ce798c18897bef105"
+    },
+    "tests/test_event_runtime.py": {
+      "byte_relation": "exact-LF-to-CRLF",
+      "checkout_bytes": 5551,
+      "checkout_sha256": "5180a9be176488b1626d616e8e6c2ca679f6b6f88aa9573a99cd7b9e6f6504e4",
+      "git_blob": "911256d83b7a0b4200b3820bd0543a425277637d",
+      "git_bytes": 5410,
+      "git_sha256": "b9242fa517f74fd28691cc7c3d672ed79584f97cd534716e58c799b9db5b560e"
+    },
+    "tests/test_excursion_neuron.py": {
+      "byte_relation": "exact-LF-to-CRLF",
+      "checkout_bytes": 16000,
+      "checkout_sha256": "fe7505cf55f0f07b005ebd6d428056ee7c42d8c9fd710cd5fd7eba00ac3b41e2",
+      "git_blob": "e007a4c480856fb1cc3e2dc417050cad91977bb9",
+      "git_bytes": 15562,
+      "git_sha256": "6465bdc5d922471930f495a19f3b39313d9388a87b458b597c90eb1acb80ce21"
+    },
+    "tests/test_luna38_excursion_integration_state.py": {
+      "byte_relation": "exact-LF-to-CRLF",
+      "checkout_bytes": 12839,
+      "checkout_sha256": "e10d5d253a60783522826d25a5ccf6fd1470a8216b13f24613cdb2e332873786",
+      "git_blob": "c079d37eb04217b444fafebc6d9cfd585b1cb949",
+      "git_bytes": 12539,
+      "git_sha256": "64130b7a4da85b2402a26909fb5a8d521090ca04d90ecf480d9d6c8fb48fe563"
+    },
+    "tests/test_luna47a_retention.py": {
+      "byte_relation": "exact-LF-to-CRLF",
+      "checkout_bytes": 11289,
+      "checkout_sha256": "5a3fcf1aceb82f11c8e08c25b1f1a5da30221c5740084cab89b0ca3daa72d1e3",
+      "git_blob": "c86bd760784e76d9bf80d4d7e5297e4fca156254",
+      "git_bytes": 11041,
+      "git_sha256": "0daa9668a4bf2542e5d96419df64b393de7c319695a1d4b3f4952f10520bce56"
+    },
+    "tests/test_luna47d_output_model.py": {
+      "byte_relation": "exact-LF-to-CRLF",
+      "checkout_bytes": 12105,
+      "checkout_sha256": "75784d687375fb39df2f9a2b74b8cf0a2b333360a72555f7be5f75dae4d7cffd",
+      "git_blob": "9c5a07e5842158d96cd437ab3b6f0b03f17f8609",
+      "git_bytes": 11847,
+      "git_sha256": "a1ce013e593a02e827f219b2122734170d36e599724dde1cfa4c966da88a5cf6"
+    },
+    "tests/test_luna63a_adaptive_decay.py": {
+      "byte_relation": "exact-LF-to-CRLF",
+      "checkout_bytes": 19971,
+      "checkout_sha256": "f3ad82fe7b6cfd3060d7af98b25ffec5a2728e6dcf9d51d431a34dc9a0e53719",
+      "git_blob": "41965b3d1d05d1c50348f79bca1949c0e328441d",
+      "git_bytes": 19523,
+      "git_sha256": "f892c8a6448d5b0e2f191a27561ccada6aee9a07ca8585f4fb1244a55f739f3b"
+    },
+    "tests/test_predictive_coding.py": {
+      "byte_relation": "exact-LF-to-CRLF",
+      "checkout_bytes": 7345,
+      "checkout_sha256": "5bde8c25ded56748dcf42caec0da34e1fb9f824c7d871aaaea18ac386b92f74a",
+      "git_blob": "bcbe6e4c8f5b2c832bb27f8ef11f2062a147f62b",
+      "git_bytes": 7174,
+      "git_sha256": "c57f2bc8e28760fcd907e06ea512e0c921d594f735692c02f28312f190216ec5"
+    },
+    "tpcn/eligibility.py": {
+      "byte_relation": "exact-LF-to-CRLF",
+      "checkout_bytes": 9899,
+      "checkout_sha256": "6757e6a5886385b38f86989e050fb17b67b587a1fd7fe0a66e0ec2b85dd34814",
+      "git_blob": "57b9f186c1332de6a9fc2759237184fb809ad4f5",
+      "git_bytes": 9666,
+      "git_sha256": "090c6c13568b0a7cd467edde4634f58c4b8181597e1a2be005eda39b5696be83"
+    },
+    "tpcn/event_runtime.py": {
+      "byte_relation": "exact-LF-to-CRLF",
+      "checkout_bytes": 10558,
+      "checkout_sha256": "151096ac3a1f6b1a528dfe9be98c8110385021bc453cdf9e5f0ad27e793ee77f",
+      "git_blob": "f4aacb5d782f19e30fd9e562d56d62faefa9002f",
+      "git_bytes": 10265,
+      "git_sha256": "0cea7c38416a5a799230b55b73ec9c2133186b9e87be5fee78a90d9d89688b10"
+    },
+    "tpcn/excursion_neuron.py": {
+      "byte_relation": "exact-LF-to-CRLF",
+      "checkout_bytes": 40912,
+      "checkout_sha256": "73b4265e5b6ce11fe0fed5bc50ca185aa47044af01cffed65499b557a98b69aa",
+      "git_blob": "c0bdece6b15009db4e2b7d69c3242be174b5de80",
+      "git_bytes": 39817,
+      "git_sha256": "e5a1423e61f0ff9665bed93aafd135494c855cd83a710976415cf9719c104fc4"
+    },
+    "tpcn/experiment_excursion_runtime.py": {
+      "byte_relation": "exact-LF-to-CRLF",
+      "checkout_bytes": 37084,
+      "checkout_sha256": "c3a8fa3d81e2d6986523753bf1072a5cddb7858421f7f8e949a39e9752f42f85",
+      "git_blob": "b4e074f0139f3fcfb59189c8313c934c551d6bcb",
+      "git_bytes": 36195,
+      "git_sha256": "e8c696ac9a9323adb18ee33da6921fef32d4d4e982a1f74191cd29b68b4e1bf4"
+    },
+    "tpcn/predictive_coding.py": {
+      "byte_relation": "exact-LF-to-CRLF",
+      "checkout_bytes": 10838,
+      "checkout_sha256": "5e0624fb1e3f53c6a4005ac9a893cbd4618d650ea7cd38950abda6de55252869",
+      "git_blob": "8c391703bb2361c77fc768407eb343da73677166",
+      "git_bytes": 10549,
+      "git_sha256": "6720743070090bd20b3e79a75aee008a92b7f9c0b8539666f4947f40b3d4b9c2"
+    },
+    "tpcn/topology.py": {
+      "byte_relation": "exact-LF-to-CRLF",
+      "checkout_bytes": 11462,
+      "checkout_sha256": "d5f1d6fc6911ed610e7fbff24c768551c00fb526a491f22cfae7d9e8ec1261fb",
+      "git_blob": "98035a7657ec94d6e43fdcc0a648711284514907",
+      "git_bytes": 11198,
+      "git_sha256": "29398f550c6679295087dfc5ce1f9ed15298e5be754e57766b17c493938cefc2"
+    },
+    "workflow/ARCHITECTURE_CHANGELOG.md": {
+      "byte_relation": "exact-LF-to-CRLF",
+      "checkout_bytes": 243492,
+      "checkout_sha256": "02d0e12eb46e09e6aeab8700e4050c1d9249d1a481ad6fadc0a25a6e80d4be52",
+      "git_blob": "b8bfe24f73c139d7b33bc185ca7d842660f8f775",
+      "git_bytes": 239540,
+      "git_sha256": "23b5e513dbe271fb5082190fcc4d965bc86e448b5742d4aafb4f422a48fa9418"
+    },
+    "workflow/ARCHITECTURE_CONTRACT.md": {
+      "byte_relation": "exact-LF-to-CRLF",
+      "checkout_bytes": 12575,
+      "checkout_sha256": "a431d0a430cc49fb53feed04cf5ff7b206714de6451c6ab96cbc7fbb3d034883",
+      "git_blob": "3afc85f86dbc6992e01cb7ca26ebadfb49c09cab",
+      "git_bytes": 12279,
+      "git_sha256": "458105879b8e3eb4454e32cd5c8e334965917cdf89996cd64f74da6462b84d2e"
+    },
+    "workflow/docs/architecture/ACCEPTANCE_CRITERIA.md": {
+      "byte_relation": "exact-LF-to-CRLF",
+      "checkout_bytes": 25417,
+      "checkout_sha256": "2b67b9ee6da889d7cf5b44c5caeaf90389479ceb99de7a6f1d83ed398774d920",
+      "git_blob": "510f44daab83c4def92c70617e2d5c731c5760d6",
+      "git_bytes": 25288,
+      "git_sha256": "6a35b74eac204191f513c21c7036cb7df9a3a47ca62550da46f0ab4622f85448"
+    },
+    "workflow/docs/architecture_proposals/ACP-0008.md": {
+      "byte_relation": "exact-LF-to-CRLF",
+      "checkout_bytes": 13523,
+      "checkout_sha256": "cc060cb415c0a3c9af424bb875fff89696af62b8164d65b1891610d459255a18",
+      "git_blob": "1fa832472ce1797061b117e96417d88238a35491",
+      "git_bytes": 13381,
+      "git_sha256": "c1ee370ea5c15bafa98e647612a6bca91377a04dbe29bf97e80b23cdc581b3b5"
+    },
+    "workflow/docs/architecture_proposals/ACP-TEMPLATE.md": {
+      "byte_relation": "exact-LF-to-CRLF",
+      "checkout_bytes": 1683,
+      "checkout_sha256": "b1c9eb0b516072029170c258e37b1b4a0bb44141eed787d165e957154fec98c6",
+      "git_blob": "5ab234b20cc2395ae78bc3ffecea22b1f027cae7",
+      "git_bytes": 1625,
+      "git_sha256": "5a028361fa984820eddc5dd0c8ec8969961984aefe466caf49776c7ac4bf80a7"
+    },
+    "workflow/docs/architecture_proposals/README.md": {
+      "byte_relation": "exact-LF-to-CRLF",
+      "checkout_bytes": 928,
+      "checkout_sha256": "46b3bf8e8a1b2c87e5e19579b274ea750cfab8bb97fd51367e7e1e8f49b6feaa",
+      "git_blob": "79f26032d02b84ffe0e4ca3a6962f11b8881bd75",
+      "git_bytes": 918,
+      "git_sha256": "21162a02e5594db486baec90835c6cc07c0d740e2fa5ace2d2e2e1dcf24b0392"
+    },
+    "workflow/docs/luna/AGENT_HANDOFF_TEMPLATE.md": {
+      "byte_relation": "exact-LF-to-CRLF",
+      "checkout_bytes": 2905,
+      "checkout_sha256": "c6929de1a68b9ef021e15c97f38e2c291690c0ba9a3249ccf2a5216a1b5e28e9",
+      "git_blob": "098d57a450d4824fdecb1eddd75b214c4111a776",
+      "git_bytes": 2822,
+      "git_sha256": "7170c47a038aea2e24dc6f846681e2ccd0ed3dce38392b51743137ca2584fc5a"
+    },
+    "workflow/docs/luna/LUNA_WORKFLOW.md": {
+      "byte_relation": "exact-LF-to-CRLF",
+      "checkout_bytes": 285893,
+      "checkout_sha256": "08e6d450c85072d60dec146f932303e766f7f4faea7c7efc605cd9e30e3da571",
+      "git_blob": "c6c983f89463ea2e32d2e9fe7230b5b27b84eeb2",
+      "git_bytes": 280797,
+      "git_sha256": "d528227ed679479f9380f30011092276f17b25e2166317f5e003409ece3ccf50"
+    },
+    "workflow/handoffs/luna-0-independent-review-luna62-20261009.md": {
+      "byte_relation": "exact-LF-to-CRLF",
+      "checkout_bytes": 14056,
+      "checkout_sha256": "d65d3d7f1be7abcb36eabf8341f66ef3ff594b526a5109a53e80ab3a1a7ed8ae",
+      "git_blob": "885ae4d5c8a95d130ce2b37245b4a0ada591bc31",
+      "git_bytes": 13866,
+      "git_sha256": "613948b8c15e12370b8da7f9d5dd4c7b1a71cdd1531223ca33d28e72d07e95f2"
+    },
+    "workflow/handoffs/luna-0-luna63-mechanism-authorization-20261009.md": {
+      "byte_relation": "exact-LF-to-CRLF",
+      "checkout_bytes": 18590,
+      "checkout_sha256": "dd340cb9d5f16945f1cde94e329faf3189b7eab31db9a574057c321aee80243c",
+      "git_blob": "fb3f9bc7fc29b2f9ff278ce696dc2f9b85c1f625",
+      "git_bytes": 18320,
+      "git_sha256": "ef7e176e8b739ef40933bc1b6bd23947343416604724be1d1307a21b8641c9d9"
+    }
+  },
+  "starting_sha": "e52098b2141a3f121f23b512e877783a64ef8baa"
+}
