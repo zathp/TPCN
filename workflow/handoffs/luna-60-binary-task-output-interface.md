@@ -7,11 +7,11 @@ tpcn_handoff:
   descriptive_name: "Binary task-output interface prerequisite"
   task_id: "luna-60-binary-task-output-interface"
   component: "External emission adapter and evaluator; not neural runtime"
-  status: "complete; Luna-0 review PASS; publication validation pending"
+  status: "complete; Luna-0 review PASS; committed-state validation PASS"
   contract_version: "1.2"
   branch: "main"
   base_revision: "b1d8cc16261ea077b9d3b7c7cb24c975e4c721ee"
-  result_revision: "pending committed-state validation"
+  result_revision: "fff83941e71372784cd962bdd5f9f645ab83d301"
   dependencies:
     - "Published authorization at b1d8cc16261ea077b9d3b7c7cb24c975e4c721ee"
     - "Explicit subsequent assignment in the current request"
@@ -85,7 +85,7 @@ tpcn_handoff:
   tests_passing:
     - "python -m pytest -q tests/test_luna60_task_output_interface.py: 32 passed after reviewer-directed correction"
     - "python -m pytest -q tests/test_excursion_neuron.py tests/test_e2_multi_excursion.py tests/test_excursion_integration.py tests/test_luna49_runtime_characterization.py: 143 passed"
-    - "Pre-correction `python -m pytest -q`: 1783 passed, 1 skipped in 298.46s; committed-state rerun pending"
+    - "Committed-state `python -m pytest -q -rs`: 1784 passed, 1 skipped in 299.84s"
     - "python -m compileall -q experiments/task_output_interface.py tests/test_luna60_task_output_interface.py"
     - "git diff --check and per-owned-file git diff --no-index --check whitespace verification"
   tests_failed: []
@@ -158,7 +158,7 @@ no random seed (deterministic unit fixtures).
 | `git status --short --branch`; `git rev-parse HEAD`; exact `git rev-parse <baseline>:<pinned path>` checks | Initial clean `main`, HEAD at the assigned authorization; all three expected source Git blobs matched. The implementation and review changes are limited to the four owned paths. |
 | `python -m pytest -q tests/test_luna60_task_output_interface.py` | **PASS**, 32 passed after reviewer-directed correction. Covers all eight categories, equality boundaries, close, censored/complete silence, positive truth with unknown target time, premature and late first output, duplicates, ambiguous-prefix truth swap, wrong source/type, payload-sign independence, actual delayed emission, identity/collision/order/reset/capacity bounds and zero denominators. |
 | `python -m pytest -q tests/test_excursion_neuron.py tests/test_e2_multi_excursion.py tests/test_excursion_integration.py tests/test_luna49_runtime_characterization.py` | **PASS**, 143 passed. |
-| Pre-correction `python -m pytest -q` | **PASS**, 1,783 passed, 1 skipped in 298.46 s; committed-state rerun after the optional-target-time correction is pending. |
+| `python -m pytest -q -rs` | **PASS**, 1,784 passed, 1 skipped in 299.84 s on the implementation commit. Skip: `tests/test_luna46_depth_scaling_diagnostic.py:906`, directory symlink unsupported with Windows `WinError 1314` (required privilege not held). |
 | `python -m compileall -q experiments/task_output_interface.py tests/test_luna60_task_output_interface.py` | **PASS**, no syntax diagnostics. |
 | `git diff --check`; `git diff --no-index --check -- NUL <each owned file>` | **PASS** after correcting one trailing blank line in the interface document. Expected no-index exit 1 indicates untracked content; no whitespace diagnostics remained. |
 | `python -m ruff check experiments/task_output_interface.py tests/test_luna60_task_output_interface.py` | **NOT RUN:** ruff is not installed (`No module named ruff`). |
@@ -206,15 +206,15 @@ python -m compileall -q experiments/task_output_interface.py tests/test_luna60_t
 git diff --check
 ```
 
-Preserve unrelated work; rollback is limited to removing/restoring the four
-named owned paths, without touching other files.
-The expected post-assignment working tree has these four paths uncommitted.
+Preserve unrelated work; rollback is limited to reverting the four named
+Luna-60 implementation files, without touching unrelated changes.
 
 ## Next assignment
 
 The implementation and reviewer-directed corrections received independent
-Luna-0 **PASS**. Committed-state full-suite validation, publication and
-post-publication identity verification remain. The late-then-on-time fixture
-interpretation is closed as PASS. No automatic task study or scientific
-successor is authorized. Passing these interface fixtures does not establish
-efficacy, authorize training, or promote A01–A15.
+Luna-0 **PASS**. The committed-state full suite passed with the one documented
+Windows capability skip. The late-then-on-time fixture interpretation is
+closed as PASS. After publishing, the orchestrator verifies
+`HEAD == origin/main` and a clean worktree. No automatic task study or
+scientific successor is authorized. Passing these interface fixtures does
+not establish efficacy, authorize training, or promote A01–A15.
