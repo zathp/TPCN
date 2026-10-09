@@ -1132,7 +1132,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--preflight", action="store_true")
     parser.add_argument("--run-rr", choices=("initial", "replay"))
     parser.add_argument("--summarize", action="store_true")
-    parser.add_argument("--summary-name", choices=("summary-v2.json",))
+    parser.add_argument("--summary-name", choices=("summary-v2.json", "summary-v3.json"))
     args = parser.parse_args(argv)
     try:
         if args.preflight:
