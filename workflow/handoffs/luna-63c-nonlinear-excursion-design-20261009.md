@@ -7,12 +7,14 @@ tpcn_handoff:
   descriptive_name: "Bounded stable-focus excursion design"
   task_id: "luna-63c-nonlinear-excursion-design-20261009"
   component: "Documentation-only local excursion candidate and future protocol"
-  status: "documentation correction to be published in this handoff's containing commit; parent remote verification and independent re-review pending"
+  status: "corrected design published and independently reviewed PASS WITH LIMITATIONS; design gate only"
   contract_version: "1.2"
   branch: "experiment/luna63c-nonlinear-excursion-design"
   base_revision: "d006e1bc6ff09627df8fe7f6c1213380b953291f"
-  result_revision: "a1a7d377a0f48af750fbfe6da62fe54179bf833b (design-content publication)"
-  correction_status: "correction will be published in this handoff's containing commit; parent push/fetch equality and clean-status verification pending"
+  initial_design_revision: "a1a7d377a0f48af750fbfe6da62fe54179bf833b"
+  result_revision: "3e7d31b9a527e908b21abee3766906084e7cd082 (corrected design revision reviewed by Luna-0)"
+  correction_status: "published; parent verified origin fetch SHA equality and clean status before independent review"
+  independent_review: "PASS WITH LIMITATIONS; design gate only; no experiment authorization"
   dependencies:
     - "Owner attachment 0db88cfc-a144-4171-a155-fea721c1bbe9"
     - "Luna-63C committed contract at the stated baseline"
@@ -93,12 +95,11 @@ tpcn_handoff:
     - "The proposed local stored displacement can be supplied by a separately authorized future fixture or local source; no upstream WEMA coupling is specified here."
     - "The selected stable-focus flow plus hybrid event conversion satisfies the design-only candidate boundary; independent Luna-0 review must decide."
   unresolved:
-    - "Correction will be published in this handoff's containing commit; parent remote push/fetch equality and clean-status verification remain pending"
-    - "Independent Luna-0 review of the corrected revision remains pending"
-    - "Any future implementation and mechanism execution require separate authorization and a frozen platform/oracle"
+    - "No implementation, numerical certificate, or runtime conformance has been verified"
+    - "Any future implementation and mechanism experiment require separate owner authorization and a frozen platform/oracle"
     - "FPGA/analog/FPAA realization is qualitative only"
   recommended_next_agent:
-    - "Independent Luna-0 review of the corrected report and handoff after parent remote verification"
+    - "Project owner: consider a separately scoped mechanism authorization; this review grants none"
 ```
 
 ## Outcome and owned scope
@@ -112,9 +113,13 @@ The report explicitly limits the claim to the one-excursion mechanism.
 
 **Changed:** only the two owner-authorized Markdown deliverables listed in
 the YAML. **Unchanged:** production code, tests, artifacts, ACPs, architecture
-contract/changelog, workflow, Luna-63A and Luna-63B. The prior design content was published at `a1a7d377a0f48af750fbfe6da62fe54179bf833b`. The current documentation-only correction will be published in this handoff's containing commit, whose SHA is intentionally not self-referenced. Parent remote push/fetch equality and clean-status verification, followed by independent Luna-0 review, remain pending; neither is claimed complete. No workflow index update is authorized here.
+contract/changelog, workflow, Luna-63A and Luna-63B. The initial design content
+was published at `a1a7d377a0f48af750fbfe6da62fe54179bf833b`; the corrected
+design revision is `3e7d31b9a527e908b21abee3766906084e7cd082`. Parent verified
+that the origin fetch SHA matched and the worktree was clean before independent
+review. No workflow index update is authorized here.
 
-No scientific quantity was measured. The equations and analytic derivations are proposals; no solver, simulation, trajectory, or executable oracle was run. The earlier published content received an independent Luna-0 **BLOCKED** verdict with four corrections: (1) entry-region and lifecycle/reset completeness; (2) exact event precedence and record budgets; (3) root/tangency/direction/timestamp certification; and (4) representable absolute-time ordering, including below-one-ULP and C5 semantics. This report correction, to be published in this handoff's containing commit, addresses those findings without changing the field, thresholds, or fixtures. The exact baseline, contract
+No scientific quantity was measured. The equations and analytic derivations are proposals; no solver, simulation, trajectory, or executable oracle was run. The earlier published content received an independent Luna-0 **BLOCKED** verdict with four corrections: (1) entry-region and lifecycle/reset completeness; (2) exact event precedence and record budgets; (3) root/tangency/direction/timestamp certification; and (4) representable absolute-time ordering, including below-one-ULP and C5 semantics. The correction addresses those findings without changing the field, thresholds, or fixtures. An independent Luna-0 re-review of corrected revision `3e7d31b9a527e908b21abee3766906084e7cd082` returned **PASS WITH LIMITATIONS — design gate only**; it found no remaining design-gate blocker and granted no implementation or experiment authorization. The exact baseline, contract
 blob, required source pins, inspected ranges, owner-attachment read extents,
 and derivation provenance appear in Section 8 of the design report.
 
@@ -139,12 +144,13 @@ REQUIRED**; no alternative is adopted.
 |---|---|---|---|
 | Read-only baseline, branch and clean-status check | `d006e1bc6ff09627df8fe7f6c1213380b953291f`; assigned Windows worktree | PASS; exact branch and clean baseline observed before edits | Current Git metadata |
 | Read owner request in sections | Attachment `0db88cfc-a144-4171-a155-fea721c1bbe9`, 927 lines; sections 1–240, 241–480, 481–720, 721–927 | PASS; all lines read | Read-only attachment |
-| Hand analysis of fixed point, eigenvalues, Lyapunov derivative and first-lobe crossing | Proposed exact equations only | Not independently reviewed; no numerical execution | Design report §§3–5 and derivation provenance |
+| Hand analysis of fixed point, eigenvalues, Lyapunov derivative and first-lobe crossing | Proposed exact equations only | Independent Luna-0 review found the analytic claims sound for the declared preload family; no numerical execution | Corrected design revision and independent review result |
 | Original publication validation | Published design revision `a1a7d377a0f48af750fbfe6da62fe54179bf833b` | Historical baseline validation only; not evidence about this correction | Parent publication record |
-| Follow-up correction validation | Two authorized Markdown paths prepared for this handoff's containing commit | PASS local `git diff --check`; exactly the two authorized paths; parent push/fetch equality and clean-status verification pending | Parent verification required |
+| Follow-up correction validation | Corrected design revision `3e7d31b9a527e908b21abee3766906084e7cd082` | PASS `git diff --check`; exactly the two authorized paths; origin fetch SHA matched and worktree was clean | Parent Git verification |
+| Independent Luna-0 re-review | Corrected design revision `3e7d31b9a527e908b21abee3766906084e7cd082` | **PASS WITH LIMITATIONS — design gate only**; no blocker found; no experiment authorized | Independent reviewer result |
 | Candidate code/tests/solver/trajectory/trial/training/hardware | Not applicable; prohibited | **NOT RUN** | No artifacts created |
 
-No self-review is offered. Parent remote publication/fetch equality verification remains pending. A separate Luna-0 re-review of the corrected, parent-published revision also remains pending.
+The independent review applies to the corrected design revision above. The reviewer noted that the earlier full review artifact was not available in repository history and compared against the recorded four-finding summary as well as the corrected design and governing sources. No implementation, solver, certificate evaluator, or runtime conformance was reviewed or executed.
 
 ## Benchmark and resource results
 
@@ -162,7 +168,7 @@ bounds, not measured resource results.
    depends on the proposed oriented section, state amplitude, hybrid event
    conversion and strict-future scheduler. None exists as a current integrated
    API.
-3. Root, tangency, event-order and binary64 timestamp claims require independent review. State error tolerance is not a root/time certificate; unresolved interval signs, ceilings, or boundary order must fail closed.
+3. The independent design review accepted the proposed root, tangency, event-order and binary64 timestamp requirements as specified, but no interval evaluator or runtime implementation has been executed. State error tolerance is not a root/time certificate; unresolved interval signs, ceilings, or boundary order must fail closed.
 4. The current event queue has its own deterministic tie semantics; the
    proposed expiry precheck is a component-specific experimental rule and
    does not amend that queue.
@@ -175,8 +181,8 @@ bounds, not measured resource results.
 
 ## Reproduction and rollback
 
-There is no experiment to reproduce. The hand derivations can be independently reconstructed from the exact equations and formulas in the report; no code, trajectory, test output, or scientific artifact exists. Per episode, 16 input attempts are within budget and one additional addressed overflow attempt is recorded before abort; it commits its rejection before clearing uncommitted state/tokens, retaining `ABORTED` and any committed output, and entering `READY`; later ingress is not component-addressed. Together with 24 timer records and one output, this bounds unique records at 42. Timestamp-admissible external pairs are reserved, due internal boundaries settle first (including same-time boundaries ordered before externals by a unified monotone destination ordinal), and the external key is installed afterward even when semantic validation rejects the packet. Malformed, late, out-of-domain, or unorderable timestamps do not advance the key or trigger settlement. The prior design-content publication is `a1a7d377a0f48af750fbfe6da62fe54179bf833b`; the correction will be published in this handoff's containing commit without a self-referenced SHA. Parent push/fetch equality and clean-status verification, followed by independent Luna-0 re-review, remain pending. Roll back only the two authorized Luna-63C documentation paths if needed, preserving unrelated worktree state.
+There is no experiment to reproduce. The hand derivations can be independently reconstructed from the exact equations and formulas in the report; no code, trajectory, test output, or scientific artifact exists. Per episode, 16 input attempts are within budget and one additional addressed overflow attempt is recorded before abort; it commits its rejection before clearing uncommitted state/tokens, retaining `ABORTED` and any committed output, and entering `READY`; later ingress is not component-addressed. Together with 24 timer records and one output, this bounds unique records at 42. Timestamp-admissible external pairs are reserved, due internal boundaries settle first (including same-time boundaries ordered before externals by a unified monotone destination ordinal), and the external key is installed afterward even when semantic validation rejects the packet. Malformed, late, out-of-domain, or unorderable timestamps do not advance the key or trigger settlement. The corrected design revision `3e7d31b9a527e908b21abee3766906084e7cd082` was independently reviewed **PASS WITH LIMITATIONS — design gate only**; origin fetch SHA matched before review. No implementation or experiment is authorized by that verdict. Roll back only the two authorized Luna-63C documentation paths if needed, preserving unrelated worktree state.
 
 ## Next assignment
 
-**Parent push/fetch equality and clean-status verification, then independent Luna-0 re-review** of the corrected report/handoff. The prior design-content publication is `a1a7d377a0f48af750fbfe6da62fe54179bf833b`; the correction will be published in this handoff's containing commit, whose SHA is intentionally not self-referenced. Neither remote verification nor the re-review outcome is claimed here. The re-review should verify the corrected lifecycle/cap-overflow and event-order rules, equations/stability, ACP boundary, and no-execution record. Any mechanism run requires separate owner/Luna-0 authorization.
+No experiment follows automatically. The next decision is whether the owner separately authorizes a bounded mechanism experiment after considering the **PASS WITH LIMITATIONS** design-gate result. Implementation, numerical certification, task efficacy, ACP adoption and architecture promotion remain outside this handoff.
