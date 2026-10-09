@@ -1,5 +1,31 @@
 # TPCN Luna Multi-Agent Workflow — Event-Driven Architecture
 
+## Luna-56 independent review — correction PASS; repository closure BLOCKED — 2026-10-09
+
+Luna-0 independently verified the Luna-56 comparison correction at reviewed
+revision `f691e543d24343de14e07c682af6c9ead40d2ded`. The corrected paths accept
+only the exact historical Git object bytes or their exact LF-to-CRLF
+materialization; exact LF/CRLF fixtures pass, and content, whitespace,
+malformed-newline, wrong-object, and missing-object/file cases are rejected.
+The five repaired regression selectors pass (8 parametrized cases), and the
+Luna-47F public `--check` passes.
+
+**The correction itself is justified, but repository-wide provenance closure
+is not accepted in this review.** The independent full suite reports 1,729
+passed, 3 failed, 1 skipped. The three failures are pre-existing Luna-55
+retained-integrity assertions; the sole skip is the Windows directory-symlink
+privilege test (WinError 1314), not the previously reported CUDA-unavailable
+skip. No code, test, scientific artifact, `.gitattributes`, ACP, or architecture
+contract was changed by this review. No Luna-57 or scientific successor is
+authorized.
+
+See the [independent Luna-56 review handoff](../../handoffs/luna-0-independent-review-luna56-20261009.md)
+for exact identities, baseline classifications, test output, and closure
+classification. A separate correction-only governance decision is required
+before treating the full regression gate as green. Fresh historical Linux
+Luna-44 regeneration remains parked; cross-runtime exact binary64 identity is
+not claimed.
+
 ## Luna-56 checkout-materialization correction — EXECUTED / PASS; independent Luna-0 review required — 2026-10-08
 
 **PASS — CHECKOUT-MATERIALIZATION PROVENANCE CLOSED.** Luna-56 executed

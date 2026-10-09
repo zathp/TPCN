@@ -1,5 +1,24 @@
 # Architecture Changelog
 
+## Luna-56 independent review — correction PASS; repository closure BLOCKED — 2026-10-09
+
+Luna-0 independently reviewed publication
+`f691e543d24343de14e07c682af6c9ead40d2ded`. The Luna-56 correction passes its
+core provenance properties: the affected verifiers authenticate fixed
+historical Git objects, accept exact LF or the exact LF-to-CRLF checkout
+transform, and reject the tested content, whitespace, newline, revision,
+object, and missing-file/object mutations. The five repaired selectors pass
+(8 cases), and Luna-47F's public `--check` passes.
+
+**The comparison correction is justified; repository-wide provenance closure
+is not established by this review.** The independent full suite at the reviewed
+checkout reports 1,729 passed, 3 failed and 1 skipped. All three failures are
+in Luna-55 retained-integrity tests, and the skip is the Windows
+directory-symlink privilege case (WinError 1314), not the previously reported
+CUDA-unavailable skip. Protected artifacts, `.gitattributes`, architecture
+clauses and ACPs were not changed. No scientific successor is authorized.
+See the [independent Luna-56 review handoff](handoffs/luna-0-independent-review-luna56-20261009.md).
+
 ## Luna-56 checkout-materialization provenance correction — PASS; independent Luna-0 review required — 2026-10-08
 
 Luna-56 closed the five authorized regressions by authenticating historical
