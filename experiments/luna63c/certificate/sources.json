@@ -1,0 +1,161 @@
+{
+  "format": "luna63c-certificate-sources",
+  "version": 1,
+  "disposition": "BLOCKED — NUMERICAL CERTIFICATE INCOMPLETE",
+  "baseline": "73aaa50f97ceab322907875ae4dcf23e7541c3b5",
+  "preparation_date": "2026-10-09",
+  "baseline_verification": {
+    "branch": "main",
+    "HEAD": "73aaa50f97ceab322907875ae4dcf23e7541c3b5",
+    "main": "73aaa50f97ceab322907875ae4dcf23e7541c3b5",
+    "origin/main": "73aaa50f97ceab322907875ae4dcf23e7541c3b5",
+    "initial_status_short": "",
+    "fresh_fetch_performed": false,
+    "pinned_design_and_handoff_equal_baseline_blobs": true
+  },
+  "environment": {
+    "repository": "zathp/TPCN",
+    "working_directory": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN",
+    "platform": "Windows-10-10.0.19045-SP0",
+    "machine": "AMD64",
+    "python": "3.11.4 (tags/v3.11.4:d2340ef, Jun 7 2023, 05:45:37) [MSC v.1934 64 bit (AMD64)]",
+    "git": "2.53.0.windows.1",
+    "powershell": "5.1.19041.6456",
+    "dependencies": "Python standard library and git only; no numerical packages",
+    "floating_arithmetic_used_for_certificate": false,
+    "candidate_runtime_imported": false
+  },
+  "generation": {
+    "method": "independent hand derivation and manual versioned UTF-8/CRLF serialization using apply_patch; no oracle calculation",
+    "numeric_data": "exact symbolic formulas only; no decimal approximations, intervals, candidate states or timestamps",
+    "source_hash_method": "SHA256(subprocess.check_output(['git','--no-pager','show',revision+':'+path]))",
+    "artifact_hash_method": "SHA256(Path.read_bytes()); no line-ending normalization",
+    "self_check_command": "python -B experiments/luna63c/certificate/check_certificate.py",
+    "precision_calculations_performed": 0,
+    "root_bisections_performed": 0,
+    "C0_C7_executions_performed": 0,
+    "runtime_or_fixture_sources_created": 0,
+    "seed": null
+  },
+  "decision_boundary": {
+    "design_review": "PASS WITH LIMITATIONS — design gate only",
+    "independent_63C_numerical_decision_at_baseline": "NOT RUN / NOT YET AVAILABLE in mechanism authorization",
+    "63B_status_only": "LUNA-63B NUMERICAL ORACLE PREREQUISITE REQUIRED; no 63B design/work/results used as dependency or evidence",
+    "63A_implementation_used": false,
+    "stage_b_eligible": false
+  },
+  "sources": [
+    {
+      "path": ".github/agents/luna-63c-mechanism.agent.md",
+      "revision": "73aaa50f97ceab322907875ae4dcf23e7541c3b5",
+      "git_blob": "2964500a60d3329c81daed972b3f3ffecee40b65",
+      "sha256": "1447feab0ed21822ff87f851cd7e23559cb517f41bf7f132ac840307182b331a",
+      "read_extent": "full committed mechanism contract",
+      "use": "certificate-only authorization, equations, caps, stop gate"
+    },
+    {
+      "path": "workflow/handoffs/luna-0-luna63c-mechanism-authorization-20261009.md",
+      "revision": "73aaa50f97ceab322907875ae4dcf23e7541c3b5",
+      "git_blob": "1460d5abd4137dc4395308f0e2fefcb5d59eea95",
+      "sha256": "f4654588e55f8bfca3a78179ff88fd7a72f6370b6dfd35f5bc86b6a62d47ee63",
+      "read_extent": "full committed authorization",
+      "use": "numerical certificate unavailable, independent review gate and current semantics limitation"
+    },
+    {
+      "path": "workflow/docs/luna/LUNA_63C_NONLINEAR_EXCURSION_DESIGN.md",
+      "revision": "3e7d31b9a527e908b21abee3766906084e7cd082",
+      "git_blob": "7cc5b7d94a683109413cb8f5a9383e305e113c2c",
+      "sha256": "474607e36f032bcfcfd96f8504a71622702150327095f51adaee401f02cbb05f",
+      "read_extent": "full pinned design in sections 1-712, compared with integrated HEAD",
+      "use": "exact model, entry/lifecycle/order, independent oracle requirements, reviewed C0-C7"
+    },
+    {
+      "path": "workflow/handoffs/luna-63c-nonlinear-excursion-design-20261009.md",
+      "revision": "a303ebb835b72fdd01c86df478431b8638aacbb4",
+      "git_blob": "f128e47fc1f0e7c5002a15c568120983c0b012f9",
+      "sha256": "fc8fb934020712bc9cb4ad6e62808a96012d03c18ce78fdb1377db011ee6a326",
+      "read_extent": "full pinned handoff in sections 1-189, compared with integrated HEAD",
+      "use": "review identity, design-only PASS limitations and missing numerical evaluator"
+    },
+    {
+      "path": "workflow/ARCHITECTURE_CONTRACT.md",
+      "revision": "73aaa50f97ceab322907875ae4dcf23e7541c3b5",
+      "git_blob": "3afc85f86dbc6992e01cb7ca26ebadfb49c09cab",
+      "sha256": "458105879b8e3eb4454e32cd5c8e334965917cdf89996cd64f74da6462b84d2e",
+      "read_extent": "full architecture contract",
+      "use": "A01-A15 unchanged; local time, boundedness and no promotion"
+    },
+    {
+      "path": "workflow/ARCHITECTURE_CHANGELOG.md",
+      "revision": "73aaa50f97ceab322907875ae4dcf23e7541c3b5",
+      "git_blob": "e5a44383aea24d30f479673c9b4460cbfbf7d007",
+      "sha256": "8482567c9aafaf9e502e2b782d09bf6d35f48343e957490c3c242db87e2e6e7d",
+      "read_extent": "current relevant Luna-63C and separate-lane governance entries, lines 1-65",
+      "use": "current certificate-only status; historical evidence untouched"
+    },
+    {
+      "path": "workflow/docs/luna/LUNA_WORKFLOW.md",
+      "revision": "73aaa50f97ceab322907875ae4dcf23e7541c3b5",
+      "git_blob": "9e7745aaba44bff04eb8f47f5011d0b9a520111c",
+      "sha256": "302cda62e10728ed30c840506d675ded337163f1757809202e6443da3cb77829",
+      "read_extent": "current relevant certificate-gated status/governance, lines 1-105",
+      "use": "no Stage B or downstream authorization"
+    },
+    {
+      "path": "workflow/docs/architecture/ACCEPTANCE_CRITERIA.md",
+      "revision": "73aaa50f97ceab322907875ae4dcf23e7541c3b5",
+      "git_blob": "510f44daab83c4def92c70617e2d5c731c5760d6",
+      "sha256": "6a35b74eac204191f513c21c7036cb7df9a3a47ca62550da46f0ab4622f85448",
+      "read_extent": "core and remaining acceptance criteria in sections, lines 1-130",
+      "use": "bounded state, causal ordering, deterministic evidence and hardware nonclaim"
+    },
+    {
+      "path": "workflow/docs/architecture_proposals/ACP-0008.md",
+      "revision": "73aaa50f97ceab322907875ae4dcf23e7541c3b5",
+      "git_blob": "1fa832472ce1797061b117e96417d88238a35491",
+      "sha256": "c1ee370ea5c15bafa98e647612a6bca91377a04dbe29bf97e80b23cdc581b3b5",
+      "read_extent": "full ACP in sections, lines 1-143",
+      "use": "separate opt-in scalar semantics; no reuse or amendment"
+    },
+    {
+      "path": "workflow/handoffs/luna-0-luna63b-numerical-prerequisite-review-20261009.md",
+      "revision": "73aaa50f97ceab322907875ae4dcf23e7541c3b5",
+      "git_blob": "e21d1507b148d5ddb52f76ad7c860a8c79eb9e58",
+      "sha256": "2db4d54c6a394765e432952d3e13a497ea62612473e40651305e21d3b0f7985b",
+      "read_extent": "decision header/status metadata only; no derivations or lane artifacts",
+      "use": "separate prerequisite BLOCKED status only; not a 63C arithmetic dependency"
+    },
+    {
+      "path": "tpcn/event_runtime.py",
+      "revision": "73aaa50f97ceab322907875ae4dcf23e7541c3b5",
+      "git_blob": "f4aacb5d782f19e30fd9e562d56d62faefa9002f",
+      "sha256": "0cea7c38416a5a799230b55b73ec9c2133186b9e87be5fee78a90d9d89688b10",
+      "read_extent": "full file, lines 1-294; read-only, no import",
+      "use": "external-before-internal production tie and finite queue do not implement proposed local adapter"
+    },
+    {
+      "path": "tpcn/excursion_neuron.py",
+      "revision": "73aaa50f97ceab322907875ae4dcf23e7541c3b5",
+      "git_blob": "c0bdece6b15009db4e2b7d69c3242be174b5de80",
+      "sha256": "e5a1423e61f0ff9665bed93aafd135494c855cd83a710976415cf9719c104fc4",
+      "read_extent": "emission fields 252-278; E2 797-930,982-1095; read-only, no import",
+      "use": "canonical record shape and narrow S_REARM nextafter limitation only"
+    },
+    {
+      "path": "tpcn/experiment_excursion_runtime.py",
+      "revision": "73aaa50f97ceab322907875ae4dcf23e7541c3b5",
+      "git_blob": "b4e074f0139f3fcfb59189c8313c934c551d6bcb",
+      "sha256": "e8c696ac9a9323adb18ee33da6921fef32d4d4e982a1f74191cd29b68b4e1bf4",
+      "read_extent": "event/emission consumption 520-690; read-only, no import",
+      "use": "current emission consumed after neuron return; not a certificate evaluator or dependency"
+    },
+    {
+      "path": "tpcn/execution_ir.py",
+      "revision": "73aaa50f97ceab322907875ae4dcf23e7541c3b5",
+      "git_blob": "055fd89cc762850e261da46afa7f5a2b56ea7d1d",
+      "sha256": "e6290385953385407d2bcce6a8485da93a7feb874a3a6b3d33b142409428d80a",
+      "read_extent": "IR boundary 1-160; read-only, no import",
+      "use": "portable initial state is not arbitrary live-runtime checkpoint"
+    }
+  ]
+}
