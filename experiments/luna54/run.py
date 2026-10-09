@@ -110,6 +110,20 @@ def sha256(raw: bytes) -> str:
     return hashlib.sha256(raw).hexdigest()
 
 
+def line_ending_identity(payload: bytes) -> Record:
+    lf_payload = payload.replace(b"\r\n", b"\n")
+    if b"\r" in lf_payload:
+        raise GateError("artifact contains a non-CRLF carriage return")
+    crlf_payload = lf_payload.replace(b"\n", b"\r\n")
+    return {
+        "file_sha256": sha256(lf_payload),
+        "byte_length": len(lf_payload),
+        "crlf_materialization_sha256": sha256(crlf_payload),
+        "crlf_materialization_byte_length": len(crlf_payload),
+        "line_ending_equivalence": "exact LF or exact LF-to-CRLF materialization",
+    }
+
+
 def float_bits(value: float) -> str:
     return struct.pack(">d", float(value)).hex()
 
@@ -2172,7 +2186,7 @@ def summarize() -> Record:
     summary["phase_artifacts"] = {
         f"{condition}_{phase}": {
             "path": f"artifacts/luna54/{condition}-{phase}.json",
-            "file_sha256": sha256(
+            **line_ending_identity(
                 _condition_output_path(condition, phase).read_bytes()
             ),
             "artifact_digest": phases[(condition, phase)]["artifact_digest"],
@@ -2201,9 +2215,7 @@ def summarize() -> Record:
             continue
         payload = path.read_bytes()
         parsed = json.loads(payload)
-        catalog_rows[path.name] = {
-            "file_sha256": sha256(payload),
-            "byte_length": len(payload),
+        catalog_rows[path.name] = line_ending_identity(payload) | {
             "artifact_digest": parsed.get("artifact_digest"),
         }
     catalog_body = {

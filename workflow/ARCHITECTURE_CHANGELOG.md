@@ -1,33 +1,39 @@
 # Architecture Changelog
 
-## Luna-54 relay event-generation and propagation — AUTHORIZED / NOT EXECUTED — 2026-10-08
+## Luna-54 relay event-generation and propagation — SUPPORTED; independent review pending — 2026-10-08
 
-**ONE BOUNDED MECHANISM EXPERIMENT IS AUTHORIZED; NO EXECUTION HAS OCCURRED.**
-The [Luna-54 contract](../.github/agents/luna-54.agent.md) tests whether a
-single relay-only ACP-0008 `decay_rate_z` change from `0.0125` to the already
-predeclared `0.00125` produces additional canonically emitted and correctly
-routed outputs in the 75 Luna-46 `DRIVE-LIMITED` streams. It uses authenticated
-retained source-to-relay inputs and the unchanged relay-to-destination route.
-All source and destination settings, topology, routing and other parameters
-remain frozen.
+**SUPPORTED WITHIN THE CONTRACTED BOUNDED MECHANISM; NOT INDEPENDENTLY
+REVIEWED.** The [execution handoff](handoffs/luna-54-relay-event-generation-propagation-20261008.md)
+and [final summary](../artifacts/luna54/summary.json) record the four
+retained-input phase results. With the sole relay ACP-0008
+`decay_rate_z` intervention `0.0125 → 0.00125`, 65/75 primary
+`DRIVE-LIMITED` streams produced an increased count of relay discharges
+linked to canonical emissions and complete, correctly received routes:
+187 treatment emissions/receptions versus 109 control, +78. All 78 additional
+primary event IDs have complete, non-truncated causal roots. The unchanged
+destination crossed its threshold zero times in the primary group.
 
-The evidence shows 676 source-to-relay inputs in the target group, all
-integrated at the relay; 109 produced relay emissions matched by 109
-destination receptions. All 75 destination traces remain below threshold in
-the zero-decay oracle, without opposing-sign cancellation. The original
-212-stream `NO-RECEPTIONS` group is split into 23 no-source-input controls and
-189 upstream-active streams, which must remain separate strata. This is a
-relay-local event-generation hypothesis, not a route-loss diagnosis,
-destination-gain intervention, task efficacy claim, or production parameter
-selection. Luna-54 is authorized but not executed. Stop after its bounded
-execution for independent Luna-0 review; no Luna-55 or other successor is
-authorized.
+Both control phases reproduced the 320-stream historical population, all
+1,715 retained source-to-relay inputs, all 235 onward routes, and zero
+destination crossings with zero mismatches. Same-condition initial/replay
+scientific digests match exactly; all 421 treatment routes per phase reconcile.
+The secondary 189 upstream-active `NO-RECEPTIONS` streams and 23 zero-input
+streams remain separate; the 33 `TEMPORAL-RETENTION-LIMITED` streams are
+reported separately and do not support the primary result. Source inputs had
+zero root truncations. Other bounded relay routes did have preserved
+root-truncation flags (5 control, 7 treatment); no truncated route contributes
+to the primary response. No z clipping, traced x-limit hit, budget exhaustion,
+or pending event occurred. The full suite passed **1,713 tests, 1 skip**.
 
-The selection basis, alternatives, evidence pins, controls, boundedness and
-interpretation limits are in the
-[Luna-0 selection handoff](handoffs/luna-0-scientific-successor-selection-luna54-20261008.md).
-No A01-A15 clause or ACP changes; ACP-0008 remains experimental, opt-in and
-disabled by default.
+An initial runner audit error and subsequent serialization defects are
+preserved and explained in the handoff and `artifacts/luna54/blocked.json`;
+they were corrected before any treatment phase, and both control phases passed
+before intervention. The final integrity catalog validates all result bytes
+and digests. Stop here for independent read-only Luna-0 review. This result is
+not task efficacy, generalization, production parameter selection, or
+architecture promotion. No A01-A15 clause or ACP change; ACP-0008 remains
+experimental, opt-in and disabled by default. No Luna-55 or other successor
+is authorized.
 
 ## Luna-53 destination-retention mechanism — SUPPORTED within frozen setup; independent review PASS — 2026-10-08
 

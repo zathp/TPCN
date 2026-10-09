@@ -188,6 +188,18 @@ def test_environment_record_uses_supported_float_info_fields() -> None:
     assert environment["float_info"]["mant_dig"] > 0
 
 
+def test_line_ending_identity_accepts_only_exact_crlf_materialization() -> None:
+    lf = b'{"result":1}\n'
+    crlf = b'{"result":1}\r\n'
+
+    lf_identity = luna54.line_ending_identity(lf)
+    crlf_identity = luna54.line_ending_identity(crlf)
+
+    assert lf_identity == crlf_identity
+    with pytest.raises(luna54.GateError, match="non-CRLF carriage return"):
+        luna54.line_ending_identity(b'{"result":1}\r\nmalformed\r')
+
+
 def test_no_input_runtime_has_no_neural_or_route_output() -> None:
     relay, destination = _config("intervention")
 

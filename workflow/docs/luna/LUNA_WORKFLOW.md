@@ -1,29 +1,34 @@
 # TPCN Luna Multi-Agent Workflow — Event-Driven Architecture
 
-## Luna-54 relay event-generation and propagation — AUTHORIZED / NOT EXECUTED — 2026-10-08
+## Luna-54 relay event-generation and propagation — SUPPORTED; independent review pending — 2026-10-08
 
-**ONE BOUNDED MECHANISM EXPERIMENT IS AUTHORIZED; NO EXECUTION HAS OCCURRED.**
-The [Luna-54 contract](../../../.github/agents/luna-54.agent.md) tests whether
-changing only the relay's ACP-0008 `decay_rate_z` from `0.0125` to the already
-predeclared `0.00125` produces additional canonically emitted, correctly
-routed relay outputs in the 75 Luna-46 `DRIVE-LIMITED` streams. It replays
-authenticated source-to-relay inputs through the relay E2 runtime and the
-unchanged relay-to-destination route; source and destination configurations,
-topology and every other parameter remain frozen.
+**SUPPORTED WITHIN THE CONTRACTED BOUNDED MECHANISM; NOT INDEPENDENTLY
+REVIEWED.** See the [execution handoff](../../handoffs/luna-54-relay-event-generation-propagation-20261008.md)
+and [final summary](../../../artifacts/luna54/summary.json). Changing only
+relay ACP-0008 `decay_rate_z` (`0.0125 → 0.00125`) yielded 187 versus 109
+linked relay canonical emissions and destination receptions in the primary
+75 `DRIVE-LIMITED` streams. 65/75 streams had an increased count with
+complete non-truncated causal roots and reconciled destination reception; the
+destination itself crossed its threshold zero times in this primary group.
 
-The selection follows review of Luna-45 through Luna-53 retained evidence:
-all 676 source-to-relay inputs in the 75 target streams integrate, but only
-109 produce matched relay emissions and destination receptions. The 75
-destination-drive traces remain below threshold even in the zero-decay oracle
-and do not exhibit opposing-sign cancellation. The heterogeneous
-`NO-RECEPTIONS` stratum is split into 23 no-source-input controls and 189
-upstream-active streams, reported separately. This is a relay event-generation
-test, not destination gain, route repair, efficacy, or architecture promotion.
-ACP-0008 remains experimental, opt-in and disabled by default. Stop after the
-bounded execution for independent Luna-0 review; Luna-55 and any other
-successor are not authorized.
+Both control phases reproduced 320 streams, 1,715 retained inputs and all 235
+historical onward routes with zero mismatches; initial/replay scientific
+digests match within each condition. All 421 intervention routes per phase
+reconcile. The 189 upstream-active `NO-RECEPTIONS`, 23 no-input streams, and
+33 `TEMPORAL-RETENTION-LIMITED` streams remain separately reported; secondary
+results do not broaden the primary claim. No source-input roots were
+truncated; preserved relay-route truncation flags occurred on 5 control and
+7 intervention routes, none of which contributes to the primary response.
+No accumulator clipping, traced x-limit hit, resource exhaustion, or pending
+event occurred. The full suite passed **1,713 tests, 1 skip**.
 
-See the [Luna-0 selection handoff](../../handoffs/luna-0-scientific-successor-selection-luna54-20261008.md).
+An initial runner-audit block and subsequent serialization defects are
+preserved and documented in the handoff; they were corrected before
+intervention, and both controls passed before treatment. Stop here for
+independent read-only Luna-0 review. This is not task efficacy, generalization,
+production selection, or architecture promotion. ACP-0008 remains experimental,
+opt-in and disabled by default. No A01-A15 change, Luna-55, or other successor
+is authorized. See the [Luna-0 selection handoff](../../handoffs/luna-0-scientific-successor-selection-luna54-20261008.md).
 
 ## Luna-53 destination-retention mechanism — SUPPORTED; independent review PASS — 2026-10-08
 
