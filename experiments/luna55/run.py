@@ -1070,8 +1070,10 @@ def summarize(output_name: str = "summary-v2.json") -> Record:
         "rr_route_reconciliation": rr_routes,
         "rr_route_audit": rr_routes,
         "rr_recurrence_update_counts": {
-            "relay": rr_initial["relay_recurrence_updates"],
-            "destination": rr_initial["destination_recurrence_updates"],
+            "relay": sum(row["relay_integration_count"] for row in rr_initial["streams"]),
+            "destination": sum(
+                row["destination_integration_count"] for row in rr_initial["streams"]
+            ),
         },
         "rr_clipping_event_count": rr_clipping,
         "rr_resource_bounds": rr_initial.get("resource_bounds", {
