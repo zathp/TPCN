@@ -88,7 +88,7 @@ tpcn_handoff:
   contract_version: "1.2"
   branch: "main"
   base_revision: "8d0a739e7e8bb4f065cd04157864a96fc501b58c"
-  result_revision: "amendment publication commit; see final report"
+  result_revision: "67c848bc50a8018367f06a3167cf5825f08d2941"
   dependencies:
     - "New owner decision selecting delayed symbolic event-sequence echo"
     - "Previously authorized but unexecuted Luna-61 documentation-only design"
