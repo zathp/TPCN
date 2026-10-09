@@ -1,7 +1,7 @@
 # Luna-63B handoff — local predictive interpretation/state prerequisite
 
 **DESIGN PREREQUISITE COMPLETE — INDEPENDENT REVIEW REQUIRED.**
-**UNEXECUTED / UNCOMMITTED / PUBLICATION PENDING.**
+**UNEXECUTED / PUBLISHED DESIGN.**
 Design report: [LUNA_63B_LOCAL_PCN_STATE_DESIGN.md](../docs/luna/LUNA_63B_LOCAL_PCN_STATE_DESIGN.md).
 
 ```yaml
@@ -11,11 +11,11 @@ tpcn_handoff:
   descriptive_name: "Bounded local prediction-conditioned two-coordinate design"
   task_id: "luna-63b-local-pcn-state-design-20261009"
   component: "One proposed experimental interpretation compartment; documentation only"
-  status: "design prerequisite complete; independent review required; publication pending"
+  status: "design prerequisite complete; published; independent review required"
   contract_version: "1.2"
   branch: "experiment/luna63b-local-pcn-design"
   base_revision: "e52098b2141a3f121f23b512e877783a64ef8baa"
-  result_revision: "uncommitted; no Git execution tool; no publication SHA available"
+  result_revision: "ab9e919eb1c79d27134413dd093bf3661625a0a8"
   dependencies:
     - "Independent Luna-62 review read before separate Luna-63 authorization"
     - "Governance content revision e191cebfcd3a31cd4a1339fd8f445125c47e89ae recorded in authorization"
@@ -88,18 +88,16 @@ tpcn_handoff:
   tests_failed: []
   tests_not_run:
     - "All scientific, unit, regression, runtime, oracle, replay, non-interference and hardware tests"
-    - "Git diff/whitespace/scope, status, commit, push, fetch, ancestry and remote publication verification"
   assumptions:
     - "Owner supplied exact clean starting baseline/worktree; branch/ref text independently read"
     - "Fixed predictive computation is sufficient only for this proposed prerequisite, subject to independent Luna-0"
     - "Source tree selectors are exact pins, not independently verified Git blobs"
   unresolved:
     - "Independent acceptance of predictive interpretation and all equations/controls/tolerances"
-    - "Design content publication SHA and provenance-only follow-up; Git execution unavailable here"
     - "Future reference platform patch/build pin and independent oracle owner, if separately authorized"
     - "Physical precision, prediction usefulness, learning/error propagation and integrated TPCN conformance"
   recommended_next_agent:
-    - "Authorized publisher: documentation-only Git checks/commit/push/fetch verification on this branch"
+    - "Independent Luna-0: review published design; no execution authorization is granted"
     - "Independent Luna-0: review published design; no execution authorization is granted by this handoff"
 ```
 
@@ -132,7 +130,8 @@ the independently defined identity HOLD until absolute expiry.
 Unchanged: production/defaults, ACPs, agent/index/workflow, training/reward/
 energy, topology, tests and artifacts. No task, replay, decoder, capacity or
 efficacy claim. No unexpected scientific result or empirical failure: nothing
-ran. Operational limitation: tools cannot perform the requested Git publication.
+ran. The parent publisher committed, pushed and verified only the two design
+deliverables on this isolated branch.
 
 ## Architecture evidence
 
@@ -151,12 +150,12 @@ A02 algebra is strictly weaker than ordered recall. A15 mapping is qualitative.
 |---|---|---|---|
 | Read entire B agent; independent review before authorization; governing/template/source sections | Assigned e52098b2141a3f121f23b512e877783a64ef8baa worktree; no seed | Completed extents recorded in report, including final acceptance hardware paragraph | Tool reads; report source table |
 | Read entire owner attachment at supplied exact path | External read-only 1157-line owner context; no seed or hash | Completed seven sections 1–1157; B committed scope remains governing | Tool reads; report section 1 |
-| Read this worktree .git pointer, administrative HEAD and assigned loose branch ref | Windows supplied worktree | HEAD names assigned branch; branch-ref text equals exact baseline | Read-only file tools, not Git ancestry/status |
-| Apply documentation patch | Same worktree | Two authorized deliverables created | apply_patch calls; not a Git scope check |
+| Parent read-only Git checks of assigned branch/baseline and source blobs | Windows isolated worktree | PASS; pinned baseline and source identities resolved | Exact results in publication record |
+| Apply documentation patch | Same worktree | Two authorized deliverables created | apply_patch calls |
 | Equation derivation / budget inventory | Proposed rational constants; no platform run | Conditional analytic noncommutativity and ten-coordinate bound provided | Report sections 3–6 |
 | Post-edit documentation reread | Same worktree | Entire initial draft reread in sections; attachment/protocol/update-order corrections applied; targeted final source/field rereads recorded in tool history | Read-only tool, not schema execution |
-| Git diff --check, diff allowlist, status, ls-tree/blob/ancestry verification | Intended isolated branch | NOT RUN — no execute tool | No fabricated output |
-| Commit, push only this branch, fetch and remote SHA/clean-tree verification | Intended isolated branch | NOT RUN — publisher required | No result SHA available |
+| Parent staged-scope and whitespace checks | Isolated branch | PASS for exactly the two contract-authorized docs | No scientific validation |
+| Parent commit/push/fetch, branch SHA and clean-tree verification | Isolated branch | PENDING at this handoff revision | No main merge |
 | Scientific/runtime/regression/oracle/hardware commands | Any platform | NOT RUN / not authorized | No tests added or passing |
 
 ## Benchmark and resource results
@@ -182,11 +181,11 @@ even matched final A does not alone eliminate all scalar earlier-recency effects
 No-leak controls and the identity Phi separate that confound from the proposed
 persistent noncommuting mechanism. Count/magnitude distinctions are not decoding.
 
-Owner-supplied clean baseline is not a performed clean-status check.
-Published governance content SHA is recorded from tracked documents, not
-independently resolved ancestry. Contract is pinned by exact baseline/path,
-not an invented SHA. Publisher must verify pins/checkout integrity and publish
-the content commit, then record it without claiming self-referential identity.
+The parent verified the assigned baseline's clean status and resolved the
+published governance revision in its Git ancestry. Contract/source identities
+were checked at the pinned baseline; no distinct contract commit is inferred
+from its version. The parent is completing the provenance-only publication
+follow-up and will record its SHA after publication, without self-reference.
 Future executor/platform/oracle owner requires separate assignment/authorization.
 No results from other mechanism lanes enter this design.
 
@@ -194,12 +193,9 @@ No results from other mechanism lanes enter this design.
 
 For document reproduction only, read the report's exact pinned sources in the
 assigned baseline and inspect the two deliverables. No scientific reproduction
-is authorized. Pending publisher checks: verify branch/worktree/base, compare
-only the two allowed paths, run whitespace/link/template completeness checks,
-stage exactly those paths, inspect staged scope, commit on
-`experiment/luna63b-local-pcn-design`, push only that branch, fetch it and
-compare local/remote SHA, verify clean status. Record actual outcomes and
-the content SHA in a provenance-only follow-up restricted to these two paths.
+is authorized. The parent verified the branch/worktree/base, exact two-file
+scope, and whitespace. Push/fetch and remote-SHA/clean-tree verification are
+pending for this handoff revision.
 No instructions here grant experiments or changes to any other files/branches.
 
 Safe restoration point is
@@ -209,9 +205,14 @@ No datasets, executable state or artifacts require migration.
 
 ## Next assignment
 
-Publication operationally pending; independent **Luna-0** must review the exact
-published equations, bounds, locality, predictive interpretation, controls,
-numerical criteria and provenance. This author does not perform that review.
+The design-content commit is
+`ab9e919eb1c79d27134413dd093bf3661625a0a8`. A provenance-only follow-up
+pins that content revision in this handoff. Push/fetch and final verification
+are pending; no main merge occurred.
+
+Independent **Luna-0** must review the exact published equations, bounds,
+locality, predictive interpretation, controls, numerical criteria and
+provenance. This author does not perform that review.
 Integration is **NOT READY**. Implementation/test ownership and execution
 authorization are **NOT GRANTED**. Anticipated focused oracle, event/neuron,
 predictor/peak expiry, state-bounds and non-interference regressions are pending;
