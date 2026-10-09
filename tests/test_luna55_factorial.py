@@ -98,3 +98,21 @@ def test_destination_only_response_requires_linked_emission_and_matched_roots():
     }
     assert luna55._response_l53(row)
     assert not luna55._response_l53({**row, "root_lineage_complete": False})
+
+
+def test_composed_rr_preserves_relay_route_identity_from_rh():
+    selection, _categories, retained = luna55._phase_pins_and_populations()
+    rr = luna55._json(luna55.OUTPUT / "rr-initial.json")
+    relay_only = luna55._phase_arm_rows("RH", "initial", retained, rr)
+    composed = luna55._phase_arm_rows("RR", "initial", retained, rr)
+    relay_by_id = {row["stream_id"]: row for row in relay_only}
+    composed_by_id = {row["stream_id"]: row for row in composed}
+
+    assert set(relay_by_id) == set(composed_by_id) == {
+        row["stream_id"] for row in selection["streams"]
+    }
+    assert all(
+        relay_by_id[stream_id]["route_signature"]
+        == composed_by_id[stream_id]["route_signature"]
+        for stream_id in relay_by_id
+    )

@@ -739,13 +739,7 @@ def _phase_arm_rows(arm: str, phase: str, retained: dict[str, Record], rr: Recor
                 "peak_destination_abs_z": row["destination_peak_abs_z"],
                 "destination_traces": row["destination_integration_traces"],
                 "route_signature": [
-                    (
-                        event["event_id"],
-                        event["payload_bits"],
-                        event["reception_timestamp"],
-                        event["source"],
-                        event["destination"],
-                    )
+                    _route_signature(event, "reception_timestamp")
                     for event in row["destination_receptions"]
                 ],
             })
