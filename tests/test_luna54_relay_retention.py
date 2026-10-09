@@ -95,6 +95,13 @@ def test_retained_input_order_is_preserved_and_intervention_routes() -> None:
     assert treatment["destination_reception_count"] == 1
     assert treatment["route_reconciliation"]["reconciles"] is True
     assert treatment["destination_threshold_crossings"] == 0
+    assert luna54._complete_new_linked_emission_ids(control, treatment) == [
+        "relay:excursion:1"
+    ]
+    truncated = deepcopy(treatment)
+    truncated["relay_to_destination_enqueues"][0]["roots_truncated"] = True
+    truncated["destination_receptions"][0]["roots_truncated"] = True
+    assert luna54._complete_new_linked_emission_ids(control, truncated) == []
 
 
 def test_independent_recurrence_rejects_a_mutated_state() -> None:

@@ -1549,6 +1549,80 @@ def _discharge_emission_signatures(record: Record) -> list[str]:
     return signatures
 
 
+def _complete_new_linked_emission_ids(control: Record, treatment: Record) -> list[str]:
+    new_ids = set(treatment["relay_discharge_emission_ids"]) - set(
+        control["relay_discharge_emission_ids"]
+    )
+    enqueues = {
+        item["event_id"]: item for item in treatment["relay_to_destination_enqueues"]
+    }
+    receptions = {
+        item["event_id"]: item for item in treatment["destination_receptions"]
+    }
+    return sorted(
+        event_id
+        for event_id in new_ids
+        if event_id in enqueues
+        and event_id in receptions
+        and not enqueues[event_id]["roots_truncated"]
+        and not receptions[event_id]["roots_truncated"]
+        and enqueues[event_id]["causal_roots"] == receptions[event_id]["causal_roots"]
+        and enqueues[event_id]["originating_emission_id"] == event_id
+        and receptions[event_id]["originating_emission_id"] == event_id
+    )
+
+
+def _phase_lineage_and_clipping(
+    phase_artifact: Record,
+    stream_ids: list[str],
+) -> Record:
+    config = phase_artifact["configuration"]
+    streams = {
+        item["stream_id"]: item for item in phase_artifact["streams"]
+    }
+    selected = [streams[stream_id] for stream_id in stream_ids]
+    z_clips = {"relay": 0, "destination": 0}
+    x_limit_hits = {"relay": 0, "destination": 0}
+    for node in ("relay", "destination"):
+        node_config = config[node]
+        integration = node_config["integration"]
+        for stream in selected:
+            for trace in stream[f"{node}_integration_traces"]:
+                raw_z = (
+                    float(trace["z_after_decay"])
+                    + float(integration["input_gain"]) * float(trace["input_value"])
+                )
+                if trace["integrated"] and abs(raw_z) > float(integration["z_max"]):
+                    z_clips[node] += 1
+                if any(
+                    abs(float(trace[field])) >= float(node_config["x_max"])
+                    for field in (
+                        "x_before_decay",
+                        "x_after_decay",
+                        "x_after_input",
+                        "x_post_discharge",
+                    )
+                ):
+                    x_limit_hits[node] += 1
+    return {
+        "streams": len(selected),
+        "source_to_relay_input_root_truncations": sum(
+            bool(item["roots_truncated"])
+            for stream in selected
+            for item in stream["source_inputs"]
+        ),
+        "relay_to_destination_root_truncations": sum(
+            bool(item["roots_truncated"])
+            for stream in selected
+            for item in stream["relay_to_destination_enqueues"]
+        ),
+        "relay_z_clipped_updates": z_clips["relay"],
+        "destination_z_clipped_updates": z_clips["destination"],
+        "relay_traced_x_max_hits": x_limit_hits["relay"],
+        "destination_traced_x_max_hits": x_limit_hits["destination"],
+    }
+
+
 def _condition_output_path(condition: str, phase: str) -> Path:
     return ROOT / OUTPUT_DIRECTORY / f"{condition}-{phase}.json"
 
@@ -1900,9 +1974,13 @@ def _paired_summary(phase_artifacts: dict[tuple[str, str], Record]) -> Record:
         ],
     }
     by_group: Record = {}
+    lineage_clipping: Record = {}
     primary_increase_streams: list[str] = []
     primary_complete_increases: list[str] = []
     new_primary_emission_ids: dict[str, list[str]] = {}
+    complete_lineage_increase_streams: dict[str, list[str]] = {
+        group: [] for group in strata
+    }
     primary_extra_route_events = 0
     for group, stream_ids in strata.items():
         count = lambda record, field: (
@@ -1948,10 +2026,7 @@ def _paired_summary(phase_artifacts: dict[tuple[str, str], Record]) -> Record:
             control_signatures = Counter(_discharge_emission_signatures(control))
             treatment_signatures = Counter(_discharge_emission_signatures(treatment))
             new_signatures = list((treatment_signatures - control_signatures).elements())
-            new_emission_ids = sorted(
-                set(treatment["relay_discharge_emission_ids"])
-                - set(control["relay_discharge_emission_ids"])
-            )
+            new_emission_ids = _complete_new_linked_emission_ids(control, treatment)
             relay_emission_increase = bool(new_signatures) and bool(new_emission_ids) and (
                 treatment["relay_discharge_emission_count"]
                 > control["relay_discharge_emission_count"]
@@ -1970,6 +2045,8 @@ def _paired_summary(phase_artifacts: dict[tuple[str, str], Record]) -> Record:
                     0,
                     treatment["destination_reception_count"] - control["destination_reception_count"],
                 )
+            if relay_emission_increase:
+                complete_lineage_increase_streams[group].append(stream_id)
         by_group[group] = {
             "streams": len(stream_ids),
             "control": dict(ctrl_counts),
@@ -1979,6 +2056,9 @@ def _paired_summary(phase_artifacts: dict[tuple[str, str], Record]) -> Record:
                 1 for stream_id in stream_ids
                     if t0[stream_id]["relay_discharge_emission_count"]
                     > c0[stream_id]["relay_discharge_emission_count"]
+                ),
+                "complete_lineage_increase_streams": len(
+                    complete_lineage_increase_streams[group]
                 ),
             "treatment_route_reception_increase_streams": sum(
                 1 for stream_id in stream_ids
@@ -2000,6 +2080,12 @@ def _paired_summary(phase_artifacts: dict[tuple[str, str], Record]) -> Record:
                 )
                 for stream_id in stream_ids
             ),
+        }
+    for condition in ("control", "intervention"):
+        phase_artifact = phase_artifacts[(condition, "initial")]
+        lineage_clipping[condition] = {
+            group: _phase_lineage_and_clipping(phase_artifact, stream_ids)
+            for group, stream_ids in strata.items()
         }
     all_checks = all(
         phase_artifacts[(condition, phase)]["status"] == "PASS"
@@ -2042,6 +2128,7 @@ def _paired_summary(phase_artifacts: dict[tuple[str, str], Record]) -> Record:
         "status": "PASS" if gate_pass else "BLOCKED",
         "contract_verdict": verdict,
         "groups": by_group,
+        "lineage_and_clipping": lineage_clipping,
         "primary": {
             "streams": 75,
             "relay_discharge_and_emission_increase_streams": primary_increase_streams,
