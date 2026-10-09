@@ -15,7 +15,7 @@ tpcn_handoff:
   contract_version: "1.2"
   branch: "main"
   base_revision: "e52098b2141a3f121f23b512e877783a64ef8baa"
-  result_revision: "Pending final governance publication"
+  result_revision: "Governance content commit dc5ade0348533bc545f9cfa0001639dccee624b1"
   dependencies:
     - "Published Luna-63A final revision 1c3e33d6285c2d3aeb107f27aad07e57de2ba50f"
     - "Published Luna-63B final revision fe3ebe5fdd2e018e79dd640fa4f94548ebba8701"
@@ -261,10 +261,21 @@ must not consume one another's unpublished evidence.
 | 63B/63C experiments, simulation, efficacy, hardware | NOT RUN / NOT AUTHORIZED |
 | Integrated echo | NOT RUN / NOT AUTHORIZED |
 | Full suite | NOT RUN; documentation/governance plus isolated A tests only |
-| Main commit/push/fetch/clean verification | PENDING final records |
+| Main governance content commit/push/fetch/clean verification | PASS at `dc5ade0348533bc545f9cfa0001639dccee624b1`; local HEAD equaled fetched origin/main and worktree was clean |
 
 **Next assignment:** owner/Luna-0 resolve the listed 63B numerical/oracle
 blockers before any execution decision. After governance publication, a
 separately assigned design worker may execute only the 63C documentation
 contract above. No automatic experiment or architecture successor is
 authorized.
+
+### Publication follow-up
+
+OBSERVED: governance content commit
+`dc5ade0348533bc545f9cfa0001639dccee624b1` was pushed to `origin/main`,
+fetched, and verified equal to local HEAD with a clean worktree. It contains
+the governance handoff, independent numerical review, 63C design contract,
+workflow/changelog update; the reviewed 63B design documents were already
+integrated by the three preceding cherry-picks. This publication-follow-up
+commit records the content revision; its own SHA is reported by the publisher
+to avoid self-reference. No experiment was run after publication.
