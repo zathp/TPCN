@@ -98,6 +98,47 @@ def _git(*args: str, binary: bool = False) -> str | bytes:
     return result.stdout if binary else result.stdout.strip()
 
 
+def _historical_blob_bytes(revision: str, path: str, expected_blob: str) -> bytes:
+    """Return bytes only after authenticating a pinned historical Git object."""
+    if revision != AUTHORIZATION_REVISION:
+        raise GateError(
+            "retained artifact revision differs from the fixed authorization"
+        )
+    try:
+        actual_blob = str(_git("rev-parse", f"{revision}:{path}"))
+        if actual_blob != expected_blob:
+            raise GateError(f"retained Git blob mismatch: {path}")
+        committed = _git("cat-file", "blob", expected_blob, binary=True)
+    except subprocess.CalledProcessError as error:
+        raise GateError(
+            f"missing pinned historical Git object: {revision}:{path}"
+        ) from error
+    if not isinstance(committed, bytes):
+        raise GateError(f"pinned historical Git object is not binary data: {path}")
+    return committed
+
+
+def _read_verified_checkout(
+    path: str,
+    expected_sha256: str,
+    canonical_bytes: bytes,
+    *,
+    expected_length: int | None = None,
+) -> tuple[bytes, Record]:
+    """Check current bytes and historical SHA/length using Luna-56's exact rules."""
+    try:
+        return luna53._verified_file(
+            path,
+            expected_sha256,
+            expected_size=expected_length,
+            canonical_bytes=canonical_bytes,
+        )
+    except luna53.GateError as error:
+        raise GateError(
+            f"retained checkout verification failed for {path}: {error}"
+        ) from error
+
+
 def _sha(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
@@ -194,16 +235,16 @@ def _phase_pins_and_populations() -> tuple[Record, dict[str, str], dict[str, Rec
     retained: dict[str, Record] = {}
     for path, (expected_blob, expected_sha) in ARTIFACT_PINS.items():
         pin = pin_by_path[path]
-        actual_blob = str(_git("rev-parse", f"{AUTHORIZATION_REVISION}:{path}"))
-        if actual_blob != expected_blob or pin.get("git_blob") != expected_blob:
+        if pin.get("git_blob") != expected_blob:
             raise GateError(f"retained Git blob mismatch: {path}")
-        raw = (ROOT / path).read_bytes()
-        canonical = raw.replace(b"\r\n", b"\n")
-        committed = _git("cat-file", "blob", expected_blob, binary=True)
-        if not isinstance(committed, bytes) or canonical != committed:
-            raise GateError(f"retained artifact is not the exact Git object/materialization: {path}")
-        if hashlib.sha256(raw).hexdigest() != expected_sha:
-            raise GateError(f"retained artifact SHA-256 mismatch: {path}")
+        committed = _historical_blob_bytes(
+            AUTHORIZATION_REVISION, path, expected_blob
+        )
+        if pin.get("checkout_sha256") != expected_sha:
+            raise GateError(f"historical checkout SHA-256 pin mismatch: {path}")
+        raw, _checkout_identity = _read_verified_checkout(
+            path, expected_sha, committed
+        )
         artifact = json.loads(raw.decode("utf-8-sig"))
         if not isinstance(artifact, dict):
             raise GateError(f"retained artifact is not an object: {path}")
@@ -381,16 +422,20 @@ def _make_configs(frozen_config: Record, condition: Record) -> tuple[E1Config, E
 
 def _load_verified_luna54_sources() -> tuple[Record, Record, Record, Record, Record]:
     """Use the pinned Git object and semantic digest when the old raw-file pin is stale."""
-    path = ROOT / LUNA46_PATH
-    raw = path.read_bytes()
-    actual_sha = hashlib.sha256(raw).hexdigest()
     actual_blob = str(_git("rev-parse", f"{AUTHORIZATION_REVISION}:{LUNA46_PATH}"))
     current_blob = str(_git("rev-parse", f"HEAD:{LUNA46_PATH}"))
     if actual_blob != LUNA46_EXPECTED_BLOB or current_blob != LUNA46_EXPECTED_BLOB:
         raise GateError("Luna-46 retained Git object differs from the authorized pin")
-    committed = _git("cat-file", "blob", LUNA46_EXPECTED_BLOB, binary=True)
-    if not isinstance(committed, bytes) or raw.replace(b"\r\n", b"\n") != committed:
-        raise GateError("Luna-46 checkout is not the exact Git-object materialization")
+    committed = _historical_blob_bytes(
+        AUTHORIZATION_REVISION, LUNA46_PATH, LUNA46_EXPECTED_BLOB
+    )
+    raw, checkout_identity = _read_verified_checkout(
+        LUNA46_PATH,
+        LUNA46_EXPECTED_SHA256,
+        committed,
+        expected_length=2_337_377,
+    )
+    actual_sha = checkout_identity["checkout_sha256"]
     l46 = json.loads(raw.decode("utf-8-sig"))
     claimed = l46.pop("output_digest", None)
     if (
@@ -437,6 +482,7 @@ def _load_verified_luna54_sources() -> tuple[Record, Record, Record, Record, Rec
         "semantic_digest": claimed,
         "semantic_digest_passed": True,
         "git_object_and_checkout_match": True,
+        "legacy_helper_identity_verified": True,
         "disposition": (
             "The Luna-54 helper raw SHA/length metadata is stale; the exact pinned "
             "Git object, checkout materialization, and embedded Luna-46 semantic "
