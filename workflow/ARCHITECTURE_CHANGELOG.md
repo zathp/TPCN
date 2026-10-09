@@ -1,5 +1,32 @@
 # Architecture Changelog
 
+## Luna-57 Luna-55 checkout-materialization correction — AUTHORIZED / NOT EXECUTED — 2026-10-09
+
+At clean baseline `a5d145d6751ee82a5fae1e2f8ad2f647d06438bc`, Luna-0
+reproduced the three remaining Luna-55 provenance failures. All share one
+comparison defect: fixed Git objects are authenticated, but a historical
+checkout SHA/length is incorrectly required to equal the current checkout's
+raw representation. The four Luna-54 phase records explicitly distinguish
+canonical LF and exact CRLF hashes; current files match their pinned Git
+objects, and the selection's stored values match exact CRLF transforms. The
+Luna-46 helper SHA/length likewise identifies its exact CRLF form; the current
+checkout is that form, so the test's inequality expectation is invalid.
+
+The fixed phase pins, eight exact materializations, Luna-46 object/semantic
+identity, and Luna-55 published selection, RR outputs, summary, and integrity
+catalog were verified unchanged. No scientific replay ran; no six
+noncrossing streams were investigated; the accepted 10/16 RR result is
+unchanged. No A01-A15 clause or ACP changes.
+
+**Decision: correction-only Luna-57 authorized, not executed.** Its contract
+limits edits to the Luna-55 runner, its tests, and an execution handoff;
+requires fixed-object-first checks, exact LF/CRLF handling, regression and
+adversarial tests, and prohibits scientific replay or artifact generation.
+Stop after Luna-57 for independent Luna-0 review; no Luna-58 or scientific
+successor is authorized. See the
+[Luna-0 authorization handoff](handoffs/luna-0-luna57-checkout-materialization-authorization-20261009.md)
+and [Luna-57 contract](../.github/agents/luna-57.agent.md).
+
 ## Luna-56 independent review — correction PASS; repository closure BLOCKED — 2026-10-09
 
 Luna-0 independently reviewed publication

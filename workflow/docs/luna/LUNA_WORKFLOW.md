@@ -1,5 +1,33 @@
 # TPCN Luna Multi-Agent Workflow — Event-Driven Architecture
 
+## Luna-57 Luna-55 checkout-materialization correction — AUTHORIZED / NOT EXECUTED — 2026-10-09
+
+**DECISION: CORRECTION-ONLY LUNA-57 AUTHORIZED.** At clean baseline
+`a5d145d6751ee82a5fae1e2f8ad2f647d06438bc`, Luna-0 reproduced the three
+remaining Luna-55 retained-provenance test failures and classified all three
+as the same current-checkout versus historical-materialization comparison
+defect. The four Luna-54 artifacts' pinned Git objects and canonical LF bytes
+remain valid; the selection's recorded raw hashes are their exact CRLF
+materializations. The Luna-46 helper hash/length is likewise its exact CRLF
+form, which matches this checkout. No scientific or artifact integrity
+regression was found.
+
+Luna-57 is limited to `experiments/luna55/run.py`,
+`tests/test_luna55_factorial.py`, and its execution handoff. It must preserve
+all historical pins/results; authenticate fixed Git objects and accept only
+the exact object bytes or exact LF-to-CRLF transform; test valid materialized
+identities separately from current checkout bytes; and reject malformed or
+altered data. No scientific runner, replay, sweep, or artifact generation is
+authorized. No code/tests were changed in this governance review, and Luna-57
+has **not** been executed.
+
+The accepted Luna-55 result is unchanged (HH/RH/HR 0, RR 10/16; 421 route
+reconciliations). The six noncrossing streams were not investigated. A01-A15
+and ACP-0008 are unchanged; no ACP is required. Stop after Luna-57 for
+independent Luna-0 review; no Luna-58 or scientific successor is authorized.
+See the [Luna-0 authorization handoff](../../handoffs/luna-0-luna57-checkout-materialization-authorization-20261009.md)
+and [Luna-57 contract](../../../.github/agents/luna-57.agent.md).
+
 ## Luna-56 independent review — correction PASS; repository closure BLOCKED — 2026-10-09
 
 Luna-0 independently verified the Luna-56 comparison correction at reviewed
