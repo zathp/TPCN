@@ -6,7 +6,7 @@ tpcn_handoff:
   task_id: "luna-55-acp0008-serial-retention-composition-20261008"
   component: "Bounded EXCURSION_V1 E2 retained-input mechanism experiment"
   status: "complete - EXECUTED / PARTIALLY SUPPORTED; independent Luna-0 review pending"
-  contract_version: "1.1"
+  contract_version: "1.2"
   branch: "main"
   base_revision: "9fa35c87528ae2f7bae4dca2e0c9630dcb1947e1"
   result_revision: "8369c8e70209c553be0662b6d705177308151d68"
