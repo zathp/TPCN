@@ -1868,7 +1868,8 @@ def run_one(phase: str, condition: str, invocation_id: str) -> Record:
                 raise GateError(
                     "intervention inputs differ from exact authenticated historical control inputs"
                 )
-    return _write_artifact(output_path, artifact)
+    manifest = _write_artifact(output_path, artifact)
+    return artifact | manifest
 
 
 def _paired_summary(phase_artifacts: dict[tuple[str, str], Record]) -> Record:
