@@ -189,21 +189,36 @@ corrections. Those files remain in the integrity catalog with
 - `artifacts/luna54/intervention-initial.json`
 - `artifacts/luna54/intervention-replay.json`
 - `artifacts/luna54/summary.json` — artifact digest
-  `68d127984b79943d04d0df3601c26b3c9eed263fbcd865a4d16effb5aaad7d0c`,
-  file SHA-256
-  `e7b6ea87fde0143733f1f245928ef6630cc396a64936001e3437def1e8ac9280`
+  `a9bb2601051be1a36caac84e0c1c8a9ea06850f26b9b500190adfd69d237ff3c`,
+  LF file SHA-256
+  `8ec93dd6c83719feba7a34cd85239bf684cc47813c3d5a6cba5197ad781cb684`,
+  exact CRLF materialization SHA-256
+  `519e69b21ac797b12d3b802061189ddd52dd0e22a7feab52c61de852a2bd0f47`
 - `artifacts/luna54/integrity.json` — artifact digest
-  `3f5c8ce765f2eedeae1520119652af703ec7a5681df180b1b709dcadf4801fe7`,
-  file SHA-256
-  `17efa0e068e41812cd1f6637611bf39ac20f1f787e607dbe66578e9d35429df4`
+  `166169d6dee66651ddf8db12460bb2b1186e6ab27be6bbc6213e8dff8d7c508e`,
+  LF file SHA-256
+  `8ec53ad073c76761d68b8409b748e0d4a373778770c05ff391d246e3793c32b2`,
+  exact CRLF materialization SHA-256
+  `8e0e7826e7bc910c8b5b9cadac896b5456e479021049b7c81c5f44b173cf56d9`
 
-The final integrity catalog validates all ten catalogued files and internal
+The final integrity catalog validates all twelve catalogued files and internal
 digests, recomputed phase digests, authenticated inputs, historical control
-reproduction, and relay-to-destination route reconciliations.
+reproduction, and relay-to-destination route reconciliations. For every
+catalogued JSON artifact, it accepts only the exact LF bytes or their
+one-to-one CRLF checkout materialization; all canonical artifact digests stay
+identical across that representation.
 
 Final validation on the publication checkout: Luna-54 focused tests passed
-**9/9**; full repository suite passed **1,713**, skipped **1**, failed **0**.
+**10/10**; full repository suite passed **1,713**, skipped **1**, failed **0**.
 The runner preflight and final summary/integrity validation passed.
+
+One full-suite attempt made while the final Luna-54 JSON files were still
+uncommitted reported one failure in the unrelated Luna-47F
+`test_reproduction_check_is_read_only`: its verifier correctly rejected the
+then-visible non-Luna-47F staged/unstaged paths. The other 1,713 tests passed
+and one was skipped. The experiment outputs were committed before the final
+clean-checkout suite run; no test or diagnostic logic was changed to suppress
+that guard.
 
 **Independent Luna-0 review has not occurred. Stop here for that read-only
 review. No ACP/A01-A15 change, task-efficacy claim, or successor authorization
