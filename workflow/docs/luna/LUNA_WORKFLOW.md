@@ -1,6 +1,38 @@
 # TPCN Luna Multi-Agent Workflow — Event-Driven Architecture
 
-## Luna-55 serial relay/destination retention composition — AUTHORIZED / NOT EXECUTED — 2026-10-08
+## Luna-55 serial relay/destination retention composition — EXECUTED; PARTIALLY SUPPORTED; Luna-0 review pending — 2026-10-08
+
+**EXECUTED — PARTIALLY SUPPORTED within the fixed factorial and frozen
+software-reference setup; independent read-only Luna-0 review is pending.**
+The fresh composed RR condition used the complete causal source-to-relay-to-
+destination E2 path. Of the 16 predeclared primary zero-decay-sufficient
+streams, 10 crossed only under RR; the other 6 did not cross. HH, relay-only
+RH, and destination-only HR each crossed 0/16. The 49 E+ zero-decay-
+insufficient controls, 10 E0, 189 NR1, and 23 NR0 streams had no crossings in
+any arm. This is bounded mechanism evidence, not task efficacy, production
+selection, hardware equivalence, architecture promotion, or an A01-A15/ACP
+change. ACP-0008 remains experimental, opt-in and disabled by default.
+
+The four cells use only the frozen relay/destination `decay_rate_z` values
+0.0125 and 0.00125. Both-phase HH/HR compatibility preflight passed on all
+320 streams, 235 arrivals, and 235 historical destination traces. RR initial
+and replay each use 1,715 source inputs and reconcile all 421 emitted routes;
+they are exactly reproducible. All 421 enqueues match receptions, all
+1,715 relay and 421 destination recurrence updates pass, no clipping or
+pending event occurs, and all declared resource bounds pass. The complete
+[Luna-55 execution handoff](../../handoffs/luna-55-acp0008-serial-retention-composition-execution-20261008.md),
+[RR evidence and authoritative summary](../../../artifacts/luna55/summary-v3.json),
+and [integrity catalog](../../../artifacts/luna55/summary-v3-integrity.json)
+record hashes, provenance and the stale Luna-46 raw-pin discrepancy.
+`summary-v2.json` remains preserved as a superseded blocked analysis caused
+by a route-signature audit defect; it is not a failed scientific condition.
+
+The stop is now **independent Luna-0 review of the immutable publication**.
+No Luna-56 or other successor is authorized. The authorization record below
+is retained as the pre-execution governance decision; its “not executed”
+status describes that decision point only.
+
+## Luna-55 serial relay/destination retention composition — AUTHORIZED / NOT EXECUTED at selection — 2026-10-08
 
 **AUTHORIZED / NOT EXECUTED.** Read-only analysis of the authenticated Luna-54
 intervention arrivals identifies a narrow target for a fixed 2x2 mechanism

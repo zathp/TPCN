@@ -1,6 +1,36 @@
 # Architecture Changelog
 
-## Luna-55 serial relay/destination retention composition — AUTHORIZED / NOT EXECUTED — 2026-10-08
+## Luna-55 serial relay/destination retention composition — EXECUTED; PARTIALLY SUPPORTED; Luna-0 review pending — 2026-10-08
+
+**EXECUTED — PARTIALLY SUPPORTED within the fixed factorial and frozen
+software-reference setup; independent Luna-0 review is pending.** In the
+16 predeclared primary targets, 10 crossed only in the composed RR cell;
+HH, relay-only RH and destination-only HR each crossed zero targets. Six
+targets did not cross. E+ zero-decay-insufficient (49), E0 (10), NR1 (189)
+and NR0 (23) controls had no crossing in any cell. The 33-stream secondary
+temporal-retention stratum is separately reported (HH 0, RH 1, HR 19, RR
+33), not used to broaden the primary claim.
+
+The fixed factors changed only relay/destination ACP-0008 `decay_rate_z`
+between 0.0125 and 0.00125. Authenticated HH/HR compatibility passed in both
+phases; fresh RR initial/replay each processed 320 streams and 1,715 source
+inputs, with 421/421 routes reconciled, exact replay, passing recurrence and
+resource audits, no clipping and no pending events. The [execution handoff](handoffs/luna-55-acp0008-serial-retention-composition-execution-20261008.md)
+and [authoritative summary](../artifacts/luna55/summary-v3.json) preserve
+phase provenance and hashes. The stale Luna-54 helper raw SHA/length literal
+for the retained Luna-46 file was reconciled only after verifying its pinned
+Git object, checkout bytes and embedded semantic digest; the historical
+artifacts were not modified. The earlier `summary-v2.json` is preserved as
+a superseded BLOCKED analysis artifact following a corrected route-signature
+audit defect; `summary-v3` is authoritative.
+
+This remains experimental mechanism evidence only. No A01-A15/ACP change,
+task efficacy, production suitability, hardware equivalence or architecture
+promotion is claimed. ACP-0008 remains experimental, opt-in and disabled by
+default. Stop for independent read-only Luna-0 review; no Luna-56 is
+authorized.
+
+## Luna-55 serial relay/destination retention composition — AUTHORIZED / NOT EXECUTED at selection — 2026-10-08
 
 **AUTHORIZED / NOT EXECUTED.** Read-only counterfactual analysis of the
 authenticated Luna-54 destination arrivals found a predeclared 16-stream
