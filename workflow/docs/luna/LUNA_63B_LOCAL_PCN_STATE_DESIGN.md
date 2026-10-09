@@ -45,9 +45,9 @@ attachment or incorrect-path lookup is part of this invocation.
 **Publication status:** design content commit
 `ab9e919eb1c79d27134413dd093bf3661625a0a8` contains these two deliverables.
 The parent validated source identities, exact two-file scope and whitespace,
-and is recording the publication follow-up on the isolated branch. Push/fetch,
-remote-SHA and final clean-worktree verification are not yet reported here.
-No Git action is attributed to the design-only worker.
+then pushed/fetched the isolated branch. Publication-provenance commit
+`e21240e755e0e3d0c592c6c124b04a0ddffd7ffd` matched the fetched remote SHA and
+the worktree was clean. No Git action is attributed to the design-only worker.
 
 Every source read is pinned by the exact starting tree plus path below. The
 parent resolved these Git tree selectors at the starting baseline. Historical
@@ -513,8 +513,9 @@ Energy cost, physical joules and usefulness are not measured.
 
 OBSERVED checks: documentation/source reads; parent-verified baseline, source
 identities, branch scope and whitespace; creation of only the two authorized
-Markdown deliverables using apply_patch. Push/fetch and final clean-worktree
-verification remain pending at this report revision.
+Markdown deliverables using apply_patch; parent-verified push/fetch, matching
+local/remote SHA and clean worktree at publication-provenance commit
+`e21240e755e0e3d0c592c6c124b04a0ddffd7ffd`.
 INFERRED: bounds and conditional composition algebra above.
 HYPOTHESIZED: the frozen future protocol would support finite state separation.
 All scientific commands, traces, simulations, trials, scoring, training,
