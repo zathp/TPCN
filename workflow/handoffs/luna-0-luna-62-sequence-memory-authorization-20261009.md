@@ -11,7 +11,7 @@ tpcn_handoff:
   contract_version: "1.2"
   branch: "main"
   base_revision: "694b34e0e80af21f89547d1124315ef8913fce35"
-  result_revision: "governance publication commit; see git history"
+  result_revision: "084033b3b69ad821fb71326ec1507125cd43a9c5"
   dependencies:
     - "Owner-selected delayed symbolic event-sequence echo task"
     - "Published Luna-61 design at 694b34e0e80af21f89547d1124315ef8913fce35"
@@ -100,7 +100,10 @@ The repository confirms Luna-61's design publication is in ancestry. The
 owner-provided preceding conversation states that independent Luna-0 review
 passed, but no separate tracked review artifact or committed PASS record was
 found in the ancestry at this baseline. This provenance mismatch is explicit;
-this handoff does not claim the Git ancestry independently proves the PASS.
+this handoff does not claim the Git ancestry independently proves the PASS. Luna-62's contract
+and governance authorization were committed at
+`084033b3b69ad821fb71326ec1507125cd43a9c5`; this handoff pins that
+authorization revision.
 
 ### Accepted architecture gap
 
