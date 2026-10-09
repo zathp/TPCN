@@ -1,5 +1,27 @@
 # TPCN Luna Multi-Agent Workflow — Event-Driven Architecture
 
+## Luna-62 — bounded sequence-memory architecture proposal authorized — 2026-10-09
+
+**LUNA-62 SEQUENCE-MEMORY ARCHITECTURE PROPOSAL AUTHORIZED / NOT EXECUTED.**
+The Luna-61 design identified the missing mechanism: the current integrated
+path does not demonstrate bounded identity/order/multiplicity-preserving
+sequence storage, silence through DELAY, and RECALL-gated replay. Luna-62 is
+authorized for **documentation/design only** to compare local chained
+memory, event-linked sequence chains, distributed temporal state, token/ring
+replay, recurrent neural replay, and a FIFO reference; define state,
+causality, capacity/overflow, reset, output, hardware implications, ACP
+boundary, and falsification tests.
+
+Luna-62 may not implement or test the mechanism, create task data, run
+trials, train, score, change runtime/reward/ACP/contract semantics, or
+authorize a successor. In particular, an external FIFO or task-level buffer
+must not supply the recalled sequence. A recommendation is not adoption;
+an ACP may be required before implementation. No Luna-63 is authorized.
+See the [Luna-62 contract](../../../.github/agents/luna-62.agent.md) and
+[Luna-0 authorization handoff](../../handoffs/luna-0-luna-62-sequence-memory-authorization-20261009.md).
+The mandatory next gate is **Luna-62 architecture proposal → independent
+Luna-0 review** before any ACP or implementation decision.
+
 ## Owner-selected first task — delayed symbolic event-sequence echo; Luna-61 amended / not executed — 2026-10-09
 
 **FIRST TASK SELECTION SUPERSEDED BEFORE LUNA-61 EXECUTION.** The owner

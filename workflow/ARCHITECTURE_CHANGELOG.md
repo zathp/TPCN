@@ -1,5 +1,26 @@
 # Architecture Changelog
 
+## Luna-62 bounded sequence-memory architecture proposal authorized — 2026-10-09
+
+At clean fetched `main == origin/main`
+`694b34e0e80af21f89547d1124315ef8913fce35`, Luna-0 authorized
+documentation-only Luna-62 to compare bounded local event-driven mechanisms
+for preserving symbolic identity/order/multiplicity through DELAY and
+releasing only after a genuine RECALL cue. Luna-62 must compare local
+chained cells, event-linked sequence chains, distributed temporal state,
+token/ring replay, recurrent replay and a conventional FIFO reference. An
+external answer buffer/FIFO/evaluator replay is forbidden as the neural
+solution. The contract specifies finite capacity/overflow, silence,
+causality, output/completion/reset, reward/error boundary, hardware analysis,
+falsification and ACP assessment.
+
+**No implementation, task data, trials, scoring, training, efficacy,
+hardware validation, ACP drafting/acceptance, or architecture promotion is
+authorized.** No A01-A15 or ACP status changes. Independent Luna-0 review
+after Luna-62 is mandatory before any ACP or implementation decision; no
+Luna-63 is authorized. See `.github/agents/luna-62.agent.md` and
+`workflow/handoffs/luna-0-luna-62-sequence-memory-authorization-20261009.md`.
+
 ## Owner-selected first task — delayed symbolic event-sequence echo; Luna-61 amended / not executed — 2026-10-09
 
 At authoritative clean `main == origin/main`
