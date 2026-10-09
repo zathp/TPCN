@@ -22,7 +22,7 @@ tpcn_handoff:
   contract_version: "1.2"
   branch: "main"
   base_revision: "8123147e04c6044d12023f541cf63130cdbb7dcc"
-  result_revision: "uncommitted documentation; parent owns publication"
+  result_revision: "e191cebfcd3a31cd4a1339fd8f445125c47e89ae"
   dependencies: ["Published Luna-62 report/handoff/contract", "Contract and ACP process", "Current source evidence"]
   owner: "Project owner"
   classification: ["INDEPENDENT REVIEW", "GOVERNANCE"]
@@ -177,8 +177,10 @@ equivalence remain blocked on the specified separate evidence/owner gates.
 
 Read the two pinned documents, agent contract and source ranges at the exact
 reviewed baseline; repeat only Git/documentation checks for this review.
-No experiment reproduction is authorized here. Parent may publish this
-new record; no staging/commit/push occurred in this session. Any rollback
+No experiment reproduction is authorized here. The parent committed this
+review record at `e191cebfcd3a31cd4a1339fd8f445125c47e89ae`, together
+with the separately bounded lane authorization. A provenance-only follow-up
+pins this exact content revision. Any rollback
 is documentation-only and preserves all prior Luna-62 records.
 
 ## Next assignment

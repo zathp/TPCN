@@ -26,7 +26,7 @@ tpcn_handoff:
   contract_version: "1.2"
   branch: "main"
   base_revision: "8123147e04c6044d12023f541cf63130cdbb7dcc"
-  result_revision: "uncommitted governance; parent handles publication"
+  result_revision: "e191cebfcd3a31cd4a1339fd8f445125c47e89ae"
   dependencies: ["Independent Luna-62 design review", "Owner 1033-line mechanism attachment with current narrower scope", "Contract and ACP process", "Source and historical primitive inspection"]
   owner: "Project owner"
   classification: ["GOVERNANCE", "ISOLATED EXPERIMENT AUTHORIZATION", "DESIGN PREREQUISITE"]
@@ -58,7 +58,7 @@ tpcn_handoff:
   tests_failed: []
   tests_not_run: ["All scientific, unit/regression/replay and hardware execution; governance only"]
   assumptions: ["Owner authorizes isolated named departures, not architecture adoption."]
-  unresolved: ["Published contract SHA", "Future isolated worktrees/executor", "B equations", "C vector field and event conversion"]
+  unresolved: ["Future isolated worktrees/executor", "B equations", "C vector field and event conversion"]
   recommended_next_agent: ["Luna-63A only on frozen isolated branch", "Luna-63B design only", "Independent Luna-0 after each deliverable", "Owner/Luna-0 for missing C design scope"]
 ```
 
@@ -256,7 +256,13 @@ promotion, predictive/error/reward rewrite, FIFO rejection or integrated echo.
 
 Reproduce governance by reading pinned sources and contracts at baseline,
 not by running experiments. Parent owns documentation publication and pins
-the governance content revision in this handoff after commit. Safe rollback,
+the governance content revision
+`e191cebfcd3a31cd4a1339fd8f445125c47e89ae` in this handoff. Both lane
+contracts and the independent review are present in that committed tree.
+A provenance-only follow-up records this identity; inspect the handoff's
+Git history for the final publication revision. The parent also verified
+the six-file staged scope and clean staged `git diff --check` before commit.
+Safe rollback,
 if owner requests, uses a documentation-only follow-up affecting only these new
 governance files/additive index sections, preserving historical records.
 Next bounded assignments: Luna-63A isolated scalar probe; Luna-63B
