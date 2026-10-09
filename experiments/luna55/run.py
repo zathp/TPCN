@@ -231,7 +231,9 @@ def _phase_pins_and_populations() -> tuple[Record, dict[str, str], dict[str, Rec
         raise GateError("frozen selection stream IDs are not unique")
     luna46 = _json("artifacts/luna46-depth-scaling-diagnostic-corrective-20261006.json")
     categories = {item["stream_id"]: item["category"] for item in luna46["sequences"]}
-    if len(categories) != 320 or set(categories) != set(ids):
+    if len(categories) != 320 or set(categories) != set(ids) or any(
+        categories[row["stream_id"]] != row["historical_stratum"] for row in stream_rows
+    ):
         raise GateError("frozen Luna-46 category inventory does not match selection")
     counts = Counter(categories.values())
     if dict(counts) != STREAM_GROUP_COUNTS:
@@ -332,6 +334,9 @@ def _verify_phase_compatibility(selection: Record, retained: dict[str, Record]) 
         if not (set(hh_rows) == set(rh_rows) == set(hc_rows) == set(hr_rows) == set(selection["streams"][i]["stream_id"] for i in range(320))):
             raise GateError(f"stream identity mismatch among factorial arms in {phase}")
         arrivals_checked = traces_checked = 0
+        hh_input_digest = hh["source_to_relay_reconciliation"]["authenticated_input_digest"]
+        if rh["source_to_relay_reconciliation"]["authenticated_input_digest"] != hh_input_digest:
+            raise GateError(f"HH/RH source inputs differ in {phase}")
         for stream_id in hh_rows:
             h, r, hc, d = hh_rows[stream_id], rh_rows[stream_id], hc_rows[stream_id], hr_rows[stream_id]
             if _arrival_signature_l54(h) != _arrival_signature_l53(hc):
@@ -457,6 +462,38 @@ def _response_l54(row: Record) -> bool:
     )
 
 
+def _route_signature(event: Record, timestamp_key: str) -> tuple[Any, ...]:
+    return (
+        event["event_id"],
+        event["payload_bits"],
+        float(event[timestamp_key]),
+        event["source"],
+        event["destination"],
+        event.get("lineage_id"),
+        event.get("originating_emission_id"),
+        tuple(event.get("causal_roots", [])),
+        event.get("roots_truncated"),
+        event.get("route_depth"),
+        tuple(event.get("route_path", [])),
+        float(event.get("scheduled_delivery_timestamp", event[timestamp_key])),
+    )
+
+
+def _clipping_count(traces: list[Record], config: Record) -> int:
+    integration = config["integration"]
+    count = 0
+    for trace in traces:
+        if not trace["integrated"]:
+            continue
+        value = (
+            float(trace["z_after_decay"])
+            + float(integration["input_gain"]) * float(trace["input_value"])
+        )
+        if abs(value) > float(integration["z_max"]):
+            count += 1
+    return count
+
+
 def _response_l53(row: Record) -> bool:
     discharged_ids = {
         trace["emission_id"]
@@ -552,6 +589,15 @@ def _rr_phase(phase: str, selection: Record, categories: dict[str, str]) -> Reco
             )
         ):
             raise GateError(f"RR causal route or boundedness gate failed: {phase}/{stream_id}")
+        if result["source_input_count"] == 0 and any(
+            (
+                result["relay_canonical_emission_count"],
+                result["destination_reception_count"],
+                result["destination_discharge_count"],
+                result["destination_canonical_emission_count"],
+            )
+        ):
+            raise GateError(f"RR no-input stream was not inert: {phase}/{stream_id}")
         rows.append(result)
     if len(rows) != 320:
         raise GateError("RR did not complete all 320 streams")
@@ -594,6 +640,48 @@ def _rr_phase(phase: str, selection: Record, categories: dict[str, str]) -> Reco
         "relay_emission_count": sum(row["relay_canonical_emission_count"] for row in rows),
         "destination_reception_count": sum(row["destination_reception_count"] for row in rows),
         "destination_response_count": sum(row["response"] for row in rows),
+        "resource_bounds": {
+            "queue_capacity": bounds["runtime"]["queue_capacity"],
+            "runtime_event_budget": bounds["runtime"]["runtime_event_budget"],
+            "per_neuron_event_budget": bounds["runtime"]["neuron_event_budget"],
+            "peak_queue_occupancy": max(row["resources"]["queue_peak"] for row in rows),
+            "peak_runtime_events": max(row["resources"]["processed_events"] for row in rows),
+            "peak_relay_neuron_events": max(
+                row["resources"]["neuron_processed_events"]["relay"] for row in rows
+            ),
+            "peak_destination_neuron_events": max(
+                row["resources"]["neuron_processed_events"]["destination"] for row in rows
+            ),
+            "pending_events": sum(row["resources"]["pending_events"] for row in rows),
+            "all_streams_bounded": all(
+                row["resources"]["queue_bound_pass"]
+                and row["resources"]["runtime_budget_pass"]
+                and row["resources"]["neuron_budget_pass"]
+                and row["resources"]["state_bounds_pass"]
+                and row["resources"]["pending_events"] == 0
+                for row in rows
+            ),
+        },
+        "relay_recurrence_updates": sum(row["relay_integration_count"] for row in rows),
+        "destination_recurrence_updates": sum(row["destination_integration_count"] for row in rows),
+        "route_reconciliation": {
+            "enqueued": sum(row["route_reconciliation"]["enqueued_count"] for row in rows),
+            "received": sum(row["route_reconciliation"]["received_count"] for row in rows),
+            "matched": sum(row["route_reconciliation"]["matched_count"] for row in rows),
+            "mismatches": sum(
+                row["route_reconciliation"]["unmatched_enqueue_count"]
+                + row["route_reconciliation"]["orphan_reception_count"]
+                + row["route_reconciliation"]["duplicate_enqueue_count"]
+                + row["route_reconciliation"]["duplicate_reception_count"]
+                for row in rows
+            ),
+        },
+        "clipping_event_count": sum(
+            _clipping_count(row["relay_integration_traces"], effective_config["relay"])
+            + _clipping_count(row["destination_integration_traces"], effective_config["destination"])
+            for row in rows
+        ),
+        "labels_entered_runtime": False,
     }
 
 
@@ -690,8 +778,7 @@ def _phase_arm_rows(arm: str, phase: str, retained: dict[str, Record], rr: Recor
                 "destination_traces": traces,
                 "source_arrivals": row["input_events"],
                 "route_signature": [
-                    (event["event_id"], event["payload_bits"], event["timestamp"],
-                     event["source"], event["destination"])
+                    _route_signature(event, "timestamp")
                     for event in row["input_events"]
                 ],
             })
@@ -713,32 +800,20 @@ def _phase_arm_rows(arm: str, phase: str, retained: dict[str, Record], rr: Recor
                 "destination_traces": row["destination_integration_traces"],
                 "source_arrivals": row["destination_receptions"],
                 "route_signature": [
-                    (
-                        event["event_id"],
-                        event["payload_bits"],
-                        event["reception_timestamp"],
-                        event["source"],
-                        event["destination"],
-                    )
+                    _route_signature(event, "reception_timestamp")
                     for event in row["destination_receptions"]
                 ],
             })
     if arm == "RR":
         for row in normalized:
             row["route_signature"] = [
-                (
-                    event["event_id"],
-                    event["payload_bits"],
-                    event["reception_timestamp"],
-                    event["source"],
-                    event["destination"],
-                )
+                _route_signature(event, "reception_timestamp")
                 for event in row["destination_receptions"]
             ]
     return normalized
 
 
-def summarize() -> Record:
+def summarize(output_name: str = "summary-v2.json") -> Record:
     selection, categories, retained = _phase_pins_and_populations()
     compatibility = _verify_phase_compatibility(selection, retained)
     rr_initial = _json(OUTPUT / "rr-initial.json")
@@ -749,6 +824,39 @@ def summarize() -> Record:
         raise GateError("RR phase identities invalid")
     if rr_initial["streams"] != rr_replay["streams"]:
         raise GateError("RR initial/replay scientific records differ")
+    _source_bundle, _protocol, _luna54_config, frozen_config, l46_integrity = (
+        _load_verified_luna54_sources()
+    )
+    rr_relay_config = rr_initial["configuration"]["relay"]
+    rr_destination_config = rr_initial["configuration"]["destination"]
+    rr_clipping = sum(
+        _clipping_count(row["relay_integration_traces"], rr_relay_config)
+        + _clipping_count(row["destination_integration_traces"], rr_destination_config)
+        for row in rr_initial["streams"]
+    )
+    rr_routes = {
+        key: sum(row["route_reconciliation"][source_key] for row in rr_initial["streams"])
+        for key, source_key in (
+            ("enqueued", "enqueued_count"),
+            ("received", "received_count"),
+            ("matched", "matched_count"),
+            ("mismatches", "unmatched_enqueue_count"),
+        )
+    }
+    rr_routes["mismatches"] += sum(
+        row["route_reconciliation"]["orphan_reception_count"]
+        + row["route_reconciliation"]["duplicate_enqueue_count"]
+        + row["route_reconciliation"]["duplicate_reception_count"]
+        for row in rr_initial["streams"]
+    )
+    rr_labels_isolated = (
+        all("category" not in event for row in rr_initial["streams"] for event in row["source_inputs"])
+        and all(
+            row["evaluator_stratum"] == categories[row["stream_id"]]
+            for row in rr_initial["streams"]
+        )
+        and "evaluator_stratum" not in luna54.run_stream.__code__.co_varnames
+    )
     groups: dict[str, set[str]] = {
         "target16": set(TARGET_IDS),
         "Eplus49": {
@@ -762,10 +870,21 @@ def summarize() -> Record:
         },
         "NR1": {sid for sid, label in categories.items() if label == "NO-RECEPTIONS" and
                 next(row for row in selection["streams"] if row["stream_id"] == sid)["post_Luna54_classification"].startswith("NR1")},
+        "NR1-arrival-responders58": {
+            row["stream_id"] for row in selection["streams"]
+            if row["post_Luna54_classification"].startswith("NR1")
+            and row["additional_arrival_count"] > 0
+        },
+        "NR1-no-event-supply131": {
+            row["stream_id"] for row in selection["streams"]
+            if row["post_Luna54_classification"].startswith("NR1")
+            and row["additional_arrival_count"] == 0
+        },
         "NR0": {row["stream_id"] for row in selection["streams"] if row["post_Luna54_classification"].startswith("NR0")},
         "temporal_secondary33": {sid for sid, label in categories.items() if label == "TEMPORAL-RETENTION-LIMITED"},
     }
     arms: Record = {}
+    arm_totals: Record = {}
     phase_arm_records: dict[str, dict[str, list[Record]]] = {}
     for arm in ("HH", "RH", "HR", "RR"):
         phase_arm_records[arm] = {}
@@ -778,10 +897,22 @@ def summarize() -> Record:
         if phase_arm_records[arm]["initial"] != phase_arm_records[arm]["replay"]:
             raise GateError(f"{arm} initial/replay normalized outcomes differ")
         arms[arm] = _summarize_streams(phase_arm_records[arm]["initial"], groups)
+        arm_rows = phase_arm_records[arm]["initial"]
+        arm_totals[arm] = {
+            "streams": len(arm_rows),
+            "relay_emissions": sum(row["relay_emissions"] for row in arm_rows),
+            "destination_receptions": sum(row["destination_receptions"] for row in arm_rows),
+            "destination_crossings": sum(row["crossing"] for row in arm_rows),
+            "destination_responses": sum(row["response"] for row in arm_rows),
+            "peak_destination_abs_z": max(
+                (row["peak_destination_abs_z"] for row in arm_rows), default=0.0
+            ),
+        }
     by_arm_id = {
         arm: {row["stream_id"]: row for row in phase_arm_records[arm]["initial"]}
         for arm in arms
     }
+    selection_by_id = {row["stream_id"]: row for row in selection["streams"]}
     factorial: dict[str, Any] = {}
     signatures = Counter()
     for stream_id in TARGET_IDS:
@@ -810,6 +941,16 @@ def summarize() -> Record:
                 - by_arm_id["HR"][stream_id]["peak_destination_abs_z"]
                 + by_arm_id["HH"][stream_id]["peak_destination_abs_z"]
             ),
+            "zero_decay_oracle_peak_abs_z": selection_by_id[stream_id][
+                "zero_decay_destination_peak_abs_z"
+            ],
+            "RR_minus_zero_decay_peak_abs_z": (
+                by_arm_id["RR"][stream_id]["peak_destination_abs_z"]
+                - selection_by_id[stream_id]["zero_decay_destination_peak_abs_z"]
+            ),
+            "zero_decay_oracle_threshold_margin": selection_by_id[stream_id][
+                "zero_decay_threshold_margin"
+            ],
         }
     control_crossings = {
         group: {
@@ -854,10 +995,7 @@ def summarize() -> Record:
         row.get("relay_oracle", {}).get("passed", False)
         and row.get("destination_oracle", {}).get("passed", False)
         for row in rr_initial["streams"]
-    )
-    _source_bundle, _protocol, _luna54_config, frozen_config, l46_integrity = (
-        _load_verified_luna54_sources()
-    )
+    ) and rr_clipping == 0 and rr_routes["mismatches"] == 0
     conditions = json.loads((ROOT / CONFIG_PATH).read_bytes())["conditions"]
     effective_configs: Record = {}
     changed_paths: Record = {}
@@ -904,7 +1042,8 @@ def summarize() -> Record:
         "schema": "TPCN-LUNA55-FACTORIAL-SUMMARY-1",
         "status": "PASS" if verdict != "BLOCKED" else "BLOCKED",
         "authorization_revision": AUTHORIZATION_REVISION,
-        "execution_revision": str(_git("rev-parse", "HEAD")),
+        "execution_revision": rr_initial["execution_revision"],
+        "analysis_revision": str(_git("rev-parse", "HEAD")),
         "interpretation": "Bounded mechanistic factorial only; initial/replay are deterministic replays, not independent samples.",
         "compatibility_preflight": compatibility,
         "luna46_pin_reconciliation": l46_integrity,
@@ -916,6 +1055,7 @@ def summarize() -> Record:
         "effective_configurations": effective_configs,
         "configuration_changed_paths_from_historical": changed_paths,
         "arm_summaries": arms,
+        "arm_totals": arm_totals,
         "reused_phase_artifact_pins": {
             pin["path"]: pin
             for pin in selection["factorial_compatibility_phase_artifacts"]
@@ -927,6 +1067,44 @@ def summarize() -> Record:
         "rr_rh_route_receptions_invariant": rr_rh_route_equal,
         "rr_recurrence_pass": all_recurrence_pass,
         "rr_replay_exact": rr_initial["streams"] == rr_replay["streams"],
+        "rr_route_reconciliation": rr_routes,
+        "rr_route_audit": rr_routes,
+        "rr_recurrence_update_counts": {
+            "relay": rr_initial["relay_recurrence_updates"],
+            "destination": rr_initial["destination_recurrence_updates"],
+        },
+        "rr_clipping_event_count": rr_clipping,
+        "rr_resource_bounds": rr_initial.get("resource_bounds", {
+            "queue_capacity": 128,
+            "runtime_event_budget": 1024,
+            "per_neuron_event_budget": 4096,
+            "peak_queue_occupancy": max(
+                row["resources"]["queue_peak"] for row in rr_initial["streams"]
+            ),
+            "peak_runtime_events": max(
+                row["resources"]["processed_events"] for row in rr_initial["streams"]
+            ),
+            "peak_relay_neuron_events": max(
+                row["resources"]["neuron_processed_events"]["relay"]
+                for row in rr_initial["streams"]
+            ),
+            "peak_destination_neuron_events": max(
+                row["resources"]["neuron_processed_events"]["destination"]
+                for row in rr_initial["streams"]
+            ),
+            "pending_events": sum(
+                row["resources"]["pending_events"] for row in rr_initial["streams"]
+            ),
+            "all_streams_bounded": all(
+                row["resources"]["queue_bound_pass"]
+                and row["resources"]["runtime_budget_pass"]
+                and row["resources"]["neuron_budget_pass"]
+                and row["resources"]["state_bounds_pass"]
+                and row["resources"]["pending_events"] == 0
+                for row in rr_initial["streams"]
+            ),
+        }),
+        "label_isolation": rr_labels_isolated,
         "verdict": verdict,
         "non_claims": [
             "No task efficacy, production suitability, hardware equivalence, parameter optimality, or architecture promotion.",
@@ -937,7 +1115,19 @@ def summarize() -> Record:
             "RR-replay": {"path": "artifacts/luna55/rr-replay.json", "sha256": _sha(ROOT / (OUTPUT / "rr-replay.json"))},
         },
     }
-    result["artifact_sha256"] = _seal_write(OUTPUT / "summary.json", result)
+    summary_path = OUTPUT / output_name
+    _seal_write(summary_path, result)
+    integrity = {
+        "schema": "TPCN-LUNA55-INTEGRITY-1",
+        "execution_revision": rr_initial["execution_revision"],
+        "analysis_revision": str(_git("rev-parse", "HEAD")),
+        "artifacts": {
+            name: {"path": f"artifacts/luna55/{name}", "sha256": _sha(OUTPUT / name)}
+            for name in ("rr-initial.json", "rr-replay.json", output_name)
+        },
+    }
+    integrity_path = OUTPUT / f"{Path(output_name).stem}-integrity.json"
+    _seal_write(integrity_path, integrity)
     return result
 
 
@@ -946,6 +1136,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--preflight", action="store_true")
     parser.add_argument("--run-rr", choices=("initial", "replay"))
     parser.add_argument("--summarize", action="store_true")
+    parser.add_argument("--summary-name", choices=("summary-v2.json",))
     args = parser.parse_args(argv)
     try:
         if args.preflight:
@@ -953,7 +1144,7 @@ def main(argv: list[str] | None = None) -> int:
         elif args.run_rr:
             print(json.dumps(run_rr(args.run_rr), indent=2))
         elif args.summarize:
-            print(json.dumps(summarize(), indent=2))
+            print(json.dumps(summarize(args.summary_name or "summary-v2.json"), indent=2))
         else:
             parser.error("choose --preflight, --run-rr, or --summarize")
     except GateError as error:
