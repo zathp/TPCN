@@ -1,5 +1,33 @@
 # TPCN Luna Multi-Agent Workflow — Event-Driven Architecture
 
+## Luna-56 checkout-materialization correction — EXECUTED / PASS; independent Luna-0 review required — 2026-10-08
+
+**PASS — CHECKOUT-MATERIALIZATION PROVENANCE CLOSED.** Luna-56 executed
+only the authorized correction to the five retained provenance failures.
+The pinned Git objects and original SHA literals remain authoritative;
+validators accept only exact Git bytes or that LF object's exact CRLF
+materialization. Mutated bytes, wrong revisions/objects, missing objects,
+and malformed line endings remain rejected.
+
+Implementation/tests were committed at
+`ec4ff50b4c8ca85243d986c9ebb7aa67f6ba7888`; from that clean checkout the
+five original test nodes passed (8 passed across four permitted L47F
+materialization combinations), Luna-47F tests passed 86/86, Luna-46 176/176,
+Luna-53 7/7, Luna-54/55 integrity 16/16, prior Luna-51/52 provenance 21/21,
+and historical/core checks 72/72. The full suite is **1,732 passed, 1
+skipped, 0 failed**. Its one skip remains the CUDA-unavailable GPU test.
+
+All retained Luna-46/47F/53/54/55 artifacts and historical Git pins were
+verified unchanged. No scientific replay or result regeneration occurred;
+no runtime, architecture, ACP, `.gitattributes`, or scientific artifact
+changed. Luna-55 remains bounded and PARTIALLY SUPPORTED (RR 10/16; HH/RH/HR
+0; six noncrossers and negative controls unchanged).
+
+See the [Luna-56 execution handoff](../../handoffs/luna-56-checkout-materialization-provenance-execution-20261008.md)
+for the per-test baseline/output, object identities, adversarial coverage,
+artifact hashes, and validation record. Stop for independent read-only
+Luna-0 review; no Luna-57 or scientific successor is authorized.
+
 ## Post-Luna-55 regression governance — Luna-56 corrective follow-up authorized / not executed — 2026-10-08
 
 **DECISION: CORRECTIVE REGRESSION FOLLOW-UP AUTHORIZED.** At clean,

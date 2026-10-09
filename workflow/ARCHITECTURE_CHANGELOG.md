@@ -1,5 +1,29 @@
 # Architecture Changelog
 
+## Luna-56 checkout-materialization provenance correction — PASS; independent Luna-0 review required — 2026-10-08
+
+Luna-56 closed the five authorized regressions by authenticating historical
+Luna-47F retained results and Luna-53 pinned inputs at their original Git
+objects, while accepting only exact LF bytes or the exact Git LF-to-CRLF
+checkout transformation. The Luna-46 catalog test now checks either
+permitted materialization against independently pinned revision/blob/SHA
+expectations. Mutation, wrong-object, wrong-revision, missing-object, and
+malformed-line-ending tests pass; historical pins and recorded SHA literals
+were not changed.
+
+The clean implementation commit
+`ec4ff50b4c8ca85243d986c9ebb7aa67f6ba7888` passes the exact five regression
+nodes, Luna-47F/46/53 provenance suites, Luna-54/55 integrity tests,
+Luna-51/52 regressions, and historical/core tests. The full suite reports
+**1,732 passed, 1 skipped, 0 failed**; the existing skip is CUDA unavailable.
+Protected artifacts remain unchanged. No neural/runtime behavior, A01-A15,
+ACP, architecture contract, `.gitattributes`, or scientific artifact was
+changed; no scientific experiment was run.
+
+Disposition: **PASS — CHECKOUT-MATERIALIZATION PROVENANCE CLOSED**. See the
+[Luna-56 execution handoff](handoffs/luna-56-checkout-materialization-provenance-execution-20261008.md).
+Stop for independent read-only Luna-0 review; no Luna-57 is authorized.
+
 ## Post-Luna-55 regression governance — CORRECTIVE FOLLOW-UP AUTHORIZED / NOT EXECUTED — 2026-10-08
 
 Luna-0 independently reproduced the five historical regression failures at
