@@ -11,7 +11,7 @@ tpcn_handoff:
   contract_version: "1.2"
   branch: "main"
   base_revision: "ae4f183bd9ffa8ecaae082087aba32cab9d72fe3"
-  result_revision: "uncommitted; exact design commit to be pinned after review"
+  result_revision: "79aa0a053061e545669cea71aa8342a52f0e533e"
   dependencies:
     - "Luna-61 amended contract authorized before execution"
     - "Owner decision superseding binary event/deadline task with symbolic sequence echo"
