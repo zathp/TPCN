@@ -9,7 +9,7 @@ tpcn_handoff:
   contract_version: "1.2"
   branch: "main"
   base_revision: "53c68b0f8e9fb89c0a405baa332891755066c001"
-  result_revision: "commit containing this handoff"
+  result_revision: "bc86ba02b677892698fb79e29bfb830c64c5957c"
   dependencies:
     - "Luna-55 authorization 312eba8c8e036927408fb2156756a50d15762bc8"
     - "Luna-55 execution/result publication 8369c8e70209c553be0662b6d705177308151d68"
