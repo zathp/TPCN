@@ -9,7 +9,7 @@ tpcn_handoff:
   contract_version: "1.2"
   branch: "main"
   base_revision: "7d54aee4cc4ed904c5cb8a98a697cad4b62beb15"
-  result_revision: "Uncommitted; parent orchestrator will review and commit"
+  result_revision: "Implementation commit b6b4a54b82cd89f486d2b56495371f9a89b7f5f8; validation record updated in this publication"
   dependencies:
     - "Published Luna-57 authorization at 7d54aee4cc4ed904c5cb8a98a697cad4b62beb15"
     - "Luna-56 exact Git-object/materialization verifier semantics"
@@ -83,8 +83,8 @@ tpcn_handoff:
   tests_failed:
     - "An initial combined focused-module run invoked test_reproduction_check_is_read_only in the modified working tree and failed with ValueError: non-owned change because Luna-57's uncommitted authorized edits violate Luna-47F's ownership guard. The same test and public --check passed from clean disposable worktrees."
   tests_not_run:
-    - "Full repository test suite: NOT RUN; parent orchestrator owns post-commit clean validation."
-    - "Committed-state validation: NOT RUN; no commit was made."
+    - "Clean committed-state validation: exact three targets 3 passed; Luna-55/Luna-54 integrity 32 passed; Luna-46/Luna-47F/Luna-53 provenance 268 passed, 1 capability skip; historical/core 72 passed."
+    - "Full repository test suite at implementation commit b6b4a54b82cd89f486d2b56495371f9a89b7f5f8: 1,748 passed, 1 capability skip, 0 failed or errors."
     - "CUDA-specific test: not part of this focused run; authorization handoff reports its baseline test passed."
     - "Scientific runners, run_phase, summarize, replay, parameter sweep, and artifact generation: prohibited and not run."
   assumptions:
@@ -197,22 +197,24 @@ pytest 9.1.1, `core.autocrlf=true`. Tests were regression/unit tests only.
 | Command or procedure | Revision / environment / seed | Observed result | Evidence |
 |---|---|---|---|
 | Three required baseline selectors, before edits | `7d54aee4cc4ed904c5cb8a98a697cad4b62beb15`; Windows/Python 3.11.4 | **3 failed as authorized:** two phase SHA failures for control-initial; helper SHA inequality assertion failed on equality | Exact pytest output captured in session; no runner invoked |
-| `python -m pytest -q tests/test_luna55_factorial.py` | Modified Luna-57 worktree; Windows/Python 3.11.4 | **22 passed** | Includes all new exact-materialization and adversarial tests |
-| Three required selectors | Modified Luna-57 worktree | **3 passed** | The exact three contract nodes |
-| `python -m pytest -q -rs tests/test_luna46_depth_scaling_diagnostic.py tests/test_luna47f_diagnostic.py tests/test_luna47f_retained.py tests/test_luna53_retention.py tests/test_luna54_relay_retention.py` | Modified worktree; Windows/Python 3.11.4 | 277 passed, 1 skipped, 1 failed; failure was the public-check ownership guard (`ValueError: non-owned change`) when run against Luna-57's uncommitted worktree | Reran without that selector; then separately ran the public check and selector in clean disposable worktrees |
-| Same focused module set, excluding `test_reproduction_check_is_read_only` | Modified worktree; Windows/Python 3.11.4 | **277 passed, 1 skipped, 1 deselected** | No functional provenance failure |
+| `python -m pytest -q tests/test_luna55_factorial.py` | Luna-57 implementation worktree; Windows/Python 3.11.4 | **22 passed** | Includes all new exact-materialization and adversarial tests |
+| Three required selectors | Luna-57 implementation worktree | **3 passed** | The exact three contract nodes |
+| `python -m pytest -q -rs tests/test_luna46_depth_scaling_diagnostic.py tests/test_luna47f_diagnostic.py tests/test_luna47f_retained.py tests/test_luna53_retention.py` | Clean implementation commit `b6b4a54b82cd89f486d2b56495371f9a89b7f5f8`; Windows/Python 3.11.4 | **268 passed, 1 skipped** | Skip is the directory-symlink `WinError 1314` capability limitation |
+| `python -m pytest -q tests/test_luna55_factorial.py tests/test_luna54_relay_retention.py` | Clean implementation commit `b6b4a54b82cd89f486d2b56495371f9a89b7f5f8` | **32 passed** | Complete Luna-55 factorial and Luna-54 integrity modules |
+| `python -m pytest -q tests/test_luna44_canonical_fixture.py tests/test_event_runtime.py tests/test_excursion_neuron.py` | Clean implementation commit `b6b4a54b82cd89f486d2b56495371f9a89b7f5f8` | **72 passed** | Historical/core regression set |
+| Luna-47F public `--check` | Clean implementation commit `b6b4a54b82cd89f486d2b56495371f9a89b7f5f8` | **PASS** | Retained analysis, replay, inputs, code and protected hashes |
 | `python experiments/luna47f/diagnostic.py --check` | Disposable detached worktree at clean `7d54aee4cc4ed904c5cb8a98a697cad4b62beb15` | **PASS: retained analysis, replay, inputs, code and protected hashes** | Worktree removed after command |
 | `test_reproduction_check_is_read_only` | Same clean disposable baseline worktree | **1 passed** | Worktree removed after command |
 | Exact identity comparison for eight phase inputs and protected Luna-55 publication objects | Modified worktree; post-test | **8/8 current phase bytes exact LF; all selection hashes identify allowed forms; all protected output blobs match HEAD** | Measurements in this handoff |
 | Protected-path diff check | Modified worktree; post-test | **No changes** in artifacts/luna53, artifacts/luna54, artifacts/luna55, artifacts/luna55-selection, or `.gitattributes` | `git diff --exit-code HEAD -- ...` returned 0 |
-| Full repository test suite | Not run | **NOT RUN** | Explicitly pending parent orchestrator |
-| Clean committed-state validation | No commit | **NOT RUN / PENDING** | Parent orchestrator owns commit and clean-commit gates |
+| `python -m pytest -q -rs --tb=short` | Clean implementation commit `b6b4a54b82cd89f486d2b56495371f9a89b7f5f8`; Windows/Python 3.11.4 | **1,748 passed, 1 skipped, 0 failed** | Only skip: directory symlink unsupported, Windows `WinError 1314`; CUDA was not skipped |
+| Protected artifact diff and clean worktree | Implementation commit | **PASS** | Protected historical artifacts and `.gitattributes` unchanged; source tree clean after tests |
 
-The sole skip was the Luna-46 directory-symlink capability case: Windows
-`WinError 1314`, “A required privilege is not held by the client.” No CUDA
-skip appeared in the focused run; the authorization handoff states that its
-separate CUDA test passed. The targeted `test_luna46_depth_scaling_diagnostic`
-suite otherwise passed.
+The sole skip in both the focused provenance run and full suite was the
+Luna-46 directory-symlink capability case: Windows `WinError 1314`, “A
+required privilege is not held by the client.” No CUDA skip appeared in the
+full suite. The targeted `test_luna46_depth_scaling_diagnostic` suite
+otherwise passed.
 
 ## Benchmark and resource results
 
@@ -239,6 +241,5 @@ or unrelated work.
 ## Next assignment
 
 Stop for **independent Luna-0 review** of this handoff, the two code/test
-changes, measured identities, and focused test evidence. After review, the
-parent orchestrator owns commit, full-suite validation, and clean committed
-state gates. No Luna-58 or scientific work is authorized.
+changes, measured identities, and clean committed-state test evidence. No
+Luna-58 or scientific work is authorized.
