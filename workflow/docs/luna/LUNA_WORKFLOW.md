@@ -1,9 +1,47 @@
 # TPCN Luna Multi-Agent Workflow — Event-Driven Architecture
 
-## Luna-55 serial relay/destination retention composition — EXECUTED; PARTIALLY SUPPORTED; Luna-0 review pending — 2026-10-08
+## Post-Luna-55 regression governance — Luna-56 corrective follow-up authorized / not executed — 2026-10-08
+
+**DECISION: CORRECTIVE REGRESSION FOLLOW-UP AUTHORIZED.** At clean,
+fetched `origin/main` revision
+`53c68b0f8e9fb89c0a405baa332891755066c001`, Luna-0 individually reproduced
+the five reported failures and found no evidence mutation. All five reject
+an exact LF Git-object checkout where the expected hash/label describes its
+exact CRLF representation. The Luna-47F failures share one verification gate;
+the Luna-53 L46 pin's stored `0d32926f...` SHA/2,337,377-byte length is the
+exact CRLF transformation of the still-pinned Git object `9506369d...`.
+Luna-53/54/55 and affected Luna-46/47F artifacts, historical Git identities
+and semantic digests were independently checked and remain unchanged.
+
+Luna-55 remains **PARTIALLY SUPPORTED** and scientifically valid within its
+frozen setup: HH/RH/HR cross 0/16 primary targets; RR crosses 10/16. The six
+noncrossing streams are not investigated here. Negative controls remain
+separate with zero crossings; the 33-stream secondary group remains
+independent. RR's 421 routes reconcile, with exact replay and passing
+recurrence/bounds checks.
+
+The exact failing test names, materialization classifications, protected
+artifact evidence, and baseline validation are in the
+[Luna-0 governance handoff](../../handoffs/luna-0-post-luna55-regression-governance-20261008.md).
+The [Luna-56 correction-only contract](../../../.github/agents/luna-56.agent.md)
+is **authorized / not executed**. It preserves every historical Git pin and
+SHA, permits only exact LF or its exact CRLF materialization, requires
+adversarial mutation rejection and a green full suite, and forbids artifact
+edits or scientific replay. The sole existing skip is the CUDA-unavailable
+GPU test, not a Windows symlink test.
+
+Luna-56 must stop for independent Luna-0 review. No Luna-57 or scientific
+successor is authorized; the six unresolved Luna-55 streams remain deferred.
+
+## Luna-55 serial relay/destination retention composition — EXECUTED; PARTIALLY SUPPORTED; Luna-0 review complete; repository gate follow-up required — 2026-10-08
 
 **EXECUTED — PARTIALLY SUPPORTED within the fixed factorial and frozen
-software-reference setup; independent read-only Luna-0 review is pending.**
+software-reference setup. Independent read-only Luna-0 review is complete
+with a qualified PASS on reviewed revision
+`e6a5b7c900a023c70aa2776e039a4094f02962b4`; post-review governance at
+`53c68b0f8e9fb89c0a405baa332891755066c001` classifies the five red tests as
+checkout-materialization defects and requires the authorized Luna-56
+repository-gate correction.**
 The fresh composed RR condition used the complete causal source-to-relay-to-
 destination E2 path. Of the 16 predeclared primary zero-decay-sufficient
 streams, 10 crossed only under RR; the other 6 did not cross. HH, relay-only
@@ -30,10 +68,11 @@ The full repository suite reported 1,715 passed, 5 failed and 1 skipped; the
 failures are retained Luna-46/47F/53 SHA or checkout-materialization
 assertions documented in the execution handoff, not silent passes.
 
-The stop is now **independent Luna-0 review of the immutable publication**.
-No Luna-56 or other successor is authorized. The authorization record below
-is retained as the pre-execution governance decision; its “not executed”
-status describes that decision point only.
+The immutable publication review is complete; the repository gate remains
+red. See the [post-Luna-55 governance handoff](../../handoffs/luna-0-post-luna55-regression-governance-20261008.md)
+and [Luna-56 correction-only contract](../../../.github/agents/luna-56.agent.md).
+The authorization record below is retained as the pre-execution governance
+decision; its “not executed” status describes that decision point only.
 
 ## Luna-55 serial relay/destination retention composition — AUTHORIZED / NOT EXECUTED at selection — 2026-10-08
 
@@ -59,8 +98,8 @@ not a runtime input.
 
 This is mechanistic evidence only: no task efficacy, production default,
 hardware equivalence, architecture promotion, or ACP/A01-A15 change is
-authorized. **Luna-55 is not yet executed; stop for independent Luna-0
-review after the contracted factorial run. No Luna-56 is authorized.** See
+authorized. **At the selection decision, Luna-55 was not yet executed and
+Luna-56 was not authorized.** See
 the [Luna-55 contract](../../../.github/agents/luna-55.agent.md).
 
 ## Luna-54 relay event-generation and propagation — SUPPORTED; independent Luna-0 review PASS — 2026-10-08

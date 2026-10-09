@@ -1,10 +1,42 @@
 # Architecture Changelog
 
-## Luna-55 serial relay/destination retention composition — EXECUTED; PARTIALLY SUPPORTED; Luna-0 review pending — 2026-10-08
+## Post-Luna-55 regression governance — CORRECTIVE FOLLOW-UP AUTHORIZED / NOT EXECUTED — 2026-10-08
+
+Luna-0 independently reproduced the five historical regression failures at
+`53c68b0f8e9fb89c0a405baa332891755066c001`. All five are
+**CHECKOUT-MATERIALIZATION DEFECTS**: canonical Git identities remain intact,
+while the tests/verifiers require a CRLF checkout even when the current
+checkout is exact LF. The three Luna-47F failures stop at one result-hash
+gate; the Luna-53 stored L46 SHA and byte length exactly identify the pinned
+object's CRLF transform. Luna-46/47F/53/54/55 historical evidence was checked
+against its publication Git objects and remains unchanged; no evidence
+regression was found.
+
+The accepted Luna-55 bounded result remains **SCIENTIFIC RESULT VALID —
+REPOSITORY GATE FOLLOW-UP REQUIRED** and **PARTIALLY SUPPORTED**: 10/16
+predeclared primary streams respond only in RR; all three single-factor
+cells are silent on target. Controls and the 33-stream secondary group remain
+separate. No task, production, hardware, or A01-A15 claim follows.
+
+**CORRECTIVE REGRESSION FOLLOW-UP AUTHORIZED.** Luna-56 is authorized only
+for historical Git-object versus exact LF/CRLF checkout verification and
+the five named regression tests, with mutation rejection, unchanged
+historical pins/artifacts, and a fresh green full suite required. It is not
+executed here. No ACP or architecture change; no Luna-57/scientific
+successor is authorized. See the
+[Luna-0 governance handoff](handoffs/luna-0-post-luna55-regression-governance-20261008.md)
+and [Luna-56 correction contract](../.github/agents/luna-56.agent.md).
+
+## Luna-55 serial relay/destination retention composition — EXECUTED; PARTIALLY SUPPORTED; Luna-0 review complete; repository gate follow-up required — 2026-10-08
 
 **EXECUTED — PARTIALLY SUPPORTED within the fixed factorial and frozen
-software-reference setup; independent Luna-0 review is pending.** In the
-16 predeclared primary targets, 10 crossed only in the composed RR cell;
+software-reference setup. Independent Luna-0 review completed with a
+qualified PASS on revision
+`e6a5b7c900a023c70aa2776e039a4094f02962b4`; the post-review governance
+decision classifies the five red test gates as checkout-materialization
+defects and authorizes the correction-only Luna-56 follow-up recorded in the
+[governance handoff](handoffs/luna-0-post-luna55-regression-governance-20261008.md).
+In the 16 predeclared primary targets, 10 crossed only in the composed RR cell;
 HH, relay-only RH and destination-only HR each crossed zero targets. Six
 targets did not cross. E+ zero-decay-insufficient (49), E0 (10), NR1 (189)
 and NR0 (23) controls had no crossing in any cell. The 33-stream secondary
@@ -33,7 +65,8 @@ mask them.
 This remains experimental mechanism evidence only. No A01-A15/ACP change,
 task efficacy, production suitability, hardware equivalence or architecture
 promotion is claimed. ACP-0008 remains experimental, opt-in and disabled by
-default. Stop for independent read-only Luna-0 review; no Luna-56 is
+default. The independent review is complete; the repository gate remains
+red pending the authorized Luna-56 correction. No scientific successor is
 authorized.
 
 ## Luna-55 serial relay/destination retention composition — AUTHORIZED / NOT EXECUTED at selection — 2026-10-08
