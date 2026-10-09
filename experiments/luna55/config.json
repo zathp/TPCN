@@ -1,0 +1,25 @@
+{
+  "schema": "TPCN-LUNA55-CONFIG-1",
+  "authorization_revision": "312eba8c8e036927408fb2156756a50d15762bc8",
+  "source_selection": "artifacts/luna55-selection/post-luna54-destination-oracle.json",
+  "source_selection_sha256": "2ac7b79015c00d5055b1b6226ce23239f691ba07a368e80768737e39f0b2bd57",
+  "conditions": {
+    "HH": {"relay_decay_rate_z": 0.0125, "destination_decay_rate_z": 0.0125},
+    "RH": {"relay_decay_rate_z": 0.00125, "destination_decay_rate_z": 0.0125},
+    "HR": {"relay_decay_rate_z": 0.0125, "destination_decay_rate_z": 0.00125},
+    "RR": {"relay_decay_rate_z": 0.00125, "destination_decay_rate_z": 0.00125}
+  },
+  "target_streams": [
+    "c00-011", "c00-032", "c00-037", "c01-012", "c01-020", "c01-041",
+    "c01-050", "c02-010", "c02-015", "c02-019", "c02-023", "c02-046",
+    "c03-023", "c03-058", "c04-001", "c04-043"
+  ],
+  "runtime": {
+    "queue_capacity": 128,
+    "runtime_event_budget": 1024,
+    "per_neuron_event_budget": 4096,
+    "settling_horizon": 4.0
+  },
+  "phase_policy": "Fresh bounded runtime for every stream in two deterministic retained initial/replay phases. Initial and replay are not independent samples.",
+  "interpretation_boundary": "Mechanistic factorial only; no task efficacy, production, hardware, or architecture promotion."
+}

@@ -1,0 +1,23 @@
+{
+  "schema": "TPCN-LUNA55-PROTOCOL-1",
+  "task_id": "luna-55-acp0008-serial-retention-composition-20261008",
+  "authorization_contract": ".github/agents/luna-55.agent.md",
+  "starting_revision": "312eba8c8e036927408fb2156756a50d15762bc8",
+  "factors": ["relay.integration.decay_rate_z", "destination.integration.decay_rate_z"],
+  "arms": ["HH", "RH", "HR", "RR"],
+  "reused_cells": {
+    "HH": "Luna-54 control initial/replay after compatibility verification",
+    "RH": "Luna-54 intervention initial/replay after compatibility verification",
+    "HR": "Luna-53 destination intervention initial/replay after compatibility verification",
+    "RR": "Fresh complete source-to-relay-to-destination execution; never inject retained Luna-54 destination arrivals"
+  },
+  "primary_endpoint": "At least one target stream has a complete-lineage destination integration discharge linked to a canonical E2 emission.",
+  "primary_target_count": 16,
+  "critical_negative_control_count": 49,
+  "prohibited": [
+    "No parameter search or additional decay values.",
+    "No source-network rerun, fixture regeneration, training, task efficacy, or hardware test.",
+    "No labels, evaluator strata, target flags, or oracle results enter runtime computation.",
+    "No modification of Luna-44 through Luna-54 scientific artifacts."
+  ]
+}
