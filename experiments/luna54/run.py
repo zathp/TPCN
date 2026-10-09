@@ -707,14 +707,14 @@ def audit_recurrence(
     if config.integration is None:
         raise GateError(f"{label} integration state unexpectedly disabled")
     integration = config.integration
-    expected_elapsed_by_update: list[float] | None = None
+    node_events: list[Record] | None = None
     if runtime_event_trace is not None:
         if neuron_id is None:
             raise GateError(f"{label} runtime-event audit requires a neuron ID")
         node_events = [
             event
             for event in runtime_event_trace
-            if event[2] == neuron_id
+            if len(event) == 12 and event[2] == neuron_id
         ]
         input_events = [
             event
@@ -726,109 +726,118 @@ def audit_recurrence(
                 f"{label} runtime-event/integration trace count mismatch: "
                 f"{len(input_events)} != {len(traces)}"
             )
-        expected_elapsed_by_update = []
-        last_node_event_time = 0.0
-        update_index = 0
-        for event in node_events:
-            event_timestamp = float(event[0])
-            if event_timestamp < last_node_event_time:
-                raise GateError(f"{label} runtime event time moved backwards")
-            if event[3] == EventType.EXCURSION.value:
-                if float(traces[update_index]["timestamp"]) != event_timestamp:
-                    raise GateError(
-                        f"{label} runtime event/integration timestamp mismatch at {update_index}"
-                    )
-                expected_elapsed_by_update.append(
-                    event_timestamp - last_node_event_time
-                )
-                update_index += 1
-            last_node_event_time = event_timestamp
     z = 0.0
     prior_timestamp = 0.0
     crossing_count = 0
     discharge_count = 0
     checks = []
-    for index, trace in enumerate(traces):
-        timestamp = float(trace["timestamp"])
+    update_index = 0
+    timeline = node_events if node_events is not None else [
+        [trace["timestamp"], None, neuron_id, EventType.EXCURSION.value]
+        for trace in traces
+    ]
+    for event_index, event in enumerate(timeline):
+        timestamp = float(event[0])
         elapsed = timestamp - prior_timestamp
-        if timestamp < prior_timestamp or float(trace["elapsed"]) < 0.0:
-            raise GateError(f"{label} recurrence timestamp/elapsed moved backwards at {index}")
-        if (
-            expected_elapsed_by_update is not None
-            and float(trace["elapsed"]) != expected_elapsed_by_update[index]
-        ):
-            raise GateError(f"{label} recurrence timestamp/elapsed mismatch at {index}")
+        if timestamp < prior_timestamp:
+            raise GateError(f"{label} recurrence timestamp moved backwards at event {event_index}")
+        is_input = event[3] == EventType.EXCURSION.value
+        if is_input:
+            if update_index >= len(traces):
+                raise GateError(f"{label} runtime timeline has extra input events")
+            trace = traces[update_index]
+            if timestamp != float(trace["timestamp"]):
+                raise GateError(
+                    f"{label} runtime event/integration timestamp mismatch at {update_index}"
+                )
+            if float(trace["elapsed"]) != elapsed:
+                raise GateError(
+                    f"{label} recurrence timestamp/elapsed mismatch at {update_index}"
+                )
+        else:
+            if event[3] != "internal":
+                raise GateError(
+                    f"{label} runtime timeline contains unsupported neuron event {event[3]!r}"
+                )
+            trace = None
         expected_decay = z * math.exp(-integration.decay_rate_z * elapsed)
-        _require_close(float(trace["z_before_decay"]), z, f"{label} z-before at {index}")
-        _require_close(
-            float(trace["z_after_decay"]),
-            expected_decay,
-            f"{label} event-time decay at {index}",
-        )
-        integrated = (
-            trace["mode_before"] == "N"
-            and abs(float(trace["x_after_input"])) < config.theta_e
-        )
-        if trace["integrated"] is not integrated:
-            raise GateError(f"{label} integration admission mismatch at {index}")
-        expected_input = (
-            max(
-                -integration.z_max,
-                min(
-                    integration.z_max,
-                    expected_decay + integration.input_gain * float(trace["input_value"]),
-                ),
+        if trace is None:
+            z = expected_decay
+        else:
+            _require_close(float(trace["z_before_decay"]), z, f"{label} z-before at {update_index}")
+            _require_close(
+                float(trace["z_after_decay"]),
+                expected_decay,
+                f"{label} event-time decay at {update_index}",
             )
-            if integrated
-            else expected_decay
-        )
-        _require_close(
-            float(trace["z_after_input"]),
-            expected_input,
-            f"{label} input update at {index}",
-        )
-        crossing = abs(expected_input) >= integration.discharge_quantum
-        crossing_count += crossing
-        should_discharge = (
-            integrated
-            and crossing
-            and float(trace["x_after_input"]) * expected_input >= 0.0
-        )
-        expected_discharge = (
-            math.copysign(integration.discharge_quantum, expected_input)
-            if should_discharge
-            else 0.0
-        )
-        if float(trace["discharge_amount"]) != expected_discharge:
-            raise GateError(f"{label} discharge decision mismatch at {index}")
-        if should_discharge:
-            discharge_count += 1
-        expected_post = expected_input - expected_discharge
-        _require_close(
-            float(trace["z_post_discharge"]),
-            expected_post,
-            f"{label} post-discharge state at {index}",
-        )
-        if bool(trace["crossed_theta_e"]) != (
-            abs(float(trace["x_post_discharge"])) >= config.theta_e
-        ):
-            raise GateError(f"{label} theta-E crossing mismatch at {index}")
-        z = expected_post
+            integrated = (
+                trace["mode_before"] == "N"
+                and abs(float(trace["x_after_input"])) < config.theta_e
+            )
+            if trace["integrated"] is not integrated:
+                raise GateError(f"{label} integration admission mismatch at {update_index}")
+            expected_input = (
+                max(
+                    -integration.z_max,
+                    min(
+                        integration.z_max,
+                        expected_decay
+                        + integration.input_gain * float(trace["input_value"]),
+                    ),
+                )
+                if integrated
+                else expected_decay
+            )
+            _require_close(
+                float(trace["z_after_input"]),
+                expected_input,
+                f"{label} input update at {update_index}",
+            )
+            crossing = abs(expected_input) >= integration.discharge_quantum
+            crossing_count += crossing
+            should_discharge = (
+                integrated
+                and crossing
+                and float(trace["x_after_input"]) * expected_input >= 0.0
+            )
+            expected_discharge = (
+                math.copysign(integration.discharge_quantum, expected_input)
+                if should_discharge
+                else 0.0
+            )
+            if float(trace["discharge_amount"]) != expected_discharge:
+                raise GateError(f"{label} discharge decision mismatch at {update_index}")
+            if should_discharge:
+                discharge_count += 1
+            expected_post = expected_input - expected_discharge
+            _require_close(
+                float(trace["z_post_discharge"]),
+                expected_post,
+                f"{label} post-discharge state at {update_index}",
+            )
+            if bool(trace["crossed_theta_e"]) != (
+                abs(float(trace["x_post_discharge"])) >= config.theta_e
+            ):
+                raise GateError(f"{label} theta-E crossing mismatch at {update_index}")
+            z = expected_post
+            checks.append(
+                {
+                    "index": update_index,
+                    "timestamp": timestamp,
+                    "elapsed": elapsed,
+                    "input": float(trace["input_value"]),
+                    "integrated": integrated,
+                    "expected_z_after_decay": expected_decay,
+                    "expected_z_after_input": expected_input,
+                    "threshold_crossing": crossing,
+                    "expected_discharge": expected_discharge,
+                    "expected_z_post_discharge": expected_post,
+                }
+            )
+            update_index += 1
         prior_timestamp = timestamp
-        checks.append(
-            {
-                "index": index,
-                "timestamp": timestamp,
-                "elapsed": elapsed,
-                "input": float(trace["input_value"]),
-                "integrated": integrated,
-                "expected_z_after_decay": expected_decay,
-                "expected_z_after_input": expected_input,
-                "threshold_crossing": crossing,
-                "expected_discharge": expected_discharge,
-                "expected_z_post_discharge": expected_post,
-            }
-        )
+    if update_index != len(traces):
+        raise GateError(f"{label} runtime timeline omitted integration updates")
     return {
         "passed": True,
         "updates": len(traces),
@@ -1121,6 +1130,16 @@ def run_stream(
         f"{stream_id}/destination",
         runtime_event_trace,
         "destination",
+    )
+    _require_close(
+        float(neuron_snapshot["relay_state"]["z"]),
+        float(relay_oracle["final_z"]),
+        f"{stream_id}/relay final state",
+    )
+    _require_close(
+        float(neuron_snapshot["destination_state"]["z"]),
+        float(destination_oracle["final_z"]),
+        f"{stream_id}/destination final state",
     )
     route_reconciliation = reconcile_routes(
         route_enqueues,

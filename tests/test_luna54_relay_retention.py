@@ -138,6 +138,31 @@ def test_recurrence_elapsed_uses_intervening_node_events() -> None:
         )
 
 
+def test_recurrence_oracle_propagates_decay_through_internal_events() -> None:
+    relay, destination = _config("intervention")
+    output = luna54.run_stream(
+        "synthetic-005",
+        _synthetic_inputs((0.4, 0.4, 0.4, 0.4)),
+        relay,
+        destination,
+        BOUNDS,
+    )
+
+    assert any(
+        event[2] == "relay" and event[3] == "internal"
+        for event in output["runtime_event_trace"]
+    )
+    oracle = luna54.audit_recurrence(
+        output["relay_integration_traces"],
+        relay,
+        "synthetic-005/relay",
+        output["runtime_event_trace"],
+        "relay",
+    )
+
+    assert oracle["passed"] is True
+
+
 def test_destination_decay_is_historical_under_intervention() -> None:
     relay, destination, result = luna54._config_for_condition(
         "intervention", FROZEN_CONFIG, LUNA54_CONFIG
