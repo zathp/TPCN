@@ -11,7 +11,7 @@ tpcn_handoff:
   contract_version: "1.2"
   branch: "main"
   base_revision: "b1d8cc16261ea077b9d3b7c7cb24c975e4c721ee"
-  result_revision: "fff83941e71372784cd962bdd5f9f645ab83d301"
+  result_revision: "fff8394807573f506cc7e42cdc4d40bca0d958f5"
   dependencies:
     - "Published authorization at b1d8cc16261ea077b9d3b7c7cb24c975e4c721ee"
     - "Explicit subsequent assignment in the current request"
@@ -218,3 +218,12 @@ closed as PASS. After publishing, the orchestrator verifies
 `HEAD == origin/main` and a clean worktree. No automatic task study or
 scientific successor is authorized. Passing these interface fixtures does
 not establish efficacy, authorize training, or promote A01–A15.
+
+### Provenance correction — 2026-10-09
+
+The `result_revision` above is the actual implementation commit resolved from
+Git object history. An earlier handoff version mistyped it as
+`fff83941e71372784cd962bdd5f9f645ab83d301`, which is not a commit. The
+implementation commit is `fff8394807573f506cc7e42cdc4d40bca0d958f5`;
+the final publication commit remains
+`dab2600680c1ef1c7e0c21747681bc16b2a72e99`.

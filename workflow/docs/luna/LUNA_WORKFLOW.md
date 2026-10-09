@@ -1,5 +1,28 @@
 # TPCN Luna Multi-Agent Workflow — Event-Driven Architecture
 
+## Luna-60 follow-up — task-output assignment prerequisite authorized; no task study — 2026-10-09
+
+**TASK EFFICACY STILL NOT BOUNDED. LUNA-61 TASK-OUTPUT ASSIGNMENT DESIGN
+PREREQUISITE AUTHORIZED / NOT EXECUTED.** Luna-60 established a valid
+downstream interface but did not establish a task relationship for the
+frozen `destination` emission. Retained destination experiments are
+mechanism studies; no independent event/deadline target generator or causal
+output assignment exists. Fixed/no-training task scoring would currently be
+arbitrary. The Luna-60 adapter/evaluator non-interference N/A checks are
+**NON-BLOCKING BY CONSTRUCTION**: the adapter consumes an immutable emission
+and does not reference the runtime, routing, prediction/error, eligibility or
+reward subsystem. Existing reward addresses actual emission work and does
+not supply task-deadline/omission semantics.
+
+The [Luna-61 contract](../../../.github/agents/luna-61.agent.md) authorizes
+documentation-only inspection/design to determine whether an independent
+non-circular target/task assignment is supportable and whether a later
+fixed-behavior or learning prerequisite is needed. The [Luna-0 governance
+handoff](../../handoffs/luna-0-task-output-assignment-governance-20261009.md)
+records source, fixture, credit and revision evidence. No task, data
+generation, training, efficacy, parameter selection, new source, or ACP is
+authorized. Independent Luna-0 review is required before any successor.
+
 ## Current owner output decision — Luna-60 AUTHORIZED / NOT EXECUTED — 2026-10-09
 
 **TASK-OUTPUT INTERFACE PREREQUISITE AUTHORIZED.** The owner-approved binary,

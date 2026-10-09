@@ -1,5 +1,34 @@
 # Architecture Changelog
 
+## Luna-60 follow-up — task-output assignment design prerequisite authorized; no task study — 2026-10-09
+
+At clean published `main == origin/main`
+`dab2600680c1ef1c7e0c21747681bc16b2a72e99`, Luna-0 reviewed the completed
+Luna-60 output interface against its implementation, existing task fixtures,
+retained destination mechanism records and ACP-0006. **Disposition: TASK
+EFFICACY STILL NOT BOUNDED.** The terminal `destination` source has no
+independently governed task meaning in the retained Luna-53/54/55/58 studies;
+no concrete independent target event or task generator is defined. A
+fixed/no-training score would therefore be arbitrary at this point. Existing
+Luna-13C and Luna-12J fixtures use different output/decision semantics and do
+not supply a reusable destination event/deadline task.
+
+The Luna-60 non-interference N/A checks are **NON-BLOCKING BY CONSTRUCTION**:
+the downstream mapper accepts an immutable already-materialized emission and
+the evaluator has no runtime/routing/predictor/eligibility/reward access.
+Current eligibility/reward supports actual addressed emissions, not task
+omissions or correct silence. No integration test, task run, training,
+parameter selection, reward change, efficacy or ACP is authorized.
+
+Authorize only documentation-only Luna-61 task-output assignment and
+fixed-behavior viability design under `.github/agents/luna-61.agent.md`;
+do not execute it in this governance pass. Correct Luna-60 handoff's
+mistyped implementation SHA: actual implementation commit
+`fff8394807573f506cc7e42cdc4d40bca0d958f5`; final publication
+`dab2600680c1ef1c7e0c21747681bc16b2a72e99`. No A01-A15 or ACP status
+changes. See
+`handoffs/luna-0-task-output-assignment-governance-20261009.md`.
+
 ## Luna-60 binary task-output prerequisite — AUTHORIZED / NOT EXECUTED — 2026-10-09
 
 At exact clean `main` baseline `4ffd13f163d7eb95747b45a1d9d23550ee11c39f`,
