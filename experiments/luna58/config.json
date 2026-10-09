@@ -1,0 +1,29 @@
+{
+  "schema": "TPCN-LUNA58-CONFIG-1",
+  "authorization_revision": "7dd3dc868e7518a33418d4df94b07c15dea52adb",
+  "baseline_condition": "RR",
+  "baseline_relay_decay_rate_z": 0.00125,
+  "baseline_destination_decay_rate_z": 0.00125,
+  "intervention_destination_decay_rate_z": 0.00001,
+  "expected_luna55_configuration_digest": "d99b31646791f37e9242dfb9089e299dc6ab31e21bc0f96b244e92a6f4bed708",
+  "expected_source_input_phase_digest": "d73c99d83847b50bb5cb66920b95c3546d818874f582b6b6d9d8c5bfa90aaa3b",
+  "expected_intervention_source_scientific_digest": "4170a2688438a2f86a7b9c907d86efff006309ecdc5bf57e14011d6a5033ed54",
+  "expected_stream_count": 320,
+  "expected_route_count_per_phase": 421,
+  "expected_inherited_truncated_streams": [
+    "c00-019",
+    "c00-059",
+    "c01-006",
+    "c01-008",
+    "c01-035",
+    "c02-058",
+    "c04-046"
+  ],
+  "runtime": {
+    "queue_capacity": 128,
+    "runtime_event_budget": 1024,
+    "per_neuron_event_budget": 4096,
+    "settling_horizon": 4.0
+  },
+  "phase_policy": "Fresh complete causal E2 source-to-relay-to-destination execution for RR control first, then the single finite destination-retention intervention; initial/replay are deterministic checks, not independent samples."
+}
