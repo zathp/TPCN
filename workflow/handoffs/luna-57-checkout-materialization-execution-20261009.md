@@ -77,21 +77,20 @@ tpcn_handoff:
   tests_passing:
     - "Three required Luna-55 selectors: 3 passed."
     - "Complete tests/test_luna55_factorial.py: 22 passed."
-    - "Focused Luna-46/Luna-47F/Luna-53/Luna-54 provenance modules excluding the in-tree ownership check: 277 passed, 1 skipped, 1 deselected."
+    - "Committed Luna-55/Luna-54 integrity modules: 32 passed."
+    - "Committed Luna-46/Luna-47F/Luna-53 provenance modules: 268 passed, 1 skipped (WinError 1314)."
+    - "Committed historical/core tests: 72 passed."
     - "Luna-47F public experiments/luna47f/diagnostic.py --check in a clean disposable worktree: PASS."
     - "test_reproduction_check_is_read_only in a clean disposable worktree: 1 passed."
+    - "Full repository suite at clean implementation commit b6b4a54b82cd89f486d2b56495371f9a89b7f5f8: 1,748 passed, 1 capability skip, 0 failed or errors."
   tests_failed:
     - "An initial combined focused-module run invoked test_reproduction_check_is_read_only in the modified working tree and failed with ValueError: non-owned change because Luna-57's uncommitted authorized edits violate Luna-47F's ownership guard. The same test and public --check passed from clean disposable worktrees."
   tests_not_run:
-    - "Clean committed-state validation: exact three targets 3 passed; Luna-55/Luna-54 integrity 32 passed; Luna-46/Luna-47F/Luna-53 provenance 268 passed, 1 capability skip; historical/core 72 passed."
-    - "Full repository test suite at implementation commit b6b4a54b82cd89f486d2b56495371f9a89b7f5f8: 1,748 passed, 1 capability skip, 0 failed or errors."
-    - "CUDA-specific test: not part of this focused run; authorization handoff reports its baseline test passed."
     - "Scientific runners, run_phase, summarize, replay, parameter sweep, and artifact generation: prohibited and not run."
   assumptions:
     - "The exact current Git object or its exact LF-to-CRLF transform are the only permitted checkout byte forms."
     - "Selection checkout_sha256 remains historical metadata and must match one exact allowed form, not every present checkout."
   unresolved:
-    - "Full suite and clean committed-state validation remain pending with the parent orchestrator."
     - "Independent Luna-0 review is the next gate."
   recommended_next_agent:
     - "Luna-0: independent review of the bounded correction and evidence."
@@ -206,7 +205,7 @@ pytest 9.1.1, `core.autocrlf=true`. Tests were regression/unit tests only.
 | `python experiments/luna47f/diagnostic.py --check` | Disposable detached worktree at clean `7d54aee4cc4ed904c5cb8a98a697cad4b62beb15` | **PASS: retained analysis, replay, inputs, code and protected hashes** | Worktree removed after command |
 | `test_reproduction_check_is_read_only` | Same clean disposable baseline worktree | **1 passed** | Worktree removed after command |
 | Exact identity comparison for eight phase inputs and protected Luna-55 publication objects | Modified worktree; post-test | **8/8 current phase bytes exact LF; all selection hashes identify allowed forms; all protected output blobs match HEAD** | Measurements in this handoff |
-| Protected-path diff check | Modified worktree; post-test | **No changes** in artifacts/luna53, artifacts/luna54, artifacts/luna55, artifacts/luna55-selection, or `.gitattributes` | `git diff --exit-code HEAD -- ...` returned 0 |
+| Protected-path diff check | Clean implementation commit `b6b4a54b82cd89f486d2b56495371f9a89b7f5f8`; post-test | **No changes** in Luna-46/47F/53/54/55 artifacts, Luna-55 selection, or `.gitattributes` | `git diff --exit-code HEAD^ HEAD -- ...` returned 0 |
 | `python -m pytest -q -rs --tb=short` | Clean implementation commit `b6b4a54b82cd89f486d2b56495371f9a89b7f5f8`; Windows/Python 3.11.4 | **1,748 passed, 1 skipped, 0 failed** | Only skip: directory symlink unsupported, Windows `WinError 1314`; CUDA was not skipped |
 | Protected artifact diff and clean worktree | Implementation commit | **PASS** | Protected historical artifacts and `.gitattributes` unchanged; source tree clean after tests |
 
