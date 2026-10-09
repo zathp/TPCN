@@ -1,5 +1,37 @@
 # Architecture Changelog
 
+## Luna-58 independent governance review — PASS within frozen setup; task-output prerequisite remains — 2026-10-09
+
+At fetched clean `main == origin/main` baseline
+`cddb2329bbfecf63da5dc2f7b22980cf08d3ce35`, Luna-0 independently reviewed
+the persisted Luna-58 contract, execution handoff, four phase artifacts,
+summary, frozen input pins and protected historical artifact identities.
+Artifact hashes, pinned source/selection identities, route/input reconciliation,
+initial/replay identity, separate outcome strata, resource bounds, and all
+55 protected Luna-45/46/53/54/55 artifact Git objects were consistent with
+the execution handoff. No Luna-58 experiment, tests or `--verify` command
+were rerun. **Review disposition: PASS — selective rescue supported only
+within the frozen 320-stream software-reference mechanism setup.**
+
+The review closes Luna-58's pending independent-review gate. It does not
+change A01-A15, ACP-0008, Luna-55's PARTIALLY SUPPORTED status, or any
+architecture/promotion status; it establishes no task efficacy,
+generalization, production, calibrated energy or hardware equivalence.
+
+The owner's separate task question remains **TASK-OUTPUT INTERFACE
+PREREQUISITE REQUIRED**. The Luna-13C fixture has a narrow downstream
+interval/deadline evaluator, but there is no governed mapping for the owner
+task's actual output identity/channel/target/deadline/duplicates/silence.
+Current native numeric prediction/error and emission-only eligibility do not
+provide that mapping or fair omission credit. Fixed/no-training is meaningful
+only after the owner freezes an actual output/evaluator contract; training
+cannot currently assign all eight logical outcomes to existing credit
+identities. No experiment, fixture, tests, parameter search, task arm,
+omission credit or Luna-58 rate selection was made. No new task contract or
+ACP was created because the required owner choices and exact scope remain
+open. See
+`handoffs/luna-0-owner-request-governance-review-20261009.md`.
+
 ## Luna-59 task objective — reward-semantics design prerequisite, no experiment — 2026-10-09
 
 **TASK OBJECTIVE DEFINED — REWARD SEMANTICS PREREQUISITE REQUIRED.**
@@ -21,14 +53,21 @@ reproducibility criteria are preserved, not claimed met. Exact task windows,
 independent population/splits/repetitions, comparator and arms remain gated.
 Luna-58's `0.00001` is not automatically selected; E+49 is not relabeled.
 
-The prerequisite is not executed and cannot begin before authoritative
-publication and explicit assignment. An efficacy experiment needs a separate
-complete contract. Luna-58 independent review remains pending; no A01-A15,
-accepted ACP, architecture contract, historical result or promotion changes.
-See
-`handoffs/luna-0-owner-task-objective-luna59-governance-20261009.md`.
+At this historical baseline, the documentation prerequisite had not yet
+been executed and the Luna-58 independent review was pending. The subsequent
+read-only review is recorded above. The published Luna-59 design document is
+now complete as an unaccepted proposal; remaining owner decisions still gate
+any bounded task-output contract, implementation or efficacy authorization.
+No A01-A15, accepted ACP, architecture contract, historical result or
+promotion changes. See
+`handoffs/luna-0-owner-task-objective-luna59-governance-20261009.md` and
+`handoffs/luna-0-owner-request-governance-review-20261009.md`.
 
-## Luna-58 finite destination-retention rescue — EXECUTED / SELECTIVE RESCUE SUPPORTED; independent Luna-0 review required — 2026-10-09
+## Luna-58 finite destination-retention rescue — EXECUTED / SELECTIVE RESCUE SUPPORTED; independent review subsequently closed — 2026-10-09
+
+This was the recorded gate at the time of execution publication. The later
+independent review is closed by the current review entry above; the historical
+execution account below is retained without rewriting its chronology.
 
 Read-only comparison of the frozen Luna-55 evidence identifies a bounded
 mechanism question for the six RR nonresponders. Their decay-free E2 peaks
@@ -65,8 +104,9 @@ This is mechanistic software-reference evidence only; ACP-0008 remains
 experimental, opt-in and disabled by default. No A01-A15 clause, architecture
 contract, task-efficacy, production, or hardware-equivalence claim changes.
 The one initial harness abort before any artifact/intervention is disclosed
-in the execution handoff. **Stop for independent read-only Luna-0 review; no
-Luna-59 or parameter search is authorized.** See the [Luna-58 execution
+in the execution handoff. The independent read-only Luna-0 review subsequently closed this evidence
+gate; no Luna-59 efficacy experiment or parameter search is authorized. See
+the [Luna-58 execution
 handoff](handoffs/luna-58-finite-destination-retention-execution-20261009.md),
 [Luna-0 selection handoff](handoffs/luna-0-scientific-successor-selection-luna55-nonresponders-20261009.md)
 and [Luna-58 contract](../.github/agents/luna-58.agent.md).

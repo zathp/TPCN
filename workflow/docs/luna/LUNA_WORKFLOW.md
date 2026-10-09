@@ -1,8 +1,8 @@
 # TPCN Luna Multi-Agent Workflow — Event-Driven Architecture
 
-## Luna-59 owner task objective — reward-interface design prerequisite only — 2026-10-09
+## Luna-59 owner task objective — task-output/reward-interface design prerequisite only — 2026-10-09
 
-**TASK OBJECTIVE DEFINED — REWARD SEMANTICS PREREQUISITE REQUIRED.**
+**TASK OBJECTIVE DEFINED — TASK-OUTPUT INTERFACE PREREQUISITE REQUIRED.**
 The owner selects controlled deterministic temporal event/deadline prediction,
 correct negative/ambiguous-prefix silence, premature/late errors and
 first-output scoring with duplicate efficiency penalty. Held-out balanced
@@ -11,24 +11,33 @@ comparator, at most +5 pp FPR degradation, matched temporal anti-shortcut
 controls and majority seed direction or exact independent deterministic replay.
 Applications remain deferred; E+49 has no imposed task crossing requirement.
 
-The current ACP-0006 interface predicts the next numeric external input and
-credits only actual emissions; no-emission reward is explicitly unmatched.
-It does not already provide task-deadline/omission semantics. **Only the
-documentation-only Luna-59 design prerequisite is authorized, not executed.**
-It must resolve fair credit or a justified no-training alternative without
-inventing semantics. No code, dataset generation, experiment, replay, tuning
-or automatic adoption of Luna-58's destination rate is authorized. No
-experimental arm or held-out population is frozen yet. The four-experiment
-allowance is not a quota; zero experiments are authorized.
+**Luna-58 independent review is CLOSED** by the read-only Luna-0 review at
+`cddb2329bbfecf63da5dc2f7b22980cf08d3ce35` (review handoff below). The
+selective rescue is supported only within its frozen mechanism setup; this is
+not task efficacy, generalization, production, energy, hardware-equivalence
+or architecture-promotion evidence.
+
+The published Luna-59 design prerequisite is complete as a proposal, not an
+accepted task-output interface. The current ACP-0006 interface predicts the
+next numeric external input and credits only actual emissions; no-emission
+reward is explicitly unmatched. It does not provide task-deadline/omission
+semantics or a governed task-output/readout mapping. **TASK-OUTPUT INTERFACE
+PREREQUISITE REQUIRED before any task efficacy study.** Owner choices on the
+output observation boundary, task timing/identity and fixed/no-training
+versus governed training remain open. No code, dataset generation,
+experiment, replay, tuning or automatic adoption of Luna-58's destination
+rate is authorized. No experimental arm or held-out population is frozen.
+The four-experiment allowance is not a quota; zero experiments are
+authorized.
 
 See the [bounded Luna-59 contract](../../../.github/agents/luna-59.agent.md)
 and [owner-objective governance handoff](../../handoffs/luna-0-owner-task-objective-luna59-governance-20261009.md).
-Prerequisite work requires authoritative publication and a later explicit
+Any further prerequisite work requires an exact bounded scope and explicit
 assignment. Efficacy requires a separate complete authorization after
-interface/task gates close. Luna-58 independent review remains pending;
-no A01-A15, ACP or architecture-promotion status changes.
+interface/task gates close. No A01-A15, ACP or architecture-promotion status
+changes.
 
-## Luna-58 finite destination-retention rescue — EXECUTED / SELECTIVE RESCUE SUPPORTED; independent Luna-0 review required — 2026-10-09
+## Luna-58 finite destination-retention rescue — EXECUTED / SELECTIVE RESCUE SUPPORTED; INDEPENDENT LUNA-0 REVIEW CLOSED — 2026-10-09
 
 **OBSERVED: SELECTIVE RESCUE SUPPORTED WITHIN THE FROZEN SETUP.** The
 published one-point mechanism experiment first reproduced the retained RR
@@ -54,9 +63,12 @@ This remains bounded software-reference mechanism evidence only. Luna-55
 remains PARTIALLY SUPPORTED within its frozen setup; no A01-A15 clause or ACP
 status changes, and no task-efficacy, generalization, production, energy,
 hardware-equivalence, or architecture-promotion claim follows. The initial
-non-record-producing runner abort is disclosed in the handoff. **Stop now
-for independent read-only Luna-0 review; no Luna-59 or parameter search is
-authorized.** See the [Luna-58 execution
+non-record-producing runner abort is disclosed in the execution handoff.
+The independent review closed this evidence gate without rerunning science;
+see the [Luna-0 owner-request review
+handoff](../../handoffs/luna-0-owner-request-governance-review-20261009.md)
+for scope and limitations. No Luna-59 efficacy experiment or parameter
+search is authorized. See the [Luna-58 execution
 handoff](../../handoffs/luna-58-finite-destination-retention-execution-20261009.md),
 [Luna-0 selection handoff](../../handoffs/luna-0-scientific-successor-selection-luna55-nonresponders-20261009.md)
 and [Luna-58 contract](../../../.github/agents/luna-58.agent.md).
