@@ -1,5 +1,32 @@
 # Architecture Changelog
 
+## Luna-63C reviewed design evidence integrated; isolated mechanism experiment authorized behind numerical certificate gate — 2026-10-09
+
+At clean `main == origin/main` `d006e1bc6ff09627df8fe7f6c1213380b953291f`,
+Luna-0 fetched the design branch and verified its reviewed design SHA
+`3e7d31b9a527e908b21abee3766906084e7cd082`, latest handoff SHA
+`a303ebb835b72fdd01c86df478431b8638aacbb4`, and clean branch status. The
+design returned **PASS WITH LIMITATIONS — design gate only**. The narrowest
+evidence-preserving integration was selected: cherry-pick the exact three
+documentation commits in source order (`a1a7d37`, `3e7d31b`, `a303ebb`).
+No executable code, tests, experiment results, or artifacts were integrated.
+
+The owner authorized a bounded isolated Luna-63C mechanism experiment, but
+this governance invocation did not execute it. Only preparation of an
+independent numerical/mechanistic certificate is currently released.
+Implementation and C0–C7 execution are blocked until a separate Luna-0 review
+returns PASS on the exact certificate hashes. The new
+`.github/agents/luna-63c-mechanism.agent.md` pins the reviewed equations,
+parameters, fixtures, event semantics and 42-record cap; the design-only
+`.github/agents/luna-63c.agent.md` remains unchanged.
+
+This is an isolated pre-ACP experiment authorization only. A01–A15 and
+ACP-0008 remain unchanged; no core/default promotion, production edit,
+sequence echo, task efficacy, 63A implementation reuse, 63B dependency,
+hardware-equivalence claim, or Luna-64 is authorized. No numerical
+certificate, implementation, solver, test or mechanism experiment was run.
+See `workflow/handoffs/luna-0-luna63c-mechanism-authorization-20261009.md`.
+
 ## Luna-63A/B evidence integration and Luna-63C design-only authorization — 2026-10-09
 
 At clean authoritative starting `main` `e52098b2141a3f121f23b512e877783a64ef8baa`,

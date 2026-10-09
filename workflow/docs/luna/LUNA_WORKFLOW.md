@@ -1,5 +1,30 @@
 # TPCN Luna Multi-Agent Workflow — Event-Driven Architecture
 
+## Luna-63C reviewed design integrated; mechanism authorization certificate-gated — 2026-10-09
+
+The Luna-63C nonlinear excursion design was independently reviewed
+**PASS WITH LIMITATIONS — design gate only** at
+`3e7d31b9a527e908b21abee3766906084e7cd082`; the latest design/review handoff
+is pinned at `a303ebb835b72fdd01c86df478431b8638aacbb4`. The documentation-only
+design evidence was cherry-picked to `main` in three source-ordered commits;
+these pins remain the authoritative review identities.
+
+The owner authorized a bounded isolated mechanism experiment, **not
+executed**. Only certificate preparation is released. The Luna-63C mechanism
+runtime and C0–C7 fixtures remain blocked until an independently derived
+numerical/mechanistic certificate receives a separate Luna-0 PASS against
+exact hashes. After that gate, work is permitted only under the new
+[Luna-63C mechanism contract](../../../.github/agents/luna-63c-mechanism.agent.md),
+on an isolated opt-in branch and namespace. The old
+[Luna-63C design-only contract](../../../.github/agents/luna-63c.agent.md)
+remains unchanged.
+
+No 63C implementation, solver, numerical certificate, test, or experiment
+has run. No 63A implementation may be imported; 63B remains blocked and is
+not a dependency. No task labels, sequence-order test, integrated sequence
+echo, ACP adoption, A01–A15 change, production/default edit, hardware claim,
+or Luna-64 is authorized.
+
 ## Luna-63A/B reviewed evidence integrated; 63B numerical gate blocked; 63C design assigned — 2026-10-09
 
 The independent Luna-0 reviews of Luna-63A publication
