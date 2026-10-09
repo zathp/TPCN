@@ -1673,6 +1673,9 @@ def run_one(phase: str, condition: str, invocation_id: str) -> Record:
         raise ValueError("invalid Luna-54 phase or condition")
     if not re.fullmatch(r"[A-Za-z0-9_-]{8,80}", invocation_id):
         raise ValueError("invocation_id must be a fresh bounded identifier")
+    output_path = _condition_output_path(condition, phase)
+    if output_path.exists():
+        raise GateError(f"phase output already exists and will not be overwritten: {output_path}")
     provenance = _require_baseline_ancestry()
     sources, protocol, config, frozen_config = _load_pinned_sources()
     if condition == "intervention":
@@ -1865,8 +1868,7 @@ def run_one(phase: str, condition: str, invocation_id: str) -> Record:
                 raise GateError(
                     "intervention inputs differ from exact authenticated historical control inputs"
                 )
-    _write_artifact(_condition_output_path(condition, phase), artifact)
-    return artifact
+    return _write_artifact(output_path, artifact)
 
 
 def _paired_summary(phase_artifacts: dict[tuple[str, str], Record]) -> Record:
