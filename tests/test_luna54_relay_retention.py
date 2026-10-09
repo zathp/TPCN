@@ -173,6 +173,14 @@ def test_destination_decay_is_historical_under_intervention() -> None:
     assert result["only_intervention_path"] == "relay.integration.decay_rate_z"
 
 
+def test_environment_record_uses_supported_float_info_fields() -> None:
+    environment = luna54._environment_record()
+
+    assert environment["implementation"]
+    assert environment["float_info"]["epsilon"] > 0.0
+    assert environment["float_info"]["mant_dig"] > 0
+
+
 def test_no_input_runtime_has_no_neural_or_route_output() -> None:
     relay, destination = _config("intervention")
 

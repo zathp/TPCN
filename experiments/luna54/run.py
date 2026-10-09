@@ -1626,7 +1626,19 @@ def _environment_record() -> Record:
         "machine": platform.machine(),
         "float_info": {
             name: getattr(sys.float_info, name)
-            for name in sys.float_info._fields
+            for name in (
+                "max",
+                "max_exp",
+                "max_10_exp",
+                "min",
+                "min_exp",
+                "min_10_exp",
+                "dig",
+                "mant_dig",
+                "epsilon",
+                "radix",
+                "rounds",
+            )
         },
     }
 
