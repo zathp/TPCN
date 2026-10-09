@@ -1,0 +1,98 @@
+{
+  "schema": "L63A-FROZEN-1",
+  "classification": "ISOLATED EXPERIMENTAL MODEL",
+  "lambda_0": {"rational": "1/8", "float": 0.125},
+  "z_max": 4,
+  "ttl": {"rational": "64", "float": 64.0},
+  "timestamp_domain": [0, 65],
+  "max_events": 32,
+  "preloads": [
+    {"id": "negative", "rational": "-3/4", "float": -0.75},
+    {"id": "zero", "rational": "0", "float": 0.0},
+    {"id": "positive", "rational": "3/4", "float": 0.75}
+  ],
+  "oracle_precision": 60,
+  "tolerance": {"absolute": 1e-12, "relative": 1e-12},
+  "seed": null,
+  "noise": false,
+  "schedule_encoding": "[rational time, binary64 time, kind, cue or null]; list order preserves ties",
+  "due_expiry": "One local event at 64; append after listed events unless an earlier boundary handler already canceled it. No evolution at/after expiry.",
+  "schedules": [
+    {"id": "A1-normal", "initial_gate": 1, "events": [
+      ["1/4", 0.25, "observation", null], ["7/4", 1.75, "observation", null],
+      ["4", 4.0, "observation", null], ["8", 8.0, "observation", null],
+      ["32", 32.0, "observation", null], ["36", 36.0, "observation", null]
+    ]},
+    {"id": "A2-hold", "initial_gate": 0, "events": [
+      ["1/4", 0.25, "observation", null], ["7/4", 1.75, "observation", null],
+      ["4", 4.0, "observation", null], ["8", 8.0, "observation", null],
+      ["32", 32.0, "observation", null], ["63", 63.0, "observation", null]
+    ]},
+    {"id": "A3-A5-H2", "initial_gate": 0, "events": [
+      ["1/4", 0.25, "observation", null], ["1", 1.0, "observation", null],
+      ["2", 2.0, "observation", null], ["2", 2.0, "cue", 1],
+      ["9/4", 2.25, "observation", null], ["15/4", 3.75, "observation", null],
+      ["6", 6.0, "observation", null]
+    ]},
+    {"id": "A3-A5-H8", "initial_gate": 0, "events": [
+      ["1", 1.0, "observation", null], ["4", 4.0, "observation", null],
+      ["8", 8.0, "observation", null], ["8", 8.0, "cue", 1],
+      ["33/4", 8.25, "observation", null], ["39/4", 9.75, "observation", null],
+      ["12", 12.0, "observation", null]
+    ]},
+    {"id": "A3-A5-H32", "initial_gate": 0, "events": [
+      ["4", 4.0, "observation", null], ["16", 16.0, "observation", null],
+      ["32", 32.0, "observation", null], ["32", 32.0, "cue", 1],
+      ["129/4", 32.25, "observation", null], ["135/4", 33.75, "observation", null],
+      ["36", 36.0, "observation", null]
+    ]},
+    {"id": "normal-comparator-H2", "initial_gate": 1, "events": [
+      ["1/4", 0.25, "observation", null], ["1", 1.0, "observation", null],
+      ["2", 2.0, "observation", null], ["2", 2.0, "cue", 1],
+      ["9/4", 2.25, "observation", null], ["15/4", 3.75, "observation", null],
+      ["6", 6.0, "observation", null]
+    ]},
+    {"id": "normal-comparator-H8", "initial_gate": 1, "events": [
+      ["1", 1.0, "observation", null], ["4", 4.0, "observation", null],
+      ["8", 8.0, "observation", null], ["8", 8.0, "cue", 1],
+      ["33/4", 8.25, "observation", null], ["39/4", 9.75, "observation", null],
+      ["12", 12.0, "observation", null]
+    ]},
+    {"id": "normal-comparator-H32", "initial_gate": 1, "events": [
+      ["4", 4.0, "observation", null], ["16", 16.0, "observation", null],
+      ["32", 32.0, "observation", null], ["32", 32.0, "cue", 1],
+      ["129/4", 32.25, "observation", null], ["135/4", 33.75, "observation", null],
+      ["36", 36.0, "observation", null]
+    ]},
+    {"id": "prior-gate-switch", "initial_gate": 1, "events": [
+      ["1/4", 0.25, "observation", null], ["1", 1.0, "cue", 0],
+      ["7/4", 1.75, "observation", null], ["4", 4.0, "observation", null],
+      ["8", 8.0, "observation", null], ["8", 8.0, "cue", 1],
+      ["33/4", 8.25, "observation", null], ["39/4", 9.75, "observation", null],
+      ["12", 12.0, "observation", null]
+    ]},
+    {"id": "expiry-boundary", "initial_gate": 0, "events": [
+      ["63", 63.0, "observation", null], ["64", 64.0, "cue", 1],
+      ["64", 64.0, "observation", null], ["65", 65.0, "observation", null]
+    ]},
+    {"id": "duplicate-cue", "initial_gate": 0, "events": [
+      ["2", 2.0, "observation", null], ["2", 2.0, "cue", 1],
+      ["2", 2.0, "cue", 1], ["9/4", 2.25, "observation", null],
+      ["15/4", 3.75, "observation", null], ["6", 6.0, "observation", null]
+    ]}
+  ],
+  "acceptance": [
+    "Closed form from total time in gate 1; independent Decimal exp at 60 digits",
+    "abs_error <= 1e-12 + 1e-12 * abs(expected); never outcome-fitted",
+    "Every valid HOLD interval and dt=0 cue preserves binary64 bits",
+    "Hold durations yield identical pre-release states and post-release recurrence",
+    "Prior-gate switch at 8 retains z0*exp(-1/8)",
+    "Nonzero normal comparator loses magnitude relative to HOLD at long delay",
+    "Zero preload never creates state",
+    "TTL equality preempts offered cue; terminal state cannot revive",
+    "Explicit validation faults; bounded state/event counter and canceled expiry",
+    "Independent 33-instance replay canonical JSON bytes/digests identical",
+    "Cue writes gate only after settlement; output interface absent"
+  ],
+  "nonclaims": ["canonical recall/emission", "sequence memory", "task efficacy", "hardware equivalence", "ACP acceptance", "core promotion", "integrated echo", "Luna-64"]
+}

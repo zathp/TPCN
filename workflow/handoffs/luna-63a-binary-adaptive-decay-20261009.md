@@ -164,3 +164,75 @@ Independent Luna-0 reviews this blocked record. No reviewer was spawned
 and no architecture self-review performed. Any resumed worker must finish
 all required reads and publish the frozen protocol/model/tests before
 outcomes. Integration remains blocked. Stop after publication.
+
+## Same-assignment continuation — prerequisite resolved before outcomes
+
+OBSERVED: the owner supplied the corrected read-only attachment path on
+2026-10-09 in the same-task follow-up:
+`C:\Users\Patrick\AppData\Roaming\Code\agentSessionData\00a4b25e-bb56-4501-ab4b-415f83f45089\attachments\050e3485-1c22-4408-b209-7245484d0137\Pasted text #1.txt`.
+All 1,157 lines were read in sections. The earlier unavailable-input outcome
+and published blocked commit remain historical facts, not deleted or
+reclassified as scientific execution. The attachment was available to the
+parent; this worker's first invocation lacked the corrected path.
+The attachment declares that committed contracts win on differences.
+Contract vocabulary ADAPTIVE-TAU, exact matrix, A-only ownership and
+isolated branch publication therefore govern; main equality, shared
+index edits and spawning reviewers are parent responsibilities, not this
+worker's instructions. No new scientific arm or parameter choice needed.
+
+OBSERVED: continuation branch is unchanged, clean at original blocked
+publication `1d1bee9a1c39edd1a0b4278d86d5750e4590b6d6`.
+Required contract/review/authorization/template reads from the first
+invocation remain completed. Remaining contract, current changelog/workflow,
+acceptance criteria, ACP README/template/0008 and source ranges in the
+authorization/review register were read directly in this assigned worktree,
+including historical impulse accumulator, synthetic charge-drain and
+legacy WEMA/CPCN evidence. Historical Luna-47 review lines 133-176 were read
+as required context only. No current lane B/C implementation/results read.
+
+### Pre-implementation identity/classification update
+
+This additive section supersedes the initial blocked status only for the
+resumed assignment; the original record above remains intact.
+
+```yaml
+tpcn_handoff_continuation:
+  agent: "Luna-63A"
+  luna_identifier: "Luna-63A"
+  descriptive_name: "Binary adaptive decay HOLD RELEASE"
+  task_id: "luna-63a-binary-adaptive-decay-20261009"
+  component: "Standalone scalar retention component"
+  status: "prerequisite resolved; frozen implementation prepared; outcomes not run"
+  contract_version: "1.2"
+  branch: "experiment/luna63a-binary-adaptive-decay"
+  base_revision: "e52098b2141a3f121f23b512e877783a64ef8baa"
+  result_revision: "Pre-outcome containing commit; pin after publication"
+  dependencies: ["Committed A contract", "Owner attachment read fully", "Required governance/source reads completed"]
+  owner: "Project owner"
+  classification: ["ISOLATED EXPERIMENTAL MODEL"]
+  hypothesis: "Bounded signed local state waits unchanged under zero leak and resumes analytic decay."
+  counter_hypothesis: "Hold changes bits, new gate applies retroactively, expiry bypasses clear, cue injects state or oracle fails."
+  interfaces_relied_on: ["Standalone Retention.process; standard-library binary64 exp; independent Decimal oracle"]
+  label_information_boundary: ["Only preload and gate enter computation; oracle is downstream measurement"]
+  timing_assumptions: ["Exact rational/binary64 timestamps", "Insertion ties", "Prior gate settles", "TTL equality preempts"]
+  reset_boundaries: ["Fresh independent instance only", "Absolute terminal TTL 64", "No reuse/reset API"]
+  resource_bounds: ["|z|<=4", "32 processed local events", "One due expiry", "33 frozen instances"]
+  authorized_scope: ["Exact ten paths from committed contract"]
+  unauthorized_scope: ["All production/shared/ACP/historical edits", "Lane B/C evidence", "Added science/search", "Integrated echo or Luna-64"]
+  controls: ["Frozen normal/HOLD/release/comparator/switch/expiry/duplicate/zero matrix", "Validation-only negatives"]
+  measurements: ["Raw event trace", "60-digit Decimal total-release oracle", "Fixed residual/tolerance", "HOLD bits", "Canonical replay"]
+  information_boundary_check: ["Oracle cannot enter model", "Cue setter writes R only", "No output interface"]
+  hardware_mapping: ["Qualitative zero-leak gate/register/expiry only"]
+  architecture_invariants_touched: ["A01-A15 mapping documented in README; no changes"]
+  preserves: ["Production/default config", "Luna-62 proposal", "ACP status", "Existing tests/artifacts"]
+  architecture_change: false
+  proposal: null
+  files_changed: ["Five experiment files", "Focused test", "This additive handoff; three artifacts planned only"]
+  tests_added: ["tests/test_luna63a_adaptive_decay.py"]
+  tests_passing: []
+  tests_failed: []
+  tests_not_run: ["Focused and seven required regressions; before frozen publication"]
+  assumptions: ["Exact software identity is not physical infinite retention"]
+  unresolved: ["Pre-outcome publish/pin", "Execute/record checks", "Independent Luna-0 review"]
+  recommended_next_agent: ["Independent Luna-0 after completed execution handoff"]
+```
