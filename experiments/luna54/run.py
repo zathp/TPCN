@@ -1902,7 +1902,7 @@ def _paired_summary(phase_artifacts: dict[tuple[str, str], Record]) -> Record:
     by_group: Record = {}
     primary_increase_streams: list[str] = []
     primary_complete_increases: list[str] = []
-    new_primary_emission_events: dict[str, list[str]] = {}
+    new_primary_emission_ids: dict[str, list[str]] = {}
     primary_extra_route_events = 0
     for group, stream_ids in strata.items():
         count = lambda record, field: (
@@ -1948,7 +1948,11 @@ def _paired_summary(phase_artifacts: dict[tuple[str, str], Record]) -> Record:
             control_signatures = Counter(_discharge_emission_signatures(control))
             treatment_signatures = Counter(_discharge_emission_signatures(treatment))
             new_signatures = list((treatment_signatures - control_signatures).elements())
-            relay_emission_increase = bool(new_signatures) and (
+            new_emission_ids = sorted(
+                set(treatment["relay_discharge_emission_ids"])
+                - set(control["relay_discharge_emission_ids"])
+            )
+            relay_emission_increase = bool(new_signatures) and bool(new_emission_ids) and (
                 treatment["relay_discharge_emission_count"]
                 > control["relay_discharge_emission_count"]
             )
@@ -1959,7 +1963,7 @@ def _paired_summary(phase_artifacts: dict[tuple[str, str], Record]) -> Record:
             )
             if group == "DRIVE-LIMITED" and relay_emission_increase:
                 primary_increase_streams.append(stream_id)
-                new_primary_emission_events[stream_id] = new_signatures
+                new_primary_emission_ids[stream_id] = new_emission_ids
             if group == "DRIVE-LIMITED" and relay_emission_increase and routed_increase:
                 primary_complete_increases.append(stream_id)
                 primary_extra_route_events += max(
@@ -1981,10 +1985,18 @@ def _paired_summary(phase_artifacts: dict[tuple[str, str], Record]) -> Record:
                 if t0[stream_id]["destination_reception_count"]
                 > c0[stream_id]["destination_reception_count"]
             ),
-            "new_discharge_emission_events": sum(
+            "unmatched_treatment_discharge_emission_signatures": sum(
                 len(
                     Counter(_discharge_emission_signatures(t0[stream_id]))
                     - Counter(_discharge_emission_signatures(c0[stream_id]))
+                )
+                for stream_id in stream_ids
+            ),
+            "additional_linked_relay_emissions": sum(
+                max(
+                    0,
+                    t0[stream_id]["relay_discharge_emission_count"]
+                    - c0[stream_id]["relay_discharge_emission_count"],
                 )
                 for stream_id in stream_ids
             ),
@@ -2034,7 +2046,7 @@ def _paired_summary(phase_artifacts: dict[tuple[str, str], Record]) -> Record:
             "streams": 75,
             "relay_discharge_and_emission_increase_streams": primary_increase_streams,
             "complete_valid_routed_increase_streams": primary_complete_increases,
-            "new_discharge_emission_event_signatures": new_primary_emission_events,
+            "new_linked_emission_ids_by_stream": new_primary_emission_ids,
             "additional_destination_receptions": primary_extra_route_events,
             "supported_endpoint": bool(primary_complete_increases),
         },
