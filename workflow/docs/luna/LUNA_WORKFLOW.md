@@ -1,9 +1,14 @@
 # TPCN Luna Multi-Agent Workflow — Event-Driven Architecture
 
-## Luna-54 relay event-generation and propagation — SUPPORTED; independent review pending — 2026-10-08
+## Luna-54 relay event-generation and propagation — SUPPORTED; independent Luna-0 review PASS — 2026-10-08
 
-**SUPPORTED WITHIN THE CONTRACTED BOUNDED MECHANISM; NOT INDEPENDENTLY
-REVIEWED.** See the [execution handoff](../../handoffs/luna-54-relay-event-generation-propagation-20261008.md)
+**SUPPORTED WITHIN THE CONTRACTED BOUNDED MECHANISM; INDEPENDENT LUNA-0
+REVIEW PASS.** Luna-0 reviewed publication
+`91cb7433001ffa47f9abf62995a348cc4ab4b0a4` read-only, independently checked
+the pinned inputs, historical controls, intervention isolation, recurrence,
+route lineage, bounds, determinism and artifact identities, and returned PASS
+with high confidence within this setup. See the [independent review handoff](../../handoffs/luna-0-independent-review-luna54-20261008.md),
+[execution handoff](../../handoffs/luna-54-relay-event-generation-propagation-20261008.md)
 and [final summary](../../../artifacts/luna54/summary.json). Changing only
 relay ACP-0008 `decay_rate_z` (`0.0125 → 0.00125`) yielded 187 versus 109
 linked relay canonical emissions and destination receptions in the primary
@@ -24,11 +29,13 @@ event occurred. The full suite passed **1,714 tests, 1 skip**.
 
 An initial runner-audit block and subsequent serialization defects are
 preserved and documented in the handoff; they were corrected before
-intervention, and both controls passed before treatment. Stop here for
-independent read-only Luna-0 review. This is not task efficacy, generalization,
-production selection, or architecture promotion. ACP-0008 remains experimental,
-opt-in and disabled by default. No A01-A15 change, Luna-55, or other successor
-is authorized. See the [Luna-0 selection handoff](../../handoffs/luna-0-scientific-successor-selection-luna54-20261008.md).
+intervention, and both controls passed before treatment. Luna-0 did not rerun
+the reported tests or inspect their test logs; a non-blocking aggregate
+provenance-presentation caveat is documented in the review handoff. This is
+not task efficacy, generalization, production selection, or architecture
+promotion. ACP-0008 remains experimental, opt-in and disabled by default. No
+A01-A15 change, Luna-55, or other successor is authorized. See the
+[Luna-0 selection handoff](../../handoffs/luna-0-scientific-successor-selection-luna54-20261008.md).
 
 ## Luna-53 destination-retention mechanism — SUPPORTED; independent review PASS — 2026-10-08
 

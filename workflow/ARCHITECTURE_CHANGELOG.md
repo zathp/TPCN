@@ -1,9 +1,13 @@
 # Architecture Changelog
 
-## Luna-54 relay event-generation and propagation — SUPPORTED; independent review pending — 2026-10-08
+## Luna-54 relay event-generation and propagation — SUPPORTED; independent Luna-0 review PASS — 2026-10-08
 
-**SUPPORTED WITHIN THE CONTRACTED BOUNDED MECHANISM; NOT INDEPENDENTLY
-REVIEWED.** The [execution handoff](handoffs/luna-54-relay-event-generation-propagation-20261008.md)
+**SUPPORTED WITHIN THE CONTRACTED BOUNDED MECHANISM; INDEPENDENT LUNA-0
+REVIEW PASS.** Luna-0 independently reviewed publication
+`91cb7433001ffa47f9abf62995a348cc4ab4b0a4` read-only and returned PASS with
+high confidence within the frozen setup. See the
+[independent review handoff](handoffs/luna-0-independent-review-luna54-20261008.md).
+The [execution handoff](handoffs/luna-54-relay-event-generation-propagation-20261008.md)
 and [final summary](../artifacts/luna54/summary.json) record the four
 retained-input phase results. With the sole relay ACP-0008
 `decay_rate_z` intervention `0.0125 → 0.00125`, 65/75 primary
@@ -29,11 +33,13 @@ An initial runner audit error and subsequent serialization defects are
 preserved and explained in the handoff and `artifacts/luna54/blocked.json`;
 they were corrected before any treatment phase, and both control phases passed
 before intervention. The final integrity catalog validates all result bytes
-and digests. Stop here for independent read-only Luna-0 review. This result is
-not task efficacy, generalization, production parameter selection, or
-architecture promotion. No A01-A15 clause or ACP change; ACP-0008 remains
-experimental, opt-in and disabled by default. No Luna-55 or other successor
-is authorized.
+and digests. Luna-0 did not rerun the reported tests or inspect their logs; the
+aggregate provenance's use of the control-initial runner identity is a
+non-blocking presentation caveat because the phase records identify the other
+runner revisions. This result is not task efficacy, generalization, production
+parameter selection, or architecture promotion. No A01-A15 clause or ACP
+change; ACP-0008 remains experimental, opt-in and disabled by default. No
+Luna-55 or other successor is authorized.
 
 ## Luna-53 destination-retention mechanism — SUPPORTED within frozen setup; independent review PASS — 2026-10-08
 

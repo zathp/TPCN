@@ -1,7 +1,11 @@
 # Luna-54 retained-input relay event-generation and propagation
 
 **EXECUTED — SUPPORTED WITHIN THE CONTRACTED BOUNDED MECHANISM; INDEPENDENT
-LUNA-0 REVIEW PENDING.** Execution stopped at this result. This is not task
+LUNA-0 REVIEW PASS.** Luna-0 independently reviewed publication
+`91cb7433001ffa47f9abf62995a348cc4ab4b0a4` and returned PASS with high
+confidence within this frozen setup. See the [independent review handoff](luna-0-independent-review-luna54-20261008.md)
+for its evidence checks and one non-blocking provenance-presentation caveat.
+Execution stopped at this result. This is not task
 efficacy, generalization, production configuration, architecture promotion, or
 hardware evidence. No Luna-55 or other successor is authorized.
 
@@ -220,6 +224,7 @@ and one was skipped. The experiment outputs were committed before the final
 clean-checkout suite run; no test or diagnostic logic was changed to suppress
 that guard.
 
-**Independent Luna-0 review has not occurred. Stop here for that read-only
-review. No ACP/A01-A15 change, task-efficacy claim, or successor authorization
-is made.**
+**Independent Luna-0 review is complete: PASS within the frozen setup. Stop
+here.** The reviewer did not rerun test suites or inspect their execution logs;
+see the review handoff for that limitation. No ACP/A01-A15 change,
+task-efficacy claim, or successor authorization is made.
