@@ -9,7 +9,7 @@ tpcn_handoff:
   contract_version: "1.1"
   branch: "main"
   base_revision: "9fa35c87528ae2f7bae4dca2e0c9630dcb1947e1"
-  result_revision: "pending publication commit"
+  result_revision: "8369c8e70209c553be0662b6d705177308151d68"
   dependencies:
     - "Luna-55 authorization and frozen selection: 312eba8c8e036927408fb2156756a50d15762bc8"
     - "Luna-53 destination-retention phases"
@@ -69,6 +69,7 @@ tpcn_handoff:
   architecture_change: false
   proposal: null
   files_changed:
+    - ".gitattributes (pin Luna-55 JSON artifact checkout to LF so recorded file SHA-256 values remain stable)"
     - "artifacts/luna55/rr-initial.json"
     - "artifacts/luna55/rr-replay.json"
     - "artifacts/luna55/summary-v2.json (superseded BLOCKED analysis; preserved)"
@@ -82,12 +83,13 @@ tpcn_handoff:
   tests_passing:
     - "python -m pytest -q tests/test_luna55_factorial.py: 6 passed."
     - "The related ten-module regression batch: 432 passed; the two failures are identified below and are not silent."
+    - "Full repository run at 8369c8e70209c553be0662b6d705177308151d68: 1,715 tests passed and 1 skipped; the command as a whole failed on the five explicitly listed failures."
     - "Artifact self-digests and summary-v3 integrity catalog independently recomputed and passed; summary-v3 SHA-256 5f1bba890f00c117a019dccf39948ec9b2169579f3ce749c81c03edfd85a3f86."
   tests_failed:
     - "tests/test_luna53_retention.py::test_pinned_inputs_reconcile_without_running_neurons: legacy Luna-53 helper rejects the retained Luna-46 checkout SHA 542202...; expected literal 0d3292... is stale. Luna-55 verified the pinned Git object, checkout and embedded semantic digest without changing historical files."
     - "tests/test_luna46_depth_scaling_diagnostic.py::test_luna51_catalog_identity_is_pinned_to_the_expected_git_object: expected exact-Git-LF-to-CRLF checkout but observed exact materialization in this Windows checkout. No file or git configuration was changed."
+    - "tests/test_luna47f_diagnostic.py::test_luna51_protocol_and_execution_code_keep_their_historical_git_identities, tests/test_luna47f_diagnostic.py::test_luna51_retained_artifact_hashes_reject_result_and_validation_substitution, and tests/test_luna47f_retained.py::test_reproduction_check_is_read_only: untouched retained Luna47F diagnostic bytes hash to aec4e589... while the legacy verifier expects f24a56bf...; the latter two failures cascade from that stale literal."
   tests_not_run:
-    - "Full repository suite: pending post-publication run."
     - "Independent Luna-0 review: pending; this handoff stops at that review gate."
     - "Task efficacy, hardware mapping, production suitability and architecture conformance: not authorized/not applicable."
   assumptions:
@@ -199,7 +201,8 @@ population.
   internal artifact digest
   `eee9c5f86d4692d654c3c660a79e629a8e3c45f4dc0b7ea9a0be6faf86532f22`.
   Recomputed internal digests pass for both RR records, summary-v3 and its
-  integrity manifest.
+  integrity manifest. `.gitattributes` pins `artifacts/luna55/*.json` to LF
+  so these recorded file hashes are stable across Windows checkouts.
 
 **OBSERVED provenance discrepancy:** before any RR condition executed, the
 first pre-treatment attempt stopped in the Luna-54 helper because its literal
@@ -245,7 +248,7 @@ efficacy, or production-default recommendation. No Luna-56 is authorized.
 | RR replay, recurrence, routing, bounds, clipping and label isolation audits | Analysis `9fa35c87528ae2f7bae4dca2e0c9630dcb1947e1` | PASS | `summary-v3.json` and integrity catalog |
 | `python -m pytest -q tests/test_luna55_factorial.py` | Analysis source `9fa35c87528ae2f7bae4dca2e0c9630dcb1947e1`; Windows/Python 3.11 | PASS; 6 passed | Focused Luna-55 factorial suite |
 | Related 10-module Luna-55/Luna-53/Luna-54/Luna-46/Luna-45/E2/excursion/runtime/topology regression batch | Analysis source `9fa35c87528ae2f7bae4dca2e0c9630dcb1947e1`; Windows/Python 3.11 | 432 passed, 2 failed: legacy Luna-53 stale raw pin; Luna-46 expected CRLF but observed exact materialization | Pytest output retained in session; both failures documented above |
-| Full repository test suite | Pending | NOT RUN | Update before final publication |
+| `python -m pytest -q` | Publication `8369c8e70209c553be0662b6d705177308151d68`; Windows/Python 3.11 | 1,715 passed, 5 failed, 1 skipped; overall FAIL because historical Luna-46/47F/53 pin/materialization assertions fail | Exact failure summary retained in this handoff; no historical file or test was changed |
 | Independent Luna-0 review | Final immutable publication | PENDING — required stop gate | New read-only review handoff |
 
 ## Reproduction and next assignment

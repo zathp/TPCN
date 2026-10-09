@@ -26,6 +26,9 @@ and [integrity catalog](../../../artifacts/luna55/summary-v3-integrity.json)
 record hashes, provenance and the stale Luna-46 raw-pin discrepancy.
 `summary-v2.json` remains preserved as a superseded blocked analysis caused
 by a route-signature audit defect; it is not a failed scientific condition.
+The full repository suite reported 1,715 passed, 5 failed and 1 skipped; the
+failures are retained Luna-46/47F/53 SHA or checkout-materialization
+assertions documented in the execution handoff, not silent passes.
 
 The stop is now **independent Luna-0 review of the immutable publication**.
 No Luna-56 or other successor is authorized. The authorization record below

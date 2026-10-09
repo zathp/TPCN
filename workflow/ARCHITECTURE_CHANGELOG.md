@@ -24,6 +24,12 @@ artifacts were not modified. The earlier `summary-v2.json` is preserved as
 a superseded BLOCKED analysis artifact following a corrected route-signature
 audit defect; `summary-v3` is authoritative.
 
+The full repository run at result publication reported 1,715 passed,
+5 failed and 1 skipped. Failures are retained Luna-46/47F/53 SHA or checkout
+materialization assertions; their exact expectations and observed identities
+are recorded in the handoff. No historical files or tests were changed to
+mask them.
+
 This remains experimental mechanism evidence only. No A01-A15/ACP change,
 task efficacy, production suitability, hardware equivalence or architecture
 promotion is claimed. ACP-0008 remains experimental, opt-in and disabled by
