@@ -1,0 +1,37 @@
+{
+  "counts": {
+    "blocked": 182,
+    "c7_blocked": 110,
+    "c7_certified": 9,
+    "c7_identities": 119,
+    "certified": 9,
+    "events": 191,
+    "observation_rows": 15
+  },
+  "environment": {
+    "arithmetic": "pure Python exact int/Fraction; no gmpy2/MPFR in T",
+    "python": "3.11.4",
+    "w_input": "committed lane-w/coverage_matrix.json exact rational enclosures"
+  },
+  "files": {
+    "convert.py": "2E238911AAA7C9E0392451E27A55027BFB979C3C8977015CA5684E2AB1C7F500",
+    "inventory.json": "51F54F8F10645030D7DD20EC2C160803C4959609E46062F45ED25C4BBF4CA2A1",
+    "schedule.json": "E47E96711C10ECDA9675868C4BD6324B91163E8BAF576203DE71A99DFAF2F18E",
+    "test_lane_t.py": "13E0BA92AFF33A270144DED5228E1DC15039E94FFC74B57BE4F14FCFF0EA7811"
+  },
+  "format": "luna63c-lane-t-manifest",
+  "pins": {
+    "arithmetic_profile_revision": "87179ba2f5da13da7bc70727e72c000de924ed80",
+    "design_revision": "3e7d31b9a527e908b21abee3766906084e7cd082",
+    "fixture_freeze_md_blob": "fc3d883e72ec3062e07cc453927ee76cba4aa561",
+    "fixture_freeze_md_sha256": "B3BB25D65A8344363DF17F2A6FF3085034FDC431605B6FBA729499D512BE667F",
+    "fixture_publication": "583148e2812b93d519a3dc2821944d08446497b7",
+    "fixtures_json_blob": "8c4f9d20dda217d71ef1bcbb4fdefd0e3507ed92",
+    "fixtures_json_canonical_sha256": "AF81F3390274B2D565F90CBF12C116C78F45C5DF65D6C28BA88194E9DF2F70FB",
+    "n4_requirements_revision": "9cc92adb56e388d8675d538410b319fd8d8841a5",
+    "source_branch_head": "19caa49d7620062c06ad74d19528e47725f86b37",
+    "w_complete_commit": "17907c67d52cc338249b66f28c3179cd97572c6e",
+    "w_matrix_sha256": "0B5AB09AE5E4A29AD951B00563C64F5D445D0665B332154C9D40F93335F90D9F"
+  },
+  "verdict": "T BLOCKED \u2014 N3 NOT CLOSED"
+}

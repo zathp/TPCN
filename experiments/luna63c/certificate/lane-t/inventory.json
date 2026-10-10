@@ -1,0 +1,1948 @@
+{
+  "counts": {
+    "blocked": 182,
+    "c7_blocked": 110,
+    "c7_certified": 9,
+    "c7_identities": 119,
+    "certified": 9,
+    "events": 191,
+    "observation_rows": 15
+  },
+  "events": [
+    {
+      "case": "C1",
+      "event_id": "C1.RECALL_ON",
+      "fixture": "C1",
+      "instance": "C1",
+      "kind": "EXTERNAL_RECALL",
+      "source": "fixtures.C1.inputs"
+    },
+    {
+      "case": "C1",
+      "event_id": "C1.RECALL_OFF",
+      "fixture": "C1",
+      "instance": "C1",
+      "kind": "EXTERNAL_RECALL",
+      "source": "fixtures.C1.inputs"
+    },
+    {
+      "case": "A0",
+      "event_id": "C2.A0.ZERO",
+      "fixture": "C2",
+      "instance": "C2.A0",
+      "kind": "EXTERNAL_STORE",
+      "source": "fixtures.C2.cases"
+    },
+    {
+      "case": "AQ2",
+      "event_id": "C2.AQ2.P.STORE",
+      "fixture": "C2",
+      "instance": "C2.AQ2.P",
+      "kind": "EXTERNAL_STORE",
+      "source": "fixtures.C2.event_identity_rule"
+    },
+    {
+      "case": "AQ2",
+      "event_id": "C2.AQ2.N.STORE",
+      "fixture": "C2",
+      "instance": "C2.AQ2.N",
+      "kind": "EXTERNAL_STORE",
+      "source": "fixtures.C2.event_identity_rule"
+    },
+    {
+      "case": "AQ",
+      "event_id": "C2.AQ.P.STORE",
+      "fixture": "C2",
+      "instance": "C2.AQ.P",
+      "kind": "EXTERNAL_STORE",
+      "source": "fixtures.C2.event_identity_rule"
+    },
+    {
+      "case": "AQ",
+      "event_id": "C2.AQ.N.STORE",
+      "fixture": "C2",
+      "instance": "C2.AQ.N",
+      "kind": "EXTERNAL_STORE",
+      "source": "fixtures.C2.event_identity_rule"
+    },
+    {
+      "case": "Q_BELOW",
+      "event_id": "C2.Q_BELOW.P.STORE",
+      "fixture": "C2",
+      "instance": "C2.Q_BELOW.P",
+      "kind": "EXTERNAL_STORE",
+      "source": "fixtures.C2.event_identity_rule"
+    },
+    {
+      "case": "Q_BELOW",
+      "event_id": "C2.Q_BELOW.N.STORE",
+      "fixture": "C2",
+      "instance": "C2.Q_BELOW.N",
+      "kind": "EXTERNAL_STORE",
+      "source": "fixtures.C2.event_identity_rule"
+    },
+    {
+      "case": "Q_ABOVE",
+      "event_id": "C2.Q_ABOVE.P.STORE",
+      "fixture": "C2",
+      "instance": "C2.Q_ABOVE.P",
+      "kind": "EXTERNAL_STORE",
+      "source": "fixtures.C2.event_identity_rule"
+    },
+    {
+      "case": "Q_ABOVE",
+      "event_id": "C2.Q_ABOVE.P.RECALL_ON",
+      "fixture": "C2",
+      "instance": "C2.Q_ABOVE.P",
+      "kind": "EXTERNAL_RECALL",
+      "source": "fixtures.C2.event_identity_rule(derived suffix)"
+    },
+    {
+      "case": "Q_ABOVE",
+      "event_id": "C2.Q_ABOVE.P.TIMER_QUIET",
+      "fixture": "C2",
+      "instance": "C2.Q_ABOVE.P",
+      "kind": "FLOW_TIMER",
+      "source": "fixtures.C2.event_identity_rule(derived suffix)"
+    },
+    {
+      "case": "Q_ABOVE",
+      "event_id": "C2.Q_ABOVE.P.TIMER_EXPIRY",
+      "fixture": "C2",
+      "instance": "C2.Q_ABOVE.P",
+      "kind": "EXPIRY_TIMER",
+      "source": "fixtures.C2.event_identity_rule(derived suffix)"
+    },
+    {
+      "case": "Q_ABOVE",
+      "event_id": "C2.Q_ABOVE.N.STORE",
+      "fixture": "C2",
+      "instance": "C2.Q_ABOVE.N",
+      "kind": "EXTERNAL_STORE",
+      "source": "fixtures.C2.event_identity_rule"
+    },
+    {
+      "case": "Q_ABOVE",
+      "event_id": "C2.Q_ABOVE.N.RECALL_ON",
+      "fixture": "C2",
+      "instance": "C2.Q_ABOVE.N",
+      "kind": "EXTERNAL_RECALL",
+      "source": "fixtures.C2.event_identity_rule(derived suffix)"
+    },
+    {
+      "case": "Q_ABOVE",
+      "event_id": "C2.Q_ABOVE.N.TIMER_QUIET",
+      "fixture": "C2",
+      "instance": "C2.Q_ABOVE.N",
+      "kind": "FLOW_TIMER",
+      "source": "fixtures.C2.event_identity_rule(derived suffix)"
+    },
+    {
+      "case": "Q_ABOVE",
+      "event_id": "C2.Q_ABOVE.N.TIMER_EXPIRY",
+      "fixture": "C2",
+      "instance": "C2.Q_ABOVE.N",
+      "kind": "EXPIRY_TIMER",
+      "source": "fixtures.C2.event_identity_rule(derived suffix)"
+    },
+    {
+      "case": "A1",
+      "event_id": "C2.A1.P.STORE",
+      "fixture": "C2",
+      "instance": "C2.A1.P",
+      "kind": "EXTERNAL_STORE",
+      "source": "fixtures.C2.event_identity_rule"
+    },
+    {
+      "case": "A1",
+      "event_id": "C2.A1.P.RECALL_ON",
+      "fixture": "C2",
+      "instance": "C2.A1.P",
+      "kind": "EXTERNAL_RECALL",
+      "source": "fixtures.C2.event_identity_rule(derived suffix)"
+    },
+    {
+      "case": "A1",
+      "event_id": "C2.A1.P.TIMER_QUIET",
+      "fixture": "C2",
+      "instance": "C2.A1.P",
+      "kind": "FLOW_TIMER",
+      "source": "fixtures.C2.event_identity_rule(derived suffix)"
+    },
+    {
+      "case": "A1",
+      "event_id": "C2.A1.P.TIMER_EXPIRY",
+      "fixture": "C2",
+      "instance": "C2.A1.P",
+      "kind": "EXPIRY_TIMER",
+      "source": "fixtures.C2.event_identity_rule(derived suffix)"
+    },
+    {
+      "case": "A1",
+      "event_id": "C2.A1.N.STORE",
+      "fixture": "C2",
+      "instance": "C2.A1.N",
+      "kind": "EXTERNAL_STORE",
+      "source": "fixtures.C2.event_identity_rule"
+    },
+    {
+      "case": "A1",
+      "event_id": "C2.A1.N.RECALL_ON",
+      "fixture": "C2",
+      "instance": "C2.A1.N",
+      "kind": "EXTERNAL_RECALL",
+      "source": "fixtures.C2.event_identity_rule(derived suffix)"
+    },
+    {
+      "case": "A1",
+      "event_id": "C2.A1.N.TIMER_QUIET",
+      "fixture": "C2",
+      "instance": "C2.A1.N",
+      "kind": "FLOW_TIMER",
+      "source": "fixtures.C2.event_identity_rule(derived suffix)"
+    },
+    {
+      "case": "A1",
+      "event_id": "C2.A1.N.TIMER_EXPIRY",
+      "fixture": "C2",
+      "instance": "C2.A1.N",
+      "kind": "EXPIRY_TIMER",
+      "source": "fixtures.C2.event_identity_rule(derived suffix)"
+    },
+    {
+      "case": "A2_TANGENT",
+      "event_id": "C2.A2_TANGENT.P.STORE",
+      "fixture": "C2",
+      "instance": "C2.A2_TANGENT.P",
+      "kind": "EXTERNAL_STORE",
+      "source": "fixtures.C2.event_identity_rule"
+    },
+    {
+      "case": "A2_TANGENT",
+      "event_id": "C2.A2_TANGENT.P.RECALL_ON",
+      "fixture": "C2",
+      "instance": "C2.A2_TANGENT.P",
+      "kind": "EXTERNAL_RECALL",
+      "source": "fixtures.C2.event_identity_rule(derived suffix)"
+    },
+    {
+      "case": "A2_TANGENT",
+      "event_id": "C2.A2_TANGENT.P.TIMER_QUIET",
+      "fixture": "C2",
+      "instance": "C2.A2_TANGENT.P",
+      "kind": "FLOW_TIMER",
+      "source": "fixtures.C2.event_identity_rule(derived suffix)"
+    },
+    {
+      "case": "A2_TANGENT",
+      "event_id": "C2.A2_TANGENT.P.TIMER_EXPIRY",
+      "fixture": "C2",
+      "instance": "C2.A2_TANGENT.P",
+      "kind": "EXPIRY_TIMER",
+      "source": "fixtures.C2.event_identity_rule(derived suffix)"
+    },
+    {
+      "case": "A2_TANGENT",
+      "event_id": "C2.A2_TANGENT.N.STORE",
+      "fixture": "C2",
+      "instance": "C2.A2_TANGENT.N",
+      "kind": "EXTERNAL_STORE",
+      "source": "fixtures.C2.event_identity_rule"
+    },
+    {
+      "case": "A2_TANGENT",
+      "event_id": "C2.A2_TANGENT.N.RECALL_ON",
+      "fixture": "C2",
+      "instance": "C2.A2_TANGENT.N",
+      "kind": "EXTERNAL_RECALL",
+      "source": "fixtures.C2.event_identity_rule(derived suffix)"
+    },
+    {
+      "case": "A2_TANGENT",
+      "event_id": "C2.A2_TANGENT.N.TIMER_QUIET",
+      "fixture": "C2",
+      "instance": "C2.A2_TANGENT.N",
+      "kind": "FLOW_TIMER",
+      "source": "fixtures.C2.event_identity_rule(derived suffix)"
+    },
+    {
+      "case": "A2_TANGENT",
+      "event_id": "C2.A2_TANGENT.N.TIMER_EXPIRY",
+      "fixture": "C2",
+      "instance": "C2.A2_TANGENT.N",
+      "kind": "EXPIRY_TIMER",
+      "source": "fixtures.C2.event_identity_rule(derived suffix)"
+    },
+    {
+      "case": "C3",
+      "event_id": "C3.STORE",
+      "fixture": "C3",
+      "instance": "C3",
+      "kind": "EXTERNAL_STORE",
+      "source": "fixtures.C3.event_ids"
+    },
+    {
+      "case": "C3",
+      "event_id": "C3.TIMER_EXPIRY",
+      "fixture": "C3",
+      "instance": "C3",
+      "kind": "EXPIRY_TIMER",
+      "source": "fixtures.C3.event_ids"
+    },
+    {
+      "case": "C4",
+      "event_id": "C4.STORE",
+      "fixture": "C4",
+      "instance": "C4",
+      "kind": "EXTERNAL_STORE",
+      "source": "fixtures.C4.event_ids"
+    },
+    {
+      "case": "C4",
+      "event_id": "C4.RECALL_ON",
+      "fixture": "C4",
+      "instance": "C4",
+      "kind": "EXTERNAL_RECALL",
+      "source": "fixtures.C4.event_ids"
+    },
+    {
+      "case": "C4",
+      "event_id": "C4.TIMER_CROSSING",
+      "fixture": "C4",
+      "instance": "C4",
+      "kind": "FLOW_TIMER",
+      "source": "fixtures.C4.event_ids"
+    },
+    {
+      "case": "C4",
+      "event_id": "C4.OUTPUT_COMMIT",
+      "fixture": "C4",
+      "instance": "C4",
+      "kind": "OUTPUT_COMMIT",
+      "source": "fixtures.C4.event_ids"
+    },
+    {
+      "case": "C4",
+      "event_id": "C4.OUTPUT_PROCESS",
+      "fixture": "C4",
+      "instance": "C4",
+      "kind": "OUTPUT_PROCESS",
+      "source": "fixtures.C4.event_ids"
+    },
+    {
+      "case": "C4",
+      "event_id": "C4.TIMER_REARM",
+      "fixture": "C4",
+      "instance": "C4",
+      "kind": "FLOW_TIMER",
+      "source": "fixtures.C4.event_ids"
+    },
+    {
+      "case": "C4",
+      "event_id": "C4.TIMER_QUIET",
+      "fixture": "C4",
+      "instance": "C4",
+      "kind": "FLOW_TIMER",
+      "source": "fixtures.C4.event_ids"
+    },
+    {
+      "case": "C4",
+      "event_id": "C4.TIMER_EXPIRY",
+      "fixture": "C4",
+      "instance": "C4",
+      "kind": "EXPIRY_TIMER",
+      "source": "fixtures.C4.event_ids"
+    },
+    {
+      "case": "C6",
+      "event_id": "C6.ROOT_UP",
+      "fixture": "C6",
+      "instance": "C6",
+      "kind": "FLOW_TIMER",
+      "source": "fixtures.C6.event_ids"
+    },
+    {
+      "case": "C6",
+      "event_id": "C6.ROOT_REARM",
+      "fixture": "C6",
+      "instance": "C6",
+      "kind": "FLOW_TIMER",
+      "source": "fixtures.C6.event_ids"
+    },
+    {
+      "case": "C6",
+      "event_id": "C6.QUIET",
+      "fixture": "C6",
+      "instance": "C6",
+      "kind": "FLOW_TIMER",
+      "source": "fixtures.C6.event_ids"
+    },
+    {
+      "case": "C3.EXPIRY_TIE",
+      "event_id": "C3.EXPIRY_TIE.RECALL",
+      "fixture": "C3",
+      "instance": "C3.EXPIRY_TIE",
+      "kind": "EXTERNAL_RECALL",
+      "source": "fixtures.C3.expiry_boundary_instance"
+    },
+    {
+      "case": "C3.EXPIRY_TIE",
+      "event_id": "C3.EXPIRY_TIE.TIMER_EXPIRY",
+      "fixture": "C3",
+      "instance": "C3.EXPIRY_TIE",
+      "kind": "EXPIRY_TIMER",
+      "source": "fixtures.C3.expiry_boundary_instance"
+    },
+    {
+      "case": "C5.H0",
+      "event_id": "C5.H0.STORE",
+      "fixture": "C5",
+      "instance": "C5.H0",
+      "kind": "EXTERNAL_STORE",
+      "source": "fixtures.C5.fresh_instances"
+    },
+    {
+      "case": "C5.H0",
+      "event_id": "C5.H0.RECALL_ON",
+      "fixture": "C5",
+      "instance": "C5.H0",
+      "kind": "EXTERNAL_RECALL",
+      "source": "fixtures.C5.fresh_instances"
+    },
+    {
+      "case": "C5.H0",
+      "event_id": "C5.H0.TIMER_CROSSING",
+      "fixture": "C5",
+      "instance": "C5.H0",
+      "kind": "FLOW_TIMER",
+      "source": "fixtures.C5.fresh_instances"
+    },
+    {
+      "case": "C5.H0",
+      "event_id": "C5.H0.OUTPUT_COMMIT",
+      "fixture": "C5",
+      "instance": "C5.H0",
+      "kind": "OUTPUT_COMMIT",
+      "source": "fixtures.C5.fresh_instances"
+    },
+    {
+      "case": "C5.H0",
+      "event_id": "C5.H0.OUTPUT_PROCESS",
+      "fixture": "C5",
+      "instance": "C5.H0",
+      "kind": "OUTPUT_PROCESS",
+      "source": "fixtures.C5.fresh_instances"
+    },
+    {
+      "case": "C5.H0",
+      "event_id": "C5.H0.TIMER_REARM",
+      "fixture": "C5",
+      "instance": "C5.H0",
+      "kind": "FLOW_TIMER",
+      "source": "fixtures.C5.fresh_instances"
+    },
+    {
+      "case": "C5.H0",
+      "event_id": "C5.H0.TIMER_QUIET",
+      "fixture": "C5",
+      "instance": "C5.H0",
+      "kind": "FLOW_TIMER",
+      "source": "fixtures.C5.fresh_instances"
+    },
+    {
+      "case": "C5.H0",
+      "event_id": "C5.H0.TIMER_EXPIRY",
+      "fixture": "C5",
+      "instance": "C5.H0",
+      "kind": "EXPIRY_TIMER",
+      "source": "fixtures.C5.fresh_instances"
+    },
+    {
+      "case": "C5.H1",
+      "event_id": "C5.H1.STORE",
+      "fixture": "C5",
+      "instance": "C5.H1",
+      "kind": "EXTERNAL_STORE",
+      "source": "fixtures.C5.fresh_instances"
+    },
+    {
+      "case": "C5.H1",
+      "event_id": "C5.H1.RECALL_ON",
+      "fixture": "C5",
+      "instance": "C5.H1",
+      "kind": "EXTERNAL_RECALL",
+      "source": "fixtures.C5.fresh_instances"
+    },
+    {
+      "case": "C5.H1",
+      "event_id": "C5.H1.TIMER_CROSSING",
+      "fixture": "C5",
+      "instance": "C5.H1",
+      "kind": "FLOW_TIMER",
+      "source": "fixtures.C5.fresh_instances"
+    },
+    {
+      "case": "C5.H1",
+      "event_id": "C5.H1.OUTPUT_COMMIT",
+      "fixture": "C5",
+      "instance": "C5.H1",
+      "kind": "OUTPUT_COMMIT",
+      "source": "fixtures.C5.fresh_instances"
+    },
+    {
+      "case": "C5.H1",
+      "event_id": "C5.H1.OUTPUT_PROCESS",
+      "fixture": "C5",
+      "instance": "C5.H1",
+      "kind": "OUTPUT_PROCESS",
+      "source": "fixtures.C5.fresh_instances"
+    },
+    {
+      "case": "C5.H1",
+      "event_id": "C5.H1.TIMER_REARM",
+      "fixture": "C5",
+      "instance": "C5.H1",
+      "kind": "FLOW_TIMER",
+      "source": "fixtures.C5.fresh_instances"
+    },
+    {
+      "case": "C5.H1",
+      "event_id": "C5.H1.TIMER_QUIET",
+      "fixture": "C5",
+      "instance": "C5.H1",
+      "kind": "FLOW_TIMER",
+      "source": "fixtures.C5.fresh_instances"
+    },
+    {
+      "case": "C5.H1",
+      "event_id": "C5.H1.TIMER_EXPIRY",
+      "fixture": "C5",
+      "instance": "C5.H1",
+      "kind": "EXPIRY_TIMER",
+      "source": "fixtures.C5.fresh_instances"
+    },
+    {
+      "case": "C5.H2",
+      "event_id": "C5.H2.STORE",
+      "fixture": "C5",
+      "instance": "C5.H2",
+      "kind": "EXTERNAL_STORE",
+      "source": "fixtures.C5.fresh_instances"
+    },
+    {
+      "case": "C5.H2",
+      "event_id": "C5.H2.RECALL_ON",
+      "fixture": "C5",
+      "instance": "C5.H2",
+      "kind": "EXTERNAL_RECALL",
+      "source": "fixtures.C5.fresh_instances"
+    },
+    {
+      "case": "C5.H2",
+      "event_id": "C5.H2.TIMER_CROSSING",
+      "fixture": "C5",
+      "instance": "C5.H2",
+      "kind": "FLOW_TIMER",
+      "source": "fixtures.C5.fresh_instances"
+    },
+    {
+      "case": "C5.H2",
+      "event_id": "C5.H2.OUTPUT_COMMIT",
+      "fixture": "C5",
+      "instance": "C5.H2",
+      "kind": "OUTPUT_COMMIT",
+      "source": "fixtures.C5.fresh_instances"
+    },
+    {
+      "case": "C5.H2",
+      "event_id": "C5.H2.OUTPUT_PROCESS",
+      "fixture": "C5",
+      "instance": "C5.H2",
+      "kind": "OUTPUT_PROCESS",
+      "source": "fixtures.C5.fresh_instances"
+    },
+    {
+      "case": "C5.H2",
+      "event_id": "C5.H2.TIMER_REARM",
+      "fixture": "C5",
+      "instance": "C5.H2",
+      "kind": "FLOW_TIMER",
+      "source": "fixtures.C5.fresh_instances"
+    },
+    {
+      "case": "C5.H2",
+      "event_id": "C5.H2.TIMER_QUIET",
+      "fixture": "C5",
+      "instance": "C5.H2",
+      "kind": "FLOW_TIMER",
+      "source": "fixtures.C5.fresh_instances"
+    },
+    {
+      "case": "C5.H2",
+      "event_id": "C5.H2.TIMER_EXPIRY",
+      "fixture": "C5",
+      "instance": "C5.H2",
+      "kind": "EXPIRY_TIMER",
+      "source": "fixtures.C5.fresh_instances"
+    },
+    {
+      "case": "C7.DUPLICATE_RECALL",
+      "event_id": "C7.DUPLICATE_RECALL.STORE_1",
+      "fixture": "C7",
+      "frozen_list_position": 1,
+      "instance": "C7.DUPLICATE_RECALL",
+      "kind": "EXTERNAL_STORE",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.DUPLICATE_RECALL",
+      "event_id": "C7.DUPLICATE_RECALL.TIMER_EXPIRY_CREATED_1",
+      "fixture": "C7",
+      "frozen_list_position": 2,
+      "instance": "C7.DUPLICATE_RECALL",
+      "kind": "TIMER_LIFECYCLE_REFERENCE",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.DUPLICATE_RECALL",
+      "event_id": "C7.DUPLICATE_RECALL.RECALL_ON_1",
+      "fixture": "C7",
+      "frozen_list_position": 3,
+      "instance": "C7.DUPLICATE_RECALL",
+      "kind": "EXTERNAL_RECALL",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.DUPLICATE_RECALL",
+      "event_id": "C7.DUPLICATE_RECALL.TIMER_CROSSING_CREATED_1",
+      "fixture": "C7",
+      "frozen_list_position": 4,
+      "instance": "C7.DUPLICATE_RECALL",
+      "kind": "TIMER_LIFECYCLE_REFERENCE",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.DUPLICATE_RECALL",
+      "event_id": "C7.DUPLICATE_RECALL.RECALL_ON_2",
+      "fixture": "C7",
+      "frozen_list_position": 5,
+      "instance": "C7.DUPLICATE_RECALL",
+      "kind": "EXTERNAL_RECALL",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.ALTERNATING_RECALL",
+      "event_id": "C7.ALTERNATING_RECALL.STORE_1",
+      "fixture": "C7",
+      "frozen_list_position": 1,
+      "instance": "C7.ALTERNATING_RECALL",
+      "kind": "EXTERNAL_STORE",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.ALTERNATING_RECALL",
+      "event_id": "C7.ALTERNATING_RECALL.TIMER_EXPIRY_CREATED_1",
+      "fixture": "C7",
+      "frozen_list_position": 2,
+      "instance": "C7.ALTERNATING_RECALL",
+      "kind": "TIMER_LIFECYCLE_REFERENCE",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.ALTERNATING_RECALL",
+      "event_id": "C7.ALTERNATING_RECALL.RECALL_ON_1",
+      "fixture": "C7",
+      "frozen_list_position": 3,
+      "instance": "C7.ALTERNATING_RECALL",
+      "kind": "EXTERNAL_RECALL",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.ALTERNATING_RECALL",
+      "event_id": "C7.ALTERNATING_RECALL.TIMER_CROSSING_CREATED_1",
+      "fixture": "C7",
+      "frozen_list_position": 4,
+      "instance": "C7.ALTERNATING_RECALL",
+      "kind": "TIMER_LIFECYCLE_REFERENCE",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.ALTERNATING_RECALL",
+      "event_id": "C7.ALTERNATING_RECALL.RECALL_OFF_1",
+      "fixture": "C7",
+      "frozen_list_position": 5,
+      "instance": "C7.ALTERNATING_RECALL",
+      "kind": "EXTERNAL_RECALL",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.ALTERNATING_RECALL",
+      "event_id": "C7.ALTERNATING_RECALL.TIMER_CROSSING_CANCELLED_1",
+      "fixture": "C7",
+      "frozen_list_position": 6,
+      "instance": "C7.ALTERNATING_RECALL",
+      "kind": "TIMER_LIFECYCLE_REFERENCE",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.ALTERNATING_RECALL",
+      "event_id": "C7.ALTERNATING_RECALL.RECALL_ON_2",
+      "fixture": "C7",
+      "frozen_list_position": 7,
+      "instance": "C7.ALTERNATING_RECALL",
+      "kind": "EXTERNAL_RECALL",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.ALTERNATING_RECALL",
+      "event_id": "C7.ALTERNATING_RECALL.TIMER_CROSSING_CREATED_2",
+      "fixture": "C7",
+      "frozen_list_position": 8,
+      "instance": "C7.ALTERNATING_RECALL",
+      "kind": "TIMER_LIFECYCLE_REFERENCE",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.ALTERNATING_RECALL",
+      "event_id": "C7.ALTERNATING_RECALL.TIMER_CROSSING_2",
+      "fixture": "C7",
+      "frozen_list_position": 9,
+      "instance": "C7.ALTERNATING_RECALL",
+      "kind": "FLOW_TIMER",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.ALTERNATING_RECALL",
+      "event_id": "C7.ALTERNATING_RECALL.OUTPUT_COMMIT",
+      "fixture": "C7",
+      "frozen_list_position": 10,
+      "instance": "C7.ALTERNATING_RECALL",
+      "kind": "OUTPUT_COMMIT",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.ALTERNATING_RECALL",
+      "event_id": "C7.ALTERNATING_RECALL.OUTPUT_PROCESS",
+      "fixture": "C7",
+      "frozen_list_position": 11,
+      "instance": "C7.ALTERNATING_RECALL",
+      "kind": "OUTPUT_PROCESS",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.ALTERNATING_RECALL",
+      "event_id": "C7.ALTERNATING_RECALL.TIMER_REARM_CREATED_1",
+      "fixture": "C7",
+      "frozen_list_position": 12,
+      "instance": "C7.ALTERNATING_RECALL",
+      "kind": "TIMER_LIFECYCLE_REFERENCE",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.ALTERNATING_RECALL",
+      "event_id": "C7.ALTERNATING_RECALL.TIMER_REARM_1",
+      "fixture": "C7",
+      "frozen_list_position": 13,
+      "instance": "C7.ALTERNATING_RECALL",
+      "kind": "FLOW_TIMER",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.ALTERNATING_RECALL",
+      "event_id": "C7.ALTERNATING_RECALL.TIMER_QUIET_CREATED_1",
+      "fixture": "C7",
+      "frozen_list_position": 14,
+      "instance": "C7.ALTERNATING_RECALL",
+      "kind": "TIMER_LIFECYCLE_REFERENCE",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.ALTERNATING_RECALL",
+      "event_id": "C7.ALTERNATING_RECALL.TIMER_QUIET_1",
+      "fixture": "C7",
+      "frozen_list_position": 15,
+      "instance": "C7.ALTERNATING_RECALL",
+      "kind": "FLOW_TIMER",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.ALTERNATING_RECALL",
+      "event_id": "C7.ALTERNATING_RECALL.TIMER_EXPIRY_INVALIDATED_AT_QUIET_1",
+      "fixture": "C7",
+      "frozen_list_position": 16,
+      "instance": "C7.ALTERNATING_RECALL",
+      "kind": "TIMER_LIFECYCLE_REFERENCE",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.RESET_BEFORE_COMMIT",
+      "event_id": "C7.RESET_BEFORE_COMMIT.STORE_1",
+      "fixture": "C7",
+      "frozen_list_position": 1,
+      "instance": "C7.RESET_BEFORE_COMMIT",
+      "kind": "EXTERNAL_STORE",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.RESET_BEFORE_COMMIT",
+      "event_id": "C7.RESET_BEFORE_COMMIT.TIMER_EXPIRY_CREATED_1",
+      "fixture": "C7",
+      "frozen_list_position": 2,
+      "instance": "C7.RESET_BEFORE_COMMIT",
+      "kind": "TIMER_LIFECYCLE_REFERENCE",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.RESET_BEFORE_COMMIT",
+      "event_id": "C7.RESET_BEFORE_COMMIT.RECALL_ON_1",
+      "fixture": "C7",
+      "frozen_list_position": 3,
+      "instance": "C7.RESET_BEFORE_COMMIT",
+      "kind": "EXTERNAL_RECALL",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.RESET_BEFORE_COMMIT",
+      "event_id": "C7.RESET_BEFORE_COMMIT.TIMER_CROSSING_CREATED_1",
+      "fixture": "C7",
+      "frozen_list_position": 4,
+      "instance": "C7.RESET_BEFORE_COMMIT",
+      "kind": "TIMER_LIFECYCLE_REFERENCE",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.RESET_BEFORE_COMMIT",
+      "event_id": "C7.RESET_BEFORE_COMMIT.RESET_1",
+      "fixture": "C7",
+      "frozen_list_position": 5,
+      "instance": "C7.RESET_BEFORE_COMMIT",
+      "kind": "EXTERNAL_RESET",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.RESET_BEFORE_COMMIT",
+      "event_id": "C7.RESET_BEFORE_COMMIT.TIMER_CROSSING_CANCELLED_1",
+      "fixture": "C7",
+      "frozen_list_position": 6,
+      "instance": "C7.RESET_BEFORE_COMMIT",
+      "kind": "TIMER_LIFECYCLE_REFERENCE",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.RESET_BEFORE_COMMIT",
+      "event_id": "C7.RESET_BEFORE_COMMIT.TIMER_EXPIRY_INVALIDATED_AT_RESET_1",
+      "fixture": "C7",
+      "frozen_list_position": 7,
+      "instance": "C7.RESET_BEFORE_COMMIT",
+      "kind": "TIMER_LIFECYCLE_REFERENCE",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.RESET_AFTER_COMMIT",
+      "event_id": "C7.RESET_AFTER_COMMIT.STORE_1",
+      "fixture": "C7",
+      "frozen_list_position": 1,
+      "instance": "C7.RESET_AFTER_COMMIT",
+      "kind": "EXTERNAL_STORE",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.RESET_AFTER_COMMIT",
+      "event_id": "C7.RESET_AFTER_COMMIT.TIMER_EXPIRY_CREATED_1",
+      "fixture": "C7",
+      "frozen_list_position": 2,
+      "instance": "C7.RESET_AFTER_COMMIT",
+      "kind": "TIMER_LIFECYCLE_REFERENCE",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.RESET_AFTER_COMMIT",
+      "event_id": "C7.RESET_AFTER_COMMIT.RECALL_ON_1",
+      "fixture": "C7",
+      "frozen_list_position": 3,
+      "instance": "C7.RESET_AFTER_COMMIT",
+      "kind": "EXTERNAL_RECALL",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.RESET_AFTER_COMMIT",
+      "event_id": "C7.RESET_AFTER_COMMIT.TIMER_CROSSING_CREATED_1",
+      "fixture": "C7",
+      "frozen_list_position": 4,
+      "instance": "C7.RESET_AFTER_COMMIT",
+      "kind": "TIMER_LIFECYCLE_REFERENCE",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.RESET_AFTER_COMMIT",
+      "event_id": "C7.RESET_AFTER_COMMIT.TIMER_CROSSING_1",
+      "fixture": "C7",
+      "frozen_list_position": 5,
+      "instance": "C7.RESET_AFTER_COMMIT",
+      "kind": "FLOW_TIMER",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.RESET_AFTER_COMMIT",
+      "event_id": "C7.RESET_AFTER_COMMIT.ROOT_COMMIT",
+      "fixture": "C7",
+      "frozen_list_position": 6,
+      "instance": "C7.RESET_AFTER_COMMIT",
+      "kind": "OUTPUT_COMMIT",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.RESET_AFTER_COMMIT",
+      "event_id": "C7.RESET_AFTER_COMMIT.TIMER_REARM_CREATED_1",
+      "fixture": "C7",
+      "frozen_list_position": 7,
+      "instance": "C7.RESET_AFTER_COMMIT",
+      "kind": "TIMER_LIFECYCLE_REFERENCE",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.RESET_AFTER_COMMIT",
+      "event_id": "C7.RESET_AFTER_COMMIT.OUTPUT_PROCESS",
+      "fixture": "C7",
+      "frozen_list_position": 8,
+      "instance": "C7.RESET_AFTER_COMMIT",
+      "kind": "OUTPUT_PROCESS",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.RESET_AFTER_COMMIT",
+      "event_id": "C7.RESET_AFTER_COMMIT.RESET_1",
+      "fixture": "C7",
+      "frozen_list_position": 9,
+      "instance": "C7.RESET_AFTER_COMMIT",
+      "kind": "EXTERNAL_RESET",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.RESET_AFTER_COMMIT",
+      "event_id": "C7.RESET_AFTER_COMMIT.TIMER_REARM_CANCELLED_1",
+      "fixture": "C7",
+      "frozen_list_position": 10,
+      "instance": "C7.RESET_AFTER_COMMIT",
+      "kind": "TIMER_LIFECYCLE_REFERENCE",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.RESET_AFTER_COMMIT",
+      "event_id": "C7.RESET_AFTER_COMMIT.TIMER_EXPIRY_INVALIDATED_AT_RESET_1",
+      "fixture": "C7",
+      "frozen_list_position": 11,
+      "instance": "C7.RESET_AFTER_COMMIT",
+      "kind": "TIMER_LIFECYCLE_REFERENCE",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.STALE_TIMER",
+      "event_id": "C7.STALE_TIMER.STORE_1",
+      "fixture": "C7",
+      "frozen_list_position": 1,
+      "instance": "C7.STALE_TIMER",
+      "kind": "EXTERNAL_STORE",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.STALE_TIMER",
+      "event_id": "C7.STALE_TIMER.TIMER_EXPIRY_CREATED_1",
+      "fixture": "C7",
+      "frozen_list_position": 2,
+      "instance": "C7.STALE_TIMER",
+      "kind": "TIMER_LIFECYCLE_REFERENCE",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.STALE_TIMER",
+      "event_id": "C7.STALE_TIMER.RECALL_ON_1",
+      "fixture": "C7",
+      "frozen_list_position": 3,
+      "instance": "C7.STALE_TIMER",
+      "kind": "EXTERNAL_RECALL",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.STALE_TIMER",
+      "event_id": "C7.STALE_TIMER.TIMER_CROSSING_CREATED_1",
+      "fixture": "C7",
+      "frozen_list_position": 4,
+      "instance": "C7.STALE_TIMER",
+      "kind": "TIMER_LIFECYCLE_REFERENCE",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.STALE_TIMER",
+      "event_id": "C7.STALE_TIMER.RECALL_OFF_1",
+      "fixture": "C7",
+      "frozen_list_position": 5,
+      "instance": "C7.STALE_TIMER",
+      "kind": "EXTERNAL_RECALL",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.STALE_TIMER",
+      "event_id": "C7.STALE_TIMER.TIMER_CROSSING_CANCELLED_1",
+      "fixture": "C7",
+      "frozen_list_position": 6,
+      "instance": "C7.STALE_TIMER",
+      "kind": "TIMER_LIFECYCLE_REFERENCE",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.STALE_TIMER",
+      "event_id": "C7.STALE_TIMER.TIMER_CROSSING_POP_STALE_1",
+      "fixture": "C7",
+      "frozen_list_position": 7,
+      "instance": "C7.STALE_TIMER",
+      "kind": "STALE_TIMER_POP",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.REARM_BEFORE_QUIET",
+      "event_id": "C7.REARM_BEFORE_QUIET.STORE_1",
+      "fixture": "C7",
+      "frozen_list_position": 1,
+      "instance": "C7.REARM_BEFORE_QUIET",
+      "kind": "EXTERNAL_STORE",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.REARM_BEFORE_QUIET",
+      "event_id": "C7.REARM_BEFORE_QUIET.TIMER_EXPIRY_CREATED_1",
+      "fixture": "C7",
+      "frozen_list_position": 2,
+      "instance": "C7.REARM_BEFORE_QUIET",
+      "kind": "TIMER_LIFECYCLE_REFERENCE",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.REARM_BEFORE_QUIET",
+      "event_id": "C7.REARM_BEFORE_QUIET.RECALL_ON_1",
+      "fixture": "C7",
+      "frozen_list_position": 3,
+      "instance": "C7.REARM_BEFORE_QUIET",
+      "kind": "EXTERNAL_RECALL",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.REARM_BEFORE_QUIET",
+      "event_id": "C7.REARM_BEFORE_QUIET.TIMER_CROSSING_CREATED_1",
+      "fixture": "C7",
+      "frozen_list_position": 4,
+      "instance": "C7.REARM_BEFORE_QUIET",
+      "kind": "TIMER_LIFECYCLE_REFERENCE",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.REARM_BEFORE_QUIET",
+      "event_id": "C7.REARM_BEFORE_QUIET.TIMER_CROSSING_1",
+      "fixture": "C7",
+      "frozen_list_position": 5,
+      "instance": "C7.REARM_BEFORE_QUIET",
+      "kind": "FLOW_TIMER",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.REARM_BEFORE_QUIET",
+      "event_id": "C7.REARM_BEFORE_QUIET.OUTPUT_COMMIT",
+      "fixture": "C7",
+      "frozen_list_position": 6,
+      "instance": "C7.REARM_BEFORE_QUIET",
+      "kind": "OUTPUT_COMMIT",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.REARM_BEFORE_QUIET",
+      "event_id": "C7.REARM_BEFORE_QUIET.OUTPUT_PROCESS",
+      "fixture": "C7",
+      "frozen_list_position": 7,
+      "instance": "C7.REARM_BEFORE_QUIET",
+      "kind": "OUTPUT_PROCESS",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.REARM_BEFORE_QUIET",
+      "event_id": "C7.REARM_BEFORE_QUIET.TIMER_REARM_CREATED_1",
+      "fixture": "C7",
+      "frozen_list_position": 8,
+      "instance": "C7.REARM_BEFORE_QUIET",
+      "kind": "TIMER_LIFECYCLE_REFERENCE",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.REARM_BEFORE_QUIET",
+      "event_id": "C7.REARM_BEFORE_QUIET.TIMER_REARM_1",
+      "fixture": "C7",
+      "frozen_list_position": 9,
+      "instance": "C7.REARM_BEFORE_QUIET",
+      "kind": "FLOW_TIMER",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.REARM_BEFORE_QUIET",
+      "event_id": "C7.REARM_BEFORE_QUIET.TIMER_QUIET_CREATED_1",
+      "fixture": "C7",
+      "frozen_list_position": 10,
+      "instance": "C7.REARM_BEFORE_QUIET",
+      "kind": "TIMER_LIFECYCLE_REFERENCE",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.REARM_BEFORE_QUIET",
+      "event_id": "C7.REARM_BEFORE_QUIET.TIMER_QUIET_1",
+      "fixture": "C7",
+      "frozen_list_position": 11,
+      "instance": "C7.REARM_BEFORE_QUIET",
+      "kind": "FLOW_TIMER",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.REARM_BEFORE_QUIET",
+      "event_id": "C7.REARM_BEFORE_QUIET.TIMER_EXPIRY_INVALIDATED_AT_QUIET_1",
+      "fixture": "C7",
+      "frozen_list_position": 12,
+      "instance": "C7.REARM_BEFORE_QUIET",
+      "kind": "TIMER_LIFECYCLE_REFERENCE",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.EXPIRY_COALESCENCE_VALID",
+      "event_id": "C7.EXPIRY_COALESCENCE_VALID.STORE_1",
+      "fixture": "C7",
+      "frozen_list_position": 1,
+      "instance": "C7.EXPIRY_COALESCENCE_VALID",
+      "kind": "EXTERNAL_STORE",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.EXPIRY_COALESCENCE_VALID",
+      "event_id": "C7.EXPIRY_COALESCENCE_VALID.TIMER_EXPIRY_CREATED_1",
+      "fixture": "C7",
+      "frozen_list_position": 2,
+      "instance": "C7.EXPIRY_COALESCENCE_VALID",
+      "kind": "TIMER_LIFECYCLE_REFERENCE",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.EXPIRY_COALESCENCE_VALID",
+      "event_id": "C7.EXPIRY_COALESCENCE_VALID.TIMER_EXPIRY_1",
+      "fixture": "C7",
+      "frozen_list_position": 3,
+      "instance": "C7.EXPIRY_COALESCENCE_VALID",
+      "kind": "EXPIRY_TIMER",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.EXPIRY_COALESCENCE_VALID",
+      "event_id": "C7.EXPIRY_COALESCENCE_VALID.VALID_EXTERNAL_RECALL_1",
+      "fixture": "C7",
+      "frozen_list_position": 4,
+      "instance": "C7.EXPIRY_COALESCENCE_VALID",
+      "kind": "EXTERNAL_RECALL",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.EXPIRY_COALESCENCE_INVALID",
+      "event_id": "C7.EXPIRY_COALESCENCE_INVALID.STORE_1",
+      "fixture": "C7",
+      "frozen_list_position": 1,
+      "instance": "C7.EXPIRY_COALESCENCE_INVALID",
+      "kind": "EXTERNAL_STORE",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.EXPIRY_COALESCENCE_INVALID",
+      "event_id": "C7.EXPIRY_COALESCENCE_INVALID.TIMER_EXPIRY_CREATED_1",
+      "fixture": "C7",
+      "frozen_list_position": 2,
+      "instance": "C7.EXPIRY_COALESCENCE_INVALID",
+      "kind": "TIMER_LIFECYCLE_REFERENCE",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.EXPIRY_COALESCENCE_INVALID",
+      "event_id": "C7.EXPIRY_COALESCENCE_INVALID.TIMER_EXPIRY_1",
+      "fixture": "C7",
+      "frozen_list_position": 3,
+      "instance": "C7.EXPIRY_COALESCENCE_INVALID",
+      "kind": "EXPIRY_TIMER",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.EXPIRY_COALESCENCE_INVALID",
+      "event_id": "C7.EXPIRY_COALESCENCE_INVALID.SEMANTICALLY_INVALID_RECALL_1",
+      "fixture": "C7",
+      "frozen_list_position": 4,
+      "instance": "C7.EXPIRY_COALESCENCE_INVALID",
+      "kind": "EXTERNAL_RECALL",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.TIMESTAMP_INVALID",
+      "event_id": "C7.TIMESTAMP_INVALID.MALFORMED_NONFINITE.STORE_MALFORMED_NONFINITE",
+      "fixture": "C7",
+      "frozen_list_position": 1,
+      "instance": "C7.TIMESTAMP_INVALID.MALFORMED_NONFINITE",
+      "kind": "EXTERNAL_STORE",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.TIMESTAMP_INVALID",
+      "event_id": "C7.TIMESTAMP_INVALID.MALFORMED_NONFINITE.TIMER_EXPIRY_CREATED_MALFORMED_NONFINITE",
+      "fixture": "C7",
+      "frozen_list_position": 2,
+      "instance": "C7.TIMESTAMP_INVALID.MALFORMED_NONFINITE",
+      "kind": "TIMER_LIFECYCLE_REFERENCE",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.TIMESTAMP_INVALID",
+      "event_id": "C7.TIMESTAMP_INVALID.MALFORMED_NONFINITE.INVALID_TIMESTAMP_MALFORMED_NONFINITE",
+      "fixture": "C7",
+      "frozen_list_position": 3,
+      "instance": "C7.TIMESTAMP_INVALID.MALFORMED_NONFINITE",
+      "kind": "INVALID_TIMESTAMP_INPUT",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.TIMESTAMP_INVALID",
+      "event_id": "C7.TIMESTAMP_INVALID.OUT_OF_DOMAIN.STORE_OUT_OF_DOMAIN",
+      "fixture": "C7",
+      "frozen_list_position": 1,
+      "instance": "C7.TIMESTAMP_INVALID.OUT_OF_DOMAIN",
+      "kind": "EXTERNAL_STORE",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.TIMESTAMP_INVALID",
+      "event_id": "C7.TIMESTAMP_INVALID.OUT_OF_DOMAIN.TIMER_EXPIRY_CREATED_OUT_OF_DOMAIN",
+      "fixture": "C7",
+      "frozen_list_position": 2,
+      "instance": "C7.TIMESTAMP_INVALID.OUT_OF_DOMAIN",
+      "kind": "TIMER_LIFECYCLE_REFERENCE",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.TIMESTAMP_INVALID",
+      "event_id": "C7.TIMESTAMP_INVALID.OUT_OF_DOMAIN.INVALID_TIMESTAMP_OUT_OF_DOMAIN",
+      "fixture": "C7",
+      "frozen_list_position": 3,
+      "instance": "C7.TIMESTAMP_INVALID.OUT_OF_DOMAIN",
+      "kind": "INVALID_TIMESTAMP_INPUT",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.TIMESTAMP_INVALID",
+      "event_id": "C7.TIMESTAMP_INVALID.LATE.STORE_LATE",
+      "fixture": "C7",
+      "frozen_list_position": 1,
+      "instance": "C7.TIMESTAMP_INVALID.LATE",
+      "kind": "EXTERNAL_STORE",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.TIMESTAMP_INVALID",
+      "event_id": "C7.TIMESTAMP_INVALID.LATE.TIMER_EXPIRY_CREATED_LATE",
+      "fixture": "C7",
+      "frozen_list_position": 2,
+      "instance": "C7.TIMESTAMP_INVALID.LATE",
+      "kind": "TIMER_LIFECYCLE_REFERENCE",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.TIMESTAMP_INVALID",
+      "event_id": "C7.TIMESTAMP_INVALID.LATE.INVALID_TIMESTAMP_LATE",
+      "fixture": "C7",
+      "frozen_list_position": 3,
+      "instance": "C7.TIMESTAMP_INVALID.LATE",
+      "kind": "INVALID_TIMESTAMP_INPUT",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.TIMESTAMP_INVALID",
+      "event_id": "C7.TIMESTAMP_INVALID.UNORDERABLE.STORE_UNORDERABLE",
+      "fixture": "C7",
+      "frozen_list_position": 1,
+      "instance": "C7.TIMESTAMP_INVALID.UNORDERABLE",
+      "kind": "EXTERNAL_STORE",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.TIMESTAMP_INVALID",
+      "event_id": "C7.TIMESTAMP_INVALID.UNORDERABLE.TIMER_EXPIRY_CREATED_UNORDERABLE",
+      "fixture": "C7",
+      "frozen_list_position": 2,
+      "instance": "C7.TIMESTAMP_INVALID.UNORDERABLE",
+      "kind": "TIMER_LIFECYCLE_REFERENCE",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.TIMESTAMP_INVALID",
+      "event_id": "C7.TIMESTAMP_INVALID.UNORDERABLE.INVALID_TIMESTAMP_UNORDERABLE",
+      "fixture": "C7",
+      "frozen_list_position": 3,
+      "instance": "C7.TIMESTAMP_INVALID.UNORDERABLE",
+      "kind": "INVALID_TIMESTAMP_INPUT",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.OVERFLOW_17",
+      "event_id": "C7.OVERFLOW_17.STORE_01",
+      "fixture": "C7",
+      "frozen_list_position": 1,
+      "instance": "C7.OVERFLOW_17",
+      "kind": "EXTERNAL_STORE",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.OVERFLOW_17",
+      "event_id": "C7.OVERFLOW_17.TIMER_EXPIRY_CREATED_01",
+      "fixture": "C7",
+      "frozen_list_position": 2,
+      "instance": "C7.OVERFLOW_17",
+      "kind": "TIMER_LIFECYCLE_REFERENCE",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.OVERFLOW_17",
+      "event_id": "C7.OVERFLOW_17.RECALL_ON_02",
+      "fixture": "C7",
+      "frozen_list_position": 3,
+      "instance": "C7.OVERFLOW_17",
+      "kind": "EXTERNAL_RECALL",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.OVERFLOW_17",
+      "event_id": "C7.OVERFLOW_17.TIMER_CROSSING_CREATED_02",
+      "fixture": "C7",
+      "frozen_list_position": 4,
+      "instance": "C7.OVERFLOW_17",
+      "kind": "TIMER_LIFECYCLE_REFERENCE",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.OVERFLOW_17",
+      "event_id": "C7.OVERFLOW_17.TIMER_CROSSING_02",
+      "fixture": "C7",
+      "frozen_list_position": 5,
+      "instance": "C7.OVERFLOW_17",
+      "kind": "FLOW_TIMER",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.OVERFLOW_17",
+      "event_id": "C7.OVERFLOW_17.OUTPUT_COMMIT",
+      "fixture": "C7",
+      "frozen_list_position": 6,
+      "instance": "C7.OVERFLOW_17",
+      "kind": "OUTPUT_COMMIT",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.OVERFLOW_17",
+      "event_id": "C7.OVERFLOW_17.TIMER_REARM_CREATED_01",
+      "fixture": "C7",
+      "frozen_list_position": 7,
+      "instance": "C7.OVERFLOW_17",
+      "kind": "TIMER_LIFECYCLE_REFERENCE",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.OVERFLOW_17",
+      "event_id": "C7.OVERFLOW_17.OUTPUT_PROCESS",
+      "fixture": "C7",
+      "frozen_list_position": 8,
+      "instance": "C7.OVERFLOW_17",
+      "kind": "OUTPUT_PROCESS",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.OVERFLOW_17",
+      "event_id": "C7.OVERFLOW_17.RECALL_ON_03",
+      "fixture": "C7",
+      "frozen_list_position": 9,
+      "instance": "C7.OVERFLOW_17",
+      "kind": "EXTERNAL_RECALL",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.OVERFLOW_17",
+      "event_id": "C7.OVERFLOW_17.RECALL_ON_04",
+      "fixture": "C7",
+      "frozen_list_position": 10,
+      "instance": "C7.OVERFLOW_17",
+      "kind": "EXTERNAL_RECALL",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.OVERFLOW_17",
+      "event_id": "C7.OVERFLOW_17.RECALL_ON_05",
+      "fixture": "C7",
+      "frozen_list_position": 11,
+      "instance": "C7.OVERFLOW_17",
+      "kind": "EXTERNAL_RECALL",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.OVERFLOW_17",
+      "event_id": "C7.OVERFLOW_17.RECALL_ON_06",
+      "fixture": "C7",
+      "frozen_list_position": 12,
+      "instance": "C7.OVERFLOW_17",
+      "kind": "EXTERNAL_RECALL",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.OVERFLOW_17",
+      "event_id": "C7.OVERFLOW_17.RECALL_ON_07",
+      "fixture": "C7",
+      "frozen_list_position": 13,
+      "instance": "C7.OVERFLOW_17",
+      "kind": "EXTERNAL_RECALL",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.OVERFLOW_17",
+      "event_id": "C7.OVERFLOW_17.RECALL_ON_08",
+      "fixture": "C7",
+      "frozen_list_position": 14,
+      "instance": "C7.OVERFLOW_17",
+      "kind": "EXTERNAL_RECALL",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.OVERFLOW_17",
+      "event_id": "C7.OVERFLOW_17.RECALL_ON_09",
+      "fixture": "C7",
+      "frozen_list_position": 15,
+      "instance": "C7.OVERFLOW_17",
+      "kind": "EXTERNAL_RECALL",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.OVERFLOW_17",
+      "event_id": "C7.OVERFLOW_17.SEMANTICALLY_INVALID_STORE_10",
+      "fixture": "C7",
+      "frozen_list_position": 16,
+      "instance": "C7.OVERFLOW_17",
+      "kind": "EXTERNAL_STORE",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.OVERFLOW_17",
+      "event_id": "C7.OVERFLOW_17.SEMANTICALLY_INVALID_STORE_11",
+      "fixture": "C7",
+      "frozen_list_position": 17,
+      "instance": "C7.OVERFLOW_17",
+      "kind": "EXTERNAL_STORE",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.OVERFLOW_17",
+      "event_id": "C7.OVERFLOW_17.SEMANTICALLY_INVALID_STORE_12",
+      "fixture": "C7",
+      "frozen_list_position": 18,
+      "instance": "C7.OVERFLOW_17",
+      "kind": "EXTERNAL_STORE",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.OVERFLOW_17",
+      "event_id": "C7.OVERFLOW_17.SEMANTICALLY_INVALID_STORE_13",
+      "fixture": "C7",
+      "frozen_list_position": 19,
+      "instance": "C7.OVERFLOW_17",
+      "kind": "EXTERNAL_STORE",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.OVERFLOW_17",
+      "event_id": "C7.OVERFLOW_17.SEMANTICALLY_INVALID_STORE_14",
+      "fixture": "C7",
+      "frozen_list_position": 20,
+      "instance": "C7.OVERFLOW_17",
+      "kind": "EXTERNAL_STORE",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.OVERFLOW_17",
+      "event_id": "C7.OVERFLOW_17.SEMANTICALLY_INVALID_STORE_15",
+      "fixture": "C7",
+      "frozen_list_position": 21,
+      "instance": "C7.OVERFLOW_17",
+      "kind": "EXTERNAL_STORE",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.OVERFLOW_17",
+      "event_id": "C7.OVERFLOW_17.SEMANTICALLY_INVALID_STORE_16",
+      "fixture": "C7",
+      "frozen_list_position": 22,
+      "instance": "C7.OVERFLOW_17",
+      "kind": "EXTERNAL_STORE",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.OVERFLOW_17",
+      "event_id": "C7.OVERFLOW_17.ATTEMPT",
+      "fixture": "C7",
+      "frozen_list_position": 23,
+      "instance": "C7.OVERFLOW_17",
+      "kind": "OVERFLOW_ATTEMPT",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.OVERFLOW_17",
+      "event_id": "C7.OVERFLOW_17.TIMER_REARM_CANCELLED_01",
+      "fixture": "C7",
+      "frozen_list_position": 24,
+      "instance": "C7.OVERFLOW_17",
+      "kind": "TIMER_LIFECYCLE_REFERENCE",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.OVERFLOW_17",
+      "event_id": "C7.OVERFLOW_17.TIMER_EXPIRY_INVALIDATED_AT_OVERFLOW_01",
+      "fixture": "C7",
+      "frozen_list_position": 25,
+      "instance": "C7.OVERFLOW_17",
+      "kind": "TIMER_LIFECYCLE_REFERENCE",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.POST_ABORT_INGRESS",
+      "event_id": "C7.POST_ABORT_INGRESS.CLOSED_EPISODE_INGRESS",
+      "fixture": "C7",
+      "frozen_list_position": 1,
+      "instance": "C7.POST_ABORT_INGRESS",
+      "kind": "CLOSED_INGRESS",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.OUTPUT_EXPIRY_COALESCENCE",
+      "event_id": "C7.OUTPUT_EXPIRY_COALESCENCE.STORE_1",
+      "fixture": "C7",
+      "frozen_list_position": 1,
+      "instance": "C7.OUTPUT_EXPIRY_COALESCENCE",
+      "kind": "EXTERNAL_STORE",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.OUTPUT_EXPIRY_COALESCENCE",
+      "event_id": "C7.OUTPUT_EXPIRY_COALESCENCE.TIMER_EXPIRY_CREATED_1",
+      "fixture": "C7",
+      "frozen_list_position": 2,
+      "instance": "C7.OUTPUT_EXPIRY_COALESCENCE",
+      "kind": "TIMER_LIFECYCLE_REFERENCE",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.OUTPUT_EXPIRY_COALESCENCE",
+      "event_id": "C7.OUTPUT_EXPIRY_COALESCENCE.RECALL_ON_LATE_1",
+      "fixture": "C7",
+      "frozen_list_position": 3,
+      "instance": "C7.OUTPUT_EXPIRY_COALESCENCE",
+      "kind": "EXTERNAL_RECALL",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.OUTPUT_EXPIRY_COALESCENCE",
+      "event_id": "C7.OUTPUT_EXPIRY_COALESCENCE.TIMER_CROSSING_CREATED_1",
+      "fixture": "C7",
+      "frozen_list_position": 4,
+      "instance": "C7.OUTPUT_EXPIRY_COALESCENCE",
+      "kind": "TIMER_LIFECYCLE_REFERENCE",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.OUTPUT_EXPIRY_COALESCENCE",
+      "event_id": "C7.OUTPUT_EXPIRY_COALESCENCE.TIMER_CROSSING_1",
+      "fixture": "C7",
+      "frozen_list_position": 5,
+      "instance": "C7.OUTPUT_EXPIRY_COALESCENCE",
+      "kind": "FLOW_TIMER",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.OUTPUT_EXPIRY_COALESCENCE",
+      "event_id": "C7.OUTPUT_EXPIRY_COALESCENCE.TIMER_EXPIRY_1",
+      "fixture": "C7",
+      "frozen_list_position": 6,
+      "instance": "C7.OUTPUT_EXPIRY_COALESCENCE",
+      "kind": "EXPIRY_TIMER",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.NEAR_CLOCK_LIMIT",
+      "event_id": "C7.NEAR_CLOCK_LIMIT.STORE_LAST_IN_DOMAIN_ORIGIN_1",
+      "fixture": "C7",
+      "frozen_list_position": 1,
+      "instance": "C7.NEAR_CLOCK_LIMIT",
+      "kind": "EXTERNAL_STORE",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.NEAR_CLOCK_LIMIT",
+      "event_id": "C7.NEAR_CLOCK_LIMIT.TIMER_EXPIRY_CREATED_FOR_INSTANCE_1",
+      "fixture": "C7",
+      "frozen_list_position": 2,
+      "instance": "C7.NEAR_CLOCK_LIMIT",
+      "kind": "TIMER_LIFECYCLE_REFERENCE",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.NEAR_CLOCK_LIMIT",
+      "event_id": "C7.NEAR_CLOCK_LIMIT.STORE_NEXT_ORIGIN_1",
+      "fixture": "C7",
+      "frozen_list_position": 3,
+      "instance": "C7.NEAR_CLOCK_LIMIT",
+      "kind": "EXTERNAL_STORE",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.POSITIVE_SUB_ULP",
+      "event_id": "C7.POSITIVE_SUB_ULP.STORE_UPPER_Q_NEIGHBOR_1",
+      "fixture": "C7",
+      "frozen_list_position": 1,
+      "instance": "C7.POSITIVE_SUB_ULP",
+      "kind": "EXTERNAL_STORE",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.POSITIVE_SUB_ULP",
+      "event_id": "C7.POSITIVE_SUB_ULP.TIMER_EXPIRY_CREATED_1",
+      "fixture": "C7",
+      "frozen_list_position": 2,
+      "instance": "C7.POSITIVE_SUB_ULP",
+      "kind": "TIMER_LIFECYCLE_REFERENCE",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.POSITIVE_SUB_ULP",
+      "event_id": "C7.POSITIVE_SUB_ULP.RECALL_ON_1",
+      "fixture": "C7",
+      "frozen_list_position": 3,
+      "instance": "C7.POSITIVE_SUB_ULP",
+      "kind": "EXTERNAL_RECALL",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.POSITIVE_SUB_ULP",
+      "event_id": "C7.POSITIVE_SUB_ULP.TIMER_QUIET_CREATED_1",
+      "fixture": "C7",
+      "frozen_list_position": 4,
+      "instance": "C7.POSITIVE_SUB_ULP",
+      "kind": "TIMER_LIFECYCLE_REFERENCE",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.POSITIVE_SUB_ULP",
+      "event_id": "C7.POSITIVE_SUB_ULP.TIMER_QUIET_1",
+      "fixture": "C7",
+      "frozen_list_position": 5,
+      "instance": "C7.POSITIVE_SUB_ULP",
+      "kind": "FLOW_TIMER",
+      "source": "fixtures.C7.cases"
+    },
+    {
+      "case": "C7.POSITIVE_SUB_ULP",
+      "event_id": "C7.POSITIVE_SUB_ULP.TIMER_EXPIRY_INVALIDATED_AT_QUIET_1",
+      "fixture": "C7",
+      "frozen_list_position": 6,
+      "instance": "C7.POSITIVE_SUB_ULP",
+      "kind": "TIMER_LIFECYCLE_REFERENCE",
+      "source": "fixtures.C7.cases"
+    }
+  ],
+  "format": "luna63c-lane-t-inventory",
+  "observation_rows": [
+    {
+      "event_id": "C0.INITIAL",
+      "fixture": "C0",
+      "reason": "state observation; no scheduled event (N3 not applicable)",
+      "status": "OBSERVATION_ONLY"
+    },
+    {
+      "event_id": "C1.AFTER_ON",
+      "fixture": "C1",
+      "reason": "state observation; no scheduled event (N3 not applicable)",
+      "status": "OBSERVATION_ONLY"
+    },
+    {
+      "event_id": "C1.AFTER_OFF",
+      "fixture": "C1",
+      "reason": "state observation; no scheduled event (N3 not applicable)",
+      "status": "OBSERVATION_ONLY"
+    },
+    {
+      "event_id": {
+        "active_time_TU": "0",
+        "candidate_state_coordinates": [
+          "x",
+          "y"
+        ],
+        "candidate_state_rule": "exact accepted STORE state",
+        "id": "C2.A1.P.S0",
+        "n1_witness": "initial-state identity",
+        "n3_event_mapping": "not applicable: observation-only and active/reference-time domain",
+        "n4_a_requirements": [
+          "N4-A1",
+          "N4-A2",
+          "N4-A7"
+        ],
+        "n4_b_requirements": [],
+        "oracle_state": [
+          "1",
+          "0"
+        ],
+        "polarity": 1
+      },
+      "fixture": "C2",
+      "reason": "A1 state checkpoint at an exact authored active time; not a scheduled event",
+      "status": "OBSERVATION_ONLY"
+    },
+    {
+      "event_id": {
+        "active_time_TU": "0",
+        "candidate_state_coordinates": [
+          "x",
+          "y"
+        ],
+        "candidate_state_rule": "exact accepted STORE state",
+        "id": "C2.A1.N.S0",
+        "n1_witness": "initial-state identity",
+        "n3_event_mapping": "not applicable: observation-only and active/reference-time domain",
+        "n4_a_requirements": [
+          "N4-A1",
+          "N4-A2",
+          "N4-A7"
+        ],
+        "n4_b_requirements": [],
+        "oracle_state": [
+          "-1",
+          "0"
+        ],
+        "polarity": -1
+      },
+      "fixture": "C2",
+      "reason": "A1 state checkpoint at an exact authored active time; not a scheduled event",
+      "status": "OBSERVATION_ONLY"
+    },
+    {
+      "event_id": {
+        "active_time_TU": "1/2",
+        "candidate_state_coordinates": [
+          "x",
+          "y"
+        ],
+        "candidate_state_rule": "observe complete candidate state; require strict owner-selected L2 comparison to oracle",
+        "id": "C2.A1.P.S1_2",
+        "n1_witness": "closed-form semigroup at exact rational active time 1/2",
+        "n3_event_mapping": "not applicable: observation-only and active/reference-time domain",
+        "n4_a_requirements": [
+          "N4-A1",
+          "N4-A2",
+          "N4-A3",
+          "N4-A4",
+          "N4-A7"
+        ],
+        "n4_b_requirements": [],
+        "oracle_state": [
+          "exp(-1/2)*cos(1/2)",
+          "exp(-1/2)*sin(1/2)"
+        ],
+        "polarity": 1
+      },
+      "fixture": "C2",
+      "reason": "A1 state checkpoint at an exact authored active time; not a scheduled event",
+      "status": "OBSERVATION_ONLY"
+    },
+    {
+      "event_id": {
+        "active_time_TU": "1/2",
+        "candidate_state_coordinates": [
+          "x",
+          "y"
+        ],
+        "candidate_state_rule": "observe complete candidate state; require strict owner-selected L2 comparison to oracle",
+        "id": "C2.A1.N.S1_2",
+        "n1_witness": "closed-form semigroup at exact rational active time 1/2",
+        "n3_event_mapping": "not applicable: observation-only and active/reference-time domain",
+        "n4_a_requirements": [
+          "N4-A1",
+          "N4-A2",
+          "N4-A3",
+          "N4-A4",
+          "N4-A7"
+        ],
+        "n4_b_requirements": [],
+        "oracle_state": [
+          "-exp(-1/2)*cos(1/2)",
+          "-exp(-1/2)*sin(1/2)"
+        ],
+        "polarity": -1
+      },
+      "fixture": "C2",
+      "reason": "A1 state checkpoint at an exact authored active time; not a scheduled event",
+      "status": "OBSERVATION_ONLY"
+    },
+    {
+      "event_id": {
+        "active_time_TU": "1",
+        "candidate_state_coordinates": [
+          "x",
+          "y"
+        ],
+        "candidate_state_rule": "observe complete candidate state; require strict owner-selected L2 comparison to oracle",
+        "id": "C2.A1.P.S1",
+        "n1_witness": "closed-form semigroup at exact rational active time 1",
+        "n3_event_mapping": "not applicable: observation-only and active/reference-time domain",
+        "n4_a_requirements": [
+          "N4-A1",
+          "N4-A2",
+          "N4-A3",
+          "N4-A4",
+          "N4-A7"
+        ],
+        "n4_b_requirements": [],
+        "oracle_state": [
+          "exp(-1)*cos(1)",
+          "exp(-1)*sin(1)"
+        ],
+        "polarity": 1
+      },
+      "fixture": "C2",
+      "reason": "A1 state checkpoint at an exact authored active time; not a scheduled event",
+      "status": "OBSERVATION_ONLY"
+    },
+    {
+      "event_id": {
+        "active_time_TU": "1",
+        "candidate_state_coordinates": [
+          "x",
+          "y"
+        ],
+        "candidate_state_rule": "observe complete candidate state; require strict owner-selected L2 comparison to oracle",
+        "id": "C2.A1.N.S1",
+        "n1_witness": "closed-form semigroup at exact rational active time 1",
+        "n3_event_mapping": "not applicable: observation-only and active/reference-time domain",
+        "n4_a_requirements": [
+          "N4-A1",
+          "N4-A2",
+          "N4-A3",
+          "N4-A4",
+          "N4-A7"
+        ],
+        "n4_b_requirements": [],
+        "oracle_state": [
+          "-exp(-1)*cos(1)",
+          "-exp(-1)*sin(1)"
+        ],
+        "polarity": -1
+      },
+      "fixture": "C2",
+      "reason": "A1 state checkpoint at an exact authored active time; not a scheduled event",
+      "status": "OBSERVATION_ONLY"
+    },
+    {
+      "event_id": {
+        "active_time_TU": "2",
+        "candidate_state_coordinates": [
+          "x",
+          "y"
+        ],
+        "candidate_state_rule": "observe after exact quiet transition; ideal lifecycle state is (0,0); require strict owner-selected L2 comparison to unreset flow oracle",
+        "id": "C2.A1.P.S2",
+        "n1_witness": "quiet occurs at ln(1/q)<2; independent flow oracle remains the exact semigroup",
+        "n3_event_mapping": "not applicable: observation-only and active/reference-time domain; quiet event separately mapped",
+        "n4_a_requirements": [
+          "N4-A1",
+          "N4-A2",
+          "N4-A3",
+          "N4-A4",
+          "N4-A6",
+          "N4-A7"
+        ],
+        "n4_b_requirements": [],
+        "oracle_state": [
+          "exp(-2)*cos(2)",
+          "exp(-2)*sin(2)"
+        ],
+        "polarity": 1
+      },
+      "fixture": "C2",
+      "reason": "A1 state checkpoint at an exact authored active time; not a scheduled event",
+      "status": "OBSERVATION_ONLY"
+    },
+    {
+      "event_id": {
+        "active_time_TU": "2",
+        "candidate_state_coordinates": [
+          "x",
+          "y"
+        ],
+        "candidate_state_rule": "observe after exact quiet transition; ideal lifecycle state is (0,0); require strict owner-selected L2 comparison to unreset flow oracle",
+        "id": "C2.A1.N.S2",
+        "n1_witness": "quiet occurs at ln(1/q)<2; independent flow oracle remains the exact semigroup",
+        "n3_event_mapping": "not applicable: observation-only and active/reference-time domain; quiet event separately mapped",
+        "n4_a_requirements": [
+          "N4-A1",
+          "N4-A2",
+          "N4-A3",
+          "N4-A4",
+          "N4-A6",
+          "N4-A7"
+        ],
+        "n4_b_requirements": [],
+        "oracle_state": [
+          "-exp(-2)*cos(2)",
+          "-exp(-2)*sin(2)"
+        ],
+        "polarity": -1
+      },
+      "fixture": "C2",
+      "reason": "A1 state checkpoint at an exact authored active time; not a scheduled event",
+      "status": "OBSERVATION_ONLY"
+    },
+    {
+      "event_id": "C3.AFTER_STORE",
+      "fixture": "C3",
+      "reason": "state observation; HOLD duration contributes exactly 0 active units",
+      "status": "OBSERVATION_ONLY"
+    },
+    {
+      "event_id": "C3.DURING_HOLD@0",
+      "fixture": "C3",
+      "reason": "state observation; HOLD duration contributes exactly 0 active units",
+      "status": "OBSERVATION_ONLY"
+    },
+    {
+      "event_id": "C3.DURING_HOLD@1",
+      "fixture": "C3",
+      "reason": "state observation; HOLD duration contributes exactly 0 active units",
+      "status": "OBSERVATION_ONLY"
+    },
+    {
+      "event_id": "C3.DURING_HOLD@2",
+      "fixture": "C3",
+      "reason": "state observation; HOLD duration contributes exactly 0 active units",
+      "status": "OBSERVATION_ONLY"
+    }
+  ],
+  "pins": {
+    "arithmetic_profile_revision": "87179ba2f5da13da7bc70727e72c000de924ed80",
+    "design_revision": "3e7d31b9a527e908b21abee3766906084e7cd082",
+    "fixture_freeze_md_blob": "fc3d883e72ec3062e07cc453927ee76cba4aa561",
+    "fixture_freeze_md_sha256": "B3BB25D65A8344363DF17F2A6FF3085034FDC431605B6FBA729499D512BE667F",
+    "fixture_publication": "583148e2812b93d519a3dc2821944d08446497b7",
+    "fixtures_json_blob": "8c4f9d20dda217d71ef1bcbb4fdefd0e3507ed92",
+    "fixtures_json_canonical_sha256": "AF81F3390274B2D565F90CBF12C116C78F45C5DF65D6C28BA88194E9DF2F70FB",
+    "n4_requirements_revision": "9cc92adb56e388d8675d538410b319fd8d8841a5",
+    "source_branch_head": "19caa49d7620062c06ad74d19528e47725f86b37",
+    "w_complete_commit": "17907c67d52cc338249b66f28c3179cd97572c6e",
+    "w_matrix_sha256": "0B5AB09AE5E4A29AD951B00563C64F5D445D0665B332154C9D40F93335F90D9F"
+  }
+}
