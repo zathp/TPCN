@@ -1,5 +1,39 @@
 # Architecture Changelog
 
+## Luna-63C corrective artifact reconciliation — 2026-10-10
+
+The independent PASS at `8f5e785bd2e46c0c1cb2afbb77ba53704adef65a` remains
+scoped to the exact governance publication reviewed there. A separate review
+of the preserved, uncommitted source-checkout bundle returned BLOCKED and
+identified three corrections; the bulk bundle is not being published.
+
+The N4-A finding is that all applicable audit obligations in published E
+pass. This audits the reference-arithmetic evidence within N4-A's defined
+scope; it does not certify a future candidate implementation. N4-B remains
+incomplete, and overall N4 is not closed.
+
+The parent-checkout W files `INVENTORY.md`, `README.md`, and the W handoff
+were checked against their own local W manifest and all three match its
+declared normalized hashes. That local consistency does not make them
+published W evidence. The published W tree has no same-path `INVENTORY.md`
+or `README.md`; the same-path W handoff has different bytes and a different
+Git blob. The reason for that divergence is unknown. Preserve these local
+files as provenance-uncertain and do not substitute them for the published
+100-row W evidence.
+
+The malformed T identifier
+`0a8c34b7d52cc338249b66f28c3179cd97572c6e` does not resolve to a Git
+object. The verified T commit is
+`0a8c34b7e6febf681917d915082a8559eea998f7`; the corrective handoff records
+that exact pin. No scientific calculation, lane test, fixture execution,
+N5 synthesis, N6, Stage B, or LTRD work was run or authorized.
+
+The full path/byte/hash/line inventory and the twelve-file static Python
+review are published as decision-preparation records only. The older local
+W/T/E packages and ignored engine payload remain preserved and excluded from
+authoritative evidence. The exact corrective allowlist is in the
+[reconciliation report](../experiments/luna63c/certificate/temporal-schedule-decision/CORRECTIVE_RECONCILIATION.md).
+
 ## Luna-63C Stage-A artifact reconciliation correction and schedule status — 2026-10-10
 
 Fetched refs verified the published W/T/E commits. W is complete only within
@@ -15,10 +49,10 @@ certify a future candidate implementation. N4-B remains incomplete because
 complete concrete schedules and mappings are absent.
 
 Untracked lane copies and handoffs in the parent checkout were found not to be
-byte-identical to their named published lane branches. Some contain unique
-files, and some do not match their local manifests. They are preserved,
-classified as provenance-uncertain, excluded from authoritative publication,
-and are not used to alter published results. The
+byte-identical to their named published lane branches. Their local manifests
+validate their own declared files; that does not establish published
+provenance. They are preserved, classified as provenance-uncertain, excluded
+from authoritative publication, and are not used to alter published results. The
 [sanitized artifact reconciliation inventory](../experiments/luna63c/certificate/temporal-schedule-decision/PUBLICATION_ARTIFACT_RECONCILIATION.json)
 and [preservation report](../experiments/luna63c/certificate/temporal-schedule-decision/PRESERVATION_REPORT.md)
 record relative paths and hashes; the original inventory with workstation

@@ -41,10 +41,11 @@ No LTRD branch, contract, code or fixture is authorized here.
 
 Artifact reconciliation found additional untracked W/T/E copies and handoffs
 in the parent checkout that are not byte-identical to the named published
-lane branches. Some contain unique files, and some disagree with their local
-manifests. They are preserved as provenance-uncertain evidence, excluded
-from authoritative publication, and not treated as corrections to published
-W/T/E results. The [sanitized reconciliation inventory](../../../experiments/luna63c/certificate/temporal-schedule-decision/PUBLICATION_ARTIFACT_RECONCILIATION.json)
+lane branches. Their local manifests validate their own declared artifacts;
+that does not establish equivalence to the published evidence. They are
+preserved as provenance-uncertain evidence, excluded from authoritative
+publication, and not treated as corrections to published W/T/E results. The
+[sanitized reconciliation inventory](../../../experiments/luna63c/certificate/temporal-schedule-decision/PUBLICATION_ARTIFACT_RECONCILIATION.json)
 and [preservation report](../../../experiments/luna63c/certificate/temporal-schedule-decision/PRESERVATION_REPORT.md)
 record relative artifact paths and hashes. The original inventory with local
 worktree roots is retained locally and is not published.

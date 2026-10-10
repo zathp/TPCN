@@ -1,261 +1,505 @@
 {
-    "format":  "luna63c-controlled-governance-publication-manifest",
-    "version":  1,
-    "publication_branch":  "governance/luna63c-artifact-reconciliation",
-    "baseline_revision":  "19caa49d7620062c06ad74d19528e47725f86b37",
-    "publication_status":  "REVIEW_PENDING_NO_COMMIT",
-    "self_hash_policy":  "The manifest omits its own hash to avoid self-reference; its exact raw SHA-256 is supplied to the independent reviewer and recorded in the final completion report.",
-    "hash_policy":  {
-                        "raw_sha256":  "SHA-256 over exact source working-tree bytes",
-                        "git_blob_sha1":  "Git hash-object with the repository path filter; reverify the same blob in the dedicated publication worktree before staging.",
-                        "core_autocrlf":  "true in source checkout; raw materialization and canonical Git blob are separately recorded."
-                    },
-    "source_lane_authority":  {
-                                  "fixture_freeze":  "583148e2812b93d519a3dc2821944d08446497b7",
-                                  "W":  "17907c67d52cc338249b66f28c3179cd97572c6e",
-                                  "T":  "0a8c34b7e6febf681917d915082a8559eea998f7",
-                                  "E":  "651f18fdf3c7ae8e32cd210ebc68527f86531e32"
-                              },
-    "classification_legend":  {
-                                  "governance_contract_draft":  "Prepared policy/assignment text; not authorized execution.",
-                                  "governance_decision_preparation":  "Status and decision analysis; no scientific certification.",
-                                  "derived_governance_reconciliation":  "Deterministic row-level reconciliation of pinned evidence; does not recertify it.",
-                                  "provenance_preservation_report":  "Records what was preserved and excluded.",
-                                  "sanitized_preservation_inventory":  "Relative-path snapshot; workstation roots redacted.",
-                                  "governance_status_record":  "Workflow/changelog status summary.",
-                                  "governance_handoff":  "Completion and limitation report."
-                              },
-    "relation_to_W_T_E":  {
-                              "W":  {
-                                        "commit":  "17907c67d52cc338249b66f28c3179cd97572c6e",
-                                        "status":  "100/100 assigned mathematical-witness rows certified; scope only."
-                                    },
-                              "T":  {
-                                        "commit":  "0a8c34b7e6febf681917d915082a8559eea998f7",
-                                        "status":  "191-row identity ledger; 9 certified, 182 blocked; N3 open."
-                                    },
-                              "E":  {
-                                        "commit":  "651f18fdf3c7ae8e32cd210ebc68527f86531e32",
-                                        "status":  "1,905 obligations (623 PASS, 1,128 BLOCKED, 154 N/A); all applicable N4-A audit obligations pass; N4-B incomplete."
-                                    }
-                          },
-    "eligible_artifact_count":  8,
-    "eligible_artifacts":  [
-                               {
-                                   "path":  ".github/agents/luna-63c-stage-a-temporal-schedule.agent.md",
-                                   "raw_sha256":  "50FBB4CF52FCAB6FCB6C4AC3C4665B5CD8E64F0DF4E6FA3922730F532D270A13",
-                                   "git_blob_sha1":  "f422417b267c37499153b8b9a300a04ed15f3b5d",
-                                   "category":  "governance-contract-draft",
-                                   "status":  "PREPARED_NOT_AUTHORIZED",
-                                   "certification_authority":  "None. This is a governance/provenance artifact, not a scientific certificate. The cited W/T/E commits remain the lane evidence authorities.",
-                                   "limitations":  [
-                                                       "Future Lane T work only; requires owner-frozen numeric schedule inputs and separate dispatch.",
-                                                       "No N1/N3/N4 gate is closed by this artifact."
-                                                   ],
-                                   "relation_to_W_T_E":  {
-                                                             "W":  {
-                                                                       "commit":  "17907c67d52cc338249b66f28c3179cd97572c6e",
-                                                                       "status":  "100/100 assigned mathematical-witness rows certified; scope only."
-                                                                   },
-                                                             "T":  {
-                                                                       "commit":  "0a8c34b7e6febf681917d915082a8559eea998f7",
-                                                                       "status":  "191-row identity ledger; 9 certified, 182 blocked; N3 open."
-                                                                   },
-                                                             "E":  {
-                                                                       "commit":  "651f18fdf3c7ae8e32cd210ebc68527f86531e32",
-                                                                       "status":  "1,905 obligations (623 PASS, 1,128 BLOCKED, 154 N/A); all applicable N4-A audit obligations pass; N4-B incomplete."
-                                                                   }
-                                                         }
-                               },
-                               {
-                                   "path":  "experiments/luna63c/certificate/temporal-schedule-decision/DECISION_PACKAGE.md",
-                                   "raw_sha256":  "A67F1B0A4CCE413D076308995CED6F0BFD0E883C8E275263C7338E70C6AFD6C2",
-                                   "git_blob_sha1":  "8ccc8e4cbd4223dfbc69be8c1d5bea15f0031e23",
-                                   "category":  "governance-decision-preparation",
-                                   "status":  "CORRECTED_EVIDENCE_T_BLOCKED_N3",
-                                   "certification_authority":  "None. This is a governance/provenance artifact, not a scientific certificate. The cited W/T/E commits remain the lane evidence authorities.",
-                                   "limitations":  [
-                                                       "No numerical certification, T completion, or stage authorization.",
-                                                       "No N1/N3/N4 gate is closed by this artifact."
-                                                   ],
-                                   "relation_to_W_T_E":  {
-                                                             "W":  {
-                                                                       "commit":  "17907c67d52cc338249b66f28c3179cd97572c6e",
-                                                                       "status":  "100/100 assigned mathematical-witness rows certified; scope only."
-                                                                   },
-                                                             "T":  {
-                                                                       "commit":  "0a8c34b7e6febf681917d915082a8559eea998f7",
-                                                                       "status":  "191-row identity ledger; 9 certified, 182 blocked; N3 open."
-                                                                   },
-                                                             "E":  {
-                                                                       "commit":  "651f18fdf3c7ae8e32cd210ebc68527f86531e32",
-                                                                       "status":  "1,905 obligations (623 PASS, 1,128 BLOCKED, 154 N/A); all applicable N4-A audit obligations pass; N4-B incomplete."
-                                                                   }
-                                                         }
-                               },
-                               {
-                                   "path":  "experiments/luna63c/certificate/temporal-schedule-decision/blocker-inventory.json",
-                                   "raw_sha256":  "2ECFFA6C4C7CD76237E6133590D0591B1DC37D2DDD2BE067A1ACD09636B72153",
-                                   "git_blob_sha1":  "d4937c9865e5b1b540c8cdeef154dc747aececfb",
-                                   "category":  "derived-governance-reconciliation",
-                                   "status":  "191_ID_CROSSWALK_VERIFIED_182_BLOCKED",
-                                   "certification_authority":  "None. This is a governance/provenance artifact, not a scientific certificate. The cited W/T/E commits remain the lane evidence authorities.",
-                                   "limitations":  [
-                                                       "Copied from pinned published T schedule; no numeric values recalculated; not a certificate.",
-                                                       "No N1/N3/N4 gate is closed by this artifact."
-                                                   ],
-                                   "relation_to_W_T_E":  {
-                                                             "W":  {
-                                                                       "commit":  "17907c67d52cc338249b66f28c3179cd97572c6e",
-                                                                       "status":  "100/100 assigned mathematical-witness rows certified; scope only."
-                                                                   },
-                                                             "T":  {
-                                                                       "commit":  "0a8c34b7e6febf681917d915082a8559eea998f7",
-                                                                       "status":  "191-row identity ledger; 9 certified, 182 blocked; N3 open."
-                                                                   },
-                                                             "E":  {
-                                                                       "commit":  "651f18fdf3c7ae8e32cd210ebc68527f86531e32",
-                                                                       "status":  "1,905 obligations (623 PASS, 1,128 BLOCKED, 154 N/A); all applicable N4-A audit obligations pass; N4-B incomplete."
-                                                                   }
-                                                         }
-                               },
-                               {
-                                   "path":  "experiments/luna63c/certificate/temporal-schedule-decision/PRESERVATION_REPORT.md",
-                                   "raw_sha256":  "273B82319174B48E5C2223E1A68F819B92881009A0D8CD5957AE3524B4EDEBDC",
-                                   "git_blob_sha1":  "fde2884f8a6aa0fa74fe53d6b08cf761e837fa29",
-                                   "category":  "provenance-preservation-report",
-                                   "status":  "PENDING_INDEPENDENT_REVIEW",
-                                   "certification_authority":  "None. This is a governance/provenance artifact, not a scientific certificate. The cited W/T/E commits remain the lane evidence authorities.",
-                                   "limitations":  [
-                                                       "Parent-checkout lane copies remain provenance-uncertain and are excluded from authority.",
-                                                       "No N1/N3/N4 gate is closed by this artifact."
-                                                   ],
-                                   "relation_to_W_T_E":  {
-                                                             "W":  {
-                                                                       "commit":  "17907c67d52cc338249b66f28c3179cd97572c6e",
-                                                                       "status":  "100/100 assigned mathematical-witness rows certified; scope only."
-                                                                   },
-                                                             "T":  {
-                                                                       "commit":  "0a8c34b7e6febf681917d915082a8559eea998f7",
-                                                                       "status":  "191-row identity ledger; 9 certified, 182 blocked; N3 open."
-                                                                   },
-                                                             "E":  {
-                                                                       "commit":  "651f18fdf3c7ae8e32cd210ebc68527f86531e32",
-                                                                       "status":  "1,905 obligations (623 PASS, 1,128 BLOCKED, 154 N/A); all applicable N4-A audit obligations pass; N4-B incomplete."
-                                                                   }
-                                                         }
-                               },
-                               {
-                                   "path":  "experiments/luna63c/certificate/temporal-schedule-decision/PUBLICATION_ARTIFACT_RECONCILIATION.json",
-                                   "raw_sha256":  "D90BB4E015FFDFDB6E5E167D685D2BC6912354D14054946C59208658E84DDA32",
-                                   "git_blob_sha1":  "dd35fb2cd97752186fd0a2123736b9639eba2776",
-                                   "category":  "sanitized-preservation-inventory",
-                                   "status":  "INITIAL_SNAPSHOT_ROOTS_REDACTED",
-                                   "certification_authority":  "None. This is a governance/provenance artifact, not a scientific certificate. The cited W/T/E commits remain the lane evidence authorities.",
-                                   "limitations":  [
-                                                       "Snapshot predates the latest governance edits; current candidate hashes are in this manifest.",
-                                                       "No N1/N3/N4 gate is closed by this artifact."
-                                                   ],
-                                   "relation_to_W_T_E":  {
-                                                             "W":  {
-                                                                       "commit":  "17907c67d52cc338249b66f28c3179cd97572c6e",
-                                                                       "status":  "100/100 assigned mathematical-witness rows certified; scope only."
-                                                                   },
-                                                             "T":  {
-                                                                       "commit":  "0a8c34b7e6febf681917d915082a8559eea998f7",
-                                                                       "status":  "191-row identity ledger; 9 certified, 182 blocked; N3 open."
-                                                                   },
-                                                             "E":  {
-                                                                       "commit":  "651f18fdf3c7ae8e32cd210ebc68527f86531e32",
-                                                                       "status":  "1,905 obligations (623 PASS, 1,128 BLOCKED, 154 N/A); all applicable N4-A audit obligations pass; N4-B incomplete."
-                                                                   }
-                                                         }
-                               },
-                               {
-                                   "path":  "workflow/ARCHITECTURE_CHANGELOG.md",
-                                   "raw_sha256":  "BAF4090CB7058A758C6810832DA62AF6CE38B4AEFABFD6518F46487B5F48D541",
-                                   "git_blob_sha1":  "819be71b7e65aa9717ff9c8dcc56aaf66f0ada3e",
-                                   "category":  "governance-status-record",
-                                   "status":  "CURRENT_STAGE_A_STATUS_RECORDED",
-                                   "certification_authority":  "None. This is a governance/provenance artifact, not a scientific certificate. The cited W/T/E commits remain the lane evidence authorities.",
-                                   "limitations":  [
-                                                       "Documents lane statuses; does not close any architecture or certificate gate.",
-                                                       "No N1/N3/N4 gate is closed by this artifact."
-                                                   ],
-                                   "relation_to_W_T_E":  {
-                                                             "W":  {
-                                                                       "commit":  "17907c67d52cc338249b66f28c3179cd97572c6e",
-                                                                       "status":  "100/100 assigned mathematical-witness rows certified; scope only."
-                                                                   },
-                                                             "T":  {
-                                                                       "commit":  "0a8c34b7e6febf681917d915082a8559eea998f7",
-                                                                       "status":  "191-row identity ledger; 9 certified, 182 blocked; N3 open."
-                                                                   },
-                                                             "E":  {
-                                                                       "commit":  "651f18fdf3c7ae8e32cd210ebc68527f86531e32",
-                                                                       "status":  "1,905 obligations (623 PASS, 1,128 BLOCKED, 154 N/A); all applicable N4-A audit obligations pass; N4-B incomplete."
-                                                                   }
-                                                         }
-                               },
-                               {
-                                   "path":  "workflow/docs/luna/LUNA_WORKFLOW.md",
-                                   "raw_sha256":  "1416B106F5ABE42D092629D1FF71F4B33B88CA6829E5C1CC8E69DD53F924AEAD",
-                                   "git_blob_sha1":  "d47822dd1f585fec12878775138c63b400095567",
-                                   "category":  "governance-status-record",
-                                   "status":  "CURRENT_STAGE_A_STATUS_RECORDED",
-                                   "certification_authority":  "None. This is a governance/provenance artifact, not a scientific certificate. The cited W/T/E commits remain the lane evidence authorities.",
-                                   "limitations":  [
-                                                       "Documents lane statuses; does not close any architecture or certificate gate.",
-                                                       "No N1/N3/N4 gate is closed by this artifact."
-                                                   ],
-                                   "relation_to_W_T_E":  {
-                                                             "W":  {
-                                                                       "commit":  "17907c67d52cc338249b66f28c3179cd97572c6e",
-                                                                       "status":  "100/100 assigned mathematical-witness rows certified; scope only."
-                                                                   },
-                                                             "T":  {
-                                                                       "commit":  "0a8c34b7e6febf681917d915082a8559eea998f7",
-                                                                       "status":  "191-row identity ledger; 9 certified, 182 blocked; N3 open."
-                                                                   },
-                                                             "E":  {
-                                                                       "commit":  "651f18fdf3c7ae8e32cd210ebc68527f86531e32",
-                                                                       "status":  "1,905 obligations (623 PASS, 1,128 BLOCKED, 154 N/A); all applicable N4-A audit obligations pass; N4-B incomplete."
-                                                                   }
-                                                         }
-                               },
-                               {
-                                   "path":  "workflow/handoffs/luna63c-stage-a-temporal-schedule-decision-20261010.md",
-                                   "raw_sha256":  "9233BE3A22CC837F172C55EEDF492B694952BF5D4B7A5910CAB85C48D9EB5FE8",
-                                   "git_blob_sha1":  "d3fcbf8149f98110a54cb06cbca8fbda0f577ca9",
-                                   "category":  "governance-handoff",
-                                   "status":  "PARTIAL_RECONCILIATION_NO_EXPERIMENT",
-                                   "certification_authority":  "None. This is a governance/provenance artifact, not a scientific certificate. The cited W/T/E commits remain the lane evidence authorities.",
-                                   "limitations":  [
-                                                       "Independent review and controlled publication remain pending.",
-                                                       "No N1/N3/N4 gate is closed by this artifact."
-                                                   ],
-                                   "relation_to_W_T_E":  {
-                                                             "W":  {
-                                                                       "commit":  "17907c67d52cc338249b66f28c3179cd97572c6e",
-                                                                       "status":  "100/100 assigned mathematical-witness rows certified; scope only."
-                                                                   },
-                                                             "T":  {
-                                                                       "commit":  "0a8c34b7e6febf681917d915082a8559eea998f7",
-                                                                       "status":  "191-row identity ledger; 9 certified, 182 blocked; N3 open."
-                                                                   },
-                                                             "E":  {
-                                                                       "commit":  "651f18fdf3c7ae8e32cd210ebc68527f86531e32",
-                                                                       "status":  "1,905 obligations (623 PASS, 1,128 BLOCKED, 154 N/A); all applicable N4-A audit obligations pass; N4-B incomplete."
-                                                                   }
-                                                         }
-                               }
-                           ],
-    "excluded_artifacts":  [
-                               {
-                                   "path":  "experiments/luna63c/certificate/temporal-schedule-decision/ARTIFACT_RECONCILIATION.json",
-                                   "raw_sha256":  "7C8992991563BEAA54E79EAAFAEF626234B15F8B91445896C4B389B3D2279D9B",
-                                   "status":  "RETAINED_LOCAL_NOT_PUBLISHED",
-                                   "reason":  "Contains workstation-specific absolute worktree paths; sanitized relative-path view is eligible instead."
-                               }
-                           ]
+  "format": "luna63c-controlled-governance-publication-manifest",
+  "version": 1,
+  "publication_branch": "governance/luna63c-corrective-reconciliation",
+  "baseline_revision": "8f5e785bd2e46c0c1cb2afbb77ba53704adef65a",
+  "publication_status": "REVIEW_PENDING_NO_COMMIT",
+  "self_hash_policy": "The manifest omits its own hash to avoid self-reference; its exact raw SHA-256 is supplied to the independent reviewer and recorded after publication.",
+  "hash_policy": {
+    "raw_sha256": "SHA-256 over exact source working-tree bytes",
+    "git_blob_sha1": "Git hash-object with the repository path filter; reverify the same blob in the dedicated publication worktree before staging.",
+    "core_autocrlf": "true in source checkout; raw materialization and canonical Git blob are separately recorded."
+  },
+  "source_lane_authority": {
+    "fixture": "583148e2812b93d519a3dc2821944d08446497b7",
+    "W": "17907c67d52cc338249b66f28c3179cd97572c6e",
+    "T": "0a8c34b7e6febf681917d915082a8559eea998f7",
+    "E": "651f18fdf3c7ae8e32cd210ebc68527f86531e32"
+  },
+  "classification_legend": {
+    "governance_contract_draft": "Prepared policy/assignment text; not authorized execution.",
+    "governance_decision_preparation": "Status and decision analysis; no scientific certification.",
+    "derived_governance_reconciliation": "Deterministic row-level reconciliation of pinned evidence; does not recertify it.",
+    "provenance_preservation_report": "Records what was preserved and excluded.",
+    "sanitized_preservation_inventory": "Relative-path snapshot; workstation roots redacted.",
+    "governance_status_record": "Workflow/changelog status summary.",
+    "governance_handoff": "Completion and limitation report."
+  },
+  "relation_to_W_T_E": {
+    "W": {
+      "commit": "17907c67d52cc338249b66f28c3179cd97572c6e",
+      "status": "100/100 assigned mathematical-witness rows certified; scope only."
+    },
+    "T": {
+      "commit": "0a8c34b7e6febf681917d915082a8559eea998f7",
+      "status": "191-row identity ledger; 9 certified, 182 blocked; N3 open."
+    },
+    "E": {
+      "commit": "651f18fdf3c7ae8e32cd210ebc68527f86531e32",
+      "status": "1,905 obligations (623 PASS, 1,128 BLOCKED, 154 N/A); all applicable N4-A audit obligations pass; N4-B incomplete."
+    }
+  },
+  "eligible_artifact_count": 11,
+  "eligible_artifacts": [
+    {
+      "path": ".github/agents/luna-63c-stage-a-temporal-schedule.agent.md",
+      "raw_sha256": "50FBB4CF52FCAB6FCB6C4AC3C4665B5CD8E64F0DF4E6FA3922730F532D270A13",
+      "git_blob_sha1": "f422417b267c37499153b8b9a300a04ed15f3b5d",
+      "category": "governance-contract-draft",
+      "status": "PREPARED_NOT_AUTHORIZED",
+      "certification_authority": "None. This is a governance/provenance artifact, not a scientific certificate. The cited W/T/E commits remain the lane evidence authorities.",
+      "limitations": [
+        "Future Lane T work only; requires owner-frozen numeric schedule inputs and separate dispatch.",
+        "No N1/N3/N4 gate is closed by this artifact."
+      ],
+      "relation_to_W_T_E": {
+        "W": {
+          "commit": "17907c67d52cc338249b66f28c3179cd97572c6e",
+          "status": "100/100 assigned mathematical-witness rows certified; scope only."
+        },
+        "T": {
+          "commit": "0a8c34b7e6febf681917d915082a8559eea998f7",
+          "status": "191-row identity ledger; 9 certified, 182 blocked; N3 open."
+        },
+        "E": {
+          "commit": "651f18fdf3c7ae8e32cd210ebc68527f86531e32",
+          "status": "1,905 obligations (623 PASS, 1,128 BLOCKED, 154 N/A); all applicable N4-A audit obligations pass; N4-B incomplete."
+        }
+      }
+    },
+    {
+      "path": "experiments/luna63c/certificate/temporal-schedule-decision/DECISION_PACKAGE.md",
+      "raw_sha256": "A67F1B0A4CCE413D076308995CED6F0BFD0E883C8E275263C7338E70C6AFD6C2",
+      "git_blob_sha1": "8ccc8e4cbd4223dfbc69be8c1d5bea15f0031e23",
+      "category": "governance-decision-preparation",
+      "status": "CORRECTED_EVIDENCE_T_BLOCKED_N3",
+      "certification_authority": "None. This is a governance/provenance artifact, not a scientific certificate. The cited W/T/E commits remain the lane evidence authorities.",
+      "limitations": [
+        "No numerical certification, T completion, or stage authorization.",
+        "No N1/N3/N4 gate is closed by this artifact."
+      ],
+      "relation_to_W_T_E": {
+        "W": {
+          "commit": "17907c67d52cc338249b66f28c3179cd97572c6e",
+          "status": "100/100 assigned mathematical-witness rows certified; scope only."
+        },
+        "T": {
+          "commit": "0a8c34b7e6febf681917d915082a8559eea998f7",
+          "status": "191-row identity ledger; 9 certified, 182 blocked; N3 open."
+        },
+        "E": {
+          "commit": "651f18fdf3c7ae8e32cd210ebc68527f86531e32",
+          "status": "1,905 obligations (623 PASS, 1,128 BLOCKED, 154 N/A); all applicable N4-A audit obligations pass; N4-B incomplete."
+        }
+      }
+    },
+    {
+      "path": "experiments/luna63c/certificate/temporal-schedule-decision/blocker-inventory.json",
+      "raw_sha256": "1B4DD51F641102160156038C80201279FA2AB1BA1BD58FBC86E693C7EC163FC0",
+      "git_blob_sha1": "d4937c9865e5b1b540c8cdeef154dc747aececfb",
+      "category": "derived-governance-reconciliation",
+      "status": "191_ID_CROSSWALK_VERIFIED_182_BLOCKED",
+      "certification_authority": "None. This is a governance/provenance artifact, not a scientific certificate. The cited W/T/E commits remain the lane evidence authorities.",
+      "limitations": [
+        "Copied from pinned published T schedule; no numeric values recalculated; not a certificate.",
+        "No N1/N3/N4 gate is closed by this artifact."
+      ],
+      "relation_to_W_T_E": {
+        "W": {
+          "commit": "17907c67d52cc338249b66f28c3179cd97572c6e",
+          "status": "100/100 assigned mathematical-witness rows certified; scope only."
+        },
+        "T": {
+          "commit": "0a8c34b7e6febf681917d915082a8559eea998f7",
+          "status": "191-row identity ledger; 9 certified, 182 blocked; N3 open."
+        },
+        "E": {
+          "commit": "651f18fdf3c7ae8e32cd210ebc68527f86531e32",
+          "status": "1,905 obligations (623 PASS, 1,128 BLOCKED, 154 N/A); all applicable N4-A audit obligations pass; N4-B incomplete."
+        }
+      }
+    },
+    {
+      "path": "experiments/luna63c/certificate/temporal-schedule-decision/PRESERVATION_REPORT.md",
+      "raw_sha256": "2519DD2CEC6A466F7468311B952F686FDD8CF89BC3F4DF951F05BBE5CD463198",
+      "git_blob_sha1": "730ad6b8731431d073106c0f5f13c6fc829b3a7b",
+      "category": "provenance-preservation-report",
+      "status": "PENDING_INDEPENDENT_REVIEW",
+      "certification_authority": "None. This is a governance/provenance artifact, not a scientific certificate. The cited W/T/E commits remain the lane evidence authorities.",
+      "limitations": [
+        "Parent-checkout lane copies remain provenance-uncertain and are excluded from authority.",
+        "No N1/N3/N4 gate is closed by this artifact."
+      ],
+      "relation_to_W_T_E": {
+        "W": {
+          "commit": "17907c67d52cc338249b66f28c3179cd97572c6e",
+          "status": "100/100 assigned mathematical-witness rows certified; scope only."
+        },
+        "T": {
+          "commit": "0a8c34b7e6febf681917d915082a8559eea998f7",
+          "status": "191-row identity ledger; 9 certified, 182 blocked; N3 open."
+        },
+        "E": {
+          "commit": "651f18fdf3c7ae8e32cd210ebc68527f86531e32",
+          "status": "1,905 obligations (623 PASS, 1,128 BLOCKED, 154 N/A); all applicable N4-A audit obligations pass; N4-B incomplete."
+        }
+      }
+    },
+    {
+      "path": "experiments/luna63c/certificate/temporal-schedule-decision/PUBLICATION_ARTIFACT_RECONCILIATION.json",
+      "raw_sha256": "2C6685217D1D215AC14B751D3827578C7E8D4A0C6B5652345B38B0BF45F820A3",
+      "git_blob_sha1": "eaf2ed7b3274fd0ab097e5ad30924d7ad1dc8617",
+      "category": "sanitized-preservation-inventory",
+      "status": "INITIAL_SNAPSHOT_ROOTS_REDACTED",
+      "certification_authority": "None. This is a governance/provenance artifact, not a scientific certificate. The cited W/T/E commits remain the lane evidence authorities.",
+      "limitations": [
+        "Snapshot predates the latest governance edits; current candidate hashes are in this manifest.",
+        "No N1/N3/N4 gate is closed by this artifact."
+      ],
+      "relation_to_W_T_E": {
+        "W": {
+          "commit": "17907c67d52cc338249b66f28c3179cd97572c6e",
+          "status": "100/100 assigned mathematical-witness rows certified; scope only."
+        },
+        "T": {
+          "commit": "0a8c34b7e6febf681917d915082a8559eea998f7",
+          "status": "191-row identity ledger; 9 certified, 182 blocked; N3 open."
+        },
+        "E": {
+          "commit": "651f18fdf3c7ae8e32cd210ebc68527f86531e32",
+          "status": "1,905 obligations (623 PASS, 1,128 BLOCKED, 154 N/A); all applicable N4-A audit obligations pass; N4-B incomplete."
+        }
+      }
+    },
+    {
+      "path": "workflow/ARCHITECTURE_CHANGELOG.md",
+      "raw_sha256": "F9ECB517005F9B3C6D8CC5801948DB3DFB602F43E54FCF7E75F190935B5770FF",
+      "git_blob_sha1": "ed4ce196d3f31ed364626904d6a535ebac4af6ca",
+      "category": "governance-status-record",
+      "status": "CURRENT_STAGE_A_STATUS_RECORDED",
+      "certification_authority": "None. This is a governance/provenance artifact, not a scientific certificate. The cited W/T/E commits remain the lane evidence authorities.",
+      "limitations": [
+        "Documents lane statuses; does not close any architecture or certificate gate.",
+        "No N1/N3/N4 gate is closed by this artifact."
+      ],
+      "relation_to_W_T_E": {
+        "W": {
+          "commit": "17907c67d52cc338249b66f28c3179cd97572c6e",
+          "status": "100/100 assigned mathematical-witness rows certified; scope only."
+        },
+        "T": {
+          "commit": "0a8c34b7e6febf681917d915082a8559eea998f7",
+          "status": "191-row identity ledger; 9 certified, 182 blocked; N3 open."
+        },
+        "E": {
+          "commit": "651f18fdf3c7ae8e32cd210ebc68527f86531e32",
+          "status": "1,905 obligations (623 PASS, 1,128 BLOCKED, 154 N/A); all applicable N4-A audit obligations pass; N4-B incomplete."
+        }
+      }
+    },
+    {
+      "path": "workflow/docs/luna/LUNA_WORKFLOW.md",
+      "raw_sha256": "042478D425CA4F1D12EAD02DDD439934081CB53DA81A79D11C89DAA4298E2814",
+      "git_blob_sha1": "89f91649491f9890d24780415bd677c8c71f4d32",
+      "category": "governance-status-record",
+      "status": "CURRENT_STAGE_A_STATUS_RECORDED",
+      "certification_authority": "None. This is a governance/provenance artifact, not a scientific certificate. The cited W/T/E commits remain the lane evidence authorities.",
+      "limitations": [
+        "Documents lane statuses; does not close any architecture or certificate gate.",
+        "No N1/N3/N4 gate is closed by this artifact."
+      ],
+      "relation_to_W_T_E": {
+        "W": {
+          "commit": "17907c67d52cc338249b66f28c3179cd97572c6e",
+          "status": "100/100 assigned mathematical-witness rows certified; scope only."
+        },
+        "T": {
+          "commit": "0a8c34b7e6febf681917d915082a8559eea998f7",
+          "status": "191-row identity ledger; 9 certified, 182 blocked; N3 open."
+        },
+        "E": {
+          "commit": "651f18fdf3c7ae8e32cd210ebc68527f86531e32",
+          "status": "1,905 obligations (623 PASS, 1,128 BLOCKED, 154 N/A); all applicable N4-A audit obligations pass; N4-B incomplete."
+        }
+      }
+    },
+    {
+      "path": "workflow/handoffs/luna63c-stage-a-temporal-schedule-decision-20261010.md",
+      "raw_sha256": "9233BE3A22CC837F172C55EEDF492B694952BF5D4B7A5910CAB85C48D9EB5FE8",
+      "git_blob_sha1": "d3fcbf8149f98110a54cb06cbca8fbda0f577ca9",
+      "category": "governance-handoff",
+      "status": "PARTIAL_RECONCILIATION_NO_EXPERIMENT",
+      "certification_authority": "None. This is a governance/provenance artifact, not a scientific certificate. The cited W/T/E commits remain the lane evidence authorities.",
+      "limitations": [
+        "Independent review and controlled publication remain pending.",
+        "No N1/N3/N4 gate is closed by this artifact."
+      ],
+      "relation_to_W_T_E": {
+        "W": {
+          "commit": "17907c67d52cc338249b66f28c3179cd97572c6e",
+          "status": "100/100 assigned mathematical-witness rows certified; scope only."
+        },
+        "T": {
+          "commit": "0a8c34b7e6febf681917d915082a8559eea998f7",
+          "status": "191-row identity ledger; 9 certified, 182 blocked; N3 open."
+        },
+        "E": {
+          "commit": "651f18fdf3c7ae8e32cd210ebc68527f86531e32",
+          "status": "1,905 obligations (623 PASS, 1,128 BLOCKED, 154 N/A); all applicable N4-A audit obligations pass; N4-B incomplete."
+        }
+      }
+    },
+    {
+      "path": "experiments/luna63c/certificate/temporal-schedule-decision/CORRECTIVE_RECONCILIATION.md",
+      "category": "governance_corrective_review",
+      "status": "REVIEW_PENDING",
+      "certification_authority": "None; this is governance/provenance evidence only.",
+      "limitations": [
+        "No scientific certification or experiment authorization.",
+        "Preserves the pinned W/T/E commits as the sole evidence authorities."
+      ],
+      "relation_to_W_T_E": {
+        "W": {
+          "commit": "17907c67d52cc338249b66f28c3179cd97572c6e",
+          "status": "100/100 assigned mathematical-witness rows certified; scope only."
+        },
+        "T": {
+          "commit": "0a8c34b7e6febf681917d915082a8559eea998f7",
+          "status": "191-row identity ledger; 9 certified, 182 blocked; N3 open."
+        },
+        "E": {
+          "commit": "651f18fdf3c7ae8e32cd210ebc68527f86531e32",
+          "status": "1,905 obligations (623 PASS, 1,128 BLOCKED, 154 N/A); all applicable N4-A audit obligations pass; N4-B incomplete."
+        }
+      },
+      "raw_sha256": "36B3273DDFF3AA79490446BC425FECE14C2BDD84CFC96C0D86B1A6C6F4A4FF4E",
+      "git_blob_sha1": "a3b6f0f6d36939789e942d54618d90f118831d9d"
+    },
+    {
+      "path": "experiments/luna63c/certificate/temporal-schedule-decision/UNCOMMITTED_ARTIFACT_INVENTORY.json",
+      "category": "sanitized_preservation_inventory",
+      "status": "REVIEW_PENDING",
+      "certification_authority": "None; this is governance/provenance evidence only.",
+      "limitations": [
+        "No scientific certification or experiment authorization.",
+        "Preserves the pinned W/T/E commits as the sole evidence authorities."
+      ],
+      "relation_to_W_T_E": {
+        "W": {
+          "commit": "17907c67d52cc338249b66f28c3179cd97572c6e",
+          "status": "100/100 assigned mathematical-witness rows certified; scope only."
+        },
+        "T": {
+          "commit": "0a8c34b7e6febf681917d915082a8559eea998f7",
+          "status": "191-row identity ledger; 9 certified, 182 blocked; N3 open."
+        },
+        "E": {
+          "commit": "651f18fdf3c7ae8e32cd210ebc68527f86531e32",
+          "status": "1,905 obligations (623 PASS, 1,128 BLOCKED, 154 N/A); all applicable N4-A audit obligations pass; N4-B incomplete."
+        }
+      },
+      "raw_sha256": "EC01B378B6464C001755E9701D28AF1FC043206C678B96B97071C7588AA77CD2",
+      "git_blob_sha1": "0dc6c33d11f10ba2cbe135ffd1b3dc03f7b4bf12"
+    },
+    {
+      "path": "workflow/handoffs/luna63c-artifact-reconciliation-correction-20261010.md",
+      "category": "governance_corrective_review",
+      "status": "REVIEW_PENDING",
+      "certification_authority": "None; this is governance/provenance evidence only.",
+      "limitations": [
+        "No scientific certification or experiment authorization.",
+        "Preserves the pinned W/T/E commits as the sole evidence authorities."
+      ],
+      "relation_to_W_T_E": {
+        "W": {
+          "commit": "17907c67d52cc338249b66f28c3179cd97572c6e",
+          "status": "100/100 assigned mathematical-witness rows certified; scope only."
+        },
+        "T": {
+          "commit": "0a8c34b7e6febf681917d915082a8559eea998f7",
+          "status": "191-row identity ledger; 9 certified, 182 blocked; N3 open."
+        },
+        "E": {
+          "commit": "651f18fdf3c7ae8e32cd210ebc68527f86531e32",
+          "status": "1,905 obligations (623 PASS, 1,128 BLOCKED, 154 N/A); all applicable N4-A audit obligations pass; N4-B incomplete."
+        }
+      },
+      "raw_sha256": "F13722543D65E70C0A0492FA7A328A5DAD87214F651B66FB85314F4754D7A04A",
+      "git_blob_sha1": "4bf4ff0e0db925898a6a6af6e55ba6ef9bd0bd42"
+    }
+  ],
+  "excluded_artifacts": [
+    {
+      "path": "experiments/luna63c/certificate/temporal-schedule-decision/ARTIFACT_RECONCILIATION.json",
+      "raw_sha256": "7C8992991563BEAA54E79EAAFAEF626234B15F8B91445896C4B389B3D2279D9B",
+      "status": "RETAINED_LOCAL_NOT_PUBLISHED",
+      "reason": "Contains workstation-specific absolute worktree paths; sanitized relative-path view is eligible instead."
+    }
+  ],
+  "reconciliation_snapshot": {
+    "path": "experiments/luna63c/certificate/temporal-schedule-decision/PUBLICATION_ARTIFACT_RECONCILIATION.json",
+    "raw_sha256": "2C6685217D1D215AC14B751D3827578C7E8D4A0C6B5652345B38B0BF45F820A3"
+  },
+  "uncommitted_inventory": {
+    "path": "experiments/luna63c/certificate/temporal-schedule-decision/UNCOMMITTED_ARTIFACT_INVENTORY.json",
+    "raw_sha256": "EC01B378B6464C001755E9701D28AF1FC043206C678B96B97071C7588AA77CD2",
+    "visible_files": 42,
+    "ignored_files": 26
+  },
+  "corrective_allowlist": [
+    {
+      "path": "workflow/ARCHITECTURE_CHANGELOG.md",
+      "raw_sha256": "F9ECB517005F9B3C6D8CC5801948DB3DFB602F43E54FCF7E75F190935B5770FF",
+      "git_blob_sha1": "ed4ce196d3f31ed364626904d6a535ebac4af6ca",
+      "category": "A",
+      "reason": "Bounded correction of one of the three reviewed defects or its supporting sanitized provenance/inventory record.",
+      "source_revision": "19caa49d7620062c06ad74d19528e47725f86b37",
+      "certification_limitations": "Governance/provenance only; no scientific certification or execution authority.",
+      "validation_performed": "Hashes, paths, and claim/provenance checks recorded; no scientific code or tests run."
+    },
+    {
+      "path": "workflow/docs/luna/LUNA_WORKFLOW.md",
+      "raw_sha256": "042478D425CA4F1D12EAD02DDD439934081CB53DA81A79D11C89DAA4298E2814",
+      "git_blob_sha1": "89f91649491f9890d24780415bd677c8c71f4d32",
+      "category": "A",
+      "reason": "Bounded correction of one of the three reviewed defects or its supporting sanitized provenance/inventory record.",
+      "source_revision": "19caa49d7620062c06ad74d19528e47725f86b37",
+      "certification_limitations": "Governance/provenance only; no scientific certification or execution authority.",
+      "validation_performed": "Hashes, paths, and claim/provenance checks recorded; no scientific code or tests run."
+    },
+    {
+      "path": "experiments/luna63c/certificate/temporal-schedule-decision/PRESERVATION_REPORT.md",
+      "raw_sha256": "2519DD2CEC6A466F7468311B952F686FDD8CF89BC3F4DF951F05BBE5CD463198",
+      "git_blob_sha1": "730ad6b8731431d073106c0f5f13c6fc829b3a7b",
+      "category": "A",
+      "reason": "Bounded correction of one of the three reviewed defects or its supporting sanitized provenance/inventory record.",
+      "source_revision": "19caa49d7620062c06ad74d19528e47725f86b37",
+      "certification_limitations": "Governance/provenance only; no scientific certification or execution authority.",
+      "validation_performed": "Hashes, paths, and claim/provenance checks recorded; no scientific code or tests run."
+    },
+    {
+      "path": "experiments/luna63c/certificate/temporal-schedule-decision/PUBLICATION_ARTIFACT_RECONCILIATION.json",
+      "raw_sha256": "2C6685217D1D215AC14B751D3827578C7E8D4A0C6B5652345B38B0BF45F820A3",
+      "git_blob_sha1": "eaf2ed7b3274fd0ab097e5ad30924d7ad1dc8617",
+      "category": "B",
+      "reason": "Bounded correction of one of the three reviewed defects or its supporting sanitized provenance/inventory record.",
+      "source_revision": "19caa49d7620062c06ad74d19528e47725f86b37",
+      "certification_limitations": "Governance/provenance only; no scientific certification or execution authority.",
+      "validation_performed": "Hashes, paths, and claim/provenance checks recorded; no scientific code or tests run."
+    },
+    {
+      "path": "experiments/luna63c/certificate/temporal-schedule-decision/CORRECTIVE_RECONCILIATION.md",
+      "raw_sha256": "36B3273DDFF3AA79490446BC425FECE14C2BDD84CFC96C0D86B1A6C6F4A4FF4E",
+      "git_blob_sha1": "a3b6f0f6d36939789e942d54618d90f118831d9d",
+      "category": "A",
+      "reason": "Bounded correction of one of the three reviewed defects or its supporting sanitized provenance/inventory record.",
+      "source_revision": "19caa49d7620062c06ad74d19528e47725f86b37",
+      "certification_limitations": "Governance/provenance only; no scientific certification or execution authority.",
+      "validation_performed": "Hashes, paths, and claim/provenance checks recorded; no scientific code or tests run."
+    },
+    {
+      "path": "experiments/luna63c/certificate/temporal-schedule-decision/UNCOMMITTED_ARTIFACT_INVENTORY.json",
+      "raw_sha256": "EC01B378B6464C001755E9701D28AF1FC043206C678B96B97071C7588AA77CD2",
+      "git_blob_sha1": "0dc6c33d11f10ba2cbe135ffd1b3dc03f7b4bf12",
+      "category": "B",
+      "reason": "Bounded correction of one of the three reviewed defects or its supporting sanitized provenance/inventory record.",
+      "source_revision": "19caa49d7620062c06ad74d19528e47725f86b37",
+      "certification_limitations": "Governance/provenance only; no scientific certification or execution authority.",
+      "validation_performed": "Hashes, paths, and claim/provenance checks recorded; no scientific code or tests run."
+    },
+    {
+      "path": "workflow/handoffs/luna63c-artifact-reconciliation-correction-20261010.md",
+      "raw_sha256": "F13722543D65E70C0A0492FA7A328A5DAD87214F651B66FB85314F4754D7A04A",
+      "git_blob_sha1": "4bf4ff0e0db925898a6a6af6e55ba6ef9bd0bd42",
+      "category": "A",
+      "reason": "Bounded correction of one of the three reviewed defects or its supporting sanitized provenance/inventory record.",
+      "source_revision": "19caa49d7620062c06ad74d19528e47725f86b37",
+      "certification_limitations": "Governance/provenance only; no scientific certification or execution authority.",
+      "validation_performed": "Hashes, paths, and claim/provenance checks recorded; no scientific code or tests run."
+    }
+  ],
+  "corrective_changed_path_count": 8,
+  "full_changed_path_allowlist": [
+    {
+      "path": "workflow/ARCHITECTURE_CHANGELOG.md",
+      "raw_sha256": "F9ECB517005F9B3C6D8CC5801948DB3DFB602F43E54FCF7E75F190935B5770FF",
+      "git_blob_sha1": "ed4ce196d3f31ed364626904d6a535ebac4af6ca",
+      "category": "A",
+      "reason": "Bounded correction of one of the three reviewed defects or its supporting sanitized provenance/inventory record.",
+      "source_revision": "19caa49d7620062c06ad74d19528e47725f86b37",
+      "certification_limitations": "Governance/provenance only; no scientific certification or execution authority.",
+      "validation_performed": "Hashes, paths, and claim/provenance checks recorded; no scientific code or tests run."
+    },
+    {
+      "path": "workflow/docs/luna/LUNA_WORKFLOW.md",
+      "raw_sha256": "042478D425CA4F1D12EAD02DDD439934081CB53DA81A79D11C89DAA4298E2814",
+      "git_blob_sha1": "89f91649491f9890d24780415bd677c8c71f4d32",
+      "category": "A",
+      "reason": "Bounded correction of one of the three reviewed defects or its supporting sanitized provenance/inventory record.",
+      "source_revision": "19caa49d7620062c06ad74d19528e47725f86b37",
+      "certification_limitations": "Governance/provenance only; no scientific certification or execution authority.",
+      "validation_performed": "Hashes, paths, and claim/provenance checks recorded; no scientific code or tests run."
+    },
+    {
+      "path": "experiments/luna63c/certificate/temporal-schedule-decision/PRESERVATION_REPORT.md",
+      "raw_sha256": "0F51939928D56CE7D3A336A128D5E580272FAD29014C7075550C5C63B1131CBB",
+      "git_blob_sha1": "76a23a6bcafd46d31ca4210c7ef6d2fecd337d50",
+      "category": "A",
+      "reason": "Bounded correction of one of the three reviewed defects or its supporting sanitized provenance/inventory record.",
+      "source_revision": "19caa49d7620062c06ad74d19528e47725f86b37",
+      "certification_limitations": "Governance/provenance only; no scientific certification or execution authority.",
+      "validation_performed": "Hashes, paths, and claim/provenance checks recorded; no scientific code or tests run."
+    },
+    {
+      "path": "experiments/luna63c/certificate/temporal-schedule-decision/PUBLICATION_ARTIFACT_RECONCILIATION.json",
+      "raw_sha256": "FE1D6047DDB4C7F1880A955317009FE3F66315D9F8D2F144E1A76E80F2506200",
+      "git_blob_sha1": "e82012d835ea85b7aad149459613574d75507006",
+      "category": "B",
+      "reason": "Bounded correction of one of the three reviewed defects or its supporting sanitized provenance/inventory record.",
+      "source_revision": "19caa49d7620062c06ad74d19528e47725f86b37",
+      "certification_limitations": "Governance/provenance only; no scientific certification or execution authority.",
+      "validation_performed": "Hashes, paths, and claim/provenance checks recorded; no scientific code or tests run."
+    },
+    {
+      "path": "experiments/luna63c/certificate/temporal-schedule-decision/CORRECTIVE_RECONCILIATION.md",
+      "raw_sha256": "F9C6E9DD5C07A1FDF56EB5E776A89967A4FD753D646D9AC70527EEB8E71373B7",
+      "git_blob_sha1": "ee076ff9a7dcb6d3220d8139519fbebb6319c8b9",
+      "category": "A",
+      "reason": "Bounded correction of one of the three reviewed defects or its supporting sanitized provenance/inventory record.",
+      "source_revision": "19caa49d7620062c06ad74d19528e47725f86b37",
+      "certification_limitations": "Governance/provenance only; no scientific certification or execution authority.",
+      "validation_performed": "Hashes, paths, and claim/provenance checks recorded; no scientific code or tests run."
+    },
+    {
+      "path": "experiments/luna63c/certificate/temporal-schedule-decision/UNCOMMITTED_ARTIFACT_INVENTORY.json",
+      "raw_sha256": "2DC3682F466A9DC735B401B276792E10A141EAF66058F264CA2856D19007A556",
+      "git_blob_sha1": "8fa1312a996b335cd8c2452345bce7bbec09d888",
+      "category": "B",
+      "reason": "Bounded correction of one of the three reviewed defects or its supporting sanitized provenance/inventory record.",
+      "source_revision": "19caa49d7620062c06ad74d19528e47725f86b37",
+      "certification_limitations": "Governance/provenance only; no scientific certification or execution authority.",
+      "validation_performed": "Hashes, paths, and claim/provenance checks recorded; no scientific code or tests run."
+    },
+    {
+      "path": "workflow/handoffs/luna63c-artifact-reconciliation-correction-20261010.md",
+      "raw_sha256": "FE6AF30C7C35EFD43CC42E2FFF82E48FF2F051F8625C694C8AD6290D99B3AC97",
+      "git_blob_sha1": "f22727a99501ebc66896564c534fa34f0b0db770",
+      "category": "A",
+      "reason": "Bounded correction of one of the three reviewed defects or its supporting sanitized provenance/inventory record.",
+      "source_revision": "19caa49d7620062c06ad74d19528e47725f86b37",
+      "certification_limitations": "Governance/provenance only; no scientific certification or execution authority.",
+      "validation_performed": "Hashes, paths, and claim/provenance checks recorded; no scientific code or tests run."
+    }
+  ],
+  "exact_diff_allowlist": [
+    "workflow/ARCHITECTURE_CHANGELOG.md",
+    "workflow/docs/luna/LUNA_WORKFLOW.md",
+    "experiments/luna63c/certificate/temporal-schedule-decision/PRESERVATION_REPORT.md",
+    "experiments/luna63c/certificate/temporal-schedule-decision/PUBLICATION_ARTIFACT_RECONCILIATION.json",
+    "experiments/luna63c/certificate/temporal-schedule-decision/CORRECTIVE_RECONCILIATION.md",
+    "experiments/luna63c/certificate/temporal-schedule-decision/UNCOMMITTED_ARTIFACT_INVENTORY.json",
+    "workflow/handoffs/luna63c-artifact-reconciliation-correction-20261010.md",
+    "experiments/luna63c/certificate/temporal-schedule-decision/PUBLICATION_MANIFEST.json"
+  ],
+  "independent_review_required": true
 }
