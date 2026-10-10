@@ -89,9 +89,8 @@ Lane S/N5 work was run or resumed. No architecture clause or ACP changed.
 No separate executable tests apply to this documentation-only schema.
 
 The schema was checked against the arithmetic governance decision and
-execution contract. `git diff --check` and independent Luna-0 review are
-required before this handoff is final. Publication and remote verification
-are recorded in the completion addendum below.
+execution contract. `git diff --check` passed before publication. Independent
+Luna-0 review of the published schema commit is recorded below.
 
 ## Independent review and next gate
 
@@ -105,6 +104,27 @@ receives its own independent PASS.
 Lane S/N5 remains blocked. Stage B remains blocked. No scientific fixture has
 been executed.
 
-## Publication completion addendum
+## Publication and independent review completion
 
-Pending publication.
+The schema and linked governance updates were committed as
+`9cc92adb56e388d8675d538410b319fd8d8841a5` and pushed to
+`origin/experiment/luna63c-stage-a-certificate`. A subsequent fetch verified
+that `HEAD` and the origin branch matched that SHA. `origin/main` remained
+`73aaa50f97ceab322907875ae4dcf23e7541c3b5`.
+
+An independent Luna-0 review of exact commit
+`9cc92adb56e388d8675d538410b319fd8d8841a5` returned **PASS**, with no
+correction required. The reviewer confirmed the verification-only scope,
+profile compatibility, unchanged fixture/science definitions, correct gate
+boundaries, and sufficiency of the fixture-freeze mapping contract.
+
+`git show --check` and `git diff --check` passed. No tracked changes remain.
+The pre-existing untracked W/T/E lane directories and handoffs remain in the
+worktree and were not staged, changed, or treated as published evidence.
+
+This final review-status update is being published separately; its revision,
+push/fetch result, and final worktree state are recorded in the session
+completion report. No fixture freeze, numerical certification, W/T/E resume,
+Lane S/N5 synthesis, Stage B implementation, or scientific fixture execution
+occurred. The next task is the bounded C0–C7 fixture-freeze prerequisite;
+W/T/E may resume only after that freeze receives its own independent PASS.

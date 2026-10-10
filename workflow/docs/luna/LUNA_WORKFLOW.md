@@ -57,11 +57,13 @@ event-time interface. This defines what evidence must prove; it changes no
 scientific fixture, equation, parameter, event semantic, arithmetic profile,
 or resource cap and does not close N4.
 
-The schema is awaiting independent Luna-0 review. Only after PASS may the
-separate C0–C7 fixture-freeze prerequisite resume. W/T/E numerical work must
-wait for that fixture freeze and its independent PASS; Lane S/N5 and Stage B
-remain blocked. No numerical certification, fixture execution, W/T/E resume,
-or synthesis occurred in this governance pass.
+The schema received independent Luna-0 **PASS** on
+`9cc92adb56e388d8675d538410b319fd8d8841a5`. The next bounded prerequisite is
+the separate C0–C7 fixture freeze against the repository-defined fixture
+identities and the N4 mapping fields. W/T/E numerical work must wait for that
+fixture freeze and its independent PASS; Lane S/N5 and Stage B remain blocked.
+No numerical certification, fixture execution, W/T/E resume, or synthesis
+occurred in this governance pass.
 
 ## Luna-63A/B reviewed evidence integrated; 63B numerical gate blocked; 63C design assigned — 2026-10-09
 

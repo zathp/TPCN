@@ -19,6 +19,12 @@ prerequisite resumes. W/T/E remain paused until fixture freeze and its
 independent PASS; Lane S/N5 and Stage B remain blocked. No numerical
 certification or scientific fixture was run.
 
+Independent Luna-0 review returned **PASS** on the published schema commit
+`9cc92adb56e388d8675d538410b319fd8d8841a5`, with no correction required.
+The next bounded prerequisite is the separate C0–C7 fixture freeze. W/T/E
+remain paused pending that freeze and its own independent PASS; Lane S/N5 and
+Stage B remain blocked.
+
 ## Luna-63C certified reference arithmetic profile authorized — 2026-10-10
 
 At fetched, clean `main == origin/main`
