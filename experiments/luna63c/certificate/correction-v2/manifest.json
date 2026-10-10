@@ -1,0 +1,58 @@
+{
+  "format": "luna63c-corrective-certificate-manifest",
+  "version": 2,
+  "old_revision": "181b6440821e1dd6beede7e34cab9b6baada601a",
+  "architecture_baseline": "73aaa50f97ceab322907875ae4dcf23e7541c3b5",
+  "design_revision": "3e7d31b9a527e908b21abee3766906084e7cd082",
+  "handoff_revision": "a303ebb835b72fdd01c86df478431b8638aacbb4",
+  "disposition": "BLOCKED — NUMERICAL CERTIFICATE INCOMPLETE",
+  "gate_results": {
+    "N1": "PARTIAL",
+    "N2": "CLOSED FOR PROPOSED V2 WITNESSES",
+    "N3": "PARTIAL",
+    "N4": "CONDITIONAL ONLY; OPERATIONAL BOUND BLOCKED",
+    "N5": "INCOMPLETE",
+    "N6": "STAGE B ONLY; NOT A STAGE A BLOCKER"
+  },
+  "hash_algorithm": "SHA256",
+  "hash_scope": "raw Git blob content bytes",
+  "self_hash_policy": "manifest excluded; outer raw blob SHA256 returned separately",
+  "generation_method": "independent exact rational/dyadic interval certificate calculations; deterministic sorted compact ASCII-escaped witness serialization; manual reports/manifests; no candidate/runtime imports",
+  "precision_bits": 256,
+  "bisections_per_root": 128,
+  "parameter_identities": "REPORT.md; unchanged pinned design; prior expected_outcomes.json",
+  "source_hash_metadata": "sources.json at frozen old_revision; checked by integrity.py",
+  "environment": {
+    "python": "3.11.4; MSC v1934 64-bit AMD64",
+    "platform": "Windows-10-10.0.19045-SP0",
+    "git": "2.53.0.windows.1",
+    "powershell": "5.1.19041.6456",
+    "dependencies": "standard library only",
+    "preparation_branch": "experiment/luna63c-stage-a-certificate",
+    "initial_worktree": "clean",
+    "fresh_fetch_claimed": false
+  },
+  "commands": [
+    "python -B experiments/luna63c/certificate/correction-v2/calculate.py --check",
+    "python -B experiments/luna63c/certificate/correction-v2/test_certificate.py",
+    "python -B experiments/luna63c/certificate/correction-v2/integrity.py --prepare",
+    "git --no-pager diff --check"
+  ],
+  "scientific_fixture_executions": 0,
+  "candidate_implementation_created": false,
+  "stage_b_eligible": false,
+  "files": {
+    "REPORT.md": "ae16c90e9b59525cfdf859480aa2427a421f7462db816a73478f5db845572407",
+    "calculate.py": "634c6284e05faaf3c631fc8194a7ac326b7c945d9f556407691b06ab5ced5d94",
+    "integrity.py": "2daebfe43904b865621bedd4779c55911548989e5880c4307d2ddd6b0b187459",
+    "test_certificate.py": "065378e3c2db00538727795fdaa7d4cc162c4745d2a63020d6787fb16042f753",
+    "witnesses.json": "d0a9d43dcbca38a6fb4afb562e338846bccf06ec1394eb1466f1b40b2ae0d5ce"
+  },
+  "prior_files": {
+    "CERTIFICATE.md": "9de4a3f4677441b15aa4c860c2ff8aa49f6368cd5acd96b262be3029379ad10b",
+    "check_certificate.py": "af48c7b95d5da915bf81cad72049ebf1de9103c8f0ed14aaaa5057167cccd2f4",
+    "expected_outcomes.json": "6052fe301ec6ddfd419f74b275d85c385e386d85a874b54e42247b70afe511a8",
+    "sources.json": "64ebfa94054e41a0badd4b2e4dc6f47f882adb6e9a140c6782d15c477e7fda85",
+    "manifest.json": "107d806292aa017036d91fe1d9b88a12d539510aab0266027390de352f7e648f"
+  }
+}
