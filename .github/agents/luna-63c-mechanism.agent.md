@@ -183,6 +183,15 @@ classification, and binary64 event timestamp. N4 is redefined as:
 * **N4-B:** reference-to-binary64 event-time conversion preserves the reviewed
   ceilings, strict-future condition, domain, ordering, and expiry rules.
 
+The authoritative verification obligations are frozen in
+`workflow/docs/luna/LUNA_63C_N4_CERTIFICATION_REQUIREMENTS.md`:
+N4-A1–A7 cover the certified reference arithmetic and N4-B1–B7 cover the
+binary64 event-time interface. These are verification requirements only; they
+do not change the scientific fixture definitions or close any certificate
+gate. Map every frozen fixture checkpoint and scheduled event to the
+applicable obligations. The historical labels E1–E14 are not authoritative
+for this contract.
+
 Ordinary binary64 state arithmetic, fixed-point arithmetic, and hardware
 conformance are deferred to separate later conformance experiments. This
 profile does not itself close N1, N3, N4, or N5 and does not unlock Stage B:

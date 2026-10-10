@@ -1,5 +1,24 @@
 # Architecture Changelog
 
+## Luna-63C N4 certification requirement schema frozen — 2026-10-10
+
+At fetched branch HEAD `87179ba2f5da13da7bc70727e72c000de924ed80`, with
+`origin/main` at `73aaa50f97ceab322907875ae4dcf23e7541c3b5`, Luna-0 confirmed
+that the pinned repository sources contain no authoritative E1–E14
+definitions. The verification-only N4 schema is now recorded in
+`workflow/docs/luna/LUNA_63C_N4_CERTIFICATION_REQUIREMENTS.md`: N4-A1–A7
+cover certified reference arithmetic and N4-B1–B7 cover the binary64
+event-time interface.
+
+The schema is compatible with the already-authorized MPFR 4.2.2/GMP 6.3.0
+profile and existing N4-A/N4-B contract. It changes no C0–C7 identity,
+scientific equation, parameter, event behavior, arithmetic profile, or
+`16+1+24+1=42` cap. It is not a numerical certificate and closes no N4,
+N1, or N3 gate. Independent review is required before the fixture-freeze
+prerequisite resumes. W/T/E remain paused until fixture freeze and its
+independent PASS; Lane S/N5 and Stage B remain blocked. No numerical
+certification or scientific fixture was run.
+
 ## Luna-63C certified reference arithmetic profile authorized — 2026-10-10
 
 At fetched, clean `main == origin/main`

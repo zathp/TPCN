@@ -47,6 +47,22 @@ those lanes publish complete results. Independent Luna-0 PASS against exact
 certificate hashes remains mandatory before Stage B. Ordinary binary64 state,
 fixed-point, and hardware conformance are deferred to separate later work.
 
+### Luna-63C N4 certification requirement schema frozen — 2026-10-10
+
+The old E1–E14 labels were not defined by the pinned repository sources.
+Luna-0 froze the verification-only schema in
+[LUNA_63C_N4_CERTIFICATION_REQUIREMENTS.md](LUNA_63C_N4_CERTIFICATION_REQUIREMENTS.md):
+N4-A1–A7 for certified reference arithmetic and N4-B1–B7 for the binary64
+event-time interface. This defines what evidence must prove; it changes no
+scientific fixture, equation, parameter, event semantic, arithmetic profile,
+or resource cap and does not close N4.
+
+The schema is awaiting independent Luna-0 review. Only after PASS may the
+separate C0–C7 fixture-freeze prerequisite resume. W/T/E numerical work must
+wait for that fixture freeze and its independent PASS; Lane S/N5 and Stage B
+remain blocked. No numerical certification, fixture execution, W/T/E resume,
+or synthesis occurred in this governance pass.
+
 ## Luna-63A/B reviewed evidence integrated; 63B numerical gate blocked; 63C design assigned — 2026-10-09
 
 The independent Luna-0 reviews of Luna-63A publication
