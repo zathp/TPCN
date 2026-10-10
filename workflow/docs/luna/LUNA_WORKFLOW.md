@@ -88,12 +88,22 @@ C7 occurrence identities, and incomplete symbolic setup/timer-record
 inventory for several C7 cases. The current working inventory adds explicit
 causal prefixes, fresh-instance boundaries, timer creation/cancellation/
 processing references, and distinct expanded attempt identities. A fresh
-review closed only this fixture-freeze gate. It does not automatically resume
-W/T/E; those lanes remain paused pending separate authorization. All C7 A=4 cases now
-explicitly use `p=+1`; C2/A=1 keeps separate positive and negative checkpoint
-identities, and C3-C6 retain their frozen positive polarity. Lane S/N5 and
-Stage B remain blocked. No numerical certification, solver, runtime,
-scientific fixture, or experiment was run.
+review closed only this fixture-freeze gate. Its exact five-file bundle was
+published at
+`583148e2812b93d519a3dc2821944d08446497b7`, with all five raw SHA-256 values
+and Git blob IDs recorded in the
+[fixture-freeze handoff](../../handoffs/luna63c-stage-a-fixture-freeze-20261010.md).
+The remote branch was fetched and verified equal to that publication commit.
+All C7 A=4 cases explicitly use `p=+1`; C2/A=1 keeps separate positive and
+negative checkpoint identities, and C3-C6 retain positive polarity.
+
+**W/T/E RESUME AUTHORIZED — NOT EXECUTED**, only against the immutable
+published inventory and N4 obligations, with independent lane outputs and no
+fixture/checkpoint/event/time-source expansion. The dispatch is the next
+bounded action, not work performed here. Lane S/N5 remains blocked pending
+complete, immutable, independently reviewed W/T/E results; Stage B remains
+blocked pending N5 synthesis and its separate independent PASS. No numerical
+certification, solver, runtime, scientific fixture, or experiment was run.
 
 ## Luna-63A/B reviewed evidence integrated; 63B numerical gate blocked; 63C design assigned — 2026-10-09
 

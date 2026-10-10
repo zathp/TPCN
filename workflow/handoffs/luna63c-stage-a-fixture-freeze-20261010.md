@@ -178,3 +178,37 @@ resuming W/T/E, numerical certification, Lane S/N5, Stage B, solver/runtime
 implementation, or scientific fixture execution. The owner clarification
 did not authorize any of those successor activities, so they remain paused.
 No source was edited by the reviewer, and no experiment was run.
+
+## Exact-byte publication and next-lane authorization
+
+The reviewed bundle was published without changing the five reviewed files
+in commit `583148e2812b93d519a3dc2821944d08446497b7` on
+`experiment/luna63c-stage-a-certificate`. The fetched remote branch matched
+that commit. SHA-256 values below are over the raw committed file bytes;
+Git blob IDs are reported separately and are not raw SHA-256 values.
+
+| Published file | Raw SHA-256 | Git blob SHA |
+|---|---|---|
+| `experiments/luna63c/fixture-freeze/fixtures.json` | `AF81F3390274B2D565F90CBF12C116C78F45C5DF65D6C28BA88194E9DF2F70FB` | `8c4f9d20dda217d71ef1bcbb4fdefd0e3507ed92` |
+| `experiments/luna63c/fixture-freeze/FIXTURE_FREEZE.md` | `B3BB25D65A8344363DF17F2A6FF3085034FDC431605B6FBA729499D512BE667F` | `fc3d883e72ec3062e07cc453927ee76cba4aa561` |
+| `workflow/handoffs/luna63c-stage-a-fixture-freeze-20261010.md` | `496CE2BCA8C2D1EC1C6CBAD914FC35812EC6D858C881FCD2E0FC5520869D04FD` | `fdc2553fa36a61170935d718d28c3c37a5bdc69e` |
+| `workflow/docs/luna/LUNA_WORKFLOW.md` | `394ACAF804DB5B19CD65560E1DBB976AE9316350CE9097FCF64704F3EBD9D7F2` | `523403b8f976eddacc0321eafe747d351317d786` |
+| `workflow/ARCHITECTURE_CHANGELOG.md` | `9DC585354E625BC7CCD357A725D5493608B72B35DF872583B4C50C305238EA81` | `82b8377e7e95e1f11d992bf441ba801aeb6395ff` |
+
+All five raw hashes match the independently reviewed current bundle hashes.
+The N4 requirements schema remains pinned at
+`9cc92adb56e388d8675d538410b319fd8d8841a5`; the authorized arithmetic
+profile remains pinned at `87179ba2f5da13da7bc70727e72c000de924ed80`; and
+the reviewed design remains pinned at
+`3e7d31b9a527e908b21abee3766906084e7cd082`.
+
+**W/T/E RESUME AUTHORIZED — NOT EXECUTED**, solely against this immutable
+published fixture freeze and its hashes. W, T, and E must remain independent
+and may cover only their frozen witness, event, and N4 obligation rows,
+respectively. They may not add fixtures, checkpoints, event identities, or
+semantic time sources. No lane ran in this publication invocation.
+Lane S/N5 remains blocked pending complete, immutable, independently reviewed
+W/T/E results. Stage B remains blocked pending N5 synthesis and its separate
+independent PASS. No numerical certificate, solver, or scientific fixture
+was run. The exact next action is to dispatch independent W/T/E completion
+lanes against the immutable published fixture freeze.

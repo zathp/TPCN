@@ -1,5 +1,26 @@
 # Architecture Changelog
 
+## Luna-63C C0-C7 exact fixture freeze published; W/T/E resume authorized — 2026-10-10
+
+The independently reviewed five-file fixture-freeze bundle was published
+byte-for-byte at commit
+`583148e2812b93d519a3dc2821944d08446497b7` on
+`experiment/luna63c-stage-a-certificate`. The remote branch was fetched and
+verified equal to the publication commit. Raw file SHA-256 values and
+distinct Git blob IDs are recorded in
+`workflow/handoffs/luna63c-stage-a-fixture-freeze-20261010.md`. All five raw
+SHA-256 values matched the current independent-review bundle. The historical
+expected-outcomes files remain unchanged.
+
+Following exact-byte publication, **W/T/E RESUME AUTHORIZED — NOT
+EXECUTED** against the immutable fixture inventory. The lanes must remain
+independent and limited to their frozen W witness, T event, and E N4
+obligation rows; no fixture, checkpoint, event identity, or semantic time
+source may be added. No numerical or scientific work occurred in this
+publication invocation. Lane S/N5 remains blocked until W/T/E results are
+complete, immutable, and independently reviewed. Stage B remains blocked
+pending N5 synthesis and its independent PASS.
+
 ## Luna-63C C0-C7 fixture-freeze review passed — 2026-10-10
 
 Independent read-only Luna-0 review returned **PASS — fixture-freeze gate
