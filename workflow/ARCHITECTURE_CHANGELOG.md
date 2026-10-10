@@ -1,5 +1,38 @@
 # Architecture Changelog
 
+## Luna-63C certified reference arithmetic profile authorized — 2026-10-10
+
+At fetched, clean `main == origin/main`
+`73aaa50f97ceab322907875ae4dcf23e7541c3b5` and clean certificate branch
+`experiment/luna63c-stage-a-certificate`
+`e10aad9dd2b4a3fbfd708ac656e89ace2cf20293`, Luna-0 reviewed the pinned
+Luna-63C design (`3e7d31b9a527e908b21abee3766906084e7cd082`), the mechanism
+execution contract, the blocked v2 certificate, and the W/T/E findings.
+Neither the design nor execution contract requires continuous-state
+arithmetic to be binary64; they specify the exact mathematical flow and
+certified reference intervals, with binary64 conversion at the event-time
+interface. The selected disposition is **REFERENCE ARITHMETIC PROFILE
+AUTHORIZED**.
+
+For the isolated Stage-B mechanism reference only, the arithmetic profile
+pins MPFR C API 4.2.2 with GMP 6.3.0; outward interval rounding; exact
+`2^-1074`-unit dyadic active-time accumulation; required 256/512-bit
+agreement with 1024-bit escalation if unresolved or inconsistent; fail-closed
+unresolved comparisons; exact
+mathematical event classification; and binary64 event-time ceiling with
+strict-future/domain/order/expiry checks. The independent Stage-A oracle must
+not share propagation, root, threshold, conversion, timer, or lifecycle code
+with the future mechanism implementation.
+
+This does not close any certificate gate or authorize Stage B. **No W/T/E
+calculations, N5 synthesis, runtime implementation, or C0–C7 scientific
+execution occurred.** N1/N3/N4/N5 remain open pending new independent
+certificate work under the profile and a separate Luna-0 PASS against exact
+hashes. Ordinary binary64 state, fixed-point, and hardware conformance are
+deferred. No A01–A15, ACP, production, or reviewed equation/parameter change
+is made. See
+`workflow/handoffs/luna-0-luna63c-reference-arithmetic-governance-20261010.md`.
+
 ## Luna-63C reviewed design evidence integrated; isolated mechanism experiment authorized behind numerical certificate gate — 2026-10-09
 
 At clean `main == origin/main` `d006e1bc6ff09627df8fe7f6c1213380b953291f`,

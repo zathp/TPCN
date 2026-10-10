@@ -25,6 +25,28 @@ not a dependency. No task labels, sequence-order test, integrated sequence
 echo, ACP adoption, A01–A15 change, production/default edit, hardware claim,
 or Luna-64 is authorized.
 
+### Luna-63C reference arithmetic governance — 2026-10-10
+
+The committed design and execution contract pin the exact mathematical
+continuous-state field and the binary64 event-time interface, but do not pin
+continuous state arithmetic to binary64. The first isolated Stage-B mechanism
+reference is therefore authorized to evaluate certified continuous-state
+intervals with MPFR 4.2.2 and GMP 6.3.0, using directed outward rounding,
+exact dyadic active-time accumulation, and mandatory 256/512-bit comparison
+with 1024-bit escalation when unresolved or inconsistent. Only governed event
+timestamps cross into binary64. This changes no equation, parameter,
+threshold, fixture, event semantic, record cap, A01–A15 clause, ACP, or
+production runtime.
+
+This is an arithmetic authorization, **not** certificate closure or Stage-B
+permission. N1/N3/N4/N5 remain blocked/open. No W/T/E calculation, N5
+synthesis, implementation, or C0–C7 scientific execution occurred in this
+governance pass. The next assignment is renewed independent W/T/E certificate
+work under the authorized arithmetic profile; synthesis follows only after
+those lanes publish complete results. Independent Luna-0 PASS against exact
+certificate hashes remains mandatory before Stage B. Ordinary binary64 state,
+fixed-point, and hardware conformance are deferred to separate later work.
+
 ## Luna-63A/B reviewed evidence integrated; 63B numerical gate blocked; 63C design assigned — 2026-10-09
 
 The independent Luna-0 reviews of Luna-63A publication

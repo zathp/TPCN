@@ -118,6 +118,77 @@ Do not change these limits. The overflow record's disposition is committed
 before abort cleanup/READY; retain `terminal_reason=ABORTED` and any output
 already committed. This accounting must be enforced, not merely reported.
 
+## Stage-B reference arithmetic profile — authorized, not yet implemented
+
+The reviewed design and this execution contract pin the mathematical field and
+the binary64 event-time interface; they do **not** require the continuous
+coordinates or active time to be accumulated in binary64. For the first
+isolated mechanism experiment, use certified high-precision reference state
+arithmetic and retain binary64 only at the governed event-time boundary. This
+is an arithmetic clarification for this experiment, not a change to the field,
+fixtures, event semantics, A01–A15, ACP-0008, or a production runtime.
+
+The Stage-B reference arithmetic implementation is the MPFR C API, version
+4.2.2, built against GMP 6.3.0. These exact versions are mandatory for the
+reference implementation; the platform math library must not supply
+transcendental results. Continuous coordinates and transcendental/reference
+quantities are represented as intervals with outward rounding: lower
+endpoints use MPFR round-toward-negative-infinity and upper endpoints use
+round-toward-positive-infinity. Exact binary64 fixture values and timestamps
+are imported exactly. Add, subtract, multiply, divide, square root, exponential,
+sine, cosine, logarithm, and pi evaluation must use MPFR operations with the
+specified directed rounding; an unsupported or non-finite operation fails
+closed.
+
+Evaluate every required frozen assertion at both 256 and 512 bits. Require
+overlapping certified enclosures and identical resolved scientific
+classifications and scheduled binary64 timestamps at those precisions. If
+either precision is unresolved or the results disagree, refine at 1024 bits;
+require overlap and resolved agreement there. No precision above 1024 bits or
+more than 128 bisections per root is allowed. A midpoint match alone is
+insufficient. Failure to resolve and agree at the cap is **BLOCKED —
+NUMERICAL CERTIFICATE INCOMPLETE**.
+
+Accumulate active-time durations exactly as signed integer multiples of
+`2^-1074` using GMP integers, not rounded binary64 addition. Inputs in the
+inclusive `[0, 2^20]` clock domain are exact binary64 dyadics; their bounded
+differences and accumulated active time must remain within the exact clock
+domain. Any out-of-domain or unrepresentable conversion faults closed. Evaluate
+the reviewed semigroup from the settled state and certified active-time
+interval using the Stage-B MPFR implementation. Do not quantize continuous
+state updates to binary64. Check the invariant disk by an outward interval
+proof on the reference state, not by the norm of separately rounded
+coordinates.
+
+Crossing existence, direction, tangency, quiet, and terminal classification
+are decided from certified mathematical intervals and the reviewed analytic
+rules, never from a rounded binary64 state coordinate. Root-time intervals are
+mapped to absolute time with outward bounds. Convert to the event queue only
+when both interval endpoints produce the same least binary64 value greater
+than or equal to the real event time; then require strict-future, domain,
+causal-order, and expiry constraints exactly as specified above. A positive
+sub-ULP delay is not added in binary64: its certified absolute future time is
+ceiled by this rule, so the result must be strictly later than its processed
+cause. `nextafter` remains a candidate for that ceiling, never an arbitrary
+fallback. The canonical output value `p·1` is exact.
+
+Keep the Stage-A certificate oracle independently implemented: it must not
+share MPFR propagation, root, threshold, conversion, timer, or lifecycle code
+with the Stage-B reference implementation. Stage A must independently verify
+the MPFR enclosure claims, precision-convergence checks, every frozen
+classification, and binary64 event timestamp. N4 is redefined as:
+
+* **N4-A:** the pinned reference arithmetic encloses the exact reviewed state,
+  roots, and event times tightly enough to preserve all frozen classifications.
+* **N4-B:** reference-to-binary64 event-time conversion preserves the reviewed
+  ceilings, strict-future condition, domain, ordering, and expiry rules.
+
+Ordinary binary64 state arithmetic, fixed-point arithmetic, and hardware
+conformance are deferred to separate later conformance experiments. This
+profile does not itself close N1, N3, N4, or N5 and does not unlock Stage B:
+the complete Stage-A certificate still requires an independent Luna-0 PASS
+against immutable hashes.
+
 ## Stage A — certificate only; no runtime implementation
 
 Before creating a candidate model, fixture runner, or event adapter, prepare
@@ -128,6 +199,18 @@ separate rigorously bounded interval reference in
 `experiments/luna63c/certificate/`; any certificate helper must be isolated
 from candidate runtime modules and have independently justified rounding
 and transcendental enclosures.
+
+The certificate must independently verify the Stage-B reference arithmetic
+profile above: MPFR/GMP implementation identity, directed interval operations,
+exact dyadic active-time accumulation, 256/512-bit agreement (and 1024-bit
+resolution when needed), and the precise conversion boundary to binary64
+event time. The certificate implementation must remain independently authored
+and may use a different rigorously bounded method; matching numeric outcomes
+do not permit code sharing. It must establish interval overlap and agreement
+of every classification and scheduled timestamp across the required
+precision checks, then prove each binary64 event-time ceiling and strict-order
+condition from the certified interval endpoints. This profile authorizes no
+certificate conclusion by itself.
 
 The certificate must establish, or explicitly fail to establish:
 
