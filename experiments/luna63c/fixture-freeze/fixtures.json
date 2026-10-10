@@ -1,0 +1,412 @@
+{
+  "format": "luna63c-c0-c7-fixture-freeze",
+  "version": 1,
+  "disposition": "FROZEN — AWAITING INDEPENDENT LUNA-0 REVIEW",
+  "evidence_kind": "unexecuted fixture, checkpoint, event-time-source, and ordinal-dependency inventory",
+  "pins": {
+    "baseline": "73aaa50f97ceab322907875ae4dcf23e7541c3b5",
+    "design_revision": "3e7d31b9a527e908b21abee3766906084e7cd082",
+    "design_handoff_revision": "a303ebb835b72fdd01c86df478431b8638aacbb4",
+    "n4_schema_revision": "9cc92adb56e388d8675d538410b319fd8d8841a5",
+    "n4_schema_review_revision": "47dd26f08dfa113565ad41f1abe34888eed0e0bf",
+    "historical_symbolic_expectations": "experiments/luna63c/certificate/expected_outcomes.json"
+  },
+  "execution": {
+    "mechanism_executed": false,
+    "scientific_fixtures_executed": false,
+    "numerical_certificate_completed": false,
+    "stage_b_eligible": false,
+    "lane_s_or_n5_run": false
+  },
+  "owner_clarifications": [
+    {
+      "id": "C7_RESET_AFTER_OUTPUT",
+      "decision": "Output committed at t_root remains pending/persistent until processed at t_emit; cleanup/reset occurs after output processing. If represented timestamps tie, processing precedes reset.",
+      "required_order": "t_root <= t_emit < t_reset in lifecycle order"
+    },
+    {
+      "id": "C7_EXPIRY_REPRESENTED_COALESCENCE",
+      "decision": "Expiry equality is equality of governed binary64 ceilings for independently defined distinct real times; apply reviewed expiry precedence. No artificial exact-real equality case."
+    },
+    {
+      "id": "C7_REARM_BEFORE_QUIET",
+      "decision": "The mathematical trajectory has t_rearm < t_quiet. No synthetic equality fixture; if represented ceilings coalesce, preserve real ordering and apply reviewed represented-time precedence."
+    },
+    {
+      "id": "C2_A1_CHECKPOINTS",
+      "decision": "A=1 reference/active-time observation points are exact rationals 0, 1/2, 1, 2 TU; observations add no event, timer, record, or binary64 event timestamp."
+    },
+    {
+      "id": "C2_A1_STRICT_ERROR_CEILING",
+      "decision": "Require strict L2 ||X_candidate-X_oracle|| < theta/4. Equality fails; a certified interval straddling theta/4 is unresolved. theta/4 is not a claimed implementation error."
+    }
+  ],
+  "model": {
+    "state": ["x", "y"],
+    "field": ["R*(-x-y)", "R*(x-y)"],
+    "alpha": "1 TU^-1",
+    "omega": "1 TU^-1",
+    "active_time": "s(t)=integral R(u) du",
+    "exact_flow_from_store": "X(s)=p*A*exp(-s)*(cos(s),sin(s))",
+    "g": "exp(-pi/4)/sqrt(2)",
+    "theta": "2*g",
+    "q": "g",
+    "event_surface": "p*y-theta=0; upward directional crossing only",
+    "H": "2 TU",
+    "T_q": "ln(4/q) TU",
+    "T_life": "H+T_q+1 TU",
+    "event_clock_domain": "[0,2^20] TU inclusive",
+    "arithmetic_profile": "MPFR C API 4.2.2/GMP 6.3.0; outward intervals; exact dyadic timestamp import and active-time accumulation; 256/512 bits, conditional escalation to 1024; at most 128 bisections per root; no host libm for scientific values"
+  },
+  "comparisons": {
+    "A1_checkpoint_times_active_TU": ["0", "1/2", "1", "2"],
+    "A1_checkpoint_kind": "reference-state observation only; not an event or timer",
+    "A1_oracle_state": "p*exp(-s)*(cos(s),sin(s))",
+    "A1_candidate_state": "hybrid candidate state after all reviewed lifecycle transitions through active time s; at s=2 it is (0,0) following quiet",
+    "A1_ideal_error_at_s_2": "exp(-2)",
+    "A1_strict_acceptance": "||X_candidate-X_oracle||_2 < theta/4",
+    "A1_operational_error_acceptance_ceiling": "theta/4",
+    "A1_squared_interval_rule": "upper(distance_squared) < lower(theta^2/16); unresolved if intervals overlap the boundary",
+    "A1_s2_exact_margin_claim": "exp(-2) < theta/4; derive and certify from exact definitions, not observed candidate output",
+    "other_numeric_tolerance": null
+  },
+  "resource_bounds": {
+    "within_budget_input_attempts": 16,
+    "recorded_overflow_attempts": 1,
+    "accepted_store_records_per_episode": 1,
+    "accepted_recall_records_per_episode_including_duplicates": 8,
+    "accepted_reset_records_per_episode": 1,
+    "timer_records_aggregate": 24,
+    "output_records": 1,
+    "unique_records_max": 42,
+    "identity_type": "unsigned 64-bit, no wrap, check before allocation",
+    "live_flow_boundary_timers": 1,
+    "live_expiry_timers": 1,
+    "timer_kinds": ["crossing", "rearm", "quiet", "expiry"],
+    "accounting_identity": "16+1+24+1=42; firing, output processing, reset, and disposition changes do not allocate duplicate records"
+  },
+  "event_semantics": {
+    "input_processing": ["audit", "timestamp admissibility and reservation", "settle old gate and due internal boundaries", "install external key", "semantic validation/application"],
+    "timestamp_invalid": "consume audit identity/count only; no settlement or model-time/order-key advance",
+    "semantic_invalid": "settle old gate, install admissible key, then reject semantic payload",
+    "same_represented_time": "internal boundaries before external records; external records ordered by destination delivery ordinal",
+    "expiry": "preempts every uncommitted boundary and same-time external application",
+    "rearm_quiet": "mathematical rearm strictly precedes quiet; if represented ceilings coalesce, rearm precedes quiet",
+    "output": "commit at mathematical root; persist to processing at represented t_emit; lifecycle cleanup follows processing",
+    "unresolved_time_or_order": "fail closed; no uncommitted output; preserve any already-committed output"
+  },
+  "mapping_rules": {
+    "event_time": "Freeze exact or mathematical source and causal predecessor; numerical binary64 value/ceiling remains null until N3/N4.",
+    "ordinal": "Freeze causal/precedence dependency; final ordinal remains null until N3/N4. Never derive ordinal from queue insertion order.",
+    "n1": "Map each state/root/quiet assertion to its independent analytic witness; no implementation-derived oracle.",
+    "n3": "Map every scheduled event to input/boundary source, strict-future condition, domain, and predecessor.",
+    "n4_a": ["N4-A1", "N4-A2", "N4-A3", "N4-A4", "N4-A5", "N4-A6", "N4-A7"],
+    "n4_b": ["N4-B1", "N4-B2", "N4-B3", "N4-B4", "N4-B5", "N4-B6", "N4-B7"],
+    "not_applicable": "For observation-only checkpoints or no-event fixtures, state explicitly why N3 or N4-B does not apply."
+  },
+  "event_catalog": [
+    {
+      "kind": "EXTERNAL_STORE",
+      "identity_pattern": "<fixture-or-case-ID>.<unique STORE occurrence token>",
+      "time_source": "fixture-supplied finite binary64 timestamp in [0,T_clock]; exact input value remains to be materialized by the frozen input schedule",
+      "n1_witness": "not applicable to input time itself; STORE payload is checked against the exact frozen state/magnitude case",
+      "n3_event_mapping": "record input identity, exact binary64 envelope, prior processed key, old-gate settlement, and destination ordinal dependency",
+      "n4_a_requirements": ["N4-A1", "N4-A2", "N4-A5", "N4-A7"],
+      "n4_b_requirements": ["N4-B1", "N4-B2", "N4-B4", "N4-B5", "N4-B6", "N4-B7"],
+      "ordinal_dependency": "processed after all due same-time internal boundaries; external ties use delivery ordinal"
+    },
+    {
+      "kind": "EXTERNAL_RECALL",
+      "identity_pattern": "<fixture-or-case-ID>.<unique RECALL occurrence token>",
+      "time_source": "fixture-supplied finite binary64 timestamp; exact schedule relation is frozen per fixture",
+      "n1_witness": "RECALL changes only R after old-gate settlement; it is not an excitatory input",
+      "n3_event_mapping": "record input identity/value, exact timestamp source, predecessor, settlement interval, and destination ordinal",
+      "n4_a_requirements": ["N4-A1", "N4-A2", "N4-A5", "N4-A7"],
+      "n4_b_requirements": ["N4-B1", "N4-B2", "N4-B3", "N4-B4", "N4-B5", "N4-B6", "N4-B7"],
+      "ordinal_dependency": "due internal boundaries first; external records in delivery-ordinal order"
+    },
+    {
+      "kind": "EXTERNAL_RESET",
+      "identity_pattern": "<fixture-or-case-ID>.<unique RESET occurrence token>",
+      "time_source": "fixture-supplied admissible binary64 timestamp constrained before or after output processing by its subcase",
+      "n1_witness": "reviewed settle-then-reset lifecycle; committed output is persistent",
+      "n3_event_mapping": "record due internal boundaries and output-processing relation before reset application",
+      "n4_a_requirements": ["N4-A1", "N4-A2", "N4-A5", "N4-A6", "N4-A7"],
+      "n4_b_requirements": ["N4-B1", "N4-B2", "N4-B3", "N4-B4", "N4-B5", "N4-B6", "N4-B7"],
+      "ordinal_dependency": "internal boundaries and output processing precede same-time external reset"
+    },
+    {
+      "kind": "FLOW_TIMER",
+      "identity_pattern": "<fixture-or-case-ID>.TIMER_{CROSSING|REARM|QUIET}",
+      "record_identity": "Each schedule/replan allocates a unique timer record ID. Creation, cancellation, pop, stale disposition, and processing are lifecycle references to that same record and do not allocate another record unless a new schedule is explicitly listed.",
+      "time_source": "record creation is caused by the listed STORE/RECALL settlement or replan; due time is the reviewed exact active-time root mapped through frozen release segments to absolute mathematical time",
+      "n1_witness": "independent semigroup, root existence/direction or exact quiet time, and strict mathematical order",
+      "n3_event_mapping": "record causal predecessor, active-time segment, mathematical boundary, and required strict-future relation",
+      "n4_a_requirements": ["N4-A1", "N4-A2", "N4-A3", "N4-A4", "N4-A5", "N4-A6", "N4-A7"],
+      "n4_b_requirements": ["N4-B1", "N4-B2", "N4-B3", "N4-B4", "N4-B5", "N4-B6", "N4-B7"],
+      "ordinal_dependency": "internal before external; expiry before uncommitted boundary; re-arm before quiet if represented times tie"
+    },
+    {
+      "kind": "EXPIRY_TIMER",
+      "identity_pattern": "<fixture-or-case-ID>.TIMER_EXPIRY",
+      "record_identity": "One unique expiry timer record is created by each accepted STORE. Later invalidation/cancellation/pop references that same record and does not allocate another.",
+      "time_source": "creation is caused by accepted STORE; due time is exact real t_store+T_life, then governed binary64 ceiling",
+      "n1_witness": "exact finite lifetime H+T_q+1 and valid STORE-origin relation",
+      "n3_event_mapping": "record STORE cause, exact lifetime, domain condition, expiry event, and all same-time external relations",
+      "n4_a_requirements": ["N4-A1", "N4-A2", "N4-A3", "N4-A4", "N4-A6", "N4-A7"],
+      "n4_b_requirements": ["N4-B1", "N4-B2", "N4-B3", "N4-B4", "N4-B5", "N4-B6", "N4-B7"],
+      "ordinal_dependency": "precedes every same-represented-time external packet and every uncommitted boundary"
+    },
+    {
+      "kind": "OUTPUT_COMMIT",
+      "identity_pattern": "<fixture-or-case-ID>.OUTPUT_COMMIT",
+      "time_source": "certified mathematical upward root t_root",
+      "n1_witness": "unique first-lobe upward root and event-surface witness",
+      "n3_event_mapping": "bind immutable output identity to root, episode, payload, and converted processing time",
+      "n4_a_requirements": ["N4-A1", "N4-A2", "N4-A3", "N4-A4", "N4-A5", "N4-A7"],
+      "n4_b_requirements": ["N4-B1", "N4-B2", "N4-B3", "N4-B4", "N4-B5", "N4-B6", "N4-B7"],
+      "ordinal_dependency": "commit only if certified output processing timestamp is strictly before converted expiry"
+    },
+    {
+      "kind": "OUTPUT_PROCESS",
+      "identity_pattern": "<fixture-or-case-ID>.OUTPUT_PROCESS",
+      "time_source": "certified represented t_emit associated with committed t_root",
+      "n1_witness": "not a new continuous-flow witness; references its immutable committed output",
+      "n3_event_mapping": "record persistence interval from t_root through t_emit and exactly-once processing",
+      "n4_a_requirements": ["N4-A1", "N4-A2", "N4-A7"],
+      "n4_b_requirements": ["N4-B1", "N4-B2", "N4-B3", "N4-B4", "N4-B5", "N4-B6", "N4-B7"],
+      "ordinal_dependency": "processing precedes same-time lifecycle reset; no second unique output record"
+    },
+    {
+      "kind": "TERMINAL_TRANSITION",
+      "identity_pattern": "<fixture-or-case-ID>.<unique terminal occurrence token>",
+      "time_source": "reviewed quiet root, expiry boundary, or ordered overflow/reset disposition",
+      "n1_witness": "exact terminal predicate and lifecycle clear from reviewed design",
+      "n3_event_mapping": "record triggering boundary/input, terminal disposition, clearing order, and output retention",
+      "n4_a_requirements": ["N4-A1", "N4-A2", "N4-A3", "N4-A4", "N4-A5", "N4-A6", "N4-A7"],
+      "n4_b_requirements": ["N4-B1", "N4-B2", "N4-B3", "N4-B4", "N4-B5", "N4-B6", "N4-B7"],
+      "ordinal_dependency": "commit terminal reason before READY cleanup; preserve committed output"
+    },
+    {
+      "kind": "STALE_TIMER_POP",
+      "identity_pattern": "C7.STALE_TIMER.POP",
+      "time_source": "the original scheduled boundary timestamp, after its timer token/generation was invalidated",
+      "n1_witness": "not applicable to stale delivery; no state transition follows token mismatch",
+      "n3_event_mapping": "map to original timer record, invalidated token/generation, and actual pop order",
+      "n4_a_requirements": ["N4-A1", "N4-A2", "N4-A7"],
+      "n4_b_requirements": ["N4-B1", "N4-B2", "N4-B3", "N4-B4", "N4-B5", "N4-B7"],
+      "ordinal_dependency": "use the original timer's certified represented time; stale disposition does not allocate a new record"
+    },
+    {
+      "kind": "OVERFLOW_ATTEMPT",
+      "identity_pattern": "C7.OVERFLOW_17.ATTEMPT",
+      "time_source": "the 17th addressed attempt count; timestamp is not validated or settled",
+      "n1_witness": "not applicable to time; reviewed bounded attempt-count transition",
+      "n3_event_mapping": "record 16 prior within-budget inputs and overflow disposition ordering",
+      "n4_a_requirements": ["N4-A1", "N4-A7"],
+      "n4_b_requirements": ["N4-B4", "N4-B5", "N4-B7"],
+      "ordinal_dependency": "commit REJECTED_CAP_OVERFLOW before cleanup/READY; no timestamp key update"
+    },
+    {
+      "kind": "INVALID_TIMESTAMP_INPUT",
+      "identity_pattern": "C7.TIMESTAMP_INVALID.<variant-specific occurrence token>",
+      "time_source": "envelope violating malformed, finite-domain, monotonic-key, or admissible-ordinal predicate",
+      "n1_witness": "not applicable: rejected before mathematical state settlement",
+      "n3_event_mapping": "identify violated timestamp/order predicate and demonstrate no settlement",
+      "n4_a_requirements": ["N4-A1", "N4-A7"],
+      "n4_b_requirements": ["N4-B1", "N4-B2", "N4-B4", "N4-B5", "N4-B7"],
+      "ordinal_dependency": "no destination order key is installed"
+    },
+    {
+      "kind": "CLOSED_INGRESS",
+      "identity_pattern": "C7.POST_ABORT_INGRESS",
+      "time_source": "after episode ingress is closed by the committed overflow abort",
+      "n1_witness": "reviewed closed-ingress lifecycle rule",
+      "n3_event_mapping": "verify ingress is rejected before component addressing",
+      "n4_a_requirements": ["N4-A1", "N4-A7"],
+      "n4_b_requirements": ["N4-B4", "N4-B7"],
+      "ordinal_dependency": "no component ordinal, attempt ID, or unique record is allocated"
+    }
+  ],
+  "fixtures": [
+    {
+      "id": "C0",
+      "name": "neutral, no RECALL",
+      "initial_state": {"mode": "READY", "X": ["0", "0"], "R": 0},
+      "inputs": [],
+      "checkpoints": [
+        {"id": "C0.INITIAL", "kind": "state_observation", "time_source": "fixture initialization", "expected_state": ["0", "0"], "n1_witness": "neutral equilibrium and R=0 identity flow", "n3_event_mapping": "not applicable: no scheduled event", "n4_a_requirements": ["N4-A1", "N4-A2", "N4-A5", "N4-A7"], "n4_b_requirements": []}
+      ],
+      "expected": {"episode": false, "timers": 0, "outputs": 0, "unique_records": 0},
+      "execution": "NOT RUN"
+    },
+    {
+      "id": "C1",
+      "name": "neutral + RECALL",
+      "inputs": [
+        {"event_id": "C1.RECALL_ON", "kind": "RECALL", "value": 1, "time_source": "external fixture timestamp tau_on in [0,T_clock]", "ordinal_dependency": "precedes C1.RECALL_OFF; same represented time allowed by increasing delivery ordinal"},
+        {"event_id": "C1.RECALL_OFF", "kind": "RECALL", "value": 0, "time_source": "external fixture timestamp tau_off >= tau_on in [0,T_clock]", "ordinal_dependency": "follows C1.RECALL_ON by external delivery ordinal"}
+      ],
+      "checkpoints": [
+        {"id": "C1.AFTER_ON", "kind": "state_observation", "time_source": "after C1.RECALL_ON settlement/application", "expected_state": ["0", "0"], "n1_witness": "neutral state is fixed for either R; RECALL contributes no excitation", "n3_event_mapping": "C1.RECALL_ON", "n4_a_requirements": ["N4-A1", "N4-A2", "N4-A5", "N4-A7"], "n4_b_requirements": ["N4-B1", "N4-B2", "N4-B4", "N4-B5", "N4-B7"]},
+        {"id": "C1.AFTER_OFF", "kind": "state_observation", "time_source": "after C1.RECALL_OFF settlement/application", "expected_state": ["0", "0"], "n1_witness": "neutral state is fixed for either R; RECALL contributes no excitation", "n3_event_mapping": "C1.RECALL_OFF", "n4_a_requirements": ["N4-A1", "N4-A2", "N4-A5", "N4-A7"], "n4_b_requirements": ["N4-B1", "N4-B2", "N4-B4", "N4-B5", "N4-B7"]}
+      ],
+      "expected": {"state": ["0", "0"], "R_trace": [0, 1, 0], "episode": false, "timers": 0, "outputs": 0, "unique_records": 2},
+      "execution": "NOT RUN"
+    },
+    {
+      "id": "C2",
+      "name": "entry/subthreshold boundaries and tangency",
+      "event_identity_rule": "A0 has one p=0 instance with ID C2.A0.ZERO. Each nonzero case_id defines two fresh instances, p=+1 (P) and p=-1 (N), with STORE ID C2.<case_id>.<P|N>.STORE. Released instances add the corresponding RECALL_ON and quiet/expiry timer record IDs. Observation checkpoint IDs include the polarity suffix.",
+      "cases": [
+        {"case_id": "A0", "A": "0", "polarity": "0", "store_value": "z_local=0", "release": false, "outcome": "atomic QUIET_ENTRY; no logarithm, timer, or output"},
+        {"case_id": "AQ2", "A": "q/2", "instance_polarities": ["P:+1", "N:-1"], "store_value": "z_local=p*A", "release": false, "outcome": "atomic QUIET_ENTRY; no logarithm, timer, or output"},
+        {"case_id": "AQ", "A": "q (symbolic exact boundary)", "instance_polarities": ["P:+1", "N:-1"], "store_value": "z_local=p*A", "release": false, "outcome": "atomic QUIET_ENTRY; no logarithm, timer, or output"},
+        {"case_id": "Q_BELOW", "A": "greatest binary64 strictly below exact q", "instance_polarities": ["P:+1", "N:-1"], "store_value": "z_local=p*A", "release": false, "outcome": "certify A<q; atomic QUIET_ENTRY; no logarithm, timer, or output"},
+        {"case_id": "Q_ABOVE", "A": "least binary64 strictly above exact q", "instance_polarities": ["P:+1", "N:-1"], "store_value": "z_local=p*A", "release": true, "outcome": "certify A>q; uninterrupted release to quiet; no output"},
+        {"case_id": "A1", "A": "1", "instance_polarities": ["P:+1", "N:-1"], "store_value": "z_local=p*A", "release": true, "outcome": "subthreshold flow, quiet before active time 2, then candidate terminal clear; no output"},
+        {"case_id": "A2_TANGENT", "A": "2", "instance_polarities": ["P:+1", "N:-1"], "store_value": "z_local=p*A", "release": true, "outcome": "exact tangency at peak; no upward crossing; then quiet; no output"}
+      ],
+      "common_schedule": {
+        "store": "STORE(R=0,z_local=p*A) at the case's fixture origin; instantiate separate P and N nodes for each nonzero magnitude",
+        "release_for_A_gt_q": "RECALL(R=1) at the same binary64 input timestamp as STORE, ordered after STORE by external delivery ordinal",
+        "entry_cases": "No RECALL is required after atomic QUIET_ENTRY",
+        "state_at_active_time_s": "p*A*exp(-s)*(cos(s),sin(s)) until reviewed quiet clear",
+        "timers": "Entry cases create no timer; released cases create only the applicable quiet and absolute expiry records; exact A=2 never creates a crossing timer",
+        "n1_witness": "independent exact semigroup, exact A<=q entry classification, first-lobe maximum/tangency, and quiet root as applicable",
+        "n3_event_mapping": "stable STORE/RECALL/quiet/expiry identities; same-time STORE then RECALL uses external delivery order; state observations are not events",
+        "n4_a_requirements": ["N4-A1", "N4-A2", "N4-A3", "N4-A4", "N4-A5", "N4-A6", "N4-A7"],
+        "n4_b_requirements": ["N4-B1", "N4-B2", "N4-B3", "N4-B4", "N4-B5", "N4-B6", "N4-B7"]
+      },
+      "A1_checkpoints": [
+        {"id": "C2.A1.P.S0", "polarity": 1, "active_time_TU": "0", "candidate_state_coordinates": ["x", "y"], "candidate_state_rule": "exact accepted STORE state", "oracle_state": ["1", "0"], "n1_witness": "initial-state identity", "n3_event_mapping": "not applicable: observation-only and active/reference-time domain", "n4_a_requirements": ["N4-A1", "N4-A2", "N4-A7"], "n4_b_requirements": []},
+        {"id": "C2.A1.N.S0", "polarity": -1, "active_time_TU": "0", "candidate_state_coordinates": ["x", "y"], "candidate_state_rule": "exact accepted STORE state", "oracle_state": ["-1", "0"], "n1_witness": "initial-state identity", "n3_event_mapping": "not applicable: observation-only and active/reference-time domain", "n4_a_requirements": ["N4-A1", "N4-A2", "N4-A7"], "n4_b_requirements": []},
+        {"id": "C2.A1.P.S1_2", "polarity": 1, "active_time_TU": "1/2", "candidate_state_coordinates": ["x", "y"], "candidate_state_rule": "observe complete candidate state; require strict owner-selected L2 comparison to oracle", "oracle_state": ["exp(-1/2)*cos(1/2)", "exp(-1/2)*sin(1/2)"], "n1_witness": "closed-form semigroup at exact rational active time 1/2", "n3_event_mapping": "not applicable: observation-only and active/reference-time domain", "n4_a_requirements": ["N4-A1", "N4-A2", "N4-A3", "N4-A4", "N4-A7"], "n4_b_requirements": []},
+        {"id": "C2.A1.N.S1_2", "polarity": -1, "active_time_TU": "1/2", "candidate_state_coordinates": ["x", "y"], "candidate_state_rule": "observe complete candidate state; require strict owner-selected L2 comparison to oracle", "oracle_state": ["-exp(-1/2)*cos(1/2)", "-exp(-1/2)*sin(1/2)"], "n1_witness": "closed-form semigroup at exact rational active time 1/2", "n3_event_mapping": "not applicable: observation-only and active/reference-time domain", "n4_a_requirements": ["N4-A1", "N4-A2", "N4-A3", "N4-A4", "N4-A7"], "n4_b_requirements": []},
+        {"id": "C2.A1.P.S1", "polarity": 1, "active_time_TU": "1", "candidate_state_coordinates": ["x", "y"], "candidate_state_rule": "observe complete candidate state; require strict owner-selected L2 comparison to oracle", "oracle_state": ["exp(-1)*cos(1)", "exp(-1)*sin(1)"], "n1_witness": "closed-form semigroup at exact rational active time 1", "n3_event_mapping": "not applicable: observation-only and active/reference-time domain", "n4_a_requirements": ["N4-A1", "N4-A2", "N4-A3", "N4-A4", "N4-A7"], "n4_b_requirements": []},
+        {"id": "C2.A1.N.S1", "polarity": -1, "active_time_TU": "1", "candidate_state_coordinates": ["x", "y"], "candidate_state_rule": "observe complete candidate state; require strict owner-selected L2 comparison to oracle", "oracle_state": ["-exp(-1)*cos(1)", "-exp(-1)*sin(1)"], "n1_witness": "closed-form semigroup at exact rational active time 1", "n3_event_mapping": "not applicable: observation-only and active/reference-time domain", "n4_a_requirements": ["N4-A1", "N4-A2", "N4-A3", "N4-A4", "N4-A7"], "n4_b_requirements": []},
+        {"id": "C2.A1.P.S2", "polarity": 1, "active_time_TU": "2", "candidate_state_coordinates": ["x", "y"], "candidate_state_rule": "observe after exact quiet transition; ideal lifecycle state is (0,0); require strict owner-selected L2 comparison to unreset flow oracle", "oracle_state": ["exp(-2)*cos(2)", "exp(-2)*sin(2)"], "n1_witness": "quiet occurs at ln(1/q)<2; independent flow oracle remains the exact semigroup", "n3_event_mapping": "not applicable: observation-only and active/reference-time domain; quiet event separately mapped", "n4_a_requirements": ["N4-A1", "N4-A2", "N4-A3", "N4-A4", "N4-A6", "N4-A7"], "n4_b_requirements": []},
+        {"id": "C2.A1.N.S2", "polarity": -1, "active_time_TU": "2", "candidate_state_coordinates": ["x", "y"], "candidate_state_rule": "observe after exact quiet transition; ideal lifecycle state is (0,0); require strict owner-selected L2 comparison to unreset flow oracle", "oracle_state": ["-exp(-2)*cos(2)", "-exp(-2)*sin(2)"], "n1_witness": "quiet occurs at ln(1/q)<2; independent flow oracle remains the exact semigroup", "n3_event_mapping": "not applicable: observation-only and active/reference-time domain; quiet event separately mapped", "n4_a_requirements": ["N4-A1", "N4-A2", "N4-A3", "N4-A4", "N4-A6", "N4-A7"], "n4_b_requirements": []}
+      ],
+      "A1_comparison": {
+        "criterion": "strict L2 norm of candidate minus independent flow oracle < theta/4",
+        "error_at_s2_for_ideal_reviewed_lifecycle": "exp(-2)",
+        "acceptance_ceiling": "theta/4",
+        "strict_margin_identity": "exp(-2) < theta/4, equivalent to exp(2-pi/4)>2*sqrt(2); e^(6/5)>1+6/5+(6/5)^2/2=73/25>2*sqrt(2) and pi<22/7 imply the strict margin",
+        "candidate_comparison_status": "criterion frozen; no candidate implementation exists or was executed in this Stage-A fixture freeze",
+        "checkpoints_create_events_or_resources": false
+      },
+      "expected": {"outputs_per_case": 0, "A2_crossing": false, "A1_quiet_active_time": "ln(1/q)=pi/4+(ln 2)/2 < 2"},
+      "execution": "NOT RUN"
+    },
+    {
+      "id": "C3",
+      "name": "supra-threshold held",
+      "polarity": 1,
+      "hold_durations_TU": ["0", "1", "2"],
+      "event_ids": ["C3.STORE", "C3.TIMER_EXPIRY"],
+      "inputs": ["STORE(R=0,z_local=4)"],
+      "checkpoints": [
+        {"id": "C3.AFTER_STORE", "kind": "state_observation", "time_source": "immediately after accepted STORE", "expected_state": ["4", "0"], "n1_witness": "exact stored state and R=0 identity flow", "n3_event_mapping": "C3.STORE external input; no additional event", "n4_a_requirements": ["N4-A1", "N4-A2", "N4-A5", "N4-A7"], "n4_b_requirements": ["N4-B1", "N4-B4", "N4-B7"]},
+        {"id": "C3.DURING_HOLD", "kind": "state_observation", "time_source": "each exact reviewed hold duration 0, 1, and 2 TU before release", "expected_state": ["4", "0"], "n1_witness": "R=0 gives exact identity flow and zero active-time accumulation", "n3_event_mapping": "observation only; HOLD duration is not an external packet", "n4_a_requirements": ["N4-A1", "N4-A2", "N4-A5", "N4-A7"], "n4_b_requirements": []}
+      ],
+      "expiry_boundary_instance": {
+        "event_id": "C3.EXPIRY_TIE.RECALL",
+        "timer_record_id": "C3.EXPIRY_TIE.TIMER_EXPIRY",
+        "input": "valid RECALL at the binary64 timestamp equal to the independently converted expiry boundary",
+        "time_source": "external binary64 input T_ext != t_expiry chosen with C64(T_ext)=C64(t_expiry)",
+        "ordinal_dependency": "expiry internal boundary before external RECALL",
+        "expected": "EXPIRED/READY before RECALL application; no revival or output"
+      },
+      "n1_witness": "R=0 gives exact identity flow; absolute expiry is t_store+T_life",
+      "n3_event_mapping": "STORE, HOLD interval, RECALL, expiry timer and same-time external event",
+      "n4_a_requirements": ["N4-A1", "N4-A2", "N4-A3", "N4-A4", "N4-A5", "N4-A6", "N4-A7"],
+      "n4_b_requirements": ["N4-B1", "N4-B2", "N4-B3", "N4-B4", "N4-B5", "N4-B6", "N4-B7"],
+      "expected": {"outputs": 0, "held_state": ["4*p", "0"], "active_time_during_hold": "0"},
+      "execution": "NOT RUN"
+    },
+    {
+      "id": "C4",
+      "name": "supra-threshold release",
+      "polarity": 1,
+      "inputs": ["STORE(R=0,z_local=4)", "RECALL(R=1) at the same timestamp after STORE"],
+      "time_sources": ["t_store", "t_store+s_up(4)", "ceil64(t_root)", "t_store+s_rearm(4)", "t_store+T_q", "t_store+T_life"],
+      "event_ids": ["C4.STORE", "C4.RECALL_ON", "C4.TIMER_CROSSING", "C4.OUTPUT_COMMIT", "C4.OUTPUT_PROCESS", "C4.TIMER_REARM", "C4.TIMER_QUIET", "C4.TIMER_EXPIRY"],
+      "ordinal_dependencies": ["STORE before same-time RECALL by external delivery ordinal", "causal timer boundaries strictly after processed cause", "crossing commit at t_root before output processing at t_emit", "rearm before quiet", "output logical time before expiry"],
+      "n1_witness": "unique upward and downward roots, exact semigroup, quiet root, and finite lifetime",
+      "n3_event_mapping": "each listed timer/output identity maps to its exact root/expiry source and processed cause",
+      "n4_a_requirements": ["N4-A1", "N4-A2", "N4-A3", "N4-A4", "N4-A5", "N4-A6", "N4-A7"],
+      "n4_b_requirements": ["N4-B1", "N4-B2", "N4-B3", "N4-B4", "N4-B5", "N4-B6", "N4-B7"],
+      "expected": {"outputs": 1, "payload": "1", "terminal_reason": "QUIET", "terminal_state": ["0", "0"], "required_release": "uninterrupted active time >= T_q before expiry"},
+      "execution": "NOT RUN"
+    },
+    {
+      "id": "C5",
+      "name": "unequal HOLD duration replay",
+      "polarity": 1,
+      "fresh_instances": [
+        {"instance": "H0", "hold_TU": "0", "store_value": "z_local=4", "event_ids": ["C5.H0.STORE", "C5.H0.RECALL_ON", "C5.H0.TIMER_CROSSING", "C5.H0.OUTPUT_COMMIT", "C5.H0.OUTPUT_PROCESS", "C5.H0.TIMER_REARM", "C5.H0.TIMER_QUIET", "C5.H0.TIMER_EXPIRY"]},
+        {"instance": "H1", "hold_TU": "1", "store_value": "z_local=4", "event_ids": ["C5.H1.STORE", "C5.H1.RECALL_ON", "C5.H1.TIMER_CROSSING", "C5.H1.OUTPUT_COMMIT", "C5.H1.OUTPUT_PROCESS", "C5.H1.TIMER_REARM", "C5.H1.TIMER_QUIET", "C5.H1.TIMER_EXPIRY"]},
+        {"instance": "H2", "hold_TU": "2", "store_value": "z_local=4", "event_ids": ["C5.H2.STORE", "C5.H2.RECALL_ON", "C5.H2.TIMER_CROSSING", "C5.H2.OUTPUT_COMMIT", "C5.H2.OUTPUT_PROCESS", "C5.H2.TIMER_REARM", "C5.H2.TIMER_QUIET", "C5.H2.TIMER_EXPIRY"]}
+      ],
+      "shared_events": ["STORE", "RECALL_ON", "CROSSING", "OUTPUT_PROCESS", "REARM", "QUIET", "EXPIRY"],
+      "time_relation": "active-time trajectories/root offsets identical; absolute event times shifted by the exact HOLD duration",
+      "ordinal_dependency": "per-instance causal order from C4; no cross-instance shared ordinal",
+      "n1_witness": "exact active-time semigroup and HOLD identity",
+      "n3_event_mapping": "independent absolute-time mapping for each fresh instance",
+      "n4_a_requirements": ["N4-A1", "N4-A2", "N4-A3", "N4-A4", "N4-A5", "N4-A6", "N4-A7"],
+      "n4_b_requirements": ["N4-B1", "N4-B2", "N4-B3", "N4-B4", "N4-B5", "N4-B6", "N4-B7"],
+      "expected": {"outputs_per_instance": 1, "absolute_timestamp_bit_identity_required": false},
+      "execution": "NOT RUN"
+    },
+    {
+      "id": "C6",
+      "name": "ungated independent reference",
+      "polarity": 1,
+      "initial_state": ["4", "0"],
+      "gate": 1,
+      "time_source": "active time s from C4 release origin",
+      "event_ids": ["C6.ROOT_UP", "C6.ROOT_REARM", "C6.QUIET"],
+      "n1_witness": "closed-form semigroup, independently isolated roots and quiet time",
+      "n3_event_mapping": "mathematical reference times mapped independently; no candidate runtime event queue",
+      "n4_a_requirements": ["N4-A1", "N4-A2", "N4-A3", "N4-A4", "N4-A5", "N4-A6", "N4-A7"],
+      "n4_b_requirements": ["N4-B1", "N4-B2", "N4-B3", "N4-B4", "N4-B5", "N4-B6", "N4-B7"],
+      "expected": {"same_active_time_classification_as_C4": true, "oracle_implementation_independent_of_candidate": true},
+      "execution": "NOT RUN"
+    },
+    {
+      "id": "C7",
+      "name": "lifecycle/time edge cases",
+      "A4_polarity": 1,
+      "event_identity_rule": "Every occurrence has its own stable event ID. Number repeated kinds in causal order (for example RECALL_ON_1 and RECALL_ON_2); expand ranges such as INPUT_01..INPUT_16 into one event identity per occurrence. Event IDs bind to the applicable event_catalog kind; no final destination ordinal is implied.",
+      "instance_policy": "Each C7 edge case starts in a fresh READY neutral instance unless that case explicitly names an inherited same-instance prefix. The post-abort ingress case inherits the completed C7.OVERFLOW_17 instance.",
+      "cases": [
+        {"id": "C7.DUPLICATE_RECALL", "events": ["STORE_1", "TIMER_EXPIRY_CREATED_1", "RECALL_ON_1", "TIMER_CROSSING_CREATED_1", "RECALL_ON_2"], "initial_state": "fresh READY, R=0", "time_source": "STORE and both RECALL(R=1) inputs share one valid binary64 time; external delivery ordinals order STORE_1 < RECALL_ON_1 < RECALL_ON_2; both timers have future due times", "expected": "zero active duration; second RECALL settles first and is idempotent; exactly one flow timer and one expiry timer; no phase reset or duplicate timer record; all three inputs charged"},
+        {"id": "C7.ALTERNATING_RECALL", "events": ["STORE_1", "TIMER_EXPIRY_CREATED_1", "RECALL_ON_1", "TIMER_CROSSING_CREATED_1", "RECALL_OFF_1", "TIMER_CROSSING_CANCELLED_1", "RECALL_ON_2", "TIMER_CROSSING_CREATED_2", "TIMER_CROSSING_2", "OUTPUT_COMMIT", "OUTPUT_PROCESS", "TIMER_REARM_CREATED_1", "TIMER_REARM_1", "TIMER_QUIET_CREATED_1", "TIMER_QUIET_1", "TIMER_EXPIRY_INVALIDATED_AT_QUIET_1"], "initial_state": "fresh READY, STORE z_local=4 (A4_polarity=+1)", "time_source": "STORE_1 and RECALL_ON_1 share a time. Let s_pause be strictly between zero and s_up(4); deliver RECALL_OFF_1 when accumulated active time is s_pause, before crossing is due. Deliver RECALL_ON_2 later than pause and no later than t_store+H; then release continuously through quiet. The expiry timer is created by STORE_1 at t_store and is invalidated by the quiet terminal transition before its due time t_store+T_life.", "ordinal_dependency": "external order STORE_1 < RECALL_ON_1 < RECALL_OFF_1 < RECALL_ON_2; crossing timer 1 is created then cancelled; crossing timer 2 is a distinct record created on resume; later lifecycle references use existing records; internal boundaries precede later inputs", "expected": "only R=1 intervals accrue active time; no output before pause; resumed trajectory crosses once, re-arms, reaches quiet before expiry; expiry record is invalidated at quiet"},
+        {"id": "C7.RESET_BEFORE_COMMIT", "events": ["STORE_1", "TIMER_EXPIRY_CREATED_1", "RECALL_ON_1", "TIMER_CROSSING_CREATED_1", "RESET_1", "TIMER_CROSSING_CANCELLED_1", "TIMER_EXPIRY_INVALIDATED_AT_RESET_1"], "initial_state": "fresh READY, STORE z_local=4 (A4_polarity=+1)", "time_source": "STORE_1 and RECALL_ON_1 share a valid timestamp; RESET_1 arrives at a valid time strictly after release begins but strictly before the certified upward root, so settlement has no due crossing", "expected": "ABORTED/READY; invalidate generation; no committed output"},
+        {"id": "C7.RESET_AFTER_COMMIT", "events": ["STORE_1", "TIMER_EXPIRY_CREATED_1", "RECALL_ON_1", "TIMER_CROSSING_CREATED_1", "TIMER_CROSSING_1", "ROOT_COMMIT", "TIMER_REARM_CREATED_1", "OUTPUT_PROCESS", "RESET_1", "TIMER_REARM_CANCELLED_1", "TIMER_EXPIRY_INVALIDATED_AT_RESET_1"], "initial_state": "fresh READY, STORE z_local=4 (A4_polarity=+1); inherit uninterrupted C4 release schedule through output processing", "time_source": "t_root then represented t_emit then RESET_1; reset may share represented timestamp with output processing; reset occurs before re-arm is due", "ordinal_dependency": "t_root <= t_emit < t_reset in lifecycle order; output processing precedes same-time reset; cancellation/invalidation refer to timer records created by the STORE/crossing and allocate none", "expected": "pending output persists to processing exactly once; reset follows and cannot retract/rewrite it; flow and expiry timers are invalidated"},
+        {"id": "C7.STALE_TIMER", "events": ["STORE_1", "TIMER_EXPIRY_CREATED_1", "RECALL_ON_1", "TIMER_CROSSING_CREATED_1", "RECALL_OFF_1", "TIMER_CROSSING_CANCELLED_1", "TIMER_CROSSING_POP_STALE_1"], "initial_state": "fresh READY, STORE z_local=4 (A4_polarity=+1)", "time_source": "STORE_1 and RECALL_ON_1 share a time; pause at positive active time strictly below s_up(4), canceling the already-created crossing timer; the same original crossing timer record is later popped at its original scheduled timestamp while the generation/token is stale; expiry remains pending", "ordinal_dependency": "crossing timer creation precedes cancellation; stale pop references the exact created record and allocates none; its original due time is strictly before expiry", "expected": "one existing crossing timer record becomes processed-stale; no state/output effect; no replacement timer is inferred"},
+        {"id": "C7.REARM_BEFORE_QUIET", "events": ["STORE_1", "TIMER_EXPIRY_CREATED_1", "RECALL_ON_1", "TIMER_CROSSING_CREATED_1", "TIMER_CROSSING_1", "OUTPUT_COMMIT", "OUTPUT_PROCESS", "TIMER_REARM_CREATED_1", "TIMER_REARM_1", "TIMER_QUIET_CREATED_1", "TIMER_QUIET_1", "TIMER_EXPIRY_INVALIDATED_AT_QUIET_1"], "initial_state": "fresh READY, STORE z_local=4 (A4_polarity=+1); inherit uninterrupted C4 schedule", "time_source": "A=4 exact active roots with s_rearm<s_quiet and exact expiry t_store+T_life; expiry timer is created by STORE_1 and invalidated at quiet", "ordinal_dependency": "include all C4 causal predecessors; if re-arm and quiet ceilings coalesce, re-arm precedes quiet; otherwise their represented order follows strict mathematical order; timer lifecycle references do not allocate replacement records", "expected": "issued remains true; no synthetic equality"},
+        {"id": "C7.EXPIRY_COALESCENCE_VALID", "events": ["STORE_1", "TIMER_EXPIRY_CREATED_1", "TIMER_EXPIRY_1", "VALID_EXTERNAL_RECALL_1"], "initial_state": "fresh READY, STORE z_local=4 (A4_polarity=+1) with R=0; remain held through expiry", "time_source": "expiry is caused by STORE_1 at exact t_store+T_life; choose a valid binary64 RECALL timestamp t_ext distinct from t_expiry such that C64(t_ext)=C64(t_expiry)", "ordinal_dependency": "expiry timer is one record created at STORE_1; expiry processing precedes same-ceiling external RECALL", "expected": "expiry commits first; valid packet cannot revive episode"},
+        {"id": "C7.EXPIRY_COALESCENCE_INVALID", "events": ["STORE_1", "TIMER_EXPIRY_CREATED_1", "TIMER_EXPIRY_1", "SEMANTICALLY_INVALID_RECALL_1"], "initial_state": "fresh READY, STORE z_local=4 (A4_polarity=+1) with R=0; remain held through expiry", "time_source": "expiry is caused by STORE_1 at exact t_store+T_life; choose a finite in-domain binary64 RECALL with invalid gate value at t_ext distinct from t_expiry such that C64(t_ext)=C64(t_expiry)", "ordinal_dependency": "expiry timer is one record created at STORE_1; expiry settles before same-ceiling input; install admissible external key after settlement; then reject semantic payload", "expected": "EXPIRED retained; REJECTED_SEMANTIC; no payload application"},
+        {"id": "C7.TIMESTAMP_INVALID", "instances": [{"id": "MALFORMED_NONFINITE", "events": ["STORE_MALFORMED_NONFINITE", "TIMER_EXPIRY_CREATED_MALFORMED_NONFINITE", "INVALID_TIMESTAMP_MALFORMED_NONFINITE"]}, {"id": "OUT_OF_DOMAIN", "events": ["STORE_OUT_OF_DOMAIN", "TIMER_EXPIRY_CREATED_OUT_OF_DOMAIN", "INVALID_TIMESTAMP_OUT_OF_DOMAIN"]}, {"id": "LATE", "events": ["STORE_LATE", "TIMER_EXPIRY_CREATED_LATE", "INVALID_TIMESTAMP_LATE"]}, {"id": "UNORDERABLE", "events": ["STORE_UNORDERABLE", "TIMER_EXPIRY_CREATED_UNORDERABLE", "INVALID_TIMESTAMP_UNORDERABLE"]}], "initial_state": "each named instance is a fresh READY component and first accepts its named A=4 STORE at t_store", "time_source": "each variant violates exactly its named reviewed timestamp/ordering admissibility predicate; expiry remains pending and is not processed", "expected": "REJECTED_TIMESTAMP; audit identity/count only; no settlement or key/time advance"},
+        {"id": "C7.OVERFLOW_17", "events": ["STORE_01", "TIMER_EXPIRY_CREATED_01", "RECALL_ON_02", "TIMER_CROSSING_CREATED_02", "TIMER_CROSSING_02", "OUTPUT_COMMIT", "TIMER_REARM_CREATED_01", "OUTPUT_PROCESS", "RECALL_ON_03..RECALL_ON_09", "SEMANTICALLY_INVALID_STORE_10..SEMANTICALLY_INVALID_STORE_16", "ATTEMPT", "TIMER_REARM_CANCELLED_01", "TIMER_EXPIRY_INVALIDATED_AT_OVERFLOW_01"], "time_source": "STORE_01 and RECALL_ON_02 share a timestamp ordered by external delivery ordinal. A4 release generates the mathematical root; crossing commits at t_root, schedules re-arm, and output processes at t_emit. Choose one admissible binary64 t_input strictly between t_emit and the mathematical re-arm boundary for the 14 subsequent within-budget packets. Attempt 17 has no timestamp source because it is not validated. Expiry is created at STORE_01; re-arm and expiry are invalidated by overflow cleanup.", "ordinal_dependency": "STORE_01 < RECALL_ON_02; crossing commit and output processing precede all 14 later input attempts; those attempts share t_input and use increasing external delivery ordinals; ATTEMPT disposition commits before cleanup/READY and does not install a timestamp key; cancellation/invalidation refer to existing timer records", "expected": "16 within-budget attempts comprise one accepted STORE, eight accepted RECALLs including duplicates, and seven semantically rejected STOREs; output is committed and processed before ATTEMPT; ATTEMPT is REJECTED_CAP_OVERFLOW processed-current; offered=17; ABORTED retained; committed output ID/sequence/payload/time persist"},
+        {"id": "C7.POST_ABORT_INGRESS", "inherits_completed_case": "C7.OVERFLOW_17 through ATTEMPT", "events": ["CLOSED_EPISODE_INGRESS"], "time_source": "a later ingress after attempt 17 has committed ABORTED and closed component addressing", "expected": "no component attempt ID, record, or state mutation"},
+        {"id": "C7.OUTPUT_EXPIRY_COALESCENCE", "events": ["STORE_1", "TIMER_EXPIRY_CREATED_1", "RECALL_ON_LATE_1", "TIMER_CROSSING_CREATED_1", "TIMER_CROSSING_1", "TIMER_EXPIRY_1"], "initial_state": "fresh READY, STORE z_local=4 (A4_polarity=+1) at t_store; hold R=0 until the late RECALL", "time_source": "expiry timer is created by STORE_1. RECALL_ON_LATE_1 is an admissible binary64 input after STORE; it starts uninterrupted release so mathematical crossing t_root precedes expiry but output and expiry ceilings coalesce: C64(t_emit)=C64(t_expiry), where t_expiry=t_store+T_life", "ordinal_dependency": "STORE_1 precedes RECALL_ON_LATE_1; timer records are unique and lifecycle references allocate none; crossing output is not committed unless converted processing time is strictly before converted expiry; expiry preempts the uncommitted crossing/output", "expected": "suppress uncommitted output and fail closed; no output record is allocated"},
+        {"id": "C7.NEAR_CLOCK_LIMIT", "instances": "two fresh READY components; do not reuse the first component after its accepted STORE", "events": ["STORE_LAST_IN_DOMAIN_ORIGIN_1", "TIMER_EXPIRY_CREATED_FOR_INSTANCE_1", "STORE_NEXT_ORIGIN_1"], "time_source": "in instance one, STORE at the largest binary64 t satisfying exact t+T_life<=T_clock and create its expiry timer; in independent instance two, STORE at that origin's immediate binary64 successor", "ordinal_dependency": "each STORE is evaluated in its own initial READY component; accepted STORE creates one expiry timer, rejected out-of-domain STORE creates no episode or timer", "expected": "first expiry is in-domain and STORE is admissible; successor expiry is out-of-domain and STORE is rejected before episode allocation"},
+        {"id": "C7.POSITIVE_SUB_ULP", "events": ["STORE_UPPER_Q_NEIGHBOR_1", "TIMER_EXPIRY_CREATED_1", "RECALL_ON_1", "TIMER_QUIET_CREATED_1", "TIMER_QUIET_1", "TIMER_EXPIRY_INVALIDATED_AT_QUIET_1"], "initial_state": "fresh READY, R=0", "time_source": "A=least binary64 above q; STORE at the in-domain near-limit origin; create expiry timer; RECALL(R=1) at the same binary64 input timestamp after STORE by external delivery ordinal; exact positive s_q is below ULP of the processed RECALL cause; quiet occurs before expiry and invalidates the expiry record", "ordinal_dependency": "STORE precedes RECALL by external delivery ordinal; positive quiet delay must map to a strictly future common ceiling after the processed RECALL cause and before expiry; quiet invalidation references the existing expiry record", "expected": "no same-time collapse; nextafter only a candidate; unresolved ceiling/order blocks"}
+      ],
+      "n1_witness": "case-specific analytic trajectory, lifecycle, and exact-order witness",
+      "n3_event_mapping": "all event IDs and input variants above; no numeric time or final ordinal asserted",
+      "n4_a_requirements": ["N4-A1", "N4-A2", "N4-A3", "N4-A4", "N4-A5", "N4-A6", "N4-A7"],
+      "n4_b_requirements": ["N4-B1", "N4-B2", "N4-B3", "N4-B4", "N4-B5", "N4-B6", "N4-B7"],
+      "execution": "NOT RUN"
+    }
+  ],
+  "record_dispositions": ["pending", "processed-current", "processed-stale", "cancelled-before-pop"],
+  "terminal_reasons": ["NONE", "QUIET_ENTRY", "QUIET", "EXPIRED", "ABORTED", "FAULT"],
+  "next_gates": {
+    "required": ["independent Luna-0 PASS on this exact fixture-freeze revision", "W/T/E completion against this inventory", "Lane S/N5 synthesis", "independent complete numerical-certificate PASS before Stage B"],
+    "blocked": ["W/T/E resume", "Lane S", "N5", "Stage B", "integrated sequence echo", "Luna-64"]
+  }
+}

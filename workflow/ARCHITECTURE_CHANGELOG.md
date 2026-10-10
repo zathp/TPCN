@@ -1,5 +1,22 @@
 # Architecture Changelog
 
+## Luna-63C C0-C7 fixture-freeze review passed — 2026-10-10
+
+Independent read-only Luna-0 review returned **PASS — fixture-freeze gate
+only** on the exact artifacts and five SHA-256 identities recorded in
+`workflow/handoffs/luna63c-stage-a-fixture-freeze-20261010.md`. The reviewed
+inventory was confirmed consistent with the pinned Luna-63C design and N4
+schema, including C2/A=1 owner checkpoints and strict `theta/4` comparison,
+C7 lifecycle/event-time clarifications, C7 A=4 polarity, unique expanded
+event identities, and the unchanged `16+1+24+1=42` cap. No blocker was found
+within the fixture-freeze gate.
+
+This review does not resume W/T/E and does not authorize numerical
+certification, Lane S/N5, Stage B, solver/runtime implementation, or
+scientific fixture execution. Those activities remain paused pending
+separate owner authorization and the required gates. No experiment or
+production/architecture change occurred.
+
 ## Luna-63C N4 certification requirement schema frozen — 2026-10-10
 
 At fetched branch HEAD `87179ba2f5da13da7bc70727e72c000de924ed80`, with
@@ -24,6 +41,48 @@ Independent Luna-0 review returned **PASS** on the published schema commit
 The next bounded prerequisite is the separate C0–C7 fixture freeze. W/T/E
 remain paused pending that freeze and its own independent PASS; Lane S/N5 and
 Stage B remain blocked.
+
+## Luna-63C C0-C7 fixture inventory frozen pending independent review — 2026-10-10
+
+At fixture-freeze starting HEAD
+`47dd26f08dfa113565ad41f1abe34888eed0e0bf`, the owner clarified C7
+reset-after-output ordering, expiry equality as represented binary64
+coalescence of distinct real times, strict mathematical re-arm-before-quiet
+without synthetic equality, and C2/A=1 exact active-time checkpoints
+`{0,1/2,1,2}` with strict `||X_candidate-X_oracle||_2 < theta/4`.
+
+The separate `experiments/luna63c/fixture-freeze/` artifacts freeze the
+design-derived C0-C7 case identities, symbolic event/time sources, checkpoint
+identities, N1/N3/N4 mappings, and ordinal dependencies. They do not invent
+numerical ceilings or final ordinals. The prior
+`experiments/luna63c/certificate/expected_outcomes.json` and its manifest are
+left unchanged as historical blocked evidence. The reviewed field, parameters,
+fixtures, arithmetic profile, and `16+1+24+1=42` cap are unchanged.
+
+The fixture inventory is **AWAITING independent Luna-0 PASS**. W/T/E have not
+resumed; Lane S/N5 and Stage B remain blocked. No numerical certification,
+solver, runtime, scientific fixture, or mechanism experiment was run.
+
+The first independent read-only Luna-0 review returned **BLOCKED** on three
+fixture-freeze defects: C3 mixed a held control with release, C7's positive
+sub-ULP trace omitted RECALL, and repeated/aggregate C7 input occurrences
+were not uniquely identified. The working inventory now separates C3 HOLD
+from C5 release, includes the sub-ULP RECALL/cause, and explicitly expands
+repeated and overflow-attempt identities.
+
+A subsequent independent read-only review returned **BLOCKED** because
+several C7 schedules lacked complete symbolic causal setup and timer-record
+creation/lifecycle references, including alternating RECALL, stale-timer
+identity, expiry cases, output/expiry coalescence, and separate near-clock
+instances. The working inventory now freezes fresh-instance boundaries,
+necessary C4/C3 prefix inheritance, event-time relations, unique timer-record
+identities with cancellation/pop/invalidation references, and the full
+overflow packet schedule. A final polarity check also pins every C7 A=4 case
+to `p=+1`, consistent with C3-C6 and without adding opposite-polarity C7
+instances. C2/A=1 retains both polarity-specific checkpoint families. The
+updated inventory has passed local JSON/structure checks and still requires
+fresh independent Luna-0 review. No scientific or numerical work was
+performed.
 
 ## Luna-63C certified reference arithmetic profile authorized — 2026-10-10
 

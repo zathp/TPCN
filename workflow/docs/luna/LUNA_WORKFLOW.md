@@ -65,6 +65,36 @@ fixture freeze and its independent PASS; Lane S/N5 and Stage B remain blocked.
 No numerical certification, fixture execution, W/T/E resume, or synthesis
 occurred in this governance pass.
 
+### Luna-63C C0-C7 fixture inventory frozen — 2026-10-10
+
+The separate
+[C0-C7 fixture freeze](../../../experiments/luna63c/fixture-freeze/FIXTURE_FREEZE.md)
+and its machine-readable
+[fixture inventory](../../../experiments/luna63c/fixture-freeze/fixtures.json)
+record the owner clarifications for C7 output/reset persistence, represented
+binary64 expiry coalescence, strict mathematical re-arm-before-quiet, and C2
+A=1 checkpoints `{0,1/2,1,2}` with strict L2 error `< theta/4`. Exact field,
+fixture identities, and the `16+1+24+1=42` bound are unchanged. The historical
+blocked certificate and its manifest remain untouched.
+
+The inventory freezes symbolic time sources and ordinal dependencies only;
+it does not claim numerical ceilings or final ordinals. Independent Luna-0
+review returned **PASS — fixture-freeze gate only** on the exact hashes
+recorded in the
+[fixture-freeze handoff](../../handoffs/luna63c-stage-a-fixture-freeze-20261010.md).
+Read-only reviews blocked earlier revisions on
+C3 mixing hold and release, the missing C7 sub-ULP RECALL event, ambiguous
+C7 occurrence identities, and incomplete symbolic setup/timer-record
+inventory for several C7 cases. The current working inventory adds explicit
+causal prefixes, fresh-instance boundaries, timer creation/cancellation/
+processing references, and distinct expanded attempt identities. A fresh
+review closed only this fixture-freeze gate. It does not automatically resume
+W/T/E; those lanes remain paused pending separate authorization. All C7 A=4 cases now
+explicitly use `p=+1`; C2/A=1 keeps separate positive and negative checkpoint
+identities, and C3-C6 retain their frozen positive polarity. Lane S/N5 and
+Stage B remain blocked. No numerical certification, solver, runtime,
+scientific fixture, or experiment was run.
+
 ## Luna-63A/B reviewed evidence integrated; 63B numerical gate blocked; 63C design assigned — 2026-10-09
 
 The independent Luna-0 reviews of Luna-63A publication
