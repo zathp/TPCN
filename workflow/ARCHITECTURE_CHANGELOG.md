@@ -1,5 +1,48 @@
 # Architecture Changelog
 
+## Luna-63C Stage-A artifact reconciliation correction and schedule status — 2026-10-10
+
+Fetched refs verified the published W/T/E commits. W is complete only within
+its assigned 100 mathematical-witness rows; this does not close global N1.
+T remains blocked at N3 (9 of 191 rows certified; 182 blocked), but its
+published inventory and schedule do contain a complete one-row-per-semantic-
+ID ledger: 191 unique IDs reconcile with no omissions or duplicates,
+including 119 C7 rows. The nine certified identities and exact blockers are
+explicit in the published schedule. Numeric origins, external envelopes and
+ordinals remain unfrozen. E reports 1,905 obligation rows (623 PASS, 1,128
+BLOCKED, 154 N/A). All applicable N4-A audit obligations pass; N4-A does not
+certify a future candidate implementation. N4-B remains incomplete because
+complete concrete schedules and mappings are absent.
+
+Untracked lane copies and handoffs in the parent checkout were found not to be
+byte-identical to their named published lane branches. Some contain unique
+files, and some do not match their local manifests. They are preserved,
+classified as provenance-uncertain, excluded from authoritative publication,
+and are not used to alter published results. The
+[sanitized artifact reconciliation inventory](../experiments/luna63c/certificate/temporal-schedule-decision/PUBLICATION_ARTIFACT_RECONCILIATION.json)
+and [preservation report](../experiments/luna63c/certificate/temporal-schedule-decision/PRESERVATION_REPORT.md)
+record relative paths and hashes; the original inventory with workstation
+roots is preserved locally and excluded from publication.
+
+The
+[decision package](../experiments/luna63c/certificate/temporal-schedule-decision/DECISION_PACKAGE.md)
+and complete identity-level
+[blocker inventory](../experiments/luna63c/certificate/temporal-schedule-decision/blocker-inventory.json)
+record the schedule gap. The unnumbered
+[schedule-completion contract](../.github/agents/luna-63c-stage-a-temporal-schedule.agent.md)
+is prepared, not authorized for execution. Event-identity reconstruction
+is no longer needed; an owner-frozen numeric schedule and separate T
+dispatch remain prerequisites. Existing owner decisions on reset/output
+persistence, represented expiry coalescence, and re-arm/quiet order are
+preserved. LTRD is recorded only as a separate candidate future experimental
+pathway; no LTRD work is authorized.
+
+No scientific fixture, published lane evidence, equation, event semantic,
+resource cap, A01-A15 clause or ACP status changed. No T rerun, scientific
+fixture, numerical calculation, N5 synthesis, N6, Stage-B implementation,
+mechanism or LTRD experiment occurred. N1/N3/N4 remain open; Lane S/N5 is
+unauthorized, N6 is deferred, and Stage B remains blocked.
+
 ## Luna-63C C0-C7 exact fixture freeze published; W/T/E resume authorized — 2026-10-10
 
 The independently reviewed five-file fixture-freeze bundle was published
@@ -1966,7 +2009,7 @@ downstream-only capture, and capture-frequency computation invariance. The
 focused independent command was:
 
 ```text
-C:\Users\zathp\AppData\Local\Programs\Python\Python311\python.exe -m pytest -q tests/test_visualization.py tests/test_cpu_visualization.py tests/test_gpu_visualization.py
+python -m pytest -q tests/test_visualization.py tests/test_cpu_visualization.py tests/test_gpu_visualization.py
 ```
 
 **Independent focused result: 33 passed, 1 skipped.** The independent reviewer

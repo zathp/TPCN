@@ -1,5 +1,61 @@
 # TPCN Luna Multi-Agent Workflow — Event-Driven Architecture
 
+## Luna-63C Stage-A evidence boundary and schedule correction — 2026-10-10
+
+Published lane refs were fetched and verified:
+
+- **W COMPLETE WITHIN ASSIGNED SCOPE:** 100/100 mathematical-witness rows
+  certified, zero blocked within W's assignment. This is not global N1
+  closure.
+- **T BLOCKED AT N3:** 9 of 191 reported event rows are certified selected
+  mappings and 182 remain blocked. The published T inventory and schedule
+  reconcile all 191 semantic event IDs exactly once, including 119 expanded
+  C7 identities across 14 cases; the nine certified IDs and all blocked
+  reasons are explicit in the published schedule. The numeric input schedule
+  remains incomplete, so N3 is not closed.
+- **E: N4-A EVIDENCE AUDITED; N4-B INCOMPLETE:** the published audit reports
+  1,905 obligation rows (623 PASS, 1,128 BLOCKED, 154 N/A). All applicable
+  N4-A audit obligations pass. N4-A does not certify a future candidate
+  implementation. N4-B remains incomplete because the complete concrete
+  event schedules and mappings are absent.
+
+Global N1, N3 and N4 closure is **not established**. Lane S/N5 is
+unauthorized, N6 is deferred, and Stage B remains blocked.
+
+The [temporal-schedule decision package](../../../experiments/luna63c/certificate/temporal-schedule-decision/DECISION_PACKAGE.md),
+[191-row machine-readable blocker inventory](../../../experiments/luna63c/certificate/temporal-schedule-decision/blocker-inventory.json),
+and [unnumbered schedule-completion contract](../../../.github/agents/luna-63c-stage-a-temporal-schedule.agent.md)
+are decision-preparation evidence only. The contract is **prepared, not
+authorized for execution** and assigns no new Luna number. The owner
+clarifications and event-order semantics are preserved; numeric origins,
+external input envelopes, pause/reset times, and required ordinals still need
+an owner-frozen schedule and a separate T dispatch. The published identity
+crosswalk and nine certified rows are retained, not reconstructed.
+
+The proposed Local Temporal Reward Decoder (LTRD)—immediate event-cost
+feedback, bounded input history/delay pathways, local nonlinear reward
+decoding, activation-linked temporal attribution, delayed reward propagation,
+and uniform-noise suppression—is a **separate candidate future experimental
+pathway**, not a Luna-63C certification change or an accepted architecture.
+No LTRD branch, contract, code or fixture is authorized here.
+
+Artifact reconciliation found additional untracked W/T/E copies and handoffs
+in the parent checkout that are not byte-identical to the named published
+lane branches. Some contain unique files, and some disagree with their local
+manifests. They are preserved as provenance-uncertain evidence, excluded
+from authoritative publication, and not treated as corrections to published
+W/T/E results. The [sanitized reconciliation inventory](../../../experiments/luna63c/certificate/temporal-schedule-decision/PUBLICATION_ARTIFACT_RECONCILIATION.json)
+and [preservation report](../../../experiments/luna63c/certificate/temporal-schedule-decision/PRESERVATION_REPORT.md)
+record relative artifact paths and hashes. The original inventory with local
+worktree roots is retained locally and is not published.
+
+No scientific fixture, numerical lane, Lane S/N5, N6, Stage B, runtime,
+mechanism, or LTRD execution occurred. The frozen fixture, published W/T/E
+results and owner decisions remain unchanged. The next bounded action is
+owner review and freeze of the missing numeric schedule inputs, followed by
+a separately authorized T completion; no event crosswalk reconstruction or
+scientific experiment is needed.
+
 ## Luna-63C reviewed design integrated; mechanism authorization certificate-gated — 2026-10-09
 
 The Luna-63C nonlinear excursion design was independently reviewed
