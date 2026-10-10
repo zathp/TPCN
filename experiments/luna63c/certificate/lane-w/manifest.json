@@ -1,0 +1,104 @@
+{
+  "actual_environment": {
+    "binding": "gmpy2 2.3.2",
+    "binding_extension": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN\\experiments\\luna63c\\certificate\\lane-w\\.engine\\gmpy2\\gmpy2.cp311-win_amd64.pyd",
+    "binding_package_module": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN\\experiments\\luna63c\\certificate\\lane-w\\.engine\\gmpy2\\__init__.py",
+    "implementation": "cpython",
+    "loaded_binary_sha256": {
+      "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN\\experiments\\luna63c\\certificate\\lane-w\\.engine\\gmpy2.libs\\libgmp-10.dll": "525F5681DC5FB40EF86B1BCB0EE5C40142AEC689E0A1BA8C8E40199173366F6A",
+      "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN\\experiments\\luna63c\\certificate\\lane-w\\.engine\\gmpy2.libs\\libmpfr-6.dll": "B81A548EB7A23D4E3ACBE296F1EFF077A0B284617A2C1CC53A1CCDB0637B52B8",
+      "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN\\experiments\\luna63c\\certificate\\lane-w\\.engine\\gmpy2\\gmpy2.cp311-win_amd64.pyd": "632D398D77023696549483852FB947B2627E6F7B88C4A42815A1A4977BEF30B5"
+    },
+    "loaded_native_paths": {
+      "libgmp-10.dll": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN\\experiments\\luna63c\\certificate\\lane-w\\.engine\\gmpy2.libs\\libgmp-10.dll",
+      "libmpfr-6.dll": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN\\experiments\\luna63c\\certificate\\lane-w\\.engine\\gmpy2.libs\\libmpfr-6.dll"
+    },
+    "machine": "AMD64",
+    "native_gmp": "GMP 6.3.0",
+    "native_mpfr": "MPFR 4.2.2",
+    "outward_rounding_smoke_test": {
+      "exp_1_interval": {
+        "lower_exact": {
+          "denominator": "28948022309329048855892746252171976963317496166410141009864396001978282409984",
+          "numerator": "78688883013276200091698248537162581920209762369847930022367595957783191892987"
+        },
+        "upper_exact": {
+          "denominator": "7237005577332262213973186563042994240829374041602535252466099000494570602496",
+          "numerator": "19672220753319050022924562134290645480052440592461982505591898989445797973247"
+        }
+      },
+      "exp_1_lower_lt_upper": true,
+      "pi_interval": {
+        "lower_exact": {
+          "denominator": "14474011154664524427946373126085988481658748083205070504932198000989141204992",
+          "numerator": "45471447111470790535029367847216232831674172166049053744846518889742361808273"
+        },
+        "upper_exact": {
+          "denominator": "28948022309329048855892746252171976963317496166410141009864396001978282409984",
+          "numerator": "90942894222941581070058735694432465663348344332098107489693037779484723616547"
+        }
+      },
+      "pi_lower_lt_upper": true,
+      "precision_bits": 256
+    },
+    "platform": "win32",
+    "profile_match": true,
+    "python": "3.11.4 (tags/v3.11.4:d2340ef, Jun  7 2023, 05:45:37) [MSC v.1934 64 bit (AMD64)]",
+    "python_executable": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN\\.venv\\Scripts\\python.exe",
+    "rounding_constants": {
+      "down": 3,
+      "up": 2
+    }
+  },
+  "blocked_count": 0,
+  "certificate_program": "experiments/luna63c/certificate/lane-w/certificate.py",
+  "certificate_program_sha256": "1BEAF1555C7DC23644402BC1DCAE9FFA4BD2F8A04A06D25D7DD85CF8A0B6CAF3",
+  "certified_count": 100,
+  "disposition": "W COMPLETE — T/E conversion and ordinal work remains blocked and unrun",
+  "fixture_raw_hashes": {
+    "FIXTURE_FREEZE.md": {
+      "canonical_blob_sha256": "B3BB25D65A8344363DF17F2A6FF3085034FDC431605B6FBA729499D512BE667F",
+      "checkout_lf_sha256": "36941F4FAA0DEF51F99CCD5806BBFFF207725063BB9013E2DB3D136CA292FC9D",
+      "checkout_materialization_note": "checkout raw bytes equal the pinned canonical bytes",
+      "checkout_raw_sha256": "B3BB25D65A8344363DF17F2A6FF3085034FDC431605B6FBA729499D512BE667F",
+      "git_blob": "fc3d883e72ec3062e07cc453927ee76cba4aa561",
+      "path": "experiments/luna63c/fixture-freeze/FIXTURE_FREEZE.md",
+      "publication_commit": "583148e2812b93d519a3dc2821944d08446497b7"
+    },
+    "fixtures.json": {
+      "canonical_blob_sha256": "AF81F3390274B2D565F90CBF12C116C78F45C5DF65D6C28BA88194E9DF2F70FB",
+      "checkout_lf_sha256": "AF81F3390274B2D565F90CBF12C116C78F45C5DF65D6C28BA88194E9DF2F70FB",
+      "checkout_materialization_note": "core.autocrlf=true; checkout CRLF bytes normalize to the pinned LF blob",
+      "checkout_raw_sha256": "9148A66EA75B21A21701CA2D4CCDA4B21C01C0EA5CF08160E71B28327340069D",
+      "git_blob": "8c4f9d20dda217d71ef1bcbb4fdefd0e3507ed92",
+      "path": "experiments/luna63c/fixture-freeze/fixtures.json",
+      "publication_commit": "583148e2812b93d519a3dc2821944d08446497b7"
+    }
+  },
+  "format": "luna63c-stage-a-lane-w-manifest",
+  "matrix_path": "experiments/luna63c/certificate/lane-w/coverage_matrix.json",
+  "matrix_sha256": "0B5AB09AE5E4A29AD951B00563C64F5D445D0665B332154C9D40F93335F90D9F",
+  "revision": 1,
+  "row_count": 100,
+  "source_inventory": {
+    "c2_a1_polarity_checkpoint_count": 8,
+    "c2_case_count": 7,
+    "c3_hold_duration_count": 3,
+    "c5_hold_instance_count": 3,
+    "c7_subcase_count": 14,
+    "c7_timestamp_invalid_instance_count": 4,
+    "fixture_ids": [
+      "C0",
+      "C1",
+      "C2",
+      "C3",
+      "C4",
+      "C5",
+      "C6",
+      "C7"
+    ]
+  },
+  "t_e_deferred_blocked_count": 8,
+  "transcendental_method": "MPFR directed operations via gmpy2 C binding; host libm not used.",
+  "w_required_count": 100
+}
