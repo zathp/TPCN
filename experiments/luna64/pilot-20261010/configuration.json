@@ -1,0 +1,70 @@
+{
+  "schema": "LUNA64-R4.3-BOUNDED-FEASIBILITY-PILOT",
+  "pilot_type": "feasibility_only",
+  "efficacy_scored": false,
+  "architecture_promotion": false,
+  "exact_revision": "bc338a48bc05f7e15c4cb84636a979294b88e093",
+  "branch": "experiment/luna64-track-b-r4.3-pilot-20261010",
+  "authorized_baseline": "bc338a48bc05f7e15c4cb84636a979294b88e093",
+  "frozen_content_commit": "64a214e310de3b982b90a8ad215598bc1e9f8b1c",
+  "protocol_revision": "4.3.0-draft",
+  "protocol_sha256": "da23f6dc437c9cb3661dfda2ce9db718f6d5582a7e1c796e0aa20d9efbb2487c",
+  "schema_sha256": "0e59262ae276e3b68ce9efbdafe061756c4eb31c57e5359219c0b5baa868b508",
+  "golden_sha256": "556aaa4ef414910ae7bed1fea3a5adb0ebf360401b41f11e2f3b4d4135b00148",
+  "input_workload_sha256": "0e078601043e6657672fa8db1433d74c73fe8a855eb9242bb85cbb8cea1f061b",
+  "configuration": {
+    "seeds": [
+      6401,
+      6402,
+      6403
+    ],
+    "arms": [
+      "A_COST_ONLY",
+      "U_UNIFORM_PC",
+      "R_RECENCY_PC",
+      "L_LINEAR_TEMPORAL",
+      "N_NONLINEAR_LOCAL",
+      "X_TEMPORAL_DISRUPTION"
+    ],
+    "training_episodes_per_arm_seed": 96,
+    "evaluation_workload_episodes_per_arm_seed": 48,
+    "passes": 2,
+    "episodes_per_pass": 2592,
+    "total_episodes": 5184,
+    "input_receptions_per_episode": 4,
+    "total_input_receptions": 20736,
+    "total_pcn_workload_episodes": 4320,
+    "total_pcn_input_receptions": 17280,
+    "reward_delays_ticks": [
+      0,
+      1000000,
+      8000000,
+      9000000,
+      15000000,
+      16000000
+    ],
+    "omission_replay_passes": 0,
+    "efficacy_scoring": false,
+    "protocol_gate": "L64-TB-GATE-20261010-R4",
+    "protocol_revision": "4.3.0-draft",
+    "protocol_sha256": "da23f6dc437c9cb3661dfda2ce9db718f6d5582a7e1c796e0aa20d9efbb2487c",
+    "schema_sha256": "0e59262ae276e3b68ce9efbdafe061756c4eb31c57e5359219c0b5baa868b508",
+    "golden_sha256": "556aaa4ef414910ae7bed1fea3a5adb0ebf360401b41f11e2f3b4d4135b00148",
+    "authorization_sha256": "b157c4a9bd7eb89ef916b7d93c222ded839c0fc717f6738fbb141e392dfda9b1",
+    "freeze_manifest_sha256": "62D64457BB4BE4FF69F40558D55C6A9FAAA7B9A246DA9F6C6BE4BE8C0348542B",
+    "limit": {
+      "logical_cpus": 1,
+      "cpu_seconds": 900,
+      "wall_seconds": 1200,
+      "working_set_bytes": 536870912,
+      "aggregate_artifact_bytes": 26214400,
+      "total_scalar_ops": 36716544,
+      "scalar_ops_per_decoder_event": 2048,
+      "scalar_ops_episode_overhead": 256
+    },
+    "timing": "physical event time for eligibility and reward; decoder time only for PCN elapsed-time; no global neural timestep",
+    "event_cost": "one activity-cost-proxy unit charged immediately per input reception; reward charge zero",
+    "eval_boundary": "no target in EVAL input; no correctness reward, settlement, or parameter update",
+    "operation_counter": "executed scalar add/subtract/multiply/divide/comparison in decoder, eligibility, reward, and lifecycle arithmetic; excludes indexing, loop control, memory access, hashing, serialization, tanh, exp"
+  }
+}
