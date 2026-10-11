@@ -255,6 +255,15 @@ requirements, not demonstrated controls. Six independent read-only reviews
 support the integrated blocked disposition; static scientific compatibility
 review passed with limitations only and is not execution qualification.
 
+The A4 governance package, platform evidence and integrated independent review
+were published together in commit `7bd4405`. Checkout SHA-256 identities are:
+proposal `BEF21B2E2E4005383657E490A05AAB57D59FCA1C716AEAAD7116724991B0D165`,
+evidence `660A9077886F1D99B94F1CB17BAD34A20BA89989E30434405B9F533F0D8BFDA6`,
+and integrated review
+`6626875A660AA654B0A215B7D9D47C37385F67334A872136525ED502172F56A0`.
+This workflow closure records publication provenance only; it does not change
+the A4 verdict or authorize qualification or corrective execution.
+
 **A4 disposition: BLOCKED - ISOLATION QUALIFICATION UNRESOLVED.** A3 remains
 historically **BLOCKED - NO QUALIFIED EXECUTION ARCHITECTURE**; its findings
 are not retroactively changed. The original pilot remains
