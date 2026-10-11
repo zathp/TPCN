@@ -1,0 +1,306 @@
+{
+  "schema": "tpcn.luna64.supervisor-resource-policy",
+  "schema_version": 1,
+  "policy_schema_file": "luna64-r4.3-corrective-supervisor-resource-policy-a2-20261010.schema.json",
+  "amendment_id": "L64-TB-R4.3-CORRECTIVE-SUPERVISOR-A2",
+  "parent_gate": {
+    "id": "L64-TB-R4.3-CORRECTIVE-20261010",
+    "sha256": "8EE37445B1F3DAC9F085D7BE00C9FA4B11CC5FAB62779F8A424746A9BAFDE369",
+    "owner_authorization_commit": "0bdddaeaefe47a97ea6433d82bcc143adfe13b5a"
+  },
+  "status": {
+    "gate": "blocked",
+    "selected_bootstrap_option": "D_REMAIN_BLOCKED",
+    "owner_approval": "not_obtained",
+    "qualification_authorized": false,
+    "corrective_execution_authorized": false,
+    "scientific_rerun_authorized": false
+  },
+  "platform": {
+    "os_family": "Windows",
+    "observed_version": "10.0.19045",
+    "runtime_qualification": "not_run",
+    "api_availability_is_not_runtime_proof": true
+  },
+  "components": {
+    "launcher": {
+      "identity": "Component A trusted bootstrap launcher",
+      "implementation": "not_created",
+      "preexisting_outer_boundary": "not_established",
+      "resource_state_before_inner_job": "unbounded_and_unverified",
+      "scientific_or_test_code_permitted": false
+    },
+    "contained_supervisor": {
+      "identity": "Component B corrective supervisor",
+      "path": "experiments/luna64/run-r4.3-corrective-checks.ps1",
+      "implementation": "not_created",
+      "permitted_mode": "All",
+      "permitted_children": [
+        "node experiments/luna64/test-track-b-gate-r4.mjs",
+        "node experiments/luna64/test-luna64-r4.3-reward-reference.mjs",
+        "node experiments/luna64/test-luna64-r4.3-reward-lifecycle.mjs"
+      ],
+      "child_order": "listed_order_serial_once"
+    },
+    "process_tree": {
+      "intended_root": "Component B",
+      "intended_descendants": "three exact focused child tests and their descendants",
+      "breakaway_flags_permitted": false,
+      "wmi_process_creation_permitted": false,
+      "pre_resume_membership_proof": "required_not_obtained",
+      "kill_on_last_job_handle_close": "proposed_not_qualified",
+      "cleanup_verification": "required_not_run"
+    }
+  },
+  "resource_policy": {
+    "selected_memory_policy": null,
+    "original_requirement": {
+      "metric": "aggregate_peak_working_set",
+      "ceiling_bytes": 536870912,
+      "scope": "supervisor_and_complete_process_tree",
+      "classification": "required_but_not_proven_enforceable",
+      "status": "unsatisfied"
+    },
+    "unselected_candidate": {
+      "metric": "job_wide_committed_memory",
+      "hard_ceiling_bytes": 536870912,
+      "windows_limit_flag": "JOB_OBJECT_LIMIT_JOB_MEMORY",
+      "information_class": "JobObjectExtendedLimitInformation",
+      "structure_field": "JOBOBJECT_EXTENDED_LIMIT_INFORMATION.JobMemoryLimit",
+      "classification": "candidate_enforcement_for_assigned_processes_only",
+      "equivalent_to_working_set": false,
+      "authorized": false,
+      "launcher_in_scope": false,
+      "selection": "not_selected"
+    },
+    "warning_candidate": {
+      "metric": "job_wide_committed_memory_notification",
+      "threshold_bytes": 503316480,
+      "threshold_label": "480 MiB advisory example only",
+      "information_class": "JobObjectNotificationLimitInformation",
+      "structure": "JOBOBJECT_NOTIFICATION_LIMIT_INFORMATION",
+      "windows_limit_flag": "JOB_OBJECT_LIMIT_JOB_MEMORY",
+      "enforcement": "none",
+      "may_continue_allocating_after_threshold": true,
+      "selected": false,
+      "authorized": false,
+      "notes": "Not selected as an execution policy. The exact 480 MiB threshold is only proposed for the separately authorized notification-qualification case."
+    },
+    "observations": [
+      {
+        "quantity": "job_committed_memory_peak",
+        "source": "PeakJobMemoryUsed",
+        "classification": "measured_if_job_is_active",
+        "not_equivalent_to": "working_set"
+      },
+      {
+        "quantity": "per_process_current_working_set",
+        "source": "PROCESS_MEMORY_COUNTERS.WorkingSetSize",
+        "classification": "measured_observation"
+      },
+      {
+        "quantity": "per_process_peak_working_set",
+        "source": "PROCESS_MEMORY_COUNTERS.PeakWorkingSetSize",
+        "classification": "measured_observation"
+      },
+      {
+        "quantity": "sampled_aggregate_working_set",
+        "classification": "measured_observation_only",
+        "proves_peak_over_time": false
+      },
+      {
+        "quantity": "estimated_resident_memory_from_commit",
+        "classification": "estimated_not_acceptance_evidence"
+      }
+    ],
+    "non_memory_limits": {
+      "corrective_invocations": {
+        "limit": 1,
+        "status": "unused"
+      },
+      "focused_child_tests": {
+        "limit": 3,
+        "retries": 0,
+        "status": "unused"
+      },
+      "synthetic_records": {
+        "limit": 512,
+        "scope": "combined_stimulus_and_trace"
+      },
+      "logical_cpu_cores": {
+        "limit": 1,
+        "mechanism": "job_affinity_candidate_not_qualified"
+      },
+      "aggregate_cpu_time_seconds": {
+        "limit": 120,
+        "metric": "aggregate_user_plus_kernel_cpu_time",
+        "measurement_source": "JOBOBJECT_BASIC_AND_IO_ACCOUNTING_INFORMATION",
+        "job_time_limit_scope": "user_mode_only_periodically_checked",
+        "enforcement_status": "unresolved_for_strict_total",
+        "overshoot_permitted": false
+      },
+      "aggregate_wall_time_seconds": {
+        "limit": 180,
+        "mechanism": "external_watchdog_required",
+        "enforcement_status": "not_qualified"
+      },
+      "artifacts_bytes": {
+        "limit": 5242880,
+        "mechanism": "aggregate_output_guard_required",
+        "enforcement_status": "not_qualified"
+      },
+      "scientific_workload": {
+        "permitted": false
+      }
+    }
+  },
+  "bootstrap": {
+    "required_operations": [
+      "start_launcher",
+      "create_private_job",
+      "configure_hard_limits",
+      "configure_optional_notification",
+      "associate_completion_port",
+      "create_supervisor_suspended",
+      "assign_supervisor_to_job",
+      "verify_limits_membership_and_affinity",
+      "resume_supervisor",
+      "monitor_and_watchdog",
+      "terminate_on_failure",
+      "close_handles_and_verify_empty_job"
+    ],
+    "unbounded_interval": "launcher start until verified process association with an already enforced external boundary",
+    "component_b_may_create_children": true,
+    "child_creation_requirements": [
+      "fixed_executable_and_command_allowlist",
+      "CREATE_SUSPENDED",
+      "inherited_or_verified_job_membership_before_resume",
+      "affinity_verified_before_resume",
+      "no_WMI_or_breakaway"
+    ],
+    "selected_option": "D_REMAIN_BLOCKED",
+    "option_a_external_launcher_boundary": "not_established_or_authorized",
+    "option_b_observed_exception": "rejected_as_non_enforcement",
+    "option_c_external_container_or_vm": "not_established_or_authorized",
+    "option_d": "selected"
+  },
+  "communication": {
+    "proposed_channel": "local size-capped inherited pipe or private ACL-restricted named pipe",
+    "request_fields": [
+      "gate_id",
+      "worktree_revision",
+      "fixed_mode",
+      "fixed_allowlist_id"
+    ],
+    "arbitrary_commands_or_paths": false,
+    "channel_loss_or_invalid_message": "fatal"
+  },
+  "qualification": {
+    "authorized": false,
+    "requires_separate_owner_approval": true,
+    "requires_verified_outer_boundary_before_run": true,
+    "proposed_allowance": {
+      "invocations": 1,
+      "logical_cpu_cores": 1,
+      "aggregate_cpu_seconds": 120,
+      "aggregate_wall_seconds": 180,
+      "job_commit_candidate_bytes": 536870912,
+      "records": 64,
+      "simultaneous_processes_including_supervisor": 4,
+      "artifact_bytes": 5242880,
+      "retries": 0,
+      "separate_from_parent_corrective_invocation": true
+    },
+    "one_shot_marker": "%LOCALAPPDATA%\\TPCN\\luna64-r43-supervisor-a2-qualification-20261010.json",
+    "notification_test_configuration": {
+      "advisory_threshold_bytes": 503316480,
+      "hard_commit_candidate_bytes": 536870912,
+      "required_for_notification_cases_only": true,
+      "execution_policy_selected": false
+    },
+    "cases": [
+      "pre_execution_containment",
+      "job_creation_failure",
+      "hard_limit_configuration_failure",
+      "suspended_assignment_failure",
+      "child_and_grandchild_containment",
+      "denied_memory_commit",
+      "hard_limit_with_delayed_warning",
+      "normal_below_limit",
+      "missing_completion_port_message",
+      "supervisor_failure_cleanup",
+      "unexpected_child_termination",
+      "breakaway_attempt",
+      "nested_job_incompatibility",
+      "affinity_enforcement",
+      "cpu_time_limit_and_no_overshoot",
+      "wall_time_watchdog",
+      "one_shot_marker",
+      "artifact_cap",
+      "artifact_cap_overrun"
+    ],
+    "execution_status": "not_run"
+  },
+  "allowed_paths_for_governance_publication": [
+    "workflow/handoffs/luna-0-luna64-r4.3-corrective-supervisor-amendment-a2-20261010.md",
+    "workflow/handoffs/luna64-r4.3-corrective-supervisor-resource-policy-a2-20261010.json",
+    "workflow/handoffs/luna64-r4.3-corrective-supervisor-resource-policy-a2-20261010.schema.json",
+    "workflow/handoffs/luna-0-independent-review-luna64-r4.3-corrective-supervisor-amendment-a2-20261010.md",
+    "workflow/docs/luna/LUNA_WORKFLOW.md"
+  ],
+  "prohibited": [
+    "modify_frozen_r4.3_protocol",
+    "modify_reward_implementation",
+    "run_supervisor_or_qualification_case",
+    "run_focused_corrective_test",
+    "run_scientific_workload_or_benchmark",
+    "consume_or_reset_parent_one_shot_marker",
+    "authorize_corrective_implementation",
+    "authorize_scientific_rerun",
+    "modify_production_core_or_acp",
+    "modify_or_contaminate_luna_63c"
+  ],
+  "failure_classifications": {
+    "resource_setup_failure": "BLOCKED_NO_EXECUTION",
+    "limit_query_failure": "INCOMPLETE_FAIL",
+    "missing_process_or_memory_telemetry": "INCOMPLETE_FAIL",
+    "warning_threshold_event": "ADVISORY_EVENT_NOT_ENFORCEMENT",
+    "ordinary_completion_message_absence": "INCONCLUSIVE",
+    "required_notification_or_violation_query_absence": "INCOMPLETE_FAIL",
+    "denied_commit": "EXPLICIT_ABORT_AND_TERMINATE_REQUIRED",
+    "uncontained_descendant": "FAIL_TERMINATE_JOB",
+    "outer_launcher_boundary_absent": "BLOCKED"
+  },
+  "approvals": {
+    "parent_gate_owner_approval": "existing_but_scope_limited",
+    "a2_independent_prereview": "must_be_recorded_in_separate_governance_handoff",
+    "a2_owner_approval": "required_not_obtained",
+    "qualification_owner_approval": "required_not_obtained",
+    "corrective_execution_owner_approval": "not_released"
+  },
+  "validation_rules": [
+    "All byte values are non-negative integers and use bytes, not MiB labels, for comparisons.",
+    "No notification threshold may exceed or replace an explicitly approved hard limit.",
+    "A notification configuration is never classified as enforcement.",
+    "A committed-memory ceiling is never classified as aggregate-working-set enforcement.",
+    "Every resource field is classified as enforced, measured, estimated, unavailable, or not-qualified.",
+    "A missing measurement cannot be serialized as zero.",
+    "Launcher and descendant process scopes must be explicit; no unaccounted process may be treated as contained.",
+    "Corrective CPU, wall, record, artifact, invocation, and test limits may not exceed the parent gate.",
+    "Qualification allowances are separate, unapproved, and cannot reset or consume the parent one-shot marker.",
+    "Any selected replacement metric requires independent prereview and explicit owner approval before execution."
+  ],
+  "source_documents": [
+    "https://learn.microsoft.com/en-us/windows/win32/procthread/job-objects",
+    "https://learn.microsoft.com/en-us/windows/win32/api/winnt/ns-winnt-jobobject_extended_limit_information",
+    "https://learn.microsoft.com/en-us/windows/win32/api/winnt/ns-winnt-jobobject_notification_limit_information",
+    "https://learn.microsoft.com/en-us/windows/win32/api/winnt/ns-winnt-jobobject_basic_limit_information",
+    "https://learn.microsoft.com/en-us/windows/win32/api/jobapi2/nf-jobapi2-setinformationjobobject",
+    "https://learn.microsoft.com/en-us/windows/win32/api/jobapi2/nf-jobapi2-queryinformationjobobject",
+    "https://learn.microsoft.com/en-us/windows/win32/api/jobapi2/nf-jobapi2-assignprocesstojobobject",
+    "https://learn.microsoft.com/en-us/windows/win32/procthread/nested-jobs",
+    "https://learn.microsoft.com/en-us/windows/win32/procthread/process-creation-flags",
+    "https://learn.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-updateprocthreadattribute",
+    "https://learn.microsoft.com/en-us/windows/win32/api/winnt/ns-winnt-jobobject_associate_completion_port"
+  ]
+}

@@ -1,0 +1,966 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tpcn.invalid/schemas/luna64-r4.3-corrective-supervisor-resource-policy-a2-20261010.schema.json",
+  "title": "Luna-64 A2 supervisor resource policy",
+  "description": "Structural and fixed-bound validation for the blocked A2 proposal. Passing this schema does not authorize execution.",
+  "type": "object",
+  "required": [
+    "schema",
+    "schema_version",
+    "policy_schema_file",
+    "amendment_id",
+    "parent_gate",
+    "status",
+    "platform",
+    "components",
+    "resource_policy",
+    "bootstrap",
+    "communication",
+    "qualification",
+    "allowed_paths_for_governance_publication",
+    "prohibited",
+    "failure_classifications",
+    "approvals",
+    "validation_rules",
+    "source_documents"
+  ],
+  "properties": {
+    "schema": {
+      "const": "tpcn.luna64.supervisor-resource-policy"
+    },
+    "schema_version": {
+      "const": 1
+    },
+    "policy_schema_file": {
+      "const": "luna64-r4.3-corrective-supervisor-resource-policy-a2-20261010.schema.json"
+    },
+    "amendment_id": {
+      "const": "L64-TB-R4.3-CORRECTIVE-SUPERVISOR-A2"
+    },
+    "platform": {
+      "type": "object",
+      "required": [
+        "os_family",
+        "observed_version",
+        "runtime_qualification",
+        "api_availability_is_not_runtime_proof"
+      ],
+      "properties": {
+        "os_family": {
+          "const": "Windows"
+        },
+        "observed_version": {
+          "const": "10.0.19045"
+        },
+        "runtime_qualification": {
+          "const": "not_run"
+        },
+        "api_availability_is_not_runtime_proof": {
+          "const": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "components": {
+      "type": "object",
+      "required": [
+        "launcher",
+        "contained_supervisor",
+        "process_tree"
+      ],
+      "properties": {
+        "launcher": {
+          "type": "object",
+          "required": [
+            "identity",
+            "implementation",
+            "preexisting_outer_boundary",
+            "resource_state_before_inner_job",
+            "scientific_or_test_code_permitted"
+          ],
+          "properties": {
+            "identity": {
+              "const": "Component A trusted bootstrap launcher"
+            },
+            "implementation": {
+              "const": "not_created"
+            },
+            "preexisting_outer_boundary": {
+              "const": "not_established"
+            },
+            "resource_state_before_inner_job": {
+              "const": "unbounded_and_unverified"
+            },
+            "scientific_or_test_code_permitted": {
+              "const": false
+            }
+          },
+          "additionalProperties": false
+        },
+        "contained_supervisor": {
+          "type": "object",
+          "required": [
+            "identity",
+            "path",
+            "implementation",
+            "permitted_mode",
+            "permitted_children",
+            "child_order"
+          ],
+          "properties": {
+            "identity": {
+              "const": "Component B corrective supervisor"
+            },
+            "path": {
+              "const": "experiments/luna64/run-r4.3-corrective-checks.ps1"
+            },
+            "implementation": {
+              "const": "not_created"
+            },
+            "permitted_mode": {
+              "const": "All"
+            },
+            "permitted_children": {
+              "const": [
+                "node experiments/luna64/test-track-b-gate-r4.mjs",
+                "node experiments/luna64/test-luna64-r4.3-reward-reference.mjs",
+                "node experiments/luna64/test-luna64-r4.3-reward-lifecycle.mjs"
+              ]
+            },
+            "child_order": {
+              "const": "listed_order_serial_once"
+            }
+          },
+          "additionalProperties": false
+        },
+        "process_tree": {
+          "type": "object",
+          "required": [
+            "intended_root",
+            "intended_descendants",
+            "breakaway_flags_permitted",
+            "wmi_process_creation_permitted",
+            "pre_resume_membership_proof",
+            "kill_on_last_job_handle_close",
+            "cleanup_verification"
+          ],
+          "properties": {
+            "intended_root": {
+              "const": "Component B"
+            },
+            "intended_descendants": {
+              "const": "three exact focused child tests and their descendants"
+            },
+            "breakaway_flags_permitted": {
+              "const": false
+            },
+            "wmi_process_creation_permitted": {
+              "const": false
+            },
+            "pre_resume_membership_proof": {
+              "const": "required_not_obtained"
+            },
+            "kill_on_last_job_handle_close": {
+              "const": "proposed_not_qualified"
+            },
+            "cleanup_verification": {
+              "const": "required_not_run"
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "parent_gate": {
+      "type": "object",
+      "required": [
+        "id",
+        "sha256",
+        "owner_authorization_commit"
+      ],
+      "properties": {
+        "id": {
+          "const": "L64-TB-R4.3-CORRECTIVE-20261010"
+        },
+        "sha256": {
+          "const": "8EE37445B1F3DAC9F085D7BE00C9FA4B11CC5FAB62779F8A424746A9BAFDE369"
+        },
+        "owner_authorization_commit": {
+          "const": "0bdddaeaefe47a97ea6433d82bcc143adfe13b5a"
+        }
+      },
+      "additionalProperties": false
+    },
+    "status": {
+      "type": "object",
+      "required": [
+        "gate",
+        "selected_bootstrap_option",
+        "owner_approval",
+        "qualification_authorized",
+        "corrective_execution_authorized",
+        "scientific_rerun_authorized"
+      ],
+      "properties": {
+        "gate": {
+          "const": "blocked"
+        },
+        "selected_bootstrap_option": {
+          "const": "D_REMAIN_BLOCKED"
+        },
+        "owner_approval": {
+          "const": "not_obtained"
+        },
+        "qualification_authorized": {
+          "const": false
+        },
+        "corrective_execution_authorized": {
+          "const": false
+        },
+        "scientific_rerun_authorized": {
+          "const": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "resource_policy": {
+      "type": "object",
+      "required": [
+        "selected_memory_policy",
+        "original_requirement",
+        "unselected_candidate",
+        "warning_candidate",
+        "observations",
+        "non_memory_limits"
+      ],
+      "properties": {
+        "selected_memory_policy": {
+          "type": "null"
+        },
+        "original_requirement": {
+          "type": "object",
+          "required": [
+            "metric",
+            "ceiling_bytes",
+            "scope",
+            "classification",
+            "status"
+          ],
+          "properties": {
+            "metric": {
+              "const": "aggregate_peak_working_set"
+            },
+            "ceiling_bytes": {
+              "const": 536870912
+            },
+            "scope": {
+              "const": "supervisor_and_complete_process_tree"
+            },
+            "classification": {
+              "const": "required_but_not_proven_enforceable"
+            },
+            "status": {
+              "const": "unsatisfied"
+            }
+          },
+          "additionalProperties": false
+        },
+        "unselected_candidate": {
+          "type": "object",
+          "required": [
+            "metric",
+            "hard_ceiling_bytes",
+            "windows_limit_flag",
+            "information_class",
+            "structure_field",
+            "classification",
+            "equivalent_to_working_set",
+            "authorized",
+            "launcher_in_scope",
+            "selection"
+          ],
+          "properties": {
+            "metric": {
+              "const": "job_wide_committed_memory"
+            },
+            "hard_ceiling_bytes": {
+              "const": 536870912
+            },
+            "windows_limit_flag": {
+              "const": "JOB_OBJECT_LIMIT_JOB_MEMORY"
+            },
+            "information_class": {
+              "const": "JobObjectExtendedLimitInformation"
+            },
+            "structure_field": {
+              "const": "JOBOBJECT_EXTENDED_LIMIT_INFORMATION.JobMemoryLimit"
+            },
+            "classification": {
+              "const": "candidate_enforcement_for_assigned_processes_only"
+            },
+            "equivalent_to_working_set": {
+              "const": false
+            },
+            "authorized": {
+              "const": false
+            },
+            "launcher_in_scope": {
+              "const": false
+            },
+            "selection": {
+              "const": "not_selected"
+            }
+          },
+          "additionalProperties": false
+        },
+        "warning_candidate": {
+          "type": "object",
+          "required": [
+            "metric",
+            "threshold_bytes",
+            "threshold_label",
+            "information_class",
+            "structure",
+            "windows_limit_flag",
+            "enforcement",
+            "may_continue_allocating_after_threshold",
+            "selected",
+            "authorized",
+            "notes"
+          ],
+          "properties": {
+            "metric": {
+              "const": "job_wide_committed_memory_notification"
+            },
+            "threshold_bytes": {
+              "const": 503316480
+            },
+            "threshold_label": {
+              "const": "480 MiB advisory example only"
+            },
+            "information_class": {
+              "const": "JobObjectNotificationLimitInformation"
+            },
+            "structure": {
+              "const": "JOBOBJECT_NOTIFICATION_LIMIT_INFORMATION"
+            },
+            "windows_limit_flag": {
+              "const": "JOB_OBJECT_LIMIT_JOB_MEMORY"
+            },
+            "enforcement": {
+              "const": "none"
+            },
+            "may_continue_allocating_after_threshold": {
+              "const": true
+            },
+            "selected": {
+              "const": false
+            },
+            "authorized": {
+              "const": false
+            },
+            "notes": {
+              "const": "Not selected as an execution policy. The exact 480 MiB threshold is only proposed for the separately authorized notification-qualification case."
+            }
+          },
+          "additionalProperties": false
+        },
+        "observations": {
+          "type": "array",
+          "minItems": 5,
+          "maxItems": 5,
+          "items": {
+            "oneOf": [
+              {
+                "type": "object",
+                "required": [
+                  "quantity",
+                  "source",
+                  "classification",
+                  "not_equivalent_to"
+                ],
+                "properties": {
+                  "quantity": {
+                    "const": "job_committed_memory_peak"
+                  },
+                  "source": {
+                    "const": "PeakJobMemoryUsed"
+                  },
+                  "classification": {
+                    "const": "measured_if_job_is_active"
+                  },
+                  "not_equivalent_to": {
+                    "const": "working_set"
+                  }
+                },
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "required": [
+                  "quantity",
+                  "source",
+                  "classification"
+                ],
+                "properties": {
+                  "quantity": {
+                    "const": "per_process_current_working_set"
+                  },
+                  "source": {
+                    "const": "PROCESS_MEMORY_COUNTERS.WorkingSetSize"
+                  },
+                  "classification": {
+                    "const": "measured_observation"
+                  }
+                },
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "required": [
+                  "quantity",
+                  "source",
+                  "classification"
+                ],
+                "properties": {
+                  "quantity": {
+                    "const": "per_process_peak_working_set"
+                  },
+                  "source": {
+                    "const": "PROCESS_MEMORY_COUNTERS.PeakWorkingSetSize"
+                  },
+                  "classification": {
+                    "const": "measured_observation"
+                  }
+                },
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "required": [
+                  "quantity",
+                  "classification",
+                  "proves_peak_over_time"
+                ],
+                "properties": {
+                  "quantity": {
+                    "const": "sampled_aggregate_working_set"
+                  },
+                  "classification": {
+                    "const": "measured_observation_only"
+                  },
+                  "proves_peak_over_time": {
+                    "const": false
+                  }
+                },
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "required": [
+                  "quantity",
+                  "classification"
+                ],
+                "properties": {
+                  "quantity": {
+                    "const": "estimated_resident_memory_from_commit"
+                  },
+                  "classification": {
+                    "const": "estimated_not_acceptance_evidence"
+                  }
+                },
+                "additionalProperties": false
+              }
+            ]
+          }
+        },
+        "non_memory_limits": {
+          "type": "object",
+          "required": [
+            "corrective_invocations",
+            "focused_child_tests",
+            "synthetic_records",
+            "logical_cpu_cores",
+            "aggregate_cpu_time_seconds",
+            "aggregate_wall_time_seconds",
+            "artifacts_bytes",
+            "scientific_workload"
+          ],
+          "properties": {
+            "corrective_invocations": {
+              "type": "object",
+              "required": ["limit", "status"],
+              "properties": {
+                "limit": {
+                  "const": 1
+                },
+                "status": {
+                  "const": "unused"
+                }
+              },
+              "additionalProperties": false
+            },
+            "focused_child_tests": {
+              "type": "object",
+              "required": ["limit", "retries", "status"],
+              "properties": {
+                "limit": {
+                  "const": 3
+                },
+                "retries": {
+                  "const": 0
+                },
+                "status": {
+                  "const": "unused"
+                }
+              },
+              "additionalProperties": false
+            },
+            "synthetic_records": {
+              "type": "object",
+              "required": ["limit", "scope"],
+              "properties": {
+                "limit": {
+                  "const": 512
+                },
+                "scope": {
+                  "const": "combined_stimulus_and_trace"
+                }
+              },
+              "additionalProperties": false
+            },
+            "logical_cpu_cores": {
+              "type": "object",
+              "required": ["limit", "mechanism"],
+              "properties": {
+                "limit": {
+                  "const": 1
+                },
+                "mechanism": {
+                  "const": "job_affinity_candidate_not_qualified"
+                }
+              },
+              "additionalProperties": false
+            },
+            "aggregate_cpu_time_seconds": {
+              "type": "object",
+              "required": [
+                "limit",
+                "metric",
+                "measurement_source",
+                "job_time_limit_scope",
+                "enforcement_status",
+                "overshoot_permitted"
+              ],
+              "properties": {
+                "limit": {
+                  "const": 120
+                },
+                "metric": {
+                  "const": "aggregate_user_plus_kernel_cpu_time"
+                },
+                "measurement_source": {
+                  "const": "JOBOBJECT_BASIC_AND_IO_ACCOUNTING_INFORMATION"
+                },
+                "job_time_limit_scope": {
+                  "const": "user_mode_only_periodically_checked"
+                },
+                "enforcement_status": {
+                  "const": "unresolved_for_strict_total"
+                },
+                "overshoot_permitted": {
+                  "const": false
+                }
+              },
+              "additionalProperties": false
+            },
+            "aggregate_wall_time_seconds": {
+              "type": "object",
+              "required": ["limit", "mechanism", "enforcement_status"],
+              "properties": {
+                "limit": {
+                  "const": 180
+                },
+                "mechanism": {
+                  "const": "external_watchdog_required"
+                },
+                "enforcement_status": {
+                  "const": "not_qualified"
+                }
+              },
+              "additionalProperties": false
+            },
+            "artifacts_bytes": {
+              "type": "object",
+              "required": ["limit", "mechanism", "enforcement_status"],
+              "properties": {
+                "limit": {
+                  "const": 5242880
+                },
+                "mechanism": {
+                  "const": "aggregate_output_guard_required"
+                },
+                "enforcement_status": {
+                  "const": "not_qualified"
+                }
+              },
+              "additionalProperties": false
+            },
+            "scientific_workload": {
+              "type": "object",
+              "required": ["permitted"],
+              "properties": {
+                "permitted": {
+                  "const": false
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "bootstrap": {
+      "type": "object",
+      "required": [
+        "required_operations",
+        "unbounded_interval",
+        "component_b_may_create_children",
+        "child_creation_requirements",
+        "selected_option",
+        "option_a_external_launcher_boundary",
+        "option_b_observed_exception",
+        "option_c_external_container_or_vm",
+        "option_d"
+      ],
+      "properties": {
+        "required_operations": {
+          "const": [
+            "start_launcher",
+            "create_private_job",
+            "configure_hard_limits",
+            "configure_optional_notification",
+            "associate_completion_port",
+            "create_supervisor_suspended",
+            "assign_supervisor_to_job",
+            "verify_limits_membership_and_affinity",
+            "resume_supervisor",
+            "monitor_and_watchdog",
+            "terminate_on_failure",
+            "close_handles_and_verify_empty_job"
+          ]
+        },
+        "unbounded_interval": {
+          "const": "launcher start until verified process association with an already enforced external boundary"
+        },
+        "component_b_may_create_children": {
+          "const": true
+        },
+        "child_creation_requirements": {
+          "const": [
+            "fixed_executable_and_command_allowlist",
+            "CREATE_SUSPENDED",
+            "inherited_or_verified_job_membership_before_resume",
+            "affinity_verified_before_resume",
+            "no_WMI_or_breakaway"
+          ]
+        },
+        "selected_option": {
+          "const": "D_REMAIN_BLOCKED"
+        },
+        "option_a_external_launcher_boundary": {
+          "const": "not_established_or_authorized"
+        },
+        "option_b_observed_exception": {
+          "const": "rejected_as_non_enforcement"
+        },
+        "option_c_external_container_or_vm": {
+          "const": "not_established_or_authorized"
+        },
+        "option_d": {
+          "const": "selected"
+        }
+      },
+      "additionalProperties": false
+    },
+    "communication": {
+      "type": "object",
+      "required": [
+        "proposed_channel",
+        "request_fields",
+        "arbitrary_commands_or_paths",
+        "channel_loss_or_invalid_message"
+      ],
+      "properties": {
+        "proposed_channel": {
+          "const": "local size-capped inherited pipe or private ACL-restricted named pipe"
+        },
+        "request_fields": {
+          "const": [
+            "gate_id",
+            "worktree_revision",
+            "fixed_mode",
+            "fixed_allowlist_id"
+          ]
+        },
+        "arbitrary_commands_or_paths": {
+          "const": false
+        },
+        "channel_loss_or_invalid_message": {
+          "const": "fatal"
+        }
+      },
+      "additionalProperties": false
+    },
+    "qualification": {
+      "type": "object",
+      "required": [
+        "authorized",
+        "requires_separate_owner_approval",
+        "requires_verified_outer_boundary_before_run",
+        "proposed_allowance",
+        "one_shot_marker",
+        "notification_test_configuration",
+        "cases",
+        "execution_status"
+      ],
+      "properties": {
+        "authorized": {
+          "const": false
+        },
+        "requires_separate_owner_approval": {
+          "const": true
+        },
+        "requires_verified_outer_boundary_before_run": {
+          "const": true
+        },
+        "proposed_allowance": {
+          "type": "object",
+          "required": [
+            "invocations",
+            "logical_cpu_cores",
+            "aggregate_cpu_seconds",
+            "aggregate_wall_seconds",
+            "job_commit_candidate_bytes",
+            "records",
+            "simultaneous_processes_including_supervisor",
+            "artifact_bytes",
+            "retries",
+            "separate_from_parent_corrective_invocation"
+          ],
+          "properties": {
+            "invocations": {
+              "const": 1
+            },
+            "logical_cpu_cores": {
+              "const": 1
+            },
+            "aggregate_cpu_seconds": {
+              "const": 120
+            },
+            "aggregate_wall_seconds": {
+              "const": 180
+            },
+            "job_commit_candidate_bytes": {
+              "const": 536870912
+            },
+            "records": {
+              "const": 64
+            },
+            "simultaneous_processes_including_supervisor": {
+              "const": 4
+            },
+            "artifact_bytes": {
+              "const": 5242880
+            },
+            "retries": {
+              "const": 0
+            },
+            "separate_from_parent_corrective_invocation": {
+              "const": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "one_shot_marker": {
+          "const": "%LOCALAPPDATA%\\TPCN\\luna64-r43-supervisor-a2-qualification-20261010.json"
+        },
+        "notification_test_configuration": {
+          "type": "object",
+          "required": [
+            "advisory_threshold_bytes",
+            "hard_commit_candidate_bytes",
+            "required_for_notification_cases_only",
+            "execution_policy_selected"
+          ],
+          "properties": {
+            "advisory_threshold_bytes": {
+              "const": 503316480
+            },
+            "hard_commit_candidate_bytes": {
+              "const": 536870912
+            },
+            "required_for_notification_cases_only": {
+              "const": true
+            },
+            "execution_policy_selected": {
+              "const": false
+            }
+          },
+          "additionalProperties": false
+        },
+        "cases": {
+          "const": [
+            "pre_execution_containment",
+            "job_creation_failure",
+            "hard_limit_configuration_failure",
+            "suspended_assignment_failure",
+            "child_and_grandchild_containment",
+            "denied_memory_commit",
+            "hard_limit_with_delayed_warning",
+            "normal_below_limit",
+            "missing_completion_port_message",
+            "supervisor_failure_cleanup",
+            "unexpected_child_termination",
+            "breakaway_attempt",
+            "nested_job_incompatibility",
+            "affinity_enforcement",
+            "cpu_time_limit_and_no_overshoot",
+            "wall_time_watchdog",
+            "one_shot_marker",
+            "artifact_cap",
+            "artifact_cap_overrun"
+          ]
+        },
+        "execution_status": {
+          "const": "not_run"
+        }
+      },
+      "additionalProperties": false
+    },
+    "allowed_paths_for_governance_publication": {
+      "type": "array",
+      "const": [
+        "workflow/handoffs/luna-0-luna64-r4.3-corrective-supervisor-amendment-a2-20261010.md",
+        "workflow/handoffs/luna64-r4.3-corrective-supervisor-resource-policy-a2-20261010.json",
+        "workflow/handoffs/luna64-r4.3-corrective-supervisor-resource-policy-a2-20261010.schema.json",
+        "workflow/handoffs/luna-0-independent-review-luna64-r4.3-corrective-supervisor-amendment-a2-20261010.md",
+        "workflow/docs/luna/LUNA_WORKFLOW.md"
+      ]
+    },
+    "prohibited": {
+      "type": "array",
+      "const": [
+        "modify_frozen_r4.3_protocol",
+        "modify_reward_implementation",
+        "run_supervisor_or_qualification_case",
+        "run_focused_corrective_test",
+        "run_scientific_workload_or_benchmark",
+        "consume_or_reset_parent_one_shot_marker",
+        "authorize_corrective_implementation",
+        "authorize_scientific_rerun",
+        "modify_production_core_or_acp",
+        "modify_or_contaminate_luna_63c"
+      ]
+    },
+    "failure_classifications": {
+      "type": "object",
+      "required": [
+        "resource_setup_failure",
+        "limit_query_failure",
+        "missing_process_or_memory_telemetry",
+        "warning_threshold_event",
+        "ordinary_completion_message_absence",
+        "required_notification_or_violation_query_absence",
+        "denied_commit",
+        "uncontained_descendant",
+        "outer_launcher_boundary_absent"
+      ],
+      "properties": {
+        "resource_setup_failure": {
+          "const": "BLOCKED_NO_EXECUTION"
+        },
+        "limit_query_failure": {
+          "const": "INCOMPLETE_FAIL"
+        },
+        "missing_process_or_memory_telemetry": {
+          "const": "INCOMPLETE_FAIL"
+        },
+        "warning_threshold_event": {
+          "const": "ADVISORY_EVENT_NOT_ENFORCEMENT"
+        },
+        "ordinary_completion_message_absence": {
+          "const": "INCONCLUSIVE"
+        },
+        "required_notification_or_violation_query_absence": {
+          "const": "INCOMPLETE_FAIL"
+        },
+        "denied_commit": {
+          "const": "EXPLICIT_ABORT_AND_TERMINATE_REQUIRED"
+        },
+        "uncontained_descendant": {
+          "const": "FAIL_TERMINATE_JOB"
+        },
+        "outer_launcher_boundary_absent": {
+          "const": "BLOCKED"
+        }
+      },
+      "additionalProperties": false
+    },
+    "approvals": {
+      "type": "object",
+      "required": [
+        "parent_gate_owner_approval",
+        "a2_independent_prereview",
+        "a2_owner_approval",
+        "qualification_owner_approval",
+        "corrective_execution_owner_approval"
+      ],
+      "properties": {
+        "parent_gate_owner_approval": {
+          "const": "existing_but_scope_limited"
+        },
+        "a2_independent_prereview": {
+          "const": "must_be_recorded_in_separate_governance_handoff"
+        },
+        "a2_owner_approval": {
+          "const": "required_not_obtained"
+        },
+        "qualification_owner_approval": {
+          "const": "required_not_obtained"
+        },
+        "corrective_execution_owner_approval": {
+          "const": "not_released"
+        }
+      },
+      "additionalProperties": false
+    },
+    "validation_rules": {
+      "const": [
+        "All byte values are non-negative integers and use bytes, not MiB labels, for comparisons.",
+        "No notification threshold may exceed or replace an explicitly approved hard limit.",
+        "A notification configuration is never classified as enforcement.",
+        "A committed-memory ceiling is never classified as aggregate-working-set enforcement.",
+        "Every resource field is classified as enforced, measured, estimated, unavailable, or not-qualified.",
+        "A missing measurement cannot be serialized as zero.",
+        "Launcher and descendant process scopes must be explicit; no unaccounted process may be treated as contained.",
+        "Corrective CPU, wall, record, artifact, invocation, and test limits may not exceed the parent gate.",
+        "Qualification allowances are separate, unapproved, and cannot reset or consume the parent one-shot marker.",
+        "Any selected replacement metric requires independent prereview and explicit owner approval before execution."
+      ]
+    },
+    "source_documents": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "format": "uri"
+      }
+    }
+  },
+  "additionalProperties": false
+}

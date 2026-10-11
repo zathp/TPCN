@@ -157,6 +157,38 @@ invocation and three focused tests remain unconsumed. No corrective tests or
 scientific workload were run. The original pilot verdict and exhausted
 budget are unchanged; scientific rerun authorization remains disabled.
 
+## Luna-64 corrective supervisor resource amendment A2 — blocked
+
+Proposed amendment
+`L64-TB-R4.3-CORRECTIVE-SUPERVISOR-A2` reconciles the published A1 block.
+Its proposal, policy JSON, and schema SHA-256 values are respectively
+`E00B75004D3085EFDA60D7163D57153F2FCB2D089162574358794BBA54145591`,
+`A448646B7B38DE1BE09DC693C20C00DDDEF7C731216C1BE1BD1C462437654E12`, and
+`FFAECD55A7BAEA79BF2635AEDC1DE0B0AD62910AB17051308015C85BCF7ADC44`.
+The final integrated review is
+[recorded here](../../handoffs/luna-0-independent-review-luna64-r4.3-corrective-supervisor-amendment-a2-20261010.md).
+Three independent read-only reviewers returned
+**BLOCKED — RESOURCE SUPERVISION UNRESOLVED**.
+
+The parent gate's 512 MiB aggregate peak working-set requirement remains
+unsatisfied. A1's 512 MiB job-wide committed-memory ceiling is a distinct,
+unselected and unauthorized alternative; it does not prove the aggregate
+working-set requirement. No authorized outer boundary constrains the trusted
+launcher before inner-job setup. Strict aggregate user-plus-kernel CPU
+enforcement, wall-time enforcement, and artifact-cap enforcement also remain
+unqualified.
+
+The A2 proposal selects **Option D — remain blocked**, authorizes no
+replacement memory policy, and is not owner-approved. Any separately proposed
+supervisor qualification requires a distinct explicit owner authorization.
+The parent corrective marker and A2 qualification marker are absent; the
+parent's one supervisor invocation and three focused tests remain unused.
+Corrective implementation and scientific rerun authorization remain
+disabled. The original pilot remains **NOT SUPPORTED AS A PROTOCOL-COMPLIANT
+PILOT** with its budget exhausted. The corrective worktree remains clean at
+`d93ef139a1fea46d58cb59a7d7e6325cb1eb8787`; no frozen protocol, reward
+implementation, production core, ACP, or Luna-63C content is modified.
+
 ## Luna-63C reviewed design integrated; mechanism authorization certificate-gated — 2026-10-09
 
 The Luna-63C nonlinear excursion design was independently reviewed
