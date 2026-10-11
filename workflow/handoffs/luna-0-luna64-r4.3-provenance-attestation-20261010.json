@@ -1,0 +1,158 @@
+{
+  "attestation_schema": "LUNA64-R4.3-PUBLICATION-ATTESTATION",
+  "gate_id": "L64-TB-GATE-20261010-R4",
+  "stage": "B",
+  "stage_a_freeze": {
+    "commit": "64a214e310de3b982b90a8ad215598bc1e9f8b1c",
+    "parent": "73aaa50f97ceab322907875ae4dcf23e7541c3b5",
+    "remote_ref": "refs/heads/governance/luna64-r4.3-freeze-20261010",
+    "remote_ref_verified": true,
+    "history_rewrite_protection_claimed": false
+  },
+  "reviewed_candidate": {
+    "manifest_path": "workflow/handoffs/luna-0-track-b-execution-gate-r4-manifest-20261010.json",
+    "manifest_sha256": "62D64457BB4BE4FF69F40558D55C6A9FAAA7B9A246DA9F6C6BE4BE8C0348542B",
+    "manifest_git_blob_oid": "d1993728e53fff2cdec712607012786bfeba3fb2",
+    "candidate_review_path": "workflow/handoffs/luna-0-independent-review-track-b-execution-gate-r4-20261010.md",
+    "candidate_review_disposition": "No additional scientific, protocol, or semantic blocker; previously blocked solely by mutable provenance."
+  },
+  "independent_reviews": {
+    "precommit": {
+      "reviewer": "Independent Luna-0 Architecture Guardian",
+      "verdict": "PASS",
+      "scope": "Staged Stage-A publication bytes, attributes, allowlist, and protected boundaries."
+    },
+    "postpublication": {
+      "reviewer": "Separate independent Luna-0 Architecture Guardian",
+      "verdict": "PASS — IMMUTABLE FREEZE VERIFIED",
+      "review_record_path": "workflow/handoffs/luna-0-independent-postpublication-review-luna64-r4.3-20261010.md",
+      "scope": "Published remote ref and Git objects; not the publisher's worktree."
+    }
+  },
+  "package_identity": {
+    "file_count": 10,
+    "manifest_raw_sha256_matches_remote_blob_bytes": true,
+    "all_original_raw_sha256_values_match_remote_blob_bytes": true,
+    "all_checkout_roundtrips_verified": true,
+    "git_blob_oid_remapping": "Eight original manifest Git blob OIDs identify the text-normalized LF representation; the published OIDs below identify the exact reviewed CRLF bytes. The manifest remains unchanged. This explicit mapping resolves the representation correction without regenerating or rewriting the reviewed candidate."
+  },
+  "package_files": [
+    {
+      "path": "workflow/handoffs/luna-0-track-b-execution-gate-proposal-20261010-R4.md",
+      "raw_sha256": "E4680D58A698DB13CFDDC6CD5FEAE73C1DD084285E7939BE14EA3A14319D82D1",
+      "reviewed_manifest_git_blob_oid": "45973c96fe2c993396f4d911dfb6e8db8315dfa9",
+      "published_git_blob_oid": "d9caf1d95a595ae6071acbc44cac5f255a6bc7a0",
+      "published_bytes_match_reviewed_raw": true
+    },
+    {
+      "path": "experiments/luna64/luna64-track-b-protocol-r4.json",
+      "raw_sha256": "DA23F6DC437C9CB3661DFDA2CE9DB718F6D5582A7E1C796E0AA20D9EFBB2487C",
+      "reviewed_manifest_git_blob_oid": "d9bb777a304c7f5ff198dc4b6aebd109f49a44f4",
+      "published_git_blob_oid": "35fdcd2295e15fd1e9a0183a17efd25240af3982",
+      "published_bytes_match_reviewed_raw": true
+    },
+    {
+      "path": "experiments/luna64/luna64-track-b-protocol-r4.schema.json",
+      "raw_sha256": "0E59262AE276E3B68CE9EFBDAFE061756C4EB31C57E5359219C0B5BAA868B508",
+      "reviewed_manifest_git_blob_oid": "90ad52b72ee77333a7b499d30fd9e9cce3757c2d",
+      "published_git_blob_oid": "90ad52b72ee77333a7b499d30fd9e9cce3757c2d",
+      "published_bytes_match_reviewed_raw": true
+    },
+    {
+      "path": "experiments/luna64/luna64-track-b-golden-r4.json",
+      "raw_sha256": "556AAA4EF414910AE7BED1FEA3A5ADB0EBF360401B41F11E2F3B4D4135B00148",
+      "reviewed_manifest_git_blob_oid": "2b0ead1428c3ad9471923e255d0f9bbc35baa799",
+      "published_git_blob_oid": "416baaaa3d17c9eb434c136bb4777f0852b73e21",
+      "published_bytes_match_reviewed_raw": true
+    },
+    {
+      "path": "experiments/luna64/generate-track-b-gate-r4-schema.mjs",
+      "raw_sha256": "B91A5171BC8638939355E39562184C9C56C5CD21AE97AB0A53802A384D8CD404",
+      "reviewed_manifest_git_blob_oid": "ce781725c8280f28568567e282e3efa604822c39",
+      "published_git_blob_oid": "eec9034f44f4df7107c4f316839b6138249b7612",
+      "published_bytes_match_reviewed_raw": true
+    },
+    {
+      "path": "experiments/luna64/validate-track-b-gate-r4.mjs",
+      "raw_sha256": "0AB968EA3904A8BE8C3AF22B18F7610BDBF86860C7083F9DE45E5A6B2300F45A",
+      "reviewed_manifest_git_blob_oid": "068bb63bf5c4cb8d985bf6aa9069fe9644cf94c4",
+      "published_git_blob_oid": "5c0506d2a81ea8583700f551c204abdca2adefe0",
+      "published_bytes_match_reviewed_raw": true
+    },
+    {
+      "path": "experiments/luna64/test-track-b-gate-r4.mjs",
+      "raw_sha256": "D3DC9BE850C886D201995EC8195135BA2E83FD47A876B189F307825744ECB41D",
+      "reviewed_manifest_git_blob_oid": "c4d6fc23900824d2ed0af42089be8cef6f120db9",
+      "published_git_blob_oid": "ae129e8a2a84e7cd62172434d29d0eae2472a170",
+      "published_bytes_match_reviewed_raw": true
+    },
+    {
+      "path": "workflow/handoffs/generate-luna64-r4-input-inventory.mjs",
+      "raw_sha256": "B38F48F8FF3D37CC9E103FDCE5304BE6A5174BCB7A15B8DDCFAAFD7260F960FB",
+      "reviewed_manifest_git_blob_oid": "012217e74059c35aa8cd560989b784cee6d5a3e2",
+      "published_git_blob_oid": "892e5bcd601a2cc9aa686fa171f5f00d7c94a28e",
+      "published_bytes_match_reviewed_raw": true
+    },
+    {
+      "path": "workflow/handoffs/generate-luna64-r4-manifest.mjs",
+      "raw_sha256": "FD94F7B0895FD7EA28CD18E09A14097C92D670BB34060A640726793C66131FC6",
+      "reviewed_manifest_git_blob_oid": "758a422cdd504e2ab1140ca5348a907c72656843",
+      "published_git_blob_oid": "42f3b680c78b8b54d42acb2acddb109acc5a2a98",
+      "published_bytes_match_reviewed_raw": true
+    },
+    {
+      "path": "workflow/handoffs/luna-0-track-b-execution-gate-r4-input-inventory-20261010.json",
+      "raw_sha256": "D507293DAAC22E353CB47ABC813726B70A832F5BD0A5462F2BEB4FB76850B2D8",
+      "reviewed_manifest_git_blob_oid": "d37dd7a85b704f6c05764244079e92695c4bffb4",
+      "published_git_blob_oid": "d37dd7a85b704f6c05764244079e92695c4bffb4",
+      "published_bytes_match_reviewed_raw": true
+    }
+  ],
+  "governing_input_inventory": {
+    "path": "workflow/handoffs/luna-0-track-b-execution-gate-r4-input-inventory-20261010.json",
+    "sha256": "D507293DAAC22E353CB47ABC813726B70A832F5BD0A5462F2BEB4FB76850B2D8",
+    "entry_count": 32,
+    "raw_hashes_verified": 32,
+    "recorded_git_blob_identities_verified_or_bridged": 32,
+    "unchanged_recorded_git_blob_ids": 26,
+    "exact_byte_publication_oid_remappings": 6,
+    "remote_verification": {
+      "direct_raw_blob_sha256_matches": 9,
+      "checkout_materialization_sha256_matches": 23,
+      "materialization_note": "The 23 matches were verified by exact Git LF-to-CRLF materialization under the publication verification environment's core.autocrlf=true; only the ten R4 package paths have explicit path-scoped attributes pinning future checkout bytes."
+    }
+  },
+  "byte_preservation_attributes": {
+    "scope": "Ten exact R4 package paths only; no broad repository rule changed.",
+    "crlf_paths": [
+      "workflow/handoffs/luna-0-track-b-execution-gate-proposal-20261010-R4.md",
+      "experiments/luna64/luna64-track-b-protocol-r4.json",
+      "experiments/luna64/luna64-track-b-golden-r4.json",
+      "experiments/luna64/generate-track-b-gate-r4-schema.mjs",
+      "experiments/luna64/validate-track-b-gate-r4.mjs",
+      "experiments/luna64/test-track-b-gate-r4.mjs",
+      "workflow/handoffs/generate-luna64-r4-input-inventory.mjs",
+      "workflow/handoffs/generate-luna64-r4-manifest.mjs"
+    ],
+    "crlf_rule": "-text",
+    "lf_paths": [
+      "experiments/luna64/luna64-track-b-protocol-r4.schema.json",
+      "workflow/handoffs/luna-0-track-b-execution-gate-r4-input-inventory-20261010.json"
+    ],
+    "lf_rule": "text eol=lf"
+  },
+  "boundary_status": {
+    "luna63c_content_changed": false,
+    "production_integration": false,
+    "implementation_or_experiment_performed": false,
+    "owner_execution_approval": "not_provided",
+    "pilot_authorized": false,
+    "architecture_promotion_authorized": false
+  },
+  "provenance_model": {
+    "stage_a_freezes_reviewed_content_and_inputs": true,
+    "stage_b_attests_to_stage_a_commit": true,
+    "attestation_self_hash_claimed": false,
+    "provenance_chain_circular": false
+  }
+}
