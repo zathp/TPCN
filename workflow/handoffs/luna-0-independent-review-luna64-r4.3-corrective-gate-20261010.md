@@ -6,6 +6,8 @@
 **Reviewer:** Independent Luna-0 Architecture Guardian subagent
 `50a4a727-a8a8-482a-bf11-4614032cf5c9`  
 **Package author:** Luna-0 orchestrator; reviewer was separate from the author.
+**Governance publication commit:** `c6adce2f637a42195a5c8c57d6dcd87752c86f4e`.
+**Published corrective-gate file SHA-256:** `FC1E09788351A2E47D5960F0520058BAFABC65EA659C53A8CE14F1CCB1A108F1`.
 
 ## Scope and evidence
 

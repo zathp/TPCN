@@ -551,8 +551,9 @@ approve this revision.
 `50a4a727-a8a8-482a-bf11-4614032cf5c9`.  
 **Reviewed package SHA-256:** `86F30AA80A6979EA6FC27CD57879412554299A616C8B36A6B94BACC1B35A8045`.  
 **Review evidence:** [independent prereview record](luna-0-independent-review-luna64-r4.3-corrective-gate-20261010.md).
-The gate's publication commit will be recorded in the authoritative Luna
-workflow after publication.
+The gate and prereview record were first published in commit
+`c6adce2f637a42195a5c8c57d6dcd87752c86f4e`; the workflow records this
+publication identity.
 
 Allowed prereview verdicts:
 
