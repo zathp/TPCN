@@ -39,6 +39,7 @@ tpcn_handoff:
     - "At most 25 MiB total artifacts; no network, GPU or hardware dependency."
   authorized_scope:
     - "Create the isolated experimental worktree and branch only after this record is committed and published."
+    - "Use branch experiment/luna64-track-b-r4.3-pilot-20261010 in C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN-luna64-r4.3-pilot-20261010, based on the published authorization baseline."
     - "Implement the frozen R4.3 experimental specification in the permitted experimental namespace."
     - "Run required correctness/protocol validation and the exact two-pass feasibility pilot."
     - "Retain raw measurements, summaries, configuration, revision, seed and artifact provenance."
@@ -48,7 +49,7 @@ tpcn_handoff:
     - "Counterfactual per-event omission replay, efficacy estimation, extra arms/seeds/episodes/passes, seed replacement, pilot pooling, or behavior-based tuning."
     - "Full-scale training/evaluation, benchmark expansion, architecture promotion, ACP adoption, production/default integration or hardware-equivalence claims."
     - "Any Luna-63C modification, reuse, dependency, reinterpretation, or claim that Track B resolves Luna-63C issues."
-    - "Any change outside `experiments/luna64/` for implementation/tests/artifacts and the specifically approved Luna-64 governance handoffs under `workflow/handoffs/`."
+    - "Any change outside `experiments/luna64/` for new implementation/tests/artifacts and these handoffs under `workflow/handoffs/`: `luna-64-track-b-r4.3-pilot-20261010.md`, `luna-0-independent-review-luna64-r4.3-pilot-20261010.md`, and `luna-0-luna64-r4.3-pilot-closure-20261010.md`."
   controls:
     - "The ten package identities and all 32 inventory identities were checked against the frozen commit before authorization."
     - "Frozen protocol, schema, golden fixtures, manifest, inventory and provenance attestation are read-only."
@@ -140,11 +141,20 @@ later efficacy result.
 
 ## Permitted paths and protections
 
-Implementation, focused tests and pilot artifacts may be added only under
-`experiments/luna64/`, without editing any frozen R4.3 package or inventory
-file. Luna-64 execution and result handoffs may be added only as approved
-files under `workflow/handoffs/`. The authorization itself and workflow
-status are governed on the governance branch.
+Use branch `experiment/luna64-track-b-r4.3-pilot-20261010` in worktree
+`C:\Users\Patrick\Documents\ActiveCode\TPCN-luna64-r4.3-pilot-20261010`,
+based on the published authorization baseline. Add new implementation,
+focused tests and pilot artifacts only under `experiments/luna64/`; do not
+edit, replace or remove any of the 32 inventoried inputs, including any of
+the ten frozen R4.3 package files. Luna-64 execution, independent-review and
+closure handoffs may be added only at these paths under `workflow/handoffs/`:
+
+- `luna-64-track-b-r4.3-pilot-20261010.md`
+- `luna-0-independent-review-luna64-r4.3-pilot-20261010.md`
+- `luna-0-luna64-r4.3-pilot-closure-20261010.md`
+
+The authorization record and workflow status are governed on the governance
+branch.
 
 No production/core, architecture contract, ACP, generic workflow,
 Luna-63C contract, fixture, certificate, evidence, authorization or

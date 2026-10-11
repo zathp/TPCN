@@ -13,6 +13,10 @@ Luna-64 has an isolated experimental branch/worktree. Its scope is the
 frozen two-pass workload only; resource ceilings, permitted paths, stop
 conditions, Luna-63C isolation and independent reproduction requirements are
 specified in the authorization record.
+The bounded execution has been assigned branch
+`experiment/luna64-track-b-r4.3-pilot-20261010`, based on the published
+authorization baseline, with its isolated worktree at
+`C:\Users\Patrick\Documents\ActiveCode\TPCN-luna64-r4.3-pilot-20261010`.
 
 The immutable R4.3 content freeze and governing-input identities remain
 unchanged. This approval does not authorize counterfactual omission replay,
