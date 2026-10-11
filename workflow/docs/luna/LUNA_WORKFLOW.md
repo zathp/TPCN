@@ -189,6 +189,43 @@ PILOT** with its budget exhausted. The corrective worktree remains clean at
 `d93ef139a1fea46d58cb59a7d7e6325cb1eb8787`; no frozen protocol, reward
 implementation, production core, ACP, or Luna-63C content is modified.
 
+## Luna-64 A3 execution environment decision gate - 2026-10-11
+
+Governance-only `L64-TB-R4.3-CORRECTIVE-SUPERVISOR-A3` does not continue the
+previous Job Object design automatically. The
+[A3 decision package](../../handoffs/luna-0-luna64-r4.3-execution-environment-a3-20261011.md)
+and [platform evidence](../../handoffs/luna64-r4.3-execution-environment-a3-evidence-20261011.json)
+record **NO QUALIFIED EXECUTION ENVIRONMENT**. Four independent read-only
+Luna-0 reviewers returned **BLOCKED — NO QUALIFIED EXECUTION ARCHITECTURE**;
+see the [integrated independent review](../../handoffs/luna-0-independent-review-luna64-r4.3-execution-environment-a3-20261011.md).
+No architecture or resource-policy replacement is selected. Reviewed canonical
+LF decision/evidence SHA-256 values are respectively
+`B0E357C52DF1A37ED4585A27D3DE3FAD6D54D3B6011189B5DA004A5DEFAABEFE` and
+`52F1946DA40A4E90D85ADCA42F0E83C1F851E7B8173C84F1CCE95763DE38186E`;
+checkout identities are separately recorded in the review.
+
+The existing frozen gate test creates 23 sequential validator CLI descendants;
+a no-descendants single-process runner would not preserve that test's behavior.
+No runnable, authorized Hyper-V/WSL/container/remote enclosure is established
+by current platform evidence. Feature and quota state queries require elevation,
+so unavailable inventory is not reported as proof that those features are
+disabled. Hard per-process working-set/count and job-commit controls are
+candidate mechanisms, not proof of complete bootstrap/time/output containment.
+
+A3 also discloses that the A2 proposal's recorded reviewed SHA-256 does not
+match its published bytes: publication removed Markdown hard-break spaces,
+and Git/CRLF checkout representations differ. A2 records are preserved
+unchanged; their blocked verdict is not converted into an exact-byte approval.
+
+The parent gate, owner approval and reject-only second-origin policy are
+preserved. A1/A2 remain BLOCKED; the parent corrective one-shot invocation
+and three focused tests remain unused. A3 proposes no executable qualification
+boundary; any candidate-specific qualification requires separate review and
+explicit owner approval. Corrective execution remains blocked and scientific
+rerun authorization remains disabled. The original pilot remains
+**NOT SUPPORTED AS A PROTOCOL-COMPLIANT PILOT**, not an efficacy result,
+with its budget exhausted. R4.3, production/core, ACP and Luna-63C are unchanged.
+
 ## Luna-63C reviewed design integrated; mechanism authorization certificate-gated — 2026-10-09
 
 The Luna-63C nonlinear excursion design was independently reviewed
