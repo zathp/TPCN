@@ -5,17 +5,36 @@
 Luna-0 authored a governance record for a proposed Track B Local Temporal
 Reward Decoder (LTRD) experiment under
 [.github/agents/luna-64.agent.md](../../../.github/agents/luna-64.agent.md).
-The record is present in the working tree but is not committed or frozen;
-explicit owner approval of the execution gate has not been provided. The
-proposed exploratory branch remains independent of the published Luna-63C
-Stage-A/Stage-B certificate chain and corrective reconciliation records.
-Implementation, execution, and architecture claims remain unauthorized
-pending an independently reviewed, immutable gate and explicit owner approval.
+The final R4.3 candidate review verified manifest SHA-256
+`62D64457BB4BE4FF69F40558D55C6A9FAAA7B9A246DA9F6C6BE4BE8C0348542B` and
+found no remaining scientific, protocol, or semantic blocker. The sole
+remaining candidate-review blocker, mutable/uncommitted provenance, is closed
+by the independently verified Stage-A content freeze:
+`64a214e310de3b982b90a8ad215598bc1e9f8b1c`, parent
+`73aaa50f97ceab322907875ae4dcf23e7541c3b5`, published on
+`governance/luna64-r4.3-freeze-20261010`.
 
-The record preserves the current A01-A15 contract, refrains from modifying any
-frozen Luna-63C fixtures or certificate evidence, and explicitly forbids
-production/default changes or promotion into the certified architecture.
-Execution remains pending; no scientific result or benchmark has been run.
+The separate Stage-B provenance attestation was published in commit
+`3c65f572482211f0c771596fc9852f7e4a1ce994`. Its remote Git blob is
+`d6032cdcbefdcae83f6716108cc7af7b2dde4801` with SHA-256
+`886AF72A93A4731F3B96D872DF53C8F443C21714903C4A3228F8ECED85519911`.
+The independent remote post-publication review returned
+**PASS — IMMUTABLE FREEZE VERIFIED**; see the
+[review record](../../handoffs/luna-0-independent-postpublication-review-luna64-r4.3-20261010.md)
+and [Stage-B attestation](../../handoffs/luna-0-luna64-r4.3-provenance-attestation-20261010.json).
+
+**R4.3 FROZEN — READY FOR OWNER AUTHORIZATION.** The original reviewed
+manifest and candidate bytes remain unchanged. The attestation explicitly
+bridges the eight CRLF package files' prior normalized Git blob IDs to their
+exact-byte published blob IDs. Path-scoped attributes preserve the ten R4
+package files across checkouts; no repository-wide conversion policy changed.
+
+This freeze does not provide owner execution approval. Owner approval remains
+**not provided**, Luna-64 pilot execution remains **not authorized**, and no
+implementation, experiment, training, or evaluation occurred. The record
+preserves A01-A15 and remains isolated from the published Luna-63C Stage-A/
+Stage-B certificate chain and corrective reconciliation records. No
+production/default change or architecture promotion is authorized.
 
 ## Luna-63C reviewed design integrated; mechanism authorization certificate-gated — 2026-10-09
 
