@@ -78,6 +78,44 @@ published Luna-63C Stage-A/Stage-B certificate chain and corrective
 reconciliation records. No production/default change or architecture
 promotion is authorized.
 
+## Luna-64 R4.3 corrective implementation gate — prereview passed, awaiting owner authorization
+
+The original bounded R4.3 pilot remains closed with the independent verdict
+**NOT SUPPORTED AS A PROTOCOL-COMPLIANT PILOT**; this is not an efficacy
+result. Its original implementation and closure identities remain
+`d709c5aab0a841a8dfb193bd26b306d9b4198392` and
+`515dde66f37ca67c44a39f02e13f2e59b2f10d1d`. The pilot budget remains
+exhausted.
+
+Luna-0 prepared a governance-only corrective implementation gate after
+confirming the reward due-time defect in the original runner. Its exact
+substantive draft was independently prereviewed at SHA-256
+`86F30AA80A6979EA6FC27CD57879412554299A616C8B36A6B94BACC1B35A8045` with
+**PASS — CORRECTIVE GATE READY FOR OWNER AUTHORIZATION**. See the
+[corrective gate](../../handoffs/luna-0-luna64-r4.3-corrective-implementation-gate-20261010.md)
+and
+[independent prereview](../../handoffs/luna-0-independent-review-luna64-r4.3-corrective-gate-20261010.md).
+The published corrective-gate file SHA-256 is
+`4E800B2BC65A983CC1BF27A9A073E229CD2FD05FF64DC2D7ECE09764FC1E6BB9`.
+The governance publication commit is recorded with this workflow entry.
+
+The corrective proposal is limited to reward scheduling/delivery, eligibility
+capture and retention, pending reward lifecycle, deadline/expiry, same-time
+ordering, episode cleanup, duplicate handling, trace instrumentation and
+focused correctness fixtures. It does not change the frozen R4.3
+specification, scientific arms, model size, benchmark, efficacy/statistical
+policy, cost-benefit criteria, PCN equations, production/core, ACP or
+Luna-63C. The proposed corrective-development budget is separate from the
+exhausted pilot budget and allows only the specified bounded focused tests;
+benchmark and scientific workload execution are prohibited.
+
+**Corrective implementation: AWAITING EXPLICIT OWNER AUTHORIZATION; NOT
+AUTHORIZED.** The prereview PASS is not owner approval. Any future scientific
+rerun requires separate explicit authorization and a new budget. No
+scientific rerun, full-scale Track B execution, architecture promotion or
+production integration is authorized by this governance update. Luna-63C
+remains unchanged and isolated.
+
 ## Luna-63C reviewed design integrated; mechanism authorization certificate-gated — 2026-10-09
 
 The Luna-63C nonlinear excursion design was independently reviewed
