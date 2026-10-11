@@ -273,6 +273,56 @@ allowance remains unused. A4 does not authorize qualification, corrective
 implementation, use of the focused-test allowance, a scientific rerun, or
 architecture promotion. Luna-63C remains isolated and unchanged.
 
+## Luna-64 A5 Hyper-V isolation qualification gate - blocked
+
+Governance-only `L64-TB-R4.3-CORRECTIVE-SUPERVISOR-A5` reconciles the A4
+publication and owner-supplied Windows/Ubuntu diagnostic summary. The
+diagnostics remain owner-reported; raw captures and hashes were not supplied
+and were not independently rerun. Repository freeze, package, inventory and
+ancestry identities were rechecked. A1-A4 findings, the A2 provenance
+discrepancy, original pilot verdict and corrective authorization are preserved.
+
+The [A5 proposal](../../handoffs/luna-0-luna64-r4.3-corrective-supervisor-amendment-a5-20261011.md),
+[machine-readable evidence](../../handoffs/luna64-r4.3-execution-environment-a5-evidence-20261011.json),
+and [integrated independent review](../../handoffs/luna-0-independent-review-luna64-r4.3-execution-environment-a5-20261011.md)
+record a proposed replacement of the Windows 512 MiB aggregate working-set
+metric with Linux cgroup-accounted memory (`MemoryMax=512M`,
+`memory.max=536870912`). This is not equivalent and is not owner-approved.
+The candidate `cpu.stat` source accounts cumulative guest cgroup usage, but no
+hard 120 CPU-second cutoff or bounded fail-closed termination latency is
+demonstrated. The 180-second stop boundary likewise lacks a verified
+completion bound. No compatible hard artifact/logical-byte mediator has been
+selected for the frozen tests' direct temporary-file writes.
+
+The independent domain reviews and a final documentary-delta review support
+the integrated blocked disposition. The separate ten-case qualification
+budget is proposed only, unapproved and not executable; it does not consume
+or authorize the unused corrective allowance. No supervisor, host/guest
+diagnostic, qualification case, corrective test or scientific workload was
+run. No infrastructure, scientific protocol, production/core or Luna-63C
+content was changed.
+
+The A5 governance package was published in commit
+`12f84a41fe7c91c17c5df8e975fce24efbadf9ad`.
+Checkout SHA-256 identities are: proposal
+`5BCDAC72E7EBDEA777E9964F25554834C4460D97075E6871690BD441BA00C6E5`,
+evidence
+`3B0CE1F1DD81EDA00C121010FBF5D857E650D9EE9DDD718AAEEDFBE65EDE9A3D`,
+and integrated review
+`54D11A362EDED451292330C6FA5627B570BD6103ADE0F69E115F5CDC3C7B934D`.
+This workflow closure records
+publication provenance only.
+
+**A5 disposition: BLOCKED - A5 QUALIFICATION INCOMPLETE.** A3 and A4 retain
+their historical blocked verdicts; the original pilot remains
+**NOT SUPPORTED AS A PROTOCOL-COMPLIANT PILOT**, not an efficacy result, and
+its scientific budget is exhausted. The corrective allowance remains unused.
+A5 does not approve the Linux memory-policy replacement, qualification,
+corrective implementation, focused tests, scientific rerun or architecture
+promotion. Explicit owner approval and resolution of CPU/wall termination and
+artifact-containment blockers are required before a successor qualification
+request. Luna-63C remains isolated and unchanged.
+
 ## Luna-63C reviewed design integrated; mechanism authorization certificate-gated — 2026-10-09
 
 The Luna-63C nonlinear excursion design was independently reviewed
