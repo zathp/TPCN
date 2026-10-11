@@ -132,6 +132,31 @@ authorization remains disabled. The correction must be independently
 reviewed after commit before it can be recorded as verified. Luna-63C
 remains unchanged and isolated.
 
+## Luna-64 corrective supervisor resource amendment A1 — prereview blocked
+
+The independent prereview of proposed amendment
+`L64-TB-R4.3-CORRECTIVE-SUPERVISOR-A1` returned
+**BLOCKED — RESOURCE SUPERVISION UNRESOLVED** on reviewed draft SHA-256
+`5B381B568AB0A9C633E6A5EB5DB86ABD0F66487D933719A4E99C92F6BF20D1DD`.
+See the
+[amendment proposal and findings](../../handoffs/luna-0-luna64-r4.3-corrective-supervisor-amendment-a1-20261010.md)
+and
+[independent prereview record](../../handoffs/luna-0-independent-review-luna64-r4.3-corrective-supervisor-amendment-a1-20261010.md).
+
+Windows Job Objects can enforce a 512 MiB job-wide committed-memory ceiling,
+but that metric is not the parent's 512 MiB aggregate working-set limit.
+The prereview found the proposed bootstrap outside the enforced job boundary
+with no hard memory bound; notification timing/threshold statements also
+need exact clarification. The published record is a blocked proposal and
+review findings, not an approved resource amendment.
+
+Corrective implementation and supervisor qualification remain blocked
+pending a revised, independently reviewed resource boundary and explicit
+owner approval. The parent one-shot marker is absent; its single supervisor
+invocation and three focused tests remain unconsumed. No corrective tests or
+scientific workload were run. The original pilot verdict and exhausted
+budget are unchanged; scientific rerun authorization remains disabled.
+
 ## Luna-63C reviewed design integrated; mechanism authorization certificate-gated — 2026-10-09
 
 The Luna-63C nonlinear excursion design was independently reviewed
