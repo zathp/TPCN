@@ -96,9 +96,9 @@ substantive draft was independently prereviewed at SHA-256
 and
 [independent prereview](../../handoffs/luna-0-independent-review-luna64-r4.3-corrective-gate-20261010.md).
 The published corrective-gate file SHA-256 is
-`FC1E09788351A2E47D5960F0520058BAFABC65EA659C53A8CE14F1CCB1A108F1`.
+`40F3A897B684C46570B553899ED3B60CA6108199D45FF32C57293EC83D1384E0`.
 The corrective gate and prereview report were published in governance commit
-`c6adce2f637a42195a5c8c57d6dcd87752c86f4e`. The current workflow entry
+`c6adce280d4f0d5750f0cc66ccd66ea3d8fbf521`. The current workflow entry
 records this publication identity.
 
 The corrective proposal is limited to reward scheduling/delivery, eligibility
