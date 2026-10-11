@@ -2,6 +2,24 @@
 
 ## Luna-64 Track B Local Temporal Reward Decoder governance record — 2026-10-10
 
+### Owner-authorized bounded R4.3 pilot
+
+The repository owner explicitly authorized the exact frozen R4.3
+feasibility-only pilot in the 2026-10-10 task conversation. The authorization
+record is
+[Luna-64 R4.3 bounded pilot authorization](../../handoffs/luna-0-authorization-luna64-r4.3-bounded-pilot-20261010.md).
+The pilot may start only after that record is committed and published and
+Luna-64 has an isolated experimental branch/worktree. Its scope is the
+frozen two-pass workload only; resource ceilings, permitted paths, stop
+conditions, Luna-63C isolation and independent reproduction requirements are
+specified in the authorization record.
+
+The immutable R4.3 content freeze and governing-input identities remain
+unchanged. This approval does not authorize counterfactual omission replay,
+efficacy execution, scope expansion, production integration, ACP adoption or
+architecture promotion. Pilot implementation and execution have not yet
+started.
+
 Luna-0 authored a governance record for a proposed Track B Local Temporal
 Reward Decoder (LTRD) experiment under
 [.github/agents/luna-64.agent.md](../../../.github/agents/luna-64.agent.md).
@@ -29,11 +47,12 @@ bridges the eight CRLF package files' prior normalized Git blob IDs to their
 exact-byte published blob IDs. Path-scoped attributes preserve the ten R4
 package files across checkouts; no repository-wide conversion policy changed.
 
-This freeze does not provide owner execution approval. Owner approval remains
-**not provided**, Luna-64 pilot execution remains **not authorized**, and no
-implementation, experiment, training, or evaluation occurred. The record
-preserves A01-A15 and remains isolated from the published Luna-63C Stage-A/
-Stage-B certificate chain and corrective reconciliation records. No
+At the time of this freeze, owner execution approval had not been provided
+and Luna-64 execution was not authorized. The owner has since approved only
+the bounded R4.3 feasibility pilot recorded above. No implementation,
+experiment, training, or evaluation has started. The record preserves
+A01-A15 and remains isolated from the published Luna-63C Stage-A/Stage-B
+certificate chain and corrective reconciliation records. No
 production/default change or architecture promotion is authorized.
 
 ## Luna-63C reviewed design integrated; mechanism authorization certificate-gated — 2026-10-09
