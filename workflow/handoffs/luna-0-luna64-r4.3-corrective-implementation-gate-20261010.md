@@ -1,7 +1,9 @@
 # Luna-0 — Luna-64 R4.3 corrective implementation gate
 
 **Gate ID:** `L64-TB-R4.3-CORRECTIVE-20261010`  
-**Status:** **BLOCKED — REVISED PACKAGE AWAITS INDEPENDENT PREREVIEW**  
+**Status:** **PASS — CORRECTIVE GATE READY FOR OWNER AUTHORIZATION**
+**Publication:** Published in governance commit
+`c6adce280d4f0d5750f0cc66ccd66ea3d8fbf521`.
 **Owner approval:** Not granted for corrective implementation  
 **Scientific workload authorization:** None  
 **Original pilot disposition:** **NOT SUPPORTED AS A PROTOCOL-COMPLIANT PILOT**  

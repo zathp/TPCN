@@ -7,7 +7,7 @@
 `50a4a727-a8a8-482a-bf11-4614032cf5c9`  
 **Package author:** Luna-0 orchestrator; reviewer was separate from the author.
 **Governance publication commit:** `c6adce280d4f0d5750f0cc66ccd66ea3d8fbf521`.
-**Published corrective-gate file SHA-256:** `40F3A897B684C46570B553899ED3B60CA6108199D45FF32C57293EC83D1384E0`.
+**Published corrective-gate file SHA-256:** `8EE37445B1F3DAC9F085D7BE00C9FA4B11CC5FAB62779F8A424746A9BAFDE369`.
 
 ## Scope and evidence
 
