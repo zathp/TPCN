@@ -78,7 +78,7 @@ published Luna-63C Stage-A/Stage-B certificate chain and corrective
 reconciliation records. No production/default change or architecture
 promotion is authorized.
 
-## Luna-64 R4.3 corrective implementation gate — prereview passed, awaiting owner authorization
+## Luna-64 R4.3 corrective gate — prereview passed
 
 The original bounded R4.3 pilot remains closed with the independent verdict
 **NOT SUPPORTED AS A PROTOCOL-COMPLIANT PILOT**; this is not an efficacy
@@ -112,11 +112,24 @@ Luna-63C. The proposed corrective-development budget is separate from the
 exhausted pilot budget and allows only the specified bounded focused tests;
 benchmark and scientific workload execution are prohibited.
 
-**Corrective implementation: AWAITING EXPLICIT OWNER AUTHORIZATION; NOT
-AUTHORIZED.** The prereview PASS is not owner approval. Any future scientific
-rerun requires separate explicit authorization and a new budget. No
-scientific rerun, full-scale Track B execution, architecture promotion or
-production integration is authorized by this governance update. Luna-63C
+## Luna-64 R4.3 corrective implementation — owner-authorized, bounded
+
+The repository owner has now explicitly authorized the corrective
+implementation under Gate `L64-TB-R4.3-CORRECTIVE-20261010`, exact gate
+SHA-256
+`8EE37445B1F3DAC9F085D7BE00C9FA4B11CC5FAB62779F8A424746A9BAFDE369`,
+and explicitly accepted the reject-only malformed second-origin policy.
+The authorization and its boundaries are recorded in the
+[owner authorization handoff](../../handoffs/luna-0-authorization-luna64-r4.3-corrective-implementation-20261010.md).
+
+Execution is restricted to the gate's exact modification allowlist and one
+supervised invocation of the three focused tests under its aggregate
+resource ceilings. No original pilot/scientific workload, additional test
+invocation, benchmark, efficacy analysis or successor experiment is
+authorized. The original pilot remains **NOT SUPPORTED AS A
+PROTOCOL-COMPLIANT PILOT**; its budget remains exhausted. Scientific rerun
+authorization remains disabled. The correction must be independently
+reviewed after commit before it can be recorded as verified. Luna-63C
 remains unchanged and isolated.
 
 ## Luna-63C reviewed design integrated; mechanism authorization certificate-gated — 2026-10-09
