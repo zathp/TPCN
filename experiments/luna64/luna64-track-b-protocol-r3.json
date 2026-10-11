@@ -1,0 +1,674 @@
+{
+  "schema": "LUNA64-TRACK-B-PROTOCOL-R3",
+  "schema_revision": 1,
+  "gate_id": "L64-TB-GATE-20261010-R3",
+  "protocol_revision": "3.0.0",
+  "status": {
+    "draft": true,
+    "independent_review": "pending",
+    "owner_approval": "not_provided",
+    "execution_authorized": false,
+    "execution_performed": false,
+    "architecture_promotion_authorized": false
+  },
+  "provenance": {
+    "source_baseline": "73aaa50f97ceab322907875ae4dcf23e7541c3b5",
+    "r2_proposal_sha256": "64529FD816824A3EAA246856C3BEF46E6FDD97CCDF8ED48830C27AEF558D5A0A",
+    "r2_review_sha256": "4EF7AEA8ECD0207A52A8B259F74153E17EED192E671EB1650D8C82394320AA57",
+    "task_generator_revision": "L64-GEN-3.0.0",
+    "equations_reference": "workflow/handoffs/luna-0-track-b-execution-gate-proposal-20261010-R3.md#equations",
+    "golden_fixture_path": "experiments/luna64/luna64-track-b-golden-r3.json",
+    "schema_path": "experiments/luna64/luna64-track-b-protocol-r3.schema.json"
+  },
+  "timebase": {
+    "timebase_id": "L64-TB-R3-1us",
+    "ticks_per_tu": 1000000,
+    "tu_per_tick_decimal": "0.000001",
+    "canonical_timestamp_type": "nonnegative_signed_int64_ticks",
+    "ordering": [
+      "timestamp_ticks",
+      "phase_rank",
+      "canonical_parent_id_utf8_lexicographic",
+      "child_ordinal_integer"
+    ],
+    "binary64_time_use": "display_and_explicit_decay_conversion_only",
+    "tick_rounding": "forbidden",
+    "tick_overflow": "typed_episode_invalid"
+  },
+  "task": {
+    "task_id": "paired-short-versus-long-temporal-gap",
+    "primary_endpoint_id": "balanced_accuracy_short_gap",
+    "input_channels": [
+      "A",
+      "B",
+      "N",
+      "D",
+      "UNUSED_4",
+      "UNUSED_5",
+      "UNUSED_6",
+      "UNUSED_7"
+    ],
+    "event_amplitudes": {
+      "A": "1 + delta",
+      "B": "1 - delta",
+      "N": "0.25 + nu",
+      "D": "0.25 - nu",
+      "delta_values": [
+        "-0.0625",
+        "0",
+        "0.0625"
+      ],
+      "nu_values": [
+        "-0.0625",
+        "0",
+        "0.0625"
+      ],
+      "arithmetic": "exact_rational_until_binary64_model_input"
+    },
+    "sequence": {
+      "physical_event_count": 4,
+      "max_input_events_per_episode": 4,
+      "first_event_tick": 0,
+      "maximum_logical_duration_ticks": 5000000,
+      "gap_values_tu": [
+        1,
+        3
+      ],
+      "gap_values_ticks": [
+        1000000,
+        3000000
+      ],
+      "events": [
+        {
+          "ordinal": 0,
+          "symbol": "order_bit_selects_A_or_B",
+          "time_ticks": 0
+        },
+        {
+          "ordinal": 1,
+          "symbol": "other_of_A_or_B",
+          "time_ticks": "gap_ticks"
+        },
+        {
+          "ordinal": 2,
+          "symbol": "N",
+          "time_ticks": "gap_ticks + 1000000"
+        },
+        {
+          "ordinal": 3,
+          "symbol": "D",
+          "time_ticks": "gap_ticks + 2000000"
+        }
+      ],
+      "model_input_vector": "x_t is an 8-vector with the named channel coordinate set to its event amplitude and all other coordinates zero; UNUSED_4..UNUSED_7 are always zero",
+      "order_bit": {
+        "0": "A_then_B",
+        "1": "B_then_A",
+        "distribution": "balanced 2x2 crossing; exact ordinal construction is specified in splits"
+      },
+      "target": {
+        "positive_class": 1,
+        "negative_class": 0,
+        "rule": "1 iff order_bit == gap_bit, where order_bit 0 means A_then_B and gap_bit 0 means 1 TU; otherwise 0",
+        "available_to_model": false,
+        "available_to_reward_source": "correctness_only_after_prediction",
+        "available_to_evaluator": "after_prediction_and_for_scoring"
+      },
+      "matched_multiset_invariant": [
+        "Each primary episode contains exactly one A, one B, one N, and one D.",
+        "Within each 16-example block, all cells share event amplitudes and reward-delay assignment; every class cell has an identical event-symbol multiset.",
+        "The four order-by-gap cells differ only in temporal arrangement; the target is the XNOR of order_bit and gap_bit.",
+        "For any fixed episode, every arm receives the same physical events, amplitudes, and target."
+      ],
+      "sequence_completion": "after_event_ordinal_3",
+      "prediction_timestamp": "physical_time_of_event_ordinal_3"
+    },
+    "noise": {
+      "amplitude_jitter": {
+        "delta_support": [
+          "-0.0625",
+          "0",
+          "0.0625"
+        ],
+        "nu_support": [
+          "-0.0625",
+          "0",
+          "0.0625"
+        ],
+        "drawn_independently_by_named_stream": true,
+        "shared_across_balanced_block": true,
+        "label_independent": true
+      },
+      "symbol_order": "balanced_AB_or_BA by exact block cell assignment; independent of target and physical gap",
+      "timestamp_jitter": "none",
+      "dropout": "none",
+      "distractors": [
+        "N",
+        "D"
+      ]
+    },
+    "controls": {
+      "uncorrelated_label_control": {
+        "target_bit": "exact block-cell bit independent of order and physical gap",
+        "physical_gap_distribution": "balanced_short_long_within_each_target",
+        "purpose": "negative control for predictive information"
+      },
+      "silent_control": {
+        "input_events": 0,
+        "logical_completion_ticks": 5000000,
+        "evaluator_target": 0,
+        "target_available_to_model": false,
+        "reward": "none"
+      },
+      "no_reward_control": {
+        "task_inputs_and_targets": "matched_primary_episode",
+        "reward_origin": "created_by_evaluator_only",
+        "delivery": "withheld",
+        "decoder_condition_flag": false
+      },
+      "overflow_control": {
+        "attempted_eligibility_entries": 9,
+        "eligibility_capacity": 8,
+        "injection": "lifecycle-only ledger boundary fixture; not nine task input receptions",
+        "expected": "typed_overflow_episode_invalid_before_ninth_entry_is_inserted"
+      }
+    }
+  },
+  "rng": {
+    "algorithm": "SHA-256 named counter draws",
+    "digest": "SHA-256",
+    "draw_encoding": "UTF-8 bytes of L64-R3|seed|split|block_ordinal|draw_name|draw_ordinal",
+    "counter_start": 0,
+    "integer_mapping": "unsigned_big_endian_digest_integer modulo n",
+    "rejection_sampling": false,
+    "substreams": [
+      "amplitude_delta",
+      "nuisance_nu",
+      "bootstrap_resample"
+    ],
+    "draw_key_fields": "UTF-8 bytes of L64-R3|seed|split|block_ordinal|draw_name|draw_ordinal; fields are ASCII decimal or fixed ASCII names and contain no pipe characters",
+    "seeds": [
+      6401, 6402, 6403, 6404, 6405, 6406, 6407, 6408, 6409, 6410,
+      6411, 6412, 6413, 6414, 6415, 6416, 6417, 6418, 6419, 6420
+    ],
+    "pairing": "same seed, split, block, event ordinal, physical stream, target, reward delay, and noise draws across all arms; arm E transforms only its decoder-visible gap feature",
+    "arm_e_permutation_bit": "(cell_permutation_bit + seed_index_0_based + split_code) mod 2; split_code=0 for train, 1 for evaluation; fixed per episode; cell_permutation_bit=floor(cell/2) mod 2 for primary cells, cell mod 2 for uncorrelated cells, and floor(local_audit_ordinal/4) mod 2 for reward-audit cells",
+    "serialization": "generated event records use UTF-8 JSON with LF newlines, sorted object keys, and no insignificant whitespace; protocol and fixture artifact identities hash their exact checked-out bytes"
+  },
+  "splits": {
+    "training": {
+      "episodes_per_seed_arm": 10000,
+      "episode_ordinals_inclusive": [
+        0,
+        9999
+      ],
+      "balanced_blocks_of_16": 625,
+      "positive_count": 5000,
+      "negative_count": 5000,
+      "cell_assignment": "cell=local_ordinal mod 16; order_bit=floor(cell/8); gap_bit=floor(cell/4) mod 2; permutation_bit=(floor(cell/2) mod 2 + seed_index_0_based) mod 2; repetition=cell mod 2; target=1 iff order_bit==gap_bit; each block crosses all eight order/gap/permutation combinations twice",
+      "amplitude_noise_assignment": "delta and nu are SHA-256 named draws keyed by seed, split, block_ordinal=floor(local_ordinal/16), and independent draw names; every cell in one block shares the same amplitudes",
+      "reward_delay_assignment": "block_ordinal mod 7 selects [0,1,8,9,15,16,withheld]; all 16 examples in a block share assignment; because each block has eight examples per class, every class has equal counts at each delay",
+      "parameter_updates_allowed": true
+    },
+    "evaluation": {
+      "episodes_per_seed_arm": 2000,
+      "episode_ordinals_inclusive": [
+        10000,
+        11999
+      ],
+      "primary_gap_task_count": 1200,
+      "uncorrelated_control_count": 400,
+      "silent_control_count": 200,
+      "reward_delivery_audit_count": 200,
+      "primary_positive_count": 600,
+      "primary_negative_count": 600,
+      "cell_assignment": "first 1200 local ordinals form 75 blocks of 16; cell=local_ordinal mod 16; order_bit=floor(cell/8); gap_bit=floor(cell/4) mod 2; permutation_bit=(floor(cell/2) mod 2 + seed_index_0_based + 1) mod 2; repetition=cell mod 2; target=1 iff order_bit==gap_bit; each order/gap cell has 300 examples and each permutation is balanced within that cell",
+      "uncorrelated_assignment": "next 400 local ordinals form 25 blocks of 16; cell=local_ordinal mod 16; order_bit=floor(cell/8); gap_bit=floor(cell/4) mod 2; target=floor(cell/2) mod 2; permutation_bit=(cell mod 2 + seed_index_0_based + 1) mod 2; all order/gap/target/permutation combinations occur once per block",
+      "silent_ordinals": [
+        1600,
+        1799
+      ],
+      "reward_audit_ordinals": [
+        1800,
+        1999
+      ],
+      "reward_audit_schedule": "for local audit ordinal j=0..199, delay is 0 TU if floor(j/100)=0 else 16 TU; target=j mod 2; order_bit=floor(j/2) mod 2; gap_bit=order_bit if target=1 else 1-order_bit; permutation_bit=(floor(j/4) mod 2 + seed_index_0_based + 1) mod 2; 50 examples per target/delay and balanced order within each group",
+      "parameter_updates_allowed": false,
+      "evaluator_labels_visible_to_model": false,
+      "reward_records_mutate_model": false
+    },
+    "evaluation_arm_seed_parameter_hash": "must_be_identical_before_and_after_each_evaluation_run",
+    "hyperparameter_selection": "training_split_only",
+    "test_outcomes_may_change_thresholds_or_parameters": false
+  },
+  "readout": {
+    "input_by_arm": {
+      "A_cost_only": "constant_empty_feature",
+      "B_simple_eligibility": "four unweighted symbol counts [count_A,count_B,count_N,count_D]",
+      "C_linear_temporal": "eight-dimensional event-driven exponentially decayed amplitude trace",
+      "D_nonlinear_pcn": "four-dimensional inferred latent z after final input",
+      "E_permuted_gap_pcn": "same latent interface as D using decoder-view gap"
+    },
+    "equation": "p = 1 / (1 + exp(-(w dot h + b)))",
+    "decision": "class 1 iff p > 0.5; tie p == 0.5 predicts class 0",
+    "initialization": {
+      "all_trainable_readout_weights": 0,
+      "all_trainable_readout_biases": 0
+    },
+    "prediction_time": "physical_time_of_last_input; for silence, logical_completion_tick",
+    "classification_loss": "0-1 loss, 1[predicted_class != evaluator_target]; balanced accuracy is primary metric",
+    "training_surrogate": "three-factor reward-modulated perceptron update defined in learning"
+  },
+  "arms": [
+    {
+      "id": "A_cost_only",
+      "features": "empty",
+      "trainable_parameters": 0,
+      "temporal_decoder": false,
+      "readout": "p=0.5, class 0 by tie rule",
+      "learning": "none"
+    },
+    {
+      "id": "B_simple_eligibility",
+      "features": "four unweighted symbol counts",
+      "trainable_parameters": 5,
+      "temporal_decoder": false,
+      "learning": "delayed reward-modulated readout update"
+    },
+    {
+      "id": "C_linear_temporal",
+      "features": "eight-dimensional event-driven decayed trace",
+      "trainable_parameters": 9,
+      "temporal_decoder": true,
+      "learning": "delayed reward-modulated readout update"
+    },
+    {
+      "id": "D_nonlinear_pcn",
+      "features": "R2 bounded PCN latent plus five-parameter binary readout",
+      "trainable_parameters": 45,
+      "temporal_decoder": true,
+      "learning": "online local predictive update plus delayed reward-modulated readout update"
+    },
+    {
+      "id": "E_permuted_gap_pcn",
+      "features": "same topology and parameters as D, with episode-keyed short/long gap-code permutation",
+      "trainable_parameters": 45,
+      "temporal_decoder": true,
+      "learning": "same as D"
+    }
+  ],
+  "decoder": {
+    "parameter_cap": 256,
+    "all_arms_trainable_parameter_counts": {
+      "A_cost_only": 0,
+      "B_simple_eligibility": 5,
+      "C_linear_temporal": 9,
+      "D_nonlinear_pcn": 45,
+      "E_permuted_gap_pcn": 45
+    },
+    "pcn": {
+      "input_dimension": 8,
+      "latent_dimension": 4,
+      "parameters": [
+        "V[8,4]",
+        "c[8]"
+      ],
+      "parameter_count": 40,
+      "initialization": "V[i,j]=0.25 if i=j; V[i,j]=0.125 if i=j+4; otherwise 0; c=0",
+      "initial_parameter_bounds": [
+        -1,
+        1
+      ],
+      "state_bounds": [
+        -1,
+        1
+      ],
+      "binary64": true,
+      "tau_tu": 2,
+      "lambda": 1,
+      "inference_iterations": 4,
+      "inference_step_gamma": 0.0625,
+      "parameter_learning_rate": 0.001,
+      "parameter_update": "immediate after each event using block-coordinate partial gradient at inferred z; no derivative through inference iterations",
+      "predictive_objective": "0.5 * sum_i (x_i - tanh((V z + c)_i))^2 + 0.5 * sum_j (z_j-z0_j)^2",
+      "prediction_error_sign": "epsilon=x-xhat",
+      "prediction": "xhat=tanh(V z+c)",
+      "inference_gradient": "g_z = -V^T[(x-xhat) elementwise (1-xhat^2)] + (z-z0)",
+      "inference_step": "z_next=clip(z-gamma*g_z,-1,1)",
+      "parameter_gradients": {
+        "q": "(x-xhat) elementwise (1-xhat^2)",
+        "g_V": "-q z^T",
+        "g_c": "-q"
+      },
+      "parameter_step": "V=clip(V-eta*g_V,-1,1); c=clip(c-eta*g_c,-1,1)",
+      "elapsed_time_source": "physical inter-event ticks in D; Arm E transformed decoder-view gap only for the A/B pair; all other gaps are fixed 1 TU",
+      "numeric_fault": "NaN_or_infinity_invalidates_episode"
+    },
+    "linear_temporal": {
+      "state_dimension": 8,
+      "tau_tu": 2,
+      "equation": "q0=0; q_t=exp(-delta_view_t/2)*q_previous + x_t; h=q_after_last_input",
+      "parameter_count_including_readout": 9,
+      "state_bounds": [
+        -8,
+        8
+      ],
+      "overflow": "typed_episode_invalid"
+    },
+    "readout_parameter_bounds": [
+      -1,
+      1
+    ],
+    "training_state_persistence": "parameters persist across episodes within one arm and seed; latent, trace, eligibility, queue, and duplicate-ID state reset only after physical cleanup"
+  },
+  "learning": {
+    "predictive_objective": "PCN reconstruction objective; distinct from task classification loss and reward",
+    "activation": "one prediction activation at logical sequence completion for each non-silent primary or uncorrelated episode",
+    "eligibility": {
+      "lifetime_ticks": 8000000,
+      "validity": "input reception age <= 8000000 ticks at prediction activation",
+      "capacity": 8,
+      "capture": "activation snapshots the final readout feature h, predicted class a, prediction identity, and IDs of every still-valid input; each contributing input has an equal share 1/n of the readout eligibility vector; physical age is used only for eligibility admission, not as a numeric decoder/reward feature",
+      "per_input_eligibility": "e_i=(1/n)*(2*a-1)*concat(h,1); only the captured copy may survive input-trace expiry",
+      "captured_record_survives_input_expiry": true,
+      "empty_eligible_set": "activation has no credit record and any later reward is logged_unattributed"
+    },
+    "activation_reward": {
+      "source": "evaluator-side correctness oracle, isolated from decoder inference",
+      "origin": "after the prediction has been irrevocably recorded at sequence completion",
+      "payload": "signed scalar r only; no target label or condition identifier",
+      "magnitude": 1,
+      "sign": {
+        "true_positive": 1,
+        "true_negative": 1,
+        "false_positive": -1,
+        "false_negative": -1
+      },
+      "outcome_is_arm_dependent": "reward identity, origin time, due time, and delivery phase match across arms; signed outcome may differ because each arm prediction may differ under the same target and oracle rule",
+      "zero_reward_control": "reward origin exists but delivery is withheld"
+    },
+    "reward_delay_tu": [
+      0,
+      1,
+      8,
+      9,
+      15,
+      16
+    ],
+    "reward_update": "theta=clip(theta + 0.01 * sum_i(e_i) * r,-1,1) for readout weights and bias only",
+    "arms_without_trainable_readout": "A records reward provenance but performs no update",
+    "evaluation": "reward audit may settle a non-mutating diagnostic ledger; no parameter update or inference-path label is permitted",
+    "reward_is_not_prediction_error": true,
+    "energy_penalty": {
+      "unit": "activity-cost-proxy",
+      "charge_per_received_input": 1,
+      "charge_phase": "RECEPTION",
+      "charge_count": "exactly once per physical input reception",
+      "reward_settlement_charge": 0,
+      "physical_joules_claim": false
+    }
+  },
+  "event_lifecycle": {
+    "identity": {
+      "episode_id": "L64R3/{split}/{seed}/{episode_ordinal}",
+      "input_id": "{episode_id}/input/{input_ordinal}",
+      "activation_id": "{episode_id}/prediction/0",
+      "reward_origin_id": "{activation_id}/reward-origin",
+      "reward_delivery_id": "{reward_origin_id}/delivery/{delay_ticks}",
+      "credit_record_id": "{activation_id}/credit",
+      "duplicate_key": "reward_delivery_id",
+      "ordinal_format": "nonnegative base-10 ASCII with no leading zero except zero"
+    },
+    "phase_order_same_tick": [
+      "EXPIRY",
+      "RECEPTION_AND_ENERGY_CHARGE",
+      "LOCAL_STATE_UPDATE_AND_PREDICTION",
+      "PREDICTION_ACTIVATION_AND_CREDIT_CAPTURE",
+      "REWARD_ORIGIN",
+      "REWARD_DELIVERY",
+      "CREDIT_SETTLEMENT",
+      "LOGICAL_COMPLETION",
+      "PHYSICAL_CLEANUP"
+    ],
+    "credit_record_capacity": 1,
+    "pending_reward_capacity": 1,
+    "duplicate_reward": "stable_idempotency_key; duplicate is no-op and counted",
+    "record_capture_tick": "prediction_activation_tick",
+    "settlement_deadline": "activation_tick + 16000000 ticks inclusive",
+    "expiry_tick": "settlement_deadline + 1 tick",
+    "deadline_semantics": "16 TU measured from activation; reward at exactly deadline is accepted; first tick after deadline is rejected because EXPIRY precedes DELIVERY",
+    "logical_completion": "last input event, or 5000000 ticks after episode start for silence",
+    "pending_credit_after_logical_completion": true,
+    "physical_cleanup": "at the fixed expiry_tick after reward settled, withheld, or rejected; settled records remain as bounded duplicate guards until cleanup",
+    "max_episode_physical_lifetime_ticks": 21000001,
+    "episode_execution": "strictly serial; next episode starts only after cleanup",
+    "overflow": "typed_episode_invalid_no_eviction_no_truncation",
+    "event_cost_on_reward": 0
+  },
+  "arm_e": {
+    "transformed_feature": "only the first A/B inter-event gap category supplied to the PCN/linear temporal decoder",
+    "physical_clock_unchanged": true,
+    "physical_events_unchanged": true,
+    "transformation": "per-episode seeded bijection on {short=1000000 ticks,long=3000000 ticks}; permutation bit 0 is identity, bit 1 swaps categories",
+    "permutation_source": "deterministic balanced cell schedule: primary floor(cell/2) mod 2; uncorrelated cell mod 2; reward audit floor(local_audit_ordinal/4) mod 2; add zero-based seed index and split_code (0=train, 1=evaluation), then mod 2",
+    "permutation_visible_to_decoder": false,
+    "application_time": "at reception of the second A/B event using only current and previous physical timestamps",
+    "fixed_by": "episode",
+    "paired_arm_invariants": [
+      "D and E have identical physical input identities, amplitudes, physical timestamps, labels, reward origins, reward delivery ticks, reward IDs, and cleanup ticks.",
+      "The E mapping is keyed independently per episode, not by class or target.",
+      "No future event or evaluator target is needed to compute the transformed gap.",
+      "N and D inter-event gaps are fixed 1 TU and are not transformed."
+    ],
+    "control_claim": "removes the stable decoder-visible short-versus-long mapping across episodes; does not shuffle physical event order or clock"
+  },
+  "evaluation_design": {
+    "episodes_per_seed_arm": 2000,
+    "allocation": {
+      "primary_gap_task": 1200,
+      "uncorrelated_label_control": 400,
+      "silent_control": 200,
+      "reward_delivery_audit": 200
+    },
+    "metrics": [
+      "primary_balanced_accuracy",
+      "per_class_recall",
+      "uncorrelated_balanced_accuracy",
+      "balanced_accuracy_by_reward_delay",
+      "readout_update_norm_by_reward_delay",
+      "silent_false_positive_rate",
+      "prediction_latency_ticks",
+      "reward_settlement_correctness",
+      "raw_received_event_count",
+      "raw_predictive_error_squared_sum",
+      "raw_operation_counters"
+    ],
+    "primary_metric_definition": "0.5*(TPR+TNR) on 1200 primary episodes; score after frozen prediction and evaluator-only target join",
+    "reward_audit": "200 matched frozen-model episodes, no model mutation; 50 per class at each of two delays 0 and 16 TU; labels remain evaluator-only and reward payloads are inspected only by the non-mutating ledger",
+    "prediction_output": "strictly before reward delivery, including delay 0 by phase ordering"
+  },
+  "statistics": {
+    "unit_of_independent_replication": "seed",
+    "paired_unit": "same seed and episode ordinal across arms",
+    "primary_comparisons": [
+      "D_nonlinear_pcn_minus_C_linear_temporal",
+      "D_nonlinear_pcn_minus_E_permuted_gap_pcn"
+    ],
+    "primary_endpoint": "primary_balanced_accuracy",
+    "seed_effect": "paired per-seed balanced-accuracy difference; report equal-weight mean across seeds",
+    "bootstrap": {
+      "method": "paired_seed_cluster_percentile",
+      "replicates": 100000,
+      "rng_substream": "bootstrap_resample",
+      "confidence_family_level": 0.95,
+      "comparisons": 2,
+      "per_comparison_confidence_level": 0.975,
+      "quantiles": [
+        0.0125,
+        0.9875
+      ],
+      "nearest_rank_order_statistics_1_based": [
+        1250,
+        98750
+      ],
+      "draw_procedure": "for each replicate and comparison draw 20 seed indices with replacement using SHA-256 named draws; calculate equal-weight mean of selected paired seed effects"
+    },
+    "success": {
+      "D_balanced_accuracy_minimum": 0.7,
+      "D_minus_C_mean_effect_minimum": 0.1,
+      "D_minus_E_mean_effect_minimum": 0.1,
+      "both_adjusted_interval_lower_bounds_strictly_above_zero": true,
+      "D_positive_seed_effects_minimum": 16,
+      "E_primary_balanced_accuracy_maximum": 0.55,
+      "E_uncorrelated_balanced_accuracy_maximum": 0.55,
+      "all_arm_uncorrelated_balanced_accuracy_maximum": 0.55,
+      "invalid_fraction_maximum_per_arm_seed": 0.01
+    },
+    "inconclusive": [
+      "any primary seed lacks either class",
+      "more than 1% invalid episodes in any arm-seed",
+      "interval includes zero while point threshold is met",
+      "fewer than 16 of 20 D-minus-C seed effects are positive",
+      "fewer than 16 of 20 D-minus-E seed effects are positive",
+      "negative-control validity fails"
+    ],
+    "failure": [
+      "D balanced accuracy is below 0.55 on the primary endpoint",
+      "D-minus-C or D-minus-E mean effect is nonpositive",
+      "D has fewer than 10 positive seed effects against C or E"
+    ],
+    "degenerate_outputs": "score exact confusion counts; no epsilon substitution; all-class-one or all-class-zero receives balanced_accuracy=0.5 only when both true classes exist",
+    "missing_or_aborted_run": "retain as invalid; no replacement seed; if any arm-seed invalid fraction exceeds 0.01 overall verdict is inconclusive",
+    "test_set_policy": "no parameter, threshold, permutation rule, or hyperparameter selection from evaluation results"
+  },
+  "resources": {
+    "arms": 5,
+    "seeds": 20,
+    "training_episodes_per_arm_seed": 10000,
+    "evaluation_episodes_per_arm_seed": 2000,
+    "maximum_total_episodes": 1200000,
+    "maximum_input_events_per_episode": 4,
+    "maximum_simultaneous_pending_episodes": 1,
+    "maximum_temporal_history_records": 4,
+    "eligibility_entry_capacity": 8,
+    "credit_record_capacity": 1,
+    "pending_reward_capacity": 1,
+    "maximum_computational_units_any_arm": 32,
+    "computational_unit_counting_rule": "count persistent task-feature coordinates, PCN reconstruction coordinates, PCN latent coordinates, and one binary readout logit; exclude the eight external input channels, trainable parameter storage, and bounded temporary scratch vectors",
+    "computational_units_by_arm": {
+      "A_cost_only": 1,
+      "B_simple_eligibility": 5,
+      "C_linear_temporal": 9,
+      "D_nonlinear_pcn": 13,
+      "E_permuted_gap_pcn": 13
+    },
+    "maximum_parameters_any_arm": 45,
+    "parameter_storage_binary64_bytes_D_E": 360,
+    "maximum_credit_snapshot_binary64_values": 9,
+    "maximum_per_event_scalar_arithmetic_comparison_ops": 2048,
+    "maximum_per_event_tanh_calls": 48,
+    "maximum_per_event_exp_calls": 2,
+    "pcn_event_operation_bound_derivation": "preprediction 64 + 4 inference iterations*(prediction64 + residual_and_q32 + latent_gradient_and_projection84) + postprediction64 + final_q32 + predictive_parameter_update200 + decay_and_state12 = 1092 scalar arithmetic/comparison operations before fixed bookkeeping; ceiling 2048 includes bookkeeping and final readout; maximum tanh=8+4*8+8=48; exp is one local decay plus one final sigmoid, at most 2",
+    "maximum_non_reception_episode_scalar_ops": 256,
+    "maximum_episode_scalar_arithmetic_comparison_ops": 8448,
+    "maximum_episode_log_records": 256,
+    "maximum_log_record_bytes": 256,
+    "maximum_episode_log_bytes": 65536,
+    "cpu_logical_cores": 1,
+    "memory_bytes": 2147483648,
+    "wall_time_seconds": 14400,
+    "gpu": false,
+    "network_dependency": false,
+    "analytical_feasibility_status": "not_empirically_measured",
+    "runtime_acceptance": "later authorized execution must complete within all declared caps; measured wall time <=14400 seconds, peak working set <=2147483648 bytes, one logical core, no GPU/network; otherwise abort without extending budget",
+    "abort": [
+      "any counter exceeds its declared bound",
+      "typed overflow or nonfinite state",
+      "parameter count exceeds 256",
+      "unexpected file write outside allowlist",
+      "process memory or wall-clock ceiling exceeded"
+    ]
+  },
+  "instrumentation": {
+    "lwc_status": "proposed_unapproved_not_an_acceptance_metric",
+    "authoritative_existing_energy_proxy": "activity-cost-proxy only, with explicit category cost configuration",
+    "physical_energy_calibration": false,
+    "physical_joule_claim": false,
+    "raw_counters_required": [
+      "received_events",
+      "event_cost_charges",
+      "inference_iterations",
+      "scalar_add_subtract_multiply_divide_compare",
+      "tanh_calls",
+      "exp_calls",
+      "parameter_reads",
+      "parameter_writes",
+      "state_reads",
+      "state_writes",
+      "eligibility_entries_added_expired",
+      "credit_records_created_settled_expired",
+      "duplicate_rewards",
+      "invalid_episodes",
+      "overflow_events"
+    ],
+    "counter_influence_on_decoder": false,
+    "weighted_aggregate": "LWC may be reported only after separate owner approval; always retain raw counters"
+  },
+  "numerical_verification": {
+    "precision": "IEEE-754 binary64",
+    "tick_comparison_tolerance": 0,
+    "gradient_finite_difference_steps": [
+      "0.000244140625",
+      "0.0000152587890625",
+      "0.00000095367431640625"
+    ],
+    "gradient_max_absolute_error": 0.0000001,
+    "gradient_groups": [
+      "all four latent coordinates",
+      "all 32 V entries",
+      "all 8 c entries"
+    ],
+    "clip_boundary_policy": "finite-difference interior fixtures only; separate one-sided boundary tests",
+    "verification_status": "governance_only_central_difference_executed_for_all_latent_V_and_c_groups; clipping boundary, complete training loop, and efficacy remain untested"
+  },
+  "isolation": {
+    "execution_branch": "experiment/luna64-track-b-ltrd",
+    "dedicated_worktree_required": true,
+    "create_before_owner_approval": false,
+    "execution_base": "later committed governance-freeze SHA",
+    "allowed_write_paths": [
+      "experiments/luna64/**",
+      "tests/test_luna64_*.py",
+      "artifacts/luna64/**",
+      "workflow/handoffs/luna-64-track-b-ltrd-execution-20261010.md"
+    ],
+    "forbidden_write_paths": [
+      "tpcn/**",
+      "experiments/luna63c/**",
+      "artifacts/luna63c/**",
+      "all tests outside tests/test_luna64_*.py",
+      "architecture contracts",
+      "ACPs",
+      "production defaults",
+      "Luna-63C C0-C7 fixtures and W-T-E-N5 evidence",
+      "Luna-63C certificates, manifests, and corrective reconciliation"
+    ],
+    "production_integration": false,
+    "architecture_promotion": false,
+    "hardware_dependency": false
+  },
+  "validation_requirements": {
+    "json_schema_validation": "validate the complete protocol against protocol-r3.schema.json with a Draft 2020-12 compliant validator; reject unknown keys, absent required keys, null values, nonfinite numeric tokens, duplicate object keys, and wrong numeric/string types",
+    "cross_artifact_validation": [
+      "protocol/proposal/golden fixture SHA-256 manifest matches exact bytes",
+      "timebase reciprocals and every tick conversion agree",
+      "all arm parameter counts equal the sum of declared trainable groups",
+      "all fixture reward times, expiry, and cleanup derive from the same lifecycle fields",
+      "D/E physical-event and reward schedule fields compare byte-for-byte",
+      "all numeric protocol values have one authority here; prose references these fields",
+      "all training/evaluation ordinals are disjoint and exactly match declared counts"
+    ],
+    "schema_validation_performed": false,
+    "experiment_performed": false
+  }
+}

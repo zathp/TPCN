@@ -1,5 +1,22 @@
 # TPCN Luna Multi-Agent Workflow — Event-Driven Architecture
 
+## Luna-64 Track B Local Temporal Reward Decoder governance record — 2026-10-10
+
+Luna-0 authored a governance record for a proposed Track B Local Temporal
+Reward Decoder (LTRD) experiment under
+[.github/agents/luna-64.agent.md](../../../.github/agents/luna-64.agent.md).
+The record is present in the working tree but is not committed or frozen;
+explicit owner approval of the execution gate has not been provided. The
+proposed exploratory branch remains independent of the published Luna-63C
+Stage-A/Stage-B certificate chain and corrective reconciliation records.
+Implementation, execution, and architecture claims remain unauthorized
+pending an independently reviewed, immutable gate and explicit owner approval.
+
+The record preserves the current A01-A15 contract, refrains from modifying any
+frozen Luna-63C fixtures or certificate evidence, and explicitly forbids
+production/default changes or promotion into the certified architecture.
+Execution remains pending; no scientific result or benchmark has been run.
+
 ## Luna-63C reviewed design integrated; mechanism authorization certificate-gated — 2026-10-09
 
 The Luna-63C nonlinear excursion design was independently reviewed

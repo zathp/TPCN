@@ -1,0 +1,1993 @@
+{
+  "type": "object",
+  "required": [
+    "schema",
+    "schema_revision",
+    "gate_id",
+    "protocol_revision",
+    "status",
+    "provenance",
+    "timebase",
+    "task",
+    "rng",
+    "splits",
+    "readout",
+    "arms",
+    "decoder",
+    "learning",
+    "event_lifecycle",
+    "arm_e",
+    "evaluation_design",
+    "statistics",
+    "resources",
+    "instrumentation",
+    "numerical_verification",
+    "isolation",
+    "validation_requirements"
+  ],
+  "properties": {
+    "schema": {
+      "type": "string"
+    },
+    "schema_revision": {
+      "type": "integer"
+    },
+    "gate_id": {
+      "type": "string"
+    },
+    "protocol_revision": {
+      "type": "string"
+    },
+    "status": {
+      "type": "object",
+      "required": [
+        "draft",
+        "independent_review",
+        "owner_approval",
+        "execution_authorized",
+        "execution_performed",
+        "architecture_promotion_authorized"
+      ],
+      "properties": {
+        "draft": {
+          "type": "boolean"
+        },
+        "independent_review": {
+          "type": "string"
+        },
+        "owner_approval": {
+          "type": "string"
+        },
+        "execution_authorized": {
+          "type": "boolean"
+        },
+        "execution_performed": {
+          "type": "boolean"
+        },
+        "architecture_promotion_authorized": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    },
+    "provenance": {
+      "type": "object",
+      "required": [
+        "source_baseline",
+        "r2_proposal_sha256",
+        "r2_review_sha256",
+        "task_generator_revision",
+        "equations_reference",
+        "golden_fixture_path",
+        "schema_path"
+      ],
+      "properties": {
+        "source_baseline": {
+          "type": "string"
+        },
+        "r2_proposal_sha256": {
+          "type": "string"
+        },
+        "r2_review_sha256": {
+          "type": "string"
+        },
+        "task_generator_revision": {
+          "type": "string"
+        },
+        "equations_reference": {
+          "type": "string"
+        },
+        "golden_fixture_path": {
+          "type": "string"
+        },
+        "schema_path": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "timebase": {
+      "type": "object",
+      "required": [
+        "timebase_id",
+        "ticks_per_tu",
+        "tu_per_tick_decimal",
+        "canonical_timestamp_type",
+        "ordering",
+        "binary64_time_use",
+        "tick_rounding",
+        "tick_overflow"
+      ],
+      "properties": {
+        "timebase_id": {
+          "type": "string"
+        },
+        "ticks_per_tu": {
+          "type": "integer"
+        },
+        "tu_per_tick_decimal": {
+          "type": "string"
+        },
+        "canonical_timestamp_type": {
+          "type": "string"
+        },
+        "ordering": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "binary64_time_use": {
+          "type": "string"
+        },
+        "tick_rounding": {
+          "type": "string"
+        },
+        "tick_overflow": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "task": {
+      "type": "object",
+      "required": [
+        "task_id",
+        "primary_endpoint_id",
+        "input_channels",
+        "event_amplitudes",
+        "sequence",
+        "noise",
+        "controls"
+      ],
+      "properties": {
+        "task_id": {
+          "type": "string"
+        },
+        "primary_endpoint_id": {
+          "type": "string"
+        },
+        "input_channels": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "event_amplitudes": {
+          "type": "object",
+          "required": [
+            "A",
+            "B",
+            "N",
+            "D",
+            "delta_values",
+            "nu_values",
+            "arithmetic"
+          ],
+          "properties": {
+            "A": {
+              "type": "string"
+            },
+            "B": {
+              "type": "string"
+            },
+            "N": {
+              "type": "string"
+            },
+            "D": {
+              "type": "string"
+            },
+            "delta_values": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "nu_values": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "arithmetic": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        },
+        "sequence": {
+          "type": "object",
+          "required": [
+            "physical_event_count",
+            "max_input_events_per_episode",
+            "first_event_tick",
+            "maximum_logical_duration_ticks",
+            "gap_values_tu",
+            "gap_values_ticks",
+            "events",
+            "model_input_vector",
+            "order_bit",
+            "target",
+            "matched_multiset_invariant",
+            "sequence_completion",
+            "prediction_timestamp"
+          ],
+          "properties": {
+            "physical_event_count": {
+              "type": "integer"
+            },
+            "max_input_events_per_episode": {
+              "type": "integer"
+            },
+            "first_event_tick": {
+              "type": "integer"
+            },
+            "maximum_logical_duration_ticks": {
+              "type": "integer"
+            },
+            "gap_values_tu": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "gap_values_ticks": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "events": {
+              "type": "array",
+              "items": {
+                "anyOf": [
+                  {
+                    "type": "object",
+                    "required": [
+                      "ordinal",
+                      "symbol",
+                      "time_ticks"
+                    ],
+                    "properties": {
+                      "ordinal": {
+                        "type": "integer"
+                      },
+                      "symbol": {
+                        "type": "string"
+                      },
+                      "time_ticks": {
+                        "type": "integer"
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  {
+                    "type": "object",
+                    "required": [
+                      "ordinal",
+                      "symbol",
+                      "time_ticks"
+                    ],
+                    "properties": {
+                      "ordinal": {
+                        "type": "integer"
+                      },
+                      "symbol": {
+                        "type": "string"
+                      },
+                      "time_ticks": {
+                        "type": "string"
+                      }
+                    },
+                    "additionalProperties": false
+                  }
+                ]
+              }
+            },
+            "model_input_vector": {
+              "type": "string"
+            },
+            "order_bit": {
+              "type": "object",
+              "required": [
+                "0",
+                "1",
+                "distribution"
+              ],
+              "properties": {
+                "0": {
+                  "type": "string"
+                },
+                "1": {
+                  "type": "string"
+                },
+                "distribution": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": false
+            },
+            "target": {
+              "type": "object",
+              "required": [
+                "positive_class",
+                "negative_class",
+                "rule",
+                "available_to_model",
+                "available_to_reward_source",
+                "available_to_evaluator"
+              ],
+              "properties": {
+                "positive_class": {
+                  "type": "integer"
+                },
+                "negative_class": {
+                  "type": "integer"
+                },
+                "rule": {
+                  "type": "string"
+                },
+                "available_to_model": {
+                  "type": "boolean"
+                },
+                "available_to_reward_source": {
+                  "type": "string"
+                },
+                "available_to_evaluator": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": false
+            },
+            "matched_multiset_invariant": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "sequence_completion": {
+              "type": "string"
+            },
+            "prediction_timestamp": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        },
+        "noise": {
+          "type": "object",
+          "required": [
+            "amplitude_jitter",
+            "symbol_order",
+            "timestamp_jitter",
+            "dropout",
+            "distractors"
+          ],
+          "properties": {
+            "amplitude_jitter": {
+              "type": "object",
+              "required": [
+                "delta_support",
+                "nu_support",
+                "drawn_independently_by_named_stream",
+                "shared_across_balanced_block",
+                "label_independent"
+              ],
+              "properties": {
+                "delta_support": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "nu_support": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "drawn_independently_by_named_stream": {
+                  "type": "boolean"
+                },
+                "shared_across_balanced_block": {
+                  "type": "boolean"
+                },
+                "label_independent": {
+                  "type": "boolean"
+                }
+              },
+              "additionalProperties": false
+            },
+            "symbol_order": {
+              "type": "string"
+            },
+            "timestamp_jitter": {
+              "type": "string"
+            },
+            "dropout": {
+              "type": "string"
+            },
+            "distractors": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "controls": {
+          "type": "object",
+          "required": [
+            "uncorrelated_label_control",
+            "silent_control",
+            "no_reward_control",
+            "overflow_control"
+          ],
+          "properties": {
+            "uncorrelated_label_control": {
+              "type": "object",
+              "required": [
+                "target_bit",
+                "physical_gap_distribution",
+                "purpose"
+              ],
+              "properties": {
+                "target_bit": {
+                  "type": "string"
+                },
+                "physical_gap_distribution": {
+                  "type": "string"
+                },
+                "purpose": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": false
+            },
+            "silent_control": {
+              "type": "object",
+              "required": [
+                "input_events",
+                "logical_completion_ticks",
+                "evaluator_target",
+                "target_available_to_model",
+                "reward"
+              ],
+              "properties": {
+                "input_events": {
+                  "type": "integer"
+                },
+                "logical_completion_ticks": {
+                  "type": "integer"
+                },
+                "evaluator_target": {
+                  "type": "integer"
+                },
+                "target_available_to_model": {
+                  "type": "boolean"
+                },
+                "reward": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": false
+            },
+            "no_reward_control": {
+              "type": "object",
+              "required": [
+                "task_inputs_and_targets",
+                "reward_origin",
+                "delivery",
+                "decoder_condition_flag"
+              ],
+              "properties": {
+                "task_inputs_and_targets": {
+                  "type": "string"
+                },
+                "reward_origin": {
+                  "type": "string"
+                },
+                "delivery": {
+                  "type": "string"
+                },
+                "decoder_condition_flag": {
+                  "type": "boolean"
+                }
+              },
+              "additionalProperties": false
+            },
+            "overflow_control": {
+              "type": "object",
+              "required": [
+                "attempted_eligibility_entries",
+                "eligibility_capacity",
+                "injection",
+                "expected"
+              ],
+              "properties": {
+                "attempted_eligibility_entries": {
+                  "type": "integer"
+                },
+                "eligibility_capacity": {
+                  "type": "integer"
+                },
+                "injection": {
+                  "type": "string"
+                },
+                "expected": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "rng": {
+      "type": "object",
+      "required": [
+        "algorithm",
+        "digest",
+        "draw_encoding",
+        "counter_start",
+        "integer_mapping",
+        "rejection_sampling",
+        "substreams",
+        "draw_key_fields",
+        "seeds",
+        "pairing",
+        "arm_e_permutation_bit",
+        "serialization"
+      ],
+      "properties": {
+        "algorithm": {
+          "type": "string"
+        },
+        "digest": {
+          "type": "string"
+        },
+        "draw_encoding": {
+          "type": "string"
+        },
+        "counter_start": {
+          "type": "integer"
+        },
+        "integer_mapping": {
+          "type": "string"
+        },
+        "rejection_sampling": {
+          "type": "boolean"
+        },
+        "substreams": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "draw_key_fields": {
+          "type": "string"
+        },
+        "seeds": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          }
+        },
+        "pairing": {
+          "type": "string"
+        },
+        "arm_e_permutation_bit": {
+          "type": "string"
+        },
+        "serialization": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "splits": {
+      "type": "object",
+      "required": [
+        "training",
+        "evaluation",
+        "evaluation_arm_seed_parameter_hash",
+        "hyperparameter_selection",
+        "test_outcomes_may_change_thresholds_or_parameters"
+      ],
+      "properties": {
+        "training": {
+          "type": "object",
+          "required": [
+            "episodes_per_seed_arm",
+            "episode_ordinals_inclusive",
+            "balanced_blocks_of_16",
+            "positive_count",
+            "negative_count",
+            "cell_assignment",
+            "amplitude_noise_assignment",
+            "reward_delay_assignment",
+            "parameter_updates_allowed"
+          ],
+          "properties": {
+            "episodes_per_seed_arm": {
+              "type": "integer"
+            },
+            "episode_ordinals_inclusive": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "balanced_blocks_of_16": {
+              "type": "integer"
+            },
+            "positive_count": {
+              "type": "integer"
+            },
+            "negative_count": {
+              "type": "integer"
+            },
+            "cell_assignment": {
+              "type": "string"
+            },
+            "amplitude_noise_assignment": {
+              "type": "string"
+            },
+            "reward_delay_assignment": {
+              "type": "string"
+            },
+            "parameter_updates_allowed": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false
+        },
+        "evaluation": {
+          "type": "object",
+          "required": [
+            "episodes_per_seed_arm",
+            "episode_ordinals_inclusive",
+            "primary_gap_task_count",
+            "uncorrelated_control_count",
+            "silent_control_count",
+            "reward_delivery_audit_count",
+            "primary_positive_count",
+            "primary_negative_count",
+            "cell_assignment",
+            "uncorrelated_assignment",
+            "silent_ordinals",
+            "reward_audit_ordinals",
+            "reward_audit_schedule",
+            "parameter_updates_allowed",
+            "evaluator_labels_visible_to_model",
+            "reward_records_mutate_model"
+          ],
+          "properties": {
+            "episodes_per_seed_arm": {
+              "type": "integer"
+            },
+            "episode_ordinals_inclusive": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "primary_gap_task_count": {
+              "type": "integer"
+            },
+            "uncorrelated_control_count": {
+              "type": "integer"
+            },
+            "silent_control_count": {
+              "type": "integer"
+            },
+            "reward_delivery_audit_count": {
+              "type": "integer"
+            },
+            "primary_positive_count": {
+              "type": "integer"
+            },
+            "primary_negative_count": {
+              "type": "integer"
+            },
+            "cell_assignment": {
+              "type": "string"
+            },
+            "uncorrelated_assignment": {
+              "type": "string"
+            },
+            "silent_ordinals": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "reward_audit_ordinals": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "reward_audit_schedule": {
+              "type": "string"
+            },
+            "parameter_updates_allowed": {
+              "type": "boolean"
+            },
+            "evaluator_labels_visible_to_model": {
+              "type": "boolean"
+            },
+            "reward_records_mutate_model": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false
+        },
+        "evaluation_arm_seed_parameter_hash": {
+          "type": "string"
+        },
+        "hyperparameter_selection": {
+          "type": "string"
+        },
+        "test_outcomes_may_change_thresholds_or_parameters": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    },
+    "readout": {
+      "type": "object",
+      "required": [
+        "input_by_arm",
+        "equation",
+        "decision",
+        "initialization",
+        "prediction_time",
+        "classification_loss",
+        "training_surrogate"
+      ],
+      "properties": {
+        "input_by_arm": {
+          "type": "object",
+          "required": [
+            "A_cost_only",
+            "B_simple_eligibility",
+            "C_linear_temporal",
+            "D_nonlinear_pcn",
+            "E_permuted_gap_pcn"
+          ],
+          "properties": {
+            "A_cost_only": {
+              "type": "string"
+            },
+            "B_simple_eligibility": {
+              "type": "string"
+            },
+            "C_linear_temporal": {
+              "type": "string"
+            },
+            "D_nonlinear_pcn": {
+              "type": "string"
+            },
+            "E_permuted_gap_pcn": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        },
+        "equation": {
+          "type": "string"
+        },
+        "decision": {
+          "type": "string"
+        },
+        "initialization": {
+          "type": "object",
+          "required": [
+            "all_trainable_readout_weights",
+            "all_trainable_readout_biases"
+          ],
+          "properties": {
+            "all_trainable_readout_weights": {
+              "type": "integer"
+            },
+            "all_trainable_readout_biases": {
+              "type": "integer"
+            }
+          },
+          "additionalProperties": false
+        },
+        "prediction_time": {
+          "type": "string"
+        },
+        "classification_loss": {
+          "type": "string"
+        },
+        "training_surrogate": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "arms": {
+      "type": "array",
+      "items": {
+        "anyOf": [
+          {
+            "type": "object",
+            "required": [
+              "id",
+              "features",
+              "trainable_parameters",
+              "temporal_decoder",
+              "readout",
+              "learning"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "features": {
+                "type": "string"
+              },
+              "trainable_parameters": {
+                "type": "integer"
+              },
+              "temporal_decoder": {
+                "type": "boolean"
+              },
+              "readout": {
+                "type": "string"
+              },
+              "learning": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "required": [
+              "id",
+              "features",
+              "trainable_parameters",
+              "temporal_decoder",
+              "learning"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "features": {
+                "type": "string"
+              },
+              "trainable_parameters": {
+                "type": "integer"
+              },
+              "temporal_decoder": {
+                "type": "boolean"
+              },
+              "learning": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          }
+        ]
+      }
+    },
+    "decoder": {
+      "type": "object",
+      "required": [
+        "parameter_cap",
+        "all_arms_trainable_parameter_counts",
+        "pcn",
+        "linear_temporal",
+        "readout_parameter_bounds",
+        "training_state_persistence"
+      ],
+      "properties": {
+        "parameter_cap": {
+          "type": "integer"
+        },
+        "all_arms_trainable_parameter_counts": {
+          "type": "object",
+          "required": [
+            "A_cost_only",
+            "B_simple_eligibility",
+            "C_linear_temporal",
+            "D_nonlinear_pcn",
+            "E_permuted_gap_pcn"
+          ],
+          "properties": {
+            "A_cost_only": {
+              "type": "integer"
+            },
+            "B_simple_eligibility": {
+              "type": "integer"
+            },
+            "C_linear_temporal": {
+              "type": "integer"
+            },
+            "D_nonlinear_pcn": {
+              "type": "integer"
+            },
+            "E_permuted_gap_pcn": {
+              "type": "integer"
+            }
+          },
+          "additionalProperties": false
+        },
+        "pcn": {
+          "type": "object",
+          "required": [
+            "input_dimension",
+            "latent_dimension",
+            "parameters",
+            "parameter_count",
+            "initialization",
+            "initial_parameter_bounds",
+            "state_bounds",
+            "binary64",
+            "tau_tu",
+            "lambda",
+            "inference_iterations",
+            "inference_step_gamma",
+            "parameter_learning_rate",
+            "parameter_update",
+            "predictive_objective",
+            "prediction_error_sign",
+            "prediction",
+            "inference_gradient",
+            "inference_step",
+            "parameter_gradients",
+            "parameter_step",
+            "elapsed_time_source",
+            "numeric_fault"
+          ],
+          "properties": {
+            "input_dimension": {
+              "type": "integer"
+            },
+            "latent_dimension": {
+              "type": "integer"
+            },
+            "parameters": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "parameter_count": {
+              "type": "integer"
+            },
+            "initialization": {
+              "type": "string"
+            },
+            "initial_parameter_bounds": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "state_bounds": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "binary64": {
+              "type": "boolean"
+            },
+            "tau_tu": {
+              "type": "integer"
+            },
+            "lambda": {
+              "type": "integer"
+            },
+            "inference_iterations": {
+              "type": "integer"
+            },
+            "inference_step_gamma": {
+              "type": "number"
+            },
+            "parameter_learning_rate": {
+              "type": "number"
+            },
+            "parameter_update": {
+              "type": "string"
+            },
+            "predictive_objective": {
+              "type": "string"
+            },
+            "prediction_error_sign": {
+              "type": "string"
+            },
+            "prediction": {
+              "type": "string"
+            },
+            "inference_gradient": {
+              "type": "string"
+            },
+            "inference_step": {
+              "type": "string"
+            },
+            "parameter_gradients": {
+              "type": "object",
+              "required": [
+                "q",
+                "g_V",
+                "g_c"
+              ],
+              "properties": {
+                "q": {
+                  "type": "string"
+                },
+                "g_V": {
+                  "type": "string"
+                },
+                "g_c": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": false
+            },
+            "parameter_step": {
+              "type": "string"
+            },
+            "elapsed_time_source": {
+              "type": "string"
+            },
+            "numeric_fault": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        },
+        "linear_temporal": {
+          "type": "object",
+          "required": [
+            "state_dimension",
+            "tau_tu",
+            "equation",
+            "parameter_count_including_readout",
+            "state_bounds",
+            "overflow"
+          ],
+          "properties": {
+            "state_dimension": {
+              "type": "integer"
+            },
+            "tau_tu": {
+              "type": "integer"
+            },
+            "equation": {
+              "type": "string"
+            },
+            "parameter_count_including_readout": {
+              "type": "integer"
+            },
+            "state_bounds": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "overflow": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        },
+        "readout_parameter_bounds": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          }
+        },
+        "training_state_persistence": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "learning": {
+      "type": "object",
+      "required": [
+        "predictive_objective",
+        "activation",
+        "eligibility",
+        "activation_reward",
+        "reward_delay_tu",
+        "reward_update",
+        "arms_without_trainable_readout",
+        "evaluation",
+        "reward_is_not_prediction_error",
+        "energy_penalty"
+      ],
+      "properties": {
+        "predictive_objective": {
+          "type": "string"
+        },
+        "activation": {
+          "type": "string"
+        },
+        "eligibility": {
+          "type": "object",
+          "required": [
+            "lifetime_ticks",
+            "validity",
+            "capacity",
+            "capture",
+            "per_input_eligibility",
+            "captured_record_survives_input_expiry",
+            "empty_eligible_set"
+          ],
+          "properties": {
+            "lifetime_ticks": {
+              "type": "integer"
+            },
+            "validity": {
+              "type": "string"
+            },
+            "capacity": {
+              "type": "integer"
+            },
+            "capture": {
+              "type": "string"
+            },
+            "per_input_eligibility": {
+              "type": "string"
+            },
+            "captured_record_survives_input_expiry": {
+              "type": "boolean"
+            },
+            "empty_eligible_set": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        },
+        "activation_reward": {
+          "type": "object",
+          "required": [
+            "source",
+            "origin",
+            "payload",
+            "magnitude",
+            "sign",
+            "outcome_is_arm_dependent",
+            "zero_reward_control"
+          ],
+          "properties": {
+            "source": {
+              "type": "string"
+            },
+            "origin": {
+              "type": "string"
+            },
+            "payload": {
+              "type": "string"
+            },
+            "magnitude": {
+              "type": "integer"
+            },
+            "sign": {
+              "type": "object",
+              "required": [
+                "true_positive",
+                "true_negative",
+                "false_positive",
+                "false_negative"
+              ],
+              "properties": {
+                "true_positive": {
+                  "type": "integer"
+                },
+                "true_negative": {
+                  "type": "integer"
+                },
+                "false_positive": {
+                  "type": "integer"
+                },
+                "false_negative": {
+                  "type": "integer"
+                }
+              },
+              "additionalProperties": false
+            },
+            "outcome_is_arm_dependent": {
+              "type": "string"
+            },
+            "zero_reward_control": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        },
+        "reward_delay_tu": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          }
+        },
+        "reward_update": {
+          "type": "string"
+        },
+        "arms_without_trainable_readout": {
+          "type": "string"
+        },
+        "evaluation": {
+          "type": "string"
+        },
+        "reward_is_not_prediction_error": {
+          "type": "boolean"
+        },
+        "energy_penalty": {
+          "type": "object",
+          "required": [
+            "unit",
+            "charge_per_received_input",
+            "charge_phase",
+            "charge_count",
+            "reward_settlement_charge",
+            "physical_joules_claim"
+          ],
+          "properties": {
+            "unit": {
+              "type": "string"
+            },
+            "charge_per_received_input": {
+              "type": "integer"
+            },
+            "charge_phase": {
+              "type": "string"
+            },
+            "charge_count": {
+              "type": "string"
+            },
+            "reward_settlement_charge": {
+              "type": "integer"
+            },
+            "physical_joules_claim": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "event_lifecycle": {
+      "type": "object",
+      "required": [
+        "identity",
+        "phase_order_same_tick",
+        "credit_record_capacity",
+        "pending_reward_capacity",
+        "duplicate_reward",
+        "record_capture_tick",
+        "settlement_deadline",
+        "expiry_tick",
+        "deadline_semantics",
+        "logical_completion",
+        "pending_credit_after_logical_completion",
+        "physical_cleanup",
+        "max_episode_physical_lifetime_ticks",
+        "episode_execution",
+        "overflow",
+        "event_cost_on_reward"
+      ],
+      "properties": {
+        "identity": {
+          "type": "object",
+          "required": [
+            "episode_id",
+            "input_id",
+            "activation_id",
+            "reward_origin_id",
+            "reward_delivery_id",
+            "credit_record_id",
+            "duplicate_key",
+            "ordinal_format"
+          ],
+          "properties": {
+            "episode_id": {
+              "type": "string"
+            },
+            "input_id": {
+              "type": "string"
+            },
+            "activation_id": {
+              "type": "string"
+            },
+            "reward_origin_id": {
+              "type": "string"
+            },
+            "reward_delivery_id": {
+              "type": "string"
+            },
+            "credit_record_id": {
+              "type": "string"
+            },
+            "duplicate_key": {
+              "type": "string"
+            },
+            "ordinal_format": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        },
+        "phase_order_same_tick": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "credit_record_capacity": {
+          "type": "integer"
+        },
+        "pending_reward_capacity": {
+          "type": "integer"
+        },
+        "duplicate_reward": {
+          "type": "string"
+        },
+        "record_capture_tick": {
+          "type": "string"
+        },
+        "settlement_deadline": {
+          "type": "string"
+        },
+        "expiry_tick": {
+          "type": "string"
+        },
+        "deadline_semantics": {
+          "type": "string"
+        },
+        "logical_completion": {
+          "type": "string"
+        },
+        "pending_credit_after_logical_completion": {
+          "type": "boolean"
+        },
+        "physical_cleanup": {
+          "type": "string"
+        },
+        "max_episode_physical_lifetime_ticks": {
+          "type": "integer"
+        },
+        "episode_execution": {
+          "type": "string"
+        },
+        "overflow": {
+          "type": "string"
+        },
+        "event_cost_on_reward": {
+          "type": "integer"
+        }
+      },
+      "additionalProperties": false
+    },
+    "arm_e": {
+      "type": "object",
+      "required": [
+        "transformed_feature",
+        "physical_clock_unchanged",
+        "physical_events_unchanged",
+        "transformation",
+        "permutation_source",
+        "permutation_visible_to_decoder",
+        "application_time",
+        "fixed_by",
+        "paired_arm_invariants",
+        "control_claim"
+      ],
+      "properties": {
+        "transformed_feature": {
+          "type": "string"
+        },
+        "physical_clock_unchanged": {
+          "type": "boolean"
+        },
+        "physical_events_unchanged": {
+          "type": "boolean"
+        },
+        "transformation": {
+          "type": "string"
+        },
+        "permutation_source": {
+          "type": "string"
+        },
+        "permutation_visible_to_decoder": {
+          "type": "boolean"
+        },
+        "application_time": {
+          "type": "string"
+        },
+        "fixed_by": {
+          "type": "string"
+        },
+        "paired_arm_invariants": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "control_claim": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "evaluation_design": {
+      "type": "object",
+      "required": [
+        "episodes_per_seed_arm",
+        "allocation",
+        "metrics",
+        "primary_metric_definition",
+        "reward_audit",
+        "prediction_output"
+      ],
+      "properties": {
+        "episodes_per_seed_arm": {
+          "type": "integer"
+        },
+        "allocation": {
+          "type": "object",
+          "required": [
+            "primary_gap_task",
+            "uncorrelated_label_control",
+            "silent_control",
+            "reward_delivery_audit"
+          ],
+          "properties": {
+            "primary_gap_task": {
+              "type": "integer"
+            },
+            "uncorrelated_label_control": {
+              "type": "integer"
+            },
+            "silent_control": {
+              "type": "integer"
+            },
+            "reward_delivery_audit": {
+              "type": "integer"
+            }
+          },
+          "additionalProperties": false
+        },
+        "metrics": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "primary_metric_definition": {
+          "type": "string"
+        },
+        "reward_audit": {
+          "type": "string"
+        },
+        "prediction_output": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "statistics": {
+      "type": "object",
+      "required": [
+        "unit_of_independent_replication",
+        "paired_unit",
+        "primary_comparisons",
+        "primary_endpoint",
+        "seed_effect",
+        "bootstrap",
+        "success",
+        "inconclusive",
+        "failure",
+        "degenerate_outputs",
+        "missing_or_aborted_run",
+        "test_set_policy"
+      ],
+      "properties": {
+        "unit_of_independent_replication": {
+          "type": "string"
+        },
+        "paired_unit": {
+          "type": "string"
+        },
+        "primary_comparisons": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "primary_endpoint": {
+          "type": "string"
+        },
+        "seed_effect": {
+          "type": "string"
+        },
+        "bootstrap": {
+          "type": "object",
+          "required": [
+            "method",
+            "replicates",
+            "rng_substream",
+            "confidence_family_level",
+            "comparisons",
+            "per_comparison_confidence_level",
+            "quantiles",
+            "nearest_rank_order_statistics_1_based",
+            "draw_procedure"
+          ],
+          "properties": {
+            "method": {
+              "type": "string"
+            },
+            "replicates": {
+              "type": "integer"
+            },
+            "rng_substream": {
+              "type": "string"
+            },
+            "confidence_family_level": {
+              "type": "number"
+            },
+            "comparisons": {
+              "type": "integer"
+            },
+            "per_comparison_confidence_level": {
+              "type": "number"
+            },
+            "quantiles": {
+              "type": "array",
+              "items": {
+                "type": "number"
+              }
+            },
+            "nearest_rank_order_statistics_1_based": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "draw_procedure": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        },
+        "success": {
+          "type": "object",
+          "required": [
+            "D_balanced_accuracy_minimum",
+            "D_minus_C_mean_effect_minimum",
+            "D_minus_E_mean_effect_minimum",
+            "both_adjusted_interval_lower_bounds_strictly_above_zero",
+            "D_positive_seed_effects_minimum",
+            "E_primary_balanced_accuracy_maximum",
+            "E_uncorrelated_balanced_accuracy_maximum",
+            "all_arm_uncorrelated_balanced_accuracy_maximum",
+            "invalid_fraction_maximum_per_arm_seed"
+          ],
+          "properties": {
+            "D_balanced_accuracy_minimum": {
+              "type": "number"
+            },
+            "D_minus_C_mean_effect_minimum": {
+              "type": "number"
+            },
+            "D_minus_E_mean_effect_minimum": {
+              "type": "number"
+            },
+            "both_adjusted_interval_lower_bounds_strictly_above_zero": {
+              "type": "boolean"
+            },
+            "D_positive_seed_effects_minimum": {
+              "type": "integer"
+            },
+            "E_primary_balanced_accuracy_maximum": {
+              "type": "number"
+            },
+            "E_uncorrelated_balanced_accuracy_maximum": {
+              "type": "number"
+            },
+            "all_arm_uncorrelated_balanced_accuracy_maximum": {
+              "type": "number"
+            },
+            "invalid_fraction_maximum_per_arm_seed": {
+              "type": "number"
+            }
+          },
+          "additionalProperties": false
+        },
+        "inconclusive": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "failure": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "degenerate_outputs": {
+          "type": "string"
+        },
+        "missing_or_aborted_run": {
+          "type": "string"
+        },
+        "test_set_policy": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "resources": {
+      "type": "object",
+      "required": [
+        "arms",
+        "seeds",
+        "training_episodes_per_arm_seed",
+        "evaluation_episodes_per_arm_seed",
+        "maximum_total_episodes",
+        "maximum_input_events_per_episode",
+        "maximum_simultaneous_pending_episodes",
+        "maximum_temporal_history_records",
+        "eligibility_entry_capacity",
+        "credit_record_capacity",
+        "pending_reward_capacity",
+        "maximum_computational_units_any_arm",
+        "computational_unit_counting_rule",
+        "computational_units_by_arm",
+        "maximum_parameters_any_arm",
+        "parameter_storage_binary64_bytes_D_E",
+        "maximum_credit_snapshot_binary64_values",
+        "maximum_per_event_scalar_arithmetic_comparison_ops",
+        "maximum_per_event_tanh_calls",
+        "maximum_per_event_exp_calls",
+        "pcn_event_operation_bound_derivation",
+        "maximum_non_reception_episode_scalar_ops",
+        "maximum_episode_scalar_arithmetic_comparison_ops",
+        "maximum_episode_log_records",
+        "maximum_log_record_bytes",
+        "maximum_episode_log_bytes",
+        "cpu_logical_cores",
+        "memory_bytes",
+        "wall_time_seconds",
+        "gpu",
+        "network_dependency",
+        "analytical_feasibility_status",
+        "runtime_acceptance",
+        "abort"
+      ],
+      "properties": {
+        "arms": {
+          "type": "integer"
+        },
+        "seeds": {
+          "type": "integer"
+        },
+        "training_episodes_per_arm_seed": {
+          "type": "integer"
+        },
+        "evaluation_episodes_per_arm_seed": {
+          "type": "integer"
+        },
+        "maximum_total_episodes": {
+          "type": "integer"
+        },
+        "maximum_input_events_per_episode": {
+          "type": "integer"
+        },
+        "maximum_simultaneous_pending_episodes": {
+          "type": "integer"
+        },
+        "maximum_temporal_history_records": {
+          "type": "integer"
+        },
+        "eligibility_entry_capacity": {
+          "type": "integer"
+        },
+        "credit_record_capacity": {
+          "type": "integer"
+        },
+        "pending_reward_capacity": {
+          "type": "integer"
+        },
+        "maximum_computational_units_any_arm": {
+          "type": "integer"
+        },
+        "computational_unit_counting_rule": {
+          "type": "string"
+        },
+        "computational_units_by_arm": {
+          "type": "object",
+          "required": [
+            "A_cost_only",
+            "B_simple_eligibility",
+            "C_linear_temporal",
+            "D_nonlinear_pcn",
+            "E_permuted_gap_pcn"
+          ],
+          "properties": {
+            "A_cost_only": {
+              "type": "integer"
+            },
+            "B_simple_eligibility": {
+              "type": "integer"
+            },
+            "C_linear_temporal": {
+              "type": "integer"
+            },
+            "D_nonlinear_pcn": {
+              "type": "integer"
+            },
+            "E_permuted_gap_pcn": {
+              "type": "integer"
+            }
+          },
+          "additionalProperties": false
+        },
+        "maximum_parameters_any_arm": {
+          "type": "integer"
+        },
+        "parameter_storage_binary64_bytes_D_E": {
+          "type": "integer"
+        },
+        "maximum_credit_snapshot_binary64_values": {
+          "type": "integer"
+        },
+        "maximum_per_event_scalar_arithmetic_comparison_ops": {
+          "type": "integer"
+        },
+        "maximum_per_event_tanh_calls": {
+          "type": "integer"
+        },
+        "maximum_per_event_exp_calls": {
+          "type": "integer"
+        },
+        "pcn_event_operation_bound_derivation": {
+          "type": "string"
+        },
+        "maximum_non_reception_episode_scalar_ops": {
+          "type": "integer"
+        },
+        "maximum_episode_scalar_arithmetic_comparison_ops": {
+          "type": "integer"
+        },
+        "maximum_episode_log_records": {
+          "type": "integer"
+        },
+        "maximum_log_record_bytes": {
+          "type": "integer"
+        },
+        "maximum_episode_log_bytes": {
+          "type": "integer"
+        },
+        "cpu_logical_cores": {
+          "type": "integer"
+        },
+        "memory_bytes": {
+          "type": "integer"
+        },
+        "wall_time_seconds": {
+          "type": "integer"
+        },
+        "gpu": {
+          "type": "boolean"
+        },
+        "network_dependency": {
+          "type": "boolean"
+        },
+        "analytical_feasibility_status": {
+          "type": "string"
+        },
+        "runtime_acceptance": {
+          "type": "string"
+        },
+        "abort": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "instrumentation": {
+      "type": "object",
+      "required": [
+        "lwc_status",
+        "authoritative_existing_energy_proxy",
+        "physical_energy_calibration",
+        "physical_joule_claim",
+        "raw_counters_required",
+        "counter_influence_on_decoder",
+        "weighted_aggregate"
+      ],
+      "properties": {
+        "lwc_status": {
+          "type": "string"
+        },
+        "authoritative_existing_energy_proxy": {
+          "type": "string"
+        },
+        "physical_energy_calibration": {
+          "type": "boolean"
+        },
+        "physical_joule_claim": {
+          "type": "boolean"
+        },
+        "raw_counters_required": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "counter_influence_on_decoder": {
+          "type": "boolean"
+        },
+        "weighted_aggregate": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "numerical_verification": {
+      "type": "object",
+      "required": [
+        "precision",
+        "tick_comparison_tolerance",
+        "gradient_finite_difference_steps",
+        "gradient_max_absolute_error",
+        "gradient_groups",
+        "clip_boundary_policy",
+        "verification_status"
+      ],
+      "properties": {
+        "precision": {
+          "type": "string"
+        },
+        "tick_comparison_tolerance": {
+          "type": "integer"
+        },
+        "gradient_finite_difference_steps": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "gradient_max_absolute_error": {
+          "type": "number"
+        },
+        "gradient_groups": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "clip_boundary_policy": {
+          "type": "string"
+        },
+        "verification_status": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "isolation": {
+      "type": "object",
+      "required": [
+        "execution_branch",
+        "dedicated_worktree_required",
+        "create_before_owner_approval",
+        "execution_base",
+        "allowed_write_paths",
+        "forbidden_write_paths",
+        "production_integration",
+        "architecture_promotion",
+        "hardware_dependency"
+      ],
+      "properties": {
+        "execution_branch": {
+          "type": "string"
+        },
+        "dedicated_worktree_required": {
+          "type": "boolean"
+        },
+        "create_before_owner_approval": {
+          "type": "boolean"
+        },
+        "execution_base": {
+          "type": "string"
+        },
+        "allowed_write_paths": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "forbidden_write_paths": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "production_integration": {
+          "type": "boolean"
+        },
+        "architecture_promotion": {
+          "type": "boolean"
+        },
+        "hardware_dependency": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    },
+    "validation_requirements": {
+      "type": "object",
+      "required": [
+        "json_schema_validation",
+        "cross_artifact_validation",
+        "schema_validation_performed",
+        "experiment_performed"
+      ],
+      "properties": {
+        "json_schema_validation": {
+          "type": "string"
+        },
+        "cross_artifact_validation": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "schema_validation_performed": {
+          "type": "boolean"
+        },
+        "experiment_performed": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "LUNA64-TRACK-B-PROTOCOL-R3/schema/1",
+  "title": "Luna-64 Track B Protocol R3",
+  "description": "Strict structural schema inferred from the exact R3 protocol; all declared object keys are required and additional keys are rejected."
+}

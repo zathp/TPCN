@@ -1,0 +1,114 @@
+{
+  "report_id": "L64-TB-R3-CONSISTENCY-20261010",
+  "gate_id": "L64-TB-GATE-20261010-R3",
+  "source_baseline": "73aaa50f97ceab322907875ae4dcf23e7541c3b5",
+  "status": "PASS_LOCAL_GOVERNANCE_CONSISTENCY_ONLY",
+  "independent_review": "pending",
+  "owner_approval": "not_provided",
+  "execution_authorized": false,
+  "experiment_or_implementation_performed": false,
+  "checks": [
+    {
+      "id": "strict-schema",
+      "status": "PASS",
+      "detail": "Protocol matches recursively strict required-key/type schema."
+    },
+    {
+      "id": "unknown-key-rejection",
+      "status": "PASS",
+      "detail": "Schema rejects a synthetic unknown root key."
+    },
+    {
+      "id": "artifact-identity",
+      "status": "PASS",
+      "detail": "Gate ID, reciprocal artifact paths, and source baseline agree."
+    },
+    {
+      "id": "timebase-reciprocal",
+      "status": "PASS",
+      "detail": "1 TU is 1,000,000 ticks; 1 tick is 10^-6 TU."
+    },
+    {
+      "id": "arm-e-permutation-definition",
+      "status": "PASS",
+      "detail": "Arm E uses the deterministic balanced cell/seed/split formula, not a random draw."
+    },
+    {
+      "id": "training-cell-balance",
+      "status": "PASS",
+      "detail": "{\"positive\":5000,\"negative\":5000,\"cells\":[2500,2500,2500,2500]}"
+    },
+    {
+      "id": "evaluation-primary-balance",
+      "status": "PASS",
+      "detail": "{\"positive\":600,\"negative\":600,\"cells\":[300,300,300,300],\"permutations\":[[150,150],[150,150],[150,150],[150,150]]}"
+    },
+    {
+      "id": "uncorrelated-control-balance",
+      "status": "PASS",
+      "detail": "Each order × gap × target × permutation cell occurs 25 times."
+    },
+    {
+      "id": "reward-delay-class-balance",
+      "status": "PASS",
+      "detail": "[[720,720],[720,720],[712,712],[712,712],[712,712],[712,712],[712,712]]"
+    },
+    {
+      "id": "golden-amplitude_delta-draw",
+      "status": "PASS",
+      "detail": "SHA-256=B1FEF520B7A95EFF92EB6C54B07B3074E06389779E0E6F6085503D24CF0D179C; mapped index=2."
+    },
+    {
+      "id": "golden-nuisance_nu-draw",
+      "status": "PASS",
+      "detail": "SHA-256=FCE1F23B9424032BDE13CDAD68FCBE22E7D2470237918F45BFFF777239E2D8C5; mapped index=2."
+    },
+    {
+      "id": "duration-and-cleanup",
+      "status": "PASS",
+      "detail": "Latest input is at or before 5,000,000 ticks; fixed cleanup is deadline+1 at 21,000,001."
+    },
+    {
+      "id": "eligibility-and-reward-boundaries",
+      "status": "PASS",
+      "detail": "8-TU eligibility capture is distinct from the inclusive 16-TU reward deadline and +1-tick expiry."
+    },
+    {
+      "id": "overflow-fixture",
+      "status": "PASS",
+      "detail": "Ledger-only overflow fixture agrees with golden data and does not exceed the four-input task limit."
+    },
+    {
+      "id": "operation-ceilings",
+      "status": "PASS",
+      "detail": "Per-event ceiling covers final sigmoid (at most two exp calls); episode ceiling is 8,448."
+    },
+    {
+      "id": "computational-unit-ceiling",
+      "status": "PASS",
+      "detail": "Persistent model-unit counts are A/B/C/D/E = 1/5/9/13/13, within 32; parameters and bounded scratch are separate."
+    },
+    {
+      "id": "pcn-one-event-golden",
+      "status": "PASS",
+      "detail": "final latent=0.056458987699673925; xhat[0]=0.014113809657706075; objective=0.4876045012330781."
+    },
+    {
+      "id": "pcn-gradient-finite-differences",
+      "status": "PASS",
+      "detail": "[2.1852589626725205e-8,8.849510013675399e-11,3.983718910305356e-11]"
+    },
+    {
+      "id": "reward-order-and-event-cost",
+      "status": "PASS",
+      "detail": "Prediction precedes zero-delay reward; four input receptions are charged once; reward delivery costs zero."
+    }
+  ],
+  "artifact_sha256": {
+    "experiments/luna64/luna64-track-b-protocol-r3.json": "25E3F71F2036145BE9F31804FAB2772B4829D80DE36C80FA078F09D4D9BCA6FD",
+    "experiments/luna64/luna64-track-b-protocol-r3.schema.json": "6B6000AE0F3F5107CA23C6458CA946B99CF1C2F0F8E2716207866288A6A3F2C9",
+    "experiments/luna64/luna64-track-b-golden-r3.json": "AD9C8A7A5D6EDC01F992F1D0F02A200A6690F1459B379072E2828B0E8E096C83",
+    "workflow/handoffs/luna-0-track-b-execution-gate-proposal-20261010-R3.md": "C32B14BF69D06425AA5052B8DE2F5C5D967C30677C81C481412A5E68C1A7B600",
+    "experiments/luna64/validate-track-b-gate-r3.mjs": "D29A8DB26141AEA11ED8D3EC314A0A3E2EECFE18573C2FD56D1D88E8C83BD9FB"
+  }
+}

@@ -1,0 +1,294 @@
+{
+  "schema": "LUNA64-TRACK-B-GOLDEN-R3",
+  "fixture_revision": "3.0.0",
+  "gate_id": "L64-TB-GATE-20261010-R3",
+  "protocol_path": "experiments/luna64/luna64-track-b-protocol-r3.json",
+  "arithmetic": {
+    "timestamps": "exact signed 64-bit integer microticks",
+    "amplitudes": "exact rational values in fixture, converted once to IEEE-754 binary64 at model input",
+    "model_numeric": "IEEE-754 binary64",
+    "expected_float_tolerance": 1e-12,
+    "gradient_finite_difference_max_absolute_error": 1e-7
+  },
+  "fixtures": [
+    {
+      "id": "primary-positive-generated",
+      "kind": "primary_training_generator_example",
+      "seed": 6401,
+      "split": "train",
+      "local_ordinal": 0,
+      "block_ordinal": 0,
+      "cell": 0,
+      "order_bit": 0,
+      "gap_bit": 0,
+      "arm_e_permutation_bit": 0,
+      "target": 1,
+      "draws": {
+        "amplitude_delta_sha256": "B1FEF520B7A95EFF92EB6C54B07B3074E06389779E0E6F6085503D24CF0D179C",
+        "amplitude_delta_index": 2,
+        "nuisance_nu_sha256": "FCE1F23B9424032BDE13CDAD68FCBE22E7D2470237918F45BFFF777239E2D8C5",
+        "nuisance_nu_index": 2
+      },
+      "input_events": [
+        {"input_ordinal": 0, "symbol": "A", "amplitude": "1.0625", "physical_ticks": 0, "decoder_view_gap_ticks": 0, "energy_charge": 1},
+        {"input_ordinal": 1, "symbol": "B", "amplitude": "0.9375", "physical_ticks": 1000000, "decoder_view_gap_ticks": 1000000, "energy_charge": 1},
+        {"input_ordinal": 2, "symbol": "N", "amplitude": "0.3125", "physical_ticks": 2000000, "decoder_view_gap_ticks": 1000000, "energy_charge": 1},
+        {"input_ordinal": 3, "symbol": "D", "amplitude": "0.1875", "physical_ticks": 3000000, "decoder_view_gap_ticks": 1000000, "energy_charge": 1}
+      ],
+      "readout_before_training": {
+        "feature": "arm-dependent; B count feature is [1,1,1,1]",
+        "logit": 0,
+        "probability_class_1": 0.5,
+        "predicted_class": 0,
+        "prediction_ticks": 3000000
+      },
+      "reward": {
+        "activation_id": "L64R3/train/6401/0/prediction/0",
+        "origin_ticks": 3000000,
+        "delay_ticks": 0,
+        "delivery_ticks": 3000000,
+        "outcome": "false_negative",
+        "signed_reward": -1,
+        "phase_order": "prediction_and_credit_capture_before_reward_origin_delivery_and_settlement"
+      },
+      "eligibility": {
+        "input_ages_ticks_at_capture": [3000000, 2000000, 1000000, 0],
+        "valid_input_count": 4,
+        "input_trace_state_after_capture": "may_expire independently; captured credit is immutable"
+      },
+      "credit": {
+        "record_id": "L64R3/train/6401/0/prediction/0/credit",
+        "state_transitions": ["CREDIT_CAPTURED", "AWAITING_REWARD", "REWARD_SETTLED", "RECORD_RETAINED_AS_DUPLICATE_GUARD"],
+        "cleanup_ticks": 19000001,
+        "reward_event_energy_charge": 0
+      },
+      "post_reward_readout_reference": {
+        "arm": "B_simple_eligibility",
+        "initial_weights_and_bias": [0, 0, 0, 0, 0],
+        "eligibility_sum": [-1, -1, -1, -1, -1],
+        "learning_rate": 0.01,
+        "updated_weights_and_bias": [0.01, 0.01, 0.01, 0.01, 0.01]
+      },
+      "event_cost_total": 4
+    },
+    {
+      "id": "primary-negative-generated",
+      "kind": "primary_training_generator_example",
+      "seed": 6401,
+      "split": "train",
+      "local_ordinal": 1,
+      "block_ordinal": 0,
+      "cell": 1,
+      "order_bit": 0,
+      "gap_bit": 1,
+      "arm_e_permutation_bit": 0,
+      "target": 0,
+      "input_events": [
+        {"input_ordinal": 0, "symbol": "A", "amplitude": "1.0625", "physical_ticks": 0, "decoder_view_gap_ticks": 0, "energy_charge": 1},
+        {"input_ordinal": 1, "symbol": "B", "amplitude": "0.9375", "physical_ticks": 3000000, "decoder_view_gap_ticks": 3000000, "energy_charge": 1},
+        {"input_ordinal": 2, "symbol": "N", "amplitude": "0.3125", "physical_ticks": 4000000, "decoder_view_gap_ticks": 1000000, "energy_charge": 1},
+        {"input_ordinal": 3, "symbol": "D", "amplitude": "0.1875", "physical_ticks": 5000000, "decoder_view_gap_ticks": 1000000, "energy_charge": 1}
+      ],
+      "readout_before_training": {"logit": 0, "probability_class_1": 0.5, "predicted_class": 0, "prediction_ticks": 5000000},
+      "reward": {"outcome": "true_negative", "signed_reward": 1, "delay_ticks": 0, "delivery_ticks": 5000000},
+      "eligibility": {"input_ages_ticks_at_capture": [5000000, 2000000, 1000000, 0], "valid_input_count": 4},
+      "credit": {"state_transitions": ["CREDIT_CAPTURED", "AWAITING_REWARD", "REWARD_SETTLED"], "cleanup_ticks": 21000001, "reward_event_energy_charge": 0},
+      "event_cost_total": 4
+    },
+    {
+      "id": "distractor-containing-generated",
+      "kind": "primary_training_generator_example",
+      "seed": 6401,
+      "split": "train",
+      "local_ordinal": 8,
+      "block_ordinal": 0,
+      "cell": 8,
+      "order_bit": 1,
+      "gap_bit": 0,
+      "arm_e_permutation_bit": 0,
+      "target": 0,
+      "input_events": [
+        {"input_ordinal": 0, "symbol": "B", "amplitude": "0.9375", "physical_ticks": 0, "decoder_view_gap_ticks": 0, "energy_charge": 1},
+        {"input_ordinal": 1, "symbol": "A", "amplitude": "1.0625", "physical_ticks": 1000000, "decoder_view_gap_ticks": 1000000, "energy_charge": 1},
+        {"input_ordinal": 2, "symbol": "N", "amplitude": "0.3125", "physical_ticks": 2000000, "decoder_view_gap_ticks": 1000000, "energy_charge": 1},
+        {"input_ordinal": 3, "symbol": "D", "amplitude": "0.1875", "physical_ticks": 3000000, "decoder_view_gap_ticks": 1000000, "energy_charge": 1}
+      ],
+      "readout_before_training": {"logit": 0, "probability_class_1": 0.5, "predicted_class": 0, "prediction_ticks": 3000000},
+      "reward": {"outcome": "true_negative", "signed_reward": 1, "delay_ticks": 0, "delivery_ticks": 3000000},
+      "distractor_expectation": "N and D are label-independent nuisance channels and are both processed and charged once",
+      "event_cost_total": 4
+    },
+    {
+      "id": "temporally-ambiguous-out-of-domain",
+      "kind": "out_of_domain_fixture",
+      "seed": 6401,
+      "split": "fixture",
+      "target": "NOT_SCORED_OUT_OF_DOMAIN",
+      "input_events": [
+        {"input_ordinal": 0, "symbol": "A", "amplitude": "1", "physical_ticks": 0, "decoder_view_gap_ticks": 0, "energy_charge": 1},
+        {"input_ordinal": 1, "symbol": "B", "amplitude": "1", "physical_ticks": 2000000, "decoder_view_gap_ticks": 2000000, "energy_charge": 1},
+        {"input_ordinal": 2, "symbol": "N", "amplitude": "0.25", "physical_ticks": 3000000, "decoder_view_gap_ticks": 1000000, "energy_charge": 1},
+        {"input_ordinal": 3, "symbol": "D", "amplitude": "0.25", "physical_ticks": 4000000, "decoder_view_gap_ticks": 1000000, "energy_charge": 1}
+      ],
+      "expected_readout_before_training": {"logit": 0, "probability_class_1": 0.5, "predicted_class": 0, "prediction_ticks": 4000000},
+      "reward": "none",
+      "credit_record": "captured then expires without reward",
+      "cleanup_ticks": 20000001,
+      "event_cost_total": 4
+    },
+    {
+      "id": "silent-control",
+      "kind": "evaluation_control_fixture",
+      "seed": 6401,
+      "split": "evaluation",
+      "input_events": [],
+      "target": 0,
+      "expected_readout": {"feature": "empty", "logit": 0, "probability_class_1": 0.5, "predicted_class": 0, "prediction_ticks": 5000000},
+      "activation": "none",
+      "reward_origin": "none",
+      "eligibility": "empty",
+      "credit_record": "none",
+      "cleanup_ticks": 5000000,
+      "event_cost_total": 0
+    },
+    {
+      "id": "delayed-reward-eight-tu",
+      "kind": "lifecycle_unit_fixture",
+      "seed": 6401,
+      "split": "fixture",
+      "target": 1,
+      "input_events": [
+        {"input_ordinal": 0, "symbol": "A", "amplitude": "1", "physical_ticks": 0, "decoder_view_gap_ticks": 0, "energy_charge": 1},
+        {"input_ordinal": 1, "symbol": "B", "amplitude": "1", "physical_ticks": 1000000, "decoder_view_gap_ticks": 1000000, "energy_charge": 1},
+        {"input_ordinal": 2, "symbol": "N", "amplitude": "0.25", "physical_ticks": 2000000, "decoder_view_gap_ticks": 1000000, "energy_charge": 1},
+        {"input_ordinal": 3, "symbol": "D", "amplitude": "0.25", "physical_ticks": 3000000, "decoder_view_gap_ticks": 1000000, "energy_charge": 1}
+      ],
+      "readout_before_training": {"logit": 0, "probability_class_1": 0.5, "predicted_class": 0, "prediction_ticks": 3000000},
+      "reward": {
+        "identity": "L64R3/fixture/6401/delayed-eight/prediction/0/reward-origin/delay-8000000",
+        "origin_ticks": 3000000,
+        "delivery_ticks": 11000000,
+        "delay_ticks": 8000000,
+        "outcome": "false_negative",
+        "signed_reward": -1
+      },
+      "credit": {"captured_ticks": 3000000, "survives_logical_completion": true, "settlement": "accepted", "cleanup_ticks": 19000001},
+      "event_cost_total": 4,
+      "reward_event_energy_charge": 0
+    },
+    {
+      "id": "eligibility-retention-boundary",
+      "kind": "lifecycle_unit_fixture",
+      "input_reception_ticks": 0,
+      "eligibility_lifetime_ticks": 8000000,
+      "cases": [
+        {
+          "activation_ticks": 8000000,
+          "expected": "input eligibility valid at inclusive boundary; one credit record captures input ID; captured record survives input-trace expiry; reward due at activation+16000000 is accepted; cleanup at 24000001"
+        },
+        {
+          "activation_ticks": 8000001,
+          "expected": "input eligibility expired before activation; no credit record; reward is logged_unattributed; episode cleanup at logical completion"
+        }
+      ]
+    },
+    {
+      "id": "pcn-one-event-inference-and-gradient",
+      "kind": "mathematical_reference_fixture",
+      "initial_parameters": {
+        "V_rule": "V[i,j]=0.25 if i=j; 0.125 if i=j+4; else 0",
+        "V_shape": [8, 4],
+        "c": [0, 0, 0, 0, 0, 0, 0, 0],
+        "z_previous": [0, 0, 0, 0],
+        "parameter_bounds": [-1, 1],
+        "state_bounds": [-1, 1],
+        "tau_tu": 2,
+        "lambda": 1,
+        "gamma": 0.0625,
+        "inference_iterations": 4,
+        "eta_predictive": 0.001
+      },
+      "input": {"x": [1, 0, 0, 0, 0, 0, 0, 0], "elapsed_ticks": 0, "z0": [0, 0, 0, 0]},
+      "inference_latent_after_each_step": [
+        [0.015625, 0, 0, 0],
+        [0.030196906457891, 0, 0, 0],
+        [0.0437862730472156, 0, 0, 0],
+        [0.0564589876996739, 0, 0, 0]
+      ],
+      "expected_prediction": {
+        "xhat": [0.0141138096577061, 0, 0, 0, 0.00705725629705554, 0, 0, 0],
+        "epsilon": [0.985886190342294, 0, 0, 0, -0.00705725629705554, 0, 0, 0],
+        "objective": 0.487604501233078,
+        "readout_logit_at_zero_head": 0,
+        "readout_probability": 0.5,
+        "readout_class_by_tie_rule": 0
+      },
+      "expected_nonzero_parameter_gradients": {
+        "g_V_0_0": -0.0556510484172459,
+        "g_V_4_0": 0.000398425701941678,
+        "g_c_0": -0.985689802184804,
+        "g_c_4": 0.00705690481134821
+      },
+      "expected_updated_parameters": {
+        "V_0_0": 0.250055651048417,
+        "V_4_0": 0.124999601574298,
+        "c_0": 0.000985689802184804,
+        "c_4": -0.00000705690481134821
+      },
+      "all_omitted_gradients": 0,
+      "reward": "none; predictive error is not reward",
+      "event_cost_charge": 1
+    }
+  ],
+  "credit_delay_boundary_cases": [
+    {"delay_tu": 0, "delay_ticks": 0, "eligibility_at_origin": "captured", "record_at_delivery": "AWAITING_REWARD", "settlement": "accepted_after_prediction_phase", "cleanup_ticks_from_activation": 16000001, "energy_recharged": false},
+    {"delay_tu": 1, "delay_ticks": 1000000, "eligibility_at_origin": "captured", "record_at_delivery": "AWAITING_REWARD", "settlement": "accepted", "cleanup_ticks_from_activation": 16000001, "energy_recharged": false},
+    {"delay_tu": 8, "delay_ticks": 8000000, "eligibility_at_origin": "captured_record_survives_input_trace_expiry", "record_at_delivery": "AWAITING_REWARD", "settlement": "accepted", "cleanup_ticks_from_activation": 16000001, "energy_recharged": false},
+    {"delay_tu": 9, "delay_ticks": 9000000, "eligibility_at_origin": "captured_record_survives_input_trace_expiry", "record_at_delivery": "AWAITING_REWARD", "settlement": "accepted", "cleanup_ticks_from_activation": 16000001, "energy_recharged": false},
+    {"delay_tu": 15, "delay_ticks": 15000000, "eligibility_at_origin": "captured_record_survives_input_trace_expiry", "record_at_delivery": "AWAITING_REWARD", "settlement": "accepted", "cleanup_ticks_from_activation": 16000001, "energy_recharged": false},
+    {"delay_tu": 16, "delay_ticks": 16000000, "eligibility_at_origin": "captured_record_survives_input_trace_expiry", "record_at_delivery": "AWAITING_REWARD", "settlement": "accepted_at_inclusive_deadline", "cleanup_ticks_from_activation": 16000001, "energy_recharged": false},
+    {"delay_tu": 17, "delay_ticks": 17000000, "eligibility_at_origin": "captured_record_survives_input_trace_expiry", "record_at_delivery": "already_EXPIRED_AND_CLEANED", "settlement": "rejected_late_no_update", "cleanup_ticks_from_activation": 16000001, "energy_recharged": false}
+  ],
+  "same_time_expiry_delivery": {
+    "activation_ticks": 0,
+    "deadline_ticks": 16000000,
+    "expiry_and_late_delivery_ticks": 16000001,
+    "phase_order": ["EXPIRY", "REWARD_DELIVERY", "PHYSICAL_CLEANUP"],
+    "expected": ["record transitions to EXPIRED", "delivery rejected as late", "cleanup removes record"],
+    "energy_charge_on_delivery": 0
+  },
+  "duplicate_reward_fixture": {
+    "first_delivery_ticks": 1000000,
+    "duplicate_delivery_ticks": 1000000,
+    "stable_reward_identity": true,
+    "expected": ["first delivery settles exactly one update", "duplicate is no-op and counted", "event cost unchanged"]
+  },
+  "gradient_verification": {
+    "procedure": "central differences on the scalar objective with respect to z, every V entry, and every c entry; independently evaluate the objective at plus/minus perturbations",
+    "interior_fixture": {
+      "z": [0.12, -0.17, 0.08, 0.25],
+      "z0": [0.1, -0.2, 0.05, 0.3],
+      "x": [0, 0.9375, 0, 0, 0, 0, 0, 0],
+      "V_and_c": "protocol initialization"
+    },
+    "step_sizes": [0.000244140625, 0.0000152587890625, 0.00000095367431640625],
+    "observed_max_absolute_errors": [0.0000000218525896267252, 0.0000000000848571213296623, 0.0000000000398371613474779],
+    "tolerance": 0.0000001,
+    "status": "EXECUTED_GOVERNANCE_ONLY_PASS_FOR_INTERIOR_OBJECTIVE_GRADIENTS",
+    "not_tested": [
+      "clipped-boundary one-sided derivatives",
+      "full training loop",
+      "reward updates against a learning trajectory",
+      "scientific efficacy"
+    ],
+    "derivation_independence": "objective finite differences were evaluated separately from the closed-form gradient expressions; the one-event fixture values were independently recomputed with scalar recurrences"
+  },
+  "resource_boundary_fixtures": {
+    "history_capacity": 4,
+    "eligibility_capacity": 8,
+    "credit_capacity": 1,
+    "overflow_probe": {"attempted_eligibility_entries": 9, "capacity": 8, "injection": "lifecycle-only ledger fixture, not task receptions", "expected": "typed_overflow_episode_invalid_before_ninth_entry_is_inserted"},
+    "event_cost_before_overflow": "fixture is injected before any synthetic input reception; no event charge is assigned to ledger-only entries",
+    "deterministic_replay": "same seed, split, ordinal, arm, and protocol bytes reproduce identical event IDs, values, times, permutation bits, targets, rewards, credit states, and cleanup times"
+  }
+}

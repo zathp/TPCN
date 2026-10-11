@@ -1,0 +1,174 @@
+{
+  "fixture_schema": "LUNA64-TRACK-B-GOLDEN-R4",
+  "gate_id": "L64-TB-GATE-20261010-R4",
+  "protocol_path": "experiments/luna64/luna64-track-b-protocol-r4.json",
+  "math": {
+    "generator": [
+      {"seed": 6401, "split": "TRAIN", "block": 0, "draw_name": "DELTA", "counter": 0, "digest": "ff8403df9c4918daa89533d8e02ac6fea8ffb0cc22c3752b9dfed5f96604fef9", "support_index": 2, "expected_value": "0.0625"},
+      {"seed": 6401, "split": "TRAIN", "block": 0, "draw_name": "NU", "counter": 0, "digest": "6f99b0c338c0defb2f2700f4152ecab48485a3eae7c4e88ae31b73cf2e0b7657", "support_index": 1, "expected_value": "0"}
+    ],
+    "temporal_disruption": [
+      {"block_index": 0, "physical_gap_ticks": 4000000, "expected_decoder_gap_ticks": 4000000, "expected_physical_gap_ticks": 4000000},
+      {"block_index": 0, "physical_gap_ticks": 6000000, "expected_decoder_gap_ticks": 6000000, "expected_physical_gap_ticks": 6000000},
+      {"block_index": 1, "physical_gap_ticks": 4000000, "expected_decoder_gap_ticks": 6000000, "expected_physical_gap_ticks": 4000000},
+      {"block_index": 1, "physical_gap_ticks": 6000000, "expected_decoder_gap_ticks": 4000000, "expected_physical_gap_ticks": 6000000}
+    ],
+    "attribution_specificity": [
+      {
+        "event_credit_masses": [0.4, 0.3, 0.2, 0.1],
+        "event_logit_changes": [0.55, 0.0000001, 0.25, 0],
+        "expected_score": 0.6,
+        "expected_denominator": 1
+      },
+      {
+        "event_credit_masses": [0.5, 0.5],
+        "event_logit_changes": [0.000001, 0.000000999],
+        "expected_score": 0,
+        "expected_denominator": 1
+      },
+      {
+        "event_credit_masses": [0, 0],
+        "event_logit_changes": [0.5, 0.2],
+        "expected_inconclusive": true
+      }
+    ],
+    "eligibility": {
+      "kernel": "exp(-age_tu/2), inclusive age<=8 TU",
+      "kernel_values": [
+        {"age_tu": 0, "expected": 1},
+        {"age_tu": 2, "expected": 0.36787944117144233},
+        {"age_tu": 4, "expected": 0.1353352832366127},
+        {"age_tu": 8, "expected": 0.01831563888873418},
+        {"age_tu": 8.000001, "expected": 0}
+      ],
+      "equal_strength_distinct_timing": {
+        "predicted_class": 1,
+        "events": [
+          {"id": "old", "age_tu": 4, "local_support_g": 0.5, "feature_coordinate": 1},
+          {"id": "new", "age_tu": 0, "local_support_g": 0.5, "feature_coordinate": 1}
+        ],
+        "expected_contribution_weights": [0.06766764161830635, 0.5],
+        "claim": "equal local strengths receive different event credit because K(age) differs"
+      },
+      "equal_timing_distinct_contribution": {
+        "predicted_class": 1,
+        "events": [
+          {"id": "weak", "age_tu": 2, "local_support_g": 0.2, "feature_coordinate": 1},
+          {"id": "strong", "age_tu": 2, "local_support_g": 0.8, "feature_coordinate": 1}
+        ],
+        "expected_contribution_weights": [0.07357588823428847, 0.29430355293715387],
+        "claim": "equal ages receive different event credit because local score-delta factors differ"
+      },
+      "nearby_distractor_vs_distant_informative": {
+        "events": [
+          {"id": "near_distractor", "age_tu": 0.1, "local_support_g": 0.05, "feature_coordinate": 1},
+          {"id": "distant_informative", "age_tu": 5, "local_support_g": 0.8, "feature_coordinate": 1}
+        ],
+        "expected_absolute_weights": [0.047561471225035706, 0.06566799889911905],
+        "claim": "a temporally nearby event with negligible local contribution receives less credit than a distant supported event"
+      },
+      "outside_horizon": {"age_tu": 8.000001, "local_support_g": 1, "expected_weight": 0},
+      "zero_reward": {"reward": 0, "eligibility": [0.2, -0.1], "learning_rate": 0.01, "expected_parameter_delta": [0, 0]},
+      "duplicate_reward": {"first_delivery_id": "same-id", "duplicate_delivery_id": "same-id", "reward": 1, "expected_settlements": 1}
+    },
+    "pcn_multievent": {
+      "initial_state": {"z": [0, 0, 0, 0], "tick": 0},
+      "readout": {"w": [0.01, -0.02, 0.015, 0.005], "b": 0},
+      "events": [
+        {"id": "A0", "symbol": "A", "amplitude": 1, "tick": 0},
+        {"id": "B1", "symbol": "B", "amplitude": 0.9375, "tick": 4000000},
+        {"id": "N2", "symbol": "N", "amplitude": 0.3125, "tick": 5000000}
+      ],
+      "expected_transitions": [
+        {
+          "id": "A0",
+          "z0": [0, 0, 0, 0],
+          "z_after": [0.056458987699673925, 0, 0, 0],
+          "logit": 0.0005645898769967392,
+          "epsilon_final": [0.985886190342294, 0, 0, 0, -0.007057256297055535, 0, 0, 0]
+        },
+        {
+          "id": "B1",
+          "z0": [0.0076408930915878035, 0, 0, 0],
+          "z_after": [0.007450562073073648, 0.052930626860875477, 0, 0],
+          "logit": -0.0009841069164867732,
+          "epsilon_final": [-0.0028487372458835336, 0.9242681155908828, 0, 0, -0.0009242601226421421, -0.00661623181427557, 0, 0]
+        },
+        {
+          "id": "N2",
+          "z0": [0.004518994329411286, 0.032104048028930035, 0, 0],
+          "z_after": [0.004383938941584804, 0.0314854716688093, 0.01764424319364301, 0],
+          "logit": -0.0003212063960556929,
+          "epsilon_final": [-0.002079061958103763, -0.00879681753719077, 0.30808896781070905, 0, -0.00054000783388005, -0.0039290365564140384, -0.002205526823044525, 0]
+        }
+      ],
+      "silence_fixture": {
+        "prior_z": [0.1, -0.2, 0, 0],
+        "elapsed_ticks": 3000000,
+        "no_intermediate_update": true,
+        "next_event_z0": [0.022313016014842983, -0.044626032029685966, 0, 0]
+      },
+      "reset_fixture": {"after_cleanup_z": [0, 0, 0, 0], "after_cleanup_history": 0, "after_cleanup_credit_records": 0}
+    }
+  },
+  "statistics": {
+    "algorithm": "SHA-256 draws keyed L64-R4.3-BOOT|4.3.0-draft|L64-TB-GATE-20261010-R4|640000|comparison_id|replicate_index|draw_index; full 32-byte digest interpreted as an unsigned big-endian integer modulo four seed effects; 257 fixture replicates; four draws per replicate with replacement; sorted bootstrap means; nearest-rank endpoints ceil(0.0125*257)=4 and ceil(0.9875*257)=254",
+    "positive": {
+      "comparison_id": "fixture_positive",
+      "seed_effects": [0.1, 0.2, 0.3, 0.4],
+      "expected_mean": 0.25,
+      "replicates": 257,
+      "interval": [0.1, 0.37500000000000006]
+    },
+    "zero_degenerate": {
+      "comparison_id": "fixture_zero",
+      "seed_effects": [0, 0, 0, 0],
+      "expected_mean": 0,
+      "replicates": 257,
+      "interval": [0, 0]
+    },
+    "verdict_cases": [
+      {"id": "success_at_inclusive_thresholds", "valid": true, "accuracy": 0.7, "mean_effect": 0.05, "lower_ci_primary": 0.000001, "lower_ci_attribution": 0.000001, "specificity_n": 0.2, "specificity_u": 0.1, "specificity_r": 0.1, "ops_ratio": 2, "memory_ratio": 2, "disruption_accuracy": 0.55, "expected": "SUCCESS"},
+      {"id": "negative_effect", "valid": true, "accuracy": 0.8, "mean_effect": -0.01, "lower_ci_primary": -0.1, "lower_ci_attribution": -0.1, "specificity_n": 0.2, "specificity_u": 0.2, "specificity_r": 0.2, "ops_ratio": 1.5, "memory_ratio": 1.5, "disruption_accuracy": 0.5, "expected": "FAILURE"},
+      {"id": "exact_zero_effect", "valid": true, "accuracy": 0.7, "mean_effect": 0, "lower_ci_primary": 0, "lower_ci_attribution": 0, "specificity_n": 0.2, "specificity_u": 0.2, "specificity_r": 0.2, "ops_ratio": 1.5, "memory_ratio": 1.5, "disruption_accuracy": 0.5, "expected": "FAILURE"},
+      {"id": "confidence_interval_touches_zero", "valid": true, "accuracy": 0.8, "mean_effect": 0.1, "lower_ci_primary": 0.01, "lower_ci_attribution": 0, "specificity_n": 0.2, "specificity_u": 0.2, "specificity_r": 0.2, "ops_ratio": 1.5, "memory_ratio": 1.5, "disruption_accuracy": 0.5, "expected": "FAILURE"},
+      {"id": "accuracy_exactly_at_threshold", "valid": true, "accuracy": 0.7, "mean_effect": 0.1, "lower_ci_primary": 0.01, "lower_ci_attribution": 0.01, "specificity_n": 0.2, "specificity_u": 0.1, "specificity_r": 0.1, "ops_ratio": 1.5, "memory_ratio": 1.5, "disruption_accuracy": 0.5, "expected": "SUCCESS"},
+      {"id": "accuracy_above_unit_interval", "valid": true, "accuracy": 1.01, "mean_effect": 0.1, "lower_ci_primary": 0.01, "lower_ci_attribution": 0.01, "specificity_n": 0.2, "specificity_u": 0.1, "specificity_r": 0.1, "ops_ratio": 1, "memory_ratio": 1, "disruption_accuracy": 0.5, "expected": "INCONCLUSIVE"},
+      {"id": "specificity_outside_unit_interval", "valid": true, "accuracy": 0.8, "mean_effect": 0.1, "lower_ci_primary": 0.01, "lower_ci_attribution": 0.01, "specificity_n": 3, "specificity_u": 0.2, "specificity_r": 0.2, "ops_ratio": 1, "memory_ratio": 1, "disruption_accuracy": 0.5, "expected": "INCONCLUSIVE"},
+      {"id": "negative_cost_ratio", "valid": true, "accuracy": 0.8, "mean_effect": 0.1, "lower_ci_primary": 0.01, "lower_ci_attribution": 0.01, "specificity_n": 0.2, "specificity_u": 0.1, "specificity_r": 0.1, "ops_ratio": -0.1, "memory_ratio": 1, "disruption_accuracy": 0.5, "expected": "INCONCLUSIVE"},
+      {"id": "effect_outside_difference_range", "valid": true, "accuracy": 0.8, "mean_effect": 1.01, "lower_ci_primary": 0.01, "lower_ci_attribution": 0.01, "specificity_n": 0.2, "specificity_u": 0.1, "specificity_r": 0.1, "ops_ratio": 1, "memory_ratio": 1, "disruption_accuracy": 0.5, "expected": "INCONCLUSIVE"},
+      {"id": "negative_specificity_comparison_effect", "valid": true, "accuracy": 0.8, "mean_effect": 0.1, "lower_ci_primary": 0.01, "lower_ci_attribution": 0.01, "specificity_n": 0.1, "specificity_u": 0.2, "specificity_r": 0.2, "ops_ratio": 1, "memory_ratio": 1, "disruption_accuracy": 0.5, "expected": "FAILURE"},
+      {"id": "missing_attribution_ci", "valid": true, "accuracy": 0.8, "mean_effect": 0.1, "lower_ci_primary": 0.01, "specificity_n": 0.2, "specificity_u": 0.1, "specificity_r": 0.1, "ops_ratio": 1, "memory_ratio": 1, "disruption_accuracy": 0.5, "expected": "INCONCLUSIVE"},
+      {"id": "missing_paired_seed", "valid": false, "missing_seed": true, "expected": "INCONCLUSIVE"},
+      {"id": "empty_attribution_denominator", "valid": false, "empty_attribution": true, "expected": "INCONCLUSIVE"},
+      {"id": "nonfinite_result", "valid": false, "nonfinite": true, "expected": "INCONCLUSIVE"},
+      {"id": "aborted_seed", "valid": false, "aborted_seed": true, "expected": "INCONCLUSIVE"},
+      {"id": "degenerate_bootstrap_with_zero_effect", "valid": true, "accuracy": 0.7, "mean_effect": 0, "lower_ci_primary": 0, "lower_ci_attribution": 0, "specificity_n": 0.2, "specificity_u": 0.1, "specificity_r": 0.1, "ops_ratio": 1, "memory_ratio": 1, "disruption_accuracy": 0.5, "expected": "FAILURE"},
+      {"id": "unavailable_cost", "valid": false, "cost_available": false, "expected": "INCONCLUSIVE"},
+      {"id": "higher_accuracy_excessive_cost", "valid": true, "accuracy": 0.9, "mean_effect": 0.2, "lower_ci_primary": 0.1, "lower_ci_attribution": 0.1, "specificity_n": 0.4, "specificity_u": 0.2, "specificity_r": 0.2, "ops_ratio": 2.01, "memory_ratio": 1.5, "disruption_accuracy": 0.5, "expected": "FAILURE"},
+      {"id": "lower_cost_worse_accuracy", "valid": true, "accuracy": 0.69, "mean_effect": -0.01, "lower_ci_primary": -0.1, "lower_ci_attribution": -0.1, "specificity_n": 0.2, "specificity_u": 0.1, "specificity_r": 0.1, "ops_ratio": 0.5, "memory_ratio": 0.5, "disruption_accuracy": 0.5, "expected": "FAILURE"}
+    ]
+  },
+  "validator_negative_cases": [
+    {"id": "duplicate_top_level", "raw_json": "{\"gate_id\":\"A\",\"gate_id\":\"B\"}", "expected_error": "duplicate object key"},
+    {"id": "duplicate_nested", "raw_json": "{\"outer\":{\"x\":1,\"x\":2}}", "expected_error": "duplicate object key"},
+    {"id": "malformed_json", "raw_json": "{\"value\":}", "expected_error": "invalid JSON grammar"},
+    {"id": "trailing_data", "raw_json": "{} true", "expected_error": "trailing data"},
+    {"id": "excessive_nesting", "raw_json": null, "expected_error": "nesting depth over 64"},
+    {"id": "unknown_field", "mutation": {"op": "set", "path": "unknown_field", "value": true}, "expected_error": "additionalProperties"},
+    {"id": "missing_required", "mutation": {"op": "delete", "path": "gate_id"}, "expected_error": "required"},
+    {"id": "wrong_numeric_type", "mutation": {"op": "set", "path": "timebase.ticks_per_tu", "value": "1000000"}, "expected_error": "type"},
+    {"id": "nonfinite_number", "raw_json": "{\"value\":NaN}", "expected_error": "JSON number"},
+    {"id": "invalid_timebase", "mutation": {"op": "set", "path": "timebase.ticks_per_tu", "value": 999}, "expected_error": "timebase"},
+    {"id": "negative_capacity", "mutation": {"op": "set", "path": "eligibility.capacity", "value": -1}, "expected_error": "capacity"},
+    {"id": "overflow_capacity", "mutation": {"op": "set", "path": "eligibility.capacity", "value": 9007199254740992}, "expected_error": "safe integer"},
+    {"id": "contradictory_reward_expiry", "mutation": {"op": "set", "path": "reward_lifecycle.expiry_tick_after_activation", "value": 16000000}, "expected_error": "expiry"},
+    {"id": "invalid_arm_identity", "mutation": {"op": "set", "path": "arms.0.id", "value": "Q_INVALID"}, "expected_error": "arm identity"},
+    {"id": "protocol_version_mismatch", "mutation": {"op": "set", "path": "protocol_revision", "value": "3.0.0"}, "expected_error": "protocol revision"},
+    {"id": "pilot_execution_pass_under-counted", "mutation": {"op": "set", "path": "resources.pilot_execution_passes", "value": 1}, "expected_error": "pilot episode arithmetic"},
+    {"id": "pilot_counterfactual_replay_enabled", "mutation": {"op": "set", "path": "resources.counterfactual_omission_replay_passes_in_pilot", "value": 1}, "expected_error": "pilot replay scope"},
+    {"id": "reward_delay_assignment_missing", "mutation": {"op": "set", "path": "reward_lifecycle.delay_assignment", "value": "unspecified"}, "expected_error": "reward delay assignment"},
+    {"id": "reward_delay_value_changed", "mutation": {"op": "set", "path": "reward_lifecycle.delay_ticks.0", "value": 500000}, "expected_error": "reward delay assignment"},
+    {"id": "replay_digest_not_comparable", "mutation": {"op": "set", "path": "resources.replay_digest.equal_pass_digests_required", "value": false}, "expected_error": "pilot replay scope"}
+  ]
+}

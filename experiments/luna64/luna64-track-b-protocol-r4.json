@@ -1,0 +1,308 @@
+{
+  "schema": "LUNA64-TRACK-B-PROTOCOL-R4",
+  "schema_revision": 1,
+  "gate_id": "L64-TB-GATE-20261010-R4",
+  "protocol_revision": "4.3.0-draft",
+  "status": {
+    "draft": true,
+    "independent_review": "pending",
+    "owner_approval": "not_provided",
+    "pilot_authorized": false,
+    "efficacy_authorized": false,
+    "execution_performed": false,
+    "architecture_promotion_authorized": false
+  },
+  "provenance": {
+    "source_baseline": "73aaa50f97ceab322907875ae4dcf23e7541c3b5",
+    "r3_review_sha256": "205D38E0349F3F1FB69EB6179F8144859285B949449EBDE160A744B1C5174DA3",
+    "proposal_path": "workflow/handoffs/luna-0-track-b-execution-gate-proposal-20261010-R4.md",
+    "golden_path": "experiments/luna64/luna64-track-b-golden-r4.json",
+    "schema_path": "experiments/luna64/luna64-track-b-protocol-r4.schema.json",
+    "validator_path": "experiments/luna64/validate-track-b-gate-r4.mjs",
+    "input_inventory_path": "workflow/handoffs/luna-0-track-b-execution-gate-r4-input-inventory-20261010.json"
+  },
+  "timebase": {
+    "ticks_per_tu": 1000000,
+    "tu_per_tick": "0.000001",
+    "timestamp_type": "nonnegative_signed_int64_microticks",
+    "tick_rounding": "forbidden",
+    "overflow": "typed_episode_invalid",
+    "equal_time_order": [
+      "timestamp_ticks",
+      "phase_rank",
+      "canonical_id_utf8_lexicographic",
+      "child_ordinal_integer"
+    ]
+  },
+  "task": {
+    "task_id": "balanced-order-gap-xnor-with-nearby-distractors",
+    "input_dimension": 8,
+    "channels": ["A", "B", "N", "D", "UNUSED_4", "UNUSED_5", "UNUSED_6", "UNUSED_7"],
+    "sequence": {
+      "input_events": 4,
+      "order_bit": {"0": "A_then_B", "1": "B_then_A"},
+      "gap_ticks": {"short": 4000000, "long": 6000000},
+      "target": "1 iff order_bit equals gap_bit",
+      "event_time_rule": [
+        "first A/B symbol at episode_tick 0",
+        "second A/B symbol at episode_tick gap_ticks",
+        "N distractor at gap_ticks + 1000000",
+        "D distractor and activation at gap_ticks + 2000000"
+      ],
+      "maximum_activation_tick": 8000000,
+      "amplitudes": {
+        "A": "1+delta",
+        "B": "1-delta",
+        "N": "0.25+nu",
+        "D": "0.25-nu",
+        "delta_support": ["-0.0625", "0", "0.0625"],
+        "nu_support": ["-0.0625", "0", "0.0625"],
+        "draws_shared_within_balanced_block": true
+      },
+      "model_input": "8-vector with only the received named channel set to its amplitude; all other coordinates zero; event is an impulse, never a held value"
+    },
+    "generator": {
+      "algorithm": "SHA-256 counter-mode named draws",
+      "encoding_utf8": "L64-R4.3|seed|split|block|draw_name|counter",
+      "counter_starts_at": 0,
+      "field_encoding": "UTF-8, pipe-delimited; seed, block, and counter use canonical base-10 ASCII integers with no leading zeros; split is exactly TRAIN or EVAL; draw_name is exactly DELTA or NU; fields contain no pipe byte",
+      "ordinal_mapping": "global ordinals 0..95 are TRAIN and 96..143 are EVAL; split_local_ordinal equals global ordinal for TRAIN and global ordinal minus 96 for EVAL; block=floor(split_local_ordinal/8)",
+      "draw_mapping": "one DELTA and one NU draw per split/block with counter=0; the sampled value is shared by all eight examples in that balanced block",
+      "integer_mapping": "interpret all 32 SHA-256 digest bytes as one unsigned big-endian integer and take modulo support_size",
+      "rejection_sampling": false,
+      "seeds": [6401, 6402, 6403, 6404, 6405],
+      "training_episodes_per_seed_arm": 96,
+      "evaluation_episodes_per_seed_arm": 48,
+      "training_split_ordinals": [0, 95],
+      "evaluation_split_ordinals": [96, 143],
+      "primary_cell": "split_local_ordinal mod 8; order_bit=floor(cell/4); gap_bit=floor(cell/2) mod 2; repetition=cell mod 2; target=1 iff order_bit==gap_bit; each order×gap cell has two examples per 8-example block",
+      "labels_visible_to_decoder": false,
+      "future_input_visible_to_decoder": false
+    },
+    "controls": {
+      "nearby_distractor": "N and D are noninformative channels; D is the activation event",
+      "temporal_disruption": "block_index=floor(split_local_ordinal/8); on odd blocks replace decoder_gap_ticks with 10000000-physical_gap_ticks; decoder event ticks are 0, decoder_gap_ticks, decoder_gap_ticks+1000000, decoder_gap_ticks+2000000; physical timestamps, event identities, targets, reward schedule, and eligibility ages remain unchanged",
+      "reward_delay_assignment": "For each TRAIN episode, delay_ticks is selected by split_local_ordinal modulo the ordered reward_lifecycle.delay_ticks list; the assignment is identical for every arm and seed at the same split-local ordinal. EVAL episodes receive no correctness reward and perform no reward settlement or parameter update.",
+      "decoder_timing": {
+        "normal_arms": "decoder_tick equals physical_timestamp_tick",
+        "temporal_disruption_arm": "decoder_tick follows the predeclared temporal_disruption mapping",
+        "pcn_elapsed_source": "decoder_tick",
+        "eligibility_age_source": "physical_timestamp_tick",
+        "reward_and_cleanup_clock": "physical_timestamp_tick"
+      },
+      "silent": "governance fixtures only; no activation/reward and no model update"
+    }
+  },
+  "decoder": {
+    "readout": {
+      "feature": "post-inference four-coordinate latent z",
+      "equation": "p=sigmoid(w dot z+b); predict 1 iff p>0.5; exact tie predicts 0",
+      "parameter_bounds": [-1, 1],
+      "initial_weights": [0.01, -0.02, 0.015, 0.005],
+      "initial_bias": 0,
+      "reward_learning_rate": 0.01
+    },
+    "pcn": {
+      "input_dimension": 8,
+      "latent_dimension": 4,
+      "V_shape": [8, 4],
+      "c_shape": [8],
+      "initial_V": "V[i,j]=0.25 if i=j; 0.125 if i=j+4; else 0",
+      "initial_c": "all zero",
+      "parameter_bounds": [-1, 1],
+      "state_bounds": [-1, 1],
+      "tau_tu": 2,
+      "inference_iterations_per_event": 4,
+      "gamma": 0.0625,
+      "predictive_learning_rate": 0.001,
+      "objective": "F=0.5*sum_i(x_i-tanh((V z+c)_i))^2+0.5*sum_j(z_j-z0_j)^2",
+      "prediction_error": "epsilon=x-tanh(V z+c)",
+      "inference_gradient": "grad_z=-V^T q+(z-z0), q=epsilon elementwise (1-xhat^2)",
+      "latent_step": "z_next=clip(z-gamma*grad_z,-1,+1)",
+      "parameter_gradients": "grad_V=-q z^T; grad_c=-q",
+      "parameter_update": "V=clip(V-0.001*grad_V,-1,+1); c=clip(c-0.001*grad_c,-1,+1)",
+      "event_transition": [
+        "dt_ticks=current_decoder_tick-previous_decoder_tick, nonnegative integer",
+        "z0=clip(exp(-(dt_ticks/1000000)/2)*z_previous,-1,+1)",
+        "initialize inference z^(0)=z0 for this event",
+        "perform exactly four declared inference steps using current event impulse x",
+        "update V and c once after inference using final z and final prediction error",
+        "persist z=z^(4), current decoder tick, and event-local prediction state"
+      ],
+      "silence": "no state update occurs during silence; decay is applied once lazily at the next input reception",
+      "simultaneous_events": "serially ordered by canonical event ID then child ordinal; each later same-tick event sees the preceding event state and dt=0",
+      "episode_initial_state": "z=[0,0,0,0], previous_decoder_tick=0, empty history, eligibility, and credit",
+      "training_reset": "episodic state resets after physical cleanup; per-arm/per-seed learned V,c,w,b persist between training episodes",
+      "evaluation_reset": "same episodic reset; all trained parameters are frozen and hash-checked before and after evaluation",
+      "trainable_parameter_count": 45
+    }
+  },
+  "eligibility": {
+    "horizon_ticks": 8000000,
+    "kernel_tau_tu": 2,
+    "kernel": "K(age)=exp(-age_ticks/2000000)*1[0<=age_ticks<=8000000]",
+    "local_contribution": "g_i=clip((2*a-1)*(ell_i-ell_before_i),-1,+1), where ell_i=w dot z_i+b at reception and ell_before_i uses the same readout parameters immediately before this reception; readout parameters cannot change until the delayed reward settles",
+    "eligibility_vector": "E=clip(sum_i(K(age_i)*g_i*(2*a-1)*concat(z_i,1)),-4,+4) componentwise",
+    "uniform_baseline": "q_i=1/n for each eligible event; same saved event vector and clipping",
+    "recency_baseline": "q_i=K(age_i)/max(1,sum_j K(age_j)); same saved event vector and clipping",
+    "candidate_weight": "q_i=K(age_i)*g_i; no sum normalization",
+    "contribution_claim": "local prediction-score delta proxy; not counterfactual causal identification",
+    "capture": "at irrevocable prediction; immutable per-input z, contribution factor, event ID, age, and readout snapshot",
+    "empty_set": "zero eligibility vector and later reward logged unattributed",
+    "zero_reward_update": 0,
+    "parameter_update": "theta=clip(theta+0.01*reward*E,-1,+1)",
+    "duplicate_delivery": "stable per-episode reward message ID; duplicate applies zero additional updates",
+    "capacity": 8,
+    "overflow": "typed_episode_invalid_no_eviction_no_truncation"
+  },
+  "reward_lifecycle": {
+    "oracle": "evaluator-side correctness source runs only after immutable prediction",
+    "reward_values": {"correct": 1, "incorrect": -1},
+    "payload_to_decoder": "signed scalar only; no target or label",
+    "delay_ticks": [0, 1000000, 8000000, 9000000, 15000000, 16000000],
+    "delay_assignment": "TRAIN only; index=split_local_ordinal mod delay_ticks.length; apply the same assigned delay to matched episodes across all arms and seeds. EVAL emits no correctness reward and performs no reward settlement or learner update.",
+    "deadline_ticks_after_activation": 16000000,
+    "deadline_inclusive": true,
+    "expiry_tick_after_activation": 16000001,
+    "same_tick_phase_order": ["EXPIRY", "RECEPTION_AND_COST", "LOCAL_UPDATE_AND_PREDICTION", "ACTIVATION_AND_CAPTURE", "REWARD_ORIGIN", "REWARD_DELIVERY", "CREDIT_SETTLEMENT", "LOGICAL_COMPLETION", "PHYSICAL_CLEANUP"],
+    "zero_delay": "prediction and credit capture phase precedes reward origin/delivery/settlement at the same tick",
+    "cleanup": "at activation+16000001 after settle, withhold, or reject; serial next episode begins only after cleanup",
+    "energy_charge_per_input": 1,
+    "energy_charge_per_reward": 0
+  },
+  "arms": [
+    {"id": "A_COST_ONLY", "decoder": "fixed zero head", "credit": "none", "parameters": 0},
+    {"id": "U_UNIFORM_PC", "decoder": "nonlinear PCN", "credit": "uniform", "parameters": 45},
+    {"id": "R_RECENCY_PC", "decoder": "nonlinear PCN", "credit": "recency_only", "parameters": 45},
+    {"id": "L_LINEAR_TEMPORAL", "decoder": "parameter-matched linear PCN reconstruction", "credit": "local_temporal", "parameters": 45},
+    {"id": "N_NONLINEAR_LOCAL", "decoder": "nonlinear PCN", "credit": "local_temporal", "parameters": 45},
+    {"id": "X_TEMPORAL_DISRUPTION", "decoder": "nonlinear PCN", "credit": "local_temporal", "parameters": 45}
+  ],
+  "statistics": {
+    "efficacy_execution_authorized": false,
+    "independent_unit": "seed",
+    "primary_effect": "paired per-seed balanced_accuracy_N minus balanced_accuracy_L",
+    "primary_comparisons": [
+      {"id": "N_minus_L_balanced_accuracy", "per_seed_effect": "balanced_accuracy_N-balanced_accuracy_L"},
+      {"id": "N_minus_min_control_attribution_specificity", "per_seed_effect": "min(specificity_N-specificity_U,specificity_N-specificity_R)"}
+    ],
+    "attribution_effects": ["N_minus_U_attribution_specificity", "N_minus_R_attribution_specificity"],
+    "attribution_specificity": {
+      "evaluator_only": true,
+      "frozen_parameters": true,
+      "replay": "Offline efficacy analysis only, after the separately authorized full efficacy run: for every evaluation episode and each captured eligible input event, replay the frozen decoder from the episode initial state with exactly that decoder input reception omitted; retain all other input events at their original physical and decoder timestamps and retain the evaluator activation trigger even when omitting D. Apply no parameter, reward, or eligibility update during replay. This counterfactual omission replay is expressly excluded from the feasibility-only pilot.",
+      "event_influence": "d_i=abs(ell_full-ell_without_i), where each logit is measured at the original activation trigger",
+      "influential_threshold": 0.000001,
+      "event_credit_vector": "q_i*v_i using the arm's predeclared credit weight q_i and v_i=(2*a-1)*concat(z_i,1)",
+      "event_credit_mass": "m_i=sum(abs(q_i*v_i[j])) over all readout coordinates including bias",
+      "episode_score": "sum_i(m_i*1[d_i>0.000001])/sum_i(m_i); denominator zero is invalid and yields INCONCLUSIVE",
+      "seed_score": "unweighted arithmetic mean of episode_score over the 48 frozen evaluation episodes",
+      "paired_effect": "per-seed specificity_N minus specificity_U or specificity_N minus specificity_R",
+      "learner_visibility": "no counterfactual replay, evaluator influence, or specificity score is provided to the decoder or learner"
+    },
+    "result_domains": {
+      "balanced_accuracy": [0, 1],
+      "mean_paired_effects": [-1, 1],
+      "confidence_interval_bounds": [-1, 1],
+      "raw_attribution_specificity_scores": [0, 1],
+      "paired_attribution_specificity_effects": [-1, 1],
+      "operations_and_memory_ratios": [0, "positive_finite"],
+      "temporal_disruption_accuracy": [0, 1],
+      "out_of_domain": "INCONCLUSIVE"
+    },
+    "bootstrap": {
+      "replicates": 100000,
+      "resampling_unit": "paired seed cluster",
+      "draw_digest": "SHA-256",
+      "key_encoding_utf8": "L64-R4.3-BOOT|4.3.0-draft|L64-TB-GATE-20261010-R4|640000|comparison_id|replicate_index_0_based|draw_index_0_based",
+      "replicate_index_starts_at": 0,
+      "draw_index_starts_at": 0,
+      "index_mapping": "unsigned big-endian digest integer modulo number_of_complete_seed_clusters",
+      "replacement": true,
+      "interval": "percentile",
+      "per_comparison_confidence_level": 0.975,
+      "nearest_rank_1_based": [1250, 98750],
+      "family_alpha": 0.05,
+      "primary_comparison_count": 2,
+      "familywise_adjustment": "Bonferroni across the two explicitly named primary_comparisons; each reported lower bound is the 97.5% paired-seed cluster percentile bound",
+      "effect_summary": "equal-weight mean of paired seed effects"
+    },
+    "decision": {
+      "precedence": ["INCONCLUSIVE", "SUCCESS", "FAILURE"],
+      "inconclusive_conditions": ["missing_or_aborted_or_invalid_paired_seed", "missing_required_result_or_CI", "empty_required_class_or_attribution_denominator", "unavailable_required_cost_measure", "nonfinite_result", "out_of_domain_result", "resource_or_replay_cap_breach"],
+      "success_all_conditions": ["balanced_accuracy_N>=0.70", "N_minus_L_mean>=0.05", "N_minus_L_adjusted_97.5_percent_CI_lower_bound>0", "N_minus_min_control_attribution_specificity_adjusted_97.5_percent_CI_lower_bound>0", "N_minus_U_attribution_specificity_mean>=0.10", "N_minus_R_attribution_specificity_mean>=0.10", "operations_N_over_operations_L<=2.0", "N_peak_model_memory_over_L_peak_model_memory<=2.0", "temporal_disruption_accuracy_X<=0.55"],
+      "otherwise": "FAILURE",
+      "threshold_equality": "inclusive only for >= and <= conditions; strict CI lower bound must be >0",
+      "missing_seed": "inconclusive; no replacement",
+      "aborted_seed": "inconclusive; retain partial raw artifact and no replacement",
+      "zero_correct_cost_per_correct": "positive infinity",
+      "worse_accuracy_at_lower_cost": "FAILURE",
+      "accuracy_gain_above_cost_ratio_cap": "FAILURE",
+      "efficacy_scope": "exploratory only; no reliable power claim because between-seed variance is unknown"
+    },
+    "golden_examples": [
+      {"id": "positive_equal_seed_effects", "seed_effects": [0.2, 0.2, 0.2, 0.2], "expected_mean": 0.2, "bootstrap_interval": [0.2, 0.2]},
+      {"id": "zero_degenerate_seed_effects", "seed_effects": [0, 0, 0, 0], "expected_mean": 0, "bootstrap_interval": [0, 0]}
+    ]
+  },
+  "cost_benefit": {
+    "physical_energy_claim": false,
+    "existing_activity_cost_unit": "activity-cost-proxy",
+    "lwc_status": "provisional_not_physical_energy_not_authoritative",
+    "required_counters": ["scalar_arithmetic_comparison_ops", "tanh_calls", "exp_calls", "parameter_reads", "parameter_writes", "state_reads", "state_writes", "reward_records_created", "reward_records_settled", "duplicate_rewards", "eligibility_bytes_peak", "model_bytes_peak", "input_event_cost_charges"],
+    "scalar_operation_counting": "increment once for each executed scalar add, subtract, multiply, divide, or comparison in decoder, eligibility, reward, and lifecycle arithmetic; do not count loop/index operations, serialization, hashing, memory accesses, tanh, or exp as scalar operations; report tanh/exp and reads/writes separately; abort if per-event or per-episode ceilings are exceeded",
+    "cost_per_correct": "counted_scalar_ops / correct_discriminations; if correct_discriminations=0 report positive infinity",
+    "incremental_ops_per_additional_correct": "max(0,ops_N-ops_L)/max(0,correct_N-correct_L); if denominator=0 report positive infinity",
+    "tradeoff_rule": "efficacy and attribution success conditions are necessary but insufficient; op and memory ratios must also pass; missing required measurement is inconclusive",
+    "event_cost_fairness": "matched physical input counts; exactly one activity-cost-proxy charge per received input, zero reward-settlement charge"
+  },
+  "resources": {
+    "pilot_only": true,
+    "pilot_arms": 6,
+    "pilot_seeds": 3,
+    "pilot_seed_ids": [6401, 6402, 6403],
+    "training_episodes_per_arm_seed": 96,
+    "evaluation_workload_episodes_per_arm_seed": 48,
+    "pilot_execution_passes": 2,
+    "execution_passes": "one workload pass and one byte-identical deterministic replay pass; reset the entire run to initial model parameters and episodic state before the second pass, reuse identical per-episode seeds and input bytes, compare canonical output digests, and abort on any mismatch",
+    "replay_digest": {
+      "algorithm": "SHA-256",
+      "encoding": "UTF-8 without BOM; compact JSON Lines; one episode object followed by LF; ECMAScript JSON.stringify with no replacer or whitespace",
+      "episode_record_fields_in_order": ["global_ordinal", "seed", "split", "arm_id", "input_event_records", "prediction", "trained_parameter_sha256", "counted_scalar_ops", "tanh_calls", "exp_calls", "eligibility_bytes_peak", "model_bytes_peak"],
+      "episode_record_order": "seed ascending, protocol arms array order, split TRAIN then EVAL, split_local_ordinal ascending",
+      "input_event_record_fields_in_order": ["event_id", "physical_timestamp_ticks", "decoder_timestamp_ticks", "channel_index", "amplitude"],
+      "input_event_record_order": "canonical event order from timebase.equal_time_order",
+      "number_serialization": "ECMAScript JSON.stringify",
+      "equal_pass_digests_required": true
+    },
+    "maximum_total_episodes": 5184,
+    "maximum_input_events_per_episode": 4,
+    "maximum_total_input_receptions": 20736,
+    "maximum_counted_ops_per_pcn_event": 2048,
+    "pcn_inference_iterations_per_input": 4,
+    "maximum_episode_overhead_ops": 256,
+    "maximum_pcn_workload_episodes": 4320,
+    "maximum_pcn_input_receptions": 17280,
+    "analytical_total_counted_ops_lower": 0,
+    "analytical_total_counted_ops_upper": 36716544,
+    "counterfactual_omission_replay_passes_in_pilot": 0,
+    "cpu_cores": 1,
+    "cpu_time_seconds": 900,
+    "wall_time_seconds": 1200,
+    "working_set_bytes": 536870912,
+    "artifact_bytes": 26214400,
+    "assumed_throughput_ops_per_second": 100000,
+    "assumed_overhead_excluded": ["interpreter_startup", "sha256_hashing", "json_serialization", "file_io", "garbage_collection", "test_harness", "tanh_and_exp_latency"],
+    "runtime_status": "UNVERIFIED_NO_MEASURED_THROUGHPUT",
+    "pilot_authorized": false,
+    "full_efficacy_run_authorized": false,
+    "abort": ["any_cap_exceeded", "nonfinite_state", "schema_or_replay_failure", "unexpected_write", "memory_or_time_limit_exceeded"]
+  },
+  "strict_json_profile": {
+    "dialect": "https://json-schema.org/draft/2020-12/schema",
+    "parser_must_reject": ["duplicate_object_keys_at_any_depth", "invalid_json_grammar", "nonfinite_numbers", "trailing_data", "nesting_depth_over_64"],
+    "schema_keywords_used": ["type", "properties", "required", "additionalProperties", "items", "enum", "const", "minimum", "maximum", "minLength", "maxLength"],
+    "schema_profile": "restricted documented Draft 2020-12 keyword subset; unknown schema keyword is a validator configuration error",
+    "semantic_checks": ["timebase_reciprocal", "positive_integer_capacities_within_declared_maximum", "expiry_equals_deadline_plus_one", "reward_deadline_matches_protocol", "unique_allowlisted_arm_ids_and_parameter_counts", "protocol_and_schema_revision_match", "exact_protocol_derived_R4_schema_required"]
+  }
+}

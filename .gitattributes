@@ -11,3 +11,13 @@ artifacts/luna55/*.json text eol=lf
 /tpcn/spiral_benchmark.py text eol=lf
 /tpcn/stroke_dataset.py text eol=lf
 /artifacts/luna44-acp0008-independent-routing-rerun-20261005/*.json text eol=lf
+/workflow/handoffs/luna-0-track-b-execution-gate-proposal-20261010-R4.md -text
+/experiments/luna64/luna64-track-b-protocol-r4.json -text
+/experiments/luna64/luna64-track-b-golden-r4.json -text
+/experiments/luna64/generate-track-b-gate-r4-schema.mjs -text
+/experiments/luna64/validate-track-b-gate-r4.mjs -text
+/experiments/luna64/test-track-b-gate-r4.mjs -text
+/workflow/handoffs/generate-luna64-r4-input-inventory.mjs -text
+/workflow/handoffs/generate-luna64-r4-manifest.mjs -text
+/experiments/luna64/luna64-track-b-protocol-r4.schema.json text eol=lf
+/workflow/handoffs/luna-0-track-b-execution-gate-r4-input-inventory-20261010.json text eol=lf

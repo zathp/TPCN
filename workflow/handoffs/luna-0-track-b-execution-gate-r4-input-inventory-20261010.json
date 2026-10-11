@@ -1,0 +1,235 @@
+{
+  "inventory_schema": "LUNA64-TRACK-B-R4-INPUT-INVENTORY",
+  "gate_id": "L64-TB-GATE-20261010-R4",
+  "source_baseline": "73aaa50f97ceab322907875ae4dcf23e7541c3b5",
+  "source_branch": "main",
+  "worktree_clean": false,
+  "immutable_freeze": false,
+  "reason": "Working-tree inputs include modified or untracked governing files; hashes identify current bytes only and do not establish an approved committed freeze.",
+  "entries": [
+    {
+      "path": ".github/agents/luna-64.agent.md",
+      "raw_sha256": "6B230A32D897DA6EBBF59DE706B219A40ABC1475D2480AFA85AE6C2A88A3C62A",
+      "git_blob_oid": "d18044b72eb5242cf423dca7bfbd7469bc8d1fe0",
+      "present_in_head": false,
+      "worktree_status": "?? .github/agents/luna-64.agent.md"
+    },
+    {
+      "path": "workflow/ARCHITECTURE_CONTRACT.md",
+      "raw_sha256": "A431D0A430CC49FB53FEED04CF5FF7B206714DE6451C6AB96CBC7FBB3D034883",
+      "git_blob_oid": "3afc85f86dbc6992e01cb7ca26ebadfb49c09cab",
+      "present_in_head": true,
+      "worktree_status": "clean"
+    },
+    {
+      "path": "workflow/ARCHITECTURE_CHANGELOG.md",
+      "raw_sha256": "C1FCA6E759EF99905DF2571A839BE7A9E56C3B44362DFFF98F0452D2CD1753AC",
+      "git_blob_oid": "6daddfb090375779a7dd10322529e84c6a0d0716",
+      "present_in_head": true,
+      "worktree_status": "M workflow/ARCHITECTURE_CHANGELOG.md"
+    },
+    {
+      "path": "workflow/docs/luna/LUNA_WORKFLOW.md",
+      "raw_sha256": "4DC3B8CB126C552F6A35BFA0F19E04F9F0410D6E1C94D1C85AE7BE36276036BD",
+      "git_blob_oid": "fbf554daa4c9b77969d210717942d396e5a580de",
+      "present_in_head": true,
+      "worktree_status": "M workflow/docs/luna/LUNA_WORKFLOW.md"
+    },
+    {
+      "path": "workflow/docs/architecture/ACCEPTANCE_CRITERIA.md",
+      "raw_sha256": "2B67B9EE6DA889D7CF5B44C5CAEAF90389479CEB99DE7A6F1D83ED398774D920",
+      "git_blob_oid": "510f44daab83c4def92c70617e2d5c731c5760d6",
+      "present_in_head": true,
+      "worktree_status": "clean"
+    },
+    {
+      "path": "workflow/docs/architecture_proposals/ACP-0008.md",
+      "raw_sha256": "CC060CB415C0A3C9AF424BB875FFF89696AF62B8164D65B1891610D459255A18",
+      "git_blob_oid": "1fa832472ce1797061b117e96417d88238a35491",
+      "present_in_head": true,
+      "worktree_status": "clean"
+    },
+    {
+      "path": ".github/agents/luna-63c.agent.md",
+      "raw_sha256": "AACE11DAEDA97A31C6F830022A07D0D54AF1C9FFE4F0D93F5B5364C386AD930F",
+      "git_blob_oid": "a5682a768e86c80a675b2061e8e8e92b4b640996",
+      "present_in_head": true,
+      "worktree_status": "clean"
+    },
+    {
+      "path": ".github/agents/luna-63c-mechanism.agent.md",
+      "raw_sha256": "36BB82807838362DF9244EEC60E5D3AB9D86910B599B84CCFD2F9C4508B737DB",
+      "git_blob_oid": "2964500a60d3329c81daed972b3f3ffecee40b65",
+      "present_in_head": true,
+      "worktree_status": "clean"
+    },
+    {
+      "path": "workflow/handoffs/luna-0-luna63c-mechanism-authorization-20261009.md",
+      "raw_sha256": "2C57AAFEFE6CDFC82E26764357F6E48E583E6DC0DB2194401AEA45D2A7530560",
+      "git_blob_oid": "1460d5abd4137dc4395308f0e2fefcb5d59eea95",
+      "present_in_head": true,
+      "worktree_status": "clean"
+    },
+    {
+      "path": "workflow/handoffs/luna-0-track-b-governance-authorization-20261010.md",
+      "raw_sha256": "491DFC38BED3660ACBB44540A12ED7A36FBD2C5E7A99F8178D598E7825ACBDFD",
+      "git_blob_oid": "98d9da7ca30bdbe40c1265caa8716833d0ee25f8",
+      "present_in_head": false,
+      "worktree_status": "?? workflow/handoffs/luna-0-track-b-governance-authorization-20261010.md"
+    },
+    {
+      "path": "workflow/handoffs/luna-0-track-b-execution-gate-proposal-20261010.md",
+      "raw_sha256": "5B4C8E74C3536AEA7111C749970FF44BA3DB8855317679C6EF013EAB5149CF08",
+      "git_blob_oid": "1e687aa151acd0b6d8e6fa41d1b243e728da9248",
+      "present_in_head": false,
+      "worktree_status": "?? workflow/handoffs/luna-0-track-b-execution-gate-proposal-20261010.md"
+    },
+    {
+      "path": "workflow/handoffs/luna-0-independent-review-track-b-execution-gate-20261010.md",
+      "raw_sha256": "3A734881F4E83CCE47300CBAE57A725F1BBFD72758C256367CDD58C09161C427",
+      "git_blob_oid": "68e2939bfca3d463c2c96c94b6e396a6444b1d91",
+      "present_in_head": false,
+      "worktree_status": "?? workflow/handoffs/luna-0-independent-review-track-b-execution-gate-20261010.md"
+    },
+    {
+      "path": "workflow/handoffs/luna-0-track-b-execution-gate-proposal-20261010-R1.md",
+      "raw_sha256": "44BD46E561BDD9329616B38C3AE6A74A1E79BEB497BB274A4D552C6096FC46B6",
+      "git_blob_oid": "65df12c123913b55f7e47158c2fd67c957f7c4a4",
+      "present_in_head": false,
+      "worktree_status": "?? workflow/handoffs/luna-0-track-b-execution-gate-proposal-20261010-R1.md"
+    },
+    {
+      "path": "workflow/handoffs/luna-0-independent-review-track-b-execution-gate-r1-20261010.md",
+      "raw_sha256": "2B92984E351CF305514CC2C15A79D64C4E25A495B89B5BDC026C7B638D8AD5A2",
+      "git_blob_oid": "667309195e426ce2ee3ed64e40677a96b0cbf02e",
+      "present_in_head": false,
+      "worktree_status": "?? workflow/handoffs/luna-0-independent-review-track-b-execution-gate-r1-20261010.md"
+    },
+    {
+      "path": "workflow/handoffs/luna-0-track-b-execution-gate-r1-manifest-20261010.json",
+      "raw_sha256": "F5989C457A77203CC1D10534390F2720BC9C33612E675A375ED65BB71185812D",
+      "git_blob_oid": "c296168d2e59dac39c67eb209c5445f95527df80",
+      "present_in_head": false,
+      "worktree_status": "?? workflow/handoffs/luna-0-track-b-execution-gate-r1-manifest-20261010.json"
+    },
+    {
+      "path": "workflow/handoffs/luna-0-track-b-execution-gate-proposal-20261010-R2.md",
+      "raw_sha256": "64529FD816824A3EAA246856C3BEF46E6FDD97CCDF8ED48830C27AEF558D5A0A",
+      "git_blob_oid": "039f6c56631d87b90db1f8bb7c0409f16f3b62db",
+      "present_in_head": false,
+      "worktree_status": "?? workflow/handoffs/luna-0-track-b-execution-gate-proposal-20261010-R2.md"
+    },
+    {
+      "path": "workflow/handoffs/luna-0-independent-review-track-b-execution-gate-r2-20261010.md",
+      "raw_sha256": "4EF7AEA8ECD0207A52A8B259F74153E17EED192E671EB1650D8C82394320AA57",
+      "git_blob_oid": "4e7d9ffe19b60cc11110e55ae37c591d20f968f0",
+      "present_in_head": false,
+      "worktree_status": "?? workflow/handoffs/luna-0-independent-review-track-b-execution-gate-r2-20261010.md"
+    },
+    {
+      "path": "workflow/handoffs/luna-0-track-b-execution-gate-proposal-20261010-R3.md",
+      "raw_sha256": "C32B14BF69D06425AA5052B8DE2F5C5D967C30677C81C481412A5E68C1A7B600",
+      "git_blob_oid": "1b2857374e2eb137e086ec84b5fcfc6fcec2daf0",
+      "present_in_head": false,
+      "worktree_status": "?? workflow/handoffs/luna-0-track-b-execution-gate-proposal-20261010-R3.md"
+    },
+    {
+      "path": "workflow/handoffs/luna-0-independent-review-track-b-execution-gate-r3-20261010.md",
+      "raw_sha256": "205D38E0349F3F1FB69EB6179F8144859285B949449EBDE160A744B1C5174DA3",
+      "git_blob_oid": "a0072fc4485c2fce48eaf64acdf89ccdd17a46c8",
+      "present_in_head": false,
+      "worktree_status": "?? workflow/handoffs/luna-0-independent-review-track-b-execution-gate-r3-20261010.md"
+    },
+    {
+      "path": "workflow/handoffs/luna-0-track-b-execution-gate-r3-manifest-20261010.json",
+      "raw_sha256": "29C8FEDD273839F8C262E4D66FAADCDB9574CC02DB6373B117909A0EC6C21021",
+      "git_blob_oid": "2e768ca5330c110ad12748ff1aa823cb868dc29b",
+      "present_in_head": false,
+      "worktree_status": "?? workflow/handoffs/luna-0-track-b-execution-gate-r3-manifest-20261010.json"
+    },
+    {
+      "path": "experiments/luna64/luna64-track-b-protocol-r3.json",
+      "raw_sha256": "25E3F71F2036145BE9F31804FAB2772B4829D80DE36C80FA078F09D4D9BCA6FD",
+      "git_blob_oid": "d9700331c116f7e65410698d556e14dad3ef4452",
+      "present_in_head": false,
+      "worktree_status": "?? experiments/luna64/luna64-track-b-protocol-r3.json"
+    },
+    {
+      "path": "experiments/luna64/luna64-track-b-protocol-r3.schema.json",
+      "raw_sha256": "6B6000AE0F3F5107CA23C6458CA946B99CF1C2F0F8E2716207866288A6A3F2C9",
+      "git_blob_oid": "921121bec2f987b01a43411d6a2c3b2ab0aaada2",
+      "present_in_head": false,
+      "worktree_status": "?? experiments/luna64/luna64-track-b-protocol-r3.schema.json"
+    },
+    {
+      "path": "experiments/luna64/luna64-track-b-golden-r3.json",
+      "raw_sha256": "AD9C8A7A5D6EDC01F992F1D0F02A200A6690F1459B379072E2828B0E8E096C83",
+      "git_blob_oid": "5d0bcfd5fe643b481cc14b60852c8af89e0dc865",
+      "present_in_head": false,
+      "worktree_status": "?? experiments/luna64/luna64-track-b-golden-r3.json"
+    },
+    {
+      "path": "experiments/luna64/luna64-track-b-consistency-r3.json",
+      "raw_sha256": "D81E38CAADA0AA9CFD73E6BE572A86D0FEC160024048ECA53C007194349B9AF5",
+      "git_blob_oid": "80b576bdf4574bff7add3c5949be2fbd952d50fb",
+      "present_in_head": false,
+      "worktree_status": "?? experiments/luna64/luna64-track-b-consistency-r3.json"
+    },
+    {
+      "path": "experiments/luna64/validate-track-b-gate-r3.mjs",
+      "raw_sha256": "D29A8DB26141AEA11ED8D3EC314A0A3E2EECFE18573C2FD56D1D88E8C83BD9FB",
+      "git_blob_oid": "162e1d9895c09d7c050533e59ae7c357feefe450",
+      "present_in_head": false,
+      "worktree_status": "?? experiments/luna64/validate-track-b-gate-r3.mjs"
+    },
+    {
+      "path": "workflow/handoffs/luna-0-track-b-execution-gate-proposal-20261010-R4.md",
+      "raw_sha256": "E4680D58A698DB13CFDDC6CD5FEAE73C1DD084285E7939BE14EA3A14319D82D1",
+      "git_blob_oid": "45973c96fe2c993396f4d911dfb6e8db8315dfa9",
+      "present_in_head": false,
+      "worktree_status": "?? workflow/handoffs/luna-0-track-b-execution-gate-proposal-20261010-R4.md"
+    },
+    {
+      "path": "experiments/luna64/luna64-track-b-protocol-r4.json",
+      "raw_sha256": "DA23F6DC437C9CB3661DFDA2CE9DB718F6D5582A7E1C796E0AA20D9EFBB2487C",
+      "git_blob_oid": "d9bb777a304c7f5ff198dc4b6aebd109f49a44f4",
+      "present_in_head": false,
+      "worktree_status": "?? experiments/luna64/luna64-track-b-protocol-r4.json"
+    },
+    {
+      "path": "experiments/luna64/luna64-track-b-protocol-r4.schema.json",
+      "raw_sha256": "0E59262AE276E3B68CE9EFBDAFE061756C4EB31C57E5359219C0B5BAA868B508",
+      "git_blob_oid": "90ad52b72ee77333a7b499d30fd9e9cce3757c2d",
+      "present_in_head": false,
+      "worktree_status": "?? experiments/luna64/luna64-track-b-protocol-r4.schema.json"
+    },
+    {
+      "path": "experiments/luna64/luna64-track-b-golden-r4.json",
+      "raw_sha256": "556AAA4EF414910AE7BED1FEA3A5ADB0EBF360401B41F11E2F3B4D4135B00148",
+      "git_blob_oid": "2b0ead1428c3ad9471923e255d0f9bbc35baa799",
+      "present_in_head": false,
+      "worktree_status": "?? experiments/luna64/luna64-track-b-golden-r4.json"
+    },
+    {
+      "path": "experiments/luna64/generate-track-b-gate-r4-schema.mjs",
+      "raw_sha256": "B91A5171BC8638939355E39562184C9C56C5CD21AE97AB0A53802A384D8CD404",
+      "git_blob_oid": "ce781725c8280f28568567e282e3efa604822c39",
+      "present_in_head": false,
+      "worktree_status": "?? experiments/luna64/generate-track-b-gate-r4-schema.mjs"
+    },
+    {
+      "path": "experiments/luna64/validate-track-b-gate-r4.mjs",
+      "raw_sha256": "0AB968EA3904A8BE8C3AF22B18F7610BDBF86860C7083F9DE45E5A6B2300F45A",
+      "git_blob_oid": "068bb63bf5c4cb8d985bf6aa9069fe9644cf94c4",
+      "present_in_head": false,
+      "worktree_status": "?? experiments/luna64/validate-track-b-gate-r4.mjs"
+    },
+    {
+      "path": "experiments/luna64/test-track-b-gate-r4.mjs",
+      "raw_sha256": "D3DC9BE850C886D201995EC8195135BA2E83FD47A876B189F307825744ECB41D",
+      "git_blob_oid": "c4d6fc23900824d2ed0af42089be8cef6f120db9",
+      "present_in_head": false,
+      "worktree_status": "?? experiments/luna64/test-track-b-gate-r4.mjs"
+    }
+  ]
+}

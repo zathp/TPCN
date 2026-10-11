@@ -1,0 +1,1397 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tpcn.invalid/schemas/luna64-track-b-r4.json",
+  "title": "Luna-64 Track B R4 strict protocol",
+  "type": "object",
+  "properties": {
+    "schema": {
+      "type": "string",
+      "const": "LUNA64-TRACK-B-PROTOCOL-R4"
+    },
+    "schema_revision": {
+      "type": "integer",
+      "const": 1
+    },
+    "gate_id": {
+      "type": "string",
+      "const": "L64-TB-GATE-20261010-R4"
+    },
+    "protocol_revision": {
+      "type": "string",
+      "const": "4.3.0-draft"
+    },
+    "status": {
+      "type": "object",
+      "properties": {
+        "draft": {
+          "type": "boolean"
+        },
+        "independent_review": {
+          "type": "string"
+        },
+        "owner_approval": {
+          "type": "string"
+        },
+        "pilot_authorized": {
+          "type": "boolean"
+        },
+        "efficacy_authorized": {
+          "type": "boolean"
+        },
+        "execution_performed": {
+          "type": "boolean"
+        },
+        "architecture_promotion_authorized": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "draft",
+        "independent_review",
+        "owner_approval",
+        "pilot_authorized",
+        "efficacy_authorized",
+        "execution_performed",
+        "architecture_promotion_authorized"
+      ],
+      "additionalProperties": false
+    },
+    "provenance": {
+      "type": "object",
+      "properties": {
+        "source_baseline": {
+          "type": "string"
+        },
+        "r3_review_sha256": {
+          "type": "string"
+        },
+        "proposal_path": {
+          "type": "string"
+        },
+        "golden_path": {
+          "type": "string"
+        },
+        "schema_path": {
+          "type": "string"
+        },
+        "validator_path": {
+          "type": "string"
+        },
+        "input_inventory_path": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "source_baseline",
+        "r3_review_sha256",
+        "proposal_path",
+        "golden_path",
+        "schema_path",
+        "validator_path",
+        "input_inventory_path"
+      ],
+      "additionalProperties": false
+    },
+    "timebase": {
+      "type": "object",
+      "properties": {
+        "ticks_per_tu": {
+          "type": "integer",
+          "const": 1000000
+        },
+        "tu_per_tick": {
+          "type": "string"
+        },
+        "timestamp_type": {
+          "type": "string"
+        },
+        "tick_rounding": {
+          "type": "string"
+        },
+        "overflow": {
+          "type": "string"
+        },
+        "equal_time_order": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "ticks_per_tu",
+        "tu_per_tick",
+        "timestamp_type",
+        "tick_rounding",
+        "overflow",
+        "equal_time_order"
+      ],
+      "additionalProperties": false
+    },
+    "task": {
+      "type": "object",
+      "properties": {
+        "task_id": {
+          "type": "string"
+        },
+        "input_dimension": {
+          "type": "integer"
+        },
+        "channels": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "sequence": {
+          "type": "object",
+          "properties": {
+            "input_events": {
+              "type": "integer"
+            },
+            "order_bit": {
+              "type": "object",
+              "properties": {
+                "0": {
+                  "type": "string"
+                },
+                "1": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "0",
+                "1"
+              ],
+              "additionalProperties": false
+            },
+            "gap_ticks": {
+              "type": "object",
+              "properties": {
+                "short": {
+                  "type": "integer"
+                },
+                "long": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "short",
+                "long"
+              ],
+              "additionalProperties": false
+            },
+            "target": {
+              "type": "string"
+            },
+            "event_time_rule": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "maximum_activation_tick": {
+              "type": "integer"
+            },
+            "amplitudes": {
+              "type": "object",
+              "properties": {
+                "A": {
+                  "type": "string"
+                },
+                "B": {
+                  "type": "string"
+                },
+                "N": {
+                  "type": "string"
+                },
+                "D": {
+                  "type": "string"
+                },
+                "delta_support": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "nu_support": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "draws_shared_within_balanced_block": {
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "A",
+                "B",
+                "N",
+                "D",
+                "delta_support",
+                "nu_support",
+                "draws_shared_within_balanced_block"
+              ],
+              "additionalProperties": false
+            },
+            "model_input": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "input_events",
+            "order_bit",
+            "gap_ticks",
+            "target",
+            "event_time_rule",
+            "maximum_activation_tick",
+            "amplitudes",
+            "model_input"
+          ],
+          "additionalProperties": false
+        },
+        "generator": {
+          "type": "object",
+          "properties": {
+            "algorithm": {
+              "type": "string"
+            },
+            "encoding_utf8": {
+              "type": "string"
+            },
+            "counter_starts_at": {
+              "type": "integer"
+            },
+            "field_encoding": {
+              "type": "string"
+            },
+            "ordinal_mapping": {
+              "type": "string"
+            },
+            "draw_mapping": {
+              "type": "string"
+            },
+            "integer_mapping": {
+              "type": "string"
+            },
+            "rejection_sampling": {
+              "type": "boolean"
+            },
+            "seeds": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "training_episodes_per_seed_arm": {
+              "type": "integer"
+            },
+            "evaluation_episodes_per_seed_arm": {
+              "type": "integer"
+            },
+            "training_split_ordinals": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "evaluation_split_ordinals": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "primary_cell": {
+              "type": "string"
+            },
+            "labels_visible_to_decoder": {
+              "type": "boolean"
+            },
+            "future_input_visible_to_decoder": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "algorithm",
+            "encoding_utf8",
+            "counter_starts_at",
+            "field_encoding",
+            "ordinal_mapping",
+            "draw_mapping",
+            "integer_mapping",
+            "rejection_sampling",
+            "seeds",
+            "training_episodes_per_seed_arm",
+            "evaluation_episodes_per_seed_arm",
+            "training_split_ordinals",
+            "evaluation_split_ordinals",
+            "primary_cell",
+            "labels_visible_to_decoder",
+            "future_input_visible_to_decoder"
+          ],
+          "additionalProperties": false
+        },
+        "controls": {
+          "type": "object",
+          "properties": {
+            "nearby_distractor": {
+              "type": "string"
+            },
+            "temporal_disruption": {
+              "type": "string"
+            },
+            "reward_delay_assignment": {
+              "type": "string"
+            },
+            "decoder_timing": {
+              "type": "object",
+              "properties": {
+                "normal_arms": {
+                  "type": "string"
+                },
+                "temporal_disruption_arm": {
+                  "type": "string"
+                },
+                "pcn_elapsed_source": {
+                  "type": "string"
+                },
+                "eligibility_age_source": {
+                  "type": "string"
+                },
+                "reward_and_cleanup_clock": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "normal_arms",
+                "temporal_disruption_arm",
+                "pcn_elapsed_source",
+                "eligibility_age_source",
+                "reward_and_cleanup_clock"
+              ],
+              "additionalProperties": false
+            },
+            "silent": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "nearby_distractor",
+            "temporal_disruption",
+            "reward_delay_assignment",
+            "decoder_timing",
+            "silent"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "task_id",
+        "input_dimension",
+        "channels",
+        "sequence",
+        "generator",
+        "controls"
+      ],
+      "additionalProperties": false
+    },
+    "decoder": {
+      "type": "object",
+      "properties": {
+        "readout": {
+          "type": "object",
+          "properties": {
+            "feature": {
+              "type": "string"
+            },
+            "equation": {
+              "type": "string"
+            },
+            "parameter_bounds": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "initial_weights": {
+              "type": "array",
+              "items": {
+                "type": "number"
+              }
+            },
+            "initial_bias": {
+              "type": "integer"
+            },
+            "reward_learning_rate": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "feature",
+            "equation",
+            "parameter_bounds",
+            "initial_weights",
+            "initial_bias",
+            "reward_learning_rate"
+          ],
+          "additionalProperties": false
+        },
+        "pcn": {
+          "type": "object",
+          "properties": {
+            "input_dimension": {
+              "type": "integer"
+            },
+            "latent_dimension": {
+              "type": "integer"
+            },
+            "V_shape": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "c_shape": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "initial_V": {
+              "type": "string"
+            },
+            "initial_c": {
+              "type": "string"
+            },
+            "parameter_bounds": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "state_bounds": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "tau_tu": {
+              "type": "integer"
+            },
+            "inference_iterations_per_event": {
+              "type": "integer"
+            },
+            "gamma": {
+              "type": "number"
+            },
+            "predictive_learning_rate": {
+              "type": "number"
+            },
+            "objective": {
+              "type": "string"
+            },
+            "prediction_error": {
+              "type": "string"
+            },
+            "inference_gradient": {
+              "type": "string"
+            },
+            "latent_step": {
+              "type": "string"
+            },
+            "parameter_gradients": {
+              "type": "string"
+            },
+            "parameter_update": {
+              "type": "string"
+            },
+            "event_transition": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "silence": {
+              "type": "string"
+            },
+            "simultaneous_events": {
+              "type": "string"
+            },
+            "episode_initial_state": {
+              "type": "string"
+            },
+            "training_reset": {
+              "type": "string"
+            },
+            "evaluation_reset": {
+              "type": "string"
+            },
+            "trainable_parameter_count": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "input_dimension",
+            "latent_dimension",
+            "V_shape",
+            "c_shape",
+            "initial_V",
+            "initial_c",
+            "parameter_bounds",
+            "state_bounds",
+            "tau_tu",
+            "inference_iterations_per_event",
+            "gamma",
+            "predictive_learning_rate",
+            "objective",
+            "prediction_error",
+            "inference_gradient",
+            "latent_step",
+            "parameter_gradients",
+            "parameter_update",
+            "event_transition",
+            "silence",
+            "simultaneous_events",
+            "episode_initial_state",
+            "training_reset",
+            "evaluation_reset",
+            "trainable_parameter_count"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "readout",
+        "pcn"
+      ],
+      "additionalProperties": false
+    },
+    "eligibility": {
+      "type": "object",
+      "properties": {
+        "horizon_ticks": {
+          "type": "integer",
+          "const": 8000000
+        },
+        "kernel_tau_tu": {
+          "type": "integer"
+        },
+        "kernel": {
+          "type": "string"
+        },
+        "local_contribution": {
+          "type": "string"
+        },
+        "eligibility_vector": {
+          "type": "string"
+        },
+        "uniform_baseline": {
+          "type": "string"
+        },
+        "recency_baseline": {
+          "type": "string"
+        },
+        "candidate_weight": {
+          "type": "string"
+        },
+        "contribution_claim": {
+          "type": "string"
+        },
+        "capture": {
+          "type": "string"
+        },
+        "empty_set": {
+          "type": "string"
+        },
+        "zero_reward_update": {
+          "type": "integer"
+        },
+        "parameter_update": {
+          "type": "string"
+        },
+        "duplicate_delivery": {
+          "type": "string"
+        },
+        "capacity": {
+          "type": "integer",
+          "const": 8
+        },
+        "overflow": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "horizon_ticks",
+        "kernel_tau_tu",
+        "kernel",
+        "local_contribution",
+        "eligibility_vector",
+        "uniform_baseline",
+        "recency_baseline",
+        "candidate_weight",
+        "contribution_claim",
+        "capture",
+        "empty_set",
+        "zero_reward_update",
+        "parameter_update",
+        "duplicate_delivery",
+        "capacity",
+        "overflow"
+      ],
+      "additionalProperties": false
+    },
+    "reward_lifecycle": {
+      "type": "object",
+      "properties": {
+        "oracle": {
+          "type": "string"
+        },
+        "reward_values": {
+          "type": "object",
+          "properties": {
+            "correct": {
+              "type": "integer"
+            },
+            "incorrect": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "correct",
+            "incorrect"
+          ],
+          "additionalProperties": false
+        },
+        "payload_to_decoder": {
+          "type": "string"
+        },
+        "delay_ticks": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          }
+        },
+        "delay_assignment": {
+          "type": "string"
+        },
+        "deadline_ticks_after_activation": {
+          "type": "integer",
+          "const": 16000000
+        },
+        "deadline_inclusive": {
+          "type": "boolean"
+        },
+        "expiry_tick_after_activation": {
+          "type": "integer",
+          "const": 16000001
+        },
+        "same_tick_phase_order": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "zero_delay": {
+          "type": "string"
+        },
+        "cleanup": {
+          "type": "string"
+        },
+        "energy_charge_per_input": {
+          "type": "integer"
+        },
+        "energy_charge_per_reward": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "oracle",
+        "reward_values",
+        "payload_to_decoder",
+        "delay_ticks",
+        "delay_assignment",
+        "deadline_ticks_after_activation",
+        "deadline_inclusive",
+        "expiry_tick_after_activation",
+        "same_tick_phase_order",
+        "zero_delay",
+        "cleanup",
+        "energy_charge_per_input",
+        "energy_charge_per_reward"
+      ],
+      "additionalProperties": false
+    },
+    "arms": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "decoder": {
+            "type": "string"
+          },
+          "credit": {
+            "type": "string"
+          },
+          "parameters": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "id",
+          "decoder",
+          "credit",
+          "parameters"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "statistics": {
+      "type": "object",
+      "properties": {
+        "efficacy_execution_authorized": {
+          "type": "boolean"
+        },
+        "independent_unit": {
+          "type": "string"
+        },
+        "primary_effect": {
+          "type": "string"
+        },
+        "primary_comparisons": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "per_seed_effect": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "id",
+              "per_seed_effect"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "attribution_effects": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "attribution_specificity": {
+          "type": "object",
+          "properties": {
+            "evaluator_only": {
+              "type": "boolean"
+            },
+            "frozen_parameters": {
+              "type": "boolean"
+            },
+            "replay": {
+              "type": "string"
+            },
+            "event_influence": {
+              "type": "string"
+            },
+            "influential_threshold": {
+              "type": "number"
+            },
+            "event_credit_vector": {
+              "type": "string"
+            },
+            "event_credit_mass": {
+              "type": "string"
+            },
+            "episode_score": {
+              "type": "string"
+            },
+            "seed_score": {
+              "type": "string"
+            },
+            "paired_effect": {
+              "type": "string"
+            },
+            "learner_visibility": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "evaluator_only",
+            "frozen_parameters",
+            "replay",
+            "event_influence",
+            "influential_threshold",
+            "event_credit_vector",
+            "event_credit_mass",
+            "episode_score",
+            "seed_score",
+            "paired_effect",
+            "learner_visibility"
+          ],
+          "additionalProperties": false
+        },
+        "result_domains": {
+          "type": "object",
+          "properties": {
+            "balanced_accuracy": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "mean_paired_effects": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "confidence_interval_bounds": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "raw_attribution_specificity_scores": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "paired_attribution_specificity_effects": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "operations_and_memory_ratios": {
+              "type": "array",
+              "items": {
+                "anyOf": [
+                  {
+                    "type": "integer"
+                  },
+                  {
+                    "type": "string"
+                  }
+                ]
+              }
+            },
+            "temporal_disruption_accuracy": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "out_of_domain": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "balanced_accuracy",
+            "mean_paired_effects",
+            "confidence_interval_bounds",
+            "raw_attribution_specificity_scores",
+            "paired_attribution_specificity_effects",
+            "operations_and_memory_ratios",
+            "temporal_disruption_accuracy",
+            "out_of_domain"
+          ],
+          "additionalProperties": false
+        },
+        "bootstrap": {
+          "type": "object",
+          "properties": {
+            "replicates": {
+              "type": "integer"
+            },
+            "resampling_unit": {
+              "type": "string"
+            },
+            "draw_digest": {
+              "type": "string"
+            },
+            "key_encoding_utf8": {
+              "type": "string"
+            },
+            "replicate_index_starts_at": {
+              "type": "integer"
+            },
+            "draw_index_starts_at": {
+              "type": "integer"
+            },
+            "index_mapping": {
+              "type": "string"
+            },
+            "replacement": {
+              "type": "boolean"
+            },
+            "interval": {
+              "type": "string"
+            },
+            "per_comparison_confidence_level": {
+              "type": "number"
+            },
+            "nearest_rank_1_based": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "family_alpha": {
+              "type": "number"
+            },
+            "primary_comparison_count": {
+              "type": "integer"
+            },
+            "familywise_adjustment": {
+              "type": "string"
+            },
+            "effect_summary": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "replicates",
+            "resampling_unit",
+            "draw_digest",
+            "key_encoding_utf8",
+            "replicate_index_starts_at",
+            "draw_index_starts_at",
+            "index_mapping",
+            "replacement",
+            "interval",
+            "per_comparison_confidence_level",
+            "nearest_rank_1_based",
+            "family_alpha",
+            "primary_comparison_count",
+            "familywise_adjustment",
+            "effect_summary"
+          ],
+          "additionalProperties": false
+        },
+        "decision": {
+          "type": "object",
+          "properties": {
+            "precedence": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "inconclusive_conditions": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "success_all_conditions": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "otherwise": {
+              "type": "string"
+            },
+            "threshold_equality": {
+              "type": "string"
+            },
+            "missing_seed": {
+              "type": "string"
+            },
+            "aborted_seed": {
+              "type": "string"
+            },
+            "zero_correct_cost_per_correct": {
+              "type": "string"
+            },
+            "worse_accuracy_at_lower_cost": {
+              "type": "string"
+            },
+            "accuracy_gain_above_cost_ratio_cap": {
+              "type": "string"
+            },
+            "efficacy_scope": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "precedence",
+            "inconclusive_conditions",
+            "success_all_conditions",
+            "otherwise",
+            "threshold_equality",
+            "missing_seed",
+            "aborted_seed",
+            "zero_correct_cost_per_correct",
+            "worse_accuracy_at_lower_cost",
+            "accuracy_gain_above_cost_ratio_cap",
+            "efficacy_scope"
+          ],
+          "additionalProperties": false
+        },
+        "golden_examples": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "seed_effects": {
+                "anyOf": [
+                  {
+                    "type": "array",
+                    "items": {
+                      "type": "number"
+                    }
+                  },
+                  {
+                    "type": "array",
+                    "items": {
+                      "type": "integer"
+                    }
+                  }
+                ]
+              },
+              "expected_mean": {
+                "type": "number"
+              },
+              "bootstrap_interval": {
+                "anyOf": [
+                  {
+                    "type": "array",
+                    "items": {
+                      "type": "number"
+                    }
+                  },
+                  {
+                    "type": "array",
+                    "items": {
+                      "type": "integer"
+                    }
+                  }
+                ]
+              }
+            },
+            "required": [
+              "id",
+              "seed_effects",
+              "expected_mean",
+              "bootstrap_interval"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": [
+        "efficacy_execution_authorized",
+        "independent_unit",
+        "primary_effect",
+        "primary_comparisons",
+        "attribution_effects",
+        "attribution_specificity",
+        "result_domains",
+        "bootstrap",
+        "decision",
+        "golden_examples"
+      ],
+      "additionalProperties": false
+    },
+    "cost_benefit": {
+      "type": "object",
+      "properties": {
+        "physical_energy_claim": {
+          "type": "boolean"
+        },
+        "existing_activity_cost_unit": {
+          "type": "string"
+        },
+        "lwc_status": {
+          "type": "string"
+        },
+        "required_counters": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "scalar_operation_counting": {
+          "type": "string"
+        },
+        "cost_per_correct": {
+          "type": "string"
+        },
+        "incremental_ops_per_additional_correct": {
+          "type": "string"
+        },
+        "tradeoff_rule": {
+          "type": "string"
+        },
+        "event_cost_fairness": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "physical_energy_claim",
+        "existing_activity_cost_unit",
+        "lwc_status",
+        "required_counters",
+        "scalar_operation_counting",
+        "cost_per_correct",
+        "incremental_ops_per_additional_correct",
+        "tradeoff_rule",
+        "event_cost_fairness"
+      ],
+      "additionalProperties": false
+    },
+    "resources": {
+      "type": "object",
+      "properties": {
+        "pilot_only": {
+          "type": "boolean"
+        },
+        "pilot_arms": {
+          "type": "integer"
+        },
+        "pilot_seeds": {
+          "type": "integer"
+        },
+        "pilot_seed_ids": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          }
+        },
+        "training_episodes_per_arm_seed": {
+          "type": "integer"
+        },
+        "evaluation_workload_episodes_per_arm_seed": {
+          "type": "integer"
+        },
+        "pilot_execution_passes": {
+          "type": "integer"
+        },
+        "execution_passes": {
+          "type": "string"
+        },
+        "replay_digest": {
+          "type": "object",
+          "properties": {
+            "algorithm": {
+              "type": "string"
+            },
+            "encoding": {
+              "type": "string"
+            },
+            "episode_record_fields_in_order": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "episode_record_order": {
+              "type": "string"
+            },
+            "input_event_record_fields_in_order": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "input_event_record_order": {
+              "type": "string"
+            },
+            "number_serialization": {
+              "type": "string"
+            },
+            "equal_pass_digests_required": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "algorithm",
+            "encoding",
+            "episode_record_fields_in_order",
+            "episode_record_order",
+            "input_event_record_fields_in_order",
+            "input_event_record_order",
+            "number_serialization",
+            "equal_pass_digests_required"
+          ],
+          "additionalProperties": false
+        },
+        "maximum_total_episodes": {
+          "type": "integer"
+        },
+        "maximum_input_events_per_episode": {
+          "type": "integer"
+        },
+        "maximum_total_input_receptions": {
+          "type": "integer"
+        },
+        "maximum_counted_ops_per_pcn_event": {
+          "type": "integer"
+        },
+        "pcn_inference_iterations_per_input": {
+          "type": "integer"
+        },
+        "maximum_episode_overhead_ops": {
+          "type": "integer"
+        },
+        "maximum_pcn_workload_episodes": {
+          "type": "integer"
+        },
+        "maximum_pcn_input_receptions": {
+          "type": "integer"
+        },
+        "analytical_total_counted_ops_lower": {
+          "type": "integer"
+        },
+        "analytical_total_counted_ops_upper": {
+          "type": "integer"
+        },
+        "counterfactual_omission_replay_passes_in_pilot": {
+          "type": "integer"
+        },
+        "cpu_cores": {
+          "type": "integer"
+        },
+        "cpu_time_seconds": {
+          "type": "integer"
+        },
+        "wall_time_seconds": {
+          "type": "integer"
+        },
+        "working_set_bytes": {
+          "type": "integer"
+        },
+        "artifact_bytes": {
+          "type": "integer"
+        },
+        "assumed_throughput_ops_per_second": {
+          "type": "integer"
+        },
+        "assumed_overhead_excluded": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "runtime_status": {
+          "type": "string"
+        },
+        "pilot_authorized": {
+          "type": "boolean"
+        },
+        "full_efficacy_run_authorized": {
+          "type": "boolean"
+        },
+        "abort": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "pilot_only",
+        "pilot_arms",
+        "pilot_seeds",
+        "pilot_seed_ids",
+        "training_episodes_per_arm_seed",
+        "evaluation_workload_episodes_per_arm_seed",
+        "pilot_execution_passes",
+        "execution_passes",
+        "replay_digest",
+        "maximum_total_episodes",
+        "maximum_input_events_per_episode",
+        "maximum_total_input_receptions",
+        "maximum_counted_ops_per_pcn_event",
+        "pcn_inference_iterations_per_input",
+        "maximum_episode_overhead_ops",
+        "maximum_pcn_workload_episodes",
+        "maximum_pcn_input_receptions",
+        "analytical_total_counted_ops_lower",
+        "analytical_total_counted_ops_upper",
+        "counterfactual_omission_replay_passes_in_pilot",
+        "cpu_cores",
+        "cpu_time_seconds",
+        "wall_time_seconds",
+        "working_set_bytes",
+        "artifact_bytes",
+        "assumed_throughput_ops_per_second",
+        "assumed_overhead_excluded",
+        "runtime_status",
+        "pilot_authorized",
+        "full_efficacy_run_authorized",
+        "abort"
+      ],
+      "additionalProperties": false
+    },
+    "strict_json_profile": {
+      "type": "object",
+      "properties": {
+        "dialect": {
+          "type": "string"
+        },
+        "parser_must_reject": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "schema_keywords_used": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "schema_profile": {
+          "type": "string"
+        },
+        "semantic_checks": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "dialect",
+        "parser_must_reject",
+        "schema_keywords_used",
+        "schema_profile",
+        "semantic_checks"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "schema",
+    "schema_revision",
+    "gate_id",
+    "protocol_revision",
+    "status",
+    "provenance",
+    "timebase",
+    "task",
+    "decoder",
+    "eligibility",
+    "reward_lifecycle",
+    "arms",
+    "statistics",
+    "cost_benefit",
+    "resources",
+    "strict_json_profile"
+  ],
+  "additionalProperties": false
+}

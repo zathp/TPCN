@@ -1,0 +1,37 @@
+{
+  "manifest_schema": "LUNA64-GATE-PACKAGE-MANIFEST-1",
+  "gate_id": "L64-TB-GATE-20261010-R1",
+  "status": "draft_for_independent_review_not_frozen",
+  "predecessor": {
+    "gate_id": "L64-TB-GATE-20261010-R0",
+    "path": "workflow/handoffs/luna-0-track-b-execution-gate-proposal-20261010.md",
+    "sha256": "5B4C8E74C3536AEA7111C749970FF44BA3DB8855317679C6EF013EAB5149CF08"
+  },
+  "baseline_candidate": {
+    "branch": "main",
+    "commit": "73aaa50f97ceab322907875ae4dcf23e7541c3b5",
+    "note": "Candidate only; current gate/governance files are uncommitted and this is not an execution branch base."
+  },
+  "package_files": [
+    {
+      "path": "workflow/handoffs/luna-0-track-b-execution-gate-proposal-20261010-R1.md",
+      "sha256": "44BD46E561BDD9329616B38C3AE6A74A1E79BEB497BB274A4D552C6096FC46B6",
+      "role": "R1 gate specification and R0 correction traceability"
+    },
+    {
+      "path": "experiments/luna64/luna64-track-b-protocol-r1.json",
+      "sha256": "A90F167C5C09DC84E7B15B778770A3115CAB7AB91177AE3D0A026E755B013CAF",
+      "role": "Machine-readable proposed protocol; no execution data"
+    }
+  ],
+  "self_digest": "intentionally_not_embedded",
+  "independent_review": {
+    "path": "workflow/handoffs/luna-0-independent-review-track-b-execution-gate-r1-20261010.md",
+    "sha256": "2B92984E351CF305514CC2C15A79D64C4E25A495B89B5BDC026C7B638D8AD5A2",
+    "verdict": "BLOCKED",
+    "execution_authorized": false
+  },
+  "independent_execution_evidence": "none",
+  "owner_approval": "not_provided",
+  "execution_authorized": false
+}

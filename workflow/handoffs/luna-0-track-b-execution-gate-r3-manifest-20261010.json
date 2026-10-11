@@ -1,0 +1,53 @@
+{
+  "manifest_id": "L64-TB-GATE-20261010-R3-MANIFEST",
+  "gate_id": "L64-TB-GATE-20261010-R3",
+  "manifest_revision": 1,
+  "source_baseline": "73aaa50f97ceab322907875ae4dcf23e7541c3b5",
+  "reconciled_branch": "main",
+  "reconciled_head": "73aaa50f97ceab322907875ae4dcf23e7541c3b5",
+  "predecessor_r2": {
+    "proposal_sha256": "64529FD816824A3EAA246856C3BEF46E6FDD97CCDF8ED48830C27AEF558D5A0A",
+    "independent_review_sha256": "4EF7AEA8ECD0207A52A8B259F74153E17EED192E671EB1650D8C82394320AA57"
+  },
+  "artifacts": {
+    "proposal": {
+      "path": "workflow/handoffs/luna-0-track-b-execution-gate-proposal-20261010-R3.md",
+      "sha256": "C32B14BF69D06425AA5052B8DE2F5C5D967C30677C81C481412A5E68C1A7B600"
+    },
+    "protocol": {
+      "path": "experiments/luna64/luna64-track-b-protocol-r3.json",
+      "sha256": "25E3F71F2036145BE9F31804FAB2772B4829D80DE36C80FA078F09D4D9BCA6FD"
+    },
+    "schema": {
+      "path": "experiments/luna64/luna64-track-b-protocol-r3.schema.json",
+      "sha256": "6B6000AE0F3F5107CA23C6458CA946B99CF1C2F0F8E2716207866288A6A3F2C9"
+    },
+    "golden_fixtures": {
+      "path": "experiments/luna64/luna64-track-b-golden-r3.json",
+      "sha256": "AD9C8A7A5D6EDC01F992F1D0F02A200A6690F1459B379072E2828B0E8E096C83"
+    },
+    "consistency_report": {
+      "path": "experiments/luna64/luna64-track-b-consistency-r3.json",
+      "sha256": "D81E38CAADA0AA9CFD73E6BE572A86D0FEC160024048ECA53C007194349B9AF5"
+    },
+    "validator": {
+      "path": "experiments/luna64/validate-track-b-gate-r3.mjs",
+      "sha256": "D29A8DB26141AEA11ED8D3EC314A0A3E2EECFE18573C2FD56D1D88E8C83BD9FB"
+    }
+  },
+  "review_state": {
+    "independent_review": "pending",
+    "owner_approval": "not_provided",
+    "execution_authorized": false,
+    "implementation_performed": false,
+    "scientific_execution_performed": false,
+    "architecture_promotion_authorized": false
+  },
+  "isolation_state": {
+    "execution_branch_created": false,
+    "execution_worktree_created": false,
+    "production_integration_performed": false,
+    "luna63c_evidence_modified": false
+  },
+  "hash_semantics": "SHA-256 over exact checked-out file bytes; this manifest is not self-hashed"
+}

@@ -1,5 +1,19 @@
 # Architecture Changelog
 
+## Luna-64 Track B Local Temporal Reward Decoder governance record — 2026-10-10
+
+The repo now includes a separate Track B local temporal reward-decoder
+governance contract at `.github/agents/luna-64.agent.md` and the matching
+Luna-0 handoff at `workflow/handoffs/luna-0-track-b-governance-authorization-20261010.md`.
+This is a documentation-only governance record and does not execute the
+experiment, change production code, or alter the published Luna-63C
+certificate boundary.
+
+The Track B experiment remains explicitly exploratory and isolated from the
+Luna-63C Stage-A/Stage-B chain. It must pass independent review before any
+implementation or efficacy claim; no production/default or architecture
+promotion is authorized in this phase.
+
 ## Luna-63C reviewed design evidence integrated; isolated mechanism experiment authorized behind numerical certificate gate — 2026-10-09
 
 At clean `main == origin/main` `d006e1bc6ff09627df8fe7f6c1213380b953291f`,
