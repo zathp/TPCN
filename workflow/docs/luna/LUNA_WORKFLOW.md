@@ -226,6 +226,44 @@ rerun authorization remains disabled. The original pilot remains
 **NOT SUPPORTED AS A PROTOCOL-COMPLIANT PILOT**, not an efficacy result,
 with its budget exhausted. R4.3, production/core, ACP and Luna-63C are unchanged.
 
+## Luna-64 A4 Hyper-V / Linux isolation qualification gate - blocked
+
+Governance-only `L64-TB-R4.3-CORRECTIVE-SUPERVISOR-A4` reassesses platform
+feasibility after the owner reported a Hyper-V Ubuntu guest. Host metadata
+confirms Windows 10 Pro, an active hypervisor and VM services, but the current
+medium-integrity token cannot inspect the VM. Ubuntu, cgroup v2/systemd,
+storage/quota, offline network and host termination details therefore remain
+unverified owner reports. No guest command, VM start/stop, setup, qualification,
+corrective test or scientific workload was run.
+
+The [A4 proposal](../../handoffs/luna-0-luna64-r4.3-corrective-supervisor-amendment-a4-20261011.md)
+and [platform evidence](../../handoffs/luna64-r4.3-execution-environment-a4-evidence-20261011.json)
+consider a preconfigured systemd service cgroup, preserving all 23 frozen
+sequential validator CLI descendants. This does not yet qualify containment.
+The [integrated independent review](../../handoffs/luna-0-independent-review-luna64-r4.3-execution-environment-a4-20261011.md)
+records the evidence and blocking findings.
+Linux `memory.max` is charged memory, not Windows aggregate working set; changing
+the metric requires explicit owner approval. `cpu.stat` accounts aggregate
+usage, while `cpu.max` limits rate rather than lifetime CPU; watchdog CPU and
+wall-stop latencies are not bounded. Hard artifact quota and host-side
+termination authority are unverified. The separate proposed 12-case
+qualification budget replaces A3's unapproved provisional proposal; neither
+is approved, additive or executable. The proposed bootstrap control client is
+outside the cgroup and has no mechanism to account for the full invocation's
+CPU ceiling. The artifact reserve and shared logical-byte cap remain design
+requirements, not demonstrated controls. Six independent read-only reviews
+support the integrated blocked disposition; static scientific compatibility
+review passed with limitations only and is not execution qualification.
+
+**A4 disposition: BLOCKED - ISOLATION QUALIFICATION UNRESOLVED.** A3 remains
+historically **BLOCKED - NO QUALIFIED EXECUTION ARCHITECTURE**; its findings
+are not retroactively changed. The original pilot remains
+**NOT SUPPORTED AS A PROTOCOL-COMPLIANT PILOT**, not an efficacy result, and
+its scientific budget remains exhausted. The original corrective one-shot
+allowance remains unused. A4 does not authorize qualification, corrective
+implementation, use of the focused-test allowance, a scientific rerun, or
+architecture promotion. Luna-63C remains isolated and unchanged.
+
 ## Luna-63C reviewed design integrated; mechanism authorization certificate-gated — 2026-10-09
 
 The Luna-63C nonlinear excursion design was independently reviewed

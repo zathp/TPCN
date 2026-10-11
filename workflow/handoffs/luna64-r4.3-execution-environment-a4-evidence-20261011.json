@@ -1,0 +1,188 @@
+{
+  "schema": "tpcn.luna64.a4.platform-evidence",
+  "schema_version": 1,
+  "amendment_id": "L64-TB-R4.3-CORRECTIVE-SUPERVISOR-A4",
+  "observed_date": "2026-10-11",
+  "governance_baseline": "8ca543aa6e6e356de6a08edc1ba5c56fb540f9d0",
+  "decision": "BLOCKED_ISOLATION_QUALIFICATION_UNRESOLVED",
+  "selected_architecture": null,
+  "candidate_architecture": "offline_hyperv_ubuntu_systemd_service_cgroup_v2",
+  "architecture_selected": false,
+  "owner_approval": false,
+  "qualification_authorized": false,
+  "corrective_execution_released": false,
+  "scientific_rerun_authorized": false,
+  "frozen_authority": {
+    "content_freeze": "64a214e310de3b982b90a8ad215598bc1e9f8b1c",
+    "governance_closure": "ea1b10456cbf4ca726e473076d239a4f6e53b9c7",
+    "manifest_sha256": "62D64457BB4BE4FF69F40558D55C6A9FAAA7B9A246DA9F6C6BE4BE8C0348542B",
+    "frozen_package_identity_count": 10,
+    "governing_input_identity_count": 32,
+    "identity_validation": "Previously independently verified in A3; A4 preserves exact identities and Stage-B mapping, does not rewrite frozen artifacts"
+  },
+  "predecessors": {
+    "corrective_gate_sha256": "8EE37445B1F3DAC9F085D7BE00C9FA4B11CC5FAB62779F8A424746A9BAFDE369",
+    "corrective_owner_authorization": "0bdddaeaefe47a97ea6433d82bcc143adfe13b5a",
+    "a1_publication": "d20aab249e42575ccc571c9c72153a3bb4b412db",
+    "a1_verdict": "BLOCKED_RESOURCE_SUPERVISION_UNRESOLVED",
+    "a2_publication": "a9fbe2158b7858a8bb5523f3730af31dbb7ea81c",
+    "a2_verdict": "BLOCKED_RESOURCE_SUPERVISION_UNRESOLVED",
+    "a2_recorded_proposal_review_sha256": "E00B75004D3085EFDA60D7163D57153F2FCB2D089162574358794BBA54145591",
+    "a2_published_proposal_sha256": "9FAF922016726FBB5B1EAEBBC8B9488A293E99FC830738E02F3A9A9CD7D958AD",
+    "a2_policy_checkout_sha256": "A448646B7B38DE1BE09DC693C20C00DDDEF7C731216C1BE1BD1C462437654E12",
+    "a2_policy_published_sha256": "DCDBA16C8E3A63DCF7FA3A7AE77BDEC8A37CE58BD1CBBA48D6D15CEEE211DACE",
+    "a2_schema_checkout_sha256": "FFAECD55A7BAEA79BF2635AEDC1DE0B0AD62910AB17051308015C85BCF7ADC44",
+    "a2_schema_published_sha256": "FC5CADC7296BD66F32B127BF97ED6549A036516922A3AFE3C3533192D978DD1A",
+    "a3_publication": "8ca543aa6e6e356de6a08edc1ba5c56fb540f9d0",
+    "a3_verdict": "BLOCKED_NO_QUALIFIED_EXECUTION_ARCHITECTURE",
+    "original_pilot_closure": "515dde66f37ca67c44a39f02e13f2e59b2f10d1d",
+    "original_pilot_verdict": "NOT_SUPPORTED_AS_A_PROTOCOL_COMPLIANT_PILOT",
+    "original_scientific_budget": "exhausted_5184_episodes_20736_receptions"
+  },
+  "a4_reconciliation": {
+    "local_head": "8ca543aa6e6e356de6a08edc1ba5c56fb540f9d0",
+    "remote_governance_ref_matches_local_head": true,
+    "freeze_is_ancestor": true,
+    "governance_closure_is_ancestor": true,
+    "corrective_authorization_is_ancestor": true,
+    "a1_publication_is_ancestor": true,
+    "a2_publication_is_ancestor": true,
+    "manifest_path": "workflow/handoffs/luna-0-track-b-execution-gate-r4-manifest-20261010.json",
+    "manifest_checkout_sha256": "62D64457BB4BE4FF69F40558D55C6A9FAAA7B9A246DA9F6C6BE4BE8C0348542B",
+    "manifest_git_blob_oid": "d1993728e53fff2cdec712607012786bfeba3fb2",
+    "package_entries_checked_against_current_files": 10,
+    "current_package_raw_hashes_match_manifest": true,
+    "inventory_path": "workflow/handoffs/luna-0-track-b-execution-gate-r4-input-inventory-20261010.json",
+    "inventory_checkout_sha256": "D507293DAAC22E353CB47ABC813726B70A832F5BD0A5462F2BEB4FB76850B2D8",
+    "inventory_entry_count": 32,
+    "inventory_identity_reconciliation": "A3 independent postpublication attestation records 32/32 raw and Git identities verified or bridged; A4 preserved this mapping and did not rewrite the inventory"
+  },
+  "platform": {
+    "windows_version": "Windows 10 Pro 10.0.19045",
+    "physical_memory_bytes": 33443172352,
+    "cpu": "AMD Ryzen 7 7700X",
+    "cpu_cores": 8,
+    "logical_processors": 16,
+    "hypervisor_present": true,
+    "firmware_virtualization_enabled": true,
+    "vmms_state": "running",
+    "vmcompute_state": "running",
+    "hyperv_module_available": true,
+    "get_vm_query": "access_denied_medium_integrity_token_administrators_deny_only",
+    "vm_configuration_independently_verified": false,
+    "guest_reported": {
+      "os": "Ubuntu 26.04.1 LTS",
+      "vcpus": 4,
+      "fixed_memory_bytes": 8589934592,
+      "system_vhdx_size_reported": "128 GB (unit semantics unverified)",
+      "archive_vhdx_size_reported": "256 GB (unit semantics unverified)",
+      "network": "disconnected"
+    },
+    "guest_claims_independently_verified": false,
+    "guest_diagnostics_run": false,
+    "vm_started_stopped_or_modified": false,
+    "installation_or_feature_enablement": false
+  },
+  "corrective_state": {
+    "baseline": "d93ef139a1fea46d58cb59a7d7e6325cb1eb8787",
+    "branch": "experiment/luna64-r4.3-reward-lifecycle-correction-20261010",
+    "dirty_paths_at_last_check": 0,
+    "parent_marker_present_at_last_check": false,
+    "a2_qualification_marker_present_at_last_check": false,
+    "allowance": "unused",
+    "markers_rechecked_read_only_during_a4": true,
+    "corrective_worktree_rechecked_clean_at_baseline": true,
+    "absence_of_unrecorded_external_execution_proven": false
+  },
+  "parent_corrective_budget": {
+    "supervisor_invocations": 1,
+    "focused_tests": 3,
+    "retries": 0,
+    "synthetic_records_combined": 512,
+    "cpus": 1,
+    "aggregate_cpu_seconds": 120,
+    "wall_seconds": 180,
+    "memory_metric": "aggregate_peak_working_set",
+    "memory_bytes": 536870912,
+    "artifact_bytes": 5242880,
+    "changed": false,
+    "consumed": false
+  },
+  "proposed_linux_mapping": {
+    "memory": {
+      "candidate": "memory.max=536870912; memory.swap.max=0; MemoryOOMGroup",
+      "metric": "cgroup_charged_memory",
+      "equivalent_to_windows_working_set": false,
+      "owner_approved": false,
+      "execution_blocking": true
+    },
+    "cpu": {
+      "rate": "one effective guest CPU; AllowedCPUs plus CPUQuota=100%",
+      "aggregate_usage": "cpu.stat usage_usec including user and system",
+      "cpu_max_is_lifetime_total": false,
+      "watchdog_cumulative_cutoff_delay_bounded": false,
+      "execution_blocking": true
+    },
+    "wall": {
+      "candidate": "RuntimeMaxSec=180s, KillMode=control-group, finite TimeoutStopSec",
+      "termination_completion_latency_bounded": false,
+      "independent_host_watchdog_verified": false,
+      "execution_blocking": true
+    },
+    "tasks": {
+      "candidate": "pids.max / TasksMax=64",
+      "semantics": "task/thread count; includes descendants",
+      "parent_limit_changed": false
+    },
+    "artifacts": {
+      "parent_cap_bytes": 5242880,
+      "hard_filesystem_quota_verified": false,
+      "postrun_measurement_accepted_as_hard_quota": false,
+      "archive_vhdx_is_cap": false
+    },
+    "descendant_containment": {
+      "candidate": "preconfigured systemd service cgroup; Type=exec; KillMode=control-group",
+      "23_sequential_validator_cli_calls_preserved": true,
+      "runtime_verified": false
+    },
+    "bootstrap": {
+      "candidate": "narrow explicit control-client exception; PID1 creates configured service cgroup before ExecStart",
+      "owner_approval": false,
+      "runtime_verified": false
+    }
+  },
+  "qualification_proposal": {
+    "authorized": false,
+    "invocations": 1,
+    "cases": 12,
+    "combined_synthetic_records": 128,
+    "cpus": 1,
+    "aggregate_cpu_seconds": 60,
+    "wall_seconds": 120,
+    "charged_memory_bytes": 536870912,
+    "artifact_bytes": 2097152,
+    "task_limit": 64,
+    "retries": 0,
+    "parent_allowance_consumed": false,
+    "scientific_budget_used": false,
+    "blocked_by": [
+      "No qualified guest/platform evidence",
+      "Memory metric change not owner-approved",
+      "Strict CPU and wall termination bounds unresolved",
+      "Outside host bootstrap is not included in cgroup CPU accounting",
+      "Hard artifact containment unverified",
+      "Qualification resource budget not owner-approved",
+      "Per-case record allocation not frozen"
+    ],
+    "relationship_to_a3_proposal": "Replaces the unapproved A3 provisional qualification proposal; not additive, neither authorized nor consumed"
+  },
+  "execution_during_a4": {
+    "guest_diagnostics": 0,
+    "qualification_invocations": 0,
+    "corrective_supervisor_invocations": 0,
+    "focused_tests": 0,
+    "scientific_workloads": 0,
+    "vm_start_stop_or_configuration_changes": 0,
+    "guest_commands_run": 0
+  }
+}
