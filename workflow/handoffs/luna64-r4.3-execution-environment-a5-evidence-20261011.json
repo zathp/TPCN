@@ -1,0 +1,194 @@
+{
+  "schema": "LUNA64-R4.3-A5-EXECUTION-ENVIRONMENT-EVIDENCE",
+  "gate_id": "L64-TB-R4.3-CORRECTIVE-SUPERVISOR-A5",
+  "date": "2026-10-11",
+  "baseline": {
+    "branch": "governance/luna64-r4.3-freeze-20261010",
+    "a4_closure": "f86c25844a4863ac57cd6634f364c28bcf2f511f",
+    "a4_package": "7bd440565c38dee81ace3606fde3fb686de6a0ef",
+    "a3_publication": "8ca543aa6e6e356de6a08edc1ba5c56fb540f9d0",
+    "frozen_content": "64a214e310de3b982b90a8ad215598bc1e9f8b1c",
+    "frozen_governance_closure": "ea1b10456cbf4ca726e473076d239a4f6e53b9c7",
+    "manifest_sha256": "62D64457BB4BE4FF69F40558D55C6A9FAAA7B9A246DA9F6C6BE4BE8C0348542B",
+    "corrective_authorization_commit": "0bdddaeaefe47a97ea6433d82bcc143adfe13b5a",
+    "original_pilot_closure": "515dde66f37ca67c44a39f02e13f2e59b2f10d1d",
+    "a1": {
+      "commit": "d20aab249e42575ccc571c9c72153a3bb4b412db",
+      "verdict": "BLOCKED — RESOURCE SUPERVISION UNRESOLVED"
+    },
+    "a2": {
+      "commit": "a9fbe2158b7858a8bb5523f3730af31dbb7ea81c",
+      "verdict": "BLOCKED",
+      "provenance_discrepancy_preserved": true,
+      "proposal_hashes": {
+        "review_record": "E00B75004D3085EFDA60D7163D57153F2FCB2D089162574358794BBA54145591",
+        "published_git_blob": "9FAF922016726FBB5B1EAEBBC8B9488A293E99FC830738E02F3A9A9CD7D958AD",
+        "crlf_checkout": "05C401518A74B1957697E6F12C8877E4D9F8F734A4A7B1432CDF3C9520AE835A"
+      },
+      "note": "A3 records distinct reviewed, published Git-blob, and CRLF checkout proposal hashes; no identity correction or approval inferred."
+    },
+    "a3": {
+      "commit": "8ca543aa6e6e356de6a08edc1ba5c56fb540f9d0",
+      "verdict": "BLOCKED — NO QUALIFIED EXECUTION ARCHITECTURE"
+    },
+    "a4": {
+      "package_commit": "7bd440565c38dee81ace3606fde3fb686de6a0ef",
+      "closure_commit": "f86c25844a4863ac57cd6634f364c28bcf2f511f",
+      "verdict": "BLOCKED — ISOLATION QUALIFICATION UNRESOLVED"
+    }
+  },
+  "frozen_identity_recheck": {
+    "manifest_path": "workflow/handoffs/luna-0-track-b-execution-gate-r4-manifest-20261010.json",
+    "manifest_sha256_observed": "62D64457BB4BE4FF69F40558D55C6A9FAAA7B9A246DA9F6C6BE4BE8C0348542B",
+    "manifest_package_entries": 10,
+    "package_raw_sha256_matches": 10,
+    "input_inventory_path": "workflow/handoffs/luna-0-track-b-execution-gate-r4-input-inventory-20261010.json",
+    "input_inventory_sha256": "D507293DAAC22E353CB47ABC813726B70A832F5BD0A5462F2BEB4FB76850B2D8",
+    "input_inventory_entries": 32,
+    "input_raw_identities_reconciled": 32,
+    "direct_git_byte_matches": 9,
+    "lf_to_crlf_checkout_materializations": 23,
+    "freeze_commit_is_ancestor_of_a4_closure": true
+  },
+  "owner_supplied_diagnostics": {
+    "provenance": "Summary supplied by repository owner in the 2026-10-11 task message; raw transcripts/files, per-command timestamps, and diagnostic hashes were not supplied.",
+    "independently_rerun": false,
+    "host": {
+      "os": "Windows 10 Pro build 19045",
+      "cpu": "AMD Ryzen 7 7700X",
+      "token": "Elevated administrator token",
+      "hyperv": "Running",
+      "vm_name": "TPCN-Isolated-Training",
+      "vm_id": "60e9baef-706e-4490-80d7-38618710546e",
+      "generation": 2,
+      "configuration_version": "9.0",
+      "virtual_processors": 4,
+      "guest_memory": "8 GiB fixed",
+      "guest_network": "Disconnected",
+      "guest_service_interface": "Disabled",
+      "host_shutdown_integration": "Enabled",
+      "checkpoints": "Disabled",
+      "disks": "Two dynamically expanding VHDX"
+    },
+    "guest": {
+      "os": "Ubuntu 26.04.1 LTS",
+      "systemd": "259",
+      "cgroup_hierarchy": "Unified cgroup v2",
+      "controllers_available": ["cpuset", "cpu", "io", "memory", "hugetlb", "pids", "rdma", "misc", "dmem"],
+      "controllers_enabled_at_root_and_system_slice": ["cpu", "memory", "pids"],
+      "cpuset_enabled_at_root_and_system_slice": false,
+      "effective_single_cpu_affinity_verified": false,
+      "system_slice_memory_accounting": true,
+      "system_slice_tasks_accounting": true,
+      "effective_cpus": "0-3",
+      "usable_memory": "Approximately 7.2 GiB",
+      "logical_processors": 4,
+      "mounted_filesystems": "Two ext4 filesystems",
+      "active_network_route": false
+    }
+  },
+  "resource_policy": {
+    "memory": {
+      "proposed_systemd_property": "MemoryMax=512M",
+      "required_memory_max_bytes": 536870912,
+      "swap_max_bytes": 0,
+      "metric": "Linux cgroup-accounted memory",
+      "scope": "Corrective service leaf containing supervisor and all test descendants; monitor is a separate sibling and excluded from this 512 MiB metric.",
+      "equivalent_to_windows_aggregate_working_set": false,
+      "owner_approval": "Required; not recorded"
+    },
+    "cpu": {
+      "parent_ceiling_cpu_seconds": 120,
+      "available_cgroup_accounting": "Read cpu.stat usage_usec directly; user_usec/system_usec are components. Do not rely on CPUAccounting= on systemd 259, where it is a disabled legacy compatibility setting.",
+      "scope": "Dedicated guest parent slice includes the monitor, supervisor, tests, and descendants after guest service admission; guest boot and host controller CPU are excluded and separately recorded, requiring explicit owner approval.",
+      "cpu_quota_is_lifetime_limit": false,
+      "hard_lifetime_cutoff_verified": false,
+      "candidate_monitor_target_ms": 100,
+      "candidate_heartbeat_timeout_ms": 250,
+      "candidate_termination_latency_ms": 1000,
+      "candidate_maxima_are_verified": false,
+      "status": "BLOCKING"
+    },
+    "wall": {
+      "ceiling_seconds": 180,
+      "candidate_clock": "Host QueryPerformanceCounter monotonic clock",
+      "stop_request_latest_start_seconds_after_t0": 179,
+      "cessation_deadline_seconds_after_t0": 180,
+      "one_second_grace_after_180": false,
+      "candidate_max_latency_ms": 1000,
+      "candidate_latency_verified": false,
+      "status": "BLOCKING"
+    },
+    "artifacts": {
+      "aggregate_bytes": 5242880,
+      "failure_reserve_bytes": 65536,
+      "ordinary_output_bytes": 5177344,
+      "quota_filesystem": "Candidate ext4 project quotas plus syscall-compatible logical-byte mediation and separate bounded evidence volume",
+      "generic_quota_units": {
+        "unit_bytes": 1024,
+        "ordinary_output_units": 5056,
+        "failure_reserve_units": 64,
+        "total_units": 5120
+      },
+      "ext4_shared_metadata_fully_project_charged": false,
+      "unchanged_test_temp_write_compatible_mediator_selected": false,
+      "project_quota_support_observed": false,
+      "sparse_and_alternate_write_paths_qualified": false,
+      "status": "PROPOSED; NOT VERIFIED"
+    }
+  },
+  "qualification_budget": {
+    "authorized": false,
+    "invocations": 1,
+    "maximum_cases": 10,
+    "case_order": [1, 2, 3, 4, 5, 6, 9, 10, 7, 8],
+    "abort_on_first_failure": true,
+    "vm_starts": 1,
+    "vm_stops": 1,
+    "retries": 0,
+    "guest_cpu_seconds": 180,
+    "wall_seconds": 600,
+    "wall_budget_includes_vm_startup": true,
+    "outer_memory_max_bytes": 805306368,
+    "inner_memory_test_max_bytes": 536870912,
+    "qualification_test_volume_bytes": 5242880,
+    "retained_evidence_max_bytes": 1048576,
+    "total_artifacts_max_bytes": 6291456,
+    "outer_task_limit": 80,
+    "workload_leaf_task_limit": 64,
+    "network": false,
+    "scientific_records": 0,
+    "corrective_tests": 0,
+    "case_names": [
+      "pre-start policy",
+      "descendant containment",
+      "memory hard limit",
+      "CPU cutoff",
+      "wall cutoff",
+      "artifact quota",
+      "one-shot behavior",
+      "evidence integrity",
+      "monitor/supervisor failure",
+      "host termination authority"
+    ],
+    "status": "PROPOSED ONLY; NOT EXECUTABLE WHILE CPU/WALL BOUNDS ARE UNRESOLVED"
+  },
+  "governance_state": {
+    "original_pilot_verdict": "NOT SUPPORTED AS A PROTOCOL-COMPLIANT PILOT",
+    "original_scientific_budget": "Exhausted: 5184 episodes / 20736 receptions",
+    "corrective_allowance": "Unused",
+    "corrective_execution_authorized": false,
+    "scientific_rerun_authorized": false,
+    "luna63c_changed_or_reused": false,
+    "integrated_verdict": "BLOCKED — A5 QUALIFICATION INCOMPLETE",
+    "blockers": [
+      "No verified hard aggregate 120 CPU-second cutoff.",
+      "Host observation and VM termination latency are not bounded by supplied evidence.",
+      "Guest boot and host controller/bootstrap CPU scope need explicit owner approval.",
+      "Artifact project quota is unverified; a pipe-only writer is incompatible with the retained test's direct mkdtemp/writeFile calls, and no logical-byte mediator is selected.",
+      "Effective cpuset is not reported enabled in root/system.slice; one-CPU affinity must be verified and any controller enablement approved.",
+      "Guest service boundary, descendant containment, and emergency host shutdown have not been qualified.",
+      "Memory metric replacement and separate qualification budget are not owner-approved."
+    ]
+  }
+}
