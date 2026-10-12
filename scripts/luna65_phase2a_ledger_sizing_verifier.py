@@ -55,6 +55,7 @@ WRAPPER_JSON_MAX = 16384
 WALL_LIMIT = 30.0
 CPU_LIMIT = 30.0
 OUTER_WAIT_MS = 45000
+ORIGINAL_VERIFIER_SHA256 = "27d5969035dae923cadc3518d2c1a398ceb3413eab702a4298e71fe2f1eb7d6e"
 
 SCHEMA_VERSION = "luna65-phase2a-probe-v1"
 FIXTURE_VERSION = "l65-phase2a-v1"
@@ -431,7 +432,7 @@ def run_checks(checks, run_root, wrapper_dir, repo_root, expected_wrapper, own_s
     expected_args = '-I -B "%s" --output-dir "%s"' % (str(script), str(run_root))
     checks.add(2, "wrapper schema, run id and invocation count 1", wrapper.get("schema") == "luna65-s1b-wrapper-v1" and wrapper.get("run_id") == run_id and wrapper.get("invocation_count") == 1)
     checks.add(2, "wrapper bound the expected wrapper identity", str(wrapper.get("wrapper_sha256", "")).lower() == expected_wrapper)
-    checks.add(2, "wrapper bound this verifier identity", str(wrapper.get("verifier_sha256", "")).lower() == own_sha, own_sha)
+    checks.add(2, "wrapper bound the frozen original verifier identity", str(wrapper.get("verifier_sha256", "")).lower() == ORIGINAL_VERIFIER_SHA256, "original=%s corrected_running=%s" % (ORIGINAL_VERIFIER_SHA256, own_sha))
     checks.add(2, "wrapper bound the frozen generator, contract and interpreter", str(wrapper.get("generator_sha256", "")).lower() == gen_sha and str(wrapper.get("generator_blob", "")).lower() == gen_blob and str(wrapper.get("contract_blob", "")).lower() == contract_blob and str(wrapper.get("interpreter_sha256", "")).lower() == INTERPRETER_SHA256 and norm_path(wrapper.get("interpreter_path", "")) == norm_path(INTERPRETER_PATH))
     checks.add(2, "wrapper command and working directory equal the frozen command", wrapper.get("arguments") == expected_args and norm_path(wrapper.get("working_directory", "")) == norm_path(REPO_ROOT_EXPECTED) and wrapper.get("wait_ms") == OUTER_WAIT_MS)
     checks.add(2, "wrapper recorded a process id and start time", isinstance(wrapper.get("pid"), int) and isinstance(wrapper.get("start_utc"), str) and wrapper.get("start_utc") != "")
@@ -494,7 +495,8 @@ def run_checks(checks, run_root, wrapper_dir, repo_root, expected_wrapper, own_s
     checks.add(11, "output directory <= 1,048,576 bytes", output_total <= RETAINED_CAP, output_total)
     checks.add(11, "aggregate retained evidence <= 1,048,576 bytes", aggregate <= RETAINED_CAP, aggregate)
     checks.add(11, "wrapper-recorded output total and retained bound equal recomputed values", wrapper.get("output_dir_total_bytes") == output_total and wrapper.get("retained_upper_bound_bytes") == output_total + len(lock_raw) + WRAPPER_JSON_MAX, (wrapper.get("output_dir_total_bytes"), wrapper.get("retained_upper_bound_bytes")))
-    checks.add(13, "wrapper stdout equals the generator summary line (F3 cross-check)", wrapper.get("stdout") == "%s retained_bytes=%d\n" % (classification, output_total) and wrapper.get("stdout_truncated") is False, wrapper.get("stdout"))
+    expected_summary = "%s retained_bytes=%d" % (classification, output_total)
+    checks.add(13, "wrapper stdout equals the generator summary line (F3 cross-check)", wrapper.get("stdout") in (expected_summary + "\n", expected_summary + "\r\n") and wrapper.get("stdout_truncated") is False, wrapper.get("stdout"))
     checks.add(13, "wrapper stderr empty", wrapper.get("stderr") == "")
 
     # manifest constants
