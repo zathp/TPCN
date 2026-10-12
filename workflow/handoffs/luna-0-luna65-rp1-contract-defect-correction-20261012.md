@@ -7,11 +7,11 @@ tpcn_handoff:
   descriptive_name: "RP-1 contract/source corrective reconciliation"
   task_id: "L65-PHASE2A-RP1-CONTRACT-DEFECT-CORRECTION"
   component: "Luna-65 Phase 2A RP-1 contract governance"
-  status: "partial"
+  status: "complete"
   contract_version: "1.1"
   branch: "governance/luna64-r4.3-freeze-20261010"
   base_revision: "c05cc6d88cb4aa224e7c53b4b4fe3ca0589bc7e6"
-  result_revision: "publication pending"
+  result_revision: "2a07b1e9f20d758df218981a9a8563c5f953d4b5"
   dependencies: ["Owner governance-only authorization"]
   owner: "Project owner"
   classification: ["governance-only", "historical evidence reconciliation"]
@@ -37,6 +37,7 @@ tpcn_handoff:
     - "Phase 2A/2B fixtures, full Spiral, or Luna-64 corrective execution."
   controls:
     - "Preserve original publication commit 65de223151ff196c72263f79e50719a7b6dbbd07 and adjudication commit c05cc6d88cb4aa224e7c53b4b4fe3ca0589bc7e6."
+    - "Publish the reviewed governance-only correction as 2a07b1e9f20d758df218981a9a8563c5f953d4b5 and verify the fetched remote."
     - "Do not alter the original probe or retained outputs."
     - "Permit only the two exact reviewed New-Object statements, bound to the original source identity."
   measurements:
@@ -65,10 +66,9 @@ tpcn_handoff:
   assumptions:
     - "Only the original authorized PowerShell source identity is in scope for the precise constructor exception."
   unresolved:
-    - "Publish the reviewed three-file governance-only allowlist after integrated PASS."
     - "Smallest safe prerequisite and separate authorization for any future RP-2 contract."
   recommended_next_agent:
-    - "Luna-0: publish only the reviewed three-file governance allowlist and verify the remote; no RP-1 retry or RP-2/RP-3."
+    - "Luna-0: only after separate owner authorization, prepare a bounded RP-2 contract for independent review; no RP-2/RP-3 execution is authorized."
 ```
 
 ## Provenance and preserved disposition
@@ -186,9 +186,8 @@ original evidence integrity and non-enforcement interpretation (C), and
 provenance, scope, and historical preservation (D). The reviewer confirmed
 that the plain diff-check warning was solely the existing CRLF checkout
 behavior; `git -c core.whitespace=cr-at-eol diff --check` passes. The three-file
-governance-only allowlist is eligible for publication using that CRLF-aware
-check. The final handoff metadata continues to report publication as pending
-until the commit actually exists.
+governance-only allowlist was eligible for publication using that CRLF-aware
+check. At review completion, publication was still pending.
 
 The reviewed dimensions were:
 
@@ -209,14 +208,25 @@ Integrated verdict must be exactly one of:
 No changes are made to the original probe. On BLOCKED, preserve the findings
 without claiming a resolution. Even on PASS, the original run remains
 `RP1_CONTRACT_DEFECT`; RP-1 is consumed, and RP-2/RP-3 remain unauthorized.
-Publication remains pending until the reviewed three-file allowlist is
-committed and verified against the remote.
+
+## Governance-only publication verification
+
+The reviewed three-file allowlist was committed as
+`2a07b1e9f20d758df218981a9a8563c5f953d4b5` and pushed to
+`origin/governance/luna64-r4.3-freeze-20261010`. A subsequent fetch confirmed
+the remote branch resolves to the same commit. Local and fetched remote trees
+match for the contract (`e0baff6c0229303f1a04c2a5ce21eea434099e20`), workflow
+(`134d27412ee9d4e67e07130dd237ad13a5aee262`), and corrective handoff
+(`9d32af939eb2fc1ab60f145f7a0bcbe2c72df9cd`).
+
+This publication reconciles the contract prospectively only. It does not
+change the original `RP1_CONTRACT_DEFECT`, authorize another RP-1 invocation,
+or authorize RP-2/RP-3 execution.
 
 ## Smallest remaining prerequisite
 
-For a separately authorized RP-2 contract, first obtain the integrated
-governance-only PASS on this exact-source amendment and its publication. Then
-prepare and independently review a distinct bounded RP-2 contract for the
+For a separately authorized RP-2 contract, obtain separate owner authorization
+to prepare and independently review a distinct bounded RP-2 contract for the
 specific runtime-compatibility questions RP-1 did not test, including Low-token
 process/interpreter launch and handle inheritance. RP-2 execution requires its
 own explicit owner authorization; this handoff grants none.
