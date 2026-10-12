@@ -5,8 +5,8 @@
   "review_date": "2026-10-12",
   "scope": "governance-only; no infrastructure, qualification, corrective, or scientific execution",
   "disposition": "PASS — A6 R2 OWNER-POLICY RECONCILIATION VERIFIED",
-  "publication_status": "proposal-review-passed; exact package allowlist staged; independent pre-commit verification pending",
-  "publication_status_as_of": "initial package manifest snapshot, before Reviewer D's staged-index verification",
+  "publication_status": "R1 package and workflow closure published and remotely verified; final manifest-only publication record",
+  "publication_status_as_of": "final manifest snapshot after package and workflow closure commits were pushed and fetched",
   "baseline": {
     "branch": "governance/luna64-r4.3-freeze-20261010",
     "base_commit": "f1cfb6e98cfc872753ea262bdb56e4a66ab40c05",
@@ -100,7 +100,7 @@
     "checkout_sha256": "3827D58A6D96DF83A4A36096A2BB52BF2EF59B011C3D0C73F3D6F880EF19B979",
     "raw_git_blob_sha1": "abaa9cf4f7f6e763bd25a2372f795bd9e79d49e5",
     "integrated_proposal_review_verdict": "PASS — A6 R2 OWNER-POLICY RECONCILIATION VERIFIED",
-    "publication_stage_verification": "NOT RUN; required independently before each commit"
+    "publication_stage_verification": "Reviewer D independently verified the exact package and workflow-closure stages; final manifest-stage byte verification and manifest self-identity are recorded externally in the final handoff."
   },
   "reviewers": [
     {
@@ -129,7 +129,7 @@
       "verdict": "PASS",
       "reviewed_proposal_sha256": "517A83E049B2C669A9DD76345F3D8EB7D398FC5D909A2E6A58B3DEC67D461BE6",
       "reviewed_proposal_git_blob_sha1": "a9fe493ccb85f0fafeeb54c3505debfe02fb5357",
-      "finding": "All eight package paths are committed together; workflow closure is workflow-only; final identity completion is manifest-only. Exact staged/committed/remote verification remains pending."
+      "finding": "The exact eight-path package and workflow-only closure stages each passed independent byte/path verification; both commits were pushed and fetched at the stated remote ref. Final manifest-stage verification and the manifest's self-identity are recorded externally."
     }
   ],
   "protected_r2_candidate_artifacts": [
@@ -217,21 +217,34 @@
   "publication_sequence": {
     "commit_1_package": {
       "paths": "exactly the eight paths in initial_package_commit_paths",
-      "status": "exact eight-path allowlist staged; independent verification was pending at this manifest snapshot; not committed",
-      "tree_or_commit": "not yet available"
+      "status": "published; exact eight-path stage independently verified PASS; pushed and fetched from the remote ref",
+      "commit": "c25ff3b7747abc2087237dbc1859c0c7bef4ab16",
+      "tree": "bcb5da75a34b690d69ca5272a26f6ba15f596bb5",
+      "parent": "f1cfb6e98cfc872753ea262bdb56e4a66ab40c05",
+      "package_stage_manifest_sha256": "18E8CA40BE8F338A17581EB1FF9C498D5EDC340952BB09D61EF4EA5E5AC507AD",
+      "package_stage_manifest_raw_git_blob_sha1": "65b82fe2768162f7a6cee6b137a8a7eba913f04c"
     },
     "commit_2_workflow_closure": {
       "paths": ["workflow/docs/luna/LUNA_WORKFLOW.md"],
-      "status": "not yet staged or committed",
-      "tree_or_commit": "not yet available"
+      "status": "published; workflow-only stage independently verified PASS; pushed and fetched from the remote ref",
+      "commit": "4543fd6d4c483f5fe31391fb161b45913af651c4",
+      "tree": "243a6a5087ef78b9545541b98d85cab90142b132",
+      "parent": "c25ff3b7747abc2087237dbc1859c0c7bef4ab16",
+      "workflow_checkout_sha256": "D54F224EDDCD00CD133AFB255E289F5ED3B3176E434C07325598AF968F5C23D1",
+      "workflow_raw_git_blob_sha1": "e4138ce8b92df600e2cfcea057399fdf641ce058"
     },
     "commit_3_final_identity_manifest": {
       "paths": ["workflow/handoffs/luna64-r4.3-a6-r2-owner-reconciliation-r1-manifest-20261011.json"],
-      "status": "not yet staged or committed",
-      "tree_or_commit": "not yet available"
+      "status": "this final manifest-only publication commit; own commit, tree, blob, and checkout hash are recorded externally to avoid self-reference",
+      "commit_tree_blob_and_checkout_identity": "external final handoff"
     },
-    "remote_verification": "not run",
-    "manifest_self_identity": "will be reported externally because a manifest cannot contain its own final identity"
+    "remote_verification": {
+      "ref": "origin/governance/luna64-r4.3-freeze-20261010",
+      "package_commit_fetched": "c25ff3b7747abc2087237dbc1859c0c7bef4ab16",
+      "workflow_closure_commit_fetched": "4543fd6d4c483f5fe31391fb161b45913af651c4",
+      "final_manifest_commit": "verified externally in final handoff"
+    },
+    "manifest_self_identity": "reported externally because a manifest cannot contain its own final checkout SHA-256, Git blob, tree, or commit"
   },
   "preserved_status": {
     "prior_a1_a5_findings": "preserved; predecessor gates remain blocked",
@@ -248,7 +261,7 @@
     "corrective_implementation_or_tests_run": false,
     "scientific_workload_run": false,
     "runtime_enforcement_tested": false,
-    "publication_stage_verification_run": false,
+    "publication_stage_verification_run": true,
     "execution_authorized": false
   },
   "validation_limits": [
@@ -256,8 +269,9 @@
     "D7 and D8 are owner-supplied conversation decisions, not independent authorization signatures.",
     "Reviewer A-D results are documentary proposal reviews, not runtime qualification or enforcement evidence.",
     "git diff --cached --check reports carriage-return-at-line-end warnings because path-specific -text rules preserve CRLF bytes; ten intentional two-space Markdown hard breaks remain in the new proposal/review headers. SHA-256 and raw Git blob comparisons match; no line-ending normalization was applied.",
-    "The exact eight-path package allowlist is staged; independent staged path/blob verification has not yet completed.",
-    "At this initial manifest snapshot, independent verification of the staged index was pending. Reviewer D's subsequent staged-index result must be recorded in the final manifest update. Commits, push/fetch ancestry, and remote identities were not yet verified at this snapshot.",
+    "Reviewer D verified the exact eight-path package stage and the workflow-only closure stage; each staged path set and byte/blob identity passed, and the staged workflow diff preserved all authority boundaries.",
+    "Package and workflow-closure commits were pushed and fetched from origin/governance/luna64-r4.3-freeze-20261010; local and fetched remote commit IDs matched.",
+    "The final manifest-only stage's path/blob verification and the final manifest commit, tree, blob, and checkout SHA-256 are reported externally because the final manifest cannot contain its own identity.",
     "The original corrective allowance remains unused; no qualification, corrective, or scientific execution occurred."
   ],
   "manifest_self_hash": "Excluded as self-referential; external verification and final identity reporting are mandatory."
