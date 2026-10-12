@@ -1,25 +1,35 @@
 # TPCN Luna Multi-Agent Workflow — Event-Driven Architecture
 
-## Luna-0 Luna-65 RP-1 host-inspection publication and execution authorization — publication/preflight pending — 2026-10-12
+## Luna-0 Luna-65 RP-1 host inspection — executed once; independent review returned contract defect — 2026-10-12
 
-Owner authorized gate `L65-PHASE2A-RP1-HOST-INSPECTION-EXECUTION` for exactly
-one attended invocation, conditional on publication and final preflight. The
-PowerShell 5.1 probe replaces the proposed Python probe for RP-1 only. The
-reviewed contract and probe must be published first; the bounded S06 sample,
-documented omissions, and cooperative (not hard-enforced) resource limits are
-accepted. RP-2, RP-3, supervisor implementation/qualification, fixtures,
-full Spiral execution, Luna-64 corrective execution, and any retry remain
-unauthorized or blocked as previously recorded.
+Owner authorized exactly one attended RP-1 invocation conditional on
+publication and final preflight. Publication commit
+`65de223151ff196c72263f79e50719a7b6dbbd07` was pushed and fetched from
+`origin/governance/luna64-r4.3-freeze-20261010`. The reviewed probe and contract
+retained their required SHA-256 and Git blob identities. The authorized evidence
+directory was path/reparse-checked, created as the missing leaf, and empty
+before execution.
 
-The frozen baseline is `948f5e70a43a3524dfef6bbe8f04bbd041770fd6`. Before
-publication, the contract matched SHA-256
-`15466F43775455E4B5BABF5A50DD2159322E7DDC6572833A1C69C2107F98152D` and Git
-blob `76d0c07bb432073f9b48c2d55fa7a40eb94a67e3`; the probe matched SHA-256
-`E538FFC2FCC5E38A80E711440AFE4E1BC079E7413832E0BB9A8C4943034CC049` and Git
-blob `2ac7eccd62b0d9d32c15d9f262da47379d38df73`. Publication and host preflight
-are pending; **RP-1 has not been executed**. The only authorized publication
-allowlist is the contract, probe, RP-1 handoff, and this workflow entry. See
-`workflow/handoffs/luna-0-luna65-rp1-host-inspection-20261012.md`.
+The exact contract command ran once with run ID
+`20261012T220000Z-5d2e7b4`, exit code 0, in an attended session; no retry was
+made. Retained stdout is 66,533 bytes (SHA-256
+`D5540237E3B6577704DF45ED44E1634EB928660614CBF9CF65E01BCCD72D8D8E`); stderr
+is empty (SHA-256
+`E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855`). The
+probe emitted `RP1_COMPLETE`, but independent Luna-11 evidence review found
+that the contract prohibits `New-*` commands while the published probe uses
+`New-Object` twice. Per the contract's failure classification, final
+disposition is **`RP1_CONTRACT_DEFECT`**, not `RP1_COMPLETE_OBSERVED`; the
+reviewer found no evidence these in-memory constructors caused persistent
+writes. The S06 listing also contains two `TRUNCATED_LINES` markers and remains
+only a bounded sample. RP-1 was not retried and no compatibility gate followed.
+See `workflow/handoffs/luna-0-luna65-rp1-host-inspection-20261012.md` for the
+retained findings, reviewer disposition, and remaining U1-U8 prerequisites.
+
+RP-2 and RP-3, supervisor implementation/qualification, fixtures, full Spiral,
+Luna-64 corrective execution, and all further RP-1 invocations remain
+unauthorized or blocked as previously recorded. The next step is contract/source
+discrepancy review under separate owner authorization; do not advance to RP-2.
 
 ## Luna-0 S1-B Corrective Verification - retained evidence verified FITS_WORST - 2026-10-12
 
