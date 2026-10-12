@@ -431,8 +431,11 @@ SHA-256 is
 `B249E6FB29DE9B00BC85B570661552D1D12DC1BD930AD1075E9A8CFFFD6387BE`;
 its Git object SHA-1 is `0cd13110121af109eee3d85aabe7775b1bbc1865` after the
 existing LF normalization. The A6 checkout and Git identities are listed
-separately in the manifest. The governance publication commit and final
-workflow-closure commit are recorded by the publication history.
+separately in the manifest. The governance package, including the unchanged
+A6 source artifacts and the independent R1 review, was committed as
+`f00dea13d64657cbc976d21daf50739ddf9722fe`. This entry is the subsequent
+workflow-closure commit; its exact revision is recorded in Git history and
+the final publication report.
 
 ## Luna-63C reviewed design integrated; mechanism authorization certificate-gated — 2026-10-09
 
