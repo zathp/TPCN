@@ -1,12 +1,12 @@
 # Luna-65 Phase 2 — E2 Capacity Fixture Contracts
 
 **Status:** Governance-only Phase 2A correction proposal. Independent review
-found the corrected Phase 2A specification complete; this correction remains
-unpublished and does not constitute owner acceptance or execution
-authorization. No fixtures have been materialized or run. Phase 2A and
-Phase 2B require separate explicit owner authorization and qualified resource
-controls. Full-replication E2 identity capacity remains unproven and Spiral
-execution remains blocked.
+found the corrected Phase 2A specification complete. Publication of this
+correction does not constitute owner acceptance or execution authorization.
+No fixtures have been materialized or run. Phase 2A and Phase 2B require
+separate explicit owner authorization and qualified resource controls.
+Full-replication E2 identity capacity remains unproven and Spiral execution
+remains blocked.
 
 **Protocol baseline:** `5a374c9ddab30517d863696a28f7f801a31f26bc`.
 **Correction review baseline:** `dc62469a099f27f2b8d43142dd8aecb407b2e663`

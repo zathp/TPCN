@@ -7,15 +7,15 @@ tpcn_handoff:
   descriptive_name: "Luna-65 Phase 2A direct-counter specification correction"
   task_id: "luna65-phase2a-contract-correction-20261012"
   component: "Direct E2 identity capacity fixture contract"
-  status: "ready_to_publish"
+  status: "published"
   contract_version: "1.1-correction-proposal"
   specification_verdict: "PASS — PHASE 2A SPECIFICATION CORRECTED; EXECUTION STILL GATED"
   execution_readiness: "BLOCKED — no exact supervisor has been independently qualified"
   owner_acceptance: "pending"
-  correction_publication: "pending; current governance correction is uncommitted"
+  correction_publication: "published"
   branch: "governance/luna64-r4.3-freeze-20261010"
   base_revision: "dc62469a099f27f2b8d43142dd8aecb407b2e663"
-  result_revision: "uncommitted governance correction; exact-allowlist precommit review passed"
+  result_revision: "ed234e7fcb2f6d8343aeca2364bae82865a9f975"
   dependencies:
     - "Baseline-published Luna-65 Phase 2 capacity supplement; owner acceptance remains pending"
     - "Prior blocked Luna-65 Phase 2A authorization-readiness review"
@@ -71,14 +71,12 @@ tpcn_handoff:
     - "Phase 2B network capacity fixture."
     - "All benchmarks, training, scoring, and dataset generation."
   unresolved:
-    - "Publication has not occurred."
     - "No exact Phase 2 supervisor identity or qualification evidence is available."
     - "Complete compressed-ledger size has not been measured; the fixture contract requires fail-closed incomplete status if its artifact cap would be exceeded."
     - "Repository owner has not accepted the proposed capacity-only amendment."
     - "Full-replication identity sufficiency remains unproven."
   recommended_next_agent:
-    - "Luna-0: publish only if all independent specification reviews and the exact-byte precommit review pass."
-    - "Repository owner: after publication, separately accept the capacity-only amendment and authorize Phase 2A only after supervisor qualification."
+    - "Repository owner: decide whether to accept the capacity-only amendment; separately authorize Phase 2A only after supervisor qualification."
 ```
 
 ## Baseline and preserved evidence
@@ -168,5 +166,6 @@ execution remain **NOT AUTHORIZED**. Full Spiral execution remains
 separately qualified controls, and exact owner authorization.
 
 The exact governance allowlist and staged bytes passed independent precommit
-review with no findings. Commit and publish only these reviewed bytes;
-publication is not owner acceptance or execution authorization.
+review with no findings. The correction was published in
+`ed234e7fcb2f6d8343aeca2364bae82865a9f975` to the expected branch. Publication
+is not owner acceptance or execution authorization.

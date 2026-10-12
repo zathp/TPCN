@@ -43,11 +43,11 @@ phase. The execution gate additionally requires a reviewed full-replication
 capacity argument and separately qualified execution controls; Phase 1
 closure grants neither.
 
-## Luna-65 Phase 2 capacity contracts — correction review passed; unpublished proposal; execution gated — 2026-10-12
+## Luna-65 Phase 2 capacity contracts — correction published; authorization gated — 2026-10-12
 
-The baseline-published Phase 2 supplement and the current unpublished
-correction specify the separate Phase 2A direct-counter and Phase 2B
-fixed-network capacity fixture contracts in
+The baseline-published Phase 2 supplement and the published correction in
+`ed234e7fcb2f6d8343aeca2364bae82865a9f975` specify the separate Phase 2A
+direct-counter and Phase 2B fixed-network capacity fixture contracts in
 [LUNA_65_PHASE2_CAPACITY.md](LUNA_65_PHASE2_CAPACITY.md). They are not
 implementation or execution authorizations. No capacity fixtures, benchmark
 examples, training, scoring, or generated data have been run or materialized.
@@ -89,8 +89,9 @@ state, and event assertions. Independent reviews passed the counter and
 output-event assertions, JSONL/provenance schema, command/scope, and proposed
 resource specification. The resource review did not qualify an execution
 supervisor; the complete compressed-ledger size also remains unverified. The
-correction passed exact-byte prepublication review but has not been published;
-it remains a proposal pending owner acceptance. Phase 2A execution remains
+correction passed exact-byte prepublication review and was published in the
+commit above; the capacity-only amendment remains a proposal pending owner
+acceptance. Phase 2A execution remains
 **NOT AUTHORIZED**; Phase 2B execution
 remains **NOT AUTHORIZED**; full Spiral execution remains **BLOCKED** pending
 a reviewed full-replication capacity argument, qualified resource controls,
