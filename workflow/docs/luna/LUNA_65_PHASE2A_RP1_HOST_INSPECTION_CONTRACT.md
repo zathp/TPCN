@@ -69,7 +69,26 @@ cmd.exe /d /c ""C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe" -NoPr
 
 ### 3.3 Prohibited side effects
 
-No writes except the two shell redirections to the named files. The only child processes are those started by the script's `RunNative` helper (`whoami`, `icacls`, `netsh`, `git`, and the two interpreter queries), each with a fixed read-only argument string and a timeout. The script contains no `Set-*` (other than `Set-StrictMode`), `New-*`, `Remove-*`, `Out-File`, `Add-Content`, `Add-Type`, `Start-Process`, `Stop-*`, registry writes, `icacls` options other than a bare path (no `/grant`, `/deny`, `/setintegritylevel`, `/save`, `/restore`, `/reset`, `/inheritance`, `/remove`, `/T`), `netsh` subcommands other than `show`, network connections, service or firewall changes, elevation, token changes, or Job Object creation. `git` runs with `--no-optional-locks` and only `rev-parse`. The `python` queries run with `-I -B` (no bytecode writes) and import no project source. A static scan of the candidate for the prohibited tokens is part of review.
+No writes except the two shell redirections to the named files. The only child processes are those started by the script's `RunNative` helper (`whoami`, `icacls`, `netsh`, `git`, and the two interpreter queries), each with a fixed read-only argument string and a timeout. The script contains no `Set-*` (other than `Set-StrictMode`), `Remove-*`, `Out-File`, `Add-Content`, `Add-Type`, `Start-Process`, `Stop-*`, registry writes, `icacls` options other than a bare path (no `/grant`, `/deny`, `/setintegritylevel`, `/save`, `/restore`, `/reset`, `/inheritance`, `/remove`, `/T`), `netsh` subcommands other than `show`, network connections, service or firewall changes, elevation, token changes, or Job Object creation. The only `New-Object` statements permitted for prospective use are the exact source statements and constraints in §3.3.1; all other `New-*` commands remain prohibited. `git` runs with `--no-optional-locks` and only `rev-parse`. The `python` queries run with `-I -B` (no bytecode writes) and import no project source. Review must statically verify the exact §3.3.1 exceptions and reject any additional constructor or executable behavior.
+
+### 3.3.1 Corrective amendment — exact in-memory constructor exceptions (prospective only)
+
+**Amendment date:** 2026-10-12. This amendment applies only prospectively to any separately authorized use of the unchanged probe whose SHA-256 is `E538FFC2FCC5E38A80E711440AFE4E1BC079E7413832E0BB9A8C4943034CC049` and Git blob is `2ac7eccd62b0d9d32c15d9f262da47379d38df73`. It does not alter the original publication commit, probe, retained output, or historical verdict. The original invocation remains **`RP1_CONTRACT_DEFECT`** because the pre-amendment §3.3 prohibition and static-scan claim contradicted the published source.
+
+The sole `New-Object` exceptions are these exact statements, each occurring exactly once in the bound probe source:
+
+```powershell
+$psi = New-Object Diagnostics.ProcessStartInfo
+$pr = New-Object Security.Principal.WindowsPrincipal($id)
+```
+
+The first invokes the parameterless `System.Diagnostics.ProcessStartInfo` constructor to allocate an in-memory process-start configuration object. Its constructor does not start a process; process creation occurs later and separately in the already enumerated `RunNative` call to `[Diagnostics.Process]::Start($psi)`.
+
+The second invokes the `System.Security.Principal.WindowsPrincipal(WindowsIdentity)` constructor with the already obtained `$id`. On the bound .NET Framework implementation, construction stores the supplied identity in the principal and its in-memory claims-identity collection; it does not perform the later `IsInRole` query. The subsequent `IsInRole` call is the separately enumerated read-only current-token role check.
+
+These exact constructor calls do not invoke COM activation or another external executable, write persistent filesystem or registry state, modify Windows configuration, start a process, or perform network/service/firewall/token changes. No other `New-Object` use, constructor type, argument, property assignment, `-ComObject` activation, or `New-*` command is authorized by this exception. Any source change, additional occurrence, changed target type/argument, or unreviewed constructor invalidates the exception and requires a new review before execution.
+
+The reference basis for this narrow exception is the .NET Framework Reference Source at commit `ec9fa9ae770d522a5b5f0607898044b7478574a3`: `ProcessStartInfo()` has an empty constructor body in `System/services/monitoring/system/diagnosticts/ProcessStartInfo.cs`; `WindowsPrincipal(WindowsIdentity)` checks for null, delegates to the in-memory `ClaimsPrincipal` identity collection, and assigns `m_identity` in `mscorlib/system/security/principal/windowsprincipal.cs` and `mscorlib/system/security/claims/ClaimsPrincipal.cs`. The PowerShell 5.1 `New-Object` documentation distinguishes .NET construction from COM activation. This source review supports only these constructor semantics, not overall RP-1 enforcement qualification.
 
 ### 3.4 Resource limits
 

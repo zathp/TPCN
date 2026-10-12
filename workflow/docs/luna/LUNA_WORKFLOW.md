@@ -1,6 +1,6 @@
 # TPCN Luna Multi-Agent Workflow — Event-Driven Architecture
 
-## Luna-0 Luna-65 RP-1 host inspection — executed once; independent review returned contract defect — 2026-10-12
+## Luna-0 Luna-65 RP-1 host inspection — executed once; prospective contract correction reviewed PASS — 2026-10-12
 
 Owner authorized exactly one attended RP-1 invocation conditional on
 publication and final preflight. Publication commit
@@ -28,8 +28,15 @@ retained findings, reviewer disposition, and remaining U1-U8 prerequisites.
 
 RP-2 and RP-3, supervisor implementation/qualification, fixtures, full Spiral,
 Luna-64 corrective execution, and all further RP-1 invocations remain
-unauthorized or blocked as previously recorded. The next step is contract/source
-discrepancy review under separate owner authorization; do not advance to RP-2.
+unauthorized or blocked as previously recorded. Under the separate governance-
+only gate `L65-PHASE2A-RP1-CONTRACT-DEFECT-CORRECTION`, Luna-11 returned
+**PASS — RP-1 CONTRACT DEFECT RECONCILED FOR FUTURE USE** for a source-specific
+prospective amendment to §3.3. The three-file governance-only publication is
+pending; it preserves the original contract/probe identities, invocation
+artifacts, and `RP1_CONTRACT_DEFECT` disposition and authorizes no further run
+or compatibility gate. See
+`workflow/handoffs/luna-0-luna65-rp1-contract-defect-correction-20261012.md`.
+Do not advance to RP-2.
 
 ## Luna-0 S1-B Corrective Verification - retained evidence verified FITS_WORST - 2026-10-12
 
