@@ -1,0 +1,124 @@
+{
+  "format": "TPCN-LUNA64-A6-OWNER-RECONCILIATION-R1-MANIFEST",
+  "revision": 1,
+  "gate": "L64-TB-R4.3-CORRECTIVE-SUPERVISOR-A6-OWNER-RECONCILIATION-R1",
+  "created": "2026-10-11",
+  "scope": "governance-only; no infrastructure, qualification, corrective, or scientific execution",
+  "base": {
+    "branch": "governance/luna64-r4.3-freeze-20261010",
+    "commit": "b758b411e568b41c516228e7d3bdff26058114cc"
+  },
+  "owner_decision_provenance": "D1-D6 were supplied as repository-owner decisions in the 2026-10-11 task conversation; not inferred from technical review.",
+  "frozen_authority": {
+    "content_freeze_commit": "64a214e310de3b982b90a8ad215598bc1e9f8b1c",
+    "governance_closure_commit": "ea1b10456cbf4ca726e473076d239a4f6e53b9c7",
+    "manifest_sha256": "62D64457BB4BE4FF69F40558D55C6A9FAAA7B9A246DA9F6C6BE4BE8C0348542B",
+    "corrective_authorization_commit": "0bdddaeaefe47a97ea6433d82bcc143adfe13b5a",
+    "pilot_verdict": "NOT SUPPORTED AS A PROTOCOL-COMPLIANT PILOT; not an efficacy result"
+  },
+  "predecessors": {
+    "A4_package_commit": "7bd440565c38dee81ace3606fde3fb686de6a0ef",
+    "A4_closure_commit": "f86c25844a4863ac57cd6634f364c28bcf2f511f",
+    "A5_package_commit": "12f84a41fe7c91c17c5df8e975fce24efbadf9ad",
+    "A5_closure_commit": "b758b411e568b41c516228e7d3bdff26058114cc",
+    "A5_proposal_checkout_sha256": "5BCDAC72E7EBDEA777E9964F25554834C4460D97075E6871690BD441BA00C6E5",
+    "A5_review_checkout_sha256": "54D11A362EDED451292330C6FA5627B570BD6103ADE0F69E115F5CDC3C7B934D",
+    "A6_pre_R1_workflow_checkout_sha256": "58C46144B8546AD82739880AF4FB75DC23A171103E4DB2AA610F8FD9A5394BAA"
+  },
+  "A6_immutable_checkout_inputs": [
+    {
+      "path": "workflow/handoffs/luna-0-luna64-r4.3-corrective-supervisor-amendment-a6-20261011.md",
+      "checkout_sha256": "AD952D9AB7656313D03E0E58BF48469D420B74C5E9CB6BA6738915AA0D34C4C4",
+      "git_object_sha1": "65b2e7b1d7b761b6bcc5bf50ad99b1b2f74d56d5",
+      "git_attribute_text": "unset (-text path rule)",
+      "checkout_line_endings": "CRLF",
+      "content_changed_by_R1": false
+    },
+    {
+      "path": "workflow/handoffs/luna64-r4.3-execution-environment-a6-evidence-20261011.json",
+      "checkout_sha256": "CB4FA2BBB72DFD1371312641A101F3F5E77A1BDF99540521EE366069AED0C7AE",
+      "git_object_sha1": "c65853eb5feddadebe81f1f5162ad9c315fe2055",
+      "git_attribute_text": "unset (-text path rule)",
+      "checkout_line_endings": "CRLF",
+      "content_changed_by_R1": false
+    },
+    {
+      "path": "workflow/handoffs/luna-0-independent-review-luna64-r4.3-corrective-supervisor-a6-20261011.md",
+      "checkout_sha256": "500611264036C1602D280294030F1459FFA817C8DB1CE64AE4E1F4F8E28DB405",
+      "git_object_sha1": "d6047dfab9aaabb1dcbeab1bfcd1dc3433d8db61",
+      "git_attribute_text": "unset (-text path rule)",
+      "checkout_line_endings": "CRLF",
+      "content_changed_by_R1": false
+    }
+  ],
+  "owner_decisions": {
+    "D1": "Approve Linux cgroup-accounted 512 MiB memory replacement for qualification design only.",
+    "D2": "Accept 130.1 guest CPU seconds and 170/171/180-second wall stages as unverified design targets only.",
+    "D3": "Evaluate simpler artifact containment before custom FUSE; no FUSE creation.",
+    "D4": "Accept the proposed qualification budget for planning only.",
+    "D5": "Require authenticated non-network host-guest control.",
+    "D6": "No infrastructure changes authorized."
+  },
+  "planning_only_qualification_budget": {
+    "synthetic_cases": 12,
+    "guest_cpu_seconds_total": 240,
+    "guest_cpu_scope": "fresh, empty dedicated workload cgroup from baseline through final empty-cgroup counter read; includes monitor, supervisor bootstrap, descendants, and in-cgroup cleanup; R1 does not authorize an artifact mediator, and any such component in a future authorized design must be included or separately budgeted; excludes PID 1 activation, VM boot, and host control CPU, which must be separately recorded",
+    "cpu_scope_confirmed_for_execution": false,
+    "wall_seconds_total": 600,
+    "outer_memory_bytes": 805306368,
+    "outer_memory_metric": "not selected; exact measured object, metric, boot/host boundary, and hard enforcement must be specified and owner-approved before execution",
+    "combined_payload_and_evidence_bytes": 6291456,
+    "payload_evidence_accounting_metric": "not selected; exact aggregate logical/allocated measure, complete writer set, and failure-evidence allocation must be specified and owner-approved before execution",
+    "wall_origin": "candidate Q0 is host QPC immediately before the single VM-start request; proposed 600 seconds includes boot through confirmed VM Off and evidence seal; owner and independent prereview confirmation required",
+    "case_identities": "not fixed by R1; future authorization must enumerate all 12 exact synthetic cases, commands, order, resource allocation, and failure behavior",
+    "vm_starts": 1,
+    "host_turnoff_max": 1,
+    "retries": 0,
+    "execution_authorized": false
+  },
+  "A6_status_preserved": "BLOCKED — ENFORCEMENT CONTRACT INCOMPLETE",
+  "R1_status": "A6 OWNER-POLICY RECONCILIATION VERIFIED — QUALIFICATION DESIGN MAY PROCEED",
+  "integrated_independent_review": "PASS — R1 READY FOR PUBLICATION",
+  "independent_review_scopes": [
+    "governance and owner-authorization boundaries",
+    "resource policy and budget semantics",
+    "trusted boundary and Git provenance"
+  ],
+  "publication_integrity": [
+    {
+      "path": ".gitattributes",
+      "checkout_sha256": "B249E6FB29DE9B00BC85B570661552D1D12DC1BD930AD1075E9A8CFFFD6387BE",
+      "git_object_sha1": "0cd13110121af109eee3d85aabe7775b1bbc1865",
+      "git_object_materialization": "LF normalized by existing text=auto rule; checkout and Git-object identities are distinct"
+    },
+    {
+      "path": "workflow/handoffs/luna-0-luna64-r4.3-corrective-supervisor-a6-owner-reconciliation-r1-20261011.md",
+      "checkout_sha256": "A619E3A4361B712471B8C3A7FD2AA784992ED6B4F5F0E218ED0449B16144319D",
+      "git_object_sha1": "8a579ca7588ca1dc8d67822f96c10d88734aa393",
+      "git_object_materialization": "Exact checkout bytes retained by path-scoped -text rule"
+    },
+    {
+      "path": "workflow/handoffs/luna-0-independent-review-luna64-r4.3-a6-owner-reconciliation-r1-20261011.md",
+      "checkout_sha256": "DD7E0F840F8C3F34A7016351C28F63CA50F313618DC1B218B81A509CBD8E4D36",
+      "git_object_sha1": "44bfe00a764af399476c6e174c770826794b32e9",
+      "git_object_materialization": "Exact checkout bytes retained by path-scoped -text rule"
+    }
+  ],
+  "validation_limits": [
+    "Owner diagnostics were supplied evidence, not independently executed checks.",
+    "No infrastructure was changed or operated.",
+    "No qualification, corrective test, or scientific workload was executed.",
+    "D1-D6 do not constitute authorization to execute qualification or corrective work."
+  ],
+  "publication_files": [
+    ".gitattributes",
+    "workflow/handoffs/luna-0-luna64-r4.3-corrective-supervisor-amendment-a6-20261011.md",
+    "workflow/handoffs/luna64-r4.3-execution-environment-a6-evidence-20261011.json",
+    "workflow/handoffs/luna-0-independent-review-luna64-r4.3-corrective-supervisor-a6-20261011.md",
+    "workflow/handoffs/luna-0-luna64-r4.3-corrective-supervisor-a6-owner-reconciliation-r1-20261011.md",
+    "workflow/handoffs/luna-0-independent-review-luna64-r4.3-a6-owner-reconciliation-r1-20261011.md",
+    "workflow/handoffs/luna64-r4.3-a6-owner-reconciliation-r1-manifest-20261011.json",
+    "workflow/docs/luna/LUNA_WORKFLOW.md"
+  ],
+  "manifest_self_hash": "Recorded by the subsequent workflow closure and Git commit identity; excluded from this self-referential manifest."
+}

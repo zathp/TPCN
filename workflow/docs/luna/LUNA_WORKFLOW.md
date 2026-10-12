@@ -323,6 +323,117 @@ promotion. Explicit owner approval and resolution of CPU/wall termination and
 artifact-containment blockers are required before a successor qualification
 request. Luna-63C remains isolated and unchanged.
 
+## Luna-64 A6 enforcement closure and owner decision gate - blocked - 2026-10-11
+
+Governance-only `L64-TB-R4.3-CORRECTIVE-SUPERVISOR-A6` reconciles A5 and
+proposes the retained Hyper-V / Ubuntu systemd-cgroup architecture without
+reopening the frozen Luna-64 R4.3 protocol. A5 package
+`12f84a41fe7c91c17c5df8e975fce24efbadf9ad`, A5 workflow closure
+`b758b411e568b41c516228e7d3bdff26058114cc`, their proposal/review hashes,
+the frozen R4.3 content and manifest, original corrective gate and owner
+authorization were rechecked. Owner-supplied host and guest diagnostics
+remain unverified reports; no VM or infrastructure was touched.
+
+The [A6 proposal](../../handoffs/luna-0-luna64-r4.3-corrective-supervisor-amendment-a6-20261011.md)
+offers a materially different Linux memory metric (`memory.max=536870912`,
+`memory.swap.max=0`), a 130.1-second CPU candidate, 170/171/180-second
+wall-stop stages, and a 5 MiB logical-file high-water policy backed by a
+proposed 32 MiB ext4 VHDX/FUSE ledger. Each is only a proposal requiring
+explicit owner decision; none is equivalent to the original Windows working
+set or presently qualified. The independent review records
+`225.1 + 14.9 = 240` proposed guest CPU seconds, 600-second wall maximums and
+the 5,242,880-byte total artifact cap, but arithmetic does not establish
+enforcement.
+
+Independent CPU/wall, artifact, and memory/governance reviewers found or
+retained material blockers. No finite CPU or VM-Off termination latency is
+demonstrated; the authenticated non-network guest-host control/evidence
+channel is unspecified; FUSE, its crash-safe ledger, storage sizing and
+frozen-test compatibility are unimplemented/unqualified; and owner policy
+approval is absent. The A6 qualification budget is proposed only, cannot be
+used under A6, and does not consume the unused corrective allowance.
+
+The [machine-readable evidence](../../handoffs/luna64-r4.3-execution-environment-a6-evidence-20261011.json)
+and [integrated independent review](../../handoffs/luna-0-independent-review-luna64-r4.3-corrective-supervisor-a6-20261011.md)
+preserve the block, prior A1-A5 findings, the original pilot
+**NOT SUPPORTED** verdict, and Luna-63C isolation. No supervisor,
+qualification case, corrective test, scientific workload, or infrastructure
+operation ran. **A6 disposition: BLOCKED - ENFORCEMENT CONTRACT INCOMPLETE.**
+No A7, corrective execution, scientific rerun, production integration, or
+architecture promotion is authorized. The remaining blocker is unavailable
+enforcement evidence plus unresolved owner policy, not a demonstrated
+engineering impossibility. Stop here pending an explicit owner response.
+
+Checkout SHA-256: A6 proposal
+`AD952D9AB7656313D03E0E58BF48469D420B74C5E9CB6BA6738915AA0D34C4C4`,
+machine-readable evidence
+`CB4FA2BBB72DFD1371312641A101F3F5E77A1BDF99540521EE366069AED0C7AE`,
+and integrated review
+`500611264036C1602D280294030F1459FFA817C8DB1CE64AE4E1F4F8E28DB405`. This blocked A6 record is
+uncommitted in the working tree; no publication commit or push was made.
+
+## Luna-64 A6 owner-policy reconciliation R1 — design only — 2026-10-11
+
+The repository owner's D1-D6 decisions supplied in the 2026-10-11 task
+conversation are recorded in the
+[R1 reconciliation](../../handoffs/luna-0-luna64-r4.3-corrective-supervisor-a6-owner-reconciliation-r1-20261011.md).
+The decisions approve the Linux cgroup memory replacement for qualification
+design only; accept the proposed 130.1 guest CPU seconds and 170/171/180-second
+wall stages only as unverified targets; require simpler artifact alternatives
+to be evaluated before FUSE; accept the separate 12-case qualification
+allowance for planning only; require authenticated non-network host/guest
+control; and explicitly deny infrastructure-change authority.
+
+R1 does not alter the frozen protocol, original corrective authorization,
+accepted reject-only second-origin policy, any A1-A5 blocked finding, the A6
+technical verdict, or the unused corrective allowance. It preserves the
+original pilot **NOT SUPPORTED** verdict and Luna-63C isolation. **A6 remains
+BLOCKED — ENFORCEMENT CONTRACT INCOMPLETE.** Policy decisions permit only
+read-only qualification design; no infrastructure modification, qualification
+execution, corrective implementation/test, or scientific workload is
+authorized. The owner-supplied diagnostics remain owner-supplied evidence,
+not independent runtime tests.
+
+The R1 manifest records the predecessor and A6 checkout hashes and CRLF
+materializations. Six path-scoped `-text` rules preserve the three A6
+artifacts and three R1 handoffs as exact Git objects; no repository-wide
+conversion policy changed. Independent read-only review and the final publication
+identities are recorded in the
+[R1 independent review](../../handoffs/luna-0-independent-review-luna64-r4.3-a6-owner-reconciliation-r1-20261011.md)
+and [R1 manifest](../../handoffs/luna64-r4.3-a6-owner-reconciliation-r1-manifest-20261011.json).
+No Hyper-V/systemd control, filesystem, supervisor, qualification case,
+corrective test, or scientific workload was run. The R1 result is
+**A6 OWNER-POLICY RECONCILIATION VERIFIED — QUALIFICATION DESIGN MAY
+PROCEED**; this is not A6 qualification readiness or execution authorization.
+The next bounded step is an independently prereviewed, read-only design
+selection for authenticated offline control, exact artifact enforcement,
+and defensible CPU/wall limits. Any infrastructure or execution requires a
+separate exact owner authorization.
+
+The separate qualification allowance is planning-only: 12 synthetic cases,
+240 guest CPU seconds, 600 seconds wall, 768 MiB outer memory, 6 MiB combined
+payload/evidence, one VM start, at most one `Stop-VM -TurnOff`, and zero
+retries. Its case identities, outer-memory metric, combined-artifact metric,
+wall origin, and excluded CPU scope require exact future specification and
+owner approval; the allowance is not executable authority.
+
+Checkout SHA-256 identities: R1 proposal
+`A619E3A4361B712471B8C3A7FD2AA784992ED6B4F5F0E218ED0449B16144319D`,
+integrated independent review
+`DD7E0F840F8C3F34A7016351C28F63CA50F313618DC1B218B81A509CBD8E4D36`,
+and manifest
+`D51C207C5ED7E91B59C661FB39B67E88F27C0FA47CDEF708AA1F0ADFB7DEE958`.
+Their Git object SHA-1 identities are respectively
+`8a579ca7588ca1dc8d67822f96c10d88734aa393`,
+`44bfe00a764af399476c6e174c770826794b32e9`, and
+`1bc7e74b4e5952298f27513cc0cbf19df754ab4a`. The `.gitattributes` checkout
+SHA-256 is
+`B249E6FB29DE9B00BC85B570661552D1D12DC1BD930AD1075E9A8CFFFD6387BE`;
+its Git object SHA-1 is `0cd13110121af109eee3d85aabe7775b1bbc1865` after the
+existing LF normalization. The A6 checkout and Git identities are listed
+separately in the manifest. The governance publication commit and final
+workflow-closure commit are recorded by the publication history.
+
 ## Luna-63C reviewed design integrated; mechanism authorization certificate-gated — 2026-10-09
 
 The Luna-63C nonlinear excursion design was independently reviewed
