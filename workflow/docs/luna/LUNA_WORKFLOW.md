@@ -1,5 +1,27 @@
 # TPCN Luna Multi-Agent Workflow — Event-Driven Architecture
 
+## Luna-65 Phase 2A R7 preimplementation readiness — decision package ready for owner review — 2026-10-12
+
+Luna-0 completed governance-only gate
+`L65-PHASE2A-R7-PREIMPLEMENTATION-READINESS` against revision
+`33a753d3343ee6b2c3f5b40349d1cf06895eaa74`. Verdict: **PASS — R7
+PREIMPLEMENTATION DECISION PACKAGE READY FOR OWNER REVIEW** (four independent
+read-only lanes PASS on package SHA-256
+`D3F28DEEC73A53EFD4A470F7D90BC670E5A6F32593258B16F74F493683DE363C`).
+
+The package holds the owner-decision matrix (D-R7P-1, D-R7P-2, R-TRUST, §4.4
+allowlist and the `-B` / `-p no:cacheprovider` command amendment), a two-step
+synthetic ledger-sizing proposal that requests an explicit owner amendment of
+the published result gate, the U1-U8 Windows feasibility matrix with candidate
+probes (none authorized), and implementation-identity requirements (Phase 2A
+test file absent; no hash invented). No owner acceptance is inferred. See
+`workflow/docs/luna/LUNA_65_PHASE2A_R7_PREIMPLEMENTATION_READINESS.md` and
+`workflow/handoffs/luna-0-luna65-r7-preimplementation-readiness-20261012.md`.
+
+Supervisor implementation: **NOT AUTHORIZED**. Synthetic sizing execution: **NOT
+AUTHORIZED**. Supervisor qualification: **NOT AUTHORIZED**. Phase 2A/2B
+fixtures: **NOT AUTHORIZED**. Full Spiral benchmark: **BLOCKED**. Luna-64
+corrective execution: **BLOCKED**. Luna-63C: **FROZEN**.
 ## Luna-65 Phase 2A R7 owner decisions and profile closure — contract ready for implementation authorization — 2026-10-12
 
 Luna-0 completed governance-only gate
