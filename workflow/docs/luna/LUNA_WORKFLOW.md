@@ -1,5 +1,28 @@
 # TPCN Luna Multi-Agent Workflow — Event-Driven Architecture
 
+## Luna-65 Phase 2A R7 owner decisions and profile closure — contract ready for implementation authorization — 2026-10-12
+
+Luna-0 completed governance-only gate
+`L65-PHASE2A-R7-OWNER-DECISION-AND-PROFILE-CLOSURE` against revision
+`baf03722e3b8a21e3af65602691cdb63663e1dd3`. Verdict: **PASS — R7 OWNER
+DECISIONS RECONCILED; PROFILE CONTRACT READY FOR IMPLEMENTATION
+AUTHORIZATION** (four independent read-only lanes PASS on contract SHA-256
+`9CA2E34DCC1F35BA72156B86C889365C2EB6873979E7863248594AF214169B73`).
+
+Owner decisions D-R7-1..3 and D-R7-5..8 are recorded; D-R7-4 is resolved by
+frozen security profiles for the watchdog, controller and Low-integrity
+workload. Watchdog and controller filesystem limits are source-level behavior,
+not token- or ACL-enforced (residual R-TRUST). Peer same-user tampering against
+the 1 MiB artifact metric is owner decision D-R7P-2; the metric and cap are not
+amended. Windows prerequisites U1-U8 remain unproven and are not claimed. A
+synthetic ledger-sizing contract is prepared and not authorized for execution.
+See `workflow/docs/luna/LUNA_65_PHASE2A_R7_OWNER_DECISIONS_AND_PROFILES.md`
+and `workflow/handoffs/luna-0-luna65-r7-owner-decision-profile-closure-20261012.md`.
+
+Supervisor implementation: **NOT AUTHORIZED**. Supervisor qualification: **NOT
+AUTHORIZED**. Synthetic ledger sizing: **NOT AUTHORIZED FOR EXECUTION**. Phase
+2A/2B fixtures: **NOT AUTHORIZED**. Full Spiral execution: **BLOCKED**. Luna-64
+corrective execution: **BLOCKED**. Luna-63C: **FROZEN**.
 ## Luna-65 Phase 2A supervisor simplification R7 — design ready for owner decision — 2026-10-12
 
 Luna-0 completed the governance-only feasibility review
