@@ -1,5 +1,85 @@
 # TPCN Luna Multi-Agent Workflow — Event-Driven Architecture
 
+## Luna-0 RP-2 R1 owner-decision closure - diagnostic design accepted - 2026-10-12
+
+Gate `L65-PHASE2A-RP2-R1-OWNER-DECISION-CLOSURE` prospectively records owner
+acceptance of D-RP2-DIRECT-1, D-RP2-MEDIUM-1 and D-RP2-OUTER-1 for synthetic
+diagnostic DESIGN only. Immutable R1 checkout SHA-256
+`F9913AC44C268291988F549A110B2EFCC4777139A2BB8BD0DA407DF020FABEFB`
+received four independent same-byte A-D PASS reviews for owner decision.
+Ordinary Medium descriptors/retained handles, two Medium capture streams,
+outer-only evidence writing and corrected source token mask 0x2008B remain
+as reviewed. B01 and Low X-L/three-pipe/four-variable/direct identity preserved.
+
+Outer confirms Medium cessation only; missing Low cessation evidence must
+be RP2_UNKNOWN_FAIL_CLOSED, never RP2_PASS, with explicit operator alert that
+containment is unresolved and no downstream progression. This diagnostic
+residual acceptance neither qualifies production B-min nor proves venv/
+pytest compatibility. Historical BLOCKED/pending records below remain intact.
+
+Governance-only publication is authorized after independent exact-package
+reconciliation and commit/push/fetch identity verification. No source or
+compatibility invocation is authorized. The separate RP-2A candidate proposes
+exact probe and outer-wrapper paths but is NOT an implementation grant.
+RP-2A/RP-2B/RP-3, supervisor/qualification and Phase 2A/2B fixtures remain
+NOT AUTHORIZED; full Spiral/Luna-64 corrective BLOCKED; Luna-63C FROZEN.
+See [owner decisions](LUNA_65_PHASE2A_RP2_R1_OWNER_DECISIONS.md),
+[R1 contract](LUNA_65_PHASE2A_RP2_OUTER_LAUNCHER_CORRECTIVE_R1.md),
+[RP-2A candidate](LUNA_65_PHASE2A_RP2A_IMPLEMENTATION_AUTHORIZATION_CANDIDATE.md)
+and [closure handoff](../../handoffs/luna-0-luna65-rp2-r1-owner-decision-closure-20261012.md).
+
+## Luna-0 Luna-65 RP-2 B01/B02 corrective contract review — BLOCKED — 2026-10-12
+
+Governance/design-only gate `L65-PHASE2A-RP2-B01-B02-CORRECTION` verified
+baseline `45121227d96c6fa13357c6bdf5fba0d99d8d7352` and preserved exact
+prior draft/handoff/workflow snapshots. The corrected contract's raw SHA-256
+`E573ADA32D746E6766D21420C845FF6AA09B18107F05523A6F1BE8913EE3A313`
+was verified by all four fresh independent lanes: A BLOCKED, B BLOCKED,
+C PASS (cleanup/evidence design only), D PASS (governance only).
+**Integrated verdict: BLOCKED — RP-2 CONTRACT INCOMPLETE.**
+
+B01's only-enabled-privilege replacement is proposed and awaits affirmative
+owner approval. B02 root descriptors/creation-returned handles do not close
+stock venv-to-base default-descriptor access. Public launcher-source findings
+also require explicit treatment of intermediate __PYVENV_LAUNCHER__, generic
+inheritance and launcher-owned internal job; local binary correspondence is
+not yet established. No permission grants, owner decisions, technical
+compatibility or runtime qualification are invented. Prior BLOCKED review/
+preparation handoff and RP1_CONTRACT_DEFECT remain preserved.
+
+No implementation, probe, Python workload, token/job/child execution or Windows
+security change; no staging/commit/push. All execution prohibitions remain
+unchanged. See [corrected candidate](LUNA_65_PHASE2A_RP2_RESTRICTED_TOKEN_COMPATIBILITY_CONTRACT.md#10-b01b02-corrective-candidate---governancedesign-only)
+and [corrective handoff](../../handoffs/luna-0-luna65-rp2-b01-b02-correction-20261012.md).
+
+## Luna-0 Luna-65 RP-2 restricted-token compatibility contract preparation — BLOCKED — 2026-10-12
+
+Owner authorized gate `L65-PHASE2A-RP2-CONTRACT-PREPARATION` for governance
+and contract preparation only. Baseline
+`45121227d96c6fa13357c6bdf5fba0d99d8d7352` and required S1-B/RP-1 ancestry
+verified. The new RP-2 draft preserves D-R7-4 exactly, proposes bounded
+synthetic U1-U3 token/launch/handle observations and separate RP-2A/RP-2B
+authorizations, and records unresolved privilege semantics, same-SID child
+descriptor and granted-handle-rights evidence questions. Four independent lanes returned
+A BLOCKED, B BLOCKED, C BLOCKED and D PASS (governance lane only). Integrated
+verdict: **BLOCKED — RP-2 CONTRACT INCOMPLETE**. The privilege-entry invariant
+needs an explicit owner/profile decision; process/thread descriptor and
+parent/base-process access need an exact compatible reviewed plan. Compatible
+post-review timing/import/inventory/accounting clarifications are candidates
+only, not independently re-reviewed PASS. No files staged or published;
+no source implemented or compatibility invocation consumed.
+
+RP-1 remains consumed with historical **RP1_CONTRACT_DEFECT**. Its prospective
+correction was published as `2a07b1e9f20d758df218981a9a8563c5f953d4b5` and
+final corrective handoff as `45121227d96c6fa13357c6bdf5fba0d99d8d7352`;
+the earlier RP-1 entry's publication-pending wording is historical, superseded
+by those verified records, not authority for another inspection.
+RP-2 implementation/execution, RP-3, supervisor implementation/qualification
+and Phase 2A/2B fixtures remain NOT AUTHORIZED. Full Spiral and Luna-64
+corrective execution remain BLOCKED; Luna-63C FROZEN. See
+[RP-2 contract](LUNA_65_PHASE2A_RP2_RESTRICTED_TOKEN_COMPATIBILITY_CONTRACT.md)
+and [handoff](../../handoffs/luna-0-luna65-rp2-contract-preparation-20261012.md).
+
 ## Luna-0 Luna-65 RP-1 host inspection — executed once; prospective contract correction reviewed PASS — 2026-10-12
 
 Owner authorized exactly one attended RP-1 invocation conditional on
