@@ -1,5 +1,32 @@
 # TPCN Luna Multi-Agent Workflow — Event-Driven Architecture
 
+## Luna-65 Phase 2A supervisor simplification R7 — design ready for owner decision — 2026-10-12
+
+Luna-0 completed the governance-only feasibility review
+`L65-PHASE2A-SUPERVISOR-SIMPLIFICATION-R7` against revision
+`1d6325f3ca738b32a6ee9e1a5613d2faa9458770`. Verdict: **PASS — SIMPLIFIED
+SUPERVISOR DESIGN READY FOR OWNER DECISION** (four independent read-only
+review lanes PASS on contract SHA-256
+`7096BB6782CFE1092B5B4F4DF1803788664D69DCFADF4F885D78F00066C073E2`). The
+original blocked R6 verdict is preserved; the R6 attachment bytes were not
+accessible and are not claimed verified.
+
+The recommended candidate (not an owner selection) is B-min: a minimal
+watchdog that launches the controller and holds no job handle, with the
+controller owning the sole job handle and all evidence capture; no ETW, no
+bootstrap or observer job and no handle duplication. Q03 is split (A/B/C1/C2)
+and not waived; C1 and C2 require owner decisions. Job-memory accounting is not
+established as equivalent to the accepted aggregate private-commit metric
+(D-R7-2); the 256 MiB ceiling is unchanged. The 8,196-record ledger fit within
+the 1 MiB budget is unproven and requires a separately authorized sizing step.
+Remaining owner decisions are D-R7-1 through D-R7-8. See
+`workflow/docs/luna/LUNA_65_PHASE2A_SUPERVISOR_SIMPLIFICATION_R7.md` and
+`workflow/handoffs/luna-0-luna65-phase2a-supervisor-simplification-r7-20261012.md`.
+
+Supervisor implementation: **NOT AUTHORIZED**. Supervisor qualification: **NOT
+AUTHORIZED**. Phase 2A/2B fixtures: **NOT AUTHORIZED**. Full Spiral
+execution: **BLOCKED**. Luna-64 corrective execution: **BLOCKED**. Luna-63C:
+**FROZEN**.
 ## Luna-65 Phase 1 per-example API — closed with follow-up — 2026-10-11
 
 The repository owner authorized Luna-65 Phase 1 implementation and its
