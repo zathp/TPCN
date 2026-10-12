@@ -1,5 +1,26 @@
 # TPCN Luna Multi-Agent Workflow — Event-Driven Architecture
 
+## Luna-0 Luna-65 RP-1 host-inspection publication and execution authorization — publication/preflight pending — 2026-10-12
+
+Owner authorized gate `L65-PHASE2A-RP1-HOST-INSPECTION-EXECUTION` for exactly
+one attended invocation, conditional on publication and final preflight. The
+PowerShell 5.1 probe replaces the proposed Python probe for RP-1 only. The
+reviewed contract and probe must be published first; the bounded S06 sample,
+documented omissions, and cooperative (not hard-enforced) resource limits are
+accepted. RP-2, RP-3, supervisor implementation/qualification, fixtures,
+full Spiral execution, Luna-64 corrective execution, and any retry remain
+unauthorized or blocked as previously recorded.
+
+The frozen baseline is `948f5e70a43a3524dfef6bbe8f04bbd041770fd6`. Before
+publication, the contract matched SHA-256
+`15466F43775455E4B5BABF5A50DD2159322E7DDC6572833A1C69C2107F98152D` and Git
+blob `76d0c07bb432073f9b48c2d55fa7a40eb94a67e3`; the probe matched SHA-256
+`E538FFC2FCC5E38A80E711440AFE4E1BC079E7413832E0BB9A8C4943034CC049` and Git
+blob `2ac7eccd62b0d9d32c15d9f262da47379d38df73`. Publication and host preflight
+are pending; **RP-1 has not been executed**. The only authorized publication
+allowlist is the contract, probe, RP-1 handoff, and this workflow entry. See
+`workflow/handoffs/luna-0-luna65-rp1-host-inspection-20261012.md`.
+
 ## Luna-0 S1-B Corrective Verification - retained evidence verified FITS_WORST - 2026-10-12
 
 The single S1-B invocation (run `20261012T180000Z-a3f19c5`, commit `5f089035c9582f6e1d3daae92fc825307c3ae57d`) was originally rejected by the original verifier (`27D59690...7D6E`) as `GENERATOR_FAILURE / EVIDENCE_REJECTED` (49 PASS, 1 FAIL: stdout CRLF vs LF). Owner authorized two narrow verifier corrections (terminal LF/CRLF equivalence; check 2 compared against the frozen original verifier hash). Corrected verifier SHA-256 `D6FE8CBF8D82D077E4AD5FFF552570C7A6BBE97C79A25E91A8A5435C4D7DA996` / blob `4bfdb74620b6bff2d53bde1aed762c05f3600e14`; independent static review PASS; one read-only re-verification of the unchanged original evidence: 50/50 PASS, `S1-B RETAINED EVIDENCE VERIFIED - FITS_WORST` (gzip 516,918 bytes; aggregate retained 521,308 bytes). Single-run constructed-profile evidence only; the original rejection remains historical and the corrected verifier was not used in the original execution. See `workflow/handoffs/luna-0-luna65-s1b-corrective-verification-20261012.md`. Generator/wrapper rerun, supervisor work, RP probes and fixtures: NOT AUTHORIZED; full Spiral and Luna-64 corrective execution BLOCKED; Luna-63C FROZEN.
