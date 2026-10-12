@@ -1,5 +1,48 @@
 # TPCN Luna Multi-Agent Workflow — Event-Driven Architecture
 
+## Luna-65 Phase 1 per-example API — closed with follow-up — 2026-10-11
+
+The repository owner authorized Luna-65 Phase 1 implementation and its
+bounded API unit-test lane. The additive `ExperimentRunner.execute_example()`
+API, typed runtime event-budget error, immutable per-example result, and
+focused tests were independently reviewed. Luna-0 returns
+**PASS WITH FOLLOW-UP — LUNA-65 PHASE 1 CLOSED WITH DOCUMENTED LIMITATIONS**.
+This closes only the authorized interface implementation phase; it is not a
+Spiral benchmark result and does not establish scientific efficacy.
+
+The reviewed implementation is limited to `tpcn/experiments.py`,
+`tpcn/experiment_excursion_runtime.py`, and
+`tests/test_luna65_execute_example.py`. The focused invocation was reported
+as 11 passing tests, with 14 API calls plus one baseline computation (15
+two-point synthetic computations). No benchmark data, dataset, training,
+scoring, capacity fixture, or scientific run was used. The raw test output
+was not retained as a standalone artifact; the result is recorded from the
+available execution report and was not independently rerun during closure.
+See `workflow/handoffs/luna-0-luna65-phase1-closure-20261011.md` for the
+command, call accounting, resource observations, hashes, and evidence
+limitations.
+
+The test invocation ran under a Windows Job Object with configured process
+CPU and memory limits and a wall-time supervisor. The wall-time termination
+probe succeeded. The final test run reported 400 ms wall time, 29,847,552
+bytes peak process memory, and 101 bytes retained output; process CPU
+accounting reported 0 ms at its observed resolution and is not evidence of
+zero CPU use. An output-limit probe captured 1,114,112 bytes from the pipe
+before termination while retaining no more than 1 MiB in the artifact file.
+Consequently, the saved-artifact cap was demonstrated, but a strict cap on
+bytes emitted before termination was not. Memory/CPU ceilings were configured
+but not stress-tested by exceeding them. This supervisor is not generally
+qualified for Luna-64 or benchmark execution.
+
+Full-replication sufficiency of the persistent 2,048-per-neuron E2 identity
+ceiling remains unproven. Capacity fixtures remain **NOT AUTHORIZED**; full
+Spiral execution, benchmark training/scoring, Simon Says execution, Luna-64
+corrective execution, and Luna-63C modification remain excluded. A new,
+explicit owner authorization is required for any later capacity-fixture
+phase. The execution gate additionally requires a reviewed full-replication
+capacity argument and separately qualified execution controls; Phase 1
+closure grants neither.
+
 ## Luna-65 / Luna-66 Spiral and Simon Says resumption — design and recovery only — 2026-10-11
 
 This governance update resumes the historical benchmark tracks without

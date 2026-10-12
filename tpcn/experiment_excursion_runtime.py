@@ -51,6 +51,10 @@ class RouteContext:
     roots_truncated: bool = False
 
 
+class RuntimeEventBudgetExceeded(RuntimeError):
+    """Raised when pending runtime work prevents timely external admission."""
+
+
 @dataclass(frozen=True, slots=True)
 class ExcursionCharacterResult:
     trace: tuple[tuple[object, ...], ...]
@@ -434,7 +438,9 @@ class ExcursionCharacterRuntime:
         self._process_before(timestamp)
         earlier_pending = queue.peek()
         if earlier_pending is not None and earlier_pending.timestamp < timestamp:
-            raise RuntimeError("event budget exhausted before the next external timestamp")
+            raise RuntimeEventBudgetExceeded(
+                "event budget exhausted before the next external timestamp"
+            )
         assert self._predictor is not None and self._input_destination is not None
         for _, value in batch:
             contribution = self._nonnegative_payload(value)
@@ -880,10 +886,28 @@ class ExcursionCharacterRuntime:
         else:
             self.queue = None
             self._sidecar.clear()
+            self._queued_timestamps.clear()
+            self._event_contexts.clear()
+            self._node_roots.clear()
+            self._node_truncation.clear()
+            self._delivered_errors.clear()
+            self._prediction_roots.clear()
+            self._prediction_lineages.clear()
+            self._predictor = None
+            self._ledgers.clear()
+            self._classifier = None
+            self._meter = None
+            self._utility = None
+            self._readout_sources = frozenset()
+            self._predictor_source = None
+            self._input_destination = None
+            self._trace.clear()
+            self._emissions.clear()
 
 
 __all__ = [
     "ExcursionCharacterResult",
     "ExcursionCharacterRuntime",
     "RouteContext",
+    "RuntimeEventBudgetExceeded",
 ]

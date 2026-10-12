@@ -10,6 +10,7 @@ from __future__ import annotations
 from collections import deque
 from collections.abc import Mapping
 from dataclasses import dataclass
+from enum import Enum
 import hashlib
 import math
 import random
@@ -17,12 +18,16 @@ from types import MappingProxyType
 from typing import Callable, Literal
 
 from .canonical_neuron import TPCNNeuron
-from .eligibility import EligibilityActivity, EligibilityLedger, RewardSignal
+from .eligibility import EligibilityActivity, EligibilityCapacityError, EligibilityLedger, RewardSignal
 from .energy_utility import LocalEnergyModel, RewardAdjustedUtility, RewardMessage
-from .event_runtime import BoundedExecutionResult, Event, EventQueue, execute_bounded
-from .excursion_neuron import E1Config, MultiExcursionNeuron
-from .experiment_excursion_runtime import ExcursionCharacterRuntime
-from .predictive_coding import LocalPredictor, Observation
+from .event_runtime import BoundedExecutionResult, Event, EventQueue, QueueCapacityError, execute_bounded
+from .excursion_neuron import E1Config, E1EventBudgetExceeded, MultiExcursionNeuron
+from .experiment_excursion_runtime import (
+    ExcursionCharacterRuntime,
+    RuntimeEventBudgetExceeded,
+)
+from .ir2 import neuron_to_ir2_e2
+from .predictive_coding import LocalPredictor, Observation, PredictionCapacityError
 from .streaming_classifier import ACTIVITY_EVENT, StreamingCharacterClassifier
 from .stroke_dataset import CharacterBoundary, END_CHARACTER, START_CHARACTER, StrokePoint
 from .structural_plasticity import CandidateEvidence, StructuralPlasticityController
@@ -33,6 +38,18 @@ ActivationMode = Literal["event_only", "utility"]
 RewardMode = Literal["dense", "sparse", "neutral"]
 StructuralPolicy = Literal["fixed", "baseline", "random", "temporal", "reversed", "e2_local_temporal"]
 NeuronModel = Literal["EXCURSION_V1", "TANH_LEGACY"]
+
+
+class ExampleFailureKind(str, Enum):
+    INCOMPLETE_SETTLING = "incomplete_settling"
+    EVENT_BUDGET_EXHAUSTED = "event_budget_exhausted"
+    RUNTIME_EVENT_BUDGET = "runtime_event_budget"
+    E1_EVENT_BUDGET = "e1_event_budget"
+    QUEUE_CAPACITY = "queue_capacity"
+    PREDICTION_CAPACITY = "prediction_capacity"
+    ELIGIBILITY_CAPACITY = "eligibility_capacity"
+    CHARACTER_BUFFER_CAPACITY = "character_buffer_capacity"
+    READOUT_CAPACITY = "readout_capacity"
 
 
 @dataclass(frozen=True, slots=True)
@@ -297,6 +314,45 @@ class ReadoutDiagnostic:
     runner_up_distance: float
     margin: float
     confidence: float
+
+
+@dataclass(frozen=True, slots=True)
+class E2IdentitySnapshot:
+    neuron_id: str
+    next_event_identity: int
+    next_episode_identity: int
+    next_lineage_identity: int
+    next_input_identity: int
+    identity_capacity: int
+
+
+@dataclass(frozen=True, slots=True)
+class ExampleExecutionResult:
+    example_id: str
+    workload_index: int
+    input_neuron_id: str
+    classifier_prediction: str | None
+    prediction: str | None
+    network_feature: float | None
+    confidence: float | None
+    event_trace: tuple[tuple[object, ...], ...]
+    replay_digest: str
+    execution: BoundedExecutionResult | None
+    incomplete_settling: bool
+    reward: float | None
+    readout_updated: bool
+    readout_diagnostic: ReadoutDiagnostic | None
+    identity_snapshots: tuple[E2IdentitySnapshot, ...]
+    failure_kind: ExampleFailureKind | None = None
+    failure_message: str | None = None
+
+    @property
+    def completed(self) -> bool:
+        return self.failure_kind is None
+
+    @property
+    def budget_exhausted(self) -> bool:
+        return self.execution is not None and self.execution.budget_exhausted
 
 
 @dataclass(frozen=True, slots=True)
@@ -769,10 +825,31 @@ class ExperimentRunner:
         runner_up = ordered[1][1] if len(ordered) > 1 else winning
         return ordered[0][0], 1.0 / (1.0 + winning), distances, winning, runner_up, runner_up - winning
 
-    def _run_example(self, example: SyntheticExample, index: int, *, update: bool) -> _ExampleRun:
-        if self.config.neuron_model == "TANH_LEGACY":
-            return self._run_legacy_example(example, index, update=update)
-        return self._run_excursion_example(example, index, update=update)
+    def _run_example(
+        self,
+        example: SyntheticExample,
+        index: int,
+        *,
+        update: bool,
+        cleanup_on_error: bool = False,
+    ) -> _ExampleRun:
+        try:
+            if self.config.neuron_model == "TANH_LEGACY":
+                return self._run_legacy_example(example, index, update=update)
+            return self._run_excursion_example(
+                example, index, update=update, cleanup_on_error=cleanup_on_error
+            )
+        except Exception:
+            if cleanup_on_error:
+                self._cleanup_character_state()
+            raise
+
+    def _cleanup_character_state(self) -> None:
+        if self._active_runtime is not None:
+            self._active_runtime.reset()
+            self._active_runtime = None
+        if self._network is not None:
+            self._network.reset_character()
 
     def _run_legacy_example(self, example: SyntheticExample, index: int, *, update: bool) -> _ExampleRun:
         config = self.config
@@ -847,7 +924,14 @@ class ExperimentRunner:
                neuron, routed_events - len(example.points), network_feature, readout_updated,
                representations, distances, learned_prediction, winning_distance, runner_up_distance, margin)
 
-    def _run_excursion_example(self, example: SyntheticExample, index: int, *, update: bool) -> _ExampleRun:
+    def _run_excursion_example(
+        self,
+        example: SyntheticExample,
+        index: int,
+        *,
+        update: bool,
+        cleanup_on_error: bool = False,
+    ) -> _ExampleRun:
         config = self.config
         assert self._network is not None
         plane: StructuralObservationPlane | None = None
@@ -890,6 +974,8 @@ class ExperimentRunner:
             namespace=f"experiment-{config.seed}",
             emission_observer=None if plane is None else plane.observe_emission,
         )
+        if cleanup_on_error:
+            self._active_runtime = runtime
         first_timestamp = (
             example.points[0].timestamp
             if example.points[0].timestamp is not None
@@ -1227,6 +1313,179 @@ class ExperimentRunner:
         self._ensure_topology(workload)
         return self._execute(workload, 0, update=False)
 
+    @staticmethod
+    def _identity_snapshots(
+        neurons: tuple[TPCNNeuron | MultiExcursionNeuron, ...],
+    ) -> tuple[E2IdentitySnapshot, ...]:
+        snapshots: list[E2IdentitySnapshot] = []
+        for neuron in neurons:
+            if not isinstance(neuron, MultiExcursionNeuron):
+                raise RuntimeError("EXCURSION_V1 network contains a non-E2 neuron")
+            record = neuron_to_ir2_e2(neuron)
+            snapshots.append(E2IdentitySnapshot(
+                record.neuron_id,
+                record.next_event_identity,
+                record.next_episode_identity,
+                record.next_lineage_identity,
+                record.next_input_identity,
+                record.event_budget,
+            ))
+        return tuple(snapshots)
+
+    def execute_example(
+        self,
+        example: SyntheticExample,
+        *,
+        index: int,
+        update: bool = False,
+    ) -> ExampleExecutionResult:
+        if self.config.neuron_model != "EXCURSION_V1":
+            raise ValueError("execute_example requires neuron_model='EXCURSION_V1'")
+        if self.config.structural_plasticity:
+            raise ValueError("execute_example does not support structural plasticity")
+        if isinstance(index, bool) or not isinstance(index, int) or index < 0:
+            raise ValueError("index must be a nonnegative integer")
+        if not isinstance(update, bool):
+            raise TypeError("update must be a boolean")
+        _validate_workload((example,), self.config)
+        if self._network is None:
+            self._ensure_topology((example,))
+        assert self._network is not None
+        input_neuron_id = self._network.neurons[index % len(self._network.neurons)].neuron_id
+
+        def make_failure(
+            failure_kind: ExampleFailureKind,
+            message: str,
+            *,
+            run: _ExampleRun | None = None,
+        ) -> ExampleExecutionResult:
+            trace = () if run is None else run.trace
+            digest = hashlib.sha256(repr(trace).encode()).hexdigest()
+            diagnostic = None
+            if run is not None:
+                diagnostic = ReadoutDiagnostic(
+                    run.example_id,
+                    run.external_label,
+                    run.feature,
+                    run.classifier_prediction,
+                    run.raw_prediction,
+                    run.reward,
+                    False,
+                    self.prototypes,
+                    run.class_distances,
+                    run.nearest_class,
+                    run.winning_distance,
+                    run.runner_up_distance,
+                    run.margin,
+                    run.confidence,
+                )
+            return ExampleExecutionResult(
+                example.example_id,
+                index,
+                input_neuron_id,
+                None if run is None else run.classifier_prediction,
+                None if run is None else run.raw_prediction,
+                None if run is None else run.feature,
+                None if run is None else run.confidence,
+                trace,
+                digest,
+                None if run is None else run.execution,
+                False if run is None else run.incomplete_settling,
+                None if run is None else run.reward,
+                False,
+                diagnostic,
+                self._identity_snapshots(self._network.neurons),
+                failure_kind,
+                message,
+            )
+
+        if (
+            update
+            and self.config.learning_enabled
+            and example.label not in self._prototypes
+            and len(self._prototypes) >= self.config.max_classes
+        ):
+            return make_failure(
+                ExampleFailureKind.READOUT_CAPACITY,
+                "readout max_classes capacity reached",
+            )
+
+        try:
+            run = self._run_example(
+                example, index, update=False, cleanup_on_error=True
+            )
+        except RuntimeEventBudgetExceeded as error:
+            return make_failure(ExampleFailureKind.RUNTIME_EVENT_BUDGET, str(error))
+        except E1EventBudgetExceeded as error:
+            return make_failure(ExampleFailureKind.E1_EVENT_BUDGET, str(error))
+        except QueueCapacityError as error:
+            return make_failure(ExampleFailureKind.QUEUE_CAPACITY, str(error))
+        except PredictionCapacityError as error:
+            return make_failure(ExampleFailureKind.PREDICTION_CAPACITY, str(error))
+        except EligibilityCapacityError as error:
+            return make_failure(ExampleFailureKind.ELIGIBILITY_CAPACITY, str(error))
+        except BufferError as error:
+            return make_failure(
+                ExampleFailureKind.CHARACTER_BUFFER_CAPACITY, str(error)
+            )
+
+        execution = run.execution
+        if (
+            run.incomplete_settling
+            or not execution.completed
+            or execution.budget_exhausted
+            or execution.pending_event_count
+        ):
+            reason = (
+                ExampleFailureKind.INCOMPLETE_SETTLING
+                if run.incomplete_settling
+                else ExampleFailureKind.EVENT_BUDGET_EXHAUSTED
+            )
+            return make_failure(reason, execution.termination_reason, run=run)
+
+        readout_updated = False
+        if update and self.config.learning_enabled:
+            old_value, old_count = self._prototypes.get(example.label, (0.0, 0))
+            self._prototypes[example.label] = (old_value + run.feature, old_count + 1)
+            self._updates += 1
+            readout_updated = True
+        readout_diagnostic = ReadoutDiagnostic(
+            run.example_id,
+            run.external_label,
+            run.feature,
+            run.classifier_prediction,
+            run.raw_prediction,
+            run.reward,
+            readout_updated,
+            self.prototypes,
+            run.class_distances,
+            run.nearest_class,
+            run.winning_distance,
+            run.runner_up_distance,
+            run.margin,
+            run.confidence,
+        )
+        digest = hashlib.sha256(
+            repr((run.trace, run.raw_prediction, run.feature, run.reward, execution)).encode()
+        ).hexdigest()
+        return ExampleExecutionResult(
+            example.example_id,
+            index,
+            input_neuron_id,
+            run.classifier_prediction,
+            run.raw_prediction,
+            run.feature,
+            run.confidence,
+            run.trace,
+            digest,
+            execution,
+            False,
+            run.reward,
+            readout_updated,
+            readout_diagnostic,
+            self._identity_snapshots(self._network.neurons),
+        )
+
     def train(self, workload: tuple[SyntheticExample, ...], *, observer: TrainingObserver | None = None) -> TrainingResult:
         _validate_workload(workload, self.config)
         self._ensure_topology(workload)
@@ -1253,7 +1512,8 @@ def train(workload: tuple[SyntheticExample, ...], *, config: ExperimentConfig | 
 
 
 __all__ = [
-    "EvaluationResult", "ExperimentConfig", "ExperimentMetrics", "ExperimentRunner", "ReadoutDiagnostic",
+    "E2IdentitySnapshot", "EvaluationResult", "ExampleExecutionResult", "ExampleFailureKind",
+    "ExperimentConfig", "ExperimentMetrics", "ExperimentRunner", "ReadoutDiagnostic",
     "StructuralDecision",
     "SyntheticExample", "TrainingObserver", "TrainingResult", "evaluate", "make_synthetic_workload", "train",
 ]
