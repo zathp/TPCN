@@ -27,6 +27,64 @@ Supervisor implementation: **NOT AUTHORIZED**. Supervisor qualification: **NOT
 AUTHORIZED**. Phase 2A/2B fixtures: **NOT AUTHORIZED**. Full Spiral
 execution: **BLOCKED**. Luna-64 corrective execution: **BLOCKED**. Luna-63C:
 **FROZEN**.
+## Luna-65 Phase 2A Authorization I candidate review — closure blocked — 2026-10-12
+
+The owner authorized only `scripts/luna65_phase2a_supervisor.py` and exact
+nonexecuting static validation against proposal revision
+`1d6325f3ca738b32a6ee9e1a5613d2faa9458770`. Luna-0 independently reviewed
+the unchanged, untracked candidate with checkout-byte SHA-256
+`67542EDF59EBB236B61B2714000D7DBFC89462F7352F7C92346673D45CDA0AA1`.
+The completed review returns **BLOCKED — AUTHORIZATION I IMPLEMENTATION
+INCOMPLETE; SCOPE AND SOURCE-IDENTITY CHECKS PASS**. This entry records the
+later owner authorization and candidate review; it does not rewrite the
+historical proposal-readiness records below.
+
+The file is a fail-closed scaffold with policy constants, Job Object
+configuration/read-back and accounting helpers, monitor helpers, and an
+in-memory artifact-budget helper. Its entry point refuses admission and
+contains no workload launch path. It does not implement the reviewed
+suspended-launch/assignment/resume pipeline, independent watchdog and
+observer, identity verification, restricted token/ACL boundary, or bounded
+controller-owned evidence writer. Termination observation has no finite
+post-budget cutoff and accumulates unbounded in-memory observations if
+cessation is never confirmed. These are implementation gaps, not merely
+controls awaiting qualification.
+
+The owner's successful `py_compile` result is recorded as reported, not
+independently rerun. The source-only
+`git diff --check --no-index -- NUL scripts\luna65_phase2a_supervisor.py`
+returned 1 (difference status) without whitespace diagnostics. The prior
+review's explicit CRLF-aware check passed, but final normal `git diff --check`
+returns 2 with trailing-whitespace diagnostics on each added workflow line:
+this existing CRLF workflow is explicitly `-text`. The earlier exit-0 result
+was before governance edits, not a final-tree pass. The existing ignored
+bytecode artifact was hashed
+without being imported or executed. See the
+[Authorization I review handoff](../../handoffs/luna-0-luna65-phase2a-authorization-i-review-20261012.md)
+for exact source/proposal/artifact identities, LF/CRLF distinctions,
+static findings, allowlist, and validation limitations.
+
+**No supervisor is qualified.** Job Object committed memory is not inferred
+to equal the accepted aggregate concurrent private-commit metric. Complete
+8,196-record ledger fit, all-write artifact enforcement, observer/event-loss
+coverage, Q03 recovery, controller/watchdog failure behavior, and a frozen
+post-budget observation limit remain unresolved. Authorization Q, all
+runtime/synthetic execution, Phase 2A/2B fixtures, and benchmarks remain
+**NOT AUTHORIZED**. Full Spiral and Luna-64 corrective execution remain
+**BLOCKED**; Luna-63C remains **FROZEN**.
+
+Implementation was attempted under Authorization I and remains **BLOCKED**:
+the scaffold is nonoperational, unqualified and not executable, and it is not
+part of this governance publication. It is preserved only as a draft on the
+separate branch `draft/luna65-phase2a-supervisor-scaffold-20261012` at its
+exact bytes, with no approval implied. Exact-byte precommit approval is not
+supported by the available evidence. The corrective contracts R1, R2 and R6
+and their handoffs are published as historical blocked evidence with their
+BLOCKED verdicts and exact bytes preserved; the subsequent R7 simplification
+review (entry above) is a design-ready-for-owner-decision verdict only. Any
+renewed implementation or expanded file scope requires an explicit owner
+decision. Authorization I closure remains blocked.
+
 ## Luna-65 Phase 1 per-example API — closed with follow-up — 2026-10-11
 
 The repository owner authorized Luna-65 Phase 1 implementation and its
