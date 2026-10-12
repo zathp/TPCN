@@ -1,5 +1,52 @@
 # TPCN Luna Multi-Agent Workflow — Event-Driven Architecture
 
+## Luna-65 / Luna-66 Spiral and Simon Says resumption — design and recovery only — 2026-10-11
+
+This governance update resumes the historical benchmark tracks without
+authorizing either benchmark. **Luna-65**, the fixed-topology current
+`EXCURSION_V1` Spiral resumption, has a bounded proposed contract in
+[LUNA_65_SPIRAL_RESUMPTION.md](LUNA_65_SPIRAL_RESUMPTION.md); retain
+Luna-12G as a separate `TANH_LEGACY` historical result. Luna-65 is not
+authorized to execute. Independent review confirms that the existing
+`ExperimentRunner.evaluate()` and `.train()` aggregate paths cannot implement
+the first-failure per-example rule. A private downstream adapter is possible
+but depends on unstable runner internals and lacks all-node identity
+snapshots; the reviewed proposal therefore selects an additive public
+`execute_example()` result API plus use of the existing `neuron_to_ir2_e2()`
+serializer. This is a proposed interface, not existing behavior or an
+approved implementation. Final independent Luna-11 review returned
+**PASS — LUNA-65 INTERFACE PLAN READY FOR OWNER AUTHORIZATION**. This is not
+implementation or fixture authorization. Full-replication identity
+sufficiency remains unresolved, so benchmark execution remains blocked.
+
+The E2 identity high-water cap is 2,048 per neuron/counter and persists across
+character resets. Available bounds do not establish full-replication
+sufficiency. The contract defines a separate bounded hand-authored fixture
+check, which can identify tested exhaustion but cannot alone prove workload
+sufficiency. Implementation, focused tests, and that fixture check require
+explicit owner authorization; benchmark execution remains blocked pending a
+reviewed capacity argument, deterministic verification, separately qualified
+resource enforcement, and an exact execution authorization.
+
+**Luna-66**, Simon Says historical recovery and contract prerequisite, is
+blocked: no Simon Says source, fixture, result, task contract, split, seed, or
+metric exists in the inspected repository or available Git history. Do not
+infer task semantics or metrics from the task name or sequence-memory
+proposals. Its bounded read-only scope and source requirements are in
+[LUNA_66_SIMON_SAYS_RECOVERY.md](LUNA_66_SIMON_SAYS_RECOVERY.md). A Simon Says
+execution identity remains unassigned until source recovery and independent
+Luna-0 review.
+
+The tracks are separate. No benchmark workload, training, scoring, data
+generation, structural efficacy condition, or production change is authorized
+by this design record. Proposed resource targets are not enforcement
+qualification. See the
+[Luna-0 resumption handoff](../../handoffs/luna-0-spiral-simon-resumption-20261011.md)
+for the recovered 0.53125 evidence, independent-review findings, capability
+classifications, shared diagnostic boundary, and exact owner decisions
+required. Luna-64 and
+Luna-63C records and boundaries remain unchanged.
+
 ## Luna-64 A6 R2 enforcement-design review — blocked — 2026-10-12
 
 **L64-TB-R4.3-CORRECTIVE-SUPERVISOR-A6-R2: BLOCKED — ENFORCEMENT DESIGN

@@ -1,5 +1,77 @@
 # Architecture Changelog
 
+## Luna-65 Spiral / Luna-66 Simon Says resumption governance — design only — 2026-10-11
+
+Luna-0 recorded the historical Spiral evidence and prepared a separate,
+fixed-topology `EXCURSION_V1` Spiral resumption contract at
+`workflow/docs/luna/LUNA_65_SPIRAL_RESUMPTION.md`. The historical
+Luna-12G result remains preserved: fixed-topology, structural, shuffled, and
+reversal conditions all reported accuracy `0.53125` with identical
+per-class results; the old run-controls path is `TANH_LEGACY`, not current
+`EXCURSION_V1` / ACP-0007 efficacy evidence. The new design pairs exact
+coordinate-identical opposite event orders with opposite directed-winding
+labels and excludes structural learning.
+
+Simon Says source, task definition, fixtures, results, metrics, splits, seeds,
+and readout/training implementation were not found in the tracked tree or
+available Git history. No historical Simon Says metric is available. Luna-66
+is created only as a read-only source-recovery/design prerequisite; no Simon
+Says execution identity is assigned before provenance recovery.
+
+This is governance/design work only. No benchmark ran or data was generated;
+no production code, architecture contract, ACP, Luna-12G artifact, Luna-63C
+record, Luna-64 record, or execution restriction changed. Independent
+scientific and architecture reviews found shared-shuffle
+assignment/equivalence, persistent neuron identity capacity, and
+per-example fail-fast requirements that were not explicit in the first
+draft. The draft now records these as hard gates and clarifies the
+shared-shuffle control, bootstrap method, validation boundary, and secondary
+timing analysis. A narrow follow-up review confirmed those corrections but
+found that the current `ExperimentRunner` cannot halt after the first
+incomplete example. A separately reviewed fail-fast orchestration/interface
+decision is required before any execution authorization. The integrated
+disposition remains
+**BLOCKED — BENCHMARK RESUMPTION CONTRACTS INCOMPLETE**. See
+`workflow/handoffs/luna-0-spiral-simon-resumption-20261011.md`.
+
+## Luna-65 fail-fast interface plan — governance review only — 2026-10-12
+
+Luna-0 inspected the supported `ExperimentRunner` APIs and obtained an
+independent Luna-11 review, which returned
+**PASS — LUNA-65 INTERFACE PLAN READY FOR OWNER AUTHORIZATION**. This is
+governance-plan readiness only, not API implementation, fixture, or benchmark
+authorization. Existing public `evaluate()` and `train()` execute
+whole workloads and do not expose indexed per-example completion, failure,
+or all-node persistent E2 identity snapshots. A downstream adapter can reach
+private methods/state but is not selected because it bypasses supported
+aggregation and requires private all-node access. The lowest-risk proposed
+path is an additive `ExperimentRunner.execute_example()` returning a typed
+immutable per-example result, with explicit workload index, fail-fast status,
+successful-only readout commit, and all-node identity snapshots through the
+existing public `neuron_to_ir2_e2()` serializer. This is a design recommendation
+only; no implementation or fixture check is authorized.
+
+The persistent 2,048 E2 identity high-water ceiling is not analytically
+established as sufficient for a complete Luna-65 replication. A bounded
+hand-authored fixture protocol is specified to test known allocation paths,
+failure reporting, state continuity, and replay, while explicitly not
+claiming proof of full-replication sufficiency. Any exhaustion is a technical
+failure; no retries, counter reset, capacity increase, or network
+reconstruction are permitted by the proposal. Benchmark execution remains
+blocked until a reviewed full-workload capacity argument, authorized
+implementation and fixture evidence, resource enforcement, and a distinct
+exact owner execution authorization are in place.
+
+The Spiral science remains unchanged: fixed-topology `EXCURSION_V1`, matched
+forward/reverse winding sequences, disjoint splits, eight seeds, neutral
+reward, frozen test readout, primary timing 1.0, secondary timing 0.5/2.0,
+and no structural-plasticity efficacy claim. Workload arithmetic includes
+training pre/post evaluation: 4,160 executions and 4,259,840 processed-event
+allowance per replication. No benchmark workload, training, scoring, fixture,
+or code change was performed. No architecture clause, ACP, historical result,
+or execution restriction changed. See the Luna-0 resumption handoff for the
+independent review and exact remaining owner decisions.
+
 ## Luna-64 Track B Local Temporal Reward Decoder governance record — 2026-10-10
 
 The repo now includes a separate Track B local temporal reward-decoder
