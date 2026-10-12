@@ -43,17 +43,23 @@ phase. The execution gate additionally requires a reviewed full-replication
 capacity argument and separately qualified execution controls; Phase 1
 closure grants neither.
 
-## Luna-65 Phase 2 capacity fixtures — governance draft only — 2026-10-12
+## Luna-65 Phase 2 capacity contracts — correction review passed; unpublished proposal; execution gated — 2026-10-12
 
-The separate Phase 2A direct-counter and Phase 2B fixed-network capacity
-fixture contracts are drafted in
+The baseline-published Phase 2 supplement and the current unpublished
+correction specify the separate Phase 2A direct-counter and Phase 2B
+fixed-network capacity fixture contracts in
 [LUNA_65_PHASE2_CAPACITY.md](LUNA_65_PHASE2_CAPACITY.md). They are not
 implementation or execution authorizations. No capacity fixtures, benchmark
 examples, training, scoring, or generated data have been run or materialized.
-This draft proposes replacing the published Luna-65 capacity-fixture module
-and 128-execution network diagnostic ceiling only if the repository owner
-explicitly accepts and publishes the capacity-only amendment. Until then, the
-published Luna-65 contract controls; its Spiral scientific conditions are
+The published supplement proposes replacing the original Luna-65
+capacity-fixture module and 128-execution network diagnostic ceiling only if
+the repository owner explicitly accepts and publishes that capacity-only
+amendment. The current Phase 2A correction freezes its direct-neuron
+assertions, one-run JSONL evidence, external artifact destination, exact
+command/environment, and aggregate private-commit memory metric. These
+corrections do not accept the amendment or authorize Phase 2A execution.
+Until separate owner acceptance and publication of the amendment, the
+published Luna-65 contract controls; all Spiral scientific conditions remain
 unchanged.
 
 Phase 2A proposes 2,049 target-counter boundary probes for each persistent
@@ -73,6 +79,22 @@ their final bytes, and separately qualified process-tree resource controls.
 The Phase 1 supervisor's configured limits and 1-MiB retained-artifact cap
 do not establish aggregate CPU/memory enforcement or a strict cap on bytes
 emitted before pipe termination. Full Spiral execution remains blocked.
+
+The prior Phase 2A readiness review blocked authorization-package readiness
+because output-event expected checkpoints, direct-counter snapshot/ledger
+units, evidence destination, and the “API/direct-neuron” scope were
+underspecified. The corrected specification now limits Phase 2A to the
+direct-neuron capacity fixture only and freezes the source-derived counter,
+state, and event assertions. Independent reviews passed the counter and
+output-event assertions, JSONL/provenance schema, command/scope, and proposed
+resource specification. The resource review did not qualify an execution
+supervisor; the complete compressed-ledger size also remains unverified. The
+correction passed exact-byte prepublication review but has not been published;
+it remains a proposal pending owner acceptance. Phase 2A execution remains
+**NOT AUTHORIZED**; Phase 2B execution
+remains **NOT AUTHORIZED**; full Spiral execution remains **BLOCKED** pending
+a reviewed full-replication capacity argument, qualified resource controls,
+and its own exact owner authorization.
 
 ## Luna-65 / Luna-66 Spiral and Simon Says resumption — design and recovery only — 2026-10-11
 

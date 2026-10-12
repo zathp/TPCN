@@ -1,12 +1,16 @@
 # Luna-65 Phase 2 — E2 Capacity Fixture Contracts
 
-**Status:** Governance draft only. No fixtures have been materialized or run.
-Phase 2A and Phase 2B require separate explicit owner authorization.
-Full-replication E2 identity capacity remains unproven and Spiral execution
-remains blocked.
+**Status:** Governance-only Phase 2A correction proposal. Independent review
+found the corrected Phase 2A specification complete; this correction remains
+unpublished and does not constitute owner acceptance or execution
+authorization. No fixtures have been materialized or run. Phase 2A and
+Phase 2B require separate explicit owner authorization and qualified resource
+controls. Full-replication E2 identity capacity remains unproven and Spiral
+execution remains blocked.
 
-**Baseline:** `5a374c9ddab30517d863696a28f7f801a31f26bc` on
-`governance/luna64-r4.3-freeze-20261010`.
+**Protocol baseline:** `5a374c9ddab30517d863696a28f7f801a31f26bc`.
+**Correction review baseline:** `dc62469a099f27f2b8d43142dd8aecb407b2e663`
+on `governance/luna64-r4.3-freeze-20261010`.
 
 **Authority:** [Luna-65 Spiral resumption contract](LUNA_65_SPIRAL_RESUMPTION.md),
 whose SHA-256 at this baseline is
@@ -71,15 +75,30 @@ not involved in either phase.
 using deterministic direct-neuron calls. This is a failure-detection fixture,
 not evidence of complete-replication sufficiency.
 
-**Proposed module and invocation:**
+**Scope:** Phase 2A direct-neuron capacity fixture only. It does not invoke
+`ExperimentRunner`, the Spiral dataset or benchmark, training, evaluation,
+scoring, or Phase 2B network fixtures. No production change is required or
+authorized.
+
+**Test module:** `tests/test_luna65_capacity_direct.py`.
+
+**Exact invocation:**
 
 ```powershell
 .\.venv\Scripts\python.exe -m pytest -q -x tests/test_luna65_capacity_direct.py
 ```
 
-The module is not present at the baseline. Creating it is permitted only
-after owner authorization for Phase 2A implementation and its bounded
-verification. No production file change is required or proposed.
+The working directory is the Git top-level directory of the reviewed checkout
+(the expected current path is
+`C:\Users\Patrick\Documents\ActiveCode\TPCN`; a different path requires
+authorization text to be updated). The applicable environment is Windows
+PowerShell with the repository's `.venv` interpreter, `PYTHONHASHSEED=0`, no
+network access, and only the two specified environment overrides:
+`PYTHONHASHSEED` and the external evidence-directory setting defined below.
+Record OS build, Python and pytest versions, executable path, relevant
+package versions, environment overrides, and exact checkout revision in the
+invocation manifest. This command runs this test module only; retries are
+zero.
 
 **Fixture rules:**
 
@@ -88,9 +107,11 @@ verification. No production file change is required or proposed.
   parameters at their existing defaults, except the output-event scenario's
   explicitly listed `decay_rate=0.0001`, `m_emit_delay=0.001`,
   `m_rearm_delay=0.001`, and `delta_x_e=0.001`.
-- Use fixed neuron ID `l65-capacity-node`, fixed timestamps, and explicit
-  input IDs except in the input-counter scenario. No dataset examples,
-  `ExperimentRunner`, task labels, readout updates, or non-neutral reward.
+- Use fixed neuron ID `l65-capacity-node`, initial timestamp `0.0`, fixed
+  timestamps, and explicit input IDs except in the input-counter scenario.
+  All four fresh instances start in mode `N`, with `x=0.0` and all four
+  identity counters zero. No dataset examples, task labels, readout updates,
+  reward, or runner calls.
 - For each counter, permit exactly 2,049 target-counter boundary probes: attempts
   1–2,048 must allocate the consecutive identities; attempt 2,049 must raise
   `E1EventBudgetExceeded` with the matching counter name. Do not retry a
@@ -108,42 +129,136 @@ verification. No production file change is required or proposed.
    without `event_id` 2,048 times, resetting after each successful call.
    Verify fallback provenance IDs are the consecutive
    `l65-capacity-node:input:<ordinal>` identities from 0 through 2,047.
+   After each successful call and before reset, expect mode `N`, `x=0.0`,
+   local time `0.0`, processed-event count 1, and that generated ID as the
+   sole provenance entry. The final identity snapshot is input `2048`,
+   episode `0`, lineage `0`, output-event `0`.
    The 2,049th call must reject before creating another input identity.
+   The failed call raises
+   `E1EventBudgetExceeded("E2 input identity budget exhausted")` before
+   processing the input; its post-error state is mode `N`, phase null,
+   `x=0.0`, local time `0.0`, no pending event, processed-event count 0.
 2. **Episode / ordinary admission:** Call
    `receive_contribution(timestamp=0.0, contribution=1.0,
-   event_id="episode-<ordinal>")` 2,048 times, resetting after each
-   successful ordinary admission. Verify consecutive episode IDs 1–2,048
-   and the associated lineage high-water. On attempt 2,049, ordinary
-   admission checks the episode guard first and must raise the episode
-   identity error without advancing any identity.
+   event_id="l65-phase2a-episode-<ordinal:04d>")` 2,048 times, with
+   ordinal `0001` through `2048`, resetting after each successful ordinary
+   admission. Each success allocates exactly one episode and one lineage
+   identity: both high-water values reach `2048`; input and output-event
+   remain zero. Before each reset, the successful call has mode `S_PENDING`,
+   `x=1.0`, local time `0.0`, processed-event count 1, allocated ordinary
+   episode and lineage IDs equal to that attempt's ordinal, and pending
+   `S_EMIT@0.5`. On attempt 2,049, ordinary admission checks the episode
+   guard first and raises
+   `E1EventBudgetExceeded("E2 episode identity budget exhausted")`;
+   no identity counter advances on that failed admission. The external event
+   has already consumed one character-local event, so the expected post-error
+   state is mode `N`, phase null, `x=1.0`, local time `0.0`, no pending
+   event, processed-event count 1; identity counters remain input `0`,
+   episode `2048`, lineage `2048`, output-event `0`. Retain provenance
+   entry `l65-phase2a-episode-2049` unassigned to any episode or lineage for
+   this failed attempt and do not call reset on this neuron.
 3. **Lineage / new M admission:** Call
    `receive_contribution(timestamp=0.0, contribution=4.0,
-   event_id="lineage-<ordinal>")` 2,048 times, resetting after each
-   successful new M admission. Verify consecutive lineage IDs 1–2,048 and
-   the associated episode high-water. On attempt 2,049, new M admission
-   checks the lineage guard first and must raise the lineage identity error
-   without advancing any identity.
-4. **Output event:** Use `E1Config(event_budget=2048, decay_rate=0.0001,
-   m_emit_delay=0.001, m_rearm_delay=0.001, delta_x_e=0.001)`. For each
-   character, admit one M excursion using an explicit input ID and
-   contribution `8.0`. Process pending internal events until the specified
-   number of M emissions has occurred, resetting character-local state
-   between characters while retaining identities:
-   - Character 1: exactly 1,023 M emissions. This uses 2,047 processed events
-     (one external admission and 1,023 M_EMIT plus 1,023 M_REARM events).
-   - Character 2: exactly 1,023 M emissions, also 2,047 processed events.
-   - Character 3: exactly 2 M emissions, five processed events.
+   event_id="l65-phase2a-lineage-<ordinal:04d>")` 2,048 times, with
+   ordinal `0001` through `2048`, resetting after each successful new M
+   admission. Each success allocates one new lineage and one episode:
+   both high-water values reach `2048`; input and output-event remain zero.
+   Before each reset, the successful call has mode `M_ACTIVE`, phase
+   `ARMED`, `x=4.0`, local time `0.0`, processed-event count 1, and pending
+   `M_EMIT@1.0`; multi-episode and lineage IDs both equal that attempt's
+   ordinal.
+   On attempt 2,049, new M admission checks lineage before episode and
+   raises `E1EventBudgetExceeded("E2 lineage identity budget exhausted")`;
+   no identity counter advances on that failed admission. The external event
+   has already consumed one character-local event, so the expected post-error
+   state is mode `N`, phase null, `x=4.0`, local time `0.0`, no pending
+   event, processed-event count 1; identity counters remain input `0`,
+   episode `2048`, lineage `2048`, output-event `0`. Retain provenance
+   entry `l65-phase2a-lineage-2049` unassigned to any episode or lineage for
+   this failed attempt and do not call reset on this neuron.
+4. **Output event:** Use exactly
+   `E1Config(event_budget=2048, provenance_capacity=16, decay_rate=0.0001,
+   m_emit_delay=0.001, m_rearm_delay=0.001, delta_x_e=0.001)` with all
+   remaining defaults. For characters 1 through 4, call
+   `receive_contribution(timestamp=0.0, contribution=8.0,
+   event_id="l65-phase2a-output-<character:02d>")`, in ascending character
+   order. Each call processes one external INPUT event, admits one new M
+   lineage/episode, and schedules the first `M_EMIT` at `0.001`. Immediately
+   after admission, the expected state is `M_ACTIVE`, phase `ARMED`,
+   `x=8.0`, clock `0.0`, and pending `M_EMIT@0.001`. Process
+   exactly the following pending internal events in order using
+   `process_pending()` with no `through` argument:
+   first `M_EMIT` at `tE_1=0.0+0.001`, `M_REARM` at `tR_1=tE_1+0.001`,
+   next `M_EMIT` at `tE_2=tR_1+0.001`, then alternating `M_REARM` and
+   `M_EMIT` by adding the configured delay to the preceding event timestamp.
+   There are no other input events. Timestamps are calculated by those
+   sequential binary64 additions, not by multiplying an integer by `0.001`.
+   Each target probe is exactly one
+   `process_pending()` call that consumes an `M_EMIT`. Record its immediate
+   post-call state; then consume its following `M_REARM` with one
+   `process_pending()` call before starting the next target probe. M_REARM is
+   preparation for the next M_EMIT, not a target-counter probe. Record the
+   post-rearm state separately in `post_rearm_checkpoint`. After the final
+   required M_EMIT for a character, consume its following M_REARM and store
+   the final state there before reset.
 
-   The slow positive decay, short positive delays, and small discharge
-   decrement are frozen to keep the magnitude above `theta_hold` for these
-   finite schedules. The exact observed modes, magnitudes, emission count,
-   and processed-event count must be checked; if the expected M rearm path
-   does not occur, stop and report a fixture failure rather than adjusting
-   parameters. These three characters produce output identities 1–2,048
-   without exceeding the per-character event budget. On character 4, admit
-   one M excursion and process its first pending M_EMIT. That output
-   allocation is attempt 2,049 and must raise the output-event identity
-   error after only two processed events in the character.
+   For the exact magnitude oracle, let `d=0.0001`,
+   `h_emit=h_rearm=0.001`, `delta=0.001`, and `theta_hold=1.5`.
+   Define event timestamps and binary64 magnitudes in source operation order:
+   `tE_1=0.0+h_emit`;
+   `tR_n=tE_n+h_rearm`;
+   `tE_(n+1)=tR_n+h_emit`;
+   `a_1=8.0*exp(-d*(tE_1-0.0))`;
+   `b_n=max(theta_hold,a_n-delta)`;
+   `c_n=b_n*exp(-d*(tR_n-tE_n))`;
+   `a_(n+1)=c_n*exp(-d*(tE_(n+1)-tR_n))`.
+   Here `a_n` is `abs(x)` immediately before the nth M_EMIT, `b_n`
+   immediately after that M_EMIT, and `c_n` immediately after its following
+   M_REARM. For every `n=1..2048`, the expected mode after M_REARM is
+   `M_ACTIVE`, phase `ARMED`; clock is `tR_n`; the pending event is
+   `M_EMIT@tE_(n+1)`; and `abs(x)=c_n`. Immediately after the nth successful
+   M_EMIT, expected state is `M_ACTIVE`, phase `REFRACTORY`, clock `tE_n`,
+   pending `M_REARM@tR_n`, and `x=b_n` (positive). Its emission ID is
+   `l65-capacity-node:excursion:<global-output-ordinal>` where the ordinal
+   is unpadded decimal 1 through 2,048; `sequence` equals that ordinal,
+   `source` is `l65-capacity-node`, payload is `+1.0`, and lineage/episode
+   IDs are the current character's one-based admission IDs. The recurrence
+   stays strictly above `theta_hold` through n=2,048: before the last
+   M_EMIT, elapsed logical time is less than 4.096 seconds and at most
+   2.048 total discharge has occurred, so
+   `a_2048 > 8*exp(-0.0001*4.096)-2.048 > 5.94`; thus
+   `b_2048 > 5.939 > theta_hold`. No `max` clamp or M-to-ordinary
+   transition occurs in the frozen schedule. Record binary64 values as
+   JSON numbers without rounding. This is an operation-order oracle for one
+   specified environment; it does not claim cross-platform bitwise replay.
+
+   Process and checkpoint:
+   - Character 1: 1,023 emissions, output IDs 1–1,023, then 1,023
+     M_REARM events; processed-event count 2,047. Final magnitude
+     `c_1023`, clock `tR_1023`, pending `M_EMIT@tE_1024`, and counters
+     input 0, episode 1, lineage 1, output-event 1,023.
+   - Character 2: 1,023 emissions, output IDs 1,024–2,046, then 1,023
+     M_REARM events; processed-event count 2,047. Final magnitude
+     `c_1023`, clock `tR_1023`, pending `M_EMIT@tE_1024`, and counters
+     input 0, episode 2, lineage 2, output-event 2,046.
+   - Character 3: 2 emissions, output IDs 2,047–2,048, then 2 M_REARM
+     events; processed-event count 5. Final magnitude `c_2`, clock
+     `tR_2`, pending `M_EMIT@tE_3`, and counters input 0, episode 3,
+     lineage 3, output-event 2,048.
+   - Character 4: the external admission makes the counters input 0,
+     episode 4, lineage 4, output-event 2,048, with mode `M_ACTIVE`,
+     phase `ARMED`, `x=8.0`, and pending `M_EMIT@0.001`. Processing that
+     event advances the clock to `0.001` and magnitude to `a_1`, then raises
+     `E1EventBudgetExceeded("E2 output-event identity budget exhausted")`
+     before incrementing output-event identity or discharging `x`.
+     After the exception the exact expected state is mode `M_ACTIVE`,
+     phase `ARMED`, `x=a_1`, no pending event, processed-event count 2,
+     and counters input 0, episode 4, lineage 4, output-event 2,048.
+
+   Per-character `reset(timestamp=0.0)` occurs after characters 1–3 only,
+   preserving all four identity counters. It is not called after the
+   expected character-4 exhaustion. All per-character processed-event counts
+   remain below 2,048.
 
 The 8,196 figure is the total number of target-counter boundary probes
 (four counters × 2,049 attempts each), not the count of all guard checks or
@@ -171,17 +286,110 @@ quietly exceed the 8,196-attempt allowance.
 | Target-counter boundary probes | 8,196 total: 2,049 per counter |
 | Wall time | 120 seconds |
 | Job CPU time | 120 seconds |
-| Memory | 268,435,456 bytes |
-| Retained test artifacts | 1,048,576 bytes |
+| Aggregate concurrent private commit charge | 268,435,456 bytes |
+| Retained artifacts, all files combined | 1,048,576 bytes |
 | Retries | 0 |
 
-Record baseline and test revision, config, exact per-attempt counter
-transitions, allocated IDs, exact rejection types/messages, final serializer
-snapshots, test output, resource accounting, and raw SHA-256 identities.
-Retain a compact JSONL ledger with one record per allocation attempt and
-reject any saved artifact larger than 1 MiB. The artifact limit is a cap on
-retained bytes; it is not a claim that the child process cannot emit more
-bytes into a buffered pipe before termination.
+### Phase 2A JSONL result schema
+
+The sole result is gzip-compressed JSON Lines at `results.jsonl.gz`. Its
+decompressed payload is UTF-8 JSON, one object per LF-terminated line, with
+exactly 8,196 records when the lane completes. Generate each canonical JSON
+line using the serialization below, then compress with RFC 1952 gzip,
+compression level 9, `mtime=0`, and no embedded filename. Record the Python
+and zlib versions in the manifest. This is a single execution artifact, not
+a cross-run byte-identity or replay claim. Each decompressed record has:
+
+| Field | Type and meaning |
+|---|---|
+| `schema_version` | String `luna65-phase2a-probe-v1`. |
+| `fixture_version` | String `l65-phase2a-v1`. |
+| `counter_under_test` | One of `input`, `episode`, `lineage`, `output_event`. |
+| `probe_index` | Integer 1–2,049 within that counter scenario. |
+| `initial_state_id` | Stable ID `l65-phase2a-<counter>-fresh-zero-v1`; identifies the fresh neuron/config/reset history for that scenario. |
+| `neuron_id` | String `l65-capacity-node`. |
+| `counter_snapshot_before` | Object with integer fields `episode`, `input`, `lineage`, `output_event`, sampled immediately before the target attempt. |
+| `counter_snapshot_after` | Same object sampled immediately after the attempt, including after the expected exception. |
+| `target_counter_delta` | Integer change only for the target counter in this target attempt; expected 1 for allocation, 0 for capacity rejection. |
+| `coupled_counter_deltas` | Object listing all non-target counter deltas caused during the same public-call probe; zero-valued fields are included. |
+| `preparation_counter_deltas` | For output-event probes only, deltas from the character's external admission since the preceding character reset; zero-valued fields otherwise. |
+| `allocated_identity` | Allocated identity string or integer, or JSON null on exception. For input/output use the emitted/provenance ID; for episode/lineage use the newly allocated counter value. |
+| `exception` | JSON null, or object `{type, message}` with exact class name `tpcn.excursion_neuron.E1EventBudgetExceeded` and exact message. |
+| `expected_outcome` | `allocated` for probes 1–2,048; `capacity_rejected` for probe 2,049. |
+| `observed_outcome` | `allocated`, `capacity_rejected`, or `unexpected_exception`. |
+| `completion_status` | `expected` only when the observed outcome and all frozen assertions match; otherwise `failed`. |
+| `state_checkpoint` | Object containing the scenario-required mode, phase, local timestamp, `x`, pending-event kind/time, and processed-event count; null only for counters where not applicable. |
+| `post_rearm_checkpoint` | For successful output-event probes, the same checkpoint fields after its following M_REARM; null for other counters and the expected fourth-character exhaustion. |
+
+Each probe index denotes one public-call attempt directed at the named
+target guard, not each incidental guard evaluation or each secondary
+identity increment. `target_counter_delta` and `coupled_counter_deltas`
+describe changes during that call only; `preparation_counter_deltas`
+separately accounts for output-character admission before the M_EMIT probe.
+The 8,196 ceiling counts those target probes only and does not constrain
+secondary identity increments beyond their own configured 2,048 guards.
+The four counter keys are serialized in lexical order. Records use canonical
+JSON: UTF-8, `json.dumps(sort_keys=True, separators=(",", ":"),
+ensure_ascii=True, allow_nan=False)`, followed by exactly one LF. Numbers
+are JSON integers or finite binary64 values; no rounding is permitted.
+JSONL records are ordered in execution order: `neuron_id`, counter scenario
+`input`, `episode`, `lineage`, `output_event`, then ascending `probe_index`.
+Within every snapshot, counter keys are ordered lexically as
+`episode`, `input`, `lineage`, `output_event`.
+
+Counter snapshots are obtained by calling the existing public
+`neuron_to_ir2_e2(neuron)` serializer and mapping its
+`next_episode_identity`, `next_input_identity`, `next_lineage_identity`, and
+`next_event_identity` fields to the four schema keys. State checkpoints use
+the corresponding serialized mode, phase, timestamp, `x`, pending internal
+event, and processed-event count. The test may additionally read the public
+provenance and emissions collections to record returned/generated identity
+strings; it must not use new production APIs or mutate private counters.
+For output-event probes, `state_checkpoint` is immediately after that
+probe's M_EMIT. `post_rearm_checkpoint` captures the subsequent M_REARM,
+including the final character checkpoint before reset. For character 4's
+expected exhaustion, `state_checkpoint` is the post-exception state and
+`post_rearm_checkpoint` is null.
+
+### Evidence destination and retained artifacts
+
+Set `TPCN_LUNA65_EVIDENCE_DIR` before the exact command to
+`%LOCALAPPDATA%\TPCN\evidence\luna65\phase2a\<run-id>\`, outside the
+repository. `<run-id>` is a preassigned UTC timestamp in
+`YYYYMMDDTHHMMSSZ` form, a hyphen, and the implementation checkout's
+seven-character Git commit ID; never reuse a directory. The run directory
+contains:
+
+- `results.jsonl.gz` — gzip-compressed probe records above.
+- `manifest.json` — invocation, environment, checkout, test/config identity,
+  resource terms, and declared expected-record count.
+- `stdout.txt` and `stderr.txt` — complete bounded invocation streams.
+- `failure.json` — required on any incomplete or failed lane, with first
+  failure category, probe identity if available, and stopped/unrun ranges.
+- `sha256.json` — SHA-256 for every retained file except itself, with byte
+  length and path; canonical JSON serialization as above.
+
+Retain the directory read-only until the repository owner confirms transfer
+to the designated project evidence archive; do not commit result artifacts
+to Git. The 1,048,576-byte cap applies to retained on-disk bytes after gzip
+compression, across all listed files and metadata combined; report both
+uncompressed JSONL length and compressed artifact size. One external
+supervisor owns this combined retained limit. Reserve space for `failure.json`,
+`manifest.json`, and `sha256.json` before starting and account for each
+write before retaining it. If the next write would exceed the cap, stop the
+lane before the next probe, preserve only complete records, write the bounded
+failure record if reserved space permits, and mark the run incomplete; never
+truncate and report a complete ledger. A partial compressed stream must be
+closed and labelled incomplete if possible; otherwise retain it only as an
+explicitly invalid partial artifact and record its hash/length. Keep
+stdout/stderr retained-byte
+accounting separate from bytes read/emitted, including pipe-buffer
+overshoot. The retained-file cap is not a strict emitted-byte cap. A hash
+manifest is finalized only for files fully written and closed; report any
+missing failure/hash record explicitly.
+
+This evidence plan is a specification only. It creates no directory or
+artifacts under this governance task.
 
 The direct lane's finite deterministic schedule and single-run record provide
 a replay reference but do not, by themselves, compare two independent
@@ -309,7 +517,7 @@ Phase 2B can be authorized.
 | External inputs | 2,176 |
 | Wall time | 120 seconds |
 | Job CPU time | 120 seconds |
-| Memory | 268,435,456 bytes |
+| Aggregate concurrent private commit charge | 268,435,456 bytes |
 | Retained test artifacts | 1,048,576 bytes |
 | Retries | 0 |
 
@@ -338,29 +546,45 @@ retaining no more than 1 MiB. CPU and memory limits were configured but not
 stress-tested. These facts do not qualify its supervisor for either phase.
 
 The per-character event and queue ceilings are enforced by the software
-reference. The 120-second wall, 120-second aggregate job-CPU, 256-MiB memory,
-and 1-MiB retained-artifact values above are proposed execution bounds, not
-demonstrated controls. A future execution request must include a separate
-review of the exact host supervisor showing:
+reference. The 120-second wall, 120-second aggregate job-CPU, 256-MiB
+aggregate concurrent private commit charge, and 1-MiB combined
+retained-artifact values above are proposed execution bounds, not
+demonstrated controls. The memory metric is the maximum over time of the sum
+of private commit charge for all concurrently live processes assigned to the
+execution job; it is not a per-process limit, working-set sum, or sum of
+each process's independent peak. A future execution request must identify
+the supervisor by exact
+executable path, version, and SHA-256, and include independent evidence for:
 
 - The test process and all descendants are assigned to the bounded job before
   they can execute; the job is terminated on wall or CPU limit and on
   controller failure.
-- CPU accounting/termination is aggregate across the job, not merely a
-  per-process timer. Report accounting resolution and termination latency.
-- Memory enforcement is explicitly identified as per-process or aggregate
-  job memory; it must match the declared 256-MiB limit.
+- Aggregate job CPU is capped at 120 seconds. Report CPU accounting
+  resolution and limit-termination latency.
+- The defined aggregate concurrent private commit charge is capped at 268,435,456
+  bytes. Demonstrate the exact measured quantity, enforcement boundary,
+  accounting resolution, and termination behavior.
+- Wall time is capped at 120 seconds; demonstrate the timer's start boundary,
+  termination behavior, and latency.
+- Controller failure terminates the complete job, with no surviving child.
+- Report process-tree inclusion, all limit-accounting resolutions, and
+  termination latency.
 - Retained artifacts are at most 1 MiB. Report bytes retained separately
   from bytes read/emitted before termination, including pipe-buffer
   overshoot. Do not claim a strict emitted-byte ceiling from a retained-file
   cap.
+- Demonstrate evidence integrity: completed files are closed before hashing,
+  manifest entries match byte lengths and SHA-256 digests, and partial runs
+  are explicitly marked incomplete without success-shaped manifests.
 - Monitoring and enforcement are listed separately; observed use below a
   target is not evidence that the target was enforced.
 
-If those controls cannot be demonstrated within separately approved host
-restrictions, neither fixture lane may run. No Hyper-V qualification is
-presumed necessary. Any change to existing execution restrictions needs
-explicit owner approval.
+No exact Phase 2 supervisor identity or qualification evidence is currently
+recorded. The Phase 1 supervisor does not satisfy this gate, and Luna-64
+qualification evidence may not be borrowed or reinterpreted. If the listed
+controls cannot be demonstrated within separately approved host restrictions,
+neither fixture lane may run. No Hyper-V qualification is presumed necessary.
+Any change to existing execution restrictions needs explicit owner approval.
 
 ## Review, phase gates, and exact authorization
 
@@ -379,12 +603,17 @@ Each review must assess the exact draft bytes and return findings or an
 explicit PASS/BLOCKED verdict. No reviewer can authorize execution.
 
 **Phase 2A owner authorization must explicitly name:** acceptance of this
-capacity-only replacement for the earlier fixture protocol, implementation of
-`tests/test_luna65_capacity_direct.py`; its single exact command above; 8,196
-target-counter boundary probes with the listed configurations and zero
-retries; permission to run only the bounded API/direct-neuron capacity
-fixture; and acceptance of the resource monitoring/enforcement terms after
-the supervisor is independently qualified. It does not authorize Phase 2B.
+capacity-only replacement for the earlier fixture protocol; the reviewed
+contract and checkout revision; implementation of
+`tests/test_luna65_capacity_direct.py`; the exact command and working
+directory above; all four zero-state counter scenarios and output-event
+recurrence; the 8,196 target-counter probe maximum and zero retries; the
+external evidence directory and combined retained-artifact limit; and
+permission to run the **Phase 2A direct-neuron capacity fixture only** after
+the exact supervisor has passed its independent qualification gate. It must
+explicitly prohibit Phase 2B, Spiral dataset generation, benchmark
+evaluation, training, scoring, and any production-code changes. It does not
+authorize Phase 2B.
 
 **Phase 2B owner authorization must explicitly name:** acceptance of this
 capacity-only replacement for the earlier fixture protocol and of the
