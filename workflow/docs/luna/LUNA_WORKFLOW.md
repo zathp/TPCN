@@ -1,5 +1,67 @@
 # TPCN Luna Multi-Agent Workflow — Event-Driven Architecture
 
+## Luna-0 Luna-65 RP-2A corrective R1 - static source complete - 2026-10-12
+
+Gate `L65-PHASE2A-RP2A-IMPLEMENTATION-CORRECTIVE-R1` completes the two-source
+synthetic diagnostic against frozen published governance baseline
+`f47c48a947e48867c629817fa1031cb93729e440`. Initial corrective review found
+two descriptor-binding/evidence defects; narrow corrections were followed
+by renewed A-D reviews of the SAME successor pair, all static PASS:
+**PASS - RP-2A SOURCE COMPLETE; READY FOR SEPARATE RP-2B AUTHORIZATION REVIEW**.
+
+Probe checkout SHA-256:
+`B8F669C68ED5768E4126FFA87E855002A5E7E5E116999E81E4AAE1CA69CE2427`;
+Git-clean blob `e76c2abf728072315c779da990cf9a5e445f1a00`.
+Wrapper checkout SHA-256:
+`F7C39C0FC849F61AFFF71A07AC8DCC7BDBEBA91D9971B44BCCF96B0C01ABE2A7`;
+Git-clean blob `3c29b21952e08100da2779c1a7fb02dcc930acdf`.
+Literal unchanged; restricted token 0x2008B/B01, ordinary Medium and explicit
+Low descriptors, exact three Low pipes/four variables and direct interpreter
+remain as reviewed. Entry-connected obligations and unexecuted qualification
+are recorded in the [traceability matrix](LUNA_65_PHASE2A_RP2A_CORRECTIVE_R1_TRACEABILITY.md).
+
+Previous BLOCKED reviews and attempted-wrapper-invocation incident remain
+intact below and in the unchanged prior handoff. No new target invocation
+or native experiment activity was reported during correction. Static PASS
+does not erase the incident, prove runtime feasibility, or qualify production.
+Outer independently observes Medium cessation only; missing required Low
+cessation evidence remains UNKNOWN/operator alert, never PASS.
+
+Publication is conditional on exact six-path staged-byte/normalization review
+and normal commit/push/fetch verification; see the
+[corrective handoff](../../handoffs/luna-0-luna65-rp2a-corrective-r1-20261012.md).
+Separate RP-2B exact-revision/command/host/evidence/operator authorization is
+still required. RP-2B/RP-3, supervisor/qualification and Phase 2A/2B fixtures
+NOT AUTHORIZED; full Spiral/Luna-64 corrective BLOCKED; Luna-63C FROZEN.
+
+## Luna-0 Luna-65 RP-2A implementation review - BLOCKED - 2026-10-12
+
+Gate `L65-PHASE2A-RP2A-IMPLEMENTATION` affirmatively adopts the owner's
+two-source implementation and nonexecuting-static-validation grant against
+verified governance baseline `f47c48a947e48867c629817fa1031cb93729e440`.
+Frozen R1/candidate identities and excluded scaffold/local record verified.
+Historical authorization entries below remain intact and are superseded only
+for the exact current RP-2A source scope, not for execution.
+
+Partial probe and outer wrapper were preserved locally. All four independent
+same-byte A-D reviews returned **BLOCKED - RP-2A IMPLEMENTATION INCOMPLETE**:
+closure bindings, security/admission/U1-U3 controllers, resource/evidence and
+finite cleanup remain unfinished. Refusal barriers are not implementation
+readiness. Lane B retracted a tool-output-truncation finding; no source syntax
+defect is inferred from that truncated output.
+
+An initial parser-command quoting failure attempted wrapper invocation;
+mandatory parameter binding rejected it before the body according to retained
+diagnostics. This is a noninvocation-boundary breach, not compliant validation;
+body nonexecution is not independently runtime-audited. Later text parsing
+does not erase the incident. No probe execution or native experiment activity
+was reported. No staging/commit/push or source publication occurs on BLOCKED.
+
+See [implementation review handoff](../../handoffs/luna-0-luna65-rp2a-implementation-review-20261012.md)
+for frozen source identities, A-D integration, incident and future prerequisites.
+RP-2B/RP-3, supervisor/qualification and Phase 2A/2B fixtures remain
+NOT AUTHORIZED; full Spiral/Luna-64 corrective BLOCKED; Luna-63C FROZEN.
+
 ## Luna-0 RP-2 R1 owner-decision closure - diagnostic design accepted - 2026-10-12
 
 Gate `L65-PHASE2A-RP2-R1-OWNER-DECISION-CLOSURE` prospectively records owner
