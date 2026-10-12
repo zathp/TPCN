@@ -1,5 +1,9 @@
 # TPCN Luna Multi-Agent Workflow — Event-Driven Architecture
 
+## Luna-0 S1-B Execution Contract and Verifier Gate - contract ready for owner decision - 2026-10-12
+
+Luna-0 prepared governance-only gate `L65-PHASE2A-S1B-EXECUTION-CONTRACT-V1` against `08d67859d920364182a5508a1e797a61ce7e7a15`: frozen command, envelope mismatches, attended wrapper specification, output-directory rules, independent verifier specification and proposed decisions D-R7P-1 and D-S1B-1 to D-S1B-5 (none accepted). See `workflow/docs/luna/LUNA_65_PHASE2A_S1B_EXECUTION_CONTRACT.md` and `workflow/handoffs/luna-0-luna65-s1b-execution-contract-20261012.md`. S1-B execution, verifier/wrapper implementation, supervisor work, RP probes and fixtures: NOT AUTHORIZED; full Spiral and Luna-64 corrective execution BLOCKED; Luna-63C FROZEN.
+
 ## Luna-0 S1-A Implementation Reconciliation (2026-10-12)
 
 Owner accepted D-S1-1 and D-S1-2 Option 1 and authorized the single file `scripts/luna65_phase2a_ledger_sizing.py` against contract `b4e0c337`. Owner amended O11 to permit `time.process_time()` for CPU accounting alongside `time.monotonic()`. Only nonexecuting validation was performed. See `workflow/handoffs/luna-0-luna65-s1a-implementation-20261012.md`. S1-B, RP probes, supervisor implementation/qualification and Phase 2A/2B fixtures remain NOT AUTHORIZED; full Spiral and Luna-64 corrective execution BLOCKED; Luna-63C FROZEN.
