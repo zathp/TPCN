@@ -1,5 +1,9 @@
 # TPCN Luna Multi-Agent Workflow — Event-Driven Architecture
 
+## Luna-0 S1-B Verifier and Wrapper Implementation - implemented, not executed - 2026-10-12
+
+Owner authorized non-executing implementation of the S1-B verifier and attended wrapper (D-S1B-1 to D-S1B-5 adopted) against contract commit `86bf3fd16a6105300124751260e6b1de80b14538`. Files: `scripts/luna65_phase2a_ledger_sizing_verifier.py` and `scripts/luna65_phase2a_s1b_wrapper.ps1`; only non-executing checks were performed. Identities (SHA-256 / Git blob): verifier `27D5969035DAE923CADC3518D2C1A398CEB3413EAB702A4298E71FE2F1EB7D6E` / `2170dc8c8bd1ceb734136d9b4ed36bb47b55c916`; wrapper `07BCCEE260B8BBAFF8B0FA5F56D657E470AA7B4EF105D24060D472AAB19802A1` / `99b1127ecfef683c2769e24451bf7e825ba7a030`. Generator, contract and supervisor scaffold are unchanged. See `workflow/handoffs/luna-0-luna65-s1b-verifier-wrapper-implementation-20261012.md`. D-R7P-1 undecided; S1-B execution, supervisor work, RP probes and fixtures: NOT AUTHORIZED; full Spiral and Luna-64 corrective execution BLOCKED; Luna-63C FROZEN.
+
 ## Luna-0 S1-B Execution Contract and Verifier Gate - contract ready for owner decision - 2026-10-12
 
 Luna-0 prepared governance-only gate `L65-PHASE2A-S1B-EXECUTION-CONTRACT-V1` against `08d67859d920364182a5508a1e797a61ce7e7a15`: frozen command, envelope mismatches, attended wrapper specification, output-directory rules, independent verifier specification and proposed decisions D-R7P-1 and D-S1B-1 to D-S1B-5 (none accepted). See `workflow/docs/luna/LUNA_65_PHASE2A_S1B_EXECUTION_CONTRACT.md` and `workflow/handoffs/luna-0-luna65-s1b-execution-contract-20261012.md`. S1-B execution, verifier/wrapper implementation, supervisor work, RP probes and fixtures: NOT AUTHORIZED; full Spiral and Luna-64 corrective execution BLOCKED; Luna-63C FROZEN.
