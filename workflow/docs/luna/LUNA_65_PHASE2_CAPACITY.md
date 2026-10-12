@@ -52,12 +52,12 @@ authorization remains independently required.
 The Windows supervisor qualification contract is tracked separately at
 `workflow/docs/luna/LUNA_65_SUPERVISOR_QUALIFICATION_R1.md`. Its resource
 design and execution readiness remain blocked pending the decisions and
-evidence stated there. The full Phase 2A workload environment allowlist is
-also unresolved; the published contract specifies `PYTHONHASHSEED=0` and
-the external evidence-directory setting as its two overrides, but does not
-freeze every permitted inherited variable or the clearing policy. The
-qualification draft also leaves Q03 escaped-child recovery and the
-independent process-observer protocol gated on a reviewed design.
+evidence stated there. The published R1/R2 Phase 2A contract did not freeze the complete inherited
+environment. The later supervisor implementation proposal now defines a
+constructed allowlist and omitted injection variables, but host-specific
+path values, restricted-token behavior, and compatibility remain
+unqualified. Q03 escaped-child recovery and the independent process-observer
+protocol also remain gated on reviewed and qualified designs.
 
 The owner subsequently accepted gate
 `L65-PHASE2A-MONITORED-RESOURCE-POLICY-R2` for Phase 2A qualification design
@@ -67,8 +67,13 @@ only Phase 2A's hard aggregate-CPU and hard wall-cessation requirements with
 monitored budgets and fail-on-observed-overrun. The 120-second cumulative
 job-wide user-plus-kernel CPU budget remains; the trusted monitor requests
 whole-job termination at its threshold, without a zero-overshoot guarantee.
-Wall remains a 120-second monitored budget; a five-second early stop margin
-is proposed but not owner-approved. The 268,435,456-byte job-wide
+Wall remains a 120-second monitored budget. A later owner decision accepted
+the five-second early stop request at `T0 + 115 seconds` for Phase 2A
+qualification design only; the decision source and supervisor proposal are
+recorded in
+`workflow/docs/luna/LUNA_65_PHASE2A_SUPERVISOR_IMPLEMENTATION_AUTH_R1.md`.
+This does not promise cessation by 120 seconds or authorize implementation
+or qualification. The 268,435,456-byte job-wide
 concurrent-private-commit and 1,048,576-byte retained-artifact ceilings
 remain hard. This owner decision does not apply to Phase 2B. R1 remains
 unchanged as historical evidence.
@@ -325,7 +330,7 @@ quietly exceed the 8,196-attempt allowance.
 | Bound | Proposed maximum |
 |---|---:|
 | Target-counter boundary probes | 8,196 total: 2,049 per counter |
-| Monitored wall-time budget | 120 seconds; proposed 5-second early stop margin is not owner-approved |
+| Monitored wall-time budget | 120 seconds; owner accepted a 5-second early stop request at 115 seconds for Phase 2A qualification design only |
 | Monitored aggregate job CPU budget | 120 seconds cumulative user plus kernel; no zero-overshoot guarantee |
 | Aggregate concurrent private commit charge | 268,435,456 bytes |
 | Retained artifacts, all files combined | 1,048,576 bytes |
@@ -596,11 +601,12 @@ stress-tested. These facts do not qualify its supervisor for either phase.
 
 The per-character event and queue ceilings are enforced by the software
 reference. The owner accepted the R2 monitored CPU and wall budgets for Phase
-2A design only. They are not hard real-time controls: CPU termination is
-requested when sampled cumulative job-wide user-plus-kernel accounting
-reaches 120 seconds; wall termination uses a monotonic-clock early trigger,
-with a five-second margin proposed but not yet approved. Any observed CPU or
-wall budget overrun fails the result. The 268,435,456-byte aggregate
+2A design only and later accepted the five-second wall-stop margin for
+qualification design. They are not hard real-time controls: CPU termination
+is requested when sampled cumulative job-wide user-plus-kernel accounting
+reaches 120 seconds; wall termination is requested at `T0 + 115 seconds`
+against the 120-second budget. Any observed CPU or wall budget overrun fails
+the result. The 268,435,456-byte aggregate
 concurrent private-commit charge and 1,048,576-byte retained-artifact values
 remain hard ceilings. The memory metric is the maximum over time of the sum
 of private commit charge for all concurrently live processes assigned to the
@@ -623,7 +629,8 @@ executable path, version, and SHA-256 and require independent evidence for:
   flags/value of 268,435,456 bytes, with concurrent `PrivateUsage`
   reconciliation and termination behavior.
 - Monotonic wall-clock start/stop boundary, monitoring schedule, owner-
-  approved early margin, escalation, actual cessation and finalization times.
+  accepted five-second early margin for qualification design, escalation,
+  actual cessation and finalization times.
   No claim that a termination request guarantees cessation by 120 seconds.
 - Controller/watchdog failure behavior and proof no workload process remains.
 - All retained artifacts, including temporary files, stay within 1 MiB.
@@ -648,6 +655,17 @@ Luna-64 qualification evidence may not be borrowed or reinterpreted.
 Phase 2B resource policy is unchanged. Any change to existing execution
 restrictions needs explicit owner approval.
 
+The owner later accepted the five-second early wall-stop margin for
+Phase 2A qualification design only. The recorded target is
+`T0 + 115 seconds` against the unchanged 120-second monitored wall budget;
+any observed overrun remains a failure and no exact cessation guarantee is
+claimed. The versioned owner decision source, exact supervisor API design,
+separate implementation/qualification requests, and remaining gates are
+recorded in
+`workflow/docs/luna/LUNA_65_PHASE2A_SUPERVISOR_IMPLEMENTATION_AUTH_R1.md`.
+This later decision supersedes only R2's earlier pending-margin wording and
+does not authorize implementation, qualification, fixtures, or benchmarks.
+
 ## Review, phase gates, and exact authorization
 
 The planned independent review dimensions are:
@@ -671,8 +689,9 @@ revision; implementation of
 directory above; all four zero-state counter scenarios and output-event
 recurrence; the 8,196 target-counter probe maximum and zero retries; the
 external evidence directory; the R2 monitored 120-second user-plus-kernel
-CPU and 120-second wall budgets, exact owner-approved wall stop margin and
-monitoring profile; hard 268,435,456-byte job-wide private-commit and
+CPU and 120-second wall budgets, the owner-accepted five-second early stop
+request at 115 seconds for qualification design, and monitoring profile;
+hard 268,435,456-byte job-wide private-commit and
 1,048,576-byte all-artifact limits; zero retries; the complete environment
 policy; memory metric reconciliation; controller-owned evidence channel
 and demonstrated exact ledger fit; process-observer and Q03 recovery

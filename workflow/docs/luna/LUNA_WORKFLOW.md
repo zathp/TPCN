@@ -112,8 +112,10 @@ budget is monitored using Job Object aggregate accounting; the supervisor
 requests whole-job termination when an observed sample reaches the threshold.
 Zero overshoot is not guaranteed, and any observed CPU-budget overrun fails.
 Wall time remains a 120-second monitored budget using QPC and an early
-termination trigger; the proposed five-second margin is **not owner-approved**
-and must not be treated as selected. Any observed wall overrun fails.
+termination trigger. At the time R2 was recorded, the proposed five-second
+margin was **not owner-approved**. The owner later accepted that margin for
+Phase 2A qualification design only; see the proposal record below. Any
+observed wall overrun fails.
 The hard 268,435,456-byte job-wide concurrent-private-commit and
 1,048,576-byte combined retained-artifact ceilings remain unchanged. Emitted,
 captured, and retained output remain separate quantities. The policy has no
@@ -130,6 +132,38 @@ and closes none of the engineering gates above. No supervisor is qualified.
 Phase 2A/2B fixtures remain **NOT AUTHORIZED**; full Spiral remains
 **BLOCKED**; Luna-64 corrective execution remains **BLOCKED**; Luna-63C
 remains **FROZEN**.
+
+## Luna-65 Phase 2A supervisor proposal — reviewed, owner decision pending — 2026-10-12
+
+The owner later accepted a five-second early wall-stop margin (`T0 + 115
+seconds`) for Phase 2A qualification design only. The exact owner-source hash,
+resource design, proposed Windows Job Object supervisor, separate future
+Authorization I and Authorization Q requests, and qualification gates are
+recorded in
+[LUNA_65_PHASE2A_SUPERVISOR_IMPLEMENTATION_AUTH_R1.md](LUNA_65_PHASE2A_SUPERVISOR_IMPLEMENTATION_AUTH_R1.md).
+The owner decision supersedes only R2's then-pending margin wording; R2
+remains unchanged as historical provenance.
+
+Four independent reviews returned PASS on the identified proposal candidate
+(SHA-256
+`BACE017427C432CC938AAEBADD8E823F223CBC861689E416AA4B4D7E8B2CDA8AA`,
+Git blob `734c0acb549b03a1cb1020e4df0e1c2f5166b770`). Integrated Luna-0
+disposition is **PASS — PHASE 2A SUPERVISOR IMPLEMENTATION PROPOSAL READY
+FOR OWNER AUTHORIZATION**. This is a governance/design verdict, not an
+implementation or execution authorization. No supervisor implementation,
+qualification, synthetic sizing, fixture, or benchmark was run.
+
+The proposal's future Authorization I is restricted to the listed supervisor
+code and provides no authority to qualify or run Phase 2A. Authorization Q
+must be requested separately after implementation and independent review.
+Memory-metric reconciliation, retained-artifact enforcement, complete
+8,196-record fit, independent process observation, Q03 escaped-child recovery,
+controller failure, and post-budget observation limits remain qualification
+gates. The next decision is the owner's explicit accept/reject decision on
+the exact Authorization I file allowlist and implementation boundary in the
+proposal. See the
+[Luna-0 handoff](../../handoffs/luna-0-luna65-phase2a-supervisor-implementation-auth-r1-20261012.md)
+for review dispositions, non-execution evidence, and remaining gates.
 
 ## Luna-65 / Luna-66 Spiral and Simon Says resumption — design and recovery only — 2026-10-11
 
