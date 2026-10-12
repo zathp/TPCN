@@ -43,59 +43,60 @@ phase. The execution gate additionally requires a reviewed full-replication
 capacity argument and separately qualified execution controls; Phase 1
 closure grants neither.
 
-## Luna-65 Phase 2 capacity contracts — correction published; authorization gated — 2026-10-12
+## Luna-65 Phase 2 capacity-only replacement accepted for qualification design — supervisor contract blocked — 2026-10-12
 
-The baseline-published Phase 2 supplement and the published correction in
-`ed234e7fcb2f6d8343aeca2364bae82865a9f975` specify the separate Phase 2A
-direct-counter and Phase 2B fixed-network capacity fixture contracts in
-[LUNA_65_PHASE2_CAPACITY.md](LUNA_65_PHASE2_CAPACITY.md). They are not
-implementation or execution authorizations. No capacity fixtures, benchmark
-examples, training, scoring, or generated data have been run or materialized.
-The published supplement proposes replacing the original Luna-65
-capacity-fixture module and 128-execution network diagnostic ceiling only if
-the repository owner explicitly accepts and publishes that capacity-only
-amendment. The current Phase 2A correction freezes its direct-neuron
-assertions, one-run JSONL evidence, external artifact destination, exact
-command/environment, and aggregate private-commit memory metric. These
-corrections do not accept the amendment or authorize Phase 2A execution.
-Until separate owner acceptance and publication of the amendment, the
-published Luna-65 contract controls; all Spiral scientific conditions remain
-unchanged.
+The owner explicitly accepted **CAPACITY-ONLY REPLACEMENT FOR QUALIFICATION
+DESIGN** under gate
+`L65-PHASE2-WINDOWS-SUPERVISOR-QUALIFICATION-R1`. The accepted diagnostic
+design has a separate Phase 2A direct-neuron lane (four persistent-counter
+scenarios, maximum 8,196 target-counter probes, zero retries) and Phase 2B
+network-capacity lane (eight seeds, sixteen unique fixtures per seed, one
+replay sentinel per seed, maximum 136 calls, 139,264 processed events, 2,176
+external inputs, zero retries). This is design acceptance only; it does not
+authorize supervisor implementation or qualification execution, Phase 2A,
+Phase 2B, or benchmark activity. The correction and acceptance record are in
+[LUNA_65_PHASE2_CAPACITY.md](LUNA_65_PHASE2_CAPACITY.md); publication commits
+are `ed234e7fcb2f6d8343aeca2364bae82865a9f975` and
+`61b034931f00095549c278c249e9379dd27e8893`.
 
-Phase 2A proposes 2,049 target-counter boundary probes for each persistent
-E2 identity counter (8,196 total), exercising input fallback allocation,
-ordinary episode admission, new-lineage M admission, and repeated M output
-emissions across character resets. Phase 2B retains 16 unique high-activation
-synthetic characters for each of seeds 65001–65008 and proposes one c00
-replay sentinel per seed. The replay sentinel would amend the earlier
-capacity-only network ceiling from 128 to 136 example executions; this is
-not a change to Luna-65's Spiral scientific conditions and needs explicit
-owner acceptance before it may be executed.
+Phase 2A exercises input fallback allocation, ordinary episode admission,
+new-lineage M admission, and repeated M output emissions across character
+resets. Phase 2B uses 16 unique high-activation synthetic characters and one
+c00 replay sentinel for each of seeds 65001–65008. The owner acceptance
+applies to this capacity-only diagnostic design, not to the Spiral scientific
+conditions or execution.
 
 Both designs are bounded fixture characterization, not analytical proof that
-2,048 identities suffice for a complete Spiral replication. Phase 2A and
-Phase 2B require separate exact owner authorizations, independent review of
-their final bytes, and separately qualified process-tree resource controls.
-The Phase 1 supervisor's configured limits and 1-MiB retained-artifact cap
-do not establish aggregate CPU/memory enforcement or a strict cap on bytes
-emitted before pipe termination. Full Spiral execution remains blocked.
+2,048 identities suffice for a complete Spiral replication. The Windows
+supervisor qualification design is recorded in
+[LUNA_65_SUPERVISOR_QUALIFICATION_R1.md](LUNA_65_SUPERVISOR_QUALIFICATION_R1.md)
+with its
+[Luna-0 handoff](../../handoffs/luna-0-luna65-windows-supervisor-qualification-r1-20261012.md),
+and is **BLOCKED — SUPERVISOR QUALIFICATION CONTRACT INCOMPLETE**. The
+documented Job Object API lacks a hard aggregate user-plus-kernel CPU
+deadline; termination latency is not finitely bounded; exact private-commit
+metric reconciliation, compressed-ledger fit, a bounded workload-to-evidence
+channel, the Phase 2A inherited-environment allowlist, and safe Q03
+escaped-child recovery remain unresolved. The Phase 2A contract's two
+required overrides (`PYTHONHASHSEED=0` and the external evidence-directory
+setting) are preserved. The Phase 1 supervisor and Luna-64 evidence are not
+borrowed. Owner decisions and a separately authorized synthetic
+qualification are still required.
 
-The prior Phase 2A readiness review blocked authorization-package readiness
-because output-event expected checkpoints, direct-counter snapshot/ledger
-units, evidence destination, and the “API/direct-neuron” scope were
-underspecified. The corrected specification now limits Phase 2A to the
-direct-neuron capacity fixture only and freezes the source-derived counter,
-state, and event assertions. Independent reviews passed the counter and
-output-event assertions, JSONL/provenance schema, command/scope, and proposed
-resource specification. The resource review did not qualify an execution
-supervisor; the complete compressed-ledger size also remains unverified. The
-correction passed exact-byte prepublication review and was published in the
-commit above; the capacity-only amendment remains a proposal pending owner
-acceptance. Phase 2A execution remains
-**NOT AUTHORIZED**; Phase 2B execution
-remains **NOT AUTHORIZED**; full Spiral execution remains **BLOCKED** pending
-a reviewed full-replication capacity argument, qualified resource controls,
-and its own exact owner authorization.
+Four independent R1 review lanes returned PASS for Windows API specification,
+fail-closed supervisor framing, and governance/provenance, and PASS WITH
+CLARIFICATIONS for the bounded evidence structure. They did not demonstrate
+resource enforcement, exact ledger fit, or supervisor qualification.
+Integrated Luna-0 disposition is **BLOCKED — SUPERVISOR QUALIFICATION
+CONTRACT INCOMPLETE**. There is no qualified supervisor, and no qualification
+or fixture execution is authorized.
+
+Phase 2A and Phase 2B remain separately **NOT AUTHORIZED**. Each requires a
+separate exact owner execution authorization and a qualified supervisor.
+Full Spiral execution remains **BLOCKED** pending a reviewed full-replication
+capacity argument, qualified resource controls, and its own exact
+authorization. Luna-66 Simon Says remains **SOURCE RECOVERY ONLY**; Luna-64
+corrective execution remains **BLOCKED**; Luna-63C remains **FROZEN**.
 
 ## Luna-65 / Luna-66 Spiral and Simon Says resumption — design and recovery only — 2026-10-11
 

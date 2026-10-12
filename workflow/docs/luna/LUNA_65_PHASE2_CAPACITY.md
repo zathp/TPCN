@@ -1,12 +1,13 @@
 # Luna-65 Phase 2 — E2 Capacity Fixture Contracts
 
-**Status:** Governance-only Phase 2A correction proposal. Independent review
-found the corrected Phase 2A specification complete. Publication of this
-correction does not constitute owner acceptance or execution authorization.
-No fixtures have been materialized or run. Phase 2A and Phase 2B require
-separate explicit owner authorization and qualified resource controls.
-Full-replication E2 identity capacity remains unproven and Spiral execution
-remains blocked.
+**Status:** Governance-only Phase 2A specification correction. Independent
+review found the corrected specification complete. The owner accepted the
+capacity-only replacement protocol for qualification design; that acceptance
+does not authorize implementation, qualification execution, Phase 2A, or
+Phase 2B. No fixtures have been materialized or run. Phase 2A and Phase 2B
+require separate explicit execution authorizations and qualified resource
+controls. Full-replication E2 identity capacity remains unproven and Spiral
+execution remains blocked.
 
 **Protocol baseline:** `5a374c9ddab30517d863696a28f7f801a31f26bc`.
 **Correction review baseline:** `dc62469a099f27f2b8d43142dd8aecb407b2e663`
@@ -18,19 +19,44 @@ whose SHA-256 at this baseline is
 This supplement specifies only bounded capacity diagnostics. It does not
 alter the Spiral scientific protocol or amend the production architecture.
 
-**Contract relationship:** This document proposes a capacity-only replacement
-for the earlier fixture-module and network-count terms in the published
-contract's “Separately authorized deterministic interface/capacity fixture
-protocol.” Specifically, the earlier single
+**Contract relationship:** The owner accepted the capacity-only replacement
+protocol for qualification design on 2026-10-12. It replaces the earlier
+fixture-module and network-count terms in the published contract's
+“Separately authorized deterministic interface/capacity fixture protocol.”
+Specifically, the earlier single
 `tests/test_luna65_capacity_fixture.py` invocation and 128-execution /
-131,072-event network ceiling would be replaced by separate Phase 2A and
-Phase 2B modules and the limits stated below, if and only if the repository
-owner explicitly accepts this supplement and publishes the amendment. Until
-that acceptance and publication, the existing Luna-65 contract controls.
-This proposal does not replace or amend any Spiral scientific condition,
-seed, workload, timing, metric, or acceptance criterion. Phase-separated
-owner authorization is likewise proposed governance for these two capacity
-lanes and is not active execution authority.
+131,072-event network ceiling are replaced by separate Phase 2A and Phase 2B
+modules and the limits stated below. Acceptance is for qualification design
+only; it is not permission to implement or execute either phase. This
+replacement does not change any Spiral scientific condition, seed, workload,
+timing, metric, or acceptance criterion. Phase-separated execution
+authorization remains independently required.
+
+**Owner decision record (2026-10-12):**
+
+> **OWNER ACCEPTED — CAPACITY-ONLY REPLACEMENT FOR QUALIFICATION DESIGN**
+>
+> Accepted under the Luna-0 owner instruction for gate
+> `L65-PHASE2-WINDOWS-SUPERVISOR-QUALIFICATION-R1`. Phase 2A is limited to
+> four direct-neuron E2 counter scenarios, at most 8,196 target-counter
+> boundary probes, zero retries, and its dedicated direct-neuron fixture
+> module. Phase 2B is a separate network-capacity lane with eight seeds,
+> sixteen unique fixtures per seed, one replay sentinel per seed, at most
+> 136 calls, 139,264 processed events and 2,176 external inputs, with zero
+> retries. This acceptance is design/qualification scope only and does not
+> authorize supervisor implementation or qualification execution, either
+> fixture phase, benchmark generation, training, scoring, or Spiral/Simon
+> Says execution.
+
+The Windows supervisor qualification contract is tracked separately at
+`workflow/docs/luna/LUNA_65_SUPERVISOR_QUALIFICATION_R1.md`. Its resource
+design and execution readiness remain blocked pending the decisions and
+evidence stated there. The full Phase 2A workload environment allowlist is
+also unresolved; the published contract specifies `PYTHONHASHSEED=0` and
+the external evidence-directory setting as its two overrides, but does not
+freeze every permitted inherited variable or the clearing policy. The
+qualification draft also leaves Q03 escaped-child recovery and the
+independent process-observer protocol gated on a reviewed design.
 
 ## Disposition boundary
 
@@ -501,9 +527,10 @@ inputs and 1,024 processed events per execution, the maxima are 2,176
 external inputs and 139,264 processed events. At most 17 character resets
 occur per seed. This sentinel raises the earlier 128-execution capacity
 proposal by eight calls; it does not alter the Spiral experiment's examples,
-seeds, timing conditions, or acceptance criteria. It is a proposed
-diagnostic-budget amendment and requires explicit owner acceptance before
-Phase 2B can be authorized.
+seeds, timing conditions, or acceptance criteria. The owner accepted this
+capacity-only replacement for qualification design on 2026-10-12. Phase 2B
+implementation and execution still require separate exact owner
+authorization and qualified resource controls.
 
 **Phase 2B budget and evidence:**
 
@@ -579,12 +606,16 @@ executable path, version, and SHA-256, and include independent evidence for:
 - Monitoring and enforcement are listed separately; observed use below a
   target is not evidence that the target was enforced.
 
-No exact Phase 2 supervisor identity or qualification evidence is currently
-recorded. The Phase 1 supervisor does not satisfy this gate, and Luna-64
-qualification evidence may not be borrowed or reinterpreted. If the listed
-controls cannot be demonstrated within separately approved host restrictions,
-neither fixture lane may run. No Hyper-V qualification is presumed necessary.
-Any change to existing execution restrictions needs explicit owner approval.
+The R1 supervisor-qualification design is recorded in
+`workflow/docs/luna/LUNA_65_SUPERVISOR_QUALIFICATION_R1.md` and is
+**BLOCKED** on hard aggregate user-plus-kernel CPU enforcement, wall-time
+termination bound, memory-metric reconciliation, and end-to-end artifact
+containment. No supervisor is qualified. The Phase 1 supervisor does not
+satisfy this gate, and Luna-64 qualification evidence may not be borrowed or
+reinterpreted. If the listed controls cannot be demonstrated within
+separately approved host restrictions, neither fixture lane may run. No
+Hyper-V qualification is presumed necessary. Any change to existing
+execution restrictions needs explicit owner approval.
 
 ## Review, phase gates, and exact authorization
 
@@ -602,9 +633,9 @@ The planned independent review dimensions are:
 Each review must assess the exact draft bytes and return findings or an
 explicit PASS/BLOCKED verdict. No reviewer can authorize execution.
 
-**Phase 2A owner authorization must explicitly name:** acceptance of this
-capacity-only replacement for the earlier fixture protocol; the reviewed
-contract and checkout revision; implementation of
+**Phase 2A owner authorization must explicitly name:** the accepted
+capacity-only replacement recorded above; the reviewed contract and checkout
+revision; implementation of
 `tests/test_luna65_capacity_direct.py`; the exact command and working
 directory above; all four zero-state counter scenarios and output-event
 recurrence; the 8,196 target-counter probe maximum and zero retries; the
@@ -615,9 +646,9 @@ explicitly prohibit Phase 2B, Spiral dataset generation, benchmark
 evaluation, training, scoring, and any production-code changes. It does not
 authorize Phase 2B.
 
-**Phase 2B owner authorization must explicitly name:** acceptance of this
-capacity-only replacement for the earlier fixture protocol and of the
-increase from 128 to 136 total calls / 131,072 to 139,264 processed events;
+**Phase 2B owner authorization must explicitly name:** the accepted
+capacity-only replacement recorded above, including the increase from 128 to
+136 total calls / 131,072 to 139,264 processed events;
 implementation of
 `tests/test_luna65_capacity_network.py`; the eight listed seeds, 16 unique
 fixtures per seed and one c00 replay sentinel; the 136-call, 139,264-event,
