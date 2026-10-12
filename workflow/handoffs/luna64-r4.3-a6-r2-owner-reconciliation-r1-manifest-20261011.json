@@ -1,0 +1,264 @@
+{
+  "format": "TPCN-LUNA64-A6-R2-OWNER-RECONCILIATION-R1-MANIFEST",
+  "revision": 1,
+  "gate": "L64-TB-R4.3-CORRECTIVE-SUPERVISOR-A6-R2-OWNER-RECONCILIATION-R1",
+  "review_date": "2026-10-12",
+  "scope": "governance-only; no infrastructure, qualification, corrective, or scientific execution",
+  "disposition": "PASS — A6 R2 OWNER-POLICY RECONCILIATION VERIFIED",
+  "publication_status": "proposal-review-passed; exact package allowlist staged; independent pre-commit verification pending",
+  "publication_status_as_of": "initial package manifest snapshot, before Reviewer D's staged-index verification",
+  "baseline": {
+    "branch": "governance/luna64-r4.3-freeze-20261010",
+    "base_commit": "f1cfb6e98cfc872753ea262bdb56e4a66ab40c05",
+    "upstream_at_review": "f1cfb6e98cfc872753ea262bdb56e4a66ab40c05",
+    "r1_package_commit": "f00dea13d64657cbc976d21daf50739ddf9722fe",
+    "r1_workflow_closure_commit": "f1cfb6e98cfc872753ea262bdb56e4a66ab40c05"
+  },
+  "owner_decision_provenance": "D7 and D8 were supplied as repository-owner decisions in the current task conversation. They are design-policy acceptance only and do not authorize implementation, qualification, corrective execution, scientific execution, or architecture promotion.",
+  "frozen_authority": {
+    "r4_3_content_freeze_commit": "64a214e310de3b982b90a8ad215598bc1e9f8b1c",
+    "r4_3_governance_closure_commit": "ea1b10456cbf4ca726e473076d239a4f6e53b9c7",
+    "r4_3_manifest_sha256": "62D64457BB4BE4FF69F40558D55C6A9FAAA7B9A246DA9F6C6BE4BE8C0348542B",
+    "r4_3_package_artifact_count": 10,
+    "r4_3_governing_input_inventory_count": 32,
+    "original_corrective_authorization_commit": "0bdddaeaefe47a97ea6433d82bcc143adfe13b5a",
+    "original_pilot_verdict": "NOT SUPPORTED AS A PROTOCOL-COMPLIANT PILOT; not an efficacy result"
+  },
+  "predecessors": {
+    "a4_package_commit": "7bd440565c38dee81ace3606fde3fb686de6a0ef",
+    "a4_closure_commit": "f86c25844a4863ac57cd6634f364c28bcf2f511f",
+    "a5_package_commit": "12f84a41fe7c91c17c5df8e975fce24efbadf9ad",
+    "a5_closure_commit": "b758b411e568b41c516228e7d3bdff26058114cc",
+    "a5_proposal_sha256": "5BCDAC72E7EBDEA777E9964F25554834C4460D97075E6871690BD441BA00C6E5",
+    "a5_review_sha256": "54D11A362EDED451292330C6FA5627B570BD6103ADE0F69E115F5CDC3C7B934D",
+    "r1_proposal_sha256": "A619E3A4361B712471B8C3A7FD2AA784992ED6B4F5F0E218ED0449B16144319D",
+    "r1_review_sha256": "DD7E0F840F8C3F34A7016351C28F63CA50F313618DC1B218B81A509CBD8E4D36",
+    "r1_manifest_sha256": "D51C207C5ED7E91B59C661FB39B67E88F27C0FA47CDEF708AA1F0ADFB7DEE958",
+    "parent_a6_r2_disposition": "BLOCKED — ENFORCEMENT DESIGN INCOMPLETE"
+  },
+  "owner_decisions": {
+    "D7": {
+      "status": "accepted for qualification design only",
+      "guest_metric": "maximum 5242880 bytes guest ext4 project allocation",
+      "host_metric": "maximum 1048576 bytes host NTFS quota usage",
+      "metric_relationship": "distinct measures; the nominal 6291456-byte sum is not a unified metric and is not equivalent to the frozen 5 MiB aggregate logical-byte high-water criterion",
+      "implementation_or_execution_authorized": false
+    },
+    "D8": {
+      "status": "accepted as monitored qualification-design targets only",
+      "normal_cpu_seconds": 120,
+      "candidate_cpu_seconds": 130.1,
+      "wall_stages_seconds": [170, 171, 180],
+      "hard_cessation_or_vm_off_guarantee": false,
+      "execution_authorized": false
+    }
+  },
+  "planning_only_qualification_budget": {
+    "synthetic_case_count": 12,
+    "case_order": [
+      "Q01-ADMISSION",
+      "Q02-CGROUP-CONTAINMENT",
+      "Q03-DESCENDANT-INHERITANCE",
+      "Q04-MEMORY-HARD-LIMIT",
+      "Q05-ZERO-SWAP",
+      "Q06-CPU-CUTOFF",
+      "Q07-ARTIFACT-QUOTA",
+      "Q08-ALTERNATE-PATHS",
+      "Q09-SUPERVISOR-FAILURE",
+      "Q10-EVIDENCE-INTEGRITY",
+      "Q11-WALL-LOSS-AND-TURNOFF",
+      "Q12-OFF-CLEANUP-ONESHOT"
+    ],
+    "guest_cpu_reservation_seconds": [10, 5, 5, 10, 10, 150, 5, 5, 5, 5, 30, 0],
+    "guest_cpu_reservation_sum_seconds": 240,
+    "q06_normal_and_candidate_cpu_seconds": [120, 130.1],
+    "q06_candidate_is_hard_lifetime_bound": false,
+    "wall_reservation_seconds": [60, 20, 20, 25, 25, 160, 20, 20, 20, 20, 180, 30],
+    "wall_reservation_sum_seconds": 600,
+    "wall_origin": "Q0 host QPC immediately before the single VM-start request, through confirmed VM Off and evidence sealing",
+    "guest_memory_candidate_bytes": 536870912,
+    "guest_swap_candidate_bytes": 0,
+    "guest_ext4_project_allocation_candidate_bytes": 5242880,
+    "host_ntfs_quota_usage_candidate_bytes": 1048576,
+    "nominal_combined_artifact_sum_bytes": 6291456,
+    "host_control_plane_memory_candidate_bytes": 805306368,
+    "host_control_plane_memory_policy": "not accepted by D7/D8; exact metric and owner approval remain required",
+    "vm_start_limit": 1,
+    "host_turnoff_limit": 1,
+    "retry_limit": 0,
+    "corrective_allowance": "unused and separate",
+    "execution_authorized": false
+  },
+  "proposal_review": {
+    "path": "workflow/handoffs/luna-0-luna64-r4.3-corrective-supervisor-a6-r2-owner-reconciliation-r1-20261011.md",
+    "checkout_sha256": "517A83E049B2C669A9DD76345F3D8EB7D398FC5D909A2E6A58B3DEC67D461BE6",
+    "raw_git_blob_sha1": "a9fe493ccb85f0fafeeb54c3505debfe02fb5357",
+    "integrated_verdict": "PASS — A6 R2 OWNER-POLICY RECONCILIATION VERIFIED"
+  },
+  "independent_review": {
+    "path": "workflow/handoffs/luna-0-independent-review-luna64-r4.3-a6-r2-owner-reconciliation-r1-20261011.md",
+    "checkout_sha256": "3827D58A6D96DF83A4A36096A2BB52BF2EF59B011C3D0C73F3D6F880EF19B979",
+    "raw_git_blob_sha1": "abaa9cf4f7f6e763bd25a2372f795bd9e79d49e5",
+    "integrated_proposal_review_verdict": "PASS — A6 R2 OWNER-POLICY RECONCILIATION VERIFIED",
+    "publication_stage_verification": "NOT RUN; required independently before each commit"
+  },
+  "reviewers": [
+    {
+      "reviewer": "A — owner-policy governance",
+      "verdict": "PASS",
+      "reviewed_proposal_sha256": "517A83E049B2C669A9DD76345F3D8EB7D398FC5D909A2E6A58B3DEC67D461BE6",
+      "reviewed_proposal_git_blob_sha1": "a9fe493ccb85f0fafeeb54c3505debfe02fb5357",
+      "finding": "D7/D8 are design-only; original corrective limits and prior blocked/pilot/isolation statuses are preserved."
+    },
+    {
+      "reviewer": "B — CPU, resource, and budget semantics",
+      "verdict": "PASS",
+      "reviewed_proposal_sha256": "517A83E049B2C669A9DD76345F3D8EB7D398FC5D909A2E6A58B3DEC67D461BE6",
+      "reviewed_proposal_git_blob_sha1": "a9fe493ccb85f0fafeeb54c3505debfe02fb5357",
+      "finding": "CPU accounting boundary is explicit; D7/D8 metrics remain distinct monitored/design targets; the three-commit clarification does not change budgets or authority."
+    },
+    {
+      "reviewer": "C — security and enforcement boundaries",
+      "verdict": "PASS",
+      "reviewed_proposal_sha256": "517A83E049B2C669A9DD76345F3D8EB7D398FC5D909A2E6A58B3DEC67D461BE6",
+      "reviewed_proposal_git_blob_sha1": "a9fe493ccb85f0fafeeb54c3505debfe02fb5357",
+      "finding": "Host/guest, artifact, bootstrap, and quota claims are correctly unqualified or design-only; no authority leakage."
+    },
+    {
+      "reviewer": "D — publication provenance",
+      "verdict": "PASS",
+      "reviewed_proposal_sha256": "517A83E049B2C669A9DD76345F3D8EB7D398FC5D909A2E6A58B3DEC67D461BE6",
+      "reviewed_proposal_git_blob_sha1": "a9fe493ccb85f0fafeeb54c3505debfe02fb5357",
+      "finding": "All eight package paths are committed together; workflow closure is workflow-only; final identity completion is manifest-only. Exact staged/committed/remote verification remains pending."
+    }
+  ],
+  "protected_r2_candidate_artifacts": [
+    {
+      "path": "workflow/handoffs/luna-0-luna64-r4.3-corrective-supervisor-a6-r2-20261012.md",
+      "checkout_sha256": "9BD03652AB06208FAEF9EA2C2B1EB3BD96FF79CCE16C379D46935D5CD8256DD0",
+      "raw_git_blob_sha1": "9f57e3779522dd3a16569378d5fc2c95146c2e9d"
+    },
+    {
+      "path": "workflow/handoffs/luna-0-independent-review-luna64-r4.3-corrective-supervisor-a6-r2-20261012.md",
+      "checkout_sha256": "598315F87962C9073558E84995A1749E0EADAB91082AD7ADD8FB07B4836D4162",
+      "raw_git_blob_sha1": "3752aedda542783b718b1d00e784229994d3f28b"
+    },
+    {
+      "path": "workflow/handoffs/luna64-r4.3-a6-r2-20261012-manifest.json",
+      "checkout_sha256": "E1347D71E7714DFA9E4D00321CB2E784510638A592C9EDDBFDC9D603B03BE93E",
+      "raw_git_blob_sha1": "f85c5e9e45e73d6ba966c647ca85c834d01bfa82"
+    },
+    {
+      "path": "workflow/docs/luna/LUNA_WORKFLOW.md",
+      "checkout_sha256": "A43E9C634F20C78DD6EFB37BB037D1CEADFB4FEAAEF185C7C1BF2C732A8DCC72",
+      "raw_git_blob_sha1": "78e0f1d16d19a4f3e20de3fcf18ab341732732d5"
+    }
+  ],
+  "initial_package_commit_paths": [
+    ".gitattributes",
+    "workflow/docs/luna/LUNA_WORKFLOW.md",
+    "workflow/handoffs/luna-0-luna64-r4.3-corrective-supervisor-a6-r2-20261012.md",
+    "workflow/handoffs/luna-0-independent-review-luna64-r4.3-corrective-supervisor-a6-r2-20261012.md",
+    "workflow/handoffs/luna64-r4.3-a6-r2-20261012-manifest.json",
+    "workflow/handoffs/luna-0-luna64-r4.3-corrective-supervisor-a6-r2-owner-reconciliation-r1-20261011.md",
+    "workflow/handoffs/luna-0-independent-review-luna64-r4.3-a6-r2-owner-reconciliation-r1-20261011.md",
+    "workflow/handoffs/luna64-r4.3-a6-r2-owner-reconciliation-r1-manifest-20261011.json"
+  ],
+  "publication_integrity": [
+    {
+      "path": ".gitattributes",
+      "checkout_sha256": "5EE757DD2EAADE72DB7DADFBA79DE304DC93EEDF2D0BEF3D432C0587832418D7",
+      "raw_git_blob_sha1": "11d6bdf41216045d5989002a1684aa015ce8b58f",
+      "materialization": "path-scoped -text rules; raw checkout bytes preserved"
+    },
+    {
+      "path": "workflow/docs/luna/LUNA_WORKFLOW.md",
+      "checkout_sha256": "A43E9C634F20C78DD6EFB37BB037D1CEADFB4FEAAEF185C7C1BF2C732A8DCC72",
+      "raw_git_blob_sha1": "78e0f1d16d19a4f3e20de3fcf18ab341732732d5",
+      "materialization": "path-scoped -text rule; exact R2 candidate workflow bytes in package commit"
+    },
+    {
+      "path": "workflow/handoffs/luna-0-luna64-r4.3-corrective-supervisor-a6-r2-20261012.md",
+      "checkout_sha256": "9BD03652AB06208FAEF9EA2C2B1EB3BD96FF79CCE16C379D46935D5CD8256DD0",
+      "raw_git_blob_sha1": "9f57e3779522dd3a16569378d5fc2c95146c2e9d",
+      "materialization": "path-scoped -text rule; immutable protected R2 bytes"
+    },
+    {
+      "path": "workflow/handoffs/luna-0-independent-review-luna64-r4.3-corrective-supervisor-a6-r2-20261012.md",
+      "checkout_sha256": "598315F87962C9073558E84995A1749E0EADAB91082AD7ADD8FB07B4836D4162",
+      "raw_git_blob_sha1": "3752aedda542783b718b1d00e784229994d3f28b",
+      "materialization": "path-scoped -text rule; immutable protected R2 bytes"
+    },
+    {
+      "path": "workflow/handoffs/luna64-r4.3-a6-r2-20261012-manifest.json",
+      "checkout_sha256": "E1347D71E7714DFA9E4D00321CB2E784510638A592C9EDDBFDC9D603B03BE93E",
+      "raw_git_blob_sha1": "f85c5e9e45e73d6ba966c647ca85c834d01bfa82",
+      "materialization": "path-scoped -text rule; immutable protected R2 bytes"
+    },
+    {
+      "path": "workflow/handoffs/luna-0-luna64-r4.3-corrective-supervisor-a6-r2-owner-reconciliation-r1-20261011.md",
+      "checkout_sha256": "517A83E049B2C669A9DD76345F3D8EB7D398FC5D909A2E6A58B3DEC67D461BE6",
+      "raw_git_blob_sha1": "a9fe493ccb85f0fafeeb54c3505debfe02fb5357",
+      "materialization": "path-scoped -text rule; independently reviewed final proposal bytes"
+    },
+    {
+      "path": "workflow/handoffs/luna-0-independent-review-luna64-r4.3-a6-r2-owner-reconciliation-r1-20261011.md",
+      "checkout_sha256": "3827D58A6D96DF83A4A36096A2BB52BF2EF59B011C3D0C73F3D6F880EF19B979",
+      "raw_git_blob_sha1": "abaa9cf4f7f6e763bd25a2372f795bd9e79d49e5",
+      "materialization": "path-scoped -text rule; exact checkout bytes are protected"
+    }
+  ],
+  "manifest_self_identity": {
+    "path": "workflow/handoffs/luna64-r4.3-a6-r2-owner-reconciliation-r1-manifest-20261011.json",
+    "embedded_identity": false,
+    "reason": "A manifest cannot contain its own final checkout SHA-256 or Git blob without changing those values.",
+    "required_external_record": "Independent publication reviewer must verify and record the current checkout SHA-256 and raw Git blob in the external final handoff; after commit 3, report its final checkout SHA-256, Git blob, tree, and commit there."
+  },
+  "publication_sequence": {
+    "commit_1_package": {
+      "paths": "exactly the eight paths in initial_package_commit_paths",
+      "status": "exact eight-path allowlist staged; independent verification was pending at this manifest snapshot; not committed",
+      "tree_or_commit": "not yet available"
+    },
+    "commit_2_workflow_closure": {
+      "paths": ["workflow/docs/luna/LUNA_WORKFLOW.md"],
+      "status": "not yet staged or committed",
+      "tree_or_commit": "not yet available"
+    },
+    "commit_3_final_identity_manifest": {
+      "paths": ["workflow/handoffs/luna64-r4.3-a6-r2-owner-reconciliation-r1-manifest-20261011.json"],
+      "status": "not yet staged or committed",
+      "tree_or_commit": "not yet available"
+    },
+    "remote_verification": "not run",
+    "manifest_self_identity": "will be reported externally because a manifest cannot contain its own final identity"
+  },
+  "preserved_status": {
+    "prior_a1_a5_findings": "preserved; predecessor gates remain blocked",
+    "parent_a6_r2": "BLOCKED — ENFORCEMENT DESIGN INCOMPLETE",
+    "original_pilot": "NOT SUPPORTED AS A PROTOCOL-COMPLIANT PILOT; not an efficacy result",
+    "corrective_allowance": "unused and separate",
+    "luna_63c": "isolated and unchanged",
+    "automatic_a7": false
+  },
+  "execution_record": {
+    "infrastructure_modified": false,
+    "supervisor_created_or_run": false,
+    "qualification_cases_run": 0,
+    "corrective_implementation_or_tests_run": false,
+    "scientific_workload_run": false,
+    "runtime_enforcement_tested": false,
+    "publication_stage_verification_run": false,
+    "execution_authorized": false
+  },
+  "validation_limits": [
+    "Frozen R4.3 identities and 32-entry inventory were reconciled against the Stage-A freeze as documented in the proposal; later workflow changes were not compared as if frozen inputs.",
+    "D7 and D8 are owner-supplied conversation decisions, not independent authorization signatures.",
+    "Reviewer A-D results are documentary proposal reviews, not runtime qualification or enforcement evidence.",
+    "git diff --cached --check reports carriage-return-at-line-end warnings because path-specific -text rules preserve CRLF bytes; ten intentional two-space Markdown hard breaks remain in the new proposal/review headers. SHA-256 and raw Git blob comparisons match; no line-ending normalization was applied.",
+    "The exact eight-path package allowlist is staged; independent staged path/blob verification has not yet completed.",
+    "At this initial manifest snapshot, independent verification of the staged index was pending. Reviewer D's subsequent staged-index result must be recorded in the final manifest update. Commits, push/fetch ancestry, and remote identities were not yet verified at this snapshot.",
+    "The original corrective allowance remains unused; no qualification, corrective, or scientific execution occurred."
+  ],
+  "manifest_self_hash": "Excluded as self-referential; external verification and final identity reporting are mandatory."
+}

@@ -1,5 +1,53 @@
 # TPCN Luna Multi-Agent Workflow — Event-Driven Architecture
 
+## Luna-64 A6 R2 enforcement-design review — blocked — 2026-10-12
+
+**L64-TB-R4.3-CORRECTIVE-SUPERVISOR-A6-R2: BLOCKED — ENFORCEMENT DESIGN
+INCOMPLETE.** The governance-only design is recorded in the
+[R2 proposal](../../handoffs/luna-0-luna64-r4.3-corrective-supervisor-a6-r2-20261012.md),
+the
+[independent review](../../handoffs/luna-0-independent-review-luna64-r4.3-corrective-supervisor-a6-r2-20261012.md),
+and the
+[R2 manifest](../../handoffs/luna64-r4.3-a6-r2-20261012-manifest.json).
+These are local blocked-state records, not a published authorization or
+execution package.
+
+Four independent documentary reviewers returned BLOCKED. The challenge,
+sequence, and frame-authentication protocol and Q06-vs-aggregate accounting
+are specified, but COM/pipe-to-VM identity and exclusivity remain unqualified;
+the host watchdog/controller has no autonomous recovery guarantee; CPU and
+wall limits remain targets without bounded termination; and the quota
+alternative does not meet the frozen 5 MiB aggregate logical high-water cap.
+The proposed ext4 project allocation and NTFS quota usage are distinct
+metrics and require owner approval. The 12-case, 240 CPU-second / 600
+wall-second budget is planning-only; its arithmetic does not prove
+enforcement.
+
+R2 preserves the frozen R4.3 protocol, R1 D1-D6 limits, all prior A1-A5
+findings, the original **NOT SUPPORTED AS A PROTOCOL-COMPLIANT PILOT**
+verdict, the unused corrective allowance, and Luna-63C isolation. No
+infrastructure was modified, qualification or corrective work was run, or
+scientific workload executed. D4 remains planning-only; D6 denies
+infrastructure-change authority. **No R3, qualification, corrective
+execution, scientific rerun, production integration, or architecture
+promotion is authorized.** The blocker is unavailable enforcement evidence
+and unresolved owner policy, not a demonstrated engineering impossibility.
+The next step is an owner decision on the proposed artifact/qualification
+accounting changes and a separately authorized design for a genuine hard
+CPU/wall boundary; approval alone cannot establish termination latency.
+
+Uncommitted checkout SHA-256 identities: proposal
+`9BD03652AB06208FAEF9EA2C2B1EB3BD96FF79CCE16C379D46935D5CD8256DD0`,
+independent review
+`598315F87962C9073558E84995A1749E0EADAB91082AD7ADD8FB07B4836D4162`,
+and manifest
+`E1347D71E7714DFA9E4D00321CB2E784510638A592C9EDDBFDC9D603B03BE93E`.
+Their Git blob SHA-1 identities are respectively
+`9f57e3779522dd3a16569378d5fc2c95146c2e9d`,
+`3752aedda542783b718b1d00e784229994d3f28b`, and
+`f85c5e9e45e73d6ba966c647ca85c834d01bfa82`. These are local object
+identities only; the blocked R2 records are uncommitted and unpublished.
+
 ## Luna-64 Track B Local Temporal Reward Decoder governance record — 2026-10-10
 
 ### Owner-authorized bounded R4.3 pilot

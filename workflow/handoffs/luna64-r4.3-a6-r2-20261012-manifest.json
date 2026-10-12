@@ -1,0 +1,125 @@
+{
+  "schema": "tpcn-luna64-a6-r2-governance-review-manifest-v1",
+  "gate": "L64-TB-R4.3-CORRECTIVE-SUPERVISOR-A6-R2",
+  "disposition": "BLOCKED — ENFORCEMENT DESIGN INCOMPLETE",
+  "publication_status": "blocked-governance-record-uncommitted",
+  "review_date": "2026-10-12",
+  "baseline": {
+    "branch": "governance/luna64-r4.3-freeze-20261010",
+    "base_commit": "f1cfb6e98cfc872753ea262bdb56e4a66ab40c05",
+    "remote_at_review": "f1cfb6e98cfc872753ea262bdb56e4a66ab40c05",
+    "r1_package_commit": "f00dea13d64657cbc976d21daf50739ddf9722fe",
+    "r1_workflow_closure": "f1cfb6e98cfc872753ea262bdb56e4a66ab40c05",
+    "r1_proposal_sha256": "A619E3A4361B712471B8C3A7FD2AA784992ED6B4F5F0E218ED0449B16144319D",
+    "r1_review_sha256": "DD7E0F840F8C3F34A7016351C28F63CA50F313618DC1B218B81A509CBD8E4D36",
+    "r1_manifest_sha256": "D51C207C5ED7E91B59C661FB39B67E88F27C0FA47CDEF708AA1F0ADFB7DEE958",
+    "r4_3_content_freeze": "64a214e310de3b982b90a8ad215598bc1e9f8b1c",
+    "r4_3_governance_closure": "ea1b10456cbf4ca726e473076d239a4f6e53b9c7",
+    "r4_3_manifest_sha256": "62D64457BB4BE4FF69F40558D55C6A9FAAA7B9A246DA9F6C6BE4BE8C0348542B"
+  },
+  "owner_decisions": {
+    "D1": "Linux cgroup memory replacement accepted for design only; no enforcement approval.",
+    "D2": "130.1-second CPU and 170/171/180-second wall values accepted only as unverified targets.",
+    "D3": "Evaluate simpler artifact controls before custom FUSE; alternatives were considered, but the proposed replacement metric is not approved.",
+    "D4": "Qualification allowance is planning-only and not execution authority.",
+    "D5": "Authenticated non-network host/guest control is required; design remains unqualified.",
+    "D6": "No infrastructure changes authorized."
+  },
+  "qualification_plan": {
+    "fixed_case_order": [
+      "Q01-ADMISSION",
+      "Q02-CGROUP-CONTAINMENT",
+      "Q03-DESCENDANT-INHERITANCE",
+      "Q04-MEMORY-HARD-LIMIT",
+      "Q05-ZERO-SWAP",
+      "Q06-CPU-CUTOFF",
+      "Q07-ARTIFACT-QUOTA",
+      "Q08-ALTERNATE-PATHS",
+      "Q09-SUPERVISOR-FAILURE",
+      "Q10-EVIDENCE-INTEGRITY",
+      "Q11-WALL-LOSS-AND-TURNOFF",
+      "Q12-OFF-CLEANUP-ONESHOT"
+    ],
+    "case_count": 12,
+    "guest_cpu_reservations_seconds": [10, 5, 5, 10, 10, 150, 5, 5, 5, 5, 30, 0],
+    "guest_cpu_reservation_sum_seconds": 240,
+    "q06_candidate_seconds": 130.1,
+    "q06_candidate_scope": "Q06 nested accounting subtree; action-on-detection only, not a hard bound",
+    "wall_reservations_seconds": [60, 20, 20, 25, 25, 160, 20, 20, 20, 20, 180, 30],
+    "wall_reservation_sum_seconds": 600,
+    "session_wall_origin": "Q0 immediately before the single VM-start request",
+    "memory_candidate_bytes": 536870912,
+    "swap_candidate_bytes": 0,
+    "guest_ext4_project_allocation_candidate_bytes": 5242880,
+    "host_ntfs_quota_usage_candidate_bytes": 1048576,
+    "combined_artifact_policy_sum_bytes": 6291456,
+    "combined_artifact_metric_note": "Sum of distinct guest project-allocation and host NTFS quota-usage metrics; not one physical or logical-byte measure.",
+    "host_control_plane_private_commit_candidate_bytes": 805306368,
+    "vm_start_limit": 1,
+    "turnoff_request_limit": 1,
+    "retries": 0,
+    "execution_authorized": false
+  },
+  "reviewers": [
+    {
+      "reviewer": "A — Host/guest security",
+      "verdict": "BLOCKED",
+      "findings": [
+        "Handshake and replay protocol are specified but untested.",
+        "COM/pipe exclusivity and VM identity binding are unqualified; key non-cloning/non-reuse is an assumption.",
+        "Host watchdog/controller failure has no autonomous recovery or guaranteed VM-Off deadline."
+      ]
+    },
+    {
+      "reviewer": "B — CPU and wall enforcement",
+      "verdict": "BLOCKED",
+      "findings": [
+        "Q06-local and continuous aggregate CPU accounting scopes and Q0/Tcase lifecycle are clarified.",
+        "No hard 130.1-second or 240-second CPU bound is established.",
+        "The 170/171/180-second stages and 600-second aggregate wall ceiling are targets, not guaranteed deadlines."
+      ]
+    },
+    {
+      "reviewer": "C — Artifact containment",
+      "verdict": "BLOCKED",
+      "findings": [
+        "Guest ext4 allocation and host NTFS quota usage are distinct accounting metrics.",
+        "The quota design does not enforce the frozen aggregate 5 MiB logical high-water cap.",
+        "Metric replacement, complete path coverage, reserve behavior, and durability remain unapproved or untested."
+      ]
+    },
+    {
+      "reviewer": "D — Governance and provenance",
+      "verdict": "BLOCKED",
+      "findings": [
+        "Frozen/R1 identities, D1-D6 limits, case lifecycle, and budget arithmetic reconcile.",
+        "Infrastructure and metric approvals remain absent; no execution was authorized."
+      ]
+    }
+  ],
+  "preserved_status": {
+    "prior_A1_to_A5_findings": "preserved; prior gates remain blocked",
+    "original_pilot": "NOT SUPPORTED AS A PROTOCOL-COMPLIANT PILOT; not an efficacy result",
+    "corrective_allowance": "unused",
+    "luna_63c": "isolated and unchanged",
+    "automatic_R3": false
+  },
+  "execution_record": {
+    "infrastructure_modified": false,
+    "qualification_cases_run": 0,
+    "supervisor_created_or_run": false,
+    "corrective_implementation_run": false,
+    "scientific_workload_run": false,
+    "runtime_enforcement_tested": false
+  },
+  "artifacts": {
+    "proposal": {
+      "path": "workflow/handoffs/luna-0-luna64-r4.3-corrective-supervisor-a6-r2-20261012.md",
+      "sha256": "9BD03652AB06208FAEF9EA2C2B1EB3BD96FF79CCE16C379D46935D5CD8256DD0"
+    },
+    "independent_review": {
+      "path": "workflow/handoffs/luna-0-independent-review-luna64-r4.3-corrective-supervisor-a6-r2-20261012.md",
+      "sha256": "598315F87962C9073558E84995A1749E0EADAB91082AD7ADD8FB07B4836D4162"
+    }
+  }
+}

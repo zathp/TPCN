@@ -18,6 +18,13 @@ artifacts/luna55/*.json text eol=lf
 /workflow/handoffs/luna-0-luna64-r4.3-corrective-supervisor-a6-owner-reconciliation-r1-20261011.md -text
 /workflow/handoffs/luna-0-independent-review-luna64-r4.3-a6-owner-reconciliation-r1-20261011.md -text
 /workflow/handoffs/luna64-r4.3-a6-owner-reconciliation-r1-manifest-20261011.json -text
+/workflow/handoffs/luna-0-luna64-r4.3-corrective-supervisor-a6-r2-20261012.md -text
+/workflow/handoffs/luna-0-independent-review-luna64-r4.3-corrective-supervisor-a6-r2-20261012.md -text
+/workflow/handoffs/luna64-r4.3-a6-r2-20261012-manifest.json -text
+/workflow/handoffs/luna-0-luna64-r4.3-corrective-supervisor-a6-r2-owner-reconciliation-r1-20261011.md -text
+/workflow/handoffs/luna-0-independent-review-luna64-r4.3-a6-r2-owner-reconciliation-r1-20261011.md -text
+/workflow/handoffs/luna64-r4.3-a6-r2-owner-reconciliation-r1-manifest-20261011.json -text
+/workflow/docs/luna/LUNA_WORKFLOW.md -text
 /experiments/luna64/luna64-track-b-protocol-r4.json -text
 /experiments/luna64/luna64-track-b-golden-r4.json -text
 /experiments/luna64/generate-track-b-gate-r4-schema.mjs -text
