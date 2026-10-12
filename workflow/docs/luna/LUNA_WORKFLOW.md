@@ -98,6 +98,39 @@ capacity argument, qualified resource controls, and its own exact
 authorization. Luna-66 Simon Says remains **SOURCE RECOVERY ONLY**; Luna-64
 corrective execution remains **BLOCKED**; Luna-63C remains **FROZEN**.
 
+## Luna-65 Phase 2A monitored resource-policy amendment R2 — design only — 2026-10-12
+
+Under gate `L65-PHASE2A-MONITORED-RESOURCE-POLICY-R2`, the owner accepted
+monitored resource budgets for **Phase 2A qualification design only**. The
+amendment is recorded in
+[LUNA_65_PHASE2A_RESOURCE_POLICY_R2.md](LUNA_65_PHASE2A_RESOURCE_POLICY_R2.md)
+and the Phase 2A capacity contract was updated to point to it. This is not
+an implementation, synthetic qualification, or fixture authorization.
+
+For Phase 2A only, the 120-second cumulative job-wide user-plus-kernel CPU
+budget is monitored using Job Object aggregate accounting; the supervisor
+requests whole-job termination when an observed sample reaches the threshold.
+Zero overshoot is not guaranteed, and any observed CPU-budget overrun fails.
+Wall time remains a 120-second monitored budget using QPC and an early
+termination trigger; the proposed five-second margin is **not owner-approved**
+and must not be treated as selected. Any observed wall overrun fails.
+The hard 268,435,456-byte job-wide concurrent-private-commit and
+1,048,576-byte combined retained-artifact ceilings remain unchanged. Emitted,
+captured, and retained output remain separate quantities. The policy has no
+effect on Phase 2B.
+
+R1 remains unchanged as historical evidence. R2 does not resolve or pass
+memory-metric reconciliation, controller-owned evidence transport, exact
+8,196-record gzip fit, inherited environment, process containment/Q03
+recovery, observer protocol, or controller-failure qualification. Four
+independent R2 reviews returned PASS for policy/design consistency and
+governance boundaries; the integrated verdict is **PASS — PHASE 2A
+RESOURCE-POLICY AMENDMENT VERIFIED**. This is not supervisor qualification
+and closes none of the engineering gates above. No supervisor is qualified.
+Phase 2A/2B fixtures remain **NOT AUTHORIZED**; full Spiral remains
+**BLOCKED**; Luna-64 corrective execution remains **BLOCKED**; Luna-63C
+remains **FROZEN**.
+
 ## Luna-65 / Luna-66 Spiral and Simon Says resumption — design and recovery only — 2026-10-11
 
 This governance update resumes the historical benchmark tracks without

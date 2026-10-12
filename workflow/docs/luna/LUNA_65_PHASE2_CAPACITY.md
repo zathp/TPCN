@@ -1,9 +1,10 @@
 # Luna-65 Phase 2 — E2 Capacity Fixture Contracts
 
-**Status:** Governance-only Phase 2A specification correction. Independent
-review found the corrected specification complete. The owner accepted the
-capacity-only replacement protocol for qualification design; that acceptance
-does not authorize implementation, qualification execution, Phase 2A, or
+**Status:** Governance-only Phase 2A specification. Independent review found
+the corrected fixture specification complete. The owner accepted the
+capacity-only replacement protocol and subsequently accepted the monitored
+resource-policy amendment R2 for Phase 2A qualification design only. Neither
+acceptance authorizes implementation, qualification execution, Phase 2A, or
 Phase 2B. No fixtures have been materialized or run. Phase 2A and Phase 2B
 require separate explicit execution authorizations and qualified resource
 controls. Full-replication E2 identity capacity remains unproven and Spiral
@@ -57,6 +58,20 @@ the external evidence-directory setting as its two overrides, but does not
 freeze every permitted inherited variable or the clearing policy. The
 qualification draft also leaves Q03 escaped-child recovery and the
 independent process-observer protocol gated on a reviewed design.
+
+The owner subsequently accepted gate
+`L65-PHASE2A-MONITORED-RESOURCE-POLICY-R2` for Phase 2A qualification design
+only. The R2 overlay is
+`workflow/docs/luna/LUNA_65_PHASE2A_RESOURCE_POLICY_R2.md`; it supersedes
+only Phase 2A's hard aggregate-CPU and hard wall-cessation requirements with
+monitored budgets and fail-on-observed-overrun. The 120-second cumulative
+job-wide user-plus-kernel CPU budget remains; the trusted monitor requests
+whole-job termination at its threshold, without a zero-overshoot guarantee.
+Wall remains a 120-second monitored budget; a five-second early stop margin
+is proposed but not owner-approved. The 268,435,456-byte job-wide
+concurrent-private-commit and 1,048,576-byte retained-artifact ceilings
+remain hard. This owner decision does not apply to Phase 2B. R1 remains
+unchanged as historical evidence.
 
 ## Disposition boundary
 
@@ -310,11 +325,16 @@ quietly exceed the 8,196-attempt allowance.
 | Bound | Proposed maximum |
 |---|---:|
 | Target-counter boundary probes | 8,196 total: 2,049 per counter |
-| Wall time | 120 seconds |
-| Job CPU time | 120 seconds |
+| Monitored wall-time budget | 120 seconds; proposed 5-second early stop margin is not owner-approved |
+| Monitored aggregate job CPU budget | 120 seconds cumulative user plus kernel; no zero-overshoot guarantee |
 | Aggregate concurrent private commit charge | 268,435,456 bytes |
 | Retained artifacts, all files combined | 1,048,576 bytes |
 | Retries | 0 |
+
+For Phase 2A only, the R2 monitored resource policy supersedes the earlier
+hard CPU and wall cessation requirements. CPU and wall overruns are failed
+results; neither monitor is hard real-time enforcement. The memory and
+retained-artifact values remain hard ceilings.
 
 ### Phase 2A JSONL result schema
 
@@ -389,6 +409,8 @@ contains:
 - `results.jsonl.gz` — gzip-compressed probe records above.
 - `manifest.json` — invocation, environment, checkout, test/config identity,
   resource terms, and declared expected-record count.
+- `resource.json` — bounded CPU/wall samples, memory observations, process
+  membership/exit observations, and termination stages required by R2.
 - `stdout.txt` and `stderr.txt` — complete bounded invocation streams.
 - `failure.json` — required on any incomplete or failed lane, with first
   failure category, probe identity if available, and stopped/unrun ranges.
@@ -573,49 +595,58 @@ retaining no more than 1 MiB. CPU and memory limits were configured but not
 stress-tested. These facts do not qualify its supervisor for either phase.
 
 The per-character event and queue ceilings are enforced by the software
-reference. The 120-second wall, 120-second aggregate job-CPU, 256-MiB
-aggregate concurrent private commit charge, and 1-MiB combined
-retained-artifact values above are proposed execution bounds, not
-demonstrated controls. The memory metric is the maximum over time of the sum
+reference. The owner accepted the R2 monitored CPU and wall budgets for Phase
+2A design only. They are not hard real-time controls: CPU termination is
+requested when sampled cumulative job-wide user-plus-kernel accounting
+reaches 120 seconds; wall termination uses a monotonic-clock early trigger,
+with a five-second margin proposed but not yet approved. Any observed CPU or
+wall budget overrun fails the result. The 268,435,456-byte aggregate
+concurrent private-commit charge and 1,048,576-byte retained-artifact values
+remain hard ceilings. The memory metric is the maximum over time of the sum
 of private commit charge for all concurrently live processes assigned to the
 execution job; it is not a per-process limit, working-set sum, or sum of
-each process's independent peak. A future execution request must identify
-the supervisor by exact
-executable path, version, and SHA-256, and include independent evidence for:
+each process's independent peak.
 
-- The test process and all descendants are assigned to the bounded job before
-  they can execute; the job is terminated on wall or CPU limit and on
-  controller failure.
-- Aggregate job CPU is capped at 120 seconds. Report CPU accounting
-  resolution and limit-termination latency.
-- The defined aggregate concurrent private commit charge is capped at 268,435,456
-  bytes. Demonstrate the exact measured quantity, enforcement boundary,
-  accounting resolution, and termination behavior.
-- Wall time is capped at 120 seconds; demonstrate the timer's start boundary,
-  termination behavior, and latency.
-- Controller failure terminates the complete job, with no surviving child.
-- Report process-tree inclusion, all limit-accounting resolutions, and
-  termination latency.
-- Retained artifacts are at most 1 MiB. Report bytes retained separately
-  from bytes read/emitted before termination, including pipe-buffer
-  overshoot. Do not claim a strict emitted-byte ceiling from a retained-file
-  cap.
-- Demonstrate evidence integrity: completed files are closed before hashing,
-  manifest entries match byte lengths and SHA-256 digests, and partial runs
-  are explicitly marked incomplete without success-shaped manifests.
-- Monitoring and enforcement are listed separately; observed use below a
-  target is not evidence that the target was enforced.
+The R2 monitor details below apply only to Phase 2A. Phase 2B's previously
+published resource terms are not amended by the Phase 2A owner decision and
+remain separately gated.
 
-The R1 supervisor-qualification design is recorded in
-`workflow/docs/luna/LUNA_65_SUPERVISOR_QUALIFICATION_R1.md` and is
-**BLOCKED** on hard aggregate user-plus-kernel CPU enforcement, wall-time
-termination bound, memory-metric reconciliation, and end-to-end artifact
-containment. No supervisor is qualified. The Phase 1 supervisor does not
-satisfy this gate, and Luna-64 qualification evidence may not be borrowed or
-reinterpreted. If the listed controls cannot be demonstrated within
-separately approved host restrictions, neither fixture lane may run. No
-Hyper-V qualification is presumed necessary. Any change to existing
-execution restrictions needs explicit owner approval.
+A future exact owner authorization must identify the supervisor by
+executable path, version, and SHA-256 and require independent evidence for:
+
+- Suspended process admission, full descendant membership, breakaway
+  restrictions, controller/watchdog handles, and verified whole-job exit.
+- CPU accounting inclusion, practical update/query resolution, 10-ms target
+  sampling, maximum gap, threshold trigger, termination request, final
+  totals, and measured overrun. No zero-overshoot claim.
+- The exact hard job-wide private-commit metric and effective Job Object
+  flags/value of 268,435,456 bytes, with concurrent `PrivateUsage`
+  reconciliation and termination behavior.
+- Monotonic wall-clock start/stop boundary, monitoring schedule, owner-
+  approved early margin, escalation, actual cessation and finalization times.
+  No claim that a termination request guarantees cessation by 120 seconds.
+- Controller/watchdog failure behavior and proof no workload process remains.
+- All retained artifacts, including temporary files, stay within 1 MiB.
+  Report emitted, captured, drained/discarded, and retained bytes separately;
+  do not claim a strict emitted-byte ceiling.
+- Evidence integrity: closed files, matching lengths and SHA-256 entries,
+  and explicit incomplete status without success-shaped results.
+- Complete inherited environment policy, bounded controller-owned evidence
+  channel, exact 8,196-record gzip fit, independent process-observer
+  protocol, and approved Q03 escaped-child recovery.
+- Monitoring and hard enforcement are reported separately.
+
+The historical R1 supervisor-qualification design remains recorded in
+`workflow/docs/luna/LUNA_65_SUPERVISOR_QUALIFICATION_R1.md`; its findings are
+not rewritten. The Phase 2A R2 overlay is
+`workflow/docs/luna/LUNA_65_PHASE2A_RESOURCE_POLICY_R2.md`. R2 resolves the
+hard CPU/wall policy mismatch for Phase 2A design only. Memory-metric
+reconciliation, end-to-end artifact containment, ledger fit, environment,
+containment/recovery and observer qualification remain open. No supervisor
+is qualified. The Phase 1 supervisor does not satisfy this gate, and
+Luna-64 qualification evidence may not be borrowed or reinterpreted.
+Phase 2B resource policy is unchanged. Any change to existing execution
+restrictions needs explicit owner approval.
 
 ## Review, phase gates, and exact authorization
 
@@ -639,10 +670,15 @@ revision; implementation of
 `tests/test_luna65_capacity_direct.py`; the exact command and working
 directory above; all four zero-state counter scenarios and output-event
 recurrence; the 8,196 target-counter probe maximum and zero retries; the
-external evidence directory and combined retained-artifact limit; and
-permission to run the **Phase 2A direct-neuron capacity fixture only** after
-the exact supervisor has passed its independent qualification gate. It must
-explicitly prohibit Phase 2B, Spiral dataset generation, benchmark
+external evidence directory; the R2 monitored 120-second user-plus-kernel
+CPU and 120-second wall budgets, exact owner-approved wall stop margin and
+monitoring profile; hard 268,435,456-byte job-wide private-commit and
+1,048,576-byte all-artifact limits; zero retries; the complete environment
+policy; memory metric reconciliation; controller-owned evidence channel
+and demonstrated exact ledger fit; process-observer and Q03 recovery
+protocols; and permission to implement/execute the **Phase 2A direct-neuron
+capacity fixture only** after the exact supervisor and qualification pass.
+It must explicitly prohibit Phase 2B, Spiral dataset generation, benchmark
 evaluation, training, scoring, and any production-code changes. It does not
 authorize Phase 2B.
 
