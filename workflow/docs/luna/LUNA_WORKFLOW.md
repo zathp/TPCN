@@ -485,6 +485,45 @@ A6 source artifacts and the independent R1 review, was committed as
 workflow-closure commit; its exact revision is recorded in Git history and
 the final publication report.
 
+## Luna-64 A6 R2 owner-policy reconciliation R1 — publication closure — 2026-10-12
+
+**Publication: PASS — the R1 governance package is published and its remote
+ancestry is verified.** The exact eight-path package was committed as
+`c25ff3b7747abc2087237dbc1859c0c7bef4ab16` with tree
+`bcb5da75a34b690d69ca5272a26f6ba15f596bb5`. Its parent is the verified R1
+closure `f1cfb6e98cfc872753ea262bdb56e4a66ab40c05`. The package commit was
+pushed to `origin/governance/luna64-r4.3-freeze-20261010`; a subsequent fetch
+confirmed the remote ref resolves to the same commit.
+
+The package contains the exact protected R2 candidate artifacts and workflow
+snapshot, plus the R1 reconciliation proposal, independent review, manifest,
+and byte-preservation rules. The R1 proposal checkout SHA-256 is
+`517A83E049B2C669A9DD76345F3D8EB7D398FC5D909A2E6A58B3DEC67D461BE6`
+(raw Git blob `a9fe493ccb85f0fafeeb54c3505debfe02fb5357`); its independent
+review checkout SHA-256 is
+`3827D58A6D96DF83A4A36096A2BB52BF2EF59B011C3D0C73F3D6F880EF19B979`
+(raw Git blob `abaa9cf4f7f6e763bd25a2372f795bd9e79d49e5`). The package-stage
+workflow bytes remain the frozen R2 candidate, checkout SHA-256
+`A43E9C634F20C78DD6EFB37BB037D1CEADFB4FEAAEF185C7C1BF2C732A8DCC72`,
+raw Git blob `78e0f1d16d19a4f3e20de3fcf18ab341732732d5`.
+
+Independent proposal reviewers A-D passed the exact R1 reconciliation
+proposal. Reviewer D's separate pre-commit gate verified the exact eight-path
+index, all staged blobs and checkout hashes, the manifest's external
+self-identity, and absence of unauthorized paths. The workflow closure is
+this separate workflow-only publication stage; its checkout hash, blob,
+commit/tree, and fetched remote ancestry are to be recorded in the final
+manifest-only commit.
+
+This publication records owner-policy reconciliation only. The parent A6 R2
+technical verdict remains **BLOCKED — ENFORCEMENT DESIGN INCOMPLETE**. The
+original pilot remains **NOT SUPPORTED AS A PROTOCOL-COMPLIANT PILOT**, not an
+efficacy result. The corrective allowance remains unused; no infrastructure
+or qualification was executed; no corrective test or scientific workload
+was run; and Luna-63C remains isolated. No A7, qualification, corrective
+execution, scientific rerun, production integration, or architecture
+promotion is authorized.
+
 ## Luna-63C reviewed design integrated; mechanism authorization certificate-gated — 2026-10-09
 
 The Luna-63C nonlinear excursion design was independently reviewed
