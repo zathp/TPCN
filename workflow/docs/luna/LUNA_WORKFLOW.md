@@ -43,6 +43,37 @@ phase. The execution gate additionally requires a reviewed full-replication
 capacity argument and separately qualified execution controls; Phase 1
 closure grants neither.
 
+## Luna-65 Phase 2 capacity fixtures — governance draft only — 2026-10-12
+
+The separate Phase 2A direct-counter and Phase 2B fixed-network capacity
+fixture contracts are drafted in
+[LUNA_65_PHASE2_CAPACITY.md](LUNA_65_PHASE2_CAPACITY.md). They are not
+implementation or execution authorizations. No capacity fixtures, benchmark
+examples, training, scoring, or generated data have been run or materialized.
+This draft proposes replacing the published Luna-65 capacity-fixture module
+and 128-execution network diagnostic ceiling only if the repository owner
+explicitly accepts and publishes the capacity-only amendment. Until then, the
+published Luna-65 contract controls; its Spiral scientific conditions are
+unchanged.
+
+Phase 2A proposes 2,049 target-counter boundary probes for each persistent
+E2 identity counter (8,196 total), exercising input fallback allocation,
+ordinary episode admission, new-lineage M admission, and repeated M output
+emissions across character resets. Phase 2B retains 16 unique high-activation
+synthetic characters for each of seeds 65001–65008 and proposes one c00
+replay sentinel per seed. The replay sentinel would amend the earlier
+capacity-only network ceiling from 128 to 136 example executions; this is
+not a change to Luna-65's Spiral scientific conditions and needs explicit
+owner acceptance before it may be executed.
+
+Both designs are bounded fixture characterization, not analytical proof that
+2,048 identities suffice for a complete Spiral replication. Phase 2A and
+Phase 2B require separate exact owner authorizations, independent review of
+their final bytes, and separately qualified process-tree resource controls.
+The Phase 1 supervisor's configured limits and 1-MiB retained-artifact cap
+do not establish aggregate CPU/memory enforcement or a strict cap on bytes
+emitted before pipe termination. Full Spiral execution remains blocked.
+
 ## Luna-65 / Luna-66 Spiral and Simon Says resumption — design and recovery only — 2026-10-11
 
 This governance update resumes the historical benchmark tracks without
