@@ -1,0 +1,300 @@
+{
+  "schema": "TPCN-RP2B-CORRECTIVE-AUTHORIZATION-READINESS-1",
+  "revision": "Corrective R1",
+  "review_date": "2026-10-12",
+  "status": "BLOCKED_CORRECTION_REQUIRED",
+  "execution_authorized": false,
+  "downstream_qualification_authorized": false,
+  "publication_authorized": false,
+  "reviewed_revision": {
+    "branch": "governance/luna64-r4.3-freeze-20261010",
+    "commit": "96fb4aec100578db6939136b4ed7985478f18bb8",
+    "origin_commit": "96fb4aec100578db6939136b4ed7985478f18bb8",
+    "tracked_changes_at_review_start": false,
+    "review_artifacts_are_untracked": true
+  },
+  "published_rp2a_sources": {
+    "probe": {
+      "path": "scripts/luna65_phase2a_rp2_compatibility_probe.py",
+      "checkout_sha256": "B8F669C68ED5768E4126FFA87E855002A5E7E5E116999E81E4AAE1CA69CE2427",
+      "head_git_blob": "e76c2abf728072315c779da990cf9a5e445f1a00"
+    },
+    "outer_wrapper": {
+      "path": "scripts/luna65_phase2a_rp2_outer_wrapper.ps1",
+      "checkout_sha256": "F7C39C0FC849F61AFFF71A07AC8DCC7BDBEBA91D9971B44BCCF96B0C01ABE2A7",
+      "head_git_blob": "3c29b21952e08100da2779c1a7fb02dcc930acdf"
+    },
+    "synthetic_literal": {
+      "byte_length_after_source_lstrip": 6583,
+      "sha256": "D9EC540BCEA9326C67A791DA6C59FC11357C00396B707EEB9FE278FCD08BF2A0",
+      "basis": "Independent static extraction recorded by Luna-0; no runtime or Windows quoting claim"
+    }
+  },
+  "rp2a_publication_tree": [
+    {
+      "path": "scripts/luna65_phase2a_rp2_compatibility_probe.py",
+      "head_git_blob": "e76c2abf728072315c779da990cf9a5e445f1a00"
+    },
+    {
+      "path": "scripts/luna65_phase2a_rp2_outer_wrapper.ps1",
+      "head_git_blob": "3c29b21952e08100da2779c1a7fb02dcc930acdf"
+    },
+    {
+      "path": "workflow/docs/luna/LUNA_65_PHASE2A_RP2A_CORRECTIVE_R1_TRACEABILITY.md",
+      "head_git_blob": "646548764258ff252ffd6a386461a60671885dba"
+    },
+    {
+      "path": "workflow/handoffs/luna-0-luna65-rp2a-corrective-r1-20261012.md",
+      "head_git_blob": "9e7cc656224d400030e9c50f98b058f46bc780fd"
+    },
+    {
+      "path": "workflow/handoffs/luna-0-luna65-rp2a-implementation-review-20261012.md",
+      "head_git_blob": "cf4f267ae9deb95a7290baee3b8a66e4bb23079c"
+    },
+    {
+      "path": "workflow/docs/luna/LUNA_WORKFLOW.md",
+      "head_git_blob": "4b5639effead056f54f815814bbeeb42e7dba07b"
+    }
+  ],
+  "governing_input_identities": [
+    {
+      "path": "workflow/docs/luna/LUNA_65_PHASE2A_RP2_RESTRICTED_TOKEN_COMPATIBILITY_CONTRACT.md",
+      "checkout_sha256": "E573ADA32D746E6766D21420C845FF6AA09B18107F05523A6F1BE8913EE3A313",
+      "head_git_blob": "f61847d0c93f59b189142c5544caf9791e32bbe4"
+    },
+    {
+      "path": "workflow/docs/luna/LUNA_65_PHASE2A_RP2_R1_OWNER_DECISIONS.md",
+      "checkout_sha256": "B7EE32B9746EE4272C9DCC85E9B3F71D51C45D16B390F74A2355393EB89E7056",
+      "head_git_blob": "9816cc4aaf2a3609f3c5bc92e38f799aa76d826d"
+    },
+    {
+      "path": "workflow/docs/luna/LUNA_65_PHASE2A_R7_OWNER_DECISIONS_AND_PROFILES.md",
+      "checkout_sha256": "9CA2E34DCC1F35BA72156B86C889365C2EB6873979E7863248594AF214169B73",
+      "head_git_blob": "0759087811610f40c73de91d8662c28d8ebce54d"
+    },
+    {
+      "path": "workflow/docs/luna/LUNA_65_PHASE2A_RESOURCE_POLICY_R2.md",
+      "checkout_sha256": "D7BB88F3A6BECC88D32BAFCE0546E72E42B5E3F29E266A94BDAB41294D9723E2",
+      "head_git_blob": "ff05fcba5e7b6f53ccc682bdbec51423570305eb"
+    },
+    {
+      "path": "workflow/docs/luna/LUNA_65_PHASE2A_RP2_DIRECT_INTERPRETER_DESIGN.md",
+      "checkout_sha256": "374AB0328B62966EEA7C1E52E9E9E25BB40D973863177DEC4160D077E1C2A476",
+      "head_git_blob": "66356a9328e6fc4dfc28e8b8eb2fdbbfc0cdf15d"
+    },
+    {
+      "path": "workflow/docs/luna/LUNA_65_PHASE2A_RP2_OUTER_LAUNCHER_CORRECTIVE_R1.md",
+      "checkout_sha256": "F9913AC44C268291988F549A110B2EFCC4777139A2BB8BD0DA407DF020FABEFB",
+      "head_git_blob": "8abb50dfef732da71cee94b1623c61b3f4f8e49e"
+    },
+    {
+      "path": "workflow/handoffs/luna-0-luna65-rp2-r1-owner-decision-closure-20261012.md",
+      "checkout_sha256": "3772C44BFCDC784A5473C61927AB366F038BDC6699F0E1EEEDD38585992BCEC0",
+      "head_git_blob": "c8b7e4d4b76d5513120267fee76a45ca55ea60f6"
+    },
+    {
+      "path": "workflow/handoffs/luna-0-luna65-rp2a-corrective-r1-20261012.md",
+      "checkout_sha256": "FB8B9448FB89C20DBF21F21F1846AF8DA700DCCD0DE1E047E0A9DC2D465494D5",
+      "head_git_blob": "9e7cc656224d400030e9c50f98b058f46bc780fd"
+    },
+    {
+      "path": "workflow/handoffs/luna-0-luna65-rp2a-implementation-review-20261012.md",
+      "checkout_sha256": "B851523E441AD2CBBEFE591863BA457FF85069A5BFE500F2BD7A1D4353A19D20",
+      "head_git_blob": "cf4f267ae9deb95a7290baee3b8a66e4bb23079c"
+    },
+    {
+      "path": "workflow/docs/luna/LUNA_65_PHASE2A_RP2A_CORRECTIVE_R1_TRACEABILITY.md",
+      "checkout_sha256": "BEBF5BB474C57233FDCF297B232FA6E0BC8CA77B24B019A73D1EFBE1F8716B2A",
+      "head_git_blob": "646548764258ff252ffd6a386461a60671885dba"
+    },
+    {
+      "path": "workflow/docs/luna/LUNA_WORKFLOW.md",
+      "checkout_sha256": "D90F7ABDFDBA15FCAF597E8658993329DC82412F44F08FE52CC8729109E4C08B",
+      "head_git_blob": "4b5639effead056f54f815814bbeeb42e7dba07b"
+    }
+  ],
+  "prior_readiness_inputs": [
+    {
+      "path": "workflow/handoffs/rp2b_lane_a_security_readiness.md",
+      "checkout_sha256": "5AE91C63D7D8C6D98B6F965EE8E29D169F10561F5080FDB7B9D10476D2F5CB32",
+      "tracked_at_baseline": false
+    },
+    {
+      "path": "workflow/handoffs/rp2b_lane_b_resource_readiness.md",
+      "checkout_sha256": "35E2DB542B17214C98EF496208761CFC0E9F8D569A5838DA86EE3D4A0548D17C",
+      "tracked_at_baseline": false
+    },
+    {
+      "path": "workflow/handoffs/rp2b_lane_c_native_race_readiness.md",
+      "checkout_sha256": "1ED560B5B39B31D2603325175F7C9573A63936D4E15C32468848FA8FB113E4B5",
+      "tracked_at_baseline": false
+    },
+    {
+      "path": "workflow/handoffs/rp2b_lane_d_operator_evidence_readiness.md",
+      "checkout_sha256": "564C0D26D33994847196D6390BA98A0C92C8928410D927D6F6AC9F7087812730",
+      "tracked_at_baseline": false
+    },
+    {
+      "path": "workflow/handoffs/rp2b_luna0_independent_review.md",
+      "checkout_sha256": "E0857C28D99672981DE6F76611239A58F6924A0FE0C30861B7C42307C2ACD6DF",
+      "tracked_at_baseline": false
+    },
+    {
+      "path": "workflow/handoffs/rp2b_authorization_readiness.md",
+      "checkout_sha256": "BC03318032CB9D02DC9A9AA02900458B8F8668D3A58D856ED8B07378EE8FD23D",
+      "tracked_at_baseline": false
+    },
+    {
+      "path": "workflow/handoffs/rp2b_authorization_manifest_candidate.json",
+      "checkout_sha256": "E9C21CC9DA0D8C519265C4A76A9094A6B7245D7BFF26E3C8E1ACE97DF6FC3F42",
+      "tracked_at_baseline": false
+    },
+    {
+      "path": "workflow/handoffs/rp2b_preflight_checklist.md",
+      "checkout_sha256": "5AE705AD7AE0B1DA3EC1A5805B3E3A3E62887D5263A34B3578D7589757D38987",
+      "tracked_at_baseline": false
+    },
+    {
+      "path": "workflow/handoffs/rp2b_attended_operator_procedure.md",
+      "checkout_sha256": "10A2ECDAFF422358253FFB55455195D677522DD27AA282BBA9185CD45528D74A",
+      "tracked_at_baseline": false
+    },
+    {
+      "path": "workflow/handoffs/rp2b_failure_classification_matrix.md",
+      "checkout_sha256": "D645CFC7B79DE9BEADBD788B70527256A9467FCE937C4033002645AA52FBC739",
+      "tracked_at_baseline": false
+    },
+    {
+      "path": "workflow/handoffs/rp2b_known_limitations.md",
+      "checkout_sha256": "46E6195E4E425033690E66249A5756A414D30DE15BD92B7A40FC1B3F9418AEFF",
+      "tracked_at_baseline": false
+    }
+  ],
+  "protected_preexisting_untracked_files": [
+    {
+      "path": "scripts/luna65_phase2a_supervisor.py",
+      "sha256": "67542EDF59EBB236B61B2714000D7DBFC89462F7352F7C92346673D45CDA0AA1",
+      "status": "unchanged_and_unstaged"
+    },
+    {
+      "path": "workflow/handoffs/luna-0-luna65-s1b-final-execution-authorization-record-20261012.md",
+      "sha256": "BB9134CB7FF1813D495575FA80F912EEFB6E6A7C7A86F720CDAD829CAC925451",
+      "status": "unchanged_and_unstaged"
+    }
+  ],
+  "resource_profile": {
+    "owner_decision": "NONE",
+    "decision_candidate": "workflow/handoffs/rp2b_resource_owner_decision_candidate.md",
+    "options": [
+      "A — explicit owner affirmation that frozen RP-2 profile governs RP-2B",
+      "B — explicit owner-approved, independently reviewed RP-2B contract/source amendment",
+      "C — remain blocked pending owner decision"
+    ],
+    "current_review_recommendation": "C_BLOCKED_NOT_AN_OWNER_SELECTION",
+    "requested_values": {
+      "job_wide_memory_bytes": 268435456,
+      "aggregate_job_cpu_seconds": 120,
+      "elapsed_wall_seconds": 120,
+      "retained_artifact_cap_bytes": 1048576
+    },
+    "frozen_rp2_profile": {
+      "job_memory_charge_bytes": 67108864,
+      "active_process_backstop": 8,
+      "job_user_time_seconds": 5,
+      "active_seconds": 10,
+      "cleanup_seconds_max": 5,
+      "outer_seconds": 20,
+      "retries": 0,
+      "retained_artifact_cap_bytes": 1048576
+    },
+    "r2_scope": "Phase 2A qualification design only; does not amend Phase 2B"
+  },
+  "evidence_fit": {
+    "cap_bytes": 1048576,
+    "payload_ceiling_bytes": 917504,
+    "finalization_reserve_bytes": 131072,
+    "worst_case_fit_established": false,
+    "total_max_bytes": null,
+    "verdict": "BLOCKED — EVIDENCE FIT NOT ESTABLISHED",
+    "reason": "Complete mandatory record schemas/counts and all-representation maxima are not specified; outer console/error/alert output is outside the charged writer"
+  },
+  "lane_dispositions": {
+    "A": "PASS_STATIC_SCOPE_ONLY_FROM_PRIOR_REVIEW",
+    "B_original": "BLOCKED",
+    "B_R": "BLOCKED_OWNER_DECISION_REQUIRED",
+    "C_original": "PASS_CLAIM_REJECTED_AS_SUFFICIENT_EVIDENCE",
+    "C_R": "CORRECTED_REPORT_UPDATED_AFTER_LUNA0_REVIEW; FINAL_EXACT_BYTE_REVIEW_PENDING",
+    "D_original": "PASS_CLAIM_REJECTED",
+    "D_R": "CORRECTED_REPORT_AND_NONEXECUTABLE_PROCEDURE_SUBMITTED_INDEPENDENT_ACCEPTANCE_PENDING",
+    "E_R": "BLOCKED_EVIDENCE_FIT_NOT_ESTABLISHED"
+  },
+  "new_or_unresolved_findings": [
+    {
+      "id": "N1",
+      "finding": "Outer console errors, final summary, and mandatory Low-cessation alert are not routed through the charged artifact writer; retention and aggregate-byte treatment are unresolved.",
+      "status": "BLOCKED_AS_PART_OF_EVIDENCE_FIT"
+    },
+    {
+      "id": "N2",
+      "finding": "Lane C-R flags a source baseline/topology binding question. The source's embedded baseline and direct-base path must be adjudicated against the later design-only D-RP2-DIRECT-1 decision and frozen venv-chain text; this is not runtime evidence.",
+      "status": "UNRESOLVED_INDEPENDENT_REVIEW_REQUIRED"
+    }
+  ],
+  "corrective_artifact_identities": [
+    {
+      "path": "workflow/handoffs/rp2b_resource_reconciliation.md",
+      "sha256": "7305637DC037CFAA8E8E463730BE1B960FFE545F06B291CEE5F0D8B1EC61F9D6"
+    },
+    {
+      "path": "workflow/handoffs/rp2b_resource_owner_decision_candidate.md",
+      "sha256": "374B5843C4EEE67D05DC3A0DBD9972E9419E7889A8AD9AE8DB541044AC3244C6"
+    },
+    {
+      "path": "workflow/handoffs/rp2b_lane_c_corrected.md",
+      "sha256": "29D2700838F6D2D8D9048A6D0F2D88274B29F1F0F61E23349AC0574057FC0BD6"
+    },
+    {
+      "path": "workflow/handoffs/rp2b_race_classification_corrected.md",
+      "sha256": "C0C014888F31BE9957BD3148D351BB686F696A5975DDF1C96908622FD466C4B5"
+    },
+    {
+      "path": "workflow/handoffs/rp2b_lane_d_corrected.md",
+      "sha256": "4E660BCDB13E553C14591BDC30DF7DEB0221253BDD5000ED8BC15DC65A458894"
+    },
+    {
+      "path": "workflow/handoffs/rp2b_operator_procedure_corrected.md",
+      "sha256": "9032D8016C339F71016FA4029CEC73088055539636923E46EEF76C1CB88DA30D"
+    },
+    {
+      "path": "workflow/handoffs/rp2b_evidence_worst_case_bound.md",
+      "sha256": "44F444046C958AAABED9246B012CD0A2C74A8E95D45B4E108594DC9F97F4FE4C"
+    },
+    {
+      "path": "workflow/handoffs/rp2b_corrective_reconciliation_matrix.md",
+      "sha256": "7738337F1497608DF28A756B03502EC0188786A3DE97A016831AB4E195084102"
+    },
+    {
+      "path": "workflow/handoffs/rp2b_luna0_corrective_review_r1.md",
+      "sha256": "688B3644C5B6009964F3A20278CD3AA84028C8CB8A9B0C1C999FD876024FB91A",
+      "role": "prior_independent_review_input; this manifest requires a new exact-byte final review"
+    }
+  ],
+  "low_cessation_rule": "Outer Medium-P observation is not Low cessation. If required Low cessation evidence is missing or unreliable: RP2_UNKNOWN_FAIL_CLOSED and mandatory operator alert; no downstream progression.",
+  "runtime_and_publication": {
+    "probe_or_wrapper_executed": false,
+    "preflight_or_tests_run": false,
+    "native_api_or_os_object_created": false,
+    "runtime_qualification": "NOT RUN",
+    "publication": "NOT PERFORMED; historical six-path RP-2A allowlist does not authorize these corrective artifacts",
+    "staging_or_commit": "NONE"
+  },
+  "review_revision_history": [
+    {
+      "review": "Luna-0 corrective review R1",
+      "artifact": "workflow/handoffs/rp2b_luna0_corrective_review_r1.md",
+      "sha256": "688B3644C5B6009964F3A20278CD3AA84028C8CB8A9B0C1C999FD876024FB91A",
+      "disposition": "BLOCKED_CORRECTION_REQUIRED",
+      "required_narrow_correction": "Clarify embedded source parent baseline and direct-base design-only acceptance; see Lane C-R row corrections."
+    }
+  ]
+}
