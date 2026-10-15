@@ -28,6 +28,7 @@ class NodeView:
     activation: float | None
     processed_events: int
     selected: bool = False
+    changed: bool = False
 
 
 @dataclass(frozen=True, slots=True)
@@ -113,29 +114,34 @@ def _diff(previous: object | None, current: object) -> SnapshotDiff:
         removed_edges=frozenset(previous_edges - current_edges),
         persistent_edges=frozenset(current_edges & previous_edges),
         changed_neurons=frozenset(identifier for identifier in current_neurons
-                                  if identifier in previous_neurons and current_neurons[identifier] != previous_neurons[identifier]),
+                                  if identifier not in previous_neurons
+                                  or current_neurons[identifier] != previous_neurons[identifier]),
     )
 
 
 class VisualizationScene:
     """Deterministic, bounded renderer state detached from computation."""
 
-    def __init__(self, replay: ReplaySequence, *, history_limit: int = 4, prune_highlight_snapshots: int = 3) -> None:
+    def __init__(self, replay: ReplaySequence, *, history_limit: int = 4,
+                 prune_highlight_snapshots: int = 3, added_highlight_snapshots: int = 3) -> None:
         if not isinstance(replay, ReplaySequence) or not replay.snapshots:
             raise ReplaySequenceError("viewer requires at least one replay snapshot")
-        if history_limit <= 0 or prune_highlight_snapshots < 0:
+        if history_limit <= 0 or prune_highlight_snapshots < 0 or added_highlight_snapshots < 0:
             raise ValueError("history limits must be positive and bounded")
         self.replay = replay
         self.history_limit = history_limit
         self.prune_highlight_snapshots = prune_highlight_snapshots
+        self.added_highlight_snapshots = added_highlight_snapshots
         self.coordinate_source, self.positions = _coordinates(replay)
         self.snapshot_index = 0
         self.playing = False
         self.playback_speed = 4.0
         self.selected_neuron: str | None = None
+        self.selected_edge: tuple[str, str] | None = None
         self.filters = ViewerFilters()
         self.camera = CameraState()
         self._history: list[int] = [0]
+        self._playback_fraction = 0.0
 
     @property
     def snapshot(self):
@@ -165,6 +171,14 @@ class VisualizationScene:
         self.snapshot_index = index
         self._history.append(index)
         del self._history[:-self.history_limit]
+        self._playback_fraction = 0.0
+        current_ids = {item.neuron_id for item in self.snapshot.neurons}
+        if self.selected_neuron is not None and self.selected_neuron not in current_ids:
+            self.selected_neuron = None
+        current_edges = {(item.source, item.destination) for item in self.snapshot.connections}
+        if (self.selected_edge is not None and self.selected_edge not in current_edges
+                and self.selected_edge not in self.diff.removed_edges):
+            self.selected_edge = None
         return index
 
     def first(self) -> int:
@@ -179,10 +193,13 @@ class VisualizationScene:
         return self.seek(max(0, min(len(self.replay.snapshots) - 1, self.snapshot_index + amount)))
 
     def tick(self, elapsed_seconds: float) -> int:
-        if self.playing and elapsed_seconds >= 0.0:
-            steps = int(elapsed_seconds * self.playback_speed)
+        if self.playing and math.isfinite(elapsed_seconds) and elapsed_seconds >= 0.0:
+            self._playback_fraction += elapsed_seconds * self.playback_speed
+            steps = int(self._playback_fraction)
             if steps:
+                remainder = self._playback_fraction - steps
                 self.step(steps)
+                self._playback_fraction = remainder
         return self.snapshot_index
 
     def orbit(self, yaw_delta: float, pitch_delta: float) -> None:
@@ -215,6 +232,20 @@ class VisualizationScene:
         if neuron_id is not None and neuron_id not in self.positions:
             raise KeyError(neuron_id)
         self.selected_neuron = neuron_id
+        self.selected_edge = None
+
+    def select_edge(self, edge: tuple[str, str] | None) -> None:
+        if edge is not None:
+            source, destination = edge
+            if source not in self.positions or destination not in self.positions:
+                raise KeyError(edge)
+            current = {(item.source, item.destination) for item in self.snapshot.connections}
+            removed = {(item.source, item.destination) for item in self.edges() if item.kind == "pruned"}
+            if edge not in current and edge not in removed:
+                raise KeyError(edge)
+        self.selected_edge = edge
+        if edge is not None:
+            self.selected_neuron = None
 
     def neighborhood(self, depth: int | None = None) -> frozenset[str]:
         if self.selected_neuron is None:
@@ -232,7 +263,8 @@ class VisualizationScene:
         allowed = self.neighborhood() if self.filters.mode == "neighborhood" else None
         return tuple(NodeView(item.neuron_id, self.positions[item.neuron_id], item.active, item.state,
                               getattr(item, "activation", None), item.processed_events,
-                              item.neuron_id == self.selected_neuron)
+                              item.neuron_id == self.selected_neuron,
+                              item.neuron_id in self.diff.changed_neurons)
                      for item in self.snapshot.neurons
                      if (allowed is None or item.neuron_id in allowed) and (not self.filters.active_only or item.active)
                      and (not self.filters.changed_only or item.neuron_id in self.diff.changed_neurons))
@@ -240,6 +272,12 @@ class VisualizationScene:
     def edges(self) -> tuple[EdgeView, ...]:
         visible_nodes = {node.neuron_id for node in self.nodes()}
         diff = self.diff
+        recent_added: set[tuple[str, str]] = set()
+        if self.added_highlight_snapshots:
+            first_transition = max(1, self.snapshot_index - self.added_highlight_snapshots + 1)
+            for index in range(first_transition, self.snapshot_index + 1):
+                transition = _diff(self.replay.snapshots[index - 1], self.replay.snapshots[index])
+                recent_added.update(transition.added_edges)
         result: list[EdgeView] = []
         records = {item.neuron_id: item for item in self.snapshot.neurons}
         for edge in self.snapshot.connections:
@@ -251,7 +289,7 @@ class VisualizationScene:
             if self.filters.mode == "structural" and key not in diff.added_edges:
                 continue
             result.append(EdgeView(edge.source, edge.destination, edge.propagation_delay,
-                                   "added" if key in diff.added_edges else "persistent"))
+                                   "added" if key in recent_added else "persistent"))
         recent_pruned: set[tuple[str, str]] = set()
         first_transition = max(1, self.snapshot_index - self.prune_highlight_snapshots + 1)
         for index in range(first_transition, self.snapshot_index + 1):
@@ -259,6 +297,28 @@ class VisualizationScene:
             recent_pruned.update(transition.removed_edges)
         result.extend(EdgeView(source, destination, 0.0, "pruned") for source, destination in sorted(recent_pruned))
         return tuple(result[:self.filters.max_edges])
+
+    def inspect_edge(self, edge: tuple[str, str] | None = None) -> dict[str, object] | None:
+        key = self.selected_edge if edge is None else edge
+        if key is None:
+            return None
+        current = {(item.source, item.destination): item for item in self.snapshot.connections}
+        if key in current:
+            record = current[key]
+            status = "added" if any(item.source == key[0] and item.destination == key[1]
+                                    and item.kind == "added" for item in self.edges()) else "persistent"
+            delay: float | None = record.propagation_delay
+        elif any((item.source, item.destination) == key and item.kind == "pruned" for item in self.edges()):
+            status = "removed in snapshot diff (not evidence of biological or E2 pruning)"
+            record = next(item
+                          for previous in reversed(self.replay.snapshots[:self.snapshot_index])
+                          for item in previous.connections
+                          if (item.source, item.destination) == key)
+            delay = record.propagation_delay
+        else:
+            return None
+        return {"source": key[0], "destination": key[1], "status": status,
+                "propagation_delay": delay}
 
     def inspect(self, neuron_id: str | None = None) -> dict[str, object] | None:
         identifier = self.selected_neuron if neuron_id is None else neuron_id

@@ -209,3 +209,52 @@ def test_tpcv2_layout_is_deterministic_and_scene_controls_work() -> None:
     scene.fit()
     assert scene.camera.distance > 0.0
     assert scene.snapshot_index == 0
+
+
+def test_recent_added_and_removed_edge_highlights_expire_by_snapshot_count() -> None:
+    replay = _tpcv2_replay()
+    replay = ReplaySequence((*replay.records, replay.records[-1]), replay.metrics)
+    scene = VisualizationScene(replay, added_highlight_snapshots=1, prune_highlight_snapshots=1)
+
+    scene.seek(1)
+    assert next(edge for edge in scene.edges() if edge.source == "n1" and edge.destination == "n2").kind == "added"
+    scene.seek(2)
+    assert next(edge for edge in scene.edges() if edge.source == "n1" and edge.destination == "n2").kind == "persistent"
+    assert any(edge.kind == "pruned" for edge in scene.edges())
+    scene.seek(3)
+    assert all(edge.kind != "pruned" for edge in scene.edges())
+
+
+def test_node_delta_and_selected_edge_inspection_are_explicit() -> None:
+    scene = VisualizationScene(_tpcv2_replay())
+    scene.seek(1)
+    assert next(node for node in scene.nodes() if node.neuron_id == "n1").changed
+    scene.select_edge(("n1", "n2"))
+    assert scene.inspect_edge() == {
+        "source": "n1",
+        "destination": "n2",
+        "status": "added",
+        "propagation_delay": 1.5,
+    }
+    scene.seek(2)
+    scene.select_edge(("n0", "n1"))
+    inspection = scene.inspect_edge()
+    assert inspection is not None
+    assert "not evidence of biological or E2 pruning" in inspection["status"]
+
+
+def test_playback_fraction_and_observer_state_are_deterministic() -> None:
+    first = VisualizationScene(_tpcv2_replay())
+    second = VisualizationScene(_tpcv2_replay())
+    digest = first.replay.digest
+    for scene in (first, second):
+        scene.playback_speed = 2.0
+        scene.playing = True
+        scene.tick(0.125)
+        scene.tick(0.375)
+        scene.filters.active_only = True
+        scene.select("n0")
+        scene.orbit(10.0, 4.0)
+    assert first.snapshot_index == second.snapshot_index == 1
+    assert first.camera == second.camera
+    assert first.replay.digest == digest
