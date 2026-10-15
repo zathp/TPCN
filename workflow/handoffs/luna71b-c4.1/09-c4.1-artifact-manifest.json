@@ -1,0 +1,280 @@
+{
+  "schema": "TPCN-LUNA71B-C4.1-ARTIFACT-MANIFEST-v1",
+  "task": "Luna-71B-C4.1 Independent PPC-11 Contract Reconstitution",
+  "prepared_date": "2026-10-15",
+  "overall_disposition": "NEW_PPC11_CONTRACT_DOCUMENTARILY_COMPLETE",
+  "qualification": "PASS WITH LIMITATIONS",
+  "authority": {
+    "scope": "Documentary recovery, static source inspection, hashing, and independent review only",
+    "neural_execution": false,
+    "implementation": false,
+    "publication": false,
+    "commit_or_push": false
+  },
+  "repository_identities": {
+    "current_checkout": {
+      "repository": "zathp/TPCN",
+      "branch": "feature/single-replay-3d-plasticity",
+      "head": "54315aa8ac9340233c19d14f720eae771639fdea"
+    },
+    "source_baseline": {
+      "original_worktree": "experiment/luna70-corrective-readout-learning",
+      "instrumented_worktree": "experiment/luna71b-instrumented-learning",
+      "c4_worktree": "experiment/luna71b-c4-bilateral-capture",
+      "head": "f117ce51e7a805564e37252d3b5c99bda163ce57"
+    }
+  },
+  "historical_c3_1_recovery": {
+    "directory": "C:/Users/Patrick/.copilot/session-state/339fa321-b273-46ac-b870-d175327b66ac/files",
+    "artifacts": [
+      {
+        "path": "LUNA71B-C-PPC11-C3.1-CORRECTION.md",
+        "bytes": 5967,
+        "sha256": "17b566c834c6a726133d3be2f1f59483b3740dc00250a4bd52d4935ff303bf25"
+      },
+      {
+        "path": "LUNA71B-C-PPC11-C3.1-FINAL-REVIEW.md",
+        "bytes": 2768,
+        "sha256": "d8989f650ec905a696015b471c11191675668c4002800f1999178351e09ac4dc"
+      },
+      {
+        "path": "LUNA71B-C-PPC11-C3.1-MANIFEST.json",
+        "bytes": 2475,
+        "sha256": "99504245b26bb91831d6b3c0e6eead10f83d8b080025d2eeaf4e6291c957017e"
+      },
+      {
+        "path": "LUNA71B-C-PPC11-C3.1-FINAL-REVIEW.sha256",
+        "bytes": 104,
+        "sha256": "df5503e25e85d90f81cda2a3edea8d7608677b488925a574399a130f7652b917"
+      },
+      {
+        "path": "LUNA71B-C-PPC11-C3.1-MANIFEST.sha256",
+        "bytes": 101,
+        "sha256": "804b7eaf5d177c2b302ba6bc28b418e39c5f6ba146ec5213abb06116559ad095"
+      }
+    ]
+  },
+  "verified_evidence_inputs": [
+    {
+      "path": "TPCN-luna70-corrective-readout/artifacts/luna70/four-arm-results-r6.json",
+      "bytes": 69077628,
+      "sha256": "df54185fcbf02293c24589dbf1fd118c406e6651e1e4744a4ed0119f5715502d"
+    },
+    {
+      "path": "TPCN-luna70-corrective-readout/artifacts/luna70/artifact-manifest.json",
+      "bytes": 3393,
+      "sha256": "5a28e2950326ce2347760ee128effbd2b38208d5f477242208fb7537f74821fc"
+    },
+    {
+      "path": "TPCN-luna71b/artifacts/luna71b/L71B-C-paired-pilot-plan.json",
+      "bytes": 133178,
+      "sha256": "60cde6b4929be4408fcecdcf3ac7104d5cb7b3365d94d55b568431e54fb5bc3f"
+    },
+    {
+      "path": "TPCN-luna71b/scripts/prepare_luna71b_paired_pilot.py",
+      "bytes": 22629,
+      "sha256": "9986a3cef2f2bb4776d9ecfb242f5998f301af809050e0040d1bc1a50d5021b9"
+    },
+    {
+      "path": "TPCN-luna71b/artifacts/luna71b/L71B-C-preparation-execution.txt",
+      "bytes": 9275,
+      "sha256": "f05033a8c78612610e8fdad1d6cd38b4541515a0ffdff7f4d5633301d6c8e7a6"
+    },
+    {
+      "path": "TPCN-luna71b-c4/artifacts/luna71b-c4/L71B-C4-coverage-and-readiness.md",
+      "bytes": 3379,
+      "sha256": "1a7d67c4366d6b63311a952ef0803a3b0c88fe1eaf1998f1c17e14058095acad"
+    },
+    {
+      "path": "TPCN-luna71b-c4/artifacts/luna71b-c4/L71B-C4-independent-review.md",
+      "bytes": 2428,
+      "sha256": "6b82b61978cfc2a19574a2753dd302c23cbf829858521572c00f3fccf8085ce1"
+    },
+    {
+      "path": "TPCN-luna71b-c4/artifacts/luna71b-c4/L71B-C4-source-and-provenance-inventory.md",
+      "bytes": 6070,
+      "sha256": "bbfc66d51766c37edfd97c49aed0338b6f9c65c6bc828dca0d05b93a2467fc9b"
+    },
+    {
+      "path": "TPCN-luna71b-c4/artifacts/luna71b-c4/artifact-manifest.json",
+      "bytes": 5390,
+      "sha256": "91c5e041070ba13cc63c8a644202782cced635c5dc907e00400e840770c5668f"
+    }
+  ],
+  "artifact_set": [
+    {
+      "path": "workflow/handoffs/luna71b-c4.1/01-historical-provenance-recovery.md",
+      "bytes": 4536,
+      "sha256": "931ab5f3cc5b3927d3355c7d9ae013a44efd811a701872ff4b9fbf6d711ed20d",
+      "evidence_dependencies": [
+        "historical_c3_1_recovery.artifacts",
+        "artifacts/luna70/four-arm-results-r6.json",
+        "artifacts/luna70/artifact-manifest.json",
+        "C4 prior source/provenance inventory and readiness report"
+      ],
+      "source_revision_identities": [
+        "current_checkout",
+        "source_baseline",
+        "historical C3.1 session artifact hashes"
+      ],
+      "review_disposition": "Luna-0 read-only review: PASS WITH LIMITATIONS on exact listed bytes"
+    },
+    {
+      "path": "workflow/handoffs/luna71b-c4.1/02-ppc11-reconstituted-contract.md",
+      "bytes": 11695,
+      "sha256": "9885947c48dd464646e4291695ff949543eb3a45187eb742cf3d7a7c45e8b1d0",
+      "evidence_dependencies": [
+        "owner authorization in the Luna-71B-C4.1 request",
+        "historical C3.1 correction and final review",
+        "L71B-C-paired-pilot-plan.json",
+        "C4 source-capture findings"
+      ],
+      "source_revision_identities": [
+        "current_checkout",
+        "source_baseline"
+      ],
+      "review_disposition": "Luna-0 read-only review: PASS WITH LIMITATIONS on exact listed bytes"
+    },
+    {
+      "path": "workflow/handoffs/luna71b-c4.1/03-p01-p11-capture-requirement-matrix.md",
+      "bytes": 4363,
+      "sha256": "791e0c91513880b2b1973aca9c9a46875c74451e62d914ce43e4a629c130ab82",
+      "evidence_dependencies": [
+        "02-ppc11-reconstituted-contract.md",
+        "LUNA71B-C-PPC11-C3.1-CORRECTION.md",
+        "LUNA71B-C-PPC11-C3.1-FINAL-REVIEW.md",
+        "C4 source/provenance inventory"
+      ],
+      "source_revision_identities": [
+        "current_checkout",
+        "source_baseline"
+      ],
+      "review_disposition": "Luna-0 read-only review: PASS WITH LIMITATIONS on exact listed bytes"
+    },
+    {
+      "path": "workflow/handoffs/luna71b-c4.1/04-source-identity-inventory.md",
+      "bytes": 7594,
+      "sha256": "bd3228983268274f994b9d4330f5078b3f2824598e53afea1c30920070525e30",
+      "evidence_dependencies": [
+        "original and instrumented Luna-71B worktrees at source_baseline",
+        "R6 result and Luna-70 artifact manifest",
+        "L71B-C-paired-pilot-plan.json",
+        "prepare_luna71b_paired_pilot.py",
+        "L71B-C-preparation-execution.txt",
+        "historical C3.1 correction and final review"
+      ],
+      "source_revision_identities": [
+        "current_checkout",
+        "source_baseline",
+        "source-baseline copies under artifacts/luna71b/source-baseline"
+      ],
+      "review_disposition": "Luna-0 read-only review verified listed identities and source attribution"
+    },
+    {
+      "path": "workflow/handoffs/luna71b-c4.1/05-paired-trace-schema-and-comparison.md",
+      "bytes": 9564,
+      "sha256": "65057cecc9b8913752d5479544651724554da9842abd0c80a22ee7f29f9f3073",
+      "evidence_dependencies": [
+        "02-ppc11-reconstituted-contract.md",
+        "03-p01-p11-capture-requirement-matrix.md",
+        "C3.1 branch dispositions",
+        "C4 source-capture findings"
+      ],
+      "source_revision_identities": [
+        "current_checkout",
+        "source_baseline"
+      ],
+      "review_disposition": "Luna-0 read-only review: PASS WITH LIMITATIONS on exact listed bytes"
+    },
+    {
+      "path": "workflow/handoffs/luna71b-c4.1/06-c4-implementation-readiness.md",
+      "bytes": 3874,
+      "sha256": "00109be7e8d9d4175d5634c830fbbba75a6ff40a2c3e084607897907c9fd2430",
+      "evidence_dependencies": [
+        "01-historical-provenance-recovery.md",
+        "02-ppc11-reconstituted-contract.md",
+        "03-p01-p11-capture-requirement-matrix.md",
+        "04-source-identity-inventory.md",
+        "05-paired-trace-schema-and-comparison.md",
+        "07-independent-luna0-review.md"
+      ],
+      "source_revision_identities": [
+        "current_checkout",
+        "source_baseline"
+      ],
+      "review_disposition": "Luna-0 confirmed the exact final bytes and PASS WITH LIMITATIONS wording"
+    },
+    {
+      "path": "workflow/handoffs/luna71b-c4.1/07-independent-luna0-review.md",
+      "bytes": 5271,
+      "sha256": "7f34b942f7976690b80f988f5cc44ede47843194f2a832737daeb1f0d5f93fea",
+      "evidence_dependencies": [
+        "Luna-0 review responses and follow-up confirmations",
+        "exact candidate identities in artifacts 01-06"
+      ],
+      "source_revision_identities": [
+        "current_checkout",
+        "source_baseline"
+      ],
+      "review_disposition": "Integrative record of independent Luna-0 review; verdict PASS WITH LIMITATIONS"
+    },
+    {
+      "path": "workflow/handoffs/luna71b-c4.1/08-c4.1-final-adjudication.md",
+      "bytes": 3938,
+      "sha256": "28e21a541377c91ec183e71d87a6b6d3673ca26a2e79711c2d1a36998fe0799d",
+      "evidence_dependencies": [
+        "artifacts 01-07",
+        "Luna-0 PASS WITH LIMITATIONS review",
+        "source-capture gap matrix"
+      ],
+      "source_revision_identities": [
+        "current_checkout",
+        "source_baseline"
+      ],
+      "review_disposition": "Final integrator adjudication; no claim of independent review beyond artifact 07"
+    }
+  ],
+  "manifest_self_identity": {
+    "path": "workflow/handoffs/luna71b-c4.1/09-c4.1-artifact-manifest.json",
+    "bytes": 11378,
+    "sha256": null,
+    "sha256_note": "The raw self-hash is intentionally not embedded; it is computed and reported externally after the manifest bytes are fixed.",
+    "evidence_dependencies": [
+      "artifact_set entries 01-08",
+      "independent Luna-0 review response recorded in artifact 07"
+    ],
+    "source_revision_identities": [
+      "current_checkout",
+      "source_baseline"
+    ],
+    "review_disposition": "Manifest identities are hash-verified after serialization; independent review binds exact candidate bytes 01-06."
+  },
+  "final_gate_status": {
+    "historical_c3_1": "RECOVERED",
+    "new_contract": "PASS WITH LIMITATIONS",
+    "ppc11_requirements": "COMPLETE (CONTRACTUAL ONLY)",
+    "source_capture": "PARTIAL",
+    "paired_driver": "NOT IMPLEMENTED",
+    "pilot_execution": "NOT AUTHORIZED",
+    "rp_2b": "BLOCKED / BOUND INCOMPLETE",
+    "publication": "NOT AUTHORIZED"
+  },
+  "limitations": [
+    "Historical Luna-71A package unavailable",
+    "Historical source-to-run lineage not established",
+    "Initial parameter digest is seed-independent",
+    "P02, P03, P06, P07, P08, P09, and P11 source capture remains incomplete",
+    "No bilateral traces, parity result, or efficacy result"
+  ],
+  "validation": {
+    "checks": [
+      "Raw SHA-256 recomputation of recovered C3.1 artifacts and sidecars",
+      "Raw SHA-256 recomputation of R6 result, R6 manifest, preparation artifacts, and source files",
+      "Static parsing of the R6 JSON to compare seed-17 split hashes and initial-parameter digest",
+      "Independent Luna-0 documentary review"
+    ],
+    "neural_execution": "NOT RUN",
+    "model_or_instrumentation_changes": "NONE",
+    "commit_push_or_publication": "NONE"
+  }
+}
