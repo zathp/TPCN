@@ -1,0 +1,3237 @@
+{
+  "snapshot_utc": "2026-10-16T18:21:20.887250+00:00",
+  "repository": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN",
+  "object_format": "sha1",
+  "local_and_remote_refs": [
+    {
+      "ref": "refs/agents/00a4b25e-bb56-4501-ab4b-415f83f45089/checkpoints/turn/0",
+      "object": "2e5b2970e968419429c3f1136497cf97a039c7e0",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/00a4b25e-bb56-4501-ab4b-415f83f45089/checkpoints/turn/1",
+      "object": "1f33c2ae1a87afd760d056b7ef5037965a58cf24",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/00a4b25e-bb56-4501-ab4b-415f83f45089/checkpoints/turn/10",
+      "object": "03eb0116bc030e6255ab4f763af9ef214bb73796",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/00a4b25e-bb56-4501-ab4b-415f83f45089/checkpoints/turn/11",
+      "object": "955e26256f8bc3d17ac6f8164e3102572a39ee9e",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/00a4b25e-bb56-4501-ab4b-415f83f45089/checkpoints/turn/12",
+      "object": "a48fe42cbc64b3016ea58dd6f6a9e09e27bb905d",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/00a4b25e-bb56-4501-ab4b-415f83f45089/checkpoints/turn/13",
+      "object": "d2c4a418d60ee500274d024d75a52b7078abaa2d",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/00a4b25e-bb56-4501-ab4b-415f83f45089/checkpoints/turn/14",
+      "object": "a150094cfef4e1bf2f04e71a4347d5b7b8bd392a",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/00a4b25e-bb56-4501-ab4b-415f83f45089/checkpoints/turn/15",
+      "object": "a4d0126a976b08fe6253843d2f90b139caa07536",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/00a4b25e-bb56-4501-ab4b-415f83f45089/checkpoints/turn/16",
+      "object": "bb0dc8751bc5eff00294b9fc79a494ef77d15261",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/00a4b25e-bb56-4501-ab4b-415f83f45089/checkpoints/turn/17",
+      "object": "dc5e52de0dad9d6bdb06cb596feecf63bf2a5c65",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/00a4b25e-bb56-4501-ab4b-415f83f45089/checkpoints/turn/18",
+      "object": "d71a0be90c63cae92deb63fe5cc6b1e30f12257e",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/00a4b25e-bb56-4501-ab4b-415f83f45089/checkpoints/turn/19",
+      "object": "6c8b48c71fe819e186e2a8189a4791244355ec38",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/00a4b25e-bb56-4501-ab4b-415f83f45089/checkpoints/turn/2",
+      "object": "343dc180af24ce43191ee1d42eb153e854a3b766",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/00a4b25e-bb56-4501-ab4b-415f83f45089/checkpoints/turn/20",
+      "object": "eafc3fd8403e61a0a81aabcd6c74f0d3619b01a8",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/00a4b25e-bb56-4501-ab4b-415f83f45089/checkpoints/turn/21",
+      "object": "3fff7950817084d97bb6fe8a52a25d40615cc042",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/00a4b25e-bb56-4501-ab4b-415f83f45089/checkpoints/turn/22",
+      "object": "3e278d4fcdd214e021d011e86a4e4ac6d9260023",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/00a4b25e-bb56-4501-ab4b-415f83f45089/checkpoints/turn/23",
+      "object": "ec185cbd47fa50d5c3244481c7574c64806d2b49",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/00a4b25e-bb56-4501-ab4b-415f83f45089/checkpoints/turn/24",
+      "object": "9c59519374678f6c1f7a691ca3a844bb533c117b",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/00a4b25e-bb56-4501-ab4b-415f83f45089/checkpoints/turn/25",
+      "object": "af5d7494f250cf2dabca881aa99a495d6e75077d",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/00a4b25e-bb56-4501-ab4b-415f83f45089/checkpoints/turn/26",
+      "object": "21a8876739d8154771205d9af3b7001a04a13f29",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/00a4b25e-bb56-4501-ab4b-415f83f45089/checkpoints/turn/27",
+      "object": "fb0965e5b50286fe7990571bae6339cd4870c915",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/00a4b25e-bb56-4501-ab4b-415f83f45089/checkpoints/turn/28",
+      "object": "43d48f84b26485ce0b9faf59f8bc3f088f536679",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/00a4b25e-bb56-4501-ab4b-415f83f45089/checkpoints/turn/29",
+      "object": "c0b8c412cdef51a357ffd285e3e9d204e3c81b29",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/00a4b25e-bb56-4501-ab4b-415f83f45089/checkpoints/turn/3",
+      "object": "1704be7f0ad72aa3b0e1dd0e600d5d73867790f8",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/00a4b25e-bb56-4501-ab4b-415f83f45089/checkpoints/turn/30",
+      "object": "c884f71cb2596d97cd72ec65f17bffdd703a5467",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/00a4b25e-bb56-4501-ab4b-415f83f45089/checkpoints/turn/31",
+      "object": "ab1c9fc198dd3932acdb6e0b30c7f2e5e9c3d853",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/00a4b25e-bb56-4501-ab4b-415f83f45089/checkpoints/turn/32",
+      "object": "25ebcc863bf5a2b2def3b3d6dff6fcfe1745649a",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/00a4b25e-bb56-4501-ab4b-415f83f45089/checkpoints/turn/33",
+      "object": "d12be77502481c63dba9b396d0249db7d862d479",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/00a4b25e-bb56-4501-ab4b-415f83f45089/checkpoints/turn/34",
+      "object": "e9563be490ca6ebe39b896e73dcf54c9e1de1372",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/00a4b25e-bb56-4501-ab4b-415f83f45089/checkpoints/turn/35",
+      "object": "991d32f6c1893bb14bba66ce3a8c768ae7c39438",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/00a4b25e-bb56-4501-ab4b-415f83f45089/checkpoints/turn/36",
+      "object": "3fe4f3b8c19ec0e1f0edad4e93a388795c9b8641",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/00a4b25e-bb56-4501-ab4b-415f83f45089/checkpoints/turn/4",
+      "object": "87e0b875a5db0b5a998b7141e56c98b0b265e35b",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/00a4b25e-bb56-4501-ab4b-415f83f45089/checkpoints/turn/5",
+      "object": "41acb9b33247cdcff97fc1f069002844c8c87672",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/00a4b25e-bb56-4501-ab4b-415f83f45089/checkpoints/turn/6",
+      "object": "ad275949bb205f295dab18152b6519880e293431",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/00a4b25e-bb56-4501-ab4b-415f83f45089/checkpoints/turn/7",
+      "object": "d4190ce3c147098e1e8ecdeb099ba0783802484e",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/00a4b25e-bb56-4501-ab4b-415f83f45089/checkpoints/turn/8",
+      "object": "e45d21f05132ad376e3a55c580f661bc3acd8a32",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/00a4b25e-bb56-4501-ab4b-415f83f45089/checkpoints/turn/9",
+      "object": "381f97118c3226dc02e6091b8b1efa3ef35cab30",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/06df5279-4800-4a5f-82eb-b0938cc84d04/checkpoints/turn/0",
+      "object": "690f0e7e6d8c539d3a3d6afab57e9cf85dadd174",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/06df5279-4800-4a5f-82eb-b0938cc84d04/checkpoints/turn/1",
+      "object": "502b6719747f8ca6290a0b021bf7346b1b8121ee",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/06df5279-4800-4a5f-82eb-b0938cc84d04/checkpoints/turn/2",
+      "object": "e2951086525599081888bf42d82126dc5d822530",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/15bf612c-40fb-473f-a8b2-53bfd0821630/checkpoints/turn/0",
+      "object": "6cf9782bee1b62879a861f24441256cd5056c6b0",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/15bf612c-40fb-473f-a8b2-53bfd0821630/checkpoints/turn/1",
+      "object": "d9031b4b096c2b9b8087f7da1b3703dab09744e4",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/15bf612c-40fb-473f-a8b2-53bfd0821630/checkpoints/turn/2",
+      "object": "6b871d07e1f162be391c68e72705a0e6b55b6fcc",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/15bf612c-40fb-473f-a8b2-53bfd0821630/checkpoints/turn/3",
+      "object": "a6252443d723d4b50984c1b563592f8c08203358",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/15bf612c-40fb-473f-a8b2-53bfd0821630/checkpoints/turn/4",
+      "object": "d13ee98346ff5cca87ed236258324207e0027c1c",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/15bf612c-40fb-473f-a8b2-53bfd0821630/checkpoints/turn/5",
+      "object": "e9368df28c6759283019ebd9c0d636307f108865",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/21be72d1-67d9-4b3d-9195-3f943a608515/checkpoints/turn/0",
+      "object": "6c1058c3474ab63459c2e744216e674e70e08b88",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/21be72d1-67d9-4b3d-9195-3f943a608515/checkpoints/turn/1",
+      "object": "4aae1e273ce4ee03fa4f4b169bc17e93c1ffbfc9",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/21be72d1-67d9-4b3d-9195-3f943a608515/checkpoints/turn/2",
+      "object": "e05e3f2978faf1029bbea81b703ff54117d01fed",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/21be72d1-67d9-4b3d-9195-3f943a608515/checkpoints/turn/3",
+      "object": "b73607683d76b17950721d95c7781837fa55b7d5",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/21be72d1-67d9-4b3d-9195-3f943a608515/checkpoints/turn/4",
+      "object": "847ce03ebb5aee88cfc06e7b2ec997beeee8ad7f",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/21be72d1-67d9-4b3d-9195-3f943a608515/checkpoints/turn/5",
+      "object": "6484c3e4c7dddb482d27d34be7b5699b1c03209c",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/26ff41eb-71c4-4c83-be76-8c4909d2b94c/checkpoints/turn/0",
+      "object": "3c4ddddb198bda1307cb7b1d3f8b1c4b66996cf3",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/26ff41eb-71c4-4c83-be76-8c4909d2b94c/checkpoints/turn/1",
+      "object": "e9c64bff1c7442ca59758fcb36039d216fff51fc",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/36592146-8cc7-4785-b8a6-2f40313fa446/checkpoints/turn/0",
+      "object": "7953866eee69f78a10f86e32226959a94cd4d21f",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/36592146-8cc7-4785-b8a6-2f40313fa446/checkpoints/turn/1",
+      "object": "489cd09c7c2a74073f18a611a2a3de3af0139fee",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/36592146-8cc7-4785-b8a6-2f40313fa446/checkpoints/turn/2",
+      "object": "5c9303922ad019b2306b68b09c19b958b8dd7e55",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/38be46c7-0583-497b-a8e3-51f7a1ff6db6/checkpoints/turn/0",
+      "object": "192d53855f41b3a92e4f61533530906aeb9ab1d0",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/38be46c7-0583-497b-a8e3-51f7a1ff6db6/checkpoints/turn/1",
+      "object": "041894e4c78200d442d5c6d5e21b51f7cb003fee",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/38be46c7-0583-497b-a8e3-51f7a1ff6db6/checkpoints/turn/10",
+      "object": "a1a2c1718ed9d2aee33e27b7915f16ca5154dbdb",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/38be46c7-0583-497b-a8e3-51f7a1ff6db6/checkpoints/turn/2",
+      "object": "edecaba2a3219fa6adafc3849d9b6fca47079fbd",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/38be46c7-0583-497b-a8e3-51f7a1ff6db6/checkpoints/turn/3",
+      "object": "9f78cedf8f288e4a35dfce9698b6332dc9173953",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/38be46c7-0583-497b-a8e3-51f7a1ff6db6/checkpoints/turn/4",
+      "object": "7a8fc05d619a8b88b8ed8a8bb3d6392d28f2f586",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/38be46c7-0583-497b-a8e3-51f7a1ff6db6/checkpoints/turn/5",
+      "object": "211aea5dc416dbc35e0e71757ac5daebf49a099e",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/38be46c7-0583-497b-a8e3-51f7a1ff6db6/checkpoints/turn/6",
+      "object": "88ff394ceebc7263284cf6ffc464db8512f9a570",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/38be46c7-0583-497b-a8e3-51f7a1ff6db6/checkpoints/turn/7",
+      "object": "fb899eff6b6c52843594ca2223094638af3c3c0c",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/38be46c7-0583-497b-a8e3-51f7a1ff6db6/checkpoints/turn/8",
+      "object": "fab87927fddbb507d44fb8fbb85f4d9e56292743",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/38be46c7-0583-497b-a8e3-51f7a1ff6db6/checkpoints/turn/9",
+      "object": "4e5826ad5c61df5f3c1c42fb76fcd26e922e4acd",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/39fffd57-3763-4bef-9bc5-0674dd35a7cb/checkpoints/turn/0",
+      "object": "7ed12fbde0a61df3584a4d58f15e87541ad620e6",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/39fffd57-3763-4bef-9bc5-0674dd35a7cb/checkpoints/turn/1",
+      "object": "19586c2afc55597f23fffcf329142570ca00fae8",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/39fffd57-3763-4bef-9bc5-0674dd35a7cb/checkpoints/turn/2",
+      "object": "d1ed4f75ad29ff068ba48099b0cd7500f8f32915",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/39fffd57-3763-4bef-9bc5-0674dd35a7cb/checkpoints/turn/3",
+      "object": "de8526c0aac96173260535bf73a834e05459e7ab",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/3b9e7196-481e-4f92-b536-d53e2eed055e/checkpoints/turn/0",
+      "object": "e3041ec72d2aa5a016950481f80b4e916a9db25f",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/3b9e7196-481e-4f92-b536-d53e2eed055e/checkpoints/turn/1",
+      "object": "0263888f32e7ec479bb675300369a80ecece989b",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/3b9e7196-481e-4f92-b536-d53e2eed055e/checkpoints/turn/2",
+      "object": "6c0a4b08924f153899c322d8ada20bd399ff6f09",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/3b9e7196-481e-4f92-b536-d53e2eed055e/checkpoints/turn/3",
+      "object": "c17da667aa74364201b5bad2e0fb550587ba0ac5",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/3b9e7196-481e-4f92-b536-d53e2eed055e/checkpoints/turn/4",
+      "object": "675b71726d46b4474dc9705fff5ade0f8b9c41ee",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/40b277e6-4796-43f2-9456-a013b87da629/checkpoints/turn/0",
+      "object": "e9f4bc03881a1dfed01771440e92cc194860696e",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/40b277e6-4796-43f2-9456-a013b87da629/checkpoints/turn/1",
+      "object": "1b72613fee86ce80edf80032f424404052ca0923",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/40b277e6-4796-43f2-9456-a013b87da629/checkpoints/turn/10",
+      "object": "c101a3dc5d84fec364328e590723dabd3d8b7b0e",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/40b277e6-4796-43f2-9456-a013b87da629/checkpoints/turn/11",
+      "object": "7f7f6d50716d8789cf436c8119ef44e52e7046b8",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/40b277e6-4796-43f2-9456-a013b87da629/checkpoints/turn/12",
+      "object": "10fc8d5e0dd92512ab00e50e7ef9b5ee50a822ab",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/40b277e6-4796-43f2-9456-a013b87da629/checkpoints/turn/13",
+      "object": "e88bc08e7fb94cea064bab06f90474da89021bb5",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/40b277e6-4796-43f2-9456-a013b87da629/checkpoints/turn/2",
+      "object": "60e876491489e7c9dd66bac6feb3a25570689767",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/40b277e6-4796-43f2-9456-a013b87da629/checkpoints/turn/3",
+      "object": "f089284a6c2360a65f6111fbcd88ce42a0041cb7",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/40b277e6-4796-43f2-9456-a013b87da629/checkpoints/turn/4",
+      "object": "0f9f5f9113d120ca95ba831199e821c76e1c4455",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/40b277e6-4796-43f2-9456-a013b87da629/checkpoints/turn/5",
+      "object": "335dd1d21a42b656024d4f7b28a95658be96a459",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/40b277e6-4796-43f2-9456-a013b87da629/checkpoints/turn/6",
+      "object": "5fb0e9d0ba78b8d3c63579fc80167d57fae2f29e",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/40b277e6-4796-43f2-9456-a013b87da629/checkpoints/turn/7",
+      "object": "fe750b19e31586e8847b650665e4b9b96b7a622e",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/40b277e6-4796-43f2-9456-a013b87da629/checkpoints/turn/8",
+      "object": "084b84340b294482da056d232a91798613bb702f",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/40b277e6-4796-43f2-9456-a013b87da629/checkpoints/turn/9",
+      "object": "f6330c7ae5a2850cfd98a9762e74657428be5ad6",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/53aafcc7-3d40-47c3-b54d-6c28f48ec56e/checkpoints/turn/0",
+      "object": "c2dbd9101260aa0e781658e6fdfa8dfae2fa997e",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/53aafcc7-3d40-47c3-b54d-6c28f48ec56e/checkpoints/turn/1",
+      "object": "d5df548a64a1bca5c0e3a9732ffae0c161084dee",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/53aafcc7-3d40-47c3-b54d-6c28f48ec56e/checkpoints/turn/2",
+      "object": "f15ff1e847c21e524a67fe48e6dbb645402ea5f7",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/5ac75954-551a-41f6-91eb-f741d4b88fb6/checkpoints/turn/0",
+      "object": "fdf17b6031910901b52ab5e9445d870ee63707dd",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/5ac75954-551a-41f6-91eb-f741d4b88fb6/checkpoints/turn/1",
+      "object": "5a4f8aa18eacf4959bc553e851543b8d26b4c9e1",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/5ac75954-551a-41f6-91eb-f741d4b88fb6/checkpoints/turn/2",
+      "object": "5b5f550f650b4095836bdceb0232e95c1ce5c933",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/5ac75954-551a-41f6-91eb-f741d4b88fb6/checkpoints/turn/3",
+      "object": "684117dda5e5ffbc4601b906071ae1f33a7948c2",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/5ac75954-551a-41f6-91eb-f741d4b88fb6/checkpoints/turn/4",
+      "object": "cde254e8cc984235851c81390abe7e7780c1e16c",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/6912af72-c15f-4b63-8054-f567eff08df4/checkpoints/turn/0",
+      "object": "97d0cd336742d31ebe03dc92cbe403f571460dd8",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/6912af72-c15f-4b63-8054-f567eff08df4/checkpoints/turn/1",
+      "object": "0915fe662ab9d2eb4727feaf294bf78303731abf",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/6912af72-c15f-4b63-8054-f567eff08df4/checkpoints/turn/2",
+      "object": "427e9189b25ec5e7505bdb8dbce83700987d40b9",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/8cae426a-79aa-4e7e-ba8f-c87bc90e52f4/checkpoints/turn/0",
+      "object": "5140d1ea3a94333105e2b35c490f7ca9c59ef4f4",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/8cae426a-79aa-4e7e-ba8f-c87bc90e52f4/checkpoints/turn/1",
+      "object": "e658b25b73e817a91c192f77944b5963a6c4b347",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/8cae426a-79aa-4e7e-ba8f-c87bc90e52f4/checkpoints/turn/2",
+      "object": "0204d7612771a62494f15d7611fb13c6ed01fe45",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/8d0ad6de-18ec-4400-a4f8-61bc319c2adf/checkpoints/turn/0",
+      "object": "11137b6536c6bfb4355537a910d5a8b9f46da56b",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/8d0ad6de-18ec-4400-a4f8-61bc319c2adf/checkpoints/turn/1",
+      "object": "e4a7e7a834b58451c3ecc1f7f6283be9b070e3fa",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/8d0ad6de-18ec-4400-a4f8-61bc319c2adf/checkpoints/turn/10",
+      "object": "8b50d92e7509b5d4ea0bdcd0dfd0776a0a2592e4",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/8d0ad6de-18ec-4400-a4f8-61bc319c2adf/checkpoints/turn/11",
+      "object": "4e1da0fb0114fcec0c1dab4b4c5fa169393f74da",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/8d0ad6de-18ec-4400-a4f8-61bc319c2adf/checkpoints/turn/2",
+      "object": "27633cf5db6369551839a2f6632ca3a3df238fa5",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/8d0ad6de-18ec-4400-a4f8-61bc319c2adf/checkpoints/turn/3",
+      "object": "3763e5a99b5a5c26b17e01d0f3613a8f61304b9a",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/8d0ad6de-18ec-4400-a4f8-61bc319c2adf/checkpoints/turn/4",
+      "object": "81daffb7f7266d2cf21aadc96113eaa92571c1d1",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/8d0ad6de-18ec-4400-a4f8-61bc319c2adf/checkpoints/turn/5",
+      "object": "36c9dd0ed8346436da483fac54ed09aef91beeb3",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/8d0ad6de-18ec-4400-a4f8-61bc319c2adf/checkpoints/turn/6",
+      "object": "324e83d19f5f8dec841c069186da5be8c6c03f84",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/8d0ad6de-18ec-4400-a4f8-61bc319c2adf/checkpoints/turn/7",
+      "object": "5d84b2cd626c597bb69e9becca4437e6a5212a4d",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/8d0ad6de-18ec-4400-a4f8-61bc319c2adf/checkpoints/turn/8",
+      "object": "755a6aa3aa35a7d8cf531679927f981d9ddf1913",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/8d0ad6de-18ec-4400-a4f8-61bc319c2adf/checkpoints/turn/9",
+      "object": "75188b51807d678ad5a1297f8c7b838f28c377b6",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/8d8e9de9-61c3-4445-a37c-4c7e2bc8ec56/checkpoints/turn/0",
+      "object": "9baef06cd2cfec9d0d6ed5254c4af0a53cc67922",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/8d8e9de9-61c3-4445-a37c-4c7e2bc8ec56/checkpoints/turn/1",
+      "object": "17b3f482a97464db0deac7cf13cf88e72a5373ab",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/8d8e9de9-61c3-4445-a37c-4c7e2bc8ec56/checkpoints/turn/2",
+      "object": "b864a72526dcde0ff339c012a2bf5acb38de8560",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/8d8e9de9-61c3-4445-a37c-4c7e2bc8ec56/checkpoints/turn/3",
+      "object": "c073db3a5d4ce20c87b604fea3296a1ce2635888",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/8d8e9de9-61c3-4445-a37c-4c7e2bc8ec56/checkpoints/turn/4",
+      "object": "b221c05aa6183841b784d91abba82feb4facc8a1",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/8d8e9de9-61c3-4445-a37c-4c7e2bc8ec56/checkpoints/turn/5",
+      "object": "d4f01e92e8532efb32671904562a3dec0ecaafab",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/8d8e9de9-61c3-4445-a37c-4c7e2bc8ec56/checkpoints/turn/6",
+      "object": "03b86b3bb1571f9e881f1cb016f820b990395f66",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/8d8e9de9-61c3-4445-a37c-4c7e2bc8ec56/checkpoints/turn/7",
+      "object": "afc8a37ff3ddb68830726aace89d6583c3437674",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/8d8e9de9-61c3-4445-a37c-4c7e2bc8ec56/checkpoints/turn/8",
+      "object": "a6754b3547a41e1232e7f7b4f7bab7c032aa0825",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/8d8e9de9-61c3-4445-a37c-4c7e2bc8ec56/checkpoints/turn/9",
+      "object": "5193e589df17f298e11adb5790cd4454e50b821a",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/8ed957ec-9e9e-4cba-aea1-d542ca3cb49d/checkpoints/turn/0",
+      "object": "009f574e8f7432cadacde6cf167170cf66088f6e",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/8ed957ec-9e9e-4cba-aea1-d542ca3cb49d/checkpoints/turn/1",
+      "object": "d5eab82593c53c98d587a8bef00031ee06815501",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/8ed957ec-9e9e-4cba-aea1-d542ca3cb49d/checkpoints/turn/2",
+      "object": "8fe9f7355fe10132f950bc0215f38d7cfa7f322c",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/8ed957ec-9e9e-4cba-aea1-d542ca3cb49d/checkpoints/turn/3",
+      "object": "4dae17446c5b2359a749739b2271f0847ffb7b7c",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/8ed957ec-9e9e-4cba-aea1-d542ca3cb49d/checkpoints/turn/4",
+      "object": "ec4b18f3c1350f196dcc13e18c45cddaa150572c",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/a2927eb2-5f06-4b02-97ef-ffcd197df88e/checkpoints/turn/0",
+      "object": "0e3133a7b12d8544ff384967dcadaa301eb61812",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/a2927eb2-5f06-4b02-97ef-ffcd197df88e/checkpoints/turn/1",
+      "object": "a365c6407ea457c5d33a6e329af7b2dbcd9bc294",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/a2927eb2-5f06-4b02-97ef-ffcd197df88e/checkpoints/turn/2",
+      "object": "3a38a79faf59ebe1269bf62fec046048dceb9fc3",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/a2927eb2-5f06-4b02-97ef-ffcd197df88e/checkpoints/turn/3",
+      "object": "0b16bc153317484314275bab7cb8cd1daee02371",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/a5ae0c98-47df-4fe6-bc28-8ba703773233/checkpoints/turn/0",
+      "object": "b79c932eb013c8b4eda1c38302e730d79dd0d72a",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/a5ae0c98-47df-4fe6-bc28-8ba703773233/checkpoints/turn/1",
+      "object": "94b9047fd8d527c2d57f0240b3d4148c6cb51c55",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/a5ae0c98-47df-4fe6-bc28-8ba703773233/checkpoints/turn/2",
+      "object": "4ae94150b7cef1ca2bb346ce047da7d667f1ea86",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/a5ae0c98-47df-4fe6-bc28-8ba703773233/checkpoints/turn/3",
+      "object": "5eec108d76192dc85197960263ecbc5e9a26b03d",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/a9883362-d37a-4678-a584-3e7b839c725b/checkpoints/turn/0",
+      "object": "d6da0c604572184c5fdf3c8a8b7378c135f31d23",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/a9883362-d37a-4678-a584-3e7b839c725b/checkpoints/turn/1",
+      "object": "c3eb9c337e4c9ade1a73fc4f14dd41c5c0cea8a9",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/ad18736a-aaa8-4fd6-8f05-e4bb6eab2746/checkpoints/turn/0",
+      "object": "e85dcd82bb901f50d994047c234494238fb61c9d",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/ad18736a-aaa8-4fd6-8f05-e4bb6eab2746/checkpoints/turn/1",
+      "object": "5daaf0b949e8ab983b5c164ed313a43336cc40fa",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/b83ab8ba-2924-44dc-abeb-6d68dded40bb/checkpoints/turn/0",
+      "object": "ebed315a2f2548c26e30a771a4ca8f46ea931d10",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/b83ab8ba-2924-44dc-abeb-6d68dded40bb/checkpoints/turn/1",
+      "object": "3e4132f6875d685da3e5319b2674090d182a2e80",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/b83ab8ba-2924-44dc-abeb-6d68dded40bb/checkpoints/turn/2",
+      "object": "717ef0e99d39660c53fd9767b55c6135d0d226b2",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/b83ab8ba-2924-44dc-abeb-6d68dded40bb/checkpoints/turn/3",
+      "object": "b6d11307cebbd68385e574ba2eb90973760e2524",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/b83ab8ba-2924-44dc-abeb-6d68dded40bb/checkpoints/turn/4",
+      "object": "3639b5669569d69f9466955f68981cd17cf4fd76",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/dde6ae5c-1548-48cd-b021-fcc552b0af61/checkpoints/turn/0",
+      "object": "1792972692ebd0ebcf51522ee0b8e7300702f927",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/dde6ae5c-1548-48cd-b021-fcc552b0af61/checkpoints/turn/1",
+      "object": "c98ce78cca80d72448765f2a388669792355326d",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/e0fa59c3-389b-4e95-98b4-2d8bdccb3719/checkpoints/turn/0",
+      "object": "a53098397cd1fcb8eb18ad331c258d23ceb072d1",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/e0fa59c3-389b-4e95-98b4-2d8bdccb3719/checkpoints/turn/1",
+      "object": "72dfd207f13da331f58fbaf8cb0f3ffd2de12757",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/e98836b8-d21c-4ed4-9956-8bf3a8331c94/checkpoints/turn/0",
+      "object": "fd58b38fb2e1b386f83be3244bcff24bef87fd29",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/e98836b8-d21c-4ed4-9956-8bf3a8331c94/checkpoints/turn/1",
+      "object": "eb9ff896b085ebb82105a506ad373d87682c80fc",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/ec650c92-3ae6-424d-bdcf-00e6af89e6c9/checkpoints/turn/0",
+      "object": "9dd632c1dba9f0b3f3865e1262739da13a9cb7f3",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/ec650c92-3ae6-424d-bdcf-00e6af89e6c9/checkpoints/turn/1",
+      "object": "8755986af32b7027586bb2c5f5db31958de59f3f",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/ec650c92-3ae6-424d-bdcf-00e6af89e6c9/checkpoints/turn/2",
+      "object": "77c12ea056d801a7bbf0f7528594053f168ad3ed",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/edd78181-20cc-4e03-bd0f-b057ffb6822a/checkpoints/turn/0",
+      "object": "aa8b2d873aaaa7ee53cc8c46a7fda809ce926d0e",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/edd78181-20cc-4e03-bd0f-b057ffb6822a/checkpoints/turn/1",
+      "object": "ea8bfb022ad88f109eea33db01053f5481c660ba",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/edd78181-20cc-4e03-bd0f-b057ffb6822a/checkpoints/turn/10",
+      "object": "69b84b470e70ad8875c8726e3922a9a1c01ab0ce",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/edd78181-20cc-4e03-bd0f-b057ffb6822a/checkpoints/turn/11",
+      "object": "ca3c499ae7d7ae9b621f0c986723b626049214c2",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/edd78181-20cc-4e03-bd0f-b057ffb6822a/checkpoints/turn/12",
+      "object": "3e6887b193834418359c9c5c7ec51c9552c3a504",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/edd78181-20cc-4e03-bd0f-b057ffb6822a/checkpoints/turn/13",
+      "object": "68f1dacd050749d1068bf6a3ba1f426a071f23c7",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/edd78181-20cc-4e03-bd0f-b057ffb6822a/checkpoints/turn/14",
+      "object": "51dcdca1beb25b9552f88eb936ba0b688bad3dab",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/edd78181-20cc-4e03-bd0f-b057ffb6822a/checkpoints/turn/15",
+      "object": "506e5c2bdea540baf4eff94bab6c71583635c483",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/edd78181-20cc-4e03-bd0f-b057ffb6822a/checkpoints/turn/2",
+      "object": "1984916dd567ff77bf891a0a971ac3bbb719f64d",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/edd78181-20cc-4e03-bd0f-b057ffb6822a/checkpoints/turn/3",
+      "object": "a493a82a65b8ccbf70a41211f9f4e6480ca5c198",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/edd78181-20cc-4e03-bd0f-b057ffb6822a/checkpoints/turn/4",
+      "object": "629f9ce41fc75e4e777c92abee374c33ebd8ef1f",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/edd78181-20cc-4e03-bd0f-b057ffb6822a/checkpoints/turn/5",
+      "object": "a2517fa03f0cfb950165f6f801a227df132166ae",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/edd78181-20cc-4e03-bd0f-b057ffb6822a/checkpoints/turn/6",
+      "object": "3e5f0cb730d5b9f1b7f418df35b75c7240a59d3e",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/edd78181-20cc-4e03-bd0f-b057ffb6822a/checkpoints/turn/7",
+      "object": "d95536f84ec584c8a563fab1b33b7c402a53f771",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/edd78181-20cc-4e03-bd0f-b057ffb6822a/checkpoints/turn/8",
+      "object": "c9390c58570be5203d9e72a8fb2def3796751039",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/edd78181-20cc-4e03-bd0f-b057ffb6822a/checkpoints/turn/9",
+      "object": "4794ebb9a247ac50bcde5026a7533d01bef4f5e3",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/eea278a4-43d5-4e95-8cca-4d292759af3c/checkpoints/turn/0",
+      "object": "57f04ce4bea11cc11b576aa48bef0d715aa0c96c",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/eea278a4-43d5-4e95-8cca-4d292759af3c/checkpoints/turn/1",
+      "object": "bc08e767da6890a8c4af2229f545d1afd57ebdc8",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/eea278a4-43d5-4e95-8cca-4d292759af3c/checkpoints/turn/2",
+      "object": "2dcb8367fa62e9969279f375fe9a2ebe3aad80f8",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/eea278a4-43d5-4e95-8cca-4d292759af3c/checkpoints/turn/3",
+      "object": "b6069922665b42cdd8d44840ce90a8b159686733",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/eea278a4-43d5-4e95-8cca-4d292759af3c/checkpoints/turn/4",
+      "object": "7167ac8e7654afcea8470a0b72d31f3822cf9b80",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/eea278a4-43d5-4e95-8cca-4d292759af3c/checkpoints/turn/5",
+      "object": "854bfb7549db53e6c57331d660e530c320f2e2cc",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/eea278a4-43d5-4e95-8cca-4d292759af3c/checkpoints/turn/6",
+      "object": "49fa14d0b0e2aa6cedbd2e2e5c50062ced34eb5a",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/agents/eea278a4-43d5-4e95-8cca-4d292759af3c/checkpoints/turn/7",
+      "object": "8914d64cddae6d6eb44894c262cd4129c3048177",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/heads/archive/luna63c-local-artifacts-20261010",
+      "object": "f6611520c9c2a145fdd23cf733c789d4e2685c6e",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/heads/archive/luna65-rp2b-local-drafts-20261015",
+      "object": "3a8d1fbb146747ccfd4dcbd72700b891c6dd5d5d",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/heads/draft/luna65-phase2a-supervisor-scaffold-20261012",
+      "object": "9cb909a95392c971b98ffa796a015ab90e032f1f",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/heads/experiment/luna63a-binary-adaptive-decay",
+      "object": "1c3e33d6285c2d3aeb107f27aad07e57de2ba50f",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/heads/experiment/luna63b-local-pcn-design",
+      "object": "fe3ebe5fdd2e018e79dd640fa4f94548ebba8701",
+      "type": "commit",
+      "upstream": "refs/remotes/origin/experiment/luna63b-local-pcn-design",
+      "symref": null
+    },
+    {
+      "ref": "refs/heads/experiment/luna63c-nonlinear-excursion-design",
+      "object": "a303ebb835b72fdd01c86df478431b8638aacbb4",
+      "type": "commit",
+      "upstream": "refs/remotes/origin/experiment/luna63c-nonlinear-excursion-design",
+      "symref": null
+    },
+    {
+      "ref": "refs/heads/experiment/luna63c-stage-a-E",
+      "object": "651f18fdf3c7ae8e32cd210ebc68527f86531e32",
+      "type": "commit",
+      "upstream": "refs/remotes/origin/experiment/luna63c-stage-a-E",
+      "symref": null
+    },
+    {
+      "ref": "refs/heads/experiment/luna63c-stage-a-T",
+      "object": "0a8c34b7e6febf681917d915082a8559eea998f7",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/heads/experiment/luna63c-stage-a-W",
+      "object": "17907c67d52cc338249b66f28c3179cd97572c6e",
+      "type": "commit",
+      "upstream": "refs/remotes/origin/experiment/luna63c-stage-a-W",
+      "symref": null
+    },
+    {
+      "ref": "refs/heads/experiment/luna63c-stage-a-certificate",
+      "object": "19caa49d7620062c06ad74d19528e47725f86b37",
+      "type": "commit",
+      "upstream": "refs/remotes/origin/experiment/luna63c-stage-a-certificate",
+      "symref": null
+    },
+    {
+      "ref": "refs/heads/experiment/luna64-r4.3-reward-lifecycle-correction-20261010",
+      "object": "d93ef139a1fea46d58cb59a7d7e6325cb1eb8787",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/heads/experiment/luna64-track-b-r4.3-pilot-20261010",
+      "object": "d93ef139a1fea46d58cb59a7d7e6325cb1eb8787",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/heads/experiment/luna66-minimal-functional-learning",
+      "object": "f117ce51e7a805564e37252d3b5c99bda163ce57",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/heads/experiment/luna67-four-class-temporal-learning",
+      "object": "f117ce51e7a805564e37252d3b5c99bda163ce57",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/heads/experiment/luna68-prediction-omission-routing",
+      "object": "f117ce51e7a805564e37252d3b5c99bda163ce57",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/heads/experiment/luna70-corrective-readout-learning",
+      "object": "f117ce51e7a805564e37252d3b5c99bda163ce57",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/heads/experiment/luna71b-c4-2-bilateral-capture",
+      "object": "11b6f52e9aa6725af69bcd3cd098bb2c62e78b76",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/heads/experiment/luna71b-c4-2-gn",
+      "object": "e91818a5c974282e848dc43e52d3c0a534dcbf45",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/heads/experiment/luna71b-c4-bilateral-capture",
+      "object": "f117ce51e7a805564e37252d3b5c99bda163ce57",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/heads/experiment/luna71b-instrumented-learning",
+      "object": "f117ce51e7a805564e37252d3b5c99bda163ce57",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/heads/feature/single-replay-3d-plasticity",
+      "object": "54315aa8ac9340233c19d14f720eae771639fdea",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/heads/governance/luna63c-artifact-reconciliation",
+      "object": "8f5e785bd2e46c0c1cb2afbb77ba53704adef65a",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/heads/governance/luna63c-corrective-reconciliation",
+      "object": "3b0bc14df01ef73e0d8c91e08d93c7d2b86bc0e1",
+      "type": "commit",
+      "upstream": "refs/remotes/origin/governance/luna63c-corrective-reconciliation",
+      "symref": null
+    },
+    {
+      "ref": "refs/heads/governance/luna64-r4.3-freeze-20261010",
+      "object": "f117ce51e7a805564e37252d3b5c99bda163ce57",
+      "type": "commit",
+      "upstream": "refs/remotes/origin/governance/luna64-r4.3-freeze-20261010",
+      "symref": null
+    },
+    {
+      "ref": "refs/heads/governance/luna65-r14-documentary-freeze",
+      "object": "0511762b46aa8fe33494624a9290611727e7ae51",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/heads/governance/luna71b-c4-1-ppc11-freeze",
+      "object": "11b6f52e9aa6725af69bcd3cd098bb2c62e78b76",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/heads/governance/luna71b-c4-2-checkpoint",
+      "object": "e91818a5c974282e848dc43e52d3c0a534dcbf45",
+      "type": "commit",
+      "upstream": "refs/remotes/origin/governance/luna71b-c4-2-checkpoint",
+      "symref": null
+    },
+    {
+      "ref": "refs/heads/governance/luna71b-c4-2-h-corrections",
+      "object": "e91818a5c974282e848dc43e52d3c0a534dcbf45",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/heads/main",
+      "object": "73aaa50f97ceab322907875ae4dcf23e7541c3b5",
+      "type": "commit",
+      "upstream": "refs/remotes/origin/main",
+      "symref": null
+    },
+    {
+      "ref": "refs/remotes/origin/HEAD",
+      "object": "73aaa50f97ceab322907875ae4dcf23e7541c3b5",
+      "type": "commit",
+      "upstream": null,
+      "symref": "refs/remotes/origin/main"
+    },
+    {
+      "ref": "refs/remotes/origin/copilot/add-new-features",
+      "object": "ef6ae0687f3aaaeb07381d5306350757b794b59f",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/remotes/origin/copilot/architecture-update-next-canonical-neuron-model",
+      "object": "c693d61b5415bb7ad234f0f2f096660feb38ae02",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/remotes/origin/copilot/establish-new-canonical-baseline",
+      "object": "17195c05efe7bf4a9865f1e2a84821c28a93e408",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/remotes/origin/copilot/execute-luna-43-cycle",
+      "object": "e7fc3624305462b575748a58ae1097b76183896b",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/remotes/origin/copilot/luna-44-corrective-execution",
+      "object": "a79494cd66be28fd291ed11eddd62d342f457cfd",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/remotes/origin/copilot/luna-44-corrective-execution-again",
+      "object": "a79494cd66be28fd291ed11eddd62d342f457cfd",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/remotes/origin/copilot/luna44-independent-routing-evidence",
+      "object": "41046b54f77114d46bb5451d226aa16326717508",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/remotes/origin/copilot/luna45-depth2-destination-integration",
+      "object": "5ebc9ae7dcaae7ff45f0769686885dcae3f2dea4",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/remotes/origin/copilot/luna46-depth-scaling-diagnostic",
+      "object": "4b11e0e828fd6fbcb4cbf9b994f121bde54e4c37",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/remotes/origin/copilot/luna47-independent-review",
+      "object": "7aa55058f17cfba62adbf748ad5f845fbbf4583b",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/remotes/origin/copilot/luna47a-investigation",
+      "object": "a1b2588de6e4e4f7677744f289f8b6a1c6196e0d",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/remotes/origin/copilot/luna47b-investigation",
+      "object": "9f4fe99da48dae4504ebe9712ad349d421192c9f",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/remotes/origin/copilot/luna47c-investigation",
+      "object": "609b2e5f8a7ae123f9b7f7da5c89378e29353624",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/remotes/origin/copilot/luna47d-investigation",
+      "object": "bd4c509685c9e050ac7c813a0c72bc0b2cb539cb",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/remotes/origin/copilot/luna47e-investigation",
+      "object": "923b0fe2259401a0e75c81dae672f71acb9085da",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/remotes/origin/copilot/luna47f-investigation",
+      "object": "85229265b8bec206499515e215627c548f828829",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/remotes/origin/copilot/luna47g-investigation",
+      "object": "10dc48be1260b1d0129a6906919be039e1e6f67b",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/remotes/origin/copilot/review-and-merge-pull-requests",
+      "object": "8c5fb06f5c8bf94beb05688ee0e3d3d00c222606",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/remotes/origin/draft/luna65-phase2a-supervisor-scaffold-20261012",
+      "object": "9cb909a95392c971b98ffa796a015ab90e032f1f",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/remotes/origin/experiment/luna63a-binary-adaptive-decay",
+      "object": "1c3e33d6285c2d3aeb107f27aad07e57de2ba50f",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/remotes/origin/experiment/luna63b-local-pcn-design",
+      "object": "fe3ebe5fdd2e018e79dd640fa4f94548ebba8701",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/remotes/origin/experiment/luna63c-nonlinear-excursion-design",
+      "object": "a303ebb835b72fdd01c86df478431b8638aacbb4",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/remotes/origin/experiment/luna63c-stage-a-E",
+      "object": "651f18fdf3c7ae8e32cd210ebc68527f86531e32",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/remotes/origin/experiment/luna63c-stage-a-T",
+      "object": "0a8c34b7e6febf681917d915082a8559eea998f7",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/remotes/origin/experiment/luna63c-stage-a-W",
+      "object": "17907c67d52cc338249b66f28c3179cd97572c6e",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/remotes/origin/experiment/luna63c-stage-a-certificate",
+      "object": "19caa49d7620062c06ad74d19528e47725f86b37",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/remotes/origin/experiment/luna64-track-b-r4.3-pilot-20261010",
+      "object": "d93ef139a1fea46d58cb59a7d7e6325cb1eb8787",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/remotes/origin/governance/luna63c-artifact-reconciliation",
+      "object": "8f5e785bd2e46c0c1cb2afbb77ba53704adef65a",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/remotes/origin/governance/luna63c-corrective-reconciliation",
+      "object": "3b0bc14df01ef73e0d8c91e08d93c7d2b86bc0e1",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/remotes/origin/governance/luna64-r4.3-freeze-20261010",
+      "object": "f117ce51e7a805564e37252d3b5c99bda163ce57",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/remotes/origin/governance/luna65-r14-documentary-freeze",
+      "object": "0511762b46aa8fe33494624a9290611727e7ae51",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/remotes/origin/governance/luna71b-c4-1-ppc11-freeze",
+      "object": "11b6f52e9aa6725af69bcd3cd098bb2c62e78b76",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/remotes/origin/governance/luna71b-c4-2-checkpoint",
+      "object": "e91818a5c974282e848dc43e52d3c0a534dcbf45",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    },
+    {
+      "ref": "refs/remotes/origin/main",
+      "object": "73aaa50f97ceab322907875ae4dcf23e7541c3b5",
+      "type": "commit",
+      "upstream": null,
+      "symref": null
+    }
+  ],
+  "ref_counts": {
+    "all_refs": 246,
+    "heads": 29,
+    "remotes": 35,
+    "tags": 0
+  },
+  "worktree_count": 23,
+  "local_remote_tracking_commits": 516,
+  "all_ref_reachable_commits": 855,
+  "reflog_reachable_commits": 523,
+  "commits_reachable_via_ref_or_reflog_but_not_remote_tracking": [
+    "009f574e8f7432cadacde6cf167170cf66088f6e",
+    "0204d7612771a62494f15d7611fb13c6ed01fe45",
+    "0263888f32e7ec479bb675300369a80ecece989b",
+    "0324713e713bdda4cd65430fe0f0d06edd5c2a19",
+    "03b86b3bb1571f9e881f1cb016f820b990395f66",
+    "03eb0116bc030e6255ab4f763af9ef214bb73796",
+    "041894e4c78200d442d5c6d5e21b51f7cb003fee",
+    "04ef4d0d4047c60ef83982fc7ae64bdce8633eab",
+    "06a77f6b6d2bcaa0ede1a3c8c64349651860dcf1",
+    "084b84340b294482da056d232a91798613bb702f",
+    "0915fe662ab9d2eb4727feaf294bf78303731abf",
+    "0ac83d7624c3210346a2a320b70c193540581b34",
+    "0b16bc153317484314275bab7cb8cd1daee02371",
+    "0b185bc09e166b567c6b02b693f7362045ede63c",
+    "0cdb5338bc4ad533711c0be1767cfcf7e576e8c7",
+    "0d2ea23c3e60844a871bf6d6afa7ba34bf4d9531",
+    "0db88b9b94bd2f772a5dc8b150217f2ef619fc7d",
+    "0e3133a7b12d8544ff384967dcadaa301eb61812",
+    "0f9f5f9113d120ca95ba831199e821c76e1c4455",
+    "1070e040f86ae6f6b7dd561cdf2c3856b6388e40",
+    "10fc8d5e0dd92512ab00e50e7ef9b5ee50a822ab",
+    "11137b6536c6bfb4355537a910d5a8b9f46da56b",
+    "123871362b7c5670631bba8540610a0899b49a7a",
+    "12ea47885a6e27869eae29b5a6f3dd32c859e605",
+    "1704be7f0ad72aa3b0e1dd0e600d5d73867790f8",
+    "178507319e4e0d3050196ba4d76bc8add9f36903",
+    "1792972692ebd0ebcf51522ee0b8e7300702f927",
+    "17b3f482a97464db0deac7cf13cf88e72a5373ab",
+    "183ee64223250c890b912e88de1b69178e9288b9",
+    "192d53855f41b3a92e4f61533530906aeb9ab1d0",
+    "19586c2afc55597f23fffcf329142570ca00fae8",
+    "1984916dd567ff77bf891a0a971ac3bbb719f64d",
+    "1ac3a6895b3c6b0eeb2effe34b602127aa808724",
+    "1b133682dc1eb5e15ee209162a794fd827d07723",
+    "1b72613fee86ce80edf80032f424404052ca0923",
+    "1bad405c6d0b8033bcb5ef5e763f8a5dc0d87800",
+    "1bc2b22851dacbb2f9e78fb7e0d5a96c457d45ad",
+    "1cf18fc144e045fd749eb621523f2ab3ecffec08",
+    "1d8f4e63fc02db5937c6a9df2944e3c7b562b465",
+    "1ece5991104293bc30a46137822f4942a193c269",
+    "1f33c2ae1a87afd760d056b7ef5037965a58cf24",
+    "1f858401d382c0da7f1ac74213f3a8df3b7e1453",
+    "1fb50ad0156ed8200bbedb326e41ce8cc14b7a44",
+    "211aea5dc416dbc35e0e71757ac5daebf49a099e",
+    "21a8876739d8154771205d9af3b7001a04a13f29",
+    "21e3402bbe28b8f9b613933b35d1d45100f7e204",
+    "223197e4b8ba5593c91341c30b1bdb63026a616d",
+    "2451804b67d1bd5ca50561151bc6cd5e3ca8df22",
+    "25ebcc863bf5a2b2def3b3d6dff6fcfe1745649a",
+    "27633cf5db6369551839a2f6632ca3a3df238fa5",
+    "2a4ced4dbbdd0365ff8c80a3bb77c33d0bb7a5d4",
+    "2c783dc7f8e7165508e215d7fac48587e0217819",
+    "2c8f7cd493ea7204e8e17060c29d29fd26ba2047",
+    "2c91abb293d9d58db2a753990b4e3a4ba4734c96",
+    "2dcb8367fa62e9969279f375fe9a2ebe3aad80f8",
+    "2e5b2970e968419429c3f1136497cf97a039c7e0",
+    "2f65a073e609883e2a612fb507bb1ec493b0080f",
+    "324e83d19f5f8dec841c069186da5be8c6c03f84",
+    "335dd1d21a42b656024d4f7b28a95658be96a459",
+    "343dc180af24ce43191ee1d42eb153e854a3b766",
+    "3639b5669569d69f9466955f68981cd17cf4fd76",
+    "36c9dd0ed8346436da483fac54ed09aef91beeb3",
+    "3763e5a99b5a5c26b17e01d0f3613a8f61304b9a",
+    "378152b43e2321abc83e124242c1ac878bc2f48e",
+    "381f97118c3226dc02e6091b8b1efa3ef35cab30",
+    "384b53939d42ecb84e386a6326ac1d8f6aed0a6a",
+    "38f2259e4e41660e17cf4a71c57a18748cd40e88",
+    "3a259bd6280db0a114c0ccf87f24038a65b69948",
+    "3a38a79faf59ebe1269bf62fec046048dceb9fc3",
+    "3a8d1fbb146747ccfd4dcbd72700b891c6dd5d5d",
+    "3c4ddddb198bda1307cb7b1d3f8b1c4b66996cf3",
+    "3c595d12abb5ee83d1455fe71c0e81dd4f3f0d9c",
+    "3d657e4d3d642ed618b050ce7cb8ecde6fe9d42d",
+    "3d82b5f7d8960a37442f2858b23559e15870c1cd",
+    "3db7cadf92955d446d83ddf3a7e87a43eda69e16",
+    "3e278d4fcdd214e021d011e86a4e4ac6d9260023",
+    "3e4132f6875d685da3e5319b2674090d182a2e80",
+    "3e5f0cb730d5b9f1b7f418df35b75c7240a59d3e",
+    "3e6887b193834418359c9c5c7ec51c9552c3a504",
+    "3fe4f3b8c19ec0e1f0edad4e93a388795c9b8641",
+    "3fff7950817084d97bb6fe8a52a25d40615cc042",
+    "41acb9b33247cdcff97fc1f069002844c8c87672",
+    "427e9189b25ec5e7505bdb8dbce83700987d40b9",
+    "430b60ed3684dde1d4f618d2e4c8d23410d81928",
+    "43d48f84b26485ce0b9faf59f8bc3f088f536679",
+    "45e8bf503fc1daecf83aff522114795b5d5b3e66",
+    "4794ebb9a247ac50bcde5026a7533d01bef4f5e3",
+    "489cd09c7c2a74073f18a611a2a3de3af0139fee",
+    "49fa14d0b0e2aa6cedbd2e2e5c50062ced34eb5a",
+    "4aae1e273ce4ee03fa4f4b169bc17e93c1ffbfc9",
+    "4ae94150b7cef1ca2bb346ce047da7d667f1ea86",
+    "4bb5a641f885891714fb1a9a7f4f4a0cc94434ee",
+    "4c1b2c3e6ff7c832c654bd8edce3490fa0be4b9d",
+    "4cb00ea6ef177061abf3eb4fa37b82aa21711997",
+    "4cb69037d5d8ae5cb8ed644803fbcad29eeebc43",
+    "4cce0ba60b5a27d391afa9f1aba2e9672446b0fc",
+    "4dae17446c5b2359a749739b2271f0847ffb7b7c",
+    "4e1da0fb0114fcec0c1dab4b4c5fa169393f74da",
+    "4e5826ad5c61df5f3c1c42fb76fcd26e922e4acd",
+    "4eb826d45dbc6f786506a7ac328a33b45c571753",
+    "502450463b64fa159927605ffa6438275e691ed6",
+    "502b6719747f8ca6290a0b021bf7346b1b8121ee",
+    "506e5c2bdea540baf4eff94bab6c71583635c483",
+    "5140d1ea3a94333105e2b35c490f7ca9c59ef4f4",
+    "5193e589df17f298e11adb5790cd4454e50b821a",
+    "51dcdca1beb25b9552f88eb936ba0b688bad3dab",
+    "52a374c0e231014ed658d6637798cddaf58d3ea3",
+    "534ff3a833cd814b9ec23c3c09aa83a5f818d159",
+    "53efdcb750e870e5fad0caf27478c874a5e8ad8c",
+    "5470f337bbe7a73bdb97f8850514d5f2e8e8addd",
+    "55b9ed4b9387eb25b714969b075076defd6e1505",
+    "55f0c561ba92be7e7a19b297a3f442e50eb5ee83",
+    "57bda7384c9d5ae52e5536595748fcb97b4c8670",
+    "57d16e7439b5f88928d68f4a19403fcc81d8dd8a",
+    "57f04ce4bea11cc11b576aa48bef0d715aa0c96c",
+    "584b10b926bbd9d4d78c9f9b07431f7079f36e3d",
+    "585c216a0ece3853c0c4f27a010a9fc06d17e38a",
+    "5a4f8aa18eacf4959bc553e851543b8d26b4c9e1",
+    "5b5f550f650b4095836bdceb0232e95c1ce5c933",
+    "5c9303922ad019b2306b68b09c19b958b8dd7e55",
+    "5d84b2cd626c597bb69e9becca4437e6a5212a4d",
+    "5daaf0b949e8ab983b5c164ed313a43336cc40fa",
+    "5eec108d76192dc85197960263ecbc5e9a26b03d",
+    "5f42c7212bb4f040ec4fcb24f1c96c53a4416f7c",
+    "5f5dd86a7a5f2358ff042166115420d083bd086d",
+    "5fb0e9d0ba78b8d3c63579fc80167d57fae2f29e",
+    "60e876491489e7c9dd66bac6feb3a25570689767",
+    "629f9ce41fc75e4e777c92abee374c33ebd8ef1f",
+    "6484c3e4c7dddb482d27d34be7b5699b1c03209c",
+    "65863c83b099a0a2f892482181c59a9b874808a3",
+    "663add83bc47ab65c9f0d999bcb4606b4cfd1338",
+    "67209a84c307ec3f305d82be0e05542b31153541",
+    "675b71726d46b4474dc9705fff5ade0f8b9c41ee",
+    "684117dda5e5ffbc4601b906071ae1f33a7948c2",
+    "68d7a2ad1b029b1ead5ac5ea2f4ef25180753a08",
+    "68f1dacd050749d1068bf6a3ba1f426a071f23c7",
+    "690f0e7e6d8c539d3a3d6afab57e9cf85dadd174",
+    "69b84b470e70ad8875c8726e3922a9a1c01ab0ce",
+    "6b871d07e1f162be391c68e72705a0e6b55b6fcc",
+    "6c0a4b08924f153899c322d8ada20bd399ff6f09",
+    "6c1058c3474ab63459c2e744216e674e70e08b88",
+    "6c8b48c71fe819e186e2a8189a4791244355ec38",
+    "6cf9782bee1b62879a861f24441256cd5056c6b0",
+    "6db1e4754851cf86389ef6c7b562a6f7606cfacc",
+    "6f237f8e5cf213e0351e50257c9f453df5c510c6",
+    "6f5aa2411522312d25608db4fca7aee910d63014",
+    "71049bda06f820d1412ed840d3d9dff015d776ee",
+    "7167ac8e7654afcea8470a0b72d31f3822cf9b80",
+    "717ef0e99d39660c53fd9767b55c6135d0d226b2",
+    "72dfd207f13da331f58fbaf8cb0f3ffd2de12757",
+    "75188b51807d678ad5a1297f8c7b838f28c377b6",
+    "755a6aa3aa35a7d8cf531679927f981d9ddf1913",
+    "757c175ce6227118e01de8a79322632a1b8c1a0d",
+    "77938eb04aa058246e19267326747101664cf777",
+    "77c12ea056d801a7bbf0f7528594053f168ad3ed",
+    "7953866eee69f78a10f86e32226959a94cd4d21f",
+    "7a8fc05d619a8b88b8ed8a8bb3d6392d28f2f586",
+    "7c82e2aaf324a6b34eb0f4e22367cf597b35c7cf",
+    "7cfafa0bafa8d53d27c6f62aaecc0696d73de0f4",
+    "7e68b08e5d6487972b791f6e98403fa76df98dd1",
+    "7e998a3f2385695b7a3b2614f8cd096430db2603",
+    "7ea1164e59bed9d3f1fd76c8163bcea82980ed52",
+    "7ed12fbde0a61df3584a4d58f15e87541ad620e6",
+    "7f7f6d50716d8789cf436c8119ef44e52e7046b8",
+    "7ff1a80158408f3a354dd3f91fa36c39f73abc95",
+    "81daffb7f7266d2cf21aadc96113eaa92571c1d1",
+    "847ce03ebb5aee88cfc06e7b2ec997beeee8ad7f",
+    "847eb00cde3ff363ab79eba28c34b6247c6e8785",
+    "8480fb1ea8071f1b76fc5dbd8ad2428c80ccd6b6",
+    "854bfb7549db53e6c57331d660e530c320f2e2cc",
+    "860faafda68a95eb63c102bd72816ad09883d638",
+    "8755986af32b7027586bb2c5f5db31958de59f3f",
+    "87e0b875a5db0b5a998b7141e56c98b0b265e35b",
+    "8831b2bc629664321c4f05f045143f216205aa00",
+    "88ff394ceebc7263284cf6ffc464db8512f9a570",
+    "8914d64cddae6d6eb44894c262cd4129c3048177",
+    "8945b3138a4b402eae382e8b6c2afd51ed98c9c4",
+    "89751944719d295dc028397a56470c6cf2b40d08",
+    "8a8fe8bbdddb2b80d067b7efa5826eee1cb9024e",
+    "8b50d92e7509b5d4ea0bdcd0dfd0776a0a2592e4",
+    "8bbde2258a86c6c6756b00bab6ce565d5d7a50bb",
+    "8bec18ae04df617e484f13be79a8db5b19a31c86",
+    "8ef236a401b03adbe3038cce54f36827f8c51253",
+    "8fe9f7355fe10132f950bc0215f38d7cfa7f322c",
+    "90ea70256dbd63a0d2e23a2f0069c78e18088301",
+    "92236a423b67278f175291e84073eddf991b3e4f",
+    "949acc97ed95900c925b27c450980993b56f96e2",
+    "94b9047fd8d527c2d57f0240b3d4148c6cb51c55",
+    "955e26256f8bc3d17ac6f8164e3102572a39ee9e",
+    "965957c6c00f93cf348a3cf963a414a78d4fe10f",
+    "974db6585ad615cdf166e3f5d5fc13799ad77ab2",
+    "979a943c1741bb200d36160cb66e868da63f7f6c",
+    "97d0cd336742d31ebe03dc92cbe403f571460dd8",
+    "991d32f6c1893bb14bba66ce3a8c768ae7c39438",
+    "9975e62a387da34da6242603b9010180383e05dc",
+    "99d2a2b9f93bbdf979fc6d92e921b8106b9f14cf",
+    "9baef06cd2cfec9d0d6ed5254c4af0a53cc67922",
+    "9c59519374678f6c1f7a691ca3a844bb533c117b",
+    "9dd632c1dba9f0b3f3865e1262739da13a9cb7f3",
+    "9e8453490807723f8414e6cded30ee08aff85df7",
+    "9f78cedf8f288e4a35dfce9698b6332dc9173953",
+    "9fc026dc1f9c6f9a32abc5ac7f9a71df0ede57cf",
+    "a0d995385a7c98458645d2df10da2ddf5480598b",
+    "a150094cfef4e1bf2f04e71a4347d5b7b8bd392a",
+    "a1a2c1718ed9d2aee33e27b7915f16ca5154dbdb",
+    "a208ac5a00dd3d8a39e7116b369823ce8688935b",
+    "a2517fa03f0cfb950165f6f801a227df132166ae",
+    "a365c6407ea457c5d33a6e329af7b2dbcd9bc294",
+    "a38447350cca0cff6e63a0125fe9ccb7d2f48b51",
+    "a48fe42cbc64b3016ea58dd6f6a9e09e27bb905d",
+    "a493a82a65b8ccbf70a41211f9f4e6480ca5c198",
+    "a4d0126a976b08fe6253843d2f90b139caa07536",
+    "a53098397cd1fcb8eb18ad331c258d23ceb072d1",
+    "a5e2d617db5604269508a010bca0229b0ac25dd6",
+    "a6252443d723d4b50984c1b563592f8c08203358",
+    "a674816031bedfe318c3a8cf832db21a723ce08f",
+    "a6754b3547a41e1232e7f7b4f7bab7c032aa0825",
+    "a99a279266912507b16fd38fc1423d48f7559639",
+    "aa8b2d873aaaa7ee53cc8c46a7fda809ce926d0e",
+    "aade3d6a96b57e30fe5eeb52bdbf28f00a8d9d22",
+    "ab1c9fc198dd3932acdb6e0b30c7f2e5e9c3d853",
+    "ac94a2c8801a6230a45527eff01e50c3bee3c244",
+    "ad275949bb205f295dab18152b6519880e293431",
+    "af5d7494f250cf2dabca881aa99a495d6e75077d",
+    "afc8a37ff3ddb68830726aace89d6583c3437674",
+    "b02c8f68f38b8169f259339fc16eb66ab30f69d9",
+    "b102fe9811cc271fe1f74d834bab309b6fb6cb0b",
+    "b1fe9e67ec2cc08a7e7b9d41f46bd950ec9b2701",
+    "b221c05aa6183841b784d91abba82feb4facc8a1",
+    "b4226ab94490e3a71e5e7c60ab6cf679103009ae",
+    "b43151c6034205bdd0236030b5bf672581e7246e",
+    "b6069922665b42cdd8d44840ce90a8b159686733",
+    "b649fbf76a5c62e0cc0530faa8706910b11bcad8",
+    "b6d11307cebbd68385e574ba2eb90973760e2524",
+    "b73607683d76b17950721d95c7781837fa55b7d5",
+    "b7429b1a95323752ac3d9c27f4778a40a441ac8d",
+    "b781a60ec9fbd6d4a173e569ac6378bcfe7e9321",
+    "b79c932eb013c8b4eda1c38302e730d79dd0d72a",
+    "b803aa2b09ded2640e2d6c96e1e3edefc5ee741a",
+    "b85eb31e7801c1c8c3ee48968978cfe40a5d8aef",
+    "b864a72526dcde0ff339c012a2bf5acb38de8560",
+    "b99d7a684312ab21560a41a322ae2986a5713448",
+    "bb0dc8751bc5eff00294b9fc79a494ef77d15261",
+    "bc08e767da6890a8c4af2229f545d1afd57ebdc8",
+    "c073db3a5d4ce20c87b604fea3296a1ce2635888",
+    "c0b8c412cdef51a357ffd285e3e9d204e3c81b29",
+    "c101a3dc5d84fec364328e590723dabd3d8b7b0e",
+    "c138b8449e3b3362a748839809e141a2897e1c58",
+    "c17da667aa74364201b5bad2e0fb550587ba0ac5",
+    "c2dbd9101260aa0e781658e6fdfa8dfae2fa997e",
+    "c32552c59ce4766939c010cdeace5e67a019475b",
+    "c3eb9c337e4c9ade1a73fc4f14dd41c5c0cea8a9",
+    "c6237f8c597fb76a16452d6b9754a7dc00519fdd",
+    "c869432427368684d0e96b7e4ad056e7cd3a3320",
+    "c884f71cb2596d97cd72ec65f17bffdd703a5467",
+    "c9390c58570be5203d9e72a8fb2def3796751039",
+    "c98ce78cca80d72448765f2a388669792355326d",
+    "c9a32c5bc7ba569408f61c2c9635b691b44264a0",
+    "ca3c499ae7d7ae9b621f0c986723b626049214c2",
+    "ca6c8e3a3575602793edc51e02cffc8d02d44da0",
+    "cb4ef6eee2f6994898ca44c232694c5d18e7f78f",
+    "cbea3c8e604b7b1f356f0c8dbc97df8fb79714e0",
+    "cd16309c62fa04821150fc2097fc61ff18d6fac3",
+    "cd4cee862567115ff5d6150bf2c4fde8ca01aaba",
+    "cde254e8cc984235851c81390abe7e7780c1e16c",
+    "cec722de2e743164c38154de19246b8497a02c8d",
+    "cecf98542197f8ee1a28f4103bbfeaf9edecaceb",
+    "cef41a2f9a0af947ba25108baf416bf1e0139bdd",
+    "d0f263da2261c54d03c57e17055d0c88ba2053ab",
+    "d12be77502481c63dba9b396d0249db7d862d479",
+    "d13ee98346ff5cca87ed236258324207e0027c1c",
+    "d15a1f3ff1acb0d080dfee7b7bd8e7b376e4fe5b",
+    "d1ed4f75ad29ff068ba48099b0cd7500f8f32915",
+    "d2c4a418d60ee500274d024d75a52b7078abaa2d",
+    "d4190ce3c147098e1e8ecdeb099ba0783802484e",
+    "d457d7f3178ee4922af1cb059794ca78396e7335",
+    "d4f01e92e8532efb32671904562a3dec0ecaafab",
+    "d54588a5213d8650df6c45c1e5caeb1fb87b1ff6",
+    "d5df548a64a1bca5c0e3a9732ffae0c161084dee",
+    "d5eab82593c53c98d587a8bef00031ee06815501",
+    "d6da0c604572184c5fdf3c8a8b7378c135f31d23",
+    "d71a0be90c63cae92deb63fe5cc6b1e30f12257e",
+    "d789abde837fe1090433f8ac8e67d883e657ef69",
+    "d9031b4b096c2b9b8087f7da1b3703dab09744e4",
+    "d95536f84ec584c8a563fab1b33b7c402a53f771",
+    "d9d070849965c0905ea67380d5ab482a8ae52be3",
+    "da5c05d639d9c85ce6291bd8fba05b2f1356753f",
+    "da7075036414549b45ff5b853c097c332b0db6b3",
+    "db8892f6b45b5e90f03028d760fcc909f835d1c0",
+    "dc5e52de0dad9d6bdb06cb596feecf63bf2a5c65",
+    "de5ca7d4349a5112429d715684a7013c14acbcb8",
+    "de8526c0aac96173260535bf73a834e05459e7ab",
+    "deb932abe3ded93a081b20bb7112af93eea3f608",
+    "e05e3f2978faf1029bbea81b703ff54117d01fed",
+    "e21baaebb1f587ead7fc785b2a2205aca4de6415",
+    "e2951086525599081888bf42d82126dc5d822530",
+    "e3041ec72d2aa5a016950481f80b4e916a9db25f",
+    "e39e92e8b30a07060f174d907acfb0a69ef6bdc9",
+    "e39e9891846e045fbf0145943f8153e0a87582e6",
+    "e45d21f05132ad376e3a55c580f661bc3acd8a32",
+    "e4a7e7a834b58451c3ecc1f7f6283be9b070e3fa",
+    "e658b25b73e817a91c192f77944b5963a6c4b347",
+    "e81b060b7eeaf1cdea09cbf4da024054e1640fa3",
+    "e85dcd82bb901f50d994047c234494238fb61c9d",
+    "e88bc08e7fb94cea064bab06f90474da89021bb5",
+    "e9368df28c6759283019ebd9c0d636307f108865",
+    "e9563be490ca6ebe39b896e73dcf54c9e1de1372",
+    "e9b148c65f23c1173affeb623bafe54252e507a9",
+    "e9c64bff1c7442ca59758fcb36039d216fff51fc",
+    "e9f4bc03881a1dfed01771440e92cc194860696e",
+    "e9fd4cbfe899eeadffc04148a771b19724f93928",
+    "ea8bfb022ad88f109eea33db01053f5481c660ba",
+    "eafc3fd8403e61a0a81aabcd6c74f0d3619b01a8",
+    "eb9ff896b085ebb82105a506ad373d87682c80fc",
+    "ebed315a2f2548c26e30a771a4ca8f46ea931d10",
+    "ec185cbd47fa50d5c3244481c7574c64806d2b49",
+    "ec4b18f3c1350f196dcc13e18c45cddaa150572c",
+    "ed7e6ab2ab8f96972d596da43606b4e30b3454a0",
+    "edecaba2a3219fa6adafc3849d9b6fca47079fbd",
+    "eefca3e4f4a0dfafd6a3656bc51cbe8164df99c9",
+    "ef8bfd46ce48cc69b889193535c8ed488342a400",
+    "efc5e7a4e2c0824ab42d9df2cbf1cb7c08cb701f",
+    "f089284a6c2360a65f6111fbcd88ce42a0041cb7",
+    "f15ff1e847c21e524a67fe48e6dbb645402ea5f7",
+    "f28ba8db001309f2d7491564d1eb12ee383da5b7",
+    "f3607cf98bcfd48cff6ab48b72084cfd93e3fb2d",
+    "f3db4341f984eff74b41bf404ade1a5bbe063403",
+    "f50841d6e64105ae74cc739694f452d2e87319ae",
+    "f53046c2a8d92aab8e6ce41e18902dbe620a19da",
+    "f6330c7ae5a2850cfd98a9762e74657428be5ad6",
+    "f6611520c9c2a145fdd23cf733c789d4e2685c6e",
+    "f8b4b3a2b6ea8a7441f4efc032c2c6170907ded0",
+    "fab87927fddbb507d44fb8fbb85f4d9e56292743",
+    "fac5a90bb93a729262b9e52829245d8d316f15e9",
+    "facaae1bfeccaa6692f952d781a73774d9732948",
+    "fb0965e5b50286fe7990571bae6339cd4870c915",
+    "fb899eff6b6c52843594ca2223094638af3c3c0c",
+    "fce008f5fdb2c39ceba5d179ffc939185f304443",
+    "fcf246d485069cd9114f072f8eb8210f8509db24",
+    "fd58b38fb2e1b386f83be3244bcff24bef87fd29",
+    "fdf17b6031910901b52ab5e9445d870ee63707dd",
+    "fe2f64260a29c74f0af374fe3138cd7422c90858",
+    "fe750b19e31586e8847b650665e4b9b96b7a622e"
+  ],
+  "reflog_only_commits_not_in_any_ref": [
+    "430b60ed3684dde1d4f618d2e4c8d23410d81928",
+    "6db1e4754851cf86389ef6c7b562a6f7606cfacc",
+    "77938eb04aa058246e19267326747101664cf777",
+    "b85eb31e7801c1c8c3ee48968978cfe40a5d8aef"
+  ],
+  "unreachable_objects_from_fsck_no_reflogs": {
+    "blob": 1257,
+    "commit": 4,
+    "tree": 14
+  },
+  "unreachable_object_counts_by_type": {},
+  "sibling_tpcn_directories": [
+    "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN",
+    "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN-luna63a",
+    "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN-luna63b",
+    "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN-luna63c",
+    "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN-luna63c-E",
+    "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN-luna63c-T",
+    "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN-luna63c-W",
+    "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN-luna63c-archive",
+    "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN-luna63c-corrective",
+    "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN-luna63c-governance",
+    "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN-luna64-r4.3-pilot-20261010",
+    "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN-luna64-r4.3-reward-lifecycle-correction-20261010",
+    "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN-luna66-functional",
+    "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN-luna67-four-class",
+    "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN-luna68-prediction-omission",
+    "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN-luna70-corrective-readout",
+    "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN-luna71b",
+    "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN-luna71b-c4",
+    "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN-luna71b-c4-2",
+    "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN-luna71b-c4-2-gn",
+    "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN-luna71b-c4-2-h",
+    "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN-r14-publication"
+  ],
+  "sibling_directory_count": 22,
+  "registered_worktree_paths_not_matching_siblings": [
+    "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN\\_worktrees\\luna71b-c4-2-j"
+  ],
+  "sibling_tpcn_directories_not_registered": [],
+  "ref_namespace_counts": {
+    "refs/agents": 182,
+    "refs/heads": 29,
+    "refs/remotes": 35
+  },
+  "git_object_reachability": {
+    "objects_reachable_from_cached_remote_refs": 5366,
+    "objects_reachable_from_all_refs": 6135,
+    "objects_reachable_from_reflogs": 5563,
+    "unreferenced_object_type_counts": {}
+  },
+  "branch_attachment": {
+    "local_heads": 29,
+    "heads_attached_to_registered_worktrees": 22,
+    "local_heads_without_registered_worktree": [
+      "archive/luna65-rp2b-local-drafts-20261015",
+      "draft/luna65-phase2a-supervisor-scaffold-20261012",
+      "experiment/luna63c-stage-a-certificate",
+      "experiment/luna71b-c4-2-bilateral-capture",
+      "feature/single-replay-3d-plasticity",
+      "governance/luna64-r4.3-freeze-20261010",
+      "main"
+    ],
+    "origin_remote_branches_excluding_symbolic_HEAD": 34
+  },
+  "per_worktree_head_reflogs": [
+    {
+      "worktree": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN",
+      "entries": 144,
+      "distinct_commits": 131,
+      "commits_not_reachable_from_any_ref": [
+        "430b60ed3684dde1d4f618d2e4c8d23410d81928",
+        "6db1e4754851cf86389ef6c7b562a6f7606cfacc",
+        "77938eb04aa058246e19267326747101664cf777",
+        "b85eb31e7801c1c8c3ee48968978cfe40a5d8aef"
+      ],
+      "distinct_commits_reachable_only_from_this_worktree_head_reflog": [
+        "430b60ed3684dde1d4f618d2e4c8d23410d81928",
+        "6db1e4754851cf86389ef6c7b562a6f7606cfacc",
+        "77938eb04aa058246e19267326747101664cf777",
+        "b85eb31e7801c1c8c3ee48968978cfe40a5d8aef"
+      ],
+      "reflog_commits": [
+        {
+          "commit": "11b6f52e9aa6725af69bcd3cd098bb2c62e78b76",
+          "subject": "commit: docs(tpcn): publish reviewed Luna-71B PPC-11 contract"
+        },
+        {
+          "commit": "54315aa8ac9340233c19d14f720eae771639fdea",
+          "subject": "checkout: moving from feature/single-replay-3d-plasticity to governance/luna71b-c4-1-ppc11-freeze"
+        },
+        {
+          "commit": "54315aa8ac9340233c19d14f720eae771639fdea",
+          "subject": "checkout: moving from archive/luna65-rp2b-local-drafts-20261015 to feature/single-replay-3d-plasticity"
+        },
+        {
+          "commit": "3a8d1fbb146747ccfd4dcbd72700b891c6dd5d5d",
+          "subject": "commit: Archive existing Luna-65 and RP-2B local drafts"
+        },
+        {
+          "commit": "f117ce51e7a805564e37252d3b5c99bda163ce57",
+          "subject": "checkout: moving from feature/single-replay-3d-plasticity to archive/luna65-rp2b-local-drafts-20261015"
+        },
+        {
+          "commit": "54315aa8ac9340233c19d14f720eae771639fdea",
+          "subject": "commit: Add read-only single-replay 3D plasticity viewer"
+        },
+        {
+          "commit": "f117ce51e7a805564e37252d3b5c99bda163ce57",
+          "subject": "checkout: moving from governance/luna64-r4.3-freeze-20261010 to feature/single-replay-3d-plasticity"
+        },
+        {
+          "commit": "f117ce51e7a805564e37252d3b5c99bda163ce57",
+          "subject": "commit: Add RP-2B corrective review package"
+        },
+        {
+          "commit": "96fb4aec100578db6939136b4ed7985478f18bb8",
+          "subject": "commit: Complete Luna-65 RP-2A corrective synthetic probe source"
+        },
+        {
+          "commit": "f47c48a947e48867c629817fa1031cb93729e440",
+          "subject": "commit: Publish Luna-65 RP-2 R1 owner-design acceptance and RP-2A proposal"
+        },
+        {
+          "commit": "45121227d96c6fa13357c6bdf5fba0d99d8d7352",
+          "subject": "commit: Finalize RP-1 reconciliation publication record"
+        },
+        {
+          "commit": "2a07b1e9f20d758df218981a9a8563c5f953d4b5",
+          "subject": "commit: Reconcile RP-1 constructor contract exception prospectively"
+        },
+        {
+          "commit": "c05cc6d88cb4aa224e7c53b4b4fe3ca0589bc7e6",
+          "subject": "commit: Record Luna-65 RP-1 evidence review disposition"
+        },
+        {
+          "commit": "65de223151ff196c72263f79e50719a7b6dbbd07",
+          "subject": "commit: Publish authorized Luna-65 RP-1 host inspection package"
+        },
+        {
+          "commit": "948f5e70a43a3524dfef6bbe8f04bbd041770fd6",
+          "subject": "commit: Luna-65 S1-B: corrected verifier (CRLF + original-identity binding) and verified retained evidence"
+        },
+        {
+          "commit": "5f089035c9582f6e1d3daae92fc825307c3ae57d",
+          "subject": "commit: Luna-65 S1-B: add independent verifier and attended wrapper (not executed)"
+        },
+        {
+          "commit": "86bf3fd16a6105300124751260e6b1de80b14538",
+          "subject": "commit: Luna-0: publish Luna-65 S1-B execution contract (governance only; no execution authorized)"
+        },
+        {
+          "commit": "08d67859d920364182a5508a1e797a61ce7e7a15",
+          "subject": "commit: Luna-65 S1-A: add reviewed synthetic ledger-sizing generator and governance record"
+        },
+        {
+          "commit": "b4e0c337ba2c217d403982aeb77468bea6df12dd",
+          "subject": "commit: Luna-65 Phase 2A S1-A implementation authorization review (governance only)"
+        },
+        {
+          "commit": "fe7398d1b88741afc83a15733205fedb24588a26",
+          "subject": "commit: Luna-65 R7 preimplementation readiness package (governance only)"
+        },
+        {
+          "commit": "33a753d3343ee6b2c3f5b40349d1cf06895eaa74",
+          "subject": "commit: Luna-0: R7 owner decisions and profile closure (governance PASS)"
+        },
+        {
+          "commit": "baf03722e3b8a21e3af65602691cdb63663e1dd3",
+          "subject": "checkout: moving from draft/luna65-phase2a-supervisor-scaffold-20261012 to governance/luna64-r4.3-freeze-20261010"
+        },
+        {
+          "commit": "9cb909a95392c971b98ffa796a015ab90e032f1f",
+          "subject": "commit: DRAFT (nonoperational, unqualified, not executable): Luna-65 Phase 2A supervisor scaffold, BLOCKED, no approval implied"
+        },
+        {
+          "commit": "baf03722e3b8a21e3af65602691cdb63663e1dd3",
+          "subject": "checkout: moving from governance/luna64-r4.3-freeze-20261010 to draft/luna65-phase2a-supervisor-scaffold-20261012"
+        },
+        {
+          "commit": "baf03722e3b8a21e3af65602691cdb63663e1dd3",
+          "subject": "commit: Luna-0: publish Luna-65 Phase 2A R1/R2/R6 blocked corrective evidence and Authorization I entry"
+        },
+        {
+          "commit": "2e6095dd72a82fcea0b0634776bca0ea5f262123",
+          "subject": "commit: Luna-0: Luna-65 Phase 2A supervisor simplification R7 (design ready for owner decision)"
+        },
+        {
+          "commit": "1d6325f3ca738b32a6ee9e1a5613d2faa9458770",
+          "subject": "commit: governance: propose Luna-65 Phase 2A supervisor auth"
+        },
+        {
+          "commit": "d11d370a7c97184529845c9cac984fc22018c576",
+          "subject": "commit: docs: publish Luna-65 Phase 2A R2 policy"
+        },
+        {
+          "commit": "eaa55bdd777da348ed317360f1482eb00b3e279c",
+          "subject": "commit: docs: specify Luna-65 supervisor qualification"
+        },
+        {
+          "commit": "61b034931f00095549c278c249e9379dd27e8893",
+          "subject": "commit: docs: record Luna-65 Phase 2A publication status"
+        },
+        {
+          "commit": "ed234e7fcb2f6d8343aeca2364bae82865a9f975",
+          "subject": "commit: docs: correct Luna-65 Phase 2A fixture contract"
+        },
+        {
+          "commit": "dc62469a099f27f2b8d43142dd8aecb407b2e663",
+          "subject": "commit: docs: publish Luna-65 capacity contracts"
+        },
+        {
+          "commit": "5a374c9ddab30517d863696a28f7f801a31f26bc",
+          "subject": "commit: Close Luna-65 Phase 1 API"
+        },
+        {
+          "commit": "abb92b1d43a57fb9ab37bb27e847fef4480567ac",
+          "subject": "commit: docs: publish reviewed Luna-65 interface governance"
+        },
+        {
+          "commit": "f2ce64b1c514d6e2cf5fc9b741418e5c944da59a",
+          "subject": "commit: Record Luna-64 A6 R2 reconciliation publication identities"
+        },
+        {
+          "commit": "4543fd6d4c483f5fe31391fb161b45913af651c4",
+          "subject": "commit: Close Luna-64 A6 R2 reconciliation publication"
+        },
+        {
+          "commit": "c25ff3b7747abc2087237dbc1859c0c7bef4ab16",
+          "subject": "commit: Publish Luna-64 A6 R2 owner reconciliation package"
+        },
+        {
+          "commit": "f1cfb6e98cfc872753ea262bdb56e4a66ab40c05",
+          "subject": "commit: Governance: close Luna-64 A6 owner reconciliation R1"
+        },
+        {
+          "commit": "f00dea13d64657cbc976d21daf50739ddf9722fe",
+          "subject": "commit: Governance: publish Luna-64 A6 owner-policy reconciliation R1"
+        },
+        {
+          "commit": "b758b411e568b41c516228e7d3bdff26058114cc",
+          "subject": "commit: governance: close Luna-64 A5 publication record"
+        },
+        {
+          "commit": "12f84a41fe7c91c17c5df8e975fce24efbadf9ad",
+          "subject": "commit: governance: publish Luna-64 A5 blocked qualification gate"
+        },
+        {
+          "commit": "f86c25844a4863ac57cd6634f364c28bcf2f511f",
+          "subject": "commit: governance: close Luna-64 A4 publication record"
+        },
+        {
+          "commit": "7bd440565c38dee81ace3606fde3fb686de6a0ef",
+          "subject": "commit: governance: publish Luna-64 A4 blocked review"
+        },
+        {
+          "commit": "8ca543aa6e6e356de6a08edc1ba5c56fb540f9d0",
+          "subject": "commit: Publish blocked Luna-64 A3 execution environment decision"
+        },
+        {
+          "commit": "a9fbe2158b7858a8bb5523f3730af31dbb7ea81c",
+          "subject": "commit: Record blocked Luna-64 supervisor amendment A2"
+        },
+        {
+          "commit": "d20aab249e42575ccc571c9c72153a3bb4b412db",
+          "subject": "commit: Publish blocked Luna-64 supervisor amendment review"
+        },
+        {
+          "commit": "0bdddaeaefe47a97ea6433d82bcc143adfe13b5a",
+          "subject": "commit: Authorize bounded Luna-64 corrective implementation"
+        },
+        {
+          "commit": "a15b973d00fc43408e6e6277b0833c6da342746e",
+          "subject": "commit: Clarify final corrective gate publication identity"
+        },
+        {
+          "commit": "439c0c930489ed032dc10950bbd51fe3f153d05a",
+          "subject": "commit: Finalize Luna-64 corrective gate status"
+        },
+        {
+          "commit": "d965a4ca55b0d06685575f3944f465662c882e95",
+          "subject": "commit: Correct Luna-64 gate publication provenance"
+        },
+        {
+          "commit": "932a3fbf4c5cf011f2bc46f7eb596a3e5467fa88",
+          "subject": "commit: Record Luna-64 corrective gate publication identity"
+        },
+        {
+          "commit": "c6adce280d4f0d5750f0cc66ccd66ea3d8fbf521",
+          "subject": "commit: Publish Luna-64 corrective gate prereview"
+        },
+        {
+          "commit": "515dde66f37ca67c44a39f02e13f2e59b2f10d1d",
+          "subject": "commit: Close Luna-64 R4.3 pilot review"
+        },
+        {
+          "commit": "bc338a48bc05f7e15c4cb84636a979294b88e093",
+          "subject": "commit: Bind Luna-64 pilot worktree boundary"
+        },
+        {
+          "commit": "b401deed8b85728e8c78b93d42922d65fb43f3e4",
+          "subject": "commit: Authorize bounded Luna-64 R4.3 pilot"
+        },
+        {
+          "commit": "ea1b10456cbf4ca726e473076d239a4f6e53b9c7",
+          "subject": "commit: Close Luna-64 R4.3 freeze governance"
+        },
+        {
+          "commit": "3c65f572482211f0c771596fc9852f7e4a1ce994",
+          "subject": "commit: Attest Luna-64 R4.3 frozen content"
+        },
+        {
+          "commit": "64a214e310de3b982b90a8ad215598bc1e9f8b1c",
+          "subject": "commit: Freeze Luna-64 R4.3 reviewed bytes"
+        },
+        {
+          "commit": "73aaa50f97ceab322907875ae4dcf23e7541c3b5",
+          "subject": "checkout: moving from main to governance/luna64-r4.3-freeze-20261010"
+        },
+        {
+          "commit": "73aaa50f97ceab322907875ae4dcf23e7541c3b5",
+          "subject": "checkout: moving from governance/luna64-r4.3-freeze-20261010 to main"
+        },
+        {
+          "commit": "73aaa50f97ceab322907875ae4dcf23e7541c3b5",
+          "subject": "checkout: moving from main to governance/luna64-r4.3-freeze-20261010"
+        },
+        {
+          "commit": "73aaa50f97ceab322907875ae4dcf23e7541c3b5",
+          "subject": "checkout: moving from experiment/luna63c-stage-a-certificate to main"
+        },
+        {
+          "commit": "19caa49d7620062c06ad74d19528e47725f86b37",
+          "subject": "commit: Record Luna-63C freeze publication and lane authorization"
+        },
+        {
+          "commit": "583148e2812b93d519a3dc2821944d08446497b7",
+          "subject": "commit: Publish reviewed Luna-63C fixture freeze"
+        },
+        {
+          "commit": "47dd26f08dfa113565ad41f1abe34888eed0e0bf",
+          "subject": "commit: Record Luna-63C N4 schema review PASS"
+        },
+        {
+          "commit": "9cc92adb56e388d8675d538410b319fd8d8841a5",
+          "subject": "commit: Freeze Luna-63C N4 certification requirements"
+        },
+        {
+          "commit": "87179ba2f5da13da7bc70727e72c000de924ed80",
+          "subject": "commit: Authorize Luna-63C reference arithmetic profile"
+        },
+        {
+          "commit": "e10aad9dd2b4a3fbfd708ac656e89ace2cf20293",
+          "subject": "commit: Publish blocked Luna-63C certificate correction v2"
+        },
+        {
+          "commit": "181b6440821e1dd6beede7e34cab9b6baada601a",
+          "subject": "commit: Make Luna-63C certificate hashes portable"
+        },
+        {
+          "commit": "7e00e4387aedb56eb6fa291da0b4a0d15ff1e8fd",
+          "subject": "commit: Publish blocked Luna-63C Stage A certificate"
+        },
+        {
+          "commit": "73aaa50f97ceab322907875ae4dcf23e7541c3b5",
+          "subject": "checkout: moving from main to experiment/luna63c-stage-a-certificate"
+        },
+        {
+          "commit": "73aaa50f97ceab322907875ae4dcf23e7541c3b5",
+          "subject": "commit: Authorize certificate-gated Luna-63C mechanism"
+        },
+        {
+          "commit": "fe33a965fe866c28f31df8029606d9db2186eb39",
+          "subject": "cherry-pick: docs: record Luna-63C design review outcome"
+        },
+        {
+          "commit": "a0d4c1a191f5312e9aa577256843747bea68b776",
+          "subject": "cherry-pick: docs: close Luna-63C design review findings"
+        },
+        {
+          "commit": "5520ccc373399f51c5f82ec30e79709abe235391",
+          "subject": "cherry-pick: Specify bounded Luna-63C excursion design"
+        },
+        {
+          "commit": "d006e1bc6ff09627df8fe7f6c1213380b953291f",
+          "subject": "commit: Pin Luna-63 governance publication"
+        },
+        {
+          "commit": "dc5ade0348533bc545f9cfa0001639dccee624b1",
+          "subject": "commit: Record Luna-63 governance integration and gates"
+        },
+        {
+          "commit": "9dd37b7f379bd1c6a3ec3c132ead5f53666c665b",
+          "subject": "cherry-pick: Verify Luna-63B branch publication"
+        },
+        {
+          "commit": "a4375d5b1a9091e564f852f972c8de01423a77fd",
+          "subject": "cherry-pick: Record Luna-63B publication provenance"
+        },
+        {
+          "commit": "c404269f4207b2d1a292027bb5fe3fbc304f460e",
+          "subject": "cherry-pick: Complete Luna-63B local PCN design prerequisite"
+        },
+        {
+          "commit": "e52098b2141a3f121f23b512e877783a64ef8baa",
+          "subject": "commit: Pin Luna-62 review and Luna-63 governance revision"
+        },
+        {
+          "commit": "e191cebfcd3a31cd4a1339fd8f445125c47e89ae",
+          "subject": "commit: Review Luna-62 and authorize bounded alternative mechanism lanes"
+        },
+        {
+          "commit": "8123147e04c6044d12023f541cf63130cdbb7dcc",
+          "subject": "commit: Pin Luna-62 architecture design revision"
+        },
+        {
+          "commit": "c33f4195d10d2c5de8e715ac4ad63349a724aa34",
+          "subject": "commit: Complete Luna-62 bounded sequence-memory architecture design"
+        },
+        {
+          "commit": "362282e1871fc46037d83bed4ed99d66fb5e796b",
+          "subject": "commit: Pin Luna-62 governance authorization revision"
+        },
+        {
+          "commit": "084033b03968c256dc47c8d24fbafa56f085b729",
+          "subject": "commit: Authorize Luna-62 sequence-memory architecture proposal"
+        },
+        {
+          "commit": "694b34e0e80af21f89547d1124315ef8913fce35",
+          "subject": "commit: Pin Luna-61 design result revision"
+        },
+        {
+          "commit": "79aa0a053061e545669cea71aa8342a52f0e533e",
+          "subject": "commit: Complete Luna-61 symbolic echo design"
+        },
+        {
+          "commit": "ae4f183bd9ffa8ecaae082087aba32cab9d72fe3",
+          "subject": "commit: Finalize Luna-61 provenance publication"
+        },
+        {
+          "commit": "cccbb0e2c32d1e805f3f1d8c33b1a4286005a3e9",
+          "subject": "commit: Correct amended Luna-61 revision reference"
+        },
+        {
+          "commit": "c3698d963baca3d28526e2db95dddbc13256f769",
+          "subject": "commit: Record Luna-61 amendment revision"
+        },
+        {
+          "commit": "67c848b78bdd99e87891ac6bc3e97ee6eebce43c",
+          "subject": "commit: Amend Luna-61 for symbolic sequence echo"
+        },
+        {
+          "commit": "8d0a739e7e8bb4f065cd04157864a96fc501b58c",
+          "subject": "commit: Authorize Luna-61 task-output assignment design"
+        },
+        {
+          "commit": "dab2600680c1ef1c7e0c21747681bc16b2a72e99",
+          "subject": "commit: Record Luna-60 validation evidence"
+        },
+        {
+          "commit": "fff8394807573f506cc7e42cdc4d40bca0d958f5",
+          "subject": "commit: Add Luna-60 task-output evaluator"
+        },
+        {
+          "commit": "b1d8cc16261ea077b9d3b7c7cb24c975e4c721ee",
+          "subject": "commit: Authorize Luna-60 task-output interface"
+        },
+        {
+          "commit": "4ffd13f163d7eb95747b45a1d9d23550ee11c39f",
+          "subject": "commit: Close Luna-58 governance review"
+        },
+        {
+          "commit": "cddb2329bbfecf63da5dc2f7b22980cf08d3ce35",
+          "subject": "commit: Publish Luna-59 event-deadline interface design prerequisite"
+        },
+        {
+          "commit": "b0d62765534c54947e84d53677fb65824aff4b07",
+          "subject": "commit: Define Luna-59 task objective and authorize design prerequisite only"
+        },
+        {
+          "commit": "0a6b0125627384a036410ff1588cd1115bf53147",
+          "subject": "commit: Publish Luna-58 selective rescue result"
+        },
+        {
+          "commit": "187df41dffed7fad2ed2f5f657575229d5e6d015",
+          "subject": "commit: Execute Luna-58 finite destination retention"
+        },
+        {
+          "commit": "7dd3dc868e7518a33418d4df94b07c15dea52adb",
+          "subject": "commit: Authorize Luna-58 finite destination retention"
+        },
+        {
+          "commit": "c6adc71c26f6226bcbbfb442c4c22cb11cdb3cd2",
+          "subject": "commit: Clarify Luna-57 final validation status"
+        },
+        {
+          "commit": "4797513e9d3a664af6978985ee5e0222e51c9298",
+          "subject": "commit: Record Luna-57 committed validation results"
+        },
+        {
+          "commit": "b6b4a54b82cd89f486d2b56495371f9a89b7f5f8",
+          "subject": "commit: Fix Luna-55 materialization provenance checks"
+        },
+        {
+          "commit": "7d54aee4cc4ed904c5cb8a98a697cad4b62beb15",
+          "subject": "commit: Authorize Luna-57 provenance correction"
+        },
+        {
+          "commit": "a5d145d6751ee82a5fae1e2f8ad2f647d06438bc",
+          "subject": "commit: Record independent Luna-56 review"
+        },
+        {
+          "commit": "f691e543d24343de14e07c682af6c9ead40d2ded",
+          "subject": "pull --ff --recurse-submodules --progress origin: Fast-forward"
+        },
+        {
+          "commit": "d75ede92f90e7ba1e14f935eccbc26e3c326b8da",
+          "subject": "commit: Record independent Luna-54 review PASS"
+        },
+        {
+          "commit": "91cb7433001ffa47f9abf62995a348cc4ab4b0a4",
+          "subject": "commit: Record final Luna-54 validation results"
+        },
+        {
+          "commit": "b3253bb2f2181450330ac588aaf4790781de0ef4",
+          "subject": "commit: Publish Luna-54 retained relay mechanism results"
+        },
+        {
+          "commit": "0b91ce308f526aab5eb6d3aceab1ffc20b66dabd",
+          "subject": "commit: Make Luna-54 artifact hashes checkout-stable"
+        },
+        {
+          "commit": "9a0b647effe48ae40b7725881e2707d73cb8ac28",
+          "subject": "commit: Gate Luna-54 response on complete causal roots"
+        },
+        {
+          "commit": "6fe78dbac990f0cb127340f1c032302000dfe12f",
+          "subject": "commit: Clarify Luna-54 additional emission accounting"
+        },
+        {
+          "commit": "e2fc448baf52afe957ad4bbe072d221b9480676d",
+          "subject": "commit: Expose sealed phase result metadata"
+        },
+        {
+          "commit": "4f2d9850b71a87edc0751dd25a178465ca1d7dd8",
+          "subject": "commit: Return sealed Luna-54 phase artifacts"
+        },
+        {
+          "commit": "632378c553c3828e7a7a200df142e1134829978d",
+          "subject": "commit: Fix Luna-54 platform float manifest"
+        },
+        {
+          "commit": "d518c32f3c9140d036f52a6ab6bd83e3df4bf4aa",
+          "subject": "commit: Audit integration across retained internal events"
+        },
+        {
+          "commit": "ad5e5e2a49575d4f50f1a2c7f2f39ae50fe4d3c8",
+          "subject": "commit: Correct Luna-54 event-time recurrence audit"
+        },
+        {
+          "commit": "3e268a24bc04c9b2b844e7e453e0b8974187f21b",
+          "subject": "commit: Implement Luna-54 retained-input runner"
+        },
+        {
+          "commit": "09701f7c5a1d7063dffecb7734eb199d1c0b0176",
+          "subject": "commit: Authorize Luna-54 relay event-generation experiment"
+        },
+        {
+          "commit": "1bee6673ac68e99303d33053e197f41fe78b913f",
+          "subject": "commit: Publish Luna-53 retention experiment evidence"
+        },
+        {
+          "commit": "2e527934692d96439207b8e15ee6a99eab683a65",
+          "subject": "commit: Implement Luna-53 retained-input execution"
+        },
+        {
+          "commit": "04305a2917195888cbbcccf378eba7971551e9b5",
+          "subject": "commit: Authorize Luna-53 retention mechanism experiment"
+        },
+        {
+          "commit": "ef257f5030fba5814c0f8a2c729a4f740e90f576",
+          "subject": "commit: Align Luna-52 validation status documentation"
+        },
+        {
+          "commit": "0d49c780ee1f4fd63089b1ee9ae17f156c80c668",
+          "subject": "commit: Fix Luna-52 clean-checkout test coverage"
+        },
+        {
+          "commit": "522a5dbf67be1f188f8f8a6e4fc0d1bad4872a23",
+          "subject": "commit: Record Luna-52 independent review findings"
+        },
+        {
+          "commit": "a700024cb44e1c24df1d1284b96a9e75aeb1e261",
+          "subject": "commit: Close Luna-52 retained provenance checks"
+        },
+        {
+          "commit": "bdd97f8fee77b1477103fc9101c622ee8611f2c7",
+          "subject": "commit: Authorize Luna-52 provenance follow-up"
+        },
+        {
+          "commit": "e6bd96a13eb2d5bb19fce8ef6c4b3aa3ec8f8c2e",
+          "subject": "commit: Correct Luna-51 provenance guards"
+        },
+        {
+          "commit": "44ac1c8c7c8934a140da1b51dd807e429fd5b172",
+          "subject": "commit: Authorize bounded provenance regression corrections"
+        },
+        {
+          "commit": "da67433220d92d926d4c4e84e5b9fa08cda4bb10",
+          "subject": "commit: Complete bounded Luna-50 runtime diagnostics"
+        },
+        {
+          "commit": "b49f6642957ea630598b576c3c57f8862e436a14",
+          "subject": "commit: Review Luna-49 and authorize runtime reconstruction"
+        },
+        {
+          "commit": "be6e2d2df179be842208724d20b00d9497d4e4a4",
+          "subject": "commit: Characterize Luna-49 runtime reproducibility"
+        },
+        {
+          "commit": "7739ad7af868e2b2f5ebcf9685c25978022a25af",
+          "subject": "pull --ff --recurse-submodules --progress origin: Fast-forward"
+        },
+        {
+          "commit": "18ebc7801e23cab4ae73b77cf63848691eee5bcd",
+          "subject": "commit: OpenGL neuron viewer"
+        },
+        {
+          "commit": "1b0d50aca5c34b20560078a706ca7d2039a5b24f",
+          "subject": "commit: Initial commit"
+        },
+        {
+          "commit": "bcb76a40778d235806cf863dd2a9b753937dabcf",
+          "subject": "reset: moving to bcb76a40778d235806cf863dd2a9b753937dabcf"
+        },
+        {
+          "commit": "b85eb31e7801c1c8c3ee48968978cfe40a5d8aef",
+          "subject": "rebase (finish): returning to refs/heads/main"
+        },
+        {
+          "commit": "b85eb31e7801c1c8c3ee48968978cfe40a5d8aef",
+          "subject": "rebase (pick): Initial commit"
+        },
+        {
+          "commit": "bcb76a40778d235806cf863dd2a9b753937dabcf",
+          "subject": "rebase (pick): Create .gitignore"
+        },
+        {
+          "commit": "430b60ed3684dde1d4f618d2e4c8d23410d81928",
+          "subject": "rebase (start): checkout 430b60ed3684dde1d4f618d2e4c8d23410d81928"
+        },
+        {
+          "commit": "6db1e4754851cf86389ef6c7b562a6f7606cfacc",
+          "subject": "commit: Create .gitignore"
+        },
+        {
+          "commit": "77938eb04aa058246e19267326747101664cf777",
+          "subject": "commit (initial): Initial commit"
+        }
+      ]
+    },
+    {
+      "worktree": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN\\_worktrees\\luna71b-c4-2-j",
+      "entries": 1,
+      "distinct_commits": 1,
+      "commits_not_reachable_from_any_ref": [],
+      "distinct_commits_reachable_only_from_this_worktree_head_reflog": [],
+      "reflog_commits": [
+        {
+          "commit": "e91818a5c974282e848dc43e52d3c0a534dcbf45",
+          "subject": ""
+        }
+      ]
+    },
+    {
+      "worktree": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN-luna63a",
+      "entries": 6,
+      "distinct_commits": 5,
+      "commits_not_reachable_from_any_ref": [],
+      "distinct_commits_reachable_only_from_this_worktree_head_reflog": [],
+      "reflog_commits": [
+        {
+          "commit": "1c3e33d6285c2d3aeb107f27aad07e57de2ba50f",
+          "subject": "commit: Pin Luna-63A outcome publication and integrity verification"
+        },
+        {
+          "commit": "0b3913641ff0ecf0afc4f3c987ceb79635159d5d",
+          "subject": "commit: Publish Luna-63A frozen 33-instance hold release evidence and execution handoff"
+        },
+        {
+          "commit": "a0bf66e9d21bd326480b83668aee41af2f08bf68",
+          "subject": "commit: Freeze isolated Luna-63A model protocol and independent focused oracle before outcomes"
+        },
+        {
+          "commit": "1d1bee9a1c39edd1a0b4278d86d5750e4590b6d6",
+          "subject": "commit: Record Luna-63A blocked on unavailable required owner attachment"
+        },
+        {
+          "commit": "e52098b2141a3f121f23b512e877783a64ef8baa",
+          "subject": "reset: moving to HEAD"
+        },
+        {
+          "commit": "e52098b2141a3f121f23b512e877783a64ef8baa",
+          "subject": ""
+        }
+      ]
+    },
+    {
+      "worktree": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN-luna63b",
+      "entries": 5,
+      "distinct_commits": 4,
+      "commits_not_reachable_from_any_ref": [],
+      "distinct_commits_reachable_only_from_this_worktree_head_reflog": [],
+      "reflog_commits": [
+        {
+          "commit": "fe3ebe5fdd2e018e79dd640fa4f94548ebba8701",
+          "subject": "commit: Verify Luna-63B branch publication"
+        },
+        {
+          "commit": "e21240e755e0e3d0c592c6c124b04a0ddffd7ffd",
+          "subject": "commit: Record Luna-63B publication provenance"
+        },
+        {
+          "commit": "ab9e919eb1c79d27134413dd093bf3661625a0a8",
+          "subject": "commit: Complete Luna-63B local PCN design prerequisite"
+        },
+        {
+          "commit": "e52098b2141a3f121f23b512e877783a64ef8baa",
+          "subject": "reset: moving to HEAD"
+        },
+        {
+          "commit": "e52098b2141a3f121f23b512e877783a64ef8baa",
+          "subject": ""
+        }
+      ]
+    },
+    {
+      "worktree": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN-luna63c",
+      "entries": 5,
+      "distinct_commits": 4,
+      "commits_not_reachable_from_any_ref": [],
+      "distinct_commits_reachable_only_from_this_worktree_head_reflog": [],
+      "reflog_commits": [
+        {
+          "commit": "a303ebb835b72fdd01c86df478431b8638aacbb4",
+          "subject": "commit: docs: record Luna-63C design review outcome"
+        },
+        {
+          "commit": "3e7d31b9a527e908b21abee3766906084e7cd082",
+          "subject": "commit: docs: close Luna-63C design review findings"
+        },
+        {
+          "commit": "a1a7d377a0f48af750fbfe6da62fe54179bf833b",
+          "subject": "commit: Specify bounded Luna-63C excursion design"
+        },
+        {
+          "commit": "d006e1bc6ff09627df8fe7f6c1213380b953291f",
+          "subject": "reset: moving to HEAD"
+        },
+        {
+          "commit": "d006e1bc6ff09627df8fe7f6c1213380b953291f",
+          "subject": ""
+        }
+      ]
+    },
+    {
+      "worktree": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN-luna63c-archive",
+      "entries": 4,
+      "distinct_commits": 3,
+      "commits_not_reachable_from_any_ref": [],
+      "distinct_commits_reachable_only_from_this_worktree_head_reflog": [],
+      "reflog_commits": [
+        {
+          "commit": "f6611520c9c2a145fdd23cf733c789d4e2685c6e",
+          "subject": "commit: Record Luna-63C archive revision in handoff"
+        },
+        {
+          "commit": "6f5aa2411522312d25608db4fca7aee910d63014",
+          "subject": "commit: Archive Luna-63C local artifact snapshot"
+        },
+        {
+          "commit": "19caa49d7620062c06ad74d19528e47725f86b37",
+          "subject": "reset: moving to HEAD"
+        },
+        {
+          "commit": "19caa49d7620062c06ad74d19528e47725f86b37",
+          "subject": ""
+        }
+      ]
+    },
+    {
+      "worktree": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN-luna63c-corrective",
+      "entries": 3,
+      "distinct_commits": 2,
+      "commits_not_reachable_from_any_ref": [],
+      "distinct_commits_reachable_only_from_this_worktree_head_reflog": [],
+      "reflog_commits": [
+        {
+          "commit": "3b0bc14df01ef73e0d8c91e08d93c7d2b86bc0e1",
+          "subject": "commit: Correct Luna-63C artifact provenance reconciliation"
+        },
+        {
+          "commit": "8f5e785bd2e46c0c1cb2afbb77ba53704adef65a",
+          "subject": "reset: moving to HEAD"
+        },
+        {
+          "commit": "8f5e785bd2e46c0c1cb2afbb77ba53704adef65a",
+          "subject": ""
+        }
+      ]
+    },
+    {
+      "worktree": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN-luna63c-E",
+      "entries": 3,
+      "distinct_commits": 2,
+      "commits_not_reachable_from_any_ref": [],
+      "distinct_commits_reachable_only_from_this_worktree_head_reflog": [],
+      "reflog_commits": [
+        {
+          "commit": "651f18fdf3c7ae8e32cd210ebc68527f86531e32",
+          "subject": "commit: Add independent Luna-63C Stage-A Lane E audit"
+        },
+        {
+          "commit": "0a8c34b7e6febf681917d915082a8559eea998f7",
+          "subject": "reset: moving to HEAD"
+        },
+        {
+          "commit": "0a8c34b7e6febf681917d915082a8559eea998f7",
+          "subject": ""
+        }
+      ]
+    },
+    {
+      "worktree": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN-luna63c-governance",
+      "entries": 3,
+      "distinct_commits": 2,
+      "commits_not_reachable_from_any_ref": [],
+      "distinct_commits_reachable_only_from_this_worktree_head_reflog": [],
+      "reflog_commits": [
+        {
+          "commit": "8f5e785bd2e46c0c1cb2afbb77ba53704adef65a",
+          "subject": "commit: Publish reconciled Luna-63C Stage-A governance artifacts"
+        },
+        {
+          "commit": "19caa49d7620062c06ad74d19528e47725f86b37",
+          "subject": "reset: moving to HEAD"
+        },
+        {
+          "commit": "19caa49d7620062c06ad74d19528e47725f86b37",
+          "subject": ""
+        }
+      ]
+    },
+    {
+      "worktree": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN-luna63c-T",
+      "entries": 3,
+      "distinct_commits": 2,
+      "commits_not_reachable_from_any_ref": [],
+      "distinct_commits_reachable_only_from_this_worktree_head_reflog": [],
+      "reflog_commits": [
+        {
+          "commit": "0a8c34b7e6febf681917d915082a8559eea998f7",
+          "subject": "commit: Luna-63C Stage-A lane T: N3 event-time mapping matrix (T BLOCKED)"
+        },
+        {
+          "commit": "17907c67d52cc338249b66f28c3179cd97572c6e",
+          "subject": "reset: moving to HEAD"
+        },
+        {
+          "commit": "17907c67d52cc338249b66f28c3179cd97572c6e",
+          "subject": ""
+        }
+      ]
+    },
+    {
+      "worktree": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN-luna63c-W",
+      "entries": 3,
+      "distinct_commits": 2,
+      "commits_not_reachable_from_any_ref": [],
+      "distinct_commits_reachable_only_from_this_worktree_head_reflog": [],
+      "reflog_commits": [
+        {
+          "commit": "17907c67d52cc338249b66f28c3179cd97572c6e",
+          "subject": "commit: Certify Luna-63C Stage-A Lane W witnesses"
+        },
+        {
+          "commit": "19caa49d7620062c06ad74d19528e47725f86b37",
+          "subject": "reset: moving to HEAD"
+        },
+        {
+          "commit": "19caa49d7620062c06ad74d19528e47725f86b37",
+          "subject": ""
+        }
+      ]
+    },
+    {
+      "worktree": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN-luna64-r4.3-pilot-20261010",
+      "entries": 4,
+      "distinct_commits": 3,
+      "commits_not_reachable_from_any_ref": [],
+      "distinct_commits_reachable_only_from_this_worktree_head_reflog": [],
+      "reflog_commits": [
+        {
+          "commit": "d93ef139a1fea46d58cb59a7d7e6325cb1eb8787",
+          "subject": "commit: Document Luna-64 R4.3 pilot handoff"
+        },
+        {
+          "commit": "d709c5aab0a841a8dfb193bd26b306d9b4198392",
+          "subject": "commit: Run Luna-64 R4.3 bounded feasibility pilot"
+        },
+        {
+          "commit": "bc338a48bc05f7e15c4cb84636a979294b88e093",
+          "subject": "reset: moving to HEAD"
+        },
+        {
+          "commit": "bc338a48bc05f7e15c4cb84636a979294b88e093",
+          "subject": ""
+        }
+      ]
+    },
+    {
+      "worktree": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN-luna64-r4.3-reward-lifecycle-correction-20261010",
+      "entries": 2,
+      "distinct_commits": 1,
+      "commits_not_reachable_from_any_ref": [],
+      "distinct_commits_reachable_only_from_this_worktree_head_reflog": [],
+      "reflog_commits": [
+        {
+          "commit": "d93ef139a1fea46d58cb59a7d7e6325cb1eb8787",
+          "subject": "reset: moving to HEAD"
+        },
+        {
+          "commit": "d93ef139a1fea46d58cb59a7d7e6325cb1eb8787",
+          "subject": ""
+        }
+      ]
+    },
+    {
+      "worktree": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN-luna66-functional",
+      "entries": 2,
+      "distinct_commits": 1,
+      "commits_not_reachable_from_any_ref": [],
+      "distinct_commits_reachable_only_from_this_worktree_head_reflog": [],
+      "reflog_commits": [
+        {
+          "commit": "f117ce51e7a805564e37252d3b5c99bda163ce57",
+          "subject": "reset: moving to HEAD"
+        },
+        {
+          "commit": "f117ce51e7a805564e37252d3b5c99bda163ce57",
+          "subject": ""
+        }
+      ]
+    },
+    {
+      "worktree": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN-luna67-four-class",
+      "entries": 2,
+      "distinct_commits": 1,
+      "commits_not_reachable_from_any_ref": [],
+      "distinct_commits_reachable_only_from_this_worktree_head_reflog": [],
+      "reflog_commits": [
+        {
+          "commit": "f117ce51e7a805564e37252d3b5c99bda163ce57",
+          "subject": "reset: moving to HEAD"
+        },
+        {
+          "commit": "f117ce51e7a805564e37252d3b5c99bda163ce57",
+          "subject": ""
+        }
+      ]
+    },
+    {
+      "worktree": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN-luna68-prediction-omission",
+      "entries": 2,
+      "distinct_commits": 1,
+      "commits_not_reachable_from_any_ref": [],
+      "distinct_commits_reachable_only_from_this_worktree_head_reflog": [],
+      "reflog_commits": [
+        {
+          "commit": "f117ce51e7a805564e37252d3b5c99bda163ce57",
+          "subject": "reset: moving to HEAD"
+        },
+        {
+          "commit": "f117ce51e7a805564e37252d3b5c99bda163ce57",
+          "subject": ""
+        }
+      ]
+    },
+    {
+      "worktree": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN-luna70-corrective-readout",
+      "entries": 2,
+      "distinct_commits": 1,
+      "commits_not_reachable_from_any_ref": [],
+      "distinct_commits_reachable_only_from_this_worktree_head_reflog": [],
+      "reflog_commits": [
+        {
+          "commit": "f117ce51e7a805564e37252d3b5c99bda163ce57",
+          "subject": "reset: moving to HEAD"
+        },
+        {
+          "commit": "f117ce51e7a805564e37252d3b5c99bda163ce57",
+          "subject": ""
+        }
+      ]
+    },
+    {
+      "worktree": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN-luna71b",
+      "entries": 2,
+      "distinct_commits": 1,
+      "commits_not_reachable_from_any_ref": [],
+      "distinct_commits_reachable_only_from_this_worktree_head_reflog": [],
+      "reflog_commits": [
+        {
+          "commit": "f117ce51e7a805564e37252d3b5c99bda163ce57",
+          "subject": "reset: moving to HEAD"
+        },
+        {
+          "commit": "f117ce51e7a805564e37252d3b5c99bda163ce57",
+          "subject": ""
+        }
+      ]
+    },
+    {
+      "worktree": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN-luna71b-c4",
+      "entries": 2,
+      "distinct_commits": 1,
+      "commits_not_reachable_from_any_ref": [],
+      "distinct_commits_reachable_only_from_this_worktree_head_reflog": [],
+      "reflog_commits": [
+        {
+          "commit": "f117ce51e7a805564e37252d3b5c99bda163ce57",
+          "subject": "reset: moving to HEAD"
+        },
+        {
+          "commit": "f117ce51e7a805564e37252d3b5c99bda163ce57",
+          "subject": ""
+        }
+      ]
+    },
+    {
+      "worktree": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN-luna71b-c4-2",
+      "entries": 4,
+      "distinct_commits": 2,
+      "commits_not_reachable_from_any_ref": [],
+      "distinct_commits_reachable_only_from_this_worktree_head_reflog": [],
+      "reflog_commits": [
+        {
+          "commit": "e91818a5c974282e848dc43e52d3c0a534dcbf45",
+          "subject": "commit: docs(tpcn): preserve Luna-71B C4.2 instrumentation checkpoint"
+        },
+        {
+          "commit": "11b6f52e9aa6725af69bcd3cd098bb2c62e78b76",
+          "subject": "checkout: moving from experiment/luna71b-c4-2-bilateral-capture to governance/luna71b-c4-2-checkpoint"
+        },
+        {
+          "commit": "11b6f52e9aa6725af69bcd3cd098bb2c62e78b76",
+          "subject": "reset: moving to HEAD"
+        },
+        {
+          "commit": "11b6f52e9aa6725af69bcd3cd098bb2c62e78b76",
+          "subject": ""
+        }
+      ]
+    },
+    {
+      "worktree": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN-luna71b-c4-2-gn",
+      "entries": 2,
+      "distinct_commits": 1,
+      "commits_not_reachable_from_any_ref": [],
+      "distinct_commits_reachable_only_from_this_worktree_head_reflog": [],
+      "reflog_commits": [
+        {
+          "commit": "e91818a5c974282e848dc43e52d3c0a534dcbf45",
+          "subject": "reset: moving to HEAD"
+        },
+        {
+          "commit": "e91818a5c974282e848dc43e52d3c0a534dcbf45",
+          "subject": ""
+        }
+      ]
+    },
+    {
+      "worktree": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN-luna71b-c4-2-h",
+      "entries": 2,
+      "distinct_commits": 1,
+      "commits_not_reachable_from_any_ref": [],
+      "distinct_commits_reachable_only_from_this_worktree_head_reflog": [],
+      "reflog_commits": [
+        {
+          "commit": "e91818a5c974282e848dc43e52d3c0a534dcbf45",
+          "subject": "reset: moving to HEAD"
+        },
+        {
+          "commit": "e91818a5c974282e848dc43e52d3c0a534dcbf45",
+          "subject": ""
+        }
+      ]
+    },
+    {
+      "worktree": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN-r14-publication",
+      "entries": 3,
+      "distinct_commits": 2,
+      "commits_not_reachable_from_any_ref": [],
+      "distinct_commits_reachable_only_from_this_worktree_head_reflog": [],
+      "reflog_commits": [
+        {
+          "commit": "0511762b46aa8fe33494624a9290611727e7ae51",
+          "subject": "commit: docs(track-b): publish independently reviewed R14 documentary package"
+        },
+        {
+          "commit": "f117ce51e7a805564e37252d3b5c99bda163ce57",
+          "subject": "reset: moving to HEAD"
+        },
+        {
+          "commit": "f117ce51e7a805564e37252d3b5c99bda163ce57",
+          "subject": ""
+        }
+      ]
+    }
+  ],
+  "fsck_default_with_reflogs": {
+    "return_code": 2,
+    "object_counts": {
+      "blob": 1164
+    },
+    "missing_objects": [
+      {
+        "line": "missing tree 4b825dc642cb6eb9a060e54bf8d69288fbee4904",
+        "kind": "missing",
+        "type": "tree",
+        "object": "4b825dc642cb6eb9a060e54bf8d69288fbee4904"
+      }
+    ],
+    "reported_unreachable_commits": []
+  },
+  "fsck_no_reflogs": {
+    "return_code": 0,
+    "object_counts": {
+      "blob": 1257,
+      "commit": 4,
+      "tree": 14
+    },
+    "missing_objects": [],
+    "unreachable_commits": [
+      "430b60ed3684dde1d4f618d2e4c8d23410d81928",
+      "77938eb04aa058246e19267326747101664cf777",
+      "b85eb31e7801c1c8c3ee48968978cfe40a5d8aef",
+      "6db1e4754851cf86389ef6c7b562a6f7606cfacc"
+    ]
+  },
+  "missing_empty_tree_object": "4b825dc642cb6eb9a060e54bf8d69288fbee4904",
+  "cached_remote_ref_warning": "No fetch or live remote query was performed; origin refs are the local cached snapshot."
+}

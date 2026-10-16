@@ -1,0 +1,103 @@
+{
+  "schema": "TPCN-WC1-ARTIFACT-MANIFEST-V1",
+  "task": "Luna-71B-WC1",
+  "repository": {
+    "root": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN",
+    "branch": "governance/luna71b-c4-1-ppc11-freeze",
+    "base_commit": "11b6f52e9aa6725af69bcd3cd098bb2c62e78b76",
+    "base_tree": "1c124b2105e3c30593e28e9b503c72325a56f567"
+  },
+  "inventory_snapshot_utc": "2026-10-16T18:21:20.892251+00:00",
+  "identity_method": "SHA-256 and byte size over exact file bytes; no newline normalization",
+  "files": [
+    {
+      "path": "workflow/handoffs/luna71b-wc1/01-worktree-inventory.md",
+      "bytes": 5597,
+      "sha256": "4bcc2206fff9ba66f755e9821d307be2cf125e74b81bfe344eda7b3ab0efad9e",
+      "identity": "raw on-disk bytes"
+    },
+    {
+      "path": "workflow/handoffs/luna71b-wc1/01-worktree-inventory.json",
+      "bytes": 587001,
+      "sha256": "d231c5b1d995edf298b6ea966a07144dba05db8fdc9270976ee6335cdb92d46a",
+      "identity": "raw on-disk bytes"
+    },
+    {
+      "path": "workflow/handoffs/luna71b-wc1/02-branch-ref-reflog-inventory.md",
+      "bytes": 4145,
+      "sha256": "8dc2b2acfe87961db8899361a793998e21e1e1ae6752006b61e7199e3e165a6b",
+      "identity": "raw on-disk bytes"
+    },
+    {
+      "path": "workflow/handoffs/luna71b-wc1/02-branch-ref-reflog-inventory.json",
+      "bytes": 119696,
+      "sha256": "5dd2941cc1ec6df865aaa5bcd58a41ff55514b3b14f76985207303b743f93f9f",
+      "identity": "raw on-disk bytes"
+    },
+    {
+      "path": "workflow/handoffs/luna71b-wc1/03-untracked-and-ignored-inventory.md",
+      "bytes": 4960,
+      "sha256": "bc8c57b89f487c973169cc0920af3dd32655bec200595f0e509dddb273d2397f",
+      "identity": "raw on-disk bytes"
+    },
+    {
+      "path": "workflow/handoffs/luna71b-wc1/03-untracked-ignored-artifact-inventory.json",
+      "bytes": 1667517,
+      "sha256": "23a7673996765472e96511cd59a691400409610c20cf0595a605436c0995dd43",
+      "identity": "raw on-disk bytes"
+    },
+    {
+      "path": "workflow/handoffs/luna71b-wc1/03-git-normalized-file-identities.json",
+      "bytes": 598294,
+      "sha256": "3a92c36acf95f8e44819decc5ee4754f39b371f088cab75e88738a73ac594ccc",
+      "identity": "raw on-disk bytes"
+    },
+    {
+      "path": "workflow/handoffs/luna71b-wc1/04-preservation-and-provenance-matrix.md",
+      "bytes": 5208,
+      "sha256": "c051455e80c05ab2c6bf19b0fd77836d6f088a1a321c4e3c0728cea7a7e94093",
+      "identity": "raw on-disk bytes"
+    },
+    {
+      "path": "workflow/handoffs/luna71b-wc1/05-duplicate-content-analysis.md",
+      "bytes": 3162,
+      "sha256": "b048aac7492da87da841300afdc25aeb2d596224453d8ac7a099bfa294441f33",
+      "identity": "raw on-disk bytes"
+    },
+    {
+      "path": "workflow/handoffs/luna71b-wc1/05-duplicate-content-analysis.json",
+      "bytes": 1230969,
+      "sha256": "9d242dbd4117ebcc64f1c43a5da61dfbf70fd2649256578e1bd093c18daac74e",
+      "identity": "raw on-disk bytes"
+    },
+    {
+      "path": "workflow/handoffs/luna71b-wc1/06-c4.2-i-j-publication-readiness.md",
+      "bytes": 11237,
+      "sha256": "3bc383fc49550289111bf9620360e0e3db4679001ad6dcc002922ec2be568f20",
+      "identity": "raw on-disk bytes"
+    },
+    {
+      "path": "workflow/handoffs/luna71b-wc1/07-proposed-cleanup-plan.md",
+      "bytes": 2910,
+      "sha256": "98b210d6fee1b6c02d2b23182e5ea301910013172bea216358695528101ec0ca",
+      "identity": "raw on-disk bytes"
+    },
+    {
+      "path": "workflow/handoffs/luna71b-wc1/08-independent-review.md",
+      "bytes": 6097,
+      "sha256": "172893f3bafedc4da29a0912c64277f1c3c3e0a7aab95ce1cf818b0ab9c66a08",
+      "identity": "raw on-disk bytes"
+    },
+    {
+      "path": "workflow/handoffs/luna71b-wc1/09-final-adjudication.md",
+      "bytes": 7670,
+      "sha256": "7c716a683c014ea45e03a4dd5215fd43fa8d2af6ed7693cf533934477536fb64",
+      "identity": "raw on-disk bytes"
+    }
+  ],
+  "excluded_from_file_list": [
+    "workflow/handoffs/luna71b-wc1/10-artifact-manifest.json",
+    "workflow/handoffs/luna71b-wc1/10-artifact-manifest.sha256"
+  ],
+  "exclusion_reason": "The manifest cannot contain its own digest; the sidecar binds the manifest digest."
+}
