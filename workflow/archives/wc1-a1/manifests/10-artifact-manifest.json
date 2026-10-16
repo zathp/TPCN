@@ -1,0 +1,197 @@
+{
+  "manifest_id": "Luna-71B-WC1-A1",
+  "created_at_utc": "2026-10-16T22:00:13.787660+00:00",
+  "scope": "Local bounded preservation and read-only Git integrity qualification; not published or copied off-machine",
+  "baseline": {
+    "repository": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN",
+    "branch": "governance/luna71b-c4-1-ppc11-freeze",
+    "commit": "11b6f52e9aa6725af69bcd3cd098bb2c62e78b76",
+    "object_format": "sha1"
+  },
+  "adjudication": "BLOCKED - partial preservation independently verified for three of four target commits; effective availability of 430b60ed tree dependency unresolved",
+  "source_register": {
+    "owner-authorization": {
+      "path": "C:\\Users\\Patrick\\AppData\\Roaming\\Code\\agentSessionData\\d82407a5-0f22-4f89-808b-6176e5760d2b\\attachments\\8e49b4b7-752e-4465-9201-e5510980e732\\Pasted text #1.txt",
+      "bytes": 9836,
+      "sha256": "e4b8aecdcb4b7916449cbf865a86a021b228336a9b92ff40d28e822128c7c77d",
+      "role": "Read-only WC1-A1 owner authorization and scope"
+    },
+    "repository-baseline": {
+      "path": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN",
+      "branch": "governance/luna71b-c4-1-ppc11-freeze",
+      "head": "11b6f52e9aa6725af69bcd3cd098bb2c62e78b76",
+      "object_format": "sha1",
+      "role": "Current refs, reflogs, object database, worktrees and untracked-file scan"
+    },
+    "wc1-p-branch": {
+      "local_ref": "refs/heads/governance/luna71b-wc1-preservation-inventory",
+      "cached_remote_ref": "refs/remotes/origin/governance/luna71b-wc1-preservation-inventory",
+      "commit": "d5493b741a514a96009641b0e565df1648ffa975",
+      "tree": "7549caa7c6604320f8b2ee7c9dca179fa9803988",
+      "role": "Historical WC1-P publication identity, checked locally without network access"
+    },
+    "wc1-p-inventory-json": {
+      "path": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN\\workflow\\handoffs\\luna71b-wc1\\02-branch-ref-reflog-inventory.json",
+      "bytes": 119696,
+      "sha256": "5dd2941cc1ec6df865aaa5bcd58a41ff55514b3b14f76985207303b743f93f9f",
+      "role": "Historical branch/ref/reflog and fsck-count inventory; reports counts but not full prior blob identity lists"
+    },
+    "wc1-p-publication-manifest": {
+      "path": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN\\workflow\\handoffs\\luna71b-wc1\\10-artifact-manifest.json",
+      "bytes": 4106,
+      "sha256": "2ed6d610bf39a69267b0567cb0e2e34e9bd45ca1e659943c581d481539e591e8",
+      "sidecar_sha256": "ce82884f8d661fd9d92dc8acfb833d40773b3f423841ae393cb720eec03cc838",
+      "role": "Historical snapshot manifest and sidecar identity",
+      "sidecar_path": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN\\workflow\\handoffs\\luna71b-wc1\\10-artifact-manifest.sha256",
+      "sidecar_bytes": 92
+    },
+    "luna0-review": {
+      "reviewer": "Luna-0 Architecture Guardian",
+      "verdict": "BLOCKED",
+      "reviewed_baseline": "11b6f52e9aa6725af69bcd3cd098bb2c62e78b76",
+      "role": "Independent read-only review; summarized in 04-independent-preservation-review.md"
+    }
+  },
+  "artifacts": [
+    {
+      "id": "bundle-partial",
+      "path": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN-preservation\\luna71b-wc1-a1\\wc1-a1-three-commits-partial.bundle",
+      "bytes": 347973648,
+      "sha256": "97fc628794b0ba4aeb90392aa5d16cfd8a4823dbe7eb2a19da0ec87c00a19a08",
+      "role": "Partial self-contained Git bundle for three targets",
+      "source_dependencies": [
+        "owner-authorization",
+        "repository-baseline"
+      ]
+    },
+    {
+      "id": "four-commit-inventory",
+      "path": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN-preservation\\luna71b-wc1-a1\\01-four-commit-identity-inventory.md",
+      "bytes": 3384,
+      "sha256": "a11fc2160777cf871eb82b80d76c9bd770c2206e33194f41d2af2d39eaa11942",
+      "role": "Identity and source-overlap inventory",
+      "source_dependencies": [
+        "owner-authorization",
+        "repository-baseline",
+        "wc1-p-inventory-json"
+      ]
+    },
+    {
+      "id": "ref-reachability",
+      "path": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN-preservation\\luna71b-wc1-a1\\02-reference-reachability-analysis.md",
+      "bytes": 2680,
+      "sha256": "bd51dc6997fbf04b69fe6feaaa43698553c05c12a5581e56ae2b2da14b8e54d6",
+      "role": "Current ref, reflog and worktree analysis",
+      "source_dependencies": [
+        "owner-authorization",
+        "repository-baseline",
+        "wc1-p-branch",
+        "wc1-p-inventory-json",
+        "wc1-p-publication-manifest"
+      ]
+    },
+    {
+      "id": "bundle-recovery",
+      "path": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN-preservation\\luna71b-wc1-a1\\03-preservation-bundle-and-recovery.md",
+      "bytes": 2262,
+      "sha256": "12edc38edb2bc07688d41b3e13cf9c070a6ee29049fd91ab1bbad1f52f47534c",
+      "role": "Bundle identity and isolated recovery results",
+      "source_dependencies": [
+        "owner-authorization",
+        "repository-baseline",
+        "bundle-partial"
+      ]
+    },
+    {
+      "id": "independent-review",
+      "path": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN-preservation\\luna71b-wc1-a1\\04-independent-preservation-review.md",
+      "bytes": 2620,
+      "sha256": "ab73a5919b96821eb907a1cb434e8035013291b5f17b9ed632aa441af60a68d1",
+      "role": "Luna-0 read-only review result",
+      "source_dependencies": [
+        "owner-authorization",
+        "repository-baseline",
+        "bundle-partial",
+        "luna0-review"
+      ]
+    },
+    {
+      "id": "protection-refs",
+      "path": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN-preservation\\luna71b-wc1-a1\\05-local-protection-ref-verification.md",
+      "bytes": 816,
+      "sha256": "d42514d3a46e126d444ad70c4b324529631b3ed610229226453a37dcf06518d3",
+      "role": "Disposition of original-repository protection refs",
+      "source_dependencies": [
+        "owner-authorization",
+        "repository-baseline",
+        "luna0-review"
+      ]
+    },
+    {
+      "id": "missing-tree",
+      "path": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN-preservation\\luna71b-wc1-a1\\06-missing-tree-investigation.md",
+      "bytes": 2143,
+      "sha256": "586b8e7515c57ac6de18175b304b2d23e92b4b88e15bfd66b662a0d017b49724",
+      "role": "Storage and effective-lookup investigation",
+      "source_dependencies": [
+        "owner-authorization",
+        "repository-baseline",
+        "luna0-review"
+      ]
+    },
+    {
+      "id": "unreachable-objects",
+      "path": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN-preservation\\luna71b-wc1-a1\\07-unreachable-object-analysis.md",
+      "bytes": 2819,
+      "sha256": "a2940fbd3a35a516b9dae345c0f31afb03fdc78af9b6e8620e6cac80404a78e3",
+      "role": "Fsck counts and active untracked-file comparison",
+      "source_dependencies": [
+        "owner-authorization",
+        "repository-baseline",
+        "wc1-p-inventory-json"
+      ]
+    },
+    {
+      "id": "adjudication",
+      "path": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN-preservation\\luna71b-wc1-a1\\08-preservation-adjudication.md",
+      "bytes": 3278,
+      "sha256": "dd5dd2ad2ff59997754826363f63ac2292838baabe07d416cddd7533e26ee3bd",
+      "role": "Integrated WC1-A1 gate disposition",
+      "source_dependencies": [
+        "owner-authorization",
+        "repository-baseline",
+        "luna0-review",
+        "bundle-partial"
+      ]
+    },
+    {
+      "id": "publication-recommendation",
+      "path": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN-preservation\\luna71b-wc1-a1\\09-publication-and-remote-backup-recommendation.md",
+      "bytes": 2192,
+      "sha256": "5c02b0dd0ec543122e3e6045a5901fd218f15973b2620ed1d433363b8153bae1",
+      "role": "Exact scope for a separate future backup authorization",
+      "source_dependencies": [
+        "owner-authorization",
+        "bundle-partial",
+        "independent-review",
+        "adjudication"
+      ]
+    }
+  ],
+  "verification": {
+    "bundle_size_bytes": 347973648,
+    "bundle_sha256": "97fc628794b0ba4aeb90392aa5d16cfd8a4823dbe7eb2a19da0ec87c00a19a08",
+    "bundle_recovered_targets": [
+      "77938eb04aa058246e19267326747101664cf777",
+      "6db1e4754851cf86389ef6c7b562a6f7606cfacc",
+      "b85eb31e7801c1c8c3ee48968978cfe40a5d8aef"
+    ],
+    "target_not_in_bundle": "430b60ed3684dde1d4f618d2e4c8d23410d81928",
+    "bundle_commands": "git bundle verify; fresh git clone --mirror from the bundle; git fsck --full in recovered bare repo",
+    "original_source_refs_created": false,
+    "source_worktrees_removed": false,
+    "neural_execution": false,
+    "off_machine_backup": false
+  },
+  "manifest_convention": "This JSON and its checksum sidecar are excluded from the artifact array to avoid recursive hashing. The sidecar records this JSON file SHA-256; this manifest file identity is also returned to the owner."
+}
