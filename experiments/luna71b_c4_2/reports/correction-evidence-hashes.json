@@ -1,0 +1,52 @@
+{
+  "format": "luna71b-c4.2-correction-evidence-hashes-1",
+  "disposition": "INCOMPLETE — CORRECTION REQUIRED",
+  "baseline_head": "11b6f52e9aa6725af69bcd3cd098bb2c62e78b76",
+  "branch": "experiment/luna71b-c4-2-bilateral-capture",
+  "independent_approval": false,
+  "source_manifest_entry_count": 87,
+  "synthetic_tests_passed": 33,
+  "additional_threaded_test_repetitions_passed": 60,
+  "files": [
+    {
+      "path": "experiments\\luna71b_c4_2\\reports\\source-manifest.json",
+      "sha256": "43fb851cf45fdcc9910215cc7d13cd6364860d32891febd203ef6f7c33474719"
+    },
+    {
+      "path": "experiments\\luna71b_c4_2\\reports\\correction-pass-report.md",
+      "sha256": "f89497bb89ba67bef3821cbd5762102ca1b9d71fe1324ef7fa00a74798c4d2f5"
+    },
+    {
+      "path": "experiments\\luna71b_c4_2\\reports\\p01-p11-coverage-matrix.md",
+      "sha256": "97693aee61888fce8fe6c284e82ecbe55f3c340e62c5cb90c9ddb50e3db12ae9"
+    },
+    {
+      "path": "experiments\\luna71b_c4_2\\reports\\source-and-provenance-inventory.md",
+      "sha256": "5daca691394bfa90a9ab247328cc9955ffa4423d95c0a4836794bb3e291d17ae"
+    },
+    {
+      "path": "experiments\\luna71b_c4_2\\reports\\initial-implementation-report.md",
+      "sha256": "c6f6863ff09b7828410ace543628c9c521ae582c930e06178c1fa1e5976e88cf"
+    },
+    {
+      "path": "tests\\test_luna71b_c4_2.py",
+      "sha256": "0ad1d9e1e407393b797ace9b04be6a6cd30de45ad00b898e493ffc41b4752697"
+    },
+    {
+      "path": "experiments\\luna71b_c4_2\\reports\\followup-independent-review.md",
+      "sha256": "ae2f90888909c1ac6862de9a492fb2a753fbe7034248846725458bf3c9d0e032"
+    },
+    {
+      "path": "experiments\\luna71b_c4_2\\reports\\final-independent-review.md",
+      "sha256": "bc1ddee55a764efc4ea1084cc6bb9f7c0193613c3f1a1a4d9617b22253b7f84a"
+    }
+  ],
+  "initial_independent_review": {
+    "path": "C:\\Users\\Patrick\\AppData\\Local\\Temp\\1792100641526-copilot-tool-output-eda14f4350e843b4b2e7cbbacf74800b.txt",
+    "sha256": "5bf00388011aca1d914c20dac97791bf47d727b72ece12fada90bf58c5503737",
+    "disposition": "INCOMPLETE — CORRECTION REQUIRED",
+    "modified": false
+  },
+  "bounded_correction_review": "PASS",
+  "pilot_eligible": false
+}

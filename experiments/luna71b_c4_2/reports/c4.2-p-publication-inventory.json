@@ -1,0 +1,393 @@
+{
+  "schema": "TPCN-LUNA71B-C4.2-P-PUBLICATION-INVENTORY-v1",
+  "task": "Reviewed Instrumentation and Documentary Checkpoint Publication",
+  "created_date": "2026-10-15",
+  "candidate_branch": "governance/luna71b-c4-2-checkpoint",
+  "base_commit": "11b6f52e9aa6725af69bcd3cd098bb2c62e78b76",
+  "contract_manifest_sha256": "2f18d694784a6a583b0a7c01e6cc89f1313c2d65c7c6b5346a7cd4d993d3f1fa",
+  "c4_2_f_manifest_sha256": "c2ddd83e8dce89a1b5e32361898d17e925000b9577303e44998a6aa57ef49e5a",
+  "publication_scope": "Only reviewed PPC-11 implementation modules, capture-modified bilateral source files, focused synthetic tests, correction/review records, and C4.2-F documentary artifacts.",
+  "file_count": 34,
+  "allowlist": [
+    {
+      "path": "experiments/luna71b_c4_2/ppc11/__init__.py",
+      "bytes": 5,
+      "sha256": "f01a374e9c81e3db89b3a42940c4d6a5447684986a1296e42bf13f196eed6295",
+      "worktree_raw_bytes": 5,
+      "worktree_raw_sha256": "f01a374e9c81e3db89b3a42940c4d6a5447684986a1296e42bf13f196eed6295",
+      "staged_git_blob_bytes": 4,
+      "staged_git_blob_sha256": "b42f2099187886def637d6aa840022266e05cb6c987a9394e708e23cd505eb46",
+      "staged_materialization": "CRLF-to-LF normalization by existing text=auto policy"
+    },
+    {
+      "path": "experiments/luna71b_c4_2/ppc11/capture.py",
+      "bytes": 12769,
+      "sha256": "b59b803d9cb5d8a5714bb6402cf3971e1c44877deb61e19fd2214f56cac24342",
+      "worktree_raw_bytes": 12769,
+      "worktree_raw_sha256": "b59b803d9cb5d8a5714bb6402cf3971e1c44877deb61e19fd2214f56cac24342",
+      "staged_git_blob_bytes": 12769,
+      "staged_git_blob_sha256": "b59b803d9cb5d8a5714bb6402cf3971e1c44877deb61e19fd2214f56cac24342",
+      "staged_materialization": "identical"
+    },
+    {
+      "path": "experiments/luna71b_c4_2/ppc11/compare.py",
+      "bytes": 30815,
+      "sha256": "b31422f8ab84f0964aaf310511573baf50f953dcbeb34a2705247523821e72b5",
+      "worktree_raw_bytes": 30815,
+      "worktree_raw_sha256": "b31422f8ab84f0964aaf310511573baf50f953dcbeb34a2705247523821e72b5",
+      "staged_git_blob_bytes": 30815,
+      "staged_git_blob_sha256": "b31422f8ab84f0964aaf310511573baf50f953dcbeb34a2705247523821e72b5",
+      "staged_materialization": "identical"
+    },
+    {
+      "path": "experiments/luna71b_c4_2/ppc11/driver.py",
+      "bytes": 14495,
+      "sha256": "59a0f106bd5ac5cf47d5af4bc92f203a402e05691383f8475ad8e6343790c014",
+      "worktree_raw_bytes": 14495,
+      "worktree_raw_sha256": "59a0f106bd5ac5cf47d5af4bc92f203a402e05691383f8475ad8e6343790c014",
+      "staged_git_blob_bytes": 14495,
+      "staged_git_blob_sha256": "59a0f106bd5ac5cf47d5af4bc92f203a402e05691383f8475ad8e6343790c014",
+      "staged_materialization": "identical"
+    },
+    {
+      "path": "experiments/luna71b_c4_2/ppc11/pairing.py",
+      "bytes": 7075,
+      "sha256": "984527f2b96ee32c59cabe6aeec1cbfef8a9a81fb1879c9c72c82af474ec4a09",
+      "worktree_raw_bytes": 7075,
+      "worktree_raw_sha256": "984527f2b96ee32c59cabe6aeec1cbfef8a9a81fb1879c9c72c82af474ec4a09",
+      "staged_git_blob_bytes": 7075,
+      "staged_git_blob_sha256": "984527f2b96ee32c59cabe6aeec1cbfef8a9a81fb1879c9c72c82af474ec4a09",
+      "staged_materialization": "identical"
+    },
+    {
+      "path": "experiments/luna71b_c4_2/ppc11/schema.py",
+      "bytes": 22899,
+      "sha256": "9b37b00b3d9dfc252bc56b74be3431c8f3557edec66f96957806931364d26715",
+      "worktree_raw_bytes": 22899,
+      "worktree_raw_sha256": "9b37b00b3d9dfc252bc56b74be3431c8f3557edec66f96957806931364d26715",
+      "staged_git_blob_bytes": 22899,
+      "staged_git_blob_sha256": "9b37b00b3d9dfc252bc56b74be3431c8f3557edec66f96957806931364d26715",
+      "staged_materialization": "identical"
+    },
+    {
+      "path": "experiments/luna71b_c4_2/ppc11/trace.py",
+      "bytes": 7452,
+      "sha256": "92b64dee0649b6403107c959d83731511a98a8780db4ab9c9235ec7ba099bd17",
+      "worktree_raw_bytes": 7452,
+      "worktree_raw_sha256": "92b64dee0649b6403107c959d83731511a98a8780db4ab9c9235ec7ba099bd17",
+      "staged_git_blob_bytes": 7452,
+      "staged_git_blob_sha256": "92b64dee0649b6403107c959d83731511a98a8780db4ab9c9235ec7ba099bd17",
+      "staged_materialization": "identical"
+    },
+    {
+      "path": "experiments/luna71b_c4_2/variants/original/tpcn/event_runtime.py",
+      "bytes": 13540,
+      "sha256": "e16a48af25657e5a45773248adbed37dd41782f4ef51fba9fd1e2cda013617fd",
+      "worktree_raw_bytes": 13540,
+      "worktree_raw_sha256": "e16a48af25657e5a45773248adbed37dd41782f4ef51fba9fd1e2cda013617fd",
+      "staged_git_blob_bytes": 13540,
+      "staged_git_blob_sha256": "e16a48af25657e5a45773248adbed37dd41782f4ef51fba9fd1e2cda013617fd",
+      "staged_materialization": "identical"
+    },
+    {
+      "path": "experiments/luna71b_c4_2/variants/original/tpcn/eligibility.py",
+      "bytes": 10286,
+      "sha256": "1ca8560d462bf94ed14325de946509ac0aef49e7a9b3774f926254557560d33a",
+      "worktree_raw_bytes": 10286,
+      "worktree_raw_sha256": "1ca8560d462bf94ed14325de946509ac0aef49e7a9b3774f926254557560d33a",
+      "staged_git_blob_bytes": 10045,
+      "staged_git_blob_sha256": "66853034334aabb9a0ad54ccb9e37521efc5d8368f007fb17afaf8c60268f4fc",
+      "staged_materialization": "CRLF-to-LF normalization by existing text=auto policy"
+    },
+    {
+      "path": "experiments/luna71b_c4_2/variants/original/tpcn/luna70_readout_learning.py",
+      "bytes": 119403,
+      "sha256": "40c95044abb8176d26b66da7a6901c75adabf34777ba1f1f658112fce209357f",
+      "worktree_raw_bytes": 119403,
+      "worktree_raw_sha256": "40c95044abb8176d26b66da7a6901c75adabf34777ba1f1f658112fce209357f",
+      "staged_git_blob_bytes": 119403,
+      "staged_git_blob_sha256": "40c95044abb8176d26b66da7a6901c75adabf34777ba1f1f658112fce209357f",
+      "staged_materialization": "identical"
+    },
+    {
+      "path": "experiments/luna71b_c4_2/variants/instrumented/tpcn/event_runtime.py",
+      "bytes": 13540,
+      "sha256": "e16a48af25657e5a45773248adbed37dd41782f4ef51fba9fd1e2cda013617fd",
+      "worktree_raw_bytes": 13540,
+      "worktree_raw_sha256": "e16a48af25657e5a45773248adbed37dd41782f4ef51fba9fd1e2cda013617fd",
+      "staged_git_blob_bytes": 13540,
+      "staged_git_blob_sha256": "e16a48af25657e5a45773248adbed37dd41782f4ef51fba9fd1e2cda013617fd",
+      "staged_materialization": "identical"
+    },
+    {
+      "path": "experiments/luna71b_c4_2/variants/instrumented/tpcn/eligibility.py",
+      "bytes": 10286,
+      "sha256": "1ca8560d462bf94ed14325de946509ac0aef49e7a9b3774f926254557560d33a",
+      "worktree_raw_bytes": 10286,
+      "worktree_raw_sha256": "1ca8560d462bf94ed14325de946509ac0aef49e7a9b3774f926254557560d33a",
+      "staged_git_blob_bytes": 10045,
+      "staged_git_blob_sha256": "66853034334aabb9a0ad54ccb9e37521efc5d8368f007fb17afaf8c60268f4fc",
+      "staged_materialization": "CRLF-to-LF normalization by existing text=auto policy"
+    },
+    {
+      "path": "experiments/luna71b_c4_2/variants/instrumented/tpcn/luna70_readout_learning.py",
+      "bytes": 133416,
+      "sha256": "9bce07d84eb5a91a098ffbfb8cf5f0e1dd403a30374a62e293ad3c64ac77e72f",
+      "worktree_raw_bytes": 133416,
+      "worktree_raw_sha256": "9bce07d84eb5a91a098ffbfb8cf5f0e1dd403a30374a62e293ad3c64ac77e72f",
+      "staged_git_blob_bytes": 133416,
+      "staged_git_blob_sha256": "9bce07d84eb5a91a098ffbfb8cf5f0e1dd403a30374a62e293ad3c64ac77e72f",
+      "staged_materialization": "identical"
+    },
+    {
+      "path": "tests/test_luna71b_c4_2.py",
+      "bytes": 45169,
+      "sha256": "a02fd154e7d7d25866418f8d3990586c0a8151a493016e90814451ddd6a8535b",
+      "worktree_raw_bytes": 45169,
+      "worktree_raw_sha256": "a02fd154e7d7d25866418f8d3990586c0a8151a493016e90814451ddd6a8535b",
+      "staged_git_blob_bytes": 45169,
+      "staged_git_blob_sha256": "a02fd154e7d7d25866418f8d3990586c0a8151a493016e90814451ddd6a8535b",
+      "staged_materialization": "identical"
+    },
+    {
+      "path": "experiments/luna71b_c4_2/reports/correction-evidence-hashes.json",
+      "bytes": 2238,
+      "sha256": "4b7eb9427ea0c3907cd1effec49fed7564d4d481ab728b627a1eb84e6b856a1b",
+      "worktree_raw_bytes": 2238,
+      "worktree_raw_sha256": "4b7eb9427ea0c3907cd1effec49fed7564d4d481ab728b627a1eb84e6b856a1b",
+      "staged_git_blob_bytes": 2186,
+      "staged_git_blob_sha256": "f8900b5865071e1340fad1965dc20eefd32c0974a22b93d7d417c0eb5fa7dc00",
+      "staged_materialization": "CRLF-to-LF normalization by existing text=auto policy"
+    },
+    {
+      "path": "experiments/luna71b_c4_2/reports/correction-pass-report.md",
+      "bytes": 12415,
+      "sha256": "f89497bb89ba67bef3821cbd5762102ca1b9d71fe1324ef7fa00a74798c4d2f5",
+      "worktree_raw_bytes": 12415,
+      "worktree_raw_sha256": "f89497bb89ba67bef3821cbd5762102ca1b9d71fe1324ef7fa00a74798c4d2f5",
+      "staged_git_blob_bytes": 12186,
+      "staged_git_blob_sha256": "b9efe639535fb9f4fa5f8edfd82ec5534c46bf935f5180001f53337ab45e8a0e",
+      "staged_materialization": "CRLF-to-LF normalization by existing text=auto policy"
+    },
+    {
+      "path": "experiments/luna71b_c4_2/reports/final-independent-review.md",
+      "bytes": 1641,
+      "sha256": "bc1ddee55a764efc4ea1084cc6bb9f7c0193613c3f1a1a4d9617b22253b7f84a",
+      "worktree_raw_bytes": 1641,
+      "worktree_raw_sha256": "bc1ddee55a764efc4ea1084cc6bb9f7c0193613c3f1a1a4d9617b22253b7f84a",
+      "staged_git_blob_bytes": 1604,
+      "staged_git_blob_sha256": "5e44d3ee289ae7eaa67edf91f0465deacd098c0666a60ca99039cffa7a2a3d94",
+      "staged_materialization": "CRLF-to-LF normalization by existing text=auto policy"
+    },
+    {
+      "path": "experiments/luna71b_c4_2/reports/followup-independent-review.md",
+      "bytes": 2099,
+      "sha256": "ae2f90888909c1ac6862de9a492fb2a753fbe7034248846725458bf3c9d0e032",
+      "worktree_raw_bytes": 2099,
+      "worktree_raw_sha256": "ae2f90888909c1ac6862de9a492fb2a753fbe7034248846725458bf3c9d0e032",
+      "staged_git_blob_bytes": 2053,
+      "staged_git_blob_sha256": "50686a5905adda60493981b1d5464797999d0919f8482b68b2931e8e69e49cbd",
+      "staged_materialization": "CRLF-to-LF normalization by existing text=auto policy"
+    },
+    {
+      "path": "experiments/luna71b_c4_2/reports/initial-implementation-report.md",
+      "bytes": 4549,
+      "sha256": "c6f6863ff09b7828410ace543628c9c521ae582c930e06178c1fa1e5976e88cf",
+      "worktree_raw_bytes": 4549,
+      "worktree_raw_sha256": "c6f6863ff09b7828410ace543628c9c521ae582c930e06178c1fa1e5976e88cf",
+      "staged_git_blob_bytes": 4463,
+      "staged_git_blob_sha256": "5f1f0d4d14c6fa4b6e87699489b717f78a84376f743cf989901e7559854695cf",
+      "staged_materialization": "CRLF-to-LF normalization by existing text=auto policy"
+    },
+    {
+      "path": "experiments/luna71b_c4_2/reports/p01-p11-coverage-matrix.md",
+      "bytes": 8248,
+      "sha256": "97693aee61888fce8fe6c284e82ecbe55f3c340e62c5cb90c9ddb50e3db12ae9",
+      "worktree_raw_bytes": 8248,
+      "worktree_raw_sha256": "97693aee61888fce8fe6c284e82ecbe55f3c340e62c5cb90c9ddb50e3db12ae9",
+      "staged_git_blob_bytes": 8139,
+      "staged_git_blob_sha256": "cd6bf3cabb6ea1ea91c5d14c2e4c645f70fc4a52cb015e5a31476941efc412e6",
+      "staged_materialization": "CRLF-to-LF normalization by existing text=auto policy"
+    },
+    {
+      "path": "experiments/luna71b_c4_2/reports/source-and-provenance-inventory.md",
+      "bytes": 7500,
+      "sha256": "5daca691394bfa90a9ab247328cc9955ffa4423d95c0a4836794bb3e291d17ae",
+      "worktree_raw_bytes": 7500,
+      "worktree_raw_sha256": "5daca691394bfa90a9ab247328cc9955ffa4423d95c0a4836794bb3e291d17ae",
+      "staged_git_blob_bytes": 7381,
+      "staged_git_blob_sha256": "73607d86eae3cdaa79d424390647e18f43df6420d9e514cdb5b15f8c2d7d7483",
+      "staged_materialization": "CRLF-to-LF normalization by existing text=auto policy"
+    },
+    {
+      "path": "experiments/luna71b_c4_2/reports/source-manifest.json",
+      "bytes": 14826,
+      "sha256": "d3edfd73c4ac9f183f145d49fac4d01e8ca5aaf552f681ddd2bdd253dbccf5a7",
+      "worktree_raw_bytes": 14826,
+      "worktree_raw_sha256": "d3edfd73c4ac9f183f145d49fac4d01e8ca5aaf552f681ddd2bdd253dbccf5a7",
+      "staged_git_blob_bytes": 14826,
+      "staged_git_blob_sha256": "d3edfd73c4ac9f183f145d49fac4d01e8ca5aaf552f681ddd2bdd253dbccf5a7",
+      "staged_materialization": "identical"
+    },
+    {
+      "path": "experiments/luna71b_c4_2/reports/c4.2-f-correction-record.md",
+      "bytes": 4201,
+      "sha256": "1b16861f8b2d89311e7b09e2f38e378774b34924694d394d1f7be6904be2343a",
+      "worktree_raw_bytes": 4201,
+      "worktree_raw_sha256": "1b16861f8b2d89311e7b09e2f38e378774b34924694d394d1f7be6904be2343a",
+      "staged_git_blob_bytes": 4118,
+      "staged_git_blob_sha256": "3761adebeb6ae432ec4407d9ac697fa0e8e3a58869e45a34e0ea02f327f5d613",
+      "staged_materialization": "CRLF-to-LF normalization by existing text=auto policy"
+    },
+    {
+      "path": "experiments/luna71b_c4_2/reports/c4.2-f-final-adjudication.md",
+      "bytes": 6322,
+      "sha256": "c77bb48e84421cdf8601965879e20cac5e80c4bb2dd067ec16c1b4242a7f6680",
+      "worktree_raw_bytes": 6322,
+      "worktree_raw_sha256": "c77bb48e84421cdf8601965879e20cac5e80c4bb2dd067ec16c1b4242a7f6680",
+      "staged_git_blob_bytes": 6217,
+      "staged_git_blob_sha256": "79fe3bd2b14b65cef185a62bd08f4ebc7f5bf51c435af4ff9c9c6cf4eb70d97f",
+      "staged_materialization": "CRLF-to-LF normalization by existing text=auto policy"
+    },
+    {
+      "path": "experiments/luna71b_c4_2/reports/c4.2-f-fixture-identity-inventory.md",
+      "bytes": 4929,
+      "sha256": "3945f51e38579c6fd79887b06c97b198b9d526781fba1827c6ac97896969fa91",
+      "worktree_raw_bytes": 4929,
+      "worktree_raw_sha256": "3945f51e38579c6fd79887b06c97b198b9d526781fba1827c6ac97896969fa91",
+      "staged_git_blob_bytes": 4862,
+      "staged_git_blob_sha256": "58a53fd399fdbd0903b7869fdeef0783506d495a017cf9ffa20bc1cfacbddf7a",
+      "staged_materialization": "CRLF-to-LF normalization by existing text=auto policy"
+    },
+    {
+      "path": "experiments/luna71b_c4_2/reports/c4.2-f-fixture-payload-manifest.json",
+      "bytes": 4140,
+      "sha256": "99750527e4fbb7f8071711fb599aa12934790e1e5775f87b92348ffb553a4b4c",
+      "worktree_raw_bytes": 4140,
+      "worktree_raw_sha256": "99750527e4fbb7f8071711fb599aa12934790e1e5775f87b92348ffb553a4b4c",
+      "staged_git_blob_bytes": 4065,
+      "staged_git_blob_sha256": "e4c5ed97fcb233873c23915bf06a881a7c9e0888a27bf15c6cba754619ce66fb",
+      "staged_materialization": "CRLF-to-LF normalization by existing text=auto policy"
+    },
+    {
+      "path": "experiments/luna71b_c4_2/reports/c4.2-f-focused-test-evidence.md",
+      "bytes": 3876,
+      "sha256": "acce36d247861d4d08488673ec9e9b0e63cfad14b2f98c23e6798f908ef71367",
+      "worktree_raw_bytes": 3876,
+      "worktree_raw_sha256": "acce36d247861d4d08488673ec9e9b0e63cfad14b2f98c23e6798f908ef71367",
+      "staged_git_blob_bytes": 3823,
+      "staged_git_blob_sha256": "ce3b6280cc622c7fab83b361ccbf4f8994642bcfaa7d0cae28a6b114faa12580",
+      "staged_materialization": "CRLF-to-LF normalization by existing text=auto policy"
+    },
+    {
+      "path": "experiments/luna71b_c4_2/reports/c4.2-f-independent-review.md",
+      "bytes": 5636,
+      "sha256": "568228d19becf5e3ad94a2c0397fc6dbf837940d9270dbd411591e11d4d5f405",
+      "worktree_raw_bytes": 5636,
+      "worktree_raw_sha256": "568228d19becf5e3ad94a2c0397fc6dbf837940d9270dbd411591e11d4d5f405",
+      "staged_git_blob_bytes": 5526,
+      "staged_git_blob_sha256": "57a80b311c8bb7c7554b66bf2fe3868b86a3081ea8f082b0297613b4753c0115",
+      "staged_materialization": "CRLF-to-LF normalization by existing text=auto policy"
+    },
+    {
+      "path": "experiments/luna71b_c4_2/reports/c4.2-f-initial-parameter-identity.md",
+      "bytes": 3617,
+      "sha256": "35f9d2d233f46704f7e2cd7251bd902bde1742b2023a8abf2997ff8296df63f4",
+      "worktree_raw_bytes": 3617,
+      "worktree_raw_sha256": "35f9d2d233f46704f7e2cd7251bd902bde1742b2023a8abf2997ff8296df63f4",
+      "staged_git_blob_bytes": 3550,
+      "staged_git_blob_sha256": "d96b1eb3c4f147e84c0a50d11844779a3e1bdb6bd2e1572b0aaeea14c357977e",
+      "staged_materialization": "CRLF-to-LF normalization by existing text=auto policy"
+    },
+    {
+      "path": "experiments/luna71b_c4_2/reports/c4.2-f-p01-p11-static-capture-audit.md",
+      "bytes": 7763,
+      "sha256": "44a121750cf96a248769f6cc4dae50787377d438daa57c06fb0959086ebdc103",
+      "worktree_raw_bytes": 7763,
+      "worktree_raw_sha256": "44a121750cf96a248769f6cc4dae50787377d438daa57c06fb0959086ebdc103",
+      "staged_git_blob_bytes": 7683,
+      "staged_git_blob_sha256": "89ba2e4c7952b9d838bdccdbd44fa079d5de4949dc6f2fe77da190ee2c1194e2",
+      "staged_materialization": "CRLF-to-LF normalization by existing text=auto policy"
+    },
+    {
+      "path": "experiments/luna71b_c4_2/reports/c4.2-f-paired-driver-preflight.md",
+      "bytes": 4190,
+      "sha256": "0a4a5885ab2af6f63a7212cf07a1ce07992d08ccae44393c201bdf5a4237401b",
+      "worktree_raw_bytes": 4190,
+      "worktree_raw_sha256": "0a4a5885ab2af6f63a7212cf07a1ce07992d08ccae44393c201bdf5a4237401b",
+      "staged_git_blob_bytes": 4142,
+      "staged_git_blob_sha256": "d0255cff158f5c166a4d848f440941e047b4439660c385679f4b933757641814",
+      "staged_materialization": "CRLF-to-LF normalization by existing text=auto policy"
+    },
+    {
+      "path": "experiments/luna71b_c4_2/reports/c4.2-f-review-round1-findings.md",
+      "bytes": 4297,
+      "sha256": "7738d82dcad7a1e10a63e4eece65c9a9f5de1af3701ff0fc98c946f918b11666",
+      "worktree_raw_bytes": 4297,
+      "worktree_raw_sha256": "7738d82dcad7a1e10a63e4eece65c9a9f5de1af3701ff0fc98c946f918b11666",
+      "staged_git_blob_bytes": 4219,
+      "staged_git_blob_sha256": "3d856cfed25371a04e9262dcf295f10733d1a2eb1cf00c22d861c9a60fa177c3",
+      "staged_materialization": "CRLF-to-LF normalization by existing text=auto policy"
+    },
+    {
+      "path": "experiments/luna71b_c4_2/reports/c4.2-f-artifact-manifest.json",
+      "bytes": 40526,
+      "sha256": "c2ddd83e8dce89a1b5e32361898d17e925000b9577303e44998a6aa57ef49e5a",
+      "worktree_raw_bytes": 40526,
+      "worktree_raw_sha256": "c2ddd83e8dce89a1b5e32361898d17e925000b9577303e44998a6aa57ef49e5a",
+      "staged_git_blob_bytes": 40526,
+      "staged_git_blob_sha256": "c2ddd83e8dce89a1b5e32361898d17e925000b9577303e44998a6aa57ef49e5a",
+      "staged_materialization": "identical"
+    },
+    {
+      "path": "experiments/luna71b_c4_2/reports/c4.2-f-artifact-manifest.sha256",
+      "bytes": 109,
+      "sha256": "8ee3278969f55a2acee12c47710f6905b8675ebe23b5084e47e507692e48048e",
+      "worktree_raw_bytes": 109,
+      "worktree_raw_sha256": "8ee3278969f55a2acee12c47710f6905b8675ebe23b5084e47e507692e48048e",
+      "staged_git_blob_bytes": 109,
+      "staged_git_blob_sha256": "8ee3278969f55a2acee12c47710f6905b8675ebe23b5084e47e507692e48048e",
+      "staged_materialization": "identical"
+    }
+  ],
+  "excluded_scope": [
+    "All other copied historical files under experiments/luna71b_c4_2/variants/ (source-manifest has 87 verified identities; only six capture-modified source files are published).",
+    "Frozen input copies under experiments/luna71b_c4_2/inputs/.",
+    "Unrelated untracked files and temporary test artifacts.",
+    "Neural traces, pilot outputs, large generated results, and external historical R6 payload/result files.",
+    "C4.1 tracked contract and all Track B sources/contracts."
+  ],
+  "historical_evidence_reconciliation": {
+    "indexed_entries": 8,
+    "original_hashes_verified_at_pre_c4_2_f_review": true,
+    "currently_unchanged": 6,
+    "superseded_by_c4_2_f": 2,
+    "superseded_identifiers": [
+      "source-manifest.json",
+      "test_luna71b_c4_2.py"
+    ],
+    "historical_records_preserved": true
+  },
+  "required_status": {
+    "documentary_identity": "PASS",
+    "fixture_payload": "MISSING",
+    "initial_parameters": "INCOMPLETE",
+    "static_capture": "PARTIAL",
+    "paired_driver": "INCOMPLETE",
+    "independent_review": "PASS WITH FINDINGS",
+    "neural_parity": "NOT TESTED",
+    "smoke_pilot": "NOT AUTHORIZED",
+    "rp2b": "BLOCKED / BOUND INCOMPLETE"
+  },
+  "publication_constraints": {
+    "neural_execution": false,
+    "pilot_readiness_claim": false,
+    "neural_parity_claim": false,
+    "fixture_payload_recovered": false,
+    "architecture_promotion": false,
+    "track_b_modification": false,
+    "merge": false
+  },
+  "review_gate": "Independent Luna-0 review required on this exact staged tree, including the line-ending-only Git blob materializations, before branch creation, commit, or push.",
+  "staged_tree_encoding_note": "Git stages text files with LF normalization under the existing repository .gitattributes text=auto rule and core.autocrlf=true. This publication inventory records both exact raw worktree identities and exact staged Git blob identities; every differing staged blob was verified to differ only by CRLF-to-LF conversion. Independent review is required on the exact staged blobs."
+}

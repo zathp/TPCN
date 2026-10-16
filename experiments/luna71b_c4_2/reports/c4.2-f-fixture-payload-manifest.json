@@ -1,0 +1,75 @@
+{
+  "schema": "luna71b-c4.2-f-fixture-payload-manifest-1",
+  "disposition": "MISSING",
+  "purpose": "Record the frozen historical fixture identity and the inability to bind event payload bytes.",
+  "driver_compatible": false,
+  "contract": {
+    "branch": "governance/luna71b-c4-1-ppc11-freeze",
+    "commit": "11b6f52e9aa6725af69bcd3cd098bb2c62e78b76",
+    "artifact_manifest_sha256": "2f18d694784a6a583b0a7c01e6cc89f1313c2d65c7c6b5346a7cd4d993d3f1fa"
+  },
+  "pilot_plan": {
+    "path": "experiments/luna71b_c4_2/inputs/L71B-C-paired-pilot-plan.json",
+    "bytes": 133178,
+    "sha256": "60cde6b4929be4408fcecdcf3ac7104d5cb7b3365d94d55b568431e54fb5bc3f",
+    "seed": 17,
+    "arms": ["A", "B", "C", "D"],
+    "classes": ["AB", "BA", "A-only", "B-only"],
+    "examples_per_class_per_split": 12,
+    "examples_per_split": 48,
+    "split_order": ["train", "validation", "test"],
+    "payload_available": false,
+    "payloads": []
+  },
+  "historical_r6": {
+    "path": "TPCN-luna70-corrective-readout/artifacts/luna70/four-arm-results-r6.json",
+    "bytes": 69077628,
+    "sha256": "df54185fcbf02293c24589dbf1fd118c406e6651e1e4744a4ed0119f5715502d",
+    "contains_event_payloads": false,
+    "contains_split_digest_references": true
+  },
+  "split_identities": {
+    "train": {
+      "content_sha256": "888c60cfef2589de9a4d87bc07f1871d825cba15c3ae39ca9a7d5acba7e528bd",
+      "input_only_sha256": "16e18d59096c2086d4cb421cc026105fac5705c325292b75d6aa752d443c55ce",
+      "selected_generation_content_sha256": "84d3c19fa668ae6a5902521f50cbed2b70171b4990e812836f4e8d96710f2002",
+      "selected_generation_input_only_sha256": "075a34c6a97e8e664d4626e9fe2041ead0d014a6ba8cdc86b75d703f4e01c6c0",
+      "execution_order_content_sha256": "ca830710f6a7c9e87bd5ad62ca63baafe2a4cb4bc3ffa3f7093777a689719496",
+      "execution_order_input_only_sha256": "14fd313c3a4562abfb220316aaf81de9ad286a9469e1c90db3beeb1ba3af919c"
+    },
+    "validation": {
+      "content_sha256": "0aa78955f44c55a066f0cb268990f50f39857511675caa8633f47749c8b0caff",
+      "input_only_sha256": "459d4ec0c63ad20455446352c6e79f5c6405fd7442dd3c0d541b9ea59ca1c497",
+      "selected_generation_content_sha256": "10ae5da5624e97545bab4ae1659015f2b871e6c99be88c5763f9088b88fd50d1",
+      "selected_generation_input_only_sha256": "0cc978f26051c671196186629b570c213df5c134b7f516c68230718ead9dc9a6",
+      "execution_order_content_sha256": "10ae5da5624e97545bab4ae1659015f2b871e6c99be88c5763f9088b88fd50d1",
+      "execution_order_input_only_sha256": "0cc978f26051c671196186629b570c213df5c134b7f516c68230718ead9dc9a6"
+    },
+    "test": {
+      "content_sha256": "5aee443c843e0a81bdfa60a12b50bac92a490dcab6dfea46b1874d26d49c33cf",
+      "input_only_sha256": "2e999ef1582dabfaf5189ff8cf7814b90434ab66ab7a238ed7d34edf36ae8ef5",
+      "selected_generation_content_sha256": "c0c17a48d5541ffb9911cd3dc086ee0497d967b19ee25a64ae2a0730b374152d",
+      "selected_generation_input_only_sha256": "312f27b6c424c48ee401cf8c50d5a416e3aca9733bf4a21891064b0e116cc866",
+      "execution_order_content_sha256": "c0c17a48d5541ffb9911cd3dc086ee0497d967b19ee25a64ae2a0730b374152d",
+      "execution_order_input_only_sha256": "312f27b6c424c48ee401cf8c50d5a416e3aca9733bf4a21891064b0e116cc866"
+    }
+  },
+  "payload_identity": {
+    "event_channels_verified": false,
+    "event_timestamps_verified": false,
+    "observation_deadlines_verified": false,
+    "class_balance_verified_from_plan": true,
+    "per_class_example_identity_verified": false,
+    "original_order_verified_from_plan": true,
+    "per_example_payloads_verified": false,
+    "encoding_verified": false,
+    "statement": "The referenced digests do not provide the underlying fixture bytes. No payload was regenerated or inferred."
+  },
+  "missing_identity": [
+    "Exact train, validation, and test event payload bytes",
+    "Per-example event channel and event timestamp records",
+    "Exact observation-deadline values as bound to each example",
+    "Exact payload serialization/encoding",
+    "A payload manifest whose hashes are computed over the preserved bytes"
+  ]
+}
