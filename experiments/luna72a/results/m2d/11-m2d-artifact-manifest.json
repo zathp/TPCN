@@ -1,0 +1,57 @@
+{
+  "schema": "luna72a-m2d-artifact-manifest-v1",
+  "baseline_revision": "11b6f52e9aa6725af69bcd3cd098bb2c62e78b76",
+  "hash_algorithm": "SHA-256",
+  "files": [
+    {
+      "path": "01-m2d-baseline-provenance.md",
+      "bytes": 5059,
+      "sha256": "333e84abec512571b44bf858b362eb7357003af93aa765b761546d05c114ea2e"
+    },
+    {
+      "path": "02-m2d-e1-interface-audit.md",
+      "bytes": 8582,
+      "sha256": "2f5b9a32a20ec319cf67cf995cf5e0cc3ad4c817ffe96842461532ed0fc4142e"
+    },
+    {
+      "path": "03-m2d-harness-design.md",
+      "bytes": 8009,
+      "sha256": "9d583522d561687788dce135381f4df4f04291e3e1cb22c39741d95d32a236d9"
+    },
+    {
+      "path": "04-m2d-event-provenance-contract.md",
+      "bytes": 9493,
+      "sha256": "c38e7312a31109f788aecf32c04e311ec6ffbddaae746ee1f3b7e34aa64f7e64"
+    },
+    {
+      "path": "05-m2d-resource-lifecycle-contract.md",
+      "bytes": 7365,
+      "sha256": "89dfb6d7f87054d6b553f41c46105b92e0dbc499614246e9110339822eb24417"
+    },
+    {
+      "path": "06-m2d-counterfactual-protocol.md",
+      "bytes": 10299,
+      "sha256": "75606d57813ce538a3b7fd0b50dac8d6b65213b8bd20180edca339ccd243a681"
+    },
+    {
+      "path": "07-m2d-proof-obligations.md",
+      "bytes": 9601,
+      "sha256": "4242dd55f9f4e355bc09c496c8f8f7a6832f713f53f43b780e678fdb1eda53b0"
+    },
+    {
+      "path": "08-m2d-implementation-authorization-candidate.md",
+      "bytes": 9847,
+      "sha256": "f090e2642f28e8846981af65311cf0aae39b1ddbf8ad1c307c4dc9bab80eea57"
+    },
+    {
+      "path": "09-m2d-independent-luna0-review.md",
+      "bytes": 2114,
+      "sha256": "7eabe5fcdd9313554a8e8fa74313a0801979c0269d679e6b6312908d45f7431b"
+    },
+    {
+      "path": "10-m2d-final-adjudication.md",
+      "bytes": 3855,
+      "sha256": "f22e6375e9d90b35d0b7354f795cdc7d32097f6c3d5533d8e762750a46cd2845"
+    }
+  ]
+}
