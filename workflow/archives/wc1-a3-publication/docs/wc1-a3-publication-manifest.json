@@ -1,0 +1,99 @@
+{
+  "schema": "TPCN-WC1-A3-PUBLICATION-MANIFEST-1",
+  "createdAtLocal": "2026-10-16T21:34:37-0400",
+  "publicationBranch": "governance/luna71b-wc1-a3-preservation",
+  "publicationBaseCommit": "11b6f52e9aa6725af69bcd3cd098bb2c62e78b76",
+  "publishedDirectory": "workflow/archives/wc1-a3-publication/docs/",
+  "sourceWc1A3Manifest": {
+    "filename": "wc1-a3-preservation-manifest.json",
+    "bytes": 15114,
+    "sha256": "53af9adcb642d9ec71c2c3ca56eac73558505ed0fa3d964158bd523739f15cac",
+    "checksumSidecarBytes": 100,
+    "checksumSidecarSha256": "5f4f729e25c4e893ff7d4f39ebd9f1b7b1b4233b10fd194aaf936c2ae5de4383",
+    "publishedVerbatim": false,
+    "reason": "Contains machine-local absolute storage paths; this curated publication manifest uses relative paths and distinct identity."
+  },
+  "bundle": {
+    "filename": "wc1-a2-four-commits.bundle",
+    "bytes": 347973854,
+    "sha256": "0455adf8dc0b0a7b7dd0695781ab1776cedf924653c6a757c61c2ea8614d5887",
+    "published": false,
+    "checksumSidecarPublished": "wc1-a2-four-commits.bundle.sha256"
+  },
+  "historicalCommitIds": [
+    "430b60ed3684dde1d4f618d2e4c8d23410d81928",
+    "77938eb04aa058246e19267326747101664cf777",
+    "6db1e4754851cf86389ef6c7b562a6f7606cfacc",
+    "b85eb31e7801c1c8c3ee48968978cfe40a5d8aef"
+  ],
+  "sourceProtection": {
+    "refsCreated": 3,
+    "createdCommitIds": [
+      "77938eb04aa058246e19267326747101664cf777",
+      "6db1e4754851cf86389ef6c7b562a6f7606cfacc",
+      "b85eb31e7801c1c8c3ee48968978cfe40a5d8aef"
+    ],
+    "notCreatedCommitId": "430b60ed3684dde1d4f618d2e4c8d23410d81928",
+    "notCreatedReason": "Source object closure is missing canonical empty tree 4b825dc642cb6eb9a060e54bf8d69288fbee4904; source repair is not authorized."
+  },
+  "limitations": {
+    "sourceMissingTree": "UNCHANGED",
+    "offMachineBackup": "OFF_MACHINE_BACKUP_PENDING_OWNER_DESTINATION",
+    "worktreeCleanup": "NOT AUTHORIZED",
+    "remotePublicationOfPreservationRefs": "NOT AUTHORIZED",
+    "neuralExecution": "NOT AUTHORIZED",
+    "architectureReview": "Luna-0 archival-preservation-only; workflow architecture-contract paths unavailable"
+  },
+  "lineEndingPolicy": "For each published file, sha256 and byte count refer to raw worktree bytes. gitBlobSha1AfterPathFilters is computed using git hash-object --path=<relative path> with this checkout text/filter policy (core.autocrlf=true, text=auto). The staged review must compare these expected identities with the index.",
+  "publicationFiles": [
+    {
+      "path": "workflow/archives/wc1-a3-publication/docs/independent-final-review.md",
+      "bytes": 3001,
+      "sha256": "97e9a978c77f4403629006548716cf7bae7b30e7ebf1ed9c0d1c1dbbc4a67b00",
+      "gitBlobSha1AfterPathFilters": "0ee144e4f9cc8efbe6dd53990a5bea4e362a9282"
+    },
+    {
+      "path": "workflow/archives/wc1-a3-publication/docs/preliminary-ref-acceptance.md",
+      "bytes": 2155,
+      "sha256": "c9a4b9a4f2e819665d9d6514d1b879da8ab511a18af1ea3b86e779b0cdf0237f",
+      "gitBlobSha1AfterPathFilters": "0b34a6bfa4e108497bde9a31f172cbdf841a54f0"
+    },
+    {
+      "path": "workflow/archives/wc1-a3-publication/docs/publication-inventory.md",
+      "bytes": 6237,
+      "sha256": "5816a98b77faf4ee51bac8d0ba2bd96b4fdc6a812199aab87cf6efc5c03accd8",
+      "gitBlobSha1AfterPathFilters": "addc00991ecc2568b7244214c5f6b5258d672397"
+    },
+    {
+      "path": "workflow/archives/wc1-a3-publication/docs/README.md",
+      "bytes": 1800,
+      "sha256": "d3988bdc654e9484fde3f3edc1b4b8e95d67a9234f541fa87f249a28802ef714",
+      "gitBlobSha1AfterPathFilters": "80897bbe0145ecd501ff6fe0c516e10582dd9599"
+    },
+    {
+      "path": "workflow/archives/wc1-a3-publication/docs/WC1-A2-final-adjudication.md",
+      "bytes": 2805,
+      "sha256": "f06c7e9a09928e63546b9308dbdb7779d82b92e0a0ff05b75bdbe4ea0b0b3b73",
+      "gitBlobSha1AfterPathFilters": "1cc0b0e0b2627f2ac002689500bee0c74b3d2793"
+    },
+    {
+      "path": "workflow/archives/wc1-a3-publication/docs/wc1-a2-four-commits.bundle.sha256",
+      "bytes": 94,
+      "sha256": "a856b66abad52b65a7f7bd1a7113eb5d97d2d58cdfe5eb0adb2f8f24d891e7f8",
+      "gitBlobSha1AfterPathFilters": "0bd5ebdfeb196ea01c00725161d5d925f7639ca8"
+    },
+    {
+      "path": "workflow/archives/wc1-a3-publication/docs/WC1-A2-independent-review.md",
+      "bytes": 3374,
+      "sha256": "1c39f841aabb07d1b08307136a9ea48c238db82473311397458a181ee864f5f5",
+      "gitBlobSha1AfterPathFilters": "b3a170bfe63863c1509689fd88aa7c7db0c198f6"
+    },
+    {
+      "path": "workflow/archives/wc1-a3-publication/docs/WC1-A3-preservation-report.md",
+      "bytes": 3821,
+      "sha256": "53dc782e59c403ba45a5d384deacfa8979b1375abf3a983ebb8c4dd5124370af",
+      "gitBlobSha1AfterPathFilters": "a29086c49e8c86d66e4c9dae4cbad6d576ce6bb5"
+    }
+  ],
+  "manifestSelfReference": "This file and its checksum sidecar are excluded from publicationFiles to avoid self-referential hashing; the sidecar authenticates raw manifest bytes. Final staged-tree review records their Git blob IDs."
+}
