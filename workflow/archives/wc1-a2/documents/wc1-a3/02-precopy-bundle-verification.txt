@@ -1,0 +1,49 @@
+WC1-A3 pre-copy bundle verification; 2026-10-16T20:57:22-0400
+Bundle: C:\Users\Patrick\Documents\ActiveCode\TPCN-preservation\luna71b-wc1-a2\wc1-a2-four-commits.bundle
+Size: 347973854
+SHA-256: 0455adf8dc0b0a7b7dd0695781ab1776cedf924653c6a757c61c2ea8614d5887
+
+===== Initialize separate fresh bare repository =====
+COMMAND: git init --bare --object-format=sha1 --quiet C:\Users\Patrick\Documents\ActiveCode\TPCN-preservation\luna71b-wc1-a3\02-precopy-independent-recovery.git
+EXIT CODE: 0
+[stdout]
+[empty]
+[stderr]
+[empty]
+
+===== Verify bundle checksum-based Git completeness before copy =====
+COMMAND: git --git-dir=C:\Users\Patrick\Documents\ActiveCode\TPCN-preservation\luna71b-wc1-a3\02-precopy-independent-recovery.git bundle verify C:\Users\Patrick\Documents\ActiveCode\TPCN-preservation\luna71b-wc1-a2\wc1-a2-four-commits.bundle
+EXIT CODE: 0
+[stdout]
+The bundle contains these 4 refs:
+430b60ed3684dde1d4f618d2e4c8d23410d81928 refs/preservation/luna71b-wc1-a2/430b60ed3684dde1d4f618d2e4c8d23410d81928
+77938eb04aa058246e19267326747101664cf777 refs/preservation/luna71b-wc1-a2/77938eb04aa058246e19267326747101664cf777
+6db1e4754851cf86389ef6c7b562a6f7606cfacc refs/preservation/luna71b-wc1-a2/6db1e4754851cf86389ef6c7b562a6f7606cfacc
+b85eb31e7801c1c8c3ee48968978cfe40a5d8aef refs/preservation/luna71b-wc1-a2/b85eb31e7801c1c8c3ee48968978cfe40a5d8aef
+The bundle records a complete history.
+The bundle uses this hash algorithm: sha1
+
+[stderr]
+C:/Users/Patrick/Documents/ActiveCode/TPCN-preservation/luna71b-wc1-a2/wc1-a2-four-commits.bundle is okay
+
+
+===== List all advertised refs =====
+COMMAND: git --git-dir=C:\Users\Patrick\Documents\ActiveCode\TPCN-preservation\luna71b-wc1-a3\02-precopy-independent-recovery.git bundle list-heads C:\Users\Patrick\Documents\ActiveCode\TPCN-preservation\luna71b-wc1-a2\wc1-a2-four-commits.bundle
+EXIT CODE: 0
+[stdout]
+430b60ed3684dde1d4f618d2e4c8d23410d81928 refs/preservation/luna71b-wc1-a2/430b60ed3684dde1d4f618d2e4c8d23410d81928
+77938eb04aa058246e19267326747101664cf777 refs/preservation/luna71b-wc1-a2/77938eb04aa058246e19267326747101664cf777
+6db1e4754851cf86389ef6c7b562a6f7606cfacc refs/preservation/luna71b-wc1-a2/6db1e4754851cf86389ef6c7b562a6f7606cfacc
+b85eb31e7801c1c8c3ee48968978cfe40a5d8aef refs/preservation/luna71b-wc1-a2/b85eb31e7801c1c8c3ee48968978cfe40a5d8aef
+
+[stderr]
+[empty]
+
+===== Restore from authoritative bundle into fresh repository =====
+COMMAND: git --git-dir=C:\Users\Patrick\Documents\ActiveCode\TPCN-preservation\luna71b-wc1-a3\02-precopy-independent-recovery.git fetch --no-tags --no-recurse-submodules C:\Users\Patrick\Documents\ActiveCode\TPCN-preservation\luna71b-wc1-a2\wc1-a2-four-commits.bundle +refs/preservation/wc1-a3/430b60ed3684dde1d4f618d2e4c8d23410d81928:refs/preservation/wc1-a3/430b60ed3684dde1d4f618d2e4c8d23410d81928 +refs/preservation/wc1-a3/77938eb04aa058246e19267326747101664cf777:refs/preservation/wc1-a3/77938eb04aa058246e19267326747101664cf777 +refs/preservation/wc1-a3/6db1e4754851cf86389ef6c7b562a6f7606cfacc:refs/preservation/wc1-a3/6db1e4754851cf86389ef6c7b562a6f7606cfacc +refs/preservation/wc1-a3/b85eb31e7801c1c8c3ee48968978cfe40a5d8aef:refs/preservation/wc1-a3/b85eb31e7801c1c8c3ee48968978cfe40a5d8aef
+EXIT CODE: 128
+[stdout]
+[empty]
+[stderr]
+fatal: couldn't find remote ref refs/preservation/wc1-a3/430b60ed3684dde1d4f618d2e4c8d23410d81928
+

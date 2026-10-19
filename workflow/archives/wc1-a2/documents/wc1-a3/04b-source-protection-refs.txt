@@ -1,0 +1,38 @@
+WC1-A3 additive source preservation refs; 2026-10-16T21:04:51-0400
+Source repository: C:\Users\Patrick\Documents\ActiveCode\TPCN
+Luna-0 preliminary gate accepted these three commits; 430b60ed is rejected due missing tree.
+A prior update-ref transaction using unsupported start/prepare/commit syntax made no changes (exit 128). This Git version accepts individual stdin create commands; each is non-overwriting.
+
+===== Confirm WC1-A3 namespace is empty =====
+COMMAND: git -C C:\Users\Patrick\Documents\ActiveCode\TPCN for-each-ref "--format=%(objectname) %(refname)" refs/preservation/wc1-a3
+EXIT CODE: 0
+[stdout]
+[empty]
+[stderr]
+[empty]
+
+===== Validate refname 77938eb04aa058246e19267326747101664cf777 =====
+COMMAND: git -C C:\Users\Patrick\Documents\ActiveCode\TPCN check-ref-format refs/preservation/wc1-a3/77938eb04aa058246e19267326747101664cf777
+EXIT CODE: 0
+[stdout]
+[empty]
+[stderr]
+[empty]
+
+===== Confirm object exists 77938eb04aa058246e19267326747101664cf777 =====
+COMMAND: git -C C:\Users\Patrick\Documents\ActiveCode\TPCN cat-file -e 77938eb04aa058246e19267326747101664cf777
+EXIT CODE: 0
+[stdout]
+[empty]
+[stderr]
+[empty]
+
+===== Non-overwriting creation of refs/preservation/wc1-a3/77938eb04aa058246e19267326747101664cf777 =====
+COMMAND: git -C C:\Users\Patrick\Documents\ActiveCode\TPCN update-ref --stdin
+EXIT CODE: 128
+[stdout]
+[empty]
+[stderr]
+fatal: create refs/preservation/wc1-a3/77938eb04aa058246e19267326747101664cf777: extra input: ?
+
+

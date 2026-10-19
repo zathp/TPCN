@@ -1,0 +1,25 @@
+Luna-71B-WC1-A2 isolated reconstruction and four-commit bundle build
+Timestamp (local): 2026-10-16T18:55:13-0400
+Source repository (read-only): C:\Users\Patrick\Documents\ActiveCode\TPCN
+Isolated staging repository: C:\Users\Patrick\Documents\ActiveCode\TPCN-preservation\luna71b-wc1-a2\01-recovered.git
+Bundle candidate: C:\Users\Patrick\Documents\ActiveCode\TPCN-preservation\luna71b-wc1-a2\wc1-a2-four-commits.bundle
+All write-capable Git commands use staging or restoration repositories only.
+
+===== Initialize fresh SHA-1 bare staging repository =====
+COMMAND: git init --bare --object-format=sha1 --quiet C:\Users\Patrick\Documents\ActiveCode\TPCN-preservation\luna71b-wc1-a2\01-recovered.git
+CWD: process default
+EXIT CODE: 0
+[stdout]
+[empty]
+[stderr]
+[empty]
+
+===== Import prior bundle ref 77938eb04aa058246e19267326747101664cf777 without source-repository access =====
+COMMAND: git -C C:\Users\Patrick\Documents\ActiveCode\TPCN-preservation\luna71b-wc1-a2\01-recovered.git fetch --no-tags --no-recurse-submodules C:\Users\Patrick\Documents\ActiveCode\TPCN-preservation\luna71b-wc1-a1\wc1-a1-three-commits-partial.bundle +refs/preservation/luna71b-wc1-a1/77938eb04aa058246e19267326747101664cf777:refs/preservation/luna71b-wc1-a2/77938eb04aa058246e19267326747101664cf777
+CWD: process default
+EXIT CODE: 128
+[stdout]
+[empty]
+[stderr]
+fatal: cannot use bare repository 'C:/Users/Patrick/Documents/ActiveCode/TPCN-preservation/luna71b-wc1-a2/01-recovered.git' (safe.bareRepository is 'explicit')
+

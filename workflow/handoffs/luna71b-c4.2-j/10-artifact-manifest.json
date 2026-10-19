@@ -1,0 +1,1215 @@
+{
+  "detached_checksum_path": "workflow/handoffs/luna71b-c4.2-j/10-artifact-manifest.sha256",
+  "disposition": "FINAL_REVIEW_PASS_WITH_FINDINGS; STATIC_PPC11_INCOMPLETE; NO_PUBLICATION_AUTHORIZED",
+  "files": [
+    {
+      "bytes": 4274,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/GN-corrections-addendum.md",
+      "sha256": "9d1d06119c7152d12d2fa5c26245704fc857fa36d91637f0ee5f2b29e6fef849"
+    },
+    {
+      "bytes": 12096,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/GN-evidence-report.md",
+      "sha256": "e20de3f1514de4c301bbf0a14ff16b33fd58cf560071e803629d717c316589b2"
+    },
+    {
+      "bytes": 77,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/__init__.py",
+      "sha256": "0321e32e4468f07d6beaf3a7cb8983f83325b57f2330788f6bdd6a5bcb918b02"
+    },
+    {
+      "bytes": 6341,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/artifact_manifest.py",
+      "sha256": "4deaf44879488d14c1d7c5505dc01ef258d9f5d23603f974c53d9e553749dfd2"
+    },
+    {
+      "bytes": 10979,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/dataset.py",
+      "sha256": "c508c476f210588ec3a83d8e3cdd0fef7079a054886027397e5f53054c62b4dd"
+    },
+    {
+      "bytes": 1797,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/experiment-config.json",
+      "sha256": "0420a38974c1b029c199a5d59748a97ba998af89dfd8d8782d9af9ae5eecf59d"
+    },
+    {
+      "bytes": 2368,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/fixture-manifest.json",
+      "sha256": "839e58df80da69cdf7b63618afc9626b85a9aa9817885931189c58a6f9658f40"
+    },
+    {
+      "bytes": 37135,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/gn-artifact-manifest.json",
+      "sha256": "b2cf392f1d596b352e5af0add83c269c91fc1c0a19f701a9e54de4f41eb1ec16"
+    },
+    {
+      "bytes": 112,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/inputs/initial-parameters.json",
+      "sha256": "5a53d0cc7e41a7431d584bd711f0a1d0ba735a69f6e84b1b9298fa41f289948a"
+    },
+    {
+      "bytes": 4368,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/inputs/test.evaluation.jsonl",
+      "sha256": "f87d954274a4554b659dcfa2b098e27854cbb78d6e65de7dc6582786cd7c16d0"
+    },
+    {
+      "bytes": 13264,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/inputs/test.events.jsonl",
+      "sha256": "f9bce4ed60e92aa191c6ddad5d7c2fc6244132fd1d8f1d74a0f25344620da567"
+    },
+    {
+      "bytes": 4464,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/inputs/train.evaluation.jsonl",
+      "sha256": "abcda38cd176393af63f086240293d451b0b3089ffe667f22ef4a08b302b12e2"
+    },
+    {
+      "bytes": 13264,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/inputs/train.events.jsonl",
+      "sha256": "fd4194592ca5f45c1eaf1d54daaa9eaaf23f56395f104cdb52b398fcb6a439e4"
+    },
+    {
+      "bytes": 4944,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/inputs/validation.evaluation.jsonl",
+      "sha256": "3f44c4daa7a211be30f9543cbdb31fa6fa2893ab17c64906a9fc1c3a34876c9b"
+    },
+    {
+      "bytes": 13268,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/inputs/validation.events.jsonl",
+      "sha256": "5e711bb0bc3b8911f247252a366001e2a3515a9577c82df5e2feef23c202e5c5"
+    },
+    {
+      "bytes": 4629,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/paired_driver.py",
+      "sha256": "292e468934fe54dcde1e760b6a4616e26fa62364b7a95858717b4277c945bc0c"
+    },
+    {
+      "bytes": 3144,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/ppc11-implementation-identities-pre-correction.json",
+      "sha256": "6b9d34c9e079d7f26f2cc480a2014d0405e4393e7938c40e5afd09cc64041179"
+    },
+    {
+      "bytes": 66,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/ppc11-implementation-identities-pre-correction.sha256",
+      "sha256": "97ebd5cd6d0444cae482568ffe51eeb3481e9b371a277d4af9d774c4f34dae9a"
+    },
+    {
+      "bytes": 3990,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/ppc11-implementation-identities.json",
+      "sha256": "8524de661d68715f8e257d058649b5ea8d158f8f3c55f3cbc6be803bd515d878"
+    },
+    {
+      "bytes": 66,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/ppc11-implementation-identities.sha256",
+      "sha256": "8e33a960cd57157eb7c46b4b95b94e6dbd10340548cb673a91787f76cfcdbf23"
+    },
+    {
+      "bytes": 16369,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/preflight.py",
+      "sha256": "4b991a3722f333d58e0116923f4468f86800d351f224995f95b19a5f392accf5"
+    },
+    {
+      "bytes": 403,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/prepare.py",
+      "sha256": "b3e8ce245c7b45e387e4e43d15cd67b166b4bd2c206798548ff41575c6d61bf9"
+    },
+    {
+      "bytes": 3405,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/review/H-A-P03-lifecycle-assessment.md",
+      "sha256": "fac43860b07c88b0ce33f5eec25ead2d47435966701558ab613dd220bc1fec26"
+    },
+    {
+      "bytes": 2774,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/review/H-B-P04-omission-assessment.md",
+      "sha256": "573b096e1589077b575ac71fc860624c0fa7118577d8342e413864288434a7b8"
+    },
+    {
+      "bytes": 2173,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/review/H-C-P11-terminal-evidence.md",
+      "sha256": "db27e5cde43738e09f244ef17b12f16b6a7b5a4659f440088a8cf25ec924b7a8"
+    },
+    {
+      "bytes": 4180,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/review/H-D-historical-identity-reconciliation.md",
+      "sha256": "54a70cfbedec49f5022bd49bb6a282732173b42b4a23fa9f98210bd57d4eb627"
+    },
+    {
+      "bytes": 3062,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/review/H-E-focused-validation-results.md",
+      "sha256": "b2dbb88c67fb10cd4b76f04628b5fe38031f488acfc78d666d6444fbf65dd349"
+    },
+    {
+      "bytes": 3834,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/review/H-final-readiness-adjudication.md",
+      "sha256": "e6077031d73a2a60ee7cf1e07722acee5095f84cf6ba68a4e0938639e4cafc4e"
+    },
+    {
+      "bytes": 3645,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/review/H-independent-luna0-review.md",
+      "sha256": "7916be94c20e52e2e37c8dcc789361966391ef3eaaa2b5b3c59b23accbbba51d"
+    },
+    {
+      "bytes": 2424,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/review/luna0-independent-review-pre-correction.md",
+      "sha256": "b1d43c0c10466c916c3d4cd2f00acc8830bcc4bff9bc44f2f2b6a2ef26de55ee"
+    },
+    {
+      "bytes": 20446,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/source-manifest.json",
+      "sha256": "1c12a5f149d022f9e7a4304aa2b32f0110fc802f855d018bee32014580ae5095"
+    },
+    {
+      "bytes": 66,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/source-manifest.sha256",
+      "sha256": "4c2694851c84ac4faac323480c995814ca95273fca48159ee0e6cdf5aa4da07a"
+    },
+    {
+      "bytes": 14826,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/source/c4.2-source-manifest.json",
+      "sha256": "d3edfd73c4ac9f183f145d49fac4d01e8ca5aaf552f681ddd2bdd253dbccf5a7"
+    },
+    {
+      "bytes": 1027,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/source/hook-baseline-manifest.json",
+      "sha256": "2df2968b4511bc3f85e89d0059941d7e430caa770d36f890d705bbf60db079cc"
+    },
+    {
+      "bytes": 66,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/source/hook-baseline-manifest.sha256",
+      "sha256": "c67d96407f140afd1702593a33e50a39adaeba31040dab54a991eff25fde59d7"
+    },
+    {
+      "bytes": 10286,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/source/hook-baseline/instrumented/tpcn/eligibility.py",
+      "sha256": "1ca8560d462bf94ed14325de946509ac0aef49e7a9b3774f926254557560d33a"
+    },
+    {
+      "bytes": 133416,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/source/hook-baseline/instrumented/tpcn/luna70_readout_learning.py",
+      "sha256": "9bce07d84eb5a91a098ffbfb8cf5f0e1dd403a30374a62e293ad3c64ac77e72f"
+    },
+    {
+      "bytes": 10838,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/source/hook-baseline/instrumented/tpcn/predictive_coding.py",
+      "sha256": "5e0624fb1e3f53c6a4005ac9a893cbd4618d650ea7cd38950abda6de55252869"
+    },
+    {
+      "bytes": 10286,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/source/hook-baseline/original/tpcn/eligibility.py",
+      "sha256": "1ca8560d462bf94ed14325de946509ac0aef49e7a9b3774f926254557560d33a"
+    },
+    {
+      "bytes": 119403,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/source/hook-baseline/original/tpcn/luna70_readout_learning.py",
+      "sha256": "40c95044abb8176d26b66da7a6901c75adabf34777ba1f1f658112fce209357f"
+    },
+    {
+      "bytes": 10838,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/source/hook-baseline/original/tpcn/predictive_coding.py",
+      "sha256": "5e0624fb1e3f53c6a4005ac9a893cbd4618d650ea7cd38950abda6de55252869"
+    },
+    {
+      "bytes": 14899,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/source/variants/instrumented/luna71b_trace.py",
+      "sha256": "28b336061c029013545f1cf114e82ef60303f5ebc747fd92090e17aee1ded515"
+    },
+    {
+      "bytes": 26126,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/source/variants/instrumented/run_luna70_corrective_readout.py",
+      "sha256": "f82eba8a5c5c0bed8b6aa7b51e9a83f2d3a920a8afbf15ec32f2bb859b7db7ac"
+    },
+    {
+      "bytes": 5928,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/source/variants/instrumented/test_luna70_readout_learning.py",
+      "sha256": "50ba3365ea60551d1354c4ee35e0eb006b7921d7a4458dc86fc67179700be262"
+    },
+    {
+      "bytes": 10010,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/source/variants/instrumented/tpcn/__init__.py",
+      "sha256": "637680922f8c2db8b78581abda33c2ea89d133eb104acec6db2f82cbf79948a7"
+    },
+    {
+      "bytes": 5223,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/source/variants/instrumented/tpcn/backend.py",
+      "sha256": "83eed9d03b79f069b37d9c2d54a5f2917c58481b31118371274bc61f0888125e"
+    },
+    {
+      "bytes": 6905,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/source/variants/instrumented/tpcn/canonical_neuron.py",
+      "sha256": "f9878aad6da8ed507266e96d9e27eb09b29fcd4a1f96965f798a3b1520949595"
+    },
+    {
+      "bytes": 16744,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/source/variants/instrumented/tpcn/causal_utility.py",
+      "sha256": "69f74263791d4fa45052372cf4cc85f4e85bdd2433931eb62c194486587f3dbd"
+    },
+    {
+      "bytes": 11522,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/source/variants/instrumented/tpcn/cpu_visualization.py",
+      "sha256": "22311a19a89a933a0a3e10c1ff242b09af66fc5fe8b54b78f5c7efa8b8a18e67"
+    },
+    {
+      "bytes": 17012,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/source/variants/instrumented/tpcn/edge_instrumentation.py",
+      "sha256": "5e0929323ba636db601a81dac1500b600eed4613f5b87ca1af1b64b983fe6ebf"
+    },
+    {
+      "bytes": 11901,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/source/variants/instrumented/tpcn/eligibility.py",
+      "sha256": "b424c3423793361ddfbdf7d100bfb0322d350f1303dceaf13b47e24037817fb3"
+    },
+    {
+      "bytes": 10344,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/source/variants/instrumented/tpcn/energy_utility.py",
+      "sha256": "2769fe8197bc26fc5c2c458b8a087cfb1fe7ea441fb219c2ec2f064cc32d2aab"
+    },
+    {
+      "bytes": 13540,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/source/variants/instrumented/tpcn/event_runtime.py",
+      "sha256": "e16a48af25657e5a45773248adbed37dd41782f4ef51fba9fd1e2cda013617fd"
+    },
+    {
+      "bytes": 40912,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/source/variants/instrumented/tpcn/excursion_neuron.py",
+      "sha256": "73b4265e5b6ce11fe0fed5bc50ca185aa47044af01cffed65499b557a98b69aa"
+    },
+    {
+      "bytes": 14617,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/source/variants/instrumented/tpcn/execution_ir.py",
+      "sha256": "7643065a7308f19632a84f6d060e44b7a1ffc468cab9f8619d959849034964df"
+    },
+    {
+      "bytes": 37981,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/source/variants/instrumented/tpcn/experiment_excursion_runtime.py",
+      "sha256": "df007154939c6c554a3d914c15ce91c87954beeebf29df416ee27d138f119d5a"
+    },
+    {
+      "bytes": 73781,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/source/variants/instrumented/tpcn/experiments.py",
+      "sha256": "cabb81da36280e7cdcf614b8b3e2cd5567035c20c6706a85b25b1a73310e967d"
+    },
+    {
+      "bytes": 26430,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/source/variants/instrumented/tpcn/finite_resource.py",
+      "sha256": "d7540f5283213d555882c58c6360100a0b7ce01d0719665063161061ef26ad7b"
+    },
+    {
+      "bytes": 7620,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/source/variants/instrumented/tpcn/fpga_visualization.py",
+      "sha256": "dd92e76d834aad25a6d1b425b74e9cad5deb9c0fc4b835e686e1d3756f0a69db"
+    },
+    {
+      "bytes": 2676,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/source/variants/instrumented/tpcn/gpu_visualization.py",
+      "sha256": "8a0de4d800f56ee71ae115b75f586385869ddb43b6f57cd6013ec74787f14daa"
+    },
+    {
+      "bytes": 36517,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/source/variants/instrumented/tpcn/ir2.py",
+      "sha256": "a355c8a34275ee8fb78cc3135f34b50afbf5ae48575196467cb7b9465b806209"
+    },
+    {
+      "bytes": 61199,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/source/variants/instrumented/tpcn/luna66_minimal_learning.py",
+      "sha256": "552b6a584ee540f69bc81ce92cffe6dd943ffca6e56ae74f6474f44bd314bb5f"
+    },
+    {
+      "bytes": 137339,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/source/variants/instrumented/tpcn/luna70_readout_learning.py",
+      "sha256": "f84947e33947cfcedf9800d498e756b42c1d10da1dfb16b3202df6ff2216fe03"
+    },
+    {
+      "bytes": 14639,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/source/variants/instrumented/tpcn/luna71b_trace.py",
+      "sha256": "256239286551b04c79328431563b2d6bc492c1b1793d092bd8081337d6558cd8"
+    },
+    {
+      "bytes": 21522,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/source/variants/instrumented/tpcn/post_pruning_admission.py",
+      "sha256": "15505f4bf63d41d98fc621ba61e777ee2f13c46f1a3492cbae7f9f23f4479a25"
+    },
+    {
+      "bytes": 11579,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/source/variants/instrumented/tpcn/predictive_coding.py",
+      "sha256": "7ed5de9654020409ee982ae50eaf7028de32cb9f3a824035a6c96dfa609bca5d"
+    },
+    {
+      "bytes": 53538,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/source/variants/instrumented/tpcn/runtime_generated_evidence.py",
+      "sha256": "5763e23b5accb5bc309250972b032587cd2c9d585eb253c6aa2b61f62edac079"
+    },
+    {
+      "bytes": 20496,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/source/variants/instrumented/tpcn/spiral_benchmark.py",
+      "sha256": "2ffb1b5ebb23f016436043118bc675eddaa14bfd923129359fe61a12df94d9f0"
+    },
+    {
+      "bytes": 8404,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/source/variants/instrumented/tpcn/streaming_classifier.py",
+      "sha256": "979ab6a7f9bee6cda46f7c9b01b1885e0472019d3705b711010ab6ba743bf1d7"
+    },
+    {
+      "bytes": 8326,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/source/variants/instrumented/tpcn/stroke_dataset.py",
+      "sha256": "daca268597e2467bf984922ee77736b584bef9743b6f41ad729d7cb4d3c3ede7"
+    },
+    {
+      "bytes": 8675,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/source/variants/instrumented/tpcn/structural_observation.py",
+      "sha256": "034e9223ff23d744826822b937f9bb8c3e60e6b3b40e9047e666bf0cb9ebcc7a"
+    },
+    {
+      "bytes": 16306,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/source/variants/instrumented/tpcn/structural_plasticity.py",
+      "sha256": "9bc76a1188672d16d2aa841938539dd738f728f71d2b032b20f990b676311b5c"
+    },
+    {
+      "bytes": 14736,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/source/variants/instrumented/tpcn/temporal_analysis.py",
+      "sha256": "4a9e78f582413678fd2c6f06a456cf9a67fcab5529c94ac957b56a271aa79e3c"
+    },
+    {
+      "bytes": 7232,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/source/variants/instrumented/tpcn/temporal_association.py",
+      "sha256": "a8d929c69c1b4e441d92dbea5af76b7286fa59252c495d9cb8f66759b76304fd"
+    },
+    {
+      "bytes": 19637,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/source/variants/instrumented/tpcn/temporal_capacity.py",
+      "sha256": "a22c3e9eb9fb615ada0b477d32de29da7058e9eb47422134732f027e7f9a7cf0"
+    },
+    {
+      "bytes": 21322,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/source/variants/instrumented/tpcn/temporal_crossover.py",
+      "sha256": "c7bf219bfde8e3becee48789728ca0872f99f11bb08854348bbecf159a4b9144"
+    },
+    {
+      "bytes": 34387,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/source/variants/instrumented/tpcn/temporal_direction.py",
+      "sha256": "fffdcad7c0f135181f2d761941571dbf650561b2a95517881d79ec5f40de97bb"
+    },
+    {
+      "bytes": 15369,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/source/variants/instrumented/tpcn/temporal_efficacy.py",
+      "sha256": "4ed1c9bd1a12ce5e0edce6f2db06719ac4d0e510652568bffb17edeeb351de1d"
+    },
+    {
+      "bytes": 9214,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/source/variants/instrumented/tpcn/temporal_scale.py",
+      "sha256": "e1cd58e66871dc73202a1429a5d8610f4c8e2d89c2cf54d8c8911e3d61df29cc"
+    },
+    {
+      "bytes": 11462,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/source/variants/instrumented/tpcn/topology.py",
+      "sha256": "d5f1d6fc6911ed610e7fbff24c768551c00fb526a491f22cfae7d9e8ec1261fb"
+    },
+    {
+      "bytes": 13807,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/source/variants/instrumented/tpcn/viewer_3d.py",
+      "sha256": "f205f97dfd403b83cfdbdc0767adab1f657151dd5959fcf7675f6f200c7bff23"
+    },
+    {
+      "bytes": 23838,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/source/variants/instrumented/tpcn/visualization.py",
+      "sha256": "bcba1673eaba3902a02200c0cae711f1845b4f98141234e65602626c5e7ffd73"
+    },
+    {
+      "bytes": 18394,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/source/variants/original/run_luna70_corrective_readout.py",
+      "sha256": "1d4ff78f184db7720b23795e6c16f30b6f88214979566c52baff4cb3d19da47f"
+    },
+    {
+      "bytes": 5928,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/source/variants/original/test_luna70_readout_learning.py",
+      "sha256": "50ba3365ea60551d1354c4ee35e0eb006b7921d7a4458dc86fc67179700be262"
+    },
+    {
+      "bytes": 10010,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/source/variants/original/tpcn/__init__.py",
+      "sha256": "637680922f8c2db8b78581abda33c2ea89d133eb104acec6db2f82cbf79948a7"
+    },
+    {
+      "bytes": 5223,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/source/variants/original/tpcn/backend.py",
+      "sha256": "83eed9d03b79f069b37d9c2d54a5f2917c58481b31118371274bc61f0888125e"
+    },
+    {
+      "bytes": 6905,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/source/variants/original/tpcn/canonical_neuron.py",
+      "sha256": "f9878aad6da8ed507266e96d9e27eb09b29fcd4a1f96965f798a3b1520949595"
+    },
+    {
+      "bytes": 16744,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/source/variants/original/tpcn/causal_utility.py",
+      "sha256": "69f74263791d4fa45052372cf4cc85f4e85bdd2433931eb62c194486587f3dbd"
+    },
+    {
+      "bytes": 11522,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/source/variants/original/tpcn/cpu_visualization.py",
+      "sha256": "22311a19a89a933a0a3e10c1ff242b09af66fc5fe8b54b78f5c7efa8b8a18e67"
+    },
+    {
+      "bytes": 17012,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/source/variants/original/tpcn/edge_instrumentation.py",
+      "sha256": "5e0929323ba636db601a81dac1500b600eed4613f5b87ca1af1b64b983fe6ebf"
+    },
+    {
+      "bytes": 11901,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/source/variants/original/tpcn/eligibility.py",
+      "sha256": "b424c3423793361ddfbdf7d100bfb0322d350f1303dceaf13b47e24037817fb3"
+    },
+    {
+      "bytes": 10344,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/source/variants/original/tpcn/energy_utility.py",
+      "sha256": "2769fe8197bc26fc5c2c458b8a087cfb1fe7ea441fb219c2ec2f064cc32d2aab"
+    },
+    {
+      "bytes": 13540,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/source/variants/original/tpcn/event_runtime.py",
+      "sha256": "e16a48af25657e5a45773248adbed37dd41782f4ef51fba9fd1e2cda013617fd"
+    },
+    {
+      "bytes": 40912,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/source/variants/original/tpcn/excursion_neuron.py",
+      "sha256": "73b4265e5b6ce11fe0fed5bc50ca185aa47044af01cffed65499b557a98b69aa"
+    },
+    {
+      "bytes": 14617,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/source/variants/original/tpcn/execution_ir.py",
+      "sha256": "7643065a7308f19632a84f6d060e44b7a1ffc468cab9f8619d959849034964df"
+    },
+    {
+      "bytes": 37981,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/source/variants/original/tpcn/experiment_excursion_runtime.py",
+      "sha256": "df007154939c6c554a3d914c15ce91c87954beeebf29df416ee27d138f119d5a"
+    },
+    {
+      "bytes": 73781,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/source/variants/original/tpcn/experiments.py",
+      "sha256": "cabb81da36280e7cdcf614b8b3e2cd5567035c20c6706a85b25b1a73310e967d"
+    },
+    {
+      "bytes": 26430,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/source/variants/original/tpcn/finite_resource.py",
+      "sha256": "d7540f5283213d555882c58c6360100a0b7ce01d0719665063161061ef26ad7b"
+    },
+    {
+      "bytes": 7620,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/source/variants/original/tpcn/fpga_visualization.py",
+      "sha256": "dd92e76d834aad25a6d1b425b74e9cad5deb9c0fc4b835e686e1d3756f0a69db"
+    },
+    {
+      "bytes": 2676,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/source/variants/original/tpcn/gpu_visualization.py",
+      "sha256": "8a0de4d800f56ee71ae115b75f586385869ddb43b6f57cd6013ec74787f14daa"
+    },
+    {
+      "bytes": 36517,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/source/variants/original/tpcn/ir2.py",
+      "sha256": "a355c8a34275ee8fb78cc3135f34b50afbf5ae48575196467cb7b9465b806209"
+    },
+    {
+      "bytes": 61199,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/source/variants/original/tpcn/luna66_minimal_learning.py",
+      "sha256": "552b6a584ee540f69bc81ce92cffe6dd943ffca6e56ae74f6474f44bd314bb5f"
+    },
+    {
+      "bytes": 123337,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/source/variants/original/tpcn/luna70_readout_learning.py",
+      "sha256": "a4e9dabee80b44c552b4acb81a6b7644286f874bd4e01c6620b2d790ab95c65d"
+    },
+    {
+      "bytes": 21522,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/source/variants/original/tpcn/post_pruning_admission.py",
+      "sha256": "15505f4bf63d41d98fc621ba61e777ee2f13c46f1a3492cbae7f9f23f4479a25"
+    },
+    {
+      "bytes": 11579,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/source/variants/original/tpcn/predictive_coding.py",
+      "sha256": "7ed5de9654020409ee982ae50eaf7028de32cb9f3a824035a6c96dfa609bca5d"
+    },
+    {
+      "bytes": 53538,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/source/variants/original/tpcn/runtime_generated_evidence.py",
+      "sha256": "5763e23b5accb5bc309250972b032587cd2c9d585eb253c6aa2b61f62edac079"
+    },
+    {
+      "bytes": 20496,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/source/variants/original/tpcn/spiral_benchmark.py",
+      "sha256": "2ffb1b5ebb23f016436043118bc675eddaa14bfd923129359fe61a12df94d9f0"
+    },
+    {
+      "bytes": 8404,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/source/variants/original/tpcn/streaming_classifier.py",
+      "sha256": "979ab6a7f9bee6cda46f7c9b01b1885e0472019d3705b711010ab6ba743bf1d7"
+    },
+    {
+      "bytes": 8326,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/source/variants/original/tpcn/stroke_dataset.py",
+      "sha256": "daca268597e2467bf984922ee77736b584bef9743b6f41ad729d7cb4d3c3ede7"
+    },
+    {
+      "bytes": 8675,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/source/variants/original/tpcn/structural_observation.py",
+      "sha256": "034e9223ff23d744826822b937f9bb8c3e60e6b3b40e9047e666bf0cb9ebcc7a"
+    },
+    {
+      "bytes": 16306,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/source/variants/original/tpcn/structural_plasticity.py",
+      "sha256": "9bc76a1188672d16d2aa841938539dd738f728f71d2b032b20f990b676311b5c"
+    },
+    {
+      "bytes": 14736,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/source/variants/original/tpcn/temporal_analysis.py",
+      "sha256": "4a9e78f582413678fd2c6f06a456cf9a67fcab5529c94ac957b56a271aa79e3c"
+    },
+    {
+      "bytes": 7232,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/source/variants/original/tpcn/temporal_association.py",
+      "sha256": "a8d929c69c1b4e441d92dbea5af76b7286fa59252c495d9cb8f66759b76304fd"
+    },
+    {
+      "bytes": 19637,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/source/variants/original/tpcn/temporal_capacity.py",
+      "sha256": "a22c3e9eb9fb615ada0b477d32de29da7058e9eb47422134732f027e7f9a7cf0"
+    },
+    {
+      "bytes": 21322,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/source/variants/original/tpcn/temporal_crossover.py",
+      "sha256": "c7bf219bfde8e3becee48789728ca0872f99f11bb08854348bbecf159a4b9144"
+    },
+    {
+      "bytes": 34387,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/source/variants/original/tpcn/temporal_direction.py",
+      "sha256": "fffdcad7c0f135181f2d761941571dbf650561b2a95517881d79ec5f40de97bb"
+    },
+    {
+      "bytes": 15369,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/source/variants/original/tpcn/temporal_efficacy.py",
+      "sha256": "4ed1c9bd1a12ce5e0edce6f2db06719ac4d0e510652568bffb17edeeb351de1d"
+    },
+    {
+      "bytes": 9214,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/source/variants/original/tpcn/temporal_scale.py",
+      "sha256": "e1cd58e66871dc73202a1429a5d8610f4c8e2d89c2cf54d8c8911e3d61df29cc"
+    },
+    {
+      "bytes": 11462,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/source/variants/original/tpcn/topology.py",
+      "sha256": "d5f1d6fc6911ed610e7fbff24c768551c00fb526a491f22cfae7d9e8ec1261fb"
+    },
+    {
+      "bytes": 13807,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/source/variants/original/tpcn/viewer_3d.py",
+      "sha256": "f205f97dfd403b83cfdbdc0767adab1f657151dd5959fcf7675f6f200c7bff23"
+    },
+    {
+      "bytes": 23838,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/source/variants/original/tpcn/visualization.py",
+      "sha256": "bcba1673eaba3902a02200c0cae711f1845b4f98141234e65602626c5e7ffd73"
+    },
+    {
+      "bytes": 8028,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/source_identity.py",
+      "sha256": "d72f85a7917dab642ba34b2aa1aa58f5552e27fdb51fbd9baa1a219897412830"
+    },
+    {
+      "bytes": 11989,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/gn/stream_compare.py",
+      "sha256": "8a42be047fe5938eee9d16f2dac203acb759c44738d3361beebca511610336e1"
+    },
+    {
+      "bytes": 28655,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/j/CORRECTIVE-PROVENANCE.md",
+      "sha256": "3ac6e6f3b57f21e208066757c6d3f671ae58326db7365d7e62f2303927168b13"
+    },
+    {
+      "bytes": 6464,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/j/driver_v2.py",
+      "sha256": "e388d229a60a221dfe0a683ba446dfd71b2b40d86fab669efec35ab221bbe4cb"
+    },
+    {
+      "bytes": 17516,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/j/identity.py",
+      "sha256": "e6ecf791accc3e80b55c653ecc4732b2f8ff58777bfcd45ba8b6bb32e63d52fa"
+    },
+    {
+      "bytes": 1822,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/j/j-implementation-manifest.json",
+      "sha256": "5625a596ed8a134de0fce0ebaa79eaae6749b9f6f4672f65d606d3d63326540e"
+    },
+    {
+      "bytes": 66,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/j/j-implementation-manifest.sha256",
+      "sha256": "4b3f6da15f8e69d6c4573e3643dac56c3afcc1c06230984fbbfeffc0db10e66c"
+    },
+    {
+      "bytes": 18762,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/j/j-source-manifest.json",
+      "sha256": "605a730361da6252173d5466e11fa412ffdecca45c26ffabc31ca384b23d2ec0"
+    },
+    {
+      "bytes": 66,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/j/j-source-manifest.sha256",
+      "sha256": "5665d7b7c8ed617edc471b914ec65fb5da9e6e61467a1ad695505aaea3e2f6c0"
+    },
+    {
+      "bytes": 14899,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/j/variants/instrumented/luna71b_trace.py",
+      "sha256": "28b336061c029013545f1cf114e82ef60303f5ebc747fd92090e17aee1ded515"
+    },
+    {
+      "bytes": 26126,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/j/variants/instrumented/run_luna70_corrective_readout.py",
+      "sha256": "f82eba8a5c5c0bed8b6aa7b51e9a83f2d3a920a8afbf15ec32f2bb859b7db7ac"
+    },
+    {
+      "bytes": 5928,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/j/variants/instrumented/test_luna70_readout_learning.py",
+      "sha256": "50ba3365ea60551d1354c4ee35e0eb006b7921d7a4458dc86fc67179700be262"
+    },
+    {
+      "bytes": 10010,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/j/variants/instrumented/tpcn/__init__.py",
+      "sha256": "637680922f8c2db8b78581abda33c2ea89d133eb104acec6db2f82cbf79948a7"
+    },
+    {
+      "bytes": 5223,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/j/variants/instrumented/tpcn/backend.py",
+      "sha256": "83eed9d03b79f069b37d9c2d54a5f2917c58481b31118371274bc61f0888125e"
+    },
+    {
+      "bytes": 6905,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/j/variants/instrumented/tpcn/canonical_neuron.py",
+      "sha256": "f9878aad6da8ed507266e96d9e27eb09b29fcd4a1f96965f798a3b1520949595"
+    },
+    {
+      "bytes": 16744,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/j/variants/instrumented/tpcn/causal_utility.py",
+      "sha256": "69f74263791d4fa45052372cf4cc85f4e85bdd2433931eb62c194486587f3dbd"
+    },
+    {
+      "bytes": 11522,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/j/variants/instrumented/tpcn/cpu_visualization.py",
+      "sha256": "22311a19a89a933a0a3e10c1ff242b09af66fc5fe8b54b78f5c7efa8b8a18e67"
+    },
+    {
+      "bytes": 17012,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/j/variants/instrumented/tpcn/edge_instrumentation.py",
+      "sha256": "5e0929323ba636db601a81dac1500b600eed4613f5b87ca1af1b64b983fe6ebf"
+    },
+    {
+      "bytes": 11901,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/j/variants/instrumented/tpcn/eligibility.py",
+      "sha256": "b424c3423793361ddfbdf7d100bfb0322d350f1303dceaf13b47e24037817fb3"
+    },
+    {
+      "bytes": 10344,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/j/variants/instrumented/tpcn/energy_utility.py",
+      "sha256": "2769fe8197bc26fc5c2c458b8a087cfb1fe7ea441fb219c2ec2f064cc32d2aab"
+    },
+    {
+      "bytes": 14443,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/j/variants/instrumented/tpcn/event_runtime.py",
+      "sha256": "ba2efd37785da3e39193ffd5e42ad725323c3823786be241dcb76ae87eca7cce"
+    },
+    {
+      "bytes": 40912,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/j/variants/instrumented/tpcn/excursion_neuron.py",
+      "sha256": "73b4265e5b6ce11fe0fed5bc50ca185aa47044af01cffed65499b557a98b69aa"
+    },
+    {
+      "bytes": 14617,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/j/variants/instrumented/tpcn/execution_ir.py",
+      "sha256": "7643065a7308f19632a84f6d060e44b7a1ffc468cab9f8619d959849034964df"
+    },
+    {
+      "bytes": 37981,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/j/variants/instrumented/tpcn/experiment_excursion_runtime.py",
+      "sha256": "df007154939c6c554a3d914c15ce91c87954beeebf29df416ee27d138f119d5a"
+    },
+    {
+      "bytes": 73781,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/j/variants/instrumented/tpcn/experiments.py",
+      "sha256": "cabb81da36280e7cdcf614b8b3e2cd5567035c20c6706a85b25b1a73310e967d"
+    },
+    {
+      "bytes": 26430,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/j/variants/instrumented/tpcn/finite_resource.py",
+      "sha256": "d7540f5283213d555882c58c6360100a0b7ce01d0719665063161061ef26ad7b"
+    },
+    {
+      "bytes": 7620,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/j/variants/instrumented/tpcn/fpga_visualization.py",
+      "sha256": "dd92e76d834aad25a6d1b425b74e9cad5deb9c0fc4b835e686e1d3756f0a69db"
+    },
+    {
+      "bytes": 2676,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/j/variants/instrumented/tpcn/gpu_visualization.py",
+      "sha256": "8a0de4d800f56ee71ae115b75f586385869ddb43b6f57cd6013ec74787f14daa"
+    },
+    {
+      "bytes": 36517,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/j/variants/instrumented/tpcn/ir2.py",
+      "sha256": "a355c8a34275ee8fb78cc3135f34b50afbf5ae48575196467cb7b9465b806209"
+    },
+    {
+      "bytes": 61199,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/j/variants/instrumented/tpcn/luna66_minimal_learning.py",
+      "sha256": "552b6a584ee540f69bc81ce92cffe6dd943ffca6e56ae74f6474f44bd314bb5f"
+    },
+    {
+      "bytes": 145624,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/j/variants/instrumented/tpcn/luna70_readout_learning.py",
+      "sha256": "1c9bec81fbfd92a2a91114810b7cdb99fe92b004979d0ed0b9773eb0c740e306"
+    },
+    {
+      "bytes": 14639,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/j/variants/instrumented/tpcn/luna71b_trace.py",
+      "sha256": "256239286551b04c79328431563b2d6bc492c1b1793d092bd8081337d6558cd8"
+    },
+    {
+      "bytes": 21522,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/j/variants/instrumented/tpcn/post_pruning_admission.py",
+      "sha256": "15505f4bf63d41d98fc621ba61e777ee2f13c46f1a3492cbae7f9f23f4479a25"
+    },
+    {
+      "bytes": 11579,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/j/variants/instrumented/tpcn/predictive_coding.py",
+      "sha256": "7ed5de9654020409ee982ae50eaf7028de32cb9f3a824035a6c96dfa609bca5d"
+    },
+    {
+      "bytes": 53538,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/j/variants/instrumented/tpcn/runtime_generated_evidence.py",
+      "sha256": "5763e23b5accb5bc309250972b032587cd2c9d585eb253c6aa2b61f62edac079"
+    },
+    {
+      "bytes": 20496,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/j/variants/instrumented/tpcn/spiral_benchmark.py",
+      "sha256": "2ffb1b5ebb23f016436043118bc675eddaa14bfd923129359fe61a12df94d9f0"
+    },
+    {
+      "bytes": 8404,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/j/variants/instrumented/tpcn/streaming_classifier.py",
+      "sha256": "979ab6a7f9bee6cda46f7c9b01b1885e0472019d3705b711010ab6ba743bf1d7"
+    },
+    {
+      "bytes": 8326,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/j/variants/instrumented/tpcn/stroke_dataset.py",
+      "sha256": "daca268597e2467bf984922ee77736b584bef9743b6f41ad729d7cb4d3c3ede7"
+    },
+    {
+      "bytes": 8675,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/j/variants/instrumented/tpcn/structural_observation.py",
+      "sha256": "034e9223ff23d744826822b937f9bb8c3e60e6b3b40e9047e666bf0cb9ebcc7a"
+    },
+    {
+      "bytes": 16306,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/j/variants/instrumented/tpcn/structural_plasticity.py",
+      "sha256": "9bc76a1188672d16d2aa841938539dd738f728f71d2b032b20f990b676311b5c"
+    },
+    {
+      "bytes": 14736,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/j/variants/instrumented/tpcn/temporal_analysis.py",
+      "sha256": "4a9e78f582413678fd2c6f06a456cf9a67fcab5529c94ac957b56a271aa79e3c"
+    },
+    {
+      "bytes": 7232,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/j/variants/instrumented/tpcn/temporal_association.py",
+      "sha256": "a8d929c69c1b4e441d92dbea5af76b7286fa59252c495d9cb8f66759b76304fd"
+    },
+    {
+      "bytes": 19637,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/j/variants/instrumented/tpcn/temporal_capacity.py",
+      "sha256": "a22c3e9eb9fb615ada0b477d32de29da7058e9eb47422134732f027e7f9a7cf0"
+    },
+    {
+      "bytes": 21322,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/j/variants/instrumented/tpcn/temporal_crossover.py",
+      "sha256": "c7bf219bfde8e3becee48789728ca0872f99f11bb08854348bbecf159a4b9144"
+    },
+    {
+      "bytes": 34387,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/j/variants/instrumented/tpcn/temporal_direction.py",
+      "sha256": "fffdcad7c0f135181f2d761941571dbf650561b2a95517881d79ec5f40de97bb"
+    },
+    {
+      "bytes": 15369,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/j/variants/instrumented/tpcn/temporal_efficacy.py",
+      "sha256": "4ed1c9bd1a12ce5e0edce6f2db06719ac4d0e510652568bffb17edeeb351de1d"
+    },
+    {
+      "bytes": 9214,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/j/variants/instrumented/tpcn/temporal_scale.py",
+      "sha256": "e1cd58e66871dc73202a1429a5d8610f4c8e2d89c2cf54d8c8911e3d61df29cc"
+    },
+    {
+      "bytes": 11462,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/j/variants/instrumented/tpcn/topology.py",
+      "sha256": "d5f1d6fc6911ed610e7fbff24c768551c00fb526a491f22cfae7d9e8ec1261fb"
+    },
+    {
+      "bytes": 13807,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/j/variants/instrumented/tpcn/viewer_3d.py",
+      "sha256": "f205f97dfd403b83cfdbdc0767adab1f657151dd5959fcf7675f6f200c7bff23"
+    },
+    {
+      "bytes": 23838,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/j/variants/instrumented/tpcn/visualization.py",
+      "sha256": "bcba1673eaba3902a02200c0cae711f1845b4f98141234e65602626c5e7ffd73"
+    },
+    {
+      "bytes": 18394,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/j/variants/original/run_luna70_corrective_readout.py",
+      "sha256": "1d4ff78f184db7720b23795e6c16f30b6f88214979566c52baff4cb3d19da47f"
+    },
+    {
+      "bytes": 5928,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/j/variants/original/test_luna70_readout_learning.py",
+      "sha256": "50ba3365ea60551d1354c4ee35e0eb006b7921d7a4458dc86fc67179700be262"
+    },
+    {
+      "bytes": 10010,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/j/variants/original/tpcn/__init__.py",
+      "sha256": "637680922f8c2db8b78581abda33c2ea89d133eb104acec6db2f82cbf79948a7"
+    },
+    {
+      "bytes": 5223,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/j/variants/original/tpcn/backend.py",
+      "sha256": "83eed9d03b79f069b37d9c2d54a5f2917c58481b31118371274bc61f0888125e"
+    },
+    {
+      "bytes": 6905,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/j/variants/original/tpcn/canonical_neuron.py",
+      "sha256": "f9878aad6da8ed507266e96d9e27eb09b29fcd4a1f96965f798a3b1520949595"
+    },
+    {
+      "bytes": 16744,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/j/variants/original/tpcn/causal_utility.py",
+      "sha256": "69f74263791d4fa45052372cf4cc85f4e85bdd2433931eb62c194486587f3dbd"
+    },
+    {
+      "bytes": 11522,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/j/variants/original/tpcn/cpu_visualization.py",
+      "sha256": "22311a19a89a933a0a3e10c1ff242b09af66fc5fe8b54b78f5c7efa8b8a18e67"
+    },
+    {
+      "bytes": 17012,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/j/variants/original/tpcn/edge_instrumentation.py",
+      "sha256": "5e0929323ba636db601a81dac1500b600eed4613f5b87ca1af1b64b983fe6ebf"
+    },
+    {
+      "bytes": 11901,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/j/variants/original/tpcn/eligibility.py",
+      "sha256": "b424c3423793361ddfbdf7d100bfb0322d350f1303dceaf13b47e24037817fb3"
+    },
+    {
+      "bytes": 10344,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/j/variants/original/tpcn/energy_utility.py",
+      "sha256": "2769fe8197bc26fc5c2c458b8a087cfb1fe7ea441fb219c2ec2f064cc32d2aab"
+    },
+    {
+      "bytes": 14443,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/j/variants/original/tpcn/event_runtime.py",
+      "sha256": "ba2efd37785da3e39193ffd5e42ad725323c3823786be241dcb76ae87eca7cce"
+    },
+    {
+      "bytes": 40912,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/j/variants/original/tpcn/excursion_neuron.py",
+      "sha256": "73b4265e5b6ce11fe0fed5bc50ca185aa47044af01cffed65499b557a98b69aa"
+    },
+    {
+      "bytes": 14617,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/j/variants/original/tpcn/execution_ir.py",
+      "sha256": "7643065a7308f19632a84f6d060e44b7a1ffc468cab9f8619d959849034964df"
+    },
+    {
+      "bytes": 37981,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/j/variants/original/tpcn/experiment_excursion_runtime.py",
+      "sha256": "df007154939c6c554a3d914c15ce91c87954beeebf29df416ee27d138f119d5a"
+    },
+    {
+      "bytes": 73781,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/j/variants/original/tpcn/experiments.py",
+      "sha256": "cabb81da36280e7cdcf614b8b3e2cd5567035c20c6706a85b25b1a73310e967d"
+    },
+    {
+      "bytes": 26430,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/j/variants/original/tpcn/finite_resource.py",
+      "sha256": "d7540f5283213d555882c58c6360100a0b7ce01d0719665063161061ef26ad7b"
+    },
+    {
+      "bytes": 7620,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/j/variants/original/tpcn/fpga_visualization.py",
+      "sha256": "dd92e76d834aad25a6d1b425b74e9cad5deb9c0fc4b835e686e1d3756f0a69db"
+    },
+    {
+      "bytes": 2676,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/j/variants/original/tpcn/gpu_visualization.py",
+      "sha256": "8a0de4d800f56ee71ae115b75f586385869ddb43b6f57cd6013ec74787f14daa"
+    },
+    {
+      "bytes": 36517,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/j/variants/original/tpcn/ir2.py",
+      "sha256": "a355c8a34275ee8fb78cc3135f34b50afbf5ae48575196467cb7b9465b806209"
+    },
+    {
+      "bytes": 61199,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/j/variants/original/tpcn/luna66_minimal_learning.py",
+      "sha256": "552b6a584ee540f69bc81ce92cffe6dd943ffca6e56ae74f6474f44bd314bb5f"
+    },
+    {
+      "bytes": 131616,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/j/variants/original/tpcn/luna70_readout_learning.py",
+      "sha256": "2b8c67ad1770d6819a1b88fd5bd2117e36bdf3ad9857c0a5537068d70630afce"
+    },
+    {
+      "bytes": 21522,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/j/variants/original/tpcn/post_pruning_admission.py",
+      "sha256": "15505f4bf63d41d98fc621ba61e777ee2f13c46f1a3492cbae7f9f23f4479a25"
+    },
+    {
+      "bytes": 11579,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/j/variants/original/tpcn/predictive_coding.py",
+      "sha256": "7ed5de9654020409ee982ae50eaf7028de32cb9f3a824035a6c96dfa609bca5d"
+    },
+    {
+      "bytes": 53538,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/j/variants/original/tpcn/runtime_generated_evidence.py",
+      "sha256": "5763e23b5accb5bc309250972b032587cd2c9d585eb253c6aa2b61f62edac079"
+    },
+    {
+      "bytes": 20496,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/j/variants/original/tpcn/spiral_benchmark.py",
+      "sha256": "2ffb1b5ebb23f016436043118bc675eddaa14bfd923129359fe61a12df94d9f0"
+    },
+    {
+      "bytes": 8404,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/j/variants/original/tpcn/streaming_classifier.py",
+      "sha256": "979ab6a7f9bee6cda46f7c9b01b1885e0472019d3705b711010ab6ba743bf1d7"
+    },
+    {
+      "bytes": 8326,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/j/variants/original/tpcn/stroke_dataset.py",
+      "sha256": "daca268597e2467bf984922ee77736b584bef9743b6f41ad729d7cb4d3c3ede7"
+    },
+    {
+      "bytes": 8675,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/j/variants/original/tpcn/structural_observation.py",
+      "sha256": "034e9223ff23d744826822b937f9bb8c3e60e6b3b40e9047e666bf0cb9ebcc7a"
+    },
+    {
+      "bytes": 16306,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/j/variants/original/tpcn/structural_plasticity.py",
+      "sha256": "9bc76a1188672d16d2aa841938539dd738f728f71d2b032b20f990b676311b5c"
+    },
+    {
+      "bytes": 14736,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/j/variants/original/tpcn/temporal_analysis.py",
+      "sha256": "4a9e78f582413678fd2c6f06a456cf9a67fcab5529c94ac957b56a271aa79e3c"
+    },
+    {
+      "bytes": 7232,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/j/variants/original/tpcn/temporal_association.py",
+      "sha256": "a8d929c69c1b4e441d92dbea5af76b7286fa59252c495d9cb8f66759b76304fd"
+    },
+    {
+      "bytes": 19637,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/j/variants/original/tpcn/temporal_capacity.py",
+      "sha256": "a22c3e9eb9fb615ada0b477d32de29da7058e9eb47422134732f027e7f9a7cf0"
+    },
+    {
+      "bytes": 21322,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/j/variants/original/tpcn/temporal_crossover.py",
+      "sha256": "c7bf219bfde8e3becee48789728ca0872f99f11bb08854348bbecf159a4b9144"
+    },
+    {
+      "bytes": 34387,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/j/variants/original/tpcn/temporal_direction.py",
+      "sha256": "fffdcad7c0f135181f2d761941571dbf650561b2a95517881d79ec5f40de97bb"
+    },
+    {
+      "bytes": 15369,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/j/variants/original/tpcn/temporal_efficacy.py",
+      "sha256": "4ed1c9bd1a12ce5e0edce6f2db06719ac4d0e510652568bffb17edeeb351de1d"
+    },
+    {
+      "bytes": 9214,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/j/variants/original/tpcn/temporal_scale.py",
+      "sha256": "e1cd58e66871dc73202a1429a5d8610f4c8e2d89c2cf54d8c8911e3d61df29cc"
+    },
+    {
+      "bytes": 11462,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/j/variants/original/tpcn/topology.py",
+      "sha256": "d5f1d6fc6911ed610e7fbff24c768551c00fb526a491f22cfae7d9e8ec1261fb"
+    },
+    {
+      "bytes": 13807,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/j/variants/original/tpcn/viewer_3d.py",
+      "sha256": "f205f97dfd403b83cfdbdc0767adab1f657151dd5959fcf7675f6f200c7bff23"
+    },
+    {
+      "bytes": 23838,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/j/variants/original/tpcn/visualization.py",
+      "sha256": "bcba1673eaba3902a02200c0cae711f1845b4f98141234e65602626c5e7ffd73"
+    },
+    {
+      "bytes": 5,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/ppc11/__init__.py",
+      "sha256": "f01a374e9c81e3db89b3a42940c4d6a5447684986a1296e42bf13f196eed6295"
+    },
+    {
+      "bytes": 13978,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/ppc11/capture.py",
+      "sha256": "9d85a05e767c227a9a21d5d789b9ca4b9c0cdbf6e4bd9d9e15d70c5314eee84f"
+    },
+    {
+      "bytes": 32471,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/ppc11/capture_v2.py",
+      "sha256": "ddb1c382644268c786da34bc4f65d60cf73407c80d716e4a1d91a2b14a88d00a"
+    },
+    {
+      "bytes": 31364,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/ppc11/compare.py",
+      "sha256": "f0cc9a4d4cdb904016dd5372a411c7fa9fda8ffc3758e5171f1cc5e995c7809e"
+    },
+    {
+      "bytes": 22905,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/ppc11/compare_v2.py",
+      "sha256": "3496083b47f02b74ba159433de4809ca709095ab0923961428abfc7928d3c23c"
+    },
+    {
+      "bytes": 14930,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/ppc11/driver.py",
+      "sha256": "91639f7866967b18501b98e8ecc67554e6d77194e1c30445ca3ce2d7dc9f9de6"
+    },
+    {
+      "bytes": 7229,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/ppc11/pairing.py",
+      "sha256": "7b9fda1333fa66d4738060d27b0422877c9900c09674bfca0a4ff8c895166779"
+    },
+    {
+      "bytes": 23256,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/ppc11/schema.py",
+      "sha256": "e1f0857e8bacad10c5f143563ce52252e43f2ec48e36ff590d80fc0753c45602"
+    },
+    {
+      "bytes": 32937,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/ppc11/schema_v2.py",
+      "sha256": "2e84520fbb4eadf1d8ca37a3f647d2bb639f339408a9985b67c07d90afe917c9"
+    },
+    {
+      "bytes": 7616,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/ppc11/trace.py",
+      "sha256": "b3ebe96fa0305b54ea8c28a49259b9eab79069bd0dcc8f331a97884b8cd74b57"
+    },
+    {
+      "bytes": 8550,
+      "path": "_worktrees/luna71b-c4-2-j/experiments/luna71b_c4_2/ppc11/trace_v2.py",
+      "sha256": "ee84bea89545b94e2c1f1f6fef0ae99647369714e4bc926fe2b271eea3c23911"
+    },
+    {
+      "bytes": 35464,
+      "path": "_worktrees/luna71b-c4-2-j/tests/test_luna71b_c4_2_gn.py",
+      "sha256": "f6fdf063c2223eedc26a56d7a9009647031b7ddf856ebcdca4f07c501eb24f71"
+    },
+    {
+      "bytes": 10289,
+      "path": "workflow/handoffs/luna71b-c4.2-j/01-v1-v2-contract-difference-matrix.md",
+      "sha256": "8a23cb7d0b39f30a425d2afc411d4bcab18d191bcad23b3c126cffa87dbb1045"
+    },
+    {
+      "bytes": 21544,
+      "path": "workflow/handoffs/luna71b-c4.2-j/02-ppc11-v2-contract-candidate.md",
+      "sha256": "684ac436279a5160a9cd9edea32303bde14d614d46ac7118c90d847c01bec35f"
+    },
+    {
+      "bytes": 6487,
+      "path": "workflow/handoffs/luna71b-c4.2-j/03-implementation-provenance.md",
+      "sha256": "ae6c3b6d71d264604559ed71c374bbab027b4597f673c4a0eb33fe2b5ba12a96"
+    },
+    {
+      "bytes": 5834,
+      "path": "workflow/handoffs/luna71b-c4.2-j/04-focused-validation-and-regression-disposition.md",
+      "sha256": "b6063132258f0a429aec7ae31a6290c1ed7793c9fce4ba64ed91554ad6667929"
+    },
+    {
+      "bytes": 3508,
+      "path": "workflow/handoffs/luna71b-c4.2-j/05-historical-identity-reconciliation.md",
+      "sha256": "f71c93257bdcf0575d61ce88b2be7b0838f486bd0225149ce3fc228927e6f5dd"
+    },
+    {
+      "bytes": 5080,
+      "path": "workflow/handoffs/luna71b-c4.2-j/06-pre-correction-independent-review.md",
+      "sha256": "9643032a02bcc452c5d86a5446e9a2fd4b1d3696a7d8446c9792d76d107e924b"
+    },
+    {
+      "bytes": 5638,
+      "path": "workflow/handoffs/luna71b-c4.2-j/07-p03-p04-p11-source-capture-assessment.md",
+      "sha256": "55b6f664d1d5b05f5bde5ca0d264724b2dbbb0ad5e94c2944cdbf8fe5021f9c3"
+    },
+    {
+      "bytes": 5643,
+      "path": "workflow/handoffs/luna71b-c4.2-j/08-final-readiness-adjudication.md",
+      "sha256": "2e14ec7a5a6ed96d09ba87eb54a6c483c30ad4040ac1180b3808298791741fda"
+    },
+    {
+      "bytes": 11317,
+      "path": "workflow/handoffs/luna71b-c4.2-j/09-independent-review-rounds.md",
+      "sha256": "195f9b75c2dd62263a82b201509f09f2e1aa7ed181afd7a69fa7b8e107352b46"
+    },
+    {
+      "bytes": 1229,
+      "path": "workflow/handoffs/luna71b-c4.2-j/11-exact-scope-publication-prompt.md",
+      "sha256": "2396c6bd65f293f3192de49f196a8edc0bd727eb08d7cf148cada8844f5434dd"
+    }
+  ],
+  "fixture_identities": {
+    "event_payload_sha256": "520b1cedfeefe8b285d02dba7d26583f6581ac29cd82dc8571a4b9ba5ed4970e",
+    "fixture_id": "L71B-C4.2-N-FOURCLASS-SEED17-V1",
+    "fixture_manifest_sha256": "839e58df80da69cdf7b63618afc9626b85a9aa9817885931189c58a6f9658f40",
+    "historical_r6_reproduction": false,
+    "initial_parameters_sha256": "5a53d0cc7e41a7431d584bd711f0a1d0ba735a69f6e84b1b9298fa41f289948a"
+  },
+  "historical_unresolved": {
+    "source_manifest_sha256": "43fb851cf45fdcc9910215cc7d13cd6364860d32891febd203ef6f7c33474719",
+    "test_index_sha256": "0ad1d9e1e407393b797ace9b04be6a6cd30de45ad00b898e493ffc41b4752697"
+  },
+  "inventory_counts": {
+    "gn_artifact_files": 125,
+    "j_source_files": 80
+  },
+  "manifest_path": "workflow/handoffs/luna71b-c4.2-j/10-artifact-manifest.json",
+  "publication": {
+    "allowlist": "Exactly files in files, plus this artifact manifest and its detached checksum; no directory-wide additions or unlisted artifacts.",
+    "authorized": false,
+    "neural_execution": "NOT AUTHORIZED",
+    "pilot_execution": "NOT AUTHORIZED"
+  },
+  "review": {
+    "independent_luna0": "PASS WITH FINDINGS",
+    "neural_execution": "NOT AUTHORIZED; NOT PERFORMED",
+    "p03": "INCOMPLETE",
+    "p04": "INCOMPLETE",
+    "p11": "COMPLETE at static/synthetic level only",
+    "pilot_execution": "NOT AUTHORIZED; NOT PERFORMED",
+    "rp2b": "BLOCKED / BOUND INCOMPLETE",
+    "runtime_parity": "NOT TESTED",
+    "v2_candidate": "Suitable for limited experimental use subject to formal owner adoption; not adopted"
+  },
+  "schema": "luna71b-c4.2-j-artifact-manifest-1",
+  "source_identities": {
+    "c4_2_i_final_manifest_sha256": "1cc1f19b288c20601cfa7853382d0aff4f5b5392afbc8cc185ef0752b861b775",
+    "h_source_manifest_sha256": "1c12a5f149d022f9e7a4304aa2b32f0110fc802f855d018bee32014580ae5095",
+    "j_head": "e91818a5c974282e848dc43e52d3c0a534dcbf45",
+    "j_tree": "f14f23f0eb00e8b4aa8946e34acc71ab46ab5749",
+    "j_worktree": "_worktrees/luna71b-c4-2-j",
+    "published_c4_1_ppc11": {
+      "commit": "11b6f52e9aa6725af69bcd3cd098bb2c62e78b76",
+      "manifest_sha256": "2f18d694784a6a583b0a7c01e6cc89f1313c2d65c7c6b5346a7cd4d993d3f1fa"
+    },
+    "published_c4_2": {
+      "commit": "e91818a5c974282e848dc43e52d3c0a534dcbf45",
+      "tree": "f14f23f0eb00e8b4aa8946e34acc71ab46ab5749"
+    }
+  }
+}

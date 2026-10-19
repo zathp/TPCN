@@ -1,0 +1,72 @@
+WC1-A3 additive source preservation refs; 2026-10-16T21:04:37-0400
+Source repository: C:\Users\Patrick\Documents\ActiveCode\TPCN
+Precondition: Luna-0 preliminary gate accepted exactly three refs; rejected fourth due missing tree.
+Accepted commits: ['77938eb04aa058246e19267326747101664cf777', '6db1e4754851cf86389ef6c7b562a6f7606cfacc', 'b85eb31e7801c1c8c3ee48968978cfe40a5d8aef']
+Rejected commit: 430b60ed3684dde1d4f618d2e4c8d23410d81928
+A prior non-mutating show-ref --verify check returned exit 128 for not-yet-created ref paths in this Git version; no refs were written by that attempt. Absence is checked via for-each-ref before atomic create.
+
+===== Confirm no WC1-A3 source refs exist before creation =====
+COMMAND: git -C C:\Users\Patrick\Documents\ActiveCode\TPCN for-each-ref "--format=%(objectname) %(refname)" refs/preservation/wc1-a3
+EXIT CODE: 0
+[stdout]
+[empty]
+[stderr]
+[empty]
+
+===== Validate refname syntax 77938eb04aa058246e19267326747101664cf777 =====
+COMMAND: git -C C:\Users\Patrick\Documents\ActiveCode\TPCN check-ref-format refs/preservation/wc1-a3/77938eb04aa058246e19267326747101664cf777
+EXIT CODE: 0
+[stdout]
+[empty]
+[stderr]
+[empty]
+
+===== Confirm source object physically present 77938eb04aa058246e19267326747101664cf777 =====
+COMMAND: git -C C:\Users\Patrick\Documents\ActiveCode\TPCN cat-file -e 77938eb04aa058246e19267326747101664cf777
+EXIT CODE: 0
+[stdout]
+[empty]
+[stderr]
+[empty]
+
+===== Validate refname syntax 6db1e4754851cf86389ef6c7b562a6f7606cfacc =====
+COMMAND: git -C C:\Users\Patrick\Documents\ActiveCode\TPCN check-ref-format refs/preservation/wc1-a3/6db1e4754851cf86389ef6c7b562a6f7606cfacc
+EXIT CODE: 0
+[stdout]
+[empty]
+[stderr]
+[empty]
+
+===== Confirm source object physically present 6db1e4754851cf86389ef6c7b562a6f7606cfacc =====
+COMMAND: git -C C:\Users\Patrick\Documents\ActiveCode\TPCN cat-file -e 6db1e4754851cf86389ef6c7b562a6f7606cfacc
+EXIT CODE: 0
+[stdout]
+[empty]
+[stderr]
+[empty]
+
+===== Validate refname syntax b85eb31e7801c1c8c3ee48968978cfe40a5d8aef =====
+COMMAND: git -C C:\Users\Patrick\Documents\ActiveCode\TPCN check-ref-format refs/preservation/wc1-a3/b85eb31e7801c1c8c3ee48968978cfe40a5d8aef
+EXIT CODE: 0
+[stdout]
+[empty]
+[stderr]
+[empty]
+
+===== Confirm source object physically present b85eb31e7801c1c8c3ee48968978cfe40a5d8aef =====
+COMMAND: git -C C:\Users\Patrick\Documents\ActiveCode\TPCN cat-file -e b85eb31e7801c1c8c3ee48968978cfe40a5d8aef
+EXIT CODE: 0
+[stdout]
+[empty]
+[stderr]
+[empty]
+
+===== Atomically create three accepted refs using non-overwriting create commands =====
+COMMAND: git -C C:\Users\Patrick\Documents\ActiveCode\TPCN update-ref --stdin
+EXIT CODE: 128
+[stdout]
+[empty]
+[stderr]
+fatal: unknown command: start?
+
+

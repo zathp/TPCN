@@ -1,0 +1,237 @@
+{
+  "schema": "TPCN-WC1-A3-PRESERVATION-MANIFEST-1",
+  "generatedAtLocal": "2026-10-16T21:21:14-0400",
+  "sourceRepository": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN",
+  "sourceBaseline": {
+    "branch": "governance/luna71b-c4-1-ppc11-freeze",
+    "head": "11b6f52e9aa6725af69bcd3cd098bb2c62e78b76",
+    "objectFormat": "sha1"
+  },
+  "scope": "Repository-local archival copy, three independently accepted additive local source refs, final independent review PASS WITH FINDINGS, documentary publication candidate, and no off-machine transfer.",
+  "bundle": {
+    "authoritativeOriginal": {
+      "path": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN-preservation\\luna71b-wc1-a2\\wc1-a2-four-commits.bundle",
+      "storageLocation": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN-preservation\\luna71b-wc1-a2\\wc1-a2-four-commits.bundle",
+      "bytes": 347973854,
+      "sha256": "0455adf8dc0b0a7b7dd0695781ab1776cedf924653c6a757c61c2ea8614d5887"
+    },
+    "repositoryLocalCopy": {
+      "path": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN\\workflow\\archives\\wc1-a2\\bundle\\wc1-a2-four-commits.bundle",
+      "storageLocation": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN\\workflow\\archives\\wc1-a2\\bundle\\wc1-a2-four-commits.bundle",
+      "bytes": 347973854,
+      "sha256": "0455adf8dc0b0a7b7dd0695781ab1776cedf924653c6a757c61c2ea8614d5887"
+    },
+    "originalChecksumSidecar": {
+      "path": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN-preservation\\luna71b-wc1-a2\\wc1-a2-four-commits.bundle.sha256",
+      "storageLocation": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN-preservation\\luna71b-wc1-a2\\wc1-a2-four-commits.bundle.sha256",
+      "bytes": 94,
+      "sha256": "a856b66abad52b65a7f7bd1a7113eb5d97d2d58cdfe5eb0adb2f8f24d891e7f8"
+    },
+    "repositoryLocalChecksumSidecar": {
+      "path": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN\\workflow\\archives\\wc1-a2\\manifests\\wc1-a2-four-commits.bundle.sha256",
+      "storageLocation": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN\\workflow\\archives\\wc1-a2\\manifests\\wc1-a2-four-commits.bundle.sha256",
+      "bytes": 94,
+      "sha256": "a856b66abad52b65a7f7bd1a7113eb5d97d2d58cdfe5eb0adb2f8f24d891e7f8"
+    },
+    "advertisedTargetCommitIds": [
+      "430b60ed3684dde1d4f618d2e4c8d23410d81928",
+      "77938eb04aa058246e19267326747101664cf777",
+      "6db1e4754851cf86389ef6c7b562a6f7606cfacc",
+      "b85eb31e7801c1c8c3ee48968978cfe40a5d8aef"
+    ],
+    "bundleVerified": true,
+    "completeHistory": true,
+    "prerequisiteOnlyDependencies": false,
+    "recoveredFromRepositoryLocalCopy": true,
+    "restoredRepositoryStrictFsck": "PASS"
+  },
+  "sourceProtectionRefs": [
+    {
+      "ref": "refs/preservation/wc1-a3/77938eb04aa058246e19267326747101664cf777",
+      "target": "77938eb04aa058246e19267326747101664cf777",
+      "status": "created with non-overwriting CAS after Luna-0 acceptance; complete closure; strict fsck passed"
+    },
+    {
+      "ref": "refs/preservation/wc1-a3/6db1e4754851cf86389ef6c7b562a6f7606cfacc",
+      "target": "6db1e4754851cf86389ef6c7b562a6f7606cfacc",
+      "status": "created with non-overwriting CAS after Luna-0 acceptance; complete closure; strict fsck passed"
+    },
+    {
+      "ref": "refs/preservation/wc1-a3/b85eb31e7801c1c8c3ee48968978cfe40a5d8aef",
+      "target": "b85eb31e7801c1c8c3ee48968978cfe40a5d8aef",
+      "status": "created with non-overwriting CAS after Luna-0 acceptance; complete closure; strict fsck passed"
+    },
+    {
+      "ref": "refs/preservation/wc1-a3/430b60ed3684dde1d4f618d2e4c8d23410d81928",
+      "target": "430b60ed3684dde1d4f618d2e4c8d23410d81928",
+      "status": "not created; empty tree physically absent in source; scoped strict fsck fails"
+    }
+  ],
+  "sourceMissingTree": {
+    "tree": "4b825dc642cb6eb9a060e54bf8d69288fbee4904",
+    "status": "unchanged; not repaired"
+  },
+  "offMachineBackup": {
+    "status": "OFF_MACHINE_BACKUP_PENDING_OWNER_DESTINATION",
+    "authorizedDestinationIdentified": false,
+    "noCopyMade": true
+  },
+  "worktreeCleanup": "not authorized; none performed",
+  "publication": "documentary candidate only; no staging, commit, push, upload, or publication",
+  "localExcludeRule": {
+    "file": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN\\.git\\info\\exclude",
+    "sha256": "c4a1e1834d7be89e18964e89c9fafd98e3883a5db634f5be392f43d7998b861d",
+    "rule": "/workflow/archives/wc1-a2/bundle/wc1-a2-four-commits.bundle",
+    "dryRunVerified": true
+  },
+  "independentFinalReview": {
+    "status": "PASS WITH FINDINGS",
+    "reviewFile": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN\\workflow\\archives\\wc1-a2\\documents\\wc1-a3\\independent-final-review.md",
+    "findings": [
+      "No owner-authorized off-machine destination was specified.",
+      "The report and manifest were updated to record this final review.",
+      "Architecture contract source paths were unavailable; review scope was archival preservation only."
+    ]
+  },
+  "preservedFiles": [
+    {
+      "path": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN\\workflow\\archives\\wc1-a2\\bundle\\wc1-a2-four-commits.bundle",
+      "storageLocation": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN\\workflow\\archives\\wc1-a2\\bundle\\wc1-a2-four-commits.bundle",
+      "bytes": 347973854,
+      "sha256": "0455adf8dc0b0a7b7dd0695781ab1776cedf924653c6a757c61c2ea8614d5887"
+    },
+    {
+      "path": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN\\workflow\\archives\\wc1-a2\\documents\\wc1-a2\\01-source-read-only-verification.txt",
+      "storageLocation": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN\\workflow\\archives\\wc1-a2\\documents\\wc1-a2\\01-source-read-only-verification.txt",
+      "bytes": 75113,
+      "sha256": "fb0d40475afe98b9a7b5e7d162df5e61a85c716ef51f1e5def231b5df73db7e8"
+    },
+    {
+      "path": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN\\workflow\\archives\\wc1-a2\\documents\\wc1-a2\\02-isolated-recovery-and-bundle-build.txt",
+      "storageLocation": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN\\workflow\\archives\\wc1-a2\\documents\\wc1-a2\\02-isolated-recovery-and-bundle-build.txt",
+      "bytes": 1526,
+      "sha256": "100fc060bfa822af7bc2aed54c17f3e2134d962ee67d523db4be8c181e505824"
+    },
+    {
+      "path": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN\\workflow\\archives\\wc1-a2\\documents\\wc1-a2\\02b-isolated-recovery-and-bundle-build.txt",
+      "storageLocation": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN\\workflow\\archives\\wc1-a2\\documents\\wc1-a2\\02b-isolated-recovery-and-bundle-build.txt",
+      "bytes": 927,
+      "sha256": "d82c19dd8b9d9a75658cce9fbbfce506518bec5e46fc500168e1b0f03d30fe66"
+    },
+    {
+      "path": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN\\workflow\\archives\\wc1-a2\\documents\\wc1-a2\\02c-isolated-recovery-and-bundle-build.txt",
+      "storageLocation": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN\\workflow\\archives\\wc1-a2\\documents\\wc1-a2\\02c-isolated-recovery-and-bundle-build.txt",
+      "bytes": 13823,
+      "sha256": "90cb9962fd866f425fccc7eb890f983dd7ed9df3f775522460c16cdd3d6d2d26"
+    },
+    {
+      "path": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN\\workflow\\archives\\wc1-a2\\documents\\wc1-a2\\03-bundle-restoration-verification.txt",
+      "storageLocation": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN\\workflow\\archives\\wc1-a2\\documents\\wc1-a2\\03-bundle-restoration-verification.txt",
+      "bytes": 11131,
+      "sha256": "ae2958375c54c956596b3731772d2859918951d4f769e03327a95159198d60ff"
+    },
+    {
+      "path": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN\\workflow\\archives\\wc1-a2\\documents\\wc1-a2\\04-source-postcheck.txt",
+      "storageLocation": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN\\workflow\\archives\\wc1-a2\\documents\\wc1-a2\\04-source-postcheck.txt",
+      "bytes": 33082,
+      "sha256": "45e89015346371a698155004eb1def0abab85c408c885f71f0fd16cd80a4f0ef"
+    },
+    {
+      "path": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN\\workflow\\archives\\wc1-a2\\documents\\wc1-a2\\05-independent-review.md",
+      "storageLocation": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN\\workflow\\archives\\wc1-a2\\documents\\wc1-a2\\05-independent-review.md",
+      "bytes": 3374,
+      "sha256": "1c39f841aabb07d1b08307136a9ea48c238db82473311397458a181ee864f5f5"
+    },
+    {
+      "path": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN\\workflow\\archives\\wc1-a2\\documents\\wc1-a2\\06-final-adjudication.md",
+      "storageLocation": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN\\workflow\\archives\\wc1-a2\\documents\\wc1-a2\\06-final-adjudication.md",
+      "bytes": 4788,
+      "sha256": "35e1f822a4203368b4bc27a6e3f602344ea6d3954a8c34addd14c4ead7875a9c"
+    },
+    {
+      "path": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN\\workflow\\archives\\wc1-a2\\documents\\wc1-a2\\07-follow-up-authorization-request.md",
+      "storageLocation": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN\\workflow\\archives\\wc1-a2\\documents\\wc1-a2\\07-follow-up-authorization-request.md",
+      "bytes": 2353,
+      "sha256": "68361c31abfed076caa8190e9a0998feb1cd07edff93e5fa04afb9bb9097c728"
+    },
+    {
+      "path": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN\\workflow\\archives\\wc1-a2\\documents\\wc1-a2\\object-closure.txt",
+      "storageLocation": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN\\workflow\\archives\\wc1-a2\\documents\\wc1-a2\\object-closure.txt",
+      "bytes": 20907,
+      "sha256": "94ecd65fed4e59caf9685017716f977bc7de9c784989af877bf01a932f5a68cc"
+    },
+    {
+      "path": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN\\workflow\\archives\\wc1-a2\\documents\\wc1-a3\\01-preflight-source-dependencies.txt",
+      "storageLocation": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN\\workflow\\archives\\wc1-a2\\documents\\wc1-a3\\01-preflight-source-dependencies.txt",
+      "bytes": 736097,
+      "sha256": "10b5df9ff74ae4bafa02d9d5c97d056df3f843cb2a4f41a4b1484eb8442400f4"
+    },
+    {
+      "path": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN\\workflow\\archives\\wc1-a2\\documents\\wc1-a3\\02-precopy-bundle-verification.txt",
+      "storageLocation": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN\\workflow\\archives\\wc1-a2\\documents\\wc1-a3\\02-precopy-bundle-verification.txt",
+      "bytes": 3390,
+      "sha256": "018b3dd36e720c69af8c477f588f6d5411239c846ebf76c8d94a42ec8f4b2ebb"
+    },
+    {
+      "path": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN\\workflow\\archives\\wc1-a2\\documents\\wc1-a3\\02b-precopy-bundle-verification.txt",
+      "storageLocation": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN\\workflow\\archives\\wc1-a2\\documents\\wc1-a3\\02b-precopy-bundle-verification.txt",
+      "bytes": 10072,
+      "sha256": "64c820ea50f2f078e421412d0c3a2f07bdfeb3d782171a929061d9bc4ec961eb"
+    },
+    {
+      "path": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN\\workflow\\archives\\wc1-a2\\documents\\wc1-a3\\03-repository-local-copy-recovery.txt",
+      "storageLocation": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN\\workflow\\archives\\wc1-a2\\documents\\wc1-a3\\03-repository-local-copy-recovery.txt",
+      "bytes": 8718,
+      "sha256": "ca875bf4b2229229d8850f013bf89a1e2a1c2c90f000f1d98bcf361dd31ec5af"
+    },
+    {
+      "path": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN\\workflow\\archives\\wc1-a2\\documents\\wc1-a3\\04-source-protection-refs.txt",
+      "storageLocation": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN\\workflow\\archives\\wc1-a2\\documents\\wc1-a3\\04-source-protection-refs.txt",
+      "bytes": 2770,
+      "sha256": "c2904b1f36772be74360012b98b41d48002b4d56b761bccac2ac9714f4e24cbd"
+    },
+    {
+      "path": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN\\workflow\\archives\\wc1-a2\\documents\\wc1-a3\\04b-source-protection-refs.txt",
+      "storageLocation": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN\\workflow\\archives\\wc1-a2\\documents\\wc1-a3\\04b-source-protection-refs.txt",
+      "bytes": 1495,
+      "sha256": "1068a38d225c606c560a0ce9954f0c21afafdb7c30367b391f3f294c9bebffe9"
+    },
+    {
+      "path": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN\\workflow\\archives\\wc1-a2\\documents\\wc1-a3\\04c-source-protection-refs.txt",
+      "storageLocation": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN\\workflow\\archives\\wc1-a2\\documents\\wc1-a3\\04c-source-protection-refs.txt",
+      "bytes": 282846,
+      "sha256": "2687481a2becc96511f0340778d8edc93a1ac0128e4385a15e1d0fb56cc30651"
+    },
+    {
+      "path": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN\\workflow\\archives\\wc1-a2\\documents\\wc1-a3\\05-source-postcheck.txt",
+      "storageLocation": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN\\workflow\\archives\\wc1-a2\\documents\\wc1-a3\\05-source-postcheck.txt",
+      "bytes": 9783,
+      "sha256": "ca4842b28028814bb5d5882608a86319c8a82b82c94353999a78b4cf5772c3b0"
+    },
+    {
+      "path": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN\\workflow\\archives\\wc1-a2\\documents\\wc1-a3\\independent-final-review.md",
+      "storageLocation": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN\\workflow\\archives\\wc1-a2\\documents\\wc1-a3\\independent-final-review.md",
+      "bytes": 3001,
+      "sha256": "97e9a978c77f4403629006548716cf7bae7b30e7ebf1ed9c0d1c1dbbc4a67b00"
+    },
+    {
+      "path": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN\\workflow\\archives\\wc1-a2\\documents\\wc1-a3\\preliminary-ref-acceptance.md",
+      "storageLocation": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN\\workflow\\archives\\wc1-a2\\documents\\wc1-a3\\preliminary-ref-acceptance.md",
+      "bytes": 2155,
+      "sha256": "c9a4b9a4f2e819665d9d6514d1b879da8ab511a18af1ea3b86e779b0cdf0237f"
+    },
+    {
+      "path": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN\\workflow\\archives\\wc1-a2\\documents\\wc1-a3\\WC1-A3-preservation-report.md",
+      "storageLocation": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN\\workflow\\archives\\wc1-a2\\documents\\wc1-a3\\WC1-A3-preservation-report.md",
+      "bytes": 5678,
+      "sha256": "40fa0fc0a2ab0847d638c1998393d95928561e82e5f6f45b9b40c8932ede3178"
+    },
+    {
+      "path": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN\\workflow\\archives\\wc1-a2\\manifests\\wc1-a2-four-commits.bundle.sha256",
+      "storageLocation": "C:\\Users\\Patrick\\Documents\\ActiveCode\\TPCN\\workflow\\archives\\wc1-a2\\manifests\\wc1-a2-four-commits.bundle.sha256",
+      "bytes": 94,
+      "sha256": "a856b66abad52b65a7f7bd1a7113eb5d97d2d58cdfe5eb0adb2f8f24d891e7f8"
+    }
+  ],
+  "selfReferenceNote": "This manifest and its SHA-256 sidecar are excluded from preservedFiles to avoid self-referential hashing. Their exact path, byte size, and SHA-256 are recorded in the final A3 response; the manifest digest is also in its checksum sidecar."
+}

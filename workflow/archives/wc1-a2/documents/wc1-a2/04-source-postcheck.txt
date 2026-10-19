@@ -1,0 +1,392 @@
+Luna-71B-WC1-A2 original repository postcheck
+Timestamp (local): 2026-10-16T19:01:14.2715236-04:00
+
+===== status =====
+COMMAND: git -C "C:\Users\Patrick\Documents\ActiveCode\TPCN" status --short --branch
+EXIT CODE: 0
+## governance/luna71b-c4-1-ppc11-freeze
+?? _worktrees/
+?? workflow/archives/
+?? workflow/handoffs/luna71b-c4.2-i/
+?? workflow/handoffs/luna71b-c4.2-j/
+?? workflow/handoffs/luna71b-wc1/
+
+===== root-and-head =====
+COMMAND: git -C "C:\Users\Patrick\Documents\ActiveCode\TPCN" rev-parse --show-toplevel HEAD
+EXIT CODE: 0
+C:/Users/Patrick/Documents/ActiveCode/TPCN
+11b6f52e9aa6725af69bcd3cd098bb2c62e78b76
+
+===== object-format =====
+COMMAND: git -C "C:\Users\Patrick\Documents\ActiveCode\TPCN" rev-parse --show-object-format
+EXIT CODE: 0
+sha1
+
+===== worktrees =====
+COMMAND: git -C "C:\Users\Patrick\Documents\ActiveCode\TPCN" worktree list --porcelain
+EXIT CODE: 0
+worktree C:/Users/Patrick/Documents/ActiveCode/TPCN
+HEAD 11b6f52e9aa6725af69bcd3cd098bb2c62e78b76
+branch refs/heads/governance/luna71b-c4-1-ppc11-freeze
+
+worktree C:/Users/Patrick/Documents/ActiveCode/TPCN/_worktrees/luna71b-c4-2-j
+HEAD e91818a5c974282e848dc43e52d3c0a534dcbf45
+detached
+
+worktree C:/Users/Patrick/Documents/ActiveCode/TPCN-luna63a
+HEAD 1c3e33d6285c2d3aeb107f27aad07e57de2ba50f
+branch refs/heads/experiment/luna63a-binary-adaptive-decay
+
+worktree C:/Users/Patrick/Documents/ActiveCode/TPCN-luna63b
+HEAD fe3ebe5fdd2e018e79dd640fa4f94548ebba8701
+branch refs/heads/experiment/luna63b-local-pcn-design
+
+worktree C:/Users/Patrick/Documents/ActiveCode/TPCN-luna63c
+HEAD a303ebb835b72fdd01c86df478431b8638aacbb4
+branch refs/heads/experiment/luna63c-nonlinear-excursion-design
+
+worktree C:/Users/Patrick/Documents/ActiveCode/TPCN-luna63c-archive
+HEAD f6611520c9c2a145fdd23cf733c789d4e2685c6e
+branch refs/heads/archive/luna63c-local-artifacts-20261010
+
+worktree C:/Users/Patrick/Documents/ActiveCode/TPCN-luna63c-corrective
+HEAD 3b0bc14df01ef73e0d8c91e08d93c7d2b86bc0e1
+branch refs/heads/governance/luna63c-corrective-reconciliation
+
+worktree C:/Users/Patrick/Documents/ActiveCode/TPCN-luna63c-E
+HEAD 651f18fdf3c7ae8e32cd210ebc68527f86531e32
+branch refs/heads/experiment/luna63c-stage-a-E
+
+worktree C:/Users/Patrick/Documents/ActiveCode/TPCN-luna63c-governance
+HEAD 8f5e785bd2e46c0c1cb2afbb77ba53704adef65a
+branch refs/heads/governance/luna63c-artifact-reconciliation
+
+worktree C:/Users/Patrick/Documents/ActiveCode/TPCN-luna63c-T
+HEAD 0a8c34b7e6febf681917d915082a8559eea998f7
+branch refs/heads/experiment/luna63c-stage-a-T
+
+worktree C:/Users/Patrick/Documents/ActiveCode/TPCN-luna63c-W
+HEAD 17907c67d52cc338249b66f28c3179cd97572c6e
+branch refs/heads/experiment/luna63c-stage-a-W
+
+worktree C:/Users/Patrick/Documents/ActiveCode/TPCN-luna64-r4.3-pilot-20261010
+HEAD d93ef139a1fea46d58cb59a7d7e6325cb1eb8787
+branch refs/heads/experiment/luna64-track-b-r4.3-pilot-20261010
+
+worktree C:/Users/Patrick/Documents/ActiveCode/TPCN-luna64-r4.3-reward-lifecycle-correction-20261010
+HEAD d93ef139a1fea46d58cb59a7d7e6325cb1eb8787
+branch refs/heads/experiment/luna64-r4.3-reward-lifecycle-correction-20261010
+
+worktree C:/Users/Patrick/Documents/ActiveCode/TPCN-luna66-functional
+HEAD f117ce51e7a805564e37252d3b5c99bda163ce57
+branch refs/heads/experiment/luna66-minimal-functional-learning
+
+worktree C:/Users/Patrick/Documents/ActiveCode/TPCN-luna67-four-class
+HEAD f117ce51e7a805564e37252d3b5c99bda163ce57
+branch refs/heads/experiment/luna67-four-class-temporal-learning
+
+worktree C:/Users/Patrick/Documents/ActiveCode/TPCN-luna68-prediction-omission
+HEAD f117ce51e7a805564e37252d3b5c99bda163ce57
+branch refs/heads/experiment/luna68-prediction-omission-routing
+
+worktree C:/Users/Patrick/Documents/ActiveCode/TPCN-luna70-corrective-readout
+HEAD f117ce51e7a805564e37252d3b5c99bda163ce57
+branch refs/heads/experiment/luna70-corrective-readout-learning
+
+worktree C:/Users/Patrick/Documents/ActiveCode/TPCN-luna71b
+HEAD f117ce51e7a805564e37252d3b5c99bda163ce57
+branch refs/heads/experiment/luna71b-instrumented-learning
+
+worktree C:/Users/Patrick/Documents/ActiveCode/TPCN-luna71b-c4
+HEAD f117ce51e7a805564e37252d3b5c99bda163ce57
+branch refs/heads/experiment/luna71b-c4-bilateral-capture
+
+worktree C:/Users/Patrick/Documents/ActiveCode/TPCN-luna71b-c4-2
+HEAD e91818a5c974282e848dc43e52d3c0a534dcbf45
+branch refs/heads/governance/luna71b-c4-2-checkpoint
+
+worktree C:/Users/Patrick/Documents/ActiveCode/TPCN-luna71b-c4-2-gn
+HEAD e91818a5c974282e848dc43e52d3c0a534dcbf45
+branch refs/heads/experiment/luna71b-c4-2-gn
+
+worktree C:/Users/Patrick/Documents/ActiveCode/TPCN-luna71b-c4-2-h
+HEAD e91818a5c974282e848dc43e52d3c0a534dcbf45
+branch refs/heads/governance/luna71b-c4-2-h-corrections
+
+worktree C:/Users/Patrick/Documents/ActiveCode/TPCN-r14-publication
+HEAD 0511762b46aa8fe33494624a9290611727e7ae51
+branch refs/heads/governance/luna65-r14-documentary-freeze
+
+worktree C:/Users/Patrick/Documents/ActiveCode/TPCN-wc1-a1-publication
+HEAD 60027c09f51278d302e76753fe433be477d36e3f
+branch refs/heads/governance/luna71b-wc1-a1-preservation-evidence
+
+worktree C:/Users/Patrick/Documents/ActiveCode/TPCN-wc1-publication
+HEAD d5493b741a514a96009641b0e565df1648ffa975
+branch refs/heads/governance/luna71b-wc1-preservation-inventory
+
+
+===== refs =====
+COMMAND: git -C "C:\Users\Patrick\Documents\ActiveCode\TPCN" show-ref --head
+EXIT CODE: 0
+11b6f52e9aa6725af69bcd3cd098bb2c62e78b76 HEAD
+2e5b2970e968419429c3f1136497cf97a039c7e0 refs/agents/00a4b25e-bb56-4501-ab4b-415f83f45089/checkpoints/turn/0
+1f33c2ae1a87afd760d056b7ef5037965a58cf24 refs/agents/00a4b25e-bb56-4501-ab4b-415f83f45089/checkpoints/turn/1
+03eb0116bc030e6255ab4f763af9ef214bb73796 refs/agents/00a4b25e-bb56-4501-ab4b-415f83f45089/checkpoints/turn/10
+955e26256f8bc3d17ac6f8164e3102572a39ee9e refs/agents/00a4b25e-bb56-4501-ab4b-415f83f45089/checkpoints/turn/11
+a48fe42cbc64b3016ea58dd6f6a9e09e27bb905d refs/agents/00a4b25e-bb56-4501-ab4b-415f83f45089/checkpoints/turn/12
+d2c4a418d60ee500274d024d75a52b7078abaa2d refs/agents/00a4b25e-bb56-4501-ab4b-415f83f45089/checkpoints/turn/13
+a150094cfef4e1bf2f04e71a4347d5b7b8bd392a refs/agents/00a4b25e-bb56-4501-ab4b-415f83f45089/checkpoints/turn/14
+a4d0126a976b08fe6253843d2f90b139caa07536 refs/agents/00a4b25e-bb56-4501-ab4b-415f83f45089/checkpoints/turn/15
+bb0dc8751bc5eff00294b9fc79a494ef77d15261 refs/agents/00a4b25e-bb56-4501-ab4b-415f83f45089/checkpoints/turn/16
+dc5e52de0dad9d6bdb06cb596feecf63bf2a5c65 refs/agents/00a4b25e-bb56-4501-ab4b-415f83f45089/checkpoints/turn/17
+d71a0be90c63cae92deb63fe5cc6b1e30f12257e refs/agents/00a4b25e-bb56-4501-ab4b-415f83f45089/checkpoints/turn/18
+6c8b48c71fe819e186e2a8189a4791244355ec38 refs/agents/00a4b25e-bb56-4501-ab4b-415f83f45089/checkpoints/turn/19
+343dc180af24ce43191ee1d42eb153e854a3b766 refs/agents/00a4b25e-bb56-4501-ab4b-415f83f45089/checkpoints/turn/2
+eafc3fd8403e61a0a81aabcd6c74f0d3619b01a8 refs/agents/00a4b25e-bb56-4501-ab4b-415f83f45089/checkpoints/turn/20
+3fff7950817084d97bb6fe8a52a25d40615cc042 refs/agents/00a4b25e-bb56-4501-ab4b-415f83f45089/checkpoints/turn/21
+3e278d4fcdd214e021d011e86a4e4ac6d9260023 refs/agents/00a4b25e-bb56-4501-ab4b-415f83f45089/checkpoints/turn/22
+ec185cbd47fa50d5c3244481c7574c64806d2b49 refs/agents/00a4b25e-bb56-4501-ab4b-415f83f45089/checkpoints/turn/23
+9c59519374678f6c1f7a691ca3a844bb533c117b refs/agents/00a4b25e-bb56-4501-ab4b-415f83f45089/checkpoints/turn/24
+af5d7494f250cf2dabca881aa99a495d6e75077d refs/agents/00a4b25e-bb56-4501-ab4b-415f83f45089/checkpoints/turn/25
+21a8876739d8154771205d9af3b7001a04a13f29 refs/agents/00a4b25e-bb56-4501-ab4b-415f83f45089/checkpoints/turn/26
+fb0965e5b50286fe7990571bae6339cd4870c915 refs/agents/00a4b25e-bb56-4501-ab4b-415f83f45089/checkpoints/turn/27
+43d48f84b26485ce0b9faf59f8bc3f088f536679 refs/agents/00a4b25e-bb56-4501-ab4b-415f83f45089/checkpoints/turn/28
+c0b8c412cdef51a357ffd285e3e9d204e3c81b29 refs/agents/00a4b25e-bb56-4501-ab4b-415f83f45089/checkpoints/turn/29
+1704be7f0ad72aa3b0e1dd0e600d5d73867790f8 refs/agents/00a4b25e-bb56-4501-ab4b-415f83f45089/checkpoints/turn/3
+c884f71cb2596d97cd72ec65f17bffdd703a5467 refs/agents/00a4b25e-bb56-4501-ab4b-415f83f45089/checkpoints/turn/30
+ab1c9fc198dd3932acdb6e0b30c7f2e5e9c3d853 refs/agents/00a4b25e-bb56-4501-ab4b-415f83f45089/checkpoints/turn/31
+25ebcc863bf5a2b2def3b3d6dff6fcfe1745649a refs/agents/00a4b25e-bb56-4501-ab4b-415f83f45089/checkpoints/turn/32
+d12be77502481c63dba9b396d0249db7d862d479 refs/agents/00a4b25e-bb56-4501-ab4b-415f83f45089/checkpoints/turn/33
+e9563be490ca6ebe39b896e73dcf54c9e1de1372 refs/agents/00a4b25e-bb56-4501-ab4b-415f83f45089/checkpoints/turn/34
+991d32f6c1893bb14bba66ce3a8c768ae7c39438 refs/agents/00a4b25e-bb56-4501-ab4b-415f83f45089/checkpoints/turn/35
+3fe4f3b8c19ec0e1f0edad4e93a388795c9b8641 refs/agents/00a4b25e-bb56-4501-ab4b-415f83f45089/checkpoints/turn/36
+87e0b875a5db0b5a998b7141e56c98b0b265e35b refs/agents/00a4b25e-bb56-4501-ab4b-415f83f45089/checkpoints/turn/4
+41acb9b33247cdcff97fc1f069002844c8c87672 refs/agents/00a4b25e-bb56-4501-ab4b-415f83f45089/checkpoints/turn/5
+ad275949bb205f295dab18152b6519880e293431 refs/agents/00a4b25e-bb56-4501-ab4b-415f83f45089/checkpoints/turn/6
+d4190ce3c147098e1e8ecdeb099ba0783802484e refs/agents/00a4b25e-bb56-4501-ab4b-415f83f45089/checkpoints/turn/7
+e45d21f05132ad376e3a55c580f661bc3acd8a32 refs/agents/00a4b25e-bb56-4501-ab4b-415f83f45089/checkpoints/turn/8
+381f97118c3226dc02e6091b8b1efa3ef35cab30 refs/agents/00a4b25e-bb56-4501-ab4b-415f83f45089/checkpoints/turn/9
+690f0e7e6d8c539d3a3d6afab57e9cf85dadd174 refs/agents/06df5279-4800-4a5f-82eb-b0938cc84d04/checkpoints/turn/0
+502b6719747f8ca6290a0b021bf7346b1b8121ee refs/agents/06df5279-4800-4a5f-82eb-b0938cc84d04/checkpoints/turn/1
+e2951086525599081888bf42d82126dc5d822530 refs/agents/06df5279-4800-4a5f-82eb-b0938cc84d04/checkpoints/turn/2
+6cf9782bee1b62879a861f24441256cd5056c6b0 refs/agents/15bf612c-40fb-473f-a8b2-53bfd0821630/checkpoints/turn/0
+d9031b4b096c2b9b8087f7da1b3703dab09744e4 refs/agents/15bf612c-40fb-473f-a8b2-53bfd0821630/checkpoints/turn/1
+6b871d07e1f162be391c68e72705a0e6b55b6fcc refs/agents/15bf612c-40fb-473f-a8b2-53bfd0821630/checkpoints/turn/2
+a6252443d723d4b50984c1b563592f8c08203358 refs/agents/15bf612c-40fb-473f-a8b2-53bfd0821630/checkpoints/turn/3
+d13ee98346ff5cca87ed236258324207e0027c1c refs/agents/15bf612c-40fb-473f-a8b2-53bfd0821630/checkpoints/turn/4
+e9368df28c6759283019ebd9c0d636307f108865 refs/agents/15bf612c-40fb-473f-a8b2-53bfd0821630/checkpoints/turn/5
+6c1058c3474ab63459c2e744216e674e70e08b88 refs/agents/21be72d1-67d9-4b3d-9195-3f943a608515/checkpoints/turn/0
+4aae1e273ce4ee03fa4f4b169bc17e93c1ffbfc9 refs/agents/21be72d1-67d9-4b3d-9195-3f943a608515/checkpoints/turn/1
+e05e3f2978faf1029bbea81b703ff54117d01fed refs/agents/21be72d1-67d9-4b3d-9195-3f943a608515/checkpoints/turn/2
+b73607683d76b17950721d95c7781837fa55b7d5 refs/agents/21be72d1-67d9-4b3d-9195-3f943a608515/checkpoints/turn/3
+847ce03ebb5aee88cfc06e7b2ec997beeee8ad7f refs/agents/21be72d1-67d9-4b3d-9195-3f943a608515/checkpoints/turn/4
+6484c3e4c7dddb482d27d34be7b5699b1c03209c refs/agents/21be72d1-67d9-4b3d-9195-3f943a608515/checkpoints/turn/5
+3c4ddddb198bda1307cb7b1d3f8b1c4b66996cf3 refs/agents/26ff41eb-71c4-4c83-be76-8c4909d2b94c/checkpoints/turn/0
+e9c64bff1c7442ca59758fcb36039d216fff51fc refs/agents/26ff41eb-71c4-4c83-be76-8c4909d2b94c/checkpoints/turn/1
+7953866eee69f78a10f86e32226959a94cd4d21f refs/agents/36592146-8cc7-4785-b8a6-2f40313fa446/checkpoints/turn/0
+489cd09c7c2a74073f18a611a2a3de3af0139fee refs/agents/36592146-8cc7-4785-b8a6-2f40313fa446/checkpoints/turn/1
+5c9303922ad019b2306b68b09c19b958b8dd7e55 refs/agents/36592146-8cc7-4785-b8a6-2f40313fa446/checkpoints/turn/2
+192d53855f41b3a92e4f61533530906aeb9ab1d0 refs/agents/38be46c7-0583-497b-a8e3-51f7a1ff6db6/checkpoints/turn/0
+041894e4c78200d442d5c6d5e21b51f7cb003fee refs/agents/38be46c7-0583-497b-a8e3-51f7a1ff6db6/checkpoints/turn/1
+a1a2c1718ed9d2aee33e27b7915f16ca5154dbdb refs/agents/38be46c7-0583-497b-a8e3-51f7a1ff6db6/checkpoints/turn/10
+edecaba2a3219fa6adafc3849d9b6fca47079fbd refs/agents/38be46c7-0583-497b-a8e3-51f7a1ff6db6/checkpoints/turn/2
+9f78cedf8f288e4a35dfce9698b6332dc9173953 refs/agents/38be46c7-0583-497b-a8e3-51f7a1ff6db6/checkpoints/turn/3
+7a8fc05d619a8b88b8ed8a8bb3d6392d28f2f586 refs/agents/38be46c7-0583-497b-a8e3-51f7a1ff6db6/checkpoints/turn/4
+211aea5dc416dbc35e0e71757ac5daebf49a099e refs/agents/38be46c7-0583-497b-a8e3-51f7a1ff6db6/checkpoints/turn/5
+88ff394ceebc7263284cf6ffc464db8512f9a570 refs/agents/38be46c7-0583-497b-a8e3-51f7a1ff6db6/checkpoints/turn/6
+fb899eff6b6c52843594ca2223094638af3c3c0c refs/agents/38be46c7-0583-497b-a8e3-51f7a1ff6db6/checkpoints/turn/7
+fab87927fddbb507d44fb8fbb85f4d9e56292743 refs/agents/38be46c7-0583-497b-a8e3-51f7a1ff6db6/checkpoints/turn/8
+4e5826ad5c61df5f3c1c42fb76fcd26e922e4acd refs/agents/38be46c7-0583-497b-a8e3-51f7a1ff6db6/checkpoints/turn/9
+7ed12fbde0a61df3584a4d58f15e87541ad620e6 refs/agents/39fffd57-3763-4bef-9bc5-0674dd35a7cb/checkpoints/turn/0
+19586c2afc55597f23fffcf329142570ca00fae8 refs/agents/39fffd57-3763-4bef-9bc5-0674dd35a7cb/checkpoints/turn/1
+d1ed4f75ad29ff068ba48099b0cd7500f8f32915 refs/agents/39fffd57-3763-4bef-9bc5-0674dd35a7cb/checkpoints/turn/2
+de8526c0aac96173260535bf73a834e05459e7ab refs/agents/39fffd57-3763-4bef-9bc5-0674dd35a7cb/checkpoints/turn/3
+e3041ec72d2aa5a016950481f80b4e916a9db25f refs/agents/3b9e7196-481e-4f92-b536-d53e2eed055e/checkpoints/turn/0
+0263888f32e7ec479bb675300369a80ecece989b refs/agents/3b9e7196-481e-4f92-b536-d53e2eed055e/checkpoints/turn/1
+6c0a4b08924f153899c322d8ada20bd399ff6f09 refs/agents/3b9e7196-481e-4f92-b536-d53e2eed055e/checkpoints/turn/2
+c17da667aa74364201b5bad2e0fb550587ba0ac5 refs/agents/3b9e7196-481e-4f92-b536-d53e2eed055e/checkpoints/turn/3
+675b71726d46b4474dc9705fff5ade0f8b9c41ee refs/agents/3b9e7196-481e-4f92-b536-d53e2eed055e/checkpoints/turn/4
+e9f4bc03881a1dfed01771440e92cc194860696e refs/agents/40b277e6-4796-43f2-9456-a013b87da629/checkpoints/turn/0
+1b72613fee86ce80edf80032f424404052ca0923 refs/agents/40b277e6-4796-43f2-9456-a013b87da629/checkpoints/turn/1
+c101a3dc5d84fec364328e590723dabd3d8b7b0e refs/agents/40b277e6-4796-43f2-9456-a013b87da629/checkpoints/turn/10
+7f7f6d50716d8789cf436c8119ef44e52e7046b8 refs/agents/40b277e6-4796-43f2-9456-a013b87da629/checkpoints/turn/11
+10fc8d5e0dd92512ab00e50e7ef9b5ee50a822ab refs/agents/40b277e6-4796-43f2-9456-a013b87da629/checkpoints/turn/12
+e88bc08e7fb94cea064bab06f90474da89021bb5 refs/agents/40b277e6-4796-43f2-9456-a013b87da629/checkpoints/turn/13
+60e876491489e7c9dd66bac6feb3a25570689767 refs/agents/40b277e6-4796-43f2-9456-a013b87da629/checkpoints/turn/2
+f089284a6c2360a65f6111fbcd88ce42a0041cb7 refs/agents/40b277e6-4796-43f2-9456-a013b87da629/checkpoints/turn/3
+0f9f5f9113d120ca95ba831199e821c76e1c4455 refs/agents/40b277e6-4796-43f2-9456-a013b87da629/checkpoints/turn/4
+335dd1d21a42b656024d4f7b28a95658be96a459 refs/agents/40b277e6-4796-43f2-9456-a013b87da629/checkpoints/turn/5
+5fb0e9d0ba78b8d3c63579fc80167d57fae2f29e refs/agents/40b277e6-4796-43f2-9456-a013b87da629/checkpoints/turn/6
+fe750b19e31586e8847b650665e4b9b96b7a622e refs/agents/40b277e6-4796-43f2-9456-a013b87da629/checkpoints/turn/7
+084b84340b294482da056d232a91798613bb702f refs/agents/40b277e6-4796-43f2-9456-a013b87da629/checkpoints/turn/8
+f6330c7ae5a2850cfd98a9762e74657428be5ad6 refs/agents/40b277e6-4796-43f2-9456-a013b87da629/checkpoints/turn/9
+c2dbd9101260aa0e781658e6fdfa8dfae2fa997e refs/agents/53aafcc7-3d40-47c3-b54d-6c28f48ec56e/checkpoints/turn/0
+d5df548a64a1bca5c0e3a9732ffae0c161084dee refs/agents/53aafcc7-3d40-47c3-b54d-6c28f48ec56e/checkpoints/turn/1
+f15ff1e847c21e524a67fe48e6dbb645402ea5f7 refs/agents/53aafcc7-3d40-47c3-b54d-6c28f48ec56e/checkpoints/turn/2
+fdf17b6031910901b52ab5e9445d870ee63707dd refs/agents/5ac75954-551a-41f6-91eb-f741d4b88fb6/checkpoints/turn/0
+5a4f8aa18eacf4959bc553e851543b8d26b4c9e1 refs/agents/5ac75954-551a-41f6-91eb-f741d4b88fb6/checkpoints/turn/1
+5b5f550f650b4095836bdceb0232e95c1ce5c933 refs/agents/5ac75954-551a-41f6-91eb-f741d4b88fb6/checkpoints/turn/2
+684117dda5e5ffbc4601b906071ae1f33a7948c2 refs/agents/5ac75954-551a-41f6-91eb-f741d4b88fb6/checkpoints/turn/3
+cde254e8cc984235851c81390abe7e7780c1e16c refs/agents/5ac75954-551a-41f6-91eb-f741d4b88fb6/checkpoints/turn/4
+97d0cd336742d31ebe03dc92cbe403f571460dd8 refs/agents/6912af72-c15f-4b63-8054-f567eff08df4/checkpoints/turn/0
+0915fe662ab9d2eb4727feaf294bf78303731abf refs/agents/6912af72-c15f-4b63-8054-f567eff08df4/checkpoints/turn/1
+427e9189b25ec5e7505bdb8dbce83700987d40b9 refs/agents/6912af72-c15f-4b63-8054-f567eff08df4/checkpoints/turn/2
+5140d1ea3a94333105e2b35c490f7ca9c59ef4f4 refs/agents/8cae426a-79aa-4e7e-ba8f-c87bc90e52f4/checkpoints/turn/0
+e658b25b73e817a91c192f77944b5963a6c4b347 refs/agents/8cae426a-79aa-4e7e-ba8f-c87bc90e52f4/checkpoints/turn/1
+0204d7612771a62494f15d7611fb13c6ed01fe45 refs/agents/8cae426a-79aa-4e7e-ba8f-c87bc90e52f4/checkpoints/turn/2
+11137b6536c6bfb4355537a910d5a8b9f46da56b refs/agents/8d0ad6de-18ec-4400-a4f8-61bc319c2adf/checkpoints/turn/0
+e4a7e7a834b58451c3ecc1f7f6283be9b070e3fa refs/agents/8d0ad6de-18ec-4400-a4f8-61bc319c2adf/checkpoints/turn/1
+8b50d92e7509b5d4ea0bdcd0dfd0776a0a2592e4 refs/agents/8d0ad6de-18ec-4400-a4f8-61bc319c2adf/checkpoints/turn/10
+4e1da0fb0114fcec0c1dab4b4c5fa169393f74da refs/agents/8d0ad6de-18ec-4400-a4f8-61bc319c2adf/checkpoints/turn/11
+27633cf5db6369551839a2f6632ca3a3df238fa5 refs/agents/8d0ad6de-18ec-4400-a4f8-61bc319c2adf/checkpoints/turn/2
+3763e5a99b5a5c26b17e01d0f3613a8f61304b9a refs/agents/8d0ad6de-18ec-4400-a4f8-61bc319c2adf/checkpoints/turn/3
+81daffb7f7266d2cf21aadc96113eaa92571c1d1 refs/agents/8d0ad6de-18ec-4400-a4f8-61bc319c2adf/checkpoints/turn/4
+36c9dd0ed8346436da483fac54ed09aef91beeb3 refs/agents/8d0ad6de-18ec-4400-a4f8-61bc319c2adf/checkpoints/turn/5
+324e83d19f5f8dec841c069186da5be8c6c03f84 refs/agents/8d0ad6de-18ec-4400-a4f8-61bc319c2adf/checkpoints/turn/6
+5d84b2cd626c597bb69e9becca4437e6a5212a4d refs/agents/8d0ad6de-18ec-4400-a4f8-61bc319c2adf/checkpoints/turn/7
+755a6aa3aa35a7d8cf531679927f981d9ddf1913 refs/agents/8d0ad6de-18ec-4400-a4f8-61bc319c2adf/checkpoints/turn/8
+75188b51807d678ad5a1297f8c7b838f28c377b6 refs/agents/8d0ad6de-18ec-4400-a4f8-61bc319c2adf/checkpoints/turn/9
+9baef06cd2cfec9d0d6ed5254c4af0a53cc67922 refs/agents/8d8e9de9-61c3-4445-a37c-4c7e2bc8ec56/checkpoints/turn/0
+17b3f482a97464db0deac7cf13cf88e72a5373ab refs/agents/8d8e9de9-61c3-4445-a37c-4c7e2bc8ec56/checkpoints/turn/1
+b864a72526dcde0ff339c012a2bf5acb38de8560 refs/agents/8d8e9de9-61c3-4445-a37c-4c7e2bc8ec56/checkpoints/turn/2
+c073db3a5d4ce20c87b604fea3296a1ce2635888 refs/agents/8d8e9de9-61c3-4445-a37c-4c7e2bc8ec56/checkpoints/turn/3
+b221c05aa6183841b784d91abba82feb4facc8a1 refs/agents/8d8e9de9-61c3-4445-a37c-4c7e2bc8ec56/checkpoints/turn/4
+d4f01e92e8532efb32671904562a3dec0ecaafab refs/agents/8d8e9de9-61c3-4445-a37c-4c7e2bc8ec56/checkpoints/turn/5
+03b86b3bb1571f9e881f1cb016f820b990395f66 refs/agents/8d8e9de9-61c3-4445-a37c-4c7e2bc8ec56/checkpoints/turn/6
+afc8a37ff3ddb68830726aace89d6583c3437674 refs/agents/8d8e9de9-61c3-4445-a37c-4c7e2bc8ec56/checkpoints/turn/7
+a6754b3547a41e1232e7f7b4f7bab7c032aa0825 refs/agents/8d8e9de9-61c3-4445-a37c-4c7e2bc8ec56/checkpoints/turn/8
+5193e589df17f298e11adb5790cd4454e50b821a refs/agents/8d8e9de9-61c3-4445-a37c-4c7e2bc8ec56/checkpoints/turn/9
+009f574e8f7432cadacde6cf167170cf66088f6e refs/agents/8ed957ec-9e9e-4cba-aea1-d542ca3cb49d/checkpoints/turn/0
+d5eab82593c53c98d587a8bef00031ee06815501 refs/agents/8ed957ec-9e9e-4cba-aea1-d542ca3cb49d/checkpoints/turn/1
+8fe9f7355fe10132f950bc0215f38d7cfa7f322c refs/agents/8ed957ec-9e9e-4cba-aea1-d542ca3cb49d/checkpoints/turn/2
+4dae17446c5b2359a749739b2271f0847ffb7b7c refs/agents/8ed957ec-9e9e-4cba-aea1-d542ca3cb49d/checkpoints/turn/3
+ec4b18f3c1350f196dcc13e18c45cddaa150572c refs/agents/8ed957ec-9e9e-4cba-aea1-d542ca3cb49d/checkpoints/turn/4
+0e3133a7b12d8544ff384967dcadaa301eb61812 refs/agents/a2927eb2-5f06-4b02-97ef-ffcd197df88e/checkpoints/turn/0
+a365c6407ea457c5d33a6e329af7b2dbcd9bc294 refs/agents/a2927eb2-5f06-4b02-97ef-ffcd197df88e/checkpoints/turn/1
+3a38a79faf59ebe1269bf62fec046048dceb9fc3 refs/agents/a2927eb2-5f06-4b02-97ef-ffcd197df88e/checkpoints/turn/2
+0b16bc153317484314275bab7cb8cd1daee02371 refs/agents/a2927eb2-5f06-4b02-97ef-ffcd197df88e/checkpoints/turn/3
+dd3426164af965cadbc9a86f75a14ff226db90a7 refs/agents/a2927eb2-5f06-4b02-97ef-ffcd197df88e/checkpoints/turn/4
+b79c932eb013c8b4eda1c38302e730d79dd0d72a refs/agents/a5ae0c98-47df-4fe6-bc28-8ba703773233/checkpoints/turn/0
+94b9047fd8d527c2d57f0240b3d4148c6cb51c55 refs/agents/a5ae0c98-47df-4fe6-bc28-8ba703773233/checkpoints/turn/1
+4ae94150b7cef1ca2bb346ce047da7d667f1ea86 refs/agents/a5ae0c98-47df-4fe6-bc28-8ba703773233/checkpoints/turn/2
+5eec108d76192dc85197960263ecbc5e9a26b03d refs/agents/a5ae0c98-47df-4fe6-bc28-8ba703773233/checkpoints/turn/3
+d6da0c604572184c5fdf3c8a8b7378c135f31d23 refs/agents/a9883362-d37a-4678-a584-3e7b839c725b/checkpoints/turn/0
+c3eb9c337e4c9ade1a73fc4f14dd41c5c0cea8a9 refs/agents/a9883362-d37a-4678-a584-3e7b839c725b/checkpoints/turn/1
+e85dcd82bb901f50d994047c234494238fb61c9d refs/agents/ad18736a-aaa8-4fd6-8f05-e4bb6eab2746/checkpoints/turn/0
+5daaf0b949e8ab983b5c164ed313a43336cc40fa refs/agents/ad18736a-aaa8-4fd6-8f05-e4bb6eab2746/checkpoints/turn/1
+ebed315a2f2548c26e30a771a4ca8f46ea931d10 refs/agents/b83ab8ba-2924-44dc-abeb-6d68dded40bb/checkpoints/turn/0
+3e4132f6875d685da3e5319b2674090d182a2e80 refs/agents/b83ab8ba-2924-44dc-abeb-6d68dded40bb/checkpoints/turn/1
+717ef0e99d39660c53fd9767b55c6135d0d226b2 refs/agents/b83ab8ba-2924-44dc-abeb-6d68dded40bb/checkpoints/turn/2
+b6d11307cebbd68385e574ba2eb90973760e2524 refs/agents/b83ab8ba-2924-44dc-abeb-6d68dded40bb/checkpoints/turn/3
+3639b5669569d69f9466955f68981cd17cf4fd76 refs/agents/b83ab8ba-2924-44dc-abeb-6d68dded40bb/checkpoints/turn/4
+b53e6f8987b554b9ed2abd712fcfd1c0f9c7aca3 refs/agents/bde6a110-c89d-4f76-a066-de48ebccbdb7/checkpoints/turn/0
+eb2702db57151a7ad70ffc84af3d5a7adf1ece42 refs/agents/d82407a5-0f22-4f89-808b-6176e5760d2b/checkpoints/turn/0
+ffc865b3e85e161e49ce06747fd13d91a058fe5a refs/agents/d82407a5-0f22-4f89-808b-6176e5760d2b/checkpoints/turn/1
+9a1d48d648ef006094993f18b935ec0b918bc7d5 refs/agents/d82407a5-0f22-4f89-808b-6176e5760d2b/checkpoints/turn/2
+f18e730ccb5721bf6e7156e138475257a2f8f62c refs/agents/d82407a5-0f22-4f89-808b-6176e5760d2b/checkpoints/turn/3
+1792972692ebd0ebcf51522ee0b8e7300702f927 refs/agents/dde6ae5c-1548-48cd-b021-fcc552b0af61/checkpoints/turn/0
+c98ce78cca80d72448765f2a388669792355326d refs/agents/dde6ae5c-1548-48cd-b021-fcc552b0af61/checkpoints/turn/1
+a53098397cd1fcb8eb18ad331c258d23ceb072d1 refs/agents/e0fa59c3-389b-4e95-98b4-2d8bdccb3719/checkpoints/turn/0
+72dfd207f13da331f58fbaf8cb0f3ffd2de12757 refs/agents/e0fa59c3-389b-4e95-98b4-2d8bdccb3719/checkpoints/turn/1
+fd58b38fb2e1b386f83be3244bcff24bef87fd29 refs/agents/e98836b8-d21c-4ed4-9956-8bf3a8331c94/checkpoints/turn/0
+eb9ff896b085ebb82105a506ad373d87682c80fc refs/agents/e98836b8-d21c-4ed4-9956-8bf3a8331c94/checkpoints/turn/1
+9dd632c1dba9f0b3f3865e1262739da13a9cb7f3 refs/agents/ec650c92-3ae6-424d-bdcf-00e6af89e6c9/checkpoints/turn/0
+8755986af32b7027586bb2c5f5db31958de59f3f refs/agents/ec650c92-3ae6-424d-bdcf-00e6af89e6c9/checkpoints/turn/1
+77c12ea056d801a7bbf0f7528594053f168ad3ed refs/agents/ec650c92-3ae6-424d-bdcf-00e6af89e6c9/checkpoints/turn/2
+aa8b2d873aaaa7ee53cc8c46a7fda809ce926d0e refs/agents/edd78181-20cc-4e03-bd0f-b057ffb6822a/checkpoints/turn/0
+ea8bfb022ad88f109eea33db01053f5481c660ba refs/agents/edd78181-20cc-4e03-bd0f-b057ffb6822a/checkpoints/turn/1
+69b84b470e70ad8875c8726e3922a9a1c01ab0ce refs/agents/edd78181-20cc-4e03-bd0f-b057ffb6822a/checkpoints/turn/10
+ca3c499ae7d7ae9b621f0c986723b626049214c2 refs/agents/edd78181-20cc-4e03-bd0f-b057ffb6822a/checkpoints/turn/11
+3e6887b193834418359c9c5c7ec51c9552c3a504 refs/agents/edd78181-20cc-4e03-bd0f-b057ffb6822a/checkpoints/turn/12
+68f1dacd050749d1068bf6a3ba1f426a071f23c7 refs/agents/edd78181-20cc-4e03-bd0f-b057ffb6822a/checkpoints/turn/13
+51dcdca1beb25b9552f88eb936ba0b688bad3dab refs/agents/edd78181-20cc-4e03-bd0f-b057ffb6822a/checkpoints/turn/14
+506e5c2bdea540baf4eff94bab6c71583635c483 refs/agents/edd78181-20cc-4e03-bd0f-b057ffb6822a/checkpoints/turn/15
+1984916dd567ff77bf891a0a971ac3bbb719f64d refs/agents/edd78181-20cc-4e03-bd0f-b057ffb6822a/checkpoints/turn/2
+a493a82a65b8ccbf70a41211f9f4e6480ca5c198 refs/agents/edd78181-20cc-4e03-bd0f-b057ffb6822a/checkpoints/turn/3
+629f9ce41fc75e4e777c92abee374c33ebd8ef1f refs/agents/edd78181-20cc-4e03-bd0f-b057ffb6822a/checkpoints/turn/4
+a2517fa03f0cfb950165f6f801a227df132166ae refs/agents/edd78181-20cc-4e03-bd0f-b057ffb6822a/checkpoints/turn/5
+3e5f0cb730d5b9f1b7f418df35b75c7240a59d3e refs/agents/edd78181-20cc-4e03-bd0f-b057ffb6822a/checkpoints/turn/6
+d95536f84ec584c8a563fab1b33b7c402a53f771 refs/agents/edd78181-20cc-4e03-bd0f-b057ffb6822a/checkpoints/turn/7
+c9390c58570be5203d9e72a8fb2def3796751039 refs/agents/edd78181-20cc-4e03-bd0f-b057ffb6822a/checkpoints/turn/8
+4794ebb9a247ac50bcde5026a7533d01bef4f5e3 refs/agents/edd78181-20cc-4e03-bd0f-b057ffb6822a/checkpoints/turn/9
+57f04ce4bea11cc11b576aa48bef0d715aa0c96c refs/agents/eea278a4-43d5-4e95-8cca-4d292759af3c/checkpoints/turn/0
+bc08e767da6890a8c4af2229f545d1afd57ebdc8 refs/agents/eea278a4-43d5-4e95-8cca-4d292759af3c/checkpoints/turn/1
+2dcb8367fa62e9969279f375fe9a2ebe3aad80f8 refs/agents/eea278a4-43d5-4e95-8cca-4d292759af3c/checkpoints/turn/2
+b6069922665b42cdd8d44840ce90a8b159686733 refs/agents/eea278a4-43d5-4e95-8cca-4d292759af3c/checkpoints/turn/3
+7167ac8e7654afcea8470a0b72d31f3822cf9b80 refs/agents/eea278a4-43d5-4e95-8cca-4d292759af3c/checkpoints/turn/4
+854bfb7549db53e6c57331d660e530c320f2e2cc refs/agents/eea278a4-43d5-4e95-8cca-4d292759af3c/checkpoints/turn/5
+49fa14d0b0e2aa6cedbd2e2e5c50062ced34eb5a refs/agents/eea278a4-43d5-4e95-8cca-4d292759af3c/checkpoints/turn/6
+8914d64cddae6d6eb44894c262cd4129c3048177 refs/agents/eea278a4-43d5-4e95-8cca-4d292759af3c/checkpoints/turn/7
+879c36b8a515723d6f7e174b74b225dcdc439e64 refs/agents/f9044886-0366-44b3-86f6-a5ba142b4683/checkpoints/turn/0
+95840a62bc7671d2dc53968cd9dad4cd51ce4df1 refs/agents/f9044886-0366-44b3-86f6-a5ba142b4683/checkpoints/turn/1
+f6611520c9c2a145fdd23cf733c789d4e2685c6e refs/heads/archive/luna63c-local-artifacts-20261010
+3a8d1fbb146747ccfd4dcbd72700b891c6dd5d5d refs/heads/archive/luna65-rp2b-local-drafts-20261015
+9cb909a95392c971b98ffa796a015ab90e032f1f refs/heads/draft/luna65-phase2a-supervisor-scaffold-20261012
+1c3e33d6285c2d3aeb107f27aad07e57de2ba50f refs/heads/experiment/luna63a-binary-adaptive-decay
+fe3ebe5fdd2e018e79dd640fa4f94548ebba8701 refs/heads/experiment/luna63b-local-pcn-design
+a303ebb835b72fdd01c86df478431b8638aacbb4 refs/heads/experiment/luna63c-nonlinear-excursion-design
+651f18fdf3c7ae8e32cd210ebc68527f86531e32 refs/heads/experiment/luna63c-stage-a-E
+0a8c34b7e6febf681917d915082a8559eea998f7 refs/heads/experiment/luna63c-stage-a-T
+17907c67d52cc338249b66f28c3179cd97572c6e refs/heads/experiment/luna63c-stage-a-W
+19caa49d7620062c06ad74d19528e47725f86b37 refs/heads/experiment/luna63c-stage-a-certificate
+d93ef139a1fea46d58cb59a7d7e6325cb1eb8787 refs/heads/experiment/luna64-r4.3-reward-lifecycle-correction-20261010
+d93ef139a1fea46d58cb59a7d7e6325cb1eb8787 refs/heads/experiment/luna64-track-b-r4.3-pilot-20261010
+f117ce51e7a805564e37252d3b5c99bda163ce57 refs/heads/experiment/luna66-minimal-functional-learning
+f117ce51e7a805564e37252d3b5c99bda163ce57 refs/heads/experiment/luna67-four-class-temporal-learning
+f117ce51e7a805564e37252d3b5c99bda163ce57 refs/heads/experiment/luna68-prediction-omission-routing
+f117ce51e7a805564e37252d3b5c99bda163ce57 refs/heads/experiment/luna70-corrective-readout-learning
+11b6f52e9aa6725af69bcd3cd098bb2c62e78b76 refs/heads/experiment/luna71b-c4-2-bilateral-capture
+e91818a5c974282e848dc43e52d3c0a534dcbf45 refs/heads/experiment/luna71b-c4-2-gn
+f117ce51e7a805564e37252d3b5c99bda163ce57 refs/heads/experiment/luna71b-c4-bilateral-capture
+f117ce51e7a805564e37252d3b5c99bda163ce57 refs/heads/experiment/luna71b-instrumented-learning
+54315aa8ac9340233c19d14f720eae771639fdea refs/heads/feature/single-replay-3d-plasticity
+8f5e785bd2e46c0c1cb2afbb77ba53704adef65a refs/heads/governance/luna63c-artifact-reconciliation
+3b0bc14df01ef73e0d8c91e08d93c7d2b86bc0e1 refs/heads/governance/luna63c-corrective-reconciliation
+f117ce51e7a805564e37252d3b5c99bda163ce57 refs/heads/governance/luna64-r4.3-freeze-20261010
+0511762b46aa8fe33494624a9290611727e7ae51 refs/heads/governance/luna65-r14-documentary-freeze
+11b6f52e9aa6725af69bcd3cd098bb2c62e78b76 refs/heads/governance/luna71b-c4-1-ppc11-freeze
+e91818a5c974282e848dc43e52d3c0a534dcbf45 refs/heads/governance/luna71b-c4-2-checkpoint
+e91818a5c974282e848dc43e52d3c0a534dcbf45 refs/heads/governance/luna71b-c4-2-h-corrections
+60027c09f51278d302e76753fe433be477d36e3f refs/heads/governance/luna71b-wc1-a1-preservation-evidence
+d5493b741a514a96009641b0e565df1648ffa975 refs/heads/governance/luna71b-wc1-preservation-inventory
+73aaa50f97ceab322907875ae4dcf23e7541c3b5 refs/heads/main
+73aaa50f97ceab322907875ae4dcf23e7541c3b5 refs/remotes/origin/HEAD
+ef6ae0687f3aaaeb07381d5306350757b794b59f refs/remotes/origin/copilot/add-new-features
+c693d61b5415bb7ad234f0f2f096660feb38ae02 refs/remotes/origin/copilot/architecture-update-next-canonical-neuron-model
+17195c05efe7bf4a9865f1e2a84821c28a93e408 refs/remotes/origin/copilot/establish-new-canonical-baseline
+e7fc3624305462b575748a58ae1097b76183896b refs/remotes/origin/copilot/execute-luna-43-cycle
+a79494cd66be28fd291ed11eddd62d342f457cfd refs/remotes/origin/copilot/luna-44-corrective-execution
+a79494cd66be28fd291ed11eddd62d342f457cfd refs/remotes/origin/copilot/luna-44-corrective-execution-again
+41046b54f77114d46bb5451d226aa16326717508 refs/remotes/origin/copilot/luna44-independent-routing-evidence
+5ebc9ae7dcaae7ff45f0769686885dcae3f2dea4 refs/remotes/origin/copilot/luna45-depth2-destination-integration
+4b11e0e828fd6fbcb4cbf9b994f121bde54e4c37 refs/remotes/origin/copilot/luna46-depth-scaling-diagnostic
+7aa55058f17cfba62adbf748ad5f845fbbf4583b refs/remotes/origin/copilot/luna47-independent-review
+a1b2588de6e4e4f7677744f289f8b6a1c6196e0d refs/remotes/origin/copilot/luna47a-investigation
+9f4fe99da48dae4504ebe9712ad349d421192c9f refs/remotes/origin/copilot/luna47b-investigation
+609b2e5f8a7ae123f9b7f7da5c89378e29353624 refs/remotes/origin/copilot/luna47c-investigation
+bd4c509685c9e050ac7c813a0c72bc0b2cb539cb refs/remotes/origin/copilot/luna47d-investigation
+923b0fe2259401a0e75c81dae672f71acb9085da refs/remotes/origin/copilot/luna47e-investigation
+85229265b8bec206499515e215627c548f828829 refs/remotes/origin/copilot/luna47f-investigation
+10dc48be1260b1d0129a6906919be039e1e6f67b refs/remotes/origin/copilot/luna47g-investigation
+8c5fb06f5c8bf94beb05688ee0e3d3d00c222606 refs/remotes/origin/copilot/review-and-merge-pull-requests
+9cb909a95392c971b98ffa796a015ab90e032f1f refs/remotes/origin/draft/luna65-phase2a-supervisor-scaffold-20261012
+1c3e33d6285c2d3aeb107f27aad07e57de2ba50f refs/remotes/origin/experiment/luna63a-binary-adaptive-decay
+fe3ebe5fdd2e018e79dd640fa4f94548ebba8701 refs/remotes/origin/experiment/luna63b-local-pcn-design
+a303ebb835b72fdd01c86df478431b8638aacbb4 refs/remotes/origin/experiment/luna63c-nonlinear-excursion-design
+651f18fdf3c7ae8e32cd210ebc68527f86531e32 refs/remotes/origin/experiment/luna63c-stage-a-E
+0a8c34b7e6febf681917d915082a8559eea998f7 refs/remotes/origin/experiment/luna63c-stage-a-T
+17907c67d52cc338249b66f28c3179cd97572c6e refs/remotes/origin/experiment/luna63c-stage-a-W
+19caa49d7620062c06ad74d19528e47725f86b37 refs/remotes/origin/experiment/luna63c-stage-a-certificate
+d93ef139a1fea46d58cb59a7d7e6325cb1eb8787 refs/remotes/origin/experiment/luna64-track-b-r4.3-pilot-20261010
+8f5e785bd2e46c0c1cb2afbb77ba53704adef65a refs/remotes/origin/governance/luna63c-artifact-reconciliation
+3b0bc14df01ef73e0d8c91e08d93c7d2b86bc0e1 refs/remotes/origin/governance/luna63c-corrective-reconciliation
+f117ce51e7a805564e37252d3b5c99bda163ce57 refs/remotes/origin/governance/luna64-r4.3-freeze-20261010
+0511762b46aa8fe33494624a9290611727e7ae51 refs/remotes/origin/governance/luna65-r14-documentary-freeze
+11b6f52e9aa6725af69bcd3cd098bb2c62e78b76 refs/remotes/origin/governance/luna71b-c4-1-ppc11-freeze
+e91818a5c974282e848dc43e52d3c0a534dcbf45 refs/remotes/origin/governance/luna71b-c4-2-checkpoint
+60027c09f51278d302e76753fe433be477d36e3f refs/remotes/origin/governance/luna71b-wc1-a1-preservation-evidence
+d5493b741a514a96009641b0e565df1648ffa975 refs/remotes/origin/governance/luna71b-wc1-preservation-inventory
+73aaa50f97ceab322907875ae4dcf23e7541c3b5 refs/remotes/origin/main
+
+All A2-generated writes were confined to C:\Users\Patrick\Documents\ActiveCode\TPCN-preservation\luna71b-wc1-a2; no source-repo Git write command was issued.

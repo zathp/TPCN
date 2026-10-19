@@ -1,0 +1,280 @@
+Luna-71B-WC1-A2 isolated reconstruction and four-commit bundle build (explicit bare repository access)
+Timestamp (local): 2026-10-16T18:55:51-0400
+Source repository (read-only): C:\Users\Patrick\Documents\ActiveCode\TPCN
+Isolated staging repository: C:\Users\Patrick\Documents\ActiveCode\TPCN-preservation\luna71b-wc1-a2\01-recovered.git
+Bundle candidate: C:\Users\Patrick\Documents\ActiveCode\TPCN-preservation\luna71b-wc1-a2\wc1-a2-four-commits.bundle
+An earlier attempt was blocked by safe.bareRepository=explicit, then a command-wrapper argument typo; neither altered object data or refs. This attempt uses explicit --git-dir and verified argument lists.
+
+===== Confirm fresh staging has no refs =====
+COMMAND: git --git-dir=C:\Users\Patrick\Documents\ActiveCode\TPCN-preservation\luna71b-wc1-a2\01-recovered.git for-each-ref
+EXIT CODE: 0
+[stdout]
+[empty]
+[stderr]
+[empty]
+
+===== Import prior bundle ref 77938eb04aa058246e19267326747101664cf777 without source-repository access =====
+COMMAND: git --git-dir=C:\Users\Patrick\Documents\ActiveCode\TPCN-preservation\luna71b-wc1-a2\01-recovered.git fetch --no-tags --no-recurse-submodules C:\Users\Patrick\Documents\ActiveCode\TPCN-preservation\luna71b-wc1-a1\wc1-a1-three-commits-partial.bundle +refs/preservation/luna71b-wc1-a1/77938eb04aa058246e19267326747101664cf777:refs/preservation/luna71b-wc1-a2/77938eb04aa058246e19267326747101664cf777
+EXIT CODE: 0
+[stdout]
+[empty]
+[stderr]
+From C:\Users\Patrick\Documents\ActiveCode\TPCN-preservation\luna71b-wc1-a1\wc1-a1-three-commits-partial.bundle
+ * [new ref]         refs/preservation/luna71b-wc1-a1/77938eb04aa058246e19267326747101664cf777 -> refs/preservation/luna71b-wc1-a2/77938eb04aa058246e19267326747101664cf777
+
+
+===== Import prior bundle ref 6db1e4754851cf86389ef6c7b562a6f7606cfacc without source-repository access =====
+COMMAND: git --git-dir=C:\Users\Patrick\Documents\ActiveCode\TPCN-preservation\luna71b-wc1-a2\01-recovered.git fetch --no-tags --no-recurse-submodules C:\Users\Patrick\Documents\ActiveCode\TPCN-preservation\luna71b-wc1-a1\wc1-a1-three-commits-partial.bundle +refs/preservation/luna71b-wc1-a1/6db1e4754851cf86389ef6c7b562a6f7606cfacc:refs/preservation/luna71b-wc1-a2/6db1e4754851cf86389ef6c7b562a6f7606cfacc
+EXIT CODE: 0
+[stdout]
+[empty]
+[stderr]
+From C:\Users\Patrick\Documents\ActiveCode\TPCN-preservation\luna71b-wc1-a1\wc1-a1-three-commits-partial.bundle
+ * [new ref]         refs/preservation/luna71b-wc1-a1/6db1e4754851cf86389ef6c7b562a6f7606cfacc -> refs/preservation/luna71b-wc1-a2/6db1e4754851cf86389ef6c7b562a6f7606cfacc
+
+
+===== Import prior bundle ref b85eb31e7801c1c8c3ee48968978cfe40a5d8aef without source-repository access =====
+COMMAND: git --git-dir=C:\Users\Patrick\Documents\ActiveCode\TPCN-preservation\luna71b-wc1-a2\01-recovered.git fetch --no-tags --no-recurse-submodules C:\Users\Patrick\Documents\ActiveCode\TPCN-preservation\luna71b-wc1-a1\wc1-a1-three-commits-partial.bundle +refs/preservation/luna71b-wc1-a1/b85eb31e7801c1c8c3ee48968978cfe40a5d8aef:refs/preservation/luna71b-wc1-a2/b85eb31e7801c1c8c3ee48968978cfe40a5d8aef
+EXIT CODE: 0
+[stdout]
+[empty]
+[stderr]
+From C:\Users\Patrick\Documents\ActiveCode\TPCN-preservation\luna71b-wc1-a1\wc1-a1-three-commits-partial.bundle
+ * [new ref]         refs/preservation/luna71b-wc1-a1/b85eb31e7801c1c8c3ee48968978cfe40a5d8aef -> refs/preservation/luna71b-wc1-a2/b85eb31e7801c1c8c3ee48968978cfe40a5d8aef
+
+
+===== Materialize canonical empty-tree object in staging only =====
+COMMAND: git --git-dir=C:\Users\Patrick\Documents\ActiveCode\TPCN-preservation\luna71b-wc1-a2\01-recovered.git hash-object -w -t tree --stdin
+EXIT CODE: 0
+[stdout]
+4b825dc642cb6eb9a060e54bf8d69288fbee4904
+
+[stderr]
+[empty]
+Canonical empty-tree hash-object result: 4b825dc642cb6eb9a060e54bf8d69288fbee4904
+
+===== Read exact original commit object bytes (source read-only) =====
+COMMAND: git --no-replace-objects -C <source> cat-file commit 430b60ed3684dde1d4f618d2e4c8d23410d81928
+EXIT CODE: 0
+BYTE LENGTH: 194
+PAYLOAD SHA-256: 36a0a009fe26748896a996c750db748700e8426b929d8b5ccd132df788faa481
+[stderr]
+[empty]
+Independently computed Git object ID: 430b60ed3684dde1d4f618d2e4c8d23410d81928
+
+===== Write exact original commit bytes in staging only =====
+COMMAND: git --git-dir=C:\Users\Patrick\Documents\ActiveCode\TPCN-preservation\luna71b-wc1-a2\01-recovered.git hash-object -w -t commit --stdin
+EXIT CODE: 0
+[stdout]
+430b60ed3684dde1d4f618d2e4c8d23410d81928
+
+[stderr]
+[empty]
+Staging hash-object result: 430b60ed3684dde1d4f618d2e4c8d23410d81928
+
+===== Create temporary preservation ref for recovered fourth commit =====
+COMMAND: git --git-dir=C:\Users\Patrick\Documents\ActiveCode\TPCN-preservation\luna71b-wc1-a2\01-recovered.git update-ref refs/preservation/luna71b-wc1-a2/430b60ed3684dde1d4f618d2e4c8d23410d81928 430b60ed3684dde1d4f618d2e4c8d23410d81928
+EXIT CODE: 0
+[stdout]
+[empty]
+[stderr]
+[empty]
+
+===== Verify imported commit payload 430b60ed3684dde1d4f618d2e4c8d23410d81928 =====
+COMMAND: git --git-dir=C:\Users\Patrick\Documents\ActiveCode\TPCN-preservation\luna71b-wc1-a2\01-recovered.git cat-file -p 430b60ed3684dde1d4f618d2e4c8d23410d81928
+EXIT CODE: 0
+[stdout]
+tree 4b825dc642cb6eb9a060e54bf8d69288fbee4904
+author zathp <56136084+zathp@users.noreply.github.com> 1775057523 -0400
+committer zathp <56136084+zathp@users.noreply.github.com> 1775057523 -0400
+
+
+[stderr]
+[empty]
+
+===== Verify imported commit/tree/parent identities 430b60ed3684dde1d4f618d2e4c8d23410d81928 =====
+COMMAND: git --git-dir=C:\Users\Patrick\Documents\ActiveCode\TPCN-preservation\luna71b-wc1-a2\01-recovered.git rev-list --parents -n 1 430b60ed3684dde1d4f618d2e4c8d23410d81928
+EXIT CODE: 0
+[stdout]
+430b60ed3684dde1d4f618d2e4c8d23410d81928
+
+[stderr]
+[empty]
+
+===== Resolve tree for 430b60ed3684dde1d4f618d2e4c8d23410d81928 =====
+COMMAND: git --git-dir=C:\Users\Patrick\Documents\ActiveCode\TPCN-preservation\luna71b-wc1-a2\01-recovered.git rev-parse 430b60ed3684dde1d4f618d2e4c8d23410d81928^{tree}
+EXIT CODE: 0
+[stdout]
+4b825dc642cb6eb9a060e54bf8d69288fbee4904
+
+[stderr]
+[empty]
+Resolved tree for 430b60ed3684dde1d4f618d2e4c8d23410d81928: 4b825dc642cb6eb9a060e54bf8d69288fbee4904
+
+===== Verify imported commit payload 77938eb04aa058246e19267326747101664cf777 =====
+COMMAND: git --git-dir=C:\Users\Patrick\Documents\ActiveCode\TPCN-preservation\luna71b-wc1-a2\01-recovered.git cat-file -p 77938eb04aa058246e19267326747101664cf777
+EXIT CODE: 0
+[stdout]
+tree fc7e240c18863c553edfb329ed9ce76353eaeeef
+author zathp <56136084+zathp@users.noreply.github.com> 1775057445 -0400
+committer zathp <56136084+zathp@users.noreply.github.com> 1775057445 -0400
+
+Initial commit
+
+[stderr]
+[empty]
+
+===== Verify imported commit/tree/parent identities 77938eb04aa058246e19267326747101664cf777 =====
+COMMAND: git --git-dir=C:\Users\Patrick\Documents\ActiveCode\TPCN-preservation\luna71b-wc1-a2\01-recovered.git rev-list --parents -n 1 77938eb04aa058246e19267326747101664cf777
+EXIT CODE: 0
+[stdout]
+77938eb04aa058246e19267326747101664cf777
+
+[stderr]
+[empty]
+
+===== Resolve tree for 77938eb04aa058246e19267326747101664cf777 =====
+COMMAND: git --git-dir=C:\Users\Patrick\Documents\ActiveCode\TPCN-preservation\luna71b-wc1-a2\01-recovered.git rev-parse 77938eb04aa058246e19267326747101664cf777^{tree}
+EXIT CODE: 0
+[stdout]
+fc7e240c18863c553edfb329ed9ce76353eaeeef
+
+[stderr]
+[empty]
+Resolved tree for 77938eb04aa058246e19267326747101664cf777: fc7e240c18863c553edfb329ed9ce76353eaeeef
+
+===== Verify imported commit payload 6db1e4754851cf86389ef6c7b562a6f7606cfacc =====
+COMMAND: git --git-dir=C:\Users\Patrick\Documents\ActiveCode\TPCN-preservation\luna71b-wc1-a2\01-recovered.git cat-file -p 6db1e4754851cf86389ef6c7b562a6f7606cfacc
+EXIT CODE: 0
+[stdout]
+tree 1edcdec78e6d8f05bdacc2cd56529592c5c9a886
+parent 77938eb04aa058246e19267326747101664cf777
+author zathp <56136084+zathp@users.noreply.github.com> 1775057502 -0400
+committer zathp <56136084+zathp@users.noreply.github.com> 1775057502 -0400
+
+Create .gitignore
+
+[stderr]
+[empty]
+
+===== Verify imported commit/tree/parent identities 6db1e4754851cf86389ef6c7b562a6f7606cfacc =====
+COMMAND: git --git-dir=C:\Users\Patrick\Documents\ActiveCode\TPCN-preservation\luna71b-wc1-a2\01-recovered.git rev-list --parents -n 1 6db1e4754851cf86389ef6c7b562a6f7606cfacc
+EXIT CODE: 0
+[stdout]
+6db1e4754851cf86389ef6c7b562a6f7606cfacc 77938eb04aa058246e19267326747101664cf777
+
+[stderr]
+[empty]
+
+===== Resolve tree for 6db1e4754851cf86389ef6c7b562a6f7606cfacc =====
+COMMAND: git --git-dir=C:\Users\Patrick\Documents\ActiveCode\TPCN-preservation\luna71b-wc1-a2\01-recovered.git rev-parse 6db1e4754851cf86389ef6c7b562a6f7606cfacc^{tree}
+EXIT CODE: 0
+[stdout]
+1edcdec78e6d8f05bdacc2cd56529592c5c9a886
+
+[stderr]
+[empty]
+Resolved tree for 6db1e4754851cf86389ef6c7b562a6f7606cfacc: 1edcdec78e6d8f05bdacc2cd56529592c5c9a886
+
+===== Verify imported commit payload b85eb31e7801c1c8c3ee48968978cfe40a5d8aef =====
+COMMAND: git --git-dir=C:\Users\Patrick\Documents\ActiveCode\TPCN-preservation\luna71b-wc1-a2\01-recovered.git cat-file -p b85eb31e7801c1c8c3ee48968978cfe40a5d8aef
+EXIT CODE: 0
+[stdout]
+tree 1edcdec78e6d8f05bdacc2cd56529592c5c9a886
+parent bcb76a40778d235806cf863dd2a9b753937dabcf
+author zathp <56136084+zathp@users.noreply.github.com> 1775057445 -0400
+committer zathp <56136084+zathp@users.noreply.github.com> 1775057566 -0400
+
+Initial commit
+
+[stderr]
+[empty]
+
+===== Verify imported commit/tree/parent identities b85eb31e7801c1c8c3ee48968978cfe40a5d8aef =====
+COMMAND: git --git-dir=C:\Users\Patrick\Documents\ActiveCode\TPCN-preservation\luna71b-wc1-a2\01-recovered.git rev-list --parents -n 1 b85eb31e7801c1c8c3ee48968978cfe40a5d8aef
+EXIT CODE: 0
+[stdout]
+b85eb31e7801c1c8c3ee48968978cfe40a5d8aef bcb76a40778d235806cf863dd2a9b753937dabcf
+
+[stderr]
+[empty]
+
+===== Resolve tree for b85eb31e7801c1c8c3ee48968978cfe40a5d8aef =====
+COMMAND: git --git-dir=C:\Users\Patrick\Documents\ActiveCode\TPCN-preservation\luna71b-wc1-a2\01-recovered.git rev-parse b85eb31e7801c1c8c3ee48968978cfe40a5d8aef^{tree}
+EXIT CODE: 0
+[stdout]
+1edcdec78e6d8f05bdacc2cd56529592c5c9a886
+
+[stderr]
+[empty]
+Resolved tree for b85eb31e7801c1c8c3ee48968978cfe40a5d8aef: 1edcdec78e6d8f05bdacc2cd56529592c5c9a886
+
+===== Verify empty tree type =====
+COMMAND: git --git-dir=C:\Users\Patrick\Documents\ActiveCode\TPCN-preservation\luna71b-wc1-a2\01-recovered.git cat-file -t 4b825dc642cb6eb9a060e54bf8d69288fbee4904
+EXIT CODE: 0
+[stdout]
+tree
+
+[stderr]
+[empty]
+
+===== Verify empty tree payload size =====
+COMMAND: git --git-dir=C:\Users\Patrick\Documents\ActiveCode\TPCN-preservation\luna71b-wc1-a2\01-recovered.git cat-file -s 4b825dc642cb6eb9a060e54bf8d69288fbee4904
+EXIT CODE: 0
+[stdout]
+0
+
+[stderr]
+[empty]
+
+===== Verify empty tree pretty-printed payload is empty =====
+COMMAND: git --git-dir=C:\Users\Patrick\Documents\ActiveCode\TPCN-preservation\luna71b-wc1-a2\01-recovered.git cat-file -p 4b825dc642cb6eb9a060e54bf8d69288fbee4904
+EXIT CODE: 0
+[stdout]
+[empty]
+[stderr]
+[empty]
+
+===== Staging object integrity: full strict fsck =====
+COMMAND: git --git-dir=C:\Users\Patrick\Documents\ActiveCode\TPCN-preservation\luna71b-wc1-a2\01-recovered.git fsck --full --strict
+EXIT CODE: 0
+[stdout]
+[empty]
+[stderr]
+[empty]
+
+===== Create self-contained four-ref bundle =====
+COMMAND: git --git-dir=C:\Users\Patrick\Documents\ActiveCode\TPCN-preservation\luna71b-wc1-a2\01-recovered.git bundle create C:\Users\Patrick\Documents\ActiveCode\TPCN-preservation\luna71b-wc1-a2\wc1-a2-four-commits.bundle refs/preservation/luna71b-wc1-a2/430b60ed3684dde1d4f618d2e4c8d23410d81928 refs/preservation/luna71b-wc1-a2/77938eb04aa058246e19267326747101664cf777 refs/preservation/luna71b-wc1-a2/6db1e4754851cf86389ef6c7b562a6f7606cfacc refs/preservation/luna71b-wc1-a2/b85eb31e7801c1c8c3ee48968978cfe40a5d8aef
+EXIT CODE: 0
+[stdout]
+[empty]
+[stderr]
+[empty]
+
+===== Verify final bundle prerequisites and integrity =====
+COMMAND: git --git-dir=C:\Users\Patrick\Documents\ActiveCode\TPCN-preservation\luna71b-wc1-a2\01-recovered.git bundle verify C:\Users\Patrick\Documents\ActiveCode\TPCN-preservation\luna71b-wc1-a2\wc1-a2-four-commits.bundle
+EXIT CODE: 0
+[stdout]
+The bundle contains these 4 refs:
+430b60ed3684dde1d4f618d2e4c8d23410d81928 refs/preservation/luna71b-wc1-a2/430b60ed3684dde1d4f618d2e4c8d23410d81928
+77938eb04aa058246e19267326747101664cf777 refs/preservation/luna71b-wc1-a2/77938eb04aa058246e19267326747101664cf777
+6db1e4754851cf86389ef6c7b562a6f7606cfacc refs/preservation/luna71b-wc1-a2/6db1e4754851cf86389ef6c7b562a6f7606cfacc
+b85eb31e7801c1c8c3ee48968978cfe40a5d8aef refs/preservation/luna71b-wc1-a2/b85eb31e7801c1c8c3ee48968978cfe40a5d8aef
+The bundle records a complete history.
+The bundle uses this hash algorithm: sha1
+
+[stderr]
+C:/Users/Patrick/Documents/ActiveCode/TPCN-preservation/luna71b-wc1-a2/wc1-a2-four-commits.bundle is okay
+
+
+===== List final bundle advertised refs =====
+COMMAND: git --git-dir=C:\Users\Patrick\Documents\ActiveCode\TPCN-preservation\luna71b-wc1-a2\01-recovered.git bundle list-heads C:\Users\Patrick\Documents\ActiveCode\TPCN-preservation\luna71b-wc1-a2\wc1-a2-four-commits.bundle
+EXIT CODE: 0
+[stdout]
+430b60ed3684dde1d4f618d2e4c8d23410d81928 refs/preservation/luna71b-wc1-a2/430b60ed3684dde1d4f618d2e4c8d23410d81928
+77938eb04aa058246e19267326747101664cf777 refs/preservation/luna71b-wc1-a2/77938eb04aa058246e19267326747101664cf777
+6db1e4754851cf86389ef6c7b562a6f7606cfacc refs/preservation/luna71b-wc1-a2/6db1e4754851cf86389ef6c7b562a6f7606cfacc
+b85eb31e7801c1c8c3ee48968978cfe40a5d8aef refs/preservation/luna71b-wc1-a2/b85eb31e7801c1c8c3ee48968978cfe40a5d8aef
+
+[stderr]
+[empty]

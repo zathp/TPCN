@@ -1,0 +1,204 @@
+WC1-A3 source repository postcheck; 2026-10-16T21:08:40-0400
+Repository: C:\Users\Patrick\Documents\ActiveCode\TPCN
+Authorized source mutations in this gate: local .git/info/exclude exact-path rule and three Luna-0 accepted additive refs only.
+
+===== Status =====
+COMMAND: git -C C:\Users\Patrick\Documents\ActiveCode\TPCN status --short --branch
+EXIT CODE: 0
+[stdout]
+## governance/luna71b-c4-1-ppc11-freeze
+?? _worktrees/
+?? workflow/archives/
+?? workflow/handoffs/luna71b-c4.2-i/
+?? workflow/handoffs/luna71b-c4.2-j/
+?? workflow/handoffs/luna71b-wc1/
+
+[stderr]
+[empty]
+
+===== Root and HEAD =====
+COMMAND: git -C C:\Users\Patrick\Documents\ActiveCode\TPCN rev-parse --show-toplevel HEAD
+EXIT CODE: 0
+[stdout]
+C:/Users/Patrick/Documents/ActiveCode/TPCN
+11b6f52e9aa6725af69bcd3cd098bb2c62e78b76
+
+[stderr]
+[empty]
+
+===== Branch refs only =====
+COMMAND: git -C C:\Users\Patrick\Documents\ActiveCode\TPCN show-ref --heads
+EXIT CODE: 0
+[stdout]
+f6611520c9c2a145fdd23cf733c789d4e2685c6e refs/heads/archive/luna63c-local-artifacts-20261010
+3a8d1fbb146747ccfd4dcbd72700b891c6dd5d5d refs/heads/archive/luna65-rp2b-local-drafts-20261015
+9cb909a95392c971b98ffa796a015ab90e032f1f refs/heads/draft/luna65-phase2a-supervisor-scaffold-20261012
+1c3e33d6285c2d3aeb107f27aad07e57de2ba50f refs/heads/experiment/luna63a-binary-adaptive-decay
+fe3ebe5fdd2e018e79dd640fa4f94548ebba8701 refs/heads/experiment/luna63b-local-pcn-design
+a303ebb835b72fdd01c86df478431b8638aacbb4 refs/heads/experiment/luna63c-nonlinear-excursion-design
+651f18fdf3c7ae8e32cd210ebc68527f86531e32 refs/heads/experiment/luna63c-stage-a-E
+0a8c34b7e6febf681917d915082a8559eea998f7 refs/heads/experiment/luna63c-stage-a-T
+17907c67d52cc338249b66f28c3179cd97572c6e refs/heads/experiment/luna63c-stage-a-W
+19caa49d7620062c06ad74d19528e47725f86b37 refs/heads/experiment/luna63c-stage-a-certificate
+d93ef139a1fea46d58cb59a7d7e6325cb1eb8787 refs/heads/experiment/luna64-r4.3-reward-lifecycle-correction-20261010
+d93ef139a1fea46d58cb59a7d7e6325cb1eb8787 refs/heads/experiment/luna64-track-b-r4.3-pilot-20261010
+f117ce51e7a805564e37252d3b5c99bda163ce57 refs/heads/experiment/luna66-minimal-functional-learning
+f117ce51e7a805564e37252d3b5c99bda163ce57 refs/heads/experiment/luna67-four-class-temporal-learning
+f117ce51e7a805564e37252d3b5c99bda163ce57 refs/heads/experiment/luna68-prediction-omission-routing
+f117ce51e7a805564e37252d3b5c99bda163ce57 refs/heads/experiment/luna70-corrective-readout-learning
+11b6f52e9aa6725af69bcd3cd098bb2c62e78b76 refs/heads/experiment/luna71b-c4-2-bilateral-capture
+e91818a5c974282e848dc43e52d3c0a534dcbf45 refs/heads/experiment/luna71b-c4-2-gn
+f117ce51e7a805564e37252d3b5c99bda163ce57 refs/heads/experiment/luna71b-c4-bilateral-capture
+f117ce51e7a805564e37252d3b5c99bda163ce57 refs/heads/experiment/luna71b-instrumented-learning
+54315aa8ac9340233c19d14f720eae771639fdea refs/heads/feature/single-replay-3d-plasticity
+8f5e785bd2e46c0c1cb2afbb77ba53704adef65a refs/heads/governance/luna63c-artifact-reconciliation
+3b0bc14df01ef73e0d8c91e08d93c7d2b86bc0e1 refs/heads/governance/luna63c-corrective-reconciliation
+f117ce51e7a805564e37252d3b5c99bda163ce57 refs/heads/governance/luna64-r4.3-freeze-20261010
+0511762b46aa8fe33494624a9290611727e7ae51 refs/heads/governance/luna65-r14-documentary-freeze
+11b6f52e9aa6725af69bcd3cd098bb2c62e78b76 refs/heads/governance/luna71b-c4-1-ppc11-freeze
+e91818a5c974282e848dc43e52d3c0a534dcbf45 refs/heads/governance/luna71b-c4-2-checkpoint
+e91818a5c974282e848dc43e52d3c0a534dcbf45 refs/heads/governance/luna71b-c4-2-h-corrections
+60027c09f51278d302e76753fe433be477d36e3f refs/heads/governance/luna71b-wc1-a1-preservation-evidence
+d5493b741a514a96009641b0e565df1648ffa975 refs/heads/governance/luna71b-wc1-preservation-inventory
+73aaa50f97ceab322907875ae4dcf23e7541c3b5 refs/heads/main
+
+[stderr]
+[empty]
+
+===== Tags =====
+COMMAND: git -C C:\Users\Patrick\Documents\ActiveCode\TPCN show-ref --tags
+EXIT CODE: 1
+[stdout]
+[empty]
+[stderr]
+[empty]
+
+===== WC1-A3 preservation refs =====
+COMMAND: git -C C:\Users\Patrick\Documents\ActiveCode\TPCN for-each-ref "--format=%(objectname) %(refname)" refs/preservation/wc1-a3
+EXIT CODE: 0
+[stdout]
+6db1e4754851cf86389ef6c7b562a6f7606cfacc refs/preservation/wc1-a3/6db1e4754851cf86389ef6c7b562a6f7606cfacc
+77938eb04aa058246e19267326747101664cf777 refs/preservation/wc1-a3/77938eb04aa058246e19267326747101664cf777
+b85eb31e7801c1c8c3ee48968978cfe40a5d8aef refs/preservation/wc1-a3/b85eb31e7801c1c8c3ee48968978cfe40a5d8aef
+
+[stderr]
+[empty]
+
+===== All WC1-A3 objects remain protected or excluded =====
+COMMAND: git -C C:\Users\Patrick\Documents\ActiveCode\TPCN for-each-ref --contains=430b60ed3684dde1d4f618d2e4c8d23410d81928 "--format=%(objectname) %(refname)"
+EXIT CODE: 0
+[stdout]
+[empty]
+[stderr]
+[empty]
+
+===== Registered worktrees =====
+COMMAND: git -C C:\Users\Patrick\Documents\ActiveCode\TPCN worktree list --porcelain
+EXIT CODE: 0
+[stdout]
+worktree C:/Users/Patrick/Documents/ActiveCode/TPCN
+HEAD 11b6f52e9aa6725af69bcd3cd098bb2c62e78b76
+branch refs/heads/governance/luna71b-c4-1-ppc11-freeze
+
+worktree C:/Users/Patrick/Documents/ActiveCode/TPCN/_worktrees/luna71b-c4-2-j
+HEAD e91818a5c974282e848dc43e52d3c0a534dcbf45
+detached
+
+worktree C:/Users/Patrick/Documents/ActiveCode/TPCN-luna63a
+HEAD 1c3e33d6285c2d3aeb107f27aad07e57de2ba50f
+branch refs/heads/experiment/luna63a-binary-adaptive-decay
+
+worktree C:/Users/Patrick/Documents/ActiveCode/TPCN-luna63b
+HEAD fe3ebe5fdd2e018e79dd640fa4f94548ebba8701
+branch refs/heads/experiment/luna63b-local-pcn-design
+
+worktree C:/Users/Patrick/Documents/ActiveCode/TPCN-luna63c
+HEAD a303ebb835b72fdd01c86df478431b8638aacbb4
+branch refs/heads/experiment/luna63c-nonlinear-excursion-design
+
+worktree C:/Users/Patrick/Documents/ActiveCode/TPCN-luna63c-archive
+HEAD f6611520c9c2a145fdd23cf733c789d4e2685c6e
+branch refs/heads/archive/luna63c-local-artifacts-20261010
+
+worktree C:/Users/Patrick/Documents/ActiveCode/TPCN-luna63c-corrective
+HEAD 3b0bc14df01ef73e0d8c91e08d93c7d2b86bc0e1
+branch refs/heads/governance/luna63c-corrective-reconciliation
+
+worktree C:/Users/Patrick/Documents/ActiveCode/TPCN-luna63c-E
+HEAD 651f18fdf3c7ae8e32cd210ebc68527f86531e32
+branch refs/heads/experiment/luna63c-stage-a-E
+
+worktree C:/Users/Patrick/Documents/ActiveCode/TPCN-luna63c-governance
+HEAD 8f5e785bd2e46c0c1cb2afbb77ba53704adef65a
+branch refs/heads/governance/luna63c-artifact-reconciliation
+
+worktree C:/Users/Patrick/Documents/ActiveCode/TPCN-luna63c-T
+HEAD 0a8c34b7e6febf681917d915082a8559eea998f7
+branch refs/heads/experiment/luna63c-stage-a-T
+
+worktree C:/Users/Patrick/Documents/ActiveCode/TPCN-luna63c-W
+HEAD 17907c67d52cc338249b66f28c3179cd97572c6e
+branch refs/heads/experiment/luna63c-stage-a-W
+
+worktree C:/Users/Patrick/Documents/ActiveCode/TPCN-luna64-r4.3-pilot-20261010
+HEAD d93ef139a1fea46d58cb59a7d7e6325cb1eb8787
+branch refs/heads/experiment/luna64-track-b-r4.3-pilot-20261010
+
+worktree C:/Users/Patrick/Documents/ActiveCode/TPCN-luna64-r4.3-reward-lifecycle-correction-20261010
+HEAD d93ef139a1fea46d58cb59a7d7e6325cb1eb8787
+branch refs/heads/experiment/luna64-r4.3-reward-lifecycle-correction-20261010
+
+worktree C:/Users/Patrick/Documents/ActiveCode/TPCN-luna66-functional
+HEAD f117ce51e7a805564e37252d3b5c99bda163ce57
+branch refs/heads/experiment/luna66-minimal-functional-learning
+
+worktree C:/Users/Patrick/Documents/ActiveCode/TPCN-luna67-four-class
+HEAD f117ce51e7a805564e37252d3b5c99bda163ce57
+branch refs/heads/experiment/luna67-four-class-temporal-learning
+
+worktree C:/Users/Patrick/Documents/ActiveCode/TPCN-luna68-prediction-omission
+HEAD f117ce51e7a805564e37252d3b5c99bda163ce57
+branch refs/heads/experiment/luna68-prediction-omission-routing
+
+worktree C:/Users/Patrick/Documents/ActiveCode/TPCN-luna70-corrective-readout
+HEAD f117ce51e7a805564e37252d3b5c99bda163ce57
+branch refs/heads/experiment/luna70-corrective-readout-learning
+
+worktree C:/Users/Patrick/Documents/ActiveCode/TPCN-luna71b
+HEAD f117ce51e7a805564e37252d3b5c99bda163ce57
+branch refs/heads/experiment/luna71b-instrumented-learning
+
+worktree C:/Users/Patrick/Documents/ActiveCode/TPCN-luna71b-c4
+HEAD f117ce51e7a805564e37252d3b5c99bda163ce57
+branch refs/heads/experiment/luna71b-c4-bilateral-capture
+
+worktree C:/Users/Patrick/Documents/ActiveCode/TPCN-luna71b-c4-2
+HEAD e91818a5c974282e848dc43e52d3c0a534dcbf45
+branch refs/heads/governance/luna71b-c4-2-checkpoint
+
+worktree C:/Users/Patrick/Documents/ActiveCode/TPCN-luna71b-c4-2-gn
+HEAD e91818a5c974282e848dc43e52d3c0a534dcbf45
+branch refs/heads/experiment/luna71b-c4-2-gn
+
+worktree C:/Users/Patrick/Documents/ActiveCode/TPCN-luna71b-c4-2-h
+HEAD e91818a5c974282e848dc43e52d3c0a534dcbf45
+branch refs/heads/governance/luna71b-c4-2-h-corrections
+
+worktree C:/Users/Patrick/Documents/ActiveCode/TPCN-r14-publication
+HEAD 0511762b46aa8fe33494624a9290611727e7ae51
+branch refs/heads/governance/luna65-r14-documentary-freeze
+
+worktree C:/Users/Patrick/Documents/ActiveCode/TPCN-wc1-a1-publication
+HEAD 60027c09f51278d302e76753fe433be477d36e3f
+branch refs/heads/governance/luna71b-wc1-a1-preservation-evidence
+
+worktree C:/Users/Patrick/Documents/ActiveCode/TPCN-wc1-publication
+HEAD d5493b741a514a96009641b0e565df1648ffa975
+branch refs/heads/governance/luna71b-wc1-preservation-inventory
+
+
+[stderr]
+[empty]
+
+===== Scope statement =====
+No branch or tag update/delete was executed. No worktree cleanup/removal, Git object repair, GC, pruning, experiment, push, or publication was performed. All worktree paths are observationally listed above; no operation targeted any worktree. The source missing-tree condition remains unchanged; see preflight scoped fsck evidence.

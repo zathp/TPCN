@@ -1,0 +1,15 @@
+Luna-71B-WC1-A2 isolated reconstruction and four-commit bundle build (explicit bare repository access)
+Timestamp (local): 2026-10-16T18:55:36-0400
+Source repository (read-only): C:\Users\Patrick\Documents\ActiveCode\TPCN
+Isolated staging repository: C:\Users\Patrick\Documents\ActiveCode\TPCN-preservation\luna71b-wc1-a2\01-recovered.git
+Bundle candidate: C:\Users\Patrick\Documents\ActiveCode\TPCN-preservation\luna71b-wc1-a2\wc1-a2-four-commits.bundle
+The first attempt was stopped by safe.bareRepository=explicit when using -C; that attempt made no changes beyond bare repository initialization. This run uses explicit --git-dir.
+
+===== Confirm fresh staging has no refs =====
+COMMAND: git --git-dir=C:\Users\Patrick\Documents\ActiveCode\TPCN-preservation\luna71b-wc1-a2\01-recovered.git ['for-each-ref']
+EXIT CODE: 1
+[stdout]
+[empty]
+[stderr]
+git: '['for-each-ref']' is not a git command. See 'git --help'.
+
