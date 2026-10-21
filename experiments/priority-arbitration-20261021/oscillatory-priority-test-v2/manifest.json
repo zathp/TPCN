@@ -1,0 +1,93 @@
+{
+  "schema": "oscillatory-priority-artifacts-v2",
+  "self_excluded": true,
+  "primary_scientific_criterion": "FAIL",
+  "files": [
+    {
+      "sha256": "09e24d8e8152371743f106345afddd85c21d77799222b8e98a402eb30e6fed74",
+      "path": "learner.py",
+      "bytes": 5571
+    },
+    {
+      "sha256": "6b9a20f51b13a71ec2a10a9daea5ac7c0126641043996b6e0df265993cdf5c86",
+      "path": "LUNA0_REVIEW.md",
+      "bytes": 5111
+    },
+    {
+      "sha256": "7a6adc1db78d4dd9480cb33ea6375c3991628d271ebe732df9303e42c7aeef97",
+      "path": "make_report.py",
+      "bytes": 10084
+    },
+    {
+      "sha256": "3df4f42b1db11898f245c749e2cc46826929778808ca1a6663f7908359cd081b",
+      "path": "plan.json",
+      "bytes": 4290
+    },
+    {
+      "sha256": "4d456084e83c02952b23ec63f03edabc1b51f988c25462d20e34d40ca362f7ae",
+      "path": "REPORT.md",
+      "bytes": 8407
+    },
+    {
+      "sha256": "e50dd8c8d94750525b40984d576cd0d3450c86d2e7ff293c8105a6e9cfc0abb1",
+      "path": "results.json",
+      "bytes": 1758467
+    },
+    {
+      "sha256": "d1f6ac3778c3454bf49ed6c2cc78d9b4b5c3db04d2705fe37ba9852e53658a05",
+      "path": "reviewer_audit.py",
+      "bytes": 6171
+    },
+    {
+      "sha256": "346a4ce37354075d132b679a888c8c025c8dc4e7f6fa01d2d59defd7f3a213d9",
+      "path": "reviewer-audit-result.json",
+      "bytes": 406
+    },
+    {
+      "sha256": "5fc705b0c99a8d4046f6a9d38e3f3ce6df2a1ecc852603570ec41a73e4f11db7",
+      "path": "SOURCE_REVIEW.md",
+      "bytes": 3826
+    },
+    {
+      "sha256": "6cf75309fa99c3928c1e5dd2815a40060d02909994e0b955548be394c329b1eb",
+      "path": "source-manifest.json",
+      "bytes": 1001
+    },
+    {
+      "sha256": "d0bb9a2923683fb6eea94a0c4f35eee5d9d16feca303ad5f1ce0f38cc6638ef0",
+      "path": "study.py",
+      "bytes": 7170
+    },
+    {
+      "sha256": "b73bbf8e7f506b141469c667d07813bde5bf60ad62180aa46cba1d4c6ce435af",
+      "path": "summary.csv",
+      "bytes": 2258
+    },
+    {
+      "sha256": "56b694af1747cea9bbfef1dd2182fba2f7b14555497a86b346fef3a7acd86743",
+      "path": "test_learner.py",
+      "bytes": 4317
+    },
+    {
+      "sha256": "c8833695c25aee0cb9f48987e71728804d26ef80201675a8d5fee7be7d20992d",
+      "path": "unit-validation.json",
+      "bytes": 296
+    },
+    {
+      "sha256": "e2ac231228914c526bfd8f0bfe4732e5c85a22c98d2cdaf9ad6a0b59d8b0814f",
+      "path": "verification-timing.json",
+      "bytes": 183
+    },
+    {
+      "sha256": "2412564c8a301c79ef95657f49ac529225c2f97a87394a870ba340b60dfe1c20",
+      "path": "verification.json",
+      "bytes": 811
+    },
+    {
+      "sha256": "07efd292eaf516f8f097f2bc3a338a4aee9b61bfb50933f186f98743773a2efb",
+      "path": "verify.py",
+      "bytes": 2019
+    }
+  ],
+  "publication_review": "PASS: independent LUNA0_REVIEW.md"
+}

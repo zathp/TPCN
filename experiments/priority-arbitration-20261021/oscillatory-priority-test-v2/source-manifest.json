@@ -1,0 +1,32 @@
+{
+  "primary_arm": "error_time_8",
+  "schema": "oscillatory-priority-frozen-source-v2",
+  "files": [
+    {
+      "bytes": 4290,
+      "sha256": "3df4f42b1db11898f245c749e2cc46826929778808ca1a6663f7908359cd081b",
+      "path": "plan.json"
+    },
+    {
+      "bytes": 5571,
+      "sha256": "09e24d8e8152371743f106345afddd85c21d77799222b8e98a402eb30e6fed74",
+      "path": "learner.py"
+    },
+    {
+      "bytes": 7170,
+      "sha256": "d0bb9a2923683fb6eea94a0c4f35eee5d9d16feca303ad5f1ce0f38cc6638ef0",
+      "path": "study.py"
+    },
+    {
+      "bytes": 4317,
+      "sha256": "56b694af1747cea9bbfef1dd2182fba2f7b14555497a86b346fef3a7acd86743",
+      "path": "test_learner.py"
+    },
+    {
+      "bytes": 2019,
+      "sha256": "07efd292eaf516f8f097f2bc3a338a4aee9b61bfb50933f186f98743773a2efb",
+      "path": "verify.py"
+    }
+  ],
+  "run_policy": "One original matrix; no retuning; three primary seed0 replays fast/delayed/target_shift. Source review before matrix."
+}

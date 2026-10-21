@@ -1,0 +1,29 @@
+{
+  "status": "PASS",
+  "checks": [
+    {
+      "case": "fast",
+      "arm": "error_time_8",
+      "seed": 0,
+      "exact": true,
+      "row_sha256": "eb246d171cc08c5e0d2724481b4233fe7ecaa9895721a90902f7855fa8728132"
+    },
+    {
+      "case": "delayed",
+      "arm": "error_time_8",
+      "seed": 0,
+      "exact": true,
+      "row_sha256": "956ee4ba2cf5a0bed7573312dd18f6bf68d83ce045d7099e5fdbe615f6c7e385"
+    },
+    {
+      "case": "target_shift",
+      "arm": "error_time_8",
+      "seed": 0,
+      "exact": true,
+      "row_sha256": "34105a6a46933bf045e66f577c8a9d84c22a1824780693b4cf9bf676a8f12b77"
+    }
+  ],
+  "cumulative_observations": 399360,
+  "cumulative_choices": 49920,
+  "original_results_sha256": "e50dd8c8d94750525b40984d576cd0d3450c86d2e7ff293c8105a6e9cfc0abb1"
+}

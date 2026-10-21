@@ -1,0 +1,6 @@
+{
+  "command": "python -m unittest discover -s oscillatory-priority-test-v2 -p test_learner.py",
+  "output": "...............\r\n----------------------------------------------------------------------\r\nRan 15 tests in 0.055s\r\n\r\nOK\r\n",
+  "python": "Python 3.11.4",
+  "exit_code": 0
+}

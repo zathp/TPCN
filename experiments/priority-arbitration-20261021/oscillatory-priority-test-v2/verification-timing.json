@@ -1,0 +1,5 @@
+{
+  "exit_code": 0,
+  "replay_command_seconds": 0.1638824,
+  "note": "Observed replay command duration includes interpreter startup; separate wall guard from original matrix."
+}

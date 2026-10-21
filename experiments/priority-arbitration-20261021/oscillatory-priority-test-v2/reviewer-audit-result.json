@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "reviewer": "/root/luna0_update_matched_review",
+  "matrix_rows": 192,
+  "independently_checked_update_records": 17760,
+  "primary_case_wins": 3,
+  "primary_improvement": false,
+  "result_sha256": "e50dd8c8d94750525b40984d576cd0d3450c86d2e7ff293c8105a6e9cfc0abb1",
+  "observed_combined_seconds": 3.100882399976251,
+  "new_training_runs": 0,
+  "new_arbiter_choices": 0
+}
