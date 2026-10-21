@@ -1,0 +1,81 @@
+{
+  "schema": "arbiter-isolated-study-v1",
+  "seed_set": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "draws_per_seed_per_case": 1024,
+  "cases": [
+    {
+      "id": "uniform2",
+      "weights": [
+        1,
+        1
+      ]
+    },
+    {
+      "id": "weighted31",
+      "weights": [
+        3,
+        1
+      ]
+    },
+    {
+      "id": "weighted91",
+      "weights": [
+        9,
+        1
+      ]
+    },
+    {
+      "id": "four_way",
+      "weights": [
+        1,
+        1,
+        2,
+        4
+      ]
+    },
+    {
+      "id": "zero_fallback",
+      "weights": [
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  ],
+  "frequency_check": "absolute binomial standardized count deviation <= 6, per seed and aggregate; descriptive sampler regression, not a learning claim",
+  "replay_case": "weighted31 exact winner stream, reversed inputs, same keys",
+  "finite_burst": {
+    "connections": 8,
+    "events_per_connection": 8
+  },
+  "priority_backlog": {
+    "high_priority_heads": 256,
+    "low_priority_heads": 1,
+    "timestamp": 1
+  },
+  "limits": {
+    "max_study_arbiter_calls": 100000,
+    "max_wall_seconds": 30,
+    "max_result_bytes": 262144,
+    "max_requests_per_call": 64
+  },
+  "policy": "source unchanged; no neural runtime, trained model, or qualification retry; record all fixed seeds"
+}

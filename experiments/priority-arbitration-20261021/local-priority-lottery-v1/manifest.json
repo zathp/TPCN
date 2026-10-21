@@ -1,0 +1,32 @@
+{
+    "schema":  "local-priority-lottery-artifacts-v1",
+    "status":  "isolated-reference-tested-not-integrated",
+    "files":  [
+                  {
+                      "path":  "arbiter.py",
+                      "bytes":  5413,
+                      "sha256":  "3e9d66a258da0d76f08fb73a966a9c6d7da3af5ab538ea562ac9e534cf161534"
+                  },
+                  {
+                      "path":  "example-weights.json",
+                      "bytes":  649,
+                      "sha256":  "90fce2982ca109f3c896815c5a6913d9544cd32b831f7fdf5af4d19c3144ac49"
+                  },
+                  {
+                      "path":  "README.md",
+                      "bytes":  7240,
+                      "sha256":  "0f505637475b7c80ca41ea05a1e3940e35880de8d38289452fd7892c86d64246"
+                  },
+                  {
+                      "path":  "test_arbiter.py",
+                      "bytes":  4944,
+                      "sha256":  "2540e7c66748ce7a90ce549497780e0aa5562dd713d664f3adb876fb6017f2f0"
+                  },
+                  {
+                      "path":  "test-result.json",
+                      "bytes":  2442,
+                      "sha256":  "476656204caedf1419eb57ee5bbf3a77fda66772805d45b9df14c6e22739084d"
+                  }
+              ],
+    "self_excluded":  true
+}

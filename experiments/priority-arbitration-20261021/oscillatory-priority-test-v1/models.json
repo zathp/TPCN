@@ -1,0 +1,4426 @@
+{
+  "schema": "synthetic-local-priority-models-v1",
+  "status": "experimental not deployed",
+  "training_plan_sha256": "9e68505a519f8640024fdd349b98ca784b2c7b58045508d125ccebc74c740bde",
+  "learner_sha256": "86b4f2a720640cc45f0edff529fc75f5efd93457334f6cdafea0a24d04f2f535",
+  "study_sha256": "1ec6186212ce28290f3f8455d58a0a2359c077c367413030ff5ebad648755ef8",
+  "results_sha256": "9c06213af7735e3842b04582b2bd6f9b167e9e6a8d387818be111e988eba4a55",
+  "models": [
+    {
+      "model_id": "osc-v1:fast:no_learning:seed0",
+      "trained": false,
+      "case": "fast",
+      "arm": "no_learning",
+      "seed": 0,
+      "locality": "L0",
+      "priority": 0,
+      "score": 0,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 500
+        },
+        {
+          "connection_id": "B",
+          "weight": 500
+        }
+      ],
+      "pending_feedback_at_freeze": 0,
+      "learning_updates": 0
+    },
+    {
+      "model_id": "osc-v1:fast:paired_perturbation:seed0",
+      "trained": true,
+      "case": "fast",
+      "arm": "paired_perturbation",
+      "seed": 0,
+      "locality": "L0",
+      "priority": 0,
+      "score": 1.4218334783188036,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 806
+        },
+        {
+          "connection_id": "B",
+          "weight": 194
+        }
+      ],
+      "pending_feedback_at_freeze": 0,
+      "learning_updates": 512
+    },
+    {
+      "model_id": "osc-v1:fast:fixed_oscillator:seed0",
+      "trained": true,
+      "case": "fast",
+      "arm": "fixed_oscillator",
+      "seed": 0,
+      "locality": "L0",
+      "priority": 0,
+      "score": 1.3435605151547878,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 793
+        },
+        {
+          "connection_id": "B",
+          "weight": 207
+        }
+      ],
+      "pending_feedback_at_freeze": 0,
+      "learning_updates": 64
+    },
+    {
+      "model_id": "osc-v1:fast:error_amplitude:seed0",
+      "trained": true,
+      "case": "fast",
+      "arm": "error_amplitude",
+      "seed": 0,
+      "locality": "L0",
+      "priority": 0,
+      "score": 1.3273511493858445,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 790
+        },
+        {
+          "connection_id": "B",
+          "weight": 210
+        }
+      ],
+      "pending_feedback_at_freeze": 0,
+      "learning_updates": 64
+    },
+    {
+      "model_id": "osc-v1:fast:time_scaled_frequency:seed0",
+      "trained": true,
+      "case": "fast",
+      "arm": "time_scaled_frequency",
+      "seed": 0,
+      "locality": "L0",
+      "priority": 0,
+      "score": 1.3435605151547878,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 793
+        },
+        {
+          "connection_id": "B",
+          "weight": 207
+        }
+      ],
+      "pending_feedback_at_freeze": 0,
+      "learning_updates": 64
+    },
+    {
+      "model_id": "osc-v1:fast:error_time_oscillator:seed0",
+      "trained": true,
+      "case": "fast",
+      "arm": "error_time_oscillator",
+      "seed": 0,
+      "locality": "L0",
+      "priority": 0,
+      "score": 1.3273511493858445,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 790
+        },
+        {
+          "connection_id": "B",
+          "weight": 210
+        }
+      ],
+      "pending_feedback_at_freeze": 0,
+      "learning_updates": 64
+    },
+    {
+      "model_id": "osc-v1:fast:no_learning:seed1",
+      "trained": false,
+      "case": "fast",
+      "arm": "no_learning",
+      "seed": 1,
+      "locality": "L0",
+      "priority": 0,
+      "score": 0,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 500
+        },
+        {
+          "connection_id": "B",
+          "weight": 500
+        }
+      ],
+      "pending_feedback_at_freeze": 0,
+      "learning_updates": 0
+    },
+    {
+      "model_id": "osc-v1:fast:paired_perturbation:seed1",
+      "trained": true,
+      "case": "fast",
+      "arm": "paired_perturbation",
+      "seed": 1,
+      "locality": "L0",
+      "priority": 0,
+      "score": 1.4474621598591986,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 810
+        },
+        {
+          "connection_id": "B",
+          "weight": 190
+        }
+      ],
+      "pending_feedback_at_freeze": 0,
+      "learning_updates": 512
+    },
+    {
+      "model_id": "osc-v1:fast:fixed_oscillator:seed1",
+      "trained": true,
+      "case": "fast",
+      "arm": "fixed_oscillator",
+      "seed": 1,
+      "locality": "L0",
+      "priority": 0,
+      "score": 1.3441842978212986,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 793
+        },
+        {
+          "connection_id": "B",
+          "weight": 207
+        }
+      ],
+      "pending_feedback_at_freeze": 0,
+      "learning_updates": 64
+    },
+    {
+      "model_id": "osc-v1:fast:error_amplitude:seed1",
+      "trained": true,
+      "case": "fast",
+      "arm": "error_amplitude",
+      "seed": 1,
+      "locality": "L0",
+      "priority": 0,
+      "score": 1.326599763013827,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 790
+        },
+        {
+          "connection_id": "B",
+          "weight": 210
+        }
+      ],
+      "pending_feedback_at_freeze": 0,
+      "learning_updates": 64
+    },
+    {
+      "model_id": "osc-v1:fast:time_scaled_frequency:seed1",
+      "trained": true,
+      "case": "fast",
+      "arm": "time_scaled_frequency",
+      "seed": 1,
+      "locality": "L0",
+      "priority": 0,
+      "score": 1.3441842978212986,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 793
+        },
+        {
+          "connection_id": "B",
+          "weight": 207
+        }
+      ],
+      "pending_feedback_at_freeze": 0,
+      "learning_updates": 64
+    },
+    {
+      "model_id": "osc-v1:fast:error_time_oscillator:seed1",
+      "trained": true,
+      "case": "fast",
+      "arm": "error_time_oscillator",
+      "seed": 1,
+      "locality": "L0",
+      "priority": 0,
+      "score": 1.326599763013827,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 790
+        },
+        {
+          "connection_id": "B",
+          "weight": 210
+        }
+      ],
+      "pending_feedback_at_freeze": 0,
+      "learning_updates": 64
+    },
+    {
+      "model_id": "osc-v1:fast:no_learning:seed2",
+      "trained": false,
+      "case": "fast",
+      "arm": "no_learning",
+      "seed": 2,
+      "locality": "L0",
+      "priority": 0,
+      "score": 0,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 500
+        },
+        {
+          "connection_id": "B",
+          "weight": 500
+        }
+      ],
+      "pending_feedback_at_freeze": 0,
+      "learning_updates": 0
+    },
+    {
+      "model_id": "osc-v1:fast:paired_perturbation:seed2",
+      "trained": true,
+      "case": "fast",
+      "arm": "paired_perturbation",
+      "seed": 2,
+      "locality": "L0",
+      "priority": 0,
+      "score": 1.4396738096986674,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 808
+        },
+        {
+          "connection_id": "B",
+          "weight": 192
+        }
+      ],
+      "pending_feedback_at_freeze": 0,
+      "learning_updates": 512
+    },
+    {
+      "model_id": "osc-v1:fast:fixed_oscillator:seed2",
+      "trained": true,
+      "case": "fast",
+      "arm": "fixed_oscillator",
+      "seed": 2,
+      "locality": "L0",
+      "priority": 0,
+      "score": 1.3394705403687677,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 792
+        },
+        {
+          "connection_id": "B",
+          "weight": 208
+        }
+      ],
+      "pending_feedback_at_freeze": 0,
+      "learning_updates": 64
+    },
+    {
+      "model_id": "osc-v1:fast:error_amplitude:seed2",
+      "trained": true,
+      "case": "fast",
+      "arm": "error_amplitude",
+      "seed": 2,
+      "locality": "L0",
+      "priority": 0,
+      "score": 1.3119654250039756,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 788
+        },
+        {
+          "connection_id": "B",
+          "weight": 212
+        }
+      ],
+      "pending_feedback_at_freeze": 0,
+      "learning_updates": 64
+    },
+    {
+      "model_id": "osc-v1:fast:time_scaled_frequency:seed2",
+      "trained": true,
+      "case": "fast",
+      "arm": "time_scaled_frequency",
+      "seed": 2,
+      "locality": "L0",
+      "priority": 0,
+      "score": 1.3394705403687677,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 792
+        },
+        {
+          "connection_id": "B",
+          "weight": 208
+        }
+      ],
+      "pending_feedback_at_freeze": 0,
+      "learning_updates": 64
+    },
+    {
+      "model_id": "osc-v1:fast:error_time_oscillator:seed2",
+      "trained": true,
+      "case": "fast",
+      "arm": "error_time_oscillator",
+      "seed": 2,
+      "locality": "L0",
+      "priority": 0,
+      "score": 1.3119654250039756,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 788
+        },
+        {
+          "connection_id": "B",
+          "weight": 212
+        }
+      ],
+      "pending_feedback_at_freeze": 0,
+      "learning_updates": 64
+    },
+    {
+      "model_id": "osc-v1:fast:no_learning:seed3",
+      "trained": false,
+      "case": "fast",
+      "arm": "no_learning",
+      "seed": 3,
+      "locality": "L0",
+      "priority": 0,
+      "score": 0,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 500
+        },
+        {
+          "connection_id": "B",
+          "weight": 500
+        }
+      ],
+      "pending_feedback_at_freeze": 0,
+      "learning_updates": 0
+    },
+    {
+      "model_id": "osc-v1:fast:paired_perturbation:seed3",
+      "trained": true,
+      "case": "fast",
+      "arm": "paired_perturbation",
+      "seed": 3,
+      "locality": "L0",
+      "priority": 0,
+      "score": 1.431852230043811,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 807
+        },
+        {
+          "connection_id": "B",
+          "weight": 193
+        }
+      ],
+      "pending_feedback_at_freeze": 0,
+      "learning_updates": 512
+    },
+    {
+      "model_id": "osc-v1:fast:fixed_oscillator:seed3",
+      "trained": true,
+      "case": "fast",
+      "arm": "fixed_oscillator",
+      "seed": 3,
+      "locality": "L0",
+      "priority": 0,
+      "score": 1.3417353466915278,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 793
+        },
+        {
+          "connection_id": "B",
+          "weight": 207
+        }
+      ],
+      "pending_feedback_at_freeze": 0,
+      "learning_updates": 64
+    },
+    {
+      "model_id": "osc-v1:fast:error_amplitude:seed3",
+      "trained": true,
+      "case": "fast",
+      "arm": "error_amplitude",
+      "seed": 3,
+      "locality": "L0",
+      "priority": 0,
+      "score": 1.315708513071728,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 788
+        },
+        {
+          "connection_id": "B",
+          "weight": 212
+        }
+      ],
+      "pending_feedback_at_freeze": 0,
+      "learning_updates": 64
+    },
+    {
+      "model_id": "osc-v1:fast:time_scaled_frequency:seed3",
+      "trained": true,
+      "case": "fast",
+      "arm": "time_scaled_frequency",
+      "seed": 3,
+      "locality": "L0",
+      "priority": 0,
+      "score": 1.3417353466915278,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 793
+        },
+        {
+          "connection_id": "B",
+          "weight": 207
+        }
+      ],
+      "pending_feedback_at_freeze": 0,
+      "learning_updates": 64
+    },
+    {
+      "model_id": "osc-v1:fast:error_time_oscillator:seed3",
+      "trained": true,
+      "case": "fast",
+      "arm": "error_time_oscillator",
+      "seed": 3,
+      "locality": "L0",
+      "priority": 0,
+      "score": 1.315708513071728,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 788
+        },
+        {
+          "connection_id": "B",
+          "weight": 212
+        }
+      ],
+      "pending_feedback_at_freeze": 0,
+      "learning_updates": 64
+    },
+    {
+      "model_id": "osc-v1:fast:no_learning:seed4",
+      "trained": false,
+      "case": "fast",
+      "arm": "no_learning",
+      "seed": 4,
+      "locality": "L0",
+      "priority": 0,
+      "score": 0,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 500
+        },
+        {
+          "connection_id": "B",
+          "weight": 500
+        }
+      ],
+      "pending_feedback_at_freeze": 0,
+      "learning_updates": 0
+    },
+    {
+      "model_id": "osc-v1:fast:paired_perturbation:seed4",
+      "trained": true,
+      "case": "fast",
+      "arm": "paired_perturbation",
+      "seed": 4,
+      "locality": "L0",
+      "priority": 0,
+      "score": 1.429269432449612,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 807
+        },
+        {
+          "connection_id": "B",
+          "weight": 193
+        }
+      ],
+      "pending_feedback_at_freeze": 0,
+      "learning_updates": 512
+    },
+    {
+      "model_id": "osc-v1:fast:fixed_oscillator:seed4",
+      "trained": true,
+      "case": "fast",
+      "arm": "fixed_oscillator",
+      "seed": 4,
+      "locality": "L0",
+      "priority": 0,
+      "score": 1.3454249664353277,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 793
+        },
+        {
+          "connection_id": "B",
+          "weight": 207
+        }
+      ],
+      "pending_feedback_at_freeze": 0,
+      "learning_updates": 64
+    },
+    {
+      "model_id": "osc-v1:fast:error_amplitude:seed4",
+      "trained": true,
+      "case": "fast",
+      "arm": "error_amplitude",
+      "seed": 4,
+      "locality": "L0",
+      "priority": 0,
+      "score": 1.3329186384485812,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 791
+        },
+        {
+          "connection_id": "B",
+          "weight": 209
+        }
+      ],
+      "pending_feedback_at_freeze": 0,
+      "learning_updates": 64
+    },
+    {
+      "model_id": "osc-v1:fast:time_scaled_frequency:seed4",
+      "trained": true,
+      "case": "fast",
+      "arm": "time_scaled_frequency",
+      "seed": 4,
+      "locality": "L0",
+      "priority": 0,
+      "score": 1.3454249664353277,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 793
+        },
+        {
+          "connection_id": "B",
+          "weight": 207
+        }
+      ],
+      "pending_feedback_at_freeze": 0,
+      "learning_updates": 64
+    },
+    {
+      "model_id": "osc-v1:fast:error_time_oscillator:seed4",
+      "trained": true,
+      "case": "fast",
+      "arm": "error_time_oscillator",
+      "seed": 4,
+      "locality": "L0",
+      "priority": 0,
+      "score": 1.3329186384485812,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 791
+        },
+        {
+          "connection_id": "B",
+          "weight": 209
+        }
+      ],
+      "pending_feedback_at_freeze": 0,
+      "learning_updates": 64
+    },
+    {
+      "model_id": "osc-v1:fast:no_learning:seed5",
+      "trained": false,
+      "case": "fast",
+      "arm": "no_learning",
+      "seed": 5,
+      "locality": "L0",
+      "priority": 0,
+      "score": 0,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 500
+        },
+        {
+          "connection_id": "B",
+          "weight": 500
+        }
+      ],
+      "pending_feedback_at_freeze": 0,
+      "learning_updates": 0
+    },
+    {
+      "model_id": "osc-v1:fast:paired_perturbation:seed5",
+      "trained": true,
+      "case": "fast",
+      "arm": "paired_perturbation",
+      "seed": 5,
+      "locality": "L0",
+      "priority": 0,
+      "score": 1.4298278897784702,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 807
+        },
+        {
+          "connection_id": "B",
+          "weight": 193
+        }
+      ],
+      "pending_feedback_at_freeze": 0,
+      "learning_updates": 512
+    },
+    {
+      "model_id": "osc-v1:fast:fixed_oscillator:seed5",
+      "trained": true,
+      "case": "fast",
+      "arm": "fixed_oscillator",
+      "seed": 5,
+      "locality": "L0",
+      "priority": 0,
+      "score": 1.3417626917631331,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 793
+        },
+        {
+          "connection_id": "B",
+          "weight": 207
+        }
+      ],
+      "pending_feedback_at_freeze": 0,
+      "learning_updates": 64
+    },
+    {
+      "model_id": "osc-v1:fast:error_amplitude:seed5",
+      "trained": true,
+      "case": "fast",
+      "arm": "error_amplitude",
+      "seed": 5,
+      "locality": "L0",
+      "priority": 0,
+      "score": 1.3183508901043401,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 789
+        },
+        {
+          "connection_id": "B",
+          "weight": 211
+        }
+      ],
+      "pending_feedback_at_freeze": 0,
+      "learning_updates": 64
+    },
+    {
+      "model_id": "osc-v1:fast:time_scaled_frequency:seed5",
+      "trained": true,
+      "case": "fast",
+      "arm": "time_scaled_frequency",
+      "seed": 5,
+      "locality": "L0",
+      "priority": 0,
+      "score": 1.3417626917631331,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 793
+        },
+        {
+          "connection_id": "B",
+          "weight": 207
+        }
+      ],
+      "pending_feedback_at_freeze": 0,
+      "learning_updates": 64
+    },
+    {
+      "model_id": "osc-v1:fast:error_time_oscillator:seed5",
+      "trained": true,
+      "case": "fast",
+      "arm": "error_time_oscillator",
+      "seed": 5,
+      "locality": "L0",
+      "priority": 0,
+      "score": 1.3183508901043401,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 789
+        },
+        {
+          "connection_id": "B",
+          "weight": 211
+        }
+      ],
+      "pending_feedback_at_freeze": 0,
+      "learning_updates": 64
+    },
+    {
+      "model_id": "osc-v1:fast:no_learning:seed6",
+      "trained": false,
+      "case": "fast",
+      "arm": "no_learning",
+      "seed": 6,
+      "locality": "L0",
+      "priority": 0,
+      "score": 0,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 500
+        },
+        {
+          "connection_id": "B",
+          "weight": 500
+        }
+      ],
+      "pending_feedback_at_freeze": 0,
+      "learning_updates": 0
+    },
+    {
+      "model_id": "osc-v1:fast:paired_perturbation:seed6",
+      "trained": true,
+      "case": "fast",
+      "arm": "paired_perturbation",
+      "seed": 6,
+      "locality": "L0",
+      "priority": 0,
+      "score": 1.4249786230353976,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 806
+        },
+        {
+          "connection_id": "B",
+          "weight": 194
+        }
+      ],
+      "pending_feedback_at_freeze": 0,
+      "learning_updates": 512
+    },
+    {
+      "model_id": "osc-v1:fast:fixed_oscillator:seed6",
+      "trained": true,
+      "case": "fast",
+      "arm": "fixed_oscillator",
+      "seed": 6,
+      "locality": "L0",
+      "priority": 0,
+      "score": 1.3416066271627103,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 793
+        },
+        {
+          "connection_id": "B",
+          "weight": 207
+        }
+      ],
+      "pending_feedback_at_freeze": 0,
+      "learning_updates": 64
+    },
+    {
+      "model_id": "osc-v1:fast:error_amplitude:seed6",
+      "trained": true,
+      "case": "fast",
+      "arm": "error_amplitude",
+      "seed": 6,
+      "locality": "L0",
+      "priority": 0,
+      "score": 1.322127652623803,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 790
+        },
+        {
+          "connection_id": "B",
+          "weight": 210
+        }
+      ],
+      "pending_feedback_at_freeze": 0,
+      "learning_updates": 64
+    },
+    {
+      "model_id": "osc-v1:fast:time_scaled_frequency:seed6",
+      "trained": true,
+      "case": "fast",
+      "arm": "time_scaled_frequency",
+      "seed": 6,
+      "locality": "L0",
+      "priority": 0,
+      "score": 1.3416066271627103,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 793
+        },
+        {
+          "connection_id": "B",
+          "weight": 207
+        }
+      ],
+      "pending_feedback_at_freeze": 0,
+      "learning_updates": 64
+    },
+    {
+      "model_id": "osc-v1:fast:error_time_oscillator:seed6",
+      "trained": true,
+      "case": "fast",
+      "arm": "error_time_oscillator",
+      "seed": 6,
+      "locality": "L0",
+      "priority": 0,
+      "score": 1.322127652623803,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 790
+        },
+        {
+          "connection_id": "B",
+          "weight": 210
+        }
+      ],
+      "pending_feedback_at_freeze": 0,
+      "learning_updates": 64
+    },
+    {
+      "model_id": "osc-v1:fast:no_learning:seed7",
+      "trained": false,
+      "case": "fast",
+      "arm": "no_learning",
+      "seed": 7,
+      "locality": "L0",
+      "priority": 0,
+      "score": 0,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 500
+        },
+        {
+          "connection_id": "B",
+          "weight": 500
+        }
+      ],
+      "pending_feedback_at_freeze": 0,
+      "learning_updates": 0
+    },
+    {
+      "model_id": "osc-v1:fast:paired_perturbation:seed7",
+      "trained": true,
+      "case": "fast",
+      "arm": "paired_perturbation",
+      "seed": 7,
+      "locality": "L0",
+      "priority": 0,
+      "score": 1.4308672698541138,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 807
+        },
+        {
+          "connection_id": "B",
+          "weight": 193
+        }
+      ],
+      "pending_feedback_at_freeze": 0,
+      "learning_updates": 512
+    },
+    {
+      "model_id": "osc-v1:fast:fixed_oscillator:seed7",
+      "trained": true,
+      "case": "fast",
+      "arm": "fixed_oscillator",
+      "seed": 7,
+      "locality": "L0",
+      "priority": 0,
+      "score": 1.349835262911326,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 794
+        },
+        {
+          "connection_id": "B",
+          "weight": 206
+        }
+      ],
+      "pending_feedback_at_freeze": 0,
+      "learning_updates": 64
+    },
+    {
+      "model_id": "osc-v1:fast:error_amplitude:seed7",
+      "trained": true,
+      "case": "fast",
+      "arm": "error_amplitude",
+      "seed": 7,
+      "locality": "L0",
+      "priority": 0,
+      "score": 1.3437859893736075,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 793
+        },
+        {
+          "connection_id": "B",
+          "weight": 207
+        }
+      ],
+      "pending_feedback_at_freeze": 0,
+      "learning_updates": 64
+    },
+    {
+      "model_id": "osc-v1:fast:time_scaled_frequency:seed7",
+      "trained": true,
+      "case": "fast",
+      "arm": "time_scaled_frequency",
+      "seed": 7,
+      "locality": "L0",
+      "priority": 0,
+      "score": 1.349835262911326,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 794
+        },
+        {
+          "connection_id": "B",
+          "weight": 206
+        }
+      ],
+      "pending_feedback_at_freeze": 0,
+      "learning_updates": 64
+    },
+    {
+      "model_id": "osc-v1:fast:error_time_oscillator:seed7",
+      "trained": true,
+      "case": "fast",
+      "arm": "error_time_oscillator",
+      "seed": 7,
+      "locality": "L0",
+      "priority": 0,
+      "score": 1.3437859893736075,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 793
+        },
+        {
+          "connection_id": "B",
+          "weight": 207
+        }
+      ],
+      "pending_feedback_at_freeze": 0,
+      "learning_updates": 64
+    },
+    {
+      "model_id": "osc-v1:slow:no_learning:seed0",
+      "trained": false,
+      "case": "slow",
+      "arm": "no_learning",
+      "seed": 0,
+      "locality": "L0",
+      "priority": 0,
+      "score": 0,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 500
+        },
+        {
+          "connection_id": "B",
+          "weight": 500
+        }
+      ],
+      "pending_feedback_at_freeze": 0,
+      "learning_updates": 0
+    },
+    {
+      "model_id": "osc-v1:slow:paired_perturbation:seed0",
+      "trained": true,
+      "case": "slow",
+      "arm": "paired_perturbation",
+      "seed": 0,
+      "locality": "L0",
+      "priority": 0,
+      "score": 1.1570786264045871,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 761
+        },
+        {
+          "connection_id": "B",
+          "weight": 239
+        }
+      ],
+      "pending_feedback_at_freeze": 0,
+      "learning_updates": 512
+    },
+    {
+      "model_id": "osc-v1:slow:fixed_oscillator:seed0",
+      "trained": true,
+      "case": "slow",
+      "arm": "fixed_oscillator",
+      "seed": 0,
+      "locality": "L0",
+      "priority": 0,
+      "score": 1.013161079183095,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 734
+        },
+        {
+          "connection_id": "B",
+          "weight": 266
+        }
+      ],
+      "pending_feedback_at_freeze": 0,
+      "learning_updates": 64
+    },
+    {
+      "model_id": "osc-v1:slow:error_amplitude:seed0",
+      "trained": true,
+      "case": "slow",
+      "arm": "error_amplitude",
+      "seed": 0,
+      "locality": "L0",
+      "priority": 0,
+      "score": 1.0093839615994842,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 733
+        },
+        {
+          "connection_id": "B",
+          "weight": 267
+        }
+      ],
+      "pending_feedback_at_freeze": 0,
+      "learning_updates": 64
+    },
+    {
+      "model_id": "osc-v1:slow:time_scaled_frequency:seed0",
+      "trained": true,
+      "case": "slow",
+      "arm": "time_scaled_frequency",
+      "seed": 0,
+      "locality": "L0",
+      "priority": 0,
+      "score": 1.0117492197699376,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 733
+        },
+        {
+          "connection_id": "B",
+          "weight": 267
+        }
+      ],
+      "pending_feedback_at_freeze": 0,
+      "learning_updates": 32
+    },
+    {
+      "model_id": "osc-v1:slow:error_time_oscillator:seed0",
+      "trained": true,
+      "case": "slow",
+      "arm": "error_time_oscillator",
+      "seed": 0,
+      "locality": "L0",
+      "priority": 0,
+      "score": 1.0102857287825382,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 733
+        },
+        {
+          "connection_id": "B",
+          "weight": 267
+        }
+      ],
+      "pending_feedback_at_freeze": 0,
+      "learning_updates": 32
+    },
+    {
+      "model_id": "osc-v1:slow:no_learning:seed1",
+      "trained": false,
+      "case": "slow",
+      "arm": "no_learning",
+      "seed": 1,
+      "locality": "L0",
+      "priority": 0,
+      "score": 0,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 500
+        },
+        {
+          "connection_id": "B",
+          "weight": 500
+        }
+      ],
+      "pending_feedback_at_freeze": 0,
+      "learning_updates": 0
+    },
+    {
+      "model_id": "osc-v1:slow:paired_perturbation:seed1",
+      "trained": true,
+      "case": "slow",
+      "arm": "paired_perturbation",
+      "seed": 1,
+      "locality": "L0",
+      "priority": 0,
+      "score": 1.1989524325837624,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 768
+        },
+        {
+          "connection_id": "B",
+          "weight": 232
+        }
+      ],
+      "pending_feedback_at_freeze": 0,
+      "learning_updates": 512
+    },
+    {
+      "model_id": "osc-v1:slow:fixed_oscillator:seed1",
+      "trained": true,
+      "case": "slow",
+      "arm": "fixed_oscillator",
+      "seed": 1,
+      "locality": "L0",
+      "priority": 0,
+      "score": 0.9912004614095135,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 729
+        },
+        {
+          "connection_id": "B",
+          "weight": 271
+        }
+      ],
+      "pending_feedback_at_freeze": 0,
+      "learning_updates": 64
+    },
+    {
+      "model_id": "osc-v1:slow:error_amplitude:seed1",
+      "trained": true,
+      "case": "slow",
+      "arm": "error_amplitude",
+      "seed": 1,
+      "locality": "L0",
+      "priority": 0,
+      "score": 0.9839414558510395,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 728
+        },
+        {
+          "connection_id": "B",
+          "weight": 272
+        }
+      ],
+      "pending_feedback_at_freeze": 0,
+      "learning_updates": 64
+    },
+    {
+      "model_id": "osc-v1:slow:time_scaled_frequency:seed1",
+      "trained": true,
+      "case": "slow",
+      "arm": "time_scaled_frequency",
+      "seed": 1,
+      "locality": "L0",
+      "priority": 0,
+      "score": 0.9949168887218889,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 730
+        },
+        {
+          "connection_id": "B",
+          "weight": 270
+        }
+      ],
+      "pending_feedback_at_freeze": 0,
+      "learning_updates": 32
+    },
+    {
+      "model_id": "osc-v1:slow:error_time_oscillator:seed1",
+      "trained": true,
+      "case": "slow",
+      "arm": "error_time_oscillator",
+      "seed": 1,
+      "locality": "L0",
+      "priority": 0,
+      "score": 0.9900372580839772,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 729
+        },
+        {
+          "connection_id": "B",
+          "weight": 271
+        }
+      ],
+      "pending_feedback_at_freeze": 0,
+      "learning_updates": 32
+    },
+    {
+      "model_id": "osc-v1:slow:no_learning:seed2",
+      "trained": false,
+      "case": "slow",
+      "arm": "no_learning",
+      "seed": 2,
+      "locality": "L0",
+      "priority": 0,
+      "score": 0,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 500
+        },
+        {
+          "connection_id": "B",
+          "weight": 500
+        }
+      ],
+      "pending_feedback_at_freeze": 0,
+      "learning_updates": 0
+    },
+    {
+      "model_id": "osc-v1:slow:paired_perturbation:seed2",
+      "trained": true,
+      "case": "slow",
+      "arm": "paired_perturbation",
+      "seed": 2,
+      "locality": "L0",
+      "priority": 0,
+      "score": 1.2105674988226693,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 770
+        },
+        {
+          "connection_id": "B",
+          "weight": 230
+        }
+      ],
+      "pending_feedback_at_freeze": 0,
+      "learning_updates": 512
+    },
+    {
+      "model_id": "osc-v1:slow:fixed_oscillator:seed2",
+      "trained": true,
+      "case": "slow",
+      "arm": "fixed_oscillator",
+      "seed": 2,
+      "locality": "L0",
+      "priority": 0,
+      "score": 1.021772270302457,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 735
+        },
+        {
+          "connection_id": "B",
+          "weight": 265
+        }
+      ],
+      "pending_feedback_at_freeze": 0,
+      "learning_updates": 64
+    },
+    {
+      "model_id": "osc-v1:slow:error_amplitude:seed2",
+      "trained": true,
+      "case": "slow",
+      "arm": "error_amplitude",
+      "seed": 2,
+      "locality": "L0",
+      "priority": 0,
+      "score": 1.0307253209597216,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 737
+        },
+        {
+          "connection_id": "B",
+          "weight": 263
+        }
+      ],
+      "pending_feedback_at_freeze": 0,
+      "learning_updates": 64
+    },
+    {
+      "model_id": "osc-v1:slow:time_scaled_frequency:seed2",
+      "trained": true,
+      "case": "slow",
+      "arm": "time_scaled_frequency",
+      "seed": 2,
+      "locality": "L0",
+      "priority": 0,
+      "score": 1.0134431567653337,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 734
+        },
+        {
+          "connection_id": "B",
+          "weight": 266
+        }
+      ],
+      "pending_feedback_at_freeze": 0,
+      "learning_updates": 32
+    },
+    {
+      "model_id": "osc-v1:slow:error_time_oscillator:seed2",
+      "trained": true,
+      "case": "slow",
+      "arm": "error_time_oscillator",
+      "seed": 2,
+      "locality": "L0",
+      "priority": 0,
+      "score": 1.015299493583391,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 734
+        },
+        {
+          "connection_id": "B",
+          "weight": 266
+        }
+      ],
+      "pending_feedback_at_freeze": 0,
+      "learning_updates": 32
+    },
+    {
+      "model_id": "osc-v1:slow:no_learning:seed3",
+      "trained": false,
+      "case": "slow",
+      "arm": "no_learning",
+      "seed": 3,
+      "locality": "L0",
+      "priority": 0,
+      "score": 0,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 500
+        },
+        {
+          "connection_id": "B",
+          "weight": 500
+        }
+      ],
+      "pending_feedback_at_freeze": 0,
+      "learning_updates": 0
+    },
+    {
+      "model_id": "osc-v1:slow:paired_perturbation:seed3",
+      "trained": true,
+      "case": "slow",
+      "arm": "paired_perturbation",
+      "seed": 3,
+      "locality": "L0",
+      "priority": 0,
+      "score": 1.2340297502962436,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 775
+        },
+        {
+          "connection_id": "B",
+          "weight": 225
+        }
+      ],
+      "pending_feedback_at_freeze": 0,
+      "learning_updates": 512
+    },
+    {
+      "model_id": "osc-v1:slow:fixed_oscillator:seed3",
+      "trained": true,
+      "case": "slow",
+      "arm": "fixed_oscillator",
+      "seed": 3,
+      "locality": "L0",
+      "priority": 0,
+      "score": 0.9971177749173716,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 730
+        },
+        {
+          "connection_id": "B",
+          "weight": 270
+        }
+      ],
+      "pending_feedback_at_freeze": 0,
+      "learning_updates": 64
+    },
+    {
+      "model_id": "osc-v1:slow:error_amplitude:seed3",
+      "trained": true,
+      "case": "slow",
+      "arm": "error_amplitude",
+      "seed": 3,
+      "locality": "L0",
+      "priority": 0,
+      "score": 0.9932211312153839,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 730
+        },
+        {
+          "connection_id": "B",
+          "weight": 270
+        }
+      ],
+      "pending_feedback_at_freeze": 0,
+      "learning_updates": 64
+    },
+    {
+      "model_id": "osc-v1:slow:time_scaled_frequency:seed3",
+      "trained": true,
+      "case": "slow",
+      "arm": "time_scaled_frequency",
+      "seed": 3,
+      "locality": "L0",
+      "priority": 0,
+      "score": 0.9930213060647618,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 730
+        },
+        {
+          "connection_id": "B",
+          "weight": 270
+        }
+      ],
+      "pending_feedback_at_freeze": 0,
+      "learning_updates": 32
+    },
+    {
+      "model_id": "osc-v1:slow:error_time_oscillator:seed3",
+      "trained": true,
+      "case": "slow",
+      "arm": "error_time_oscillator",
+      "seed": 3,
+      "locality": "L0",
+      "priority": 0,
+      "score": 0.9862507840771929,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 728
+        },
+        {
+          "connection_id": "B",
+          "weight": 272
+        }
+      ],
+      "pending_feedback_at_freeze": 0,
+      "learning_updates": 32
+    },
+    {
+      "model_id": "osc-v1:slow:no_learning:seed4",
+      "trained": false,
+      "case": "slow",
+      "arm": "no_learning",
+      "seed": 4,
+      "locality": "L0",
+      "priority": 0,
+      "score": 0,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 500
+        },
+        {
+          "connection_id": "B",
+          "weight": 500
+        }
+      ],
+      "pending_feedback_at_freeze": 0,
+      "learning_updates": 0
+    },
+    {
+      "model_id": "osc-v1:slow:paired_perturbation:seed4",
+      "trained": true,
+      "case": "slow",
+      "arm": "paired_perturbation",
+      "seed": 4,
+      "locality": "L0",
+      "priority": 0,
+      "score": 1.1669001573849767,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 763
+        },
+        {
+          "connection_id": "B",
+          "weight": 237
+        }
+      ],
+      "pending_feedback_at_freeze": 0,
+      "learning_updates": 512
+    },
+    {
+      "model_id": "osc-v1:slow:fixed_oscillator:seed4",
+      "trained": true,
+      "case": "slow",
+      "arm": "fixed_oscillator",
+      "seed": 4,
+      "locality": "L0",
+      "priority": 0,
+      "score": 1.0077451711028618,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 733
+        },
+        {
+          "connection_id": "B",
+          "weight": 267
+        }
+      ],
+      "pending_feedback_at_freeze": 0,
+      "learning_updates": 64
+    },
+    {
+      "model_id": "osc-v1:slow:error_amplitude:seed4",
+      "trained": true,
+      "case": "slow",
+      "arm": "error_amplitude",
+      "seed": 4,
+      "locality": "L0",
+      "priority": 0,
+      "score": 0.9993579543544038,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 731
+        },
+        {
+          "connection_id": "B",
+          "weight": 269
+        }
+      ],
+      "pending_feedback_at_freeze": 0,
+      "learning_updates": 64
+    },
+    {
+      "model_id": "osc-v1:slow:time_scaled_frequency:seed4",
+      "trained": true,
+      "case": "slow",
+      "arm": "time_scaled_frequency",
+      "seed": 4,
+      "locality": "L0",
+      "priority": 0,
+      "score": 1.0147307682054105,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 734
+        },
+        {
+          "connection_id": "B",
+          "weight": 266
+        }
+      ],
+      "pending_feedback_at_freeze": 0,
+      "learning_updates": 32
+    },
+    {
+      "model_id": "osc-v1:slow:error_time_oscillator:seed4",
+      "trained": true,
+      "case": "slow",
+      "arm": "error_time_oscillator",
+      "seed": 4,
+      "locality": "L0",
+      "priority": 0,
+      "score": 1.0157185007991896,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 734
+        },
+        {
+          "connection_id": "B",
+          "weight": 266
+        }
+      ],
+      "pending_feedback_at_freeze": 0,
+      "learning_updates": 32
+    },
+    {
+      "model_id": "osc-v1:slow:no_learning:seed5",
+      "trained": false,
+      "case": "slow",
+      "arm": "no_learning",
+      "seed": 5,
+      "locality": "L0",
+      "priority": 0,
+      "score": 0,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 500
+        },
+        {
+          "connection_id": "B",
+          "weight": 500
+        }
+      ],
+      "pending_feedback_at_freeze": 0,
+      "learning_updates": 0
+    },
+    {
+      "model_id": "osc-v1:slow:paired_perturbation:seed5",
+      "trained": true,
+      "case": "slow",
+      "arm": "paired_perturbation",
+      "seed": 5,
+      "locality": "L0",
+      "priority": 0,
+      "score": 1.1555935323700282,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 761
+        },
+        {
+          "connection_id": "B",
+          "weight": 239
+        }
+      ],
+      "pending_feedback_at_freeze": 0,
+      "learning_updates": 512
+    },
+    {
+      "model_id": "osc-v1:slow:fixed_oscillator:seed5",
+      "trained": true,
+      "case": "slow",
+      "arm": "fixed_oscillator",
+      "seed": 5,
+      "locality": "L0",
+      "priority": 0,
+      "score": 1.003913638252225,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 732
+        },
+        {
+          "connection_id": "B",
+          "weight": 268
+        }
+      ],
+      "pending_feedback_at_freeze": 0,
+      "learning_updates": 64
+    },
+    {
+      "model_id": "osc-v1:slow:error_amplitude:seed5",
+      "trained": true,
+      "case": "slow",
+      "arm": "error_amplitude",
+      "seed": 5,
+      "locality": "L0",
+      "priority": 0,
+      "score": 1.0075639958433575,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 733
+        },
+        {
+          "connection_id": "B",
+          "weight": 267
+        }
+      ],
+      "pending_feedback_at_freeze": 0,
+      "learning_updates": 64
+    },
+    {
+      "model_id": "osc-v1:slow:time_scaled_frequency:seed5",
+      "trained": true,
+      "case": "slow",
+      "arm": "time_scaled_frequency",
+      "seed": 5,
+      "locality": "L0",
+      "priority": 0,
+      "score": 0.995330974526655,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 730
+        },
+        {
+          "connection_id": "B",
+          "weight": 270
+        }
+      ],
+      "pending_feedback_at_freeze": 0,
+      "learning_updates": 32
+    },
+    {
+      "model_id": "osc-v1:slow:error_time_oscillator:seed5",
+      "trained": true,
+      "case": "slow",
+      "arm": "error_time_oscillator",
+      "seed": 5,
+      "locality": "L0",
+      "priority": 0,
+      "score": 0.992115124843461,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 730
+        },
+        {
+          "connection_id": "B",
+          "weight": 270
+        }
+      ],
+      "pending_feedback_at_freeze": 0,
+      "learning_updates": 32
+    },
+    {
+      "model_id": "osc-v1:slow:no_learning:seed6",
+      "trained": false,
+      "case": "slow",
+      "arm": "no_learning",
+      "seed": 6,
+      "locality": "L0",
+      "priority": 0,
+      "score": 0,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 500
+        },
+        {
+          "connection_id": "B",
+          "weight": 500
+        }
+      ],
+      "pending_feedback_at_freeze": 0,
+      "learning_updates": 0
+    },
+    {
+      "model_id": "osc-v1:slow:paired_perturbation:seed6",
+      "trained": true,
+      "case": "slow",
+      "arm": "paired_perturbation",
+      "seed": 6,
+      "locality": "L0",
+      "priority": 0,
+      "score": 1.2013232248336434,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 769
+        },
+        {
+          "connection_id": "B",
+          "weight": 231
+        }
+      ],
+      "pending_feedback_at_freeze": 0,
+      "learning_updates": 512
+    },
+    {
+      "model_id": "osc-v1:slow:fixed_oscillator:seed6",
+      "trained": true,
+      "case": "slow",
+      "arm": "fixed_oscillator",
+      "seed": 6,
+      "locality": "L0",
+      "priority": 0,
+      "score": 1.0238426734747337,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 736
+        },
+        {
+          "connection_id": "B",
+          "weight": 264
+        }
+      ],
+      "pending_feedback_at_freeze": 0,
+      "learning_updates": 64
+    },
+    {
+      "model_id": "osc-v1:slow:error_amplitude:seed6",
+      "trained": true,
+      "case": "slow",
+      "arm": "error_amplitude",
+      "seed": 6,
+      "locality": "L0",
+      "priority": 0,
+      "score": 1.0308945534227605,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 737
+        },
+        {
+          "connection_id": "B",
+          "weight": 263
+        }
+      ],
+      "pending_feedback_at_freeze": 0,
+      "learning_updates": 64
+    },
+    {
+      "model_id": "osc-v1:slow:time_scaled_frequency:seed6",
+      "trained": true,
+      "case": "slow",
+      "arm": "time_scaled_frequency",
+      "seed": 6,
+      "locality": "L0",
+      "priority": 0,
+      "score": 1.0099481349806263,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 733
+        },
+        {
+          "connection_id": "B",
+          "weight": 267
+        }
+      ],
+      "pending_feedback_at_freeze": 0,
+      "learning_updates": 32
+    },
+    {
+      "model_id": "osc-v1:slow:error_time_oscillator:seed6",
+      "trained": true,
+      "case": "slow",
+      "arm": "error_time_oscillator",
+      "seed": 6,
+      "locality": "L0",
+      "priority": 0,
+      "score": 1.0073557065628362,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 733
+        },
+        {
+          "connection_id": "B",
+          "weight": 267
+        }
+      ],
+      "pending_feedback_at_freeze": 0,
+      "learning_updates": 32
+    },
+    {
+      "model_id": "osc-v1:slow:no_learning:seed7",
+      "trained": false,
+      "case": "slow",
+      "arm": "no_learning",
+      "seed": 7,
+      "locality": "L0",
+      "priority": 0,
+      "score": 0,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 500
+        },
+        {
+          "connection_id": "B",
+          "weight": 500
+        }
+      ],
+      "pending_feedback_at_freeze": 0,
+      "learning_updates": 0
+    },
+    {
+      "model_id": "osc-v1:slow:paired_perturbation:seed7",
+      "trained": true,
+      "case": "slow",
+      "arm": "paired_perturbation",
+      "seed": 7,
+      "locality": "L0",
+      "priority": 0,
+      "score": 1.1723184057994072,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 764
+        },
+        {
+          "connection_id": "B",
+          "weight": 236
+        }
+      ],
+      "pending_feedback_at_freeze": 0,
+      "learning_updates": 512
+    },
+    {
+      "model_id": "osc-v1:slow:fixed_oscillator:seed7",
+      "trained": true,
+      "case": "slow",
+      "arm": "fixed_oscillator",
+      "seed": 7,
+      "locality": "L0",
+      "priority": 0,
+      "score": 0.991644810438264,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 729
+        },
+        {
+          "connection_id": "B",
+          "weight": 271
+        }
+      ],
+      "pending_feedback_at_freeze": 0,
+      "learning_updates": 64
+    },
+    {
+      "model_id": "osc-v1:slow:error_amplitude:seed7",
+      "trained": true,
+      "case": "slow",
+      "arm": "error_amplitude",
+      "seed": 7,
+      "locality": "L0",
+      "priority": 0,
+      "score": 0.9831282044983184,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 728
+        },
+        {
+          "connection_id": "B",
+          "weight": 272
+        }
+      ],
+      "pending_feedback_at_freeze": 0,
+      "learning_updates": 64
+    },
+    {
+      "model_id": "osc-v1:slow:time_scaled_frequency:seed7",
+      "trained": true,
+      "case": "slow",
+      "arm": "time_scaled_frequency",
+      "seed": 7,
+      "locality": "L0",
+      "priority": 0,
+      "score": 0.9924008936821348,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 730
+        },
+        {
+          "connection_id": "B",
+          "weight": 270
+        }
+      ],
+      "pending_feedback_at_freeze": 0,
+      "learning_updates": 32
+    },
+    {
+      "model_id": "osc-v1:slow:error_time_oscillator:seed7",
+      "trained": true,
+      "case": "slow",
+      "arm": "error_time_oscillator",
+      "seed": 7,
+      "locality": "L0",
+      "priority": 0,
+      "score": 0.9852889093990038,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 728
+        },
+        {
+          "connection_id": "B",
+          "weight": 272
+        }
+      ],
+      "pending_feedback_at_freeze": 0,
+      "learning_updates": 32
+    },
+    {
+      "model_id": "osc-v1:delayed:no_learning:seed0",
+      "trained": false,
+      "case": "delayed",
+      "arm": "no_learning",
+      "seed": 0,
+      "locality": "L0",
+      "priority": 0,
+      "score": 0,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 500
+        },
+        {
+          "connection_id": "B",
+          "weight": 500
+        }
+      ],
+      "pending_feedback_at_freeze": 17,
+      "learning_updates": 0
+    },
+    {
+      "model_id": "osc-v1:delayed:paired_perturbation:seed0",
+      "trained": true,
+      "case": "delayed",
+      "arm": "paired_perturbation",
+      "seed": 0,
+      "locality": "L0",
+      "priority": 0,
+      "score": 1.3920720427388795,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 801
+        },
+        {
+          "connection_id": "B",
+          "weight": 199
+        }
+      ],
+      "pending_feedback_at_freeze": 17,
+      "learning_updates": 507
+    },
+    {
+      "model_id": "osc-v1:delayed:fixed_oscillator:seed0",
+      "trained": true,
+      "case": "delayed",
+      "arm": "fixed_oscillator",
+      "seed": 0,
+      "locality": "L0",
+      "priority": 0,
+      "score": 1.2617280687093118,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 779
+        },
+        {
+          "connection_id": "B",
+          "weight": 221
+        }
+      ],
+      "pending_feedback_at_freeze": 17,
+      "learning_updates": 63
+    },
+    {
+      "model_id": "osc-v1:delayed:error_amplitude:seed0",
+      "trained": true,
+      "case": "delayed",
+      "arm": "error_amplitude",
+      "seed": 0,
+      "locality": "L0",
+      "priority": 0,
+      "score": 1.2516471880928588,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 778
+        },
+        {
+          "connection_id": "B",
+          "weight": 222
+        }
+      ],
+      "pending_feedback_at_freeze": 17,
+      "learning_updates": 63
+    },
+    {
+      "model_id": "osc-v1:delayed:time_scaled_frequency:seed0",
+      "trained": true,
+      "case": "delayed",
+      "arm": "time_scaled_frequency",
+      "seed": 0,
+      "locality": "L0",
+      "priority": 0,
+      "score": 0.911898217280199,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 713
+        },
+        {
+          "connection_id": "B",
+          "weight": 287
+        }
+      ],
+      "pending_feedback_at_freeze": 17,
+      "learning_updates": 15
+    },
+    {
+      "model_id": "osc-v1:delayed:error_time_oscillator:seed0",
+      "trained": true,
+      "case": "delayed",
+      "arm": "error_time_oscillator",
+      "seed": 0,
+      "locality": "L0",
+      "priority": 0,
+      "score": 0.9117592868558815,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 713
+        },
+        {
+          "connection_id": "B",
+          "weight": 287
+        }
+      ],
+      "pending_feedback_at_freeze": 17,
+      "learning_updates": 15
+    },
+    {
+      "model_id": "osc-v1:delayed:no_learning:seed1",
+      "trained": false,
+      "case": "delayed",
+      "arm": "no_learning",
+      "seed": 1,
+      "locality": "L0",
+      "priority": 0,
+      "score": 0,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 500
+        },
+        {
+          "connection_id": "B",
+          "weight": 500
+        }
+      ],
+      "pending_feedback_at_freeze": 17,
+      "learning_updates": 0
+    },
+    {
+      "model_id": "osc-v1:delayed:paired_perturbation:seed1",
+      "trained": true,
+      "case": "delayed",
+      "arm": "paired_perturbation",
+      "seed": 1,
+      "locality": "L0",
+      "priority": 0,
+      "score": 1.3695567119849066,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 797
+        },
+        {
+          "connection_id": "B",
+          "weight": 203
+        }
+      ],
+      "pending_feedback_at_freeze": 17,
+      "learning_updates": 507
+    },
+    {
+      "model_id": "osc-v1:delayed:fixed_oscillator:seed1",
+      "trained": true,
+      "case": "delayed",
+      "arm": "fixed_oscillator",
+      "seed": 1,
+      "locality": "L0",
+      "priority": 0,
+      "score": 1.2610636593639752,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 779
+        },
+        {
+          "connection_id": "B",
+          "weight": 221
+        }
+      ],
+      "pending_feedback_at_freeze": 17,
+      "learning_updates": 63
+    },
+    {
+      "model_id": "osc-v1:delayed:error_amplitude:seed1",
+      "trained": true,
+      "case": "delayed",
+      "arm": "error_amplitude",
+      "seed": 1,
+      "locality": "L0",
+      "priority": 0,
+      "score": 1.2575021064215364,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 779
+        },
+        {
+          "connection_id": "B",
+          "weight": 221
+        }
+      ],
+      "pending_feedback_at_freeze": 17,
+      "learning_updates": 63
+    },
+    {
+      "model_id": "osc-v1:delayed:time_scaled_frequency:seed1",
+      "trained": true,
+      "case": "delayed",
+      "arm": "time_scaled_frequency",
+      "seed": 1,
+      "locality": "L0",
+      "priority": 0,
+      "score": 0.9014484854728788,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 711
+        },
+        {
+          "connection_id": "B",
+          "weight": 289
+        }
+      ],
+      "pending_feedback_at_freeze": 17,
+      "learning_updates": 15
+    },
+    {
+      "model_id": "osc-v1:delayed:error_time_oscillator:seed1",
+      "trained": true,
+      "case": "delayed",
+      "arm": "error_time_oscillator",
+      "seed": 1,
+      "locality": "L0",
+      "priority": 0,
+      "score": 0.8994066574125322,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 711
+        },
+        {
+          "connection_id": "B",
+          "weight": 289
+        }
+      ],
+      "pending_feedback_at_freeze": 17,
+      "learning_updates": 15
+    },
+    {
+      "model_id": "osc-v1:delayed:no_learning:seed2",
+      "trained": false,
+      "case": "delayed",
+      "arm": "no_learning",
+      "seed": 2,
+      "locality": "L0",
+      "priority": 0,
+      "score": 0,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 500
+        },
+        {
+          "connection_id": "B",
+          "weight": 500
+        }
+      ],
+      "pending_feedback_at_freeze": 17,
+      "learning_updates": 0
+    },
+    {
+      "model_id": "osc-v1:delayed:paired_perturbation:seed2",
+      "trained": true,
+      "case": "delayed",
+      "arm": "paired_perturbation",
+      "seed": 2,
+      "locality": "L0",
+      "priority": 0,
+      "score": 1.3720937488077742,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 798
+        },
+        {
+          "connection_id": "B",
+          "weight": 202
+        }
+      ],
+      "pending_feedback_at_freeze": 17,
+      "learning_updates": 507
+    },
+    {
+      "model_id": "osc-v1:delayed:fixed_oscillator:seed2",
+      "trained": true,
+      "case": "delayed",
+      "arm": "fixed_oscillator",
+      "seed": 2,
+      "locality": "L0",
+      "priority": 0,
+      "score": 1.2607339003736913,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 779
+        },
+        {
+          "connection_id": "B",
+          "weight": 221
+        }
+      ],
+      "pending_feedback_at_freeze": 17,
+      "learning_updates": 63
+    },
+    {
+      "model_id": "osc-v1:delayed:error_amplitude:seed2",
+      "trained": true,
+      "case": "delayed",
+      "arm": "error_amplitude",
+      "seed": 2,
+      "locality": "L0",
+      "priority": 0,
+      "score": 1.247121048909898,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 777
+        },
+        {
+          "connection_id": "B",
+          "weight": 223
+        }
+      ],
+      "pending_feedback_at_freeze": 17,
+      "learning_updates": 63
+    },
+    {
+      "model_id": "osc-v1:delayed:time_scaled_frequency:seed2",
+      "trained": true,
+      "case": "delayed",
+      "arm": "time_scaled_frequency",
+      "seed": 2,
+      "locality": "L0",
+      "priority": 0,
+      "score": 0.9107888728780351,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 713
+        },
+        {
+          "connection_id": "B",
+          "weight": 287
+        }
+      ],
+      "pending_feedback_at_freeze": 17,
+      "learning_updates": 15
+    },
+    {
+      "model_id": "osc-v1:delayed:error_time_oscillator:seed2",
+      "trained": true,
+      "case": "delayed",
+      "arm": "error_time_oscillator",
+      "seed": 2,
+      "locality": "L0",
+      "priority": 0,
+      "score": 0.9109354690067689,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 713
+        },
+        {
+          "connection_id": "B",
+          "weight": 287
+        }
+      ],
+      "pending_feedback_at_freeze": 17,
+      "learning_updates": 15
+    },
+    {
+      "model_id": "osc-v1:delayed:no_learning:seed3",
+      "trained": false,
+      "case": "delayed",
+      "arm": "no_learning",
+      "seed": 3,
+      "locality": "L0",
+      "priority": 0,
+      "score": 0,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 500
+        },
+        {
+          "connection_id": "B",
+          "weight": 500
+        }
+      ],
+      "pending_feedback_at_freeze": 17,
+      "learning_updates": 0
+    },
+    {
+      "model_id": "osc-v1:delayed:paired_perturbation:seed3",
+      "trained": true,
+      "case": "delayed",
+      "arm": "paired_perturbation",
+      "seed": 3,
+      "locality": "L0",
+      "priority": 0,
+      "score": 1.397648473588183,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 802
+        },
+        {
+          "connection_id": "B",
+          "weight": 198
+        }
+      ],
+      "pending_feedback_at_freeze": 17,
+      "learning_updates": 507
+    },
+    {
+      "model_id": "osc-v1:delayed:fixed_oscillator:seed3",
+      "trained": true,
+      "case": "delayed",
+      "arm": "fixed_oscillator",
+      "seed": 3,
+      "locality": "L0",
+      "priority": 0,
+      "score": 1.249571275923653,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 777
+        },
+        {
+          "connection_id": "B",
+          "weight": 223
+        }
+      ],
+      "pending_feedback_at_freeze": 17,
+      "learning_updates": 63
+    },
+    {
+      "model_id": "osc-v1:delayed:error_amplitude:seed3",
+      "trained": true,
+      "case": "delayed",
+      "arm": "error_amplitude",
+      "seed": 3,
+      "locality": "L0",
+      "priority": 0,
+      "score": 1.220470582716907,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 772
+        },
+        {
+          "connection_id": "B",
+          "weight": 228
+        }
+      ],
+      "pending_feedback_at_freeze": 17,
+      "learning_updates": 63
+    },
+    {
+      "model_id": "osc-v1:delayed:time_scaled_frequency:seed3",
+      "trained": true,
+      "case": "delayed",
+      "arm": "time_scaled_frequency",
+      "seed": 3,
+      "locality": "L0",
+      "priority": 0,
+      "score": 0.8997341940206585,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 711
+        },
+        {
+          "connection_id": "B",
+          "weight": 289
+        }
+      ],
+      "pending_feedback_at_freeze": 17,
+      "learning_updates": 15
+    },
+    {
+      "model_id": "osc-v1:delayed:error_time_oscillator:seed3",
+      "trained": true,
+      "case": "delayed",
+      "arm": "error_time_oscillator",
+      "seed": 3,
+      "locality": "L0",
+      "priority": 0,
+      "score": 0.8959946745778019,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 710
+        },
+        {
+          "connection_id": "B",
+          "weight": 290
+        }
+      ],
+      "pending_feedback_at_freeze": 17,
+      "learning_updates": 15
+    },
+    {
+      "model_id": "osc-v1:delayed:no_learning:seed4",
+      "trained": false,
+      "case": "delayed",
+      "arm": "no_learning",
+      "seed": 4,
+      "locality": "L0",
+      "priority": 0,
+      "score": 0,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 500
+        },
+        {
+          "connection_id": "B",
+          "weight": 500
+        }
+      ],
+      "pending_feedback_at_freeze": 17,
+      "learning_updates": 0
+    },
+    {
+      "model_id": "osc-v1:delayed:paired_perturbation:seed4",
+      "trained": true,
+      "case": "delayed",
+      "arm": "paired_perturbation",
+      "seed": 4,
+      "locality": "L0",
+      "priority": 0,
+      "score": 1.390963582007219,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 801
+        },
+        {
+          "connection_id": "B",
+          "weight": 199
+        }
+      ],
+      "pending_feedback_at_freeze": 17,
+      "learning_updates": 507
+    },
+    {
+      "model_id": "osc-v1:delayed:fixed_oscillator:seed4",
+      "trained": true,
+      "case": "delayed",
+      "arm": "fixed_oscillator",
+      "seed": 4,
+      "locality": "L0",
+      "priority": 0,
+      "score": 1.26789331810334,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 780
+        },
+        {
+          "connection_id": "B",
+          "weight": 220
+        }
+      ],
+      "pending_feedback_at_freeze": 17,
+      "learning_updates": 63
+    },
+    {
+      "model_id": "osc-v1:delayed:error_amplitude:seed4",
+      "trained": true,
+      "case": "delayed",
+      "arm": "error_amplitude",
+      "seed": 4,
+      "locality": "L0",
+      "priority": 0,
+      "score": 1.265932121900882,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 780
+        },
+        {
+          "connection_id": "B",
+          "weight": 220
+        }
+      ],
+      "pending_feedback_at_freeze": 17,
+      "learning_updates": 63
+    },
+    {
+      "model_id": "osc-v1:delayed:time_scaled_frequency:seed4",
+      "trained": true,
+      "case": "delayed",
+      "arm": "time_scaled_frequency",
+      "seed": 4,
+      "locality": "L0",
+      "priority": 0,
+      "score": 0.9116630137598292,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 713
+        },
+        {
+          "connection_id": "B",
+          "weight": 287
+        }
+      ],
+      "pending_feedback_at_freeze": 17,
+      "learning_updates": 15
+    },
+    {
+      "model_id": "osc-v1:delayed:error_time_oscillator:seed4",
+      "trained": true,
+      "case": "delayed",
+      "arm": "error_time_oscillator",
+      "seed": 4,
+      "locality": "L0",
+      "priority": 0,
+      "score": 0.9109549116027753,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 713
+        },
+        {
+          "connection_id": "B",
+          "weight": 287
+        }
+      ],
+      "pending_feedback_at_freeze": 17,
+      "learning_updates": 15
+    },
+    {
+      "model_id": "osc-v1:delayed:no_learning:seed5",
+      "trained": false,
+      "case": "delayed",
+      "arm": "no_learning",
+      "seed": 5,
+      "locality": "L0",
+      "priority": 0,
+      "score": 0,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 500
+        },
+        {
+          "connection_id": "B",
+          "weight": 500
+        }
+      ],
+      "pending_feedback_at_freeze": 17,
+      "learning_updates": 0
+    },
+    {
+      "model_id": "osc-v1:delayed:paired_perturbation:seed5",
+      "trained": true,
+      "case": "delayed",
+      "arm": "paired_perturbation",
+      "seed": 5,
+      "locality": "L0",
+      "priority": 0,
+      "score": 1.3910503192670631,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 801
+        },
+        {
+          "connection_id": "B",
+          "weight": 199
+        }
+      ],
+      "pending_feedback_at_freeze": 17,
+      "learning_updates": 507
+    },
+    {
+      "model_id": "osc-v1:delayed:fixed_oscillator:seed5",
+      "trained": true,
+      "case": "delayed",
+      "arm": "fixed_oscillator",
+      "seed": 5,
+      "locality": "L0",
+      "priority": 0,
+      "score": 1.2607121418698897,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 779
+        },
+        {
+          "connection_id": "B",
+          "weight": 221
+        }
+      ],
+      "pending_feedback_at_freeze": 17,
+      "learning_updates": 63
+    },
+    {
+      "model_id": "osc-v1:delayed:error_amplitude:seed5",
+      "trained": true,
+      "case": "delayed",
+      "arm": "error_amplitude",
+      "seed": 5,
+      "locality": "L0",
+      "priority": 0,
+      "score": 1.2617551108695848,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 779
+        },
+        {
+          "connection_id": "B",
+          "weight": 221
+        }
+      ],
+      "pending_feedback_at_freeze": 17,
+      "learning_updates": 63
+    },
+    {
+      "model_id": "osc-v1:delayed:time_scaled_frequency:seed5",
+      "trained": true,
+      "case": "delayed",
+      "arm": "time_scaled_frequency",
+      "seed": 5,
+      "locality": "L0",
+      "priority": 0,
+      "score": 0.8995587109269544,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 711
+        },
+        {
+          "connection_id": "B",
+          "weight": 289
+        }
+      ],
+      "pending_feedback_at_freeze": 17,
+      "learning_updates": 15
+    },
+    {
+      "model_id": "osc-v1:delayed:error_time_oscillator:seed5",
+      "trained": true,
+      "case": "delayed",
+      "arm": "error_time_oscillator",
+      "seed": 5,
+      "locality": "L0",
+      "priority": 0,
+      "score": 0.8963274526390252,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 710
+        },
+        {
+          "connection_id": "B",
+          "weight": 290
+        }
+      ],
+      "pending_feedback_at_freeze": 17,
+      "learning_updates": 15
+    },
+    {
+      "model_id": "osc-v1:delayed:no_learning:seed6",
+      "trained": false,
+      "case": "delayed",
+      "arm": "no_learning",
+      "seed": 6,
+      "locality": "L0",
+      "priority": 0,
+      "score": 0,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 500
+        },
+        {
+          "connection_id": "B",
+          "weight": 500
+        }
+      ],
+      "pending_feedback_at_freeze": 17,
+      "learning_updates": 0
+    },
+    {
+      "model_id": "osc-v1:delayed:paired_perturbation:seed6",
+      "trained": true,
+      "case": "delayed",
+      "arm": "paired_perturbation",
+      "seed": 6,
+      "locality": "L0",
+      "priority": 0,
+      "score": 1.3999453606685424,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 802
+        },
+        {
+          "connection_id": "B",
+          "weight": 198
+        }
+      ],
+      "pending_feedback_at_freeze": 17,
+      "learning_updates": 507
+    },
+    {
+      "model_id": "osc-v1:delayed:fixed_oscillator:seed6",
+      "trained": true,
+      "case": "delayed",
+      "arm": "fixed_oscillator",
+      "seed": 6,
+      "locality": "L0",
+      "priority": 0,
+      "score": 1.2649544088616531,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 780
+        },
+        {
+          "connection_id": "B",
+          "weight": 220
+        }
+      ],
+      "pending_feedback_at_freeze": 17,
+      "learning_updates": 63
+    },
+    {
+      "model_id": "osc-v1:delayed:error_amplitude:seed6",
+      "trained": true,
+      "case": "delayed",
+      "arm": "error_amplitude",
+      "seed": 6,
+      "locality": "L0",
+      "priority": 0,
+      "score": 1.258956426287496,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 779
+        },
+        {
+          "connection_id": "B",
+          "weight": 221
+        }
+      ],
+      "pending_feedback_at_freeze": 17,
+      "learning_updates": 63
+    },
+    {
+      "model_id": "osc-v1:delayed:time_scaled_frequency:seed6",
+      "trained": true,
+      "case": "delayed",
+      "arm": "time_scaled_frequency",
+      "seed": 6,
+      "locality": "L0",
+      "priority": 0,
+      "score": 0.9102863903007212,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 713
+        },
+        {
+          "connection_id": "B",
+          "weight": 287
+        }
+      ],
+      "pending_feedback_at_freeze": 17,
+      "learning_updates": 15
+    },
+    {
+      "model_id": "osc-v1:delayed:error_time_oscillator:seed6",
+      "trained": true,
+      "case": "delayed",
+      "arm": "error_time_oscillator",
+      "seed": 6,
+      "locality": "L0",
+      "priority": 0,
+      "score": 0.9103372524173593,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 713
+        },
+        {
+          "connection_id": "B",
+          "weight": 287
+        }
+      ],
+      "pending_feedback_at_freeze": 17,
+      "learning_updates": 15
+    },
+    {
+      "model_id": "osc-v1:delayed:no_learning:seed7",
+      "trained": false,
+      "case": "delayed",
+      "arm": "no_learning",
+      "seed": 7,
+      "locality": "L0",
+      "priority": 0,
+      "score": 0,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 500
+        },
+        {
+          "connection_id": "B",
+          "weight": 500
+        }
+      ],
+      "pending_feedback_at_freeze": 17,
+      "learning_updates": 0
+    },
+    {
+      "model_id": "osc-v1:delayed:paired_perturbation:seed7",
+      "trained": true,
+      "case": "delayed",
+      "arm": "paired_perturbation",
+      "seed": 7,
+      "locality": "L0",
+      "priority": 0,
+      "score": 1.3829425825916908,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 799
+        },
+        {
+          "connection_id": "B",
+          "weight": 201
+        }
+      ],
+      "pending_feedback_at_freeze": 17,
+      "learning_updates": 507
+    },
+    {
+      "model_id": "osc-v1:delayed:fixed_oscillator:seed7",
+      "trained": true,
+      "case": "delayed",
+      "arm": "fixed_oscillator",
+      "seed": 7,
+      "locality": "L0",
+      "priority": 0,
+      "score": 1.2588678016211161,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 779
+        },
+        {
+          "connection_id": "B",
+          "weight": 221
+        }
+      ],
+      "pending_feedback_at_freeze": 17,
+      "learning_updates": 63
+    },
+    {
+      "model_id": "osc-v1:delayed:error_amplitude:seed7",
+      "trained": true,
+      "case": "delayed",
+      "arm": "error_amplitude",
+      "seed": 7,
+      "locality": "L0",
+      "priority": 0,
+      "score": 1.2493230501128558,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 777
+        },
+        {
+          "connection_id": "B",
+          "weight": 223
+        }
+      ],
+      "pending_feedback_at_freeze": 17,
+      "learning_updates": 63
+    },
+    {
+      "model_id": "osc-v1:delayed:time_scaled_frequency:seed7",
+      "trained": true,
+      "case": "delayed",
+      "arm": "time_scaled_frequency",
+      "seed": 7,
+      "locality": "L0",
+      "priority": 0,
+      "score": 0.901838448989223,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 711
+        },
+        {
+          "connection_id": "B",
+          "weight": 289
+        }
+      ],
+      "pending_feedback_at_freeze": 17,
+      "learning_updates": 15
+    },
+    {
+      "model_id": "osc-v1:delayed:error_time_oscillator:seed7",
+      "trained": true,
+      "case": "delayed",
+      "arm": "error_time_oscillator",
+      "seed": 7,
+      "locality": "L0",
+      "priority": 0,
+      "score": 0.8997024785766573,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 711
+        },
+        {
+          "connection_id": "B",
+          "weight": 289
+        }
+      ],
+      "pending_feedback_at_freeze": 17,
+      "learning_updates": 15
+    },
+    {
+      "model_id": "osc-v1:target_shift:no_learning:seed0",
+      "trained": false,
+      "case": "target_shift",
+      "arm": "no_learning",
+      "seed": 0,
+      "locality": "L0",
+      "priority": 0,
+      "score": 0,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 500
+        },
+        {
+          "connection_id": "B",
+          "weight": 500
+        }
+      ],
+      "pending_feedback_at_freeze": 9,
+      "learning_updates": 0
+    },
+    {
+      "model_id": "osc-v1:target_shift:paired_perturbation:seed0",
+      "trained": true,
+      "case": "target_shift",
+      "arm": "paired_perturbation",
+      "seed": 0,
+      "locality": "L0",
+      "priority": 0,
+      "score": -1.1287572494249825,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 244
+        },
+        {
+          "connection_id": "B",
+          "weight": 756
+        }
+      ],
+      "pending_feedback_at_freeze": 9,
+      "learning_updates": 509
+    },
+    {
+      "model_id": "osc-v1:target_shift:fixed_oscillator:seed0",
+      "trained": true,
+      "case": "target_shift",
+      "arm": "fixed_oscillator",
+      "seed": 0,
+      "locality": "L0",
+      "priority": 0,
+      "score": -0.8013381773524703,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 310
+        },
+        {
+          "connection_id": "B",
+          "weight": 690
+        }
+      ],
+      "pending_feedback_at_freeze": 9,
+      "learning_updates": 63
+    },
+    {
+      "model_id": "osc-v1:target_shift:error_amplitude:seed0",
+      "trained": true,
+      "case": "target_shift",
+      "arm": "error_amplitude",
+      "seed": 0,
+      "locality": "L0",
+      "priority": 0,
+      "score": -0.8076154043842886,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 308
+        },
+        {
+          "connection_id": "B",
+          "weight": 692
+        }
+      ],
+      "pending_feedback_at_freeze": 9,
+      "learning_updates": 63
+    },
+    {
+      "model_id": "osc-v1:target_shift:time_scaled_frequency:seed0",
+      "trained": true,
+      "case": "target_shift",
+      "arm": "time_scaled_frequency",
+      "seed": 0,
+      "locality": "L0",
+      "priority": 0,
+      "score": -0.5519873506521413,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 365
+        },
+        {
+          "connection_id": "B",
+          "weight": 635
+        }
+      ],
+      "pending_feedback_at_freeze": 9,
+      "learning_updates": 31
+    },
+    {
+      "model_id": "osc-v1:target_shift:error_time_oscillator:seed0",
+      "trained": true,
+      "case": "target_shift",
+      "arm": "error_time_oscillator",
+      "seed": 0,
+      "locality": "L0",
+      "priority": 0,
+      "score": -0.5519060240474551,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 365
+        },
+        {
+          "connection_id": "B",
+          "weight": 635
+        }
+      ],
+      "pending_feedback_at_freeze": 9,
+      "learning_updates": 31
+    },
+    {
+      "model_id": "osc-v1:target_shift:no_learning:seed1",
+      "trained": false,
+      "case": "target_shift",
+      "arm": "no_learning",
+      "seed": 1,
+      "locality": "L0",
+      "priority": 0,
+      "score": 0,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 500
+        },
+        {
+          "connection_id": "B",
+          "weight": 500
+        }
+      ],
+      "pending_feedback_at_freeze": 9,
+      "learning_updates": 0
+    },
+    {
+      "model_id": "osc-v1:target_shift:paired_perturbation:seed1",
+      "trained": true,
+      "case": "target_shift",
+      "arm": "paired_perturbation",
+      "seed": 1,
+      "locality": "L0",
+      "priority": 0,
+      "score": -1.1189891400057974,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 246
+        },
+        {
+          "connection_id": "B",
+          "weight": 754
+        }
+      ],
+      "pending_feedback_at_freeze": 9,
+      "learning_updates": 509
+    },
+    {
+      "model_id": "osc-v1:target_shift:fixed_oscillator:seed1",
+      "trained": true,
+      "case": "target_shift",
+      "arm": "fixed_oscillator",
+      "seed": 1,
+      "locality": "L0",
+      "priority": 0,
+      "score": -0.8590910726660548,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 298
+        },
+        {
+          "connection_id": "B",
+          "weight": 702
+        }
+      ],
+      "pending_feedback_at_freeze": 9,
+      "learning_updates": 63
+    },
+    {
+      "model_id": "osc-v1:target_shift:error_amplitude:seed1",
+      "trained": true,
+      "case": "target_shift",
+      "arm": "error_amplitude",
+      "seed": 1,
+      "locality": "L0",
+      "priority": 0,
+      "score": -0.8508447659014228,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 299
+        },
+        {
+          "connection_id": "B",
+          "weight": 701
+        }
+      ],
+      "pending_feedback_at_freeze": 9,
+      "learning_updates": 63
+    },
+    {
+      "model_id": "osc-v1:target_shift:time_scaled_frequency:seed1",
+      "trained": true,
+      "case": "target_shift",
+      "arm": "time_scaled_frequency",
+      "seed": 1,
+      "locality": "L0",
+      "priority": 0,
+      "score": -0.611040300517991,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 352
+        },
+        {
+          "connection_id": "B",
+          "weight": 648
+        }
+      ],
+      "pending_feedback_at_freeze": 9,
+      "learning_updates": 31
+    },
+    {
+      "model_id": "osc-v1:target_shift:error_time_oscillator:seed1",
+      "trained": true,
+      "case": "target_shift",
+      "arm": "error_time_oscillator",
+      "seed": 1,
+      "locality": "L0",
+      "priority": 0,
+      "score": -0.5948824190944766,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 356
+        },
+        {
+          "connection_id": "B",
+          "weight": 644
+        }
+      ],
+      "pending_feedback_at_freeze": 9,
+      "learning_updates": 31
+    },
+    {
+      "model_id": "osc-v1:target_shift:no_learning:seed2",
+      "trained": false,
+      "case": "target_shift",
+      "arm": "no_learning",
+      "seed": 2,
+      "locality": "L0",
+      "priority": 0,
+      "score": 0,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 500
+        },
+        {
+          "connection_id": "B",
+          "weight": 500
+        }
+      ],
+      "pending_feedback_at_freeze": 9,
+      "learning_updates": 0
+    },
+    {
+      "model_id": "osc-v1:target_shift:paired_perturbation:seed2",
+      "trained": true,
+      "case": "target_shift",
+      "arm": "paired_perturbation",
+      "seed": 2,
+      "locality": "L0",
+      "priority": 0,
+      "score": -1.1195028074430173,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 246
+        },
+        {
+          "connection_id": "B",
+          "weight": 754
+        }
+      ],
+      "pending_feedback_at_freeze": 9,
+      "learning_updates": 509
+    },
+    {
+      "model_id": "osc-v1:target_shift:fixed_oscillator:seed2",
+      "trained": true,
+      "case": "target_shift",
+      "arm": "fixed_oscillator",
+      "seed": 2,
+      "locality": "L0",
+      "priority": 0,
+      "score": -0.8002681912945284,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 310
+        },
+        {
+          "connection_id": "B",
+          "weight": 690
+        }
+      ],
+      "pending_feedback_at_freeze": 9,
+      "learning_updates": 63
+    },
+    {
+      "model_id": "osc-v1:target_shift:error_amplitude:seed2",
+      "trained": true,
+      "case": "target_shift",
+      "arm": "error_amplitude",
+      "seed": 2,
+      "locality": "L0",
+      "priority": 0,
+      "score": -0.8017056723878052,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 310
+        },
+        {
+          "connection_id": "B",
+          "weight": 690
+        }
+      ],
+      "pending_feedback_at_freeze": 9,
+      "learning_updates": 63
+    },
+    {
+      "model_id": "osc-v1:target_shift:time_scaled_frequency:seed2",
+      "trained": true,
+      "case": "target_shift",
+      "arm": "time_scaled_frequency",
+      "seed": 2,
+      "locality": "L0",
+      "priority": 0,
+      "score": -0.5474648073608168,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 366
+        },
+        {
+          "connection_id": "B",
+          "weight": 634
+        }
+      ],
+      "pending_feedback_at_freeze": 9,
+      "learning_updates": 31
+    },
+    {
+      "model_id": "osc-v1:target_shift:error_time_oscillator:seed2",
+      "trained": true,
+      "case": "target_shift",
+      "arm": "error_time_oscillator",
+      "seed": 2,
+      "locality": "L0",
+      "priority": 0,
+      "score": -0.5468008852216277,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 367
+        },
+        {
+          "connection_id": "B",
+          "weight": 633
+        }
+      ],
+      "pending_feedback_at_freeze": 9,
+      "learning_updates": 31
+    },
+    {
+      "model_id": "osc-v1:target_shift:no_learning:seed3",
+      "trained": false,
+      "case": "target_shift",
+      "arm": "no_learning",
+      "seed": 3,
+      "locality": "L0",
+      "priority": 0,
+      "score": 0,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 500
+        },
+        {
+          "connection_id": "B",
+          "weight": 500
+        }
+      ],
+      "pending_feedback_at_freeze": 9,
+      "learning_updates": 0
+    },
+    {
+      "model_id": "osc-v1:target_shift:paired_perturbation:seed3",
+      "trained": true,
+      "case": "target_shift",
+      "arm": "paired_perturbation",
+      "seed": 3,
+      "locality": "L0",
+      "priority": 0,
+      "score": -1.1366455780230524,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 243
+        },
+        {
+          "connection_id": "B",
+          "weight": 757
+        }
+      ],
+      "pending_feedback_at_freeze": 9,
+      "learning_updates": 509
+    },
+    {
+      "model_id": "osc-v1:target_shift:fixed_oscillator:seed3",
+      "trained": true,
+      "case": "target_shift",
+      "arm": "fixed_oscillator",
+      "seed": 3,
+      "locality": "L0",
+      "priority": 0,
+      "score": -0.8637963635701966,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 297
+        },
+        {
+          "connection_id": "B",
+          "weight": 703
+        }
+      ],
+      "pending_feedback_at_freeze": 9,
+      "learning_updates": 63
+    },
+    {
+      "model_id": "osc-v1:target_shift:error_amplitude:seed3",
+      "trained": true,
+      "case": "target_shift",
+      "arm": "error_amplitude",
+      "seed": 3,
+      "locality": "L0",
+      "priority": 0,
+      "score": -0.8596725156033213,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 297
+        },
+        {
+          "connection_id": "B",
+          "weight": 703
+        }
+      ],
+      "pending_feedback_at_freeze": 9,
+      "learning_updates": 63
+    },
+    {
+      "model_id": "osc-v1:target_shift:time_scaled_frequency:seed3",
+      "trained": true,
+      "case": "target_shift",
+      "arm": "time_scaled_frequency",
+      "seed": 3,
+      "locality": "L0",
+      "priority": 0,
+      "score": -0.6090519480014442,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 352
+        },
+        {
+          "connection_id": "B",
+          "weight": 648
+        }
+      ],
+      "pending_feedback_at_freeze": 9,
+      "learning_updates": 31
+    },
+    {
+      "model_id": "osc-v1:target_shift:error_time_oscillator:seed3",
+      "trained": true,
+      "case": "target_shift",
+      "arm": "error_time_oscillator",
+      "seed": 3,
+      "locality": "L0",
+      "priority": 0,
+      "score": -0.591595824651849,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 356
+        },
+        {
+          "connection_id": "B",
+          "weight": 644
+        }
+      ],
+      "pending_feedback_at_freeze": 9,
+      "learning_updates": 31
+    },
+    {
+      "model_id": "osc-v1:target_shift:no_learning:seed4",
+      "trained": false,
+      "case": "target_shift",
+      "arm": "no_learning",
+      "seed": 4,
+      "locality": "L0",
+      "priority": 0,
+      "score": 0,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 500
+        },
+        {
+          "connection_id": "B",
+          "weight": 500
+        }
+      ],
+      "pending_feedback_at_freeze": 9,
+      "learning_updates": 0
+    },
+    {
+      "model_id": "osc-v1:target_shift:paired_perturbation:seed4",
+      "trained": true,
+      "case": "target_shift",
+      "arm": "paired_perturbation",
+      "seed": 4,
+      "locality": "L0",
+      "priority": 0,
+      "score": -1.1427698911448942,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 242
+        },
+        {
+          "connection_id": "B",
+          "weight": 758
+        }
+      ],
+      "pending_feedback_at_freeze": 9,
+      "learning_updates": 509
+    },
+    {
+      "model_id": "osc-v1:target_shift:fixed_oscillator:seed4",
+      "trained": true,
+      "case": "target_shift",
+      "arm": "fixed_oscillator",
+      "seed": 4,
+      "locality": "L0",
+      "priority": 0,
+      "score": -0.7941559627496582,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 311
+        },
+        {
+          "connection_id": "B",
+          "weight": 689
+        }
+      ],
+      "pending_feedback_at_freeze": 9,
+      "learning_updates": 63
+    },
+    {
+      "model_id": "osc-v1:target_shift:error_amplitude:seed4",
+      "trained": true,
+      "case": "target_shift",
+      "arm": "error_amplitude",
+      "seed": 4,
+      "locality": "L0",
+      "priority": 0,
+      "score": -0.7962437326555156,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 311
+        },
+        {
+          "connection_id": "B",
+          "weight": 689
+        }
+      ],
+      "pending_feedback_at_freeze": 9,
+      "learning_updates": 63
+    },
+    {
+      "model_id": "osc-v1:target_shift:time_scaled_frequency:seed4",
+      "trained": true,
+      "case": "target_shift",
+      "arm": "time_scaled_frequency",
+      "seed": 4,
+      "locality": "L0",
+      "priority": 0,
+      "score": -0.549839132486118,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 366
+        },
+        {
+          "connection_id": "B",
+          "weight": 634
+        }
+      ],
+      "pending_feedback_at_freeze": 9,
+      "learning_updates": 31
+    },
+    {
+      "model_id": "osc-v1:target_shift:error_time_oscillator:seed4",
+      "trained": true,
+      "case": "target_shift",
+      "arm": "error_time_oscillator",
+      "seed": 4,
+      "locality": "L0",
+      "priority": 0,
+      "score": -0.5503412720962532,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 366
+        },
+        {
+          "connection_id": "B",
+          "weight": 634
+        }
+      ],
+      "pending_feedback_at_freeze": 9,
+      "learning_updates": 31
+    },
+    {
+      "model_id": "osc-v1:target_shift:no_learning:seed5",
+      "trained": false,
+      "case": "target_shift",
+      "arm": "no_learning",
+      "seed": 5,
+      "locality": "L0",
+      "priority": 0,
+      "score": 0,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 500
+        },
+        {
+          "connection_id": "B",
+          "weight": 500
+        }
+      ],
+      "pending_feedback_at_freeze": 9,
+      "learning_updates": 0
+    },
+    {
+      "model_id": "osc-v1:target_shift:paired_perturbation:seed5",
+      "trained": true,
+      "case": "target_shift",
+      "arm": "paired_perturbation",
+      "seed": 5,
+      "locality": "L0",
+      "priority": 0,
+      "score": -1.0970438045723023,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 250
+        },
+        {
+          "connection_id": "B",
+          "weight": 750
+        }
+      ],
+      "pending_feedback_at_freeze": 9,
+      "learning_updates": 509
+    },
+    {
+      "model_id": "osc-v1:target_shift:fixed_oscillator:seed5",
+      "trained": true,
+      "case": "target_shift",
+      "arm": "fixed_oscillator",
+      "seed": 5,
+      "locality": "L0",
+      "priority": 0,
+      "score": -0.8652323671538078,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 296
+        },
+        {
+          "connection_id": "B",
+          "weight": 704
+        }
+      ],
+      "pending_feedback_at_freeze": 9,
+      "learning_updates": 63
+    },
+    {
+      "model_id": "osc-v1:target_shift:error_amplitude:seed5",
+      "trained": true,
+      "case": "target_shift",
+      "arm": "error_amplitude",
+      "seed": 5,
+      "locality": "L0",
+      "priority": 0,
+      "score": -0.8601625127046366,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 297
+        },
+        {
+          "connection_id": "B",
+          "weight": 703
+        }
+      ],
+      "pending_feedback_at_freeze": 9,
+      "learning_updates": 63
+    },
+    {
+      "model_id": "osc-v1:target_shift:time_scaled_frequency:seed5",
+      "trained": true,
+      "case": "target_shift",
+      "arm": "time_scaled_frequency",
+      "seed": 5,
+      "locality": "L0",
+      "priority": 0,
+      "score": -0.6111450505493276,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 352
+        },
+        {
+          "connection_id": "B",
+          "weight": 648
+        }
+      ],
+      "pending_feedback_at_freeze": 9,
+      "learning_updates": 31
+    },
+    {
+      "model_id": "osc-v1:target_shift:error_time_oscillator:seed5",
+      "trained": true,
+      "case": "target_shift",
+      "arm": "error_time_oscillator",
+      "seed": 5,
+      "locality": "L0",
+      "priority": 0,
+      "score": -0.5940304434729002,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 356
+        },
+        {
+          "connection_id": "B",
+          "weight": 644
+        }
+      ],
+      "pending_feedback_at_freeze": 9,
+      "learning_updates": 31
+    },
+    {
+      "model_id": "osc-v1:target_shift:no_learning:seed6",
+      "trained": false,
+      "case": "target_shift",
+      "arm": "no_learning",
+      "seed": 6,
+      "locality": "L0",
+      "priority": 0,
+      "score": 0,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 500
+        },
+        {
+          "connection_id": "B",
+          "weight": 500
+        }
+      ],
+      "pending_feedback_at_freeze": 9,
+      "learning_updates": 0
+    },
+    {
+      "model_id": "osc-v1:target_shift:paired_perturbation:seed6",
+      "trained": true,
+      "case": "target_shift",
+      "arm": "paired_perturbation",
+      "seed": 6,
+      "locality": "L0",
+      "priority": 0,
+      "score": -1.0946275161650822,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 251
+        },
+        {
+          "connection_id": "B",
+          "weight": 749
+        }
+      ],
+      "pending_feedback_at_freeze": 9,
+      "learning_updates": 509
+    },
+    {
+      "model_id": "osc-v1:target_shift:fixed_oscillator:seed6",
+      "trained": true,
+      "case": "target_shift",
+      "arm": "fixed_oscillator",
+      "seed": 6,
+      "locality": "L0",
+      "priority": 0,
+      "score": -0.7967327574694558,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 311
+        },
+        {
+          "connection_id": "B",
+          "weight": 689
+        }
+      ],
+      "pending_feedback_at_freeze": 9,
+      "learning_updates": 63
+    },
+    {
+      "model_id": "osc-v1:target_shift:error_amplitude:seed6",
+      "trained": true,
+      "case": "target_shift",
+      "arm": "error_amplitude",
+      "seed": 6,
+      "locality": "L0",
+      "priority": 0,
+      "score": -0.7990796342008436,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 310
+        },
+        {
+          "connection_id": "B",
+          "weight": 690
+        }
+      ],
+      "pending_feedback_at_freeze": 9,
+      "learning_updates": 63
+    },
+    {
+      "model_id": "osc-v1:target_shift:time_scaled_frequency:seed6",
+      "trained": true,
+      "case": "target_shift",
+      "arm": "time_scaled_frequency",
+      "seed": 6,
+      "locality": "L0",
+      "priority": 0,
+      "score": -0.5453048196095405,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 367
+        },
+        {
+          "connection_id": "B",
+          "weight": 633
+        }
+      ],
+      "pending_feedback_at_freeze": 9,
+      "learning_updates": 31
+    },
+    {
+      "model_id": "osc-v1:target_shift:error_time_oscillator:seed6",
+      "trained": true,
+      "case": "target_shift",
+      "arm": "error_time_oscillator",
+      "seed": 6,
+      "locality": "L0",
+      "priority": 0,
+      "score": -0.5450235941759258,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 367
+        },
+        {
+          "connection_id": "B",
+          "weight": 633
+        }
+      ],
+      "pending_feedback_at_freeze": 9,
+      "learning_updates": 31
+    },
+    {
+      "model_id": "osc-v1:target_shift:no_learning:seed7",
+      "trained": false,
+      "case": "target_shift",
+      "arm": "no_learning",
+      "seed": 7,
+      "locality": "L0",
+      "priority": 0,
+      "score": 0,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 500
+        },
+        {
+          "connection_id": "B",
+          "weight": 500
+        }
+      ],
+      "pending_feedback_at_freeze": 9,
+      "learning_updates": 0
+    },
+    {
+      "model_id": "osc-v1:target_shift:paired_perturbation:seed7",
+      "trained": true,
+      "case": "target_shift",
+      "arm": "paired_perturbation",
+      "seed": 7,
+      "locality": "L0",
+      "priority": 0,
+      "score": -1.1314007160418247,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 244
+        },
+        {
+          "connection_id": "B",
+          "weight": 756
+        }
+      ],
+      "pending_feedback_at_freeze": 9,
+      "learning_updates": 509
+    },
+    {
+      "model_id": "osc-v1:target_shift:fixed_oscillator:seed7",
+      "trained": true,
+      "case": "target_shift",
+      "arm": "fixed_oscillator",
+      "seed": 7,
+      "locality": "L0",
+      "priority": 0,
+      "score": -0.867540637293427,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 296
+        },
+        {
+          "connection_id": "B",
+          "weight": 704
+        }
+      ],
+      "pending_feedback_at_freeze": 9,
+      "learning_updates": 63
+    },
+    {
+      "model_id": "osc-v1:target_shift:error_amplitude:seed7",
+      "trained": true,
+      "case": "target_shift",
+      "arm": "error_amplitude",
+      "seed": 7,
+      "locality": "L0",
+      "priority": 0,
+      "score": -0.8650030885942056,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 296
+        },
+        {
+          "connection_id": "B",
+          "weight": 704
+        }
+      ],
+      "pending_feedback_at_freeze": 9,
+      "learning_updates": 63
+    },
+    {
+      "model_id": "osc-v1:target_shift:time_scaled_frequency:seed7",
+      "trained": true,
+      "case": "target_shift",
+      "arm": "time_scaled_frequency",
+      "seed": 7,
+      "locality": "L0",
+      "priority": 0,
+      "score": -0.6100484072061658,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 352
+        },
+        {
+          "connection_id": "B",
+          "weight": 648
+        }
+      ],
+      "pending_feedback_at_freeze": 9,
+      "learning_updates": 31
+    },
+    {
+      "model_id": "osc-v1:target_shift:error_time_oscillator:seed7",
+      "trained": true,
+      "case": "target_shift",
+      "arm": "error_time_oscillator",
+      "seed": 7,
+      "locality": "L0",
+      "priority": 0,
+      "score": -0.5941085494128784,
+      "weight_representation": "uint32, exact sum1000",
+      "connections": [
+        {
+          "connection_id": "A",
+          "weight": 356
+        },
+        {
+          "connection_id": "B",
+          "weight": 644
+        }
+      ],
+      "pending_feedback_at_freeze": 9,
+      "learning_updates": 31
+    }
+  ]
+}

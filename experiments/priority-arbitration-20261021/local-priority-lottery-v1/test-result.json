@@ -1,0 +1,13 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "Process started with PID 47252 (shell: powershell)\nInitial output:\ntest_all_input_orders_replay_exactly (test_arbiter.LotteryTests.test_all_input_orders_replay_exactly) ... ok\r\ntest_duplicate_heads_and_event_ids_are_rejected (test_arbiter.LotteryTests.test_duplicate_heads_and_event_ids_are_rejected) ... ok\r\ntest_equal_priority_normalizes_only_local_pool (test_arbiter.LotteryTests.test_equal_priority_normalizes_only_local_pool) ... ok\r\ntest_invalid_metadata_and_numbers_fail_explicitly (test_arbiter.LotteryTests.test_invalid_metadata_and_numbers_fail_explicitly) ... ok\r\ntest_iterable_capacity_refuses_without_unbounded_materialization (test_arbiter.LotteryTests.test_iterable_capacity_refuses_without_unbounded_materialization) ... ok\r\ntest_maximum_weight_sum_remains_exact (test_arbiter.LotteryTests.test_maximum_weight_sum_remains_exact) ... ok\r\ntest_no_ready_local_signal_returns_none (test_arbiter.LotteryTests.test_no_ready_local_signal_returns_none) ... ok\r\ntest_oldest_timestamp_precedes_priority (test_arbiter.LotteryTests.test_oldest_timestamp_precedes_priority) ... ok\r\ntest_outside_pool_changes_do_not_perturb_decision (test_arbiter.LotteryTests.test_outside_pool_changes_do_not_perturb_decision) ... ok\r\ntest_requests_are_not_removed_or_modified (test_arbiter.LotteryTests.test_requests_are_not_removed_or_modified) ... ok\r\ntest_sampler_rejects_modulo_bias_tail_and_stops_at_cap (test_arbiter.LotteryTests.test_sampler_rejects_modulo_bias_tail_and_stops_at_cap) ... ok\r\ntest_signed_zero_time_has_one_canonical_encoding (test_arbiter.LotteryTests.test_signed_zero_time_has_one_canonical_encoding) ... ok\r\ntest_weighted_distribution_fixed_seed_collection (test_arbiter.LotteryTests.test_weighted_distribution_fixed_seed_collection) ... ok\r\ntest_zero_member_cannot_win_when_positive_weight_exists (test_arbiter.LotteryTests.test_zero_member_cannot_win_when_positive_weight_exists) ... ok\r\ntest_zero_pool_uses_uniform_weights (test_arbiter.LotteryTests.test_zero_pool_uses_uniform_weights) ... ok\r\n\r\n----------------------------------------------------------------------\r\nRan 15 tests in 0.054s\r\n\r\nOK\r\nTEST_EXIT_CODE=0\r\n\n✅ Process 47252 has finished execution"
+    },
+    {
+      "type": "text",
+      "text": "\n[executed on device: DESKTOP-AFORJRI (06c6230a-d4b0-487e-aa52-5636dd90630b)]"
+    }
+  ],
+  "isError": false
+}

@@ -1,0 +1,35 @@
+{
+  "schema": "local-priority-weights-v1",
+  "model_id": "illustrative-untrained-example",
+  "status": "example only; not learned or qualified",
+  "representation": {
+    "type": "uint32",
+    "scale": 1
+  },
+  "connections": [
+    {
+      "locality": "L0",
+      "priority": 0,
+      "connection_id": "A",
+      "weight": 3
+    },
+    {
+      "locality": "L0",
+      "priority": 0,
+      "connection_id": "B",
+      "weight": 1
+    },
+    {
+      "locality": "L0",
+      "priority": 1,
+      "connection_id": "C",
+      "weight": 9
+    },
+    {
+      "locality": "L1",
+      "priority": 0,
+      "connection_id": "D",
+      "weight": 20
+    }
+  ]
+}

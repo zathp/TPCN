@@ -1,0 +1,41 @@
+{
+    "schema":  "arbiter-study-artifact-manifest-v1",
+    "files":  [
+                  {
+                      "path":  "plan.json",
+                      "bytes":  1395,
+                      "sha256":  "7db22c83e9aee158224c55144ce34c15075cd89fe429e0de1399ad9d867b6b89"
+                  },
+                  {
+                      "path":  "replay_supplement.py",
+                      "bytes":  1614,
+                      "sha256":  "aa8106f9d725f57610f4c5f6afacb043a06801af45c41783259cdbd7eff634af"
+                  },
+                  {
+                      "path":  "replay-plan.json",
+                      "bytes":  638,
+                      "sha256":  "1f7336e87d2b0623d9a9077ce498a3f26a77cd721b8b5ac5e475b3d23cec7050"
+                  },
+                  {
+                      "path":  "replay-results.json",
+                      "bytes":  2841,
+                      "sha256":  "fae9f89fe74c5ccb83be76f6b1d9a61286ee05983ee776e6b54f90a0ee2d3162"
+                  },
+                  {
+                      "path":  "REPORT.md",
+                      "bytes":  5105,
+                      "sha256":  "dda3d3c79f620b652c485e9606855b4d16bc9f82fdb549207521d4e87576cbb7"
+                  },
+                  {
+                      "path":  "results.json",
+                      "bytes":  55637,
+                      "sha256":  "baa7b5453aa840dcb7b83f2954713e92c5b155771000fb3b55d21073e8d98594"
+                  },
+                  {
+                      "path":  "study.py",
+                      "bytes":  7347,
+                      "sha256":  "2fd827f6d864119444d47ffc018d245a1d2e0a3cd2b412d6f1c31fd4d762cc00"
+                  }
+              ],
+    "self_excluded":  true
+}

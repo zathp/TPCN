@@ -1,0 +1,66 @@
+{
+  "schema": "oscillatory-priority-artifacts-v1",
+  "files": [
+    {
+      "path": "learner.py",
+      "bytes": 4397,
+      "sha256": "86b4f2a720640cc45f0edff529fc75f5efd93457334f6cdafea0a24d04f2f535"
+    },
+    {
+      "path": "make_report.py",
+      "bytes": 9092,
+      "sha256": "3ced4af8c5654361c41d6dfdca7ab560b7c0ff66cdade4578c5c66caa6a00231"
+    },
+    {
+      "path": "models.json",
+      "bytes": 112116,
+      "sha256": "391e35e946a4f71ebf90b93bd4e41be8a3c39e155c2ff8e0429c9f747052870b"
+    },
+    {
+      "path": "plan.json",
+      "bytes": 3304,
+      "sha256": "9e68505a519f8640024fdd349b98ca784b2c7b58045508d125ccebc74c740bde"
+    },
+    {
+      "path": "replay-plan.json",
+      "bytes": 762,
+      "sha256": "5e9ca862b8890c4f042dcc7cefe36d36bd3590a5ed3514cc3a3665da0b3d2272"
+    },
+    {
+      "path": "replay-results.json",
+      "bytes": 1079,
+      "sha256": "bcb8f7f75062c11ed9e704b57a049d3fd255e2a475a5af1a682e573f9baf4bda"
+    },
+    {
+      "path": "REPORT.md",
+      "bytes": 6345,
+      "sha256": "29df332475dc59ede5bab1375c6ef2997feaeed164ba78dd01d28c1392c4f1f0"
+    },
+    {
+      "path": "results.json",
+      "bytes": 508243,
+      "sha256": "9c06213af7735e3842b04582b2bd6f9b167e9e6a8d387818be111e988eba4a55"
+    },
+    {
+      "path": "study.py",
+      "bytes": 7540,
+      "sha256": "1ec6186212ce28290f3f8455d58a0a2359c077c367413030ff5ebad648755ef8"
+    },
+    {
+      "path": "summary.csv",
+      "bytes": 2370,
+      "sha256": "1c838e622a0af615ea07ea4318b38937e9c2541a15a2b47283cc2805b51230cb"
+    },
+    {
+      "path": "test_learner.py",
+      "bytes": 2801,
+      "sha256": "373088c08c5b3a89fa5131920ba8e1c5ef4d2aaa0b404af3015f4ff74b3f950b"
+    },
+    {
+      "path": "verify_replay.py",
+      "bytes": 2475,
+      "sha256": "cbdf0d99434788c8313cbc3d831019d37c8c82055adab64bddf20f24636413a8"
+    }
+  ],
+  "self_excluded": true
+}

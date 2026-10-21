@@ -1,0 +1,27 @@
+{
+  "schema": "oscillatory-learning-replay-check-v1",
+  "purpose": "verify exact trained-state reproducibility on immediate, delayed and changing-target feedback; no parameter retuning",
+  "selected": [
+    {
+      "case": "fast",
+      "arm": "error_time_oscillator",
+      "seed": 0
+    },
+    {
+      "case": "delayed",
+      "arm": "error_time_oscillator",
+      "seed": 0
+    },
+    {
+      "case": "target_shift",
+      "arm": "error_time_oscillator",
+      "seed": 0
+    }
+  ],
+  "max_extra_observations": 6144,
+  "max_extra_choices": 768,
+  "max_wall_seconds": 10,
+  "cumulative_observations_limit": 400000,
+  "cumulative_choices_limit": 50000,
+  "comparison": "canonical complete per-run row including centers, weights, checkpoints and heldout counts"
+}

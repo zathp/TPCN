@@ -1,0 +1,118 @@
+{
+  "schema": "oscillatory-priority-study-v1",
+  "status": "prospective fixed exploratory plan; no tuning from study outcomes",
+  "purpose": "test drift/reversal optimizer for a synthetic external service-share loss, not neural classification",
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "observations_per_run": 2048,
+  "observation_intervals": [
+    0.5,
+    1.5,
+    0.75,
+    1.25,
+    1
+  ],
+  "heldout_decisions_per_model": 256,
+  "heldout_seed_offset": 10000,
+  "arms": [
+    "no_learning",
+    "paired_perturbation",
+    "fixed_oscillator",
+    "error_amplitude",
+    "time_scaled_frequency",
+    "error_time_oscillator"
+  ],
+  "cases": [
+    {
+      "id": "fast",
+      "state_tau": 1,
+      "feedback_delay": 0,
+      "target_before": 0.8,
+      "target_after": 0.8,
+      "shift_step": null
+    },
+    {
+      "id": "slow",
+      "state_tau": 8,
+      "feedback_delay": 0,
+      "target_before": 0.8,
+      "target_after": 0.8,
+      "shift_step": null
+    },
+    {
+      "id": "delayed",
+      "state_tau": 4,
+      "feedback_delay": 16,
+      "target_before": 0.8,
+      "target_after": 0.8,
+      "shift_step": null
+    },
+    {
+      "id": "target_shift",
+      "state_tau": 4,
+      "feedback_delay": 8,
+      "target_before": 0.8,
+      "target_after": 0.2,
+      "shift_step": 1024
+    }
+  ],
+  "model": {
+    "probability": "sigmoid(trial_score)",
+    "plant": "exact first-order response to held probability over each irregular observation interval",
+    "loss": "(filtered_probability - external_target_share)^2 + fixed shared Gaussian noise",
+    "noise_sd": 0.002,
+    "weight_quantization_total": 1000
+  },
+  "learner": {
+    "initial_center": 0,
+    "initial_probability_state": 0.5,
+    "initial_error_estimate": 0.1,
+    "center_bounds": [
+      -4,
+      4
+    ],
+    "error_ema_tau": 4,
+    "learning_rate": 0.7,
+    "max_center_step": 0.2,
+    "max_abs_gradient": 2,
+    "fixed_amplitude": 0.4,
+    "min_amplitude": 0.1,
+    "max_amplitude": 0.8,
+    "error_scale": 0.05,
+    "fixed_period": 32,
+    "period_multiplier": 8,
+    "paired_period": 4,
+    "gradient": "OLS loss-versus-actual-perturbation slope per completed cycle; tagged delayed feedback; centers frozen per cycle",
+    "wave": "triangle for oscillators; seeded signed two-sided block probes for paired baseline",
+    "frequency": "1 / (8 * max(state_tau, feedback_delay, error_ema_tau)) for time-scaled arms"
+  },
+  "metrics": [
+    "final true service-share squared error",
+    "last-quarter average true center error",
+    "heldout arbitration frequency",
+    "parameter bounds and update counts",
+    "actual observation/evaluation counts",
+    "seeds with lower final loss than paired/fixed baselines"
+  ],
+  "criteria": {
+    "success": "record all methods and seeds; improvement only if mean final error lower than fixed and paired, both overall and in at least 3 of 4 cases",
+    "limits": "small exploratory comparison; identical gain is not per-method hyperparameter optimization; no statistical superiority or neural claim"
+  },
+  "limits": {
+    "max_plant_observations": 400000,
+    "max_heldout_choices": 50000,
+    "max_pending_feedback": 128,
+    "max_live_cycles": 64,
+    "max_wall_seconds": 60,
+    "max_result_bytes": 1048576
+  },
+  "checkpoint_stride": 256
+}
